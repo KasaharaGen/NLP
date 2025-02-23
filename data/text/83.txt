@@ -1,0 +1,17 @@
+Q: Is there a tool I can use to securely wipe data from iPhone, iPad, or iPod Touch? Is there a tool or application that will securely wipe an iPhone, iPod Touch, or iPad (i.e. any iOS device?)
+I'm not interested in a complete wipe that would brick the device.  Rather, I'd want to wipe all free space after it's been reset to default or had the OS reinstalled.
+Furthermore: by "securely wipe", I'm referring to multiple successive passes with random data, etc. to thwart any attempt at data recovery.
+For instance: If somebody wanted to sell their old iPhone on eBay, how can they be sure it's completely wiped, so there's little hope of a malicious buyer being able to recover sensitive data that used to be on it?
+I think this is especially important when people are using iPhone apps to store passwords, credit card numbers, etc. (even if those apps have a supposedly secure storage mechanism.)
+
+A: The built in secure-wipe does a very good job, but you should really create a new user on your Mac and do a Restore from iTunes while logged in as that user, and then do the secure wipe mentioned by Studer. That will keep the iTunes account crap from happening.
+There's also an iWipe app available in the Cydia store at $2.99 for jailbroken iphones, that wipes free space.
+
+A: iOS 4.0 supports a very rapid secure erase called "Data Protection". If you upgrade from 3.0 you need to do a restore to set the stage for hardware encryption of all the data.
+If your device isn't capable of hardware encryption (often called secure data at rest), then you can use the Erase all content and settings function. This built-in functionality to secure wipe your iDevice has been around since iPhone OS 2.0
+As this doesn't work the same way on all iOS devices, do read Understanding 'Erase All Content and Settings' before you depend on this to clear data securely.
+Once you are through erasing the device, you might want to connect it to a clean iTunes library and restore the device and set it up as new. Making a new account on your Mac or PC is an easy way to have a library with no account, no songs, and no apps just to be sure the device has a clean (and easily verifiable) start to it's new life.
+
+A: One option would be to put it into disk mode and then use an external utility to do the wiping. 
+
+A: You can get ShredIt for iOS, more information can be found here: http://www.burningthumb.com/apps/shredit/

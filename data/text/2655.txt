@@ -1,0 +1,16 @@
+Q: Delete all events in iCal How can I delete all events in iCal? I have a bunch of events (some reoccurring) that I want to delete. I don't want to have to manually delete/cut each event.
+I tried declining the events but that just turns them gray.
+I'm running OS X 10.6.6.
+
+A: Applescript:
+tell application "iCal"
+   tell calendar "My Calendar" -- your calendar here
+      set theEvents to every event
+      repeat with current_event in theEvents           
+         delete current_event
+      end repeat
+   end tell
+end tell
+
+
+A: I solved it by deleting ~/Library/Calendars as suggested in here.

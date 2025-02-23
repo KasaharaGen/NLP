@@ -1,0 +1,16 @@
+Q: Way to limit CPU speed to prevent temperature spikes? I have a 17 inch MacBook Pro with Thunderbolt.  Occasionally, it heats up and the fan has to kick on.  This happens typically during heavy CPU utilization, but also seemingly randomly when doing mundane tasks.
+If I could half the speed of my CPU, it would still be more than fast enough for most of my day to day tasks.  Is there a way to reduce the CPU speed for the entire system?  Will this minimize the heat related issues and prevent the fan from kicking on?
+
+A: It's not practical, but that model of MacBook Pro will run the CPU lower if the battery is disconnected since it can't count on the battery to work as a capacitor and the CPU/GPU can over draw the power supply.
+Also - you could try gfxCardStatus to shift to the lower power GPU to reduce that source of heat.
+If you are still running Snow Leopard, there are some CHUD tools in the performance testing folder of Xcode that let you to disable cores on processors which would let the system get less work down and generate substantially less heat. I don't know of a program to do this on Lion as the latest Lion build of Xcode didn't ship with the CHUD tools.
+
+A: Yes there is. Check out CoolBook at www.coolbook.se! Good luck!
+
+A: You can try
+ launchctl limit [some options]
+
+although that is more for individual jobs.
+I don't think that it will help.
+I tried renice(8)ing the flash plugin process a few times to stop it from revving up the fans, but I now suspect that it's writing something to the drive, which triggers spotlight ( mdworker )  I know that Chrome downloading the Safe Browsing dataset keeps my fans spinning... 
+You should not have to do that however. 

@@ -1,0 +1,16 @@
+Q: Windows iTunes: Where are the lyrics saved to? In iTunes, we can right click a track and do "Get Info" and add some lyrics to the track. 
+I have a text file that is roughly 500 kB.
+My MP3 file is 3.47 MB. For some reason, when I set the lyrics to the contents of the text file (in other words, roughly half a megabyte), my MP3 file size is still 3.47 MB.
+Where are the information for the lyrics saved to?
+(Windows Vista 32-bit SP2)
+
+A: It is entirely possible that you have iTunes set to copy files to its own media folder, in which case the original audio files are not changed.
+To find the location of the audio file iTunes is using, look under the "Where:" label in the "Summary" tab.
+iTunes (both Windows and Mac) does use the lyrics field in MP3s to store lyrics, and will cause the modification date and time, as well as the size, to change.
+
+A: The MP3 and M4A formats are used to compress data upto 1/11th the size of CD quality. Text files can be compressed even more. When I put a 1.33 MB text file into the lyrics of a song, the size of song file increases by about 0.1 MB. So it does save the lyrics into the file. 
+
+A: Yes, iTunes embeds the lyrics information within the file, just like title and artist information.
+
+A: On a Mac, iTunes stores the lyrics information in the audio file.
+When I try to replicate your process, I do get a change to both the modification time and the size of the music file. When you look at the file size, are you looking at the copy of the audio file that iTunes uses? You can be sure by control-clicking the track in iTunes and selecting "Show in Finder"; if you change the lyrics, the file modification time should be when you last changed the lyrics, and the size of that file (rounded to the block size) should change when lyrics are added or subtracted.

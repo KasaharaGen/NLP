@@ -1,0 +1,15 @@
+Q: How can I stop OS X from switching Spaces when the mouse cursor is at the edge of the screen? Mac OS X Spaces change when I hold the mouse at the edge of the screen. Is there an application or 'defaults' command to disable this?
+Warp looks like it might help, but hasn't changed the behavior for me, even though I tried turning it off, or setting a modifier key.
+
+A: I found a solution. The following sets the delay to 1 minute.
+defaults write com.apple.dock workspaces-edge-delay -float 60 && killall Dock
+source: Leopard: Lower the window drag delay between spaces
+
+A: OS X - Snow Leopard seems to have two states when it comes to the switching behavior. Dragging a window or not dragging a window. If you are not dragging a window, it ignores your mouse hovering at a side. This makes sense, or the dock and hot corners would be very hard to use. When you are dragging a window, it auto-switches workspaces if you hang around at a side. This also makes sense.
+Sometimes though, it seems to get confused about if you're dragging a window or not. When this happens, even if you aren't dragging a window, it still flips workspaces if you hover the mouse on a side, thereby making the dock and hot corners very hard to use.
+In order to reset this state, I figured out that you can pick up a window, drag it around a bit, then let go. This seems to reset its "you're currently dragging a window" state with respect to workspace switching.
+
+A: It only switches when you're actively dragging something and linger on the edge of the screen for several seconds. Simply hovering shouldn't change anything. 
+
+A: I am using Warp successfully to do that.  I've checked "Enable Warp" and "Click screen edge to Warp".  When I touch an edge, I get a small window surrounding the cursor that either shows a tiny view of the adjacent space and its windows, or says "No windows" -- is that what you're seeing?  At that point, clicking will change spaces, or you can back away from the edge to remain in the same space.
+Edit:  Oops - I have to backtrack. My answer applies to just the mouse cursor, not to dragging a window.  I see the same behavior you describe if I drag a window to the edge and hover there holding it: Spaces will switch repeatedly until I back the cursor off of the edge.

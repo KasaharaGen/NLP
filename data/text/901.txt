@@ -1,0 +1,34 @@
+Q: MacBook Running Really Slow, Activity Monitor Reports HUGE VM My MacBook is running really really slow at the moment, I have quit loads of processes (but activity monitor only reported about 10% cpu usage anyway).
+I had just noticed I have a VM Size of 250GB!
+Could this be the problem? Why would it ever be that big?
+
+A: The first thing you might want to do is restart it. That will probably fix the problems. 
+Other things you might want to check:
+
+
+*
+
+*Do you have enough free disk space?
+
+*How much RAM do you have? Are you running any memory intensive application (or many)? I.e. you might have photoshop sitting idle, but ten 80mb RAW files open… that uses RAM, not CPU (as long as you’re not processing them in any way).
+
+*Are you running any sort of Virtualization software (VMware, Parallels, VirtualBox?) If yes, are they running a Virtual Machine?
+
+*Is your computer Paging too much to disk? (See activity Monitor, memory: Page ins vs. Page outs). A lot of Pageouts is bad (compared to Ins). That means your box is lacking physical RAM memory and must write to the (slow) HDD to save the memory pieces. This is one of the #1 causes for slowdowns. note: some page outs are ok, the system uses the swap no matter how much ram you have.
+
+*You already mention it, but sort by CPU Usage in All Processes (Activity Monitor) and make sure no process goes crazy every now and then. 
+
+*Open Terminal (/Applications/Utilities/Terminal.App) and execute:
+ls -lh /var/vm
+The output will consist of one (or more) swapfile0, 1, 2… and next to them you’ll see the size. Small sizes are ok (a few hundred Megabytes). If that swapfile is huge, then you have an Insufficient RAM problem. You need more RAM or less programs at the same time.
+Here’s my output: (I have 12 GB of RAM, so that’s a lot to spare)
+
+In the end, restart your computer and monitor those values throughout the day(s). 
+
+A: That's a pretty normal VM size for me (currently: 257.31 GB). What matters isn't so much the size, but what's using it. Activity Monitor will let you sort your apps by the memory they use—does something look outrageously large? My experience is that Safari is usually the culprit.
+If it's one particular app, quit it and then relaunch it.
+If you can't find an obvious offender, restart your Mac.
+
+A: If the slowdown isn't obvious in Activity Monitor, then it will take some sleuthing on your part to sort out your particular set of circumstances that is causing it: Spotlight indexing, downloading, anti-virus, printing, etc.
+CPU usage percentage isn't a complete indicator of what could be bogging down a machine. I once had McAfee Anti-Virus completely bog my machine down (and I mean the beachball, freezing screens,a nd almost complete inability to finish the boot process for an hour at a time) trying to scan the contents of my iDisk contents. But the five processes being run by AV never got above 2% or 3%. Once I disconnected my iDisk, all was fine and I don't hear a peep out of AV.
+It is no secret that Mac OS X is a memory hog, and the occasional reboot (I do so every Monday morning) does wonders.

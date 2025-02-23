@@ -1,0 +1,22 @@
+Q: Switch off keyboard backlight on new MacBooks Older MacBooks had a dedicated key to switch off the keyboard backlight (like the mute key). It was F8 if I'm not mistaken.
+Is it possible to replicate its functionality (e.g.: keyboard shortcut) on the new models?
+
+A: The easiest way is probably to just hold down the dimmer key. Should turn it off less than a second. However it sounds like you want a single press button to turn it off.
+It's a bit convoluted, but it should work:
+Using Automator, make an application out of the Applescript from this MacRumors thread. To do this, open Automator, choose Application from the options, search for the Run AppleScript action and add it to the workflow, paste in the script and save. You should end up with something like this:
+That should give you an application that will disable the backlight.
+QuickSilver is free, and you can set a "trigger" to launch the app and bind it to any key you want. If you want to use a function key, try FunctionFlip. It lets you choose which function keys on your MacBook you want to work as actual F-keys and which you want controlling the hardware functions. You can rebind whatever F-key you like and still use the rest for hardware functions if you like.
+It's worth noting that the Applescript seems to be a disable-only script. There are directions on the accompanying post to make an enable script. With a bit of modification you could probably make it a toggle script, maybe someone else could chime in with that?
+Hope that helps.
+
+A: You can turn it off as follows:
+
+
+*
+
+*Apple menu > System Preferences...
+
+*Keyboard > Toggle "Automatically illuminate keyboard in low light"
+
+
+Note: If you disable the option, you can dim keyboard light with F5 and F6.

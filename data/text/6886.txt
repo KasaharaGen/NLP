@@ -1,0 +1,69 @@
+Q: Why are Safari and Chrome not throwing warnings after removing the root certificates Certificates issued by DigiNotar have been blacklisted today by Mozilla. Viewing websites with certificates issued by DigiNotar with a nightly build of Firefox will render warnings.
+Instead of waiting for an update, for the certificates to be revoked on my own system, I removed the root certificates from my Keychain but Chrome still validates the website certificates and Safari isn't throwing any warnings.
+Am i missing something?
+Certificates removed:
+
+
+*
+
+*DigiNotar Root CA
+
+*Staat der Nederlanden Root CA
+
+*Staat der Nederlanden
+Root CA - G2
+
+
+Website tested: https://as.digid.nl/
+
+Here's an alternate test site that shows the problem in Chrome 13.0.782.218: http://auth.pass.nl
+I have deleted the DigiNotar root CA from my Keychain. Chrome has been restarted. But Chrome still says this site is valid and lists the DigiNotar root CA as the authority on the SSL for the site.
+
+
+A: Every site I check that I have manually set as untrusted shows a warning. Perhaps things are changing on the servers so rapidly, different people doing the same actions are seeing different results.
+
+Let's set aside the concept of blacklisting in general and certificate revocation like (CRL) or online verification like OCSP and just pick apart the mechanism of SSL certificates in the browser. I will set aside Chrome/Firefox/other browsers and just focus on Safari and the Mac Keychain as that's trouble enough for this post.
+The short answer is the site you list doesn't depend on the one certificate that was used in a way that has caused the press to run all the blacklist stories.
+It was used to sign certificates that matched anything ending in google.com and they were spotted in use on sites that were certainly not google. This is a technological equivalent to someone constructing tunnels into a bank vault. Not plans to tunnel - but a working actual tunnel around a barrier everyone expected to be solid.
+
+Now onto how to know why Safari didn't flag the site you listed as "bad".
+I haven't deleted any certificates from the mac I'm on and just fired up the Keychain Assistant to use the Certificate Assistant (under the Keychain Access menu -> Certification Assistant -> Open...
+In the small CA window, select continue, then View and Evaluate, then View and evaluate certificates, then continue.
+
+As you can now see, https://as.digid.nl/ is serving up four certificates in the chain of trust:
+
+*
+
+*cert name - type - SHA1 fingerprint - status
+
+*as.digid.nl - SSL - 2D F7 4E 54 00 90 80 08 01 0A 2F 3E 5A EE BE 36 5F EC 82 F3 - invalid due to host name mismatch (harmless error - the tool evaluates that cert for your mac and my mac isn't as.digid.nl)
+
+*DigiNotar PKIoverheid CA Overheid en Bedrijven - intermediate - 40 AA 38 73 1B D1 89 F9 CD B5 B9 DC 35 E2 13 6F 38 77 7A F4 - valid
+
+*Staat der Nederlanden Overheid CA - intermediate - 29 FC 35 D4 CD 2F 71 7C B7 32 7F 82 2A 56 0C C4 D2 E4 43 7C - valid
+
+*Staat der Nederlanden Root CA - root - 10 1D FA 3F D5 0B CB BB 9B B5 60 0C 19 55 A4 1A F4 73 3A 04 - valid
+
+
+In your question you stated you deleted the root key - if so, your safari is either cacheing the old values or when you looked, that site had a SSL certificate different than the one I saw making this answer. You'll have to reproduce the steps I just took to see which was the case.
+In my case,
+I only had to mark the Staat der Nederlanden Root CA root certificate as untrusted to get Safari to balk and show this message when you load the site.
+
+
+Since all the press is specific about only the DigiNotar Root CA as being bad, I am going to undo my change to not trust the Staat der Nederlanden Root CA.
+I am going to mark the DigiNotar Root CA as never to be trusted and wait and see what Apple does. If you are interested in this sort of thing, do monitor the Apple Security page.
+
+A: It seems this is a serious bug in OS X.
+
+Users can revoke a certificate using Keychain, but if they happen to visit a site that uses the more-secure Extended Validation Certificates, the Mac will accept the EV certificate even if it's been issued by a certificate authority marked as untrusted in Keychain.
+
+Source: http://www.computerworld.com
+
+A: The website doesn’t use the DigiNotar CA Root certificate. The root certificate in the case of as.digid.nl is from the “Staat der Nederlanden root CA” – which is safe (presumably). True, there is a DigiNotar certificate in the website’s chain of certificates but this is not the root certificate – it is merely a link in the chain, and is a different certificate.
+
+A: It's possible that the certs you are seeing are signed by multiple CAs (or intermediate CA certs are signed by multiple entities).  You would have to identify and remove all the signing CAs involved.
+
+A: As far as I know, some browsers (like Firefox) are not using the certificates in your keychain. Chrome is based on Webkit, so I assume it does use the keychain.
+Restarting Safari was not necessary for me; marking the root cert as "untrusted" and reloading the page was sufficient.
+Not that you can only mark the root (Staat der Nederlanden Root CA) as untrusted; the other certs are not in your keychain, but rather transmitted from the host every time you start an SSL session.
+Could you post a screenshot of the certifcate window when you load as.digid.nl ? Maybe that can shed some light on the issue...

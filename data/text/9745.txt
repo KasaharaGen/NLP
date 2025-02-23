@@ -1,0 +1,8 @@
+Q: Adding a desktop button to the Dock or Menu Bar I am an Apple newbie, I want to know how I can add a desktop button that takes me to the Desktop either in the Dock or in the menu bar at the top of the screen. 
+
+A: While you could create an AppleScript application that triggers Expose's reveal Desktop function, save it, and put it in the Dock, an easier solution would be to use Hot Corners. Then, when you put your mouse in a screen corner, it reveals the desktop.
+If you wanted to go the AppleScript route, you'd create a script that said tell application "System Events" to key code 103, save it as an application, and put that application in the Dock.
+
+To go the hot corners route, in Lion, the preferences is under Mission Control in System Preferences.
+
+While it is certainly feasible to create a program that puts an icon in the menu bar to reveal the Desktop, it requires programming techniques beyond the scope of this site.

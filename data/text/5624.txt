@@ -1,0 +1,35 @@
+Q: Creating a quick event in iCal using LaunchBar & AppleScript what i want to figure out is how to send a String to iCal 5 on 10.7 which is interpreted the same way as creating a quick event, as if you press CMD+N with iCal in focus and then just type "tea at 5" into the popover.
+a simplistic sketch (which doesn't work):
+on handle_string(theString)
+    tell application "iCal"
+        make new event with theString
+    end tell
+end handle_string
+
+i'm comfortable with programming but never done anything with AppleScript. Is there a reference for application commands?
+edit:
+this works and it's not even slow, the only caveat is that it breaks the  clipboard:
+on handle_string(theString)
+
+    tell application "LaunchBar"
+        perform action "Copy" with string theString
+    end tell
+
+    tell application "iCal" to activate
+
+    tell application "System Events"
+        keystroke "n" using {command down}
+        keystroke "v" using {command down}
+        keystroke return
+    end tell
+
+end handle_string
+
+it's sort of finicky to use the clipboard in a script? i can't figure out how to temporarily hold the clipboard content in a variable, and then set the clipboard back to it. i'll accept your answer if you help me with that.
+
+A: Here's a script that lets you restore the clipboard:
+set oldClip to the clipboard as string --save the old clipboard
+set the clipboard to "hello world" --put your stuff in the clipboard
+log (the clipboard) --do your stuff here
+set the clipboard to oldClip as string --restore the old clipboard
+

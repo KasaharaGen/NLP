@@ -1,0 +1,7 @@
+Q: Dashboard takes few seconds to update widgets I love the idea of the Dashboard, but there's one thing that pretty much kills it for me. When I activate Dashboard for a first time or after some extended period of time it takes it 3-15 seconds to update and actually show me things like time, calendar etc. I have a MacBook Pro and this is happening with default widgets (clock, calendar, calculator and weather). The entire idea of a dashboard that it's always one click away and the information should be available immediately.
+So, does anyone know how to make OS X to update Dashboard widgets immediately or maybe somehow prefetch the data once every 15 min or so? Or does anyone else see this problem at all?
+
+A: The solution comes from a System Preference pane called Dashboard Kickstart.
+
+This application runs in the background and reacts to the starting or re-starting of the Dock. When that happens it initiates the starting of the Dashboard. This prevents the delay you'll experience when launching Dashboard the first time you want to use it. 
+

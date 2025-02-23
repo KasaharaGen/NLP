@@ -1,0 +1,124 @@
+Q: How to download Bootcamp drivers without Bootcamp assistant? I'm setting up my MacBook Air for a Windows-only boot setup.
+This was easy enough. It already had rEFIt on it, I just connected a Windows 7 boot thumb drive, and away I went.
+However, it seems Apple does not let you download Bootcamp drivers outside of their assistant tool. Reinstalling OS X just for the drivers is ridiculous.
+This laptop no longer has OS X on it at all. How do I get the required drivers? I cannot find them anywhere on Apple's support pages.
+Every other manufacturer has their drivers available for download. 
+How do I download the Windows drivers for my 2010 MacBook Air without the BootCamp Assistant?
+
+A: Try this: Apple DL1443: Boot Camp Software Update 3.3 for Windows. It's called an update, but I suspect it doesn't require any pre-existing installed drivers.
+That said, it's probably worth your while to keep a minimal OS X install, even if it's just on a spare external drive (you could probably get away with a 16 GB USB drive even). It gives you a good recovery option if anything goes wrong, and it also gives you a way to get the occasional firmware updates, which you can't install from Windows.
+
+A: Yes, It is possible to download the Bootcamp drivers outside of the Bootcamp tool:
+Updated: 
+
+
+*
+
+*timothy-sutton's answer will make your life so much easier, go there first
+
+*For Windows 7 through 10, Apple have published a table of 'which download you need for which model' at https://support.apple.com/kb/HT5634. Win 7 download might work for Vista.
+
+*For WinXP, see robmathers' answer.
+
+*The hard way which follows here, taken from 
+http://www.cafe-encounter.net/p682/download-bootcamp-drivers is your fallback if you want or need to work it from scratch.
+
+
+*
+
+*Download from Apple the http://swscan.apple.com/content/catalogs/others/index-lion-snowleopard-leopard.merged-1.sucatalog file. Don’t double-click it.
+
+*Open the index-lion-snowleopard-leopard.merged-1.sucatalog file in a text editor or word processor.
+
+*Search for each occurrence — as at August 2012 there were 6 — of BootCampESD.pkg. For instance, the one I needed is http://swcdn.apple.com/content/downloads/33/54/041-2011/pRtCDYcWShMLxFggy3TzFzmfnnWQNFQBfJ/BootCampESD.pkg
+
+*Notice in each such URL, the /041-2011/ or similar /041-XXXXX/ bit of it.
+
+*Below each such occurrence, notice the URL for a file with the same 041-XXXXX in it and ending in English.dist, e.g. 041-2011.English.dist
+
+*Paste the URL for each such English.dist file into your browser and open that url. Here’s a list of them:
+
+
+*
+
+*http://swcdn.apple.com/content/downloads/11/05/041-0925/g27es04pw9re5ggrfp3vuf8ew6r53asfz8/041-0925.English.dist
+
+*http://swcdn.apple.com/content/downloads/53/34/041-4776/TpFRDjFyRJjSvtyj2vFsPyx2bH2NSYvwN9/041-4776.English.dist
+
+*http://swcdn.apple.com/content/downloads/55/51/041-3891/se4uhpqng48t842cdsosqh28lft54fmswl/041-3891.English.dist
+
+*http://swcdn.apple.com/content/downloads/32/15/041-4775/hgMfrNHd9W8W7d8n4JyqSFLksk5TYr2HXN/041-4775.English.dist
+
+*http://swcdn.apple.com/content/downloads/32/33/041-2303/W5jKtsQhhMgMXs3TKhPDqLXrpXyY2HdXMN/041-2303.English.dist
+
+*http://swcdn.apple.com/content/downloads/33/54/041-2011/pRtCDYcWShMLxFggy3TzFzmfnnWQNFQBfJ/041-2011.English.dist
+
+
+*Search for the Model Identifier for your Mac. For instance MacBookPro5,2 or Macmini4,1.
+
+
+*
+
+*For instance the 041-2011 file contains these models: MacBook2,1 MacBook3,1 MacBook4,1 MacBook5,1 MacBook5,2 MacBook5,3 MacBook6,1 MacBook7,1 MacBookAir1,1 MacBookAir2,1 MacBookAir3,1 MacBookAir3,2 MacBookPro2,1 MacBookPro2,2 MacBookPro3,1 MacBookPro4,1 MacBookPro5,1 MacBookPro5,2 MacBookPro5,3 MacBookPro5,4 MacBookPro5,5 MacBookPro6,1 MacBookPro6,2 MacBookPro7,1 MacBookPro8,1 MacBookPro8,2 MacBookPro8,3 MacPro1,1 MacPro2,1 MacPro3,1 MacPro4,1 MacPro5,1 Macmini2,1 Macmini3,1 Macmini4,1 iMac5,1 iMac6,1 iMac7,1 iMac8,1 iMac9,1 iMac10,1 iMac11,1 iMac11,2 iMac11,3 iMac12,1 iMac12,2
+
+*How do you know your Model Identifier? Open System Information, and look in the Hardware Overview section. i.e. click Apple menu -> About this Mac -> More Info… -> Report -> Hardware -> and now read down the Hardware Overview looking for “Model Identifier:”
+
+
+*Having found your 041-XXXXX number, download the BootCampESD.pkg url that has your number in it. Again, here’s a list of them:
+
+
+*
+
+*http://swcdn.apple.com/content/downloads/55/51/041-3891/se4uhpqng48t842cdsosqh28lft54fmswl/BootCampESD.pkg
+
+*http://swcdn.apple.com/content/downloads/32/15/041-4775/hgMfrNHd9W8W7d8n4JyqSFLksk5TYr2HXN/BootCampESD.pkg
+
+*http://swcdn.apple.com/content/downloads/32/33/041-2303/W5jKtsQhhMgMXs3TKhPDqLXrpXyY2HdXMN/BootCampESD.pkg
+
+*http://swcdn.apple.com/content/downloads/33/54/041-2011/pRtCDYcWShMLxFggy3TzFzmfnnWQNFQBfJ/BootCampESD.pkg
+
+*http://swcdn.apple.com/content/downloads/53/34/041-4776/TpFRDjFyRJjSvtyj2vFsPyx2bH2NSYvwN9/BootCampESD.pkg
+
+*http://swcdn.apple.com/content/downloads/11/05/041-0925/g27es04pw9re5ggrfp3vuf8ew6r53asfz8/BootCampESD.pkg
+
+
+*Be patient as it’s probably 600MB.
+
+*Once your pkg is downloaded, double click it and install to a folder on your hard drive so you know where to find it.
+
+*The folder contains a nest of folders, the last of which contains a dmg disk image file. Double click to open. Voila. Here are your Windows installer files.
+
+*Copy them to a USB drive, or a burnable CD. It’s still 660MB or more, so it’s a full CD worth of burning time.
+
+*Done. You can now proceed with Boot Camp assistant Windows installation.
+
+
+
+source: http://www.cafe-encounter.net/p824/bootcamp-drivers-direct-download-of-bootcampesd-pkg . The page was aimed at people struggling with BootCamp, but either way, it gets you to the BootCamp.pkg file, which contains the drivers. 
+You still need open the OS X installer pkg file to get the the contents out, and to open a DMG file. If you are already in Windows, 7-zip will open it: http://www.cafe-encounter.net/p860/opening-a-bootcamp-driver-download-on-windows-7-or-8-with-7-zip
+
+A: I have written a tool that helps me deploy Boot Camp in an organization where we manage a dual-boot lab environment, and one of its features is that it can download the driver package for arbitrary models:
+https://github.com/timsutton/brigadier
+Either git clone or download an archive of the repo, then within the root of the repo (using an iMac15,1 here as an example):
+./brigadier --model iMac15,1
+The --model option can be omitted and it will download the latest version for the current model. In cases where multiple installers exist on Apple's software update server, you specify an alternate package.
+It runs on both OS X and Windows. For Windows I provide a compiled exe so that a Python installation isn't required.
+
+A: Either Chris F Carroll needs to update his answer, or mark mine as correct!  
+Answer: http://support.apple.com/downloads/#macoscomponents
+P.S.  Perhaps I'm a bit of a 'paranoid ready-for-the-end-of-the-world' type, but anyway you look at it (or me) - I wouldn't recommend trusting third party downloads of drivers, unless you have the inside scoop on what goes into making them (which you don't).  Why?
+They are not responsible to you for supporting issues that occur, and they COULD contain malicious code.
+
+A: Found a quicker answer for myself...  I figured out that only the URL to the pkg is HTTP.  So I just start the download with Wireshark capture active, and use the "follow TCP stream" option to get the URL when I see an IP address show up lots of times during the download.  Add host and URL together and you have your Mac's specific URL.
+
+A: This 'Apple DL1443: Boot Camp Software Update 3.3 for Windows' is definitely the required Update. 
+I have a 2010 Macbook Pro with Snow Leopard (10.6.8) installed and couldn't get the right Boot Camp upgrade using any of the Apple download software from within the bootcamp Application.
+After installing this Update/Upgrade suddenly all of the required drivers appeared in the Windows 'Device manager' and everything started working perfectly
+
+A: Take a look at this web:
+https://www.123myit.com/boot-camp-drivers/macbook-air/
+There you can find "all" the bootcamp drivers.
+
+A: A link to a reference table of which download is intended for which Mac is provided in the first paragraph of each download page.
+
+A: Hi so I was in a similar predicament some time back. Eventually, I had to download the drivers through a Mac. I later discovered this link: http://www.mediafire.com/file/83sgt6bf6m8wt2x/BootCamp_6.1.36.zip which has the latest drivers.

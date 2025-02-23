@@ -1,0 +1,14 @@
+Q: Is there a keyboard shortcut for playing a song next in iTunes DJ? I would like a quicker method of queuing up my songs in iTunes DJ. Right clicking and selecting the option is too slow.
+
+A: You didn't mention what keyboard, but on the Apple keyboard:
+F7 - restart current song
+F8 - pause/play
+F9 - skip forward
+Note that you need to have the box unchecked in OSX that says use function keys as normal. In the event you use your function keys for something, I've also successfully created trigger hotkey combos in Quicksilver. You can also probably just remap them in keyboard preferences.
+
+A: You can make an automator workflow with "Get Selected iTunes Tracks" and "Add Songs to Playlist". That will add it to the end of iTunes DJ, though, is that good enough?
+In order to give it a keyboard shortcut, you can either use a keyboard shortcut utility like Spark, Quicksilver, or Butler, or you can save the workflow as a service and give it a shortcut in the keyboard shortcuts section of the system preferences.
+
+A: I have made two Automator workflows that do what mckeed suggested. They take the selected tracks and put them in the iTunes DJ list.
+Put these two files in the /Users/[Username]/Library/Services folder and then you can assign keyboard shortcuts through the system preferences to them.
+The Add to iTunes DJ service just adds the selected track to the end of the queue, the Add to iTunes DJ and Play does the same, but starts playing the song right away.

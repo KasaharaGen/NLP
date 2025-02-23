@@ -1,0 +1,13 @@
+Q: How can I mount a drive with Truecrypt through a script based on its UUID? I keep an external drive on my desk at work that I used as an off-site (ie not at home) backup. Because it could easily get taken I have a partition on it encrypted with TrueCrypt. I've got a script to mount this encrypted partition then do a backup via rsync then un-mount. It looks like:
+truecypt /dev/rdisk1s2  /Volumes/untitled
+rsync -myRsyncOptions /Users/me /Volumes/untitled/me
+truecypt -d   /Volumes/untitled
+
+It works well, so long as my drive is seen as /dev/rdisk1s2. If not the script breaks. The trouble is that I need to point Truecrypt to the correct device file in order to mount the volume correctly. Sometimes the device file will change. Once the first line in the script works the rest of the script works.
+Is there anyway I can use UUID or otherwise to ensure that my encrypted partition always gets the same device file attached to it so Truecrypt can mount it successfully? I've seen a few examples of using UUIDs in the /etc/fstab file but I don't think they apply in this case. Thanks!
+
+A: Here's a quick and dirty guide to specify the mount point based on the UUID. It works in Linux and since OS X respects fstab, it should work there too: http://www.cyberciti.biz/faq/linux-finding-using-uuids-to-update-fstab/
+Note: You might have to modify it a bit as some of the entries specified are not used in OS X. Give it a shot.
+Additionally, I'm wondering if you could just change up your script to pull the device name instead of the mount point, that is, use the device name (e.g., /Volumes/YourDrive instead of /dev/rdisk1s2) as that never changes (unless you rename the drive).
+
+A: It would be better to build up a filter and use diskutil list to "find" your drive no matter where it gets mounted. If you edit the question to show what the desired volume looks like to the OS before the first truecrypt command, perhaps we can assist with some ideas to get the appropriate /dev/rdiskXs2 value dynamically using diskutil

@@ -1,0 +1,35 @@
+Q: How to completely remove Folx on Mac OS X? I installed Folx download manager on my MacBook Pro. I didn't like it, so I removed it from the Applications folder. I also searched for its dependent files in /Library/Preferences, but I found nothing related to Folx. 
+Now, when I try to download files, it tries to download using Folx—but Folx doesn't work. How can I fix this problem?
+
+A: For prior version than Folx 4
+Go Download the Folx.dmg from their website, and open it. In the dmg image, there will be a package file called uninstaller. Run that.
+It is only for prior versions than Folx 4, as said by Eltima Software. For Folx 4 or newer, it is mentionned on their website that it is enough to remove Folx.app to permanently remove it.
+
+A: I use 10.8.5 and here how it is to remove folx completely
+
+
+*
+
+*launch folx
+
+*In menubar -  click help>uninstall
+
+*you will get below! window
+
+*select all options
+
+*Uninstall
+
+
+
+
+A: If you use Firefox you should also unistall Folx plugin (Tools->Add-ons->Plugins->Folx Downloader Netscape plug-in -> disable)
+
+A: To remove Folx you are to use its uninstaller.
+
+A: the uninstaller did not work for me at all. I had to remove many pieces from the file system. I think the key was to remove the app from ~user/Library/ScriptingAdditions!
+
+A: Open the Applications folder in Finder, select the app and drag it to Trash (located at the end of Dock). Then choose Finder → Empty Trash. When you empty the trash, the app is permanently removed from your Mac.
+
+A: Download official uninstaller below: (Thanks Gilles for the comment)
+Folx - Uninstall Folx

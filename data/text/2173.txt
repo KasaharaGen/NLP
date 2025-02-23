@@ -1,0 +1,20 @@
+Q: Can I stop mobile Safari from opening my bookmarks whenever I start the app? Whenever I start Safari on my iPhone it insists on bringing up the last bookmarks folder I happened to be in. Is there a way to disable this behaviour and just have it present me with an empty page when I start up the app? I don't use bookmarks and the process of waiting for that bookmark view to show up and then dismissing it is surprisingly time consuming.
+This is mobile Safari on iOS 4 running on an iPhone 3GS. The phone has not been jailbroken.
+
+A: As of iOS 5.1 Mobile Safari no longer opens your bookmarks folder when you start it on your iPhone. It shows you the empty browser screen and you have to click on the bookmarks icon to bring up the bookmarks list.
+
+A: There is no way to disable this.
+Here is how to reproduce: Close all "Tabs" in Mobile Safari on iPhone. Exit Safari. Open Safari again. It will briefly show a blank window and then it will open the Bookmarks, in whatever Bookmarks folder you last looked at. (Note: Mobile Safari on iPad does not do this. It just opens to a blank page.)
+Workaround: Enter the URL "about:blank" in one tab. Open new tabs for your actual browsing then, before exiting Safari, close all but the "about:blank" tab. When you re-enter Safari it will show you the "about:blank" page and not open the Bookmarks folder.
+
+A: Ok, here is another answer, now that I better understand what is going on. Thanks Stephen W. Carson.
+You can set a "Home Page" in Mobile Safari, via a tweak available in Cydia.  It requires a Jailbroke iPhone, but it is called "Home Page in Safari".  You could set "about:blank" as your homepage.
+
+A: Are you talking about the bookmark bar like is on the iPad?
+You can turn that off in Settings->Safari->Always show bookmark bar.
+http://www.pocketpccentral.net/iphone/news/2010/04/ipad-safari-tip-turn-on-the-bookmark-bar/
+
+A: 
+Whenever I start Safari on my iPhone it insists on bringing up the ... bookmarks folder
+
+It does this because whenever you stop using Safari you close all tabs. Leave a tab open, even if it is just about:blank or http://google.com

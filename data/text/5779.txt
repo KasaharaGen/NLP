@@ -1,0 +1,25 @@
+Q: Is upgrading an iMac to an SSD over USB 2/FireWire an upgrade? I bought the smallest 21" iMac model of the 2011 update cycle. I was planning on having the HDD replaced with an SSD later on. Turned out this would not be an option.
+So I'm either stuck with the 7200 RPM internal disk or switching to a much more expensive iMac model with an SSD. As this would be the only part of this better-configured iMac, the 256 GB SSD would cost me a whooping 800€ (~$1150 or the price of a new small line iMac). I just don't want to spend this kind of money.
+The iMac comes equipped with a Thunderbolt, a FireWire 800 and a couple of USB 2.0 ports. 
+
+
+*
+
+*Thunderbolt should be the fastest, but there's no hardware for it yet (right?)
+
+*FireWire 800 should be the second fastest with 800Mbit or ~100MB/s which is faster than what the internal drive produces
+
+*USB 2 still has 480Mbit or 60MB/s which still should outperform the internal drive
+
+
+So my question is: would I get a good speed bump by buying an SSD and one of those storage enclosures (this one looks really nice)? Would that benefit the overall system performance or is there no bump to expect?
+I'd love to put a 128GB SDD in that thing and put the system and applications on that while keeping the data on my internal drive.
+
+A: There would be a major speed bump. Not as fast as having the drive on an internal SATA interface but noticably fast all the same.
+I ran a four and a half year old iMac 24 inch on a Crucial M4 SSD via a Firewire 800 enclosure for about 5 months to get a major boost over the internal SATA HD.
+You'll notice an immediate improvement to random read/write speeds, day-to-day things like app launch and system boot times. Sustained rates will only be as fast as the interface you pick and may not be any better than your internal drive. However since most OS and app disk activity is random this isn't too important.
+With Thunderbolt available on your system a future SATA 6Gbps enclosure to Thunderbolt interface will remove the sustained transfer rate  limitation.
+Avoid USB 2 as you will never reach the theoretical 60 MB/s due to USB protocol overheads. I have only ever seen a maximum of 35-40 MB/s over USB 2 hence my choice of a Firewire 800 enclosure.
+
+A: SSD's over USB are much faster, than hard drives but don't live up to their full potential. There's also latency to consider: it's is much higher over USB than native SATA, since it doesn't have to go through a controller.
+That said, an iMac is so much trouble to crack open, it's often not worth it, and a (future) Thunderbolt enclosure solves this problem nicely.

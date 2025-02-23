@@ -1,0 +1,4 @@
+Q: Is there a way to refresh symbolichotkeys.plist without logging out? There is an extremely annoying bug in OS X with a non-Apple mouse where every time I reboot I have to go into ~/Library/Preferences and delete com.apple.symbolichotkeys.plist, logout, then reset my buttons for Expose and Spaces.
+This bug has been around for years now, and Apple refuses to fix it so I'm trying to figure out a way to make starting up a less painful experience.  I think it would be bearable if I could just scrap symbolichotkeys and refresh without having to logout.  Is there a command or AppleScript that could accomplish this?
+
+A: You can restart the SystemUIServer by killing the process in Activity Monitor. It will auto restart. I think that should give you the desired effect without a reboot/logout. 

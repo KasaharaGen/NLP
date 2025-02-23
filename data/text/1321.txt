@@ -1,0 +1,33 @@
+Q: Anti-virus comparison for Mac OS X This is not a "I use OS X, do I need Anti-Virus?" question. 
+I am looking at comparison and user opinion of existing AV products.
+I know I can avoid most (if not all) threats by being careful on the sites I visit, and the emails I download. But I need an anti-virus, for a variety of reasons - mostly to prevent my Mac as a carrier for viruses. (Many friends' USB drives turn out to be infected).
+I was looking for the "Best" of the anti virus software out there.
+I am looking prominently at anti-virus. "Internet Security" and the like are not important, and would try to avoid them if it would save money or not make my mac slower.
+By "Best" I mean the best combination of detect-rate (or whatever that is called) and performance. 
+I don't intend to run it always in the background. Maybe I would do a onetime scan of my system and hard drives, and then it would be mostly on a need basis, especially on USB drives/portable hard disks of friends.
+So primary objective: High Detect rate
+I have used Norton Antivirus for Mac and Virus Barrier (got this with one of those software bundles sometime before, not the latest version) and had problems with both. Both sometimes hog my CPU, and somehow "lock" my USB drives preventing me from Ejecting it (I had to force eject them or just pull them off from the port) (thought off late Norton seemed a little better)
+Ok, thats a long one. But my question is simple: What anti-virus do you recommend for the Mac?
+Thanks.
+
+A: ClamXav
+It is open source and low resource consumption, but is not free.
+There is also a free command line version available in brew, fink, and macports under clamav (less ugly).  There is some minor configuration, but there are decent guides on the ClamAV site and here, for example.
+
+A: I've personally used Sophos (Standalone version) and found that it causes high-memory utilization and some other file-system issues. (Updates on this one will bring your internet speeds to minimum).
+I find avast! much better. It's free and covers most basic of the environments. The only caveat is the the first scan takes longer (~55 min for me).
+I've also tried Avira, and I rather liked it. I've been using this for some time now and I gotta say it's very fast and easy to use.
+Check this study by http://www.av-comparatives.org/ for comparison between different programs. http://www.av-comparatives.org/wp-content/uploads/2013/08/mac_review_2013_en.pdf (Published last year)
+Almost forgot about the Bitdefender. It is one of the best rated AV tools.
+
+A: The best free anti-virus software for OS X is Avira if you consider the software which has the least impact on system performance to be the best.
+This is based off of a comparison of anti-virus softwares which was published on Sophos' website.
+
+The original publication conducted by AV-Comparatives is available as a PDF download here.  It is a test of the impact of internet security software on system performance, unaffiliated with any software publisher, making it an unbiased comparison.
+
+According the the tests, there is 1 other application which is better than Avira; Eset, but they do not offer a free version of their software.  They do offer a free 30-day trial and a yearly subscription service of $39.99 for one computer.
+
+A: Sophos Anti-Virus for Mac Home Edition
+
+A: 2015 edit: No longer accurate, see other answers.
+ClamXav is hard-written to never scan some files such as mp3. This made it entirely useless for me, as I was scanning music downloads. I found (but do not currently use) Panda to be the best, on Mac and Windows. It's effective, and in tests is one of the least-bogging-down. Betas are often free, and cross platform.

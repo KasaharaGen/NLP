@@ -1,0 +1,32 @@
+Q: Converting HTML to PDF using convert utility in Mac OS X I'm trying to convert a bunch of HTML files into PDF files. I'm looking for an automated solution so that i don't have to open each HTML file individually and convert it to PDF. In Mac OSX, convert utility can be used to convert HTML files to PDF. I'm facing two problems. 
+
+
+*
+
+*convert utility is not applying CSS style to generated PDF content.
+
+*My AppleScript for batch convert is not working.
+
+
+Here's my AppleScript:
+on open input_documents
+    repeat with this_document in input_documents
+
+        if this_document is not document file then
+            set this_document_path to POSIX path of this_document
+            do shell script "/System/Library/Printers/Libraries/convert -f " & quoted form of this_document_path & " -o " & quoted form of this_document_path & ".pdf"
+        end if
+    end repeat
+end open
+
+I use this script to create a .app and then drag the documents folder onto the generated .app file. Note that all images associated with images are placed in a subdirectory/subfolder. My document structure looks like this:
+/HTML
+/HTML/Images/
+/HTML/a.html
+/HTML/b.html
+
+Any suggestions?
+
+A: Have a look at wkhtmltopdf— a command-line utility that uses the WebKit rendering engine to produce PDFs from HTML. I've found that it produces a nicer result. You shouldn't have any trouble integrating it with your current script.
+
+A: Have you considered writing an AppleScript script to open each HTML file in a scriptable web browser (like Safari) and then using the browser's standard print command to print to a PDF file?  

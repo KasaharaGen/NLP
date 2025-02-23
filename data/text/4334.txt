@@ -1,0 +1,39 @@
+Q: VPN connection in OSX fails after a certain amount of reconnects When using a a IPSec VPN in OSX, I'm getting prompted to re-enter my password every ~45 minutes. After a certain amount of re-connects, no further connection will succeed. I have to restart the laptop by then, which means a restart a day.
+Is there a way to reset the IPSec cache etc, so that I don't have to restart?
+OSX, latest version, using www.witopia.net as provider.
+
+A: This is actually a bug in Mac OS X, all Cisco IPSec connections have a timeout (hard limit of the lifetime) of 3600 second (60 minutes) because of the soft and hard limit of IPSec connections it is most of the time around 45 to 50 minutes.
+You can check the files (with an active IPSec connection) in 
+/var/run/racoon/
+
+for the limits. On a Terminal type
+sudo more /var/run/racoon/*.conf
+
+and you can see the content of the config file for the active IPSec connection, all lifetime values are 3600 seconds
+lifetime time 3600 sec
+
+The bug exists since a long time and is still present for example in Mac OS X Mavericks (10.9.1). There is a workaround (more or less) for this check
+Workaround
+or
+Apple Diskussion #2163407
+or
+Apple Diskussion #2743319
+For Witopia it is easier to use the Mac OS X Client from Witopia
+Witopia Client
+
+A: You can use the Mac builtin command caffeinate to prevent the disconnection.
+
+NAME
+caffeinate -- prevent the system from sleeping on behalf of a utility
+SYNOPSIS
+caffeinate [-disu] [-t timeout] [-w pid] [utility arguments...]
+DESCRIPTION
+caffeinate creates assertions to alter system sleep behavior.  If no assertion flags are specified, caffeinate creates an assertion to
+  prevent idle sleep.  If a utility is specified, caffeinate creates the
+  assertions on the utility's behalf, and those assertions will persist
+  for the duration of the utility's execution. Otherwise, caffeinate
+  creates the assertions directly, and those assertions will persist
+  until caffeinate exits.
+
+Here is a handy wrapper around this command:
+https://github.com/codeforester/base/blob/master/bin/caff

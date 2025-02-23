@@ -1,0 +1,12 @@
+Q: How can I change default X11 application? I compiled my own X11 Server for Mac OS X and want it to replace the original outdated X11.app supplied by Lion. How do I do that?
+
+A: *
+
+*cd to /usr/X11/bin 
+
+*rename the existing X symlink to Xquartz (to X_orig for example) in case you need to revert in the future to the "vanilla" config
+
+*symlink X to your compiled binary.
+
+
+A: The XQuartz install docs have an alternate approach for installing their X11 binary. They use launchctl and set the DISPLAY to point to the socket for their server. I believe the program it runs (launchd_startx) listens on the socket and starts the X server when a connection is made. The nice thing about this approach is it leaves the original X11.app unmodified.

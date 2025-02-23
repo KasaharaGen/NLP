@@ -1,0 +1,18 @@
+Q: Enforce maximum content width in Safari (Lion full-screen on big monitor) Web sites vary as to whether they enforce a maximum width for the content within the window. When running Safari full screen on Lion, is there a simple way (without rolling up my sleeves and playing with style sheets) to establish my own maximum width? Lines of text are too long if I happen to be connected to my 24" monitor, but I like how this full screen mode maximizes vertical space.
+
+A: You can change the width of each page in full-screen Safari.
+Move your cursor all the way to either side of the 'window', until you see the normal window resize cursor. Click and drag in, and the 'window' will shrink horizontally.
+You can set a different width for each tab.
+
+A: If you would like to enforce a maximum width across all web sites permanently, you can use a user style sheet file (Safari Preferences → Advanced → Style sheet) with something like the following content:
+html { 
+  /* adjust number to taste */
+  max-width: 800px;
+
+  /* horizontal centering */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+Nathan's answer is probably more useful, but this is how you could do it if they hadn't included the resizing feature.
+(This has a chance of breaking the layout of any web site that's using the same approach to set up a smaller column width than you asked for.)

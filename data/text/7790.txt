@@ -1,0 +1,115 @@
+Q: Unable to delete a file I have a file on my system named "2011.09.08įU0.G80.Šsl" that I'm unable to delete. Here are the different steps I've tried, but haven't had any success with yet:
+
+
+*
+
+*sudo rm file - Results in "No such file or directory"
+
+*Deleting via Finder - "The operation can't be completed because one or more required items can't be found. (Error code -43)
+
+*Renaming via Finder - "An unexpected error occurred (error code -43)
+
+*sudo mv file newName - "No such file or directory"
+
+*Deleting using the "Locked" files feature in Cocktail - "An invalid character has been found in the path."
+
+*Sharing the folder in question with read+write access, logging in via Windows 7 and attempting to delete, but Windows is unable to even see the file in question.
+
+*Deleting/renaming the parent folder of the file via Terminal fails - "Directory not empty"
+
+
+I've also tried the steps described in this question, but haven't add any success there either.
+The primary reason for trying to delete this is because whenever my backup solution (SuperDuper!) encounters this file, it aborts the backup, leaving me flying without a net. Any help would be greatly appreciated.
+
+A: Try deleting interactively to avoid deleting too much since these characters match one or many/no characters - you can answer y or n as needed as each file comes up for deletion...
+e.g.
+sudo rm -i 2011.09.0?*
+
+If you can't get the wildcard right, move everything else out of the folder in question, go one directory level up and rm -r <foldername>.
+
+A: sudo rm 2011.09.08<tab>
+will invoke auto-completion which should escape or otherwise resolve the odd characters for you.  Make sure it's the only file that begins in 2011.09.08 though.
+
+A: The comment about repairs to the file system is consistent with the (historical) definition of file system error code -43
+
+fnfErr
+File not found; Folder not found; Edition container not found; Target not found
+
+Mac OS System Error Codes: 0 to -261
+
+A: I'm guessing that it's balking at the file name. Are you using quotes when trying to remove it in via the terminal?
+Maybe try using wildcards instead of the full name. I.e. rm 2011.09.08*. That would of course delete any other files in that directory starting with 2011.09.08, so you should move them first. you could also try rm *U0.G80* which might require shuffling fewer files around.
+
+A: Move it to the trash and go to the Finder menu and select "secure empty trash."
+
+A: Trash It! is an AppleScript-based application that force-empties your Trash and/or removes stubborn items. Especially useful if you have files or folders in the Trash with permissions set incorrectly, locked Trash items, want to securely delete a stuck item, or trash items from other partitions. If you drop files or folders onto the Trash It! icon, it will delete them as well. If you double-click on it, it will clean out your Trash can.
+
+A: Today I faced this issue on my iMac with OSX 10.11.2
+What I did is 'Relaunch' Finder.
+Step 1: Click on Apple icon on top menu and click on Force Quit
+
+Step 2: Select finder and click on Relaunch
+
+
+A: *
+
+*ForceQuit All App
+
+*Empty Trash
+
+*Relaunch Finder
+
+
+This fix this issue...
+
+A: If you can move the stubborn file, remove using "root user" access with sudo -i rm -R <foldernamehere>
+Create a new folder on the root of you main HDD
+
+
+*
+
+*open your main hard drive...
+
+*double-click the main HDD icon, or...
+2a. menubar > File > Go > "Go to folder" (cmd+shift+g)
+2b. type "/" and press return 
+
+*menubar > File > New Folder (cmd+shift+n)
+
+*enter your admin user name and password
+
+*name the folder "deleteme"
+
+
+Move your stubborn file to the new folder "deleteme"
+
+
+*
+
+*drag and drop the file (myfilename) into "deleteme"
+
+
+Remove the directory using "root user" access
+
+
+*
+
+*open terminal.app  --> it shows "mymacname:~/ username$ "
+
+*change to the root of your main HDD, "cd /"
+
+*you should now see "mymacname:/ username$ "
+
+*type sudo -i rm -R /myfilename and press return
+
+*enter your admin user name and password
+
+
+The containing folder (deleteme) and stubborn file that you put inside the folder should be gone for good.
+
+A: I have solved a similar simulation using linux (ubuntu in my case)
+sudo apt-get install hfsprogs
+sudo umount /media/myMountPoint (in case it is mounted)
+sudo fsck.hfsplus /dev/sdXY
+sudo mount -t hfsplus -o force,rw /dev/xxxx /media/myMountPoint
+and then remove it using rm with wildcards. Use a live cd to boot into linux e.g. 

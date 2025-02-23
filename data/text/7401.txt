@@ -1,0 +1,28 @@
+Q: How can I list and edit all defined aliases in Terminal? A friend who owned my current Mac before me created a lot of alias commands.  Is there a way to list all defined aliases and the command that is associated with them?
+And if so, am I able to edit them or should I just remove them using unalias and recreate them?
+
+A: All you need to do is type alias at the prompt and any active aliases will be listed.
+Aliases are usually loaded at initialization of your shell so look in .bash_profile or .bashrc in your home directory.  
+unalias will only work for your current session.  Unless you find where it is defined and loaded, it will be loaded again when you start a new Terminal session.
+~/.bashrc gets run for both login and non-login shells, ~/.bash_profile only gets run for login shells.  
+See login shell vs non-login shell
+As per comment from Chris Page:
+You should put most of your customizations (including aliases) in ~/.bashrc and have ~/.bash_profile run ~/.bashrc, so they apply to both login (~/.bash_profile) and non-login (~/.bashrc) shells. Also, decide which of these should be "primary" and if the profile is your choice, tack on the rc file at the end. If the rc file is primary, source that at the beginning of your profile
+These lines should be in the file ~/.bash_profile:
+if [ -f "$HOME/.bashrc" ] ; then
+  source $HOME/.bashrc
+fi
+
+This will include ~/.bashrc for login shells and in the order you wish if one file depends upon the other based on what you are setting.
+
+A: You should have a look in these files:
+/etc/profile
+~/.profile
+~/.bash_profile
+~/.bashrc
+
+They are plausible startup files for your shell (that I assumed is bash).
+
+A: Aliases are usually stored in .zshrc or .bash_profile or .bashrc in your home directory.
+vim ~/.zshrc
+

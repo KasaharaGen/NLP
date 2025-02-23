@@ -1,0 +1,35 @@
+Q: What is the real native maximum resolution of mid–2010 iMac's iSight camera? I had understood that the pre-2011 Macs & Apple displays have a built–in iSight camera which sensor is capable of VGA (640 x 480) resolution—unlike the FaceTime HD cameras, which replaced the built–in iSights, that are capable of SXGA (1280 x 1024) resolution.
+I had also thought that, when importing feed from the camera to an iMovie-project, 640 x 480 is the native maximum of the camera and the other, WSVGA (1024 x 576), option is upscaled and cropped version of the 640 x 480 feed.
+Moreover, when I open Photo Booth app, I'm stuck with one resolution which is for video 720 x 480 (DVD (NTSC)) and for pictures 1280 x 853.
+There is still one more native way to record iSight video: QuickTime Player—with which the resolutios are as interesting as follows:
+
+
+*
+
+*Normal: 640 x 480 (VGA)
+
+*High: 960 x 720
+
+*Maximum: 1280 x 1024 (SXGA)
+
+
+This made me suspicious: it says maximum but the resolution is over 4 times what I had thought the max was.
+Now: what is the real native maximum resolution that the (mid–2010 27" iMac's) built–in iSight camera is capable of? What is real and what is upscaled?*
+If there are no definite & reliable specifications available, is there a way to confirm it by myself? Judging by  the lack of moiré pattern and other overall fidelity of the SXGA video recorded by QuickTime Player, it seems to me that it is not an upscale of the VGA feed.
+Wikipedia's entry concentrates on the external iSight camera, and while it has a chapter on the built–in version, but, as of today and like the product entries in Wikipedia, it doesn't refer to any working sources.
+*) Upscaled and cropped in case of non–4:3 resolutions—the CMOS sensors have almost definitely an aspect ratio of 4:3. 
+
+A: I think it's 1280x1024, as that's what the LED backlit MacBook Pro's and onwards used. The Lion version of Photo Booth uses the max resolution and crops it. 
+720x480 is actually a standard resolution - it's what most DVD's use.
+
+A: Some discussion sources report that using QuickTime video capture at the stated maximum quality. That would hint my built-in iSight's resolution is in fact 1280×1024.
+Moreover, the iSight upgrade (from 0.3 to 1.3 megapixels) has been noted first at Mac Daddy World and later re-reported at TUAW and Engadget:
+
+*
+
+*The product ID for the 0.3 MP iSight is 0x8501 and its vendor is Micron…
+
+*…while the 1.3 MP iSight's product ID is 0x8502 and the vendor is Apple.
+
+Looking at my System information report, I can confirm the product ID is 0x8502.
+So, summa summarum: mid–2010 iMac's built-in iSight camera has a native resolution of 1280×1024 pixels.

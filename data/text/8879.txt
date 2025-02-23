@@ -1,0 +1,13 @@
+Q: Extremely poor video quality on Samsung monitor with HDMI I have connected my MacBook Pro to a Samsung P2770HD monitor using a Kanex brand Mini Displayport to HDMI cable
+However, the output on the Samsung monitor is absolutely garbage. It is pixellated to the point that I don't even want to look at it.
+The resolution is 1600x900 (but I have tried all other resolutions as well - all with similar output)
+When I connect my Windows laptop to the same monitor using DVI cables, I get 1920 x 1080 resolution and the display is crystal clear.
+How do troubleshoot this?
+
+A: To fix, use the monitor's menu and change Size&Position/Image Size to Screen Fit. 
+(I connected a MacBook Pro 2013 via HDMI to the same monitor and the quality was horrible.)
+
+A: There is a bug on the HDMI driver (or somewhere that is related to HDMI, DVI works just fine) that Apple hasn't fixed yet (Sep 2012). You can see the discussion here: https://discussions.apple.com/thread/4080525?start=195&tstart=0
+Using the DVI connection fixes the problem (which unfortunately in your case is already taken).
+
+A: I found that setting the Picture -> Mode to "Movie" helped it a little, but it is still atrocious.

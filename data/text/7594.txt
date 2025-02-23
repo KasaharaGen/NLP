@@ -1,0 +1,12 @@
+Q: How come I have 52GB of swap files? 
+Possible Duplicate:
+Why does Finder use 59GB of swap space? 
+
+So I have a regular (fresh) install of OSX Lion on my 2009 MBP, and I installed an SSD as the primary HDD prior to installing Lion. It's a 128GB SSD drive, but the system is using 52.6GB of this for it's swap files, which regularly results in zero space remaining on the drive and the system locking up. 
+
+Any idea why it would be using so much space for this (please see the visualisation screenshot, above)?
+
+A: The Original Poster explained that the answer was as follows:
+I killed Sequel Pro that was using 2GB of RAM, and then ran:
+$ sudo periodic daily weekly monthly
+This had the effect (correct if wrong) of running some tasks which cleaned up the swap files. I now have between 30GB and 50GB space remaining (it's fluctuating..)

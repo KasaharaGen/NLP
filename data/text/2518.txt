@@ -1,0 +1,63 @@
+Q: Is there a free QR code reader for Mac? Is there a QR-Code reader application for Mac OS X? I'm using Mac OS X 10.6 and an iSight.
+
+A: I just discovered QR Journal, which works fine for me. The latest version requires OS X 10.8/10.9 but there is a legacy version available which works with 10.6.
+
+Now desktop users with an iSight (or iSight compatible) camera can read QR codes. Found a QR code in a magazine or catalog? Simply hold up to the iSight camera to scan, store and browse to. Received a QR code in an email? Just drag it into QR Journal to read it.
+
+
+A: There is an Adobe Air application you can download called QR Reader - works on any platform that has Air installed, and a bunch of online services you could try too - QRGen looks pretty neat - you upload an image of the QR code and then it processes it for you. 
+Hope that helps.
+
+A: There is an open source command line tool named ZBar. It takes a photo as an argument and extracts the information out of any QRCode that it detects in the image.
+The open source project QR-Reader-Mac provides an Applescript script that acts as a wrapper to zbar. You can create a shortcut to the script for processing QRCodes or create a service, as explained below. The script will automatically open the URL contained within the QRCode in your default browser.
+Usage
+
+Step by step
+ZBar can be easily installed with Homebrew:
+brew install zbar
+
+To install QR-Reader-Mac:
+
+*
+
+*Open the QR-Reader-Mac GitHub project page, select Code and download the project as a ZIP file:
+
+
+
+*Double click the ZIP file to extract it.
+
+
+*Double click the workflow you want to install. The following Pop-UP should appear: 
+
+
+*Confirm by pressing install.
+
+
+*Open System Preferences and add a shortcut to the open_QRCode service under Keyboard > Shortcuts > Services > General:
+
+(Important: Note that QR-Reader-Mac expects to find the executable 'zbarimg' in /usr/local/bin/zbarimg, which is the standard path Homebrew will install it.)
+Copy to Clipboard
+The QRCode2Clipboard.workflow can be used to extract the content of the QR-Codes into the Clipboard. It can be installed in the same way as the open_QRCode.workflow.
+
+A: No free app that I'm aware of, but for a few dollars/euro you can download QuickMark from the Mac App Store, here's the link
+
+A: Online encode/decode:
+http://www.patrick-wied.at/static/qrgen/ (based on ZXing)
+QR Lab
+http://www.onlineqrlab.com/
+
+A: The app that worked flawlessly in my macOS Big Sur is this: https://apps.apple.com/ie/app/code-reader-qr-scanner/id1225393668
+I tried QR Journal, as suggested by others here, but for some reason the camera didn't detect the QR code so I ended up finding the other app.
+Note: I am in no way affiliated with either of these apps.
+
+A: It's not free, but LensOCR is exactly what I needed. I use it solely for the barcode/QR scanning feature.
+https://apps.apple.com/us/app/lensocr-extract-text-image/id1549961729
+It allows me to screenshot a portion of my screen containing a barcode or QR code and instantly saves the result to the clipboard. I know OP asked for free... but when you find the right app that you will use a ton the $11.99 one-time cost is justified in my book.
+
+Note: The original question implies the use of a webcam for scanning.
+The app I recommended above does not use the webcam at all. It just
+interprets screenshot content.
+
+
+A: I've just download this; seem to work exactly as you'd want:
+https://github.com/julianschiavo/JSScan

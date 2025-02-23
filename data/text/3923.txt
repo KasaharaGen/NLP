@@ -1,0 +1,30 @@
+Q: error code -1407 Mac OS X 10.6.7 Out of the blue, I can't send any files to the trash bin. "The operation can't be completed because an unexpected error occurred (error code -1407)
+Any ideas for me?
+
+A: Finder’s trash can is an amalgam of several different directories:
+
+
+*
+
+*~/.Trash/
+
+*/.Trashes/<uid>/ on each volume (including the startup volume)
+e.g. /Volumes/Big Media Volume/.Trashes/501/
+Most trash operations will move the trashed item to the directory under your home directory. If you trash something on an separate volume, however, Finder will move the item into the volume’s /.Trashes/<uid>/ directory instead (because moving a file to a location on the same volume is very fast, but copying a file from some other volume to your home directory’s trash directory could be quite slow).
+Try checking your main trash directory (in a Terminal window):
+ls -ld ~/.Trash
+
+If the result does not look like start with drwx------ and show your user’s “short name” twice (the second is actually a group name), then your personal trash directory has probably been fouled. You can move it aside then logout and login again:
+cd ~ && mv .Trash .Trash.old
+# now logout and re-login
+
+This should create a new ~/.Trash directory for you. You may want to investigate the contents of the .Trash.old file/directory to try to determine its origin.
+If the problem is with a per-volume trash directory, you should be able to use the same idea: move it aside, eject it, then remount it (disconnect and reconnect an external disk, reopen a disk image, use Disk Utility to remount an internal volume):
+cd '/Volume/whereever' && mv .Trashes .Trashes.old
+# then eject and remount
+
+You may need … && sudo mv … if the volume has “Owners Enabled”.
+
+A: You might want to try repairing file permissions with Disk Utility.
+
+A: If you don't want to reboot or reformat, just open a Terminal and delete files or folder with rm. Worked for me to delete an app from a USB key.

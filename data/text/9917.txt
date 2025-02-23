@@ -1,0 +1,112 @@
+Q: Can a Terminal window be resized with a Terminal command? So that I could resize the window to a certain size from within Terminal.
+
+A: Yes. Terminal supports escape sequences for manipulating windows, including the size and position, layering, and minimizing. Dimensions can be expressed in pixels or characters. See Xterm Control Sequences for details (search for “Window manipulation”; if you’re not familiar with the notation, “CSI” stands for “Control Sequence Introducer”, which is ESC [).
+For example, this shell command will set the window to 100x50 characters:
+printf '\e[8;50;100t'
+
+Minimize the window for a few seconds, then restore it:
+printf '\e[2t' && sleep 3 && printf '\e[1t'
+
+Move the window to the top/left corner of the display:
+printf '\e[3;0;0t'
+
+Zoom the window:
+printf '\e[9;1t'
+
+Bring the window to the front (without changing keyboard focus):
+printf '\e[5t'
+
+Enabling the Control Sequences in Terminal Emulators
+Some terminal emulators ignore these control sequences by default and require configuration to enable them.
+To enable these in XTerm, set the following resource to true:
+
+allowWindowOps
+
+To enable these in iTerm2, deselect the following preference:
+
+Preferences > Profiles > [profile] > Terminal > Disable session-initiated window resizing
+
+
+A: My apologies for necro-reviving an old question, but I thought this answer might be useful for others.
+From tedsmith3rd, here's a bash function to move a Terminal window.  The magic of terminal command sequences.
+function bumpNjump() {
+  local xDimension="" yDimension="" width="" height="" OPTIND
+
+  while getopts 'x:y:w:h:' thisArg
+  do
+     case "${thisArg}" in
+        x) xDimension="${OPTARG}" ;;
+        y) yDimension="${OPTARG}" ;;
+        w) width="${OPTARG}" ;;
+        h) height="${OPTARG}" ;;
+     esac
+  done
+
+  if [ -n "${width}" -a -n "${height}" ]
+  then
+     printf '\e[4;'${height}';'${width}'t';
+  fi
+
+  if [ -n "${xDimension}" -a -n "${yDimension}" ]
+  then
+     printf '\e[3;'${xDimension}';'${yDimension}'t'
+  fi
+}
+
+Combine that with this termsize.bash script to get the current geometry, and you have an easy way to control your Terminal window.
+#!/bin/bash
+# based on a script from http://invisible-island.net/xterm/xterm.faq.html
+exec < /dev/tty
+oldstty=$(stty -g)
+stty raw -echo min 0
+
+printf "\e[13t" > /dev/tty
+IFS=';' read -r -d t -a pos
+
+xpos=${pos[1]}
+ypos=${pos[2]}
+
+# Window (including chrome) size in pixels
+printf "\e[14;2t" > /dev/tty
+IFS=';' read -r -d t -a size
+
+hsize=${size[1]}
+wsize=${size[2]}
+
+stty $oldstty
+
+echo "bumpNjump -x $xpos -y $ypos -h $hsize -w $wsize"
+
+
+A: Use /usr/X11/bin/resize.
+resize -s 30 80 will give you 30 rows and 80 columns.
+resize -s 30 0 will give you 30 rows and full columns.
+resize -s 0 80 will give you full rows and 80 columns.
+
+A: You could always use AppleScript:
+setwidth() { osascript -e "tell app \"Terminal\" to tell window 1
+set b to bounds
+set item 3 of b to (item 1 of b) + $1
+set bounds to b
+end"; }
+
+
+A: Actually you know, moving an resizing windows with a mouse is horribly slow. 
+I've been using this app SizeUp for a very long time now. It basically resizes any application window by using your keyboard command. 
+You can do the following (my custom keyboard commands below):
+
+
+*
+
+*make the window full screen (control + option + command + m)
+
+*move a window 1/2 screen size to the left or right (control + option + command + ←/→ )
+
+*move a window 1/4 screen size to any corner (control + option + shift + ←/→/↑/↓)
+
+*move windows between screens
+
+*move windows between spaces
+
+
+I think this might do the trick and also help with other window management.

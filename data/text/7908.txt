@@ -1,0 +1,35 @@
+Q: How can I make my very own OS X Lion Install DVD/USB Stick? I bought new MBP some days ago and it came with the lion installed on it. Now I am curious can I make an OS X Lion Bootable Disk?
+I read some tutorial to make an OS X bootable Disk if you download it from appstore, but if Lion was installed by factory on it how can I make a bootable disk?
+
+A: Open Terminal, and type this command to list all partitions on your hard drive or SSD: 
+diskutil list 
+
+Identify the "Recovery HD." For example:
+/dev/disk0
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *120.0 GB   disk0
+   1:                        EFI                         209.7 MB   disk0s1
+   2:                  Apple_HFS Filesystem              119.2 GB   disk0s2
+   3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+
+Then run the following (replacing [ID] with your identifier (will most often be disk0s3).
+diskutil mount readOnly /dev/[ID]
+
+So the following would look like:
+diskutil mount readOnly /dev/disk0s3
+
+The disk image inside the Recovery HD partition has been marked invisible, so use the Terminal command to mount it: 
+hdiutil attach /Volumes/Recovery HD/com.apple.recovery.boot/BaseSystem.dmg
+
+Now, from the newly mounted Mac OS X Base System Image, double-click the 'Install Mac OS X' application and proceed past the licensing agreement.
+Choose the external drive or spare partition when the installer asks where you'd like to install OS X Lion.
+Once the installer completes the download, do not restart your system. Rather, quit the installer. If you restart, you'll likely lose the local Lion installer. Once you have the InstallESD.dmg in the Mac OS X Install Data folder, you can burn it to a DVD, or image it to a USB flash drive to create your very own Lion boot disk.
+
+
+*
+
+*This article was adapted from: How to get a full Lion install disc for a new MacBook Air or Pro
+
+*All credits go to: CharlesS
+
+A: You need to visit the Mac Up to Date WEBSITE and you can then get a code from the website to download Lion and create the bootable disk from there.

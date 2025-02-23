@@ -1,0 +1,15 @@
+Q: All of my Adobe CS4 apps beachball in Lion and will not run at all I upgraded my laptop to Lion last night.  I decided to not upgrade my Mac Pro yet in case I ran into issues.  Turned out to be a wise move, because while things went smoothly for the most part, I did run into a problem that's kind of a show stopper for someone who works in web development.  
+I have CS4 Web Premium installed (Flash, Illustrator, Photoshop, Dreamweaver, etc), and while they all start (splash screen, then application GUI appears), they all become unresponsive immediately and display the beachball.  The only way out is force quitting.  
+I ran Adobe Updater to make sure I had the latest versions, and I seem to be all up to date, but I just can't get any of the CS4 apps to run.  I did read on one forum that a clean install of Lion (Reformat drive, install from burned DVD/Thumb drive) fixed the problem for some users, but not all, and I don't have the time to spare on such a big operation. 
+Has anyone managed to get CS4 working on lion?  If so, how?
+
+A: I upgraded to Lion as well last night, and I also have CS4 design premium (Flash, Photoshop, Illustrator, etc) on a MacBook Pro, late 2008 model.
+You must manually reinstall the Java runtime stuff in order for the programs to open (much software update automatically began installing them after I had restarted. Please see the link:
+ADOBE CS4 SUPPORT FORUMS for LION
+However, Adobe stated in that article that they probably won't release updates for Lion products in terms of fullscreen functionality, etc, but that those things will be included in newer versions of Adobe. CS5.6 anyone?
+
+A: It seems you have to download the Java installer from http://support.apple.com/kb/DL1421 to get CS4 to work, the package that gets installed the first time you try to use a Java app doesn't seem to work for whatever reason.  
+The CS4 suite still doesn't seem entirely stable under Lion, but oh well, at least it runs at all now.  
+
+A: Restart the system by holding the Option (or "alt") key and select the "Recovery HD" volume to boot from. You can also do this by booting up while holding the "Command" and "R" keys.
+When you are booted up, choose disc utility and repair disc first and repair permissions second. This worked for me.

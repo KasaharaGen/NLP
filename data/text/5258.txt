@@ -1,0 +1,15 @@
+Q: How can I open port 443 in Mac OS X 10.6? I have a local apache running on my macbook pro and I need to run a SSL website on the local host. I have everything configured in Apache, but can't open port 443 on mac. I tried to add ipfw rule to allow 443 but it doesn't work. 
+
+A: make sure 443 accessible from local and configured.
+$ netstat -an|grep 443
+
+allow 443 in ipfw
+$ sudo ipfw add allow tcp from any to any 443
+
+
+A: Open file /etc/apache2/httpd.conf
+Look for line with listen 80
+Add line           listen 443 
+Save and restart apache using          apachectl graceful
+Check for any error in http.conf using apachectl configtest
+Thank Bob at https://bobcares.com/blog/apache-not-listening-on-port-443/

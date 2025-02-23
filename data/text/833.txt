@@ -1,0 +1,73 @@
+Q: OS X - AppleScript Question about moving files daily to another folder (folders vary) I am currently using this ( http://lifehacker.com/193778/download-of-the-day--auto+applescript-tickler-file ) for a tickler file system and have it setup in my Dropbox (so it works across systems). There are just a couple of things from making it perfect. If anyone can help me out that would be superb.
+What I'm after is a script or workflow that will take the folders contents for the previous day (they change each day and are numbered) and move them to the current day. So then I can set it in as an alarm to perform in the morning every day.
+Thanks very much.
+
+A: If I understand your requirements correctly, then this script should do what you want. Make sure to change the username on the first line to your username.
+set username to "lizzan"
+
+set cy to (year of (current date)) as integer
+set cm to (month of (current date)) as integer
+set cd to (day of (current date)) as integer
+
+set yd to yesterday(cy, cm, cd)
+
+set yy to item 1 of yd
+set ym to item 2 of yd
+set yd to item 3 of yd
+
+
+set yFolder to "Macintosh HD:Users:" & username & ":Documents:To Do:" & yy & ":" & ym & ":" & yd
+set cFolder to "Macintosh HD:Users:" & username & ":Documents:To Do:" & cy & ":" & cm & ":" & cd
+
+tell application "Finder"
+    move every file of folder yFolder to cFolder
+end tell
+
+on yesterday(y, m, d)
+    set d to d - 1
+
+    if d ≤ 0 then
+        set m to m - 1
+        if m ≤ 0 then
+            set y to y - 1
+            set m to 12
+        end if
+        set thirtyones to {1, 3, 5, 7, 8, 10, 12}
+        set thirties to {4, 6, 9, 11}
+        if m is in thirtyones then
+            set d to 31
+        else if m is in thirties then
+            set d to 30
+        else if leapyear(y) then
+            set d to 29
+        else
+            set d to 28
+        end if
+
+    end if
+
+    set yd to {y, m, d}
+    return yd
+
+end yesterday
+
+on leapyear(y)
+    if y mod 4 is 0 then
+        if y mod 100 is 0 then
+            if y mod 400 is 0 then
+                return true
+            end if
+            return false
+        end if
+        return true
+    end if
+
+    return false
+
+end leapyear
+
+Caveat: The script will fail (and have moved possibly only some of your files) if there is already a file with the same name in the folder it is moving to. If you want to replace the files in that case, and avoid failing, add with replacing at the end of line 18 (move every ... to cFolder with replacing).
+Edit to add: Oh, just saw that you had it set up in your Dropbox instead of in the Documents folder. Just change the paths on lines 14 and 15 to reflect the path you're using, and it should be fine. 
+
+A: A very simple solution is an Automator Application (workflow that runs independently).  Took about 15 seconds (literally) to set this workflow up:
+

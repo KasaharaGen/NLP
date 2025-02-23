@@ -1,0 +1,66 @@
+Q: How can I adjust the apparent color temperature of my display in OS X? I really like f.lux, which is an app that automatically adjusts the display's apparent color temperature according to the time of day and location (so that the temperature is in sync with Sun).
+How to set the color temperature manually? I.e. without f.lux? 
+Sometimes I'd like to have "tungsten" (2700 K) colors during the day or morning, which would require fiddling with the location coordinates in f.lux. Sadly, there's no "manual mode" that I'm aware of.
+I'm looking for a OS X native / software based solution, that would allow me to set white point below 4500 °K, which is the minimum that Color Calibrator can set. Is this even possible?
+
+A: When using the Displays section of your System Preferences, if you calibrate it, select show advanced options, one of the windows is this:
+ which to me looks like the white points you were looking for, be sure to uncheck "Use native white point" if you want to manually edit it.
+
+A: This solution requires F.lux to be installed (I assume it's at /Applications/Flux.app).
+Create a text file (let's call it flux-day-color) and put it in /usr/local/bin (usr is under "Macintosh HD" and may be hidden).
+#!/bin/bash
+
+if [[ ! -z "$1" && "$1" -ge 2700 && "$1" -le 6500 ]]; then
+  defaults write org.herf.Flux dayColorTemp -int "$1"
+  killall Flux
+  open /Applications/Flux.app
+else
+  echo "provide a temperature between 2700 and 6500 (rounded to nearest 100)"
+fi
+
+In Terminal, run chmod 755 /usr/local/bin/flux-day-color
+Now you can run flux-day-color 2700 in Terminal (or in another script) to change the day temperature. Note that the script restarts F.lux so you may see the display jump to 6500 K for a split second before applying your requested temperature.
+It's also possible to schedule this to run at predefined intervals, but that's beyond the scope of this answer (and the question).
+If you'd rather have a launchable app that can toggle between 2 temperatures,
+Open Terminal and run these commands:
+bash
+cd /Applications/
+mkdir -p flux-day-toggle.app/Contents/MacOS
+cd flux-day-toggle.app/Contents/MacOS
+cat <<END > flux-day-toggle
+
+Now you'll see a greater than sign. Paste this:
+#!/bin/bash
+
+DOMAIN=org.herf.Flux
+KEY_NAME=dayColorTemp
+
+LOW=2700
+HIGH=6500
+
+cur_val=`defaults read $DOMAIN $KEY_NAME 2>/dev/null`
+if [[ -z "$cur_val" || "$cur_val" -eq "$HIGH" ]]; then
+  new_val=$LOW
+else
+  new_val=$HIGH
+fi
+
+defaults write $DOMAIN $KEY_NAME -int $new_val
+killall Flux
+open /Applications/Flux.app
+END
+
+Wait for the prompt to appear, meaning the file was written.
+Now the finishing touch:
+chmod 755 flux-day-toggle
+
+Now you can launch the new app. You can customize the LOW and HIGH settings to your liking.
+
+A: Found a possible workaround for those who are interested:
+Nocturne by Blacktree
+
+It has a nice amount of options and is completely manual. Downside is it doesn't set apparent color temperature per se, but setting a white tint to RGB(255, 197, 143) has approximately the same effect as setting white point to ≈ 2600 °K (see Kelvin ⇔ RGB table on planetpixelemporium).
+
+A: Open system preferences, go to the Displays panel and choose the Color tab. Press the Calibrate... button and go through the steps. If you turn on expert mode, you will choose the white point using a slider, but if you don't you will get to choose between a few standard values. You can even do this multiple times, saving with a different name each time, and switch between them through the list in the color tab.
+
+A: A cool way is to let f.lux do the work http://stereopsis.com/flux/ It adjusts your screen colour temp. with the time of the day! Give it a try!

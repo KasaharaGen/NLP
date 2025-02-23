@@ -1,0 +1,82 @@
+Q: Assign monospaced font family to selected text with keyboard shortcut in mac os x I write a lot of technical emails, and like to use a monospaced font for the code bits. Highlight text, hit apple-T, choose my font from the list of favorites, then close the font window. Is there a way to use a keyboard shortcut to apply a given font to the currently selected text? Ideally this would be OS-wide, but if that's not possible I can use it for just a single app (Mail.app)
+
+A: I've been looking for doing this for a very long time.
+I finally managed to end up with something that really works great for me, with the help of Alfred and Highlight CLI tool.
+Here is the Alfred script portion :
+query="{query}"
+if echo $query|grep -e "^__SHORTCUT__"
+then
+    echo "$query"|sed -E "s/^__SHORTCUT__//"|pbcopy
+    syntax=txt
+else
+    osascript -e 'tell application "System Events" to keystroke "c" using {command down}'
+    syntax=$query
+fi
+
+pbpaste|/usr/local/bin/highlight --syntax $syntax --font Menlo --font-size 12 --out-format=rtf|pbcopy
+osascript -e 'tell application "System Events" to keystroke "v" using {command down}'
+
+Make sure the shortcut trigger adds __SHORTCUT__ to be recognized and argument is "Selection in OSX" :
+
+Short demo https://youtu.be/y8NJT52APRQ
+
+A: I don't know of a system-wide way to script the Fonts panel but here's a few ways to get quick access to monospace fonts in Mail.app
+Way 1: Plan Text Message
+Go to Mail.app's preferences > Fonts & Colors and check the checkbox for "Use fixed-width font for plain text messages"
+
+Now when you're in a message where you want to use a monospace font you can simply hit: Command-Shift-T and you can toggle between the fixed-width font of your choice and your standard font (plain text message & rich text).
+The downside of this method is if the receiver has not set their font to a fixed-width font they may not see the message as intended.
+Way 2: Set the Font with Applescript
+The second way to do this would be to create a new message with the correct font chosen using Applescript. You can do that like this:
+tell application "Mail"
+    set outgoingMessage to make new outgoing message
+    set fontFace to "Times"
+    tell outgoingMessage
+        set the content to " "
+        set font of content to fontFace
+        set size of content to (14)
+        set visible to true
+    end tell
+end tell
+
+You do have to set the content to something with this script. It seems Mail doesn't let you set the font for an empty message.
+Way 3: Use TextExpander
+This way costs money but it might give you what you are after. You could setup a couple of TextExpander ($34.99 USD on the app store) shortcuts for fixed width and normal type so that you can switch back and forth by typing a few characters.
+
+TextExpander will allow you to insert rich text (text with a font, color, style, etc set). Just create a snippet of type Formatted Text, Pictures and set a font for the text you'll be inserting. You will need to include at least a space character for this strategy to work.
+You will need your snippits to include at least a space character to ensure that the font will take.
+
+A: What I ended up using was manually specifying monospace in some text, then Format -> Copy Style (Option+Cmd+C) which copies the format but not the text. Then select some other plain text and Format->Paste Style (Option+Cmd+V) which assigns this format to the selection. After restarting, you need to do this again, and it only works for one style, but this meets my needs.
+
+A: Copy a character with a specific style:
+echo "<span style=\"font:14px 'Monaco'\">&nbsp;</span>" | textutil -format html -convert rtf -stdin -stdout | pbcopy -Prefer rtf
+pbcopy -Prefer rtf doesn't include plain text data, so paste will only work in rich text views.
+
+Insert a character with a specific style:
+try
+    try
+        set old to the clipboard
+    end try
+    set html to quoted form of "<span style=\"font:14px 'Monaco'\">&nbsp;</span>"
+    do shell script "echo " & html & " | textutil -format html -convert rtf -stdin -stdout | pbcopy -Prefer rtf"
+    tell application "System Events" to keystroke "v" using command down
+    delay 0.03
+    set the clipboard to old
+end try
+
+
+Paste style:
+try
+    try
+        set old to the clipboard
+    end try
+    tell application "System Events" to keystroke "c" using command down
+    delay 0.03
+    set input to Unicode text of (the clipboard as record)
+    set txt to quoted form of ("<span style=\"font:14px 'Monaco'\">" & input & "</span>")
+    do shell script "echo " & txt & " | textutil -format html -convert rtf -stdin -stdout | pbcopy -Prefer rtf"
+    tell application "System Events" to keystroke "v" using command down
+    delay 0.03
+    set the clipboard to old
+end try
+

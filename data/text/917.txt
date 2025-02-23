@@ -1,0 +1,10 @@
+Q: Dock Icons behaving like they'd be locked, but they are not? I just noticed a weird behavior on my dock. The icons seem like if they'd be locked but in fact they are not. For instance when I try to move the icons around, I can take them and move them up. While I'm holding the touchpad, the icon moves with my cursor (that's not the case if the dock would be truly locked), but there won't open any spaces on where I'd like to move the icons to.
+I also tried the commands
+defaults com.apple.dock contents-immutable -bool FALSE
+killall Dock
+
+But in fact this doesn't change anything. Is there some additional flag which prevents adding new icons to the dock? I also tried some commands from this list here with no success: http://secrets.blacktree.com/edit?id=2279
+Actually executing defaults read com.apple.dock contents-immutableresults in "0". I'm also able to remove icons to the dock, but not add new ones.
+Thx for any hint
+
+A: Have you tried deleting the Dock prefs?

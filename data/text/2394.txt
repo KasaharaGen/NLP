@@ -1,0 +1,37 @@
+Q: Is the first boot after a full system restore from TimeMachine supposed to take a long time? I have had the hard drive in my iMac replaced and now I'm trying to restore it from my TimeMachine back up. I thought the TimeMachine back up was corrupt but maybe I'm just not patient enough, or I'm misunderstanding the restore process.
+I'm able to restore successfully, but on reboot the machine shows me the white screen with the Apple logo and the spinner. I can hear some occasional sounds from the hard drive in the machine.  The occasional hard drive sounds make me wonder if it's doing and fsck or similar operation on the drive before the system boots.
+It's been at this screen for a good hour now.
+I have not heard a chime (and have been in front of the machine working the entire time).
+Is this just what happens after a TimeMachine restore or should it have booted at a near-normal speed?
+
+A: Sounds like you have a problem.  Have a look at this apple support document on what to do if this happens.
+
+A: RESET THE SMC. HAD THE SAME PROBLEM WORKED FOR ME
+This is how to reset SMC on most modern Mac laptops, none of which have a removable battery:
+-Shutdown your MacBook Air / MacBook Pro
+-Connect the power adapter to the Mac
+-On the MacBook / Pro’s keyboard, hold down the Shift+Control+Option keys and the Power button at the same time
+-Release all keys and the power button at the same time – the little light on the MagSafe adapter may change colors briefly to indicate the SMC has reset
+-Boot your Mac as usual
+
+A: I ran into the same issue on my MBP 2012 machine. Had an attempted dual-boot setup go south on me and re-format my entire drive, so even lost the recovery partition. 
+I attempted what @IanC described in his comment above - after booting into the internet recovery system and re-installing Mountain Lion (that's what I was offered by the recovery tool!), I did a first boot into the OS, but did not bother proceeding through the setup wizard. I rebooted into the now restored local recovery partition and did a Time Machine restore from my backup drive. 
+It appeared to complete successfully, but I had the same problem where the progress bar reached the end on the boot screen, but the machine never finished booting. No resetting of PRAM or SMC helped either.
+In the end, I:
+
+
+*
+
+*Started from scratch again with the internet recovery
+
+*Re-installed Mountain Lion from there
+
+*Upgraded that to El Capitan
+
+*Re-booted into the local recovery partition
+
+*Restored from TM
+
+
+Success!
+One minor note is when performing the TM restore the second time, I selected the second last restore point rather than the last, just in case it would make a difference. I am assuming the El Capitan upgrade was the actual solution, but in the interests of completeness, I thought this worth mentioning also, in case it is materially significant.

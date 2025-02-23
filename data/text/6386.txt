@@ -1,0 +1,27 @@
+Q: Why might iChat not connect after upgrading to Lion? Since upgrading to Lion, iChat refuses to connect to either my AIM or Google Talk accounts. (Not a Google Apps account, fwiw.) Interestingly, if I sign in to AIM on another computer and try to get iChat to sign on, I get a message that I'm trying to sign on in more than one place, but iChat still shows status as "offline" for all accounts.
+So far, I've tried deleting all the com.apple.iChat preferences in Library, but to no avail.
+
+A: This happens to be occasionally, and I'm almost sure it's a bug in Lion. Disabling then reenabling my AIM account in the iChat preferences seems to temporarily fix the issue.
+
+A: Open "Console," located in your Utilities folder, and type "iChat" into the filter search box. Then open iChat and watch the console for error messages.
+
+A: For some reason iChat defaulted to selecting "https only" on aim and gtalk for me. Once I deselected both https options, iChat accounts connected successfully. 
+
+A: Change the port to 443, with SSL enabled. Doing it worked for me.
+
+A: Try dropping your account and recreating it.  That worked for me.
+
+A: I had the same problem and followed some instructions I found in the MacRumors forum:
+The issue is whith the server iChat is trying to use for authentication. Do the following:
+
+
+*
+
+*Go to menu iChat->Preferences
+
+*Choose Accounts icon
+
+*Select "Server Settings" tab
+
+*change the Server to "slogin.oscar.aol.com"
+

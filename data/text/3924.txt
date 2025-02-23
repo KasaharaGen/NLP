@@ -1,0 +1,33 @@
+Q: Messages issued by syslog not showing up in system logs I'm having some trouble with <syslog.h> in 10.5. I'm writing a small fork based server for class and I want to use syslog() to print a bunch of debug info. However, I can't find any of the messages I issue via syslog() while using Console (I'm looking in both all messages & system.log).
+Here is a code snippet of a plain C:
+#include <syslog.h>
+#include <stdarg.h>
+
+int main (int argc, const char * argv[])
+{
+    openlog("Syslog Test", LOG_PID | LOG_NDELAY | LOG_CONS | LOG_PERROR, LOG_USER);
+    setlogmask(LOG_UPTO(LOG_DEBUG));
+    syslog(LOG_DEBUG, "%s", "Hello, World!");
+    syslog(LOG_DEBUG, "%s", "And goodbye!");
+    closelog();
+    return 0;
+}
+
+And I don't see anything in "All Messages", "Console Messages" or system.log. Any advice?
+
+A: Despite what you pass to setlogmask(), in its default configuration, OS X will only write messages to the system log that have a priority of LOG_NOTICE or higher.
+Any of the following will solve your problem...
+
+
+*
+
+*Enable lower-priority logging in /etc/syslog.conf -- kern.* is not enough, as log messages from Xcode are not coming from the kernel
+
+*Change the priority of your messages from LOG_DEBUG to LOG_NOTICE
+
+*Simply use the built-in Xcode console -- the output will always appear there regardless of your syslog.conf settings
+
+
+Here's what it looks like in the built-in Xcode 4 console:
+
+Also, if you're developing exclusively for OS X, you might want to look into ASL (Apple System Log), which was meant to replace syslog().

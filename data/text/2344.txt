@@ -1,0 +1,19 @@
+Q: How can I change the location which Anki uses to save files? The program Anki saves its data to the Documents folder. I would like to move this folder to my Dropbox folder. Anki has no settings which allows you to change the location that data is stored.
+Is there any way to move this folder to another location and point Anki to the new folder via Mac OS X? I tried moving the folder and then creating an Alias in the same location (with the same name) by ⌥+⌘ dragging the file in Finder, but Anki doesn't see the files in the new folder.
+
+A: You may be able to use Symbolic Links to create a link between where Anki stores its files and a folder within DropBox.  Information on how to create symbolic links and how they differ from Aliases can be found here:
+http://hints.macworld.com/article.php?story=2001110610290643
+
+A: When going to documents folder there is a readme with link to the user manual. That page has several ways to pick the data location. Portable mode is my pick.  Standalone also looks good.
+Adding the -b flag was not working until I read 
+On Windows, right-click on the shortcut, choose Properties, select the Shortcut tab, and add "-b \path\to\data\folder" after the path to the program…
+which should leave you with something like
+C:\Program Files\Anki\anki.exe" -b "C:\AnkiDataFolder"
+There are options for Macintosh and flash drive too, all on that same page.
+
+A: As of Anki 2.1, the ANKI_BASE environment variable should be work per this. However, you might need to set it in a Launch Daemon / Agent for Anki to figure it out if you use Spotlight. Tested 2.1.0beta4.
+
+A: Actually, that is not the best way. You can run Anki in portable mode and specify the path to a different data folder. Create a shortcut to Anki.exe and change the target path to this:
+anki.exe -b "D:\Anki"
+
+Close Anki, move your Anki data files to D:\Anki (or whatever folder you choose) and restart Anki.

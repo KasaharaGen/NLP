@@ -1,0 +1,14 @@
+Q: What is the best application to run Windows on a Mac? I've been looking around for reviews for the best way to run a Windows on a Mac. I've come across Bootcamp, Parallels, VitrualBox, and VMFusion. I am wondering what seems to be the most efficient, one with the least problems, and why use it over the others. If there are others I haven't mentioned let me know.
+EDIT
+I have a MacBook Pro just bought it a few weeks ago, and at the moment I would only use the Windows side for a few games. 
+
+A: Your question is like that old Sesame Street song, "Which one of these things doesn't belong?".  Bootcamp is a way to run Windows via dual booting, which means that when you are running Windows you are not running OS X.  This is good for when you need maximum performance (e.g. Windows gaming) but very inconvenient when what you need is to be able to run Windows and OS X applications at the same time.
+The other solutions you mentioned are all virtualization solutions that run Windows on top of OS X, letting you run a mix of applications.  Of these, I agree with Wheat that Parallels and Fusion are both very good, and it's really hard to say one is better than another.  Try them out (there are trial versions) and see which you prefer.  Or just go with pricing; I run Parallels because I got a good price on it as part of a software bundle.
+Virtualbox, on the other hand, is free and good at the basics, but it is MUCH less integrated into OS X.  For example, it does not map your OS X documents folder into the Windows document folder to enable seamless sharing of data between the two environments.  My take is that Virtualbox is good if you simply want to play around with Windows on a Mac, but if you have a real-world need for doing so, you're much better off spending the money for Fusion or Parallels.
+
+A: Another option, depending on what you want to do, would be Crossover, which is built on top of the Wine software. It doesn't require a copy of Windows (and the disk space that would take up), but it doesn't have the full compatibility that entails, either. For my purposes (running one particular Windows program on my Mac), it is the solution I like best, but obviously, the best solution for your situation would depend on your specific goals.
+
+A: Wine is great for running Windows applications. If you are just running the applications, I would highly recommend Wine instead of running a virtual machine. It is much faster and doesn't eat up as much CPU. Note: I haven't used Wine for running 3D games such as WOW or LOTRO, so I don't know how well that will do. 
+I use Winebottler rather that compiling Wine. If you want to compile Wine, you can follow this guide, but I would recommend Winebottler.
+
+A: I do not believe there is one that is best. All four solutions you mention work well, and have their own features.

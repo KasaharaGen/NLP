@@ -1,0 +1,25 @@
+Q: No video from Mac Mini, ONLY once OS X has loaded I have an old G4 Mac Mini, running 10.5. It's hooked up to a VGA CRT monitor using Apples DVI-to-VGA adapter that was included once upon a time. Last night, while using it, the screen flickered, and the monitor went to sleep, which is it;s default behavior when there's no display connected to it. Attempting to force the monitor on displayed a "No Signal" error. Restarting the machine does nothing.
+This has happened once before. The last time this happened, I attempted to fix it by resetting the PRAM. After doing this, the Mac output the standard grey screen with an Apple logo on startup, but when the system reached the OS X login screen, the monitor flickers and goes black. Attempting to boot in Safe Mode provides similar results. The Monitor is old enough that it does not offer an "Out of Range" error for unsupported refresh rates, but I took a chance and attempted the Single User Mode directions found in this Knowledge Base article, to delete windowserver.plist files. The last time this happened (about 6 months ago), that worked perfectly.
+Last night, the same problem occurred, with the same symptoms. Does not display video in Safe Mode. Does display video in Single User Mode. However, after deleting the two windowserver.plist files, the machine is still unable to display video past the grey startup screen.
+Is there anything else I can try to fix this? Is the DVI-to-VGA adapter a possible culprit for a cheap fix? Or is my Mini in need of enough repair as to be better off replaced?
+Edit: It's definitely not the DVI to VGA adapter, sadly.
+
+A: The 1st thing you have to do is try to determine if it’s merely a software issue with your OS install or if the problem relies on the hardware (whether it’s the screen or the computer itself). 
+In order to facilitate that task, you must check the obvious. 
+1) The DVI adapter (already tested).
+2) The Screen. Can you hook the monitor to another computer?
+3) Can you hook another monitor to the same computer?
+Extras: Have you tried another VGA cable? 
+The above should result in any of the following:
+a) The screen is defective, change screen.
+b) The Mac mini has a hardware issue where no other screen works. Time for repairs (probably not worth).
+c) The Cable is defective, change cable.
+d) The screen works fine on another computer, the Mac mini works fine with another display. what…?
+In case of D, there could be a problem with the software instead, either the driver that the Mac mini is using when it detects the display is broken or the video driver or something. That’s a whole new world and -as already suggested- you might want to try booting from the install CD/DVD and trying to see if video works there. Back up your drive and a full reinstall might also help you have everything fresh.
+Hope it helps. I know it’s a lot of obvious steps, but this is how the tech guys do it :) Find the problem first.
+UPDATE:
+After reading that the Mac mini doesn’t work with a different screen and that this issue happens before login screen (i.e. it’s not ‘user’ related), there are two possible ideas you can try before a complete OS reinstall.
+You mention that it works in Single User but not safe mode; given that Single User goes straight to the command line, have you tried running fsck on the partition? Maybe there’s some data corruption in the OS X volume. 
+Safe Mode doesn’t load external drivers and items in the StartupFolders, so that should work and I find it weird that it doesn’t. Of course make sure you unplug all external devices (sans keyboard/mouse/display) before diagnosing a problem like this. 
+In any case, I’d try to install a fresh copy of OS X on an external drive (if you don’t want to wipe your internal copy) and see what happens from there. If the external copy works, then the OS X copy has a big problem. I know this is obvious (and it’s already in your list of things to do) but sadly debugging a problem like this without access to the OS/hardware is really hard. You can always later clone the freshly installed OS X to your internal drive to avoid the reinstall in the internal drive.
+Good Luck!

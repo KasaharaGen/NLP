@@ -1,0 +1,7 @@
+Q: How can I prevent external hard disk from sleeping when connected to Airport Extreme? I have a 1TB external hard disk from Seagate connected to the USB port of my Airport Extreme and everytime I need to access it I have to wait some time until it leaves the sleep mode. 
+Is there a way to prevent it from happening?
+
+A: You can run Keep Drive Spinning on a Mac that's connected to your drive over the network. It continuously accesses a hidden file to keep the drive awake.
+You can also set it up yourself per these instructions.
+
+A: If the computers on your network are Windows PCs, then you can map the shared network drive on one of your Windows boxes, then install NoSleep HD 2.0.  Run the program, add that drive as the one to keep awake, and you are ready to go.

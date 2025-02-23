@@ -1,0 +1,42 @@
+Q: Fastest way to get an image from Skitch into OmniFocus? What's the fastest way to get a screenshot from Skitch into OmniFocus?
+When you drag and drop an image into OmniFocus, it only creates a link to the image, rather than embedding it. One way to do this is to drag and drop the image from Skitch to finder, and then from finder to OmniFocus by holding down the command key, but this is tedious, especially when I need to do it many times. Another way is to drop onto finder, and then right-click and choose to attach and embed in OmniFocus, but this too is time consuming.
+Is there any way to drag the image directly from Skitch into OmniFocus and have the image be embedded in the task?
+
+A: AFAIK, you can't do it without AppleScript. 
+Here is my way to do this:
+on adding folder items to this_folder after receiving added_items
+    try
+        repeat with i from 1 to number of items in added_items
+            set this_item to item i of added_items
+            tell application "Finder" to set file_name to (name of this_item)
+            tell application "OmniFocus"
+                tell quick entry
+                    open
+                    set NewTask to make new inbox task with properties {name:file_name}
+                    tell the note of NewTask
+                        make new file attachment with properties {file name:this_item, embedded:true}
+                    end tell
+                    activate
+                end tell
+            end tell
+        end repeat
+    end try
+end adding folder items to
+
+
+
+*
+
+*Save this AppleScript to /Library/Scripts/Folder Action Scripts/Add File To Omnifocus.scpt You must use root access. (Download script)
+
+*Create a folder under your Documets folder
+
+*Right-click on this folder, and select Services>Folder Actions Setup
+
+*Select the "Add File To Omnifocus" script
+
+
+Now you can drop any file to this folder(I keep it in my Dock) and it automatically create a QuickEntry Task with embedded attachment.
+I hope this could help you. 
+
+A: Drag the image from Skitch directly to OmniFocus while holding Alt/Option key.

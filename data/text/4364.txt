@@ -1,0 +1,18 @@
+Q: Internet Sharing supports WEP but not WPA? I am trying to make a WiFi hotspot through my MacBook. It has Snow Leopard 10.6.7 on it.
+The thing is that when I go to sharing and then configure internet sharing, it only gives the choice of using WEP password encryption. 
+Is it possible to use it with WPA or WPA2? If yes, how?
+
+A: It is not possible to use OS X's internet sharing feature to create a WPA- or WPA2-protected network [through v10.7 Lion, see below]; WEP (40- or 128-bit) or no encryption at all are the only available options.
+Note that the original title on this question ("Airport supports WEP but not WPA?") was a bit misleading, as this is only a limitation on wireless networks created with internet sharing.  Mac computers can join WPA and WPA2 wireless networks, and have been able to for years and years.  Similarly, Apple's Airport base stations (except for early models) can create WPA and WPA2 networks.  It's only when the Mac is acting as a base station that this limitation exists.
+UPDATE: In OS X 10.8 (Mountain Lion), the normally-visible security options changed to WPA2 Personal or no encryption. WEP is still available in 10.8, but only if you hold Option while clicking on the Security pop-up menu.
+
+A: I advise everyone concerned by the security of their wireless network
+to fill a feedback at Apple:I need a secure network! about this security bug.
+You have to know that WEP & WPA are just fake security.
+There are many weapons available on the web to enter such falsely protected networks within a few minutes.
+WPA2 (in fact 802.11i) is a true security function for wireless networks. Every wireless card on the market implement WPA2. It is a
+hardware function.
+It is up to any decent operating system to manage it.
+Lately Mountain Lion permits to start a wireless network secured with WPA2.
+This real security improvment isn't advertised within the many features
+brought by Mountain Lion. Probably too late a move for such large a weakness.

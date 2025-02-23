@@ -1,0 +1,24 @@
+Q: The application DGAgent quit unexpectedly -- repeatedly pops up every time i "ignore", "report" or "relaunch" Before this problem occurred I have been trying to defrag my disk using Drive Genius 3 and repair using disk utiltity.  Than I decided to delete it.  Not sure if that was the reason or not but after that I had this message pops up all the time "The application DGAgent quit unexpectedly".  I have no idea what it is.  This happens every I start up my iMac.  The message pops up every time I click "ignore" "report" and "relaunch" buttons.  Can you tell me what it is and how to fix it?  Also this causes some of my applications such as Skype "cannot be opened because it is not supported on this architecture".
+
+A: The error you're getting from Skype is because you're not using an Intel-based Mac.  Skype only runs now on Intel-based Macs so I assume you're running a PowerPC iMac G5 or something are you?  You also need to be running Leopard/Snow Leopard.  Here's a screenshot of the System Requirements on the Skype Download page:  
+
+So, the Skype issue is not related to the DGAgent message.
+
+As regards the startup of DGAgent on login, you can try the following:
+
+
+*
+
+*Open System Preferences
+
+*Click Accounts
+
+*Select your account
+
+*Click Login Items
+
+*Highlight Drive Genius if it's listed and click the '-' button on the lower left to remove it.
+
+
+This will prevent OS X from attempting to start it on login.  See screenshot below.
+

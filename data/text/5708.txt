@@ -1,0 +1,72 @@
+Q: Is fine volume adjustment possible in macOS? Question broadened, as this still works in 2021
+On previous versions of Mac OS X pressing ⌥+⇧+volume+ would adjust the volume by quarter increments. This seems to have been removed in Lion.
+Is there any way to do fine volume adjustment now?
+
+A: I don't have a keyboard shortcut or AppleScript for you, but I did notice - and others seem to confirm - that the slider you can use when you click the volume icon in the menu bar moves much more smoothly in Lion than it did in previous versions of OS X. As I recall it used to sort of jump from level to level, sort of like how it did when you pushed the volume buttons on the keyboard. Now it slides easily between increments. 
+
+A: I don't have enough reputation or else I would have entered this as a comment to Nathan Greenstein's answer.
+I turned his information into a simple command line script to adjust the volume:
+#!/bin/bash
+
+usage()
+{
+    echo 1>&2 "Usage:" "$0" "[relative volume change in the range -100..100 (default -2)]"
+    exit -1
+}
+
+case $# in
+    0)
+        VOLCHANGE=-2
+        ;;
+    1)
+        VOLCHANGE=$1
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+## Check the VOLCHANGE parameter.
+if ! ( echo "${VOLCHANGE}" | egrep '^-?[0-9]+$' > /dev/null )
+then
+    echo 1>&2 "ERROR: Bad volume adjustment parameter:" "${VOLCHANGE}"
+    usage
+fi
+
+osascript -e "set volume output volume ((output volume of (get volume settings)) + ${VOLCHANGE})"
+
+echo "New volume:" $(osascript -e 'output volume of (get volume settings)') "(adjusted by ${VOLCHANGE})"
+
+
+A: You can do precise volume adjustment with AppleScript, controlled on a scale of 0 thru 100.
+set volume output volume 0 --mute
+set volume output volume 100 --100%
+set volume output volume 27 --27%
+
+You can get the current volume (also 0 thru 100):
+set currentVolume to output volume of (get volume settings)
+
+So, you can write a little script to increment the volume by 2% (approximately what one quarter square used to be):
+set currentVolume to output volume of (get volume settings)
+set volume output volume (currentVolume + 2)
+
+You can make one for decrementing by changing that plus sign to a minus sign:
+set currentVolume to output volume of (get volume settings)
+set volume output volume (currentVolume - 2)
+
+If you want to get the volume sound like usual, add the following line:
+do shell script "afplay /System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/volume.aiff"
+
+You can save this as a script or app, and bind it to a mouse or keyboard button (if your driver lets you), give it a keyboard shortcut (as a Service or with another app), or put it in your menu bar (with an app like FastScripts).
+
+A: ⌥+⇧+F11 and ⌥+⇧+F12 were restored in 10.7.4.
+
+A: To get much finer sound volume control I use soundflower from http://code.google.com/p/soundflower/. You have to restart after installing it. Then go to preferences/sound/output and choose soundflower(2ch). Start soundflower from the applications folder, click on the flower symbol in the top pannel and soundflower(2ch) built in output. Then go to Audio setup and change the master for soundflower(2ch). This way you can get the global sound less loud or you can amplify it. 
+
+A: There's also a way to make the volume decrease in 1/4 steps by default. There's a tool you can install called Karabiner, and it already has this logic built in. 
+So just install it, open the preferences, search for fine grained volume controls, click it, and bam! It just works. What's great is that it switches it so the typical fine-grained keyboard command is now used for large volume steps, and just pressing the volume key will increase/decrease it by a 1/4 step. 
+https://pqrs.org/osx/karabiner/index.html.en
+
+A: You can also change the output volume exactly as a percentage (for example 20%) with the terminal via Apple Script.
+osascript -e 'set volume output volume 20'
+

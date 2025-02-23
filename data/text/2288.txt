@@ -1,0 +1,27 @@
+Q: Binding a keyboard shortcut to shut down I want to bind a gesture in BetterTouchTool to the shut down menu that is invoked by pressing the power button on my MacBook Air.
+It's fairly simple to bind gestures to keyboard shortcuts, so what I'm really looking for is a way to bind a keyboard shortcut to the shut down menu. You can't use the power button in BetterTouchTool, so I need to bind it to a standard keyboard shortcut such as Command+Shift+S.
+
+A: You don't need to map the power button, that menu is already mapped to control+eject
+
+Other useful shutdown/restart/logoff key mappings are below which might be of interest too  
+Prompt to save work and restart the Mac - Control+Command+Eject 
+Prompt to save work and shutdown the Mac - Control+Option+Command+Eject 
+Sleep - Command+Option+Eject 
+Sleep displays - Shift+Control+Eject 
+If the computer isn't responding and you need to force it to power off, you can hold down the power button for 6 seconds, you'll lose unsaved work though.  
+These power shortcuts are listed on the apple support pages
+
+A: Command Shift / will trigger the help menu. Press -> to get to the shutdown menu. Then you can scroll up to the shutdown option. Done.
+
+A: While @Griffo's suggestion is useful, unfortunately the eject button cannot be used in BetterTouchTool.
+In order to get it to work with BetterTouchTool, I did the following:
+
+
+*
+
+*Created a new shortcut in System Preferences > Keyboard > Keyboard Shortcuts for All Applications with the menu title Shut Down... and I chose my own keyboard shortcut.
+
+*I then bound a shortcut key in BetterTouchTool to this new keyboard shortcut.
+
+
+It works as expected. The only drawback is that there are now two Shut Down options in the menu: Shut Down and Shut Down... It's a minor annoyance which I'm not sure how to fix.

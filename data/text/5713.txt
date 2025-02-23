@@ -1,0 +1,71 @@
+Q: Where are all these ipfw rules coming from? Any attempt to connect to a server over port 143 is blocked by the OS. I've verified it's not my connection; other computers on the network can see the port just fine. I've replicated the problem on a different network, as well as both the Ethernet and Wifi interfaces.
+On my Macbook, I get this:
+$ telnet mail.xxxx.com 143
+Trying xxx.xxx.xxx.xxx...
+telnet: connect to address xxx.xxx.xxx.xxx: Permission denied
+telnet: Unable to connect to remote host
+
+$ telnet mail.xxxx.com 110
+Trying xxx.xxx.xxx.xxx...
+Connected to mail.xxxx.com.
+Escape character is '^]'.
++OK Welcome to MailEnable POP3 Server
+
+On another computer on the same network:
+$ telnet mail.xxxx.com 143
+Trying xxx.xxx.xxx.xxx...
+Connected to mail.xxxx.com.
+Escape character is '^]'.
+* OK IMAP4rev1 server ready at 07/28/11 19:53:15
+
+The problem is due to a lot of extraneous ipfw rules:
+$ sudo ipfw show
+00010   1166    210912 allow ip from any to any via lo*
+00100      0         0 deny ip from 127.0.0.0/8 to any in
+00110      0         0 deny ip from any to 127.0.0.0/8 in
+00120      0         0 deny ip from 224.0.0.0/3 to any in
+00130      0         0 deny tcp from any to 224.0.0.0/3 in
+10010      0         0 check-state
+10020    163     12011 deny ip from any to any established in
+10030      0         0 deny ip from any to any frag in
+20000     14       784 skipto 50000 icmp from any to any out keep-state
+20010 227761 225019565 skipto 50000 tcp from any to any dst-port 80,8080 out setup keep-state
+20011   7994   1700223 skipto 50000 tcp from any to any dst-port 443,8443 out setup keep-state
+20020      0         0 skipto 50000 tcp from any to any dst-port 53 out setup keep-state
+20020   1359    125457 skipto 50000 udp from any to any dst-port 53 out keep-state
+20030    150     17801 skipto 50000 tcp from any to any dst-port 110,993 out setup keep-state
+20031      0         0 skipto 50000 tcp from any to any dst-port 25,465,587 out setup keep-state
+20040    501     54357 skipto 50000 tcp from any to any dst-port 22 out setup keep-state
+20050      0         0 skipto 50000 tcp from any to any dst-port 21 out setup keep-state
+20060      0         0 skipto 50000 tcp from any to any dst-port 123 out setup keep-state
+20060     12       912 skipto 50000 udp from any to any dst-port 123 out keep-state
+20070      0         0 skipto 50000 tcp from any to any dst-port 113 out setup keep-state
+20070      0         0 skipto 50000 udp from any to any dst-port 113 out keep-state
+20080      0         0 skipto 50000 tcp from any to any dst-port 194 out setup keep-state
+20080      0         0 skipto 50000 udp from any to any dst-port 194 out keep-state
+20090      0         0 skipto 50000 tcp from any to any dst-port 137-139,445 out setup keep-state
+20090    214     28854 skipto 50000 udp from any to any dst-port 137-139,445 out keep-state
+20100      0         0 skipto 50000 tcp from any to any dst-port 1194 out setup keep-state
+20100      0         0 skipto 50000 udp from any to any dst-port 1194 out keep-state
+20110      0         0 skipto 50000 tcp from any to any dst-port 111,2049 out setup keep-state
+20110      0         0 skipto 50000 udp from any to any dst-port 111,2049 out keep-state
+20120      0         0 skipto 50000 tcp from any to any dst-port 6881-6999 out setup keep-state
+30000      0         0 allow tcp from any to me dst-port 22 in setup keep-state
+30010      0         0 allow udp from any to me dst-port 67,68 in keep-state
+30020      0         0 allow icmp from 192.168.0.2 to any in keep-state
+40000   1284    289790 deny ip from any to any
+50000 238005 226947953 allow ip from any to any
+65535     25      7914 allow ip from any to any
+
+I cannot find where these settings are coming from, disabling the firewall has no effect.
+
+A: I cleared them out with:
+$ sudo ipfw -f flush
+
+But this is only a temporary fix, and I have no idea where these rules are coming from.
+I've discovered that disabling the ruleset they belong to lasts longer:
+$ sudo ipfw set disable 0
+
+But they still get re-enabled after a reboot.
+
+A: They are coming from /etc/ipfilter/*

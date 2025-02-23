@@ -1,0 +1,76 @@
+Q: Automatically relaunch a closed macOS application I have an application that opens when I log in.
+Is there a way to relaunch it automatically if it crashes or if I close it inadvertently?
+The application in question is Transmission, if there is any solution specific to this app.
+In a perfect world, it could even be launched even without me opening a session.
+
+A: You could write a launchd script to do it. Launchd can watch for applications and restart them if they disappear. I might have one somewhere if you are interested.
+Updated with an example...
+See mankoff's example. Here's mine, it's slightly different but works the same...
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">  
+  <dict>  
+    <key>RunAtLoad</key>  
+    <true/>  
+    <key>KeepAlive</key>  
+    <true/>  
+    <key>Label</key>  
+    <string>keep.it.running</string>  
+    <key>Program</key>  
+    <string>/Applications/Address Book.app/Contents/MacOS/Address Book</string>  
+</dict>  
+</plist>  
+
+
+A: Here is my launchd script to keep SomeApp always running.
+Name it SomeApp.restart.plist and place it in ~/Library/LaunchAgents/
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>RunAtLoad</key>  
+        <true/>  
+        <key>KeepAlive</key>
+        <true/>
+        <key>Label</key>
+        <string>SomeApp.restart</string>
+        <key>ProgramArguments</key>
+        <array>
+                <string>/path/to/SomeApp.app/Contents/MacOS/SomeApp</string>
+        </array>
+</dict>
+</plist>
+
+Load it once with
+launchctl load ~/Library/LaunchAgents/SomeApp.restart.plist
+
+Launchctl will run this after reboots.
+
+*
+
+*RunAtLoad will launch the application the first time launchctl runs this
+
+*KeepAlive will restart it if the application quits (CMD+Q or crash)
+
+Should run forever. If you want a GUI tool to help, Lingon works even though development has stopped.
+
+A: You can open applications on the background with open -jg or the launch command in AppleScript.
+#!/bin/bash
+
+open -jg -a FastScripts -a Mail
+osascript -e 'launch app "Alfred"'
+
+KeepAlive is not needed. RunAtLoad would also run the program on the zeroth interval.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.stackexchange.apple.837</string>
+    <key>Program</key>
+    <string>/Users/username/Library/Scripts/open applications.sh</string>
+    <key>StartInterval</key>
+    <integer>1</integer>
+</dict>
+</plist>
+

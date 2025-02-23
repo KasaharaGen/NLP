@@ -1,0 +1,16 @@
+Q: Sharing a VPN connection using Internet Sharing (via Airport) Internet Sharing from my MacBook Pro (10.6.6) to other WiFi devices works fine.
+But the moment I turn on the VPN connection (PPTP) on the Mac (which I would also like to share), the other devices cannot access anything anymore (everything works fine on the Mac itself).
+What do I do?
+
+A: Linking to rodrigo.sharpcube.com is appalling. I lost hours of my life following it. It's a totally unnecessary wild goose chase into IPFW. Please avoid. The first answer from JRobert is accurate. Here is a more detailed step by step with images.
+
+A: I'd suggest you follow the excellent blogpost by Rodrigo at http://rodrigo.sharpcube.com/2010/06/20/using-and-sharing-a-vpn-connection-on-your-mac/
+Worked for me.
+
+A: OS-X treats a VPN connection as a totally separate connection from the device (airport, ethernet) it is transported on.  So when you turned on your VPN, your airport or ethernet connection was no longer active.
+If you want to share the VPN connection, you have to set up sharing for it the same way you did for your primary, non-VPN connection.  They behave totally separately, for sharing purposes.
+
+A: To share a VPN connection on 10.7, using WaterRoof, follow these directions.
+To share a VPN on 10.8 and above, do the same thing with IceFloor
+
+A: Here are instructions for sharing your ExpressVPN connection on Mac OS X using Internet Sharing (uses L2TP.)

@@ -1,0 +1,66 @@
+Q: Do Macs store a serial number on the disk? About a year ago, I sold my old MacBook Pro. Last week I got a call from the buyer who said that it had been stolen and he didn't have the serial number — and did I have it?
+I haven't been able to find it anywhere. It's not registered under my Apple ID (not sure it ever was). It was originally purchased from Amazon, and they don't put serial numbers on their receipts. I'm still looking for the original box.
+OTOH, I do still have a disk image that I made of the drive immediately before I reformatted it, prior to the sale.
+Is the serial number stored anywhere on that disk image?
+What I've tried:
+
+
+*
+
+*Searching my current MBP for my current serial number
+I figured that if I could find a file with the current serial number, the old disk image might have that same file with the old number.
+
+*Searching for old system profiler reports
+Sadly, I couldn't find one.
+
+
+Anyone have any other ideas?
+
+A: Apparently the only ways to find out a Mac's serial number (if you don't have the Mac physically present) are:
+When you had the Mac, you:
+
+
+*
+
+*Registered it with Apple (check your support profile at apple.com)
+
+*Ran and saved a copy of System Profiler's output
+
+
+Without the Mac:
+
+
+*
+
+*Have a sales receipt from a retailer that puts the serial number on their receipts
+
+*Purchased it from a retailer that keeps track of serial numbers
+
+*Find the box the Mac came in
+
+
+Thankfully, after I posted this question, the buyer was able to find the original box, which gave him the serial number.
+But the actual answer to the question is: No, Macs do not normally store their serial number in a disk file.
+
+A: The computer’s “Serial Number” is not stored in the software, but the hardware as far as I can remember (because there’s a method in the Cocoa SDK to read it). 
+You can also ask the OS to tell you the Serial Number by going to /Applications/Utilities/Terminal.app and executing:
+ioreg -l | grep IOPlatformSerialNumber
+
+This value, is stored in some form of nonvolatile memory on the motherboard, because you can wipe your hard drive completely clean, and the results will always be the same, until you have to change your board.
+All that said, the vendor should have the serial number of the machine it sold, and Apple will know that the serial number went to X vendor. They have a decent control about that as far as I know. 
+So if you have the receipt from Amazon, then you can try contacting them about the issue. 
+
+A: Hold your breath... MACs actually DO store serial number on the hard drive. After finding MAC address from my backup, I proceeded further and found the serial number itself in the same WirelessDiagnostics archive.   
+Inside the archive there is a wifi-BPpiyL.log file which should contain the following lines: 
+<airportd[30]> _initSystemGlobals: Model name = <your model name>
+<airportd[30]> _initSystemGlobals: Model number = <your model number>
+<airportd[30]> _initSystemGlobals: Serial number = **<your serial number>**
+
+I checked in Apple.com, and that was a valid S/N which showed the legitimate information about my stolen MacBook. Granted I've performed wireless diagnostics in the past and that's where these files came from, but it proves that if you have some kind of a backup, you have the chance in finding your S/N in it. 
+
+A: Well, I had my Mac stolen and could not find the Serial No in the backup. The Mac used to be registered in my Apple ID, but is not any more. However, it still is in "Find My Mac", where I locked it.
+Apple support wouldn't give me the serial number, saying they don't have it. However, when the police asked them which computers were tied to my Apple ID, they gave out the serial numbers.
+So it seems to me that Apple does still have them, but is more cooperative with law enforcement than customers.
+
+A: I know this is old, but I'm sure lots of people are being redirected here from Google.
+OS X may not have the serial number of it's device stored anywhere, but chances are you can find your MAC address, which, just like the serial number, uniquely identifies your machine. One example where the MAC is being stored in OS X would be wireless_diagnostics-ilTACd.log which is located inside Wireless diagnostics archive (if exists).

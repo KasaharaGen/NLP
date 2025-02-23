@@ -1,0 +1,32 @@
+Q: Can you use the command line on a Mac to get to a networked Mac? I have a networked mac desktop and a wireless laptop.   I would like to use the desktop mac to test web pages from the laptop.   The mac desktop has a php/mysql/apache server outside the router for testing.
+How do I get to my network using the command line from the laptop?
+I do cd ~ and I get my laptop hard drive
+I do cd / and I get one level higher
+I do cd Network and get no directory
+Is this only possible with a Mac Server? It seems like the CLI should see the other mac on the network since I have logged onto it from the network and have the other mac hard drive visible on the desktop.
+thanks,
+
+A: Use the mount command to show the various mounted shares. You'll see something like this:
+$ mount
+
+//GUEST:@betafat/tmp on /Volumes/tmp (smbfs, nodev, nosuid, ...
+afp_0h2ueA0008BK0000oM0000VU-2.2e000005 on /Volumes/admin (afpfs, nodev, nosuid, ...
+
+The first line is a Windows SMB share from an XP computer, the second line is an AFP share from another Mac.
+Note the mount points after the word 'on' above.
+You can access the mounted shares using mount point just like you would any other directory, i.e. ls /Volumes/admin
+
+A: Another option would be using ssh to "remote" into the machine.  To enable ssh go to System Preferences -> Sharing Preferences -> Remote Login.
+Then you would login by typing ssh <username>@<hostname (or <ip_address> instead of hostname).  After connecting, you're working in a shell that's executing all commands on the remote machine.
+
+A: I confess to being slightly confused by the original question.
+Are both of the computers behind the same router and on the same network (LAN) or are they on two separate networks and you want to connect from one to the other?
+ssh is the first step
+Regardless of what you are doing next, the first step is to enable ssh (System Preferences » Sharing » Remote Login, which is OFF by default).
+If different networks…
+Assuming that you want to connect to your personal computer on a different network, the easiest way is to use DynDNS which you can find at http://dyn.com/dns/dyndns-free/. They will give you two hostnames for free, use one for the desktop and one for the laptop.
+If same networks…
+If you are both on the same network, you should be able to connect to other computer using hostname.local where 'hostname' is whatever the computer is named in System Preferences » Sharing. I think the default is usually like "John Smith's MacBook.local" or some such. I always change mine right away.
+If they are on the same network, you can use File Sharing (although it's still not 100% clear what you are trying to do) or any of the 'remote' options below…
+If different networks…
+If you are on different networks and want to mount your hard drive, you could use Back To My Mac and file sharing, but I've never found that reliable. You are much better off trying ssh mounted with either ExpanDrive or Transmit.

@@ -1,0 +1,11 @@
+Q: Can I encrypt an external harddisk which is in HFS+? (journaled, encrypted) is a new option which I am able to find in Lion. 
+Can I convert an existing harddrive (external) to encrypt the whole drive instead of using other tools ?
+
+A: Whole disks, no, but partitions, yes. While the Disk Utility GUI application cannot, the diskutil command-line utility can do this.
+First, come up with a password (such as myVerySecurePassword). I believe this is not tied to your login password, unlike encrypting the boot volume.
+Then, find out the identifier for the target volume, e.g. disk1s1:
+diskutil list
+
+Then, use diskutil cs convert, like so:
+diskutil cs convert disk1s1 -passphrase myVerySecurePassword
+

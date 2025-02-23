@@ -1,0 +1,6 @@
+Q: Why my Time Capsule shared drive keeps refreshing? I use my Time Capsule to share files across my machines.
+On my MacBook, when I open the shared disk in Finder, and expand some folders, it starts to "refresh" after a few seconds again and again.
+If I click on a file, it loses the selection, and the directory tree disappear and appear, like being unmounted and mounted quickly.
+Edit: I realized that what was causing that was some folders with accent in their names (like: Música). Once I removed the accent, this behavior stopped. Is this a known bug?
+
+A: It seems to be a known (or at least widely observed) bug with the Finder trying to display files with non-latin characters in their names on an AFP server (like the Time Capsule) -- see http://discussions.apple.com/thread.jspa?threadID=2426415 for example.

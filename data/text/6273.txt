@@ -1,0 +1,13 @@
+Q: Change brightness on iMac in target display mode Recent iMacs support a "target display" mode, where you can connect another Mac using a DisplayPort cable, and the iMac will function as an external monitor.
+This used to work fine, however now if the iMac is running Mac OS 10.6.7 or later (including Lion), the iMac screen will switch to 100% brightness when put into this mode, and the brightness keys on the iMac keyboard can not be used to adjust the brightness. Has anyone found a solution to this problem?
+
+A: yeah, toggling the function key setting worked for me. I'm on 17" 2011 mbp and the 27 inch cinema display with Lion.
+
+A: Ctrl-F1 (which has a "dimming" circle with short marks around it) or Ctrl-F2 (which has a "bright" circle with longer marks around it)work on the external display. Dim and Bright, alone, work on the native display.
+
+A: The brightness keys would sometimes work and sometimes not on the target iMac. So I solved this with a System Preference, Shades for Mac. It puts a set of sunglasses in your toolbar and you can easily adjust the brightness. 
+
+A: Question is a bit old but apparently still an issue since it caused me quite a bit of frustration until I figured out the following which works reliably.
+COMMAND-F2 on the iMac keyboard will toggle between the running iMac local display, and the Target Display Mode (TDM) when connected to my laptop via DisplayPort. TDM always starts out at 100% brightness when you switch to it.
+COMMAND-F1 will adjust brightness lower until it goes completely dark. If that happens you need to switch back to iMac local then return again to TDM at 100%
+Now the important part:   COMMAND-F1 sometimes doesn't respond to lower the brightness. I found this seems to happen if local iMac screen is locked.. if I switch back to local iMac display, unlock to log in to the account, then switch back to TDM and the brightness control will now respond.

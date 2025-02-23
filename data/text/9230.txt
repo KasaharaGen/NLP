@@ -1,0 +1,53 @@
+Q: How do I force a folder to be opened in column view in Finder? I'll try to give a general example.
+I have the following folder structure somewhere on my local user directory:
+Root_Folder
+├── Icon_Folder
+│   ├── file1
+│   └── file6
+└── Column_Folder
+    ├── file10
+    ├── file11
+    └── file12
+
+How can I force Finder to open the Column_Folder/ in column view while forcing the Icon_Folder/ (and other possible folders) to be viewed in icon view?
+
+Sounds trivial, yes, but here's where I have problems:
+
+
+*
+
+*I open Icon_Folder/, change its view to icon view, press ⌘ cmd + J and tick "Always open in icon view" — presto! it works.
+
+*Then I open Column_Folder/, change its view to column view, double–check the Finder window's title bar reads "Column_Folder", open view options again — but wait! Finder wants to change the view settings for ~/Desktop/, not Column_Folder/!
+NB: I know it specifically wants to change Desktop's view settings because that is where the Root_Folder/ is. If I move the Root_Folder/ to ~/, Finder would like to change, while in column view, the view settings for my home directory and so on…
+I'd rather like to know a GUI answer, but if it is much easier via command line, it's OK by me.
+All in all, the question boils down to: How do I open the active folder's view settings in Finder while browsing in column view?
+
+A: Workaround
+
+
+*
+
+*While in Finder (in any view) drag the Column_Folder/ to the Finder's sidebar.
+
+*Select the Column_Folder/ from the sidebar
+
+*Switch to column view
+
+*Show view settings
+
+*
+
+*You can see the view settings will now affect the intended folder
+
+
+*Tick "Always open in column view"; click OK
+
+*Remove Column_Folder/ from the sidebar
+
+
+Now Column_Folder/ will open in column view!
+
+A: Note that if a folder is not shown in the sidebar, it won't usually be the root folder of any window in column view.
+Also "Always open in column view" means "save a folder-specific view mode for this folder in the .DS_Store file of the parent folder". If you check "Always open in column view" and switch to list view, the folder-specific view mode becomes list view.
+So if you add ~/Desktop/untitled folder/ to the sidebar, open untitled folder, and check "Always open in column view", the folder-specific view mode is saved to ~/Desktop/.DS_Store. If you remove ~/Desktop/untitled folder/ from the sidebar, it will never be the root folder of a column view window. But if you open ~/Desktop/untitled folder/ in list view and close the window, the folder-specific view mode becomes list view.

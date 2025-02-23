@@ -1,0 +1,7 @@
+Q: Can I repartition my primary hard drive without removing the Lion recovery partition? Scenario:
+I boot into Recovery mode and open Disk Utility. Then I select the primary hard drive and choose 1 partition. Will that destroy the recovery partition as well?
+
+A: No destruction will happen - This repartitioning you propose is possible to safely do. 
+The recovery partition won't modify itself (since it's in use) and will survive attempts to erase itself when it's in charge.
+You also can resize things in general when booted from the main OS as long as files that are stored in the area being trimmed are mobile and not in-use or locked. 
+You have to enable a debug mode for Disk Utility to see and work on the Recovery HD so it's planned to be something you have to know a trick and go out of your way to tamper with. (Note: Debug mode is removed in 10.11 with the redesigned Disk Utility app)

@@ -1,0 +1,10 @@
+Q: Stop Safari from loading webpages as Preview images Everyday, the first time I start Safari, if I go to the history or bookmarks tab, I get the following message: 
+
+How can I stop Safari from prompting this message and completely disable the webpages Preview?
+I already set the update policy to 2 with this:
+defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+
+
+A: Try running this command in the terminal:
+defaults write com.apple.Safari DidPromptToFetchRecentHistoryPreviews -bool YES
+

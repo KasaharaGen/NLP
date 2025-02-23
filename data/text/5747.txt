@@ -1,0 +1,9 @@
+Q: Should I be concerned if the helpd process is eating RAM after an upgrade to Lion? Hallo, I've recently upgraded to Mac OS Lion from Snow Leopard on my 2009 Unibody Macbook. Now, checking in activity monitor I often find a strange process named helpd taking large parts of the memory ~400 MB.
+What is it? Is there any solution for it?
+
+A: I hope the fine author of Lingon doesn't disapprove of me using his app to answer this, but here are the reasons why helpd will run. 
+(the daemon of help)
+
+It's hard to tell if this is one of the processes that needs to run a bit the first time it starts and then it will happily update itself more rapidly when needed (like /Applications being changed) as well as early every Sunday AM.
+The virtual memory system should keep the RAM fine, so unless you see it constantly - it's just taking the RAM it needs to serve your help menu with fresh and up to date documents.
+You can also disable that launchd job if it's causing you grief until you can isolate why.

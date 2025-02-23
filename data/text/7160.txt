@@ -1,0 +1,40 @@
+Q: iMac shows frozen at bootup, but computer running normally in background I'm on an Intel iMac running Lion.
+I'm having major issues with my iMac. The iMac froze whilst using Chrome, and I was forced to reset it.
+After the reset the screen seemed to freeze on the apple logo, with the spinning wheel. I've followed several steps on different sites with weird results.
+
+
+*
+
+*I've reset the PRAM/NVRAM as Apple suggested.
+
+*I've tried a safe boot, the progress bar got to about 35% then gave up and showed the screen I have now
+
+*Tried booting from an install disk (Snow Leopard) to use Disk Utility. This produced a Kernal Panic error message.
+
+
+The weird thing is that the computer behind the screen seems to be running fine. I've SSH'd in from my laptop and logged in fine, it all seems ok.
+I've tried running fsck like Apple suggest but it says it can't perform a repair because the disk is in use.
+UPDATE
+I've tried booting up in single-user mode and running /sbin/fsck -fy and it says that everything is fine, but if I try exiting and booting again the same issue persists.
+So any ideas on what I could try next?
+
+A: You can try to follow the steps described in HT1492:
+
+
+*
+
+*Shut down your Mac if it is on.
+
+*Press the power button to start the computer.
+
+*Immediately press and hold Cmd-v for verbose mode.
+
+
+This should give you some insight into where in the boot process the problem occurs. As you can still access the iMac via SSH it might be possible to fix it.
+But as single-user boot seems to work without problems you might be better of with having a look at TS2570.
+
+A: I had this issue before. My solution is to use AppCleaner for uninstalling Chrome, and then restart the Mac. After that, reinstall Chrome should fix the problem.
+
+A: Try booting holding the Option or R key.  That should give you the Recovery Disk option.  That should fix what's wrong. 
+
+A: It sounds like you could have some incompatible Kernel Extensions that are causing an issue with the Window Server (the bit that runs the GUI), though I would have though the Safe Boot might work around that.

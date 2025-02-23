@@ -1,0 +1,8 @@
+Q: Remove desktop folder which is on the desktop and contains everything on the desktop I don't how this happend, but I feel like my machine is experiencing a Being John Malkovich syndrome.
+There is a folder on my Desktop called Desktop which contains all the other folders on my Desktop. I want to get rid of this folder, but not the contents of my desktop. 
+Any advice?
+
+
+A: Open the folder. Select All. Copy. Click on the Desktop. Paste. Delete the folder.
+
+A: You may have to check using the Terminal command ls -ld for whether you have a directory containing a soft symlink to itself.  If so, you can just delete the symlink.

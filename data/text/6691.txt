@@ -1,0 +1,17 @@
+Q: iChat + facebook disconnection Previously in SL I had chax to make sure iChat was always signed in.
+Now on Lion I constantly find that iChat is disconnected from Facebook chat (jabber).
+Does anyone have a clever idea to keep it connected?
+
+A: Facebook will actively terminate your connection if you log-in from any other client like the Facebook web, or your mobile phone.
+Even with just one client logged in, you should expect Facebook to close the connection anyway. This happens with everything I've tried, libpurple based clients (Admium, Pidgin on Linux...) gets disconnected now and then. Those clients do silently reconnect. For iChat, as you suggested, chax can accept the dialog for you.
+IMHO, It seems to me that Facebook is still struggling to make their chat service stable.
+EDIT:
+IF you want to reconnect without using chad, you can edit your crontab (using crontab -e) and add:
+*/5 * * * * osascript -e ‘tell application “System Events” to if (processes whose name is “Messages”) exists then tell application “Messages” to log in’
+
+This will make sure iChat stays connected, telling it to reconnect every five minutes.
+
+A: Don't know about keeping it alive, but I use this AppleScript to tell iChat to go online:
+tell application "iChat" to set status to available
+
+You could trigger that with Automator (or a dozen other ways) every hour or however often "constantly" is ...

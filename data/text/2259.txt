@@ -1,0 +1,15 @@
+Q: Is there a way to use different network connections for different apps At work we have a firewall that prevents certain outbound connections. But I also have a Clear wireless personal hotspot.  I would like to use the work connection for normal requests but for certain requests such as my Mysql app, I would like to use my personal wireless.  Is there a way to do that without having to switch back and forth.  So all mysql connections just know to use one network interface while other requests use the default.
+
+A: I've asked the same question a long time ago on superuser.com
+https://superuser.com/questions/181882/force-an-application-to-use-a-specific-network-interface
+
+A: I suggest you look in to routing with iptables.  I can't remember how off the top of my head, but it would definitely be possible to just catch packets going to a certain host/port and push them off through another interface.
+
+A: To separate traffic by app (and not by destination) would require an OSX version of something like ForceBindIP (for Windows only). No matter how you change the routing tables or ipfw, if you have 2 apps that are trying to reach google.com, they will use the same interface, same route.
+You might be able to approximate the same kind of behaviour by running each app in a chroot jail that can see only a limited set of devices, and restrict it to a single interface. But that would take a whole lotta configuation for each app.
+
+A: I'm pretty sure there's a way to do this using IPTables, but I'm not an expert at that so I can't really give you detailed information. However, that may point you in the right direction.
+Essentially you would set a route for all outgoing connections on the port you connect to with mysql to use that wireless connection.
+
+A: This is most definitely possible, but like the other people here, I don't know how to do it. Just that it certainly can be done.
+Try asking in https://unix.stackexchange.com/.

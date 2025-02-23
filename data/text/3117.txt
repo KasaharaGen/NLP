@@ -1,0 +1,97 @@
+Q: How can I empty the trash from the Terminal? How can I empty the trash from the Terminal?
+
+A: A review of various command line tools, for managing the Trash from command line:
+http://hasseg.org/blog/post/406/trash-files-from-the-os-x-command-line/
+
+A: If you have Homebrew installed, you can easily install trash by typing:
+brew install trash
+
+Then, to empty the trash, you only have to type the following from the command line:
+trash -e
+
+It's a pretty little piece of software.
+$ trash
+usage: trash [-ulesv] <file> [<file> ...]
+
+  Move files/folders to the trash.
+
+  Options to use with <file>:
+
+  -a  Use system API for trashing files instead of asking
+      Finder to do it. (Faster, but the 'put back' feature
+      in the Finder trash will not work if files are trashed
+      using this method.) Finder is still used for trashing
+      files you have no access rights for.
+  -v  Be verbose (show files as they are trashed, or if
+      used with the -l option, show additional information
+      about the trash contents)
+
+  Stand-alone options (to use without <file>):
+
+  -u  Check for updates (and optionally auto-update self)
+  -l  List items currently in the trash (add the -v option
+      to see additional information)
+  -e  Empty the trash (asks for confirmation)
+  -s  Securely empty the trash (asks for confirmation)
+
+  Options supported by `rm` are silently accepted.
+
+Version 0.8.5
+Copyright (c) 2010 Ali Rantakari, http://hasseg.org/trash
+
+
+A: Another solution would be to create AppleScript containing the folowing code
+tell application "Finder"
+    empty the trash
+end tell
+
+save it as emptytrash for example and execute it via open emptytrash.app
+or even better (as suggested by Chris) - execute:
+osascript -e 'tell app "Finder" to empty'
+
+Since trash is a Finder thing, this should be more compatible in the long run.
+
+A: Trash is actually a hidden folder in the user's folder named .Trash 
+If you delete it's contents, you empty the trash. You can use 
+rm -rf ~/.Trash/*
+
+Just be careful with it so you don't delete something else ;)
+
+A: A pure command line version:
+find "${HOME}/.Trash/" -print | \
+    tail +2 | \
+    tr '\12' '\0' | \
+    xargs -0 echo rm -rf
+
+
+*
+
+*Find all files in ~/.Trash.
+
+*Disregard the .Trash directory itself, by starting at line 2.
+
+*Convert line-separated files back to null (\0) separated.
+
+*Pass to xargs to safely delete the files.
+
+You may get errors about files not existing. This doesn't consider the fact directories will potentially delete files inside first before then attempting to delete the files inside.
+
+A: You can simply use the command
+rm -rf "${HOME}/.Trash/*"
+
+We remove (rm) recursively (-r) and force (-f) all files inside the  "/Trash" directory.
+I prefer using "$HOME" rather than "~" because that can give issues in a script, if you want to do something like:
+#!/bin/bash
+#
+# Tidy your machine
+
+# General file paths
+
+file_paths=("${HOME}/Desktop/*" "${HOME}/Downloads/*" "${HOME}/Pictures/Screen*")
+
+# Remove file paths
+
+for file_path in ${file_paths[@]}; do
+    rm -rf ${file_path}
+done
+

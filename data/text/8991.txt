@@ -1,0 +1,29 @@
+Q: How do I reset Apple's Mail, in Lion, to default settings? I have been having a bunch of email problems and want to start over.  I have deleted all the IMAP accounts from Mail.  What other files do I need to delete, hidden and otherwise, to make Mail (and only Mail) just like a clean install?
+
+A: The following directories should be empty:
+
+
+*
+
+*~/Library/Mail
+
+*~/Library/Mail Downloads
+
+*~/Library/Application Support/Mail
+
+*~/Library/Caches/Mail
+
+*~/Library/Caches/com.apple.mail
+The following files should be removed:
+
+
+*
+
+*~/Library/Preferences/com.apple.mail.plist*
+
+*~/Library/Saved Application State/com.apple.mail.savedState
+
+A: In addition to the folders mentioned by Patrix, I discovered that Apple Mail (at least the OS X 10.9 Mavericks version) is using another folder, at:
+...../Library/Containers/com.apple.mail
+After I had tried to do a clean restart of Mail by disabling (re-naming) all the folders that I thought that it was using (and having done a Force-Quit of the process "cfprefsd" in my username, to further reset caches), my Mail froze on trying to start up.
+When I also disabled the folder in Library/Containers, the Mail application was able to start up.

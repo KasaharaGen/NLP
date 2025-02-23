@@ -1,0 +1,39 @@
+Q: I've inadvertently deleted my thunderbird.dmg, does it matter? I've inadvertently deleted my thunderbird.dmg & then emptied the trash.  Doh!
+Is there any way I can restore that particular file? 
+I'm running Mac OS X Version 10.6.4 on a macbook pro.
+
+A: If the file is in the Trash, you can just drag it back out. However, once you remove the item from the Trash it's as good as gone*. Why not just download it again?
+* there are some programs that claim to be able to restore deleted data, but the chances of recovering a large file like a DMG on the system drive are virtually nonexistent
+
+A: "Re-downloading thunderbird.dmg has fixed my issue"
+That sounds a lot like you are running Thunderbird from the .dmg (Disk iMaGe) file. As someone else mentioned, you don't have to do this, and the application will launch faster if you don't.
+Drag the Thunderbird icon from the .dmg to your Applications folder (there might be a shortcut to the Applications folder in the .dmg itself) and then drag the icon from your Applications folder to the Dock. Then you can click on the icon on the Dock and Thunderbird will open directly without having to open and unpack the .dmg file.
+You can then delete the .dmg and not have any problems. Your emails are stored in your home folder not in the application or the .dmg (as you discovered).
+
+A: You have the best chance of recovering your deleted files if you scan your Mac immediately after realizing that you have deleted files that you need. otherwise
+your files are gone. in your case, the unix(Darwin in yourcase) filesystem has already written over significant portions of those files.
+http://www.faqs.org/faqs/unix-faq/faq/part3/section-6.html
+
+"For all intents and purposes, when
+  you delete a file with "rm" it is
+  gone. Once you "rm" a file, the system
+  totally forgets which blocks scattered
+  around the disk were part of your
+  file. Even worse, the blocks from the
+  file you just deleted are going to be
+  the first ones taken and scribbled
+  upon when the system needs more disk
+  space. However, never say never. It is
+  theoretically possible if you shut
+  down the system immediately after the
+  "rm" to recover portions of the data.
+  However, you had better have a very
+  wizardly type person at hand with
+  hours or days to spare to get it all
+  back."
+
+in this case, finder trashing equals "rm"
+How To Recover Accidentally Deleted Files:
+If you are attempting to recover files from the Trash, note the following: If you've emptied the Trash or deleted the files with the rm (remove) command, your files and data is recoverable IF you STOP using your Mac right now. This is particularly true if you are currently running low on disk space. The Mac OS X overwrites this little free space very quickly with temp files.
+Next, you can try to recover deleted Trash files on your Mac using a good recovery program. The best 2 are Data Rescue 3 and Stellar Mac Data Recovery - (free download).
+and for what doing with this app you can follow this tutorial.

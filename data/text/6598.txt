@@ -1,0 +1,21 @@
+Q: I cannot install the Tiled Map Editor on Mac OS X 10.6.8 I am attempting to install Tiled Map Editor, a cross-platform open-source application that uses the QT application framework. It is used in game design.
+When I attempt to install it, I get this error message:
+
+You can't open the application Qt SDK Installer because it is not
+  supported on this type of Mac
+
+How can I resolve this problem? I am using Mac OS X 10.6.8.
+
+A: Check to see if the application you are using is Intel supported. I don't know why a PPC application wouldn't run on an Intel, but try clicking on the application, go to File>Get Info, and under General>Kind, check to see what the application kind is.
+
+A: It would be helpful to know which version of OS X you're running. 
+
+
+*
+
+*You must have Xcode installed on your machine.
+
+*It's possible you have downloaded the 64bit version.
+
+*Verify you have the correct version.
+

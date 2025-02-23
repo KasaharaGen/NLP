@@ -1,0 +1,5 @@
+Q: How to tell PackageMaker to Execute a bash script after installation I'm creating a new Installer using PackageMaker. I need to run a bash script after the installation is complete.
+In the "Contents" column I have a folder, which is the folder I want to be installed on the target machine. Within the folder, there's a bash file I need to execute.
+If I click on the distribution properties and go to actions, I can "open" a file as a "postinstall action", but it won't execute the script.
+If I click on the Content::folder and go to "scripts", pick the directory containing the script and put the script name as "postinstall", I get a "could not copy scripts" error.
+What am I doing wrong?

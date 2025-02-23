@@ -1,0 +1,23 @@
+Q: Is it possible to change the Finder sidebar icons I know you can change the icons of files, folders, etc, but in the sidebar folders appear the same. Is it possible to give them a custom icon for the sidebar like the Music, Photo's, Movies, etc folders have?
+
+A: CandyBar should do the trick for you.
+
+A: If you want to use the default Mavericks OS X Finder Icons, go to System/Library/CoreServices/CoreTypes.bundle (right-click > Show Package contents)/Contents/Resources.  
+
+
+*
+
+*Get Info on the folder in finder sidebar. 
+
+*Drag the .icns file (e.g. ToolbarDownloadsFolderIcons.icns on to the small icon in Get Info window to the left of Downloads.
+
+
+
+
+A: If you are on El Capitan I think you have to disable SIP first:
+1.Restart your Mac.
+2.Before OS X starts up, hold down Command-R and keep it held down until you see an Apple icon and a progress bar. Release. This boots you into Recovery.
+3.From the Utilities menu, select Terminal.
+4.At the prompt type exactly the following and then press Return: csrutil disable
+5.Terminal should display a message that SIP was disabled.
+6.From the  menu, select Restart.

@@ -1,0 +1,16 @@
+Q: Switching between windows doesn't work in some apps (using OSX 10.6.4 if that matters)
+I know about the Cmd-`, but it doesn't work everywhere, namely Chrome and Firefox don't seem to react to it. It works in, for example, Finder and OpenOffice.
+Any solution to this problem?
+
+A: Places to check for things intercepting the keystroke:
+
+
+*
+
+*Browser Extensions: Perhaps the same extension on both browsers
+
+*Macro App: TextExpander or Keyboard Maestro, for example
+
+*Services Shortcut: In the Chrome or Firefox menu choose Services then Services Preferences.... Scroll to the Internet section and see if anything is set up to use the Cmd` shortcut.
+
+*Application Shortcuts: In that same dialog (or choose Keyboard in the System Preferences click Application Shortcuts in the left pane and see if there are any custom shortcuts for Chrome and Firefox that use that combination.

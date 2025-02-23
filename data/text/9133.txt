@@ -1,0 +1,7 @@
+Q: Defaults tool equivalent of Ctrl-F7 In OSX one can use Ctrl-F7 to change what the Tab key can move the focus between. By default it is only text boxes and lists but after pressing ctrl-f7 one can move between all ui elements. 
+I was wondering if there is a way to toggle this functionality by using the defaults tool.
+
+A: After some searching the equivalent command using the defaults tool is 
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
+
+Anyone can verify this by toggling the values and then reading the key value. The default value has a value of 0 and switching it to all ui elements will turn it to a value of 2.

@@ -1,0 +1,32 @@
+Q: Can homebrew and macports work together to let Firefox-X11 be installed? I want to install firefox-x11 but theres no repo in homebrew, only macports seems to have one, hence I'm at a loss how to get firefox-X11 on a system that relies on homebrew for OSS.
+The way I'd solve this is:
+
+
+*
+
+*install software with macports (Firefox-X11 in particular)
+
+*remove macports
+
+*install homebrew and still use the software installed by macports (firefox)
+
+
+I fear this will not work.
+
+A: No - as removing macports will remove the software it installs. Macports )and Fink) are designed so that they use directories that only they update and control so that they have full control of what happens).
+In this case however you can get to this stage.  
+
+
+*
+
+*Remove Homwbrew or at least remove or rename /usr/local
+
+*Install macports and check that the /opt/local/bin is at the end of
+your path
+
+*Install firefox-xll
+
+*Reinstall Homebrew or restore /usr/local
+
+
+As /usr/local/bin is before /opt/local/bin in your path then you will get the Homebrew program before the macports one.

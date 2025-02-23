@@ -1,0 +1,30 @@
+Q: How can I stop fseventsd for certain volumes? I also have a partion with Ubuntu installed. Unfortunately, every time I have an error while working on the Ubuntu partion (I believe it's ext3), I get a Kernel Panic and I have to restart. I believe this is related to fseventsd, since it my try to log the errors on the root of the Ubuntu partition.
+How can I stop fseventsd logging events on that Ubuntu volume?
+Thank you!
+
+A: Preventing file system event storage
+Whilst you should not stop the daemon, you can disable logging on a per-volume basis. 
+In the Mac Developer Library
+File System Events Programming Guide: File System Event Security: Preventing File System Event Storage advises: 
+
+… To disable logging on a per-volume basis (for creating a backup
+  volume, for example), you must do the following:
+  
+  
+*
+  
+*Create a .fseventsd directory at the top level of the volume.
+  
+*Create an empty no_log file in that directory.
+  
+  
+  So if your volume is mounted at /Volumes/MyDisk, you would create an
+  empty file called /Volumes/MyDisk/.fseventsd/no_log.
+
+
+Kernel panics
+Please consider creating a separate question. 
+
+A: OS X does not have a built-in ext3 driver so it's not possible to even access the Ubuntu partition from OS X.
+There is a lot of information missing here making it impossible to correctly assess what is causing your kernel panic.
+Are you even using Apple hardware?

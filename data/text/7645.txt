@@ -1,0 +1,9 @@
+Q: How can I extract multipart iso files in Mac OS X? E.g.:
+part1.iso
+part2.iso  
+I know The Unarchiver can extract a single ISO file, but how can I extract multipart ISO files?
+
+A: If they are in fact multipart ISO images (instead of two independent ISO files), you can concatenate them at a Terminal prompt:
+cat part1.iso part2.iso >part.iso
+
+I have no idea how to do this from a GUI elegantly.  Perhaps wrap that shell command with Applescript?

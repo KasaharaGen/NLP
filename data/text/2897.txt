@@ -1,0 +1,8 @@
+Q: osx split external hard drive partition I currently have a 640GB external HD that has 1 partition formatted as HSF+ Now I want to split some of the free space into a new FAT32 partition, without having to reformat the whole HD and losing all my data. I read that I'm supposed to be able to add new partitions in the Hard Disc Utility by clicking the "+" sign, without any loss of data. But in my case the "+" is not clickable and it says that this partition cannot be altered.
+Can anyone tell me how to proceed. Or is it impossible without reformatting the whole disc?
+I'm running OS X Snow Leopard 10.6.6
+
+A: You should unmount the disk before you try to change the partitions.
+That should work.
+
+A: So far I know is that if you don't use the MAC OS EXTENDED Format and a GUID Partition table for the first partition you won't be able to adjust the size of the partition or squeeze in a new one. The only thing you can do is create a new partition with the free unpartitioned space on the ext. HD which is left over (supposed you left over some free unpartioned space).

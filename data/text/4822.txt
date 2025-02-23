@@ -1,0 +1,9 @@
+Q: How can I tell OS X to flag a name as being misspelled? I have a co-worked whose name is Jennett. In Pages, I added her to my local dictionary (located at ~/Library/Spelling/LocalDictionary) by right-clicking on her name and choosing Learn Spelling.
+However, OS X is not flagging Jennet with one "t" as being misspelled. 
+How can I make Jennet with one "t" be flagged as being misspelled?
+I assume this problem stems from the fact that jennet—a female donkey—is found in the OS X dictionary. However, given that I don't write much about donkeys, let alone female donkeys, I'd prefer to be notified when I'm misspelling a co-workers name.
+
+A: Removing words from the built-in dictionary is apparently more difficult than I thought it would be. Since your question is about how to prevent a particular misspelling of your co-worker's name, I have an alternate solution.
+You can add "Jennet" to Mac OS X's text substitution list in System Preferences -> Language & Text -> Text
+
+It will automatically correct the spelling for you each time you misspell it. You could add other variant misspellings for completeness, like "Jenet" or even make it auto-capitalize "jennett", but since most other misspelling variants don't have obscure English homonyms these will show up as misspellings.

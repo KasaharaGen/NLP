@@ -1,0 +1,76 @@
+Q: Are my permissions for /usr/local/ correct? I’m using HomeBrew for my port needs (seems a bit “cleaner” than MacPorts).
+I can install without sudoing (which is great), but the man linking step seems to require it (/usr/local/share/man/man3 is owned by root).
+A guide I found suggests I recursively chown /usr/local by doing
+sudo chown -R `whoami` /usr/local
+
+Is this safe…or is it a Bad Idea™?
+Also: are my permissions correct?
+$ pwd
+/usr/local/share/man
+$ ls -lah
+total 32
+drwxrwxr-x    8 root  staff   272B  4 Set 11:02 .
+drwxrwxr-x    9 root  staff   306B 10 Set 11:27 ..
+drwxr-xr-x    3 root  wheel   102B  4 Ago  2009 de
+drwxrwxr-x  163 root  staff   5,4K 10 Set 11:27 man1
+drwxr-xr-x   11 root  wheel   374B 10 Set 11:27 man3
+drwxr-xr-x    7 ago   staff   238B 10 Set 11:39 man5
+drwxr-xr-x   11 ago   staff   374B 10 Set 11:39 man7
+-rw-r--r--    1 root  staff    13K  4 Set 11:02 whatis
+
+
+A: For what it's worth, /usr/local is not considered a "system" folder by OS X, and on a brand new Snow Leopard install that folder is empty.
+Any root-owned stuff in that folder is a result of sudo make install on other software, or giving your password after double-clicking on a .pkg that wants to dump stuff into /usr/local.
+Owning /usr/local has "worked for me" on 2 machines for over a year.
+One gotcha is that if you've installed MySQL (not using Homebrew) and chown its files, then it probably won't be able to see its databases anymore (so you'd have to chown them back to whatever user MySQL is running as.)
+
+A: As in Homebrew 1.0.0:
+
+Homebrew no longer needs to have ownership of /usr/local. If you wish
+  you can return /usr/local to its default ownership with:   sudo chown
+  root:wheel /usr/local
+
+
+A: I use Homebrew too and can confirm it's totally safe. Quoting the Installation page on the official Homebrew FAQ:
+
+Do yourself a favour and pick /usr/local
+  
+  
+*
+  
+*It’s easier
+/usr/local/bin is already in your PATH.
+  
+*It’s easier
+  Tons of build scripts break if their dependencies aren’t in either /usr or /usr/local. We fix this for Homebrew formulas (although we don’t always test for it), but you’ll find that many RubyGems and Python setup scripts break which is something outside our control.
+  
+*It’s safe
+Apple has conformed to POSIX and left this directory for us. Which means there is no /usr/local directory by default, so there is no need to worry about messing up existing tools.
+If you plan to install gems that depend on brews then save yourself a bunch of hassle and install to /usr/local!
+It is not trivial to tell gem to look in non-standard directories for headers and dylibs. If you choose /usr/local, everything “just works!”
+
+I'll just add that doing things as root is a very bad idea, so chowning /usr/local not only seems reasonable to me (it's not a system dir on OSX), but sane.
+Your permissions are not correct (yet). Just run the command you listed and you're gonna be fine.
+If you have other problems remember, the brew doctor can help you!
+
+A: It is usually better to keep permissions as strict as possible. Keeping /usr/local owned by root means that only processes that run as root/sudo (or ask for admin user via the Apple authorization dialog box) can write to this area. Thus, a process download has to ask you for a password before corrupting files there.
+But as you say, it makes adding new programs harder.
+I am OK with running sudo, as you install things less often than running them but you have to trust that the build process does not change anything it should.
+If you want to avoid sudo I would install Homebrew into ~/usr/local and alter your path, manpath etc to include the directories under there. 
+A better way is to create another user—say, homebrew and create a directory owned by that user. Then, install there using sudo -U homebrew. Other users will have the benefit of not being able to overwrite any other files, because they are not running as root  and other programs cannot affect homebrew. (I note that the Homebrew FAQ does suggest this new user if you are in a "multi user environment". I would say that any Unix machine including macOS is a multi user environment)
+However as the Homebrew wiki says the recipes don't find all cases of /usr/local and replace them with the chosen directory I suspect we are stuck with /usr/local. 
+
+A: As of macOS High Sierra or later, /usr/local can no longer be chown'd.
+The Homebrew team now recommends: sudo chown -R $(whoami) $(brew --prefix)/* to fix Homebrew permissions.
+See @Carmine Paolino's answer for more info on why Homebrew recommends taking ownership of the Homebrew directories.
+
+A: If you're using Homebrew, you should give the write permission to specific group (either admin or staff), so the files can be shared between users who are in that group.
+For example:
+sudo chgrp -R admin /usr/local /Library/Caches/Homebrew
+sudo chmod -R g+w /usr/local /Library/Caches/Homebrew
+
+Then assign the users who should have access to brew command to that group (check your groups via: id -Gn).
+Then when working with brew, do not run it with sudo.
+When still having some permission issue, run brew doctor to troubleshoot the problem.
+
+A: I think it's OK for users to have write permissions to /usr/local -- after all, that means you're not using sudo on every build script. I don't like the idea of an ordinary user owning /usr/local. I'd prefer to have root (or similar) own /usr/local, but change the permissions so that users (or at least some privileged group) can write to it. That seems like the conceptually correct approach.

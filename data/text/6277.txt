@@ -1,0 +1,8 @@
+Q: Use only the left option key as meta key in Terminal.app There's an option in Terminal.app -> Preferences -> Settings -> Keyboard but it allows me only to set both option keys as meta keys.
+iTerm.app has such an option but don't like that application.
+
+A: If you aren't totally set on using Terminal, I believe that iTerm2 has a setting to just use one of the option keys as meta. If you are, is there a setting to maybe use the Esc key as meta? I know that it's more convenient to use the option key, but the Esc key might be easier to set.
+
+A: I have built a solution myself and it doesn't require abandoning Terminal.app in favour of iTerm 2.
+It is a simple status bar app that runs in the background and rewrites all left Alt + $KEY key events to two key events in rapid succession, Esc, then $KEY; however, it only does this if Terminal.app is in focus.
+You can find the source for the app here. You'll need Xcode to build it.

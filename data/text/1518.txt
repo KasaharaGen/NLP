@@ -1,0 +1,32 @@
+Q: Automatically marking junk mail as read Is there any way to automatically mark junk mail as 'read' in OS X (10.6.5) Mail? A free or shareware utility would be nice.
+My mail provider supports junk filters that automatically moves selected messages to the junk folder, but does not mark them as read. OS X Mail picks them up (IMAP) and displays the headers in the Junk folder as unread.
+I would like to continue to use my mail provider's filters instead of just the 'Rules' in OS X Mail because otherwise I show tons of messages in my iPhone inbox, since it does not support filtering.
+
+A: Go To Mail -> Preferences -> Junk
+When junk mail arrives, say:
+Perform Custom actions
+Click on the Advanced button at the bottom, which just turned up to be active.
+
+Then say "Mark as read" in one of your actions:
+
+
+A: The link in the accepted answer is dead. I've been able to solve this using the following AppleScript:
+using terms from application "Mail"
+    on perform mail action with messages theMessages
+        tell application "Mail"
+            set read status of messages of mailbox "Bulk Mail" of account "Yahoo!" to true
+        end tell
+    end perform mail action with messages
+end using terms from
+
+Using Script Editor, edit the above with the name of your Junk mailbox and account. Save it as "Mark_Junk_Read.scpt" in ~/Library/Application Scripts/com.apple.mail. Then, in Mail, go to "Preferences", "Rules", "Add Rule". Make the rule apply to "Every Message" and tell it to run your script, like so:
+
+
+A: You could add a Mail.app Rule that mark every new mail in the "Junk" folder as read.
+
+A: You could create an AppleScript that does this.
+I haven't looked into it much, but this link appears to have a promising solution.
+http://discussions.apple.com/message.jspa?messageID=8350917
+
+A: I don't really trust SPAM headers. I've seen messages from mail-lists I subscribed to be labeled as SPAM and end up in that folder where I don't see it for ages. 
+As a result I bought a copy of SpamSieve which, after training, does a much better job filtering out the garbage.

@@ -1,0 +1,14 @@
+Q: OSX update cache: does it accumulate over time? I bought my MBP 2.5 years ago, it came with a 240 GB drive. I don't remember how much free space it hat to start with, but let's just say 200 GB.
+I mostly use it for personal use (different machine at work). I don't have movies/music stored on it (all on external drive) and have some applications installed (total app folder size: 20 GB). My ~ dir is also approx 20 GB.
+My drive now says 140 GB free. I can't explain the 20 GB difference. I think apple isn't removing downloaded updates after installing. Where should I look?
+Another idea was mail cache folder. Where is this folder?
+
+A: I suggest you download a utility that shows the size and arrangement of your files. Personally, I use DaisyDisk. It is shareware, so for your purposes, it would suffice to trial the software.
+Mail attachments are stored in ~/Library/Mail Downloads/
+It is unlikely that OS X is keeping packages after installation through Software Update. You should first look to your cache ~/Library/Caches/ and perhaps your sleepimage, which is located under /var/vm/sleepimage (note that the sleepimage is recreated every time the system goes to sleep. Read more about disabling it here if you are concerned with HD space).
+DaisyDisk (or equivalent) will do a much better job at identifying where the "growth" has occured on your filesystem so that you may excise it than we ever could. I suggest you give it a try.
+
+
+A: Grand Perspective gives you a visual overview of what is taking space on your disk.
+Try it:  it's free and open-source.
+

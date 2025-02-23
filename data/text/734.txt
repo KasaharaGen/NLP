@@ -1,0 +1,9 @@
+Q: Unhide dock when key pressed I am currently hiding my dock. I would like to unhide it whenever a the fn key is pressed. Is this possible?
+
+A: You can assign that fn to show/hide dock in Keyboard shortcuts, but you will override the original fn key.
+Or you can create a Service in Automator that act upon a keystroke
+use this action pack to act upon key and do what you want building up your workflow.
+
+A: The fn key is a modifier key that lets you use a software function key F1-F19 when held down, instead of the built-in hardware F key functions (brightness, volume, etc.)
+So it's not possible to use that particular key on its own as a keyboard shortcut, just as it's not possible to use the shift key on its own.
+The best you can do is set the shortcut to F13 using System Preferences > Keyboard > Keyboard shortcuts, which on my particular keyboard is just above the fn key…

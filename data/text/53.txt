@@ -1,0 +1,14 @@
+Q: How can I use an ADB Apple Keyboard with a modern Mac? I recently found an old Apple Extended Keyboard that uses the ADB interface. I would like to use it, but I don't have an ADB-to-USB converter. I know of only one which is the Griffin iMate. Unfortunately, it's out of production and the ones going on ebay are expensive. 
+Anyone know of another company that made the ADB-to-USB converters? Even better if they still do!
+
+A: The iMate was the only converter available on the market.
+If you do get an iMate, the only thing it will work with these days are keyboards and mice. It internally converts ADB keyboard and mice commands to USB keyboard and mice commands, so it will just make your ADB mouse and keyboard look like a USB mouse and keyboard to the computer, no drivers required.
+In ~2001 there was a driver for the iMate that would actually configure it as an ADB bus the computer could see, that way anything with real ADB drivers could use it just like a builtin port. That driver has not been updated in years, and Apple dropped all ADB support from OS X, so at this point USB emulation is the only thing it does. Not that there were many (any?) interesting ADB devices that were supported under Mac OS X anyway.
+
+A: Find a matching vintage CPU, install an old linux on it with ADB drivers, and then send the resulting keystrokes over IP.
+Or you could buy a nice new low-profile aluminum Apple keyboard. It'll be cleaner, more comfortable, and cheaper.
+
+A: FYI there appears to be another USB to ADB adapter out there as well Micro Connectors USB ADB Adapter. Good luck with your search.
+
+A: ADB is over ten years old. 
+I would highly doubt anyone is still making a converter for it. 

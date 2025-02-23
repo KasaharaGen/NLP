@@ -1,0 +1,7 @@
+Q: Getting Automator to work with aliases vs. symbolic links on SMB shares I would like to get automator to mount a volume in a shared SMB server and get all subfolders symlinked within my Documents folder.
+I thought I could do that easily by creating Finder's so called aliases but it turned out they are not symbolic links and some applications like Picasa fail to explore these subfolders.
+How can I get Automator to create symbolic links instead of aliases for my folders?
+
+A: 1) The easy answer is that aliases are symbolic links, but ONLY for the Finder. Other applications don't generally use them as such, whereas symlinks act as aliases for the Finder as well but also act as symlinks for any Application. Aliases are actually MUCH better than symlinks for Finder-type uses as then don't break, and you can do things like, for example make an alias to a file inside of a disk image -- if the disk image isn't mounted when you click the alias, FInder will mount the disk image, then open that file.
+2) Here is a video that shows you how to create symlinks with automator.
+2a) There are also a number of Automator addons that you can use that are made for creating symlinks/

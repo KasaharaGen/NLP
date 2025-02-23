@@ -1,0 +1,159 @@
+Q: What's a good Mac equivalent of WinMerge? WinMerge is an excellent and very powerful file merging tool, but as the name would imply, it's Windows only.  What's a good equivalent on the Mac?
+
+A: A modern, powerful, but paid (currently Mar-2013 $69.99) file merging application for OS X is Kaleidoscope. It handles folders, files, and even images. Ad copy from the page:
+
+Compare text in Blocks, Fluid and Unified layouts in both Two-Way and Three-Way modes. Quickly navigate and search through the most readable diff you've ever seen.
+
+
+A: Araxis Merge (http://www.araxis.com/merge_mac/index.html) is the gold standard in this area and has a similar cost (what is the weight of bits?).  There are Windows and Mac versions, and it is truly excellent if you find yourself spending a lot of time doing multiway diffs and merges (more common in these days of distributed version control systems).
+The pricing starts (as of Sept 2011) at $129.
+
+A: You can use FileMerge, Apple's diff solution. It's free and it comes with every Mac OS X install.
+The only downside is that you have to install the Developer Tools. You can find them on your DVD install that came when you bought your Mac (Snow Leopard or earlier). You can also get the developer tools from the App Store if your version of the OS supports that.
+Then, you can find it at /Developer/Applications/Utilities/FileMerge.app
+
+A: I've found the following applications:
+
+
+*
+
+*FileMerge (opendiff)
+
+It's no longer bundled with Xcode Command Line Tools, you must install Xcode from either the App Store or the Apple Developer Website.
+
+
+*DiffMerge
+
+*Pretty Diff
+
+Open sourced beautifier and language aware code comparison tool for many languages.
+
+
+*Meld
+
+Can be installed using Homebrew via command: brew install meld
+
+
+*TkDiff
+
+Can be installed using Homebrew via command: brew install tkdiff
+
+
+*TextWrangler
+
+*VisualDiffer
+
+Available on the App Store
+
+
+*Kaleidoscope
+
+Commercial with free trial.
+
+
+*Araxis Merge
+
+Commercial with free trial.
+
+
+*KDiff3
+
+No longer in Homebrew, it has not been developed/updated since 2014.
+
+See also:
+
+
+*
+
+*Comparison of file comparison tools at Wikipedia
+for the full list.
+
+*What file comparison tool can I use under OS X?
+
+*Portable, free, cross-platform, GUI-based prose-friendly plain-text diff and merge tool?
+
+*Code compare and merge tool for Mac OSX
+
+A: Maybe you will find the app SourceTree interesting: http://www.sourcetreeapp.com/ SourceTree is a free Mac client for Git and Mercurial version control systems. Therefor it isn't a general purpose diff or merge tool but it is worth mentioning it.
+
+A: There's an application called SemanticMerge for Mac.
+SemanticMerge, as the name says :-), is a tool able to merge based on code structure instead of blocks of text. It basically means it parses the code first and then merges based on methods, classes and so on, so it is quite refactor friendly since it can match methods/functions even when they've been moved to different locations within the file.
+At the time of writing this, Semantic supports .NET, C, Java, C++ and JavaScript.
+
+A: Beyond Compare is now in beta for the Mac. It's the best diff/merge program I’ve used on Windows and is definitely worth checking out.
+http://www.scootersoftware.com/support.php?zz=kb_mac
+
+A: Perforce, a source control application, has a free * diff and merge tool that is cross platform and works fine on my mac. It's called P4Merge.
+http://www.perforce.com/product/components/perforce-visual-merge-and-diff-tools
+It presents file-diffs very nicely and handles three-way merges like a champ. As a long-time WinMerge user I was very happy with it. Its use of little gem-like icons in a 3-way merge takes some getting used to. One icon is for my change, one for their's, and one for the common ancestor. Once you get that straight it was very helpful.
+* it was free, but may now be subject to Perforce's licensing. Perforce in-general is restricted to a certain number of users and/or files unless you buy it. However, these restrictions only make sense when using their server-side software. These client-only tools can't really be licensed like that. I'll update if I ever hear back from the company on this matter.
+
+A: Agree with the recommendation for FileMerge.app.  You also have the free, cross-platform DiffMerge program, but I like FileMerge better.
+
+A: Stumbled upon this thread today and thought I'd contribute this new cross-platform OSS diff tool that supports file and directory comparision. It is a good alternative to WinMerge for Mac.
+http://meldmerge.org/
+
+Meld is a visual diff and merge tool targeted at developers. Meld helps you compare files, directories, and version controlled projects. It provides two- and three-way comparison of both files and directories, and has support for many popular version control systems.
+Meld helps you review code changes and understand patches. It might even help you to figure out what is going on in that merge you keep avoiding.
+
+
+A: I use VisualDiffer.
+It's not as good as WinMerge, but pretty close and very cheap (only $34.99 at the moment!). It is promising.
+Here's a screenshot.
+
+
+A: I am a Mac user attached to elegance and esthetics as a significant factor in productivity for cognitive reasons. A fully native and elegant Human Interface is for me of paramount importance.
+I tried many contenders (Araxis, P4Merge and many others). I purchased several. I loved Changes for a long while. Now my favorite is Kaleidoscope. It provides 3-way merge, it can compare images in a smart way, it has a slick and elegant interface.
+When an application claims to be cross-platform, that rings an alarm bell. More often than not, it means an ugly, non-native interface. Having to cringe when working is not my idea of having fun at work.
+
+A: Meld is a good option..
+steps to install meld on Mac :
+
+*
+
+*Install MacPorts:
+Installation information can be found  in : MacPort installation
+Before installing MacPort, you have to install Xcode and the Xcode Command Line Tools  if your computer doesn't have them.
+
+
+*Open your terminal  and  execute following  commands
+i) Installing rarian :
+"sudo port install rarian"
+
+II) Installing meld :
+"sued port install meld"
+
+
+*Configure the dbus service to start at boot
+I) sudo launchctl load -w /Library/LaunchDaemons/org.freedesktop.dbus-system.plist
+
+II) launchctl load -w /Library/LaunchAgents/org.freedesktop.dbus-session.plistdf
+
+
+*Add LC_ALL variable to  the .bash_profile  file at  your /home  directory
+export LC_ALL=en_US
+
+
+*Type meld command in the terminal and the application will be launched for you.
+getting-meld-work-on-mac-os-x
+
+A: Changes - http://connectedflow.com/changes/
+
+A: Seems like there were plans to make WinMerge 3 available for Mac too:
+
+
+*
+
+*http://forums.winmerge.org/viewtopic.php?f=9&t=231
+
+*https://bitbucket.org/grimmdp/winmerge/issue/4/mac-os-x-use-winmerge-in-menu
+
+I haven't made my choice for Mac. But on Windows I use WinMerge, on Linux Meld (which is also available for Mac), currently using twdiff, I already tried FileMerge.app, and going to try DiffMerge.
+A note about Meld:
+
+Meld does work on OS X and Windows, but there are no all-in-one packages for those systems available at the moment. On OS X, Meld is available from MacPorts or Fink. 
+
+
+A: My favorite free solution for merging the contents of files is KDiff3. KDiff3 can do two-way and three-way merges, has a decent GUI and has some pretty powerful features to assist with the merge.
+My favorite non-free, but inexpensive ($30-ish) solution for merging the contents of files is Beyond Compare 3. Yes, Beyond Compare 3 is only available as a native Windows or Linux app, but I run it in WiNE via the easy to use Wineskin Winery app.
+When it comes to merging the content of directories both KDiff3 and Beyond Compare 3 can do it, but IMO KDiff3 is not very usable in this regard. Fortunately Beyond Compare 3 excels at directory merges, even on OS X.

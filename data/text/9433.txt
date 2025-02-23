@@ -1,0 +1,35 @@
+Q: Xcode Quad Core Optimization Is Xcode (Using Xcode 4.2) optimized for a quad core processor? My real question is will Xcode's performance be noticeably different with a dual core i7 as opposed to a quad core i7? 
+I might be purchasing a new computer soon, and want to know if it would be worth it to go with the quad core 15" instead of the dual core 13". I'm not really worried about screen size.
+Thanks!
+
+A: Xcode will make good use of many cores - especially when running the simulator, unit testing at build time and just coding / compiling / searching documentation. 
+Also check to see if the processor with more cores has a higher speed boost when only one core is running. The rated speeds are controlled more by thermal conditions under full or benchmark loads and can run faster when the current workload is single thread dominated. 
+
+In general, the IO is the first thing to slow down a developer doing multiple normal dev tasks. Next is insufficient RAM and a distant third underpowered CPU. Do take your Xcode installer and some sample projects into an apple store and ask if you could run some tests on an air as well as larger machines. Some specific code bases and settings might be more polarized than the general case and more biased to CPU with larger cache or speeds, but the smallest air is so much faster than my three year old 15 MBP it's not very funny at all. 
+
+A: It might have been the case for objective C in the days long gone but Xcode 8.0 does NOT make use of all the cores (at least when compiling swift).
+A note to explain:
+
+
+*
+
+*get xcode 8.0
+
+*run activity monitor open on CPU tab
+watch the idle times during swift compile phase. THEN do be sure to downvote (once you see no significant idle).
+An i7 based mac is a bonus.
+
+
+UPD: It's broken in a peculiar way.
+At the beginning it fires off 4-5 swift compilers to match the number of physical cores but later on it runs 1(ONE!) swift compiler
+at a time leading to massive CPU underutilization.
+Maybe the swift frontend can not figure out the dependencies for
+a parallel build.
+Note, I'm not saying: do not buy a 4 core machine! do not migrate to swift!
+But activity monitor setup to update every single second
+on an i5 and i7 powered macs shows only single swift compiler in flight.
+It's slowly becoming a moot point as the swift potentially compiles faster than objc and there is less code to compile.
+UPD20161104: note how archiving (presumably written by the old school nextstep engineers) contrasts with this newfangled opensource junk:
+it utilizes just a little over 3 cores leaving 1 to have a (very) responsive system. Perfect.
+Contrast that perf with uploading archive to itunes connect is at a whopping 5-7 KBps (and that is over 50Mbps fiber optic link)
+I wonder where's the bottleneck on the other end.

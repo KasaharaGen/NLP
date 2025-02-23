@@ -1,0 +1,151 @@
+Q: How do I move my iPhone contacts to Gmail? I have an iPhone that is already synced with my iMac, but I am away on leave and am using a Windows 7 computer. I need to send the contacts I've created on my iPhone to my Gmail account online, because I am going to update my iPhone's operating system and want to be sure I do not lose the contacts on my phone. I know I will probably lose my music, but that's okay.
+
+A: This is the easiest way to upload iPhone contacts to Gmail:
+
+
+*
+
+*Download your contacts from icloud.com (Select All -> Export).
+
+*Upload them to your Gmail Account.
+
+*You can manage your contacts from https://contacts.google.com/
+Source: http://www.unlockboot.com/2016/04/upload-contacts-from-iphone-to-gmail.html
+
+A: I am assuming that the Windows 7 iTunes display of Devices frame.
+In iTunes → Devices (the side bar) → Select your iPhone device → Info tab (at the top) → Sync Contacts click/check Sync Google Contacts and click Configure... to enter your Gmail account info.
+
+A: Turning on contact sync with your Gmail/Google Apps account on your iPhone will sync/upload all your contacts to Google.
+Refer to Google's instructions on how to do this:
+
+
+*
+
+*Open the Settings application on your device's home screen.
+
+*Open Mail, Contacts, Calendars.
+
+*Press Add Account....
+
+*Select Microsoft Exchange. 
+
+
+*In the Email field, enter your full Google Account email address. 
+
+*Leave the Domain field blank.
+
+*Enter your full Google Account email address as the Username.
+
+*Enter your Google Account password as the Password.
+
+*Tap Next at the top of your screen.
+
+*When the new Server field appears, enter m.google.com.
+
+*Press Next at the top of your screen again.
+
+*Select the Google services (Mail, Calendar, and Contacts) you want to sync.
+
+
+*There are three options for keeping your contacts synced. You can keep your device's contacts and sync just your My Contacts group, you can sync only Google Contacts and wipe your device's contacts, or you can merge your contacts via iTunes and sync only the contacts that stream with your phone. 
+
+
+13a. If you would like to keep your existing contacts on your device select the Keep on my iPhone (or iPad or iPod touch) option when prompted. This will also allow you to keep syncing with your computer via iTunes. If you choose to keep existing contacts, you will sync the contents of the My Contacts group.
+13b. If you have all your contacts in Google and you want to start syncing them to your device and don't want to keep the contacts on your phone, tap Delete Existing Contacts. If there are no contacts on your phone, the contents of your All Contacts group will be synced.
+13c. If you have all your contacts on your device and want to import them into Google, you can synchronize your Google Contacts with iTunes. All Contacts and Calendars that you sync with iTunes will be put into the On My iPhone Contacts and Calendar groups on your phone. iOS currently doesn't allow you to move Contacts or Calendar events from the On My iPhone groups to the Google Sync groups.
+
+A: Since end of 2012, Google has ended support for the Exchange protocol, so you would not be able to sync your iPhone contacts with your Gmail account via Exchange. Instead use the Gmail account method directly via Settings > Mail, Contacts, Calendars > Add account... > Gmail, enter your Gmail account credentials and enable contact sync. 
+You can alternatively export your iPhone contacts to your computer to a single vCard file and then import the contacts file to your Gmail account. 
+
+
+A: Look at this thread in Google forums. 
+My personal best way to sync with Google is iTunes (without Mac OS X) or AddressBook.app (on Mac OS X) at the moment.
+Some answers are below, but have a look to the page:
+
+
+*
+
+*(iCloud control panel for Windows)
+
+*You have to stop sharing your contacts in iCloud, and then preferences you sync Address book as you did before and sync with iTunes
+
+*Export contacts from GMail & import them into Address Book and then… merge yourself.
+
+*Set up your Gmail contacts via Exchange on your iPhone. http://www.google.com/support/mobile/bin/answer.py?answer=138740 . This is the only way I know of to actually synchronize your Gmail Contacts to your iPhone directly from Gmail’s servers over the Internet via Push.
+
+*Third-party services like Soocial, NuevaSync and others.
+
+*Third-party programs for your phone
+
+
+A: This may work for you.
+You can get an iCloud account free using your iPhone. or the via the PC.
+You can sync your contacts to the iCloud. From there you can export all your contacts out as a vCard file from the iCloud Addressbook web interface.
+Then in gmail import the file.
+Here  is a link to my answer to a similar question that shows you how to export from the iCloud Addresbook.
+
+A: If you prefer not to synchronize your adressbook with your computer it is easy to synchonize your iPhone Contacs directly to Gmail.
+I followed the instructions from Contacts sync between the iPhone and Gmail using CardCAV.
+
+
+*
+
+*On your iPhone open “Settings” then go to “Mail, Contacts, Calendars” and choose “Add Account”
+
+*Select “Other” and look under “Contacts” to choose “Add CardDav Account”
+
+*Enter the following details into the fields, then tap “Next”. Server: google.com, User Name: googleemailaddress@gmail.com, Password: your password
+
+*Syncing starts immediately, exit out of Settings and launch the “Contacts” app to check on the progress, the entire process may take a while for large address books
+
+
+This approach works well to solve another problem where you only want to see contacts with phone numbers on your iPhone.
+
+A: There are several approaches to transfer iPhone contacts to GMAIL
+A) from SIM card using iPhone only
+B) using iTunes
+C) using vCard file
+but FIRST you need to establish a sync between your iPhone and GMAIL
+
+
+*
+
+*Set up your GMAIL account on your iPhone for calendar sync:
+
+*
+
+*on iPhone open Settings>Mail, Contacts, Calendars>Add Account> Google
+
+*enter your credentials
+
+*enable 'Contacts'
+
+*OR follow Google's instructions.
+
+
+*on the iPhone, open Settings>Mail, Contacts, Calendars
+
+*
+
+*scroll to section 'Contacts'
+
+*open Default Account
+
+*select your GMAIL account
+
+
+
+A) transfer contacts from SIM card to GMAIL directly
+Straight foward but only applies to contacts on the SIM card.
+On your iPhone, open  Settings>Mail, Contacts, Calendars>Import SIM Contacts. Choose to import SIM Contacts to "Google Mail Calendar".
+B) transfer contacts from iPhone using iTunes
+Sorry, the answers given here referring to iTunes syncinc Contacts to Google Contacts do not apply any longer as this option was removed from iTunes 11.1 and later.
+C) transfer contacts from iPhone using iCloud & vCard file
+Follow the instructions provided here.
+Basically, you enable syncinc your contacts to the iCloud and then download the contacts from the iCloud as vCard file using the browser. You can then import this file into GMAIL.
+PS: Instructions tested on iOS 8.x
+
+A: As I understand your contacts are not on iCloud, but just synced locally with your Mac. What I would do is to share them to Gmail from your Mac: Preferences > On my Mac > synchronize with Google.
+That way you'll have two ways syncing between Gmail and your Mac + your Mac will sync with your iPhone.
+
+A: If you're looking to just move your contacts in bulk, you could buy this $5 app and be done in a few seconds - https://itunes.apple.com/us/app/contact-mover/id456984826

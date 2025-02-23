@@ -1,0 +1,11 @@
+Q: Painfully slow to browse large list of subfolders via SMB and/or AFP Having an issue where I have a folder on a QNAP NAS with over 68,000 subfolders within it.
+I can browse it quickly and almost instantaneously within Windows 7 via SMB, however in OSX 10.6.8 and 10.7.2, it takes nearly 10+ minutes to display the subfolders, using both SMB and AFP.
+Hoping there is an easy solution - we can't break the folders into smaller subfolders due to a requirement of proprietary software that accesses the sub folders.
+I've tried the fixes suggested here, which don't seem to help: http://www.macwindows.com/snowleopard-filesharing.html#030311b
+Have the same issue browsing the files on a Windows 2003 server, so it is not a NAS issue - rather, it's an issue with how OS X browses over the network.  Perhaps it is trying to cache all the files/folders before displaying them? 
+Windows 7 doesn't do this, and therefore the subfolders display almost immediately.
+
+A: I, too, find this a pain with my QNAP box. FYI the firmware has now been updated to 3.6.0 released just a few days ago, and there is some noticeable improvement with the update. However, you may consider using the iSCSI feature among the QNAP settings to make the file shares appear as a hard drive showing up on your desktop for better speed. I've noticed iSCSI works better IMO if your connection to the QNAP is hardwired throughout and not wireless in any way; wireless iSCSI works, just not as fast in my experience.
+
+A: try to relaunch your finder, some of my colleagues got improve after this.
+if in same lan, some computer fast and some slow.

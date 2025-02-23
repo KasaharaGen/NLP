@@ -1,0 +1,28 @@
+Q: Lion "hosts" File Bug I have some serious problems with the hosts file on my Lion 10.7.2. My hosts file is like following;
+127.0.0.1 localhost
+255.255.255.255 broadcasthost
+::1 localhost
+fe80::1%lo0 localhost
+
+27.0.0.1 first.localhost
+::1 first.localhost
+27.0.0.1 second.localhost
+::1 second.localhost
+
+I have more than 2 local sites but I just cut is short.
+I can't manage http://first.localhost/ to work. http://second.localhost/ works fine but http://first.localhost/ doesn't work. If I delete the last two lines (which corresponds to second) than http://first.localhost/ works.
+How can I add more than one local site in my hosts file? I'm using Lion 10.7.2 which I upgraded today and all those problems arose after that upgrade.
+Note: There is nothing wrong with Apache config files or any other file with the local web server, I know that it's the /etc/hosts file that causes the problem.
+Thanks.
+
+A: All additional entries to the HOSTS file must be above the:
+fe80::1%lo0
+
+Make sure there is at least one line break after the last entry. Like so:
+127.0.0.1 LLL.localhost
+127.0.0.1 LLL.localhost
+#
+
+Although you probably can't tell, there is another line following the # symbol. One more thing to mention, using Space instead of Tab between 127.0.0.1 and localhost might help too.
+
+A: You'll need to follow ioi's answer to the T to get this to work correctly.  I think the real trick might be the extra line at the end of the file.

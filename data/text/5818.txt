@@ -1,0 +1,8 @@
+Q: Is there a default SSH password on Mac OS X? If I create an account, and don't give it a password, what's the password to SSH it?
+
+A: Having no password on the OS level effectively means that ssh is disabled for that user. The protocol insists on a non-zero password and thus the hashes of whatever password is supplied fails to match the absence of a hash.
+You must supply ssh keys or otherwise arrange some authentication to log in should your account have no password.
+
+A: Interesting question.  I don't know the answer, but if OS X behaves like other UNIXes (and I suspect it does), it is possible to for a userid to exist without a password.  In that case, the login is disabled and incoming ssh connections will prompt for a password but nothing will satisfy the requirement to authenticate.
+
+A: You could put your public key into the authorized_keys of the account you were trying to ssh into and you wouldn't be prompted for a password anymore.

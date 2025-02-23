@@ -1,0 +1,18 @@
+Q: Can you pair Mac AND iPad with same Apple Wireless Keyboard? Can you pair both a Mac and an iPad 2 with the same Apple wireless keyboard, but not at the same time?  Or do you have to un-pair one, and then pair it with the other?
+
+A: Yes you can.
+First, make sure Bluetooth is turned off on your iPad. And enable it on your Mac (make sure the box that says "discoverable" is checked). Then turn on your keyboard and follow the steps to pair it using the Keyboard System Preference pane. Once the keyboard is paired, uncheck "discoverable" (which should remain off unless you wish to pair another device) and then turn off Bluetooth.
+Next, head over to your iPad and enable bluetooth. Turn your keyboard off (hold the power button till the light glows and then dims). Turning it on again will get the iPad to pick it up and a prompt will ask you to enter a 4-digit sequence of numbers and the "ENTER" key. Follow the steps. Once that is done, it will be paired.
+To use the keyboard on the iPad, make sure the device has bluetooth enabled and that your Mac has that service disabled (you should disable the service before trying to connect the keyboard to the other device).
+I just tested it using my Mac and my iPhone 4 and it works perfectly. Sometimes the device takes a second attempt to locate the keyboard, but it does indeed work.
+
+A: For those who are looking to do follow the accepted solution with the Apple Magic Keyboard: it is not possible. As @bmike points out, the firmware of the keyboards remembers the last paired device: Can you pair macOS and iOS device with same Magic Keyboard and switch between them?
+
+A: Back in 2011 it was possible: https://www.scottallen.com/2011/04/how-to-use-a-bluetooth-keyboard-with-two-devices/ with the above technique.
+In the context of 2020, your best bet is to pair the current apple keyboard (and trackpad!) with your iPad while just connecting them to your more stationary device with their lightning cables.  Of course, the lightning cables also works with the iPad so you could reverse the situation.
+Also, if you find yourself connecting your ipad and keyboard to the same USB hub which is then connected to your paired computer, the iPad "wins" and your keyboard will then control your iPad.  This will not break the last pairing and will go back to connecting via bluetooth to the last paired device.
+
+A: I had the same problem; I also did not know how to make the BT device undiscoverable. What I did was removed my keyboard device from my iMac (Go to System Preference and then to Bluetooth) by clicking the cross icon when you select the device. I then turn on BT on my iPad, waited a while and the two got connected without a problem. Hope this helps.
+
+A: Paul above notes that there is a problem with iMacs if they are using only a Bluetooth keyboard. I don't know if there is an easy solution to this. I have the same issue, but I also have a separate wired keyboard, and a separate wired mouse which I can connect if I need to reconfigure the wireless keyboard, mouse or trackpad.
+I only do it relatively infrequently, so not too big a problem, but if I did it a lot it would be. I have bought another cheap keyboard in the hope that I will then not have to swap between machines too often.

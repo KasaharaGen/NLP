@@ -1,0 +1,125 @@
+Q: Why won't closing the lid sleep my MacBook Pro with external monitor attached after upgrading to Lion? Up until yesterday (with Snow Leopard), closing the lid would cause my MacBook to sleep whether or not the external monitor was connected.
+Since upgrading to Lion last night, closing the lid when the external monitor is attached just tosses all windows to that screen and keeps going.
+I realize I can sleep via the Apple menu or keyboard before closing the lid. I'd rather not have to, and I'm wondering if there's a setting to restore the sleep-on-close behavior.
+
+A: One alternative is use the "hot corners" feature instead of closing the lid to put the display to sleep.
+For example, you can set it up so that moving the mouse to the bottom right corner of the screen initiates "Sleep."
+The setting is in System Preferences > Desktop & Screen Saver > Screen Saver and click the Hot Corners... button.
+
+A: I too have been puzzled by this since installing Lion, especially as I've been observing both behaviors (my MBP sometimes went to sleep when closing the lid while external monitor attached, sometimes it didn't).
+I think I have found what is different in both scenarios: the power (magsafe) cable.
+I believe that if you unplug the power cord before closing the lid, the mac will go to sleep when you close the lid. If the power cord is still plugged in, it won't sleep.
+This might not answer the question "how can I make it always sleep", but it does answer the original question, which is "why"...
+
+A: edit: See this as the behaviour has changed: Why won't closing the lid sleep my MacBook Pro with external monitor attached after upgrading to Lion?
+There are two groups of people. Those who wish to have dual displays and have closing the lid go into sleep and people who wish to disable the monitor display, close the lid and use the external monitor as if you had 'docked' with it.
+Previously, if you wished to switch from the macbook to an external monitor entirely then you had to perform the following to put the laptop into clamshell mode:
+
+
+*
+
+*Make sure the computer is plugged in to an outlet using the AC power
+adapter.
+
+*Connect a USB keyboard and mouse to your computer.
+
+*With the computer turned on connect the Apple portable (using the appropriate
+Apple adapter if necessary) to the appropriate port on the external
+display or projector and turn the display or projector on.
+
+*Once your computer's Desktop appears on the external display, close the
+computer's lid.
+
+*Once the lid is closed, wake the computer up by
+either clicking your mouse button or by pressing a key on your
+external keyboard.
+source: http://support.apple.com/kb/ht3131
+So to put the machine in clamshell mode required you to put it to sleep and wake it back up again. As far as user experience goes, that is somewhat jarring.
+As you have the other options to put the machine to sleep, it seems very likely that this change will remain.
+Right now, there is no way to alter this behaviour.
+
+A: Though not answering your question, why not use a keyboard shortcut or the menu to sleep the machine?  
+I see this option as preferable as you'd use the hinge less, and probably stop it from wearing out quicker too.  
+
+A: 
+if there's a setting to restore the sleep-on-close behavior
+
+Yes, there is. To restore Snow Leopard behavior just run the following command in the Terminal while the external monitor is disconnected and reboot:
+sudo nvram boot-args=iog=0x0
+
+I've just used it on my Lion – works like a charm.
+ 
+If you ever want to reset it back, either run the following (and reboot of course):
+sudo nvram -d boot-args
+
+or just reset your PRAM with ⌘+⌥+P+R if for some reason you can't boot.
+
+A: Found the solution which suits me, as I'm already using ControlPlane, one of the best CPU/Power-efficient schedulers.
+
+
+*
+
+*Create a new Context
+
+*Add Laptop Lid Open/Closed State evidence source
+
+*Add a rule triggering that Context on laptop lid close
+
+*Add an action with pmset sleepnow script attached
+
+
+Voila
+
+A: This question is years old, but still relevant. I had this issue too and came up with a script that monitors the lid state and puts the machine to sleep when the lid is closed: https://github.com/pirj/noclamshell
+
+A: Well… I have "a solution" as long as you are willing to accept a few less-than-ideal aspects.
+Here's how it works:
+
+
+*
+
+*Using the 'brightness' tool (included in the zip below), check the active display IDs
+
+*Add your laptop display ID number to a shell script (see zip)
+
+*Run the shell script via launchd to monitor /Library/Preferences/SystemConfiguration/ for changes
+
+*If the script sees that your laptop display is not active, it tells the computer to sleep
+
+
+Caveat
+Ideally we would monitor the system for resolution changes, except that I can't find any way to do that automatically.
+(It seems like there would have to be a way to do that, but my GoogleFu has not turned up any.)
+"Bug"
+It can take a minute or two for the script to notice that something has happened. (It seems much longer when you're waiting, but it will happen.)
+HOWTO
+
+
+*
+
+*You'll need to download this http://dl.dropbox.com/u/18414/scripts/ase-18037.zip
+
+*unzip it and read the README.txt file
+
+*copy the 3 included files to their proper locations (as explained in the README)
+
+*edit one of the files to include your monitor's ID number (ditto)
+
+
+A: This similar to what I am experiencing:
+I just upgraded to Lion on my Macbook (White 1.83 2007), I have an external Samsung XL2370HD monitor. The Macbook was sometimes running hot with the lid down with Snow Leopard. 
+The solution was to lift the lid half way to let it cool, and also to gain access to the built-in keyboard when the external keyboard was not hooked back up. Now with Lion, it switches back to the Macbook LCD display automatically when the lid is opened, and sometimes the colorsync settings get mixed up in the process, causing the second display to be off color until I manually reset the screen resolution to 1920 x 1080. 
+Also noticed that the ctrl+zoom wheel only zoomed in an area of 1280 x 800 on the samsung set to 1920 x 1080. This seems to be a bug, because restarting with the lid down into 1920 mode, all is well. 
+I can't find anyway to have the lid open except in mirror mode. Win 7 on Bootcamp works fine and I can lift the lid without it switching. It was very convenient to be able to close the Macbook to sleep it and then click the mouse to wake it on the ext monitor, then sleep and open the lid to wake the built-in display. That is the optimal way it should work, and has worked previously with dual displays.
+
+
+*
+
+*Try restarting the Mac in just the external mode (lid closed with pull down menu restart). the lid switch now seems to toggle when you lift and close the lid. So opening it once does nothing, but opening it a second time switches it to the built-in screen, and then a third lift and close puts it to sleep again. 
+
+*Click on the mouse in the third sleep mode and it returns to the external display (albeit with resized windows). I believe that Lion may adapt itself (learn?) automatically, which would be very cool, but I suspect that restarting in the different screen modes eventually may help reset the PRAM settings back to normal. 
+
+*Also try changing resolutions on both sides. It seems to cache whatever you are doing, and may just be hiccuping on earlier saved PRAM data. 
+
+*A last resort is a PRAM reset: Hold alt(option) + apple + p + r on reboot, after the chime. Hold the keys down and let it chime three times before releasing and booting up. BTW, Do this on an externally attached keyboard, lid closed if possible. This will give priority to the external monitor booted, hopefully.
+

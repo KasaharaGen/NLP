@@ -1,0 +1,94 @@
+Q: Is there any Mac software to handle archives (zip, rar, 7z, tar, etc.) that allows browsing? I am looking for a software to handle archives on OS X.
+I know there are many of them quite easy to find, but none seems to have the most basic feature that most Windows archive applications have: browsing!
+I mean, most OS X unarchivers, when they open an archive, they just unzip it... then ask you for target location in the best case.
+What I want is something such as WinRAR or 7zip, which is basically an explorer (ie. Finder) that opens archives.
+What I want is precisely this! I want to be able to browse any archive without extracting it, opening files directly from the archive and then be able to modify it so that the file is actually modified in the archive.
+I want to be able to drag'n'drop a file to and from an archive to extract/add it.
+Those features are so useful when modifying directly JAR files contents, JAR files MANIFESTs, war webapps conf-files and so on...
+Thank you.
+
+A: Zipeg allows you to browse and uncompress a number of formats, but does not allow compressing.
+
+A: Apple actually has an example application called ZipBrowser on their developer site. The direct download is located here. Unfortunately this only works with zip files. The actually app is only 600K so it's nice and small. (Note that ZipBrowser only works on 10.6+)
+
+A: I know this thread is old, but to anyone looking for an answer; the best tool I have found is the B1 Free Archiver.
+It works on all platforms (even Android), and is simple and easy to use.  It's fast, free, and it supports most compression formats (including zip, 7-zip, rar, dmg, and more :)).
+
+A: iUnarchive seems to be quite nice. It is available at the App Store.
+
+iUnarchive can be used to preview and extract files from archives. Instead of cluttering the disk with files, you can preview and open files directly from within iUnarchive.
+Only files selected for preview and extracted files are actually uncompressed.
+Supported archives include zip, rar, 7-zip, tar, gzip, bz2/BZip2, LhA and StuffIt, including password protection for zip, 7-zip, rar and multi part rar.
+
+Edit: Not sure if you looked for a free application. It costs 4 Euro now (I think it was free before).
+
+A: Springy can do this.
+From Softonic:
+
+Springy integrates with Finder to make archiving as simple as drag and drop or through Springy’s Finder contextual menu. One thing I really like is that you can preview and browse archives before extracting them - very useful if you're dealing with big archives.
+  Extracting and compression is extremely quick and you can modify files within an archive just by double clicking.
+  Most major formats are supported including: ZIP, TAR, RAR, 7Z, PAX, CPIO, CPGZ, GZIP, BZIP2, UNIX Compress, SIT, JAR, DMG and ISO disk images.
+  Note that as an added bonus, you can also create disk images with it as well. 
+
+
+A: I think that BetterZip works great!
+BetterZip  allows you to: 
+
+Preview files in your archives without extracting or use Quick Look.
+
+BetterZip's Window is:
+
+Similar to the Finder it has a sidebar on the left side into which you
+  can drop your favorite folders for archives, e.g., your downloads
+  folder. The main file list in the center shows the contents of the
+  archive and on the right side is a sidebar which can display a preview
+  of the selected file.
+
+
+A: I'd say that you are looking for The Unarchiver. It's free in the Mac Appstore.
+
+A: Stuffit browses at least certain types of archives.
+
+A: Late edit 2022 - Zipster is dead & gone.
+just to add to the plethora of useful answers..
+Zipster (Freeware)
+From their own page...
+
+What is Zipster?
+
+Ever been envious of the way Windows users can just
+
+browse into Zip files, copy files in and out of them with ease and all
+without running a Zip utility? With Zipster, your Zip files are just
+like another folder in Finder. Plus, unlike on Windows, you can open
+files and save into them from any application.
+Zipster is
+
+*
+
+*Free.
+
+*Fast. Writes and compression are done in the background so you
+can get on with your work. And we’ve done a bit of work to make
+reading snappy too.
+
+*Friendly. No more pesky .DS_Store files — and your
+friends on other platforms won’t be complaining any more.
+
+*Useful. In
+addition to plain Zip files, Zipster works with JAR, WAR, ipa and apk
+files.
+
+
+I'm torn as to whether I think it's 'great' or 'annoying' - you can deal with zips like they were folders, but you have to put them away like .dmgs...
+Give it a try, it will cost you nothing.
+No affiliation
+
+A: Some file managers can navigate archives as directories. 
+A good old terminal option which you might already have is Midnight Commander installable via brew install mc (assuming you use homebrew).
+A free mac GUI file manager with good archive support is Double Commander:
+brew cask install double-commander
+
+And finally, if you a terminal user, you can list the contents of a zip file with with unzip -l myfile.zip. 
+
+A: "Unzip One" also allows preview of zip/rar archives before extraction. It's available on App Store and free.

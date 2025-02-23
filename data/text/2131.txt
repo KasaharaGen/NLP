@@ -1,0 +1,14 @@
+Q: Windows 7 Bootcamp not recognising devices Has anybody encountered a problem with the USB driver when running Windows 7 on MacBook Pro 2010 (MC371)? 
+It doesn't recognize any USB drives or USB hard drives. I've tried both Windows Update and Bootcamp update - nothing helps. Where can I find a proper driver?
+
+A: Is your Windows 7 64-bit? If so, you might want to install the drivers in the Mac OS X DVD. 
+D:\Boot Camp\Drivers\Apple64.msi
+
+A: Try to Uninstall the USB host drivers using device manager and then "Scan for hardware changes" to re-install them. 
+Might not work but its worth a try.
+
+A: The drivers that come with windows should work already. Bootcamp doesn't install any new driver USB-wise.
+Most likely you got a bad windows installation. I would try the same disc on another machine just to be sure.
+edit: Unless, of course, it's not an issue with the USB itself. Here's a good troubleshooting guide from microsoft. The only thing that it says about the USB itself is that it may be defective - even if it works on Mac. Hardware issues can be quite complex.
+
+A: Finally, I've got the solution. Yesterday I've updated both Win 7 and Windows Bootcamp, and the system found the hardware.

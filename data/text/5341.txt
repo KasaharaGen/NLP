@@ -1,0 +1,56 @@
+Q: Why doesn't AirDrop work on older network adapters? Apple has stated that AirDrop will support only the following models:
+
+AirDrop supports the following Mac models:
+
+*
+
+*MacBook Pro (Late 2008 or newer)
+
+*MacBook Air (Late 2010 or newer)
+
+*MacBook (Late 2008 or newer)
+
+*iMac (Early 2009 or newer)
+
+*Mac mini (Mid 2010 or newer)
+
+*Mac Pro (Early 2009 with AirPort Extreme card, or Mid 2010)
+
+
+I saw mention of more detail on Twitter, but the forced brevity has provided me only limited information from @GlennF (Glenn Fleishman) (here):
+
+AirDrop will require newer Wi-Fi hardware (newer meaning maybe as old as 2008 or 2009) that allows simul. network/ad hoc.
+
+And from @NeoVanGoth ("Sir Neo Codealot") (here):
+
+Warum #Airdrop aug älteren Macs night geht: "it appears that the WiFi radio module must support simultaneous dual-band for AD to work" #Lion
+
+Can I get a more detailed, and hopefully highly technical explanation about the differences in these network adaptors, as well as what it is specifically that the new ones are doing in order to make AirDrop work properly?
+
+A: You can make airdrop run partially if you run this terminal command.
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+It will only let you airdrop with other Macs connected to your WIFI network (not other Macs in your vicinity on a different network) but its better than nothing.
+Ref: http://www.funkyspacemonkey.com/airdrop-work-older-macs
+
+A: AirDrop depends on specific wireless chipsets and antennas so that the airport card has spare processing capability to talk directly to other macs. AirDrop makes an ad-hoc secure mesh network and doesn't care whether you're joined to any WiFi network. Your existing network traffic is separated from the AirDrop traffic.
+Older wireless hardware doesn't meet these needs. There are hidden preferences you can turn on in terminal. This doesn't (necessarily) send the files securely - it just lists shared file servers that Finder would normally show in the Network Browsing window / sidebar and draws them in the AirDrop window. You don't get the extra security and freedom of being off-network.
+
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+
+
+A: Basically what AirDrop does is it turns your Mac into a WiFi access point in the 5 GHz band. That's why it's zero configuration, works whether or not the Macs are in the same wireless network, or in ANY wireless network.
+However, to create this second network, the adapter needs to support multiple networks.
+This also explains why it only works with WiFi and not with e.g. one Mac wired into a base station and the second Mac using WiFi to connect to it.
+
+A: Anyway, why bother with AirDrop?  Enable a Bonjour account in iChat and use that to transfer files.  Works on 10.4 - 10.7, no chipset limitations.
+"Great new features" of OS X (latest) are often just slightly dressed up implementations of older concepts.
+
+A: Airdrop is definitely a bit finicky, no ethernet by default and all these hardware requirements.
+I've been using Worml instead, which also lets me send files directly to people outside my network with just a keyboard shortcut.
+
+A: Are you running OSX Lion ? if not then that's your mini's limitation
+
+AirDrop is one of the great new features of Lion that provides a really easy way to share files between supported, Wi-Fi enabled Macs, without having to connect through the local Wi-Fi network.
+
+reference: http://support.apple.com/kb/HT4783
+emphasis mine

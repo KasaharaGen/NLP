@@ -1,0 +1,19 @@
+Q: webcam not working anymore I was using Skype, and suddenly the internal iSight camera stopped working. It's not the first time this has happened. I already fixed this problem with a reboot, but I would like to find a solution without a reboot. Is there a way to push the driver back, or do some more accurate diagnostic?
+I have MacOSX 10.6.7 on a macbook 13" unibody.
+
+A: I found out that the camera is taken over, somehow, by the google talk browser plugin. I solved by doing the following. From a terminal, I issued the following command
+ps uaxw |grep Firefox
+
+It will show a list of the processes under Firefox. One of them may be something like
+sbo      21173   0.0  0.1   414040   2492   ??  S     5May11   0:07.47 
+   /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/
+   MacOS/plugin-container /Library/Internet Plug-Ins/googletalkbrowserplugin.plugin
+   -omnijar /Applications/Firefox.app/Contents/MacOS/omni.jar 21168 
+   gecko-crash-server-pipe.21168 org.mozilla.machname.855559451 plugin
+
+I wrapped the long line. I then proceeded to kill this process (the pid is the first number)
+  kill 21173
+
+and the iSight started working again.
+
+A: Since the error message includes "Canon Digital Camera" I assume that your MBP is connected to an external camera. You can try to eject the device (unplug it from the USB port) and replugin to see whether it helps.

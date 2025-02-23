@@ -1,0 +1,45 @@
+Q: Is there a real alternative on the Mac to Ctrl+Alt+Delete (not the "force quit" dialog)? Are there any real alternatives to force quit dialog on mac?
+Alternative, just a command/app that kills every running app (not process)?
+
+A: Found how to accomplish what i want:
+
+
+*
+
+*Create spark applescript command doing do shell script "sudo killall
+loginwindow"
+
+*Edit /etc/sudoers to allow doing above without password
+prompt: Tyilo ALL=NOPASSWD:/usr/bin/killall
+
+A: Here is a keyboard combo ⌘ ⌥ ESC (Command-Option-ESC or Command-Alt-ESC) what bring in a small Force quit window.
+but, when your script every 0.25 sec clicking somewhere, you will lose focus on ANY window.
+You can for example try in another terminal window the following
+seconds=20
+script="name_of_the_script"
+sleep $seconds ; killall "$script"
+
+that small script will sleep 20 seconds, and after will kill all processes with the name "name_of_the_script".
+Another variant is - rewrite you script for keypress check. For example, the next shell script will run until you press "q". Because you don't tell how you do "clicking" (via applescript? via iKey?) can't tell better solution.
+#!/bin/bash
+
+cnt=0
+do_stuff() {
+        let cnt++
+        echo "Doing stuff here $cnt"
+}
+
+#MAIN LOOP
+#set terminal into nonblocking mode
+stty -icanon
+key=''
+while [[ "$key" != "q" ]]
+do
+        read key
+        do_stuff
+done
+
+#resetting terminal into normal mode
+stty sane
+echo DONE
+

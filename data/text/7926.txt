@@ -1,0 +1,22 @@
+Q: iWork Numbers evaluate string I have a cell with the following content 2262/4121. I want to have a cell next to it that contains the result of that expression. Is there a function for that?
+
+A: You can use the VALUE() function for that. Its only argument is the cell that you want to evaluate
+From the documentation:
+
+The VALUE function returns a number value, even if the argument is formatted as text. This function is included for compatibility with tables imported from other spreadsheet apps.
+VALUE(source-string)
+  source-string: Any value.
+Notes
+  You’ll never need to use the VALUE function in a new table, because numbers in text are automatically converted for you.
+Only the formatted text is converted. For example, if you type the string $100.001 into a cell, the default format will display only two decimals ($100.00). If VALUE refers to this cell, it will return 100, the value of the formatted text, not 100.001.
+If the argument can’t be returned as a number value (does not contain a number), the function returns an error.
+Examples
+=VALUE(“22”) returns the number 22.
+=VALUE(RIGHT(“The year 1953”, 2)) returns the number 53.
+
+
+A: In the general case you're stuck. But in a special case you might be able to do something. To add up a column of inconveniently formatted numbers, I wrote a formula that uses two other formulas to extract intermediate values from the text:
+  input       number   scale    answer
+88315.0 KB   88315.0       1    88,315
+ 119.52 MB    119.52    1024   122,388
+

@@ -1,0 +1,43 @@
+Q: Is it possible to disable Terminal's automatic tweaking of colors in Lion? While it's great that Terminal now has built-in support for changing the ANSI colors, I find it annoying that it automatically adjusts the colors to improve contrast, which means the colors that I actually pick often end up washed out or off in some other way. Here's a screenshot explaining the problem: 
+
+This bugs me because I like to use the same color scheme in Terminal and MacVim, and with this handling of colors by Terminal, they don't match up to the ones in MacVim.
+Does anyone know of a solution to this, besides switching to iTerm 2 (which I'd rather not – I like the rest of Terminal, especially some GUI touches like the pulsating visual bell). Thanks!
+
+A: Color profiles are definitely important, but there's another issue lurking here: Terminal.app automatically brightens any color when displayed over the default background. Here, for example, are the colors output by Terminal.app running the Solarized color theme, as measured with DigitalColor Meter in sRGB mode, and compared against the canonical Solarized sRGB values.
+When presented over a black (or any other color) background, Terminal.app produces approximately the correct colors; however, on the default background, all colors except the default and default bold text are substantially too bright.
+
+
+A: In short: no, there's no supported means to disable this.
+Terminal automatically applies a minimum contrast when displaying an ANSI (or extended 256-color table) color on the terminal background color, or when displaying the terminal foreground/text color on an ANSI background color.
+This is meant to be a convenience, so that one can set a background or foreground color and have them contrast with the ANSI colors without having to adjust all the ANSI colors. This was especially important in earlier versions of Terminal, which lacked Preferences support for customizing the ANSI colors.
+Older versions of Terminal applied the minimum-contrast for all color combinations, but that meant that, e.g., ANSI red-on-red text could be readable, but some programs intentionally display text with the same foreground and background color in order to hide it (for displaying game hints or joke punchlines, for example). Because of that, newer versions of Terminal do not apply the minimum-contrast when displaying one ANSI color upon another.
+Now, rather than just address the same-color case, Terminal avoids applying the minimum-contrast for all combinations of ANSI colors, because it is assumed that if the user customizes any ANSI colors they will customize them all to contrast with each other as desired. It is also assumed that those users will adjust or take into account the terminal background and foreground colors to fit their desired color scheme.
+If the workaround of using colors with different color spaces—suggested in other answer(s)—works, it's likely relying upon a bug in the color-handling code, which is supposed to work with any color, and may stop working in the future when that bug is fixed.
+If being able to explicitly disable or adjust the minimum-contrast behavior is important to you, I recommend letting Apple know by filing a report at https://developer.apple.com/bug-reporting/ using any Apple ID.
+
+A: Here's the trick that you need to know: Values set via RGB get mangled, those set via HSB do not.
+I had a similar problem using the (great) Solarized color scheme: MacVim had a darker (and correct) background color than Terminal, even though I was setting all of the correct RGB values per the Solarized spec. See here:
+
+Basically you need to know what your color values are supposed to be for each of the Terminal ANSI, text, and Background (note this one is on the Window tab) colors and then set them via the HSB picker instead of RGB. See this example:
+
+For whatever reason (I suspect some type of profile thing, or perhaps a contrast tweak as you suggest), the RGB color you enter is not what you get. You'll also notice that once you've set the values via HSB, switching to the RGB picker will show options different than you'd expect. The Solarized value conversions all agree according to Photoshop; it seems to be something that the Apple color picker is doing for you.
+
+A: Open Window settings for your theme, toggle background color, set blur to 0% and Opacity to 100%. After this your colors will be same as you want. Also you should check every color you pick for text for this parameters.
+
+
+A: 
+
+
+*
+
+*Open the color picker
+
+*Choose the sliders tab
+
+*Click on the swatch below the magnifying glass, to the left of the slider dropdown
+
+*Choose Device RGB
+Now colors specified by hex value will not be subjected to color space conversion.
+In Sierra, the color space picker has changed to the gear icon:
+
+Source

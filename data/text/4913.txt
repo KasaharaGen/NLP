@@ -1,0 +1,20 @@
+Q: Make a screen-shot and upload with a script I am not very good with AppleScript but I would imagine this is something quite easy for the AppleScript guru out there, I am looking to make a screenshot of a region like with doing Apple-Shift-s and feed it the ScreenShot filename to a shell script which would take care of the upload.
+Thanks.
+PS: I don't need the shell script part just the AppleScript one.
+
+A: simply run shell command:
+screencapture -i filename
+
+this will start screencapture in interactive mode (selecting region). See screencapture -h or man screencapture
+If you realy need run the screencapture command from the applescript just use:
+do shell script "screencapture -i filename"
+
+you can test the applescript from shell:
+osascript -e 'do shell script "screencapture -i /tmp/filename.png"'
+
+
+A: See my answer to the question linked to below which uses Automator to take screenshots and feed them automatically to the FTP script.  Since you don't say that it absolutely has to be done by Applescript, I'm just offering it as a suggestion in case it covers your needs.
+Seeking ambient screen recorder
+
+A: You could try adding an automator folder action that will take added files and upload them. If you have fetch it has its own FTP options that can be integrated into an automator routine. 
+If that doesn't work for you, the app Nathan suggested performs what you need wonderfully.

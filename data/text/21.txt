@@ -1,0 +1,99 @@
+Q: Is there a way to start a specific application with a keyboard short cut? Sort of like the Windows+R command in the windows world?  That actually just lets you run a command but you get the idea.
+
+A: As of Snow Leopard, this actually is built into the OS.
+Launch Automator and create a service that receives no input from any application. From the Actions Library, add the 'Launch Application' action to the workflow. Select the 'Terminal' application in the drop-down list of Applications. Save your new service and then assign a keyboard shortcut to it in:
+System Preferences -> Keyboard -> Keyboard Shortcuts -> Services
+
+A: Solution suggested by @NReilingh is fine but it fails if Terminal.app is running and it has no opened window (I've tested it in OSX 10.7).
+Replacing Launch Application action with Run AppleScript action and setting the following code to be run does the trick:
+on run {input, parameters}
+  tell application "Terminal"
+    activate
+    reopen
+  end tell
+  return input
+end run
+
+Here's the full post: Mac OS X: Launch Terminal from keyboard shortcut
+
+A: I wanted a shortcut to always open a new Terminal window regardless of anything else.  Here is the code to do that:
+tell application "Terminal"
+        do script ""
+        activate
+    end tell
+
+
+A: Assuming your running Snow Leopard ⌘+space will open Spotlight which can be used to run terminal.
+Spotlight can be bound to another key combination but the default is similar to Windows+R.
+
+A: In Mavericks there is an option to open a new terminal window at the folder you have highlighted in Finder. To enable this option go to Finder -> Services -> Service Preferences and check New Terminal at Folder.
+
+Then use it from the Finder menu:
+
+
+A: This solution works for MacOS Sierra.
+
+
+*
+
+*Launch Automator
+
+*Click 'New Document' and select 'Service'
+
+*Change "Service receives selected" to "no input"
+
+*Select "Launch Application" from the Action pane
+
+*Select the application that you need to launch from the pull down menu. For Terminal you will have to go to the bottom and select "Other" and find it in the Utilities folder.
+
+*Save the Service using some name.
+
+*Open System Preferences. Go to Keyboard option. Click on Shortcut tab.
+
+*Select Services from the left pane and scroll down to General in the right pane. You should see your Service.
+
+*Click the service. You should see a button on the selected service itself which says "Add Shortcut". Click on that.
+
+*Enter a key combination and close System Preferences.
+
+
+A: If you have the Alfred Powerpack, you can add a hotkey in Alfred 1:
+
+Or create a workflow in Alfred 2:
+
+Hotkeys have a short delay by default in Alfred 2, but changing the trigger behavior reduces it:
+
+
+A: I would recommend installing QuickSilver. It's an application launcher that will remember the applications you launch most frequent and recommend them first. It's easy to launch any application with a few keystrokes.
+QuickSilver is the first Application I install on every new Mac.
+
+A: Not built-in to the OS, but I've been using a free utility called Visor. What you do with it is leave your Terminal running in the background, but Visor hides it and invokes it in a Quake-style console when you hit a (user-configurable) key combo. It's pretty customizable as to how your Terminal shows/hides. Super awesome.
+
+A: DTerm is accessed via a user-configurable hotkey, and pops up a window in which you can execute a terminal command in the current directory.  For example, if you're in Finder and want to tar some files, you just hit the hotkey and run tar, without the need to change directories.  Pressing Shift+Enter instead of just Enter after typing your command will execute it in a new Terminal window, from which you can keep working.
+
+A: I use Spark and have ⌘+⌥+§ (I have a UK keyboard layout; § is just below esc) to launch the terminal. I prefer it to using Services/AppleScripts because it's faster. Also it doesn't add any visible UI elements like other solutions (I'm very anal about keeping my workspace as streamlined as possible).
+I think development for Spark has stopped but it works perfectly on Snow Leopard.
+
+A: I love Apptivate, it is like Spark. Apptivate lets you "assign system wide shortcuts to any application, document, or script file." It just does this one thing, and does it pretty well. It's very small, so doesn't use much system resource. 
+One great feature of Apptivate is that if it detects the application, say Terminal.app, that has already been running, Apptivate will hide it, instead of launching a new instance of the application.
+
+A: Although I think the Automator / Keyboard binding to Services is better, I think I should mention Quicksilver, which gives you excellent keyboard services for the mac.
+You should read this article about Quicksilver.
+
+A: This is a bit opinionated and not a direct answer: you can use iTerm and set a global hotkey for it through Preferences (⌘+,) > Keys > Hotkey.
+
+A: I'm using FastScripts to do this. It's free for up to 10 keyboard shortcuts, $14.95 to enable unlimited keyboard shortcuts (I'm not affiliated with Red Sweater Software, just a happy customer).
+
+A: This is pretty close: CDTo.
+"Fast mini application that opens a Terminal.app window cd'd to the front most finder window. This app is designed (including it's icon) to placed in the finder window's toolbar."
+Ideally, you want a tool that mimics the built-in feature of MacOS 9:
+
+
+A: I use Open Terminal. Check it out here.
+
+A: Thanks for the recommendation for Spark. I have just now tried version 3.0b9 and it worked perfectly in OS X 10.10.3 for creating a shortcut to launch the terminal. I use Ctrl+Opt+T, which is the same shortcut to open the terminal in my linux distro.
+
+A: You can use the Automator.app to make new shortcuts
+Automator app> and then service(gear icon)[no input]> followed by launch application.app service,> chose terminal.app > [SAVE] > system pref. >keyboard shorcuts >services > setup shortcut
+ctr+opt+cmd+T
+Its Explained in this link

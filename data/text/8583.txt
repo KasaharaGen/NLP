@@ -1,0 +1,72 @@
+Q: Guest login got enabled even though FileVault 2 is enabled and Guest login is disabled I rebooted my Mac yesterday after installing the Apple update TS4088. Even though I disabled Guest Logins in my Users Preferences and have enabled FileVault 2 since the start, I am able to see Guest Login which is showing the following notice
+
+The computer will restart to a secure, safari only system for the guest user
+
+Is there a way to disable the Guest user ? The whole drive is supposed to be encrypted ideally, but looks like there is a bug ?
+
+
+Related Questions/Articles:
+File Vault 2 - Apple KB article
+Can FileVault show the login window as 'name and password', not 'list of users'?
+Unable to create Guest Account after enabling FileVault
+How to create a pseudo-guest account in Lion with FileVault 2?
+
+A: How to disable that “Guest User” from appearing at the OS X 10.7.2 login screen
+
+
+*
+
+*Open System Preferences
+
+*Click on “Security & Privacy”
+
+*Click the lock in the lower corner and type in your administrative
+password to unlock the control panel
+
+*Check the box next to “Disable restarting to Safari when screen is
+locked”
+
+
+This prevents the Guest User account from being visible at the login screen both during reboot and at the login screen. Again, it’s highly recommended to keep this enabled for security purposes, but if your Mac is locked down with a security cable or you don’t have any use for Find My Mac, you could disable this and not feel too bad about it.
+
+If you haven’t tried it yet, clicking on the Guest User account gives you this message:
+This computer will restart to a secure, Safari-only system for the Guest user.
+The reboot process is quick and opens directly to Safari, there is no access to anything else. No Finder, no preferences, nothing.
+Source: osxdaily
+
+A: This appears to be by design.
+Keep in mind, the whole drive is still encrypted with File Vault. The 10.7.2 Guest/Safari-only User only has access to / runs off the Recovery partition, not the main volume where your user data and applications are stored. 
+If someone does login to the Guest User, they have no access to the system partition, and as a bonus, the Mac is findable via Find-My-Mac.
+
+A: This a common issue, specially with the latest version of OS X like 10.11. The issue you guys are facing is mostly caused by settings new Macs with "Find My Mac" and File Vault enabled at the first boot.
+You can remove the guest account by:
+
+
+*
+
+*Disable "Find My Mac" at System Preferences > iCloud > Find My Mac
+
+*Disable the guest account at System Preferences > Users > Guest User
+
+
+However it might not be enough!! File Vault login screen is not part of the system - it's built right on the EFI. When you setup a new computer / change users accounts the OS actually notifies the EFI of changes and apparently there might be a but where disabling the guest user won't make the system notify the EFI.
+After some thought, I came up with a solution to force the EFI login screen update:
+
+
+*
+
+*Make sure "Find My Mac" and the Guest User are disabled and reboot (if the problem persists continue);
+
+*Check if "System Integrity Protection" (rootless) is enabled: Run csrutil status at the Terminal App and if it says "System Integrity Protection status: enabled." (if it says disabled, only do 2.4 and 2.7):
+2.1. Reboot your computer in "Recovery Mode": Shutdown and hold Command + R right after pressing the power button;
+2.2.  Go into "Utilities > Terminal" and run the command: csrutil disable;
+2.3. Reboot the computer;
+2.4. After login open the Terminal app and run: sudo touch /System/Library/PrivateFrameworks/EFILogin.framework/Resources/EFIResourceBuilder.bundle/Contents/Resources this will force the EFI login update;
+2.5. Reboot your computer (again) in "Recovery Mode": Shutdown and hold Command + R right after pressing the power button;
+2.6.  Go into "Utilities > Terminal" and run the command: csrutil enable;
+2.7. Reboot the computer.
+Your problem should be fixed, I used this fix on two different machines and it seems to work perfectly. Enjoy. ;)
+
+A: With 10.7.2 iCloud is installed. If you set it up, if I remember correctly, Find My Mac is enabled by default. Regardless of your options in Users & Groups the Guest User will show up.
+To remove the guest User go to iCloud preference pane and turn off Find My Mac. 
+

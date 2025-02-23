@@ -1,0 +1,92 @@
+Q: Can't restore music to iPhone from iTunes I have a family member that did something a bit carelessly (but with good intentions) and I'm trying to help fix it.
+They upgraded their iPhone 4 to iOS 5, but they did it from a different computer/iTunes than the one their iPhone was associated and synced with.  This wiped out everything on the iPhone, of course.
+Now I'm trying to help them restore data, apps, music, etc.  There was a device backup in iTunes on the old laptop so I copied the contents of the MobileSync folder between the two systems.  On the new laptop, I restored from backup via iTunes.  Then, I proceeded to download all previous purchases in iTunes (apps, music), and then tried to sync:
+
+
+*
+
+*First I synced apps only. No problemo.
+
+*Then I added music to the sync settings. Houston, we have a problem.
+
+
+When I try to sync music it says that the iPhone is associated with another iTunes library and the phone will be erased.  Ugh.  If I only try to sync apps, there isn't an issue.  But of course, they want their music copied back to the iPhone. :)
+In short, how do I accomplish all of the following:
+
+
+*
+
+*Restore important data from the iTunes device backup copied from the old laptop
+
+*Ability to sync all purchased/future purchases of music
+
+*Ability to sync all purchased/future purchases of apps
+
+
+Thanks in advance!
+
+A: Note: This is all done on a Mac. Just look up the PC equivalent of the following steps if required.
+How to recover past information:
+Option 1 - Restore iPhone 4 directly from old computer:
+
+
+*
+
+*Connect iPhone 4 to old computer, open iTunes, put the iPhone in DFU mode, (while holding alt/option key) select Restore after iTunes has detected the iPhone 4 in recovery mode, and select the most recent backup of that iPhone 4.
+
+
+Option 2 - Copy iPhone 4 backup from old computer, and place on new computer to recover:
+
+
+*
+
+*On the old computer, go to ~/Library/Application Support/MobileSync/Backup, and copy the most recent backup of the iPhone 4 and transfer it to the new computer.
+
+*Connect iPhone 4 to old computer, open iTunes, put the iPhone in DFU mode, (while holding alt/option key) select Restore after iTunes has detected the iPhone 4 in recovery mode, and select the most recent backup of that iPhone 4.
+How to create the ability to sync all purchased/future purchases of music and apps:
+
+
+*
+
+*Open iTunes.
+
+*Sign out any pre-existing AppleID/iTunes Account once iTunes loads.
+
+*Sign into desired account of individual (your relative's I'm assuming).
+
+*In iTunes, select Store -> Authorize This Computer...
+
+*Rejoice!
+
+*Have your relative use iCloud for backup to make life easier in the future.
+Let me know if you have any more questions, or need any futher explanation. Enjoy!
+
+A: You need to roll-back and roll-forward.
+
+
+*
+
+*Attach the iPhone to the old laptop.
+
+*Open iTunes.
+
+*Click the restore button to restore it to an old backup before the upgrade (it will get all the music back).
+
+*Upgrade the iPhone while attached to the new computer.
+
+
+That should get you there. In your question you didn't say which computer you wanted to sync with when you were done. Switching computers is a complication.
+
+A: do you know if you still have the pre-iOS 5 backup on the original computer?  if so, try - 
+
+
+*
+
+*connect the iphone to the original computer that it used to sync to before it was updated
+
+*restore the iphone backup (pre iOS 5) to the iphone via itunes
+
+*update the iphone to iOS 5 using the original computer
+
+
+if you're stuck with the new computer, try copying the old itunes library to the new computer and then sync.

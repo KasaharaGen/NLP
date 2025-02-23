@@ -1,0 +1,13 @@
+Q: Lion Addressbook broken? When I launch Address Book and search for a contact, nothing visibly happens. 
+Also if I double click on a contact name in the group list, I see the contact info in a popup, but if I single click, I don't see it in the right hand pane. 
+And, also, if I look for a contact in Spotlight, I find it, but if I go to it, Address Book launches but the contact does not appear. 
+In short, it looks like the right hand pane in AddressBook is frozen. And this includes multiple attempts to relaunch it.
+I have been using Lion from the start without a problem like this. I did install a few apps yesterday (Sparrow, Alfred and TotalFinder) and the problem appeared today, so there may be a connection.
+What can cause this problem with Address Book?
+
+A: My bet is on TotalFinder.
+Firstly because I have both Sparrow and Alfred installed, and don't have any issue with them, and mostly because the way TotalFinder integrates into the OS.
+Try to completely uninstall TotalFinder, reboot your computer and see if the issue is still there.
+
+A: This solution from gdelfino also worked well for me:
+I had the same problem and I wasn't using TotalFinder. I solved it by deleting my ~/Library/Application Support/AddressBook. Then, when I relaunched Address Book, my contacts were downloaded from iCloud and the problem was gone. – gdelfino Jan 4 at 20:44

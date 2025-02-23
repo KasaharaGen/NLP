@@ -1,0 +1,32 @@
+Q: How do I increase sudo password remember timeout? I already know that I need to tune /etc/sudoers file but I would like to see full information and also a solution that would not require me to use vi editor.
+Update: never, ever try to edit the file with something else than visudo.
+
+A: Be really careful about modifying /etc/sudoers directly! 
+For instance, I tried the above suggestion directly:
+sudo sh -c 'echo "\nDefaults timestamp_timeout=-1">>/etc/sudoers'
+which messed up my /etc/sudoers file (on a CentOS Virtualbox VM). Should have been:
+sudo sh -c 'echo -e "\nDefaults timestamp_timeout=-1">>/etc/sudoers'
+Fortunately, I had access to the root account, logged in as root, used visudo and repaired the problem!
+So, I agree w/ the above comments to use visudo instead.
+
+A: Run sudo visudo and add this line:
+Defaults    timestamp_timeout=-1
+
+See man 5 sudoers. -1 causes the password to never timeout. You may change the number to whatever you like in minutes.
+The man page for sudo says that sudo -v "extends the sudo timeout for another 5 minutes".
+Running 'sudo visudo' instead of editing the file directly causes the system to validate the sudoers file before it commits the changes.  For instance, if you leave a stray character somwhere, when you save and exit, it will say "there is an error in the sudoers file, what would you like to do?" ... hence giving you a chance to go back in and edit.  This actually just happened to me 10 minutes ago.
+
+A: All information for sudoers can be found from the terminal with the command
+man sudoers
+
+You can even user simple text to edit files, however the privs make that difficult. 
+sudoers is -r--r----- (Octal 0440)
+This indicates that Apple really doesn't want you messing with the file. This really is the core security of the OS.
+Options for editing are vi, emacs, or my personal favourite BBEdit.
+
+A: Disable sudo timeout with this command:
+sudo sh -c 'echo "\nDefaults timestamp_timeout=-1">>/etc/sudoers'
+
+To re-enable sudo timeout with this method:
+sudo sed -i "/Defaults timestamp_timeout=-1/d" /etc/sudoers
+

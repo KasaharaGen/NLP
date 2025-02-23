@@ -1,0 +1,102 @@
+Q: How do I start TextEditor from the command line? I work a lot at the command line in a Terminal and would like to start a text editor on a certain file. I'm from Linux Land and normally use kwrite or gedit from a bash shell.  Trying to find the Mac equivalent, as a guess, tried 
+user> textedit somefile.txt
+
+and
+user> texteditor somefile.txt
+
+and
+user> TextEditor somefile.txt
+
+and other variations.  I can't seem to find the proper name of the text editor app. (No, vi isn't to my liking.)  Oddly, the guy at an Apple store didn't know this.   
+
+A: If you search for a comfortable way with more "linux feel"
+add something like the following to your ~/.profile:
+alias textmate='open -a TextMate'
+
+or
+alias textedit='open -a TextEdit'
+
+depending on your editors.
+
+A: If you already started to write in terminal and you want to continue on your favorite editor you can press ctrl+X, ctrl+E and continue working in emacs or your default bash editor. 
+If you want to change the default editor, change the environment variable EDITOR to your favorite one:
+EDITOR=vim;export EDITOR
+
+
+A: The default text editor is TextEdit. You can open a text file in there by using open -a:
+$ open -a TextEdit hi.txt
+
+If you want to use another app, just put it's name in, like this:
+$ open -a Coda index.html
+
+
+A: Here are some possible answers, all using the 'open' command-line utility.
+The -a option means "open the file argument with the named application":
+open -a TextEdit file.txt
+The -e option means "open the file argument with the TextEdit application":
+open -e file.txt
+The -t option means "open the file with the default application for editing text files, as determined via LaunchServices". By default, this will be /Applications/TextEdit.app; however, it's possible for this setting to get overridden:
+open -t file.txt
+Finally, any file that's of the "text" type will get opened by the application bound to the text type if you just say open file.txt. You can use the "file" command to reveal what the operating system thinks the file type is: file file.txt. So, for example, if you renamed "file.txt" to just "textfile" then open textfile would still open it in the default text-file editing application, as long as file textfile still thought that "textfile" was actually a text file.
+A short 'help' file on open can be found by running
+open --help
+
+Or you can read the whole manual with
+man open
+
+
+A: There are two ways:
+If your default text editor is TextEdit, you can simply use
+open -t file.txt
+
+to open it in TextEditor.
+If your default text editor is not TextEdit, and you want to open it in TextEdit specifically, you can use
+/Applications/TextEdit.app/Contents/MacOS/TextEdit file.txt
+
+Either of those can be made an alias in your shell config file, of course.
+
+A: 1) Quick open textEdit content edit interface, note that the generated files are stored in the /tmp directory:
+#Input content + Enter + Ctrl+D
+open -f
+
+#open empty tempfile
+echo|open -f
+
+#alias
+alias txted='echo|open -f'
+txted
+
+2) Prefer to take standard input and output it to TextEdit
+echo "input something"|open -f
+cat Dockerfile|open -f
+
+3) Just open a TextEdit:
+open -e
+
+From man open: 
+-e  Opens with TextEdit. 
+-f  Reads input from standard input and opens with TextEdit.
+
+
+A: See if you have the vim editor, I didn't even realize my terminal could use it. 
+Try:
+user> vimtutor 
+
+to figure out its controls. 
+You can edit files pretty well with it. The syntax looks something like:
+user> vim foo.txt
+
+
+A: TextWrangler (now defunct and replaced with BBEdit) when installed with the Command Line Utilities, allowed you to do:
+edit README.txt
+
+to launch TextWrangler, which to me is nicer than open -t README.txt, but maybe I'm just suffering from inertia.
+FYI - edit is a binary executable file (from the TextWrangler kit), not just an alias or symlink.
+
+A: Since you want to open "a" text editor. It shouldn't be wrong if you use a command line text editor such as vim or vi. Just type 
+user> vim filename
+Looking at the other answers this might seem controversial. But as you work mostly inside the the terminal. Using vim or Gedit is the ideal choice.
+
+A: Use gedit command:
+gedit your-file.ext
+

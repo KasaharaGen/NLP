@@ -1,0 +1,35 @@
+Q: How to turn Mac OS X Lion into a web server? After using MAMP for ages, I found out I could actually use Snow Leopard's built-in Apache server. Now that I've upgraded to Lion, I have no idea how to do this anymore.
+Do you know how to turn my Mac OS X Lion into a web server, so that I can easily run the latest version of PHP and MySQL in it? Also, how do I set the "localhost" aliases? I remember it was a httpd.conf file — something that I don't seem to find anymore on Lion.
+
+A: You first need to enable Apache in the Sharing prefpane. Check "Web sharing" and your web server is running. 
+Note that since Mountain Lion, Web Sharing was removed from the Sharing preference pane, but Apache is still included. Check this answer for controlling Apache in Mountain Lion.
+
+To activate PHP you'll need to edit /etc/apache2/httpd.conf in Terminal.app. This requires root credentials. nano is a very accessible command-line editor if you are uncomfortable with vim.
+sudo nano /etc/apache2/httpd.conf
+
+Find the line (you can press ctrl + W to start searching in nano):
+#LoadModule php5_module libexec/apache2/libphp5.so
+
+and uncomment it. Next find the line
+#Include /private/etc/apache2/extra/httpd-vhosts.conf
+
+and uncomment that as well to enable virtual hosts support.
+Save the file and exit nano by pressing ctrl + X, then confirming the changes by pressing Y(es), then enter.
+You can now edit your virtual hosts in the file /etc/apache2/extra/httpd-vhosts.conf
+sudo nano /etc/apache2/extra/httpd-vhosts.conf
+
+Important to note is that the first defined host will be the default host for unqualified host names. For resolving additional hostnames apart from localhost I recommend hardcoding them in /etc/hosts.
+To install MySQL, download the installer from the MySQL website (64bit installer should be ok). Follow the instructions to install it.
+Finally, to configure PHP for MySQL, copy the default php.ini:
+sudo cp /etc/php.ini.default /etc/php.ini
+
+Now you can edit /etc/php.ini (again root access required) and replace any reference to /var/mysql/mysql.sock with /tmp/mysql.sock (the default location of the MySQL socket after running the installer). There probably are about 3 references to that path.
+Finally, restart Apache for the new configuration to take effect:
+sudo apachectl restart
+
+Alternatively you can restart Apache by toggling it off and on again in the Sharing prefpane.
+Done.
+
+A: Just for the record, an alternative to MAMP is WebStart  that makes it easy to manage a professional Apache 2 web sever on Mac OS X 10.7 Lion.
+
+A: You can find a good tutorial here to enable also phpmyadmin and such without using mamp

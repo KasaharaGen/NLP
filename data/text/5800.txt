@@ -1,0 +1,22 @@
+Q: Apple TV won't start Netflix Streams When playing some TV shows on Netflix on a new Apple TV, sometimes the show does not start playing. I get the spinning pinwheel for a "normal" period of time, then a black screen. If I press select, I can see the playback progress bar shows the proper length for the show I selected, but the only command it responds to is Menu.
+If I switch over to the Roku that this the Apple TV is replacing, it can stream the same episode just fine. Ditto if I try streaming it over the Xbox or Blueray player.
+Things I've tried
+I've changed from Google's DNS, back to my ISP's (Time Warner), to OpenDNS and back to TWC's with no improvement. (on suggestion that the geo location was confused)
+Tried switching from DHCP to static allocation, no improvement, so I switched back. During the process, I think I power cycled it 4 times or so and then it started playing.
+Set Up
+Apple TV -HDMI->    TV 
+         -TOSLINK-> Receiver
+
+
+
+*
+
+*WiFi to Linksys WRT130 over N
+
+*Road Runner 10Mbit (when it isn't raining)
+
+
+A: So I took the first ATV back to the Apple Store, and had a repair by replacement. It still had problems, so I started digging deeper.
+Through some more specific testing, I narrowed down that it was only happening with movies that had Dolby Digital. In the settings, I had forced the Dolby on in the settings. Turning that off fixed it. It is still stable with Send data to Apple turned on, and switched back over to Google DNS.
+
+A: I was having similar issues, using my ISP's DNS. What worked for me was disabling "Send data to Apple" in the settings.

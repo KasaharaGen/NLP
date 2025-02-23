@@ -1,0 +1,39 @@
+Q: Unmodified F4 no longer summons LaunchPad When I press F4, it no longer summons LaunchPad. F3 still invokes Mission Control, and the other function keys, without modifiers, have their respective meanings (volume, play, etc), but I can only invoke LaunchPad with my hot corner or the Dock button.
+How can I reset this to default behavior?
+
+A: One solution is to rm ~/Library/Preferences/com.apple.symbolichotkeys.plist and log out and back in. I just tried this and it seems to have restored the binding, no hack like FunctionFlip required. My other special keys all work, too. However, I lost my other customized Keyboard Shortcuts, like ctrl+← for switching spaces Mission Control. They worked after I re-enabled them.
+It looks like com.apple.symbolichotkeys.plist is the preferences file, and MacOS works fine if it's missing. After I'd edited my Keyboard Shortcuts via the preferences panel that file was recreated and everything's back to normal except Launchpad launches again. Based on a diff of the two plist files I'm guessing the keycode for Launchpad is one of 118, 119, 64, or 65.
+I found this solution on a MacRumors discussion.
+
+A: To not lose your custom shortcuts, open ~/Library/Preferences/com.apple.symbolichotkeys.plist, look for the key named "160". Edit it as follows:
+
+Then Log Out and back in.
+
+A: I lost the F4 binding too, and after some investigation I got it working again. It's a bit of a hack, but here's what worked:
+
+
+*
+
+*Install FunctionFlip, a free preference pane to modify the function keys.
+
+*In FunctionFlip click F4: Launchpad, so it's checked.
+
+*In System Preferences / Keyboard / Keyboard Shortcuts, doubleclick on the keybinding for Show Launchpad and press F4.
+
+
+FunctionFlip should not be necessary: it should be enough to set the binding in Keyboard Shortcuts. The problem is by default the F4 key does not actually send the keycode for F4, it sends the magic code for LaunchPad. (Just like F8 isn't F8, it's pause iTunes.) And the Keyboard preferences pane won't let you bind that magic LaunchPad key. FunctionFlip solves the issue by making it so the F4 key really sends F4.
+Note that FunctionFlip is a bit tricky. For it to work, you have to enable System Preferences / Universal Access / Enable access for assistive devices. Also there's a "Start FunctionFliip at Login" preference that you probably want to enable. 
+The FunctionFlip page points to two tutorials for LaunchPad: TUAW and Josh Sunshine's. Same procedure as I describe above.
+
+A: I have just upgraded from Snow Leopard to El Capitan, and have the F4=Dashboard key on my keyboard.
+I have set fn+F4 to Launchpad, and turned Dashboard on, in System Preferences > Keyboard, but I wanted them the other way around so Launchpad would default.
+I did not want to add anything i.e. FunctionFlip
+Thanks to Kentzo's answer above, I downloaded TextWrangler, opened
+~/Library/Preferences/com.apple.symbolichotkeys.plist 
+changed Item 1's number from 118 to 130, 
+logged off, now working as desired.
+
+A: Ok, this is pretty weird. The item for Show Launchpad has to be checked (but not necessarily assigned to any regular shortcut) for fn+F4 to work:
+
+
+A: For anyone seeing this in 2017 on a Macbook Pro with touch bar, chances are you are using Spotify and it is the cause of the issue (see discussion). As of this post's date, there isn't a fix. The simplest workaround is to stop using Spotify.

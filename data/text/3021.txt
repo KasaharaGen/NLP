@@ -1,0 +1,11 @@
+Q: How can I repeat a video at slow playback speed? Is there any way to repeat a video while it's playing in slow motion?
+I tried using both QuickTime and VLC. I don't see a way to control the playback speed in QuickTime, and the problem with VLC is that when the video replays, it loses the playback speed setting. 
+
+A: You can do this with QuickTime 7. Grab a copy off the Mac OS X Install DVD.
+Go Window-> AV Controls and change the playback speed. (Or something with a similar name)
+Then View-> Loop for repeating.
+
+A: Option-clicking the forward button increases playback speed by 0.1. Clicking the backward button plays videos in reverse though. You can set the rate between 0 and 1 by running this in AppleScript Editor:
+tell application "QuickTime Player" to set rate of document 1 to 0.8
+
+In Movist you can press ⇧⌘← or adjust the slider in the control HUD.

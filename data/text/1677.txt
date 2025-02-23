@@ -1,0 +1,24 @@
+Q: Samba Troubles With My Mac - Password Never Accepted I've been tinkering with my router and have flashed it to use DD-WRT (a Linux distro that can provide me with some extra functionality).  This in turn has allowed me to create a Samba server to share the USB drive connected to my router.
+It appears to be working fine and I can connect to it, modify files etc. from my Windows 7 box.  But I'm having trouble connecting from my MacBook (running Snow Leopard).  What I'm doing is:
+
+
+*
+
+*Switching to Finder
+
+*Hitting Command + K to bring up the "Connect To Server" dialog
+
+*From here I try to connect to "smb://share@192.168.1.1/public".  192.168.1.1 being the router, share being the username and public the folder I wish to access.
+
+*This then provides me with a username & password box, with share populated in the username field.  I enter the password for the share account but it tells me it's invalid.  I've also tried different username/passwords just incase and using guest access.  All no good.
+
+
+Does anyone have any ideas on what else I can try?  I'm definitely getting the right username & password combination.
+Cheers for any help
+Lee
+
+A: I finally found the answer on the DD-WRT forums and it's annoyingly simple but I would never have guessed it in a million years.
+The username has to be entered in UPPER CASE.  So while smb://share@192.168.1.1/public didn't work, smb://SHARE@192.168.1.1/public did!
+Just wish I hadn't spent a day trying to get find that out!
+
+A: Good find!  I expect it is because Linux works on case-sensitive file systems.  Macs mostly do not anymore, although they can be configured to respect case.  If the uppercase annoys you, you can either check the share to make sure it's lowercase, or check your /etc/smb.conf file on the DD-WRT to make sure it respects case.

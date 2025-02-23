@@ -1,0 +1,246 @@
+Q: How to get a notification when my commands are done I'm running a series of commands on the command line that takes approximately twenty minutes to complete.  I'd like to see some sort of notification on my Mac when these are finished so I don't need to monitor the terminal for when it finishes.  Is there a way to do this?
+$ svn update . && ant clean build start && *notify_me_somehow*
+
+Edit:
+I could use xclock but this seems like a hack.  Ideally I could send the notification anywhere, like my phone, screen, etc.
+
+A: I present in this answer two things:
+
+
+*
+
+*The option of using afplay, which plays sound files, for notification.
+
+*my tools for reporting exit status along with the notification.
+
+
+
+I have this script, ~/bin/donebeep:
+#!/bin/bash
+if [ "$@" = 0 ]; then
+  afplay -v 2 /System/Library/Sounds/Blow.aiff &
+else
+  afplay -v 2 /System/Library/Sounds/Sosumi.aiff &
+fi
+
+This plays a different sound depending on whether the argument is 0. Then I have an alias:
+alias donebeep='(savestatus=$?; ~/bin/donebeep $savestatus "$@"; exit $savestatus)'
+
+(That they have the same name is irrelevant and probably a bad idea.)
+To use it in your example, svn update . && ant clean build start; donebeep. Note that I am using ; rather than &&, so that it can notify me on failure as well as success.
+Before I learned about afplay, I used say to speak messages instead. The role of donebeep was played by this script:
+#!/bin/bash
+say -v Bruce "Done $(basename "$(pwd)"), $@." &
+
+This script speaks the exit code directly instead of having two different messages. It also mentions the name of the current directory (to help clarify which task is done), and can be given additional text to say by passing parameters to the alias (that's why the alias has "$@" in it). Note the trailing & so that you do not need to wait for the speech to finish before getting a prompt.
+
+The man page for afplay is incomplete; afplay -h lists all options:
+Usage:
+afplay [option...] audio_file
+
+Options: (may appear before or after arguments)
+  {-v | --volume} VOLUME
+    set the volume for playback of the file
+  {-h | --help}
+    print help
+  { --leaks}
+    run leaks analysis  {-t | --time} TIME
+    play for TIME seconds
+  {-r | --rate} RATE
+    play at playback rate
+  {-q | --rQuality} QUALITY
+    set the quality used for rate-scaled playback (default is 0 - low quality, 1 - high quality)
+  {-d | --debug}
+    debug print output
+
+
+A: You can use the built-in osascript command to run an Apple Script that shows a notification, e.g.
+osascript -e 'display notification "Command done" with title "Your title here"'
+
+You can string it together with a simple semicolon, e.g.
+your-command ; osascript -e '....'
+
+
+A: (svn update . && ant clean build start && say done) || say error
+
+A: In Mac OS 10.8 and above you can send yourself Notification Center messages. There's a tool called terminal-notifier that you can download or install using Homebrew or Rubygems, e.g.:
+brew install terminal-notifier
+
+Check out https://github.com/julienXX/terminal-notifier for more on this tool.
+To simplify the common use-case of just caring about the fact of something in the terminal being done, add an alias to your .bash_profile:
+alias notifyDone='terminal-notifier -title "Terminal" -message "Done with task! Exit status: $?"' -activate com.apple.Terminal
+
+Or, incorporating Austin Lucas' answer, you can add a sound and icon badge with tput bel:
+alias notifyDone='tput bel; terminal-notifier -title "Terminal" -message "Done with task! Exit status: $?"' -activate com.apple.Terminal
+
+Then you can simply do:
+$ <long-running task> ; notifyDone
+
+Once the long-running task finishes you'll get a nice modal popup:
+
+When you click the notification, it will activate Terminal. If you go to System Preferences > Notifications > terminal-notifier and change the alert style to "Alerts", the notification will persist until you dismiss it.
+
+A: You could also use the build in say command for notification, e.g.: say "ant: build: done." See: man say in the terminal.
+
+A: I create a simple tool that does exactly this. https://github.com/vikfroberg/brb
+Installation
+Node.js needs to be installed: http://nodejs.org
+$ npm install -g brb
+
+Instructions
+$ sleep 3; brb
+
+
+A: I wrote ntfy for exactly this purpose. It is cross-platform and can automatically send notifications when long running commands finish.
+If you have Python's pip (most Linux distros and MacOS have it), here's how to install it and enable automatic notifications:
+$ sudo pip install ntfy
+$ echo 'eval "$(ntfy shell-integration)"' >> ~/.bashrc
+$ # restart your shell
+
+Check it out at http://ntfy.rtfd.io
+In addition to that, it also can:
+
+
+*
+
+*supress automatic notifications when the terminal is in the foreground (X11, iTerm2 & Terminal.app supported and enabled by default)
+
+*send cloud-based notifications (Pushover, Pushbullet, and XMPP) 
+
+*be used to send notifications when a process ends (not the aforementioned automatic support)
+
+*manually send notifications (good for use in scripts!)
+
+
+A: Use Growl.
+In the .dmg file, look for the extras, there's a growlnotify binary. Install it, something like in /usr/local/bin. Then you can use this command
+growlnotify --sticky --appIcon <icon> --message <message> -t <title>
+
+to show a popup, like that:
+
+
+A: As of Mac OS X Lion 10.7, Terminal has some new status indicators to help with issues like this:
+In tabs:
+
+
+*
+
+*Activity: an activity indicator (spinning progress indicator) is displayed when there's been recent output to the terminal. This enables you to see whether it is currently busy or has completed a long process. (Or, of course, you can use it to tell when it has begun producing output after silently performing work for a while.)
+
+*Unread: an ellipsis "…" is displayed to indicate new, unread text in background tabs. When you select the tab, the indicator is cleared.
+
+*Alert: a "bell" is displayed to indicate when a BEL has been written to background tabs or background windows. In addition, Terminal displays a red badge on the application icon, indicating the number of "unread" alerts/bells in all terminals. If Terminal itself is in the background, it also bounces its Dock icon when a bell is played.
+In minimized window Dock icons:
+
+
+*
+
+*Activity: activity is indicated by displaying the name of the foreground process.
+
+*Unread: unread text is indicated with an ellipsis.
+
+*Minimized terminal windows show live content in their Dock icons. This can be used to see whether there's activity, or even to determine what the terminal is doing, if the output you're looking for is identifiable (e.g., a "top" display is fairly easy to recognize even at small sizes). This is especially useful when Dock magnification is turned on or you have room for a large Dock.
+In addition, you could display something in the terminal to catch your attention (which would be visible even in minimized windows). For example:
+
+
+*
+
+*Display a large asterisk: banner \*
+
+*Invert the display: printf '\e[?5h'
+
+*Paint the display red: tput setab 1; tput clear
+
+*Sit in a loop, flashing the screen: while true; do printf '\e[?5h'; sleep 1; printf '\e[?5l'; sleep 1; done
+There are also escape codes for manipulating windows (move, set size, zoom, minimize, etc.). You could zoom the Terminal window, for example:
+printf '\e[9;1t'
+
+See "window manipulation" at http://invisible-island.net/xterm/ctlseqs/ctlseqs.html for details.
+Another approach is to use AppleScript to display an alert in a separate window:
+osascript -e 'tell app "System Events" to display alert "Build Completed" message "The checkout and build have completed."'
+
+
+A: I know I'm late to the question but I think there's a little missing piece that may be helpful. I've found that, while it's neat, having your terminal talk with you isn't exactly functional. What's better is something more subtile like this: 
+
+As Chris pointed out, Lion has added little notification badges when a BEL is thrown. You can throw it yourself this with the command: 
+tput bel
+
+So, if you're doing some work in the background and want a notification when it finishes you can try something like: 
+ping -c 5 www.google.com && tput bel &
+
+This runs the ping command as a background task (the hanging & accomplishes this) and has it throw a simple alert when it finishes. Historically BEL has been used to make that [horrible] hardware beep, however Lion has tastefully replaced that with the "invalid command" sound effect, a notification badge, and the terminal icon bouncing twice in the dock. 
+
+A: Here is my bash function (just put it anywhere in your ~/.bashrc or ~/.zshrc:
+watch(){
+  cmd=$@ # Somehow interpolate $@ directly doesn't work.
+  $@ && say 'Watch Completed!' && osascript -e "display notification \"Completed: $cmd\" with title \"Watch Alert\""
+}
+
+To use it: 
+watch echo 'hi there' 
+You can also customize the notification sound as documented here: https://apple.stackexchange.com/a/115373/9622
+
+A: My problem with sounds and modal windows is that I cannot tell where they come from.  I currently work with a bunch of spaces, and sometimes upwards of 20 terminal windows.
+My solution is portable to the unix side, and should work with anything that supports ansi escape sequences. This solution works with Snow Leopard, and will probably work with more ancient versions of terminal.
+Single line in .bash_profile
+function watch { $* ; echo -n -e "\033[41m" ;  echo $* DONE ;  date ;  echo -n -e "\033[0m" ; }
+
+Breaking that down:
+$* expands to the original command I want to watch.
+first escape sequence changes background color to red
+echo repeats the command (with red background, the word DONE.
+Running Date tells you when it finished.
+last escape resets the terminal to what it was.
+
+If you don't like red, google ascii escape codes background color.  Note that this does not change the whole screen red, but just anything output after the command has finished.
+
+A: iTerm2 has a built-in mechanism to get notifications but you have to install the Shell Integration.
+When you start a long-running command, select:
+Edit > Marks and Annotations > Alerts > Alert on next mark (⌥Option+⌘Command+A)
+
+When the command prompt returns you can select between:
+
+
+*
+
+*Show Modal Alert Box
+
+*Post Notification (example screenshot)
+
+
+
+
+A: On macOS Monterey, one can issue from the terminal or a shell script:
+osascript -e 'display notification "text" with title "text" sound name "default"'
+
+To allow such notification one must go to System Preferences > Notifications & Focus > Script Editor and select Allow Notifications and Alerts (display for three seconds) or Banners (display until closed). For silent ones, omit 'sound name "default"'
+
+A: Ubuntu ships the following alias in ~/.bashrc:
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+With this, you can then do things like:
+make; alert
+sleep 10; alert
+
+Perhaps there's an equivalent to notify-send in Mac OSX?  I've seen similar popup Windows in both Mac and Ubuntu.
+
+A: I made a script to solve this which is here. You don't need any extra software for this.
+Installation:
+brew install akashaggarwal7/tools/tsay
+Usage:
+sleep 5; tsay
+Feel free to contribute!
+
+A: I do that sort of thing all the time.  My command line might look like
+$ rm Gemfile.lock && bin/setup && bundle install --binstubs && say "All"; say "done"
+
+If the bin/setup and bundle install commands complete successfully, I'll hear the system/dictation voice say "All done". If either of the first two error out, then the && chain won't be followed, and all I'll hear is "Done".
+
+A: I run into this issue a lot, not only with shell commands but anywhere else I need a notification when some process finishes. I found this site that gives you a URL, that when hit, sends you a text message. So you can run your command as such
+<some command> && curl <url> and you'll get a text when it finishes. Its at https://www.comunicake.com
+
+A: As others have mentioned I use && say done since it's the most simple.
+But since you mentioned that you want to receive notifications on your phone, I'd recommend something we use at work - Nudge Notifier.
+It's pretty neat and can send Mac, Slack, and Discord notifications for terminal commands. Even commands running over ssh.
+Comes in handy when I'm out of earshot of my computer or just don't want to make obnoxious sounds at the office.
+

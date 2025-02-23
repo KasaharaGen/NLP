@@ -1,0 +1,123 @@
+Q: What are the advantages of Emacs for Mac OS X users? Over the past year or so I've seen a movement towards switching to Emacs on Mac OS X, often away from TextMate. While I understand the motivation for switching away from TextMate (TM2 is more or less vaporware), I don't really understand the appeal of Emacs. I recognize that it's an extremely powerful editor, but it does not integrate with the operating system very well, uses different key commands than most other applications, and has a heck of a learning curve.
+With a preponderance of other programmer's text editors on Mac OS X (BBEdit, Sublime Text, Xcode) and some promising upcoming ones (Chocolat, Kod) what is the appeal of Emacs to someone that does not live in a terminal and does not have the muscle memory for it (yet)?
+
+A: Answers to questions like this are likely to be subjective. I tend to disagree that Emacs.app does not integrate well in MacOS. I'm currently using regular Emacs.app from emacsformacosx.com (not Aquamacs) and a few lines in ~/.emacs can easily use familiar shortcuts, e.g. try
+(setq mac-option-modifier nil)
+(setq mac-right-option-modifier 'meta)
+(setq mac-right-command-modifier 'hyper)
+;; M-x to its usual meaning:
+(global-set-key (quote [343144]) (quote execute-extended-command))
+;;  M-p to its usual meaning:
+(global-set-key (quote [332412]) (quote next-history-element))
+
+Also shortcuts like cmd-O open the regular MacOS file dialog so no need to learn new shortcuts. Incidentally, several common MacOS shortcuts actually come from Emacs (e.g. C-a for beginning-of-line and C-e for end-of-line which are defaults in most MacOS apps like Safari or iWork).
+Main reasons why I use Emacs:
+
+
+*
+
+*Support for virtually any programming language, not just syntax highlighting but also styling, completion of identifiers, automatic indentation (just using TAB in emacs  keeps code clean and prevents a fairly good number of typos/mismatched parentheses etc)
+
+*org mode
+
+*Great support for editing/previewing LaTeX documents using AUCTex
+
+*Workflow compatibility with my desktop, which is a Linux computer
+
+*Powerful tools for software (and not only) development like magit, emerge
+
+*Amazing support in EmacsWiki
+
+A: IMO, if you have a UNIX background with previous experience with Emacs, it might make sense to "carry it forward" onto OS X.  As a new text editor, I personally don't think it makes sense.  Yes, it is a fully capable text editor and it can do everything, but as you've said, it does not integrate well into the OS, which for me is a major hurdle.
+I use vim on OS X because its my editor of choice on Linux (where I do much of the work that earns me money), however with that said, I've started learning and using BBEdit.
+
+A: Not really a proper answer, but there are some mac specific bindings in the Cocoa Emacs build that are useful.
+Emacs Cocoa Mac/OS X specific key bindings
+
+
+*
+
+*⌘ + & kill-this-buffer
+
+*⌘ + ' next-multiframe-window
+
+*⌘ + , customize
+
+*⌘ + - center-line
+
+*⌘ + ; ispell-next
+
+*⌘ + shift + : ispell
+
+*⌘ + shift + ? info
+
+*⌘ + shift + C popup-color-panel 
+
+*⌘ + shift + D dired
+
+*⌘ + shift + E edit-abbrevs
+
+*⌘ + shift + H do-hide-others
+
+*⌘ + shift + L shell-command
+
+*⌘ + shift + M manual-entry
+
+*⌘ + shift + S ns-write-file-using-panel
+
+*⌘ + shift + ^ kill-some-buffers
+
+*⌘ + ` other-frame
+
+*⌘ + a mark-whole-buffer
+
+*⌘ + c ns-copy-including-secondary
+
+*⌘ + d isearch-repeat-backward
+
+*⌘ + e isearch-yank-kill
+
+*⌘ + f isearch-forward
+
+*⌘ + g isearch-repeat-forward
+
+*⌘ + h ns-do-hide-emacs
+
+*⌘ + j exchange-point-and-mark
+
+*⌘ + k kill-this-buffer
+
+*⌘ + l goto-line
+
+*⌘ + m iconify-frame
+
+*⌘ + n make-frame
+
+*⌘ + o ns-open-file-using-panel
+
+*⌘ + p ns-print-buffer
+
+*⌘ + q save-buffers-kill-emacs
+
+*⌘ + s save-buffer
+
+*⌘ + t ns-popup-font-panel
+
+*⌘ + u revert-buffer
+
+*⌘ + v yank
+
+*⌘ + w delete-frame
+
+*⌘ + x kill-region
+
+*⌘ + y ns-paste-secondary
+
+*⌘ + z undo
+
+*⌘ + | shell-command-on-region
+
+
+A: You can use a OSX GUI Emacs in the form of Aquamacs which is configured to be more OSX like it its key commands and menus and integrates with the OS.
+One appeal of emacs is because emacs is mainly written in the language (e-lisp) that users can use to extend it there are a lot of scripts that add all sorts of functionality to the editor making it nearly as powerful as an ide. Even configuration is written in the same language so once you learn it you can modify anything you want.
+The other reason I use emacs is that it runs on several OSs (Windows, Linux, Solaris and OSX ) and so I don't need a different editor for each one as I would if I used BBEdit etc.

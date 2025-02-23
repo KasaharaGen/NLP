@@ -1,0 +1,41 @@
+Q: How do I force homebrew to update installed software? I have pianobar installed and I'm trying to update it using brew update pianobar. I also tried brew update pianobar --force but that didn't have any effect. It says that I have local changes, but I'm not sure how to tell it to just overwrite these.
+From http://github.com/mxcl/homebrew
+ * branch            master     -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by merge:
+    Library/Formula/android-ndk.rb
+    Library/Formula/android-sdk.rb
+    Library/Formula/center-im.rb
+    Library/Formula/putty.rb
+    Library/Formula/python.rb
+    ... (lines removed) ...
+    Library/Formula/upx.rb
+    Library/Formula/vimpager.rb
+    Library/Homebrew/cmd/doctor.rb
+Please, commit your changes or stash them before you can merge.
+error: The following untracked working tree files would be overwritten by merge:
+    Library/Formula/tth.rb
+Please move or remove them before you can merge.
+Updating 45bc7ad..36f4400
+Aborting
+Error: Failed while executing git pull http://github.com/mxcl/homebrew.git master
+
+
+A: As @Felix said, use upgrade not update.
+If the problem comes from your dirty git tree and you just want to forget about your modifications, type git reset --hard HEAD before upgrading.
+
+A: I don't know why this happens with Homebrew when you don't do anything to mess with it, but here's how I fixed it:
+
+
+*
+
+*Change to your Homebrew cellar directory cd `brew --cellar`
+
+*Reset git repository git reset --hard HEAD
+
+*Upgrade pianobar, at last! brew upgrade pianobar
+FYI, brew update will update Homebrew to the latest version, so you may want to do that before step 3.
+
+A: This is a general answer, not specific to your pianobar problem.
+To update installed software, first update brew: brew update
+and then upgrade the installed software: brew upgrade
+To prevent some software from being upgraded, do brew pin YOUR-PACKAGE-HERE

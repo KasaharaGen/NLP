@@ -1,0 +1,47 @@
+Q: How to disable CMD+Q combination? I am using WinOS at the office and MacOS at home. But I am more experienced on WinOS. While i am browsing (via Firefox), I use ⌘ CMD+Q accidentally to write "@" mark because of WinOS and keyboard habits. So, the browser quits and I lose all what I've written.
+Is there a way to constrain this key combination on MacOS or do I have to look for it on Firefox? (I know, the best way is adapting MacOS but mostly I am working on WinOS.)
+
+A: Unfortunately, Firefox (at least the 3.6 version I experimented with) does not disable the command shortcut for Quit when you change it in System Preferences.
+I think the quick and easy fix for this is to add ⌘Q as a global shortcut to something else innocuous. In my experiments, I found this to work:
+
+
+*
+
+*Open System Preferences.
+
+*Click on the Keyboard pane.
+
+*Click Keyboard Shortcuts tab.
+
+*Click Exposé & Spaces shortcuts in the left side list.
+
+*Under "Exposé" change the shortcut for "Desktop" to ⌘Q
+
+
+Now when you accidentally hit ⌘Q, your desktop will magically and amusingly appear reminding you of your folly. Hit ⌘Q again and you're back exactly where you were.
+As a sidenote, after a while you may want to change this back after you "unlearn" your behaviour. ⌘Q, the Mac equivalent to "ALT-F4" has been the standard shortcut since the introduction of the Macintosh, and like the other "standard" shortcuts ⌘W,⌘Z,⌘C,⌘V and so on, it's best to learn them to ease use of other Mac computers or when you upgrade.
+
+A: Here's how to change that particular shortcut for Firefox:
+
+
+*
+
+*Open System Preferences. This is in the Applications folder.
+
+*Go to the Keyboard pane, and click the Keyboard Shortcuts tab.
+
+*Click the [+] button near the bottom.
+
+*Select Firefox from the Application menu. For Menu Title, type 'Quit Firefox' (without the quotes)
+
+*For the Keyboard Shortcut, push a key combination that you're not likely to hit by accident (control-q, for example).
+
+*Open Firefox. Now, cmd-q does nothing (you can quit with ctrl-q, or whatever you set it to).
+
+
+Hope this helps.
+
+A: I'm on macOS Ventura and I need to remove the “Close Window” shortcut Cmd+W, as I often accidentally close an app.
+The way to do it is to find out the exact specific command in the menu bar. In my case, it is called “Close”.
+Then go to System Preferences > Keyboard > Shortcuts > App Shortcuts then click + to add a new shortcut for the app. Next, reassign an obscure keyboard shortcut (for me Ctrl+Option+Cmd+W).
+Reference: How to disable COMMAND+Q for certain applications

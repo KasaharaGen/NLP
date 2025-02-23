@@ -1,0 +1,11 @@
+Q: Matlab on the command line error in Lion I constantly get this warning in Matlab, which I run on the command line:
+
+This process is attempting to exclude an item from Time Machine by path without administrator privileges. This is not supported.
+
+What can I do to prevent this?
+
+A: It is reported here, they claimed that the issue is for all version of Matlab on Mac OS X Lion. So I guess you could simply use sudo to get this problem done. And wait with more patient for a fix.
+
+A: Start Matlab as administrative user once so it can do the exclusion.
+
+A: Running sudo matlab once worked for me.  This assumes that /Applications/MATLAB_R20???.app/bin has been added to PATH.

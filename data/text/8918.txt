@@ -1,0 +1,18 @@
+Q: MySQL does not start on startup In the System Preferences panel, I have the MySQL there.
+
+
+I chose it to start up every time my Mac starts up, however this doesn't work, I have restarted MySQL many times, but it will not start up at all - which I require to start up manually.
+How can I fix this?
+
+A: There should also be logs in /usr/local/mysql/data. You'll have to "sudo su" from a Terminal session in order to see that directory. Check for any errors being reported in a filed named like this: "Your-computer-name.local.err"
+Report back whatever you see that doesn't make sense.
+You can also check out the startup script to make sure there are no errors. Find that here: /Library/StartupItems/MySQLCOM/MYSQLCOM
+
+A: Starting MySQL server automatically actually means executing the /usr/local/mysql/bin/mysqld dæmon on startup. If MySQL won't do it for you, it's easy enough to add the necessary instructions yourself.
+For this, we'll add a launchd job descriptor to the /Library/LaunchDaemons folder. The procedure is very well described in this Mac OS X Hints article.
+
+Note: I would have liked to copy and edit it here, since it adds some details that are unnecessary in this case, but I couldn't find license information about Mac OS X Hints' content, so I'll simply link.
+
+A: Use terminal and paste this snippet:
+sudo launchctl load -w /Library/LaunchDaemons/com.mysql.mysqld.plist
+

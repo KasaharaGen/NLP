@@ -1,0 +1,54 @@
+Q: Is there a way for Spotlight or Launchbar or Quicksilver or similar to just return matching folders not files? I frequently need to just get a finder window up that's a ton of folders deep.
+There's only so many favorites you can put in the finder sidebar.
+I'd happily configure a dedicated launcher to just get me to folders by name and use one of the others for their normal purpose.
+I just can't figure out if any of them can be made to do this.
+
+A: The fastest way using spotlight is to add kind:folder to the search term in the spotlight field.
+
+You can use booleans, metadata tags like kind:music or date:yesterday and more as described in Specifying criteria in the Spotlight search field
+I always forget about these and instead use the search window to build up a boolean criteria rather than use the default spotlight menu search (where all the other data detectors compete to provide you relevant matches)
+Instead of command+space try option+command+space
+Then click the circle + on the right by Save and override the "Any" with "Folder"
+
+I don't know a way to automate or save this further as the default, but it's a way that will work on all Macs.
+
+A: You can set Spotlight to list folders at the top of the list in the Spotlight preferences in System Prefs. You can also uncheck the other items in the list so only folders will show up in the results.
+
+
+A: I just tested this on my Mac running Snow Leopard and Quicksilver and it works the way I'd expect you'll like (with a minimum of fuss).
+
+
+*
+
+*Create a folder somewhere, and name it something meaningful (I created ~/Documents/launchfolders)
+
+*Put folders and/or shortcuts in there to the folders you want searchable.
+
+*Open Quicksilver and go to the Catalog
+
+*Click on the '+' icon to add a new item to the catalog, select 'File & Folder Scanner'
+
+*Browse to the folder you created and hit ok
+
+*Click the info 'i' icon at the bottom right corner of the catalog window. It should open up a drawer window with 3 tabs: 'Source Options', 'Contents' and 'Attributes'. 
+
+*On the 'Source Options' tab, select 'Folder Contents' from the 'Include Contents' dropdown
+
+*Open 'Contents' & hit the refresh button next to the 'i' button & watch the window fill up and list the folders/shortcuts you put in your other folder.
+
+*Activate quicksilver (ctrl+space on my computer) and start typing in the name of one of your nested folders. Viola, you can pull up the directories. 
+
+
+If you don't want to hassle with curating a folder of shortcuts and you'd be ok with sticking a lot of items in your Quicksilver index, you can just do a File & Folder Scanner of any folder on your HD. You can even set the depth of the search on the 'Source Options' tab.
+
+
+A: Alfred can be configured to show only certain result types. I believe that its results will always include applications, but in my experience, the directories will percolate to the top after a few keystrokes.
+
+A: Alfred 0.9.9 has extensions now. One kind of extension that it supports is "Search Filters". For example, a filter that searches for only PDF files, or like in your case, a filter that searches for only folders.
+It is very easy to create such a "folders" extension. Like this:
+
+You can download this extension here.
+
+A: Find Any File
+is an app that has this function.
+

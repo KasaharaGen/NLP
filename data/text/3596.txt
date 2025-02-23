@@ -1,0 +1,131 @@
+Q: How to send an email from command line? How to send an email from command line or script? I want to be able to run the script programmatically by passing the receiver and the message.
+
+A: You may want to check out postfixconf that enables and configures OS X to send emails from the command line (using your input). 
+It is based on the postfix configuration that are well documented on the web here, here and here.
+
+A: There are two programs that I am aware of which will easily allow you to configure your Mac to send email from the command line.
+I have written up HOWTOs for both of them:
+
+
+*
+
+*mailsend
+
+*msmtp
+Of the two, I suggest msmtp.
+Configuration is complicated enough that I'm not sure if I should replicate all of the steps here, but I will mention that if you use
+Homebrew
+you can install msmtp using
+brew install msmtp --with-macosx-keyring
+Then the rest is just a matter of setting up the related configuration files
+The first is /usr/local/etc/msmtprc
+# Begin msmtprc
+# Set default values for all following accounts.
+defaults
+tls on
+logfile ~/.msmtp.log
+
+# A first gmail address
+account example@gmail.com
+host smtp.gmail.com
+port 587
+protocol smtp
+auth on
+from example@gmail.com
+user example@gmail.com
+tls on
+tls_starttls on
+
+# this next line is crucial: you have to point to the correct security certificate for GMail.
+# If this doesn't work, check the mstmp documentation
+# at http://msmtp.sourceforge.net/documentation.html for help
+#
+# This next line should all be on one long line:
+tls_trust_file /path/to/Thawte Roots/Thawte SSLWeb Server Roots/thawte Premium Server CA/Thawte Premium Server CA.pem
+
+# Set a default account
+# You need to set a default account for Mail
+account default : example@gmail.com
+
+# end msmtprc
+
+Note that tls_trust_file line should point to wherever you have downloaded and installed the certificates from https://www.thawte.com/roots/index.html.
+I put mine in ~/Dropbox/Thawte Roots so that I can have it on all of my Macs.
+Then you need a ~/.mailrc file to say where the msmtp binary is located. If you use brew it will be /usr/local/bin/msmtp so the file would look like this:
+set sendmail="/usr/local/bin/msmtp"
+
+The last but crucial step is making sure your Keychain has the information exactly in the format that msmtp will expect it:
+
+I think that covers most of the details. See http://www.tuaw.com/2010/05/04/msmtp-a-free-tool-to-send-email-from-terminal/ if you want a few more specifics.
+
+A: mail -s subject someone@example.com 
+type your message, press Ctrl+D to finish
+
+A: The most basic way to send mail is trough a telnet session with the smtp server of your provider/network. After you contacted the server and after every command the server will answer if it accepts the command with something like "250 OK", or if not with an error message.
+All details can be found in RFC2821 - Simple Mail Transfer Protocol, Google for it.
+This basic way is great for testing why something goes wrong sending mail, but I think it's quite complicated to script it full proof.
+First get an command-line interface on your computer, by starting Terminal. Then continue with the following commands, one after one.
+Open a telnet session to port 25 of the smtp server of your provider/network
+telnet name_or_ip_of_smtp_server 25
+
+say hello plus the internetname of your provider/network, like abc.com
+EHLO name_of_your_network
+
+a from=return address is needed, the < and > are part of the command
+MAIL FROM:<your_email_adress>
+
+give one or more destinations, the < and > are part of the command
+RCPT TO:<destination_email_address>
+RCPT TO:<second_destination_email_address>
+RCPT TO:<etc_destination_email_address>
+
+tell the server you want start sending data
+DATA
+
+now the server should answer you can start sending your mail and goes into data-mode
+your data
+more data
+etc
+
+now finish data with a dot as only char on a line
+.
+
+the server goes back to command-mode so you can quit
+QUIT
+
+
+A: This worked for me, it was written with Lion in mind but works for Mountain Lion. Btw this is using Gmail so if you're not...
+You don't need to download anything! (just setup a gmail account)
+http://www.anujgakhar.com/2011/12/09/using-macosx-lion-command-line-mail-with-gmail-as-smtp/
+Configure Postfix for Gmail SMTP Edit file /etc/postfix/main.cf
+sudo vim /etc/postfix/main.cf
+
+and add in the following below the commented out relayhosts :-
+relayhost = [smtp.gmail.com]:587
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_use_tls = yes
+smtp_sasl_mechanism_filter = plain
+
+Generate sasl_password if not already exists
+sudo vim /etc/postfix/sasl_passwd
+
+and enter in the following:-
+[smtp.gmail.com]:587 username@gmail.com:password
+
+Run the following commands
+sudo chmod 600 /etc/postfix/sasl_passwd
+sudo postmap /etc/postfix/sasl_passwd
+sudo launchctl stop org.postfix.master
+sudo launchctl start org.postfix.master
+
+And you are done….
+Now, you should be able to send emails from within the command line e.g. to send the contents of a directory as a tree to an email address
+tree /var/www/somefolder | mail -s "contents" your@yourdomain.com
+
+
+A: mtcmail is another option: http://www.macupdate.com/app/mac/33505/mtcmail-cli.
+[Ignore this additional text. Added because: body must be at least 30 characters; you entered 27.]
+
+A: Since it's Unix based, you can use sendmail command.

@@ -1,0 +1,62 @@
+Q: Can I change the behavior of the Home and End keys on an Apple Keyboard with Numeric Keypad? I just bought an "Apple Keyboard with Numeric Keypad", then I connected it to my Macbook Pro running Lion.
+But the home and end key under the F14 key doesn't work as I expected. Say in "Pages", the home key doesn't bring the cursor to the beginning of the line, while the end key takes you to the bottom of the page.  
+Does anyone know how to re-map the home/end key?
+
+A: One option is to create ~/Library/KeyBindings/ and save a property list like this as ~/Library/KeyBindings/DefaultKeyBinding.dict:
+{
+  "\UF729"  = moveToBeginningOfLine:;
+  "\UF72B"  = moveToEndOfLine:;
+  "$\UF729" = moveToBeginningOfLineAndModifySelection:;
+  "$\UF72B" = moveToEndOfLineAndModifySelection:;
+}
+
+Quit and reopen applications to apply the changes. Note that DefaultKeyBinding.dict is not supported by some applications like Xcode or Firefox.
+In Terminal you can assign home (↖) to control-a and end (↘) to control-e from Preferences > Settings > Keyboard. That will leave you with no key combinations to scroll to the top or bottom of a window though.
+It might be easier to just use the default keybindings. In most native text views:
+
+*
+
+*control-A or option-up goes to the beginning of a paragraph
+
+*control-E or option-down goes to the end of a paragraph
+
+*command-left goes to the beginning of a line
+
+*command-right goes to the end of a line
+
+
+A: Another option is to enable the "Use PC Style Home/End" setting in Karabiner (formerly KeyRemap4MacBook):
+
+The setting is defined in Resources/include/checkbox/for_pc_users.xml.
+You can also save a file like this as ~/Library/Application Support/KeyRemap4MacBook/private.xml:
+<?xml version="1.0"?>
+<root>
+  <appdef>
+    <appname>HOMEENDIGNORE</appname>
+    <equal>com.microsoft.Word</equal>
+    <equal>com.microsoft.Powerpoint</equal>
+    <equal>com.microsoft.Excel</equal>
+    <equal>com.vmware.fusion</equal>
+    <prefix>com.vmware.proxyApp.</prefix>
+  </appdef>
+  <item>
+    <name>homeend</name>
+    <identifier>homeend</identifier>
+    <not>HOMEENDIGNORE</not>
+    <autogen>__KeyToKey__ KeyCode::HOME, ModifierFlag::NONE, KeyCode::A, VK_CONTROL</autogen>
+    <autogen>__KeyToKey__ KeyCode::END, ModifierFlag::NONE, KeyCode::E, VK_CONTROL</autogen>
+    <autogen>__KeyToKey__ KeyCode::HOME, VK_SHIFT | ModifierFlag::NONE, KeyCode::A, VK_CONTROL | VK_SHIFT</autogen>
+    <autogen>__KeyToKey__ KeyCode::END, VK_SHIFT | ModifierFlag::NONE, KeyCode::E, VK_CONTROL | VK_SHIFT</autogen>
+  </item>
+</root>
+
+Then open the KeyRemap4MacBook application, press the ReloadXML button, and enable the setting. See https://pqrs.org/macosx/keyremap4macbook/xml.html.en for more information.
+
+A: Since this answer ranks well in search engines, I want to explain how I did it with the latest version of Karabiner.
+The "Use PC Style Home / End" setting has to be downloaded from their website. You will want to go to "Complex Modifications", then "Add Rule" and then choose "Import more rules from the Internet". It will take you to this website: https://pqrs.org/osx/karabiner/complex_modifications/ where under "Emulation Modes" you can find "PC-Style Shortcuts". Once you click "Import into Karabiner-Elements", you can just activate it and are ready to go 
+You will only need to choose "Add rule" and find the "Use PC Style Home / End" setting right there.
+
+
+A: I would suggest you the awesome keyremap4macbook, it's free amd despite the name it works on any mac (not necessarily macbooks) and here you can find the easiest way to change the default behaviour of home/end buttons to work like they should (IMO)
+
+A: I followed this blog post and it did the "home" and "end" key bindings as well as a few other userful adjustments. 

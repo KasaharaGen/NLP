@@ -1,0 +1,13 @@
+Q: For some reason I can't open files on drive I can't open the files on certain drive that is formatted as ntfs. I have Tuxera installed however. Here is an image on how they look:
+The file with a lock is password protected as it should.
+
+Any suggestions on how to fix this? For some reason the files I can't open are somehow transparent.
+
+A: First thing, make sure that it's no locked and that you have the correct permissions :
+
+If you have extended attributes you can get rid of those by doing the following :
+1- Do ls -l@, under the file it will give you something like "com.apple.FinderInfo". Copy that
+2- Do xattr -d com.apple.FinderInfo path/to/file
+If nothing works then your last option is to sudo it :
+sudo open path/to/file
+Also see if you can open it using a mac that those not have Tuxera installed on it.

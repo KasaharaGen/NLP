@@ -1,0 +1,18 @@
+Q: How to ensure that all networking goes through my ssh proxy? I have a network location set up to ssh tunnel to my server.  For now, just ssh -D type stuff.  This works fine.  I set up the tunnel from within my .screenrc.  In other words, "screen" is the trigger to connect to my proxy.  Before I type that I should not be able to go online.  However, lynx and ping go through without problems. tunnel or not.  This is disquieting.  
+How can I ensure all network traffic uses my Network settings, and not it's own?  The only way packets should be leaving is via my DynamicForward port.
+EDIT:  The apple specificity comes with the Network settings, either accessed via System Preferences, or via networksetup. 
+OS X has both ipfw, and the application level firewall.  
+The appfirewall does not seem to stop things from going out.  It stops connections to the system.
+Ipfw does take precedence over the application firewall, apparently.  
+My SOCKS5 proxy is set up on a port, and I then give  that  port to in a network Location as the SOCKS5 proxy.  This works fine.  As I see it, programs should not get a choice about using the proxy, and indeed, if I turn it off, browsers can not access the web.
+Linux and *BSD's do not have the various ( quite nifty ) things that OSX has in this regard. For them, it would be ipchains and ipfw, respectively.  
+I think I'm missing something.  It should just work.  
+
+A: Assuming that ssh is running on localhost (or another machine on the local subnet), the easiest thing to do is to shut down your routes so that nothing can get outside.  netstat -nr will show you your current routes.  Mine looks like this:
+Internet:
+Destination        Gateway            Flags    Refs      Use  Netif Expire
+default            192.168.0.69       UGSc       93     4438    en1
+
+192.168.0.69 is my default route.  If I take that route out:  route delete default 192.168.0.69 then I cannot get to any machine not wired to my network.  Once screen sets up your proxy, you should have access back.
+
+A: You may want to have a look at man networksetup to see if it could give you what you are looking for.

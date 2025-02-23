@@ -1,0 +1,51 @@
+Q: How to auto connect to VPN upon login/boot? So far, I've been using the build-in VPN tool of Lion.
+I would like to auto connect my VPN whenever I'm connected to the internet.
+Is it possible to auto connect my VPN whenever I'm connected to the internet with the build in tool?
+If auto connect is not possible with the build in tool, can you provide me with an alternative that is free?
+
+A: Another way to go about this, is by creating a Configuration Profile (using Apple Configurator). Using this tool, recreate your VPN configuration and save the file. After you've created the file, open it up in a text editor and look for the following:
+<key>VPNType</key>
+<value>(...)</key>
+
+Add the following below:
+<key>OnDemandEnabled</key>
+<integer>1</integer>
+<key>OnDemandRules</key>
+<array>
+    <dict>
+        <key>Action</key>
+        <string>Connect</string>
+        <key>InterfaceTypeMatch</key>
+        <string>WiFi</string>
+    </dict>
+    <dict>
+        <key>Action</key>
+        <string>Connect</string>
+        <key>InterfaceTypeMatch</key>
+        <string>Cellular</string>
+    </dict>
+</array>
+
+Now after you've installed this profile, a checkbox "Connect on demand" should be shown in the "Network" system preferences. Now macOS will keep your connection alive. Bonus feature: you can also add specific rules about when the VPN should connect or disconnect, depending on which Wifi network you're connected.
+See Configuration Profile Reference on Apple's Developer Site for all on-demand rules. And see also the strongSwan wiki where some examples are shown.
+
+A: Apple Script provides a good solution:
+on idle
+    tell application "System Events"
+        tell current location of network preferences
+            set myConnection to the service "VPN University"
+            if myConnection is not null then
+                if current configuration of myConnection is not connected then
+                    connect myConnection
+                end if
+            end if
+        end tell
+        return 120
+    end tell
+end idle
+
+
+
+
+
+

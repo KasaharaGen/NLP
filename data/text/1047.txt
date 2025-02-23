@@ -1,0 +1,55 @@
+Q: Is there a good command-line ID3 tool for OS X? Anyone know of a command-line* ID3 tool, with support for ID3v2, that you can get working on Mac OS X with reasonable effort? It should support both reading and writing tags.
+(* I want to be able to call it e.g. from some Python scripts, so a GUI tool won't do.)
+The id3tool utility is otherwise good, but doesn't support ID3v2 (and thus doesn't play that well with iTunes). I had to compile it from source, but that was pretty straightforward on a Mac with Xcode & developer tools (including, notably, a C compiler). Anyway, I'd especially like something with similar command-line options as id3tool. Here's an example of tagging one file:
+id3tool -t "Song Title" -r Artist -a "Album Name" -c 2 track-02.mp3
+
+
+A: The python module Mutagen is shipped with the command-line ID3 tool named mid3v2 replacement for id3lib's.
+From the usage documentation : 
+
+You can set the value for any ID3v2 frame by using '--' and then a frame ID.
+  For example:
+          mid3v2 --TIT3 "Monkey!" file.mp3
+  would set the "Subtitle/Description" frame to "Monkey!".
+
+
+A: If you have Homebrew installed (highly recommended), you can just do:
+brew install id3lib
+
+This installs several id3 command-line tools, including id3tag, id3convert, id3cp and id3info.  No need for python or perl scripting; just use regular shell commands.
+Usage: id3tag [OPTIONS]... [FILES]...
+   -h         --help            Print help and exit
+   -V         --version         Print version and exit
+   -1         --v1tag           Render only the id3v1 tag (default=off)
+   -2         --v2tag           Render only the id3v2 tag (default=off)
+   -aSTRING   --artist=STRING   Set the artist information
+   -ASTRING   --album=STRING    Set the album title information
+   -sSTRING   --song=STRING     Set the title information
+   -cSTRING   --comment=STRING  Set the comment information
+   -CSTRING   --desc=STRING     Set the comment description
+   -ySTRING   --year=STRING     Set the year
+   -tSTRING   --track=STRING    Set the track number
+   -TSTRING   --total=STRING    Set the total number of tracks
+   -gSHORT    --genre=SHORT     Set the genre
+   -w         --warning         Turn on warnings (for debugging) (default=off)
+   -n         --notice          Turn on notices (for debugging) (default=off)
+
+
+A: You may want to try id3v2. It's based on the id3lib that Huyz mentioned, but seems to be a better command line tool than those with id3lib. It easily dumps the ID3V2 tags from iTunes produced MP3s, but not iTunes produced M4A files (as with Apple Lossless).
+If you need M4A files, another option is ffmpeg. Its ffprobe command line tool prints out metadata in the files and I believe you can write metadata via ffmpeg. It works with both MP3 and M4A files produced by iTunes. ffprobe may not show all metadata; mp4v2 is another good option.
+All three programs are easily installed via Homebrew. Right now (Jan 2012) ffmpeg requires gcc to compile, so brew install --use-gcc ffmpeg.
+
+A: Having had various 'abort trap' type issues with id3v2 I discovered eyeD3, which is a python module also existing as a command line tool. It seems to be more recently updated than some of the other programs mentioned above.
+
+A: There is always AppleScript. I'm not a big fan of it, but iTunes is scriptable and you can manipulate all the mp3 tags from there. You can invoke Applescript from the command line using osascript.
+
+A: This site: http://dougscripts.com/itunes/
+has many good command line scripts and tools that layer on top of itunes to do things with your music library.  Some of them may do what you want.  Some of the tools are free and some are licensed.
+
+A: since you're comfortable with cli and Python, I can recommend some Perl modules on CPAN.  MP3::Tag, (as well as MP3::Tag::ID3v1 and ::ID3v2 and ::Utils), MP3::Info, MP3::ID3Lib are all available for reading and manipulating ID3 tags.
+If you go to search.cpan.org and search for "MP3", you'll find a world* of options!
+(* Where "world" is a small, limited set of options...)
+
+A: This old thread at Mac OS X Hints looks like it might be a good place for you to start. It's from 2003, so I'm not sure if the tool they're talking about is still being developed. You also may have to compile it yourself.
+
+A: There's an OS X compatible version of the id3lib library available here on GitHub.  It claims to support both ID3v1 and ID3v2.

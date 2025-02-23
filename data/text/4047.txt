@@ -1,0 +1,31 @@
+Q: How do I determine which app is trying to invoke Google Chrome? For some reason, Google Chrome was randomly starting up on my system. I uninstalled it, and now I occasionally get the "Choose Application" dialog, which asks "Where is Google Chrome.app?"
+How can I determine which application on my machine is trying to invoke Google Chrome?
+(Note that I have "Google Chrome Canary" installed, and it is set as my default web browser).  
+
+A: Two places come to mind immediately.
+
+
+*
+
+*Start up Safari and make sure Google Chrome isn't the default browser.
+
+*Clean up your launch services database.
+
+
+Since you have already done #1 - redoing it won't likely matter but your safari pref file storing this setting could be corrupt.
+Item 2 needs more explanation - Use Finder to right click on a text or html file - if you still see Chrome in the Open With... dialog you might want to manually rebuild the launch services database. 
+
+A: man iosnoop
+
+man execsnoop
+
+man opensnoop 
+
+Also possible to get a hint of what's going on running
+launchctl bslist -j
+
+as root, which will show you launchd jobs, -j tells you which job started it, 
+and 
+launchctl bstree
+
+Which shows the jobs running, and under which domain they are running under.

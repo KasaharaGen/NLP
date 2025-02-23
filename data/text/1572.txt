@@ -1,0 +1,32 @@
+Q: Using international phone numbers on iPhone edit: 1 accepted answer but still no (good) solution! :(
+
+
+*
+
+*In my previous phone carrier I could just dial +55 11 99883655 and it would just work.
+
+*Now I moved to a new carrier and it doesn't work anymore! When I dial the same international number it keeps saying the number isn't formatted correctly.
+How can I get my iPhone to understand international numbering back again?
+I've got over 100 contacts with numbers stored in this format already, and I want to keep them that way.
+At this point I would be happy with any simple app that would just enable me to use my stored info the way it is to strip the +5511 part and place a call. Or some tweaking to allow proper and simple editing of the phone number on Phone.app would be very welcomed!
+
+A: You are in Brazil (so am I), so you can't just dial the "+" in front of the country code. You need to dial "00" and the CSP (the long distance operator code).
+What happens is that some operators (Oi and Claro, for sure) have a JavaCard application in the SIM card that intercepts every call you place and before send the dialed number to the network verifies if you are in a situation that you should need to add a CSP or not, and adds the operators own CSP in that case, if there isn't one in the dialed number.
+So, for example, if I'm in Rio (area code 21) and dial a call to (24) 9999-8888, which is a long distance call, the application will add "0"+  to my number. The same if I'm in Petrópolis (area code 24), since my MSISDN is from Rio.
+On the other side, if I register my phone numbers using the international notation, the application is smart enough to remove the "+" and the country code and add the "0" and the CSP, unless it realizes that you're roaming abroad.
+Besides Oi and Claro, I would guess that Vivo also uses an application like that, since it buys SIM cards from the same manufacturers. 
+TIM has a different application in their SIM cards that modifies the phone numbers in your SIM card to add the CSP 41. It is a lame solution and I regret every time I have to use a TIM mobile.
+If it is enough for you to have an application like TIM's, there are at least two in the brazilian App Store that will edit the iPhone's Address Book:
+
+
+*
+
+*[Minha Operadora](http://itunes.apple.com/br/app/minha-operadora/id401640256?mt=8)
+
+*[DDD Fácil](http://itunes.apple.com/br/app/ddd-facil/id381994693?mt=8)
+
+
+I haven't tested either, so I can't offer advice on how well they work.
+Otherwise, you will probably have to go back to an operator that offer that application in the SIM card (there is no way for a user to add apps to their SIM card by themselves).
+
+A: Usually adding two 0 at the beginning works. For example: 0055 11 99883655

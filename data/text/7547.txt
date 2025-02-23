@@ -1,0 +1,14 @@
+Q: How do I save ftp.plist file when using sudo nano? I edited ftp.plist by using sudo nano in terminal, and I saved by control + O but after reboot, it changed again. How can I save the file?
+
+A: In Finder navigate to /System/Library/LaunchDaemons/ftp.plist
+
+
+*
+
+*File > Get info Command + i
+
+*Tick the "Locked" box
+
+
+The file should not change now when you reboot.
+

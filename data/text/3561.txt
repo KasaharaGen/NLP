@@ -1,0 +1,41 @@
+Q: Black screen when installing Boot Camp? I recently did a complete wipe of my late 2009 MBP and restore using a Time Machine backup, so I would have uninterupted space at the end of the drive for creating a Boot Camp partition. The Boot Camp tool runs fine now, so I insert my Windows 7 DVD when it tells me to, reboot the computer, it appears to start running off the DVD… but then I just see a black, blank screen. I left it in that condition for over half an hour with no changes. There shouldn't be anything else weird with my system.
+Has anyone else experienced this? Apple's website has a downloadable fix for an iMac attempting to install Windows 7, with the same symptoms. I tried that fix even though I have a different Mac, but it didn't work either. Help?
+
+A: Yep, this is something that can happen, and there are two Apple articles to address it.
+Boot Camp: iMac displays a black screen during installation of Windows 7
+http://support.apple.com/kb/TS3173
+
+
+*
+
+*Download the autounattend.xml and updated graphics drivers 
+
+
+Boot Camp: Start up to black screen after installing Windows
+http://support.apple.com/kb/TS2600
+
+
+*
+
+*Reset PRAM
+
+*Reset SMC
+
+
+You mentioned that you did already download a fix from Apple, so I am assuming you may have followed the first article already, and if that is the case there are some instructions floating around the net to try to resolve the graphics issues by removing an ATI driver pre-reboot. 
+
+
+*
+
+*Run the Boot Camp Assistant in OS X as normal and create a partition when asked, then insert your Windows 7 disc to reboot and begin the process proper.
+
+*Windows 7 requires the NTFS file system, so once in the installer just select your new partition (labelled BOOTCAMP), click on Drive options (Advanced) and choose to format it. Then select the newly formatted partition and continue.
+
+*Windows 7 will begin installing, and once it gets almost to the bottom of its checklist, it’ll try to reboot. Now, if you leave it here, you’ll get so far and see the black screen. Any further attempts to reboot will bring you to the same dead end.
+
+*Instead, restart and press a key to boot from the Windows 7 disc when prompted. Rather than running the installation again, choose the little option at the bottom to Repair your computer. Decline any suggestions that pop up until you see a list of options with Command Prompt at the bottom. Choose that option.
+
+*At the Command Prompt, type DEL C:\WINDOWS\SYSTEM32\DRIVERS\ATIKMDAG.SYS to delete the default ATI driver, then close the window and reboot.
+
+*This time, Windows should successfully initialise a more appropriate display driver, allowing you into the desktop. From here insert your OS X disc to install the relevant hardware drivers as you normally would, then run Windows update to clear up any leftovers.
+

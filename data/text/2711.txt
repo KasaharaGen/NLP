@@ -1,0 +1,8 @@
+Q: Automator choose finder folder and run shell script I've got a simple shell script that I would like to incorporate into an automator workflow. I just need to double click the application , pick a finder folder and run the command. At the moment it is running in my default user directory. I've found how to do this as a service, but I'd like it to work as an application.
+How can I get to run in the chosen folder? Optionally a drag and drop onto the application would be nice as well.
+
+
+A: You can simply pass the selected folder to the shell script by selecting "as argument" from the "pass input:" dropdown-menu and then adding "$@" at the point in your script where you want the folder path to be used. 
+To use drag&drop, just remove the "ask for finder items" action and let the "run shell script" receive the input from "application can receive files and folders as input".
+
+A: The way I do this is define the path to a variable, then open up the workflow in a text editor, search for the variable, copy the string, then use $(string) anywhere in the workflow whatsoever (including shell scripts).

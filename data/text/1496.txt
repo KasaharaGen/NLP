@@ -1,0 +1,23 @@
+Q: In Activity Monitor, how can Swap Used be more than Page Outs? I am trying to understand the relationship between Page Outs and Swap Used as displayed in Activity Monitor.  Currently, Activity Monitor shows:
+Page outs:  1.6 MB
+Swap used:  8.1 MB
+How can there be more swap used than the amount paged out?
+
+A: My understanding is this:
+
+
+*
+
+*Program needs access to some data.  Attempts to do so, and fails, due to lack of RAM.
+
+*OS takes control.  There is a page-out operation, where physical RAM is copied to swap.
+
+*There is a page-in operation, where the required data is copied to RAM.
+
+*OS gives control back to program.
+
+*Program tries again, finds its data.
+
+
+OS's are getting smart about how they choose what and when to to page in/out.  So the operation counts may not be the same, and the swap space may perhaps be in use without there being page outs.
+Unless of course I'm backwards on what a page-in/page-out operation is.  In which case your question makes perfect sense.

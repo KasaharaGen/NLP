@@ -1,0 +1,31 @@
+Q: What is the difference between a "sparse disk image" and a "sparse bundle disk image"? What are the differences between sparse and sparse bundle disk images?
+
+A: From the DropDMG manual:
+
+Sparse
+  bundle disk images appear as a single
+  file but are actually stored as a
+  folder with many files inside. This
+  makes it more efficient to back them
+  up using Time Machine or other backup
+  utilities, as only the changed parts
+  need to be copied. Additionally,
+  sparse bundle disk images work well
+  with the Compact Image… command.
+  Compatible with Mac OS X 10.5 and
+  later.
+Sparse
+  disk images are stored as a single
+  file. This can make backups
+  inefficient for large disk images,
+  because the entire file must be copied
+  each time. The Compact Image… command
+  generally does not reclaim as much
+  disk space as with sparse bundle disk
+  images. Compatible with Mac OS X 10.3
+  and later.
+
+
+A: Sparse bundle disk image is an optimized form of the sparse disk image. It optimizes intentionally to reduce network load upon backup of changes to the filesystem at the expense of time and space. Specifically it uses a hashing function to store bits of data across a large directory structure which allows changes to be isolated in smaller band files. When copying the disk image elsewhere, rsync like tools will only need to copy the bands that change which makes incremental copies or backups far faster than moving the entire sparse image.
+Local storage of the bundle img is less efficient in terms of space used, CPU time needed to process IO to the disk image is increased and when files are deleted, the reclamation of space is delayed and not as complete when compared to a sparse disk image. 
+Unless you are backing up the bands incrementally online (as Time Machine does to Time Capsule) it's usually better to go with the sparse disk image over a sparse bundle. Some software will look inside a sparse image and only copy the changed blocks, but the bundle allows simpler tools to be more efficient moving changes around.

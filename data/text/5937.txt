@@ -1,0 +1,20 @@
+Q: 'which' location different from executable location I'm trying to install ruby/rubygems on the latest version of 10.6. I used MacPorts to install ruby after noticing that my version was old. ruby was installed into /opt/local/bin.
+I changed .bash_profile and added:
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+When I echo $PATH, I get:
+/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/X11/bin
+
+So when I type which ruby I get:
+/opt/local/bin/ruby
+Which works correctly. However, when I type which gem I get:
+/opt/local/bin/gem
+When using gem -environment I get (gem is in the above directory):
+-bash: /usr/bin/gem: No such file or directory
+
+I'm completely open to uninstalling everything and starting over if necessary. I'm just not sure why it's still trying to grab it from /usr/bin!
+
+A: The default gem is a function and they get called before $PATH and also before the command hash. 
+Try playing with hash (or clearing it with hash -r ) to see if your path isn't getting a say in which gem to call.
+type gem will confirm whether yur gem is really a function...
+
+A: What a mess. I ended up removing all versions of ruby and MacPorts and compiling 1.9.2 from source. Everything is working fine now.

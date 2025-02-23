@@ -1,0 +1,21 @@
+Q: Setting time format preference in unix (Mac-Terminal) I'm learning to work in unix using Terminal on a Mac and I'd like to set the default listing for the timestamp to display in 12 hour time, using AM and PM, instead of 24 hour time (ie: 1:00 PM, not 13:00). I'm somewhat familiar with setting preferences, so to speak, using the ~/.bashrc file, where I've set a couple of aliases, including one with the options for my preferred ls display. I've looked at the man pages and elsewhere online, but I haven't had any luck finding what I'm looking for time-wise though. Any suggestions would be appreciated.  
+
+A: Using GNU ls, on Linux, there is a --time-style flag you can use to specify one of a few pre-defined time types, or specifying a completely custom +FORMAT style like the date command accepts. However, BSD ls, which Apple ships, does not support this flag.
+I've seen similar discrepancies in commands like date and tar as well, all rooted in the differences between the GNU and BSD variants.
+
+A: The Mac OS terminal uses a bash shell. The prompt is controlled by the PS1 environment variable described more here. Try this for example.
+export PS1='\t$ '
+
+It will give you a prompt looking something like this
+19:40:14$ 
+
+
+A: man date
+Check out the "+format" option.  You could create a shell alias to display the date using a custom format.
+If you're referring to the time format used by 'ls', I don't believe there is any way to change that.
+
+A: to get 12:00 AM/PM use
+  export PS='\@'
+
+I hope this helps.
+P.S. Welcome to S.O. Please remember to accept the answer that best solves your problem, if any, by pressing the checkmark sign, http://i.imgur.com/uqJeW.png. When you see good Q&A, vote them up by using the gray triangles,  http://i.imgur.com/kygEP.png.  Note that 'giving' reputation points to others does not mean a deduction to your reputation points. 

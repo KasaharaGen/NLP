@@ -1,0 +1,7 @@
+Q: Connect iPhone to USB HardDrive I have a unique situation at my company.  We are trying to develop a mobile service app that connects to slot machines.  If you connect a PC to the slot machine, an external HD pops up in Windows and you can copy files to it.
+We want to do the same thing through an iPad.
+I know this would be all custom code, but I was wondering if it was possible for iOS to read an external USB drive through it's doc connector.
+
+A: No. iOS/iPad is only able to act as a USB host with the Camera Connection Kit (Apple Store). Even then, it only works to import/export pictures and videos between the iPad and camera.
+
+A: It may be overkill in your situation, but take a look at the Apple's APIs for programming External Accessories (ADC link). It may require changes to the hardware, but may serve your needs for use with future devices.

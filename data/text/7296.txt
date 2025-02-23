@@ -1,0 +1,100 @@
+Q: DefaultKeyBinding.dict - old-style NeXT format vs XML plist format DefaultKeyBinding.dict
+The ~/Library/KeyBindings/DefaultKeyBinding.dict file lets you define your own key bindings in Mac OS X. It can be in one of two formats: old-style NeXT format (example) or modern-style XML plist format (example).
+Rebinding ⌘+⌫
+I wanted to rebind command-backspace (⌘+⌫) to deleteWordBackward:, and I got some help over in this AskDifferent thread. It was suggested that I use this as my DefaultKeyBinding.dict file: 
+/* my keybindings */
+{
+"@\U007F" = "deleteWordBackward:"; /* delete backwards one word */
+}  
+
+This advice worked (thanks, guys!), but I already have a working DefaultKeybinding.dict in the XML format, so I wanted to try to get it working that way. I first added just this text near the bottom of my existing file:
+<key>@\U007F</key>
+<string>deleteWordBackward:</string>
+
+And I also tried creating a brand-new XML-formatted file with just the  ⌘+⌫ entry: 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>@\U007F</key>
+    <string>deleteWordBackward:</string>
+</dict>
+</plist>
+
+But neither files worked. The apparent situation, then, is that you can rebind ⌘+⌫ only in the old-style NeXT format, and not in the XML plist format. My questions are: 
+
+
+*
+
+*Is this accurate, or should the syntax change somehow when I'm switching to XML format? 
+
+*Will I regret moving the rest of my DefaultKeyBinding.dict file over to the old syntax? It wouldn't be much work to do so - it's only one or two dozen entries - but I'm not sure if the old style is deprecated or ill-advised for some other reason. 
+
+
+Edit: Original DefaultKeyBinding.dict
+Someone requested information on my original file in the comments, so I figure I might as well include the whole thing here. 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key></key>
+    <string>complete:</string>
+    <key>^ </key>
+    <string>setMark:</string>
+    <key>^a</key>
+    <string>moveToBeginningOfLine:</string>
+    <key>^e</key>
+    <string>moveToEndOfLine:</string>
+    <key>^j</key>
+    <string>setMark:</string>
+    <key>^v</key>
+    <string>pageDown:</string>
+    <key>^w</key>
+    <string>deleteToMark:</string>
+    <key>^x</key>
+    <dict>
+        <key>^m</key>
+        <string>selectToMark:</string>
+        <key>^x</key>
+        <string>swapWithMark:</string>
+    </dict>
+    <key>~</key>
+    <string>deleteWordBackward:</string>
+    <key>~&lt;</key>
+    <string>moveToBeginningOfDocument:</string>
+    <key>~&gt;</key>
+    <string>moveToEndOfDocument:</string>
+    <key>~^h</key>
+    <string>deleteWordBackward:</string>
+    <key>~b</key>
+    <string>moveWordBackward:</string>
+    <key>~d</key>
+    <string>deleteWordForward:</string>
+    <key>~f</key>
+    <string>moveWordForward:</string>
+    <key>~n</key>
+    <string>scrollLineDown:</string>
+    <key>~p</key>
+    <string>scrollLineUp:</string>
+    <key>~v</key>
+    <string>pageUp:</string>
+    <key>~</key>
+    <string>deleteWordBackward:</string>
+</dict>
+</plist>
+
+
+A: I don't think you'll have any issues using the older format.  All the examples I've found use the old NeXT notation.  Although I can't explain why the XML format didn't work, there is a workaround for this particular keyboard shortcut which would mean you can leave your existing DefaultKeyBinding.dict untouched.  
+There is an application called KeyRemap4MacBook which is free to download and you can see from the screenshot below, you could remap the ⌘+⌫ keyboard shortcut without converting the rest of your DefaultKeyBinding.dict file and this method is not limited to Cocoa applications.  
+
+
+A: \U007f can't be used on XML property lists. You'd need to replace it with &#x007f; or a literal DEL character.
+
+You can convert an old-style plist to XML with plutil:
+plutil -convert xml1 test.plist
+
+And from XML to old-style with pl:
+pl -input test.plist
+
+
+My DefaultKeyBinding.dict is currently 151 lines, and I haven't run into any issues storing it as an old-style property list. The ones posted by Brett Terpstra and Jacob Rus are in the old-style format as well.

@@ -1,0 +1,39 @@
+Q: Add a hosts file entry without jailbreaking I have an iPad that needs to be able to connect to a server via its short hostname, e.g. http://app instead of http://app.example.com. The network it connects to assigns it a domain name other than example.com so it doesn't work automatically.
+Is there a way to add a hosts entry (/etc/hosts) for that server in iOS, or add the appropriate domain name to the resolver search list without jailbreaking?
+
+A: No.
+See this answer on stackoverflow.
+
+A: No, but as a work-around, you could have your iPad proxy to a Mac on your home LAN and then do the DNS trickery there.
+(I'm assuming that you need this ability during debugging/testing, not "everywhere.")
+
+A: In general, editing the Hosts file is a bad solution. I only use it for temporary testing, and always remove any hosts file entry a few minutes after adding it.
+You should be using a DNS server of some kind to setup your custom domain, perhaps this is possible with your wifi router, or else you can set up any mac as a DNS server.
+As a nice side benefit, having your DNS server on the LAN will make your internet noticeably faster. Most people are using their router as a DNS server and they really are not fast enough to implement DNS properly. It's a good idea to use a fast remote DNS server (which one is best will depend on what city you live in), but having one on your LAN is even better.
+You can google for instructions how to setup bind on any mac, it's free. Or you can purchase Lion Server from Apple in the App Store, and download Server Admin Tools to configure bind with a nice GUI (with Lion, unlike Snow Leopard, you have to download Server Admin Tools separately form buying a license for Mac OS X Server. Basically they've separated the advanced server tools out into a separate download from the basic ones).
+
+A: Use Weblock - AdBlock for iOS app to create a redirect rule from http://app to the IP and port you like.
+(Only works when on a WIFI network)
+
+A: It's been two years after the last comment & I've no idea if the OP will even read this or still needs a solution; however, for anyone who may have been led here via a search engine, the answer is yes, though not directly. Let me attempt an explanation. Editing the actual /etc/hosts file of a non-jailbroken iOS or iPadOS device isn't possible. However, as was alluded to in previous comments, you can use a local VPN. By local, I mean a device-only VPN as there is no need for a LAN server - excepting the security, privacy, speed, & fun that running a local DNS server would give you. Since the VPN opens up the "space" to use not only custom hosts files, but also allows you to connect to any, including private, DNSCrypt v1 or v2 servers, DNS over HTTPS (DoH) servers, or DNS over TLS (DoT)(1) servers with or without a custom hosts file, whether the hosts file is used as an extra layer of device security & privacy, for blocking the seemingly greater & greater number of ads on iDevices, or for the OP's desired purpose(2). Apple had been vague regarding the rules regarding App Store acceptance & in fact has rejected Apps due to a "lack of entertainment value", even if the rejected App is of practical use. Now, in order to detail the methods used to use a custom hosts file on a non-jailbroken iPad, I have to refer to specific Applications; I am not connected to any of the three Apps nor their developers beyond being a Beta Tester for one of them & a former Beta Tester for two of them, both of which no longer conduct beta testing. I'll use the list below to detail the relevant information: cost; DNS; stability; customization.
+
+
+*
+
+*DNSCloak: Free; DNSCrypt v1&2, DoH; stable, very customizable including being able to (2)forward IP addresses via DNS & do CNAME flattening.
+
+*AdGuard Pro $4.99USD; stable, DNSCrypt v1; customizable.
+
+*AdGuard Basic functions are free, everything else costs. Currently beta tested, which gives you everything at no cost beyond some of your time on GitHub. This is the only App that enables the use of (1)DoT. Both built-in and custom servers may be used; semi-stable; customizable.
+
+
+Note: each of the three apps show all incoming and outgoing DNS requests, which is helpful to, e.g. block specific traffic from ever leaving or reaching your device.
+
+A: Actually, there is a way.
+Create your own app including a network extension that filters DNS queries using NEPacketTunnelProvider and parsing IP packets manually.
+I already have it, working perfectly, and will upload it in a few days. I will add the possibility to upload host files too.
+Although 7 years ago this was not technically possible.
+
+A: I had the same issue, a solution that works for me:
+Add a "search domain" in the (manual) DNS settings in IOS for the wifi connection you are on. Entering "example.com" or ".example.com" as search domain should result in the short name "app" being picked up and the search domain would automatically be appended so that "app.example.com" is connected to.
+In case of a full domain name (for example a local test domain) which is not in the public DNS, and which needs to resolve to a (local) IP, it's an option to add such a domain to your home / office router's "LAN DNS" settings, so that the router catches and answers such DNS request instead of the public DNS server(s). A good solution in many scenarios although I assume it won't work for a short name like "app".

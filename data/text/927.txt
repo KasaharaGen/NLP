@@ -1,0 +1,57 @@
+Q: Can Textmate nicely indent HTML? Does Textmate have a function to nicely indent HTML?
+HTML Tidy indents it - but it seems to delete tags as well. (This isn't completely proper HTML, but still!)
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal">
+    <head>
+        <title></title>
+    <script type="text/javascript" src="http://www.speechapi.com/static/lib/swfobject.js"></script>
+    <script type="text/javascript" src="http://www.speechapi.com/static/lib/speechapi-1.1.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<body>
+    <!-- All above disappears -->       
+    <p>Test</p>
+    <!-- All below disappears-->
+</body>
+</html>
+
+
+A: You can press ⌘+A to select all then Text->Indent Selection.
+
+A: You can use Bundles > HTML > Tidy or the shortcut ctrl+⇧+H.
+
+A: I'd like to point out something that crosses a bit the other answers:
+If you select the text that you wish to format (or reindent), TextMate will apply specific actions only to that. So, if you CMD+A your document and then apply Tidy (either from the Bundles > HTML menu or with the CTRL+SHIFT+H shortcut) it will mostly only do indenting, skipping alerts on validations (that sometimes are unnecessary since we might be working on page snippets).
+
+A: You can use Xcode or Dashcode instead if you install the Developer Tools. They come free on the install discs that came with your computer. I believe both Xcode and Dashcode have syntax highlighting.
+If you want really good software, get Coda. It is  a bit pricey at $100, but I would definitely say it is worth it. It has syntax highlighting and (the big part for me) autocompletion.
+
+A: Yes. The Tidy call in TextMate's built-in HTML bundle can deal with your HTML.
+TextMate's Bundles -> HTML -> Tidy produces:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal">
+    <head>
+        <title></title>
+        <script type="text/javascript" src="http://www.speechapi.com/static/lib/swfobject.js">
+</script>
+        <script type="text/javascript" src="http://www.speechapi.com/static/lib/speechapi-1.1.js">
+</script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+</script>
+    </head>
+    <body>
+        <!-- All above disappears -->
+        <p>
+            Test
+        </p><!-- All below disappears-->
+    </body>
+</html>
+
+On your sample code. Nothing disappeared. You also get the following warnings:
+line 1 column 1 - Warning: missing <!DOCTYPE> declaration
+line 2 column 5 - Warning: <body> isn't allowed in <head> elements
+line 1 column 1 - Warning: <html> proprietary attribute "xmlns:tal"
+line 1 column 1 - Warning: <html> proprietary attribute "xmlns:metal"
+
+
+A: The problem I experienced with the built-in Text -> Indent Selection or Tidy solution is that it doesn't play well with partial HTML code.  This is for example important when editing in WordPress or working with partials in Ruby on Rails.
+The solution that worked for me was to add a command to the bundle with a custom Perl script by John Watson that I found here: http://snipplr.com/view.php?codeview&id=28256

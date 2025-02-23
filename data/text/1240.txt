@@ -1,0 +1,10 @@
+Q: User defined menu shortcut doesn't work with Safari I want to add a shortcut to "refresh" the web page in Safari (5.0.2).
+I added a shortcut definition in the System Preferences.
+
+
+
+I disabled the usage of the Fonction keys by the System.
+I have "F5" shown next to "Reload Page" menu item. But, this does not work. 
+What went wrong ?
+
+A: As other commenters have said, it works once the menu has been shown at least once. Safari seems to build its menus differently from other apps, and seems to do it dynamically when you open them the first time. Hence, the system has no way to know that such a Refresh menu item exists unless you've tried opening the menu once.

@@ -1,0 +1,9 @@
+Q: "System Builder" Windows on VMWare Fusion? I am a web developer, and I want to buy a copy of Windows 7 to use with my currently-existing copy of VMWare Fusion for easier testing of web sites in Internet Explorer. However, the overabundance of Windows versions is confusing me. I believe I want the Professional version, since from what I understand, the Windows XP emulation feature will let me install IE 6 and 7 for testing alongside 8 and 9. However, Amazon is offering me two versions of Windows 7 Pro; a normal boxed one, and a "System Builder" one for half the price. Obviously I'd rather purchase the latter, but I haven't found any clear information as to whether it can legally or technically be used under virtualization or not. Can anyone shed some light on this?
+
+A: The "System Builder" version is intended for OEMs.
+Basically, the difference boils down to the fact that microsoft will not provide support (e.g. tech support calls or live-chat) for the OS.
+It is perfectly legal, will still receive all the patches and service packs, etc...
+Here are more details. It's worth noting that I have transfered OEM versions of Windows XP (though not 7) between multiple computers without any significant issues, and generally if it's not activating, you just call Microsoft and they give you a new code.
+Furthermore, since you're sticking it in a VM anyways, you should never really have to worry about windows thinking you swapped the mobo, and trying to reactivate anyways.
+
+Off-topic a bit, have you tried running Internet Explorer under WINE? I know WINE supports IE6, and you may be able to finangle IE7 or 8 into working as well.

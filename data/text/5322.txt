@@ -1,0 +1,14 @@
+Q: Can I change how often Lion's "Versions" feature saves files? Is it possible to change Versions' save frequency?
+For some kind of work, one hour's worth of work is too much to lose!
+
+A: I haven't been experimenting with this for long enough to be an expert yet, but I think you're confusing two semi-separate features: autosave and versions.
+Autosave saves frequently -- in TextEdit, it seems to save after about 30 seconds of inactivity.  But it doesn't save a new version, it just saves the current document state.
+Every hour and/or every time you explicitly save a version (Command-S), it saves a restorable version -- one that you can revert to if you decide you've made a mistake in editing.  Once saved, the "version" does not get updated; you can revert to it, or go into the Browse all Versions interface and copy content from it, but it's essentially frozen.
+Autosave protects you against forgetting to save changes.  Versions protects you against mistaken edits you wish you hadn't made.  They operate on different time scales (and as far as I know, neither has customizable timing).
+
+A: While there is no interface for changing Versions' autosave frequency, you can still press command-S, which now invokes the "Save A Version" command. So, you can still save as often as you'd like manually if you're doing lots of work.
+
+A: So, actually, the Versions part is Time Machine renamed, with a little addition: making it possible to force a separate Time Machine backup for a specific file.
+Autosave saves every 5 minutes, or during idle times while working on a document. See HT4753, as linked to by Graham.
+Considering the misleading "Each time you open..." I think Apple refers to the first autosave action after opening a file. I tried this using Textedit and found that if you open a file, make some changes and then close (do not use the explicit "save a version" or cmd+s command) the file (or wait a bit) a separate version is being stored, instead of the default overwrite action autosave uses.
+So it is a little more intelligent about saving a version "every time you open" a file. Making changes is necessary. Could have been pointed out in the KB article though.

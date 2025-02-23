@@ -1,0 +1,31 @@
+Q: Easiest way to scan ISBN number from books What is the easiest/quickest way using an iMac to scan the ISBN number of a bunch books.
+Non-paying (for software, or dedicated scanner device) preferred, although low-cost solutions might be considered.
+In the end, I just want to get a simple text file with all ISBN numbers scanned. I am not interested in fetching the associated data (as they are non-English comic books, which typically aren't in any of the big databases as e.g. Amazon)
+
+A: Delicious Monster makes an awesome piece of software called Delicious Library that's intended to do exactly what you're after: scan and catalog your library (of books and other things). And it all works through your iMacs built-in iSight camera. And it works very, very well. From their website:
+
+“Wait, I just hold a CD or DVD or video game or book or whatever up to my webcam, and it magically reads the UPC and downloads that item’s cover and all pertinent information about it, and displays all my stuff on photorealistic shelves? I’ll take it! Right now! This is why I bought a computer in the first place! ”
+
+Yea, it's very cool to watch it in action. Very easy to use.
+
+A: Delicious Library wasn’t made just for scanning a list and dumping it out, but it could be used for such a thing. After scanning in your items you’d either want to slurp the results using a custom AppleScript or you can use our export-to-CSV feature and only do the ISBN column.
+
+
+*
+
+*If a book doesn’t look up on Amazon there’s an error window that pops up, and with two clicks you can add it as a blank book.
+
+*We consider the ISBN-13 and ISBN-10 to be interchangeable, so we only store the one that’s standard, which is the 13. In the examples I’ve seen the barcode is actually an EAN-13, so we don’t even have access to the ISBN-10, we’d have to synthesize it.
+-Wil Shipley
+Chief Monster,
+Delicious Monster Software
+
+A: Buy a cheap USB barcode scanner that is OSX compatible and it scans it just as if it was entered into a keyboard. You can pick em up around the web for as little as $20. 
+Then you could just have each ISBN on a line in a text file, google spreadsheet. 
+
+A: iCollect Books
+App Store (£1.99)
+or Mac App store £10.99)
+You can scan in books using iPhone or iPad or manually enter them in on the Mac. 
+You can then export to a CSV file which lists all the data from each book.
+

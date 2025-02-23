@@ -1,0 +1,10 @@
+Q: Can't update cabal in Mac OS X 10.6 I am trying to install cabal (for Haskell) in Mac OS X 10.6.5 (64-bit kernel). When I try the command "cabal update" I am presented with the following error:
+cabal: Codec.Compression.Zlib: premature end of compressed stream
+
+Does anyone have experience with this and knows how to fix it?
+Thanks.
+
+A: Apparently:
+
+This bug disappears if you compile cabal-install with GHC 6.12.1. (here and here)
+

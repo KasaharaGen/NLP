@@ -1,0 +1,9 @@
+Q: Is there a Terminal command that will force open the DVD tray? Is there a command I can enter in Terminal that will force eject a CD or DVD? One that will always work, equivalent to a "Force Quit" for an app?
+I have an intermittent problem getting the DVD in my Mac Pro to eject. Right now the only solution is to do a full restart, but that is obviously not always convenient. I'm hoping there is a workaround to this through the magical power of UNIX...
+
+A: First of all, try the "nice" way using the drive utility
+drutil tray eject
+
+If this doesn´t work (probably because the system can´t unmount the volume), the following command will forcefully unmount the Volume with name "untitled" (make sure you´re using the right mountpoint!!):
+hdiutil detach -force /Volumes/untitled
+

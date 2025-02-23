@@ -1,0 +1,7 @@
+Q: Cannot find where php5-fpm is stored in MacPorts I installed php5 from macports. But i can't find php-fpm for start.
+Look in /opt/local/sbin and /usr/sbin/
+I used console command:
+sudo port install php5 
+May be need some like php5 +fastcgi fscgi
+
+A: FPM support is still in the works at this writing; see Trac ticket #26039.

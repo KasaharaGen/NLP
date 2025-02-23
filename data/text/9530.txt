@@ -1,0 +1,21 @@
+Q: MacBook Air mid 2011 Geekbench results too low My MacBook Air from mid 2011 recently only scores about ~1800 on geekbench vs 5300+ that it was before.  I'm starting the benchmarking right after reboot, and the CPU seems initially calm. Any points?
+
+A: I went to the Apple Service, where the guy has booted from an external hard drive and run the Repair Disk Permissions task from Disk Utility. That solved the issue!
+Note: I did run Repair Disk Permissions before while trying to solve this problem, but it apparently couldn't fix some of the files due to that the disk was mounted. So, booting from an external disk is crucial here.
+
+A: Alright, another solution that worked for me. Got the same symptoms, but nothing helped this time, including my own original recipe (the one marked as the accepted answer).
+Long story short: resetting SMC did the trick - http://support.apple.com/kb/HT3964?viewlocale=en_US&locale=en_US
+Just FYI, this time I tried the following before coming across the SMC reset trick:
+
+
+*
+
+*Fixing all permission problems, including manual removing ACL on some system files.
+
+*Restoring from TimeMachine.
+
+*Clean reinstall of Lion.
+
+
+A: Perhaps there is a background process that is taking away some of the processor's powers. Did you check in Activity Monitor if there was a process that took more than say 10 or 15% for no reason? Make sure the "Show All Processes" is selected.
+And perhaps a bit of maintenance with apps like Onyx, CleanMyMac or Cocktail is in order. Never a bad thing to do...

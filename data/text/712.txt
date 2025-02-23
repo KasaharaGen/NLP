@@ -1,0 +1,375 @@
+Q: Start/stop internet sharing from a script? Is there a way to start/stop internet sharing from the command line or maybe an apple script?
+The thing is that I move around my laptop between home and work. At one place I get wireless internet (and thus I have to disable internet sharing), and at the other I get internet from an ethernet cable and set up the computer to share the internet to other devices by creating a small wireless network.
+But it's getting a bit tedious having to go into System Preferences and start/stop the internet sharing every time I switch locations, so I would like to have a quick command or script to launch and do the switch on demand.
+Any hints or ideas?
+
+A: One way of doing this is by GUI scripting—System Preferences doesn't have any Applescript support by default.
+tell application "System Preferences" to set current pane to pane "com.apple.preferences.sharing"
+delay 1
+tell application "System Events" to tell process "System Preferences"
+    click checkbox 1 of row 8 of table 1 of scroll area 1 of group 1 of window "Sharing" -- change to row 10 if you are using anything before Snow Leopard
+    delay 1
+    if (exists sheet 1 of window "Sharing") then
+        click button "Start" of sheet 1 of window "Sharing"
+    end if
+end tell
+ignoring application responses
+    tell application "System Preferences" to quit
+end ignoring
+
+
+A: I had far better results (for an already configured sharing setup) on 10.11.6 with the simple variations...
+sudo launchctl start com.apple.NetworkSharing
+and
+sudo launchctl stop com.apple.NetworkSharing
+respectively.
+
+A: Definitive workaround to wifi-sharing constant breaking down in MacosX
+I have found a system that finally works and when, less frequently wifi sharing breaks, it manages to recover it automatically in a minute.
+The solution is a ~/Library/LaunchAgents/com.me.wifisharingup.plist daemon with the next contents:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.juanfal.wifisharingup</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/mi/bin/wifisharingup.sh</string>
+  </array>
+  <key>Nice</key>
+  <integer>1</integer>
+
+  <key>StartInterval</key>
+  <integer>60</integer>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/me/Library/Logs/wifisharingup.err</string>
+
+  <key>StandardOutPath</key>
+  <string>/Users/me/Library/Logs/wifisharingup.out</string>
+</dict>
+</plist>
+
+You can see, each minute it runs the simple script that follows.  Be careful making the previous plist be owned by the root and launch it with:
+sudo chown root com.me.wifisharingup.plist
+sudo launchctl load /Users/me/Library/LaunchAgents/com.me.wifisharingup.plist
+
+The script it launches each minute (don't forget to make it executable) is:
+#!/bin/sh
+
+if [[ ! `ipconfig getifaddr en1` ]]; then
+    /usr/sbin/networksetup -setairportpower en1 off
+    /usr/sbin/networksetup -setairportpower en1 on
+    echo `date` >> "/Users/me/Library/Logs/wifisharingup.err"
+else
+    touch "/Users/me/Library/Logs/wifisharingup.out"
+fi
+
+I think the simple periodically (each minute) call to ipconfig getifaddr en1 refreshes something in what is the wifi sharing daemon.  Whatever it is, any moment the wifi sharing fails, it looses the self assigned IP address, and then, ipconfig getifaddr en1 fails, so my script totally resets wifi, making it rebuild its previous status and recovering the wifi-sharing.
+It has been working for days so far inside a MacMini without keyboard, mouse or monitor, but only plugged into the Ethernet and giving my wifi gadgets access to the world.
+
+A: To start Internet Sharing from the CLI:
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.InternetSharing.plist
+
+To stop, change the load to unload.
+Note that if you have the pref pane open when you run this you will not see the change take effect immediately (the UI won't update), but it does work.
+
+A: I took a cue from mankoff's answer and wrapped it up in an AppleScript. I'm using this script from Automator so that I can easily use it as a service and give it a keyboard shortcut.
+Toggle Internet Sharing:
+register_growl()
+
+try
+    if isRunning("InternetSharing") then
+        do shell script "launchctl unload -w /System/Library/LaunchDaemons/com.apple.InternetSharing.plist" with administrator privileges
+
+        if isRunning("InternetSharing") then
+            error "Internet Connection Sharing was Not Disabled"
+        else
+            my growlnote("Success", "Internet Connection Sharing Disabled")
+        end if
+
+    else
+        do shell script "launchctl load -w /System/Library/LaunchDaemons/com.apple.InternetSharing.plist" with administrator privileges
+
+        if isRunning("InternetSharing") then
+            my growlnote("Success", "Internet Connection Sharing Enabled")
+        else
+            error "Internet Connection Sharing was Not Enabled"
+        end if
+
+    end if
+
+on error errMsg
+    my growlnote("Error", errMsg)
+
+end try
+
+on isRunning(processName)
+    try
+        return 0 < length of (do shell script "ps ax | grep -v grep | grep " & processName)
+    on error
+        return false
+    end try
+end isRunning
+
+on register_growl()
+    try
+        tell application "GrowlHelperApp"
+            set the notificationsList to {"Success", "Warning", "Error"}
+            register as application "Toggle Internet Connection Sharing" all notifications notificationsList default notifications notificationsList icon of application "Sharing"
+        end tell
+    end try
+end register_growl
+
+on growlnote(growltype, str)
+    try
+        tell application "GrowlHelperApp"
+            notify with name growltype title growltype description str application name "Toggle Internet Connection Sharing"
+        end tell
+    end try
+end growlnote
+
+
+A: I use the following script to toggle internet sharing on an early 2011 MacBook Pro / 10.11.3 El Capitan, so with newer hardware you might get away with shorter delays. It adopts ideas from several scripts posted for this purpose (localisation, turning wifi on/off using networksetup, close System Preferences when done).
+tell application "System Preferences"
+    activate
+    reveal (pane id "com.apple.preferences.sharing")
+    set localized_window to the localized name of the current pane
+end tell
+
+tell application "System Events" to tell process "System Preferences"
+    delay 1
+    repeat with r in rows of table 1 of scroll area 1 of group 1 of window localized_window
+        if (value of static text of r as text) starts with "Internet" then
+            set sharingBool to value of checkbox of r as boolean
+            select r
+            if sharingBool is true
+              do shell script "/usr/sbin/networksetup -setairportpower en1 off"
+            else
+              do shell script "/usr/sbin/networksetup -setairportpower en1 on"
+            end if
+            click checkbox of r
+        end if
+    end repeat
+    delay 1
+
+    if (exists sheet 1 of window localized_window) then
+      click button "Start" of sheet 1 of window localized_window
+    end if
+
+end tell
+
+ignoring application responses
+  tell application "System Preferences" to quit
+end ignoring
+
+
+A: Here’s a version (in AppleScript) that works for me in macOS 13.0 Ventura:
+do shell script "open -b com.apple.systempreferences /System/Library/PreferencePanes/SharingPref.prefPane"
+
+tell application "System Events"
+    tell its application process "System Settings"
+        repeat until window "Sharing" exists
+        end repeat
+        tell window "Sharing"
+            set checkboxControl to checkbox "Internet Sharing" of group 1 of scroll area 1 of group 1 of group 1 of group 2 of splitter group 1 of group 1
+            tell checkboxControl
+                click
+                its value as boolean -- wait untill the appearance of checkbox in the UI actually changes (for visual feedback)
+                delay 0.3 -- wait a bit more
+            end tell
+        end tell
+    end tell
+end tell
+
+tell application "System Settings" to quit
+
+
+A: You might want to take a look at this (possibly off topic for Stack Overflow) question and its answer: How to start/stop Internet Sharing using AppleScript.
+
+do shell script "/bin/launchctl load -w /System/Library/LaunchDaemons/com.apple.InternetSharing.plist" with administrator privileges
+
+
+
+A: The really easy way to do it is to combine @Philip's answer with the NetworkLocation application. NL can tell where you are, and automatically run an AppleScript when it senses you've changed locations. 
+I think it's required software if you have a laptop—otherwise, it's a PITA to always have to manually reset several settings whenever I change locations.
+
+A: Slightly different than the other applescript posted (I think in a better way but…). Having options sometimes can help.
+ tell application "System Preferences"
+   activate
+   reveal (pane id "com.apple.preferences.sharing")
+ end tell
+
+ tell application "System Events"
+   tell process "System Preferences"
+     try
+       click checkbox of row 11 of table 1 of scroll area of group 1 of window "Sharing"
+
+       if checkbox of row 11 of table 1 of scroll area of group 1 of window "Sharing" is equal to 1 then
+         repeat until sheet of window 1 exists
+           delay 0.5
+         end repeat
+       end if
+
+       if (sheet of window 1 exists) then
+         click button "Start" of sheet of window 1
+       end if
+
+       tell application "System Preferences" to quit
+       activate (display dialog "Internet Sharing preferences sucessfully flipped")
+
+     on error     
+       activate
+       display dialog "something went wrong in automation but you are probably in the right menu…"
+       return false
+     end try
+   end tell
+ end tell
+
+
+A: Before/after any configuration the interface or interfaces involved in sharing need to be turned off/on with:
+networksetup -setairportpower en1 off
+
+then on. (networksetup -setairportpower en1 on)
+My wifi was listed as en1, to lookup yours use networksetup -listnetworkserviceorder. More to the point, when starting internet sharing you will need to add more detailed NAT functionality then just setting the enabled bit. 
+NAT is turned on/off with bit:  -int 0 = off 
+ -int 1 = on
+The only thing that is written in /Library/Preferences/SystemConfiguration/com.apple.nat.plist with
+defaults write /Library/Preferences/SystemConfiguration/com.apple.nat\
+    NAT -dict Enabled -int 0
+
+is 
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>NAT</key>
+        <dict>
+                </dict>
+                <key>Enabled</key>
+                <integer>1</integer>
+        </dict>
+</dict>
+</plist>
+
+You will need to change your plist file to look like the following:
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>NAT</key>
+        <dict>
+                <key>AirPort</key>
+                <dict>
+                        <key>40BitEncrypt</key>
+                        <integer>1</integer>
+                        <key>Channel</key>
+                        <integer>0</integer>
+                        <key>Enabled</key>
+                        <integer>0</integer>
+                        <key>NetworkName</key>
+                        <string>FancyHostNome</string>
+                        <key>NetworkPassword</key>
+                        <data>
+                        </data>
+                </dict>
+                <key>Enabled</key>
+                <integer>1</integer>
+                <key>NatPortMapDisabled</key>
+                <false/>
+                <key>PrimaryInterface</key>
+                <dict>
+                        <key>Device</key>
+                        <string>en4</string>
+                        <key>Enabled</key>
+                        <integer>0</integer>
+                        <key>HardwareKey</key>
+                        <string></string>
+                        <key>PrimaryUserReadable</key>
+                        <string>InfiniBand</string>
+                </dict>
+                <key>PrimaryService</key>
+                <string>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</string>
+                <key>SharingDevices</key>
+                <array>
+                        <string>en1</string>
+                </array>
+        </dict>
+</dict>
+</plist>
+
+As you can see my plist NAT file may need a little customization to fit your needs. 
+
+A: Since the GUI scripting solution posted previously requires international users to adjust the window and button names, I came up with a version that works with any system language. It also works for the other sharing option, and gives localized feedback about the sharing state. I use two different Automator services based on this, one to toggle file sharing and one to toggle internet sharing.
+tell application "System Preferences"
+    set current pane to pane "com.apple.preferences.sharing"
+    set localized_window to the localized name of the current pane
+    set localized_app to (localized string "System Preferences")
+    set localized_ok to {localized string "OK"} -- File sharing
+    set localized_start to {localized string "START"} -- Internet sharing
+end tell
+delay 0.3
+tell application "System Events"
+tell process "System Preferences"
+    click checkbox 1 of row 8 of table 1 of scroll area 1 of group 1 of window localized_window
+    delay 0.2
+    select row 8 of table 1 of scroll area 1 of group 1 of window localized_window
+    -- change row numbers to the service you want toggled
+    if (exists sheet 1 of window localized_window) then
+        try
+            click button (localized_ok as string) of sheet 1 of window localized_window
+        on error
+            click button (localized_start as string) of sheet 1 of window localized_window
+        end try
+    end if
+    set sharing_state to the value of item 1 of static text of group 1 of window localized_window
+end tell
+
+tell application "System Preferences" to quit
+display notification sharing_state with title localized_app
+--  display notification exists since OS 10.9, for older systems use: 
+--  display dialog sharing_state buttons {localized_ok} default button 1 with title localized_app giving up after 1.5
+end tell
+
+
+A: Modified one of the scripts above to toggle Internet Sharing on OSX MOJAVE (10.14), it works:
+tell application "System Preferences"
+    activate
+    reveal (pane id "com.apple.preferences.sharing")
+    delay 0.3
+    set current pane to pane "com.apple.preferences.sharing"
+    delay 0.3
+    set localized_window to the localized name of the current pane
+    set localized_app to (localized string "System Preferences")
+    set localized_ok to {localized string "OK"} -- File sharing
+    set localized_start to {localized string "START"} -- Internet sharing
+end tell
+delay 0.3
+tell application "System Events"
+    tell process "System Preferences"
+        click checkbox 1 of row 7 of table 1 of scroll area 1 of group 1 of window localized_window
+        delay 0.2
+        select row 8 of table 1 of scroll area 1 of group 1 of window localized_window
+        -- change row numbers to the service you want toggled
+        if (exists sheet 1 of window localized_window) then
+            try
+                click button (localized_ok as string) of sheet 1 of window localized_window
+            on error
+                click button (localized_start as string) of sheet 1 of window localized_window
+            end try
+        end if
+        set sharing_state to the value of item 1 of static text of group 1 of window localized_window
+    end tell
+    
+    tell application "System Preferences" to quit
+    display notification sharing_state with title localized_app
+    --  display notification exists since OS 10.9, for older systems use: 
+    --  display dialog sharing_state buttons {localized_ok} default button 1 with title localized_app giving up after 1.5
+end tell
+
+
+A: /usr/bin/defaults write /Library/Preferences/SystemConfiguration/com.apple.nat NAT -dict Enabled -int 0
+

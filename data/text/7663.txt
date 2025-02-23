@@ -1,0 +1,22 @@
+Q: How to delete saved versions in Mac OS X Lion The new Versions feature in Lion stores old versions of the document I'm working on in case to revert back to some older version of the document.  However, how can I delete the version files for a given document?
+There're hidden files in the /.DocumentRevisions-V100, but I'm afraid I cannot just simply delete that folder.
+
+A: If you want to delete old versions from a document directly:
+
+
+*
+
+*Click besides the document name in the window title to access the version history
+
+*Time-machine like view opens, with document history on the right hand side
+
+*Clicking on the same menu as in step 1 in a history version will allow you to delete just this version
+
+*Option-Clicking will allow you to delete all history versions at once
+
+
+A: When you trash a document, the system cleans up all of the versions at the same time.
+I have been copying that document elsewhere (another drive), deleting the one with history, and then copying it back.
+Also, from the app, if you have a Duplicate or Export option in the File menu, that will spawn off an unversioned copy that you can then save. 
+
+In practice, it's never been an issue since when I drag a file to export or upload, these Lion versions don't travel with the document - they only take up marginal space on my HD and help me with the history of each document.

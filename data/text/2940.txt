@@ -1,0 +1,23 @@
+Q: What's a good terminal manager for OS X? The Terminal.app application from OS X is quite good but it lack some functionality that I find really important like: ability to setup SSH profiles for connecting to different servers and ability to setup tunneling.
+I know that there is a putty port for OS X but it uses X and is ugly. Is there any other alternative, preferably free?
+
+A: For SSH you just open a local Terminal and type ssh host.
+You set up the configuration for each host in ~/.ssh/config following the rules laid down in man ssh.
+I guess I don't understand why anyone would need a graphical tool to set up SSH, a command-line program.
+
+A: Taken in mind that setting up a tunnel by your self is really easy, you may consider using iTerm2 as a replacement to Terminal.app.
+iTerm2 features profiles, so you may connect to any SSH server instantly.
+Advantages over Terminal.app:
+http://www.iterm2.com/
+If you still need to use a gui for tunneling, then you may use an app like: 
+SSHTunnel or SSH Tunnel Manager
+
+A: I like JellyfiSSH - I've just emailed the kiwi dude that writes it & asked for an option to open new connections in a new tab rather than opening a window for every single connection.  Otherwise I like it.  Mind you I paid my $4 or whatever it was just to try it.
+
+A: I have, and continue to recommend JellyFiSSH. But my tone has changed a tad. It used to be free, and it's a very simple, very helpful application. Visual creation of tunnels not terribly unlike PuTTY, and lots of other SSH tweaking capability.
+However, it's no longer free. It's now USD$3 on the Mac App Store. Which is by no means a large amount of money, but admittedly kind of unfortunate for users.
+Still, it's a wonderful application, and at least 6 of my co-workers swear by it. (And another 3 know the options to pass on the command line, or put into their ~/.ssh/config file.)
+
+A: Since your free requirement is "preferably", I'd go ahead and recommend a paid one (and rather expensive if you ask me):
+A very good App under Windows, now ported to other platforms. SecureCRT.
+I do not work for SecureCRT and have nothing to do with it. I used it at an old job.

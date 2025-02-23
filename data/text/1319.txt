@@ -1,0 +1,27 @@
+Q: Problem with ssh agent I'm having a problem using ssh agent to make sure I don't have to enter a password each time a certain program uses my id_rsa private key.
+I did ssh-add -K ~/.ssh/id_rsa and it seemed to add an entry to my keychain
+But it continues to prompt me.  When I go into keychain under access control, it looks like maybe it's because it's not set 
+
+A: Double check your permissions in those files, if they are not like this, it won’t work:
+-rw-------  1 martin  staff   1675 Jul 27  2009 id_rsa
+-rw-r--r--  1 martin  staff    403 Jul 27  2009 id_rsa.pub
+
+UPDATE:
+If you see that the files have an @, that means they have “extended attributes”. 
+You can see what they are by issuing:
+xattr -l <filename>
+
+
+A: Connect manually from Terminal using the verbose options to see where your problem lies, if it's a client-side problem. You might also want to check the error logs on the server to find out if your publickey is getting rejected. Permissions on the user folder, the .ssh folder, and the files within (like authorized_keys) need to have all group/other write permissions removed, on both the client and the server. SSH is very picky about permissions and will not use anything that is accessible to anyone other than you.
+
+A: I had this problem as well.  For me /usr/bin/ssh-agent shuts off after a while. 
+pgrep ssh-agent
+
+
+/usr/bin/ssh-agent -s  #should show you something like this
+
+SSH_AUTH_SOCK=/tmp/ssh-OYn3ShRY4l/agent.37715; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=37716; export SSH_AGENT_PID;
+echo Agent pid 37716;
+
+I even got irritated, and removed the OS X programs from the Access Control side and replaced them with up to date, modern MacPorts versions.  All is fine, except that Keychain Accesss is a bit flaky.  My version of ssh-add runs forever. You only need to run the 'ancient of days' version /usr/bin/ssh once to get your key into your keychain.  

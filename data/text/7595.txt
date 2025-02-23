@@ -1,0 +1,25 @@
+Q: AirDrop: How to access AirDrop from command line? I was looking for an option to use Airdrop to sync a set of directories between two computers.
+I want to achieve this wirelessly (hence chose Airdrop without having the computers connect on a network or with cross cable wires). 
+Is there a command to send files to another Mac? 
+Also, is there a way to allow a Mac to automatically receive the requests? 
+
+A: There is now an opensource implementation for AirDrop (with some limitations)
+See https://github.com/seemoo-lab/opendrop
+
+A: If both computers have Wi-Fi capability built-in (otherwise AirDrop won't work either), you can setup a WLAN between them directly (no additional hardware required). The procedure is extremely simple (more or less copied verbatim from Apple):
+
+*
+
+*Choose Create Network from the AirPort status icon in the menu bar.
+If the icon isn’t in the menu bar, choose Apple > System Preferences, and then click Network. Click AirPort and select the “Show AirPort status in menu bar” checkbox.
+
+
+*Give the network a name and select a channel from the pop-up menu (or just use the default channel).
+
+
+*Select the Require Password checkbox to protect your network with a password. Type the password users will need to enter in order to join your network. Unfortunately WPA/WPA2 is not supported so pick WEP128 and type a password of exactly 13 ASCII characters or 26 hex digits
+From the other computer you now can access the network under the name assigned in step 2. To exchange files, either use the Public/Drop Box folders of the individual users or share a specific folder for everybody.
+
+A: AirDrop is a single purpose function.  It is for transfer of files.  It is a pipeline only, open or not.  I believe any manipulation of those files must be done at either the origin or the destination.  I believe only an object can go through the pipeline, and not an action.
+You seem to want a synching action
+I think this is the concept of AirDrop.

@@ -1,0 +1,11 @@
+Q: Fixed-width text not appearing correctly in Safari after Lion upgrade I recently updated to Lion, and have found that at least some HTML tagged as <pre> or <tt> shows up looking like this
+
+I've tried changing the fixed-width font in Safari. I've tried rebooting. The same page looks fine in Chrome, and when I copy the text in question out of Safari into BBedit, it looks fine. I'm at a bit of a loss.
+
+A: From Apple Support Communities:
+
+Restart in safe mode than normal boot. If that doesn't do the trick, run Font Book and validate all fonts.
+
+
+A: This is a known bug. This problem is often because of a bug with Safari 5.1 that appears when you are also using professional font management programs like Linotype FontExplorer and Extensis Suitcase Fusion.
+Disable you font management program, clean your font cache, reboot, and check with the company that makes your font management program and see if they have a new update to address working around this new bug.

@@ -1,0 +1,20 @@
+Q: How can I show the login window after a period of inactivity? How can I make my Mac display the login screen (as though I'd selected "Login window" from the fast user switching menu) after the session has been idle for a certain time?
+I can make it log out after some amount of inactivity, but I don't want that. I want my programs to continue running.
+I can also set the screen saver to require a password, and clicking the "Switch user" button on the password dialog will display the login screen. I'd effectively like to skip that step and go directly to the login screen without having to push the button.
+
+A: One solution could then be this one...
+Download this ScriptSaver (ScreenSaver): http://swannman.wordpress.com/projects/scriptsaver/ - which can run AppleScripts.
+Then write an AppleScript script with this content:
+tell application "Finder"
+    do shell script "/System/Library/CoreServices/Menu\\ Extras/User.menu/Contents/Resources/CGSession -suspend > /dev/null"
+end tell
+
+Setup a ScreenSaver in "Desktop & Screen Saver", and configure this with the ScriptSaver, which you then setup with the AppleScript script from above.
+After min. 3 minutes the current user session will be switched to the Fast User Switching window.   
+
+A: Rob, you can use DssW Power Manager to automatically Fast User Switch to the Login Window after user inactivity. This will leave your account logged in and your applications running.
+The following link shows you how to create the required event for automatically logging out; in step 4 change the action from Log Out to Fast User Switch to get the behaviour you are after:
+How to Automatically Log Out After Inactivity on Mac OS X
+
+Power Manager also includes a task to "Secure sleep after inactivity". This task Fast User Switches to the Login Window and then puts the Mac to sleep.
+Disclosure: I work for DssW.

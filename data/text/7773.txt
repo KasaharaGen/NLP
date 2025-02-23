@@ -1,0 +1,30 @@
+Q: Hibernate MacBook on 10-ish % power instead of 0/1% when running on battery? Yeah, I know my battery is probably hosed, but every time I reach 5%, my MacBook shuts down, as it expects the battery to be able to run down to 1% before hibernating.
+However I would like it to hibernate and not shutdown, when I run out of power, so is it possible to make my MacBook hibernate at like 5-10%?
+My MacBook is over 2 years old and I'm not going to buy a new battery. The battery only lasts 1-2 hours.
+I have tried calibrating the battery, resetting the SMC etc., without any noticeable effect.
+
+A: http://www.jinx.de/SmartSleep.html will let you control it via GUI. The app is $6 on his website or $4 on the Mac App Store.
+
+(Note: I have no idea how this app ever got approved for the Mac App Store, but it appears that Apple is stone-walling the developer on approving a Lion-compatible update. This seems to be Apple's passive-aggressive way of getting apps out of the Mac App Store after they were approved: they don't want to upset people by yanking the app, so they just won't approve an update and eventually it either breaks and the developer pulls the app because they are getting so many support requests, or people just stop buying it. When the sandboxing rules hit in November, we may see apps start disappearing from the Mac App Store. All of which is to say that if I was going to buy this app, I'd buy it through his website even though it's $2 more. There's a demo available, although the "request a trial" button didn't work for me, I assume it's a temporary glitch that the developer can fix. It also appears that Mac App Store customers can download the version from his website and use that, so if those $2 are really important to you, I guess you could try that.)
+
+If you'd rather spend time than money, http://tidbits.com/article/9115 has a script that might help.
+
+A: If you purchase or try the demo version of TinkerTool System (and make sure that it is "system", TinkerTool alone won't do it), there is a setting to enable or disable "Safe Sleep," which automatically hibernates the laptop every time it enters sleep. To access this setting, go to TinkerTool System > Mobile Settings > Safe Sleep.
+
+A: It's not ideal, but using no 3rd party tool you could use pmset to halt your computer at 10% left...
+pmset -u haltlevel 10
+
+This will trigger an emergency shutdown at 10% battery left... Which is arguably better than a power loss when you have an aging battery (It's my case).
+
+A: pmset -u haltlevel 10
+
+This puts the Mac to hilbernate if the battery is 10%. But there may be some reasons why it does not sleep or hibernate. Some other programs may stop it, like HDD indexing. See this link for details
+the manual says:
+UPS SPECIFIC ARGUMENTS
+     UPS-specific arguments are only valid following the -u option. UPS settings also have an on/off value. Use a -1 argument instead of percent or minutes to
+     turn any of these settings off. If multiple halt conditions are specified, the system will halt on the first condition that occurs in a low power situation.
+
+     haltlevel - when draining UPS battery, battery level at which to trigger an emergency shutdown (value in %)
+
+however for somereason, it does not work in Lion OS
+see this link for command syntax

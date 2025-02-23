@@ -1,0 +1,74 @@
+Q: Display a pixel-for-pixel copy of a Mac-created Keynote presentation on iPad Is there a way to get a pixel for pixel copy of a Mac-created Keynote presentation onto an iPad to present on an external display? The iOS Keynote app often has great trouble in importing Mac-Keynote documents (lacks 16x9 resolution, fonts, etc). I don't want to convert the presentation to a PDF, as this removes animations/videos/etc. Converting to a Quicktime file also does not work, as there isn't any way to manually advance a Quicktime "slide" on the iPad. 
+It's quite probable that there is no solution, but I'm eager to hear suggestions I may have overlooked.
+
+A: Staying with the keynote format, no. I you export to a QuickTime movie, you will have the best chance to preserve the slide deck as it was on the Mac when saving it alone doesn't work. 
+You can only work around this by getting the mac pixels on the iPad since this appears to be an inherent limitation of the iOS app as written today.
+Have you tried using Air Display to add the iPad as a second monitor and tell Keynote to present on the iPad? The company does awesome work and like any screen sharing over a network, there is latency and/or slight rendering artifacts, but it's better than other apps in that space as any I've seen.
+
+A: As someone who gives as many as 40 or 50 presentations annually, this is a conundrum I seriously contemplate with every Keynote file I create. I don't know if I have achieved "pixel-to-pixel" fidelity between my devices, but I strive to build "to the presentation device" to minimize the amount of post-transfer repairing required. Historically, I created most of my Keynote presentations on a variety of desktop and laptop Macs. I have built a few on iPads (version 1, 3 and 4) as well as iPhone (4/4s/5). 
+The best advice I can give: The presentation device is not always the gadget running the file. More often than not, it's a projector. In your case, the presentation device will be the external monitor. from here on out, we'll call the "presentation device" the screen and the computer or iPad you run the file on the device.
+In almost all situations, the organizations where I present provide the projector. To date, all the projectors have been square-format (1024x768 or 1280x1024), not 16x9 or 16x10 as with most current desktop and laptop screens.
+When I create a presentation, I try build it (or refine a version of it) for the screen it will display on as well as the device that runs it:
+
+
+*
+
+*A projector provided by the organization (read as "usually cheap" or abused). Lowest-common-denominator 1024x768 comes to mind.
+
+*An organization I have previously presented to, capable of 1280x1024. The bulk of my "presentations" fall into this category.
+
+*A "kiosk" presentation to display on a specific device, be it an iphone 4s or 5, an iPad 4, iPad 2, a 27" iMac, or a 17" MacBook Pro.
+
+*An external monitor of either known or unknown dimensions or resolution.
+
+
+Canderson, your situations looks closest to 2, 3 or 4 above. To the best of your ability, I would apply these constraints:
+
+
+*
+
+*give yourself enough time for a trial run on the screen as well as time to enact any corrections or final polishing the translated presentation needs to look the way you want while running on the device.
+
+*if at all possible, provide your own screen where you know not only the resolution, but also the color fidelity, brightness, etc. 
+
+*when working with an unknown screen, 1024x768 is safest, but 1280x1024 can look better if the screen will support it
+
+*set the slide resolution to the hardware resolution of the screen (monitor or projector), rather than an arbitrary or default resolution
+
+*most of the problems I encounter when moving or transferring a presentation from a computer to iPad stem from Keynote's default resizing algorithms
+
+*use only fonts available on the device
+
+*use only transitions available or appropriate on the device
+
+*use only image files available (or appropriate) on the device
+
+*
+
+*for transparent backgrounds, Keynote on OS X can read Photoshop files, but iOS does not support the format--use PNG instead
+
+*OS X allow PDFs in a Keynote file, but it doesn't work so well for iOS
+
+
+*build your image files to the number of pixels (not just a generic resolution) they will appear on screen... if you need to think in dpi:
+
+*
+
+*start somewhere around 72dpi for laptops, desktops or "low res" iOS gadgets
+
+*144dpi for iPad 3+ or iPhone 4+, or retina MacBook Pro 
+
+
+*if your screen is 2048x1537, and you want a graphic to occupy about half the screen, that image needs to be 1024x768 regardless of dpi
+I experienced intermittent crashes with iOS Keynote on the iPad 1 and 2. The iPad 3 and 4, especially with the current version of Keynote on iOS 6 have 
+ - been more stable
+ - been able to Magic Move with larger jpgs or pngs
+ - included more transitions
+ - been more reliable
+I'm not a podium speaker--I feel like a caged tiger when I can't prowl around the room. My next goal is to AirPlay my presentation wirelessly to an AppleTV hooked to the projector, either through a local wifi network or using my iPhone as the router. The iPad VGA adapter works well if you have the iPad stationary. Unfortunately the connection has fallen apart on my as I move around. Rubber bands just aren't that professional looking.
+Good luck with your presentation!
+
+A: Use iWork.com embedding  :)
+Since January (Keynote 5.0.5), iWork lets you embed your published presentation and play them in Safari (link contains a demo). Follow the instructions there!
+Note that not all transitions will be available, so it won't be a “pixel-for-pixel” in all cases, but I guess it's the best alternative we can get.
+Note: I have not tested this with an iPad (don't have any around), but seeing all that's required is a recent version of Safari, that should work.

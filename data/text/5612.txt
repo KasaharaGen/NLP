@@ -1,0 +1,17 @@
+Q: How to turn off automatic typing correction in Lion? Since upgrading to Lion I notice that typing is automatically getting "corrected".
+For example, I type "I posted to elance that" and the word elance automatically changes to "glance".  I back up and change the 'g' to an 'e' and it changes it back to "glance" again.  
+I first noticed it in Mail, but I see it's also happening here in Safari too.
+How do I turn this off?  Note: I don't mind the 'red-squiggle' when it thinks there's a typo, but I don't want it automatically changing my text.
+
+A: Go to system preferences -> and then language/text
+Hit the "Text" tab.
+There is a checkbox that says "Correct spelling automatically". Uncheck it.
+Look here for more info:
+http://www.applegazette.com/mac/how-to-disable-auto-correct-in-os-x-lion/
+
+A: Open a terminal window, and run this:
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool NO
+
+
+A: User "Gauzy" posted this in a comment.  I'm posting it here and marking it as the correct answer:
+For Safari (or any other app with a text input box, for the most part) right click (or control click) the text area, goto Spelling and Grammar, and deselect Correct Spelling Automatically. Screenshot – Gauzy

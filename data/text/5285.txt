@@ -1,0 +1,50 @@
+Q: How can I make the Cisco VPN Client work with Lion? Worked in Snow Leopard and now gives error 51 and the sudo restart system command in Terminal i used to use doesn't work.  Any idea?
+
+A: This is due to Lion booting into a 64 bit kernel verses older releases starting in 32 bit mode. There is no patch but a simple workaround involves booting into 32 mode and running the VPN client normally. This method will work on 10.7 until Cisco actually creates a 64 bit extension for mac os x. Details for booting into 32 bit mode are here: http://9to5mac.com/2011/03/20/new-macbook-pros-default-boot-in-64-bit-mode/
+Cheers, -mjh
+
+A: Fix Issue with Cisco VPN on Lion 64bit
+On Mac OSX Lion system kernel runs in 64bit mode by default.
+Cisco VPN in the clinic will not start and comes up with the error:
+Error 51: Unable to communicate with the VPN subsystem.
+Please make sure that you have at least one network interface that is currently active and has an IP address and start this application again.
+To be able to successfully run VPN you need to boot your mac with 32 bit kernel.
+Option 1 (Boot 32 bit kernel for this session only)
+To boot into 32bit one time hold 3 and 2 keys when rebooting until you see the desktop. Next time you reboot, the computer will start in 64bit again.
+Option 2 (Permanently set system to boot in 64bit mode)
+To change permanently to 32bit run in terminal: 
+"sudo systemsetup -setkernelbootarchitecture i386"
+To change permanently to 64bit run in terminal:
+"sudo systemsetup -setkernelbootarchitecture x86_64"
+The above commands will modify the following file:
+/Library/Preferences/SystemConfiguration/com.apple.Boot.plist
+
+A: Have you tried using the on-board Cisco VPN Client? I had serious issues with Cisco's client (it kept kernel panik-ing my Mac) and had the IT department help me set up the built in client.
+It basically works the same way as it does on an iPhone or iPad, so if you can connect with that device, you should be able to do so as well with your Mac.
+What I needed:
+
+
+*
+
+*the ip address of the VPN Server
+
+*the Group Name
+
+*the shared Secret
+
+
+Login was done by using Active Directory authentication.
+This is how I set it up:
+In System Preferences -> Network hit the + button on the bottom of the list. The following dialog will open up
+
+As you can see you'll need to choose VPN for the Interface and Cisco IPSec for the VPN Type. Name it as you please.
+You'll find your newly created entry in the list, select it and you'll get a similar picture
+
+Enter the IP Address you got from your IT department. You can leave the login stuff empty as you'll be prompted when connecting.
+Hit the Authentication Settings... button.
+
+Enter the group name (IT) and the shared secret. If your IT guys don't want to hand the data out to you, then ask them to kindly enter it for you. 
+Hit OK and then Apply your settings and you should be pretty much able to connect now. I like to have the Show VPN status in menu bar option enabled in order to have quick access to turn on and off the connection. 
+I also had to add one additional thing in order to be able to access remote computers just by their name instead of having to type name.domain. To do so I hit the Advanced... button and added our domain name to the Search Domains.
+
+Hope it helps.

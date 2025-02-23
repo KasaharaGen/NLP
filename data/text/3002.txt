@@ -1,0 +1,90 @@
+Q: Can't quit app launched through launchd As it says in the title, "Can't quit app launched through launchd"—or more precisely, I can quit it, but it then automatically restarts again.
+
+Background: I prefer to use BusyCal, not iCal, but there are some calendar-ish things that have to be done by iCal before BusyCal can get the results. I figured I'd create two launchd scripts: one to launch iCal every day at 5 am, and another to quit it a few minutes later.
+
+Here's the plist to launch (in ~/Library/LaunchAgents/com.dori.iCalLaunch.plist):
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>KeepAlive</key>
+    <false/>
+    <key>Label</key>
+    <string>com.dori.iCalLaunch</string>
+    <key>OnDemand</key>
+    <true/>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Applications/iCal.app/Contents/MacOS/iCal</string>
+    </array>
+    <key>ServiceDescription</key>
+    <string>iCal Launcher</string>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>5</integer>
+    </dict>
+</dict>
+</plist>
+
+My understanding was that I didn't need the KeepAlive and OnDemand keys, but I put them in anyway to try to stop the relaunching. 
+Here's the plist to quit (in ~/Library/LaunchAgents/com.dori.iCalQuit.plist):
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dori.iCalQuit</string>
+    <key>Program</key>
+    <string>/usr/bin/osascript</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>osascript</string>
+        <string>-e</string>
+        <string>tell application "iCal" to quit</string>
+    </array>
+    <key>ServiceDescription</key>
+    <string>iCal Quitter</string>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>5</integer>
+        <key>Minute</key>
+        <integer>10</integer>
+    </dict>
+</dict>
+</plist>
+
+Based on my log files, they both run just fine—but after the Quit runs, iCal relaunches.
+Any ideas for things to try, or things that might be causing this?
+
+A: If you don't specify <Minute> in the <StartCalendarInterval>, then (just like cron's *) it will run the job every minute.
+
+A: One answer to this problem is slightly counter-intuitive.
+Simplify your iCal plist file and make iCal run forever by setting OnDemand to false. Here is a file I tested by storing it as ~/Library/DontLaunchAgents/com.dori.iCalForever.plist - don't leave this file in any directory launchd looks at unless you want to launch iCal every time you log in and respawn it should you ever choose to quit iCal.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dori.iCalForever</string>
+    <key>OnDemand</key>
+    <false/>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Applications/iCal.app/Contents/MacOS/iCal</string>
+    </array>
+</dict>
+</plist>
+
+Now you need a single shell script that calls these two commands separated by a sleep long enough to accomplish whatever task iCal needs to perform.
+launchctl load ~/Library/DontLaunchAgents/com.dori.iCalForever.plist
+sleep 600 #sleep time in seconds
+launchctl unload ~/Library/DontLaunchAgents/com.dori.iCalForever.plist
+
+.. and Bob's your uncle.
+
+A: Something you might want to try if configuring this is becoming a pain is Lingon, it is a easy to use GUI editor for launchd, I would try to configure your job in it and see if you get the same results. 

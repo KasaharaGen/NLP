@@ -1,0 +1,29 @@
+Q: How can I remap the "`" key to "Esc" I am using a Mac after five years of Linux. I had remapped "Caps Lock" to "Ctrl" and swapped the "`" with Escape.
+I was able to figure out how to convert Caps Lock to a Control, but can't figure out how to do the second. Please suggest a good tool so I don't have to undo many years of muscle memory.
+(I use OSX Lion)
+
+A: KeyRemap4MacBook
+A preference pane with currently about 1500 remapping options. Includes Backquote(`) to Escape and Escape to Backquote(`).
+
+Ukelele
+You could create a custom .keylayout like this:
+
+Esc on the layout above worked with all of the things I tested:
+
+
+*
+
+*OS X UI actions like canceling a dialog and exiting full screen
+
+*On some websites with keyboard navigation like Google Search
+
+*As a meta key in Terminal.app
+
+
+Modifying special keys from a .keylayout usually results in some unexpected issues though.
+
+A: The only way I know of doing this is by using a third party app; BetterTouchTool. Set it up to look like this :
+
+Create an applescript with tell application "System Events" to key code 53 and save it. Then add a new shortcut to BTT which runs the script.
+
+A: The inconveniently named KeyRemap4Macbook should do that, without the need for an external applescript.

@@ -1,0 +1,27 @@
+Q: How can I embed a linked local image in an Apple Mail signature? I think my question says it all (and yes, I've googled and searched StackExchange already) - but to clarify:
+I want to embed an image, which I have locally, in my html email signature (i.e. my logo, linked to my website). I create a html file (and made a web archive of it) with referencing to my local image like  src="file:///Users/myuser/path/to/image/jpg".
+Opening the web archive/html page in Safari displays the logo fine.
+Now, when I use this html signature, Thunderbird is smart enough to embed the local image properly with a binary mime type of image/jpeg, however, Mail just doesn't do anything with it and just leaves the html code untouched, still referencing to the local file (and even that doesn't work/display when I receive my own mail on my Mac where I actually have the file at that local place; probably sandboxed?!).
+I've already googled and all of below are not working:
+How can I embed an image in an Apple Mail signature?
+How can I add some html to my Mail.app signature?
+(and their respective linked articles on the web).
+The only way I could get the local image to display in the received email is to drag & drop the image from the Finder into the Mail signature preferences window, but then, I still have the problem that the image is not linked to my website, and I see now way to edit the html source of it in any way. 
+I've already tried to drag & drop the image, then open the web archive file under /Users/myuser/Library/Mail/Signatures in Safari, fetch the html code (which holds code for an embedded object), modify the source code (adding a link around the image), save it as web archive and overwrite the old file. However, after doing that and restarting Mail, the image doesn't show, but instead shows a place holder saying "Missing Plug-in".
+(I don't want to use remote images on the web, since many clients mostly ask users to display remote images firstly, before actually displaying them - embedded images therefore work better, as they will be displayed instantly in most cases/email clients' default configuration.)
+
+A: Here is my solution:
+
+
+*
+
+*Open the picture in Preview (or open the html in a browser)
+
+*Cmd-A to select all, Cmd-C to copy
+
+*Create a new signature and paste in the contents
+
+
+I have verified that this solution works for local pictures and simple html snippets.
+
+A: I have found that Mac Mail does not allow for embedded images in their signatures. If you are designing an HTML signature, I would use the img src tag to load a remote image. Try using googleplus or googledocs to save the image you want to include. You can then control it using HTML and CSS styles.

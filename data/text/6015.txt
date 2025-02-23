@@ -1,0 +1,18 @@
+Q: How do I increase rendering speed on Final Cut Express? How do I increase render speed on FCE? I have several overlaid HD video tracks, and it is SLOW.
+EDIT: I am on a MBP 13", 2.3 GHz Intel Core i5, 4GB 1333 MHz DDR3. The render disk is an external USB drive.
+EDIT: I found out that FCP has a feature that allow you to only render video to a certain quality (or bit rate...something like that). Does FCE have a feature that does this same thing?
+EDIT: Oh, and...if I upgrade to FCE 4, will rendering be faster?
+EDIT: I am on FCE 4.
+
+A: I imagine the USB disk is probably a source of the bottleneck.  Try using a Firewire 800 disk.
+
+A: Adding RAM is usually the cheapest way to improve speed. I went from 4 GB to 12 GB in my iMac and FCPX improved dramatically.
+Also I recently upgraded from a USB Drobo (1st Gen) to a Firewire 800 Drobo (2nd or 3rd Gen) and my disk speeds increased a lot.
+A few other quick things: Make sure you're not running any other apps when FCE is running. And you should run a utility like Onyx or Applejack to clear up any file permissions issues or other cruft that comes from running a modern OS.
+
+A: Ok, so after much research, I finally found out that the reason it was taking so long to export was because I was exporting from the external drive to the external drive. I fixed the problem by exporting from the external drive to the internal drive. I am also probably going to switch to a Firewire 800 drive.
+
+A: What version of FCE are you running? It sounds like it's less than version 4. If you're running anything less than version 3.5, it's a PowerPC version, and thus is running a lot slower than it would be if you ran v3.5 or higher, which is Intel-native.
+Can't guarantee this is your problem, but it's what I would check first.
+
+A: Convert all footage to The Apple Intermediate Codec ( AIC )first before importing. Makes a big difference in rendering time. Use MPEG Streamclip to convert

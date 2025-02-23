@@ -1,0 +1,8 @@
+Q: Mac OS X locks up when I plugin in headphones on MacBook Pro Every time I plug in (or off) my headphones (even white iPhone ones), Mac OS X locks up for about 10 seconds, and then works as normal, and even displays the beach ball. Not everything locks up, as I can still switch screens, etc, but I think the Finder does.
+Initially I thought this was related to Flash, as the Flash Player would stop working, but this happens even when the browser is closed.
+I don't have any audio related apps installed.
+Does anybody have any ideas of what could causing this, or tips on how to track down the problem?
+
+A: Could you try creating a new user and see if it happens there? Create a new user. Restart your computer and log with the new user. Make sure you don’t have anything in the “Login Items” (nothing starts at login).
+Also try starting your Mac in “Safe Mode” as described here and see how it goes. 
+This could be related to a Kernel Extension (ktext) problem.

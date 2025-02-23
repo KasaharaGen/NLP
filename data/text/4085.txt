@@ -1,0 +1,4 @@
+Q: Some SSH commands do nothing? I've been exploring SSH on my iPod and have noticed that some commands seem to just leave the console hanging or do nothing all together. Some examples are 'simulatecrash' or when I try to launch an app. If anybody has any ideas on why these do nothing, I'd appreciate your input. Thanks in advance. 
+Also, if it matters, I have a 32GB iPod Touch 4g running iOS 4.3.3 and it is jailbroken.
+
+A: I found a thread about the simulatecrash command. It says you need to use simulatecrash -h to make it work properly. As for the apps, I don't think you can launch apps from the command line as you would a shell command. You can try /var/Applications/Name.app/Name but I can't confirm if this works because my iPhone is not jailbroken.

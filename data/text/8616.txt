@@ -1,0 +1,25 @@
+Q: Printing the current date/time with sub-second precision GNU date(1) understands the %N format spec, which outputs nanoseconds, so:
+$ date +%H:%m:%S.%N
+
+outputs 19:10:03.725196000
+BSD date doesn't understand %N. How can I print the current time with sub-second precision on OS X?
+
+A: As you said, BSD date doesn't support %N. So the straightforward solution is to download GNU's date and install it to either ~/bin or /usr/local/bin and call that when you need to use %N.
+However, I would not advise replacing the version that ships with your Mac with the new one. Most of these coreutil programs are written such that their output can be understood by other programs, not necessarily humans, so reliability in output is a necessity. There might be several scripts in your mac that parse the output of BSD's date and any possible changes introduced by replacing with GNU's might or might not break things.
+
+The simplest way to do this safely on a Mac is to use homebrew and install coreutils.
+brew info coreutils
+coreutils 8.16
+http://www.gnu.org/software/coreutils
+...   
+==> Caveats
+All commands have been installed with the prefix 'g'.
+
+The GNU equivalent will be named gdate and is located in /usr/local/Cellar/coreutils/8.16/bin/. You can also set an alias in your .bashrc or its equivalent as 
+alias date='gdate'
+
+
+A: Use python. It's built into macOS, so you don't need to install additional software!
+python -c 'import datetime; print datetime.datetime.now()'
+
+If you want the output to be formatted differently, take a look at https://stackoverflow.com/a/18944849/6358721

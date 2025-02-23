@@ -1,0 +1,34 @@
+Q: MacBook Pro 2011 logging itself out after a period of inactivity when I am not using it, at some point, every day, my MBP tries to log out on its own. When I 'wake it up' I can see message windows about "applications aborting logout", obviously because some applications that needed to save data aren't allowing OSX to close them. 
+This is extremely irritating, because all applications that have nothing to save, will close down on me, sometimes in the middle of a long download. 
+My MBP isn't configured for hibernation, or logging out, or even sleeping. It's always does it on AC power and I simply have no idea why.
+The problem started with Snow Leopard, and persists with Lion as well.
+Output of my pmset utility is:
+Active Profiles:
+Battery Power       -1
+AC Power        -1*
+Currently in use:
+ standbydelay   4200
+ standby    0
+ womp       1
+ halfdim    1
+ panicrestart   157680000
+ hibernatefile  /var/vm/sleepimage
+ sms        1
+ networkoversleep   0
+ disksleep  10
+ sleep      0
+ hibernatemode  3
+ ttyskeepawake  1
+ displaysleep   60
+ acwake     0
+ lidwake    1
+
+Does anyone have a clue why my mac tries to shut down all the applications and logout when I don't use it for a few hours? How do I stop this?
+
+A: System Preferences -> Security and Privacy -> Unlock the settings -> click the Advanced button -> Disable the logout option
+
+
+A: I believe I discovered the culprit. The "security" settings have a "Log out after "x" hours of inactivity". It was checked on my MBP, but disabled visually due to the settings being locked. This is probably why I wasn't paying attention to it. 
+Unchecking this option, and letting run overnight, it did not try to log out. Problem resolved.
+
+A: okay i have a much better solution for you. Go to mac appstore and download caffeine. It can keep your computer awake and more.

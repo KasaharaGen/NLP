@@ -1,0 +1,79 @@
+Q: How can I add a path to the PATH environment variable? I want to add a path to the PATH environment variable?
+I have tried with export PATH=/mypath:$PATH and it works. But the next time I start the Terminal, my new path is not int the PATH environment variable any more.
+How can I add a path to the PATHenvironment variable? and it should be there also the next time I start the Terminal.
+
+I have problems with this now again, the trick that worked before doesn't seem to work anymore.
+I have tried with:
+echo 'export GRADLE_HOME=/Users/jonas/gradle-1.2/' >> ~/.profile
+echo 'export PATH=GRADLE_HOME/bin:$PATH' >> ~/.profile
+
+to add two environment variables. Then my ~/.profile-file has this content:
+export GRADLE_HOME=/Users/jonas/gradle-1.2/
+export PATH=GRADLE_HOME/bin:$PATH
+
+But when I start a new Terminal window and type gradle (the command I added to PATH), I get a message that the command doesn't exists. If I run the command from /Users/jonas/gradle-1.2/bin it works fine!
+
+A: echo 'export PATH=/my/path:$PATH' >> ~/.bash_profile should do the trick!
+If you used echo 'export PATH=/my/path:$PATH' > ~/.bash_profile, or any such variation, you would be overwriting the contents of your profile!
+
+A: Updated at 2021.0908
+I'm using this:
+~/.zsh/
+├── .fzf.zsh
+├── .zcompdump
+├── .zprofile              # This will be read before .zshrc.
+├── .zsh_functions         # This is for my custom scripts.
+├── .zsh_history
+├── .zshenv                # (Important) Create a symlink of this to your ~/.
+└── .zshrc                 # Put everything in this file is fine. (cont.)
+                           # (cont.) this is the ".bashrc" in your head.
+
+Some points:
+
+*
+
+*My .zprofile is empty. I prefer to put all stuff inside .zshrc because it doesn't contain too many lines.
+
+*The content of .zshenv SHOULD contains this line so that we can organize the .zsh family into the ~/.zsh folder, AND don't forget to symlink it into your ~ folder where your OS can read:
+
+ZDOTDIR=/.zsh
+
+DONE. You can ignore my old answer follows.
+
+Old answer: (Not correct. Put everything inside .zshrc is just fine.)
+Old question but, for MacOS X Catalina users:
+Create/edit ~/.zshenv:
+# comment for yourself
+PATH="$PATH:to/your/path"
+
+Notice that modify PATH in ~/.zprofile or ~/.zshrc is not correct, it should be ~/.zshenv.
+If you need to prepend something to PATH, further create/edit ~/.zprofile:
+# apply the prepend to PATH
+[[ -r ~/.zshenv ]] && source ~/.zshenv
+# remove duplicate in PATH
+typeset -U PATH
+
+Reference: http://zsh.sourceforge.net/Intro/intro_3.html
+
+A: In addition to the places mentioned by  @RobZolkos, the login shell also looks in /etc/paths and the files inside /etc/paths.d/. One path entry per line in these files.
+See /etc/profile and the manual page for path_helper.
+
+A: OSX reads the following files in order when a terminal opens :
+/etc/profile
+~/.bash_profile
+~/.bash_login   
+~/.profile     
+
+So place your path addition into one of these.  I normally put additions into ~/.bash_profile
+
+A: Insert in .bashrc these lines of code:
+function pathadd {              # Add new element to PATH
+  if ! echo $PATH | egrep -q "(:|^)$1(:|$)"
+  then if [ "$2" = "after" ]
+       then PATH="$PATH:$1"
+       else PATH="$1:$PATH"
+       fi
+  fi
+}
+
+then type a command like: pathadd /opt/local/bin or pathadd /opt/local/bin after.

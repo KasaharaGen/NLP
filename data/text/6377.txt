@@ -1,0 +1,4 @@
+Q: What are the techniques for upgrading scripting languages on Lion OS X How can I painlessly upgrade ruby and python languages and their libraries? Can I nuke the system versions (which are present somewhere in /System/Libraries) and install newer ones using package manager (macports, fink, homebrew) or should I install them side by side to separate --prefix and override the $PATH variable to use installed versions first? Any other decent options?
+
+A: Don't overwrite or remove the system versions. Future OS X updates will break things.
+MacPorts, Fink and Homebrew will use prefixes to prevent such problems, and typically set up the path so that your own calls to scripting languages will use their custom versions, whereas OS X packages will continue to use its own versions.

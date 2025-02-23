@@ -1,0 +1,46 @@
+Q: How do I run terminal in sudo mode? I was trying to install npm, and I got
+npm ERR! Error: EACCES, Permission denied '/usr/local/lib/node_modules'
+npm ERR! 
+npm ERR! Please use 'sudo' or log in as root to run this command.
+npm ERR! 
+npm ERR!     sudo npm "install" "." "--force" "--global"
+npm ERR! 
+npm ERR! or set the 'unsafe-perm' config var to true.
+npm ERR! 
+npm ERR!     npm config set unsafe-perm true
+
+How can log in as a root?
+
+A: You need to use the su (switch user) command to become root, but only root is allowed to become root, so you need to use sudo (super-user do). Therefore, type: sudo su.
+[william@NCC-1701 ~]$ sudo su
+Password:
+[root@NCC-1701 /Users/william]$ 
+
+If you haven't used root before, you should be made fully aware that one wrong character typed as root will delete your entire operating system, including your photos, emails and financial documents. Be extremely careful and always triple-read what you type before hitting enter. Otherwise, good luck!
+
+A: sudo -s is far easier than enabling the root user since it just starts up a shell with root permissions as a one step, on demand action. Not only is it fast, but it doesn't need to be reconfigured when you don't need the root user and doesn't expose the server to any more risk or vulnerability that adding a root user would entail.
+Of course for npm you could just follow the directions and type:
+sudo -H npm "install" "." "--force" "--global"
+
+That still makes the npm command "root" and skips the log out step to get back out of root.
+
+A: I ran the same issue trying to install ionic, you only need to run the same command with sudo:
+sudo npm install -g ionic cordova
+
+The system will request the current user’s password. Provide it, and you will be able to install as superuser.
+
+A: Other than what people have said you can run sudo <your-shell> this brings up the shell with root priveleges
+sudo zsh
+
+
+A: I usually do it bit differently than how others described here.
+Lets imagine you have two users.
+standard user: john
+admin user: kevin
+If john is logged in and wants to run as a root user(as kevin) here is how I do it.
+su kevin
+
+when asked enter kevin's password
+sudo npm "install" "." "--force" "--global"
+
+enter kevin's password again.

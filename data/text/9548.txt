@@ -1,0 +1,7 @@
+Q: Need to restore from encrypted iPhone backup, but can’t due to missing password I did not set a password for the restore encrypted thing. I have tried 1234 and anything else I could come up with. I have to get back in. I accidentally deleted text messages that I need for personal reasons. I called Apple, and they basically admitted that this could happen somehow, but they had no remedy. Is this true?
+
+A: *
+
+*I would try your iTunes password and any others you can think of.  Passwords don't magically set themselves.  You or someone else must have enabled the Encrypt iTunes Backups feature, which requires setting a password.
+
+*You might be in luck, because deleting text messages (at least in iOS 4.x) doesn't actually erase the data, it still exists in your sms.db file hidden on the phone.  You could seek an experienced iPhone expert to help you jailbreak and access your sms.db, or use a tool like DiskAid or PhoneView to attempt to access the Messages sms.db directly.  Then you (they) would use an SQLite database browser to search and view the text messages.

@@ -1,0 +1,6 @@
+Q: How to get rid of the "Other..."-Account on the login screen? Suddenly my MBP shows an "Other..."-Account on the login screen. I searched for a solution to get rid of it and found a couple of answers that say I have somehow activated/enabled the root user. All I did was using a couple of trivial sudo-commands at the command-line, but nothing experimental or which I am unfamiliar with...
+The suggested solutions said I need to deactivate the root user in the Directory Utilities but it was not activated. 
+Are there any other solutions to get rid of this "Other..."-Account?
+
+A: Have you tried the sudo /usr/bin/defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool false in the terminal? This turns off showing some of the other user types.
+Doing some additional research, it looks like this has been somewhat addressed in this post on https://superuser.com/questions/70156/hide-users-from-mac-os-x-snow-leopard-logon-screen

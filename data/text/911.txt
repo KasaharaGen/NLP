@@ -1,0 +1,22 @@
+Q: Duplicate contacts in iPhone 4 with two Exchange accounts, one is Lotus Traveler I have two exchange accounts on my iPhone 4. One that connects to my gmail, the other connects to my work's Lotus Notes. There are no overlapping contacts in the two accounts. There are also no contacts saved locally on my phone. 
+When I enable contacts in both accounts, I get two identical entries for each of the contacts in my gmail. If I disable the Notes exchange account, then there are no more duplicates. If I have Notes contacts enabled, and gmail contacts disabled then I have no contacts at all.
+Does anyone know what is going on? Is this a problem with having multiple exchange accounts or is it a Lotus Traveler problem? (I tend to blame Notes for all the trouble in the world, but that is just my bias)
+Thanks all.
+
+A: The data stores can get confused. It's usually a server issue but you seem to have narrowed that out by the details you posted.
+Giving the iPhone a totally fresh database then re-establishing sync often helps when the databases are failing to sync correctly.
+Since there is no way to just start over for contacts only, you have a short dance of steps.
+
+
+*
+
+*Disable all contact syncing over the air.
+
+*Power cycle the phone
+
+*Use a test account (i make a new user account on my mac with an empty address book) - syncing from iTunes to overwrite all contacts stored on the phone clears the data store well. You can have iTunes only overwrite the contacts and not affect any other data on the iPhone. 
+
+*Sync back to your main iTunes if desired, then finally re-enable contact sync over the air.
+
+
+Since the contact database gets restored from a backup, restoring the phone won't cure contact database errors. If you can re-set up the phone, you could restore and set it up as a new device also.

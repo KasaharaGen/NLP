@@ -1,0 +1,22 @@
+Q: How can I install Snow Leopard on a new iMac or install FCP6 on Lion? I'm in a situation where I purchased a new iMac and need to install my editing software (Final Cut Pro and After Effects).  Only thing is I have FCP 6 (Studio 2) and also FCP 7 (Studio 2) upgrade install DVDs and Lion won't install FCP 6 because it containts PPC code.
+I'd like to either:
+
+
+*
+
+*install Snow Leopard on this computer, but I'm not sure if I need certain firmware drivers (anyone know where to get them and create a brand new Snow Leopard install DVD?) 
+
+*or, at the very least, I would like to be able to install my video software on Lion.
+
+
+A: The problem is that new iMacs probably don't support Snow Leopard. Perhaps upgrading a Snow Leopard installation with all the apps you need already on it could work.
+Well, I see 1 possibility: install Snow Leopard on an external HD (using a computer that supports Snow Leopard) with all the latest Apple updates, then install FCP. Once that's done, use Disk Utility or Carbon Copy Cloner to clone this external HD onto your iMac, then see first if it's starts and behaves correctly, then try the upgrade to Lion.
+This is the jist of it, but if you need more instructions, let me know.
+
+A: You should only need to install Rosetta from a Snow Leopard Disk.
+Do you have a Snow Leopard DVD install disk?
+Run that, go to optional installs and install only Rosetta, reboot.
+Now, you should be able to run the FCP 6 installer.
+
+A: The best solution would be to install Snow Leopard on a different computer. Install FCP6, then move the drive to your mac and do the upgrade.
+Another solution would be to use Snow Leopard on a different Mac or on a virtual machine. Install FCP6, do a time machine save. Then restore applications from the time machine save on your mac (using the migration assistant).

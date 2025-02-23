@@ -1,0 +1,29 @@
+Q: Why is the filesize of downloaded disk image different? I have a disk image which I uploaded to a web server and then downloaded with Safari 5.1 in OS X 10.7.
+Finder reports the original as 34,911,334 bytes, and the downloaded file as 34,909,684. Both appear to contain identical contents when mounted.
+What's going on here?
+Edit: See output of ls -l@ and md5 as suggested:
+$ ls -l@
+total 136376
+-rw-r--r--@ 1 rich  staff  34909684 15 Aug 16:37 Downloaded.dmg
+    com.apple.diskimages.fsck         20
+    com.apple.diskimages.recentcksum          80
+    com.apple.metadata:kMDItemDownloadedDate          53
+    com.apple.metadata:kMDItemWhereFroms         144
+    com.apple.quarantine          74
+-rw-r--r--@ 1 rich  admin  34909684 15 Aug 12:42 Original.dmg
+    com.apple.FinderInfo          32
+    com.apple.ResourceFork      1650
+    com.apple.diskimages.recentcksum          80
+
+$ md5 Original.dmg
+MD5 (Original.dmg) = 4c1ed7a85de6ae51479a136ea23ac69e
+
+$ md5 Downloaded.dmg
+MD5 (Downloaded.dmg) = 4c1ed7a85de6ae51479a136ea23ac69e
+
+
+A: The difference of 1650 bytes is probably the result of the resource fork being stripped from the uploaded disk image.
+To test, I created a disk image from a folder in Disk Utility. I then used 
+ls -l@
+
+in the folder that contained the disk image, and it showed the image had a resource fork that was 1650 bytes.

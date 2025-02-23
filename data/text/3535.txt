@@ -1,0 +1,44 @@
+Q: How do I create files in Finder without Terminal? On windows, when you right click then you have option to create files.
+I want to do that too on Mac, how can I do that without terminal?
+
+A: What is the intention of creating an empty file? To open it? Then why not simply open the app in the first place?
+But,
+If you want to have a couple of files ready to get something started, you can make them, and then use Get Info on them and set the Stationary Pad option. If you then double-click such a file, the app will start with an untitled copy of that stationary file.
+If you have a few of those stationaries, you can put them in a folder or in the dock for easy access.
+If you want to create empty files for another purpose, let us know...
+
+A: I myself Always used TextEdit for this job, open TextEdit and save blank page with desire extension in desire location.
+Also you can use nufile (I didn't test myself)
+
+Or use some applescript.
+
+A: There is a workaround using Automator and Applescript. I tried it out; it works. The only shortcoming is, that you have to click on a file in the folder in order to execute the script.
+How to create the service
+Launching Automator and select Service. In the Automator main window at the top right, set the Service Receives Selected drop-down to `Files or Folders. Drag the following actions into the work area:
+
+
+*
+
+*Run AppleScript (in the Utilities section of the library on the left panel). 
+
+
+Copy and paste the following script into the code box and compile the code clicking the hammer icon.
+on run {input, parameters}
+  tell application "Finder"
+    set currentPath to insertion location as text
+    set x to POSIX path of currentPath
+  end tell
+  return x
+end run
+
+Below that block, insert a new object Set Value of a Variable (in the Utilities section). Click the Variable drop-down and create a new variable calling it CurrentFolder.
+Then, add a New Text File action (from the Text section of the Actions library). Drag the variable you just created (CurrentFolder) from the Variable panel at the bottom of the Automator window to the Where section of the New Text File action.
+Click the New Text File's Options button and select Show This Action When the Workflow Runs. This will allow you to specify the name of new files.
+Save the service and give it a name (e.g. Create New File). 
+Try it out in Finder going to the folder where you want to create a new file. Control-click on an existing file within that folder and select Create New File from the Services submenu. A dialog appears asking for a filename. Insert a name with file extension and click Continue. The new file should be there.
+Here is a screenshot of the Automator job (sorry my Mac is German, but I guess you'll understand):
+
+
+A: This is probably a bit out of scope, but with Quicksliver you can create new text files quite easy.
+Open Quicksilver with the keyboard shortcut, press period ., type some text (or not), switch to the actions and select "Create file...".
+And Quicksilver is a very handy tool in general.

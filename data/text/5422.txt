@@ -1,0 +1,10 @@
+Q: Force Lion to boot 32 bit mode How can I force OSX Lion to boot into 32bit mode without having to hold 3 + 2 down on boot?
+I have to use the Cisco VPN Client to connect back into work and since upgrading it no longer works on 64bit. Cisco have dropped support for the client as well.
+
+A: There is a Cisco VPN client built-in into Mac OS X. I am currently using it successfully to connect to my university VPN network from home.
+Add it as an interface in Network Preferences - 
+
+Quickly connect to the VPN from the menubar - 
+
+
+A: You can modify the com.apple.Boot.plist (found in /Library/Preferences/SystemConfiguration) file with start parameters and also the desired architecture (if you add that section to the file). See the man page here.

@@ -1,0 +1,169 @@
+Q: How do I know the IP addresses of other computers in my network? Say that I have two computers connected to the same network.
+I know that from computer1 and file sharing enabled I can snoop around inside computer2.
+But say that there is something interesting on computer2, which you access by typing localhost:9091 in safari. (e.g. transmission's web UI).
+To access that I would have to type in the ip_address_of_computer2:9091 on computer1.
+But how do I find out computer2's ip address without using computer2?
+
+A: Method #1
+The easiest way would be to access your network router's administration page. It will have information about any other devices on the network, including IP address.
+Method #2
+If you know the computer's network name you can ping it in the Terminal. It will return the computer's IP address.
+Method #3
+If you don't know the computer's network name, there's another trick you can do using ping. Find your IP address and your subnet mask. Both should be visible in the Network preference pane of System Preferences. Line up your IP address and your subnet mask, and replace any 0 values in the subnet mask with 255 in the same relative position of the IP address. For example, if you have the following IP address and subnet mask, respectively:
+192.168.1.151
+255.255.255.0
+The 0 is in the last field of the subnet mask, so you replace the last field of the IP address with 255 and ping it: ping 192.168.1.255
+You should get a response with the IP address of any device on the network capable of responding to pings.
+Method #4
+Last trick is to use the terminal command arp -a. This will show the IP and MAC address of all devices on the network that it knows about.
+Last two tricks courtesy of this Macworld article.
+
+A: Q: How do I know the IP addresses of other computers in my network?
+A lot of networks
+Well, first of all your computer is probably on a lot of networks. You can see this with the ifconfig command. There is a lot of info in there, but most of it is overwhelming, so I like to filter is like so:
+$ ifconfig | grep -E '^[a-z0-9]|inet '
+
+lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> mtu 16384
+    inet 127.0.0.1 netmask 0xff000000
+gif0: flags=8010<POINTOPOINT,MULTICAST> mtu 1280
+stf0: flags=0<> mtu 1280
+en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+    inet 192.168.0.101 netmask 0xffffff00 broadcast 192.168.0.255
+en1: flags=963<UP,BROADCAST,SMART,RUNNING,PROMISC,SIMPLEX> mtu 1500
+en2: flags=963<UP,BROADCAST,SMART,RUNNING,PROMISC,SIMPLEX> mtu 1500
+p2p0: flags=8843<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST> mtu 2304
+awdl0: flags=8943<UP,BROADCAST,RUNNING,PROMISC,SIMPLEX,MULTICAST> mtu 1484
+bridge0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+    inet 192.168.2.1 netmask 0xffffff00 broadcast 192.168.2.255
+utun0: flags=8051<UP,POINTOPOINT,RUNNING,MULTICAST> mtu 2000
+utun1: flags=8051<UP,POINTOPOINT,RUNNING,MULTICAST> mtu 1500
+    inet 172.141.0.10 --> 172.141.0.9 netmask 0xffffffff
+en5: flags=8963<UP,BROADCAST,SMART,RUNNING,PROMISC,SIMPLEX,MULTICAST> mtu 1500
+    inet 169.254.146.193 netmask 0xffff0000 broadcast 169.254.255.255
+bridge100: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+    inet 192.168.3.1 netmask 0xffffff00 broadcast 192.168.3.255
+
+The first field of the left aligned lines are network interface names. You wifi is probably en0. My TunnelBlick VPN to AWS is utun1. My System Preferences > Sharing > Internet Sharing created bridge100 for the RaspberryPi I have getting internet from my MacBook Pro via my ethernet dongle.
+Assume IPv4
+Because you asked for IP addresses I assume IPv4 addresses are what you care about. I used "inet " (with a space) to block the "inet6" entries for IPv6. If you wanted IPv6 you probably know more about networking than I do and I should be asking you questions.
+Find the hosts
+Let's focus on that bridge100 and bring you a little Google traffic. Lots of people run into this situation when they want to SSH or RDC into a headless computer (like a RaspberryPi) either on their network or tethered via Internet Sharing. It's especially difficult when you have no connection history (arp table) with the device. For this you can use sudo nmap -sn 192.168.3.0/24, which is the value of bridge100 inet (192.168.3.1) with the last digit replaced with "0/24". However, nmap isn't standard on OSX so we can install it with homebrew.
+$ brew install nmap
+Warning: nmap-7.31 already installed
+
+$ sudo nmap -sn 192.168.3.0/24
+Password:
+
+Starting Nmap 7.31 ( https://nmap.org ) at 2016-11-21 22:03 EST
+Nmap scan report for 192.168.3.6
+Host is up (0.00025s latency).
+Nmap scan report for 192.168.3.1
+Host is up.
+Nmap done: 256 IP addresses (2 hosts up) scanned in 2.08 seconds
+
+From that you can assume that my RaspberyPi got IP 192.168.3.6 for some reason. Last time I connected it I was on a different subnet and it got 192.168.2.3. That nmap trick is a lot better than typingping 192.168.3.2 ... ping 192.168.3.6 until you find it.
+I hope that helps.
+
+A: This script should give you what you are looking for really quickly and requires to have nmap installed.
+The advantage is that if your host does not reply to ping probes, nmap would still find the host while other tools will not.
+#!/bin/bash
+i="en1" # edit this to fit your Network interface
+cidr=$(while read y; do echo ${y%.*}".0/$(m=0; while read -n 1 x && [ $x = f ]; do m=$[m+4]; done < <(ifconfig $i | awk '/mask/             {$4=substr($4,3); print $4}'); echo $m )"; done < <(ifconfig $i | awk '/inet[ ]/{print $2}') | head -n 1 | sed s/addr://g | sed 's/\/0//g')
+myip=`ifconfig $i | grep "inet " | awk 'NR==1 {print $2}' | sed s/addr://g`
+set -x
+sudo nmap -n -T4 -PN -p9091 --exclude "$myip" "$cidr"
+
+Store this script as lookup.sh and call it (with switch to english) with
+LANG=c bash lookup.sh
+
+
+A: There are a few other tools that have not been mentioned yet for discovering IP address information, assuming you have the host name and you are using mDNS (aka Bonjour in Mac environments).  Unless you have configured things differently, your local network names are in the form host-name.local so in your initial example you would be looking for computer2.local
+The first:
+    dscacheutil -q host -a name <host-name>.local
+
+For example:
+    % dscacheutil -q host -a name computer2.local
+    name: computer2.local
+    ip_address: 10.0.1.6
+
+Another useful tool is dig (try dig google.com for example), which with a few special parameters can be used to query the mDNS nodes of your local network.
+    % dig @224.0.0.251 -p 5353 <host-name>.local
+    % dig @224.0.0.251 -p 5353 -x <ip-address>
+
+To get just the IP address out of dig you can try:
+    % dig +short @224.0.0.251 -p 5353 <host-name>.local
+
+
+A: Type the command
+  arp -a
+
+This will show you all connections one by one.
+
+A: You could also use netstat to show network addresses:
+roger.moore@WKSTCAL0141 ~
+$ netstat -n
+
+Active Connections
+
+  Proto  Local Address          Foreign Address        State
+  TCP    127.0.0.1:11235        127.0.0.1:49184        ESTABLISHED
+  TCP    127.0.0.1:49155        127.0.0.1:49156        ESTABLISHED
+  TCP    127.0.0.1:49156        127.0.0.1:49155        ESTABLISHED
+  TCP    127.0.0.1:49184        127.0.0.1:11235        ESTABLISHED
+  TCP    192.168.10.131:445     192.168.10.119:52624   ESTABLISHED
+  TCP    192.168.10.131:1433    192.168.10.2:60866     ESTABLISHED
+  TCP    192.168.10.131:1433    192.168.10.119:52775   ESTABLISHED
+  TCP    192.168.10.131:3389    192.168.10.119:54473   ESTABLISHED
+  TCP    192.168.10.131:49154   192.168.10.119:52796   ESTABLISHED
+  TCP    192.168.10.131:49182   192.168.10.9:52230     ESTABLISHED
+  TCP    192.168.10.131:49247   192.168.10.6:445       ESTABLISHED
+  TCP    192.168.10.131:49432   192.168.10.4:1106      ESTABLISHED
+  TCP    192.168.10.131:49440   192.168.10.4:1106      ESTABLISHED
+  TCP    192.168.10.131:49451   192.168.10.6:1025      ESTABLISHED
+  TCP    192.168.10.131:55100   192.168.10.2:445       ESTABLISHED
+  TCP    192.168.10.131:64558   192.168.10.20:135      TIME_WAIT
+  TCP    192.168.10.131:64559   192.168.10.20:49158    TIME_WAIT
+  TCP    192.168.10.131:64566   192.168.10.100:135     TIME_WAIT
+  TCP    192.168.10.131:64575   192.168.10.100:59811   TIME_WAIT
+  TCP    192.168.10.131:64581   192.168.10.41:139      TIME_WAIT
+  TCP    192.168.10.131:64582   192.168.10.3:5357      TIME_WAIT
+  TCP    192.168.10.131:64585   192.168.10.61:3910     TIME_WAIT
+  TCP    192.168.10.131:64587   192.168.10.65:3910     TIME_WAIT
+  TCP    192.168.10.131:64588   192.168.10.9:139       TIME_WAIT
+  TCP    192.168.10.131:64589   192.168.10.135:2869    ESTABLISHED
+  TCP    192.168.10.131:64593   192.168.10.6:135       TIME_WAIT
+  TCP    192.168.10.131:64594   192.168.10.6:1025      TIME_WAIT
+  TCP    192.168.10.131:64599   192.168.10.100:59811   TIME_WAIT
+
+
+A: If you want to know the name using IP:
+http://runakay.blogspot.com/2013/12/obtaining-computer-name-from-ip-address.html
+
+A: You can install Wireshark and start a scan on your network card.
+Filter the result by "nbns", and you will see the IP address in the upper window.
+
+A: A simple solution that works well for me is to use the nmap tool:
+$ nmap -T4 -sP 192.168.0/24
+
+the output looks like:
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-08 16:15 CEST
+Nmap scan report for 192.168.0.1
+Host is up (0.00061s latency).
+Nmap scan report for 192.168.0.5
+Host is up (0.00035s latency).
+Nmap scan report for 192.168.0.31
+Host is up (0.043s latency).
+Nmap scan report for 192.168.0.39
+Host is up (0.0019s latency).
+Nmap scan report for 192.168.0.254
+Host is up (0.0018s latency).
+Nmap done: 256 IP addresses (5 hosts up) scanned in 2.55 seconds
+
+It only requires you to know the subnetwork (here 192.168.0) that you wish to scan for.
+On MacOS, this tool is easily installable using homebrew:
+$ brew install nmap
+
+while on most other systems like debian / ubuntu, you will need
+$ apt install nmap
+
+(I do not know about windows and I assume nobody would care on https://apple.stackexchange.com ...)

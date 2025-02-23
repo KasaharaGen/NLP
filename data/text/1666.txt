@@ -1,0 +1,74 @@
+Q: Restricting Command+tab options to only apps that are in the current space Edit: The original accepted answer is no longer valid for Mavericks.  I am keeping it accepted for historical reasons, but all readers using Mavericks should use and up-vote this answer.
+
+By default, pressing ⌘+tab will display a list of all open applications.  I would like that list to only include applications in the current space, or at least give priority to applications with windows in the current space.  In other words, I'd like OS X to mimic the behavior of most X window managers with respect to their workspaces/virtual desktops.
+Here's my rather long-winded explanation of why I want this:
+I have disabled spaces' auto-switching, and I've mapped each space to a ⌘+space # shortcut.  In general, I usually have one application open per space, maximized.  Since I really only ever have a half-dozen or so applications open at any time, I can easily switch between them in constant time with my left hand.  The problem is that I sometimes do have two or three windows from different applications open in the same space (e.g., I often have a PDF reader open in the same space as my web browser).   Let's say I have a terminal open in Space 1 and both a web browser and Preview open in Space 2.  If I am in the terminal and then decide I want to open a web page, I switch to Space 2, where the web browser has focus.  I then want to consult a PDF that is open in Preview, which is in the same Space but whose window is behind the web browser.  If I hit ⌘+tab, however, the first option will be to take me back to Terminal in Space 1 (since Terminal most recently had focus).  In the worst case, I will have to cycle through all n open applications by repeatedly pressing ⌘+tab in order to get to Preview.  I want the first hit to ⌘+tab to bring me to the next application with windows in the current space, i.e., Preview.
+I know that using Exposé is the more "Apple" way of handling these situations, but I want to avoid having to reach for the mouse.  I know I can also use the arrow keys to select a window in Exposé, but once again that breaks my mental model of the window layering, will institute a cognitive feedback loop in the selection, and will require worst case log(n) keystrokes.   As far as I know, there is no constant-time way of switching to a specific application in the current workspace using only the keyboard.
+
+A: control+F4.  Cycles through the applications in that Space.
+ (I actually have this mapped to control+`; which I find easier to remember, being close to the cmd+`; to cycle through an application's windows.)
+To change the keyboard shortcut, go to the Keyboard preferences, Keyboard Shortcuts, and Keyboard & Text Input.  It's the 'Move focus to active or next window' option.
+(Edit to fix the keyboard shortcuts; I didn't realise that the backtick character wasn't showing up.)
+
+A: I'm the author of the Command-Tab Plus application which allows you to quickly switch between applications, and additionally between windows (using MacOS's cmd+tilde ability). Here's a demo on YouTube.
+
+A: Yosemite
+This behavior can be mapped to your desired key combination like so:
+
+System Preferences > Keyboard > Shortcuts > Keyboard > Move focus to active
+  or next window
+
+Mavericks
+^F4 does switch through windows in the current space but you may have to upgrade to Yosemite to map this behavior to ^~.
+But the problem can still be alleviated like so:
+
+System Preferences > Mission Control > Uncheck "When switching to an
+  application, switch to a Space with open windows for the application"
+
+
+A: As an aside to this answer, I've been able to remap control+F4 to alt+tab, which feels quite natural imo.
+
+A: I found the open source app alt-tab-macos does exactly what OP wants: Providing an app switcher for apps on the current desktop only.
+It also works well for full screen / minimized / hidden windows as well as across multiple display situations where Mission Control and macOS work more on spaces as opposed to separate displays.
+
+A: Pressing ⌃F4 will do what you're asking for, but you might get carpal tunnel in the process.
+Just from reading your example, it sounds like you may actually be looking for ⌘⇧⇥, which cycles through applications in reverse order, thus cutting the number of times you press ⇥ in half. 
+Granted, that's not be a constant time solution, but I think you'll find that the result of ⌘⇥ is the application you want to focus on 70% of the time, and  ⌘⇧⇥ is the application you want to focus on 28% of the time.
+
+A: One powerful tool is hammerspoon.
+From its webpage:
+
+This is a tool for powerful automation of OS X. At its core, Hammerspoon is just a bridge between the operating system and a Lua scripting engine. What gives Hammerspoon its power is a set of extensions that expose specific pieces of system functionality, to the user.
+
+Using hs.window.switcher one just adds (as mentioned in the docs) to the init.lua
+switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{})
+hs.hotkey.bind('alt','tab','Next window',function()switcher_space:next()end)
+hs.hotkey.bind('alt-shift','tab','Prev window',function()switcher_space:previous()end)
+
+and one can happily switch between windows in the current space using alt+tab and alt+shift+tab.
+If you like Lua scripting, you can extend the tool easily. Moreover, there are numerous plugins, called spoons, available. See also official hammerspoon spoons.
+
+A: After trying many options I went for Contexts which costs 10$.
+You can configure it so that cmd-tab shows only…
+
+*
+
+*application of current space (see command-tab setting show windows from "visible spaces")
+
+*hide some windows ("background" apps such as VPN to which I don't need to switch to)
+
+It organizes the icons in a list (vertically) instead of the default horizontal layout, which I needed to adapt to, but on the other side it also let's you search through all open apps with ctrl-space and there the list layout is beneficial.
+
+A: I know Hyperswitch didn't exist when that question was asked, but it is a modern answer to that question, and it is much better than hacking with Karabiner (formerly KeyRemap4MacBook) and/or struggling with the system preferences (since they don't accept any key mapping for every command).
+Please see https://apple.stackexchange.com/a/127414 and upvote it if you find HyperSwitch useful.
+
+A: You can try with Switché. They pretend that "Switché works great with Spaces and is able to display Space number badges".  As I'm not using Spaces I cannot confirm nor infirm but it's worth the try.
+See comments below.
+
+A: Although this doesn't technically answer the original question, those here looking for a more configurable Cmd-Tab app switcher could look at
+SuperTab .
+Disclaimer: I bought this and it think it's well done.
+
+A: for those searching where that keyboard shortcut is located:
+
+I've mapped mine to option + tab

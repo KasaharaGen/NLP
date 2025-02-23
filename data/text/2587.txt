@@ -1,0 +1,25 @@
+Q: Should I virtualize Windows on Mac OS X using Parallels Desktop or VMware Fusion? I have a MacBook Air and would like to install Windows Vista in a virtual machine, so I can use both Mac OS X and Windows at the same time.
+I have tried with VirtualBox, but it performed very bad and Mac OS X crashed sometimes.
+It seems that Parallels Desktop 6 and VMware Fusion 3 does the job better. I will mostly do .NET development using WPF and some other software development.
+As of 2011 what virtualization software, Parallels Desktop 6 or VMware Fusion 3 gives me the best Windows Vista user experience? 
+
+A: I was in the exact situation as you 2 weeks ago. I have developer friends who have used Parallels in the past for their Windows development VMs, and they had since moved to VMware Fusion 3.
+I started off with a trial of Parallels Desktop 6; in a nutshell, I had issues virtualizing some of my physical machines, but overall it ran my VMs well. However, I did find the Coherence mode a little cumbersome in the UI. There were too many shortcuts created for my various VMs and the start menu used to launch Windows apps felt clunky.
+So...I moved on to a trial of VMware Fusion 3. Despite all the performance reviews that say Parallels kills Fusion, running a VM in Fusion feels smooth and polished and starting, suspending and resuming a virtual machine are all very fast operations thanks to the SSD of the Macbook Air. The product overall is high quality and requires very little resources - I run 1 to 2 VMs for several hours at once during development. On my 4GB Macbook Air I only ever use half of that memory, including the operating system. (I have set my development VMs to use 1GB of RAM each).
+And those problems I had virtualizing my physical hardware with Parallels? Gone with VMware. All my hardware was virtualized on the first attempt, and VMware even flawlessly imported the Parallels VMs I had been working with.
+So, I licensed VMware Fusion 3 and you can even get a  rebate on it like I did. That was the clincher for me.
+I'm happily using VMware Fusion 3 every day to run my Windows 7 development box with Visual Studio 2010, Oracle 10g Express, SQL Server 2008 Express, and other tools installed.
+
+A: The best advice. Trail both and then decide. I was a long time fan of VMWare, however recently moved to Parallels. Side by side, Parallels gave me a 5.1 experience index for Windows 7, and VMWare Fusion gave me a 4.9. Performance wise both are solid on my hardware, however I prefer the interface and coherence features of Parallels over Unity. This is however a personal preference. Full disclosure: I run a MacBook Pro i7, 8GB's of RAM and a 500GB 7200RPM HDD.
+Both product does the job, and both work well. They are also in the same price bracket. You also can't compare features since both have the same functionality, just the method of implementation differs. The choice between the two is really up to you and how you use Windows virtualised. I game in Windows, and Parallels provided me a better experience. I also had issues running Expression Web, Silverlight and WPF in VMWare due to the graphics card, but this has apparently been resolved in the latest update.
+My wife however prefers VMWare and finds it easier to use then Parallels. Moving machines between the two are fairly easy. Use one for the full trail, and then transfer your machine to the other and trial it. Do a comparison on which one works for you.
+
+A: I have now used VMware Fusion for over a year and been very pleased with it.
+I have Windows XP Home installed in a boot camp partition, so I can boot into it if needed, but - which is the real killer - vmware fusion supports booting the same Boot Camp partition into a virtual machine.
+This means that for simple stuff, I can just boot Windows inside vmware and do what I need (Remote Desktop for Mac does not like ssh-forwarded ports, Remote Desktop for Windows does).  For complex stuff I can boot into Windows - this happens quite rarely.
+
+A: I use both Parallels and Fusion. For Windows 7 (sorry I stopped using Vista over a year ago) I use Fusion. It seems like it supports the hardware better. For example I need to plug in a USB smart card reader to access some resources at work. Fusion works just like I was running on real hardware. I never did get Parallels to recognize the reader correctly.
+If you want to run Ubuntu in a VM, Parallels is a much nicer experience than Fusion (or VirtualBox for that matter). Parallels supports the full range of Compiz UI features. Fusion does not.
+
+A: I've used VMware for the exact purpose you describe, doing .NET development. (In my case, for Silverlight / WCF rather than WPF --- but that's moot)
+In the end I opted for the bootcamp alternative.  At best, you'll get access to about half the memory of your machine, if you're lucky.  True VS may work on an OS with as little as 1GB of RAM but you'll find 4 GB a lot better.

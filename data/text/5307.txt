@@ -1,0 +1,4 @@
+Q: Where did my file /etc/ppp/ip-up go after upgrading to Lion? I upgraded to OS X 10.7 this morning and upon attempting to connect to my corporate VPN, I discovered that my script at /etc/ppp/ip-up has disappeared. Has anyone else encountered this problem, or do you know where it might have ended up?
+
+A: It very likely got overwritten. The upgrade does nothing to back up what it considers "system files" and simply overwrites them with the latest version.
+Another good reason to do a full backup before upgrading.

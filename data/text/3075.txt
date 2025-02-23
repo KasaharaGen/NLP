@@ -1,0 +1,9 @@
+Q: Hard drive read only access with Mac I have an external usb hard drive that I used to connect on my old PC laptop. There are some files I created with the laptop on this hard drive.
+Now, I can only read those files with my Mac notebook 
+I can't write any file on the hard dirve.
+How can I enable write access on my hard drive ?
+
+A: You need to install 3rd-party software for this, by default OS X just support reading NTFS, not writing.
+Download and install MacFUSE and NTFS-3G.
+
+A: Depending on how many files you have on your external drive and how much space you have on your MacBook, you can also just copy all the files on the external drive to a temporary folder on your MacBook.  Then use Disk Utility to format the drive for OS X (wont be readable by Windows machines, but will be able to use with Time Machine) or FAT32 (4GB size limit for each file).  Then copy the files back to the external drive and delete the temporary folder you created on your MacBook.

@@ -1,0 +1,7 @@
+Q: How to stop iPad/Safari from treating certain numbers as 'phone numbers'? I've got some pages on an intranet that show numerical rates to 4 decimal places, eg 147.1453. When these pages are viewed on an iPad, some of these rates appear underlined and clicking on them causes the iPad to offer to create a new contact, or add to an existing contact. Clearly it thinks that the text represents a phone number (which it doesn't really, as we're in the UK and phone numbers are not formatted with periods).
+Is there a way to stop this happening - either with meta-data we can put in the web pages, or by changing some setting in our iPads?
+
+A: In the <head> of your web pages, add:
+<meta name="format-detection" content="telephone=no" />
+
+There's lots more where this came from at Apple URL Scheme Reference: Phone Links.

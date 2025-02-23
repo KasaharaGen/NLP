@@ -1,0 +1,67 @@
+Q: /private/tmp vs /private/var/tmp vs TMPDIR What is the differences between these directories?
+How long is the files stored in each of them?  
+The oldest file/folder I could find in each of them were
+
+
+*
+
+*/prviate/tmp, 13 days old
+
+*/private/var/tmp, 28 days old (2-3 days after I upgraded to Lion)
+
+*TMPDIR, 1 day old
+
+
+Note: TMPDIR is what you get when running echo $TMPDIR in Terminal. My TMPDIR is /var/folders/3y/d44gn_2x7vv8d9d67969f54c0000gn/T/
+
+A: *
+
+*/tmp/ (/private/tmp/): system-wide: cleared on reboot. and "un-accessed" files get deleted after 3 days by /etc/periodic/daily/110.clean-tmps (man periodic.conf) at 24-hour (86400 seconds) interval. the com.apple.periodic-daily.plist daemon.
+
+
+*/var/tmp/ (/private/var/tmp/): system-wide: NOT cleared on reboot. deleted on macOS update and/or upgrade (to be confirmed).
+
+
+*TMPDIR (/private/var/folders/.../T/) : per-user: cleared on reboot. "un-accessed" files get deleted after 3 days by the dirhelper daemon at 3:35 am each day. the com.apple.bsd.dirhelper.plist daemon.
+
+
+*DARWIN_USER_CACHE_DIR (/private/var/folders/.../C/) : per-user: NOT cleared on reboot.
+"un-accessed" files in the past 3 days in TMPDIR (/private/var/folders/.../T/) get cleared by the dirhelper daemon at 3:35 am each day. and the TMPDIR directory path is coming from confstr() (POSIX string-valued configurable variables).
+    % grep -A6 StartCalendarInterval /System/Library/LaunchDaemons/com.apple.bsd.dirhelper.plist
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>3</integer>
+        <key>Minute</key>
+        <integer>35</integer>
+    </dict>
+
+    % getconf DARWIN_USER_TEMP_DIR 
+    /var/folders/xx/xxxx_xxxx/T/
+
+    % getconf DARWIN_USER_CACHE_DIR     
+    /var/folders/xx/xxxx_xxxx/C/
+
+    % man confstr
+     ...
+     _CS_DARWIN_USER_TEMP_DIR
+         Provides the path to a user's temporary items directory. The directory will be created it if does
+         not already exist. This directory is created with access permissions of 0700 and restricted by the
+         umask(2) of the calling process and is a good location for temporary files.
+
+         By default, files in this location may be cleaned (removed) by the system if they are not accessed
+         in 3 days.
+
+     _CS_DARWIN_USER_CACHE_DIR
+         Provides the path to the user's cache directory. The directory will be created if it does not
+         already exist. This directory is created with access permissions of 0700 and restricted by the
+         umask(2) of the calling process and is a good location for user cache data as it will not be
+         automatically cleaned by the system.
+
+         Files in this location will be removed during safe boot.
+     ...
+
+
+A: TMPDIR as defined in OSX is only accessible by yourself which reduces the risk of somebody else accessing your temp files created by programs using mktemp() to create temporary files. 
+The difference between /tmp and /var/tmp is more subtle and goes back a long way in the Unix world, the discussion concerning the differences and uses are probably going on since the first Unix system was deployed with both (see Google for long list of links). /tmp resides on the root filesystem so it it accessible as soon as the system starts (even if no other disk is mounted yet) but may be rather small. The /var filesystem usually is in another partition and much bigger. I've also encountered systems where /tmp was just a ramdisk or a symlink to /var/tmp. It's not that way on OSX though.
+/tmp is cleared out regularly on OSX (see /etc/defaults/periodic.conf), /var/tmp very rarely (if at all).

@@ -1,0 +1,68 @@
+Q: Run plist command every 5 seconds I have the following plist file in my User/Library/LaunchAgents folder. It presses the "g" key every 60 seconds.
+My question is, how can I change this to press the "g" key every 5 seconds?  
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <key>Program</key>
+    <string>/usr/bin/osascript</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>osascript</string>
+        <string>-e</string>
+        <string>tell application "System Events" to keystroke "g"</string>
+    </array>
+    <key>ServiceDescription</key>
+    <string>Auto Keypress</string>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Second</key>
+        <integer>0</integer>
+    </dict>
+</dict>
+</plist>
+
+
+A: Change the plist to
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>G-key-pusher</string>
+    <key>Program</key>
+    <string>/usr/bin/osascript</string>
+    <key>Program</key>
+    <string>/bin/sh</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>sh</string>
+        <string>-c</string>
+        <string>while sleep 5; do /usr/bin/osascript -e 'tell application "System Events" to keystroke "g"'; done</string>
+    </array>
+    <key>ServiceDescription</key>
+    <string>Auto Keypress</string>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>
+
+What it does, is to run a shell script that does the 5 second timer and calls osascript. The launchd plist just ensures the script is restarted if it were to die for some reason. Please note that I still haven't tested this, but I don't see any reason why it shouldn't work. Though I have had problems in the past when changing launchd items, which I fixed by changing the label. Which reminds me, you had omitted the value for the Label key in your plist.
+(Edit: Explain a little, and provide a complete file instead of explaining what parts need to be changed.)
+
+A: I know this is a very old thread but it came up in one of my recent searches for launchctl advice so I wanted to include the correct answer launching every "x" seconds.
+launchctl can be used like cron (only better). In your original script, you use the key "StartCalendarInterval". You should simply use the key "StartInterval" and give it the number of seconds.
+Replace your lines:
+<key>StartCalendarInterval</key> <dict>
+    <key>Second</key>
+    <integer>0</integer> </dict>
+
+With:
+<key>StartInterval</key>
+<integer>5</integer>
+<key>ThrottleInterval</key>
+<integer>0</integer>
+

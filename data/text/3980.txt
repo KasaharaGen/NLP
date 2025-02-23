@@ -1,0 +1,18 @@
+Q: Removed Spotlight, now there's a gap I can't get rid of I disabled and removed spotlight from my menubar to save performance and space. Now except for saving some space, I have a gap in my menu-bar I'd like to get rid of:
+
+Anyone an idea how to get it away?
+
+A: First, revert whatever you did to remove it. Then, run the following commands in Terminal.app:
+$ sudo chmod 000 /System/Library/CoreServices/Search.bundle/
+$ killall SystemUIServer
+
+(The $ only represents the prompt and should not be typed.)
+What I get:
+
+To get Spotlight back, enter the following commands:
+$ sudo chmod 755 /System/Library/CoreServices/Search.bundle/
+$ killall SystemUIServer
+
+
+A: Logging out and back in (or restarting your computer) will fix the problem, but you might be able to fix it simply by Cmd-dragging one of the icons next to it.  Holding Cmd will let you move some of the icons around, and I've found that sometimes, moving one will re-arrange the others to fill any gaps that may have appeared.
+This will also help you put them in an order that you like best.

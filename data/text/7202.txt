@@ -1,0 +1,9 @@
+Q: IP address changing too frequently My Macbook pro is connected to my router over the AirPort. The IP address it gets changes every few hours. Is there a way on the mac to request the same address.
+I do not have access to the router to configure it.
+
+A: Unfortunately this depends entirely on the configuration of the router. Perhaps the DHCP (Dynamic Host Control Protocol) server is configured with a very short lease time for clients, and a new IP address is assigned whenever a client has no network activity for only a short time.
+To fix the problem you will need to ask the administrator of the router to lengthen the lease time, or consider creating a reserved IP address for your MacBook Pro. The means of doing that vary with the make and model of the router.
+After you have worked with the administrator to reserve an IP address, you will want to create a custom network profile on your MacBook Pro for use when you are connecting to that particular WiFi router, to disable DHCP (Dynamic Host Control Protocol), and configure a static IP address.
+If all of the above is not possible, perhaps someone could propose a means of writing a script on the Mac that would cause the Mac, every few minutes, to renew its IP address lease to the DHCP server that the WiFi router uses, in order that the IP address assigned by DHCP would not expire, and the DHCP server would not automatically assign a new IP address.
+TRY THIS TIP: Leave Apple Mail open all the time and configure it to automatically check for new mail every 60 seconds. This might be enough to keep your IP address renewed on the DHCP server of the WiFi router.
+

@@ -1,0 +1,19 @@
+Q: Is it possible to burn a DVD out of the Lion app store install? Is it possible to burn a DVD out of the Lion app store install?
+
+A: Yes http://lifehacker.com/5812997/burn-the-mac-app-store-version-of-os-x-lion-to-a-dvd
+
+A: Yes!
+After you purchase and download Lion from the App Store, the "Install" screen will appear:
+
+Before you click Continue, open your Applications folder and look for the icon labelled Install Mac OS X Lion:
+
+If you missed this chance (and the App is deleted from your system), you can always re-download the package using the App Store app. Even if it shows Lion Installed, you can hold the option key pressed, then press the button to re-download the Lion installer app.
+Right-click (or Ctrl+Click) on this and choose Show Package Contents. Navigate to Contents > SharedSupport and look for InstallESD.dmg.
+
+Use Disk Utility (in the Utilities folder inside the Applications folder) to burn InstallESD.dmg to a DVD. Drag the InstallESD.dmg file to the Disk Utility window, select it, then choose Burn... from the Images menu.
+A dialog appears allowing you to burn it to a DVD. The name of the DVD doesn't really matter, but I named mine Mac OS X Lion.
+
+
+A: You can copy Install Mac OS X Lion.app — in its entirety — to a DVD that is not bootable. 
+A widely promoted hack involves using only a part of the .app for 10.7 (Build 11A511) to create a DVD (or USB flash drive, or external hard disk partition) that is bootable. Bootable media produced in this way from this source may be good for some uses but please, proceed with caution: other uses may leave a system unusable. 
+Be aware of the known risks, and unknowns, associated with straying from what is recommended by Apple. 

@@ -1,0 +1,9 @@
+Q: How can I use NTFS-3G installed using MacPorts? After upgrading to Lion I'm having problem mounting NTFS drives in read/write mode. This is because NTFS-3G distributed by Tuxera does not work with Lion.
+At their suggestion I installed NTFS-3G using MacPorts. But as far as I can see it does not come with the usual preference pane. Its not enabled by default.
+Do anyone know how to enable it? Or how to have the Preference Pane for the NTFS-3G from MacPorts?
+
+A: NTFS-3G from macports works perfectly fine. Check this detailed and well-written instruction: http://fernandofig.wordpress.com/2011/08/08/ntfs-write-support-on-osx-lion-with-ntfs-3g-f/
+
+A: Are you having issues mounting the NTFS volumes or just enabling the preference pane? If you need something to fix issues with mounting volumes, MacFuse should work; The last official build for Tuxera w/ OS X Lion can be downloaded here:
+MacFuse 2.2: http://www.tuxera.com/mac/macfuse/MacFUSE-Tuxera-2.2.dmg
+MacFuse: http://code.google.com/p/macfuse/

@@ -1,0 +1,50 @@
+Q: How can I delete a file marked as backup item? I'm trying to delete a file, but I get a message from Trash saying: "The operation can’t be completed because backup items can’t be modified."
+
+What does that mean and how can I delete it?
+
+A: The root of the cause
+Time Machine backups are protected at kernel level -- on a verbose boot it's possible to spot in the first screenful of text a TMSafetyNet.kext extension being loaded. 
+
+This ensures the integrity of your backups. Access control provisions
+  are applied via a kernel extension located at
+  /System/Library/Extensions/TMSafetyNet.kext
+
+Deleting in Time Machine
+The officially sanctioned method for deleting items from a specific backup or all of them is to locate the item in the "in space" Time Machine view and selecting the appropriate delete option from the contextual menu or the Action button in the toolbar.
+The ability to move backups to the Trash added in Lion is not only comparatively more buggy, but designed to operate on entire snapshots, i.e. the folders named with the time the backup was created which in turn contain a directory for each included volume.
+Deleting from commandline (more flexible, more control)
+
+There exists a a helper program (commandline binary) at... 
+/System/Library/Extensions/TMSafetyNet.kext/Contents/MacOS/bypass
+
+...which allows you to supply a command and argument to completely
+  bypass the access restrictions.
+
+In Lion you run:
+sudo /System/Library/Extensions/TMSafetyNet.kext/Contents/MacOS/bypass rm -rfv /Volumes/[disk]/Backups.backupdb/[path]
+
+In Mountain Lion bypass moved to the Helpers directory:
+sudo /System/Library/Extensions/TMSafetyNet.kext/Helpers/bypass rm -rfv /Volumes/[disk]/Backups.backupdb/[path]
+
+In OS X 10.10.5 (from a comment by David Anderson), this is now at:
+sudo /System/Library/Extensions/TMSafetyNet.kext/Contents/Helpers‌​/bypass rm -rfv /Volumes/[disk]/Backups.backupdb/[path]
+
+Credits:
+[1] - Michael Rushanan on TMSafetyNet bypass
+[2] - A brief explanation of the Time Machine Safety Net by Joel Cowgill
+[3] - Similar question on SuperUser
+
+A: According to this thread at Apple, this is a bug. This means it will hopefully be fixed in a coming update to OS X.
+In the meantime, you have to relaunch the Finder, which you can do either through force quit (⎇⌘⎋, or through the  menu), or by less violent means by quitting it normally, which you must first activate through the following command issued in the Terminal:
+defaults write com.apple.Finder QuitMenuItem 1
+
+
+A: bypass is in  /System/Library/Extensions/TMSafetyNet.kext/Contents/Helpers/ in High Sierra (OSX 10.13.3) on my iMac.
+Also if you want the list of files deleted with -v, you should redirect to a file because the scrolling verbose list is impossible to read in Terminal.
+
+A: It seems like the bypass program doesn't exist on Big Sur. I was able to delete files from the backup after renaming the top-level backup folder from "Backups.backupdb" to "Backups.backupdb.tmp":
+mv Backups.backupdb{,.tmp}
+
+I also had to remove the ACL:
+chmod -R -a 'group:everyone deny add_file,delete,add_subdirectory,delete_child,writeattr,writeextattr,chown' Backups.backupdb.tmp
+

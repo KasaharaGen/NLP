@@ -1,0 +1,168 @@
+Q: How can I configure Mac Terminal to have color ls output? How can I configure Mac Terminal to have color ls output?
+I am using MacOS 10.5
+
+A: Personally, I'm using Oh My Zsh for adding color and other tricks to my Terminal. I think that is the easiest way.
+
+oh-my-zsh is an open source, community-driven framework for managing
+  your Zsh configuration.
+It comes bundled with a ton of helpful functions, helpers, plugins,
+  themes, and a few things that make you shout…
+
+
+
+A: Another option is to use the GNU ls which is part of the 'coreutils' program. 
+You can get it via Rudix or Homebrew (brew info coreutils)or Macports or Fink. That might be preferable to using a "Mac OS X-only" solution if you use the same shell config files on different systems, or are already familiar with GNU ls.
+
+A: UPDATE: I switched to Oh my zsh a year back and it is awesome. My favourite theme is lambda-mod and my version of it. 
+
+Combining all the answers here is what I use:
+COLOR_RED="\033[0;31m"
+COLOR_YELLOW="\033[0;33m"
+COLOR_GREEN="\033[0;32m"
+COLOR_OCHRE="\033[38;5;95m"
+COLOR_BLUE="\033[0;34m"
+COLOR_WHITE="\033[0;37m"
+COLOR_RESET="\033[0m"
+
+#git_color
+function git_color {
+  local git_status="$(git status 2> /dev/null)"
+
+  if [[ ! $git_status =~ "working directory clean" ]]; then
+    echo -e $COLOR_RED
+  elif [[ $git_status =~ "Your branch is ahead of" ]]; then
+    echo -e $COLOR_YELLOW
+  elif [[ $git_status =~ "nothing to commit" ]]; then
+    echo -e $COLOR_GREEN
+  else
+    echo -e $COLOR_OCHRE
+  fi
+}
+
+#git_branch
+function git_branch {
+  local git_status="$(git status 2> /dev/null)"
+  local on_branch="On branch ([^${IFS}]*)"
+  local on_commit="HEAD detached at ([^${IFS}]*)"
+
+  if [[ $git_status =~ $on_branch ]]; then
+    local branch=${BASH_REMATCH[1]}
+    echo "($branch)"
+  elif [[ $git_status =~ $on_commit ]]; then
+    local commit=${BASH_REMATCH[1]}
+    echo "($commit)"
+  fi
+}
+
+PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
+PS1+="\[\$(git_color)\]"        # colors git status
+PS1+="\$(git_branch)"           # prints current branch
+PS1+="\[$COLOR_BLUE\]\[$COLOR_RESET\]\$ "
+export PS1
+
+export LC_ALL=en_US.UTF-8
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+alias ls="ls -Gp"
+
+
+
+A: Edit:
+~/.bash_profile
+
+or
+~/.profile
+
+and add the following line to simply enable color output via ls:
+export CLICOLOR=1
+
+To customize the coloring shown by ls you can optionally add this variable, LSCOLORS.
+Examples
+
+
+*
+
+*Default
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+
+*You can use this if you are using a black background
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
+
+*If you'd like to mimic the colors of a typical Linux terminal:
+export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+
+Once you've add the above to either ~/.bash_profile or ~/.profile you can either logout/login or source the file in your shell, for eg:
+$ . ~/.bash_profile
+
+NOTE: If you need help in selecting colors to use you can use this online tool called LSCOLORS Generator.
+
+A: Simply add the following line to ~/.bash_profile file:
+export PS1=" \[\033[34m\]\u@\h \[\033[33m\]\w\[\033[31m\]\[\033[00m\] $ "
+
+Preview:
+ 
+This is my preferred colors. You can customize each part of prompt's color by changing m codes (e.g. 34m) which are ANSI color codes.
+List of ANSI Color codes:
+
+
+*
+
+*Black: 30m
+
+*Red: 31m
+
+*Green: 32m 
+
+*Yellow: 33m
+
+*Blue: 34m
+
+*Purple: 35m
+
+*Cyan: 36m
+
+*White: 37m
+
+
+A: For the Catalina version, you need to add export CLICOLOR=1 in ~/.zshrc.
+If you want to adjust the colour palette, change colours theme in terminal settings.
+
+A: I find that all I need really is adding this to my ~/.bash_profile or ~/.bashrc (for Bash) or ~/.zshrc (for Zsh, the new default shell in Catalina)
+export CLICOLOR=1
+
+
+A: Forget all those decades-old cryptic codes for gosh sakes, use the built in Terminal --> Preferences... Settings pane to set the default skin, and edit the ANSI colors to your liking. You can set the font, too. I prefer Menlo 12pt. This is how any regular Joe can do it, and avoid all the crazy command-line, unix-esque way of doing things as other posters have suggested.
+
+A: You can add
+alias ls='ls -G'
+
+to your ~/.bash_profile to get colored ls output.
+
+A: If you want a readable Mac OS X Terminal color scheme, you may want to look into this:
+
+
+*
+
+*http://toddwerth.com/2008/01/25/a-black-os-x-leopard-terminal-theme-that-is-actually-readable/
+
+*http://toddwerth.com/2011/07/21/the-original-ir_black-for-os-x-lion/
+I've been using this for over a year now, and I might not be able to function without it!
+Here's an updated link:
+
+
+*
+
+*https://github.com/justincase/IR_Black-OSX
+
+A: Also you can customize the prompt color (and its format) by adding:
+PS1='\[\e[0;33m\]\h:\W \u\$\[\e[m\] '
+
+to ~/.bash_profile or ~/.profile file. Where 0;33 is regular yellow which looks nice in my black/semitransparent terminal window.
+Here is a full list of colors and their explanations: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
+
+
+A: Absolutely nothing worked for me.
+Eventually I found a very weird solution that fixed everything.
+I opened ~/Library/Preferences/com.apple.Terminal.plist and searched for 'terminal' with Ctrl+F. I removed a section, that said 'DisableColor' or something like that.

@@ -1,0 +1,192 @@
+Q: How can I mount an ext4 file system on OS X? Is there a safe, stable application for reading from and writing to ext4 file systems on Mac OS X?
+If not, what's the best way to access the contents of an ext4 file system on Mac OS X?
+
+A: I had an ext4 formatted USB drive that I was able to mount after I installed osxfuse. Reading from it works great, but I am not sure if writing is safe.
+Also, for moving files from OS X's filesystem (HFS+) to ext4, you may first want to remove those hidden .DS_Store files the OS X filesystem sneaks in as they occasionally cause bad inodes.
+find /my/data/to/move -name '*.DS_Store' -type f -delete
+
+It is better than having to fix them after with an fsck command.
+
+A: The answer depends on you willingness to invest in commercial software:
+If you don’t mind spending some money on a commercial product, Paragon’s extFS for Mac will give you read and write access to ext2 / ext3 / ext4 file systems. The current version supports all versions of OS X / macOS from 10.10 upwards.
+If you are looking for a free solution, you can setup a Linux virtual machine, mount your volume(s) there and share it / them via Samba or (S)FTP. This post has some details on how to achieve this using VirtualBox, a free virtual machine application. Note this is not exactly a lightweight solution, even if using a prebuilt VirtualBox VM will spare you installing and configuring a Linux distro from scratch.
+
+A: There is also e2fsprogs available in MacPorts. I haven't tested it yet myself but looks promising.
+
+A: Building on Ken's answer: I used fuse4x and fuse-ext2 successfully, and I recommend fuse-ext2 over ext4fuse. fuse-ext2 provides write access while ext4fuse provides only read access. Note that despite its name, fuse-ext2 supports EXT2/EXT3/EXT4.
+ext4fuse was a hassle for me, because it requires manual compilation and has no support for fuse4x options that would allow me to set access control. fuse-ext2 provides downloadable packages, and the 0.0.7 version worked just fine. I copied a few large ISOs over without any problem.
+Edit: It should be mentioned that as of 12/22, the fuse-ext2 Github page still lists unstable write support as a bug and recommends not using it "unless you have nothing to lose."
+
+A: One can also install OSXFUSE completely via the brew command line package manager:
+brew install homebrew/fuse/ext4fuse
+
+Note that the installation tells certain commands need to be run as 'sudo' in addition to this. 
+
+With Yosemite better have a look at this. And then make sure the directory is readable by your user by doing this. For it to work I had to use the wheel group like this:
+sudo dscl . append /Groups/wheel GroupMembership $(whoami)
+
+
+A: With recent changes to homebrew, this should be as simple as:
+brew cask install osxfuse
+brew install ext4fuse
+
+You may have to reboot.
+ext4fuse is read-only, unfortunately. And you may need to use a flag to get it to work as a normal user.
+Others viewing this question may be interested in libguestfs. I'm not aware of an OS X port, but considering that VirtualBox has an API, it's not out of the question.
+I wonder why no one has written a compatibility layer to allow Linux kernel filesystem code to run in userspace/fuse. Or has someone?
+
+A: For recent versions of MacOS ext4fuse works stably for read access only. While other answers already give some usage examples I'll repeat it once again with some important details:
+
+*
+
+*Install macFUSE manually or with:
+
+brew install macfuse
+
+
+
+*Install ext4fuse with:
+
+
+brew install ext4fuse
+
+
+If the command above fails with Error: ext4fuse has been disabled then follow the steps at https://github.com/gerard/ext4fuse/issues/66#issuecomment-819943409
+
+
+
+*You can mount as a regular user but that will only provide access to world-readable files. To access all files you'll need to  sudo, e.g.:
+
+sudo ext4fuse -o allow_other,defer_permissions /dev/disk2s1
+
+
+NOTE: -o allow_other,defer_permissions are needed in order to allow accessing the files from finder or terminal as a regular user.
+
+
+
+*You might also need to add your user to the operators group:
+
+# $USER is an ootb env variable that stores your mac user name
+sudo dscl . append /Groups/operator GroupMembership $USER
+
+The bash script below can be used to automate the mounting. It will loop over the Linux partitions found and prompt to mount them one by one. The mount points will be created  under ~/mnt/<device-name> (if not present):
+#!/usr/bin/env bash
+
+for device in $(diskutil list | awk '/Linux/  {print $NF}') ; do
+    
+    read -p ">>> Found linux device: $device. Mount? y/n <<< " answer
+
+    if [[ "$answer" =~ [yY] ]]; then
+        mount_point="$HOME/mnt/$device"
+
+        mkdir -p $mount_point
+        echo "Mounting device $device at $mount_point..."
+
+        sudo ext4fuse -o allow_other,defer_permissions /dev/$device ${mount_point}
+        
+        status=$?
+
+        if [[ $status -eq 0 ]]; then
+            echo "Mounted successfully at ${mount_point}"
+            
+            read -p "Open in Finder? y/n " show_in_finder
+            echo "***IMPORTANT: TO UNMOUNT USE***: diskutil umount ${mount_point}"
+
+            if [[ "$show_in_finder" =~ [yY] ]]; then
+                open "$mount_point"
+            fi
+        else
+            echo "\nERROR mounting device $device!"
+            echo "Is macFUSE installed? see https://macfuse.io"
+            echo "is ext4fuse installed? (brew install ext4fuse) https://github.com/gerard/ext4fuse"
+            echo "See also: https://github.com/gerard/ext4fuse/issues/66#issuecomment-819943409"
+        fi  
+    fi
+done
+
+To unmount you can use e.g. diskutil umount /dev/disk2s1 — if you get a message that unmounting failed then you can force unmounting with diskutil umount force /dev/disk2s1, although it is recommended to close the apps that are using the files on the disk and retry without force.
+If you happen to have files owned by _lpoperator (apparently they are created when you use rsync with preserve group option), then the following command will allow accessing those files:
+/usr/sbin/dseditgroup -o edit -a everyone -t group _lpoperator
+
+Original answer for Yosemite and older (deprecated)
+Two packages are needed in order to enable EXT2/3/4 support on OSX: OSXFUSE and FUSE-EXT2.
+The homebrew formulas for OSXFUSE and FUSE-EXT2 did not seem to work on either mavericks or yosemite.
+What did work was the following:
+
+*
+
+*Manually downloading and installing the OSXFUSE DMG from http://osxfuse.github.io/. IMPORTANT: Once you launch the PKG installer, make sure you select MacFUSE Compatibility Layer in the wizard (it is not enabled by default) - without it mounting fails.
+
+*Manually download FUSE-EXT2 from http://sourceforge.net/projects/fuse-ext2/ or for Sierra/El Capitan from https://github.com/gpz500/fuse-ext2/releases and run the PKG installer.
+
+Once OSXFUSE and FUSE-EXT2 are installed you can mount ext2/ext3/ext4 partitions as described in other answers:
+
+*
+
+*Find the device name for the EXT partition you want to mount (e.g. disk0s2 in the example below, (UPDATE) in some MacOS versions ext3/ext4 partitions might be labelled Microsoft Basic Data and not Linux):
+
+# diskutil list | grep Linux
+1:     Linux_Swap    8.2 GB     disk0s1
+2:     Linux         119.9 GB   disk0s2
+
+
+
+*Mount the partition to an existing mount point:
+
+sudo mkdir -p /Volumes/ext4
+sudo mount -t fuse-ext2 /dev/disk0s2 /Volumes/ext4
+
+Mounting as a regular user does not seem to work hence the need for sudo.
+❗️ Known issues and limitations
+Apparently, after waking from sleep mode ext4 fuse mounts stop working and trying to remount throws an error because the previous mount is still present. The workaround is to do a diskutil umount <mount_point> or diskutil umount force <mount_point> before remounting. An alternative workaround is to temporarily prevent sleeping while you are using the partitions with something like caffeinate -sdi.
+
+A: If you're wondering what the command line is to mount an ext4 partition using fuse and ext2fuse (e.g. when installed using MacPorts port install ext2fuse) - then firstly you need to work out where the Linux partition is:
+diskutil list
+
+This will list all partitions for all disks and amongst them you should see the relevant ones listed under the TYPE column as Linux. Combine the diskX and partition number Y like this /dev/diskXsY - e.g:
+mount -t fuse-ext2 /dev/disk1s2 ~/my_mount_point
+
+It may complain about not being able to write to the log file but it should still mount the partition into your home mount point. But if you want to mount the partition into a system directory then you need to run it as root e.g:
+sudo mount -t fuse-ext2 /dev/disk1s2 /sys_mount_point
+
+If that doesn't work try:
+sudo ext2fuse /dev/disk1s2 /sys_mount_point
+
+Update: More recently I've found that fuse-ext2 has problems with certain newer ext4 features, so instead it is better to use ext4fuse (port install ext4fuse or brew install ext4fuse). Use the ext4fuse command directly:
+ext4fuse /dev/disk1s2 ~/mount_point
+
+Also as mentioned by Timothy in the comments you usually only need to use sudo if you're mounting outside your home directory or the disk (/dev/diskX) is only accessible by root:
+sudo ext4fuse /dev/disk1s2 /sys_mount_point
+
+It should be noted that you can only access that mounted filesystem as root/sudo. e.g.
+sudo ls /sys_mount_point
+
+And to unmount the filesystem you just use normal umount command (with sudo if used to mount the partition):
+umount ~/mount_point
+
+
+A: Just for the record, I have tested Paragon ExtFS driver (trial version) on my MacBook Pro to write to ext4 partition in Linux. I found that the driver was very unstable, and it created corruptions to the filesystem that fsck was not able to repair neither in Linux nor in Disk Utility.
+My idea was to have access to my /home partition from Mac OS X using this Paragon driver, but I don't suggest to do this setup. So far, I have my /home partition in Linux formatted to hfsplus with no journaling, and then I can access my files from Mac OS X. Of course, from time to time I get some problems in my FS but is not very frequent. However, I don't suggest this setup either (at least that you have an up to date backup for your daily work).
+Finally, I believe that Paragon is more suitable maybe to use for external hard disks but anyways it is not very reliable for being software which license is expensive.
+Update: As of May 2015, I have formatted my /home to ext4, and I mount the filesystem using fuse-ext2 in combination with FUSE for OS X. I can access the ext4 partition to read and write. It is more solid setup than the one I previously described above. 
+
+A: You can boot Linux VM quickly on your OS X using Vagrant. You require to install VM provider such as VirtualBox and Vagrant either via .dmg file from the site or using brew cask.
+Once you have vagrant command installed, run this in any selected folder:
+vagrant init ubuntu/trusty64; vagrant up --provider virtualbox
+
+This will generate Vagrantfile config file and .vagrant folder.
+and you'll have Linux box booted within few minutes (downloaded from Atlas Hashicorp repository).
+Then connect to the box via command: vagrant ssh and try to mount your device inside Linux.
+By default your current folder will be synched with /vagrant folder in VM. For more advanced options, you can modify Vagrantfile with required configuration.
+So if you mount your filesystem within /vagrant folder, it will be automatically synched back to your macOS.
+
+Alternatively you just need to install a VirtualBox, run the GUI app, install and boot a minimal version of Linux e.g. Ubuntu in order to achieve the same as explained above.
+
+Above non-native solution are not ideal, but at least your macOS would be more stable rather than installing unstable kernel extensions which may cause a lot of system crashes.
+
+A: Take a look at --> https://github.com/alperakcan/fuse-ext2
+This is what I will be trying next.
+For ext2, there is a macports version: https://ports.macports.org/port/ext2fuse/summary
+There is an ext4 module for osxfuse (which you can install via macports) but it is read only!
+The multitude of versions is a bit confusing but at one point I had managed to get it to work, I will be trying again and updating this answer if it does. :)
+osxfuse is available on macports and as a standalone package. I don't know which one works best yet on newer OS X versions, but I prefer macports for my free software on OS X.

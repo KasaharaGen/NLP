@@ -1,0 +1,24 @@
+Q: Automatically move files when inserting SD card? Is there a way to detect the insertion of an SD card so it would be possible to automatically move specific files (photos in subdirectory) to another location? I do not want a photo application to take control.
+Even better, when I put the card in, I get asked whether to move the files.
+I would like the files to be moved directly to a shared folder..
+
+A: From this question on SuperUser, try MarcoPolo
+Or, you could use folder actions.
+From this tutorial:
+
+  
+*
+  
+*Go to File > Save As Plug-in.
+  
+*Choose Folder Action from the pop-up menu.
+  
+*In the Attach to Folder pop-up, select Other…
+  
+*In the resultant open dialog, hit cmnd-shift-g. This will bring up a small sheet labeled Go to the folder:.
+  
+*In this sheet, type /Volumes/, and hit the Go button, then hit Open.
+  
+*Hit the Save button in the Plug-in sheet.
+  
+

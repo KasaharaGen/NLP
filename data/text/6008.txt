@@ -1,0 +1,66 @@
+Q: How can I fix Lion Mail's search functionality? I made a clean install of Lion, configured Mobile Me in System Preferences.
+So, when I opened Mail, my Mobile Me account was already configured and it started downloading my mails.
+Everything worked fine except search. I can't search among every mails. The only search I can do using is "from" or "to" a contact of my address book.
+Searching the web, I discovered some potential solutions that I tried unsuccessfully. Here's a list of what I already done :
+
+
+*
+
+*repairing permissions
+
+*disabling Spotlight and re-enabling Spotlight for my whole disk (via the preference pane & via the terminal)
+
+*deleting the "envelope-index" file and get mail re-index all my mails
+
+*rebuilding each mailboxes
+
+*deleting ~/Library/Mail, ~/Library/Mail Downloads, ~/Library/Preferences/com.apple.mail.* in order to start over
+
+*starting again from my ~/Library/Mail folder from my Snow Leopard installation.
+
+*starting again without configuring Mobile Me in system preferences but directly in Mail (as different computer user)
+
+
+None of these actions fixed my problem.
+Have you got any ideas?
+Edit :
+I made a new clean install of Lion on an external hard drive, configured my Mobile Me account directly when opening Mail.app and everything worked fine. I tried to copy Mail.app-related files to my main installation of Lion, but that didn't work. My latest solution would be install Lion again on my internal hard drive, but I would prefer not to do so. I'm still hoping there's another solution.
+
+A: I had the same problem and it turned out the index was broken.
+A rebuild didn't work for me so I had to quit Mail and type (in the terminal):
+cd ~/Library/Mail/V2/MailData/
+rm -rf Envelope\ Index Envelope\ Index-shm  Envelope\ Index-wal
+
+After that, reopening the Mail app took some time for the index to rebuild but it fixed the search index.
+Thanks to MacRumors for the answer
+
+A: I don't know if we are having the same problem but I initially thought we did until I fixed it. For some reason I had the "Mail" folder under the Privacy tab in Spotlight in System Preferences. 
+Removing the folder from the and Mail worked fine again.
+I doubt you did the same but I can't hurt mentioning this..
+
+A: Does restoring a copy of your Snow Leopard mail folders from ~/Library/Application Support to a new user in Lion have the same problem? That's saved me in the past when an upgrade didn't work so well in mail.
+
+A: Doing a clean install of Lion again and configuring Mail.app before the Mobile Me preferences pane solved the problem for me.
+(this didn't work as a new user on my old installation)
+That's probably overkill, but I tried everything I could without success, so…
+
+A: Go to Mail preferences > Accounts > MobileMe account > Advanced tab. Look for a setting labeled "Keep copies of messages for offline viewing", and make sure it is set to keep copies of messages, otherwise Spotlight can't populate its index with your message contents.
+
+A: I had a similar problem with my IMAP accounts and I could only search for keywords in new emails (= mails that arrived AFTER I upgraded to Lion). Rebuilding the index solved this problem for me.
+Mailbox -> Rebuild
+See also: http://docs.info.apple.com/article.html?path=Mail/2.0/en/ml1136.html
+
+A: My solution was to delete the index files which Mail rebuilt unprompted:
+https://plus.google.com/105247387818704991250/posts/LzvM2sfa1rX
+
+A: You should also try deleting the Spotlight index and forcing Spotlight to re-index your entire hard drive.
+I'm sure there's a command line action for this, but I use the commercial utility MacPilot.
+
+
+A: My Mail and spotlight searching stopped working at some point in 10.7.2.
+Re-Indexing Spotlight did not work nor rebuilding the Mail inboxes.
+What just now seems to have worked though, is I notice there was a "_spotlight" user listed on my Users folders permissions.  This I think is something to do with ACL. Doing a search, I found that you could try and get spotlight to index on attached AFP partition And the "_spotlight" user was involved.
+Using apples server app I shared my Users folder. This re added the "_spotlight" with custom permissions. And I deleted the old one ("_spotlight" ) from the same user permissions pane.
+I un-checked all share options. i.e afp smb. 
+Spotlight started indexing and I can now do searches in Mail and the finder.
+If I Un-share again I cannot get search results. Switch sharing on again I can.

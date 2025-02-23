@@ -1,0 +1,26 @@
+Q: Textmate alt-f to move forward by one word I've recently switched from Linux to Mac. One thing that is really killing my emacs memory muscles right now is the lack of alt+f and alt+b to jump forward and backward by word. 
+I've gotten the meta/option flag flipped in Terminal.app preferences (so alt+. now works as expected), but I haven't found a similar option for Textmate. Even better if I could enable it as a MacOS  global setting for the U.S. keyboard (so it would work in all input boxes). At the moment I get the following useless (for me) encodings:
+alt+f: ƒ
+alt+b: ∫
+How do I remap alt+f and alt+b to jump forward and backward by word?
+
+A: As usual... KeyRemap4MacBook to the rescue :P   Its emacs mode will give you those bindings, and you can choose a lot more bindings than that as well:
+
+
+A: FYI, it doesn't seem to be mentioned in the Mac shortcuts list, but on my Macbook Air you can press
+Ctrl+option+f
+and
+Ctrl+option+b
+to move forward and backward one word, respectively.
+
+A: One way to remap the keys in other applications as well would be to create ~/Library/KeyBindings/ and save a property list like this as DefaultKeyBinding.dict:
+{
+    "~b" = moveWordBackward:;
+    "~f" = moveWordForward:;
+    "~d" = deleteWordForward:;
+    "~l" = (moveWordForwardAndModifySelection:, lowercaseWord:);
+    "~u" = (moveWordForwardAndModifySelection:, uppercaseWord:);
+    "~c" = (moveWordForwardAndModifySelection:, capitalizeWord:);
+}
+
+You could also cp /Applications/TextMate.app/Contents/Resources/KeyBindings.dict ~/Libary/Application\ Support/TextMate/KeyBindings.dict and add the same keys there.

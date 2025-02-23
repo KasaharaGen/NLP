@@ -1,0 +1,114 @@
+Q: Create global shortcut to run command line applications What steps do I need to run a command line program via a global shortcut?
+I setup Automator to create a new Run Shell Script and tried to assign a shortcut in System Preferences -> Keyboard -> Keyboard Shortcuts, but nothing happened.
+
+A: Applescript it:
+do shell script "ls ~/Desktop"
+
+Add what you want there, then you can run the Applescript via a global hot key application. I would recommend Spark
+Oh, and I don't know about assigning an shortcut through System Preferences
+
+A: Without knowing the specifics of what you are looking for, I'd suggest creating a new Service through Automator. Services can be bound to keystroke triggers, and can execute shell scripts (among other things).
+
+To set up the keyboard shortcut, go to System Preferences -> Keyboard -> Shortcuts -> Services, select the service you just saved, and then click the "Add Shortcut" button.
+
+A: Quicksilver can be used to bind hotkeys to actions. 
+
+If you find yourself doing something frequently, you can speed up the task even more by assigning a “trigger” to it. Triggers can be activated by keyboard shortcuts or mouse movements
+
+If it's a Unix command or shell script you want to execute, this Stackoverflow post gives some more information on using Quicksilver's "Terminal module".
+
+A: I tried all those options, but they're too complex and unreliable or really expensive. So i ended up writing my own solution (open-source and free).
+iCanHazShortcut
+It can't do much right now, but that's a start.
+Feel free to contribute by adding feature requests and suggestions.
+
+A: FastScripts includes all scripts in ~/Library/Scripts/, so you don't have to add files manually. It also supports application-specific scripts.
+
+Other applications that can be used to assign shortcuts for running scripts:
+
+
+*
+
+*Alfred
+
+*Apptivate
+
+*BetterTouchTool
+
+*Butler
+
+*Cockpit
+
+*Controller Mate
+
+*iKey
+
+*Keyboard Maestro
+
+*NuKit (only AppleScript)
+
+*QuicKeys
+
+*Quicksilver
+
+*Shortcuts (only AppleScript)
+
+*Spark
+
+*ThisService
+You can also create an Automator service:
+
+
+*
+
+*Open Automator and choose the Service template
+
+*Add a Run Shell Script or Run AppleScript action
+
+*Check that the input type and application scope are correct
+
+*Paste the script and save the service
+
+*Assign a shortcut in the Keyboard preference pane
+
+
+There's a bug in 10.7 and 10.8 where the shortcuts for services don't always work until the services menu has been shown from the menu bar. Shortcuts for services don't work when the frontmost application doesn't have a menu bar or a services menu. There's also a short delay before services are run.
+
+A: I'll add my answer here using BTT, since it's easy and can actually be bound directly to a command line script:
+
+
+*
+
+*Select Keyboard from BTT
+
+
+
+
+
+*Input your shortcut (or key sequence!) 
+
+
+
+
+
+*Select "Trigger Predefined Action" and type "shell" to find the action.
+
+
+
+
+
+*You can paste your script and shell that you want to run in:
+
+
+
+Click save and you're finished! Now test your script with the keyboard trigger you set up.
+
+
+*EXTRA: You may want to add notes to remember what the shortcut is for...
+
+
+
+
+A: It appears as though this was available in 10.6, (see http://hints.macworld.com/article.php?story=20090903085255430) but something broke in 10.7.2 (and possibly earlier 10.7)
+I have found though that the Services keyboard shortcut is honoured when System Preferences is at the forefront, but not in any other application, including Finder.
+However, the earlier suggestion to use Spark worked perfectly in lion, except that I couldn't use Ctrl in my keyboard shortcut. (not a showstopper!)

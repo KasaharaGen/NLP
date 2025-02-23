@@ -1,0 +1,54 @@
+Q: Playlist folder not showing songs from all child playlists I have created a playlist folder which contains 2 regular playlists (i.e. not smart playlists).  The hierarchy is like this:
+Occasions
+|
++--- Party mix 1
+|
++--- Party mix 2
+
+In iTunes, if I click on the Occasions folder, I can see all of the songs from Party mix 1, but none of the songs from Party mix 2.
+I can't see any difference between the 2 playlists, and because it's not a smart playlist there aren't any settings available.
+Should a playlist folder automatically include all songs from its child playlists?  Any ideas about why it wouldn't be showing songs from both playlists?
+
+A: I had this happen to me for the second time recently. I just fixed it!
+I thought I looked up a fix the first time, which I haven't been able to find.
+However this is what I did just now.
+I copied the name of the playlist to the clipboard,
+then I simply deleted the whole playlist (for me this was fine because it was one of MANY playlists in the folder, this one only having one song in it).
+Created a new playlist in the folder, pasted the name in, then added the song to the playlist! Pop! It showed up in the folder now!
+For you, I would probably drag all the songs to a new playlist outside of the folder, delete the playlist inside the folder, then either re-create the original playlist by creating another one in the folder and dragging all the songs from the 'backup' (outside the folder), or perhaps try dragging the 'backup' back into the folder straight away.
+*you could also try using the "New Playlist from Selection" function (command-shift-n) (under the file menu) (assuming Mac Platform).
+I of course can't try any of these other methods until I encounter this problem again.
+PLEASE NOTE: deleting the SONG from the playlist and then adding it again had NO EFFECT. The reference to the playlist itself seems to be the problem/bug.
+I'm running v10.5 (141), but this happened on an older version as well.
+
+A: The bug is playlist-specific and is created when you right-click a song in a playlist in a folder and choose "add to new playlist". This playlist will function properly in all ways except when when iTunes auto-generates a playlist containing all songs from a folder it does not recognize the said playlist. The playlist will be bugged until moved to another folder.
+There are several ways to resolve this:
+
+
+*
+
+*Fix a bugged playlist
+If you know what playlist has the bug, simply move the playlist in and out of the folder once.
+
+*Avoid creating new playlists with this issue
+Use Cmd-N (or on Windows Ctrl-N) to create a new playlist instead of "add to new playlist". 
+
+*Fix all bugged playlists
+
+
+*
+
+*Make a folder containing all your smart-playlists. 
+
+*Put all other (non-smart) playlists and playlist folders into a new folder. 
+
+*Create a smart-playlist outside the new folder which is set to generate all songs that are NOT in the new folder. 
+
+*Right click each song in the new smart-playlist and move mouse over "show in playlist". If the result contains a non-smart playlist then that playlist is bugged, so fix it according to #1. If the result contains nothing, or only smart-playlists, then organize this song into a playlist which will remove it from this smart playlist. When this smart playlist is empty your library is not only bug-clean but all your songs exist in at least one playlist. You can keep this smart playlist for the future to find new bugged playlists and to help you keep your music library well organized. 
+
+
+*Fix all bugged playlists (simplified)
+If you dont want to go through all your non-playlist-organized-songs - because your library is a mess and you are too lazy to clean it up - then you should to do a manual re-set of each folder. The most efficient I have found to do this is to create a new folder in each folder, drag each other playlist and folder in OLD into NEW, then drag out NEW to the parent directory and then delete the now empty OLD. This will fix all bugged playlists. Now you need to fix all your smart-playlists which were pointing at folders, since the folders have been replaced.
+Also, since you did not use #3 you need to be very careful to always follow follow #2 to not create new bugged playlists, since it could result in you needing to redo #4 once again. 
+
+A: I was able to simply drag the playlists out of the folder, then drag them back in again.

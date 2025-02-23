@@ -1,0 +1,26 @@
+Q: Xcode and Apple Software Update Some of my coworkers receive updates to Xcode through the regular software update mechanism in OSX. I however have always had to manually download it from Apple and install it myself.
+What's the difference between us? Neither I nor they know why. How can I get Software Update to recognize Xcode?
+Also, I understand that Xcode 4 is available from the App Store and that will (or at least should) be updated. That's not the point. I want Xcode <4 to be updated via Software Update.
+
+A: Edited to add
+Based on the comments on this answer, it appears that Xcode updates via the system Software Update were delayed, appearing quite a bit after they became available for manual download from the developer portal. 
+It may even be that Apple fits them into times when their network usage was low, which could delay an update even if you clear out your old copy and reinstall the not-quite-up-to-date version. Perhaps the update would appear if you waited several days.
+
+Previous answer
+Xcode has never, ever updated for me through Software Update, and it's never updated for the dozen or so developers I work with. The Apple employees that I follow on Twitter -- guys like Jake Behrens, Michael Jurewitz (the dev tools evangelist), Chris Hanson, and Bill Bumgarner -- along with former Apple employees who are devs and other high-profile devs I follow, all tweet something along the lines of, "hey devs, time to visit the developer portal to download the new version of Xcode" when an update comes out.
+Are you absolutely certain Xcode updates are arriving automatically for your coworkers? Have you seen it happen? Are you sure they're not pulling your leg? I've certainly never heard of it and consistently hear the opposite, so it sure seems unlikely to me.
+The only automatic Xcode updating I'm aware of for Xcode 4, and only then if it was purchased through the Mac App Store and not downloaded from the portal, and only then if you launch the App Store and click on the update, which really isn't very automatic. 
+
+A: If Software Updater is not picking up your Xcode installation, that would suggest your Xcode installation plist is possibly corrupted. Did you do the proper 
+sudo <Xcode>/Library/uninstall-devtools --mode=...
+
+command to properly uninstall Xcode before installing the newer Xcode4 GM?
+I've seen the problem you're reporting when my students "stacked" the install, i.e. install Xcode3 on top of a previous Xcode3 without uninstalling the older Xcode first.
+Hope this helps.
+
+A: I just tried to update to Xcode 4.2 and was told no updates were available.
+I then noticed I had 'Install xcode' as an /Application and after deleting this, I could then install the update by clicking Install in the AppStore in Lion.
+What a pain!
+
+A: I've been told that this was because the co-workers installed with all the default options. I had changed some options during the install.
+Either way, ever since Lion Xcode has been distributed via the App Store so it's moot.

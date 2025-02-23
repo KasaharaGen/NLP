@@ -1,0 +1,21 @@
+Q: Is it possible to export safari's reading list on Safari 5.1? Subject sums it up. Just curious if there is a trick to be able to export your reading list from Safari, any format. Where on the HD is the info stored? bookmarks.plist?
+
+A: You can convert it into XML in a Terminal/command window using:
+cd ~/Library/Safari/
+cp Bookmarks.plist Bookmarks.plist.xml  
+plutil -convert xml1 Bookmarks.plist.xml
+
+
+A: Yes. The file is called Bookmarks.plist and it is located in ~/Library/Safari/. This houses not only your Reading List bookmarks, but all your bookmarks.
+You'll want to look for entries under the key ReadingList. They will look something like this (file viewed in xCode 4):
+
+Unfortunately, the plist file is stored as a binary, and you'll either have to open it using xCode or another tool that can handle binary plist files.
+
+A: You can't export from Safari but you can import from Chrome
+Here it is on Google support: https://support.google.com/chrome/answer/96816?hl=en
+Alternatively you can open the Terminal application on a Mac (search it in Launchpad if you can't find it) and paste this:
+/usr/bin/plutil -convert xml1 -o - ~/Library/Safari/Bookmarks.plist | grep -E  -o '<string>http[s]{0,1}://.*</string>' | grep -v icloud | sed -E 's/<\/{0,1}string>//g'
+
+Hit return and it will list all your Reading List links as text which you can copy and paste elsewhere.
+
+A: In OS X Yosemite, go to ~/Library/Safari/ReadingListArchives

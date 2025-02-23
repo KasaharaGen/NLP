@@ -1,0 +1,22 @@
+Q: Why aren't mp3 files I deleted by accident showing up in the Trash? I accidentally deleted all the mp3 files on my computer (as opposed to just the ones in my downloads folder). There were a lot of files (around 2,000) so it took a while to delete but now, although at the bottom trash says it holds 2,500 files, they don't show up.
+I need to drag these back onto my computer into their respective folders but I can't find them.
+I am running Mac OS X 10.8 (Leopard) on an iMac.
+Any assistance would be much appreciated!
+
+A: 
+Yes I do, is there a command to move them to another folder? In the short term I don't mind where they are, as long as they're not sitting in the trash waiting to get deleted! 
+
+Answering down here to have enough room.
+
+
+*
+
+*Create a new folder to move all these files from the Trash into. It can be anything, for this example I'll create a folder called "undeleted" on the Desktop.
+
+*Open up a Terminal window, and navigate to the Trash: cd ~/.Trash.
+
+*Confirm that the stuff you want is there: ls -a.
+
+*Move the mp3s: mv *.mp3 ~/Desktop/undeleted. If you create a different folder somewhere else, the easiest way to get its path is to drag it into the Terminal window. Type in mv *.mp3  including the trailing space, then drag the folder you want the files to go into into the window - it'll automatically fill in the correct path. The * wildcard will match any .mp3 it finds.
+
+*If you have any AAC encoded songs, repeat the above, but change the extension to .m4a: mv *.m4a ~/Desktop/undeleted

@@ -1,0 +1,38 @@
+Q: What are "nwnode:" URLs, and why did Lion break them? After installing OS X 10.7, Dropbox presented the following error upon loading: "URLs with the type "nwnode:" are not supported". I also got this error from Path Finder (although I don't know what I did to cause it).
+Both applications only gave me the error once and have not done it since.
+What are nwnode: URLs? What purpose did they serve? And why did Lion stop supporting them?
+
+
+A: The error occurs when an application using Python symbol mappings in Mac OS X is not able to connect to a (previously) networked drive, Time Machine, Bonjour, shared or remote drives, etc. (nwnode). It's a depreciated method, which mostly is why Lion displays the error. Even if you don't use Time Machine, this error can occur, either from an os upgrade or app that uses Python (Dropbox in this case).
+Usually the issues can be resolved by following these steps (via Apple): 
+Resolution
+
+
+*
+
+*In the Finder, double-click on your hard disk.
+
+*Open the folder named System.
+
+*Open the Library folder.
+
+*Open the Filesystems folder.
+
+*Drag the folder named "URLMount (from old Mac)" to your desktop as a precautionary backup.
+
+*Once the copy is complete, control-click the original "URLMount (from old Mac)" folder (not the one on your desktop) and choose "Move
+to Trash" from the contextual menu.
+
+*Enter the name and password of an administrator if prompted. The first user account created on your Mac is an administrator account.
+
+*Restart.
+
+
+http://support.apple.com/kb/TS1736
+*note: The question above was posted six months ago, although I decided to answer it today simply because nobody seemed to know the answer. Hopefully someone who reads this will understand what the error means now.
+And just for Bryson, here is just one of it's strings in symbol_mappings.py:
+'__ZN17SharePointBrowser18setConnectionStateE21NWNodeConnectionState' :
+ 'SharePointBrowser.o',
+
+
+A: The Dropbox forum has a topic on this with a suggestion to install the latest build of Dropbox.  I can't speak directly to that other than to say that my Dropbox install was up to date on Snow Leopard when I upgraded to Lion last week and it continued to work. I'd certainly agree with the suggestion of getting on the latest Dropbox as a first step.

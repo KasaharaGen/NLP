@@ -1,0 +1,10 @@
+Q: Will FileVault 2 wear out my SSD faster? I'm considering using FileVault 2 when I upgrade to Lion. Though my understanding of it is weak, it seems as though it shouldn't really increase the number of reads or writes per disk operation compared to a non-encrypted drive.
+I don't even know if there's any kind of encryption that would increase reads/writes dramatically, since all decryption presumably happens in memory. But it seemed like something I ought to ask about.
+Is there anything I'm not aware of here that I should be?
+
+A: Depends on your SSD. Some controllers (e.g. SandForce) use compression to lower the number of writes on the SSD. Using encryption generally converts compressible data into a data stream that is farr less incompressible. 
+This ends up resulting in a larger number of writes to the SSD, and consequently will wear it out faster. The compression rates for average data might be 25% at best, so you would presumably see that reduction in life.
+Of course, the initial encryption will also generate writes (about one cycle for each block on the drive), but it's probably nothing to worry about considering that most SSDs are rated for 5000 write cycles.
+With wear leveling, that 5000 entire drive writes will take a very long time to accomplish even if you choose encryption and have all the writes hit the storage cells without being compressed.
+
+A: Encryption happens on-the-fly.  If the data was written to the hard drive, then passed through an encryption algorithm that then deleted the written data and re-wrote it, encrypted, that would be hella inefficient, and would largely defeat the purpose.  I think the answer to your question is no, but of course remember that if you're going from a data set that's not yet encrypted, then all of that data needs to be processed, so that initial process of reading, encrypting and re-writing data will have an effect.

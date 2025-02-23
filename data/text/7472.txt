@@ -1,0 +1,31 @@
+Q: How can I change a file's creator code on vanilla Snow Leooard? When Xcode is installed your best bet to change a file's creator is SetFile.
+I only found AppleScript. Unfortunately, while the type is set correctly, the second line silently fails on my 10.6:
+set theFile to choose file
+tell application "Finder"
+    set file type of theFile to "TEXT"
+    set creator type of theFile to "iDAT"
+end tell
+
+How can I change a file's creator code on a vanilla (just installed) system, even when Xcode is not installed?
+
+A: I ran the following script on a variety of files on my system running 10.7.4. I ran it on files in my home directory, I ran it on files on a mounted FAT16 volume.
+I was unable to get it to fail silently. If the file selected was locked or read only, the script failed with the error "Finder got an error: The operation can’t be completed because you don’t have the necessary permission."
+Otherwise, in all the cases I tried, the script worked: regardless of the type and creator reported at the beginning, the type and creator reported at the end was TEXT and iDAT. Similarly, when I ran the script again on the same file, it initially reported type and creator of TEXT and iDAT, respectively.
+So my advice would be to upgrade to Lion; if the script fails in 10.6, it seems to be a bug that has been fixed in 10.7.
+set theFile to choose file
+tell application "Finder"
+    set myAlert to get file type of theFile
+    display alert myAlert
+    set myAlert to get creator type of theFile
+    display alert myAlert
+    set file type of theFile to "TEXT"
+    set creator type of theFile to "iDAT"
+    set myAlert to get file type of theFile
+    display alert myAlert
+    set myAlert to get creator type of theFile
+    display alert myAlert
+end tell
+
+
+A: According to Wikipedia, in Snow Leopard, the Creator Code are ignored by Mac OS X. 
+On Textmate's Wiki, it's also advised to leave this field blank.

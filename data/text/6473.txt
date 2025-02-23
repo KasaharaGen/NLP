@@ -1,0 +1,16 @@
+Q: How to make my iMac recognize my USB external hard drive? I just bought a new Seagate hard drive for Time Machine backups. I plugged it into my iMac and the hard drive never showed up in Finder. The drive does not appear in Disk Utility and the command diskutil list outputs only my system HD /dev/disk0. Even when I go to the System Profiler the drive does not appear under USB.
+However, when I plug the device into a MacBook the drive shows up and runs regularly. I have made sure that the USB drive that I am plugging the hard drive into is working. I even formatted the drive using the Disk Utility on the MacBook put the drive still doesn't work on the iMac.
+I think it might be a mounting issue but don't know where to go from here. How to make my iMac recognize my USB external hard drive?
+
+A: If your USB hard drive is the bus-powered variety (that is, you don't plug it into the wall for power), then it is possible that it is requiring too much startup current to run on one of your computers.
+Some computers are pickier than others about how much current a device can draw, and over what period.
+You might try a cable like this:
+
+Basically, you can use power from two USB ports, instead of just one.
+If your hard drive has a jack for a power adapter, use that instead.
+
+A: If your drive does not show up in Disk Utility then it should not be the 'mounting' issue but more likely some in lower level. You need to plug some other USB device to test if your USB ports actually work or not.
+
+A: I hate to post a solution like this but I replaced the drive with a new one from the store and it works. It was a hardware problem with the drive.
+
+A: I have the same problem and I am using a Western Digital 1TB Passport. Every few days the time machine stops working and is not accessible. The only way i can get it to work is to go into System iformation>>USB and then highlight the My Passport and then for some reason the time machine logo on the taskbar becomes whole instead of having an exclamation mark in the centre and i am then able to run a backup

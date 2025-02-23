@@ -1,0 +1,136 @@
+Q: How can I run/stop/relaunch an application automatically, at boot/login/some other time? How do you make a script or app to run or stop running automatically when the system is booted, a user logs on, at a specific time, when a disk is attached, etc.?
+
+A: Lingon still works.  I just used it last week to create a "scheduled task".  After I downloaded it I had to use its auto-updater to get the latest version but it works fine.
+
+A: If it's only necessary to run when the system is booted, just use the Login Items tab of your Accounts preference pane in System preferences.
+
+If it's a script, use AppleScript Editor to save it as an application. If it's not an AppleScript script, you can still use AppleScript to run the script like this:
+do shell script "your script here"
+
+A: Don't forget Loginhooks.
+Although they run as root, you ought to be able to have it execute a $HOME/.loginhook script using something like this:
+#!/bin/sh
+
+home=`eval echo ~$user`
+
+if [ -x "$home/.loginhook" ]; then
+    logger -t $0 "executing .loginhook of user $user"
+    su - $user -c "$home/.loginhook"
+fi
+
+Then just add whatever commands you want to the ~/.loginhook
+Also, although 'launchd' is "the Mac way" crontab is still a perfectly viable option, and is much much easier to hand-edit than XML launchd files.
+Personally, I happily paid $5 for Lingon.
+
+A: Gui Method
+If you want something to run when a user logs in, the easiest way is to use the GUI. You can
+
+
+*
+
+*Go to the System Prefs > Accounts > Login Items screen, and add the item there by
+
+*
+
+*clicking the + symbol
+
+*dragging and dropping the .app onto the pane
+
+
+*In the dock, bring up the context menu for an app, select Options, then select Open at Login
+Launchd method
+If you want to launch something that is not a .app, or you want to have more control over launching it, such as:
+
+
+*
+
+*at a certain time or at a specified interval
+
+*continuously re-launching if it crashes
+
+*not related to user login
+
+*as a function of network access
+
+*only run when another process is running 
+
+*when a file is added to a folder
+
+*etc.
+
+
+then you want to use the technical solution that is launchd.
+The easiest way to set up a launchd config file is to use a tool to help. At the time of writing the most popular method is Lingon (which has an older free version available from SourceForge), or the PList Website tool.
+Hand Coding
+If you don't want to use Lingon or the PList Website and only want to use the raw tools available on the system, you can write your own launchd plist by hand
+Here is my launchd script to run SomeApp continuously after the system boots (independent of a user logging in). It is in /System/Library/LaunchAgents/ and called SomeApp.restart.plist. If it is run based on a user login, it could be stored in ~/Library/LaunchAgents/
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>RunAtLoad</key>  
+        <true/>
+        <key>KeepAlive</key>
+        <true/>
+        <key>Label</key>
+        <string>SomeApp.restart</string>
+        <key>ProgramArguments</key>
+        <array>
+                <string>/path/to/SomeApp.app/Contents/MacOS/SomeApp</string>
+        </array>
+        <key>StartCalendarInterval</key>
+        <dict>
+            <key>Hour</key>
+            <integer>5</integer>
+            <key>Minute</key>
+            <integer>10</integer>
+       </dict>
+</dict>
+</plist>
+
+Load it once with
+launchctl load ~/Library/LaunchAgents/SomeApp.restart.plist
+
+
+
+*
+
+*The RunAtLoad option will launch the application the first time launchctl runs this.
+
+*The KeepAlive option will re-launch the application if it crashes.
+
+*The StartCalendarInterval will run it at a certain time. Presumably this is mutually exclusive with the previous two, but is included to show what can be done with launchd
+
+*Launchctl will run this after reboots.
+
+
+There are many additional options that can be found by experimenting with Lingon or by reading the man pages for launchctl, launchd.plist, plist, launchd.conf, etc.
+
+A: Running an app at a specified time can be done easily in iCal, as I have just found out thanks to another forum!
+
+
+*
+
+*Make a new event in iCal for the time you want the app to open.
+
+*At 'Alert' choose 'Open File' - so, you can set a file to open, which will obviously also open the default application for that file type.
+
+*To just open an app, rather than a file, change the 'iCal' dropdown to 'Other...' and choose the app you want to run!
+
+
+One thing to be aware of is that if you have multiple Macs sharing stuff over iCloud, this event will also run on those apps, which you may or may not want.
+To make this only happen on a single Mac, you need to create the event in an 'On My Mac' calendar which you can do as follows...
+
+
+*
+
+*Hide all other iCloud or shared calendars on the left hand bar by hovering over the calendar name and clicking the 'hide' button which will appear.
+
+*Now right click (or Option click if you're a complete cretin and still haven't realised that you have more than one finger and can change your mouse preferences so that it is slightly more useful than its default 'cretinous brick for cretins' state) and choose 'New Calendar'.
+
+*Because all shared calendars are hidden, this new calendar will be created as 'On My Mac' and will be local to this Mac.
+
+
+I've only just found this out myself, and was pleasantly suprised by both tips, so thought I'd share them here.
+I got the info from these helpful people over here...so thanks you people!...
+http://osxdaily.com/2013/04/15/launch-file-app-scheduled-date-mac-os-x/

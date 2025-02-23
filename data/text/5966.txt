@@ -1,0 +1,5 @@
+Q: Open Self Extracting .exe I have a self extracting exe file that is password protected, does anybody know of a program that will open this? If I need to I can just run bootcamp, but it would be convenient to not have to do this.
+
+A: Some self-extracting files can also just by unzipped using the command line 'unzip'. Just open Terminal, change into the directory with the .exe, and try running unzip -t filename.exe. You should see a listing of the files in the .exe. If you don't, then this approach won't work. If you do, you can make a directory and then extract the files, something like mkdir extracted && unzip /path/to/file.exe
+
+A: Ok, this is how I solved the problem. Following bmike's advice, I went to the App Store, searched for and installed Stuffit. When you open Stuffit, it opens for you a target where you can drag and drop the file compressed as a Windows executable. At least for the file that I've got, that pretty much did the trick.

@@ -1,0 +1,38 @@
+Q: Downgrading to iOS 4 on my iPod Touch from iOS 5 I installed iOS 5 on my iPod Touch 3rd Generation, but it slows everything down. I want to put it back to iOS 4. How can I do this?
+
+A: Redmond pie have a good walkthrough on how to do this.
+Due to the security checks that Apple has implemented over the years, it’s just not possible to install an old version of iOS once a new version is out to public on a device without a workaround. In order for this to work, you must have previously backed up SHSH blobs for the version of iOS you’re trying to downgrade to. If you’re still on an old version of iOS, we recommend you run a tool such as iFaith before you upgrade in order to back-up your blobs.
+Once you’re sure you have what you need just follow the easy steps below.
+Step 1: If you haven’t already, download the version of the iOS firmware you’re planning to downgrade to, which should be in the form of an IPSW file. For your convenience, we have placed the relevant download links below:
+iOS 4.3.5
+iOS 4.3.4
+iOS 4.3.3
+Step 2: Put your device into DFU mode – this will allow you to make some necessary changes in order to downgrade the system. In order to do this, turn your device completely off, press and hold the Power and Home buttons (simultaneously) for 10 seconds, then release the Power button but keep holding the Home button for 10 more seconds. If you’ve entered DFU mode successfully, your screen should now be blank (it shouldn’t display the iTunes logo), otherwise just repeat this step. It might take several tries to get it right.
+Step 3: We now must trick iTunes into accepting an old firmware by preventing it from connecting to Apple’s servers. In order to do this, launch Explorer (on Windows) or Finder (on OS X) and navigate to \Windows\System32\drivers\etc\ on Windows and /etc/ on the Mac. Locate a file named hosts and open it with your favorite text editor. Remember that you’re advised to back it up before making any changes.
+
+
+Add the following line to the hosts file and save it, as shown below:
+74.208.105.171 gs.apple.com
+
+Step 4: Launch iTunes, select your device from the program’s sidebar and restore your device to the old firmware you’ve selected earlier. In order to do this, hold the Alt key (if you’re using OS X) or Shift (if you’re on Windows) on your keyboard, press the "Restore" button on iTunes and navigate to the desired firmware file.
+
+Note: You might get a 1013 error during this process, which is entirely normal, throwing your device into recovery mode.
+
+
+In order to get out of this, download TinyUmbrella (Windows, Mac) or Fix Recovery (Windows, Mac). From either one of them, select "Exit Recovery" to go back to normal mode.
+
+You’re done!
+
+A: clean & simple, works under Windows and Mac OS X:
+
+
+*
+
+*Download ipsw firmware you need
+
+*Enter your iPhone into DFU mode
+
+*open iTunes and click "update" with alt pressed
+
+*then choose your ipsw and install it.
+

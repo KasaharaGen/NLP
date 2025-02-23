@@ -1,0 +1,33 @@
+Q: Using git on the iPhone I have a jailbroken iPhone 3GS running 4.0.1, and I recently installed git from Cydia just for fun. I've noticed in recent weeks that a number of developers have been throwing their theme/plugin source code up on GitHub, which is theoretically awesome because updating is a 2-command process (cd /private/var/stash/Themes/<theme>.theme/ and git pull) that can be done on the phone itself.
+But when I try to clone a repo, this happens:
+Dylan:/private/var/stash/Themes root# git clone "http://github.com/dcinzona/LockInfo-Status-Bar-Icons---Winterboard-Theme.git/GMT Statusbar Icons.theme"Initialize GMT Statusbar Icons.theme/.git
+Initialized empty Git repository in /private/var/stash/Themes/GMT Statusbar Icons.theme/.git/
+error: File 0000000000000000000000000000000000000000 (http://github.com/dcinzona/LockInfo-Status-Bar-Icons---Winterboard-Theme.git/GMT Statusbar Icons.theme/objects/00/00000000000000000000000000000000000000) corrupt
+Getting pack list for http://github.com/dcinzona/LockInfo-Status-Bar-Icons---Winterboard-Theme.git/GMT Statusbar Icons.theme
+Getting alternates list for http://github.com/dcinzona/LockInfo-Status-Bar-Icons---Winterboard-Theme.git/GMT Statusbar Icons.theme
+Also look at   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitiona
+Also look at <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lan
+Also look at       <h2 class="logo"><a href="http://github.com">Brought to you by GitHub</
+Also look at         <li><a href="http://github.com/blog" class="blog">The GitHub Blog</
+Also look at         <li><a href="http://support.github.com">Support</
+Also look at         <li><a href="http://github.com/contact">Contact Us</
+Getting pack list for   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitiona
+error: Protocol   "http not supported or disabled in libcurl
+Getting pack list for <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lan
+error: Couldn't resolve host '<html xmlns="http:'
+Getting pack list for       <h2 class="logo"><a href="http://github.com">Brought to you by GitHub</
+error: Couldn't resolve host '      <h2 class="logo"><a href="http:'
+Getting pack list for         <li><a href="http://github.com/blog" class="blog">The GitHub Blog</
+error: Couldn't resolve host '        <li><a href="http:'
+Getting pack list for         <li><a href="http://support.github.com">Support</
+error: Couldn't resolve host '        <li><a href="http:'
+Getting pack list for         <li><a href="http://github.com/contact">Contact Us</
+error: Couldn't resolve host '        <li><a href="http:'
+error: Unable to find 0000000000000000000000000000000000000000 under http://github.com/dcinzona/LockInfo-Status-Bar-Icons---Winterboard-Theme.git/GMT Statusbar Icons.theme
+Cannot obtain needed object 0000000000000000000000000000000000000000
+fatal: Fetch failed.
+
+Can anyone tell me why? Am I missing something?
+
+A: It looks like github is sending you back the 404 page because you're requesting it specifically over http. Try this url instead:
+git://github.com/dcinzona/LockInfo-Status-Bar-Icons---Winterboard-Theme.git/GMT Statusbar Icons.theme

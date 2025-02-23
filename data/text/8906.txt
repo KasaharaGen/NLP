@@ -1,0 +1,18 @@
+Q: what is DELUXE-USR-LOCAL-BIN-INSERT in ~/.profile file? My .profile file includes the following obscure lines.  What are they for?
+##
+# DELUXE-USR-LOCAL-BIN-INSERT
+# (do not remove this comment)
+##
+
+
+A: It's there as a placeholder so that scripts that look for it know where to insert their changes into the profile file.
+I beleive this was from the default profile created on much older versions of OSX, since my .profile which has moved with me from Panther has this, but my work machine which is from the Leopard/Snow Leopard era does not.
+I have seen links to such articles going back to 2005.
+It could also have been added by a third party installer, but finding out which one is probably a zero-sum game.
+
+A: These are just comments, so technically these lines shouldn’t have any functionality.
+That said, my ~/.profile file contains only the following, without the comments:
+set -xv
+
+That enables the echo and verbose flags, effectively enabling “shell debugging mode”.
+I’m using the latest OS X Lion 10.7.3, and haven’t experienced any kind of issue because of the missing comments.

@@ -1,0 +1,56 @@
+Q: How can I achieve page-up and page-down in OS X? I am using MacOSX Snow Leopard.
+How do I achieve page-up and page-down?
+
+A: It's ⌥ + Up/Down arrow keys.
+
+A: If you use KeyRemap4Macbook app, check under "Change Arrrow Up/Down/Left/Right" keys.
+When you have this set up, Page Up and Page Down will work with irrsi – I log-on remotely to another linux host for that – you only need to press Shift + Page Up or Page Down will work for that window (as opposed to scrolling pages of OS X terminal window).
+
+A: It's true that the hardware keyboard on Macintosh machines has:
+Fn + ← = Home
+Fn + → = End
+Fn + ↑ = Pg up
+Fn + ↓ = Pg down
+So these "keys" fully exist already. This is apparent if you run Linux/Windows natively on your Mac.
+However, macOS applications are responsible for handling these functions as they see fit, which is different from what you'd see on Windows or Linux. Therefore, the macOS Terminal application needs some tweaking to use these keys.
+I believe the reason for this is that macOS follows an old-school Unix tradition where:
+ctrl + a = Home
+ctrl + e = End
+I now use this routinely, but my terminal-reflexes still demand a proper home,end,pg-up,pg-down...
+Edit macOS's Terminal Keyboard Binding Settings to match
+
+
+
+
+I tend to get this entered by copying a similar entry that already exists,  then using the 'delete a character' button, I remove the different bits before typing in the rest.
+Overall, this will look along these lines:
+
+This meets all my expectations for how this should work. It works in vim and through ssh.
+
+A: On my (Danish) keyboard layout (under 10.7.5) it is fn + shift + ↑/↓.
+
+A: If you have a full keyboard you can use the pgup and pgdown keys on your keyboard, near the numpad. 
+If you are not using a full keyboard, function, labeled fn on your keyboard, plus the up and down arrow keys will give you a page up and down.
+For certain applications, particularly in shell / terminal / tty windows, the expected behaviour is achieved with fn+shift+arrow up/down
+
+A: PageUp:
+Fn+UP
+PageDown:
+Fn+DOWN
+Successfully tested on my brand new MBPro retina !
+
+A: Mac OS Catalina:
+
+Scroll to the page-top - cmd+ ↑
+Scroll to the page-bottom - cmd+ ↓
+
+PageUp - fn + ↑
+PageDown - fn + ↓
+
+A: user Fn
+PageUp: Fn+UP
+PageDown: Fn+DOWN
+
+A: Alt + up/down arrows: pgup/pgdown
+Spacebar and shift + spacebar: : pgup/pgdown
+Command + up/down arrows: home/end

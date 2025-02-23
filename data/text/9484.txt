@@ -1,0 +1,78 @@
+Q: Is there a way to prevent those pesky .DS_Store files from being ever created? Is there a way (eg. a binary hack into Finder) to stop it from creating .DS-Stores on LOCAL Volumes? 
+I am using Leopard, therefore these don't work:
+
+
+*
+
+*Asepsis (requires Lion)
+
+*TotalFinder (requires Snow Leopard)
+
+
+Also, BlueHarvest slows down my computer.
+
+A: To prevent those ugly .DS_Store files from showing up there seems to be a relatively new option to do this cleanly, not only for network drives, like:
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+but also for USB-connected volumes:
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+Relative to the OPs question title, this is the best solution without hacks, since it addresses not only the network misbehaviour but is also effected  for most connected disks. And those might be the biggest annoyance for most users sharing devices like USB sticks between different environments. It uses only Apple provided options and doesn't interfere with normal operation in any way.
+Relative to the concrete situation explained in the OPs body it is of limited value, since this USB option is only available in later versions of OS X/macOS. Further, this still does not address the problem of .DS_Store creation on internal disks, where they can be also a hassle to deal with. Although in that place they might actually serve some kind of purpose.
+A more comprehensive solution to this problem, albeit a more hackish one, that works on most versions of the Mac operating system is as follows:
+To completely nuke this nasty behaviour on all disks – and with a binary patcher/code injector like the question of the OP longs for – there is DeathToDSStore / with source. 
+Both of these options assume that anyone still uses Finder…
+Using a different file manager would also solve this problem.
+There are numerous contenders to replace Finder for file management on macOS. Two of the top dogs in this field are Pathfinder or XFile.
+
+A: I haven't found any way to keep them from being created, but you can delete them automatically with a script:
+#!/bin/sh
+
+find ~ -name .DS_Store -exec /bin/rm -f -- {} \;
+
+exit 0
+
+Run it every X minutes via launchd or cron. It takes almost no time to run on my several-year-old iMac. It will only search your $HOME (~) but that's where most of them will be. Change ~ to / if you want to delete them across the entire drive, but that will take much longer to run, so adjust the frequency accordingly.
+
+A: Try this command in terminal:
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+It seems to work for me.
+
+A: Third party solutions
+In my experience, BlueHarvest is best in class. Technically, it is not an answer to the question; it can remove but not prevent .DS_Store files. 
+If BlueHarvest is effective but does not suit your use case, it becomes difficult to give an acceptable answer to your question. 
+If you have no acceptable third party solution, then you must work with what's integral to Leopard …
+Without a third party solution: restrain your use of Finder
+By avoiding the views that you do not wish to save, you can prevent creation of .DS_Store files. 
+Most users will find it difficult to restrain themselves in this way, but it's a true answer within the limitations of the question. 
+http://diigo.com/0qiwp for an annotated view of http://lists.apple.com/archives/applescript-users/2006/Jun/msg00180.html where Matt Deatherage (a former engineer at Apple) explains .DS_Store and other types of file. 
+
+A: I had the same problem, and solutions to prevent those annoying files on the local mounted disk did not work for me.
+In the end I have found a suitable solution, which is to periodically search and remove these files on the local mounted disk only. I added a cronjob with the following content:
+9 */1 * * * find -x ~ -path /Users/adietz/Library -prune -o -fstype local  -name .DS_Store -print -exec /bin/rm -f -- {} \; >> ~/.cron.log 2>&1
+
+Here is what it means:
+
+*
+
+*9 */1 * * * performs the command every 9 minutes after the hour (so 10:09, 11:09, 12:09, ...)
+
+*find -x ... -fstype local (optional) Perform the search only on the local mounted file system and ignore any other mounted disk under ~
+
+*~ the folder to search (home folder)
+
+*-path /Users/user/Library -prune -o (optional) expression to NOT look in the Library folder (which might throw Input/Output errors).
+
+*-name .DS_Store the file name to look for
+
+*-print (optional) print a found occurrence
+
+*-exec /bin/rm -f -- {} \; remove the file
+
+*>> ~/.cron.log 2>&1 (optional) Adds the output to a file, so you can check that it works, and where the annoying files have been removed
+
+
+A: EDIT: apparently no longer works in newer macOS versions
+I've made a more efficient script (intended to be run continuously as daemon), it'll do one execution of find at the beginning to wipe already existing files and it'll catch new files in real time via fsevents. So they will be nuked immediately as they are created, and resource usage is very low. AFAIK this is the best possible way to get rid of them without disabling SIP.
+Here it is — https://github.com/magicgoose/DS_Store-Kill

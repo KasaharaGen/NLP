@@ -1,0 +1,64 @@
+Q: Finder Cover Flow Icon Preview not working I'm not sure what happened but I noticed recently that the Cover Flow icon previews were missing from my files in Finder.  I'm using OSX 10.6.7.  See the screenshot below - I'm expecting a preview of the file to be shown rather than the black document icon.
+How can I get the preview back?  The View Options have "Show Icon Preview" ticked.
+Quicklook still works on individual files, just not in Finder.
+
+Edit
+Error message reported in Console:
+/System/Library/Frameworks/QuickLook.framework/Resources/quicklookd.app/Contents/MacOS/quicklookd: /System/Library/Frameworks/QuickLook.framework/Resources/quicklookd.app/Contents/MacOS/quicklookd: cannot execute binary file
+(com.apple.quicklook[5107]): Exited with exit code: 126
+Edit 2
+Output of command suggested by @jm666
+lipo -detailed_info /System/Library/Frameworks/QuickLook.framework/Resources/quicklookd.app/Contents/MacOS/quicklookd
+lipo: can't figure out the architecture type of: /System/Library/Frameworks/QuickLook.framework/Resources/quicklookd.app/Contents/MacOS/quicklookd
+After seeing the error message, I restored the previous version of quicklookd from my Time Machine backup and the problem was resolved.  I'm going to do a clean install of Snow Leopard just to make sure there are no other issues with my system.
+
+A: hm. Removing my answer, because not helped.
+So - you got a message into Console.log. So, come step-by-step. :)
+What return this command?
+lipo -detailed_info /System/Library/Frameworks/QuickLook.framework/Resources/quicklookd.app/Contents/MacOS/quicklookd
+
+Should this:
+Fat header in: /System/Library/Frameworks/QuickLook.framework/Resources/quicklookd.app/Contents/MacOS/quicklookd
+fat_magic 0xcafebabe
+nfat_arch 2
+architecture x86_64
+    cputype CPU_TYPE_X86_64
+    cpusubtype CPU_SUBTYPE_X86_64_ALL
+    offset 4096
+    size 504912
+    align 2^12 (4096)
+architecture i386
+    cputype CPU_TYPE_I386
+    cpusubtype CPU_SUBTYPE_I386_ALL
+    offset 512000
+    size 399280
+    align 2^12 (4096)
+
+
+A: Your mac is failing at a pretty low level for Finder to not be able to generate previews so it would be a great time to make sure your backups are safe and current.
+When you log in, quicklookd should start and run in the background until Finder asks it to draw those previews for you.
+With the information you presented - it's not clear if quicklookd is no longer starting, now has a problem (say with a new plug in or an old one that is now broken with the latest update)
+If you are interested in digging into this - do post more details:
+
+
+*
+
+*Is quicklookd running? (you can see it in activity monitor)
+
+*Are there any messages about quicklookd in the console.app? (system.log and All Messages would be good places to start)
+
+*Are you running any custom utility software or added any plug-ins to modify quicklook or Finder?
+
+*Anything else major changed of late?
+
+
+You should be able to determine if quicklookd is failing to start or has a problem with a specific plug-in. It's too uncertain to know what went wrong and the steps to fix depend on what has broken.
+Edit If quicklookd won't run in a new user and gets the same errors, then reinstalling the OS should write a new quicklook. The plugins you list are probably harmless and you can either try removing them first or reinstalling. I would go the reinstall first, but can't predict which it will be. 
+
+A: Have you tried running "Repair Disk Permissions" from Disk Utility? 
+In the past I've found that fixed an issue with icons not displaying correctly.
+Alternatively look at a tool like Onyx can run a more comprehensive system maintenance, so that might be worth a shot. 
+
+A: I'd first start with something that doesn't modify any data, to remain least intrusive. Try Command+Option+Esc for the Force Quit Applications window, and relaunch Finder. If that doesn't fix it, I'd probably reboot and test.
+The next step for me would be to boot in safe mode, by holding down Shift when you turn on the computer. If it's running 10.5.x or earlier, you'll see a spinning gear and the boot will take some time. 10.6 will show a progress bar. You can get more information on the function of a Safe boot here: http://support.apple.com/kb/HT1564.
+If the issue persists passed that point, then I'd likely start manually removing more caches (~/Library/Caches/), or proceed as @BendiLow suggests with permissions, etc. OnyX can help in system modifications, but to date, I haven't seen anything in the app that specifically would affect the Cover Flow index.

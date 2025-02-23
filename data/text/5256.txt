@@ -1,0 +1,15 @@
+Q: Can you change an MOV to an MP4 without transcoding? How can change video container from .mov to .mp4 without touching the video itself? Preferably a GUI app.
+I have a bunch of videos in .mov and since .mp4 is more widespread I want to use that, but I don't want to lose any quality.
+
+A: You could do that with ffmpeg:
+ffmpeg -i video.mov -vcodec copy -acodec copy video.mp4
+
+This will just change containers, but obviously will only work with a codec that ffmpeg supports.
+Edit: if you absolutely need a GUI, you could use Automator to create a Drag & Drop target, like this:
+
+
+A: QuickTime 7 Pro.
+Again, only if it is in a codec allowed for MP4s.
+
+A: It is also known as rewrapping. 
+Open the file with MPEG Streamclip (freeware, adware-free) and choose File > Save As…, then choose the format: MP4. 

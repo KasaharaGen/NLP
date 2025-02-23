@@ -1,0 +1,40 @@
+Q: Preview an animated GIF image? How can I preview an animated GIF? When I double-click it, it opens in Preview and is not animated, showing each frame as a separate image instead of playing the animation. As an example, here is the image I was trying to preview (so you can try it yourself).
+Is there some way to get Preview to play the animated GIF, or if not, what's the best app to imitate Preview in this one instance? (i.e. something that will quickly open and play the GIF, I don't care about editing and whatnot)
+
+A: You can also preview in Terminal qlmanage -p awesomegif.gif 
+
+A: I'm using the animgifqlgen QuickLook plugin:
+
+Animated GIF QuickLook plugin
+This is a QuickLook plugin for MacOS-X 10.5/10.6 that allows QuickLook preview of Animated GIFs. The current GIF support in the Finder doesn't show animations. This plugin extends the Finder to allow QuickLook to display the GIF in its animated form.
+
+
+A: In Mountain Lion and Mavericks, Mac's own Quick Look has GIF support, so clicking     space     or ⌘+Y while the GIF is selected will play it. It might take a second or two to load though, depending on the size of the GIF.
+
+A: Right-click it, go to the Open With menu, and choose Safari (or your other favorite Web browser).
+It should open quickly, and will play the animation.
+No internet connection is required if you have a local copy of the image.
+
+A: Answering the question, you go to your gif file, select it and press your space bar on your keyboard, to open a window that shows the animation of your gif.
+I had installed the QuickLook plugging, thinking that will be better and easier to view, maybe in the same window of finder, but i was wrong. Instead of this, it only crashed the original configuration, so i wasted the rest of day, searching a fix solution.
+
+How became after install the plugin:
+
+i installed this and now when i hit space bar, i only view a black window instead of my animated gif (before, it was possible)!!! i want to fix it!!!! NOW! this shit doesn't have itself unistaller!
+i thought that this pluging were allow me to preview gifs in the same window of finder (like the windows 7 does)!!!
+
+After a long day searching for a solution, i find this tip:
+I found a good soul that shared the solution on a forum website, here is what his said:
+
+"To UNINSTALL this plugin, go to the /library folder and open the QuickLook folder. This is NOT the MacOS Harddisk/library or System/library folder. It’s a HIDDEN folder in your own directory. To access it, click the GO menu in the Finder menu (top bar) and press and hold the Option key. Select the “Library” directory that appears there. Inside the Quicklook folder, you’ll see the actual AnimatedGIF_QL.qlgenerator plugin file. DELETE it and you’ll immediately have your native GIF support working again."
+
+And its working!!! :D yey!
+
+hope this help someone!
+
+A: Select the GIF (single click) in the Finder, then hit the space bar to bring up the GIF in Quick Look, which enables the animation.
+
+A: In OSX 10.9, you can drag and drop it into a keynote slide. and then play it there.
+
+A: A solution which bases on the accepted answer but is slightly easier in the long run would be to select a gif file and press ⌘+I to open the file properties panel. Look for Open with and choose Safari or your favourite browser. Click the now activated Change all button right underneath the App selector and from now on GIFs will always open in the selected browser and play the animation right away.
+Maybe the button is not exactly labeled Change all as my system is German and I just translated my label for this answer. Please feel free to edit my answer if your system language is English and you can confirm/correct my translation.

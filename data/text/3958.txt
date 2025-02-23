@@ -1,0 +1,109 @@
+Q: How to prevent ssh from adding my key to ssh-agent on Snow Leopard? I recently started using Snow Leopard (after using Leopard for a few years), and I noticed that when I ssh using a passphrase-protected private key, ssh will automatically add the key to ssh-agent. Question 1: How do I prevent ssh from behaving this way (doing the auto-add)?
+I am not looking to disable the auto-launching of ssh-agent. I actually use it, but I want keys to be added manually (via ssh-add), not automatically.
+My current workaround:
+I've edited /System/Library/LaunchAgents/org.openbsd.ssh-agent.plist to run with the argument "-t 1" and that works well. But I'm afraid that some software update will revert it.
+Question 2: If I put the modified plist in ~/Library/LaunchAgents/ will the one in /System be ignored for my user? This would qualify as a stable workaround.
+
+A: Automatically Added Keys
+There are three ways SSH keys are added to ssh-agent in Snow
+Leopard.
+
+*
+
+*manually, with ssh-add,
+
+*automatically, by ssh when you supply a key’s passphrase via
+the GUI prompt, and
+
+*automatically, by ssh-agent when it first starts.
+
+The last two methods are Apple extensions: there are no “automatic”
+additions with stock OpenSSH. All references to ssh, ssh-agent,
+and ssh-add below are to Apple’s Snow Leopard versions unless
+I prefix the program name with the adjective “stock”.
+You can disable all of Apple’s keychain-oriented SSH modifications
+with a (undocumented?) preference setting:
+defaults write org.openbsd.openssh KeychainIntegration -bool false
+
+Keys Added Automatically By ssh
+(This is the part I missed in the previous version of my original
+answer since I usually use a “stock” ssh.)
+Whenever ssh tries to use a passphrase protected SSH key to
+authenticate itself to a remote host, it will issue a GUI prompt for
+the SSH key’s password. The key is also loaded into the agent (if
+the passphrase is correct) whether or not you mark the “Remember
+password in my keychain” checkbox.
+There are two (undocumented?) ways to prevent ssh from issuing
+this GUI prompt (and thus adding the SSH key to the ssh-agent):
+
+*
+
+*A preference setting:
+  defaults write org.openbsd.openssh AskPassGUI -bool false
+
+
+
+*An
+ssh_config
+entry (or -o option to ssh) that specifies AskPassGUI no.
+(see keychain_read_passphrase in
+keychain.c;
+the oAskPassGUI parameter comes from the AskPassGUI
+configuration setting)
+When AskPassGUI is disabled, ssh will prompt you in the normal
+way for the key’s password (i.e. through the tty).
+You could also avoid automatic adds from ssh by using a “stock”
+ssh (e.g. OpenSSH compiled by
+MacPorts,
+Homebrew “duplicates” from
+homebrew-alt, or
+Fink).
+Keys Added Automatically By ssh-agent
+The keys that ssh-agent automatically adds are those that have
+their passphrases stored in a keychain.
+These “remembered keys” are automatically added when a new
+ssh-agent starts.
+There is no command line or configuration option (other than
+KeychainIntegration, described above) to prevent ssh-agent from
+automatically loading the “remembered keys” (see the call to
+process_add_from_keychain (defined in
+keychain.c) from main in
+ssh-agent.c).
+If, however, you can arrange to lock the keychains that store your
+SSH key passphrases, you can click Cancel when ssh-agent asks to
+unlock the keychain(s) and effectively get ssh-agent to skip
+adding these “remembered keys” when it first starts.
+If there is no ssh-agent running, your first use of ssh will
+likely trigger launchd to start an ssh-agent which will load all
+the “remembered keys”. This makes it seem like ssh is loading the
+keys into the agent, but it is really the agent itself that is
+loading the keys. It only does this automatically when it first
+starts.
+The -k option of ssh-add provides a manual way to add the
+“remembered keys” (see add_from_keychain in
+ssh-add.c
+which ends up as a message to the agent which calls
+process_add_from_keychain from process_message in
+ssh-agent.c).
+launchd Configuration
+You are right that a system update could overwrite your modification to the file in /System/Library/LaunchAgents/. You should always avoid changing things under /System/; most things can be (re)configured without making changes there. In this case, it looks like you should be able to override the system default launchd job specification on a per-user basis with a file in ~/Library/LaunchAgents/.
+From what I can tell1, entries are loaded in this order2:
+
+*
+
+*~/Library/LaunchAgents/
+
+*/Library/LaunchAgents/
+
+*/Network/Library/LaunchAgents/ (not present on most systems)
+
+*/System/Library/LaunchAgents/
+It does not seem to be documented, but only the first job configuration for each Label (e.g. org.openbsd.ssh-agent) will be kept. Any configuration from a later directory with the same Label as a configuration from an earlier directory is effectively skipped.
+
+1
+See
+NSStartSearchPathEnumeration  used in launchctl.c
+and defined in
+NSSystemDirectories.h/NSSystemDirectories.c.
+2
+launchd also looks in the LaunchDaemons/ directories next to the various LaunchAgents/ directories for other types of jobs.

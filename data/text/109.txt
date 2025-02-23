@@ -1,0 +1,34 @@
+Q: My personal settings on OS X disappear after booting Windows (XP or 7) on my MacBook Pro I installed Windows 7 (and XP before) on my MacBook Pro and whenever I boot my Windows and after that boot my OS X my clock shows the wrong time and my login items that I set in the system preference > Accounts disappear! 
+I have also lost my second language added! Indeed I lost all my specimen settings.
+Someone told me that's because MBP don't have BIOS and that causes the problem to happen. Does anyone know how must I solve it?
+P.S: asked this question before on superuser and get this answer about to edit registry and set RealTimeIsUniversal to 1.
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation
+
+but it just solve the time problem.
+this is my login items but I don't think it related to apps was set here because I changed them many times and still have the problem.
+
+
+A: Try to backup and delete the file under ~/Library/Preferences/com.apple.loginitems.plist
+This will remove the login item you have and Mac OS X will create a new (clean) one.
+For more information:  
+
+
+*
+
+*Do you by any chance use some kind of app cleaner on your Mac that would delete .plist files?
+
+*When on Windows, do you mount your Mac partition with read access?
+
+
+A: About the time :
+You have to tell Windows that the clock is UTC.
+To do this, edit the following in the registry :
+HKEY_LOCAL_MACHINE
+ SYSTEM
+  CurrentControlSet
+   Control
+    TimeZoneInformation
+     RealTimeIsUniversal
+
+and set it to a DValue of 1.

@@ -1,0 +1,51 @@
+Q: HFS+ case-sensitive or case-insensitive -- which type to use for the primary drive partition? What reasons are there for choosing the case-insensitive version of HFS+ when formatting the primary drive partition? Would case-sensitive not always be the best choice?
+
+A: One or other can break applications, case-insensitive is the default however.  If you've been using case-insensitive without issues then there are no guarantees that a transition to case-sensitive will go well.  Here's one example from the apple support pages:  
+
+...don’t assume your
+  third-party software solutions work
+  correctly with case sensitivity.
+  Important:  Case-sensitive names do
+  not ignore Unicode ignorable
+  characters. This means that a single
+  directory can have several names that
+  are considered equivalent using
+  Unicode comparison rules, but they are
+  considered distinct on a
+  case-sensitive HFSX volume.
+
+
+A: There is a good reason to choose a case sensitive file system.
+If you are concerned by the quality and the security of the applications you run you might be interested by any early mechanism which may discriminate badly programmed applications.
+An application which at one time create a file named conf and later
+try to open the same file with the name CONF is at
+least poorly written. This is just plain bad programming practice.
+This kind of application is filled with vulnerabilities with the same
+average probability all over its code length. This is a dangerous application.
+This dangerous application will most probably crash on a case sensitive file system.
+This dangerous application will not crash on a case insensitive file system.
+(Some applications will crash on both,
+but we are not highly motivated to sort out these ones.)
+Hence a case sensitive file system may be considered as a good tool to early detect and block poorly programmed applications.
+On the other hand, this level of programming quality control is far from sufficient to ensure that you don't have any other vulnerability.
+
+A: There are some significant applications that will not work correctly with case sensitive. And there's really no reason to do it. I'm assuming since you're asking that you really don't have a reason to do it. You're definitely better off not doing it unless you have a specific reason, and don't care that many applications don't work right with it.
+
+A: Use the default (case-insensitive) unless you both a) know what you're doing and b) you absolutely have to. There are several programs (Norton Antivirus comes to mind) that won't work properly on a case-sensitive file system.
+HFS is, by default, case-insensitive but case-preserving (i.e. it doesn't care what you type for comparison purposes, but it will remember what you type). 
+
+A: One good reason to use case sensitive file system is using git repositories. Syncing them to the repo causes problems again and again, if not using case.
+But I suggest adding another partition using HFS+ formatted case sensitive for such an application and link the directories you need to that partition. My system partition is still case insensitive not because I kwow why but just because I'm afraid.
+
+A: Adobe Creative Cloud apps will not run on a case sensitive system, and can be a major problem
+
+A: Adobe programs are infamous for not working on case-sensitive filesystems. Adobe says:
+
+You cannot install Adobe products on a volume that uses a case-sensitive file system, such as HSFX (HFS+) or UFS. This limitation applies to both the startup drive as well as the drive onto which the software is installed.
+
+https://helpx.adobe.com/creative-suite/kb/error-case-sensitive-drives-supported.html
+Steam cannot be installed on case-sensitive filesystems either.
+
+Steam does not currently support case sensitive filesystems or partitions.
+
+https://support.steampowered.com/kb_article.php?ref=8601-RYPX-5789

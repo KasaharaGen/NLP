@@ -1,0 +1,9 @@
+Q: How can I printscreen in X11 Environment? I use Wireshark and it runs under X11 environment I want take some screenshot from wireshark windows but 
+cmd + shift + 3  or cmd + shift + 4 or ... didn't work there is there any way that I could take some screen shot in X11 environment?
+
+A: Click to the desktop or any other application, and then press ⌘ + ⇧ + 3.
+With this method Wireshark will loose the focus and you can grab the whole screen.
+
+A: Have you tried using Grab.app? It supports a "timed screen" capture mode. You'd switch to Grab.app, select "Timed Screen..." then switch back to X11. After 10 seconds it will do a screenshot.
+
+A: According to @calum-benson's hint, I found what my problem was. I must un-check 1Full-screen mode1 in X11 Preferences.

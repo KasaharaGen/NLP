@@ -1,0 +1,30 @@
+Q: How to disable ._ AppleDouble files for SMB? I have a small problem. I don't want that our Macs here create the ._ files to the network drive. For example when you copy an image over the finder to the SMB storage.
+Is there a way to disable this function in Finder? 
+The .DS_Store file is already disabled, but not files such as ._pic1.jpg .
+We activated veto files in samba to prevent creation of ._ files, there arose an error – not enough permissions on the drive.
+Thank to all ;)
+
+A: Don't know of a way within Finder, but Blue Harvest (paid application) offers this functionality: http://www.zeroonetwenty.com/blueharvest4/
+
+A: Finder
+Finder does much to ensure integrity of data, and to make its results compatible with a broad range of Apple operating systems. 
+Please, you should not attempt to prevent Finder from creating ._ (dot underscore) files during copy or move routines. 
+File system
+If you prevent creation at the file system level – as you did with your configuration of Samba – you make that file system partially incompatible with at least: 
+
+
+*
+
+*Apple Finder
+
+*Microsoft Office Excel, PowerPoint and Word 2011.
+
+
+(For any use case that involves Office 2011 saving to a file system, you must allow ._ on that file system … and so on.)
+
+For more detail please see my answer to a more recent question, Why are dot underscore ._ files created, and how can I avoid them?: 
+
+
+*
+
+*Purposes of .DS_Store and ._ files

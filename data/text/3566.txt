@@ -1,0 +1,11 @@
+Q: iPhone Safari: Clearing the cache does not seem to be enough I'm developing a mobile website and am using an iPhone for testing it. One of the .jpgs used was faulty and displayed as a black rectangle in the iPhone's Safari browser. The code was then changed and there is now a .png image instead.
+For some reason even after clearing Safaris cache that image is still black, and I need a new phone that has never visited the website before in order to display it correctly. 
+Why is that happening and how can I fix it?
+
+A: Sounds like an iPhone bug/feature where it will cache some images (and not clear them properly).
+The fix seems to be to put a random number in a query string after the images on your site.
+eg  picture1.png?2011242424
+Some web frameworks will do this automatically (eg rails). Otherwise you could do this on just the affected image and see if it fixes it.
+
+A: You can try browsing to the image itself, refreshing that page - that usually clears the cache for the image.
+However best practice in web development is to follow @RobZolkos 's advice about putting a number string after the image src. When you change the image, you change the number, which forces it to load again. A little off topic, but check out HTML5 Boilerplate's cachebusting which does this for you automatically in the build script.

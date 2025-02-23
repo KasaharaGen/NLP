@@ -1,0 +1,15 @@
+Q: How to use Regex with spotlight 
+Possible Duplicate:
+How Can I Search A Specific Type of File in Mac? 
+
+How could I use spotlight to search for example for files that end with jar or files that end with doc and at the same time contains "Hello" in it's name?
+
+A: I’m assuming by “end with” you mean that files have the extension .jar or .doc. And given all those filenames, you want those who have “hello” in their filnames.
+With that in mind, you’re looking for something like this:
+(.jar AND “hello") OR (.doc AND “hello”)
+
+Additionally, you could extend the number of “words” by adding: 
+(.jar AND “hello” OR “some_other_word") OR (.doc AND “hello”)
+
+For more ninja commands for Spotlight, your best bet is to read throughout this interesting doc from Apple, that’s the Spotlight’s Query Language documentation with lots of examples. 
+Finally, if you want to know what attributes are available for you to query directly, refer to this blog post.

@@ -1,0 +1,17 @@
+Q: Problem with "Always Open With" in OS X I want know how can I apply a software to open all my same document, for example I want to open all my PDF document with Skim but when I right click on it> open with > other and choose my desired application and check the "Always Open With" it just do for that specific file.(mean always open A.pdf with skim if I want to open B.pdf still open with "preview").
+How can I force OS X to open all pdf type with Skim.
+
+
+A: From the Finder, select a PDF file, open the Info panel (File ➔ Get Info or ⌘I), select your preferred application and then click Change All…
+
+
+A: If you want to mess with all filetypes and "who opens what", there is a freeware System Preference Pane called RCDefaultApp that works in Snow Leopard, Leopard, Tiger and Panther.
+You can change pretty much any type of resource, for example you can tell that “Acorn” opens png by default or that the default app for the extension “jpg” should be Preview.app, etc.
+It also handles MIME types, URLs, and Media. 
+
+A: I had this problem today as well (Mavericks) but the solutions here didn't work. This is due to a corrupt services cache. I ran the following command in terminal and things started working again
+/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user
+
+So if anyone the answers don't work for you, run this command and then it should be fine after that
+
+A: Another option is to right click the file in Finder and then change "Open With" to "Always Open With" by holding down the option (⌥) key.

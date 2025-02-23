@@ -1,0 +1,9 @@
+Q: Removing software that came from a pkg file? I can't find the uninstaller. I installed some service using a pkg file and now I want to get rid of it. How do I do that? I would prefer not to use lsbom and rm and stuff. It looks scary.
+
+A: Not a direct answer to your question, but you can also use "Suspicious Package", a QuickLook plug-in for Finder, to see what files a package installed: http://www.mothersruin.com/software/SuspiciousPackage/
+Depending on what files were installed where, you may be able to find them in Finder and drag to the trash; otherwise you may have to go into Terminal and rm around.
+
+A: For the most part, Mac applications don't have uninstallers because they're rarely needed. You can almost always just toss the undesired offender into your trash.
+
+A: I recommend you try something like AppZapper ($) or 
+AppCleaner (Freeware). There are others that work similarly.

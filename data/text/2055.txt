@@ -1,0 +1,57 @@
+Q: What's triggering my Finder's CPU binges? A few times a week, the Finder on my Macbook shoots up to around 100% CPU use, and the fans start blasting.
+I've done everything I can think of - repaired permissions, rebooted, trashed preferences, turned off "show preview" in view options, audited the Activity Monitor for unnecessary processes, scoured the Console for errors, restarted the Finder, and a lot more. Eventually it subsides, and I assume that the source of the error was the last thing I changed.
+But it's doing it again now, and I am at a loss. I wish there was a way to "get inside the Finder's head" and see what it's doing. I've tried running a sample of the Finder process in Activity Monitor, but honestly I don't know what it's doing, much less how to interpret the output.
+That's really my hope: that someone can explain a better way to investigate CPU spikes like this, not just in the Finder, but any runaway process. There are certainly plenty of details that might help you all diagnose this specific case, but before I spew out even more probably-irrelevant information, I thought I'd see if anyone has general tips for diagnosing this sort of thing.
+This is my first Stack-anything post btw, so please be gentle. Thanks in advance!
+
+A: 
+"I wish there was a way to "get inside the Finder's head" and see what it's doing. I've tried running a sample of the Finder process in Activity Monitor, but honestly I don't know what it's doing, much less how to interpret the output."
+
+Taking a sample in Activity Monitor is exactly that: getting inside the Finder's head to see what it's doing. While it may seem like greek, I or others here can interpret it for you. Just post it, or make it available for download or viewing (as they tend to be pretty big).
+What version of OS X are you using? In OS X 10.5.x and prior, I believe multimedia content ran within the Finder itself, rather than delegating it off to an agent/helper type process, so then the CPU usage may appear higher. For example, previewing a QuickTime movie might make the 10.5.x-and-earlier Finder spike to 60% CPU, while in 10.6 it might be split to something like 10% CPU for the Finder, 30% CPU to the QTKitHelper background process.
+Otherwise, I've sometimes seen the code the Finder uses to calculate the size of the contents of a folder cause temporary CPU spikes. (You'll notice something like TSomething::HFSSizerSomething in the stack trace of a sample). Usually it seems insistent on finishing its calculation even if the view you had open that warranted the calculation has since been closed.
+In any case, seeing the sample should help pinpoint the issue along with knowing what context led up to the spike. It'll be easier to explain what taking a sample is doing once we have it in front of us to look at.
+
+A: You have DTrace available.
+man -k DTrace
+
+Those tools, plus fs_usage -f filesys should give you the answer.
+
+A: Change the finder > preferences > General "New Finder Window Show" option to anything but "All my files".  This helps a lot.
+
+A: Good advice so far. I'll share some experience I had with a Powerbook back in Tiger (but since Leopard also has a FatFinder process, this issue would occur in 10.5 too).
+I remember having an AVI in a folder. The format was a weird format, not a simple Quicktime movie or anything; back then cellphone cameras were bad and used the worst possible codecs ever created. So every time I went to that "folder" with Finder, it will hang, because it was trying to "read" the file and the codec was bad. 
+Eventually, either by luck or because I forgot about it (or deleted it), this stopped happening. But it took me a while to figure out what it was. I remember this exact behavior happening to me on Leopard with a "badly" formatted video too. Quicklook would hang the finder with that piece of media. 
+I had to open it with VLC to "repair" it. And then it mysteriously started working again.
+I suggest you try to keep an eye of your usage patterns before the CPU spike to see if there's something in common. A file type, a specific folder, a specific time, etc.
+At the time of the writing, I don't know your OS X version (10.x?) so this information may be slightly outdated if you are running Snow Leopard. 
+Additionally, follow the advice of trying to output fs_usage, top, and similar tools. It may give us a better hint. Output from Console.app (/Applications/Utilities) could throw some light to the issue. 
+
+A: I've found only two tools to be broadly helpful in solving high CPU usage issues on one isolated program. Yes, activity monitor can sample and tell you where it's hung up / processing - but I find Instruments to be better suited to really getting at the nub of the issue if fs_usage can't. DTrace is awesome - I just have never needed to spend the time learning it - Instruments works well enough and the learning curve for me was much lower.
+
+
+*
+
+*fs_usage and grep to narrow down what files are being accessed often lets me know what/where the issues lie so I can take action to remedy / tune it.
+
+*Instruments app - Xcode 3 is provided to free developers or Xcode 4 (purchased in the Mac App Store or as a paid developer). Think of this like sample/activity monitor on steroids - you can poke around at things like memory allocation / leaks and get a much borader view of what's happening inside a slow process as it's running.
+
+
+A: I'd been plagued by high Finder CPU usage for a few weeks (80-100%). Eventually I discovered that it was due to my setting Finder to calculate all the sizes in a folder. This option isn't enabled by default, but it's worth checking just in case
+
+
+*
+
+*Open Finder
+
+*From the menu bar, select View -> Show View Options
+
+*Make sure "Calculate All Sizes" is unchecked
+
+*Click "Use as Defaults"
+
+
+Once I did this I saw my Finder CPU usage drop immediately to 0%.
+
+A: I'm on a MacBook, OSX 10.6.8.  I too have been experiencing innumerable "Finder CPU binges," accompanied by the fan.  Console reports all sorts of puzzling complaints, often multiply repeated [other situations also cause the fan to spin, and Console shows multi-repeat complaints].   
+I recently discovered that turning off my Airport quiets Finder right down.  Not a very useful cure, as right now I have Airport on so I can be here, and yes, Activity Monitor shows Finder consuming upwards of 100% CPU [whatever that might be —?]

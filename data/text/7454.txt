@@ -1,0 +1,36 @@
+Q: Why is my Time Machine backup failing to fire at the hourly interval? At some point after upgrading to Lion my Time Machine backups have stopped firing on the hourly interval.  It works manually, but not automatically.  It also works first thing in the morning when I plug the external drive into my laptop.
+I have basically gutted the Time Machine config files, launchdaemon files with no luck.  I've even reformatted my TM drive.  So far, no matter what I do, TM just never fires on the hour.  
+The interface shows when the last backup occurred as well as when the next one is set to happen.  When the time comes, TM never backs up but the "next backup" time is moved up one hour as expected.  I have no errors in console.
+Is anyone else seeing this and if so, did you get it fixed?
+Update with logs from today, last backup is indicated as 9:01AM 
+
+10/11/11 7:09:55.020 AM com.apple.backupd: Starting standard backup
+10/11/11 7:09:55.272 AM com.apple.backupd: Error -35 while resolving alias to backup target
+10/11/11 7:10:05.287 AM com.apple.backupd: Backup failed with error: 19
+10/11/11 8:18:07.490 AM com.apple.backupd: Starting standard backup
+10/11/11 8:18:08.386 AM com.apple.backupd: Backing up to: /Volumes/Time Machine Backups/Backups.backupdb
+10/11/11 8:18:34.350 AM com.apple.backupd: 48.19 GB required (including padding), 731.56 GB available
+10/11/11 8:50:08.828 AM com.apple.backupd: Copied 15193 files (38.5 GB) from volume Macintosh HD.
+10/11/11 8:50:20.136 AM com.apple.backupd: 20.83 GB required (including padding), 693.03 GB available
+10/11/11 9:01:59.574 AM com.apple.backupd: Copied 3613 files (15.8 GB) from volume Macintosh HD.
+10/11/11 9:02:12.462 AM com.apple.backupd: Starting post-backup thinning
+10/11/11 9:02:12.462 AM com.apple.backupd: No post-back up thinning needed: no expired backups exist
+10/11/11 9:02:12.848 AM com.apple.backupd: Backup completed successfully.
+10/11/11 9:05:36.179 AM mds: (Error) Backup: Couldn't stat source path '/Volumes/MobileBackups/Backups.backupdb/workbookpro/2011-10-11-081810/Macintosh HD/Users/dustin/Library/Application Support/Firefox/Profiles/ytgtapq6.default/extensions/trash/onepassword@agilebits.com/install.rdf' -- importing from backup path instead
+EDIT: Some more info, as this is STILL a problem for me.  I have now found that com.apple.backupd-[auto|wake|attach] all quit at about the same time, either at the time the backup should fire or just before.  The job then never runs.  There are no logs at all that the services quit or why.
+
+A: I know you've said there are no messages in Console.app, but you haven't specified how you've searched.  So firstly follow the steps below, and just add a comment to say whether you find anything.
+
+
+*
+
+*Open Console.app
+
+*Select 'All Messages' in the left hand pane
+
+*type 'backupd' in the search box in the top right
+
+
+Are there any messages in here related to the backup doing anything at all?
+
+A: Finally found the issue.  Turns out in testing an app that I write, I accidentally created a com.apple.TimeMachine.plist under my root user that disabled automatic backups from occurring.  I deleted the offending file and my backups are now working on the hour as expected.

@@ -1,0 +1,32 @@
+Q: Windows print screen when using Boot Camp I have bootcamp installed on my Mac, and when on Windows, I need to frequently capture screens using windows shortcuts such as Print Screen.
+Using virtualization is not an option, since I need to run a virtualized environment within Windows already.
+On the Mac keyboard (I have a MacBook Pro, and an external think aluminum keyboard), there isn't a print screen key. Is there any equivalent when using a mac keyboard?
+
+A: Follow these instructions in order to map the F13-F15 keys on an Apple keyboard to the functions, Print Screen, Scroll Lock, and Break commonly found on PC keyboards:
+
+
+*
+
+*On your PC, copy the following lines into a text file.
+
+
+REGEDIT4
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+"Scancode Map"=hex:00,00,00,00,00,00,00,00,04,00,00,00,46,E0,5F,00,46,00,5E,00,37,E0,5D,00,00,00,00,00
+
+
+*
+
+*Rename the text file remap.reg
+
+*Double click on the file remap.reg and answer yes to the question about adding the information to the registry
+
+*Reboot
+
+
+Function keys are now remapped to their PC equivalents
+Source: MacWindows.com
+
+A: This article at Apple's KB includes the mapping of Windows keys to each of their keyboards.
+
+A: Under Windows (with Boot Camp software installed) you can press F13 or Fn+F11 to take a screenshot.

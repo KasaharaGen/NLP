@@ -1,0 +1,11 @@
+Q: Keynote and presenter note fonts Is there a way to tell Keynote to change the font for all the presenter notes in this file to a specific font? I find that sometimes it screws up the fonts for the notes (not the body) of a bunch of the slides, and it is tedious to change them one-by-one.
+
+A: Seems you can edit the XML if you're really stuck:
+  https://discussions.apple.com/thread/2626026?start=0&tstart=0
+
+A: I was having a similar problem where the presenter notes would change size radically for no apparent, making them unreadable.
+After checking on a lot of the boards, including Apple's, I tripped across an idea by someone (don't remember who now). I tried it and it worked great.
+Quit Keynote, launch Disk Utility, select your hard drive from the list on the left and then select:
+Repair Disk Permissions!
+Quit DU, relaunch Keynote and your presenter notes will (hopefully) fine.
+Good luck!

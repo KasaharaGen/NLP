@@ -1,0 +1,29 @@
+Q: Mac App Store works like trying to open iTunes via browser Greets everyone.
+I've updated to 10.6.6 but my Mac App Store doesn't behave well - see screen below:
+
+It seems to be constantly trying to open iTunes for some reason. BTW, I'd logged in iTunes with my Apple ID, but this didn't help.
+Any ideas?
+
+A: *
+
+*Go to your home folder. (your user name under places on the left hand side)
+
+*click on Library
+
+*click on Preferences
+
+*delete "ByHost" which is a folder. 
+
+*delete "com.apple.appstore.appstore.plist" which is a file.
+
+*delete "com.apple.storeagent.plist" which is also a file.
+
+*restart
+
+*empty trash
+
+*open Mac App Store and it should work. 
+
+
+If you're worried about deleting files then just make a copy somewhere else before you delete them.  
+From discussions.apple.com

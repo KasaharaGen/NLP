@@ -1,0 +1,27 @@
+Q: Where is the insert key on a MacBook Air? I am trying to edit a line of code within a program that I use for work.
+I need to use the insert key to be able to add additional spaces that I can then type letters, numbers or characters.
+How to get this function to work on my MacBook Air?
+
+A: It depends on the physical keyboard and on the keyboard layout. You can try...
+ctrl+fn+M
+OR 
+ctrl+fn+⌫
+
+A: FN + Return works for me to insert.
+
+A: FN + Return = Insert
+(MacBook Air 13)
+Also Works on MacBook Pro.
+
+A: I need the insert key in the Midnight Commander (MC) running in Terminal and in Remote Desktop Connection (RDP) when connecting to my Windows PC.
+For Midnight Commander the answer is Ctrl+T.
+For RDP I did not find better solution than to use a free program on Windows AutoHotkey and map the key to chosen key combination, for instance this macro maps the Insert key to Ctrl+Alt+I :
+^!i::
+Send {INSERT}
+Answer found on Microsoft forum
+
+A: I posted a possible answer to this question in a similar question topic on StackExchange:
+How do I simulate the Insert key in Windows on a MacBook Pro?
+In it, I'm explaining how to re-map the key combination Fn+Ctrl to Insert using Karabiner.
+
+A: On the latest Macbook Air 13" ctrl+⌫ works.

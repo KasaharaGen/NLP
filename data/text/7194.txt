@@ -1,0 +1,13 @@
+Q: An iOS GPS application that shows satellite locations and lock-on details? I'm a big fan of Kinetic and use it track my bike rides as well as map the local trails. Lately it's been giving me some grief though and telling me I have a weak GPS signal at the outset of rides. It shows a bar for the signal strength and it's definitely below the 50% mark.
+Unfortunately that's all it shows.
+On my old GPS unit I used to be able to see which satellites were in range of the unit and which ones the unit was locked on to for positioning information at any point in time.
+Is there an iPhone app that'll let me see similar information? I'd like to see if it's local interference that's suddenly getting in the way or if it's Kinetic that's the problem.
+
+A: In general, on iOS it's not possible to display detailed satellite information. As noted in mspasov's answer, the CoreLocation API doesn't give access to GPS specifics.
+A complicating factor is that most of the time, your iPhone doesn't use GPS to find its position. Instead it uses the locations of nearby wifi networks and cell phone towers. Those methods are generally more accurate and quicker than using the GPS chip, and in cities you may never see the GPS activate. I don't believe an iOS program can even find out which source of location it gets at the moment, although you can make a good guess based on the reported accuracy.
+There are external GPS receivers for iOS devices that can generate more accurate fixes. Bad Elf, for example, has a developer list and in the past has said they intend to make an API available to access more detailed GPS info.
+
+A: There is no such interface available for iOS, since everything is enclosed within the CoreLocation framework (no way to access NMEA data).
+You can monitor some variables (like horizontalAccuracy, verticalAccuracy) but that's it. The easiest way to obtain this information is to run some GPS application that displays this information, such as "GPS Status-".
+(Be aware of multiple apps with very similar 'GPS Status' names are not all identical.
+At the time of this edit, "GPS Status-" by Fawkes Wei is much more positively reviewed and kept up to date (last update 25 May 2019) than the "GPS Status" by PocketGPSWorld.com Ltd (last update 5 June 2011).)

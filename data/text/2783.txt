@@ -1,0 +1,33 @@
+Q: How to correctly pipe output into "say" in terminal I realized that the say command can be great when combined with another command/program because it can read you the output. I tried to pipe the output from leave to say by typing the following in terminal, but it didn't work.
+leave +5 | say
+
+What is the correct way to do this?
+
+A: Based on mankoff's answer, this works:
+leave +1 2>&1 | while read line ; do echo $line | say ; done
+
+although leave no longer vanishes into the background and lets you carry on typing. Similarly:
+leave +1 2>&1 | while read line ; do echo $line | say ; done &
+
+will make it vanish into the background, but will also speak a (harmless) process ID number as well. So neither is quite perfect, but both work.
+(I was looking for a solution to:
+ping google.com | say
+
+which suffers a similar problem, and someone suggested the above as a solution. I didn't add this as a comment to mankoff's answer because I can't work out how to put spaces and newlines in comments.).
+
+A: Your example is, in general, the correct way to pipe normal output to say:
+ cat file | say
+ echo "hello world" | say
+
+The specific issue is that the | (pipe) character transfers STDOUT from the command on the left to STDIN to the command on the right. say then speaks whatever is on STDIN.
+However, leave does not print the output directly to STDOUT. It is either using STDERR, or some other message mechanism. You can pipe STDERR through the |, but the syntax is shell dependent. For bash, you would do it like so, although I'm not sure that this will make leave work with say, as I don't much about leave.
+cmd 2>&1 |cmd2
+
+
+A: As an addition to this - if you want to pipe an ongoing file to say, the "recipe" also works with tail:
+tail -f ~/Documents/activity.log | while read line ; do echo $line | say ; done
+
+
+A: I think you simply can´t use leave for that, rather use sleep with the correct amount of seconds (put it into a short script to convert seconds to minutes, hours):
+sleep 60 && say -v Vicki 'Time to leave!' &
+

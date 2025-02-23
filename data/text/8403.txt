@@ -1,0 +1,162 @@
+Q: Is there a keyboard shortcut to move a window from one monitor to another? Is there a free app that I can use to move a window from one monitor to the other monitor (assuming only two monitors) via the keyboard? I shouldn't have to use the mouse at all (e.g., for selecting the window or the monitor, or for dragging).
+I know this can be done in Linux using compiz; I'm surprised there isn't a (free) option for OS X.
+
+A: BetterSnapTool also has this feature (as a shortcut). I think it was a free app, and its been a great one.
+There is a shortcut where you can maximize the window in the next screen (among other shortcuts or ways of doing this). See the screenshot of the related shortcuts.
+
+
+A: I ended up using BetterTouchTool to do this. Overall I found it to be the most configurable. Here is a screenshot of my configuration, whereas Cmd+Ctrl+W moves a window to the next monitor.
+If you have a 3 monitor setup (2 external monitors and the Mac monitor), you can set up the "Move Window to Next Monitor" to the right by doing the following: 
+
+
+*
+
+*set up a new shortcut, specify "Move Window to Next Monitor" as the Predefined Action
+
+*click Attach Additional Action and again specify "Move Window to Next Monitor" as the action 
+
+*Voila, you can now move a window to the monitor on the right (a little hacky I know, but it works until the developer of BTT updates the app)
+
+
+
+The only shortcoming of BetterTouchTool is poor Lion support (not all features are available) but it is available as an alpha release. This specific keyboard shortcut should work fine in Lion with the stable version, I reckon.
+
+A: *
+
+*SizeUp
+
+*Moom
+
+*Optimal Layout
+
+*Window Mover
+
+*BetterSnapTool
+
+*BetterTouchTool
+
+A: building on the answer above, using native Mac controls. There is a menu item that you can use to move apps between screens. It does not have a keyboard shortcut though which is what I was looking for. But there's hope! Using keyboard shortcuts, you can create your own shortcuts to move windows between screens. Here's how:
+Find the name of the menu item you want to create a shortcut for:
+Click Window in any application and look for a menu item that says "Move to "
+Create a keyboard shortcut to do it:
+Open keyboard settings (System preferences -> Keyboard).
+Choose "App Shortcuts".
+Click + to create a new shortcut.
+Set Application to "All Applications".
+Set Menu Title to exactly the menu item wording you found above
+Set the keyboard shortcut you want to use
+If you did this successfully, you should now see the shortcut appear next to the menu item and using your keyboard should moved the window to the other screen.
+NOTES:
+You will need to do the steps above to create a shortcut for each screen you have. To get the screen names, you'll need to move applications to each screen and see what the menu item changes to and then create a shortcut for that screen.
+When I first did this, the shortcut didn't work. I suspect I chose a keyboard shortcut that was already in use somewhere else.  I fixed this by using the Command, Option, and Control buttons as part of the shortcut
+This works for almost every app I have but one app doesn't support this because it doesn't have the menu item
+
+A: If you don't want to install any third-party software, you can switch the current window to any monitor by going to the following menu
+Window -> Select the monitor / display name
+If the menu is not enabled,
+Click on the green button , to come out of full screen to enable the below menu  then click,
+Window -> Select the monitor / display name
+Also after coming off of full screen mode, if you mouse over on the green button, you can get a pop-up with the option to "move to desired screen", click on it to move it to the desired screen.
+
+Hope this helps
+
+A: Check out Rectangle App. It's free, open-source, and is billed as the spiritual successor to the once brilliant (but sadly, no-longer-maintained) Spectacle.
+You can install Rectangle App either via their website or with Homebrew: brew install --cask rectangle
+
+
+A: Moom can do this. It is not free, but Moom is a fantastic window management app. It lets you assign keyboard shortcuts to a variety of windows movements (including move to other display) and gives you an overlay of the OS X standard window controls.
+Here are some screenshots:
+
+
+Here is a list of window management apps from another AskDifferent post, What Window Management Options exist for OS X?. The only free option is Shiftit, and I'm not sure if it offers the functionality you are looking for.
+
+A: macOS Big Sur has built-in tool to do this. Press/click on the green button on top of a window for a second to get a dropdown with options for the current windows.
+
+
+A: I was using ShiftIt for ages.
+However, I thought it didn't support dealing with multiple displays, so I started looking for alternatives. I installed Spectacle, and changed the key bindings to be the same as ShiftIt's.
+Then, when I wanted to deinstall ShiftIt, I found out it does actually support moving windows to different screens, using: CtrlOptionCommandN
+So I uninstalled Spectacles; still a happy ShiftIt user.
+
+A: Just wanted to mention that there's a setting in System Preferences > Mission Control called "Group windows by application" that shows the app icons and allows you to drag the icon into another desktop/monitor. It's amazing for apps that have 10+ windows.
+
+A: There is yet another option that's completely free and requires no third-party app. Be aware that I've only tested this on MacOS latest version Catalina (as of now). For other OS versions see Create keyboard shortcuts for apps on Mac
+
+*
+
+*Go to System Preferences
+
+*Select Keyboard and then the Shortcuts tab
+
+*Then on the list that appears select App Shortcuts
+
+*Add new shortcuts like this:
+
+*
+
+*Click on the plus sign to add a new one, the Menu Title field has to match exactly the text that appears on the Window menu in every application: "Move to DISPLAY NAME" (To find the text just open the Window menu on any application)
+
+*Finally on the Keyboard Shortcut field enter the shortcut you'd like to use
+
+*Add as many shortcuts as you need to move any window between your displays!
+
+
+
+
+
+A: UPDATE: Spectacle is no longer maintaned.  The website forwards users to Rectangle, see Jack's answer or https://github.com/rxhanson/Rectangle/releases.
+
+I just tried Spectacle, great app and it's free.
+This is what it can do with the selected group of windows.
+
+You need to activate accessibility support.
+System Preferences > Accessibility > Enable access for assisted devices
+As per comments: The accessibility option in Mavericks is now in
+System Preferences > Security and Privacy > Privacy > Accessibility
+
+
+
+A: FYI, Magnet, the popular window placement/sizing application, has "Next Display" and "Previous Display" shortcuts right out of the box, at least in version 2.1 (Feb 14, 2017).
+Magnet on the Mac App Store
+Magnet's Website
+
+A: This open source app is simple easy to use and free. It will accomplish what you need. 
+https://www.spectacleapp.com/
+
+A: Inspired by Wellington Felix's answer, with the same caveat that it only  works for apps that have a "Window → Move" option.
+
+*
+
+*Activate Help menu: Shift ⌘ /
+
+*Search for Move to <display name>
+
+*Enter
+or
+
+*
+
+*Activate Help menu: Shift ⌘ /
+
+*Go to Window menu: ←
+
+*Use m and arrow keys to select desired display
+
+*Enter
+
+A: This can also be done using the free, open-source tiling window manager Amethyst using the "Swap focused window to (counter-)clockwise screen" shortcut.
+
+
+A: There is a tool for more advanced users called Hammerspoon. With this, you can achieve a lot of things and as this answer on a question on StackOverflow pointed out, it's pretty easy to achieve what you want with a simple Hammerspoon configuration.
+Hammerspoon is not exactly an app, but it might still be interesting for some users.
+-- From https://stackoverflow.com/a/58662204
+hs.hotkey.bind({'alt', 'ctrl', 'cmd'}, 'n', function()
+  -- Get the focused window
+  local win = hs.window.focusedWindow()
+  -- Get the screen where the focused window is displayed, a.k.a. current screen
+  local screen = win:screen()
+  -- Compute the unitRect of the focused window relative to the current screen
+  -- and move the window to the next screen setting the same unitRect 
+  win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
+end)
+

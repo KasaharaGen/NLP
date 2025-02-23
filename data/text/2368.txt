@@ -1,0 +1,24 @@
+Q: Can I override the error AutoCAD gives about my older video card? I have a macbook 2,1 upgraded to 4GB ram and 500 GB hard drive. When installing AutoCAD, it complains that i have an older video card. Granted, that is true, I only use autocad for 2d purposes only. Is there a way to override that error?
+
+A: Thanks to Asmus's suggestion I found that if you remove your graphic card's model from the file unspt_gfx_cards you can install AutoCad. So to recap:
+
+
+*
+
+*Copy the .mpkg package out of the DMG file to some place like your Desktop
+
+*Right click on the package and select 'Show Package Contents'
+
+*Browse to Contents/Resources/unspt_gfx_cards
+
+*Right click unspt_gfx_cards and open with textedit
+
+*Remove all lines that contain Intel or GMA(for your macbook) and save
+
+*Double click on the .mpkg to install without hardware restrictions
+
+
+Not sure if you will have any problems running Autocad but at least you should be able to install it.
+
+A: Yes, that would work but you still won't be able to use it as it will give a WHIP error.
+Solution: Buy a new i5/i7 Mac, or use BootCamp to boot into Windows XP or 7 and run from there.

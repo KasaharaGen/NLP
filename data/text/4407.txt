@@ -1,0 +1,12 @@
+Q: Spotlight sometimes can't find a file. (that actually exists) I don't really understand how Spotlight works, I sometimes search for a file that I know it exists, and Spotlight doesn't find it.
+Then I browse to it and it's there.
+The volume or folders where it is in are not excluded from Spotlight, I've made sure of that.
+Should I (and how?) rebulid Spotlight's index? or otherwise do something so every file can be found?  
+
+Edit: I searched for textwrangler and Spotlight found it, also found it with barebones, so it looks like not every pattern that would match the filename works the same for Spotlight.
+
+A: Spotlight generally only searches at the beginning of words. It can find barebones because it is right after a period, or textwrangler for the same reason, but not wrangler. (It also understands underscores, hyphens, and CamelCase as marking the beginning of words.)
+To work around this, instead of doing a straight up spotlight search do a search in Finder (with cmd+F or cmd+option+space). Leave the search box blank, and click the plus button next to where it says "Save." Then make your query "Name" - "contains" -"wrangler" and you are good.
+You also need to be careful because I think the file you are searching for is considered a system file. If you are searching within the Preferences folder you will get the right result, but if you are just searching within the home folder or on the entire hard drive, the system file won't show up, unless you push the plus button again and add to your search query "System files" - "are included." Since "System files" isn't in the dropdown box by default, you will probably need to click "Other..." and then find it. You will have the option of adding it permanently to the dropdown box.
+
+Edit: Added image for clarity

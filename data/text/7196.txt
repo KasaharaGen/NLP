@@ -1,0 +1,11 @@
+Q: Git missing after OSX migration 
+Possible Duplicate:
+Why is Git not found after installing OS X Lion? 
+
+I've recently migrated from an old mac pro with leopard to a new mac pro with snow leopard, everything seems to have gone right so far during the migration process, however I cannot initialize git anymore, my git repos still exist and I can seem the .git folder for my projects but in terminal git init doesn't work anymore and I get a not found error when trying git --version
+How do I fix this, do i need to reinstall git, would this effect my existing repos?
+
+A: Best Guess - your path variable got re-written.
+From the the terminal enter: sudo find / -name git
+You should see every instance of git on your system. Assuming the git binary is located, make sure its directory is in your path, or instead of typing git init you could type /path/to/git (assumes git binary is ia /path/to).
+Alternatively, you could re-install git. Should not affect your repositories. Just make sure the resultant binaries are in your path.

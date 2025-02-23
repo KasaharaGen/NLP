@@ -1,0 +1,3 @@
+Q: Command+S At Boot Doesn't Activate Single-User Mode 10.6.8. Hold down Cmd+S throughout the entire boot process. It always goes to the regular login screen and starts doing the "stop holding down buttons" chime. Why?
+
+A: Figured it out. I'd changed my keyboard layout to Dvorak which apparently isn't honored at boot, defaulting to QWERTY. I pressed Cmd+O (where the S would've been) and it worked.

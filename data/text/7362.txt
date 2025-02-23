@@ -1,0 +1,23 @@
+Q: Can I sync Outlook 2011 with an iCalendar feed? I want to sync my calendar with a Basecamp generated ical feed, like:
+webcal://test.basecamphq.com/feed/project_ical?token=c9d3d7b7d0a77ce8b9f615c8b4c2295eproject_id=8024071
+Can it be done?
+
+A: Basically, no. Outlook 2011 does not support the webcal protocol for calendar syncing. It supported Apple's Sync Services as of Office 2011's Service Pack 1, but then Apple discontinued Sync Services support as of 5 May 2011.
+Microsoft, unsurprisingly, wants you to sync your calendars with an Exchange server, not via webcal.
+Two links from Microsoft will give you more information:
+How to sync calendars in Outlook for Mac 2011 (don't get your hopes up; it basically tells you how you can't sync) and Outlook for Mac and Your Calendars (again, tells you what doesn't work).
+It's unfortunate how this doesn't work. I suggest you consider strong calendaring alternatives, such as BusyCal.
+
+A: Here is one way to get webcal feeds to show up in Outlook 2011 for Mac if you are using Office 365.
+
+
+*
+
+*Open the Office 365 Web Application
+
+*Go to My Calendars on the left and right click
+
+*"Open Calendar" and paste your webcal URL into the "from the Internet" field
+
+*The calendar (basecamp or tripit for example) will now show up both in your Office 365 web app and also in Outlook 2011 for Mac (assuming you have this set up)
+

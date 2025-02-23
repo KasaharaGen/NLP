@@ -1,0 +1,10 @@
+Q: Airport connection problem, self-assigned IP address, not able to connect On some wireless networks that others can seem to access just fine, my MacBook Pro won't connect, I get an error like this in the Network pref panel:
+AirPort has the self-assigned IP address 169.254.148.134 
+and will not be able to connect to the Internet.
+
+This occasionally happens with unsecured networks, and also with secured networks where I know the password is right, and the password appears to be accepted.
+
+A: Can also depend on the router.  Some routers allow you to change the 'index' or 'key' that is in use.  IE - you can define say 4 different keys or passwords that the wireless network can use, then you tell it which one you want to be in use right now.
+My experience has been that Macs will always try to connect using index or key 0, never any other key.  The connector (MB or MBP) has to be using the same index or key number for the wireless handshake process to work properly.
+I've had situations, therefore, where PC's were connecting just fine to a well-setup network and there was no reason the Mac shouldn't - and an hour or so later I figured out that that's what it had been the whole time.
+Frustrating to say the least.  May be fixed now, I think last time I ran into it was an early 10.6.

@@ -1,0 +1,8 @@
+Q: How does the "Unicode Hex Input" input source work? How can I enter a character using that input source? I tried entering a tab character with ⌥+0009, but I didn't get anything. Viceversa, with ⌥+9999, I get 香.  
+Am I doing anything wrong, or doesn't the input source allow to enter control codes? 
+I tested those codes on Firefox 4.
+
+A: You are right by pressing Option ⌥+0009.
+My guess would be that Firefox, like many browsers, doesn't like tab characters (especially with forms). Try in TextEdit; it should work there.
+
+A: They are Unicode hex codes, see http://unicode.org/

@@ -1,0 +1,25 @@
+Q: NeoOffice extremely slow in Mac OS X 10.6.5 I've installed the latest version of NeoOffice 3.2.1 on my May, 2010 2.66 GHz Core i7 MacBook Pro running Mac OS X 10.6.5 (8.0 GB RAM).
+Regardless of what I do, whether its Writer, Calc, or Impress, the application's response has been extremely "laggy", (i.e. the exact opposite of snappy...can't think of a good word for it). It always takes close to a second before anything responds to a mouse click, and moving/resizing images is a pain also because the response is so slow.
+Question: Is this typical OpenOffice.org/NeoOffice behavior in Mac OS X? Or is there a way to optimise its performance? I doubt it's my hardware being insufficient!
+
+A: I would also take a look at LibreOffice, which is the more open fork of OpenOffice, having used OpenOffice and NeoOffice, LibreOffice is cleaner on OS X then OpenOffice, and does not suffer from the slowness that seems to plague NeoOffice.
+
+A: I do not agree with any of the opinions provided here regarding NeoOffice. 
+I have used NeoOffice for eight years, as each new version came out. Today I also use OpenOffice and LibreOffice, and I can tell you from my experience that NeoOffice is in no way inferior to those other programs.
+I find NeoOffice to be faster than OpenOffice.org (which has all but been discontinued in its development) and LibreOffice. NeoOffice's strength is that it is better integrated into Mac OS X than either OpenOffice.org or LibreOffice. It feels more "Mac-like" and uses Mac features, such as the system-wide spell check and Services in some cases. NeoOffice is quirky in places, but the full release version of NeoOffice is not buggy. It is quite stable. Of course if you are working with a beta version of any program, you can expect bugs. I'm using NeoOffice 3.2.1 beta right now myself.
+Furthermore, the latest version in beta, 3.2.1, removes much of the deprecated code and replaces it with more up-to-date methods.
+http://neowiki.neooffice.org/index.php/Mac_OS_X_Upgrade_Issues
+
+NeoOffice developers have reimplemented all of the text layout code
+  using the "CoreText" functions in NeoOffice 3.2 Beta.
+
+I am upset with the tone of many comments made here. Several people who admit to never having actually used NeoOffice have condemned it as being buggy or inferior and say "Why not use something else?". 
+Why do other posters spread slander and gossip about a program they have no direct experience with? It would be better for you not to post at all if you admit that you don't know what you are talking about.
+
+A: There is a specific reason that NeoOffice, for several years, hung on to deprecated code. This is that NeoOffice was, for several years, the only fork of OpenOffice.org that would run on PowerPC Macs as well as Intel Macs. OpenOffice for Mac, since its first version for Mac, would only run on Intel Macs, so the developers of NeoOffice deliberately back-ported the OpenOffice code to provide NeoOffice to users that still had PowerPC Macs. This was a valuable service to those users.
+Therefore compatibility with PowerPC Macs running Mac OS X 10.4 was a design decision aimed at providing G3, G4 and G5 Mac owners a free office suite. It was the only such program available for that hardware.
+It is only in 2011, with version 3.2 and higher, that NeoOffice is being developed more strictly with Intel Macs in mind, on the understanding that today there are very few users who still rely on PowerPC Macs.
+
+A: NeoOffice works ok, but it uses certain technology that is deprecated by Apple. I was trying to find out about that, when I realized that it’s in the front page of NeoOffice. It’s kind of they know that their Java Implementation is using older (and deprecated) APIs…
+In any case, here’s the neowiki entry about NeoOffice potential problems with Lion, which describes the three deprecated services being used. 
+TL;DR Version: They don’t use NSPasteboard and CoreText… this is fail. And of course the future of Java in OS X is, although “guaranteed to exist”, uncertain in compatibility levels. Write Once, Cry Everywhere™. ;)

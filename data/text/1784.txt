@@ -1,0 +1,9 @@
+Q: Do I need to have system administrator permissions to install from the Mac App Store? Where does the Mac App Store install its applications to? Is this a system-wide location, or somewhere inside my Home directory? Is it possible to use the App Store on machines where I am not a System Administrator (just like I can currently install almost all applications I manually download by putting them in ~/Applications instead of /Applications)?
+
+A: Yes.
+Apps are installed to the usual /Applications folder. Non-admin users can browse the store, but they will need an admin username/password to install apps. Source: Help menu of App Store/Purchase Applications/Buy, download, and install applications/To buy, download, and install an application:/Step 4.
+
+A: Non-administrators can be added to the _appstore group:
+http://darenhunter.com/how-to-allow-non-admin-mac-user-to-use-app-store/
+
+A: On OS X Lion and above, you no longer need an administrator's username and password to install applications from the Mac App Store. However, you cannot delete them without an administrator's username and password.

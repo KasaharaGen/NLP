@@ -1,0 +1,66 @@
+Q: How do I restore my .bash_profile? I've accidentally overwritten my ~/.bash_profile file.  
+Does anyone have a "sample" one I could copy, or know where I might be able to find one?
+
+A: Search for dot_files in Google or Github if you like a sample one. 
+If you like to restore it, you could try to get it from your TimeMachine backup (if present)
+
+A: There is a backup located at:
+/etc/skel/.bash_profile
+
+Just copy it over your current file.
+
+A: This solution only works if you have a terminal open that have the old .bash_profile loaded in it.
+
+*
+
+*Recover the aliases:
+Run this in terminal alias to print out all aliases and manually paste them to .bash_profile
+
+
+*Recover the PATH: Print PATH using echo $PATH. Manually paste it to the bash_profile in this format:
+export PATH="my_old_paths_string_that_echoed_in_this_step:$PATH"
+
+
+
+*Recover the functions: Print functions using declare -F | grep -v 'declare -f _'. This will print the bash functions that don't start with _, which are usually the ones you define in the bash_profile. If you remember that you defined some functions starting with _, then you can remove the grep. Okay. This will give you the names of all the functions. For each function, do this:
+
+declare -f my_precious_function1
+
+This should give you the definition of the function. And then you copy paste it to .bash_profile. Doing this manually will allow you to skip copying some functions like deactivate etc that were not defined in .bash_profile.
+
+
+*Recover the exports: export -p is the command to list all exports in current session. Run it in new terminal and safe terminal and use python's set difference to list exports missing in the new terminal. Once you have the list, replace declare -x with export and copy pasta.
+
+That's all I put in bash_profile, alias,functions and PATH. If you have more stuff you can recover it manually by finding your way around. Hope this helps.
+Before closing your safe terminal, make sure that your things are working in a new terminal, maybe try the declare -F command in the new terminal or some other aliases. I'm not gonna close my safe terminal for days.
+
+A: You can try to recover it using TestDisk.
+If that doesn't work, type:
+x56~:$ alias >> ~/.bash_profile
+
+and 
+x56:~$ echo "PATH=$PATH" >> ~/.bash_profile
+
+to at least recover your PATH and aliases, which you can paste in your new profile file.
+
+A: If your terminal window is still open, you can save the current environment settings to rebuild.  The recovered file will contain more information than you may have defined yourself, so remove the parts you don't need:
+Defined vars and functions:
+$ declare > .bash_profile.recovered
+
+Aliases:
+$ alias >> .bash_profile.recovered
+
+
+A: Unfortunately this is what revision control is for. There is no way to undo modifications, while deletes through finder are actually moves to the trash.
+Use TimeMachine in the future. Aside from this, it will also give you piece of mind when your current hard drive dies. I know people facing this problem now and if they only invested $30-$50 into a backup hdd, the problems would not happen. I recommend you just learn from this and back up using timemachine periodically.
+Github as mentioned by Ian C is a great place to back your dotfiles, also you can find dotfiles from others'. Version control to the rescue here, don't know how many times it saved me, but definitely more than I can remember. The advantage of TimeMachine is that it also does version control, problem is that its stored by snapshot time, not logical version.
+Good luck.
+
+A: If you can't use Terminal to access your ~/.bash_profile (e.g. it's corrupted) you can use BBEdit or any other GUI editor that can open files from a location and open your corrupted file in order to fix it.
+BTW. if you know the location and name of any hidden file, this method can be used to open it (assuming it is a text based file).
+
+A: This method works only if you saved the bash_profile file to a point where you want to go back in TextEdit, doesn't work if edited using vi or nano (thanks to @nohillside for pointing this out). You can open the file using TextEdit (for ex: open ~/.bash_profile) and click on File -> Revert To -> Browse All Versions... and then select the version you want to revert back to.
+
+
+A: I found this website that has two example of the files of bash_profile and bashrc.
+https://tldp.org/LDP/abs/html/sample-bashrc.html

@@ -1,0 +1,10 @@
+Q: Secondary display with VGA connection resolution issue with Macbook Pro under Snow Leopard I am on a MBP Early 2011, running Snow Leopard and am facing a strange issue. If I boot up my system and try to connect to my external display using the MDP->VGA adapter, System Settings won't show the correct resolution for the secondary display. I can see 1440x1050 and 1600x1200, and even if I hit Detect Displays, nothing will change.
+What is my workaround? Connect using MDP->DVI adapter, which will identify the correct resolution of the display (1680x1050), and then fall back to the VGA Adapter to surprisingly see the native resolution of my display listed!!
+Do you guys know what is going on here? Thank you in advance.
+
+A: Either the VGA cable you are using (or DVI-VGA adaptor, if you're using that) isn't correctly wired for EDID monitor identification, or the monitor itself is sending incorrect EDID information. 
+Try another VGA cable (or DVI-VGA adaptor, if you're using one) and see if that resolves the problem.  If not, it's likely that your monitor doesn't implement EDID over the VGA connector correctly.
+
+A: I had this issue with a MBP Retina mid 2012 as I often plug and unplug my laptop from my workstation. The simple solution is to unplug the VGA adaptor from your Mac and the cable and try again. That has worked for me 90% of the time ;) 
+
+A: I had the exact same issue, it's to do with OS X not getting a confirmation from the monitor of it's correct resolution and picking random defaults. Your workaround is pretty much the best way to go, or you can try SwitchResX and try a virtual solution.

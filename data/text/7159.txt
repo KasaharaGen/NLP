@@ -1,0 +1,42 @@
+Q: How do I remove many system roots from Apple System Keychain? The Apple keychain application will not let you remove system roots, it will only allow you to disable them. It will only allow you to disable them one at a time. For each one, you need to go through 3 UI panels and type your password. Is there a way to either automate this or do it all at once? I do not like Apple's current selection of system roots.
+
+A: Backup keychain before trying anything.
+Listing root certificates:
+sudo security dump-keychain /System/Library/Keychains/SystemRootCertificates.keychain
+
+Just look in a dump for a names or SHA-1 hash values of certificates that you want to get rid of and write them down.
+Now you can delete that root certificates using security delete-certificate command. 
+
+Usage: delete-certificate [-c name] [-Z hash] [-t] [keychain...]
+-c  Specify certificate to delete by its common name
+-Z  Specify certificate to delete by its SHA-1 hash value
+-t  Also delete user trust settings for this certificate The certificate to be deleted must be uniquely specified either by a
+
+string found in its common name, or by its SHA-1 hash. If no keychains
+  are specified to search, the default search list is used.
+
+For example you can delete chinese root certificates using this command: 
+sudo security delete-certificate -Z 8BAF4C9B1DF02A92F7DA128EB91BACF498604B6F /System/Library/Keychains/SystemRootCertificates.keychain
+
+
+A: Thank You! Worked for me with the -c option. Find the name of the root certificate in Keychain.app, then sudo security delete -c "CERTNAME" /System/Library/Keychains/SystemRootCertificates.keychain
+If you keep Keychain.app open with that certificate in view, you notice it immediately deletes when executing the command in terminal.
+
+A: Distrust of a root with delete-certificate by hash is broken: sudo security delete- certificate -Z 8250BED5A214433A66377CBC10EF83F669DA3A67 / System/Library/Keychains/SystemRootCertificates.keychain This always fails with: “security: SecKeychainItemDelete: UNIX[Operation not permitted]” even if this referenced certificate is present.
+Here's a workaround from a talk at DEFCON24.
+Instead save the root certificate as a cer file and use: security add-trusted-cert -d -r deny -k "/Library/Keychains/System.keychain" certname.cer
+
+A: *
+
+*Open Keychain Access app (/Applications/Utilities/Keychain Access.app)
+
+*Select System Roots in keychains
+
+*Select Certificates in category
+
+*Search for the expired certificate's name
+
+*Right click on the certificate then select "Delete"
+
+*Enter system admin password
+

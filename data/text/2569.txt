@@ -1,0 +1,27 @@
+Q: Installation failed when attempting to reinstall MySQL in OS X 10.6.6 I had earlier installed mysql-5.1.50-osx10.6-x86_64.dmg and then uninstalled it using the below command (found on Stack Overflow):  
+$ sudo rm /usr/local/mysql  
+$ sudo rm -rf /usr/local/mysql*
+$ sudo rm -rf Library/StartupItems/MySQLCOM   
+$ sudo rm -rf /Library/PreferencePanes/My*   
+$ rm -rf ~/Library/PreferencePanes/My*   
+$ sudo rm -rf /Library/Receipts/mysql*   
+$ sudo rm -rf /Library/Receipts/MySQL*   
+$ sudo vi /etc/hostconfig   
+$ sudo rm -rf /var/db/receipts/com.mysql.mysql*   
+$ cd /Library/Receipts/
+
+Then I have tried to reinstall from mysql-5.5.9-osx10.6-x86_64.dmg.
+However I am getting the following error:
+
+The installation failed
+  The installer encountered an error that caused the installation to fail. Contact the software manufacturer for assistance.
+
+
+A: This might be a little late, but Homebrew for Macintosh is a stellar way to install software such as mysql. There is information on the their wiki on how to install and then once brew is installed, it is just brew install mysql in your terminal window.
+Good luck!
+Update: DOH. I fail at reading. Problem already solved. Anyway, for people in the future, if you have trouble installing mysql, give brew a try.
+
+A: Try to install MySql from the CD that come with your computer. It is part of apple developer tools. Once that is installed, try to install the dmg you downloaded from the official site. 
+
+A: I am able to instal MySQL at last. Details can be found @
+https://stackoverflow.com/questions/5067787/re-install-mysql-in-mac-os-x-10-6-6

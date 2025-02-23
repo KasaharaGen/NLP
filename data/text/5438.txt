@@ -1,0 +1,32 @@
+Q: How can I install/run apps that use Rosetta on Lion? Is there a workaround to install/use apps that are using Rosetta on Lion?
+I'm still using Zend 5.5 and I don't want to switch to a new IDE right now.
+
+A: You don't need Rosetta to run Zend Studio 5.5.1 on Lion, however, the installer requires Rosetta (which is quite unfortunate).  So long as you have Zend Studio 5.5.1 installed, or migrate it from your Snow Leopard Machine, you can get it running under Java SE 6 by following the instructions here: http://www.s-seven.net/zend_5x_lion
+
+A: At the time of writing Rosetta is not included with Lion, not supported by Lion officially and not available from any other channel (official or unofficial) for use on Lion.
+So: no, there is no workaround. Your Rosetta-based applications cease to function if you upgrade to Lion.
+
+A: Until someone creates another emulation layer, you could technically run Snow Leopard inside the virtualization software of your choice. Plenty of tech blogs have the steps for various VM choices.
+The Snow Leopard license has words saying you shouldn't do it and you'll have to hack it lightly since the installer won't run unmodified.
+Lion however will be "running" the code through rosetta - just not directly.
+Don't overlook avoiding the issue altogether for your development work:
+
+
+*
+
+*keeping an old mac running Snow Leopard and using Screen Sharing to connect  might be much faster than emulation and more "legal" if you don't really need to be self contained.
+
+*keeping Snow Leopard on an external or second partition to boot for your development work.
+
+
+A: If you still have a copy of your Snow Leopard install disks, install it on another bootable drive or partition.  Boot from that, and run your Rosetta/PPC apps, then reboot into Lion (which can't run PPC apps) when you're done.
+
+A: Spend 60 seconds and tell Apple that they should SELL Rosetta for Lion on the App store.
+How would this not be a total win? Fewer people delaying upgrade, enough cash to cover the development and support, more happy customers.
+http://Apple.com/feedback/macosx.html
+
+A: I am running lion on a 2008 8 core mac pro.
+I used the snow leopard disk to install rosetta as an "optional Install".
+Its my understanding that pure ppc code pas will not run in lion; but universal pas with intel code can be installed.
+I was able to install final cut studio 2 this way.
+The reason I understand this working is because the apps them selves are not ppc but intel or what ever rosetta only had to unlock the ppc installer for me.

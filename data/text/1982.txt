@@ -1,0 +1,30 @@
+Q: Why does the enter/return key rename a file/folder, instead of opening it? Is there some sort of known logic behind Apple's choice to make the enter key rename a file/folder, rather than open it as is standard on Windows and Linux?
+For those of you coming here for the substitute key combination, ⌘-O and ⌘-down arrow both work. And I fully understand ⌘-down, since ⌘-up goes "up" in the directory tree. But couldn't they have made some other key combination the rename key, and allowed enter to be the "standard" open action?
+I understand this is a point of view question, and you could argue Windows and Linux are the weird ones, but "enter" or "return" is, at least in my mind and experience with others, the universal "okay" key. When a dialog pops up, you can smack the enter key for the default action. When you finish typing your password, hit the enter key to submit the form and log in. In terminal, type a command and hit enter. So then why is it browse to the file, select it, and hit enter... to rename?
+
+A: I'm with @ghoppe. Plus, you get the added bonus of avoiding the mindless or accidental opening of an application (to open a file) or executing code when you're really meaning to just browse your filesystem and, well, "Find" stuff.
+
+A: 
+"enter" or "return" is, at least in my mind and experience with others, the universal "okay" key. When a dialog pops up, you can smack the enter key for the default action.
+
+In the Finder, the default action is file management. The Finder is not a launcher. You have a bunch of files you want to rename, or move, or whatever. What percentage of files do you actually open regularly from the Finder? Why should the default action in the Finder be "Open"?
+You can learn to use the navigation standard of OS X instead of ENTER/RETURN. The navigation standard is:
+
+
+*
+
+*⌘ + ↑ - goes to Parent Folder
+
+*⌘ + ↓ - goes to Child Folder.
+
+
+Over time I have found these key operations better than Windows navigation where you have to switch between ENTER and Alt+Up.
+
+A: It's standard on Windows and Linux, not OS X. Doesn't mean it "should" be standard on OS X. :-)
+I think it's simply because that's the way it's always been, since as far back as I remember.. I think even OS 6 had this.  I know 7/8/9 definitely had it that way.  So I suppose they wanted old users to feel comfortable making the switch to X.
+
+A: Because ⌘+o opens it.
+
+A: I've used Mac OS X on and off for sometime now, and I still can't get my head wrapped around the "enter to rename" functionality. In windows you press F2 to rename a file, because you're performing a function, and that makes sense! Back in OS 7 (what I used for 5+ years before switching to windows) I strongly recall using enter to open things.
+I'm going to try ReturnOpen which only works on 10.3 - 10.5, so far it seems to work just fine.
+http://www.returnopen.com/

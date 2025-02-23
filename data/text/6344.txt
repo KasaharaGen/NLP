@@ -1,0 +1,220 @@
+Q: How do I turn off MacBook display when I have an external display? I went through a similar question, but the answer was informing how to hide the monitor, but not how to disable it.
+I do not want any new windows to creep into the laptop display when the external display is connected. I could not find any in the Display Settings (under System Preferences).
+I don't want to close the lid because I think it impacts the air flow of the MacBook Pro.
+I don't want to close the lid because the sound quality is reduced.
+
+A: *
+
+*Cmd + F1 (switch one display mode - laptop display will turn into mirror of external display)
+
+*F1 (until you turn off laptop display)
+
+
+A: Update 2017 & Sierra (OSX 10.12.6+)
+I didn't find any working solutions in order to configure this on Sierra so I'm posting this for people looking for a solution in 2017.
+This should allow you to use your Mac with an external display, external keyboard/mouse or even the built in keyboard including (the very useful) fingerprint scanner and lcd touch bar on newer models.
+Here's how I got it to work:
+You need to run this command: nvram boot-args="niog=1" but it's not going to work unless you boot into recovery first. It'll give you garbage like this instead: 
+nvram: Error setting variable - 'boot-args': (iokit/common) general error
+To fix this we need to boot into recovery and disable SIP.
+
+
+*
+
+*Reboot and hold down CMD + R during boot. When it loads, chose your language and use the top navigation bar to go to Utilities -> Terminal
+
+*Use csrutil disable command to disable SIP.
+
+*Reboot normally.
+
+*Open terminal and use the sudo nvram boot-args="niog=1" command
+
+*Reboot and close your lid, keep it closed until you've logged in and see your desktop. 
+
+*Open your lid and the laptop display should stay OFF.
+
+*IMPORTANT: Go back to recovery (reboot with Command + R) and re-enable SIP using csrutil enable
+
+A: My question finally answered by running:
+ sudo nvram boot-args="iog=0x0" 
+
+http://hints.macworld.com/article.php?story=20110901113922148
+
+A: I finally found a way to disable the main monitor instead of hiding it for any number of external monitors. I'm saying any number because the mirroring option suggested by other answers mirrors all displays. If you have two external monitors like me, you would find that it doesn't help at all.
+You'll need SwitchResX for this (yes, it's paid, but it you don't pay it just annoys you with a warning every day and disables some features, that's all). One thing I want to point out is that the 'disable screen' option just hides the screen and it keeps rendering in the background, which is not what we want, instead we will mirror one of the displays on the built-in one:
+
+
+*
+
+*Go to video mirroring in the switchresx menu and mirror the built-in display on any of your external monitors
+ 
+
+*You might have to set your external display resolution if it displays the wrong resolution
+
+
+*Turn off the brightness on the built-in display if you want to  
+
+
+You will see that it's actually mirroring the display if you look at preferences > display > arrangement:
+
+And looking at the GPU memory usage, I can confirm again that it's not rendering the built-in display, which should mean much better performance and much quiter fans!
+
+
+A: Here's a visual answer that should help folks quickly find the solution:
+1. Select "Mirror Displays" in the "Arrangement" tab
+You can find that "Arrangement" tab in the "Display" section of "System Preferences" whenever an external display is recognized.
+
+2. Ensure it's optimized for the external screen
+This should be default, at least it was for me.
+
+3. Lower the brightness of the MacBook down to Zero
+
+A: Solutions using Magnets for MacBooks (2015-2019)
+There might be many reasons you would want to turn off the built-in display of the MacBook. I am using two larger external monitors, and while using heavy applications if 3 screens are active the Mac starts to throttle. For myself personally, the smaller built-in screen is taking unnecessary resources so just reducing the brightness to zero is not an apt solution. And neither is closing the lid since I was having connectivity problems with my Wifi on the 2.4 GHz channel when the lid was closed and I also want to use the magnificent built-in trackpad for gestures rather than buying an external one.
+I was looking at a lot of answers in forums and in this thread but unfortunately, most software-based solutions are outdated and don't work and applications like  DisableMonitor say :
+It has been reported that the software is able to cause irretrievable damages to your computer.
+Use at your own risk!
+The project development has been stopped and won't be continued.
+My Setup
+I am using a 2019 15" MBP and this solution worked for me. I am hoping this solution would work for all devices in this design platform that Apple used starting from 2015-present (2021).
+What you need
+We need 2 small low powered magnets. Unfortunately, the magnetic strip used in refrigerator magnets did not work for me.
+Magnets that I used were from cheap old IEMs (Earphones), they were perfect since they were relatively low power and I got two of the same size and power.
+How
+We are trying to simulate what MacBooks do, to know that the lid is closed.
+Two of the many magnets in the display lid in the MacBook in combination with Hall effect sensors in the lower chassis are used by the Mac
+to determine when the lid is closed. So all we need to do is place 2 magnets on the lower chassis at the exact location where the two magnets in the display would have been when the lid is closed and voilà it works.
+One thing we need to take care of is to place both the magnets at the exact same time otherwise, it doesn't work.
+Solution
+Place the two magnets at the exact same time near the edge of the chassis. For the 2019 15" MBP the location is just below the 2 USB-C ports on either side.
+
+Concerns
+The new Macs do not use any moving parts and especially the hard drives are SSDs, so that concern is for the most part alleviated. Also since the Apple laptops themselves are using magnets to know if the lid is closed it seems to be a safe enough solution as long as it's used when the MacBook is kept stationary and using low-power magnets. Also, I do not see any distortions in the audio while using the built-in speakers as long as the magnets are low in power.
+This is one of the only solutions that worked for me which is quite straightforward. Since we are using magnets around computers, I would recommend using as low powered as possible and also check if your computer is using any hardware internal or external which can be affected by magnets (eg, magnetic hard drives) and do after your own research the last thing we want is someone to destroy their work or damage their hardware.
+
+Update after 1 month.
+Based on the concerns shown in the comments: using magnets can be dangerous in that if one forgets they are there and closes the lid the display can be cracked.
+I have modified my solution as in the pictures bellow :
+Attaching the 2 magnets to a piece of packing material which is cut in the exact size of the MacBook and the magnets are glued in position, so that they align perfectly with there intended place on the laptop when the material is placed on top of the laptop.
+
+Description : The magnets are glued into correct place.
+
+
+Description : The spongy-material is placed with the magnets side facing down, so that the magnets align perfectly with there intended position and if there is any accidental closure the material will absorb the shock.
+
+It gives two advantages:
+
+*
+
+*Obviously the concern of accidental screen closing and the worry of the screen cracking is resolved.
+
+*An added advantage is now we don't have to go through the trouble of carefully placeing the magnets at the same time, just placing the sheet in the correct location is enough, it reduces the hassle significantly.
+
+Pro Tip: I find sliding the sheet into place much easier. Also you might have to place something with a small weight on top of it especially for the first few days so that the sheet does not bend.
+
+A: Reducing heat by adjusting the lid
+Having the lid closed or open does not impact the airflow of your MacBook Pro (MBP). Ambient air is never in short supply and the "exhaust" (where the hot air picked up by the blade fan(s) are expelled) is located at the back of the unit (the black stripe on the newer models and the grey stripe on the first generation machines).
+Some claim that keeping the lid open allows the chassis to cool down, but these claims have never had any real data behind them (simply anecdotal evidence and unsubstantiated rumour). Personally, I have a 2006 MBP that was eventually relegated to being a desktop. I ran the system for well over a year with the clamshell open, and then closed, and saw no different in CPU/CPU temps (nor any variability in the other heat sensors) as a result. Moreover, the newer models have far more efficient blade fans and would suffer even less from the effects of heat (additionally, the new Intel chipsets run cooler than their predecessors). You can conduct your own testing of course. I had replaced the heat sink, re-applied a sane amount of Arctic Silver thermal paste, and used Lobotomo Fan Control daemon to monitor my system's temperature.
+Disabling the internal display, properly
+There are two ways to connect a secondary display to your notebook without enabling the default screen (note that this does not mean dimming it, but rather turning it off).
+
+
+*
+
+*The first is to connect the display with the lid closed when the machine is powered down. Once the external display is connected, turn the machine on—it will detect the secondary display while leaving the internal one turned off. This will alleviate the issues you have with "dragging things off the screen" as the system will constrain your desktop to the one, active monitor.
+
+*The second is to connect the secondary display when your system is awake and active, and the clamshell open. Make sure the notebook is plugged in. Once you connect the secondary monitor, the system will recognize it. Once it does, close the lid on your notebook. The device will be put to sleep. Once that happens, move your mouse, or hit a key on your keyboard to wake it. Once it wakens, it will enable the secondary display, but not the internal one.
+
+
+Additionally, you may set the attribute to leave the system in the sleep state even if the clamshell is opened. You can do this using pmset, a local utility found on OS X that actually handles all your power settings. You can accomplish this with the following command:
+sudo pmset -a lidwake 0
+
+The -a, -b, -c, -u flags determine whether the settings apply to battery ( -b ), charger (wall power) ( -c ), UPS ( -u ) or all ( -a ).
+To reverse the command, set the 0 to a 1. These settings are persistent, in that, they do not need to be re-applied every time the machine's power is cycled and are saved to the file: /Library/Preferences/SystemConfiguration/com.apple.PowerManagement.plist
+
+A: You could also use a ThirdParty App like 
+https://github.com/Eun/DisableMonitor/
+Edit:
+DisableMonitor adds the missing feature to disable a monitor on a Mac. You can also easily disable, enable or change the resolution of a monitor.
+
+
+A: Do as described here:
+How can I turn off the screen on the macbook when I have an external monitor set up?
+Then open the laptop.
+In Snow Leopard this will do what you are asking for. The behaviour may have changed under  Lion though. Which OS version are you using?
+
+A: My suggestion is to set the displays to 'mirror' then turn the brightness down on your Mac. 
+Both your screens are the same so you won't lose any windows.
+
+A: When I had my MacBook Pro connected to an external TV, I used the magnet trick.
+Placing a small weak magnet (I used one the size of a coin battery) near the bottom of the right speaker would make contact with the Reed Switch, tricking the MBP into sleep mode, with the lid open, while using the external display only.
+While this worked fine for the time I had the external TV and I never read any reports about this technique damaging anything (there ARE magnets inside the MBPs), I would try a software based solution, first.
+Some references:
+iBook and PowerBook Clamshell Sleep Control
+Location of magnet and Reed Switch for various Mac laptop models and
+instructions on how to use both a magnet to force sleep with the lid open or a thin piece of iron alloy to prevent sleep with the lid closed.
+Reed Switches
+Location of magnet and Reed Switch for the MacBook Pro 15" with pictures.
+
+A: I write a simple App
+Close Inner Screen
+It can be easy use
+
+
+A: Update for MacBook Pro 2018 running macOS 10.14.5
+I found a solution that works quite well for me
+
+
+*
+
+*Set external display as primary display (by dragging the menu bar in the Displays setting in System preferences)
+
+*Check the box to Mirror Displays
+
+*Turn down the brightness all the way on the clamshell display
+
+
+This doesn't quite disable the clamshell display, but it won't actively consume any applications, and setting the brightness to 0 provides an energy efficient way to ignore the mirrored display.
+
+A: Lunar can turn off the MacBook display without having to close the lid of the MacBook.
+
+This allows the MacBook to cool down faster and allows you to keep using TouchID, webcam and the very nice speakers of the MacBook, while being able to focus on the external monitor.
+The feature is called Blackout, here are some more details: lunar.fyi/#blackout
+How it works:
+
+*
+
+*Sets the native brightness of the MacBook display to 0
+
+*Sets the Gamma tables of the MacBook display to a list of zeroes
+
+*Mirrors the external monitor to the MacBook display so that:
+
+*
+
+*The monitor keeps its native resolution
+
+*Apps/windows don't get trapped on a non-visible display
+
+
+
+To activate, just press Control+Command+6 and Lunar will toggle Blackout and do all of the above steps for you.
+Disclaimer: I'm the developer of Lunar and BlackOut is a paid feature with a free 14-day trial
+
+A: You can also make the external display the primary one. By default all new windows will appear on that one.
+To do this, go to system preferences > Display > geometry, and drag the miniature menu bar to the miniature external display. 
+
+A: for mac users trying to use hdmi to tv and having troubles turning off your screen on laptop and leaving screen on tv on, TURN THE BRIGHTNESS RIGHT OFF!!!! the laptop screen will go black but tv screen stays the same
+
+A: Simply closing mac's display when an external monitor is still on worked for me.
+My setup:
+
+
+*
+
+*MacBook Pro Sierra 10.12.6
+
+*External monitor connected through HDMI & monitor USB cable
+
+*External mouse and keyboard connected to the monitor 
+

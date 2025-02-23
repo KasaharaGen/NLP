@@ -1,0 +1,26 @@
+Q: Equivalent to Windows' Baretail Is there any alternative to Windows' Baretail?
+What I am looking for is a graphical Baretail?
+Actually, I don't really care that it is graphical but I want to be able to have colors (lines with ERROR in red, lines with WARNING in yellow and so on...)
+And I want it to behave like a "perfect" tail -f command meaning that I want it to be non-invasive (does not prevent the file deletion).
+But always on the watch (if a file is deleted, and recreated and re-written in it then the tool would just start showing it again).
+In any case, any tool that does a better graphical interpretation of tail -f is welcome.
+
+A: Multitail 
+Install with 
+brew install multitail
+
+
+
+A: I've been using "Console" as a general log viewer.  (Comes with the Mac as a system utility)
+You can open up files and it'll act like tail but then also has filter abilities.  No color coding (that i'm aware of)... 
+
+A: This is an alternative, Glogg, and it is expected to  be released for Mac soon. 
+I couldn't find much more than this.
+
+A: While it does not do colorization, if you use tail -F (big F as opposed to little f), the tail activity will continue following a file if it's deleted and/or truncated and replaced with a new file of the same name.
+Verbatim from the tail(1) man page:
+-F
+The -F option implies the -f option, but tail will also check to see if the file being followed has been renamed or rotated.  The file is closed and reopened when tail detects that the filename being read from has a new inode number.  The -F option is ignored if reading from standard input rather than a file.
+
+A: I know this is an old question but finally a more modern one is under development.  See Tail Blazer
+Disclaimer: this is an open source project and I am the developer

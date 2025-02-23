@@ -1,0 +1,135 @@
+Q: How to simulate slow internet connections on the mac What's a good software solution to slow down internet connections on the mac for testing and simulations?
+My primary need is when testing code in the iPhone / iOS simulator, so slowing down the connection for specific applications or processes would be great.
+
+A: You can also use ipfw piping to slow down your network.
+First, setup a virtual "pipe" to limit throughput to 800KBit/sec:
+ipfw pipe 1 config bw 800Kbit
+
+Then you can setup rules to push traffic through that pipe (pipe 1). (ports 6881-6890 being bittorrent traffic)
+ipfw add 10 pipe 1 tcp from any to me 6881-6890
+ipfw add 11 pipe 1 tcp from any 6881-6890 to me
+
+Here's another example to limit traffic down to 10Kbit/sec from a specific IP address:
+ipfw pipe 2 config bw 10Kbit
+ipfw add 15 pipe 2 ip from me to 64.81.84.114
+
+(Source)
+
+A: OS X 10.9 and earlier provide ipfw and it allows you to define custom firewall rules. Create a pipe with limited bandwidth using ipfw and you can run your tests and simulations.
+
+
+*
+
+*Create a pipe "1" limited to 500KBytes/s via
+sudo ipfw pipe 1 config bw 500KByte/s
+
+
+*Guide all network traffic of port 80 through pipe "1" using
+sudo ipfw add 1 pipe 1 src-port 80
+
+
+*When you don't need the pipe anymore, remove it from the port using
+sudo ipfw delete 1
+
+Other
+
+
+*
+
+*If you want to set higher traffic barriers, you can use MByte/s
+
+*Port 80: standard port for unencrypted http traffic. This port is used for most browsing and downloading. You should be fine with this in most cases.
+
+*Port 443: standard port for SSL encrypted https traffic.
+
+
+A: Speed Limit is a System Preferences pane for intentionally and selectively slowing down specific ports and domains.
+
+A: I found this terminal command helpful in my case
+Installation:
+Open mac terminal and type this command
+sudo npm install @sitespeed.io/throttle -g
+
+Usage:
+Open terminal and type the required command
+Start throttle (Suppose we want the upload and download speeds as 5000kbps)
+throttle --up 5000 --down 5000
+
+Stop throttle
+throttle --stop
+
+There are premade profiles also
+--profile         Premade profiles, set to one of the following
+                     3g: up:768 down:1600 rtt:150
+                     3gfast: up:768 down:1600 rtt:75
+                     3gslow: up:400 down:400 rtt:200
+                     2g: up:256 down:280 rtt:400
+                     cable: up:1000 down:5000 rtt:14
+                     dsl: up:384 down:1500 rtt:14
+                     3gem: up:400 down:400 rtt:200
+                     4g: up:9000 down:9000 rtt:85
+                     lte: up:12000 down:12000 rtt:35
+                     edge: up:200 down:240 rtt:35
+                     dial: up:30 down:49 rtt:60
+                     fois: up:5000 down:20000 rtt:2
+
+Usage of profiles
+throttle 4g
+
+
+A: Apple’s official tool to slow down the network connections on you Mac for testing purposes is Network Link Conditioner
+
+*
+
+*Additional Tools for Xcode [version].
+
+Additionally, iOS has similar function accessible from within Xcode and iOS 6 or later.
+
+Older versions of Xcode before version 4.3.2 embedded a copy of this tool. This SO thread documents some history of the tool in a similar manner to the iOS simulators and developer documentation.
+There are 11 built in profiles from a Lossy Edge network with 400ms delay to a cable modem. If you need other limits, you can create custom profiles with your own settings or you can also use ipfw yourself as described in Craig Hockenberry's article slow ride, make it easy It also mentions the Speed Limit panel by Mike Schrag that is a smaller download than Xcode, but has fewer options than Apple's tool.
+It slows down the entire network stack, so you can't throttle on a per app basis without doing things like install lion in a virtual machine and set that VM with a throttled stack.
+
+A: To add to the accepted answer: it looks like you shouldn't need XCode, just an account at the Apple Developer website (simpler than first downloading the 2GB XCode package if you don't have it already).
+Go to https://developer.apple.com/downloads and search for "Network Link Conditioner" or "Additional Tools for XCode", the latter being the name of the package it's found in.
+To download it via Xcode 8.x:
+
+
+*
+
+*Click on the Xcode menu
+
+*Go to Open Developer Tool > More Developer Tools...
+
+*This will open a page at developer.apple.com (Note: you may need to log in first)
+
+*Click on the '+' sign next to Additional Tools for Xcode 8.x
+
+*Click on the download URL
+
+
+A: If you only need throttling for Web development, I can wholeheartedly recommend Charles. It's an excellent tool for debugging HTTP applications anyway, and among its many features, it's got a Throttle option. The software isn't cheap, but it does an excellent job.
+
+A: Mac OS X 10.10+ users need to use dnctl and pfctl but documented usage examples aren't easy to find.
+# Configure `pfctl` to use `customRule`. 
+(cat /etc/pf.conf && echo "dummynet-anchor \"customRule\"" && echo "anchor \"customRule\"") | sudo pfctl -f -
+
+# Define `customRule` to pipe traffic to `pipe 1`.
+# Note this is the actual port definition, not a textual comment
+echo "dummynet in quick proto tcp from any to any port 443 pipe 1" | sudo pfctl -a customRule -f -
+
+# Define what `pipe 1` should do to traffic
+sudo dnctl pipe 1 config delay 10000
+sudo dnctl pipe 1 config bw 10Kbit/s
+
+# DO NOT FORGET to undo these when you're done
+sudo dnctl -q flush
+sudo pfctl -f /etc/pf.conf
+
+If you want to go all out and shape everything you can use:
+echo "dummynet in quick proto tcp from any to any pipe 1" | sudo pfctl -a customRule -f -
+
+I believe this also affects localhost pipes which slowed down my vs-code debugging, so be mindful of that.
+
+A: In XCode 12 you have to install Additional Tools for XCode 12 instead of Hardware IO Tools.
+
+A: For XCode 10.2, in More developer tools - Additional Tools for XCode 10.2, you will find Network Link Conditioner.

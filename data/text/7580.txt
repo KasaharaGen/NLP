@@ -1,0 +1,27 @@
+Q: Record / playback keystrokes There are 3rd party apps but I'm not interested in those.  I'm a web developer and during testing I find myself entering login credentials over and over again.  If I could quickly "play" these keystorkes it would help my sanity.  I'm assuming Automator can do this?  I've never used Automater so a complete answer for that would be appreciated.  However I would prefer something even more native if it's possible.
+
+A: Let me start by saying that there are lots of good third party apps for automatically logging in to web forms. I highly recommend using one of those.
+To answer your question: Yes, you can do this with a combination of Automator and AppleScript. Here's how.
+Open Automator. Go to File-> New. Select Service.
+Type applescript into the search bar near the top left.
+Drag the Run AppleScript item to the area on the right.
+Replace the purple code that starts in the box with this:
+tell application "System Events"
+    keystroke "username"
+    keystroke tab
+    keystroke "password"
+end tell
+
+Now replace the username text with your username, and replace the password text with your password.
+This will have the computer type your username, hit tab, and type your password.
+Now, at the top of the Automator window, set Service receives to no input and in to the app you need this to happen in.
+Automator shoud now look like this:
+
+Save this and give it a name. Now, go to the app you selected at the top right and put your cursor in the username field.
+Go to the app's menu (next to the Apple menu) and choose Services-> {what you named your Automator app}.
+It should run the Automator workflow and 'play back' the keystrokes.
+Again, this is the hard, insecure way. I highly recommend apps like 1Password and LastPass.
+
+A: Well, if you just want to input a username and a password automatically, simply go to Safari > Preferences > Autofill and select "User Names and Passwords". In theory that should ask you upon submiting the form if you want Safari to remember it, and if you select yes, it will store it in your Keychain.
+Next time you visit the website you will just have to type the first character and Safari will automatically fill in the rest for you.
+Hope it helps!

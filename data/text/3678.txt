@@ -1,0 +1,32 @@
+Q: Setup Groovy in Mac OS X I have downloaded groovy-binary-1.7.10.zip, unzipped @ /Users/sarbbottam/SW Developments/groovy-1.7.10 and navigated to /Users/sarbbottam/SW Developments/groovy-1.7.10/bin. I tried to execute ./groovysh; however, I got the below error.
+Sarbbottam-Bandyopadhyays-MacBook-Pro:bin sarbbottam$ ./groovysh
+Exception in thread "main" java.lang.NoClassDefFoundError: Developments/groovy-1/7/10/bin/groovy/icns
+Caused by: java.lang.ClassNotFoundException: Developments.groovy-1.7.10.bin.groovy.icns
+    at java.net.URLClassLoader$1.run(URLClassLoader.java:202)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at java.net.URLClassLoader.findClass(URLClassLoader.java:190)
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:307)
+    at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:248)
+Sarbbottam-Bandyopadhyays-MacBook-Pro:bin sarbbottam$
+
+Do you have any suggestion?
+
+A: Try renaming your SW Developments folder to one word (with no spaces or an underscore).
+Looks like the space is causing a problem in loading the library.
+
+A: You need to install groovy in a path without spaces in it - this would be the easiest solution. 
+Otherwise you need to edit almost all of the groovy scripts in the bin folder - each time you upgrade too.
+
+A: It can also be achieved by using the following:
+Unpack the archive and move it to /usr/share
+$cd /usr/share
+$sudo chown -R root:wheel groovy-1.7.10/
+$sudo chmod 0755 groovy-1.7.10/bin/*
+$sudo ln -s groovy-1.7.10 groovy
+$cd /usr/local/bin
+$ln -s /usr/share/groovy/bin/groovy groovy
+$ln -s /usr/share/groovy/bin/groovyc groovyc
+
+There is no need to alter the $PATH. /usr/local/bin is already in $PATH. So just make a symbolic link of /usr/share/groovy/bin/groovy and /usr/share/groovy/bin/groovyc in /usr/local/bin.
+Regards,

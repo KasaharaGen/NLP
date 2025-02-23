@@ -1,0 +1,16 @@
+Q: Sync iPad on a different device I would like to stop syncing my iPad with my MBP & start syncing it with my iMac instead; when one connects an iOS device with a machine other than the one they previously synced with they get a message saying that they should erase & sync their device. Is there a way to sync my device to my iMac without erasing all my data first; PS. the MCP & the iMac share the same library. 
+
+A: I tried many different approaches but none of them worked, had to erase & sync
+
+A: If the two libraries are really the same, throw away the iOS backups and iTunes folder on the "new" mac and just move the two folders from the old mac to the new one when iTunes isn't running.
+
+
+*
+
+*iTunes: How to move your music to a new computer - move ~/Music/iTunes and optionally your iTunes Media folder if it's not embedded 
+
+*iPhone and iPod touch: About backups - move ~/Library/Application Support/MobileSync/Backup/
+
+
+If they're not the same, use Home Sharing or whatever other method makes sense to get things corrected or transfer purchases through iOS. You can export the library to XML to get playlists, ratings, play counts and such over. Artwork can get lost if you just move the files and not the whole database structure.
+What primarily matters is the iTunes backups and settings stored in the database, not whether the music or media files are shared or identical - as long as the songs to be synced are equivalent.

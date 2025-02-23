@@ -1,0 +1,46 @@
+Q: What are the consequences of jailbreaking an iOS device as a Developer? What would be the consequences of Jailbreaking my iOS device as a developer? 
+What are some of the benefits, and what are some of the issues with Jailbreaking as a developer? 
+How would this effect Xcode when "paired" with my iPod?
+
+A: Consequences: 
+
+
+*
+
+*increased personal responsibility to not install software or firmware that might prevent restoration to a supported configuration.
+
+*increased personal responsibility for device instability or security vulnerabilities
+
+*less software support from the vendor (may be moot if you run beta software as there is less support for that as well)
+
+*potential delay if you ask for a hardware repair (either within or without the warranty period) if you do something that prevents a factory restore I suppose you might be out of luck, but I consider that further action (or error) past a jailbreak. 
+
+*reduced confidence that the app will be of use in debugging issues 
+
+*having to determine if an issue is in all devices or just in jailbroken devices (such as frequent and intermittent issues with push notification service).
+
+
+I have had hardware exchanged by Apple when running beta software - the technician was able to tell it was clearly a hardware error and I was open with her when I presented the device for service. I wasn't made to feel like I had done anything wrong. You could be denied service if you're running software not designed by the manufacturer, I think a little common sense will let you know if it's worth the risk.
+I see jailbreaking as taking down a guardrail. If you crash and the "authorities" rule you would have been safe had you left up the protection, you've got less grounds to stand on. From the comments on another answer - a several people disagree with this (and that's better than fine, many viewpoints is a strength here)
+On the plus side, if you know what you are doing, you might be able to patch known vulnerabilities better than or faster than Apple does. You might also gain knowledge you would not in the process of jailbreaking and dealing with the device while the guardrail is down.
+But to gloss over the difference between hardware support and software support or just stating "jailbreak=bad" over simplifies a complex issue in my eyes.
+
+A: If you are developing App store apps, you will now be testing on a device configuration different from the vast majority (90%+) of your customer base.  You may also not always be able to update your device OS as quickly as your customer base responds to Apple OS updates.  So you might want to make sure you always have at least one device available to run the stock OS for app testing purposes.
+Modified OSes may have a different set of security vulnerabilities from the stock OS.  So you may want to learn about and take additional precautions to make sure your developer or iTunes account credentials don't get stolen off of the device.
+
+A: Benefits:
+You can develop on your iDevice. You can install emacs and vi and python and PHP and lisp and perl and whatever else you want.
+
+A: Consequences:
+
+
+*
+
+*Your Apple warranty becomes voided.
+
+*Possible inconstancies in terms of RAM usage - may make memory management difficult when using Instruments
+
+*Unexpected iOS behavior
+
+
+Xcode would behave as normal.

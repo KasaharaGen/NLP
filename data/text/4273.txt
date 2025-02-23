@@ -1,0 +1,12 @@
+Q: how do I print to a cups server I have an old imac that I have turned into a printing server with cups, it is running debian
+I need to set up printing on a mac running leopard
+I have tried inputing the info directly on the localhost:631 but it didn't show up when I need to print something, the test page worked fine
+I then tried to put it in directly from system preferences it appeared in the menu were you select your printer but I couldn't print, when I printed the test page it printed weird symbols and I saw the word adobe, the printer driver was the generic postscript printer, that is why I believe the word adobe was there, also after that first page it would print blank pages untill the printer ran out of paper
+it is getting quite annoying
+please help!!!!
+
+A: If you're looking to turn an old iMac into a print server so that you can print from another Mac over the network, there's no need to mess around with cups or Debian.
+Just install Mac OS X, then go into System Preferences -> Sharing then turn on Printer sharing. From there you can select which printers to share and which users can access them. 
+On your other Macs, you can add these printers in the System Preferences -> Print & Fax pane by clicking the "+". If both computers are on the same network, your Macs should automatically detect the shared printers on your iMac.
+
+A: Try using the HP LaserJet 4 driver.  I heard somewhere it's one of the most basic drivers and apparently that lots of drivers are based on it, just with added functionalities.

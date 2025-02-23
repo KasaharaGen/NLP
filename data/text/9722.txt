@@ -1,0 +1,35 @@
+Q: How do I make iTunes sync automatically when an iPhone, iPad or iPod is connected? When iTunes is already running and I plug in my iPhone or iPad, the device appears correctly in iTunes but it doesn't sync automatically. I'm sure it always used to sync automatically on connection, but now I need to start the sync manually (i.e. by selecting the device and clicking the Sync button). Does anyone know how I can get it to sync automatically as soon as the device is connected?
+My details are as follows:
+
+
+*
+
+*iTunes 10.5.1.42 on Windows 7 64-bit
+
+*iPhone 4 and iPad 2, both with iOS 5.0.1
+
+*iTunes > Preferences > Devices > "Prevent iPods, iPhones and iPads from syncing automatically" is unchecked.
+
+*For both devices, the iTunes setting "Open iTunes when this iPhone/iPad is connected" is unchecked.
+
+*I'm syncing via a USB cable. (I did try Wi-Fi sync but iTunes hardly ever found the devices so I disabled it on both iPhone and iPad. This may have been around the time auto-sync stopped working too but I can't be sure.)
+
+*I don't use iCloud for sync or backup.
+
+*It's the same laptop and library I've always synced against (so this answer doesn't seem to be relevant in my case)
+
+*iTunesHelper.exe and iPodService.exe are both running normally.
+
+
+A: Your list holds the answer, specifically #4. The problem is the fact that when iTunes it prevented from automatically opening when a device is connected, there's a whole list of actions that simply don't happen, sync triggering is one of them.
+Re-enable 'Open iTunes when this iPhone/iPad is connected' and your syncs should work normally, and automatically, again.
+
+A: Check that C:\Program Files\iTunes\iTunesHelper.exe is not disabled from running on startup. You can do this by using a free tool like CCleaner and accessing the startup list via Tools>Startup.
+
+A: I had the very same problem and did the following to resolve:
+
+Go to "Preferences" on the iTunes menu (top left of the iTunes screen)
+  Select "Devices"
+  Untick the "Prevent iPods, iPhones and iPads from synching automatically" box and submit with "OK"
+  Thats IT!
+

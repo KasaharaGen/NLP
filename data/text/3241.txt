@@ -1,0 +1,35 @@
+Q: Quicksilver accessible script for disabling and enabling Time Machine? I'd like to disable and enable Time Machine at will via Quicksilver.
+'nuff said.
+Do you're thang, nerds. :)
+
+A: Just realized I could copy it out of another script I use to detect displays.
+Here they are:
+Disable:
+tell application "System Preferences" to activate
+    tell application "System Events"
+        tell process "System Preferences"
+                click menu item "Time Machine" of menu "View" of menu bar 1
+                tell button "OFF" of window 1 to click
+        end tell
+    end tell
+tell application "System Preferences" to quit
+
+Enable:
+tell application "System Preferences" to activate
+tell application "System Events"
+        tell process "System Preferences"
+                click menu item "Time Machine" of menu "View" of menu bar 1
+                tell button "ON" of window 1 to click
+        end tell
+end tell
+tell application "System Preferences" to quit
+
+Hope that helps someone else. If there's a better solution, I'm all ears!
+
+A: You can also use this AppleScript to start a Time Machine backup:
+do shell script "/System/Library/CoreServices/backupd.bundle/Contents/Resources/backupd-helper &"
+
+or use a similar shell script.
+I think Time Machine runs way too often.  Instead, I leave Time Machine disabled and use Awaken to run this script twice daily.
+
+A: I'm using TimeMachineEditor for modifying the schedule

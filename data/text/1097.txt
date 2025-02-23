@@ -1,0 +1,48 @@
+Q: Reset Snow Leopard user accounts/preference My kids completely changed everything in their user account, what is the easiest way to reset everything to default (without reinstalling everything) including:
+
+
+*
+
+*Name of hard drive
+
+*Menu items in Finder
+
+*Dock size and items
+
+*Size/appearance of things
+
+*Even some applications have been moved from their original location
+
+
+A: *
+
+*Name of hard drive
+Click enter, rename it
+
+*Menu items in Finder
+What do you mean by that?
+
+*Dock size and items
+Trashing ~/Library/Preferences/com.apple.dock.plist will do the trick
+
+*Size/appearance of things
+Trashing the .plist file under ~/Library/Preferences
+
+*Even some applications have been moved from their original location
+You'll have to move them back to /Applications manually.
+In order for that not to be reproduced, you could try Parental Controls under System Preferences > Account and limit what they can do on their account.
+
+A: In addition to Loïc’s excellent answer
+
+Menu items in Finder
+What do you mean by that?
+
+I believe he means the Finder’s Sidebar and such. In order to reset those, thrash the following file and logoff (or restart):
+~/Library/Preferences/com.apple.sidebarlists.plist
+
+
+Even some applications have been moved from their original location
+You'll have to move them back to
+/Applications manually.
+
+Yes, unless he has a Time Machine backup… which I believe he doesn’t. :)

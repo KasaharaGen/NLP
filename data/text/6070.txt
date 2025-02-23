@@ -1,0 +1,21 @@
+Q: MacBook Air takes an eternity to come out of sleep For the past few years I've been using a 2008 aluminum MacBook. The day the new airs came out I decided to switch so I purchased one to replace my well used MB. Lion has had its bugs, most of which aren't to bad, but one thing that is really annoying me is how long it takes the MBA to come out of sleep. I don't know if this is a MBA issue, or a Lion issue in general, but my MBA takes about 5 sec for the keyboard to light up, and then another 5 for the screen to light up. My old MB never took more than 5 sec. I would assume that an SSD would cause things to go lightning fast. What's causing it to take so long? Are there ways to make a computer wake up faster?
+Notes:
+
+
+*
+
+*This happens everyday even after restart
+
+*The time varies slightly, but just being asleep for a few minutes it takes just as long to wake as leaving it asleep all night. 
+
+*Typically 4-5 applications open
+
+*Only 50GB of 256 GB HD used, has 4GB of RAM and 1.8Ghz i7 Processor
+
+
+A: sudo pmset -a hibernatemode 0 should disable "smart sleep" mode.
+
+A: Well, the MacBook Air goes one step further than sleep into what Apple calls Standby mode.  This is a deeper form of sleep that uses much less power and takes a bit longer to start up again.  This is how Apple achieves the advertised 30 days on standby.
+http://www.apple.com/macbookair/features.html#longlasting
+
+A: Would pmset work? Here's the Apple man page on it.

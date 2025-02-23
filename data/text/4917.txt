@@ -1,0 +1,12 @@
+Q: Is there a way to cancel or disable the slow dock transition easter eggs? If you shift-click the minimize button or hold shift while restoring a window, you get the slow-motion genie or scale effect.
+Is there a way to resume full speed after an accidental shift-click?
+Is there a way to disable the shift-click combination so that the transition always runs at full speed?
+
+A: There is a way!
+Open Terminal.app
+Then, type this and type the following:   
+defaults write com.apple.finder FXEnableSlowAnimation -bool false
+
+To make it go on again, just change the false to true.
+Edit: 
+It seems that there is no way to disable the Slow Animation special effects on shift-click. 

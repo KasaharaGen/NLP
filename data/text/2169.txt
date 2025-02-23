@@ -1,0 +1,33 @@
+Q: How can I use Gmail to sync my calendar between Mac OS X and Android? I've recently bought an HTC Desire and I'd like to sync my calendar from my MacBook Pro (Os X 10.6.6) with the calendar from the phone. I suppose it would be easiest to do it over Gmail, but I'm not sure how. I checked their site, and there is a simple tutorial how to do it if you want Gmail calendar events in iCal, but I need the opposite. How to do that?
+
+A: The approach I took was to sync my phone with the gmail calendar and then sync iCal with google calendar. I don't sync directly between phone and mac.
+I can add events on all three now and it will sync between all of them.
+edit: I've been asked to post up a screengrab, but it honestly isn't needed. I've seen the guides on setting up CalDav but it's honestly not required, iCal has a really simply method to add an account which makes it extremely simple to do.
+
+
+*
+
+*Launch iCal
+
+*Go to File -> Preferences
+
+*Delete any accounts you think you might have set up incorrectly
+
+*Add an account with the + button
+
+*Leave the account type as Automatic
+
+*Enter your google email address
+
+*Enter your google password
+
+
+That is IT! I have a personal and work calendar on google calendar and it brought both in.
+
+A: You are correct in thinking that the Google Calendar is the best way to go.
+To sync between Google and your Mac you can set up the Google calendar as a CalDav, Google have a comprehensive guide for this. If you already have everything in iCal you may have to export them into the Google calendar web interface, this is just a case of selecting "Export" in iCal and "Import" in Google calendar. FWIW After using this hybrid approach for a while I've actually started using the Google calendar web interface rather than iCal as it is a bit more flexible and gives more are to work with.
+I'm not too hot on how to set stuff up on Android, but I thought everything was linked to your Google account anyway? (Google do have a similar guide for Android, but I've not used it).
+
+A: If you're syncing Google Calendar to a Mac, be sure to checkout BusyCal.
+(It's accurately referred to as "iCal Pro" and will sync to Google Calendars, MobileMe, or generic WebDAV calendars.)
+There's a demo on their website.

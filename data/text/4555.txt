@@ -1,0 +1,4 @@
+Q: Why are Ctrl+a and Ctrl+f broken in Snow Leopard? In most text areas, ctrl-a and ctrl-f used to move my cursor to the beginning/end of the line, but now I get "^A" printed to terminal, and nothing happens in other input areas.  
+Any ideas what happened?
+
+A: It was my bash key bindings - I had "set -o vi" in .bashrc.

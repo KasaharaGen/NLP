@@ -1,0 +1,39 @@
+Q: How do I open a file as root in TextEdit on Lion? How do I open a file as root, in TextEdit? I've tried these commands as root, but TextEdit always say it's locked:
+open -e /etc/apache2/httpd.conf
+open -e -F /etc/apache2/httpd.conf
+open -e -F -W /etc/apache2/httpd.conf
+
+And of course sudo !! makes no difference.
+
+A: BBEdit is the free tool to do this in 2019 and it replaces all functionality of TextErangler and you can download it from the App Store and the developer web site. 
+
+TextEdit isn't really the right tool for editing config files -- use TextWrangler instead.  It's free, has built-in capability to edit files with root access from an admin account, as well as things like opening invisible files and directories easily editing files over SFTP, etc.
+
+A: Here's a way to avoid running TextEdit as root:
+EDITOR='open -Wne' sudo -e /etc/apache2/httpd.conf
+
+You will need to quit the copy of TextEdit after editing the file.
+sudo -e, sometimes known as sudoedit but not on OS X, makes a temporary copy of the file with write permission for the current user, invokes an editor on it in the usual Unix fashion, and then copies it back.
+The options to open: -W waits for TextEdit to quit, so sudo knows when to copy the file back. -n ensures that it's waiting on a separate instance of TextEdit, not one you already have open which you might not want to quit. You can also substitute -t instead of -e if you have a favorite text editor other than TextEdit.
+If you already have an EDITOR variable set to use a graphical editor with its own wait-capable command line tool (such as TextMate or BBEdit), then you don't need any of these tricks and can just use sudo -e <file> directly.
+
+A: Since the root user is disabled, the only way to force an arbitrary OS X app to have root permissions is to enable root and log in as root.
+Apps can of course use API to ask the system for authentication and pop up the dialog you expect when asked for an administrator user and password. TextEdit doesn't have that function so you have to work around the file permissions before and after you open and write the files desired. 
+Have you tried using sudo open -a textedit to open the app?
+
+A: sudo chmod +w name_of_the_file
+sudo open -a TextEdit name_of_the_file
+sudo chmod -w name_of_the_file
+
+Should work
+
+A: You can open up a textedit instance as root by entering the full path to the actual executable :
+sudo -b "/Applications/Textedit.app/Contents/MacOS/TextEdit"
+
+Once your root instance is open you could browse to the file you need or do this from the command line :
+sudo su - root -c "open -e /etc/apache2/httpd.conf"
+
+
+A: sudo nano /etc/hosts 
+
+works for Lion

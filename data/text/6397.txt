@@ -1,0 +1,24 @@
+Q: Chrome Mac gesture conflict with horizontal scrolling I am running Chrome 14 on OSX Lion. 
+I swipe 2 fingers horizontally to scroll a web page horizontally, for a page that is too wide.
+When I swipe right, it works fine. When it swipe left it works for a second then I think it's trying to click on the browser's "back" button.
+I'm not sure who's at fault, but there is some kind of conflict.
+
+A: Turn off AppleEnableSwipeNavigateWithScrolls.
+In your terminal, run this command: 
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
+
+Then quit Chrome if you have it running, re-launch it and tada, no more navigate-back-on-scroll-left.
+If you ever need to turn it back on again, just set it to TRUE: 
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool TRUE
+
+Picked this up over here.
+
+A: You can disable chromes gestures by going to System Preference > Mouse OR Trackpad > More Gestures > and uncheck Swipe between pages. 
+I still love gestures so I downloaded BetterTouchTools which allows me to make the gestures I want. I disabled all apples gestures then created my own. You can get very custom with gestures this way. Or if you prefer, leave some of apples gestures on and use BetterTouchTools for the more custom ones. 
+Oh, BetterTouchTools is free :)
+
+A: On Safari in Lion, the horizontal scroll and browser back gestures conflict, but a single swipe doesn't activate them both; left-swiping when there is room to scroll scrolls then stops at the edge of the page. Left-swiping when the content is already at the edge of the page triggers the back action. If Chrome behaves differently, I suspect the conflict is in Chrome.
+
+A: If you don't have a problem changing your back and forth gestures, that will solve the problem. The real issue is that Chrome's back and forward gestures are a bit too sensitive at this point. They're still working on it because Apple switched it up on them and changed the gesture defaults in Lion. Back and Forward used to be three fingers (if I'm not mistaken) so they have to rewrite some things.
+
+A: I realized that I installed TouchpadSwipe Chrome extension to get the back and forward page functionality on my other windows machine, and it synced to my mac chrome. Once I disabled that it went back to normal

@@ -1,0 +1,33 @@
+Q: Why won't iTunes stream 320 kbps audio across a network? My iTunes library, that's shared on our network, has some songs that have a bit rate of 320 kbps.  These songs will not play when I try to play them from a client computer - accessing them through the Shared library.
+Why won't they play?  Is there a work around besides downgrading the bit rate?
+
+A: Do you know for sure it is the 320 kbps that is keeping the songs from being played? Can you play songs with a lower bitrate successfully? 
+There are three reasons I can think of that would make a song not play in Shared Library: 
+
+
+*
+
+*You have reached the 5-computer limit
+on Shared Library. Only when the
+number of concurrent connections gets
+back to less than 5 you will be able
+to connect and play the songs.
+
+*The remote iTunes has not been
+authorized for that Apple ID and the
+song you are trying to play has DRM
+protection (i.e., it is an Audible
+book or it was purchased way back
+when Apple only sold DRM-protected
+songs).
+
+*The song is listed on the Shared
+Library (and on the "server" iTunes
+Library) but it is pointing to a file
+that does not exist on the computer's
+file system or is out of reach.
+
+
+I hope this gives you additional ideas to look into. 
+
+A: On the clients, try to switch the 'Streaming buffer size' (Preferences > Advanced) to 'Large', it may help if it's a bandwidth problem.

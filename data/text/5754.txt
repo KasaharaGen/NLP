@@ -1,0 +1,13 @@
+Q: Is Apple's Screen Sharing tool secure? I've been using Apple's screen sharing tool to connect from a client to an Xserve for a while and it's just occurred to me that doing so might be quite a bad idea!
+I know VNC is inherently insecure and that it is possible to tunnel it over SSH, but does Apple's Screen Sharing tool use any secure transport protocol? If not then surely I've been typing in server passwords on my client and they have been transported over the network in plain text.
+Anyway, I now use the Server Management tools and SSH when possible, but I'm sure there will be times when I still need to use VNC.
+
+A: From here:
+
+Mac to Mac screen sharing, using the username/password, is done in a secure manner.
+Using a VNC client and the "VNC viewers may control screen with password" is not secure.
+
+
+A: john, are you looking for a solution for business or personal use?
+for personal use, most of the free hosted solutions are acceptable. most of them use SSL. 
+if it is for business, i won't agree on putting all of my company's data in the third-party cloud server. I would deploy a screen sharing appliance behind the own firewall to have a private cloud. Have you taken a look at Bomgar and RHUB? They are both cross platforms. Bomgar's functions are more sophisticated, but RHUB's pricing is 10% of Bomgar.

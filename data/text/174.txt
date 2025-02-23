@@ -1,0 +1,76 @@
+Q: How can I mount an SMB share from the command line? I would like to mount an SMB network share from the command line (terminal); how would I go about that?
+I am using Mac OS X 10.6.4.
+
+A: What worked for me to make them mount during boot:
+==> /etc/auto_master <==
+#
+# Automounter master map
+#
++auto_master        # Use directory service
+/net            -hosts      -nobrowse,hidefromfinder,nosuid
+/home           auto_home   -nobrowse,hidefromfinder
+/Network/Servers    -fstab
+/-          -static
+/-          auto_smb          # add this line <**********
+
+==> /etc/auto_smb <==         # Create this if it doesn't exist <****
+/(not Volumes)/Public   -fstype=smbfs,soft smb://(user):(password)@192.168.140.5/data/Public
+/(not Volumes)/ WGroleau -fstype=smbfs,soft smb://(user):(password)@192.168.140.5/data/Students/wes_groleau
+
+For some reason, neither the short name nor the FQDN of the server worked, so I used 'ping (name) to get the IP.  In other words, DNS would resolve the name, but mount_smbfs could not.
+And I could not put the mount point in /Volumes, because boot up would delete it.
+One quirk:  After this worked fine for a few days, for two or three days, LibreOffice, Adobe Reader, and Finder could not find ONE of the two shares, but the shell and TextEdit had no problem.  After two or three days of that, it mysteriously started working again.
+If you do these edits and don't want to reboot, you can mount them with 'auto mount -vc'
+Update: More quirks.  (1) There are two WiFi systems here, and one of them has no access to the Windows servers.  A couple of times a week, one or both of the routers goes down.  If the "good one" goes down and the MacBook automatically connects to the other one, instead of telling me the drive is off-line, the SMB drivers say "Too many users."  (2) A couple of times a week, I get "permission denied" when I try to access my Windows files.  This typically lasts about a half-hour, during which I can go to a windows bar and log in and see files with the same ID and password.
+
+A: I would add that if you have a username of the form "workgroup\username", you should mount it like this :
+mount -t smbfs "//WORKGROUP;username:password@MACHINENAME/SHARENAME" /SomeLocalFolderOfChoice
+
+Source : adapting an example from here
+
+A: You should take a look at mount’s help: 
+man mount
+
+Upon closer inspection you’ll see that the filesystem’s type is:
+mount -t smbfs //username:password@MACHINENAME/SHARENAME /SomeLocalFolderOfChoice
+
+Password (and theoretically username) are optional.
+The result of the above command will be no output (if all went ok), but a cd /SomeLocalFolderOfChoice, should produce the remote results. Please note that SomeLocalFolderofChoice must exist.
+You can also use mount_smbfs to replace the mount -t smbfs. 
+
+A: Using AppleScript is convenient because it stores your passwords in the Keychain.  Bash function:
+function mymount
+{
+    osascript <<EOF
+mount volume "smb://user@fqdn1/volume1"
+mount volume "smb://user@fqdn2/volume2"
+EOF
+}
+
+Invoke ‘mymount’ from bash, enter passwords via the standard Keychain popup, and if all goes well the requested volumes will be mounted in /Volumes.
+
+A: Use the open(1) command and a URL:
+open 'smb://username:password@server/share'
+
+Pros: Creates the mount point in /Volumes for you.
+Cons: Requires the Finder to be running.
+
+A: You could easily achieve this using mount_smbfs (which is, actually, a wrapper for mount -t smbfs) : 
+mount_smbfs //user@SERVER/folder ./mntpoint
+
+Optionally, add the workgroup :
+mount_smbfs -W workgroup //user@SERVER/folder ./mntpoint
+
+You could, of course, change the ./mntpoint (for something like /Volumes/smb).
+After doing this, simply go to ./mntpoint to browse your data.
+To unmount, using the following command : 
+umount ./mntpoint
+
+
+A: old post but what about mounting like this:
+smb://no_username:password@MACHINENAME 
+
+like the time machine drives?
+
+A: Important to allow port 445 (TCP) to smb communication. If you don't access it, your firewall block it!
+You can connect to samba use with the following commands in mac os: mount_smbfs or mount or use GUI see: open Finder click Go and select the Connect to Server menu item, type smb://yourdomain/sharedfoldername and press connect button.

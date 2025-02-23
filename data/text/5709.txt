@@ -1,0 +1,32 @@
+Q: Have to reconnect to WiFi every time computer goes to sleep I recently purchased a new MacBook Air (2011) with Lion preinstalled. There is this persistent and incredibly annoying problem that is occurring with the WiFi. Every time I close the lid or let the computer go to sleep, and then begin reusing it, the popup comes up asking me to select a network to join. IT remembers the password, it just wont connect me until I chose a network. This happens every time. Things I've tried:
+
+
+*
+
+*Restarting computer
+
+*Turning WiFi on and then off
+
+*Changing encryption of the wireless (even though it happens to all wireless networks)
+
+
+Has anyone else discovered this problem? Has anyone found a fix for it? Or is it just a bug with Lion that hasn't been fixed yet?
+
+A: I had the same issue with my 2011 MacBook Air with Lion, and I think it had to do with having changed security preferences on my preferred wireless network. I went to System Preferences > Network > Advanced > WiFi and deleted all existing Preferred Networks, then re-added them. So far, so good. It joins my preferred network automatically after awakening from sleep mode.
+
+A: Bluetooth interference can cause this. Try turning off the Bluetooth via System Preferences and see if the problem goes away.
+If that is the problem, the only solution I know is a) stop using bluetooth or b) change your wifi frequency to 5GHz.
+This is a rare example of a design-fault in the MacBook line, all metal models seem to suffer from it.
+
+A: Check your network settings. If you're using DHCP with manual address, change it to just plain DHCP and see if that fixes it. I've read reports of people with similar problems resolving it this way
+
+A: I was having the same issue on my mid-2009 MacBook Pro. None of the answers or tips mentioned here seemed to do anything for me... but I did find a thread here that suggested resetting the SMC. I did so, following these instructions, and the problem seems to be fixed.
+
+A: Following is a solution that costs money, but will actually work.  The above solutions from other posts appear to work, but ultimately every one of them I tested, some of which initially appeared to work, but ultimately the issue returned within a day or hours.
+I can confirm that if you have an AT&T 2WIRE wireless router (which is required with Uverse, and various models of Apple laptops (MB, MB Air, MB Pro) with 10.6 or 10.7, that this issue occurs (unable to reconnect).
+One week later, I can confirm a sustained solution, which is to purchase an Apple wireless router (ex: Airport Extreme), wire it into one of the LAN ports on the existing router, turn off wireless on the existing (2WIRE in my case) router, configure the Apple router in bridge mode.
+This was a complete fix for all of the laptops we have.  I cancelled my order to Charter to replace uVerse.
+
+A: When this happens to me, it just means I need to add the network to my list of Preferred networks. Here's how:
+Open System Preferences-> Network-> Wifi-> Advanced-> Wi-Fi. Click the [+] button under the Preferred Networks list. Click Choose a network... and select the one you want to connect to automatically.
+While you're there, it's a good idea to remove networks that you no longer need from that list.

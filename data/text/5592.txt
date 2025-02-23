@@ -1,0 +1,122 @@
+Q: Unsaved Files in OS X Lion Where do unsaved files go in Lion?
+I quit TextEdit without saving since I had no intention of saving, but with autosave the file still got save somewhere since when I reopen TextEdit the file I was working on is there (even tough I disabled resume >.<). So I was wondering were did that file get saved?
+
+A: The primary place to look for unsaved changes for TextEdit is ~/Library/Containers/com.apple.TextEdit/Data/Library/Autosave Information/
+It depends on the state of the document, and it is complicated (since unsaved changes could also exist once the file has been saved and named the first time). 
+
+Unsaved documents
+The first type — 
+the "behind the scenes" starter files — start as temporary files in /private/var/folders/… and are eventually stored in ~/Library/Containers/. They are named untitled and untitled 2 and so on. Each app gets it's own directory, and for TextEdit - you'll look for a file like ~/Library/Containers/com.apple.TextEdit/Data/Library/Autosave Information/Unsaved TextEdit Document.rtf
+These untitled documents do not get a proxy icon in the title bar — just the name chosen by TextEdit:
+
+You don't get any versions, locking or notification of changes other than the normal undo/redo buffer with these unsaved files. 
+⌘+S
+The first Save enables the versioned storage and all that goes along with it. This is when the file gets a more familiar location in the file system, a chance for a name other than untitled X. The proxy icon is the clue this is no longer an AutoSave document.
+
+The file is no longer stored solely in ~/Library/Containers/ — the first edition is saved wherever the user chooses in the file open/save dialog. 
+Edition(s) to a saved document
+Any modification to a saved document will cause the word Edited to appear in its title bar:
+ 
+The file above has: 
+
+
+*
+
+*the version that was explicitly saved by you 
+
+*plus edition that is automatically saved by the System.
+
+
+At this point, you have the full range of tools to roll back changes with that file:
+
+
+*
+
+*the undo buffer
+
+*the auto save or versions data in ~/Library/Containers/
+
+*the last saved state in the filesystem
+
+*the versions store from /.DocumentRevisions-V100
+Saving a version will cause the word Edited to disappear from the title bar. This is where a versions menu will be shown if you hover around the file name and an entire versions infrastructure takes over. I'll leave the mechanics of that for another answer - this is long enough. 
+
+
+Lots of other files get updated when TextEdit creates and modifies files:
+
+
+*
+
+*the list of recent files
+
+*the list of currently open files for when the app itself quits
+
+*the state of the app to replay in case the Mac reboots (even unexpectedly).
+
+
+The System approaches to auto save and versions should ensure that: 
+
+
+*
+
+*data is never lost when TextEdit quits normally
+
+*no more than a few seconds of edition are lost if the application quits unexpectedly.
+
+
+A: According to John Siracusa's review of Lion it is saved in /.DocumentRevisions-V100
+
+A: According to Apple's developer documentation, any new documents that you haven't yet saved explicitly are autosaved in ~/Library/Autosave Information:
+
+Automatic document saving is supported by the implementation of autosaving in place. Autosaving in place and autosaving elsewhere both protect against the user losing work due to application crashes, kernel panics, and power failures. However, autosaving in place differs from autosaving elsewhere in that it overwrites the actual document file rather than writing a new file next to it containing the autosaved document contents. (Autosaving in place performs a safe save by writing to a new file first, then moving it into the place of the document file when done.)
+The document architecture still uses autosaving elsewhere to save untitled documents that have content but have not been explicitly saved and named by the user. In this case, untitled documents are autosaved in ~/Library/Autosave Information. In addition, NSDocument saves earlier revisions of documents elsewhere, giving the user access to previous versions.
+
+The part that says “In addition, NSDocument saves earlier revisions of documents elsewhere” refers to the hidden .DocumentRevisions-V100 folder I assume.
+So if you've had the new document open sufficiently long for it to have been autosaved more than once, this all should imply that the latest version is stored in a file in ~/Library/Autosave Information while earlier versions have been stored in the .DocumentRevisions-V100 folder (at the root of the drive on which your home folder resides).
+Side note: this does leave me wondering whether the files in ~/Library/Autosave Information also get automatically deleted at some point, to avoid piling up these types of quick TextEdit documents you had no intention of saving. The Library is not a folder that inexperienced users should have to muck about in; and as far as I understood, Lion now even hides it by default. I presume its contents also don't show up in Spotlight. If the files don't get automatically deleted, the Desktop or the Documents folder would have seemed to be better destinations for autosaving.
+
+A: It seems the location for untitled, unsaved files varies from application to application. Use spotlight to find your unsaved temporary file, regardless of which autosave-enabled application you used to create it.
+
+
+*
+
+*Start the autosave-enabled application
+
+*Navigate to the window of the untitled document you want to locate in the file system
+
+*Add a distinct string (e.g., zyzyx)
+
+*Quit the application
+
+*In spotlight (command+space) type zyzyx
+
+*your modified file should come up. Hover over it with the mouse to see a preview. Command click on the file to go to the enclosing folder in Finder.
+
+
+A: ~/Library/Containers
+This directory serves multiple purposes, some of which may be not yet documented by Apple. 
+Untitled, Unsaved documents for supporting applications
+Applications such as Preview and TextEdit.
+Example
+Copy an image to your clipboard. Open Preview, close all windows, use the New from Clipboard command, quit. 
+Open TextEdit, close all windows, type something in a new window, quit. 
+In Terminal, run two commands: 
+ls -@l ~/Library/Containers/com.apple.Preview/Data/Library/Autosave\ Information
+ls -@l ~/Library/Containers/com.apple.TextEdit/Data/Library/Autosave\ Information
+Unsaved… files will be listed.
+System-saved versions of user-saved files, where the file system or volume does not support permanent version storage
+File systems such as MS-DOS (FAT); volumes mounted using AFP 3.3 or SMB; and so on. 
+Example
+Make an AFP or SMB connection to a file server. Use Preview to open an image on that server, edit that image, quit without saving a version, disconnect from the server. 
+In Terminal, run a command: 
+ls -lrt ~/Library/Containers/com.apple.Preview/Data/Library/Autosave\ Information
+At the foot of the list will be a directory that contains the version automatically saved by the System. 
+In the same network environment: if you re-open Preview, the system may reconnect to the file server. Then in a version browser view of the remote file, the timeline will include a local file. 
+(I could go into greater detail, but it would be off-topic from the opening question.)
+Other purposes
+Beyond the two purposes noted above, ~/Library/Containers may have other purposes. 
+Hint
+Allow the System to manage files in these areas. 
+Avoid dataloss; do not attempt unnecessary changes to ~/Library or its subdirectories. 
+
+A: I found my files in by doing a TM backup and was able to recover some of these unsaved edits (but not the one I was looking for). I found the files in the ~/Library/Containers/com.apple.TextEdit/Data/Library/Autosave Information/ folder.. So thanks and a TM back up might be of help for some..

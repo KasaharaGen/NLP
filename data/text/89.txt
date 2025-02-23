@@ -1,0 +1,48 @@
+Q: How to automount a network share once OpenVPN has connected? (Using Tunnelblick) Does anyone know how to automatically mount a network share once a VPN connection using Tunnelblick has connected?
+Right now I have to connect and then do a cmd+K in the finder to connect to the AFP share. It'd be nice if it would connect automatically.
+The share doesn't have a password (TimeCapsule without any passwords, and no, not using it for backup, we use it for a fileserver).
+
+A: 1.
+Edit the file /Applications/Tunnelblick.app/Contents/Resources/client.up.osx.sh and add these commands at the end of the file, just before exit 0 :
+su USERNAME -c '
+mkdir /Volumes/TimeCapsule
+mount_afp afp://afp_username@server/volumename /Volumes/TimeCapsule
+'
+open /Volumes/TimeCapsule
+
+Replace USERNAME with your username on the system.
+2.
+Then add the following at the end of /Applications/Tunnelblick.app/Contents/Resources/client.down.osx.sh :
+umount /Volumes/TimeCapsule
+
+3.
+Do not forget to check the set nameserver option for your configuration : 
+
+Warning : Configuration files client.(up|down).osx.sh are executed for every connections made using OpenVPN.
+This could also be made using launchd for watching if the vpn connection is up, but I don't know how to use launchd.
+
+A: I have just succeeded to auto-mount NFS after having connected VPN and auto-unmount before discconect with Tunnelblick (3.7.3 on macOS High Sierra).
+At first, I had the same problem with Cameron Conner. Still, Studer's answer was quite helpful for me.
+Instead of Studer's client.(up|down).osx.sh, I placed two lines in the .ovpn:
+up (path to your connected.sh)
+down (path to your pre-disconnect.sh)
+
+Then create and edit these connected.sh and pre-disconnect.sh.
+connected.sh:
+#!/bin/sh
+sudo mkdir /Volumes/NFS
+sudo mount -P 192.168.0.1:/share /Volumes/NFS
+
+pre-disconnect.sh:
+#!/bin/sh
+sudo umount /Volumes/NFS
+
+I don't know about TimeCapsule manipulation. So above process is about NFS. I think you can arrange it for TimeCapsule.
+I think the point Cameron and I got stucked was su or sudo. And, to avoid password is another problem. My solution to that was sudoers.
+Edit /etc/sudores with visudo. Modify the %admin entry from:
+%admin ALL=(ALL) ALL
+
+to:
+%admin ALL=(ALL) NOPASSWD:ALL
+
+Unless your account is not an admin, it should work.

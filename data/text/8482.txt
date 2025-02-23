@@ -1,0 +1,46 @@
+Q: Should I expect battery life on an iPhone 4S to be significantly worse than on a 3GS? I just upgraded from a 3GS to a 4s and my battery life is dramatically worse. I wasn't expecting it to be the same (though I was hoping that it might even be better), but I'm seeing a big difference. Since I have the same settings as I did previously, I don't think the problem has to do with any configuration differences (for example, I have email set to check manually on both). I was even running on iOS 5 on the 3GS, so I can't really point to that either. Siri is one software bit which is 4s only, but I can't imagine that is the culprit as I don't think it would always be running.
+I've restarted the phone to make sure that no out of control process is running in the background.
+So is the iPhone 4s just that much worse for battery life or do I have questionable hardware? Is there any easy way to troubleshoot (can Xcode be used to measure usage)?
+
+A: It's anecdotal, but John Gruber (of Daring Fireball) who tends to get a lot of feedback from Apple users, suggested on Twitter that it's a problem for some non-zero percentage of users:
+
+
+And my iPhone 4S's battery lasts HALF a day, where the 4's battery lasted 1,5 days
+
+@JMoVS I know you're not alone, that other 4S users are seeing short battery life, but that's not normal. Mine lasts as long or longer.
+
+So it sounds like you may have got a dud. If your battery life is substantially worse than a 3GS, it may be worthwhile asking to have your unit swapped for a fresh one.
+
+A: Every time there's a new iPhone, a certain subset of people immediately claim that the new one's battery life is way worse than the old one. Fact: every iPhone's battery has been better than the one preceding it. Not saying your problem isn't real - it probably is - but one of two things is causing it:
+
+
+*
+
+*a software issue
+
+*a defective battery specifically in your phone
+
+
+Since no one here can help you with 2., we're all going to suggest the basics that Apple helpfully already summarized for us: 
+
+
+*
+
+*http://www.apple.com/batteries/iphone.html
+And I'd add that any battery-draining issues in iOS 5.0 are probably going to be fixed in the inevitable version to follow.
+
+A: So it sounds like this is likely a known issue, as described by this article in the UK Guardian.
+In case anyone else comes across this and is curious about some of the symptoms I've seen, here is a bit of info that might be useful:
+
+
+*
+
+*I had my phone go from 90% charge to 60% charge in 90 minutes while in airplane mode and without using the phone (no apps running, no location services being used, no iPod usage).
+
+*The phone gets quite warm when the battery is draining. Much more so than I experience when doing anything else. Given the behavior, I'd guess that it gets into some mode where an app gets out of control and is fully pegging the CPU, even though as far as can be determined, nothing is/should be running.
+
+*This may be a red herring, but my phone won't sync. I don't know if this is related, but doing either a restore or trying to sync with iTunes while connected to a MBP fails. I can only get things to work with "Transfer Purchases". I sync fine with my iPad running iOS5, so I don't think the problem is on the iTunes side. This may be an unrelated problem (though I hope it isn't as there is a chance I'll get a fix for the battery problem).
+
+
+Hope this helps others who run into a similar problem and are trying to troubleshoot it. I think the easiest way of testing is using airplane mode and making sure location services are not running and if you are still seeing rapid battery drain, there is no good reason that should be happening in that mode, no matter how you have your phone set up.
+NOTE: And now confirmed by Apple.

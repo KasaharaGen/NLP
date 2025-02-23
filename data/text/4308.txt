@@ -1,0 +1,20 @@
+Q: Hard wired link between webcam and led indicator? In light of stories about stories about secret monitoring over laptop webcams (such as this one or this one), I wonder about the reliability of the green LED next to the camera that indicates that it's in use.
+Is there a known hard-wired link between the camera on a MacBook Pro and the indicator that is impossible to circumvent in software?
+Would such a thing be possible given the hardware of the camera?
+
+A: I just read another article about that on Ars Technica
+
+
+*
+
+*Yes the LED is hardwired
+
+*But it can still be bypassed
+
+
+Only downside of this article, it was only tested on "old" (late PPC, early Intel) macs. 
+
+A: Today I stumbled across a proper publication regarding this topic: Researches from the Johns Hopkins University recently published the paper "iSeeYou: Disabling the MacBook Webcam Indicator LED", showing that they were able to deactivate the iSight status LED on older MacBooks even without root access by replacing its firmware.
+It appears they were able to do so by bypassing the standby signals sent by the USB interface; thus while the LED gets the order to "standby", the camera stays on.
+
+A: Correct. It is not possible for someone to disable this. When the logic board or LCD panel fail, or sometimes after a severe power outage, this light can get stuck on, requiring hardware service, or a reset of certain components. Keep the tape if you like, but the techs will knowingly shake their head and chuckle.

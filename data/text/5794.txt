@@ -1,0 +1,25 @@
+Q: What is the quickest way to setup Instiki on Lion? A few months ago I setup an Instiki wiki using Snow Leopard.
+It took me quite a while, as I had to work some black magic to understand which version of ruby (plus gems/rails) I was supposed to install/update.
+Now I've upgraded to Lion after formatting (bad idea huh?), and I'd like a new instiki up and running. So I thought: instead of wasting another day in trial and error I might ask if someone smarter and more knowledgeable has a quick and dirty way to do it (e.g. avoiding installing xcode tools!).
+Cheers!
+p.s. Instiki is very cool http://www.instiki.org/show/HomePage, especially if you like maths. Its user-friendliness is very far from Tiddlywiki, but I think it's much cooler.
+p.p.s. please feel free to retag appropriately.
+EDIT As pointed out, some more info might be useful.
+When I try to run instiki (contained in a folder named taccuino) this is what it tells me
+./Desktop/taccuino/config/../config/preinitializer.rb:20: Bundler couldn't find some gems.Did you run `bundle install`? (RuntimeError)
+from ./Desktop/taccuino/config/boot.rb:28:in `load'
+from ./Desktop/taccuino/config/boot.rb:28:in `preinitialize'
+from ./Desktop/taccuino/config/boot.rb:10:in `boot!'
+from ./Desktop/taccuino/config/boot.rb:124
+from ./Desktop/taccuino/script/server:3:in `require'
+from ./Desktop/taccuino/script/server:3
+from ./Desktop/taccuino/instiki:6:in `load'
+from ./Desktop/taccuino/instiki:6
+
+
+A: See here for proper instructions.
+But, in brief,
+ruby bundle
+./instiki --daemon
+
+I don't think there's anything quicker than that.

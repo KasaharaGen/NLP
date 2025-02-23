@@ -1,0 +1,10 @@
+Q: How can I use Google shortening service (http://goo.gl) in Twitter for iPhone? I tried to configure Google service as custom URL shortening service by adding this url http://goo.gl but it's not working.
+Any idea ?
+
+
+
+A: You need to add a wildcard to the URL to tell the application where to insert the original URL.
+Your custom url should look like this: 
+http://myshortener.com/shorten?url=%@
+
+However, it looks like this isn't as simple as this on goo.gl. I'll update when I find a way without any proxy-site or other things.

@@ -1,0 +1,41 @@
+Q: How do I connect my Mac to Wi-Fi automatically? I have a Macbook Pro running Mac OS X, but it doesn't connect to Wi-Fi automatically. If I turn Wi-Fi on, I then have to manually select the network. Is there some way to change this behaviour?
+
+A: I have spent about 6 years with 3 Macs with this kind of problem unresolved. I did not have it "in the very beginning", with some ancient versions of Mac OS X etc. Finally decided to look closer and it looks like it could be some "bug" that is related to the extra network settings that programs like VMWare Fusion, VirtualBox etc. leave on the Mac.
+Essentially, OS X thinks the Mac is connected to these networks and does not need the Wi-Fi. Luckily, the automation service cron from the very old days seems to be still working in current Macs (I've read some complaints it doesn't), and I got it to execute a script to connect to Wi-Fi if disconnected. It is a two step process. First, run sudo crontab -e in Terminal, and paste in that editor:
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=user
+HOME=/
+*/1 * * * * /usr/local/bin/macWiFireconnect.sh
+
+The most important line is the last, which executes macWiFireconnect.sh every one minute, you can change the 1 if you want. Then, the executable script macWiFireconnect.sh looks like this:
+#!/bin/bash
+SERVER=8.8.8.8
+ping -c2 ${SERVER} > /dev/null
+if [ $? != 0 ]
+then
+    networksetup -setairportnetwork en1 WifiName WifiPassword
+fi
+
+
+Also enable the script to be executable.
+sudo chmod 700 /usr/local/bin/macWiFireconnect.sh
+
+So, the script runs the networksetup command if it cannot connect to Google.
+
+A: Mac OS X should automatically join any known networks, as reported in the network applet.
+After you select the Airport service in the list of the network connection, you can click on the Advanced button, which will show a dialog that allows you to select your preferred networks, and to sort them.
+ 
+
+The Mac will not automatically connect if it doesn't find any of the preferred networks, or if the preferred network requires a "password" that is unknown to the Mac.
+
+A: In the Wi-Fi preferences, go into the advanced tab and drag your home Wi-Fi network to the top of the list. Remember to lock your settings once you are done.
+This should auto-connect once you switch on your AirPort.
+
+A: This helped for me... On the list of networks, my home network was actually listed twice. One instance was on the top, and the second way down the list. I moved the second instance to the top (both instances now at the top) and it now connects to the home network automatically.
+I couldn't figure out how to delete the old instance, but it seems fine so far for both of them to exist.
+Hope this helps
+
+A: macOS Ventura 2023
+System Settings > Wi-Fi > Choose ... of the network you wanna connect automatically > Choose Auto-Join
+

@@ -1,0 +1,42 @@
+Q: Why is the menu bar showing the VPN "Disconnecting" animation  forever? You know how when you disconnect from a VPN, you get a little scrolling "Disconnecting..." notification in the upper right notification area?
+
+Well, I'm getting that, but it never goes away. It's been "Disconnecting" now for 20 minutes. The VPN is not, actually, connected anymore, but the UI won't let me reconnect now.
+The Network preferences panel shows the same problem:
+
+The console shows that the disconnect did, actually, happen:
+
+Somehow the only problem is that the UI is convinced that I'm still disconnecting, which makes it impossible to connect again.
+
+A: If you're using a PPTP VPN, try manually killing the "pppd" process.
+sudo killall pppd
+
+If that doesn't solve it, you may need to add a -9 to forcibly kill the process. You should try without first though.
+sudo killall -9 pppd
+
+
+A: Try killall configd.
+After this you may need to sudo killall SystemUIServer.
+(thanks, Avner. I haven't verified this. Please upvote if it helps you).
+
+A: Try manually killing the "racoon" process, either through Activity Monitor or by running: 
+$ sudo killall racoon
+
+
+A: What is the status shown in the Network pane of System Preferences? You can connect and disconnect your VPN from there. Re-opening the connection from there my resolve the problem. You can also toggle the visibility of the VPN menu from that pane, and see if that helps.
+
+A: The SystemUIServer* process runs most of the stuff in the the menu bar.  Kill it and it may solve your problem if it's just a UI glitch and not something deeper.
+killall SystemUIServer
+* /System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/SystemUIServer
+
+A: While holding the ⌘-key, try dragging the VPN icon off of your menu bar.
+
+A: I've managed this by creating two different "Locations" in System Preferences > Network. One of them (named "work") includes the VPN connection and the other ("home") does not. Switching locations while the VPN is stuck "Disconnecting" resolves the problem for me. 
+Incidentally, I've also configured the "home" location to use a static IP address and port-forwarding to improve my legal peer-to-peer filesharing experience.
+
+A: Maybe you could try deactivating and reactivating the service. In the Network section of the System Preferences, select the VPN, click the gear logo at the bottom of the list, and click "Make Service Inactive":
+
+Then do the same thing again to reactivate it and see if it works.
+
+A: I've had this happen to me in the past, and if I remember correctly the only way to get rid of that was deleting the VPN entry with the minus sign, restarting and adding it back.
+
+A: You should check if restarting your computer helps.

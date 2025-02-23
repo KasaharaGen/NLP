@@ -1,0 +1,14 @@
+Q: Lion ISO size VS. Snow Leopard The DVD of Snow Leopard was something like 7.09gig in size, and the Mac Store download of the new Lion install is <4gig.
+Why the big difference in size? 
+Since Snow Leopard was a physical disc, did it include extra drivers or such, where the d/l of Lion is 'just' the base OS?
+
+A: *
+
+*The Developer Tools (760 MB) included on the Snow Leopard DVD are not part of the OS X Lion installer. They are a free separate download in XCode 4.1
+
+*A whole whackload of printer drivers (~400 MB) are not included in OS X Lion. Presumably they are downloaded when a new printer is added.
+
+*The Snow Leopard DVD includes a Library folder (1.3 GB) with frameworks etc. needed because the DVD is bootable, while the OS X Lion installer creates a bootable partition for installation.
+
+*That said, the Essentials.pkg is actually bigger in OS X Lion: 1.35GB vs. 882 MB
+Those are the major differences that jumped out at me, I'm sure there are other minor differences I've glossed over. The actual "Installation" package on the Snow Leopard DVD is ~4 GB, the OS X Lion installation DMG is 3.74 GB.

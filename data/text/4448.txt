@@ -1,0 +1,10 @@
+Q: Connections to some sites time out from OS X but not from Windows, how to diagnose? For the past couple of weeks I have noticed some sites take longer to finish loading. GMail would be one example; after the site is loaded and fully usable, the spinning indicator in Chrome’s tabs will remain for a couple of minutes. Safari behaves the same. Right now reddit doesn’t load at all. Pinging www.reddit.com results in 100% packet loss. Their address resolves to an Akamai IP, so if everything delivered via Akamai is timing out, that would explain why quite a lot of sites are affected.
+Loading those same sites from my boot camp partition works like a charm, same goes for my iPod, so the router as well as the ISP can be ruled out as the reason for this. What can iIdo now to diagnose the problem?
+
+A: "Do pages often "stall" and then time out halfway through loading? (And then you hit the "stop" button, and refresh, and magically, they appear?) I just had this happen, and fixed it by manually turning "off" IPV6 (from the default setting of "Automatic") in the Advanced area of the Network settings control panel. "
+I found this tip to work in conjunction with setting my DNS to google or freeDNS.
+
+A: Safari has a debug option to let you inspect the hundreds of elements that have to load for large sites. 
+Look at the timeline and errors parts first. 
+Also, you might want to check for any extensions or other toolbars or code that runs within safari to filter the data before safari renders your page. 
+A third tip would be to make a new user on the Mac to be sure cookies or local storage on the Mac isn't contributing to the gmail wep app problems. 

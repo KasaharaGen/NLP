@@ -1,0 +1,52 @@
+Q: Finder search does not find all relevant documents MacOS 10.6.8 I'm having problems with the search in Finder windows in MacOS X 10.6.8.
+If I'm typing a search keyword in the textbox in a finder window and search for "file name" or "content", I get no or only a few results, although there should be much more results.
+Is this a bug in OS X?
+e.g. if I activate the search for "file name" and type "a" in the text box, I get 8 results.
+When I search for "b" instead, I get 61 results, and 60 of them have an "a" in the file name!
+Is this a known bug?
+Is there a solution?
+
+Edit: I've tried to 
+
+
+*
+
+*rebuild the spotlight index with sudo mdutil -E _PathOfPartition_
+
+*repaired permissions on the startup drive
+
+
+... but no change - Finder/Spotlight does not list files as results, although they exist and match the search criteria.
+
+A: On my system, typing successive letters always shrinks the results menu.  Have you tried rebuilding your Spotlight index?  Open terminal in an admin account and type:
+sudo mdutil -i on "/Volumes/YourHardDiskNameHere"
+
+, authenticate with your password, and go get a coffee.
+Edit:
+Another way to accomplish this is to open Spotlight preferences to the privacy tab and drag your HDD icon from finder onto the "Prevent spotlight..." list.  Close preferences (may not be necessary - ?). Open it again to the same tab and use the +/- buttons to delete the disk.  Re-indexing should start.
+
+A: After long research and tests I finally found the solution: 
+I'm using 2 partitions - one for the system files (and users directories) and one for my data. 
+Shortly I created a new user account for an apple service technician and wanted to remove the read permissions for my data partition.
+I did this with BatCHMOD and it apparently I unintentionally made the new (temporary) user account the owner of all my files (with no read permission!).
+So I had read & write permissions for my files, however Spotlight was not able to find them.
+
+
+*
+
+*I changed the owner of the whole partition (and its contents) back to my account and
+
+*removed the temporary user account after the repair
+
+*rebuilt the index with sudo mdutil -E /Volumes/*
+and now finally Spotlight is able to filter and find all files
+:)
+remark: there are 2 facts which are still confusing for me:
+
+
+*
+
+*spotlight seems to be unable to find files/folders, which I do not own?!
+
+*a one letter search term for file names does not work as I would have expected, as it does not list all files which contain the letter in their name! (have to dig deeper about this topic soon)
+

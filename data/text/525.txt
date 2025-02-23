@@ -1,0 +1,58 @@
+Q: How can I hide the onscreen keyboard in the iOS messaging app? When I enter the text message / SMS "app" and tap on the input field a keyboard pops up. When I'm done writing and have sent the message I would like to dismiss the keyboard again. I haven't found out how to so this.
+The best work around I have found is to leave and enter the conversation.  But surely there must be a better way. How can you do this or is it even possible at all? I have tried almost everything. 
+
+A: If you turn your phone sideways, the keyboard is slightly different and has a few different command keys on the sides. The one next to "return" will hide the keyboard. Then simply turn your phone back up and the keyboard stays hidden until you click for it to come back. I found scrolling up in the message will hide the keyboard. But this only works in the SMS screen, it does not work in apps like Google Docs, whereas turning it sideways does.
+
+A: Found new trick in ios 13 to hide the keyboard.
+
+
+*
+
+*From the page where you want to hide the keyboard, open notification area by sliding the screen from top.
+
+*Swipe right to go to Search panel from notification area.
+
+*Click on search input box.
+
+*Now just swipe up the screen from down to close search panel.
+
+*now keyboard will be disappear from the application. 
+
+
+A: Double-tapping the message area with one finger minimizes the keyboard.
+
+A: This is not possible at all right now.
+Like you said, you can back out and go in again to dismiss keyboard.
+Other option is to tap the 'edit' button on top right. That will dismiss keyboard but it will go in edit mode. When you cancel out of edit mode keyboard will come back.
+Apple should do something to easily bring up and dismiss keyboard...
+Update: With iOS 5, you can swipe messages down all the way pushing the keyboard downwards. Initially I thought, "why not just swipe down the keyboard itself to dismiss?" But now it makes sense because you start scrolling down to see previous messages and keyboard naturally goes away when you do that.
+
+A: 'backspace' then all sms's then back to conversation and the keyboard appears minimized. 
+
+A: If you have an apple bluetooth keyboard you can hit the eject button on it to close/open it, other than that I don't think you can.
+
+A: I just play around with it trying to hide it and I found out how to hide the keyboard. Pull down the conversation in a fast motion. Like swiping down the page to earlier messages quickly. The keyboard will go away. I hope it helps! :)
+
+A: You can touch a spot right between the message text field and where the messages display and drag (not swipe) down to hide it. It's a little tricky to get the right spot, you'll have to find it through trial and error. Good luck!
+
+A: This gets on my nerves too but if you tap edit in the top right, the keyboard minimises until you press cancel . Although it doesn't let you load earlier conversations, it's useful if you want to read over a long text that you're replying to or something.
+
+A: all you have to do is toggle the keyboard downward to dismiss it and it will go away just gently motion the keyboard down with your index finger and it will go away 
+
+A: When you want to dismiss the keybord you type "Return".
+
+A: Press and hold the keyboard icon and press “dock” to move the keyboard out of your way so that you can see what you are typing.
+
+A: Solution: Use the named touchesBegan like below  
+override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+}
+
+
+A: In ios 16.2, with phone in vertical position, in the text input box, touching and dragging down with one's finger hides the keyboard.
+
+A: Tap the area where the messages are with 2 fingers, this minimises the keyboard. 
+
+A: My friend simply had to reset my settings...and the keyboard panel went away
+
+A: Rather than swiping downward, take your index finger and drag downward on the left side of the message area.

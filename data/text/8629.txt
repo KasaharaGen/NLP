@@ -1,0 +1,15 @@
+Q: Detecting Jailbreaking I jailbroke my iPad several months ago, and then could not open the Bloomberg app that I use for work. ("Device has been jailbroken.") I figured that work>jailbreaking (duh) and restored my iPad. I tried to open Bloomberg once more, and it said "Device has been jailbroken."
+What does jailbreaking do that is irreparably detectable?
+
+A: As far as I know, only iBooks has the power to truly block a jailbroken device. It does this by writing an unsigned executable to the root of the system. If the device is locked (not jailbroken) it can't run. But if the device is jailbroken the executable is run and iBooks quits (crashes). But this is Apple's proprietary app and third party software isn't given this level of control. In fact, all third party apps are sandboxed and can't touch anything outside of their respective installation directory.
+So what it's it looking for? Rumors claim it looks for Cydia. But again, that would require the app have access to the system as Cydia isn't installed in your user's installation directory (/private/var/mobile/Applications) but rather at the system root 
+(/private/var/stash/Applications). And even if that were true, it would mean that once you wipe your jailbreak, it should work as expected. In this case, that doesn't look to be the case (unless it has saved the device state in the app's preferences).
+But there is still one file that maybe it can access:
+/private/var/mobile/Library/Preferences/com.saurik.cydia.plist
+Additionally, this file is carried along with your backups whether the device is jailbroken or not once it has been created.
+Either that or the app simply queried your device's state when jailbroken and has saved that information, carrying it over even after you removed the jailbreak (as mentioned above). However, if you've uninstalled and reinstalled the app after the jailbreak, then you needn't worry about that. But if you have any preference files left over from the jailbreak, you might have to clear them out. Either re-jailbreak and remove them via ssh or reinstall iOS but choose rather than setting up your device using a backup, start clean.
+This doesn't look like the only app that checks for a jailbreak. Time Warner Cable and Skype both have a history of doing this. Unfortunately still no credible information on how they achieve this. Since they are bound to restrictive APIs like all third party apps in the App Store, I don't think it's all that sophisticated.
+
+A: There are many ways to identify a computer/device. For example, your MAC address or UUID may have been blacklisted. 
+
+A: Im not sure if this is what is happening in your particular case however, as part of the JailBrake the 'hosts' file is altered so that the device will not contact apple for updates rather the JailBrake update site. I would search for articles which discuss how to reset the hosts file.

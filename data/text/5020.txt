@@ -1,0 +1,41 @@
+Q: How can I make Mac OS X run a program before shutting down? I am trying to get Mac OS X to save all my VirtualBox VMs when it reboots. I already have a script that does this, but I need OS X to run this script automatically before a reboot.
+When Mac OS X reboots, does it run /sbin/reboot?
+Or how else could this be achieved?
+
+A: Launchd sends an early warning of shutdowns to all scripts/daemons that have a StopService() subroutine. This gives your process the most time to clean up.
+Just use launchd to start the script and have it run in the background until it's time to exit.
+After the services that got the early warning are closing down, All processes get a SIGTERM signal a few seconds before the SIGKILL nukes them. 
+You could make a script that sleeps and traps SIGTERM to run your command when that time comes. You will have to see if that allows enough time in practice for the commands to execute. This avoids a little bit of coding, but not much - it's generally better to just make a daemon out of a shell script.
+
+From a historical perspective - /sbin/reboot and runlevels never existed on Darwin / OS X and rc.shutdown is deprecated along with the rest of rc now that launchd is the boss. You might be able to use rc.shutdown on tiger or earlier (I don't have one of those images handy to check presently) Lion certainly has removed all vestiges of rc.d and init.d.
+You might want to see if sleepwatcher would help in your case. I haven't used it in quite a while - but it certainly aims to solve your dilemma.
+
+A: Although Apple recommends to use "launchd", the easiest is to create a shell script using, for example, Terminal's pico:
+pico /Users/Shared/logoutHook.sh
+
+The file can contain something like:
+#!/bin/bash
+say 'Hasta la vista baby!'
+
+Then give execution rights:
+sudo chmod +x /Users/Shared/logoutHook.sh
+
+Finally, hook the script to the logout procedure:
+sudo defaults write com.apple.loginwindow LogoutHook /Users/Shared/logoutHook.sh
+
+
+If you start another application, as I haven't tested this, I think it might be useful to warn myself and you that:
+
+*
+
+*We might need to kill the shutdown signal to execute what we want;
+
+
+*Then send a new one (beware not to kill the signal sent by our own
+script)…
+
+If you want to remove the hook:
+sudo defaults delete com.apple.loginwindow LogoutHook
+
+
+If using "launchd", the idea would be to capture the SIGTERM signal. Have a look at: /System/Library/LaunchDaemons/com.apple.shutdown_monitor.plist

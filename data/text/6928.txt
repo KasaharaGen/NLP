@@ -1,0 +1,34 @@
+Q: How to manage tunnels as background processes from a shell script? I need to set up a couple of ssh-tunnels from a shell script. I've tried running them as bg tasks using:
+#!/bin/sh
+ssh -L 3000:server1:5029 me@server2 &
+ssh -L 3001:server3:3306 me@server2 &
+
+but the tunnels don't seem to work correctly when I launch them that way. 
+They work fine when I manually set them up in their own tabs, so my next idea is to have the script open new tabs in Terminal and run the commands in there as foreground processes.
+Note: this question was originally "How do I launch a new terminal tab from the shell and then run a command in it?", but I got two answers about dealing with the tunnels. For the "opening a shell" question, I found this on SuperUser, which will work , though new tabs in the background would be preferable to the foreground windows that it opens.
+
+A: I would suggest simply integrating your tunnels into your "one for whatever" connection.  You can make it easy by adding the appropriate entries to your ~/.ssh/config file:
+Host server2
+    HostName 10.1.1.1
+    User me
+    LocalForward 3000 127.0.0.1:5029
+    LocalForward 3001 127.0.0.1:3306
+
+You can then simply log in by running:
+> ssh server2
+
+The tunnels should come up and start working, leaving you with a single SSH instance in which to do "whatever".  If you need to open a second connection to server2, you might get an error, though:
+> ssh server2
+bind: Address already in use
+channel_setup_fwd_listener: cannot listen to port: 3000
+bind: Address already in use
+channel_setup_fwd_listener: cannot listen to port: 3001
+Could not request local forwarding.
+
+This doesn't hurt anything other than your eyes.  You can also set up these forwards for multiple servers by adding similar lines for other servers, and it would all happen automagically.
+
+A: This is technically not an answer to the question asked, but rather an answer to your problem as described.  The ssh command has two switches that may be useful to you:
+ssh -f -N -L 3000:server1:5029 me@server2
+
+tells ssh to hang around in the foreground just long enough to ask for any necessary passwords, and then put itself in the background, not executing any remote command but just handling the tunnel.
+If you really want this to appear in a tab then you may want a different solution.

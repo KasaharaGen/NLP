@@ -1,0 +1,8 @@
+Q: Windows taskbar in Parallels VM I'm running Windows 7 in Coherance mode in Parrellels desktop, and have the task bar visible at the bottom of the screen.
+
+Is it possible to move the task bar down, behind the Mac Dock, without turning on Dock hiding?
+Like this:
+
+
+A: As far as I know, you cannot, because the dock tells the window server to reduce the windows max height to : screen height - dock current unmagnified size. 
+So the taskbar (which is in a window), is automatically placed on top on the dock. 

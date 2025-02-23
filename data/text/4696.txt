@@ -1,0 +1,39 @@
+Q: LaCie Rugged Safe Firewire Write Speed / Faster from a windows virtual machine? I just bought a LaCie Rugged Safe Hard drive, and I am a bit disappointed by the sustained write speed that I measured. 
+Here is what I see  :
+
+
+*
+
+*sustained read speed : about 55MB/s
+
+*sustained write speed about 12MB/s if the disk is formatted with HFS/journaled
+
+*sustained write speed about 20MB/s if the disk is formatted with HFS/Not journaled
+
+*sustained write speed about 55MB/s if the disk is formatted with HFS/Not journaled, but I write to it through a Parallels Desktop virtual machine !!!
+
+
+Does anyone have a clue on a possible reason why the sustained write speed would be faster from a virtual machine?
+Also, does anyone what I should do to have the same write speed from Mac OS?
+Technical info
+
+
+*
+
+*I do not need to connect the disk as a Virtual Machine device, I need only to access it as a disk that is shared by the host OS
+
+*The disk is connected via a firewire 800 cable
+
+*It is the most recent LaCie Rugged Safe 1Go drive
+
+*Here is the output of a mount command 
+
+
+
+$mount
+/dev/disk2s2 on /Volumes/LaCie-Rugged (hfs, local, nodev, nosuid, noowners)
+
+
+A: I would be wary of accepting any sustained write speed test results from inside a VM as fact. Most VM architectures execute clever caching and other algorithms when writing to virtual disks. Try running the "dd if=/dev/zero of=/dev/sda bs=1024k" command from inside an empty Linux VM against a large virtual disk to see exactly what I mean (speeds far higher than your physical storage).
+How are you testing the firewire drive from within the VM? Is the drive being passed through to the VM as a firewire device in Windows or as some other device/drive?
+More details would be very much appreciated.

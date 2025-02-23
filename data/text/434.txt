@@ -1,0 +1,36 @@
+Q: OS X Terminal equivalent of Ctrl+Left / Ctrl+Right In Windows and Linux I could always hit ctrl+← or ctrl+→ to skip a word to the left or right in the terminal.  In text editors it seems that ⌥+←/→ works, but no dice in the terminal.  I've searched Google and found nothing except a Wikipedia page that claims ⌥+B/F does the job, but all it does is print ∫ and ƒ characters to my terminal (or ı and Ï if I hold ⇧). Any ideas? 
+
+A: As of Mac OS X Lion 10.7, Terminal maps ⌥-←/→ to esc+B/F by default, so this is now built-in for bash and other programs that use these emacs-compatible keybindings.
+
+A: if you know how to use vi you can also turn on vi line editing mode using set -o vi in your .bash_profile or at any time on the command line.  Then you can switch between vi command and insert modes.  So you could hit escape, then use the vi commands for navigating the line:
+0 = move to beginning of line
+$ = move to end of line
+w = move forward one word
+b = move backward one word
+
+Once you get to the correct position, you can use the other vi commands to enter insert or append modes, or remove characters one by one, etc.
+
+A: Open terminal, go to preferences, keyboard. On the list you'll find “ctrl cursor right” and “ctrl cursor left”.
+Change their assigned actions to “\033f” and “\033b” respectively, and you'll be able to use ctrl+→ and ctrl+← to move, without losing your alt key.
+
+A: This was driving me crazy too, however I didn't want a Terminal-specific fix as I don't use Terminal, and being able to SSH into my OSX box had to use the correct keybindings too.
+Also, personally, I didn't care about the ⌥ key as discussed earlier; I wanted to maintain the ctrl+&leftarrow;/&rightarrow; combination that I'm used to on Linux.
+To solve this problem, I added the following to my ~/.profile:
+bind '"\e[5C": forward-word'
+bind '"\e[5D": backward-word'
+bind '"\e[1;5C": forward-word'
+bind '"\e[1;5D": backward-word'
+
+Note the first two apply to bash in Terminal; the last two apply to bash in iTerm2 and incoming ssh connections. Don't ask me why the keyboard emulation is different ;)
+For the record, I was able to find what the keycodes actually were thanks to a hint from this stackoverflow answer: You can run cat > /dev/null to monitor the exact keycodes sent during a key combination.
+(Note that for me, when I run cat > /dev/null and press ctrl+&leftarrow; it produces ^[[1;5D. Your exact keycode may differ, but the first ^[ is represented as \e, as shown in my example code.)
+BTW, if you want to see all active bash keybindings, run bind -p.
+
+A: It seems that esc+B and esc+F are mapped by default to go to the beginning and end of words. Although, for my system you can't hold down esc but have to re-press it for each word.
+
+A: You can use the ⌥ key, but you have to select the option to use it as the "meta" key:
+
+Once you do that, ⌥+F and ⌥+B will work as you expect.
+
+A: Latest version of OS maps this to Spaces.  Even if you have Spaces turned off, the hotkeys can still get short-circuited in this hidden location:
+Terminal.app cursor keys: disable System Preferences -> Shortcuts -> Mission Control -> Move left a space

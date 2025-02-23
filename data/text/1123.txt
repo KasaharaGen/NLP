@@ -1,0 +1,26 @@
+Q: Web sharing, 404 On my MacBook (10.5.latest), I turned on "Web sharing" in the control panel.  The built-in firewall is turned off.  I have an index.html in my ~/name/Sites/ folder.  It's publicly readable (a+r).  I can view it in Safari (or any other browser) if I open it as a file.
+If I go to http://192.168.15.103/~name/index.html (or without index.html, or with any other file from that folder), I get a page which says simply:
+
+404 - Not Found
+
+What am I missing?  And how do I go about troubleshooting this -- where are the logs?
+
+A: For some reason Apple disabled personal web sharing from your ~/username/Sites folder in Mac OS X 10.5. To turn it back on, edit /private/etc/apache2/httpd.conf and look for the following:
+#
+# Each directory to which Apache has access can be configured with respect
+# to which services and features are allowed and/or disabled in that
+# directory (and its subdirectories).
+#
+# First, we configure the "default" to be a very restrictive set of
+# features.
+#
+<Directory />
+    Options FollowSymLinks
+    AllowOverride All
+    Order deny,allow
+    Deny from all
+</Directory>
+
+Change Deny from all to Allow from all. Then go into your Sharing preferences and disable/re-enable web sharing and it should work.
+
+A: Although I'm not sure if the origins of the problem were same, I faced the exact scenario as you described, and I made the "Your personal website:http://192.168.0.100/~name/" provided in System Preferences panel work by uninstalling Pow, a Rack server.

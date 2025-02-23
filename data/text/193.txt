@@ -1,0 +1,17 @@
+Q: Mac Pro upgrade path I'm considering a Mac Pro purchase but cannot afford the one I really want. 
+The question is this; Can the cheapest Mac Pro 5,1 single quad-core Nehalem 2.8 GHz be upgraded to the dual six-core Westmere 2.93 GHz at some point in the future?
+If not, what would be the cheapest one that could? 
+
+A: Short answer:
+The lowest end Mac Pro that can be upgraded to a 2.93 12-core Westmere is the 2.66GHz 12-core Westmere.
+Long answer:
+The single socket Nehalem and Westmere Mac Pros literally have one socket. Aside from that, most of the lower end configs ship with a 1066MHz memory bus instead of a 1333MHz bus. In order to upgrade to a part that uses faster ram you will need to replace all your ram, and probably solder some resistors to change the clock multipliers on the board.
+Without SMD soldering you will need to match the bus speed of the processor, which means if you have a 1066MHz memory interface the highest end part you will be able to install is are quad core 2.66GHz Xeon E5640s. There is also no guarantee the firmware will actually initialize it correctly, though odds are good that it will.
+
+A: Yes you can upgrade the Mac Pro 5,1 single quad Nehalem base configuration to a dual 6-core Westmere. There is no soldering or any thing required with in the Mac Pro. Everything is on the back plane with in the Mac Pro, it is the same between all processor configurations.The  dual socket processor tray is where the changes live, that is what really what makes a Mac Pro what it is in terms of RAM, processor sockets, and QPI speed.
+
+In fact OWC's upgrade services demonstrates the upgrade flexibility of the Mac Pro. Since OWC offers a mail in upgrade service for this version of Mac Pro, where you mail the processor tray to them. They offer single chip upgrades where they swap the CPU and additionally offer dual socket options where they trade processor trays with you for a dual socket version. 
+So all you need to do to upgrade to a faster Westmere Mac Pro is the dual socket process tray and the CPUs to go with it. And it looks like the processor trays are available for order from Apple as noted in this AnandTech botched CPU upgrade article for an older Mac Pro 2009 version. However ordering one might be a trail and error processes, since its probably not a common user part to buy.
+
+Thankfully, the folks at the Crabtree Valley Mall Apple Store in Raleigh, NC are AnandTech readers and quickly understood what had happened. They ordered the replacement part and I waited. If you’re curious, it’ll cost a bit under $400 to replace the processor board in an 8-core Mac Pro provided you allow Apple to keep your dead board.
+

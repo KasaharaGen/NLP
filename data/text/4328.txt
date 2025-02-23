@@ -1,0 +1,36 @@
+Q: Looking for a lightweight MP3 player for OS X I'm looking for something, preferably free, to play MP3s in OS X in a way they don't automatically get dumped into iTunes. Any suggestions?
+Songbird is not lightweight.
+VLC I use for videos.
+
+A: Quicktime player. Quicktime player.
+
+A: This probably isn't what you're looking for, but it so happens that the very lightest of lightweight music players is preinstalled on every Mac. No, it's not QuickTime, and it's not QuickLook—you already knew about those, and they're not as lightweight. We can do better.
+Open a Terminal and type:
+
+afplay path/to/song.mp3
+
+Your music will begin playing. No, there's no UI—you said you wanted something lightweight, didn't you?
+To stop the song, press ^C.
+To pause, press ^Z, then resume with the terminal command fg.
+If you want playlists, you can do that too:
+
+afplay song1.mp3 && afplay song2.mp3 && afplay song3.mp3
+
+Enjoy listening to music with the satisfaction that none of your precious processing power is being wasted on modern extravagances.
+
+A: I've been looking for the perfect lightweight OSX player for a long time and still stick with Cog
+Change the update feed to Nightly in the preferences and you'll get 0.08 that runs in High Sierra and lower.
+UPDATE: An active fork is now available at https://kode54.net/cog (thanks OleGG for the mentioning it)
+
+A: I usually default to using VLC but it has one annoying (to me) limitation: playlists do not persist when you close the app. (At least, I can't find a way of overcoming this in the preferences.) I have used Cog, but after recent updates of OS X (I'm now on Mojave) it seems very flakey. So....
+Pine Player
+After a bit of a search, I've now found Pine Player ("Price: Free") which is also available in the App store. It has some other nice features, too, but is a fairly simple player and so lacks some features that users might like to have (e.g., I don't think it varies speed of playback). But it is a nicely implemented audio player with "persistent" playlists, and that's exactly what I'm looking for. Works well for me!
+
+
+A: If you prefer a dedicated app rather than use Quick Look, check Vox, the lightweight music app for Mac OS X.
+It's free but you can donate.
+
+A: On Finder, click the mp3, press space or ^+Y.
+It will open a Quick Look window and that will preview your mp3.
+
+A: SimpleSong seems to be exactly what you are searching for - this is as simple as it gets, basically just a searchbar. You can now also drag tracks from the finder to the dock icon, to open the tracks as a playlist. 

@@ -1,0 +1,5 @@
+Q: Disable opening PDFs inline in Safari 5.1 In Safari 5.0 or below it's very easy to disable opening pdfs inline, you simply say
+defaults write com.apple.Safari WebKitOmitPDFSupport -bool YES
+
+and it never bothers you again.
+In Safari 5.1 this no longer works. Does anyone know an alternative to prevent Safari 5.1 opening PDFs in the browser rather than as a download and then in Preview?

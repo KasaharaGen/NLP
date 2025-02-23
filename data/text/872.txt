@@ -1,0 +1,11 @@
+Q: In itunes, how do I view entire album of currently playing song? If I have a playlist of songs, and I want to go from a song and play the entire album, I can't see anyway to do this except manually finding album in music list.  There must be a better way.  This is using itunes 10
+
+A: If you normally sort your overall library by album, you can right click on the currently playing song in a playlist and select Show In Playlist -> Music. This will take you directly to that song in your music library.
+
+A: If you don't have the little arrows visible, perhaps with the new version of iTunes + Ping, you can make them re-appear:
+defaults write com.apple.iTunes show-store-link-arrows 1 
+
+If you Option + click on the arrow for an album, you'll see all songs in that album. The arrow next to the artist name to links to all songs by that artist. If you don't want to press Option then you can run this command:
+defaults write com.apple.iTunes invertStoreLinks -bool YES
+
+And the normal behavior will be to show you your songs, and the meta behavior will be to link into the iTunes Store.

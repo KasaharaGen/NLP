@@ -1,0 +1,25 @@
+Q: Two-Step Authentication, iPhone Mail.app, and SMTP I have setup Two Step Verification for my Google account and all is well getting into email from a browser, or from the Safari browser on my phone.
+However, I cannot get Mail.app to work. It just tells me the password is wrong. I am using an application specific password generated from the account access page in Google, tried two, still no go.
+How can I get the Mail.app to actually work with this?
+
+A: Open up the keychain application and locate the password that it has stored for your gmail account.  Now delete it.
+Then retry the process you have, ensure you put in your application specific password, and then ensure you press the checkbox that says to save password to keychain.
+Further instructions and Mail.app specific screenshots here.
+I believe that mail.app is using an older stored email and this is preventing access.  I am assuming of course that mail.app was working perfectly for you before you started using two step authentication.
+
+A: Have you setup and install the iPhone App "Google Authenticator" ??
+http://www.google.com/support/accounts/bin/static.py?page=guide.cs&guide=1056283&topic=1056285
+
+A: Got it working by providing an application specific password instead of the usual gmail password. It would be a 16 char password and not the six char authentication verification code.
+
+A: that captcha thing fixed it
+http://support.google.com/mail/bin/answer.py?hl=en&answer=78754
+
+A: Adding a 16 digit application specific password into the normal password field works fine for me.
+
+A: Important note you need to create two passwords one for IMAP and one for SMTP
+
+A: Two step verification didn't worked for me, I tried both Exchange, and Gmail. The following solves my problem
+1) The display captcha https://www.google.com/accounts/DisplayUnlockCaptcha
+2) Then using the Mail -> Gmail worked (Exchange still didn't worked).
+PS: You always need to use your 16 digit generated password in the above steps.

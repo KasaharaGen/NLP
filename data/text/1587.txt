@@ -1,0 +1,6 @@
+Q: How can I get Time Machine to ignore the data created by Spotlight? I would like Time Machine to ignore the indexes and other metadata created by Spotlight, where are those kept on 10.6?
+
+A: On the root of each indexed volume, a hidden folder called .Spotlight-V100.
+Also: spotlight metadata is probably not large enough to be worthwhile in excluding, at least if you are doing this for space reasons. Spotlight is also essential for TM to work properly, as this is how TM determines which files have changed since the last backup.
+
+A: The Spotlight index is automatically excluded from Time Machine backups (in /System/Library/CoreServices/backupd.bundle/Contents/Resources/StdExclusions.plist, the PathsExcluded section lists /.Spotlight-V100).  However, as I understand it Time Machine then builds a new Spotlight index for the backup itself; I don't know of a way to prevent this being created.

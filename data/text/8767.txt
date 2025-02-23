@@ -1,0 +1,143 @@
+Q: Can I sync Address Book to iCloud on Snow Leopard? I've updated my iPhone to iOS 5, but my Mac(s) are still on OS X 10.6 Snow Leopard. 
+Syncing Contacts to iCloud is enabled in iPhone settings. Now, I was wondering is it possible to make Address Book on my Mac (running 10.6) to sync with iCloud too? Or is this something that's only available in 10.7 Lion?
+(Sorry if this question seems too basic or whatever. I haven't been paying much attention to Lion/iCloud.)
+
+A: No. iCloud requires OS X 10.7.2., aka “Lion”. 
+
+A: As Jonik posted, this method does work with Snow Leopard. It did take some fussing with for me to to get it to work. For some reason the directions from the blog post were ambiguous, so here is another wording of essentially the same thing with an additional tip at the end. 
+
+
+*
+
+*Create an Account in Address Book 5 with CardDav Setting
+
+
+
+Username: yourname@domain.com
+Password: password
+Server: p00-contacts.icloud.com
+
+
+If you find this step gives a "Address Book couldn't discover the account settings for the CardDAV server" message, be aware this is only a warning.  Press the Create button again, and your input should be accepted anyway.
+
+
+*
+
+*Load Safari and go to icloud.com and login
+
+*CMD-OPT-A (open activity viewer) 
+
+*At the top of the list should be something like https://p03-contactsws.icloud.com/co/mecard/?dsid=12341234
+
+*You need the 8-9 digit number, you may see it on multiple lines. You also need the p00-p10 number, this is the iCloud server you are on.
+
+*Open the correct AddressBook Configuration.plist in your favorite editor.  This file is located in your home directory, in ~/Library/Application Support/AddressBook/Sources/.  Note that another Configuration.plist file exists in the ~/Library/Application Support/AddressBook folder, but we need to edit the file in the Sources folder.
+
+*Change the servername property to where p03 and 12341234 is adjusted to what you found.
+https://p03-contacts.icloud.com:443/12341234/principal
+
+*Change username to username%40domain.com:password (replace username/domain with your login you used on icloud.com). Don't miss adding your actual password to the string behind "yourusername%40domain.com:" (and yes it's unencrypted and stored as such in ~/Library...)
+
+*Save and close.
+
+*Open address book and if it's not syncing immediately, set your password in the settings. For some reason my wouldn't sync until I did this.
+
+
+The completed plist should look like the following...
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>_className</key>
+    <string>PHXCardDAVSource</string>
+    <key>addressBookName</key>
+    <string>card</string>
+    <key>disabled</key>
+    <integer>0</integer>
+    <key>haveWriteAccess</key>
+    <integer>1</integer>
+    <key>isSharedABAccount</key>
+    <integer>1</integer>
+    <key>name</key>
+    <string>iCloud</string>
+    <key>refreshInterval</key>
+    <integer>0</integer>
+    <key>serverSupportsSearch</key>
+    <integer>1</integer>
+    <key>servername</key>
+    <string>https://p03-contacts.icloud.com:443/123456789/principal</string>
+    <key>username</key>
+    <string>user%40domain.com:password</string>
+    <key>usesKerberos</key>
+    <integer>0</integer>
+</dict>
+</plist>
+
+
+A: You can sync iCal with iCloud on Snow Leopard. I found this article and I just used it tonight and got it to work:
+i am still looking for solutions to sync my address book on Snow Leopard with iCloud. No luck yet.
+
+A: Sadly enough, I could not get this solution to work either on Snow Leopard. My only solution is paying Plaxo for their sync service. It's a solution that works and keeps my Mac Address Book and my iPhone Address Book synced. Very disappointed that Apple made the decision to not support their previous version OS for iCloud.
+
+A: I just followed these instructions exactly.
+
+
+*
+
+*I closed down my address book completely before editing the Configuration
+
+*I used %40 instead of an @ in my username even though it had stored an @ from the gui
+
+*I saved and reopened address book
+
+*I went to the preferences and edited the icloud entry placing my password in the blank field that it would go in.
+
+
+My iCloud contacts immediately synced!   Perfect!   Thanks!
+
+A: Yes, you can sync you address book with iCloud.
+I have set up my iCal to sync with iCloud and also my address book.
+I have copied and pasted from http://www.hsiaoi.com/blog/?p=512:
+
+  
+*
+  
+*Create an Account in Address Book 5 with CardDav Setting
+  
+  
+  Username: yourname@xxxx.com Password: password Server:
+  pxx-contacts.iclould.com
+It doesn’t really matter what you entered, we are going to change from
+  Configuration.plist
+  
+  
+*
+  
+*Close Address (Apple Key + Q)
+  
+*Open Terminal
+  
+*cd Library/Application\ Support/AddressBook/Sources
+  
+*ls -l (search for the latest updated directory)
+  
+*cd [the directory name]
+  
+*nano Configuration.plist
+  
+*Ctrl + W (Search) servername
+  
+*Change the servername  by entering this format
+https://pxx-contacts.icloud.com:443/xxxx your icloud id
+  xxxxxx/principal 
+10.Change username 
+username%40xxxx.com:password
+  
+  
+*
+  
+*Ctrl + X and Save
+  
+*Open Address Book, iCloud should be Syncing!
+
+Once this has been done you will start to see duplicates, this is beacuse the sync is adding contacts from 'on my mac' to iClud. You will need to let it sync once and then remove the contacts from the 'on my mac' folder to stop them duplication.

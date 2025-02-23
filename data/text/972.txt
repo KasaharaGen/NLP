@@ -1,0 +1,58 @@
+Q: Downloading voicemail to my laptop How can I download my voicemail from the iPhone to my computer? 
+Technically, I know it is not voicemail on the iPhone - it is in ATT's phone system but you knew what I meant.
+How can I download my ATT voicemail from the iPhone/iTunes to my computer? 
+
+A: I use an app called "iExplorer" (formerly iPhone Explorer).  It basically lets you reach into the phone to download, modify, replace, or add a file in any (or almost any) directory within the file structure.
+http://www.macroplant.com/iexplorer/
+
+A: You can't do it in iTunes, and you have to be jailbroken to do it. Here's a good tutorial.
+
+
+*
+
+*Jailbreak phone 
+
+*Install OpenSSH from Cydia
+
+*Install CyberDuck (or another SSH program) to your computer
+
+*SSH into your iPhone from the computer (here's how)
+
+*Navigate to /private/var/mobile/Library/Voicemail/
+
+*Copy the desired .amr files
+
+
+A: Or use Google voice and you can get them through the browser or emailed to you.
+
+A: I use Phone View for this purpose and it works flawlessly. You do not have to jailbreak your phone for it to work.
+
+A: There is another way. Per this instructables an iTunes backup of the iPhone contains the voicemail files in these folders:
+
+
+*
+
+*~/Library/Application Support/MobileSync/Backup/
+Mac
+
+*\Documents and Settings\(username)\Application Data\Apple Computer\MobileSync\Backup\
+Windows XP
+
+*\Users\(username)\AppData\Roaming\Apple Computer\MobileSync\Backup\
+Vista and Windows 7
+
+
+However, the bad news is that these voicemail files are mixed in with a ton of other random files from your iPhone, and all the files have long, meaningless filenames with no extensions. To determine what the files are, use the file * command. Note that the backup must not be encrypted for this approach to work.
+file * | grep audio
+file * | grep GSM
+
+(on Windows install Cygwin and use the Cygwin terminal to get the file command)
+The two file contents that seem likely are
+RIFF (little-endian) data, WAVE audio, Microsoft PCM, 8 bit, mono 44100 Hz
+Adaptive Multi-Rate Codec (GSM telephony)  
+
+
+A: I have a Google Voice number that I just forward important voicemails to.
+To do this in a typical voicemail system, you'd press 6 for more options, then 2 to forward it.
+You can keep them in your Google account pretty much as long as you want, or you can simply download them at will.
+I hope this is helpful.

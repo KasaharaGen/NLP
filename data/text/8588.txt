@@ -1,0 +1,94 @@
+Q: PPPoE Auto-connect when unplugged I have a PPPoE internet connexion that I use on my Macbook Pro.
+There is a checkbox in the settings that allows to automatically reconnect when needed - which is good. However the system is not smart enough to stop trying when I unplug the Ethernet cable.
+When I unplug the Ethernet to go away, it keeps telling me every 5 minutes that it failed to connect. Until I uncheck the autoconnect feature. Then of course when I get back home I have to re-check it - which defeats the purpose of "automatically" connecting.
+
+A: 1) Easy solution: use Sidekick to automatically change your network location (and a whole lot of other settings) depending on which network you are on.
+
+Aside: Sidekick is the new version of an app which was previously known as NetworkLocation.app but it has been completely re-written. I was a beta-tester for the app, but I'm also a paying customer of it, and have no other connection to the app.
+
+The app costs $29, but there's a demo that you can use to see how it works before you buy. Highly recommended.
+2) If you want a free solution, you could write a shell script that runs via launchd. First you'd need a plist file, something like this:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>AbandonProcessGroup</key>
+    <true/>
+    <key>Label</key>
+    <string>localhost.networkmonitor</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/path/to/your/shell/script.sh</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>120</integer>
+    <key>WatchPaths</key>
+    <array>
+        <string>/Library/Preferences/SystemConfiguration/</string>
+    </array>
+</dict>
+</plist>
+
+Change /path/to/your/shell/script.sh to whatever path you end up making to your shell script (and make sure that the script is executable):
+chmod 755 /path/to/your/shell/script.sh
+
+The hard part is the script itself. There are two ways to do this:
+"The SSID Way"
+Basically you have to find some programmatic way to tell when you are home (i.e. when you want to use PPPoE) and when you don't.  The easiest way to do that is by figuring out which Wi-Fi network you are on.
+
+NOTE: I am going to assume that you have setup a new network location called "PPPOE" that you want to use when you are home, as opposed to the generic "Automatic" which will be used elsewhere.
+
+The first part of the script could look like this:
+#!/bin/sh
+
+    # Apple provides a utility called 'airport' but it's buried outside of the normal $PATH
+    # so you'll have to call it directly (or link it to somewhere in your $PATH using 'ln -s')
+    # this is the correct path for Snow Leopard and Lion. I think it had a different path
+    # in earlier versions of OS X but I'm not sure
+AIRPORT='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+
+    # get the SSID of the network you are connected to
+SSID=`${AIRPORT} -I | awk -F": " '/ SSID:/{print $NF}'`
+
+Then you need to take different actions depending on the SSID, which would look something like this (change 'mySSID' to whatever your home SSID is)
+if [ "$SSID" = "mySSID" ]
+then
+    # Select your 'PPPOE' network location (or whatever you called it)
+    scselect PPPOE
+
+else
+    # If we are not on that Wi-Fi network, select the default 'Automatic' network location
+    scselect Automatic
+fi
+
+If you do NOT have a home Wi-Fi network, then you would have to look for the absence of an SSID, which might look like this
+if [ "$SSID" = "" ]
+then
+    # no Wi-Fi network found, let's assume that we are at home
+    scselect PPPOE
+
+else
+    # if there is a Wi-Fi network, let's use the 'Automatic' network location
+    scselect Automatic
+fi
+
+exit 0
+# (End of script)
+
+Potential pitfalls: when the computer first 'wakes up' it will take a few seconds to connect to a Wi-Fi network, so you may need to add some 'sleep' commands in there to avoid switching locations before all the network information has updated.
+"The Ethernet vs Wi-Fi Way"
+For the purposes of this discussion, "Ethernet" means "the computer is plugged into a network by a physical cable."
+If you only use Ethernet at home, another option is to disable your Ethernet port when not in use (which I assume means that PPPOE will not try to connect, but that may be an incorrect assumption).
+I already wrote a script that does that, which you can find here: http://dl.dropbox.com/u/18414/ase/29227/wired-no-wifi.sh which you could use with launchd.
+Note that script assumes that your Ethernet port is en0 and your Wi-Fi port is en1.
+launchd note
+I assume that you know that your plist for launchd should be stored in ~/Library/LaunchAgents and that after you add a new one you either have to logout/login or use launchctl load like this:
+launchctl load ~/Library/LaunchAgents/YourLaunchdFileHere.plist
+
+Seriously though, try Sidekick
+All of a sudden $30 looks pretty cheap, doesn't it ;-?
+Yeah you can geek out and do this on the command line, but Sidekick can do all this and more, and much more easily. Unless you're extremely poor, cheap, and/or nerdy, I highly recommend that over launchd -- but I still love being able to get "under the hood" and tinker with this sort of thing.
+
+A: Use a Location functionality.
+It is topmost combo box under Network preferences.
+Choose Edit Locations, create new one, Apply and after that you will be able to switch between Home (with PPPoE auto-connect) and other locations from Apple menu.

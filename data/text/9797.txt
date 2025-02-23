@@ -1,0 +1,31 @@
+Q: How can I find the size of multiple folders? When I highlight several folders in Finder and do a get info, I get an info window for each folder.  Is there a way to get a single window showing size of all folders highlighted?
+
+A: There are 3 forms of "Get Info":
+1) Standard "Get Info" achieved through Command+i which can potentially create multiple windows for each item selected.
+2) "Get Summary Info" achieved through Command+Control+i which uses a single window to show combined info about the selection:
+ 
+3) "Inspector", like @iskra mentioned, achieved through Command+Option+i, which is similar to 2) except that it updates the info dynamically based on your selection.
+
+
+A: Open a finder window and set the view to list view.
+Press command-J and select "calculate all sizes" then click "use as standard".
+Now folder sizes will show in your finder.
+I don't think it is possible to show sizes for multiple folders, but this might be a good workaround.
+
+A: cmd+alt/option+i will give you info on multiple highlighed items.
+
+A: Alternatively
+
+*
+
+*open Terminal.app
+
+*cd to the directory 'above' the ones you need the size for
+
+*du -sh FOLDER1 FOLDER2 gives sizes in "human readable" format (Use unit suffixes: Byte, Kilobyte, Megabyte, Gigabyte, Terabyte
+and Petabyte.)
+
+*du -sm FOLDER1 FOLDER2 gives sizes in megabytes
+
+*du -sg FOLDER1 FOLDER2 gives sizes in Gigabytes
+

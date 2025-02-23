@@ -1,0 +1,81 @@
+Q: MacBook is sleeping despite being set to "never" sleep My 13" MacBook (late 2006) is set to never sleep but after about 3 hours the whole computer still goes to sleep.
+
+
+*
+
+*Lid is always UP.
+
+*Power Adapter is plugged in and indicator light is green when battery is 100%.
+
+*Recently upgraded to Mac OS 10.6.8 and all system software is up to date.
+
+
+Here are my exact settings...
+System Settings -> Energy Saver ->
+
+
+*
+
+*Computer Sleep: Never
+
+*Display Sleep: 15 minutes
+
+*Put the hard disks to sleep when possible:  NOT checked
+
+*Wake for Ethernet:  NOT checked
+
+*Automatically reduce brightness before display sleep: checked
+
+*Startup automatically after power failure:  NOT checked
+
+
+
+(please ignore the "battery charge: 94%", it's only because I'm composing this question while using the battery)
+I recently installed Simon for monitoring uptime of websites.  I cannot allow the computer to sleep since it stops the software monitor.  Exactly after three hours of inactivity, the MacBook goes to sleep so then Simon stops.  The console confirms sleep mode.  I can wake it without a problem but it's frustrating to see that my monitoring was interrupted for many hours by this sleep bug.
+It's like it thinks it's set to sleep after 3 hours despite it being clearly set to "never".
+So where is this thing stuck?  Is there some cache or plist file I need to blow out?  Troubleshooting this is very difficult since I essentially have to wait another three hours to see if I fixed it.
+Any shove in the right direction appreciated.
+
+As per comments, this is the result of pmset -g from Terminal:
+MacBook:~ myusername$ pmset -g
+Active Profiles:
+Battery Power       1
+AC Power        -1*
+Currently in use:
+ lidwake    1
+ autorestart    0
+ halfdim    1
+ sms        1
+ hibernatefile  /var/vm/sleepimage
+ disksleep  0
+ sleep      0
+ hibernatemode  3
+ ttyskeepawake  1
+ displaysleep   15
+ acwake     0
+ womp       0
+
+
+A: It's working properly again.  Got  up this morning and computer remained awake for the entire night.
+The only thing I did since last failure:  I deleted the following file in the root Library, and re-entered my Energy Savings preferences.
+/Library/Preferences/SystemConfiguration/com.apple.PowerManagement.plist
+
+The Terminal now reports this for pmset -g.  Note the difference on the first two lines.  I guess the original settings were somehow corrupted.
+MacBook:~ myusername$ pmset -g
+Active Profiles:
+Battery Power   -1
+AC Power        -1*
+Currently in use:
+ lidwake    1
+ autorestart    0
+ halfdim    1
+ sms        1
+ hibernatefile  /var/vm/sleepimage
+ disksleep  0
+ sleep      0
+ hibernatemode  3
+ ttyskeepawake  1
+ displaysleep   15
+ acwake     0
+ womp       0
+

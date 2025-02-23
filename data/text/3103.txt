@@ -1,0 +1,112 @@
+Q: How do I debug an out-of-control "kernel_task" process? Just recently I noticed my battery life having a pretty significant drop and the "kernel_task" process using quite a bit of CPU (a constant 1-6% on my 2.8ghz dual-core i7, 2010 MBP). Obviously I think the kernel_task's CPU usage is contributing to the battery drop and I need to find out why.
+Searching Google, it seems kernel_task is OS X's version of Windows's "svchost.exe" - the notorious do-everything process that you can't ever truly debug, you have to just manually flip switches until one of them works.
+Is there any way I can more easily get to the bottom of the out-of-control kernel_task activity? I haven't tried a reboot because if that does "fix" it, it doesn't really fix the underlying problem.
+Activity Monitor shows the CPU usage. When I hit Inspect, it shows 77 threads, 2 ports, hours and hours of CPU time, Context Switches going up about 400 per second, and Mach Messages In and Out both going up at about 6,000 per second.
+How can I somehow inspect or monitor this kernel_task process and figure out what's actually using all this power?
+(note: my current suspects are the recent 10.6.7 update, Firefox update from 4 beta 10 to RC, or ScreenResX - these are all things I've done recently that I can think of)
+
+A: As mentioned by @Christopher, heat can cause the kernel_task CPU to spike. The reason is listed in this post “Fixing” kernel_task CPU Problems in MacOS Lion 10.7. Apparently when the CPU heats up the ACPI_SMC_PlatformPlugin.kext will take up CPU cycles in an attempt to reduce actual CPU load.
+So one solution is to cool down your Mac (e.g. fan) through an external fan or something like SMCFanControl.
+The article give another solution which is to remove the sub-kext that triggers that behavior. Though I must admit I am personally not sure about how safe it is to turn that behavior off.
+
+A: Usually kernel_task is out-of-control when some other processes are overusing system calls or resources (memory or disk I/O events).
+When this happens, you can use fs_usage reporting utility which will show you system calls and page faults related to filesystem activity in real-time.
+So run this command in Terminal:
+sudo fs_usage
+
+then observe which processes are frequently doing some system calls and if you're not using them, consider closing/killing them.
+To be more specific, please check the TIME INTERVAL column which gives you elapsed time spent in the system call. A W appearing after elapsed time indicates the process was scheduled out activity (in that case the elapsed time includes the wait time).
+So in order to filter the processes which are using the most time interval in the system calls, run:
+sudo fs_usage | grep -v 0.0000
+
+which will show you in the last column the most hungry processes (in terms of kernel time). You may adjust number of zeros for precision (less zeros displayed, more time spent).
+For more ideas, also check: How to investigate high kernel task memory usage?
+
+Here are the most common issues:
+
+
+*
+
+*VBoxHeadless: if you're using VMs (via vagrant), consider suspending them when not in use;
+
+*mtmd: it seems Time Machine backups your data every hour even when your backup drive is not connected (so called local snapshots), so try disabling it (sudo tmutil disablelocal);
+
+*wine: if you're running Windows apps, consider closing them when not in use;
+
+*Chrome: limit number of tabs opened at the same time (try OneTab and/or TGS) or kill some Extension processes (JavaScript) via Task Manager, since each tab could generate a separate process.
+Check: Chrome addon to stop “Page(s) Unresponsive” message.
+
+A: I had a massive spike in kernel_task CPU usage, and it turned out that my CPU fan was partially unplugged. kernel_task has something to do with the throttling of the CPU when it gets too hot. In your case, maybe your fan is just gummed up with junk and dust and needs to be cleaned out.
+
+A: I had the same problem in Yosemite but thanks to this good soul based on this another good fellow I could solve it. I still can't understand what happened, but after losing a whole weekend trying to work it out I just gave up and blindly follow his instructions. Look at my desperation in activity monitor:
+
+Be careful, always do a backup first and read the provided links for explanation. I take zero responsibility for any damage caused. You've been warned.
+
+Find the model
+$ system_profiler -detailLevel mini | grep "Model Identifier:"
+Model Identifier: MacBookPro8,2
+Move and backup the file
+$ mkdir -p ~/backup
+$ cd /System/Library/Extensions/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/Resources
+$ sudo mv MacBookPro8_2.plist ~/backup/
+
+
+A: I'm on OSX Lion with a new 2011 macbook pro, and I recently had kernel_task running around 25-30% of CPU and my fan spinning at max for hours and hours. I tried one thing at a time and what solved it was... closing 5 or 6 windows in the Finder app. Can't say I understand why, but it was clearly that.
+
+A: On my Mac the CPU use of kernel_task is proportional to the internet bandwidth I use, ranging from about 0% to 50%. It's probably caused by the drivers for my Huawei 3G modem (HuaweiDataCardDriver.kext).
+You could try disabling kernel extensions. There's no need to use kextunload: it's safe to just move the kext bundles from /System/Library/Extensions/ to some other folder and restart. You can use Consultant's Canary or kextstat | grep -v com.apple to list kernel extensions that didn't come with OS X.
+
+A: To troubleshoot out-of-control kernel_task specifically, here are some useful commands:
+
+
+*
+
+*Profile entire system, focusing on the kernel process (PID: 0), run:
+sudo spindump 0 -reveal
+
+For specific process (like launchd), use sample, e.g. sudo sample launchd or by PID.
+
+*To gather memory consumption by kernel task, use (sorted by dirty by default):
+sudo footprint 0
+
+Note: Use -a to target all the processes.
+
+*To gather system-wide diagnostic information from multiple utils, run: sudo sysdiagnose.
+This can be also triggered by hitting Shift-Control-⌥-⌘-. (period).
+You should see the screen flashed when started, then wait few minutes until the file is revealed in Finder.
+See: How do you get system diagnostic files from OS X?
+Then uncompress and check the files such as footprint*.txt, spindump.txt, taskinfo.txt, bc_stats.txt and other.
+
+*Check vm.swapusage in kernel states, e.g. sysctl -a | grep ^vm.swapusage.
+Basically, more swap you use (check the swap files in /private/var/vm which are managed by dynamic_pager, see: man dynamic_pager), the more kernel struggling with the performance due to Swapins/Swapouts operations (see man vm_stat and man fs_usage). To test, run:
+vm_stat 1
+sudo fs_usage | grep -w kernel_task
+
+Note: Hit Control-C to stop.
+
+A: I had a similar question about how to identify files and programs connected to kernal_task using the following terminal command:
+kextstat -l -k | awk '{n = sprintf("%d", $4); print n, $6}' | sort -n
+
+This will display various kexts and the memory associated with them.  For example, 6184960 com.apple.driver.AirPort.Brcm4360 is a big hog for me, but I can't do much about it if I want to use wifi.
+One of the suggestions I received was to look up all non-Apple kexts are taking up memory by piping the above to grep -v com.apple.  It's possible that some non-Apple programs are using up your resources.  You should be able to remove those without breaking anything.
+The age old solution of course is to restart your computer.  Sometimes that's all it takes to set processes back to their normal levels of CPU usage.
+
+A: Here is a great explanation what a kernel_task is. It could be drivers (kexts), network or disk activity. You cannot simply use Instruments to attach to the kernel_task process.  
+Look for other signs, like logs (Console.app), disk activity (for example: iotop fs_usage), network activity (try disconnecting from local network, turning off devices in network preferences), try to uninstall/remove from memory (kextunload) drivers, which are from third party - tablets, usb 3g modems and etc. Check for applications, that are installing kexts
+Also make sure that your file system is not corrupted, if you had any crashes recently - do a check.
+
+A: I solved this by using my MBP's factory power adapter instead of my wife's MBA's. It seems to charge just fine (albeit, slowly), but for whatever reason causes this kernel_task issue. I did not try it in the right ports (they were unavailable). Apologies if this solution is already here
+
+A: For me I had one process (Netbeans in this case, which was reading a file  like 20GB) and it would use like 80% cpu for netbeans, 20% cpu for kernel_task (very suspicious).  This caused my whole system to run like tar.
+Also suspicious is that "menumeters" would report lots of "sys" time, per cpu.  You can see this in the "top" command as well, like CPU usage: 21.40% user, 23.74% sys
+Later, it might be netbeans 120% cpu, kernel_task 65%, but anyway they were both "high cpu at the same time"
+sudo fs_usage showed lots of this:
+12:46:34.446367  PAGE_IN_FILE      A=0x093a5bb000       0.000001   java.453214
+
+My theory is that netbeans was "reading so much" that it was causing page faults to even run its own program (i.e. sending out to swap its own program), so getting a queue behind the page fault system.  And probably swapping "other programs" out to swap as well, causing the whole system to go sllow. 
+Using top, the FAULT column was increasing by 70K/sec, as well.
+
+A: My macbook Pro was almost unusable because of kernel_task high CPU for weeks
+At the same time the battery get inflated so i finally decided to go on Apple Center in Rome to replace it... even if out of warranty Apple have replaced my battery (and keyboard as well) for 0€ cost.
+Even better ... kernel_task problem suddenly disappears !!!
+so i'm pretty sure that it was because of the battery , directly or indirectly

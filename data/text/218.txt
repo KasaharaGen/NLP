@@ -1,0 +1,15 @@
+Q: Why am I getting the error "MobileMe does not sync with Microsoft Exchange Server"? I am getting this error message every time a meeting request comes through, but I am not syncing anything with outlook or exchange, so I don't know what to change to get rid of it.
+
+These are my sync settings.
+
+Any idea what's going on here?
+
+A: The Outlook configuration is precisely what matters here. As per the error you got: MobileMe does not sync calendars with Microsoft Outlook when Outlook is configured to use Microsoft Exchange Server.
+Calendar syncing takes place via calDAV. The account settings are specifically IMAP.
+Unless there are custom profiles or the Outlook PST file is damaged, I'd suggest simply removing the account from Outlook, and signing out on the MobileMe Control Panel, then setting it up fresh.
+
+A: Here is the solution: (Outlook 2007 with Exchange server 2003)
+Remove MobileMe from the Outlook COM add-ins
+Tools -> Trust Center -> Add-ins
+then click on Go to Manage Add-ins
+scroll down and disable then remove MobileMe from the list.

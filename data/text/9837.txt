@@ -1,0 +1,21 @@
+Q: How would I restore Spotlight search to my menu bar? (10.7) For some inexplicable reason, I decided to delete (not hide) Spotlight from my Mac via a terminal command. I downloaded the 10.7.2 update, hoping it would fix this by redownloading Spotlight, but it did not. 
+This is what happens when you give an idiot access to the terminal. 
+For reference, I this is my menubar right now:
+
+I tried this method to be sure I simply didn't hide the Spotlight icon. 
+Spotlight is still in the system preferences.
+I am just interested in fixing this. I should note that I didn't reinstall the OS.
+Thanks for the help. 
+
+A: I would imagine that inverting your commands would do the trick. Try:
+sudo mdutil -a -i on
+sudo chmod 755 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+sudo killall SystemUIServer
+
+
+A: While there may well be a more granular approach, this should work (but will take a bit of time):
+Step 1: Back up your machine to an external drive using Time Machine
+Step 2: Boot holding ⌘R to boot from the restore partition
+Step 3: Re-install Lion
+Step 4: Use Migration Assistant to reinstall your documents and applications from your Time Machine backup.
+This should leave you with an intact system, but all your data and applications.

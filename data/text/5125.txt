@@ -1,0 +1,27 @@
+Q: Never ask about Parallels registration Is there an option to prevent the Parallels Desktop 6 registration permanently?
+
+A: This was bugged me too, so changed some values in the preferences.plist, but not absolutely sure what one. So make a backup first.
+open with Property List Editor.app the next file:
+$HOME/Library/Preferences/com.parallels.Parallels Desktop.plist
+
+search for the key:
+Register.Show Welcome Dialog.{some-hex-numbers}
+
+and uncheck the checkbox. Or, here is the
+Register.Welcome next show time.{some-hex-numbers}
+
+what is the date, when you will get the next regitration window. Try change this to the far-future, e.g. 2015 or so.. ;)
+Ps: don't forget: make a backup from the plist file.
+And if you haven't installed the Developer Tools (for the Property List Editor.app) you're probably out of luck, because the plist is binary. While it is possible convert it into ascii, edit and convert back - this is not safe...
+Maybe someone know the easier solution. ;)
+
+A: I found the following script on this blog site. It had no carriage returns in it - I edited for readability.
+defaults read "com.parallels.Parallels Desktop" 
+     | grep "Register.Show Welcome Dialog" 
+     | sed "s/.*{\(.*\)}.*/\1/" 
+     | while read id; 
+do defaults write "com.parallels.Parallels Desktop" 
+    "Register.Show Welcome Dialog.{$id}" -bool NO; 
+done;
+
+I applied it to my lionized macbook-pro w/ no ill effects.

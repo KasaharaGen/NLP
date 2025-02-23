@@ -1,0 +1,32 @@
+Q: Why does changing "Open with" also change a files "Modification date"? Something I noticed a while ago. I use Carbon Copy Cloner for backing up my files and I noticed one day when I changed a video's "Open with" flag to always open a video file with Movist instead of Quicktime, and the next time the clone ran it copied the file again. Even though nothing was changed. Which made me realize that OS X changes changes a files modification date causing backup programs like Rsync (Which CCC and SuperDuper use) and Time Machine to re-copy the file, even if it's 10GB in size.
+Why does it do this? Is there a technical reason or is it an oversight? Seems like a silly idea to me. Especially since changing a label doesn't modify the file and the color selection is duplicated without the whole file being copied.
+
+A: Some experimentation using the xattr command shows this:
+
+
+*
+
+*Label information is stored in the com.apple.FinderInfo extended attribute, which every file should have by default.
+
+*Custom application associations are stored in the com.apple.ResourceFork attribute, which not every file has.
+
+*Updating the FinderInfo attribute does not cause the modification date to be modified.
+
+*Creating/updating the ResourceFork causes the modification date to be modified.
+
+
+The resource fork historically had a special place in Mac file systems. I'm not sure if the com.apple.ResourceFork extended attribute is the same as a resource fork, if the latter was superseded by the former or how else they are connected.
+If there's a technical difference between an extended attribute and a resource fork, it may be "necessary" for a file to be modified when the resource fork is updated, but not when the extended attribute is written.
+It may be that the (legacy) API for updating resource forks updates the file modification date in the process, while the extended attribute API doesn't. The latter possibly in error, possibly because of different philosophies.
+Vague information, but it might give a little more insight. In the end though you're right. Some meta information modification causes the modification date to be updated, others doesn't. Whether there's a reason behind this or if it's just an oversight… only a few guys at Apple may know. :)
+
+A: When you select a single file, open a Get Info window, and choose a different, non-default application, this Launch Services binding is saved in the resource fork of the file itself, in a 'usro' (User Override) resource. As far as I know, the format of this resource is private, determined by Apple, and is subject to change. (The all lowercase characters in the OSType name provide a clue, since Apple reserves file type, creator codes and resource types with all lowercase characters. For example, 'icns' (Icon Suite) resource type, 'ttxt' (originally from Teach Text, but is now the creator code (CFBundleSignature) of TextEdit.app), etc.).
+This resource is created using the Resource Manager functions to modify the fork of the file, which in turn updates the file's modification date.
+An example file which I just tried this procedure on is shown in the image below, opened in Resorcerer. (Special note: you will notice in the left column that there are 2 types listed: 'TEXT' and 'usro'. There is in fact only a single 'usro' entry; Resorcerer is showing that there's a 'TEXT' resource entry because it notices the content in the file's data fork is text based (a source code header file), and is therefore providing convenient access to it). The second image shows the contents of this resource, which basically contains a path to the target application I chose.
+
+
+Since this 'usro' User Override resource is saved as part of the file itself, that explains why the Launch Services Programming Guide: Choosing the Binding Preference for a File claims the following:
+
+Note: Explicit binding preferences for individual items are not user-specific but systemwide—that is, they continue to apply to the given item on that same computer, even if a different user logs in.
+
+Now, to go one step further. If you now click the Change All button to make this a global override, Launch Services will remove the 'usro' resource entry and instead create a global binding which is stored in the com.apple.LaunchServices.plist (per-user preferences) file. Removing the 'usro' entry is done by using the Resource Manager functions, which will update the file's modification date. Note that while it does remove the 'usro' resource, it may not delete the entire resource fork. In most cases, 286 bytes will remain in the resource fork, which is basically the minimum amount of space taken up by the resource header and resource map.

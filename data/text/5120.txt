@@ -1,0 +1,43 @@
+Q: Changing Terminal colors when ssh-ing into remote machine and back Looking for a way automatically change terminal colors when ssh-ing into remote machine and revert back to the default colors, when exiting the ssh session. Simply, want have another colors when i'm working on the remote machine.
+Any idea?
+ps: don't want use iTerm2, but standard Terminal.app
+
+A: I know there's already a couple of answers, but here's an alternative:
+There's no general way to change the background color, but we can use a standard way to change the window title. If you're logging in to a lot of non-"Unix server" devices (such as network devices; routers, switches, firewalls etc) then you have to use their shells and cannot install your own shell variables. So, here's another way:
+function ssh() {
+  echo -ne '\033[22;0t' # save title
+  H=$(echo $@ | sed -e 's/.*@//g;s/ .*//g')
+  echo $@ | grep '@' && U=$(echo $@ | sed -e 's/@.*//g;s/.* //g')
+  echo -ne "\033]0;${U:=$(whoami)}@${H%%.*}\007"
+  unset H
+  unset U
+  /usr/bin/ssh $@
+  echo -ne '\033[23;0t' # restore title
+}
+
+Add this to your .bashrc.
+Basically, as functions and aliases are preferred to looking in the path, this takes the ssh command and uses the text before and after the "@" to set HOST and USER variables which it then uses to echo an ASCII code which is recognised by the terminal and used to set the title.
+You must use "ssh user@host.blah" for this and not "ssh -l user host.blah"
+If you don't provide a username it will set it as your current username (obviously if you're using a custom .ssh/config (which I use a lot) then this won't be accurate, but I think it's good enough to be useful.
+
+A: I'm using the following.
+Have a shell command, called myssh, with content:
+PROFILE="$1";shift;
+DEF="Basic" #the default profile name
+echo "tell app \"Terminal\" to set current settings of first window to settings set \"${PROFILE}\""|osascript
+ssh $@
+echo "tell app \"Terminal\" to set current settings of first window to settings set \"${DEF}\""|osascript
+
+and use bash aliases for the connect, like:
+alias ssweb='myssh Homebrew user@web.example.com'
+alias ssmail='myssh Ocean me@mail.example.com'
+
+When I want to ssh into the web server, I simply write ssweb in the Terminal and I got the "Homebrew" profile. When the ssh session ends, the AppleScript sets back to the "Basic".
+The aliases should go into your $HOME/.profile or similar bash-startup file.
+The "Homebrew", "Ocean" etc. are the setting profiles from the Terminal.app preferences. You can also set up different fonts, encodings, etc.
+Of course, you can use it directly (without aliases) like:
+myssh Pro user@another.machine.example.com
+       ^        ^
+       |        ssh command arguments
+       terminal profile name
+

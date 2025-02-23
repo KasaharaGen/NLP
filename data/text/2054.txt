@@ -1,0 +1,38 @@
+Q: Connection timeout I have a MacBook Pro 13" and my wifi connection never works properly. I know there are no problems either in the MacBook or in the router since:
+
+
+*
+
+*Another computer can connect to my router easily
+
+*I connected my MacBook to other routers
+
+
+My router is a Linksys WRT160NL that seems to work properly since also my iPhone can connect to it.
+When I go to the Airport icon on the top-right of the screen, I can see my router. 
+I click on it and wait. A dialog box appears asking me for the password. I type it in (I'm sure I'm typing it right and that it is a WPA password, I guess it is the same of WPA-Personal), the progress bar (the circle one) keeps rotating for about 5 seconds then stops and got replaced by an Annoying-useless-freaking message saying:
+
+Connection Timeout
+
+I googled about this problem. I found some useless thread about this exact problem but they were so old that they date back to the first appearance of Leopard. The others say that this bug was fixed (when obviously it is not) thousands of versions ago.
+What should I do to fix this?
+
+A: There are LOTS of reasons for this not to work properly.
+First of all - don't rule out the router or the Macbook yet.  They are both suspect until ruled out methodically.  And we're far from ruling either of them out.  :)
+Are you sure it's WPA-Personal?  It could be WPA2.  Check the router settings themselves, by plugging in to the router, and connecting to its web interface.  Check again.  Check the password.  Check if it's AES or TKIP.  Once you're sure you know as much about the router and its wireless config as possible, try again, after unplugging your wired connection to it.
+In System Preferences, remove the network if it's remembered.  You'll need to go to Network, Airport, Advanced, and then find it in the list, and hit the little minus.  Now try connecting.  I've seen networks that were set to WPA2 come up as WPA-Personal, since the laptop sometimes has trouble figuring it out.
+For these, I've had to set them up manually, by going into the system preferences, network, airport, advanced.  Add a new network (plus at the bottom), put in the name EXACTLY, and the password, and WPA2-Personal.
+Failing this, check if your router's using a "key index".  If the index or key index is NOT set to 1, the macbook will fail to connect.  I've never found a way to force a Mac to use a different key index, and indeed some routers allow you to choose which index you'd like to use.  If the router's key index is not set to 1, your macbook will not be able to connect, period.
+Failing that, reset the router and set it up again, using WEP rather than WPA/WPA2.  Can it connect now?
+Try a different Macbook, or try a PC.  Can it connect?
+Answer these questions in as much detail and I can help you more.  Don't give up.
+
+A: Switching the channels fixed this problem for me. 
+
+A: One solution that works fine is this one http://osxdaily.com/2011/11/06/lion-wi-fi-problems-solution-mac
+Short story : Add a new location under the wifi network preferences
+
+A: I had the same problem for my iMac when upgrading to Moutain Lion. I could not connect to the internet anymore. What I finally did is change the channel in your router. If too many people are on the same channel you can get this connection timeout issue. You should have multiple channels you can choose from in your router. 
+Good luck!
+
+A: Funny I had the same problem after updating to my OSX (Macbook Pro 13") and kept having the same issues over and over again to no luck... then I plugged in my computer to the router via CAT5 cable... connected to the net.... and tried the wifi again... and it worked.  Weird.

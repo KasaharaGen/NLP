@@ -1,0 +1,8 @@
+Q: Is there a way to keep your app icons sorted by name in LaunchPad? It seems that LaunchPad is not remembering the position of my app icons. I manually sorted them by name, but every now and then it will shuffle them. 
+I have not yet identified the pattern that resets the icons (my best guess is that it is after every restart). I have also not identified the pattern on which it resets the icons themselves, but it seems to leave Apple's own apps grouped together, followed by my Mac App Store purchases at the bottom. 
+Is anybody else experiencing this behavior and is there a way to keep all icons sorted by name? Thanks.
+
+A: This is a known bug and has been filed with Apple. All we can do is wait on a fix. 
+The database gets corrupted when a new entry is added and moved. 
+The only current workaround is to delete the database and start over, but bear in mind that once a new item is added and moved to a different position, the corruption will occur again. 
+The database is located in ~/Library/Application Support/Dock

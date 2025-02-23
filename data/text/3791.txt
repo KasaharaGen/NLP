@@ -1,0 +1,150 @@
+Q: Can home and end keys be mapped when using Terminal? The Home and End keys on a MacBook Pro can be emulated with Fn + ← or fFn + →.  Or when certain settings are changed, with the ⌘ Command key instead of Fn.
+None of these works in Terminal.
+As I frequently need to go to the beginning or end of the line and would also like to jump forwards or backwards by word.
+How can I jump around on a line in Terminal?
+
+A: For those that prefer to use the arrow keys, hitting fnShift+Left Arrow will take you home on the command line. Similarly, fnShift+Right Arrow will take you to the end.
+
+A: This is the most effective way to make it work also with vim.
+Go to Terminal -> Preferences -> Profiles -> Keyboard and add:
+Key: ↖ Action: \033OH
+Key: ↗ Action: \033OF
+
+A: It sounds like you are looking for some help using readline and bash, here is an insane list of keyboard stuff modified from: http://www.math.utah.edu/docs/info/features_7.html#SEC45
+Ctrla     Move to the start of the line.
+Ctrle     Move to the end of the line.
+Escf     Move forward a word.
+Escb     Move backward a word.
+Ctrll    Clear the screen, reprinting the current line at the top.
+
+Ctrlk    Kill the text from the current cursor position to the end of the line.
+Escd     Kill from the cursor to the end of the current word, or if between words, to the end of the next word. 
+EscDel     Kill from the cursor the start of the previous word, or if between words, to the start of the previous word. 
+Ctrlw     Kill from the cursor to the previous whitespace. This is different than EscDelCtrla   because the word boundaries differ.  
+Ctrld     Delete the character underneath the cursor. 
+Ctrl_     Undo the last thing that you did. You can undo all the way back to an empty line.
+
+And, here is how to yank the text back into the line. Yanking means to copy the most-recently-killed text from the kill buffer.
+
+Ctrly     Yank the most recently killed text back into the buffer at the cursor. 
+Escy     Rotate the kill-ring, and yank the new top. You can only do this if the prior command is Ctrly or Escy. 
+
+A: The other answers are great and more portable, but here's "the OS X way" for a regular keyboard (which is opposite of many other terminals).  Try the following:
+ShiftHome - Beginning of Line
+ShiftEnd - End of Line
+From http://www.greenend.org.uk/rjk/tech/macbits.html
+
+A: Mapping home and end keys with your desired functionality will easily solve the problem.
+Many answers have been posted, but in case you are using zsh, you can set home to:
+\001
+
+and set end to:
+\005
+
+by clicking preference - profile - keyboard.
+
+A: This can be set in Terminal.app preferences
+Context
+To answer the one about how to get the beginning or end of the line, it appears that by default Terminal maps these keys to it:
+
+*
+
+*shift+home → beginning of line, equivalent to the "home" key in normal terminals
+
+*shift+end → end of line, equivalent to the "end" key in normal terminals
+
+Instructions
+If you want home and end to work the "normal" way (and not require shift), go to the Keyboard tab of the Terminal profile preferences:
+[Terminal menu] → Preferences → Profiles tab (or settings on some versions of OS X) → Keyboard sub-tab
+Then modify/add these keys to be the following "send string to shell". Use the code for your shell, Bash or Zsh.
+macOS changed the default shell from Bash to Zsh in MacOS Catalina (v10.15) and later versions (BigSur and Monterey). The instructions are different for Bash and Zsh.
+Zsh
+
+*
+
+*home: \001
+
+*end: \005
+You can enter these codes in the edit dialog by pressing ctrl-A for /001 and ctrl-E for /005. Thanks to @JW for the Zsh information.
+Another, unrelated, option to map home/end keys for MacOS Catalina (v10.15) and later versions (BigSur and Monterey) is to use bindkey widgets:
+sudo echo 'bindkey "\033[H" beginning-of-line; bindkey "\033[F" end-of-line' >> ~/.zshrc
+
+Bash
+
+*
+
+*home: \033[H
+
+*end:  \033[F
+You can get the \033 part by hitting the escape key within the edit dialog input, if you need to add it.
+In later versions of Mac OS X, if the terminal screen shifts up or down when you press the home/end key, the home key may need to be set to \033[1~ and the end key to \033[4~ to get the results you want (no shift needed).
+Conclusion
+Then home and end will work like normal again (phew).
+Also note that "alt + ←" and "alt + →" by default in terminal map to word left and word right, another handy combo to remember.
+Feel free to modify this answer to add more useful key bindings, as it is a community wiki.
+
+A: You can move one word at a time with option+left and option+right.
+Regarding using home and end, Terminal's default bindings are the following:
+
+
+*
+
+*shift+home → jump to beginning of line
+
+*shift+end → jump to end of line
+
+*home → scroll to top of scroll-back buffer
+
+*end → scroll to bottom of scroll-back buffer
+
+
+In many other terminal apps (on multiple platforms), those modified and unmodified pairs are reversed (i.e. naked home and end are used to jump around the current line and the modified versions (whether by shift or something else) are used to navigate the scroll-back buffer). You can reverse Terminal's bindings to work that way if you wish by doing the following:
+Go to Terminal menu → Preferences → Settings/Profile tab → Keyboard sub-tab.
+Then modify the key–action pairs to be the following:
+
+
+*
+
+*↖︎: Send text: \033[H
+
+*⇧↖︎: Scroll To Top
+
+*↘︎: Send text: \033[F
+
+*⇧↘︎: Scroll To Bottom
+
+
+Note: \033 is entered into the text-to-be-sent box in the Edit dialog by pressing the escape key.
+While there, you may want to similarly swap the bindings of modified and unmodified page up and page down, to keep things consistent: pressing a navigation key with shift represents a command to Terminal itself (to navigate the scroll-back buffer like a document), while pressing one without sends the key-press through to whatever's running within it (e.g. bash, less, nano, screen, etc.). The key–action pairs for that are:
+
+
+*
+
+*⇞: Send text: \033[5~
+
+*⇧⇞: Scroll Page Up
+
+*⇟: Send text: \033[6~
+
+*⇧⇟: Scroll Page Down
+
+
+A: Use control+a for HOME and control+e for END in Terminal.
+Also use esc+f to move to the beginning of the next word and esc+b to move to the beginning of the current word.  (you Must be careful about current and next)
+
+A: I'd like to provide an alternative solution to this problem. This works great if you are a vi user. Vim Key Bindings in Terminal provides a way to use your terminal in a vim style. You can do this through typing set -o vi in terminal and feel free to put it in .bash_profile if you want. After this, your terminal is effectively a vim editor. You can use esc key to go into command mode and walk around in a vim way. For example, 0 gets you to the beginning and $ gets you to the end. You can also use I and A to go to the beginning and the end and go into editing mode right away. w and b let you move forward and backward by one word. And if you try to go into visual mode by pressing v, you will be given a vim editor and the text you have when you leave this editor will be executed in the terminal. 
+Be advised that this vim key binding will nullify all the hotkeys you learned from other answers. 
+
+A: here's the list in printable form, as desired :)
+http://pastebin.com/uCqwn7qs
+I also fixed a "bug" in the description. This is what you could originally read in the instructions:
+ESC-d Kill from the cursor the start of the previous word, or if between words, to the start of the previous word. 
+This smells badly like a cut-and-paste mistake, since both partial sentences tell the very same thing. Telling from plain logic, first half must actually read "from the cursor to the start of the current word".
+
+A: 
+... what about jumping around by word? (ctrl-left and ctrl-right in windows)
+
+# in ~/.inputrc
+"\033[5C": forward-word
+"\033[5D": backward-word
+

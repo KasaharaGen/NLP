@@ -1,0 +1,24 @@
+Q: How can I check a video file has an alpha channel? I have a bunch of video files (FLV and MOV), some with alpha channels and some without.
+How can I efficiently know the ones that have an alpha channel?
+
+A: Exiftool should report all clips with alpha channels as 32 bit:
+exiftool -bitdepth /path/to/your/movie.mov
+
+You can of course specify wildcards when calling exiftool:
+exiftool -bitdepth *.mov
+
+Media Inspector may do this as well if you prefer a GUI app.
+
+A: Another way is to use ffprobe. Here is an example adapted from this answer, to show it for every .mov file in the current directory:
+
+for f in *.mov; do
+    pixfmt=$(ffprobe -v 0 -select_streams v:0 -show_entries stream=pix_fmt -of compact=p=0:nk=1 "$f")
+    alpha=$(ffprobe -v 0 -show_entries pixel_format=name:flags=alpha -of compact=p=0  | grep "$pixfmt|" | grep -oP "(?<=alpha=)\d")
+    if (( alpha )); then
+        echo "With alpha: $f"
+    else
+        echo "no : $f"
+    fi
+done
+
+See the original answer for details on how it works.

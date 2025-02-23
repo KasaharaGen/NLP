@@ -1,0 +1,59 @@
+Q: Is there anywhere I can get a complete list of historical Safari release notes? I’ve done a bit of searching for specific Safari version numbers in support.apple.com. Quite a few versions have specific change notes, but it seems like often the versions bundled with major OS X releases aren’t given their own change notes.
+
+
+*
+
+*1.0: http://support.apple.com/kb/ht2964
+
+
+*
+
+*1.2: http://support.apple.com/kb/DL612 (Dave Hyatt also provided some more detailed notes on the old WebKit blog: http://weblogs.mozillazine.org/hyatt/archives/2004_02.html#004874)
+
+*1.3.1: http://support.apple.com/kb/DL445
+
+*1.3.2: http://support.apple.com/kb/DL403
+
+
+*2.0.1: http://support.apple.com/kb/DL444
+
+*3.1: http://support.apple.com/kb/TA25197?viewlocale=en_US
+
+
+*
+
+*3.1.1: http://support.apple.com/kb/DL78
+
+*3.2.1: http://support.apple.com/kb/DL723
+
+*3.2.3: http://support.apple.com/kb/DL820
+
+
+*4.0.5: http://support.apple.com/kb/DL877
+
+
+*
+
+*4.1: http://support.apple.com/kb/DL1045
+
+*4.1.2: http://support.apple.com/kb/DL1069
+
+
+*5.0: http://support.apple.com/kb/DL1046
+
+
+*
+
+*5.0.2: http://support.apple.com/kb/DL1070
+Also, sometimes Apple’s release notes can be a bit... terse.
+I’m trying to figure out which versions of Safari introduced support for HTML5/CSS features.
+Wikipedia’s got a great table of releases, but it is a bit vague on CSS improvements (e.g. “improved CSS support”).
+
+A: Safari uses Webkit as it's rendering engine. If you're specifically looking for when it began to support HTML5/CSS3, it as a fully open-source repository where you can review changes commit by commit. As such, you can see the full comprehensive, intricately detailed history here: http://trac.webkit.org/timeline
+
+A: The Wapedia table you point to appears to just be a less clear version of the Safari version history page on Wikipedia.
+This particular search on "When can I use…" appears to display much of what you're looking for.
+This page at findmebyip.com also has a good breakdown, although it's not as specific about particular browser versions.
+
+A: This website may help you:
+http://caniuse.com/

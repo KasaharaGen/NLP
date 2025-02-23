@@ -1,0 +1,38 @@
+Q: Is there a way to make Windows-style SMB share paths launch correctly? We have a mixed Windows/Mac network, with Windows fileservers, and an Exchange/Outlook mailsystem.
+The Windows users send out emails with links to the shared files that look like:
+\\FileServer01\topfolder\subfolder\shared.doc
+
+If you right-click on the link in Mac Outlook 2010, it seems to have a pseudo-URL of:
+file://///FileServer01/topfolder/subfolder/shared.doc
+
+Mac Outlook 2010 makes that link clickable, but fails with an error:
+The file ///FileServer01/topfolder/subfolder/shared.doc could not be found.
+
+Given that we're not going to be able to get people to stop copy-pasting in Mac-unfriendly SMB links, is there any way to get the Finder or some handler to rewrite the URL into something the Mac can open?
+
+A: I'm in a similar position at work, with a mixed environment. We use WinShortcutter, which is freeware. The allows you to right-click on a UNC path (such as \\FileServer01\topfolder\subfolder\shared.doc) and Open as Windows Link:
+
+It's quite configurable as well, and allows drive mappings (so when you are sent a link that starts S:/folder, it will allow you to Open as Windows Link).
+
+This works quite reliably for us.
+
+A: I came across the similar problem at work and we found a 3rd party app for this:
+linkconverter
+it works pretty well, especially rightclicking on a file on an UNC Drive the pathname is directly in the clipboard and you get the windows path instantly.
+
+A: Short answer: no.  Long answer:  Maybe, if Outlook support plugins or something.  Macs will refer to a Samba server share as smb://Server/Share/Subfolder/File.ext.  What you could do - copy the link, minus the junk at the beginning, so that you have something like this in your clipboard - "FileServer01/topfolder/subfolder/shared.doc".
+Switch to finder, hit cmd+k, paste, move to the beginning of the line and type smb://, hit enter.  It will drop down to the last folder before the "shared.doc".
+Not elegant, not pretty, but it works.  And for now it may just be your only option, sorry.
+
+A: In recent (Mojave 10.14 - Catalina 10.15) versions of macOS Finder, you can easily get a copy of the network volume path:
+Edit->Copy as Link with control & option ^⌥⌘-C puts a link akin to the following example into the clipboard:
+smb://someserver/Share%20on%20some%20server/file.ext
+
+
+A: In 10.8 there is functionality to do this built-in... so in a sense your wishes have been granted provided you can migrate to the newer operating systems. I can imaging the support for this will only get better with 10.9.
+
+A: I was using 10.8 and have been sending links from my pc to our mac user as such---
+smb://video/videoshare/folder/  
+Originally I was sending them 
+\\video\videoshare\folder\   --- This would still work, they would have to perform a right click then select open url and it would open the location.
+Now we are on 10.9.3 and the ablilty to open a samba network link in outlook 2010 seems to have vanished without a trace.  I send it the way I have been for mac users and now they can't click on the link to open.   They have to do a right click and then open url and sometimes it works and sometimes it doesn't. 

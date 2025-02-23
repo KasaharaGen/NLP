@@ -1,0 +1,40 @@
+Q: An alternative to the text editor TextMate for PHP development? I am fed up with the text editor TextMate. It's great, but it's old and keeps crashing on me. No development in (what, 3+?) years, etc.
+So I'm looking for a viable alternative, mainly for PHP development. However, I don't want a bloated and slow editor that runs on Java (so NetBeans, Komodo, Eclipse, etc are out), nor something that includes the kitchen sink (goodbye Coda, I already own Espresso but am extremely disappointed that after latest version doesn't include variable autocompletion). BBEdit is a little too bare bones for me.
+In summary, as the title says, a TextMate replacement that is modern, stable and still in development. Does such an editor exist?
+
+A: Have a look at Sublime Text. It basically is what I would expect TextMate2 to be.
+http://www.sublimetext.com/
+
+A: MacVIM + the Janus Plugins
+Fear not the VIM. MacVIM gives you visual VIM that's OS X friendly. All the usual suspects work (Cmd+S, Cmd+W, etc.). And the Janus plugins give you nice addons like a side drawer for projects, etags/ctags without even having to know what that is, TAB key completion and more.
+It's really very good. It lowers the VIM learning curve by a massive amount.
+The MacVIM is getting good amounts of active development. It had full-screen Lion support within days of Lion being out the door. I can't tell you how nice full screen Lion MacVIM coding is. You really have to experience the joy and wonder of it for yourself. It's very distraction free, let me say that.
+It's free to try so you're not out any money if you decide it really isn't for you.
+
+Komodo or (Komodo Edit)
+I used, and loved, Komodo v4 for years in my last job. I liked it's big, old IDE-ness at the time and that it looked and (nearly) behaved the same on Linux and Windows -- the two platforms I had to switch between during the course of a development day. I used it mainly for Perl and Tcl development. But it bundles in a ton of support for PHP.
+It is not a Java application. Most definitely v4 is a native binary on OS X. I just fired up my old v4 copy to verify this.
+It runs fast, but not as fast as something like TextMate or MacVIM because it is, after all, trying to be a big old IDE. And big old IDEs try to do lots of project-level analysis and integrations and scanning and what not to give you that big old IDE experience. That being said, it wasn't that slow.
+Komodo Edit is free. I used the paid version.
+I gave up the whole IDE thing when I switched to OS X full time for development. My tool chain still looks pretty much like this answer I posted to a similar question over here. I use MacVIM more and more now that TextMate though.
+
+A: Keep an eye on Chocolat. It's still in beta, but I think I read it supports Textmate bundles (not sure).
+You can also try to ping the developpers on Twitter to have an early access. If you plead your case correctly, they will probably send you an invite.
+
+A: I never had any exposure to TextMate but I'm quite comfortable with SubEthaEdit. It's most prominent selling point is the ability to collaboratively work on documents over a network connection but even this is not your main interest it serves very well as a general-purpose file editor, offers syntax-coloring suport for many languages, can be customized, comes with scripting support, etc.
+
+A: I exclusively use emacs for all of my text editing, be it programming, scripting, note taking or paper/documentation writing.  I usually run within the terminal with emacs -nw a the command line, but there are several GUI apps for emacs on OS X (e.g. Aquamacs or Carbon emacs).  There is,  however a slight learning curve -- I've been using emacs for the past 6 years or so and am daily learning new commands/tricks.
+There are numerous extra packages/plugins (usually called "modes") for almost anything you can think of needing - and if there isn't, emacs is completely extendable as it is just a lisp interpreter.
+One particular mode I have found lately to be extremely useful is org-mode, which was originally designed for note-taking and organization but has grown enormously to handle all sorts of projects from publishing professional webpages to using LaTeX and beamer to create presentations.  In fact, I wrote my entire dissertation and defense presentation using org-mode.
+
+A: TextMate 2 is open sourced on github now.
+
+A: Brackets supports plugins and is under heavy development, and is open-source.  They recently released 1.0.
+
+A: After using BBedit on the Mac and then Notepad++ on the PC I have now migrated to Sublime Text which I cannot recommend highly enough.
+This is a genuinely cross platform application (native not java) with a large and active community (Will Bond hosts the excellent Package Control plugin repository)
+What is especially useful is the license is registered to the user, so a single user can install Sublime on both a Mac & PC quite legally.
+
+A: In the end, thanks to posts here, I bought SublimeText and used it for a couple of years, it's great if a bit quirky. I highly recommend it. 
+I've since moved on to Ruby development and am now using Rubymine which is incredible. If you do any Ruby development check it out.
+Chocolat looked good but missing too many features and very slow development. Espresso a complete disappointment.

@@ -1,0 +1,33 @@
+Q: Why won't iPad connect to my mail server? I have just got an iPad and tried to set up my mail server.
+I have a server that has SMTP on port 25 and IMAP configured on the default port 143, nothing special.
+In addition, I have port 144 for secure IMAP and 26 for secure SMTP. SSL is a self signed certificate for a custom root that is installed in all devices that allow it.
+I use SSL exclusively here and every laptop, desktop and other device works fine with it.
+I first tried to set the iPad up with this, but when it did not work, I deleted the account and tried the non secure standard 25/143.
+After main attempts (and failures) I did discover that I can send messages fine on both standard and the secure SMTP (indicating no problems with the SSL certificate).
+I turned on logging on my mail server and found the message 
+TCPConnection - SSL handshake with client failed. Error code: 2, Message: End of file, 
+
+I get this when trying both SSL on and off.
+I tested it on an iPod touch that was here and it works fine on both Imap Secure and standard.
+Thanks in advance!
+edit---
+I found the enterprise tool, and managed to pull a log. I have cleared the log, then go in to mail and the following occurs:
+Thu Nov 11 15:33:50 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:33:50 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:33:50 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:33:50 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:33:50 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:33:50 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:33:50 unknown configd[24] <Debug>: CaptiveNetworkSupport:UIAllowedNotifyCallback:63 uiallowed: true
+Thu Nov 11 15:35:14 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:35:14 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:35:14 unknown MobileMail[47] <Warning>: Error: Tried to get message at 0, but we only have 0 messages.
+Thu Nov 11 15:35:14 unknown MobileMail[47] <Warning>: ERROR: MFMessageErrorDomain/Socket Read - The connection to the server "ezpcltd.com" failed.
+
+Straight after the last line, the device flashes the "Cannot Get Mail" message.
+
+A: I did originally fix this problem, but it has resurfaced.
+I have written a great deal about this problem at my blog... (would paste directly, but pictures will not show up).
+http://blog.williamhilsum.com/2010/11/ipad-update-and-more-problems-with-mail.html
+The blog will show how I fixed the original problem, therefore is an answer, however, it also shows the new (related) problem.
+If anyone has a good fix that will solve everything once and for all, please write another answer!

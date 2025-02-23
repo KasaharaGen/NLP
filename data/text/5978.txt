@@ -1,0 +1,12 @@
+Q: How do I send files from one Mac to another via Terminal? Is there a way to send a file in Terminal from one Mac to another? If I have a file on Mac A and I want to send it to Mac B via Terminal on Mac A, how do I do this?
+
+A: Enable "Remote Login" in the preferences of the target/remote mac. Then use
+scp file user@remotehost:
+with user being the short name of the remote user. You will be asked for the password of the user on remotehost.
+If you want to avoid using passwords, you can set up ssh key pairs. See here for details.
+
+A: I use Dropbox. If it's not huge files, that is. Just cp to your Dropbox folder on Mac 1 and Dropbox will sync it to Mac 2.
+
+A: rsync -Pvaze ssh source destination
+
+See man rsync for what the options mean and what other options are available.

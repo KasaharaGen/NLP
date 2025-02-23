@@ -1,0 +1,26 @@
+Q: How do I use time machine to restore my entire computer, rather than a file? Is is possible? What is the easiest (most hassle-free) way of accomplishing this?
+
+A: In 10.7 and later you can start up from the recovery system and choose Restore From Time Machine Backup.
+
+
+Or if the backup was made on a different Mac, Apple recommends using Migration Assistant. See Mac Basics: Time Machine:
+
+Restoring your entire system from a backup
+If you are restoring a backup made by a Mac to the same Mac
+With your backup drive connected, start up your Mac from the Recovery system (Command-R at startup) or Mac OS X v10.6 installation disc. Then use the "Restore From Time Machine Backup" utility.
+Note: If "You can't restore this backup because it was created by a different model of Mac" appears when restoring a backup that was made on a different Mac, follow the onscreen instructions.
+If you are restoring a backup made by one Mac to a completely different Mac
+Important: If the backup you are about to restore is from a completely different Mac, use the Migration Assistant to transfer data from the backup, as described in the next section.
+
+
+A: The easiest way would be to start 'Migration Assistant' under Applications/Utilities and then select Time Machine (of course, having it already mounted). This will create a new account with all your entire working data and configuration (on any mac).
+
+A: To recover your entire system:
+1) Connect your Time Machine backup disk to your computer.
+If you’re restoring your system because of a problem with your startup disk, make sure the disk has been repaired or replaced.
+2) Insert your Mac OS X Install disk, and double-click the Install Mac OS X icon.
+3) In the Installer, choose Utilities > Restore System from Backup.
+4) In the Restore Your System dialog, click Continue.
+5) Select your Time Machine backup volume.
+6) Select the Time Machine backup you want to restore.
+7) Follow the onscreen instructions.

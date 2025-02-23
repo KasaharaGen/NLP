@@ -1,0 +1,80 @@
+Q: How do I rename the Downloads folder (in Lion)? For whatever perverse reasons I wish to rename the Downloads folder to Temp. I would also be happy with a way of making it appear to me, in both the GUI and the CLI, as Temp. I am aware I can do this via Terminal with root privileges, but the fact that I need root privileges to do so suggests to me that something might break. Will something indeed break if I rename the folder, and if not, is there a gentler way of renaming it thansudo mv Downloads Temp?
+I will also be happy (though less so) with confirmation that making Downloads into a symbolic link to a different folder won't break anything.
+
+A: You can create a new folder named "Temp" in your home directory, then in Safari, select Preferences (Command ,) 
+
+and select "Other" from the drop-down menu for "Save downloaded files to:" 
+Select your newly created Temp folder. If you want a stack for it in the Dock, or you want it in the Finder sidebar, drag it to the appropriate places.
+If you want the Downloads folder to disappear, in Terminal, you can run the command
+  chflags hidden ~/Downloads
+
+
+A: To extend the idea raised by cksum in a comment already:
+
+
+*
+
+*Create a symbolic link to Downloads with the name you want: ln -s ~/Downloads ~/Temp
+
+*Hide the real Downloads folder from the Finder: chflags hidden ~/Downloads
+All browsers etc. will still save to Downloads (so you don't have to reconfigure anything) but you can access your files in Temp without having to bother with Downloads any longer. 
+
+A: Here's a way you can do it without actually creating a new folder or mucking around with symlinks.
+In an editor like TextWrangler or BBEdit, open this file:
+/System/Library/CoreServices/SystemFolderLocalizations/en.lproj/SystemFolderLocalizations.strings
+
+Inside, you'll see stuff like this:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Applications</key>
+    <string>Applications</string>
+    <key>Compositions</key>
+    <string>Compositions</string>
+    <key>Deleted Users</key>
+    <string>Deleted Users</string>
+    <key>Desktop</key>
+    <string>Desktop</string>
+    <key>Documents</key>
+    <string>Documents</string>
+    <key>Downloads</key>
+    <string>Downloads</string>
+    <key>Drop Box</key>
+    <string>Drop Box</string>
+    ...
+</dict>
+</plist>
+
+This is how the system knows how to translate folder names.  Since this is the "en.lproj" ("English language project"), you can alter the values in this file to be what you want.  (Alternatively, if you run Mac OS X in Spanish, you'd use the version of the file inside the "es.lproj" folder) So, for example, you might change:
+    <key>Downloads</key>
+    <string>Downloads</string>
+
+To be:
+    <key>Downloads</key>
+    <string>Downloaded Stuff</string>
+
+Save the file (you'll probably have to type in an administrator password to do so), and then pop open Terminal and type killall Finder.  When Finder finishes relaunching, you'll see that your Downloads folder now has the name "Downloaded Stuff".
+This is the much safer way to do it, because some apps may be hardcoding a path to the downloads folder as @"~/Downloads" and then expanding the tilde.  Depending on what they're doing, this may or may not work with symlinks (meaning the apps may not work properly).  With the method above, you haven't changed the folder at all.  It's still called "Downloads", but it just gets shown as something else.  (However, if you ls your home directory in Terminal, it will still show "Downloads" and not "Downloaded Stuff")
+The downside of this approach is that you're altering a system file, which means this could get reverted when you update your system, etc.
+(Source: http://hints.macworld.com/article.php?story=20020926061746306)
+
+A: I've had kind of the same problem. When having for example download or picture folders in left favorite-shortcut-side of finder they change name to main language Swedish when working in Swedish settings.
+My solution was to make a alias folder of the original one and using that in favorite-shortcut-side of finder instead. I can rename this alias to whatever I like.
+
+
+A: You could also post-process the downloads to test if the new folder is mounted and use a rule engine like Hazel to build up your logic.
+
+
+*
+
+*http://www.noodlesoft.com/hazel.php
+The benefits of this are twofold.
+
+
+*
+
+*You don't mess with the system that expects and is designed for ~/Downloads to exist and be used
+
+*The Hazel tool is a general one - once you implement this one "operation" you will likely find other areas to apply that skill/tool and make your environment even more automated and customized while respecting the system design and taking advantage of system capabilities like watch folders and file system notifications.
+

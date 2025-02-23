@@ -1,0 +1,23 @@
+Q: How to disable the "Your computer time is almost up." dialog? When parental controls are enabled and computer time setting is set, the controlled user will be shown a dialog 15, 5 and 1 minute(s) before the time is up:
+
+An admin user can add more computer time through this dialog (15 min, 30 min, rest of the day etc.), if he wishes.
+Is there a way to disable this dialog? — no mercy!*
+I know it's not available through the System Preferences, but is there some sort of hidden setting that can be reached through, e.g. Terminal? Or alternatively, is there a way to automatically send ⌘ + W key combo when a specific dialog appears?
+I'm (still) on Snow Leopard, but if some answer would work on Lion, I'm willing to accept it.
+*) Actually I've enabled parental controls for my sock–puppet account and, because I know the admin password, adding time through this dialog would be just too easy.**
+**) I also know that, being an admin, I could add more time in many different ways and blocking this dialog wouldn't prevent me adding more time in other ways. But—like I said—adding time through this dialog is too easy.
+
+A: /System/Library/CoreServices/SecurityAgentPlugins/FamilyControls.bundle/Contents/Resources/English.lproj/FamilyControls.nib is a binary XML file that can be opened by TextWrangler or other text editors. This isn't a developed solution (yet), but I'd suggest some well-placed edits to this nib might be able to disable the dialog, perhaps by making buttons disappear. At any rate, this sounds more promising than randomly zeroing out portions of the binary using a hex-editor, which is the other channel I've been exploring.
+
+A: Copy and paste this line into Terminal
+
+sudo chmod 000 /System/Library/CoreServices/SecurityAgentPlugins/FamilyControls.bundle/Contents/Resources/English.lproj/localizable.strings
+
+Note that should be allllll one line!
+Then try again and see what happens.
+Sorry! I should have explained this. chmod 000 means "no one can read, write, or execute this file, not even the owner of the system. You might have to restart to get the system to notice that you did this. In general, I do not recommend making any sorts of changes to anything in /System/, but you seemed to want "any solution".
+By the way, to reverse this, paste this line into Terminal
+
+sudo chmod 644 /System/Library/CoreServices/SecurityAgentPlugins/FamilyControls.bundle/Contents/Resources/English.lproj/localizable.strings
+
+chmod 644 says "the owner can read/write, users of the group that owns the file can read, and others can read also. Those are the default permissions for the file, according to my system.

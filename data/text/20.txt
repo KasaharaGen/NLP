@@ -1,0 +1,22 @@
+Q: Why does my MacBook Pro take so long to go to sleep? My MacBook Pro takes an awful long time to go to sleep when I close the lid. Considering that I generally want to close the lid and then carry it somewhere, I want it to be fully asleep so I don't have any hard drive issues. Is there anything I can do to speed up the process?
+
+A: I recommend a nifty little utility called SmartSleep that allows you to control when the saving of your RAM contents to disk for the Safe Sleep / Hibernate feature Mac OS X has.
+Alternatively you can disable Safe Sleep altogether by running: sudo pmset -a hibernatemode 0. To change it back to the defaults, change the value to 3.
+0 - Old style - just goes to sleep.
+1 - Only Hibernate
+3 - Default - goes to sleep but writes RAM contents to disk just in case.
+5 - Only Hibernate mode but if you use secure virtual memory.
+7 - The Default but if you use secure virtual memory.
+
+
+A: Use the command pmset -g log to find out what is delaying the sleep command.  Look for "applicationresponse.slowresponse" and "applicationresponse.timedout" entries.
+
+A: Depending on what applications you are running it could take a significant amount of time (20-30 sec) to actually "sleep." 
+OS X will "dock" the hard drive head if it detects sudden movement, so I wouldn't expect any issues there.
+
+A: Another use for the pmset utility (which, like most Apple utilities, is documented: do "man pmset" in Terminal) is to tell the system to sleep when you hit the power button. In Terminal, do
+sudo pmset powerbutton 1
+and thereafter when you hit the power button a menu comes up with choices Restart, Sleep, Cancel, and Shut Down. I always sleep my MacBook Pro this way in order to be sure it has really gone dormant.
+On the other end of the sleep cycle, I don't want the machine waking up while traveling if it gets jostled enough to shake the lid open (even briefly). The Terminal command to estabish this is
+sudo pmset -a lidwake 0
+For both commands, you will have to authenticate as an administrator.

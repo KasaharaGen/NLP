@@ -1,0 +1,27 @@
+Q: Best File System for Sharing Between OS X and Windows What is currently the best file system to use for drives that are regularly accessed (both reading and writing) from both Windows and OS X on a single machine using BootCamp. The most important points are stability and speed.
+I've been using NTFS so far, coming from a Windows background. I've tried the NTFS-3G driver with Fuse and, in my tests, it was far slower than native NTFS under Windows. I also tried their commercial driver without much better results.
+Afterward I tried Paragon's drivers, which were much faster. They aren't quite native NTFS speed, but they aren't far off either. The problem is I've had crashes with them, and recently had crashes + data loss with them.
+I know this question has been asked before, but the posts I saw were older and the driver and filesystem options are maturing.
+Options I've seen:
+
+
+*
+
+*FAT32: Limited drive size? Limited permission settings
+
+*NTFS: Limited speed/stability under OS X
+
+*HFS+: MacDrive? available for Windows
+
+
+Follow Up
+I have now formatted one of the drives as exFAT and can confirm that this works great for both reading and writing when the machine is booted into either OS X or Windows 7.
+
+A: If you're working exclusively with Win7 machines (i.e. no Vista or XP), and 10.6.6 or greater on the Mac side, try exFAT. Native read/write support under Win7 and OS X, and none of the file size limits of FAT32. Disk Utility will happily format your drives using it.
+As long as you don't need legacy support, it's probably your best option, as it avoids any user-space filesystem drivers, which personally make me a bit uneasy.
+Addendum: XP and Vista do support exFAT, Vista as of SP1, and XP with SP2 and the KB955704 update
+
+A: If you care about your data stick with ntfs or fat32(4G filesize limit!). 
+Had multiple drives formatted to exFat in order to use them with both operating systems (osx/win) and i cant remember when i lost so many files in such a short period of time. To my luck I had backups of everything lost.
+My best experience with ntfs on mac so far is the driver by paragon - cant tell a difference from a natively supported filesystem. Tuxera and ntfs-3g gave me trouble with performance and reliability.
+If you want to stick with exFAT you have to disable caching/buffering as this leads to data corruption on any error - be extra cautious on external drives (check connection, unmount before unplugging). exFAT was designed for portable battery powered devices with continiuos uncached writes, like camcorders or digital cameras and doesnt support any kind of journaling.

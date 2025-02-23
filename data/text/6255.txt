@@ -1,0 +1,22 @@
+Q: Showing current directory in Terminal's title, using tcsh I'd like the title bar of Terminal to always show the directory I'm in.  I don't want it shown in the prompt.  I found some magic trick code online, and have this in my .tcshrc:
+
+set prompt = "%B%m:%n %?====>%b "
+alias cwdcmd 'echo -ne "\033]0;$cwd\007"'
+
+It sort of works except for two things: 1) the cwd isn't shown in the title bar, and 2) the cwd along with some gibberish is printed at the command line.  I figured maybe the quoting wasn't right, or some other syntax issue, but experimenting didn't lead to improvement.   
+For reasons unspecified, I must use tcsh not bash. The latter, I can get working fine.
+
+A: This is the prompt I use in tcsh.  It sets the window title to the full path (which as Chris Page answered, gains extra functionality in Lion).  The prompt itself is essentially [$HOST:$PWD] $USER% using tcsh % syntax.
+set prompt = '%{\e]2;%~\a%}%S[%m:%c3] %n%#%s '
+
+
+A: This is what I have in my .cshrc
+
+alias cwdcmd 'printf "\033]1;%s\007\033]2;%s\007" "$cwd:t" "$HOST echo $cwd | sed s-$HOME-~-" '
+
+It does some additional stuff for iTerm, which I use instead of Termial, but seems to work fine
+there as well.  
+
+A: As of Mac OS X Lion 10.7, Terminal now supports displaying the working directory using the standard window "proxy" icon. This is enabled by default for bash (the default shell). See /etc/bashrc for the relevant code.
+This enables several behaviors, such as the ability to create a new terminal in the same directory (by default, New Tab will do so, and you can enable it when creating a new window), and restoring the working directory when quitting/restarting Terminal (for Resume). It also enables restoring working directories when opening Window Groups.
+As a convenience, if you have your shell configured to put the working directory path in the window (or tab) title, Terminal will check whether the title contains a valid local path and provide some of the same behaviors automatically (although it won't restore the working directory for Resume).

@@ -1,0 +1,299 @@
+Q: Is there a Mac OS X Terminal version of the "free" command in Linux systems? On Linux, I often use the free command to see the current amount of free and used memory in the system. For example:
+$ free
+             total       used       free     shared    buffers     cached
+Mem:       7264256    1010952    6253304          0     371892     189088
+-/+ buffers/cache:     449972    6814284
+Swap:      8126456         28    8126428
+
+It does not seem to exist when I enter free in Mac OS X's Terminal. Is there an alternative?
+
+A: The command you need is vm_stat - similar to the traditional Unix tool vmstat but with a few MACH-specific differences. The man page is well written.
+
+A: free="$(( $(vm_stat | awk '/free/ {gsub(/\./, "", $3); print $3}') * 4096 / 1048576)) MiB free"
+
+
+A: #!/bin/bash
+top -l 1 | grep PhysMem: | awk '{print $10}'
+
+
+For Unix experts only:
+top -l 1 | awk '/PhysMem:/ {print $10}'
+
+
+A: It seems the reason it's slow is because top -l 1 always delays by one second after completing, the standard delay between refreshes.  Adding -s 0 to the command makes it complete instantly:
+top -l 1 -s 0 | grep PhysMem
+
+Also, for clarity, I like showing each mem-component on its line, so I added 9 spaces for alignment with 'PhysMem: ' in the sed replacement string:
+top -l 1 -s 0 | grep PhysMem | sed 's/, /\n         /g'
+
+
+A: Judging by your other question, I think you've found the use of the Activity Monitor utility to look at your memory status, right?  Just for the record, it's in /Applications/Utilities/Activity Monitor.app.
+
+A: You might try the command allmemory if you want a command line tool that reports extremely detailed memory usage.
+
+A: The above is way too much effort for my liking, and it assumes that you have a fully fledged install too... If you've booted from a Mac OS X start up disk, then all the above solutions obviously won't work...
+Just use the command "hostinfo", here's the output from my mid 2012 MBAir running Mavericks (10.9.1):
+ Mach kernel version:
+ Darwin Kernel Version 13.0.0: Thu Sep 19 22:22:27 PDT 2013; root:xnu-2422.1.72~6/RELEASE_X86_64
+Kernel configured for up to 4 processors.
+2 processors are physically available.
+4 processors are logically available.
+Processor type: i486 (Intel 80486)
+Processors active: 0 1 2 3
+Primary memory available: 8.00 gigabytes
+Default processor set: 195 tasks, 961 threads, 4 processors
+Load average: 1.61, Mach factor: 2.38
+
+The good this about this command is that it comes preinstalled with the 10.9 installer too under /usr/bin, so it's very handy, 
+ideally, if you just want RAM then issue:
+$ hostinfo | grep memory
+
+Don't know if hostinfo exists on any previous OSes though...
+
+A: Here's a simple one-liner to make the whole vm_stat output more human friendly:
+$ vm_stat | perl -ne '/page size of (\d+)/ and $size=$1; /Pages\s+([^:]+)[^\d]+(\d+)/ and printf("%-16s % 16.2f Mi\n", "$1:", $2 * $size / 1048576);'
+free:                     2330.23 Mi
+active:                   2948.07 Mi
+inactive:                 1462.97 Mi
+speculative:               599.45 Mi
+wired down:                840.46 Mi
+copy-on-write:           43684.84 Mi
+zero filled:            385865.48 Mi
+reactivated:               608.14 Mi
+
+
+A: top -l 1 -s 0 | awk ' /Processes/ || /PhysMem/ || /Load Avg/{print}'
+
+This should do nicely :)
+
+A: I think these days, psutil and its meminfo.py script provide the most helpful memory-usage details. To try it:
+pip install psutil
+curl -O https://raw.githubusercontent.com/giampaolo/psutil/master/scripts/meminfo.py
+python ./meminfo.py
+
+The output it produces looks like this:
+MEMORY
+------
+Total      :   16.0G
+Available  :    5.5G
+Percent    :    65.8
+Used       :   13.5G
+Free       :    1.5G
+Active     :    7.4G
+Inactive   :    4.0G
+Wired      :    2.1G
+
+SWAP
+----
+Total      :    1.0G
+Used       :   33.5M
+Free       :  990.5M
+Percent    :     3.3
+Sin        :   15.9G
+Sout       :   71.6M
+
+Notice the Available row, which shows an estimate  of  how  much  memory  is actually available for starting new applications, without swapping.
+I don’t know of any other MacOS utility providing that available-memory estimate.
+For the sake of comparison: On a Linux system, the same sort of information is provided in the available column in output from current versions of free:
+              total        used        free      shared  buff/cache   available
+Mem:           7.8G        552M        182M        156M        7.1G        6.9G
+Swap:            0B          0B          0B
+Total:         7.8G        552M        182M
+
+That available column in free output just comes from MemAvailable in /proc/meminfo. And on systems that have /proc/meminfo, psutil also just uses that to estimate available memory.
+But MacOS doesn’t have /proc/meminfo, so to estimate the available memory in that case,  psutil employs the same algorithm used on Linux to calculate MemAvailable for /proc/meminfo.
+
+A: In case you're only really interested in swap usage (what would be the last line of output from free):
+$ sysctl vm.swapusage
+vm.swapusage: total = 64.00M  used = 0.00M  free = 64.00M  (encrypted)
+
+
+A: Bash commands "free like" for Mac OSX.
+This is the second reissue of this post. At first, I got two -1. One because I was not describing in English, it is corrected. The other because I used gawk (which is not part of a standard OS X installation), it is also corrected, I now use awk. The -2 are still there ;-). The best is perhaps now to test and evaluate the commands it themselves?
+I reviewed my first idea to build only one end-user oriented command with a friendly and highly configurable display, I made two:
+
+
+*
+
+*free-like.sh a script always oriented "end user", with more accuracy, a "friendly" and configurable display, but with more calculations and resource consumption,
+
+*free-like-raw.sh, a command now oriented developer, sysadmin, etc.., with less computation and resource consumption, but also with less precision, less  "friendly" display.
+The data for the physical memory are extracted from the results of the command vm_stat (which returns the results in blocksize). The imprecision resulting from the transformation in bytes (number_of_blocks * block_size, the default value of the calculations) will be between 0 < the size of the block.
+The data for virtual memory are taken from the top command. The imprecision here is linked to the unit of reference of the top command: kilo, mega, giga.
+Calculations are made using awk that respects rounded (as opposed to bc). awk is also quicker than bc.
+You can see the test script here: http://myblog.robert.sebille.name/article29.html#awk-bc
+You can view the results of the commands in bytes (default), in kilo, mega or giga, with x decimal places in the case of free-like.sh and if you ask the display in mega ou giga.
+The scripts are too long for a post, but you can find them on this article of my blog: http://myblog.robert.sebille.name/article29.html
+The article is in french, but it display one example of display for each command and their integrated help (./free-like.sh -h and ./free-like-raw.sh -h), in english. These aids completely describe the commands. The article display also the codes. 
+English is not my mother language. If somebody wants to correct errors in the integrated help, he is welcome ;).
+yours.
+
+A: There is a terminal command similar to free on Mac OS X... it is called top
+For further information you can check out this Apple Support document.
+Mac OS X: How to View Memory Usage With the "top" Utility
+
+A: This runs at my $PS1:
+https://github.com/vigo/dotfiles-universal/blob/master/prompts/free_memory
+(Ruby version: https://github.com/vigo/dotfiles-universal/blob/master/prompts%2Ffree_memory.rb )
+
+A: If case you use fishshell on osx, along with fisher its package manager.
+I wrote the following extension: https://github.com/fisherman/free
+It's a complete redo of the free command for osx. See by yourself
+> free
+                 total     used     free   appmem    wired   compressed
+Mem:            8.00Gb   6.65Gb   1.95Gb   2.87Gb   2.09Gb   1.86Gb
++/- Cache:               1.24Gb   1.87Gb
+Swap(43%):      2048Mb    877Mb   1171Mb
+Load Avg:        1.63 1.95 1.95
+
+
+A: You can try the memory_pressure command.
+See the output of my system (i5, 4 GB RAM)
+The system has 2147483648 (524288 pages with a page size of 4096).
+
+Stats: 
+Pages free: 90009 
+Pages purgeable: 139593 
+Pages purged: 7496548 
+
+Swap I/O:
+Swapins: 470466 
+Swapouts: 530913 
+
+Page Q counts:
+Pages active: 407739 
+Pages inactive: 148277 
+Pages speculative: 16200 
+Pages throttled: 0 
+Pages wired down: 263064 
+
+Compressor Stats:
+Pages used by compressor: 122815 
+Pages decompressed: 7327420 
+Pages compressed: 17625795 
+
+File I/O:
+Pageins: 1538997 
+Pageouts: 86692 
+
+System-wide memory free percentage: 63%
+
+
+A: There's no exact equivalent that's distributed with Mac OS X, but there are a couple other ways to get the information:
+
+
+*
+
+*system_profiler - Shows all of the Mac's System Profile info in the shell 
+
+*sysctl -a | grep mem or sysctl hw.memsize (total mem)
+
+
+A: Just taking the solution from @zack and adding inactive and speculative blocks.
+#!/bin/bash
+
+FREE_BLOCKS=$(vm_stat | grep free | awk '{ print $3 }' | sed 's/\.//')
+INACTIVE_BLOCKS=$(vm_stat | grep inactive | awk '{ print $3 }' | sed 's/\.//')
+SPECULATIVE_BLOCKS=$(vm_stat | grep speculative | awk '{ print $3 }' | sed 's/\.//')
+
+FREE=$((($FREE_BLOCKS+SPECULATIVE_BLOCKS)*4096/1048576))
+INACTIVE=$(($INACTIVE_BLOCKS*4096/1048576))
+TOTAL=$((($FREE+$INACTIVE)))
+echo Free:       $FREE MB
+echo Inactive:   $INACTIVE MB
+echo Total free: $TOTAL MB
+
+
+A: As @khedron says, you can see this info in Activity Monitor.
+If you want it on the command line, here is a Python script that I wrote (or perhaps modified from someone else's, I can't remember, it's quite old now) to show you the Wired, Active, Inactive and Free memory amounts:
+#!/usr/bin/python
+
+import subprocess
+import re
+
+# Get process info
+ps = subprocess.Popen(['ps', '-caxm', '-orss,comm'], stdout=subprocess.PIPE).communicate()[0].decode()
+vm = subprocess.Popen(['vm_stat'], stdout=subprocess.PIPE).communicate()[0].decode()
+
+# Iterate processes
+processLines = ps.split('\n')
+sep = re.compile('[\s]+')
+rssTotal = 0 # kB
+for row in range(1,len(processLines)):
+    rowText = processLines[row].strip()
+    rowElements = sep.split(rowText)
+    try:
+        rss = float(rowElements[0]) * 1024
+    except:
+        rss = 0 # ignore...
+    rssTotal += rss
+
+# Process vm_stat
+vmLines = vm.split('\n')
+sep = re.compile(':[\s]+')
+vmStats = {}
+for row in range(1,len(vmLines)-2):
+    rowText = vmLines[row].strip()
+    rowElements = sep.split(rowText)
+    vmStats[(rowElements[0])] = int(rowElements[1].strip('\.')) * 4096
+
+print('Wired Memory:\t\t%d MB' % (vmStats["Pages wired down"]/1024/1024))
+print('Active Memory:\t\t%d MB' % (vmStats["Pages active"]/1024/1024))
+print('Inactive Memory:\t%d MB' % (vmStats["Pages inactive"]/1024/1024))
+print('Free Memory:\t\t%d MB' % (vmStats["Pages free"]/1024/1024))
+print('Real Mem Total (ps):\t%.3f MB' % (rssTotal/1024/1024))
+
+As you can see, you can just call vm_stat from the command line, though it counts in 4kB pages, hence the script to convert to MB.
+The script also counts up the "real memory" usage of all running processes for comparison (this won't match any specific value(s) from overall memory stats, because memory is a complex beast).
+
+Here's an example of the output of the script on my system:
+[user@host:~] % memReport.py
+Wired Memory:           1381 MB
+Active Memory:          3053 MB
+Inactive Memory:        727 MB
+Free Memory:            1619 MB
+Real Mem Total (ps):    3402.828 MB
+
+(very slightly adjusted to match the tab sizing on StackExchange ;)
+
+A: vm_stat shows you in kilobytes.
+The oneliner below shows in megabytes:
+paste <(vm_stat | awk 'NR>1' | grep -o ".*:") <(for i in $(vm_stat | awk 'NR>1' | tr -d '.' | awk '{print $NF}'); do perl -e "print $i/1024" | awk '{printf "%0.2f", $0}'; echo; done) | column -s: -t
+
+Returns:
+Pages free                      11.06
+Pages active                    798.25
+Pages inactive                  776.03
+Pages speculative               9.15
+Pages throttled                 0.00
+Pages wired down                303.27
+Pages purgeable                 0.95
+"Translation faults"            82172.66
+Pages copy-on-write             11629.60
+Pages zero filled               27685.41
+Pages reactivated               1450.70
+Pages purged                    91.66
+File-backed pages               430.20
+Anonymous pages                 1153.24
+Pages stored in compressor      481.75
+Pages occupied by compressor    149.91
+Decompressions                  1277.92
+Compressions                    1622.33
+Pageins                         13198.02
+Pageouts                        66.61
+Swapins                         54.34
+Swapouts                        90.63
+
+
+A: top  or  htop can also help to solve the problem .
+
+A: This works with vanilla Mac OS 10.10 - 13.2, on both Intel and ARM Mac's, to get the amount of free memory in Mb, as defined as memory that the OS would page out and allocate to other processes if needed, plus unallocated memory:
+page_sz=$(/usr/bin/memory_pressure |awk '/ pages with a page size of / { print  $NF+0 }')
+free_pages=$(/usr/bin/memory_pressure |awk '/^Pages free:/ { print  $NF }')
+inactive_pages=$(/usr/bin/memory_pressure |awk '/^Pages inactive:/ { print  $NF }')
+speculative_pages=$(/usr/bin/memory_pressure |awk '/^Pages speculative:/ { print  $NF }')
+free_mb=$(( (${free_pages} + ${speculative_pages} + ${inactive_pages}) * ${page_sz} / 1048576 ))
+
+And, as a one-liner:
+memory_pressure|awk '/ page size of /{z=$NF+0}/^Pages free:/{f=$NF}/^Pages inactive:/{i=$NF}/^Pages speculative:/{printf "%i\n",(f+i+$NF)*z/1048576}'
+

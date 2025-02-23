@@ -1,0 +1,11 @@
+Q: Transferring Skitch history to new Mac I bought a new MacBook and am wanting to transfer my Skitch history. I've copied all of the .skitch files from ~/Pictures/Skitch on my old MacBook, but Skitch isn't showing them in the history list on my new MacBook Pro.
+Any ideas?
+
+A: Looks like Skitch employee, Keith, answered this question on GetSatisfaction.
+The short answer is that you need to copy the following preferences files:
+~/Library/Preferences/com.skitch.skitch.history
+~/Library/Preferences/com.skitch.skitch.plist
+
+This is in addition to copying the actual .skitch files located in:
+~/Pictures/Skitch
+

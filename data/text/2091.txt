@@ -1,0 +1,74 @@
+Q: Toggle between applications via four finger gesture? Currently, if you enable it, the four finger gesture popups a window that shows you the apps you can switch to, You can then select one of them using the mouse.
+Is there any way to modify this gesture a bit to make it faster to use?
+I would be fine with either of these implementations:
+
+
+*
+
+*When you perform the gesture, a right swipe will immediately switch to the next window in the queue, while a left swipe will switch to the previous one. As a result, the queue should not be changed every time you switch windows, otherwise if you keep performing the right gesture, you will just be navigating back and forth between the same two windows.
+
+*When the gesture is performed, you see the popup window which displays the open application's icons as you normally do now; but you can keep the fingers down on the trackpad, and move them left or right to highlight a different icon. Once the application you want to switch to is highlighted, you release the trackpad and it switches to that application. 
+
+
+A: Have you looked into BetterTouchTool? It lets you customize every touchpad input under the sun. You could for example remap the four-finger horizontal swipe to Cmd+Tab.
+
+A: On Mac OS 10.6:
+
+
+*
+
+*Swipe with four fingers
+
+*Swipe or scroll with two fingers to select the application
+
+*Four fingers tap (no need to be over the app switcher) and it switches to the application you've selected.
+
+
+A: The best way to do this is with one of the more obscure settings in BetterTouchTool
+It works like this:
+ A three fingered right swipe brings up the application switcher. Lift one finger to covert it into a two finger swipe and slide to whichever application you want.
+It becomes an incredible natural and fluid gesture The beauty of the gesture is that it works anywhere on the screen and you don't have to position the mouse over the icons.
+
+
+*
+
+*In BTT assign the three finger swipe right to the application switcher.
+
+*In BTT Action Settings -> Stuff(App Switcher) -> Use special application switcher
+
+
+This answers the problem that bisko and senseful had above and avoids the last click or the necessity to be over the icon.
+Single best gesture in my 'gesture vocabulary' and I have gestures for everything!
+
+A: What about using the Command-tab keyboard shortcut for faster application switching than with the trackpad? Add the ability to quit or hide selected applications along the way by tapping Q or H. Or, use LiteSwitch X for more enhanced app switching.
+
+A: You can also use the keyboard to control the list of running applications that comes up with the four finger swipe left or right (it's the same thing as holding down ALT+TAB).
+In particular, the spacebar switches to the selected application, so your first scenario can be accomplished easily: Swipe with four fingers to bring up the switcher (it automatically selects the 'next' application for you), and hit space.
+Your second scenario is the same - swipe with four fingers to bring the window up, use 2 fingers to scroll and select the desired app (you can use the arrow keys or tab too), then space to switch.
+As the spacebar is right next to the trackpad, I find that this is pretty nice :-)
+
+A: Although I think this thread is intended for 10.6, I came to it via search, as Apple has dropped the described functionality as far as any is aware from OS X 10.7/8. I will describe a method to re-implement it below. (Is there a better venue for this?)
+Following up on boertel and Orion Edwards' above;
+Boertel describes the functionality as it exists in 10.6. (Which I use all the time, incidentally)
+From Orion's, I wasn't aware of the fact that space selected the highlighted entry. (Return does as well.)
+With these two facts, and BetterTouchTool, I think i've been able to replicate the behavior on 10.8 .
+Set BTT to advanced mode.
+Deselect Action Settings (Window Snapping etc.) --> Settings for Predefined Actions --> Use special application switcher.
+Return to Gestures.
+In Global:
+Set four finger swipe left/right to "Application Switcher".
+Set four finger tap to "Send Keyboard shortcut to specific application".
+Set the keyboard shortcut to "space".
+(We could just define the tap as a global space, but I don't want possible random spaces being executed.)
+Set the application to the dock app found at /System/Library/CoreServices/Dock.app .
+Set Bring app to front before sending the shortcut. (Switch app back does not seem to be required, as the application switcher is changing the focus anyway.)
+Save.
+Test/Enjoy!
+Thus far it is working correctly for me. If anyone can/wants to improve on this, please do! Hopefully this will be of some use in the future, to others looking to regain lost functionality. (Why Apple, Why?!)
+
+A: I use (BTT) 3 finger gesture, ( two finger tiptap left ) what works for me  is tap two fingers( leave the two fingers there) then  followed by double tap with the third finger,(let go) then use the other two remaining fingers to slide witch ever app you wish to use  (only active)
+1. In BTT assign the two finger tiptop left to the "application switcher"
+2. In BTT Action Settings -> Settings for predefined actions-> "check" Use special application switcher
+http://www.bettertouchtool.net
+** BTT is an Awesome APP, plus is FREE
+NOTE: you must do the double tap single finger simultaneously, other wise the sliding won't work.

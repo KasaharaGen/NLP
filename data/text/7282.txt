@@ -1,0 +1,35 @@
+Q: MacBook Pro detects external monitor but shows black screen MacBook Pro 8,1 (13", i5 2.3Ghz) - when I connect an external screen through a MiniDP -> DVI adapter the Mac detects it (knows it's a Samsung SyncMaster and lets me change its resolution) but doesn't show anything on screen. Even though the Mac thinks that the screen works properly (I can move the cursor out of the Mac's screen), the external monitor's led blinks as there was no signal at all. Changing screen resolution doesn't help.
+I've browsed many similar questions on the internet, unfortunately most of them suggest upgrading the OS. I'm using Mac OSX 10.6.8 Snow Leopard. What should I do?
+
+A: This most likely means the Mac is outputting a video mode that the screen can't display.  Try reducing the resolution and Refresh Rate (in System Preferences -> Display) until you get something on the screen, then work your way up the list again. A good starting point would be 1024x768 or even 640x480.
+The other possibility would be that the signal isn't arriving intact, either due to a cable/plug fault or that the screen or Mac have a hardware fault (which you can rule out by connecting the Mac to another DVI screen with the same adapter and by connecting the monitor to another computer).
+
+A: I've had the problem as well and only by resetting my monitor am I able to get it to work.
+Other posts suggesting it is something to do with the PRAM, but I've not seen the problem being on the Mac end of things. As this problem is persistent, so it seems I will have to reset the monitor each time so it recovers from the failure, but doesn't seem to address the root cause so I have yet to find a more permanent fix. 
+
+A: Problem
+The display worked before. Then without reason it gone black and didn't wanted to show anything. DisplayManager from Mac showed the displays without problem and I could change all settings - for no difference.
+Solution:
+Remove everything (in my case ethernet and 2 USB devices) from the adapter und replugged the HDMI.
+After that it worked again. And could connect the other cables again aswell.
+My setup
+MacBookPro 15" and 3x HP_Z32n via a QacQoc adapter from HDMI to USB-C. I have 3 external displays connected and use the internal one aswell.
+
+
+A: I solved my problem so far by installing this app (Display Menu) from the Mac AppStore.
+The screen flashed and I got image.
+It might not work for you, but worth the try.
+
+A: I had the same problem. I reset my monitor to the factory setting and this solved the problem.
+
+A: I had the same problem, and I think I found what causes the problem. My macbook air was detecting the display, but only thing I saw was black screen.
+Either your monitor is using VGA signal even if you are using DVI cable or you are using DVI to VGA adapter in between. MiniDP to DVI only produces digital signal.
+For more information check a blog post of mine.
+
+A: Same problem here. Using dell 1920x1200 monitor connected to RMBP 2013 in clamshell mode with nvidia card. 
+If I open RMBP and check the display preferences, it shows TWO display settings, one for the built-in and one for the 1920 monitor. I can change the res. But external stays black all the way. Log out and log in again does not help.
+Rebooting the RMBP helps right away. No need to mess with the monitor or cables. This is purely a software problem in the RMBP.
+
+A: I had a black screen for quite some minutes now and I found out that the monitor, even though it is brand new, does not automatically switch to the active input channel. So choosing the input channel manually on the monitor fixed the problem for me.
+
+A: Try another HDMI cable. That's what worked for me. I first had a 'normal' one which didn't work. When I switched to one that has 'High speed Wifi E thernet" on it, it works.

@@ -1,0 +1,33 @@
+Q: Why Has the "Downloads" folder become Read-Only? Recently my Downloads folder has become read-only. This prevents Safari form saving any file amongst other annoyances.
+As you can see from the below image the folder is read-only but I have plenty of disk space.
+
+As you can see in the Info window it not locked. I am logged in as a user with admin rights etc, etc...
+
+
+A: You didn't specify that you can't change it back using the Info GUI, but I'm assuming that to be the case, since it wouldn't really be an issue otherwise.
+A fix to try would be to change the permissions from the command line:
+
+
+*
+
+*Open Terminal.app
+
+*Enter cd ~
+
+*Enter sudo chmod +w Downloads
+
+A: I suspect that you might have run an application directly from the Downloads directory, and that app has made the directory which it resides in ReadOnly to prevent any changes being made to it?
+
+A: Silly question, but have you tried running Repair Disk Permissions from Disk Utility?
+
+A: If you want to use the Finder to fix this;
+
+
+*
+
+*In the Get Info window on that folder click to the lock in the very bottom right of the window to unlock the permissions. It will ask for your username and password.
+
+*Change the value beside your name (the one that says (Me)) to Read and Write from Read Only.
+
+
+As to why this occurred - it could be many things; a badly behaved installer, a mistyped command or something else that isn't easy to see after the fact.

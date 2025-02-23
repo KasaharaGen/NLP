@@ -1,0 +1,179 @@
+Q: What are your favorite Mac OS X keyboard shortcuts? What are your favorite keyboard shortcuts on Mac OS X?
+
+A: For me the life saving shortcut is the quarter increment/decrement of light/sound:
+⇧+⌥ and the increment/decrement light or sound button.
+It is extremely useful with LED Cinema Display monitors.
+
+A: ⌘+E: Put selected text into search clipboard.
+Then ⌘ + G to find next.
+In combination with regular copy-paste you can do selective search and replace very quickly and conveniently.
+
+A: Here's a great one (for switchers) I got from the TextMate blog;
+Create the folder ~/Library/KeyBindings (if it doesn't already exist)
+In there, create a key-binding file DefaultKeyBinding.dict
+In that file, put this text (including all braces & punctuation);
+
+{
+    /* home */
+    "\UF729"  = "moveToBeginningOfLine:";
+    "$\UF729" = "moveToBeginningOfLineAndModifySelection:";
+
+    /* end */
+    "\UF72B"  = "moveToEndOfLine:";
+    "$\UF72B" = "moveToEndOfLineAndModifySelection:";
+
+    /* page up/down */
+    "\UF72C"  = "pageUp:";
+    "\UF72D"  = "pageDown:";
+}
+
+Save the file, and when you next start a Cocoa app (eg Mail, TextEdit etc) you will find that Home, End, Pg Up and Pg Down now work as they do on Windows.
+It's well worth having a look at the whole of that article - he explains exactly how to make this file and how the bindings work, with information about the other keycodes etc.
+
+A: ⇧+⌘+?: Help->Search, then type any menu item text, can be just a prefix
+⌘+E: put selected text in search dialog
+⌘+G and ⇧+⌘+G: find next/previous
+⇧+⌃+⌘+4: Take a screenshot, press space for whole window screenshot
+ctrl + mouse scroller: zoom screen
+⌥+⌘+⏏: sleep
+
+A: *
+
+*ctrl+A: Go to the beginning of the line (works in every Cocoa textfield)
+
+*ctrl+E: Go to the end of the line (works in every Cocoa textfield)
+
+*⌘+⇧+H : Pop up the Home folder
+
+*⌘+⇧+D : Pop up the Desktop folder
+
+A: ctrl+F2: Access the menu via the keyboard (Windows alt+space equivalent).
+
+A: Typing / on any file dialog will give you a "go to folder" dialog, which autocompletes with tab (you have to wait a second for it to work). This lets you type in the full path, from the root / folder.
+Extra handy if you want to open from / save to hidden locations or already have the command line path you want to save something in.
+This can be also accessed via ~ (i.e. the tilde key, to start from your home directory, e.g. ~/Documents) or using cmd+shift+G (which starts with the most recently entered directory).
+
+A: While being in the application switcher (using ⌘+⇥) cycle to an application by pressing ⇥ or ⇧+⇥; then - while still holding down ⌘ - press the down arrow to see an expose view of the selected app´s windows, including minimized windows. Using the arrow keys navigate to a window you want to bring to the foreground and hit ← to select it.
+
+A: Holding down the ⌥ while booting to select the startup volume.
+Holding down C while booting to boot from a CD/DVD in the drive.
+
+A: In a text area:
+Command ⌘ + → the end of the line (like End)
+Command ⌘ + ← the beginning of the line (like Home)
+Option ⌥ + → jump forward one word
+Option ⌥ + ← jump back one word  
+
+A: ⌘+space: activate spotlight.
+Then you can launch any application, open most files, do quick calculations, etc.
+
+A: ⌘+W: Close window (or tab).
+⌘+⌥+W: Close all windows.
+
+A: ⌘+⇧+4: selective screenshot saved on desktop
+⌘+⇧+ctrl+4: selective screenshot  saved in clipboard
+
+A: ⌘+⇧+.: show/hide hidden files on any file dialog
+
+A: ⌘+⇧+4+space+click on a window copies the current window to the desktop.
+This is very useful while taking screenshots without the need to crop. The rounded edges stay rounded.
+Use this with ctrl to copy the image to the clipboard.
+
+A: ⌘+⇥: Cycle through running apps
+⌘+`: Cycle through windows for current app
+⌘+W: Close current window
+⌘+Q: Quit current app
+⌘+,: Preferences dialog for current app
+⌘+H: Hide current app (as long as it's not Photoshop)
+ctrl+⇧+⏏: Sleep all displays
+
+A: Power keys:
+Ctrl+⏏:  "Are you sure you want to shut down your computer" dialog message appears:
+
+Ctrl+⌘+⏏: restart the computer
+Ctrl+⌥+⌘-⏏: shut down the computer
+⌘+⌥+⏏: puts the computer in sleep mode
+⇧+Ctrl+⏏: puts the monitor in sleep mode
+
+A: Command ⌘ + Option ⌥ + Esc ⎋ brings up the force quit dialog, which is handy for killing unresponsive applications.
+
+Command ⌘ + Option ⌥ + Shift ⇧ + Esc ⎋ held down for 5 seconds kills the foremost application.
+
+A: ctrl+⌥+⌘+8: High contrast theme.
+⌘+` (backtick): Cycle through app's windows.
+
+A: ⌘+⇧+N: Create a new folder in Finder
+
+A: ⌘+⌥+H: hide all inactive application windows
+This is great for focusing on a single task or works well as a kind of show desktop if you switch to Finder first (providing you have few or no windows open)
+
+A: All of the shortcuts are my favorite!
+Specifically (based on frequency of use) ⌘+H: Hide application
+
+A: ⌘+⇥:  Cycle through applications.
+⌘+`:  Cycle through the current application's windows.
+⇥: Auto fill commands and file/directory names in Terminal.
+⌘+⇧+4: Take a screenshot of a selected area.
+⌘+⇧+3: Take a screenshot of the whole screen.
+
+A: ⌘+C:  Copy selection  
+⌘+V: Paste selection  
+⌘+X: Cut selection 
+
+A: shift+F12 or F11 - change sound volume without 'bip' sound
+
+A: fn+F3: show all windows (in the current Space)
+fn+⌘+F3: show the desktop
+fn+ctrl+F3: show the "current application" windows
+fn+⌥+F3: show the Exposé preference pane
+
+A: ⌘+alt+shift+V   pastes plain text, SUPER useful for copying from web pages or MS Word into email, and leaving the weird formatting behind.
+
+A: Not wholly keyboard shortcut, but holding down the Option key (⌥) and bringing up a system menu often provides extensive information. For instance if you are connected to wifi, hold down ⌥ and clicking on the network menu will bring up a lot of information (MAC address, IP address, signal strength, et c.) about the current network connection.
+Holding ⌥ and clicking on the notification icon also sets your notification status to "Do not disturb"---rather useful when discussing something on your screen with colleagues and you don't want to see Messages popping up.
+
+A: ctrl+⌘+1 to order files by name (icon view)
+
+A: Zoom shortcuts, very good for presentations:
+fn+⌥+⌘+8: turn on/off zoom
+fn+⌥+⌘+=: zoom in
+fn+⌥+⌘+-: zoom out
+
+A: On newer keyboards, invoke Exposé to
+
+
+*
+
+*fn+F3: show all windows (in the current Space)
+
+*fn+⌘+F3: show the desktop
+
+*fn+ctrl+F3: show the "current application" windows
+
+*fn+⌥+F3: show the Exposé preference pane
+
+
+While being in Exposé, 
+
+
+*
+
+*cycle through windows with the arrow keys, using return to bring them into focus.
+
+*use ⇥ and  ⇧+ ⇥ to cycle through windows by applications (as highlighted in the Dock)
+
+
+A: ctrl+← or ctrl+→ to move between Mission Control spaces (in Lion).
+
+A: ctrl+⇥ Cycles through tabs in a web browser going to the right.  
+ctrl+⇧+⇥ Cycles through tabs in a web browser going to the left. 
+⌘+↓ Goes to the very bottom of a web page or textarea.
+⌘+↑  Goes to the very top of a web page or textarea.  
+
+A: In Finder, ⌥+⌘+P brings up the full path. If you then hit ⌘+C in Finder, you can paste the full path of a file or folder into your Terminal or elsewhere by ⌘+V.
+
+A: ⌘+z [undo] is my favorite & the one I tell the people I support to remember if they only learn one shortcut. 
+In Finder it undoes the last operation you just performed from inadvertently beginning to rename a file or folder; or undoing an unintentional drag and drop of a file or folder into the wrong folder or undoing a move to trash operation.
+In applications many have multiple levels of undo which lets you step backward undoing previous edits or draws. Extremely useful in extricating yourself from sticky situations or just after having made a simple mistake.
+
+A: control+shift+L   turn the lights off

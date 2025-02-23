@@ -1,0 +1,30 @@
+Q: Limiting a standard user to use 50 GB of the hard drive I have added a standard user for my brother on my Mac Mini, and I would like to limit the amount of space he can use on my hard drive, but I can't see where I can set this kind of restrictions.
+I have read online that you can set it from accounts; however, I can't see any option there. The only options I can see are checkboxes to allow the user to administer the computer, and to enable parental controls.
+Does anyone know where I can set this?
+
+A: This should work for you:  
+
+
+*
+
+*Create a root shell session in Terminal with sudo -s, providing your admin password when asked.
+
+*Create an empty quota options file with touch /.quota.ops.user
+
+*Run quotacheck -a to generate a list of drive space used by user
+
+*Run repquota -a to list the drive space used by each user
+
+*Enable quotas by typing quotaon / (You can turn them off again with quotaoff / )
+
+*Set quota limits for a given use by typing edquota -u username
+This will put you in a vi editing session, where you can set both hard and soft limits on drive space and inodes (files).
+Note: vi is a text editor and can be a bit of a handful to use if you're not used to it, try searching for a basic tutorial on the net if you've never used it before. 
+
+
+You'll get a file that looks like this:  
+Quotas for user fakeuser:
+/: 1K blocks in use: 14968, limits (soft = 0, hard = 0)
+        inodes in use: 224, limits (soft = 0, hard = 0)  
+
+The soft limit can be exceeded for one file, allowing users to save a file which puts them over their limit but not allow them to save any more until they get back under their limit.  Hard limits cannot be exceeded though.  

@@ -1,0 +1,57 @@
+Q: I'm getting lots of Samba "too many open files" errors. How can I troubleshoot? I'm using Mac OS X Snow Leapord. My iMac's hard drive has been getting unexpectedly full, and I finally tracked the problem down to a huge file: private/var/log/samba/log.smbd.old, weighing in at 400GB.
+I just ran tail -100 log.smbd.old to see the last 100 lines of that log file. What I see is a ton of "too many open files" errors.
+This is a work machine. I do share files with other Mac users, and also access a shared Windows drive via Samba.
+How can I troubleshoot these errors so the log file doesn't get filled with them? 
+
+A: Now I'm no kernel expert, but I think that you might be running into the fact that the default value for the maxflies kernel parameter is 256.  You can show your current value for this parameter like this:
+[dwayne | ~] $ launchctl limit maxfiles
+    maxfiles    256            unlimited 
+
+I think if you put a line similar to this in a file /etc/launchd.conf (you might have to create the file if it doesn't already exist):
+limit maxfiles 2048 unlimited
+
+and reboot, you will see the new value, and hopefully avoid the situation you're running into.
+Dwayne
+
+A: Download an editor like TextWrangler or use PICO.
+
+
+*
+
+*Edit the Samba config file:
+
+
+*
+
+*Copy the file below and save it somewhere else BEFORE editing it. Drop it back into the folder if you have any problems after doing this.
+
+*Open /private/etc/smb.conf in the editor.
+
+*Add the following line to the file (do man smb.conf to see 
+max log size = (number in kb) so 5 MB would be 5000 
+max log size = 5000
+
+
+*save file (enter admin password) and exit editor.
+
+
+*Delete old log files:
+
+
+*
+
+*Delete log files in /private/var/log/samba/ (back them up before deleting as with file above):  
+
+
+*Reboot.
+
+A: To troubleshoot "too many open files" error, compare number of open files (kern.num_files) with number of maximum files set by kernel (kern.maxfiles) by the following command:
+$ sysctl -a | grep files:
+kern.maxfiles: 10240
+kern.num_files: 8701
+
+If your num_files is close to maxfiles, increase the maximum files by:
+sudo sysctl -w kern.maxfiles=20480
+
+If the limits are related to your shell resources, use ulimit command instead.
+For further information, see: Which command controls the open file limits?

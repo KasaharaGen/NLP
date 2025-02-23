@@ -1,0 +1,30 @@
+Q: Duplicating images and resizing one of the copies in Automator I am trying to create an Automator action for a workflow I often need for web publishing:
+
+
+*
+
+*Select some images inside Aperture 
+
+*Export two copies of the original image with different resizing settings applied (say, a 1000 px version for viewing and a 150 px thumbnail)
+
+*Rename the exported copies, prompting me for a file name
+
+
+I have not yet found a possibility to actually duplicate input files and then work with one of the duplicates in finder. Using the following sequence of actions results in the error message "could not access the needed files":
+
+
+*
+
+*Select Finder objects
+
+*Scale images (to 1000 px)
+
+*Duplicate Finder objects (the idea is that the duplicate should remain at 1000 px and the subsequent edits only affect the copy)
+
+*Scale images (to thumbnail size)
+
+
+Any ideas what's wrong here? I suspect that the duplicate action doesn't return any file handles to the next one, but I could be wrong.
+
+A: This workflow seems to have worked for me, is this what you did?  
+

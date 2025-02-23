@@ -1,0 +1,58 @@
+Q: How can I share all document revisions with another Mac? Mac OS ‘Lion’ introduced a version control system with a fancy user interface called Versions. I’m slowly getting used to working with it and find it quite powerful.
+I have found out how to share the master (head/current) version (revision), and one specific version with another Mac. But how do I share the whole version three including all revisions with another Mac?
+Using, for example, TextEdit.
+
+A: One person sharing two or more Macs, all running Lion
+Method A: physical share of a disk
+For your file to be versioned, save first to removable media with a file system that supports permanent version storage. Save all versions of the file to that volume. 
+Eject/unmount the volume. Use the volume with other Macs running Lion. 
+Examples: 
+
+
+*
+
+*a USB flash drive using MS-DOS (FAT) lacks support
+
+*a USB flash drive using JHFS+ does support permanent version storage. 
+
+
+
+Method B: electronic file share of a disk image
+In a directory that is shared using Apple Filing Protocol (or any other appropriate distributed file system), create a disk image, maybe a sparse bundle. Choose a format — a file system — that supports permanent version storage. 
+
+Open the image. 
+For your file to be versioned, save first to the volume that is imaged. Save all versions of the file to that volume. 
+Eject/unmount the volume. 
+At another Mac running Lion: 
+
+
+*
+
+*connect to the file server
+
+*open the image. 
+
+
+Hints
+The Secrets preference pane can help you to enable advanced image options in Disk Utility. 
+An image of a volume may be not reliably backed up whilst the volume is attached/mounted. For reliability, unmount/eject the volume before backing up. 
+Multiple users
+Either method A or B will work, but both require negotiation between humans :-)
+Method C
+For each version that you wish to share, use the Duplicate command then save a separate file. 
+The downside of this traditional approach is separation. Users of other Macs (not necessarily running Lion) might take a Cover Flow view of the files, but that's not as neat as a versions browser view of a single file. 
+AFP, Apple versions and security/privacy
+You might wonder why saving to an Apple-oriented file service, for example a service using Apple Filing Protocol, does not save Apple versions on the server. Think: privacy, security. 
+Example
+Someone in Government saves a file that describes the true state of the economy, a state that is terrible. The person changes the file to present a different truth, a truth that will keep the lions at bay, saves his or her changes. 
+When ready to share, the author puts the one file on an AFP server. 
+Other users of the server open the file in any application that supports Apple versions. They see only one version, the most recent. 
+We (other users) might wish to see all versions of a file — including versions that were not intended for sharing — but for Mac OS X 10.7 (Build 11A511) the sanest default is: 
+
+
+*
+
+*share nothing other than the most recent version. 
+
+
+A: According to Ars Technica's Lion review, revisions are stored at /.DocumentRevisions-V100. You might be able to share this with another machine, though it sounds like it's pretty tied to your particular filesystem — and I doubt there's an easy way to share only a single file's revisions.

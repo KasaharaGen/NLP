@@ -1,0 +1,18 @@
+Q: Possible to do iTunes Home Sharing over ad-hoc network? I plan on purchasing 3 iPod Touches and I have an iPhone 4s and an iPad 1.  Can these devices all participate in Home Sharing from iTunes (on Windows) in an ad-hoc wifi network?
+I have a test here with my iPhone 4s connected to an ad-hoc wifi network from my Windows machine (only several feet away from computer, certainly within the ad-hoc 30 ft. radius recommendation).  iTunes appears to recognize the iPhone on the network as it does sync the phone, but sharing is enables on the very same itunes account.  Problems:
+
+
+*
+
+*The "Shared" option appears at most 25% of any given time,
+
+*When it does work, I am only able to see playlists (is this expected?),
+
+*In any given playlist for music (all songs purchased via itunes) only about 10% of them play, the remainder are skipped by iphone.
+
+*Those items that will list to be played (e.g. some video podcasts) will return with a dialog box of "Cannot Open".
+
+
+Shall I assume these sporadic (though apparently consistent) problems are the result of an ad-hoc wifi network vs. a "real" wifi router network?
+
+A: Yes - you need to be connected to the internet when you first enable Home Sharing, but once each device has a SSL cert or whatever is stored internally, the devices will find each other and share as long as the local network is allowing the mDNS / Bonjour traffic so the devices can discover each other and match keys stored internally to identify which account is enabled for sharing.

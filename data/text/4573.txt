@@ -1,0 +1,61 @@
+Q: Find logged on user and network home directory with a bash script I am trying to use a script to find the username and home directory of the user that is currently logged on to a Mac. This is what I have, and it works, but is there a better (i.e. simpler) way to do it?
+user=`logname`
+userHome="eval echo ~`echo $user`"
+userHome=`$userHome`
+
+The script will almost definitely not be run by the logged on user.
+This is Mac OS X 10.6, joined to an Active Directory, and a network user is logged on. So the username does not appear in /etc/passwd.
+
+A: This script:
+#!/bin/bash
+w -h | sort -u -t' ' -k1,1 | while read user etc
+do
+  homedir=$(dscl . -read /Users/$user NFSHomeDirectory | cut -d' ' -f2)
+  echo =$user= =$homedir=
+done
+
+will do the following:
+
+
+*
+
+*find all users logged in (via ssh too!) w -h or can use the who command too
+
+*sort and find unique users sort -u -t' ' -k1,1
+
+*for each logged user
+
+*
+
+*read username
+
+*find his home directory from the DirectoryService daemon via the command  dscl
+
+*print out username and his home directory
+
+
+
+A: The user is stored in a variable USER, and the home is in HOME:
+echo user name: $USER, user home: $HOME
+
+This is done automatically. You don't have to write any script to get them.
+
+A: From this Advanced Bash-Scripting Guide I learned that
+
+The $(...) form has superseded backticks for command substitution.
+The $(...) form of command substitution permits nesting.
+
+Now I am using:
+user=$(logname)
+userHome=$(eval echo ~$(echo $user))
+
+
+A: Assuming logname works, then you can get the home directory like this:
+user=$(logname)
+userHome=$(awk -F: -v u=$user '$1 == u {print $6}' /etc/passwd)
+
+
+A: Not sure if all the other complications are needed.
+echo $USER
+echo ~
+

@@ -1,0 +1,57 @@
+Q: Accented characters and terminal redirection I'm having problems dealing with accented characters in file names in the Terminal.  Consider the following:
+$ touch leão.png
+$ ls > test.txt
+$ open -a TextWrangler test.txt
+
+
+The accented characters in test.txt are incorrect. Here are some possibly relevant facts:
+
+
+*
+
+*I'm using Terminal with the default settings; the character encoding is set to UTF-8 and "Set locale environment variables on startup" is checked.
+
+*the output of locale in the shell is:
+LANG="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_ALL="en_US.UTF-8"
+
+
+*TextWrangler's default encoding is UTF-8; trying to reopen the file in any other encoding just makes matters worse.
+
+*I'm running OS 10.6.8.
+
+
+Update
+In response to the comments, here is some more information:
+
+
+*
+
+*The output of od -tx1 test.txt is:
+0000000    6c  65  61  cc  83  6f  2e  70  6e  67  0a  74  65  73  74  2e
+0000020    74  78  74  0a                                                
+0000024
+
+
+*If I do echo leão.png > test2.txt the text shows correctly in TextWrangler
+
+*Opening test.txt in TextEdit displays: leaÃÉo.png
+
+*Opening test.txt in jEdit displays: leaÃÉo.png
+
+*Opening test.txt in AlphaX displays: leaÃÉo.png
+
+*Opening test.txt in emacs from within terminal displays: leão.png
+I'd really like to be able to work with non-ASCII filenames from within the shell. How can I get this to work?
+
+A: I might not be able to fully solve your problem, but I can explain some of what's going on. The shell is behaving correctly; TextWrangler is not coping correctly with a slightly advanced requirement.
+In test.txt, you have an a (garden-variety lowercase letter A) followed by a combining tilde (Unicode character U+0303). Combining characters generalize characters with accents. For all intents and purposes, ã (U+0061 LATIN SMALL LETTER A followed by U+0303 COMBINING TILDE) should be equivalent to ã (U+00E3 LATIN SMALL LETTER A WITH TILDE).
+Quite possibly, if Unicode was invented now, only combining characters would exist, and we'd always use a; but Unicode also has many characters for compatibility with earlier existing encodings. Because these are the characters almost everybody uses, many programs do not support combining characters so well, if at all. In particular, it looks like TextWrangler does not support them at all and shows a “I don't know what this is” mark instead.
+Generally speaking, OSX prefers decomposed characters (i.e. letter + combining accent). In particular, as far as I know, all file names are normalized to this form. Normalizing file names (i.e. making sure that if there are several possible forms of a file name, then a specific one will always be used) is very useful, because it avoids being unable to find leão.png when you're looking for leão.png. (You don't see a difference between the two? Good, your browser handles combining characters correctly.)
+The ideal solution would be for you to use an editor that handles combining characters correctly. If you want to stick with TextWrangler, make sure you have the latest version, and if you do, contact the authors for support. With TextEdit, jEdit or AlphaX, there's hope yet: they're showing the file as Mac Roman instead of UTF-8; try to switch them to UTF-8.

@@ -1,0 +1,8 @@
+Q: How can I see traffic from shared Wifi (Macbook AirPort)? I want to see a log.  Something like: 192.168.0.23 www.example.url 13:34 19 april 2011
+
+A: tcpdump is a command-line utility to see the traffic on any network interface.  It is full-featured, but can require some serious reading of the man page.
+Wireshark is a full-featured application that will allow you to see all such traffic.  It provides a GUI (X-windows based) into which you can specify filters on traffic and collect statistics.  See more info and download it at wireshark.org.  I find knowledge of Wireshark to be very, very helpful with lots of network tasks.
+
+A: Debookee will do the job for the following protocols: HTTP, HTTPS, DNS, TCP, DHCP, SIP ...
+There's also a scanner included that can show you all the devices on your network.
+But the best to me is the interceptor tool that allows you to see the traffic of any device (mobile, tablet, other Mac or PC) on your network, like Cain & Abel for Windows.

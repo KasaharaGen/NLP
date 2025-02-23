@@ -1,0 +1,55 @@
+Q: Command+right/left stopped working On a couple occasions since I installed Lion, the keyboard shortcuts ⌘+→ and ⌘+← have stopped working to navigate to the beginning/end of a line inside text fields and such.  Any ideas what's going on?
+Notes:
+
+
+*
+
+*My computer doesn't beep when I hit these shortcuts.
+
+*Keyboard Viewer shows that when I hold down ⌘, pressing left/right doesn't do anything.
+
+*When I hold down both ⌘ and ⇧, the arrow keys work fine.
+
+*The left and right arrow keys still work by themselves.
+
+*⌘+↑ and ⌘+↓, and ⌥+arrows still work.
+
+*⌃+A and ⌃+E still work.
+
+*I don't have any particularly weird custom keyboard shortcuts set up.
+
+*If it matters, I use 4-finger swipes and ⌃+arrows for switching desktops, two- and three-finger swipes for navigation, and three-finger swipes for Mission Control & App Exposé.
+
+
+A: I just had this problem as well, for me, this thread on apple.com worked.
+The solution proposed there is to restart the Dock. To do so, type the following in the Terminal:
+killall Dock
+
+
+A: I've noticed that certain applications seem to trap the gestures, even when they're no longer active.
+The only time I've been able to 100% narrow down something trapping various shortcut keys was with either Apple Remote Desktop (the built in screen sharing functions), or Microsoft Remote Desktop.
+Even though I clicked outside of the app and started using something else, something caused notably my ctrl+←/→ to stop working.
+I unfortunately do not remember the specific steps I took to resolve the issue. Whether it was explicitly sending focus into the remote connection window, and then (with the mouse only) explicitly out of the window, and onto another app that is not just the Desktop, might have fixed the problem. Otherwise, I may have just closed the window in frustration.
+Either way, this issue is one that you may have to do some personal diagnosing to figure out. Check for any running apps that are notably not native (Java, AIR-based, etc.), or have some other form of deep integration (trapping keyboard events and sending them to another computer is pretty deep), that may be causing this issue.
+
+A: No need to restart, these steps helped me:
+
+
+*
+
+*Swipe 4 fingers up to show Mission Control
+
+*Select a full-screen app in the list of desktops
+
+*Swipe 4 fingers up to show Mission Control again
+
+*Select a text editor app on the main Desktop
+
+
+A: It’s the second time I have this problem. This first time I restarted. Today I found your question and saw your remark about finger swipes. I switched desktops (I use two-finger swiped on the Magic Mouse) and now ⌘+←/→ works again.
+I don’t know if it will work again next time, but it’s worth a try before restarting.
+
+A: I saw the answer from Olivier, and the desktop switching gesture did not solve my problem.  I ended up doing the gesture to show the mission control (for me, 3-fingers swipe up), and after that  ⌘+→ started working again.
+Update 12/8/2011: This has resurfaced for me again and sure enough using the gesture to show and close mission control solved it!
+
+A: I've experienced the same problem since upgrading to Lion and found that it works ok again after a system restart.

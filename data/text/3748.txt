@@ -1,0 +1,18 @@
+Q: Creating a wget OSX Service I want to create a service to copy the URL and subsequently download it via wget. 
+How would I go about creating an OSX service to wget arbitrary urls from a browser or system wide. I believe it'd be possible with Automator's Run Shell Script action. 
+I had it set up to use my default shell (bash) and run the command found at /opt/local/wget but for some reason I'm not getting it to pass along the url.
+
+A: I have done something like this before, and what made my life easiest was pbcopy and pbpaste. They allow you to either read the current clipboard or write to it. 
+So you go to Safari, copy some text, run an automator action.
+Action is run shell script
+schell script is just basically just wget `pbcopy`
+
+A: Have you tried using it as standard input with xargs? That works for me.
+xargs wget
+
+The other way is to perhaps use $1 as in:
+wget $1
+
+I'd quote that for safety's sake too:
+wget "$1"
+

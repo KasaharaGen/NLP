@@ -1,0 +1,37 @@
+Q: How to downgrade from iOS 4.3.5 to iOS 4.2.1? Just got a defect report that application is crashing in iPhone3GS using iOS 4.2.1. No problems with iPhone3GS using iOS 4.3.5 or iPhone4 using iOS 4.1.
+Question: How can I downgrade some device to iOS 4.2.1? Actually trying to upgrade iPhone4 running iOS4.1 to 4.2.1 using "restore" feature, if that makes any difference. Btw that device has never been upgrades, since iOS 4.1 was defined as lowest supported version.
+Found iOS 4.2.1 restore file for iPhone4 using google. Trying to install it gives error note:
+The iPhone "Device Name" could not be restored.
+The device isn't eligible for the requested build.
+[More Information / OK]
+
+When following the More Information link I get to page with a checkilist. Here's my answers:
+
+
+*
+
+*Yes, I'm admin
+
+*Using iTunes 10.4.1, which is latest available. Too new?
+
+*Using Snow Lion 10.6.8, but I guess this should be enough
+
+*No other USB devices connected
+
+*Security settings should be ok, this computer has never been used for jailbreaking
+
+
+iPhoneUpdater log says something about "iTunes: Restore error 3194" and that "can't find SSOClient.framework". First is according to google related to jailbreaking i.e. some redirection. I don't think that's the problem here (at least etc/hosts file is clean, no changes there). No idea what the second error note means or whether it's just a side-effect of the first one.
+Laptop is using Point Check harddisk encryption, but that shouldn't interfere in this way either. Right? Trying DFU mode didn't either help, not able to install 4.2.1.
+What could be the problem? What could I try next? Is jailbreaking REALLY the only possible solution... Why would Apple want me to do that? No, forget the last question.
+I'm using the device ONLY for development and got it (as well as the laptop) from customer. Could there be something about my login username not being allowed to update firmware, since device was first time used/registered/whatever by another username maybe in different machine?
+
+A: Firstly, search Google for "download ios 4.2.1" and download the correct version for your device. If it's in a zip, unzip it, but you should end up with an .ipsw file.
+Open iTunes and select your device on the left. Shift-Click (or Option-Click on Mac) on 'Restore' and select the file you downloaded.
+This should allow you to install whichever version of ios you have the .ipsw for
+
+A: If you have not got your SHSH for iOS 4.2.1 (it could be saved only if you have ever jailbroken your device), then Apple will reject downgrade the version of iOS.
+
+A: I think the only way to go backwards through the versions is to unlock/jailbreak it.
+https://discussions.apple.com/thread/2787671?start=0&tstart=0
+It looks like some can downgrade using "TinyUmbrella", however I am sure this is not supported by Apple. Perhaps some people can downgrade using just iTunes (depending on various factors) and some cannot.

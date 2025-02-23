@@ -1,0 +1,58 @@
+Q: What do these different terms for system memory in OS X mean? 
+Possible Duplicate:
+What does it mean if I have lots of “Inactive” memory at the end of a work day? 
+
+I just bought a MacBook Pro (I've been a Windows user before this), and I noticed that the terminology for memory is a bit different here. In System Monitor it is showing:
+
+
+*
+
+*Free
+
+*Wired
+
+*Active
+
+*Inactive
+
+*Used
+
+
+What exactly do they signify?
+Also, the used memory (whatever that means) is appearing to be unusually high even when no external application is running. Is it common on OS X? Even if I log out and log in again, and ensure none of the apps are running, the used memory value is above 2 GB! What will happen if I have lots of high memory consuming processes running?
+
+A: Free memory
+This is RAM that's not being used.
+Wired memory
+Information in this memory can't be moved to the hard disk, so it must stay in RAM. The amount of Wired memory depends on the applications you are using.
+Active memory
+This information is currently in memory, and has been recently used.
+Inactive memory
+This information in memory is not actively being used, but was recently used.
+Used
+This is the total amount of memory used.
+VM size
+This is the total amount of Virtual Memory for all processes on your Mac. 
+Page ins / Page outs
+This refers to the amount of information moved between RAM and the hard disk. This number is a cumulative amount of data that Mac OS X has moved between RAM and disk space.
+Swap used
+This is the amount of information copied to the swap file on your hard drive.
+See official Source for more details.
+
+The high memory usage has occurred ever since Mac OS X Lion. I don't really now why this is. But generally it's good if your RAM is being used.
+If you clear your ram too often, programs start slower because they have to be loaded into the RAM again.
+
+A: From this Apple support doc:
+
+
+*
+
+*Free memory: This is RAM that's not being used.
+
+*Wired memory: Information in this memory can't be moved to the hard disk, so it must stay in RAM. The amount of Wired memory depends on the applications you are using.
+
+*Active memory: This information is currently in memory, and has been recently used.
+
+*Inactive memory: This information in memory is not actively being used, but was recently used.
+
+*Used: This is the total amount of memory used.

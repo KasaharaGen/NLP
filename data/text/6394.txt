@@ -1,0 +1,47 @@
+Q: Outlook 2011 won't open, fails with exit code 255 Outlook 2011 keeps closing about 2 seconds after launch. There is brief flashing in the toolbar at the bottom of the screen but then nothing. I have checked the console and I am seeing error 255. I have pasted the error below.
+Does anybody know how I can correct this error or at least get Outlook working again?
+15/08/2011 14:46:48 com.apple.launchd.peruser.501[105]  
+([0x0-0x2a02a].com.microsoft.Outlook[303])   
+Exited with exit code: 255
+
+
+A: Hold down the option key (aka alt) when you start outlook.  it will prompt you to restore your main identity.
+
+A: This seems to be a problem related to the User Identity, located in ~/Documents/Microsoft User Data.
+First of all, make a backup. Then, try the following:
+
+
+*
+
+*Quit all Office apps.
+
+*Restore the Microsoft User Data folder from a previous backup
+
+*Run the database utility from /Applications/Microsoft Office 2011/Office/Microsoft Database Utility, trying to Rebuild your identity.
+
+*Delete all Microsoft-related .plist files in ~/Library/Preferences. There are some called com.microsoft, others in a folder called Microsoft.
+
+*Delete the Microsoft User Data folder entirely.
+
+
+Couple of other suggestions:
+
+
+*
+
+*Reinstall Office 2011
+
+*Create a new user account and see if it works there.
+
+
+Here's a related Apple Discussions thread.
+
+A: I put your error into Google and found this thread:
+https://discussions.apple.com/thread/2573798?start=0&tstart=0
+It sounds like your Outlook settings are corrupt. To test this theory, create a new user and see if the problem also occurs there. If it doesn't and you don't mind losing your Office preferences, go back to your usual user and delete MS Office's preferences. 
+They are located at:
+~/Library/Preferences/com.microsoft.office.plist
+
+A: http://www.mosandl.eu/blog/2013/10/com-microsoft-outlook606-exited-with-code-255/
+solved on so many mac's my problem
+cheers

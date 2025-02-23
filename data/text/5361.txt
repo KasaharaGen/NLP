@@ -1,0 +1,6 @@
+Q: How can I reactivate the fn + arrow buttons that changed in Safari 5.1? Safari 5.1 (Snow Leopard) seems to have disabled the combination of fn + arrow buttons for navigation (page up, page down, top, bottom). I know the same can be achieved with option + top, down and command + top, down, respectively but I find it rather impractical to use.
+Are there any tips already how to reactivate this or do I even have to fear that fn + arrow behaviour has been completely dropped in Lion?
+Edit: Added Lion explicitly to the tags since they seemed to have dropped the Home and End behaviour of fn + arrow there as well in many applications.
+
+A: I've noticed that home/end/pgup/pgdown aren't working on my main user account but if I create a new user and log in as them, they all work as expected.  So I figure it's a snipe hunt for some preference/library/plugin manager that is doing horrible things to Safari.  I already purged SIMBL but it doesn't look like it helped.
+(edited to add) I poked around some more and I guess I made some changes to my default key bindings at some point - I removed ~/Library/KeyBindings/DefaultKeyBinding.dict and now PgUp/PgDown/Home/End all work as I expect in a browser, although now I'm stuck with emacs navigation inside of editboxes.  I can manage.

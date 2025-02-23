@@ -1,0 +1,16 @@
+Q: Spotlight can't see renamed label in Lion Spotlight has an operator, -label, that lets you search for files with a certain color label applied (e.g. Red, Green.) A dropdown auto-populates with label colors when you type the operator into a Finder window find box.
+I have renamed a label ("Red" to "Followup"), and it no longer appears as an option in that dropdown. I've run mdutil -E / to rebuild my Spotlight index, but no luck.
+I'm running OS X Lion (10.7.2), though I just started using labels, so this may go back a ways. (An aside: in my research it seems there's a strange mixing of Spotlight operators in the form -<operator> and <operator>:.)
+Ideas?
+
+A: It's a little convoluted, but I've found a workaround. The renamed label is still not appearing with the -label operator autocomplete, but you can search for it another way.
+
+
+*
+
+*In a Finder window, choose File > Find
+
+*In the criterion dropdown (defaults to "Kind"), select Other... and enable File Label
+
+*Select the File Label criterion and all the colors will be available
+

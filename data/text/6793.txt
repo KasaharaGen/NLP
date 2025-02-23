@@ -1,0 +1,45 @@
+Q: Monitor remains grey after Apple logo during boot on Mac Pro The Mac Pro here (2008 model) started acting up as of yesterday during booting - when I turn it on, I hear the typical sound, the Apple logo appears, it disappears.. and the monitor remains in that grey tone.. forever - nothing else is happening. This machine has Snow Leopard installed. When I try to e.g. boot from my Lion USB Recovery HD, i plug in the USB stick, press alt during bootup, both systems (the SL one on the disk & the Recovery on the USB stick) appear, I select the Recovery HD.. and again, the same (logo, then grey forever).
+What's going on here and what can I do?
+Update:
+following the numerous suggestions below (thanks!), I checked the verbose boot logging, but nothing too troubling appeared, well sort of. Right before the monitor turns grey again, the color of the logging font turns from white to pink?
+This:
+
+to this:
+
+.. (the image is kinda off, somehow it doesn't capture the pinkishness of the color) then grey forever again.
+Additionally I could enter safe mode, but the same is here.. colors seem strange & not entirely correct (I suppose it's not intended that way, right?):
+
+
+I put the Nvidia 8800GT in the other slot on the mainboard, the same again. Is this a sign of a failing graphic card (the boot manager menu looks just fine)?
+
+A: This happened earlier this year to a friend. The cause was disk
+    directory damage. Upon start (during the Gray Screen of Doom) the
+    Mac was trying to repair the damage automatically, but failing.
+    Here's how I talked her through it.
+
+
+*
+
+*Power down the Mac.
+
+*Boot in Safe Mode (press Power button, listen for startup
+tone, immediately press and hold Shift, release Shift when you see
+Apple logo).
+
+*Let the computer boot in Safe Mode. It may take longer  than
+normal.
+
+*If the computer eventually reaches the desktop, simply reboot
+    normally and see if that fixed your problem. This is the point at which this procedure worked out for my friend.
+
+*If the computer is still having problems, boot from a Mac OS X
+    Install DVD (insert DVD, power down, restart hiding down C key).
+
+*When you reach the Installer screen, use the Utilities menu to
+run
+    Disk Utility, then choose Repair Disk under the First Aid tab (if the hard disk doesn't show up in the sidebar in Disk Utility, the disk is likely irretrievably broken).
+If these steps don't work, I'd suggest that you either a) Wipe the disk and do a full restore from your most recent backup; b) invest in a heavy-duty disk utility like Disk Warrior; c) take the computer to the nearest Apple Store for support help.
+
+A: Generally with this kind of problem the first trouble shooting step is to reset the PRAM by holding down  ⌘  +  ⌥  +  P  +  R  on boot. Also reset the SMC might help, but doing this requires a process specific to your machine, which can be easily found out on Google.
+
+A: Do you have any external drives (or peripherals) connected? I had this problem sometimes due to an external hard drive (I thought it was the enclosure, but it turned out the drive was itself failing and had to be RMAed). I disconnected it, and the boot sequence resumed.

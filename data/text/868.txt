@@ -1,0 +1,91 @@
+Q: How can I use Gmail as the default mail client app in Mac OS X? I use Gmail as my e-mail client, but when I click on a "mailto:" link, the Mail.app is opened.
+Is there a way to avoid the Mail.app opening in this case? Can I open Gmail instead?
+
+A: You could use Mailplane.  Mailplane is a site-specific browser for GMail that offers better OS-level integration.  Mailplane can act as the default email client.
+http://mailplaneapp.com/
+
+A: You can do this with Firefox in two steps...
+
+
+*
+
+*Go to Firefox preferences, Applications, search for mailto: and change the application action to "Use Gmail".
+
+*Follow Apple's instructions here and choose Firefox as the email app.
+
+
+A: Update (1/2014)
+Turns out Google Notifier for Mac is no longer supported.
+If you're using Chrome, this is now very simple: open settings, search for "mailto", and set Gmail as the handler for mailto.
+
+For Firefox, see this answer.
+(The remainder of this answer is now obsolete.)
+
+While options like Webmailer also do the job, I'll mention yet another way for the sake of completeness:
+
+*
+
+*Install Google Notifier for Mac. It's an official Gmail utility made by Google.
+
+*Open Mail.app, go to Preferences -> General, and set "Default email reader" to Google Notifier.app. (Yep, you need to configure this in Mail even when Mail is what you don't want to use...)
+
+
+Besides directing clicks on mailto: links to Gmail, the Google Notifier comes with some additional features: It adds an icon (like this: ) in the menu bar and notifies you (if configured to do so) about new mail in your Gmail box. Through the icon you can also access your inbox, unread messages, and "Compose mail" screen quickly.
+Works great for me; I can generally vouch for this useful little app.
+
+A: If you use Firefox 3.5 or later:
+
+
+*
+
+*Go to Preferences ⌘, and and choose the Application pane.
+
+*Find "mailto" in the content type list, and choose what you want. If you want Gmail to open, choose it in the popup menu.
+
+Or you can use More Internet, a System Preferences pane that lets you choose which applications are set as helpers for Internet protocols.
+
+
+A: With Webmailer, you can set up any webmail client as the default email client in OS X.
+
+
+A: You do NOT need to install a third party app.
+Both Google Chrome and Firefox support this functionality. (ok, technically these are third party apps, but lets assume you are not using safari.)
+Chrome:
+
+
+*
+
+*Open gmail in chrome. 
+
+*In the address bar next to the "bookmark star" you should see a grey diamond. Click on the diamond 
+
+*Select "use gmail".
+
+
+*If you do not see the gray diamond, follow the instructions below. 
+
+
+If you made a mistake and selected "No" and you really wanted to select "Use Gmail"
+
+
+*
+
+*With Chrome open, copy and paste this into your address bar at the top: chrome://settings/handlers
+
+*Under the Ignored protocol handlers section, Click on X to the right to delete.
+
+*Close and open Gmail. 
+
+*Answer the question correctly this time. :)
+
+
+Source:
+http://productforums.google.com/forum/#!topic/chrome/hnRteY7bHfE
+Alternative way, if you need to do this programmatically.
+Firefox:
+See @Am1rr3zA answer on this question. Click here to jump to his answer.
+Safari:
+See @fpotter's answer on this question. Click here to jump to his answer.
+
+A: You could use Sparrow which is a very clean and spare Gmail client. I've been using it for a while and love it.
+Go to Mail.app / Preferences / General / and make Sparrow your default email reader.

@@ -1,0 +1,16 @@
+Q: Hide 'On my iPhone' calendar when syncing with MobileMe Ive now switched back over to MobileMe for all of my calendar stuff. 
+I was wondering though, if I go to 'Calendars', it also displays a calendar 'On My iPhone'. I don't think I would ever want to use it (because I want it to write to one of my two MobileMe Calendars). 
+Is there any way to remove this other calendar? Or at least make it so its not the 'default' one? Even if I tell the iPhone to not show it - it still wants to write to that calendar by default
+
+A: Yes, I think you can change this settings in iCal, as your mobile me settings are in there.  I did this, and my iPhone only shows my Mobile me calendars.  
+If you use gmail, I would also reccomend BusySync. It syncs anything you add to you iCal, and then iCal and mobile me syncs.  Its pure awesomeness in my opinion.  
+Also, if you have devleoper tools enabled, you can edit the plist mobileme sync-time interval to 1 min, instead of 15.  You can access the mobile me plist file in home/library/preferences/byhost/ - the specific file name is like: com.apple.mobilemesync.. or something like that.  Im at work, and use a linux system, so if someone else knows, please confirm, otherwise i will update this when i get home.
+
+A: I haven't done this, but --
+On the iPhone Under Settings then "Mail, Contacts, Calendars" then the Calendars section there is a preference to set the default calendar for new events created on the iPhone.
+I'd assume you could change the default to an existing calendar, move any "On My iPhone" events to another calendar, make sure the changes have synced, and then delete the "On My iPhone" calendar in iCal.
+
+A: Sadly - the only way to remove it is convoluted. Get a backup and make sure you understand the steps.
+First temporarily remove all sync accounts (deleting the data from the phone - it's only on the cloud and on the backup now) and then sync with the USB with a checkmark to overwrite the calendar data on the phone one time. Then disable USB calendar syncing and the phone (or iTunes) will prompt and offer to let you delete the calendar at long last.
+Only then can you add back the calendars you want from the cloud.
+In the mean time, you can go to the settings app, and at the bottom of "Mail, Contacts, Calendars" is a place to set the default calendar for new events.

@@ -1,0 +1,26 @@
+Q: How do I recover the administrator or root password on OS X? I received a hand me down white MacBook with 10.4 on it and it automatically logs into a user account that isn't able to change much in the preference pane. How do I recover or change the administrator password?
+The original owner told me to try a few passwords, none of which work to get logged in as admin.
+
+A: You can reboot into single user mode and change the password of a user with:
+passwd [user]
+
+Enter the new password twice and reboot.
+
+A: Boot to OS recovery, internet recovery or on older systems, with a Mac OS X DVD, then there's an option to change passwords.
+
+You can follow an how-to here.
+
+A: Getting admin access without the Setup Utility: another option, for the sake of completeness.
+
+
+*
+
+*Boot into single user mode by holding command-S on boot up.
+
+*Enter /sbin/mount -wu / when the prompt appears to mount the filesystem
+
+*Enter rm /var/db/.AppleSetupDone
+
+*Enter reboot
+At this point, it should run the colorful little setup utility that ran when the machine was new.  This'll create a brand new admin account.  This method can be useful if you don't want to mess up any existing accounts on the machine.
+Before step 4 you can use the passwd command to overwrite the current password for any accounts on the mac. The command ls /Users will show all the user names. 

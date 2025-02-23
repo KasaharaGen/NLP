@@ -1,0 +1,17 @@
+Q: Is it possible to configure Safari's search box to use google.co.uk rather than google.com? Is it possible to customise the search engines used by Safari 5.1 on Snow Leopard? I'd like to get it to use google.co.uk rather than google.com for searches. I've found a couple of old posts (including this one which doesn't seem to apply any more) but nothing very recent.
+
+A: the query string is defined in : 
+~/Library/Safari/Configurations.plist.signed
+
+but the file is signed and cannot be edited without being replaced by safari.
+Also, it seems that every time you use this search bar, Safari hits This file on apple.com which can make one assume that Safari compares the 2 files and replaces the local one when needed.
+I think your only options are via extensions or another browser
+
+A: I don't use it, but GLIMS looks like it will easily let you insert a search engine different than what Safari bundles.
+More intrusive, but way slick in my opinion is the SafariOmnibar it's excellent work and you can customize your search provider since it's hacked into that part of safari using SIMBL - the SIMple Bundle Loader process.
+I use LaunchBar and search from a keyboard shortcut - it allows extensive control over searching - you can define custom search sites and criteria easily. It has many other features (notable extremely quick app and file launching as well as a clipboard history) but it's so fast you might like it just for getting a UK search if nothing else fits your needs.
+
+A: As an update to my own question, I have just come across this Safari extension which redirects searches from google.com to google.co.uk. It also redirects Yahoo searches from search.yahoo.com to uk.search.yahoo.com.
+
+A: As of Safari 6, there is now an "omnibar" instead of separate search and address bars. This breaks a lot of previous extensions and plugins, but the updates to the extension API for Safari 6 actually make it much easier to make an extension allows you to use a custom search engine within the new omnibar.
+I put together a really simple one here: AnySearch.

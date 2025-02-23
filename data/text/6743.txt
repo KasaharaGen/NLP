@@ -1,0 +1,5 @@
+Q: What are the domains of the iTunes & Software Update CDNs? Background info: the various iTunes stores (and I think Software Update) use the a CDN to deliver all those jigabits of data. Google DNS can mess with the speed of these CDNs.  
+I like using Google DNS (speedier, avoids my ISP's annoying DNS hijacking), but also like speedy downloads from iTunes. I've discovered that I can tinker with the DNS settings on my router to use my ISP's DNS to lookup certain domains, and keep the rest on Google DNS. However this of course means I need to know which domains to lookup via my ISP's DNS. So far I've got itunes.com, itunes.apple.com and phobos.apple.com.
+Doing some non-scientific tests monitoring download speeds via Activity Monitor, it seems like this has sped up my iTunes downloads, but not in all cases and not uniformly. Are there any domains I'm missing that I should also add to my list? Am I tilting at windmills?
+
+A: The domain names are from a1.phobos.apple.com to a1999.phobos.apple.com.  These domains are for downloading from the App Store or the iTunes Store.  

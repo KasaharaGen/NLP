@@ -1,0 +1,131 @@
+Q: How can I make 'rm' move files to the trash can? I use the terminal on a daily basis, I will often use rm DirectoryName. Sometimes I get a little impatient and do rm * without deliberating if it’s safe. As you can imagine, these shenanigans have sometimes come back and hit me in the face. Does anyone know how I create a mapping so rm whatever moves everything to the trashcan which I then delete manually.
+
+A: Use a command line tool like rmtrash (which usually just moves the file(s) to ~/.Trash making sure that the file has a unique name) or a script that uses appscript to call the Finder to do the delete. The latter is slower but adds the ability to use the Put Back option fromn Finder to restore the file easily.
+I used trash as it is in in MacPorts and Homebrew and rmtrash is now very old and unmaintained. However on reading the code changes when editing this note I noticed that it changed in 2017 from using the Finder by default to move by default (which is not what I wanted and is a major change). So I will look for another tool.
+As noted in the comments it is not a good idea to make rm an alias best to remember to use the trash program you installed directly
+But if you wanted to you could do
+After installing rmtrash to say /usr/local/bin/rmtrash then you can  create an alias for bash
+alias rm='rmtrash'
+
+You can use \rm to call rm directly and ignore the alias
+
+A: Just want to add a helpful habit to get into for those that don't do this already.  Before using rm for anything, do 'ls' on it first.  That way you can see all the files that you intend to delete.  Then instead of retyping, just pull previous 'ls' command up and swap out ls for rm. This habit has reduced a lot of anxiety when invoking rm. 
+
+A: There are ways to protect yourself from horrible outcomes from rm. However, I agree with the other commenters here: very few are any good.
+Do not for a minute believe that changing the command environment will help you. For example, you will find people online everywhere recommend doing this sort of thing:
+alias rm="rm -i"
+
+or
+function rm()
+{
+    echo >&2 'rm forbidden; use "/bin/rm"'
+}
+export -f rm
+
+This will not work. Period. There are loads of use cases where these little parlor tricks will fail you miserably.
+The only robust way I have used to spare myself from the danger of rm is by setting up a regular backup process through cron over the directories where I work.  Raw UNIX does it for you nicely, with great simplicity, using find in conjunction with -mtime to check for files that have been updated within or since a certain time.
+
+A: I can think of a dozen ways to code this, but categorically refuse to type any of them up in an answer. I strongly recommend you curb your habit of getting a little crazy. You shouldn't be in the habit of using rm at all if you can't use it properly.
+The fundamental problem here is that even if you install a safety net on your own system, that will only help you keep your bad habits and when you happen to be on another machine some day that doesn't have the same custom protections, you will do something epicly bad.
+The proper solution is to use rm as it was meant to be used including manually adding the -i argument whenever you are in doubt about how a glob will expand, and have good system backups that you can restore in the event of serious user error. Trying to add "trash" to commands that in the rest of the universe don't use it is a half-way step that is the worst of both worlds.
+Either use the trash or don't. Using rm doesn't go to trash, it removes.
+If you want to use the trash, there is nothing wrong with that. Just get in the habit of using the rmtrash command instead of rm. This will help your brain understand what's happening and not get you into a bad habit that will cause grief later.
+
+A: Bad Idea
+Using rm to move files to the trash is a dopamine hit. It is common and pleasuring but can be bad for you taken out of context.
+You really need control yourself when using rm. Especially if your backups are not current or you don’t have the time to do an erase / install / restore.
+
+Don't use rm
+Imagine, you get used to rm moving to trash and make a habit of it. Sure, your system is safe but when you log into a friend's (or your wife's or your boss') notebook and have to delete something? You'll be actually using the real rm - deleting those files forever. Without lots of prep and qualifiers, it's a bad habit, and you need to know that.
+So instead, install rmtrash and make a habit of using it:
+# install rmtrash, (either from the macports or by the brew.)
+$ alias trash="rmtrash"
+$ alias   del="rmtrash"       # del / trash are shorter than rmtrash
+
+
+Correcting bad habits
+Here’s where the personal advice starts - changing one’s behavior is hard.
+Another thing you can do to force yourself to use rmtrash instead of rm is alias it to a custom message in your .profile.
+alias rm="echo Use 'del', or the full path i.e. '/bin/rm'"
+
+So, whenever you use rm, you'll be prompted to either use rmtrash or /bin/rm. Remember, this is only temporary, after a while you should remove the alias.
+
+Never ever, do something like this:
+$ pwd
+/
+$ cd /tnp; rm -rf *
+sh: cd: /tnp: No such file or directory
+
+Pop Quiz: In what directory will the rmcommand run? :)
+
+A: Introduction (you can skip it)
+For me rm -i would be enough, because it prompts you before deleting any file. However, some extra security provided by safe-rm isn't a bad idea at all.
+A simple alias like rm=safe-rm -i could be enough, however rm -rf would not work, because -i is overriden by -f.
+So, we have to make sure that -i always come after -f!
+
+My solution (3 steps):
+
+
+*
+
+*Install safe-rm: brew install safe-rm
+You can still work with rm, but you have modify the RM_BIN in the next step
+
+*Edit your ~/.profile (or bash_profile or whatever), and put the following code snippet, (which contain an alias and a function):
+alias rm="rm_i"
+
+function rm_i(){
+RM_BIN=safe-rm # you can replace it with regular rm if you like
+
+args=""
+files=""
+argsDone=0 # to make sure arguments are before the files
+
+for var in "$@"
+do
+    if [[ $var == \-* ]] ; then
+        if [ $argsDone -eq 1 ] ; then
+            $RM_BIN # just to show the usage of rm
+            return
+        fi
+        args+=" $var"
+    else
+        argsDone=1
+        files+=" $var"
+    fi
+done
+
+args+=" -i" # Put -i at the end (so rm -rf will not ignore it)
+
+$RM_BIN $args $files
+}
+
+
+*Finally, logout and login, so the updates in the .profile are applied. DON'T use it before a logout/login!
+
+Notes:
+
+
+*
+
+*It can be applied to any Linux distro, with slight modifications.
+
+*It does NOT move your staff to thrash. It just asks you before deleting each file!
+
+*It works with -rf and with regexes.
+
+*If you really want to use rm -rf WITHOUT being asked for every single file/folder you can still use /bin/rm -rf (or safe-rm -rf if you had installed it).
+
+*No more unintentional rm -rf or rm * ;)
+
+
+A: Mac bigSur
+brew install trash
+
+alias rm='trash'
+which rm
+
+touch a.md
+rm a.md
+ls ~/.Trash
+

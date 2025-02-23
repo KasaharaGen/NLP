@@ -1,0 +1,17 @@
+Q: Sync iTunes U between 2 Macs via an iPod Is it possible to download lectures (from iTunes U) with iTunes on Mac A, sync an iPod to Mac A, then carry that iPod to Mac B, and finally watch them on Mac B?
+That's what I have been doing with my previous iPod (not an iPod Touch) because it allows me to use it as a USB hard drive. Now that I'm using an iPod Touch (which doesn't allow me to see what's inside), I wonder if I can use syncing to do the same job.
+
+A: Actually, there is a way you can sync your device to more than one iTunes library in different computers. The trick is making the device believe that it is the same library.
+Each library has an associated identifier. By modifying one of the libraries and putting the id of the other, you will accomplish that.
+In order to do so, select one of the computers, the one that you are currently syncing with, and find out its identifier. Look for a file called iTunes Music Library.xml. In a Mac, this file is in the ~/Music/iTunes directory (though I think it can vary depending on what version of iTunes it was created with). In a PC, I guess it must be somewhere under the My Documents folder.
+Open it with a text editor and find out a line which reads like
+<key>Library Persistent ID</key><string>XXXXXXXXXXXXXXXX</string>
+
+where the XXXXXXXXXXXXXXXX will be the identifier for that library.
+Now, on the second computer, find out the same file, and, after making a backup (just in case), and making sure iTunes is not running, copy the identifier to a new document, because we'll need it shortly, and then replace it with the identifier from the first computer. Now, we're halfway done. The following step is the difficult one.
+With a hex editor (which is an editor that allows editing the bytes of a binary file; my PC using mates recommend Ultraedit, while I on the Mac like HexFiend), open a file called iTunes Library in the same directory (remember, make a backup first), and do a search for the same string (or rather, byte string) that you copied and replace it with the new one from the first computer.
+After performing these steps, you should be able to sync both computers with the same device without problems.
+
+A: It won't let you sync, but you should be able to connect the iPod touch to Mac B and still see the iPod under devices in iTunes.  If you hit the expansion triangle (twistie?  whatever it's called) it should show you the playlists on that iPod and let you play them through iTunes.
+
+A: Syncing an iPod/iPhone to iTunes is a one-to-one relationship between the two. Syncing on iPod with an iTunes install essentially ties it to that iTunes. Syncing later to a different iTunes install invariably results in the "delete all data" dialog.

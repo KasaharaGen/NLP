@@ -1,0 +1,12 @@
+Q: Is it possible to determine the model of an iOS device by its MAC address? I'm starting to work on iOS apps at work, and I'm trying to determine the minimum version of iOS I'll need to support. We have a network registration system that gathers some basic information about devices on the network, but unfortunately, it doesn't report the version of the operating system or hardware.
+I do, however, have MAC addresses for every iOS device used on our network in the past 12 months.
+Is there a way to determine, based on a MAC address, what generation an iOS device is? If Apple used sequential addresses (or reserved specific blocks for specific devices), this should be possible.
+
+I'll leave the above question (because I'm still curious if there's a way to do this), but I found another way to determine the hardware we have in use. Exchange server keeps track of devices each user syncs their email to. Assuming most iOS users sync their email accounts, I was able to use that information to determine what devices are in use. It turns out that about 20% of them are using devices that won't run iOS 5.
+
+A: No - it's not a good way to get that data.
+I would have a look at some of the many MDM software packages to get your population data so you can plan. JAMF has a great reputation in that space for low cost of entry and high performing software.
+Also - you could make a quick little app that simply reported in some basic stats. Your users will be clamoring for potential apps and those willing to run that app will feed you with the data needed.
+You will find that making the app forces you to restrict many of the new features and in reality - you'll have to actively work to get 3.x support in a project you start today using the current Xcode 4. 4.0 will be easy and only the new 5.0 features will get you into having to test the levels and have two sets of code for different generations of device. 
+Your development will drive what devices people use and not the other way around. It's almost always cheaper to just upgrade devices than pay developers to keep the older code tested and running.
+There are lots of great charts out showing what some devs are seeing for how fast people upgrade to the latest iOS versions.

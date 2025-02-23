@@ -1,0 +1,6 @@
+Q: How do I remove the sync status icon from the menu bar after migrating to iCloud? How do I remove the sync status icon from the menu bar after migrating to iCloud?
+
+Prior to iCloud the Sync pane of MobileMe preferences had a simple setting for this, but after migration it is gone.
+
+A: Hold the Command key while dragging the icon out of the menu bar.
+Also you could delete ~/Library/com.apple.systemuiserver.plist and log out and then back in again. Killing SystemUIServer might also work to repaint the menu bar, but I prefer to log out when changing a plist that also has an associated lockfile.

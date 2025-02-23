@@ -1,0 +1,93 @@
+Q: How to move a window to another space without using the mouse? I use spaces for having multiple desktops, but often need to move a program from one space to another.
+I am aware of the various ways to do that with a mouse:
+
+
+*
+
+*Click-and-hold on the title bar of window and drag to edge
+
+*F8 to show all Spaces and drag to desired location
+
+*Click-and-hold on the title bar, and use Ctrl+# or Ctrl+Scroll Arrow
+But have not been able to find a keyboard-only method. I use Linux for one of my primary workstations which has this ability and I would LOVE to use it with OSX as well.
+
+A: yabai and skhd
+yabai
+yabai is a window management utility that is designed to work as an extension to the built-in window manager of macOS.
+yabai on github: https://github.com/koekeishiya/yabai
+yabai provides a command to move a window to the next screen:
+yabai -m window --space next
+
+If you want to move a window to the next screen and also focus the next screen then use:
+yabai -m window --space next && yabai -m window --space next
+
+yabai automatically tiles your windows per default. You can configure the layout float to disable that. To do that add following line to ~/.yabairc:
+yabai -m config layout float
+
+skhd
+skhd is a simple hotkey daemon for macOS.
+skhd on github: https://github.com/koekeishiya/skhd
+Install skhd and add this line to ~/.skhdrc:
+ctrl + cmd + alt - right : yabai -m window --space next
+
+Then you can move a window to another space with the shortcut ctrl + cmd + alt + right arrow
+You can further extend that. Following you see how I configured it in ~/.skhdrc to move windows between spaces:
+# move window to next space and focus next space if next space is not last space of display
+ctrl + shift + alt - right : [[ $(yabai -m query --spaces --space | jq '.index') != $(yabai -m query --displays --display | jq '.spaces | max') ]] \
+                             && yabai -m window --space next \
+                             && yabai -m window --space next
+
+
+A: BetterTouchTool: free and does the job plus a lot of extra ;) I use it in combination with ShiftIt for window resizing.
+
+A: While dragging a window, press key combo to move window to numbered space:
+
+
+*
+
+*Control + 1
+
+*Control + 2
+
+*Control + 3
+
+*etc ...
+
+
+EDIT: For Lion, I had to go to System Preferences -> Keyboard -> Keyboard Shortcuts -> Mission Control and enable these hotkeys.
+
+A: SizeUp
+You could have a look at SizeUp, which has been recommended on apple.se at least once before - it has some nice keyboard tools for throwing windows around multiple monitors (as I use it) and also for throwing them around multiple 'spaces'.
+It's not free, but it's very useful and certainly worth the small registration fee.
+
+A: Amethyst
+With Amethyst, you can send windows to specific spaces using configurable keyboard shortcuts. One possible setup is:
+
+*
+
+*Command + Control + 1   [send to Desktop 1]
+
+*Command + Control + 2   [send to Desktop 2]
+
+*Command + Control + 3   [send to Desktop 3]
+
+*and so on . . .
+
+By default, Amethyst automatically tiles your macOS windows. If you do not want automatic tiling or the extra layout features that Amethyst provides, then add "floating" to Layouts under Preferences and remove all other layouts. Also, disable any keyboard shortcuts you do not need under the "Shortcuts" tab.
+
+A: There is one built in way to do this without using the mouse. It involves using the Mouse Keys, so this is really only a good option for when you have a full external keyboard connected. 
+Steps:
+
+
+*
+
+*Enable Mouse Keys if it's not already enabled (the standard shortcut is hitting the left option button 5x)
+
+*Use the numeric pad to position the mouse pointer on the menu bar of the app. Use the #5 key to click, then hold that, and make the window drag a little by clicking one of the other numbers (the directional keys)
+
+*Then, once that mode is active, you can stop dragging (but hold the mouse key #5 down), and use the Ctrl-Left/Right shortcut and the window will follow
+For more on using Mouse Keys - https://support.apple.com/en-us/HT204434#mousekeys
+
+A: Shiftit is awesome... 
+I use shiftit which is an open-source tool for resizing/moving windows.
+To move a window you can click_hold_window + CTRL + space_number

@@ -1,0 +1,55 @@
+Q: Is it possible to rotate images in Preview in degrees other than 90? I want to rotate an image in preview but I only need to move it a few degrees.  Is this possible?  Or can you only rotate 90 degrees?
+
+A: Copy-paste the image into another image or new file (cmd+N)
+and twist the pasted object with two fingers.
+(as shown here: https://www.youtube.com/watch?v=UvE2DHJOTCE)
+
+A: There is a way to do it using Preview, although it is imprecise. 
+You can use a two finger twisting gesture to arbitrarily rotate the image within preview. Now, it snaps back to normal once you let go, but if you take a screenshot to clipboard while maintaining the rotated view, then paste from the clipboard into preview, then save. Then I open the image again and do a little bit of cropping to get it looking nice.
+I mapped the 'screenshot to clipboard' function to a key combination that was easy to hit while maintaining my twist.
+Obviously a dedicated app will do the job better, but I thought it was worth mentioning my OS only workaround which I discovered.
+
+A: In Yosemite, open the image in Photos and crop it - this function brings up a grid and alignment tool, you can then save the image simply aligned, but not necessarily cropped.
+
+A: Unfortunately, Preview can only rotate in 90* increments and flip images.
+If you want to rotate a different amount, you'll have to use a more-powerful program, like Photoshop or Pixelmator.
+From Preview Help:
+
+
+A: It's possible to do this by copying or opening the object in a separated window, then there you can rotate it. Next, just copy back the object already at the desired position. This is the only way I've found, and works for quick tasks.
+
+A: In Preview, yes...!  I just discovered.  Hold the option button down, and use 2 fingers on the trackpad.  So many hidden features.
+
+A: There's no current way to do that with Preview, although you can use ImageMagick's convert command to do it:
+convert your_input_image_name.png -rotate X new_output_image_name_path.png
+
+This command will rotate your image X degrees, accepting a positive or negative value.
+Finally, you'll probably want to remove the white background:
+convert rotated_image_name_path.png -transparent white final_output_image_name_path.png
+
+
+A: If you're not averse to using the command line, you can use the sips command to rotate images. For example…
+sips -r 23 --padColor FFFFFF image.jpg
+
+…will rotate image.jpg 23 degrees clockwise and "fill in" the empty space with white. (If you rotate PNGs, the alpha channel should be retained.)
+Worth reading the man page for sips as it can do other useful stuff.
+
+A: I love the free ToyViewer.app (check Mac App Store). Can do some cool things with images. Small and fast.
+
+
+A: Apparently, it used to be possible by holding down the option key while rotating (using the button on the toolbar), at least according to this forum entry from 2005:
+http://hints.macworld.com/article.php?story=2005012115382953
+But it didn't work for me on OS X Mountain Lion, all the option button did was change the rotation direction (for the rotation button on the toolbar).
+
+A: I found an online website that does it (probably there are many others):
+
+
+*
+
+*LunaPic (http://www140.lunapic.com/editor/)
+
+
+No need to register or install anything. Just upload the picture, type how many degrees should be rotated and done.
+
+A: You can do this straight from Preview if you're on a MacBook. Just put two fingers on the touch pad, rotate, and viola. Unfortunately, there is no way to input exactly the degrees to which you want to rotate, but this at least allows for an approximation.
+Hope that helps.

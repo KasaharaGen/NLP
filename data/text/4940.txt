@@ -1,0 +1,10 @@
+Q: Using grep on Mac-style text files When I run grep on a text file, I get nonsense results. It seems as if the whole file is printed out but on one line overwriting itself.   I read that on the Mac, text files use \r instead of the normal \n as a line ending.  That would explain it, but how to make grep treat \r as if it were \n?
+I'm using Snow Leopard OS X, and am quite new to using Apple anything, but a long-time Linux programmer.
+
+A: You can't change grep's behavior, but you can change the file it sees:
+tr '\r' '\n' <file | grep foo
+
+Also, \r line endings are legacy these days; OS X officially uses \n, although there are still things that haven't been updated.  In particular, AppleScript still hasn't quite caught up, which also shows in its using pre-OS X file paths by default and requiring POSIX file to indicate OS X native paths; also, many Carbon applications still use \r, Carbon being a transition framework from Mac OS 9 to OS X.
+
+A: A common legacy utility for handling line endings is flip. It does in-place transformation for files between Unix, DOS/Windows, legacy Mac line-end formats, and can also sample a file to let you know what type it currently thinks it is. It doesn't ship with OSX, but you can get binaries from the link as well as source.
+In this case, you can first flip -u yourFile.txt to make sure it's using newlines and not linefeeds to demarcate lines, and then use grep on it.

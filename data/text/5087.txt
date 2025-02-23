@@ -1,0 +1,35 @@
+Q: How to add Spotlight comments to the bundled OS X apps? I'd like to add a Spotlight comment to TextEdit.app. Is that possible?
+What I've done:
+
+
+*
+
+*Open Finder
+
+*Browse to /Applications/
+
+*Select TextEdit
+
+*Press ⌘ + I (Get Info)
+
+*Click the lock icon to unlock the dialog
+
+*Click on Spotlight comment text field
+
+*Nothing happens. Even cut, copy and paste options are disabled in the context menu.
+
+
+This seems to be the case for all the other OS X bundled apps as well (Font Book, iChat, iCal, …)
+I could create an alias of the app and give comments to it, but are there any other ways?
+
+A: You need to have write permission for the bundle. After you open the lock:
+
+
+*
+
+*Select 'Read & Write' permission for 'everyone'
+
+*Add your comments
+
+*Restore the permissions
+

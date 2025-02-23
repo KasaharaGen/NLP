@@ -1,0 +1,1068 @@
+Q: Please share your hidden macOS features or tips and tricks Do you know any hidden or little-known nice feature of macOS (née Mac OS X)? It doesn't matter what it is—maybe just a short terminal command or a keyboard shortcut. Share your experiences on hidden Mac OS X features with us..
+Please post one tip per answer. Please also check to see if your answer has already been posted - duplicate answers will be deleted. To search answers for this question use inquestion:400 (or inquestion:this, directly from the question page) in addition to your search terms in the search box in the upper right hand corner of this page. 
+Also provide details on how to achieve that feature, and if possible, include a relevant image too!
+
+A: In Finder "columns" view, double click the block below the scroll bar arrows to auto fit column width.
+via @Mactip
+
+A: ⌘ + ` (backtick accent) switches between multiple windows of the same app.
+
+A: To quickly lock your computer with a screen-saver style password, regardless of whether a password or time delay is set in the Security preference pane, enable the keychain status menu item and use its Lock Screen command. To enable it, open the Keychain Access utility, choose Preferences… from the Keychain Access menu, and enable "Show Status in Menu Bar" from the General pane.
+
+
+A: Want to move back and forth through your navigation history? Most apps, including Safari and Finder, let you use the following shortcuts:
+⌘+[ to move back.
+⌘+] to move forward.
+
+A: LaTex from Grapher:
+
+
+A: In any Open/Save dialog window, hitting ⌘+D opens the desktop folder.
+
+A: ⇧+⌥+← or ⇧+⌥+→ can be used to select the previous or next word.
+
+A: I love the DigitalColor Meter application (in /Applications/Utilities) for finding the color of something on screen (especially useful for web development). cmd + shift + h to lock/hold the color you're on, ⌘+⇧+c to copy the value as RGB Hex value.
+
+A: By pressing ⌥ + ⇧ + + you can create the  - Symbol on a german keyboard.
+The tilde-key btw is created by pressing ⌥+N for all those who searched `~´
+For English (American) keyboards, the shortcut is: Option ⌥ + Shift ⇧ + K
+
+A: The 'Open Terminal Here' applescript that can be added to the finder toolbar(?), is a great way of getting a shell prompt to the folder your are viewing. 
+The 'original' is at the pages of its author Marc Liyanage:
+http://www.entropy.ch/software/applescript/
+He kindly links to a number of other versions so you can take your pick.
+The other side of the coin (though not worth it's own answer) is the command
+open .
+to open a finder window for the current shell folder.
+
+A: You can access the File, Edit and other application menus with the 'Change the way Tab moves focus' setting in Keyboard -> Shortcuts Preferences. I changed it from the default to Ctrl+` as the default merely adjusted brightness.
+
+
+A: If you connect two Mac's directly using a standard ethernet cable, you can quickly transfer files between them.  It automatically configures the connection, and is much faster than doing large transfers over wireless.
+
+A: When resizing columns in Finder, hold down ⌥ whilst dragging, and you'll resize all columns and reset the default width.
+
+A: In order to navigate with the keyboard in the menu bar, press ctrl+F2. The Apple icon in the menu bar will light up, and you can navigate through the menus using arrows and the ↩ key.
+Once you are in the menu bar you can also navigate using initial letters, e.g. b to go to Bookmarks
+
+A: Ever wanted to stop the iTunes visualizer at that really cool moment and take a picture? In iTunes 10 (and previous versions really) you can control what your visualizer is doing. You need to have a song playing to notice changes. 
+Simply press the ? key to see a help menu of the controls. On most visualizers press f to see the current FPS. (all except the default)
+To freeze the default iTunes visualizer press F to freeze the mode, then press L to freeze the camera. Now that your visualizer is completely stopped, press M to change the mode. Turn the fog on and off with N (only works with certain themes). Change the color palette with P before freezing the mode or locking the camera or it has no effect. ⌘ + F  for full screen, then ⌘+⇧+3 for full screen grab.
+Viola, instant custom desktop pattern! 
+
+A: Holding ⌘ lets you drag icons in your menu bar to reorder them. Dragging them out of the menu bar removes them.
+All of the built-in icons support this behavior, but most third-party apps don't.
+
+A: 3rd party apps can add unwanted items to your right click menus!  To add or remove items from the right click contextual menus:
+Go to System Preferences -> Keyboard -> Keyboard Shortcuts. Select the "Services" panel and uncheck the services which you don't need. 
+
+A: When switching focus between applications, you can hold down ⌥ and click on another application. When you change focus from one application to another, the first application hides. So, let's say you are switching from an open Finder window to an open TextEdit window while holding the ⌥ key. Finder will hide once you click on the TextEdit window. I discovered this by accident and it's pretty cool
+
+A: In iTunes, it’s possible to make ⌘ + F focus the search input instead of toggling the full screen mode.
+Simply enter this command in Terminal.app:
+defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
+
+Then, restart iTunes.
+Disclaimer: This is just one of the many goodies in my .osx file.
+
+A: To paste plain text without any formatting use ⇧+⌥+⌘+V.
+That's very useful when working in app like Keynote and copying some text from webpage. 
+Note: It doesn't work if any other function assigned to this shortcut. To fix that just change the default shortcut in the app to something else. 
+
+A: When you drag and drop any file (or folder) from Finder onto a Terminal window, it gets converted into the full (absolute) path to that file.
+I find this a small but occasionally useful trick when dealing with files in both Finder and Terminal.
+
+A: Hold ctrl and move the scroll wheel (or use two fingers on trackpad). It will zoom in the entire screen.
+This setting can be enabled or changed in the System Preferences, under Acessibility, Zoom.
+
+A: Hibernate your MacBook Pro with
+sudo pmset -a hibernatemode 25
+and then put it to sleep which will save the state of your system and then power off. Very handy when flying.
+If instead you want very fast sleeps, without writing memory to disk, use
+sudo pmset -a hibernatemode 0
+To restore the default behaviour, use
+sudo pmset -a hibernatemode 3
+
+A: Quickly find your search results in Safari 
+
+
+*
+
+*Perform a Google search in the toolbar 
+
+*Click a result 
+
+*Press ⌘+G
+via @Mactip
+
+A: Remember the double-sided arrows on both the top and bottom of the scroll column in OS 9? Go to the terminal and type: 
+defaults write "Apple Global Domain" AppleScrollBarVariant DoubleBoth
+
+When you login/restart, this will work across all applications. Very handy to have.
+
+A: If you want to quickly resize your Dock you can click and drag the bar that separates the apps from minified windows, the Trash etc. If your Dock is on the bottom then drag up to increase the size of the dock and down to make them smaller. Drag left/right if your Dock is on the side of the screen.
+
+A: If you use random Backgrounds,
+there is a quick way to make them change when you want.
+type in the terminal 
+killall Dock
+
+This will make your random Desktopbackground change.
+
+A: An often-neglected feature of OS X is the ability to drag files and proxy icons into other applications or windows.
+Try this in Adobe apps. Why use the File > Place… command? Just drag a file directly from the Finder directly into the document you’re working on.
+Drag files onto Dock icons to open that JPG in Photoshop rather than iPhoto. Drag an image from your browser into Photoshop’s Dock icon.
+
+A: When closing an unsaved document ⌘+D will invoke Don't Save for you.
+Use with care though.
+
+A: You can play tetris in Terminal:
+When you are in Terminal type emacs and hit enter. After that press escape button and X button at the same time. Now just type tetris and hit enter.
+Same goes for pong, 5x5, snake, tetris, dunnet and blackbox, just type its name instead of tetris
+Source: http://secretpctips.com/2011/04/mac-os-secrets-easter-eggs/
+
+A: Here's one I learned a long time ago, still works today.
+Keyboard shortcut for proper single and double quotes:
+Single Quotes
+
+
+*
+
+*For Left ( ‘ ) press: Alt + ] 
+
+*For Right ( ’ ) press: Alt + Shift + ]
+Double Quotes
+
+
+*
+
+*For Left ( “ ) press: Alt + [
+
+*For Right ( ” ) Alt + Shift + [
+
+A: If you need to type an accented letter like "é" or "ñ" just press and hold the corresponding letter on your keyboard and a little popup will appear with numbered letters with accents. You can also click the letter of your choice.
+
+
+A: Show the full directory path in the Finder window. 
+In the Terminal, run this:
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+
+Then, run this.
+killall Finder
+
+There are all sorts of hidden defaults that can be mucked around with but this is my absolute favorite because now no matter which window I am looking at, I know exactly where I am.
+You should also check out TinkerTool for other hidden settings.
+
+A: Drag and drop files and folders to "Open" dialogs/sheets: very useful to open package contents with other software.
+Just locate the file with the Finder
+
+and drag and drop it to the Open dialog
+
+Bonus: you can do the same thing with 'Upload file' web forms. (Only with WebKit-based browser)
+ ➔ 
+
+A: Holding ⌥ (or ⌥fn on MacBooks, and depending on your System Prefs*) while pressing one of the function-row keys will bring up the System Preference panel for that key. Here's a list:
+
+
+*
+
+*⌥+Brightness: Displays
+
+*⌥+Exposé/Dashboard: Exposé and Spaces
+
+*⌥+Mute/Volume: Sound
+
+*⌥+Keyboard Brightness: Keyboard (for Macs with backlit keyboards)
+
+
+*If you have checked the option to use F1, F2, etc. keys as standard function keys, done in System Preferences>Keyboard, then you will need to add the fn to the afore mentioned sequences.
+
+A: You can disable 3D Dock effect ( if you don't like ) when dock is at bottom.
+Use tinker tool (it's free).
+Now, switch to Dock tab, do as instructed in image.
+
+
+A: You can adjust the scale of all windows (sizes of buttons and menus and toolbars) to fit more on a smaller screen. It was really helpful on my TV setup, because I couldn't see the bottom items in the System Preferences.
+defaults write NSGlobalDomain AppleDisplayScaleFactor .75
+
+to reset simply
+defaults write NSGlobalDomain AppleDisplayScaleFactor 1
+
+Or you can change it per Application
+defaults write com.apple.iTunes AppleDisplayScaleFactor .7
+
+
+A: Target Disk Mode lets you mount a Firewire-enabled Mac as an external disk, without even booting into the OS.  Useful for quick transfers, large transfers (it's quite fast), recovery, etc.
+To start it, hold T during startup.
+
+A:  sudo purge
+
+I use this all the time for freeing unused memory on my Mac.
+
+A: El Capitan has a new split full screen feature, where you can have two apps open at once. I use it all the time, but the one thing I find inconvenient about is that it will very strongly blur the un-focused window when resizing a pane:
+
+You can hold down ⌥ while resizing to see both screens respond to your resize changes -- neither will be blurred.
+
+A: When I migrated from Windows to Mac OS X, what I really missed is the ability to move files with cut (Ctrl + X) and paste (Ctrl + V) (as opposed to copy and paste).
+It turns out Finder has this capability as well, but it's more like 'mark and move': Cmd + C and then Alt + Cmd + V.
+
+A: Since El Capitan (OS X 10.10), the green button in the top left of a window does not resize the window as it used to, but instead turns it into full-screen mode.
+To get the old behavior back, hold down the ⌥ key, which will turn the green button's symbol from the resizer to a + as it used to be.
+
+A: macOS has a built-in option to mass rename files (including changing the extension), which I found here while looking for a shell script snippet to do the trick. Just select the files, right click and choose "Rename n items ...". The Replace Text dialog is rather self-explanatory.
+
+
+(image sources: OS X Daily)
+
+A: Secrets is a database with a huge amount of hidden settings for both the system and some common applications.
+This domain is now offline and the developer appears to have parked the work (based on MacUpdates activity). It was originally launched for OS 10.6 as a preferences pane although the data was delivered from a Google server which is now down. However :) - you can see some of the previous secrets listed as a web archive (may take a minute to load):
+https://web.archive.org/web/20150621044359/http://secrets.blacktree.com/ 
+Sept 2016
+
+A: On i.a. en-US keyboards ⌘+` will cycle through multiple open windows in your current application.
+On some other keyboard layouts the hot key may be e.g. ⌘+<.
+You can verify—and modify—your "Move focus to next window in application" shortcut under System Preferences → Keyboard → Keyboard Shortcuts → Keyboard & Text Input.
+
+A: alt + ⌘ + left click in the dock hides all windows except application currently in focus. Great if you find window clutter distracting.
+
+A: When ⌥+clicking on an open app in the Dock the application hides.
+
+A: You can force Exposé to only show windows that are on the current Space (instead of all windows open on any Space). Type the following into Terminal:
+defaults write com.apple.dock wvous-show-windows-in-other-spaces -bool FALSE
+
+then, to restart Dock:
+killall Dock
+
+
+A: When you're in the ⌘+Tab task switcher selecting the Finder and pressing ⇧+Q will restart the Finder.
+
+A: Hide an Application While Cmd-Tabbing
+While using ⌘+Tab, you can press H to hide/show the app that is currently selected.
+
+A: You can prevent app from appearing in Dock by editing .app/Contents/Info.plist. Just add 
+<key>LSUIElement</key>
+<true/>
+
+
+A: Probably the most used shortcut I created on my machine is one to hide and show hidden files.
+I've set this up via an AppleScript on my machine with a keyboard shortcut of ^ + ⌘ + ⇧ + . which toggles the visibility of hidden files within Finder whenever I want.  This way I don't have to manually run a terminal command to show hidden files, and I can quickly turn it off to avoid accidentally modifying system files. I use FastScripts to allow me to set the keyboard shortcut for my AppleScript, and placed the AppleScript in my ~/Library/Scripts Folder.
+Here is the AppleScript in case you wish to give it a try:
+tell application "System Events"
+
+    set hiddenFilesDisplayStatus to do shell script "defaults read com.apple.finder AppleShowAllFiles"
+    set hiddenFilesNewDisplayStatus to "NO"
+
+    if hiddenFilesDisplayStatus is "NO" then
+        set hiddenFilesNewDisplayStatus to "YES"
+    end if
+
+    do shell script "defaults write com.apple.finder AppleShowAllFiles " & hiddenFilesNewDisplayStatus
+    do shell script "killall Finder"
+
+end tell
+
+
+A: The Guest account is great for troubleshooting.
+If I have a software issue, logging in as Guest lets me open an app with 'clean' preferences settings.  
+It's helped me with network issues as well.  
+To enable Guest logins, go to System Preferences, Users & Groups, Guest User, and check Allow guests to log in to this computer.  
+
+A: I really find the inbuilt dictionary useful on Cocoa apps like Safari and Mail etc.
+With your cursor over a word, press ctrl+⌘+D to get a definition.
+You can also drag a word straight onto the Safari icon in the Dock to perform a Google search for the word.
+
+A: Holding down ⇧ while using the mouse scroll wheel will scroll the window horizontally.
+
+A: Most animations in macOS can be played in slow motion, when you hold 
+⇧(Shift). Works for example to slowly minimize windows if you click the minimize button while holding the 
+⇧(Shift) key.
+Other examples are:
+
+*
+
+*toggle exposé
+
+*toggle dashboard
+
+*add/remove dashboard items
+
+*all kinds of animations in Twitter for Mac
+
+From: http://www.eeggs.com/items/29318.html
+
+In macOS, while in the finder, open any window & click the minimizie button (yellow) at the top of the window while holding shift.
+This will minimize the window in slow motion using the new "genie effect" minimize function of macOS.
+The CEO of Apple has shown this egg publicly several times. However, this egg is undocumented & has no system menu equivalent to use this feature. Anyone who has NOT followed the development of macOS & watched the demos at the MacWorld trade shows would not realize this somewhat useless feature exists in macOS.
+
+
+A: In any Finder window or Open/Save dialog, you can hit ⌘⇧G (just '/' also works in Open/Save) to get a location bar from which you can directly type in the directory to go to. It even supports ~ for home and tab completion.
+The Open/Save dialog has several other useful shortcuts:
+
+
+*
+
+*⌘ R -
+Reveals the selected item in a new
+Finder window.
+
+*⌘ I - Info window shows for the selected item.
+
+*⌘ ⇧ > - Shows/Hides hidden files in the dialog
+
+*⌘ F - cursor jumps to the Find text field
+
+*/ or ~ - Opens a Go To Folder dialogue. 
+
+*⌘ D or ⌘ ⇧ D - selects the ~/Desktop folder as a destination
+
+*⌘ ⌥ L - selects ~/Downloads folder as a destination
+
+*⌘ ⇧ O - selects ~/Documents folder as a destination
+
+*⌘ ⌥ S - Shows/Hides sidebar
+
+*⌘ . or esc - Cancels and closes the dialog window
+
+
+A: Exposé for spaces and 'Show desktop' attached to corners of the screen. I've attached 'Show desktop' to my lower right corner, and Exposé for spaces in the top left. Now, i can go bottom right to the desktop, grab a file, move over to the top left to switch to a space, and drop it there in a Finder window or Application.
+
+A: Do a "killall dock" in Terminal while a window is being minimized with the Genie effect (helps to hold down Shift to slow it down) and the window will be 'stuck' in the Genie effect yet still be operational! For example, you can still scroll.
+
+A: If you are a recent convert to osx and miss the mouse/cursor acceleration of a windows mouse?
+OSX mouse doesnt feel quite as good as the windows mouse?
+Give SteerMouse a try!
+
+A: There is a fast way to create a hidden folder on Mac OS.
+Hidden folders a created by typing "." on the beginning (e.g. ".hiddenfolder")
+The Finder won't let you do this though.
+So we gonna use the terminal.
+to create a new folder:
+mkdir .hiddenfolder
+
+first of course you have to navigate to the location, you want the folder to be.
+For example the Desktop:
+cd /Users/USERNAME/Desktop/
+
+or drag a folder into the Terminal to get it's address
+To know where you are right now, type:
+pwd
+
+Another way is, to rename a folder. To do so type:
+mv ActualFolderName .hiddenfolder
+
+To open a hidden folder, make hidden files visible like described earlier,
+or use terminal (navigate there first, or type open absolute path)
+open .hiddenfolder
+
+or if you are in the hidden folder already, just type
+open .
+
+to show hidden folders/files in terminal type
+ls -a
+
+
+A: If you drag files while holding the command key, the contents move but don't copy. Great for cutting the copy - then delete original process.
+
+A: Secrets by Blacktree is a preference pane which enables many hidden OS X and specific application preferences (e.g. change Dock to 2D, change iTunes stoplights back to horizontal). Saves you a couple of trips to the Terminal.
+
+A: Not sure if it's posted already but you can drag folders and files from the finder into an application's open / save dialogue. It sets the save or open path to that of the folder or file you're dragging. Excellent when you prefer to use the finder to navigate but don't want to repeat the process in your app or vice versa. Also, on many cases, whilst in the open / save dialogue, you can hit command R to reveal the files in the finder.
+
+A: You can ⌘-click and drag many OS provided icons from your menu bar to rearrange or remove them if it's getting too crowded.  Doesn't work with all 3rd party ones, but many built-in ones (like volume, battery, sync, bluetooth, etc) can be removed this way.   Many of them can be removed from the control panel, but this is the only way some of them can be removed once activated (that I'm aware of). 
+
+A: I am new to Mac so this might be common knowledge but in snow leopard if you hold 3 and 2 during boot you will boot into 32 bit mode and the same goes foe 64 bit when holding the 6 and 4 keys during boot. Macfuse for example did not like running in 64 bit mode
+
+A: Hold ctrl and scroll with the mouse/trackpad in order to zoom the view at any time. Extremely handy in order to discern pixel differences of a UI.
+
+A: ⌘ + ⇥ = switch between applications.
+Press ⌥ before releasing ⌘ and it will un-minimize minimized windows from that application.
+
+A: Hold Option & click Speaker/Volume icon in top menu bar to quickly select audio output and input devices (bluetooth, airplay etc.)
+via https://twitter.com/justinerdman/status/316936844958916608
+
+A: Create a Keyboard Shortcut to open Terminal (or any application) no matter where you are or what application is currently active.
+Use Automator to create a Service. Within Actions choose Launch Application.
+In my case I made sure that the service receives no input in any application.
+Then from the dropdown select other then double-click Utilities then select Terminal.app and click choose.
+Save the service and make sure it has a .workflow extension.
+Next open up System Preferences and click on the keyboard. Click the Shortcuts tab and select the Services option on the left.
+You should see your new service in the General section named whatever you chose to name it. 
+Then you can click the none button that indicates it has no shortcut yet and assign it whatever shortcut keys you want.
+There are other ways but this works no matter what application is active and it never fails.
+
+A: Extremely quick way to open a new Finder window:
+
+
+*
+
+*Click on the desktop (even a sliver will do)
+
+*Hit ⌘N
+The desktop is part of Finder, so in a lot of ways it acts as a Finder window itself.  For me it's faster to select the Finder app by just clicking on the desktop than to use Spotlight or to switch apps to Finder.
+
+A: During a spotlight search, hit ⌘B to Google that term in Safari.  Gives very quick access to a google search.
+I assume the search setting in Safari determines which search engine is used.
+
+A: In file open and file save dialogs: Hit ⌘+⇧+. to show all hidden files and folders.
+Note that this appears to be true for any keyboard, no matter what ⇧+. on its own produces on that keyboard.
+The commercial extension TotalFinder makes this feature available to normal Finder windows as well.
+
+A: *
+
+*When typing text in any document or text field ⌥ option+← backspace will delete the entire word, the same with ⌥ option+del which will delete the whole next word.
+
+*On MacBooks and aluminum keyboards, typing fn+← backspace leads to typing the del key, deleting the character in front of the cursor, not before it.
+
+*Using an accented language? Press ⌃ ctrl+← backspace after an accented letter to delete just the accent, not the letter.
+
+A: I still think ⌘ + ⌥ + ⇧ + v (paste without style) is very handy.
+That is, when something is on the clipboard and has unwanted styles along for the ride, this keyboard shortcuts lets you paste just the plain text without any formatting.
+
+A: In iTunes pressing ⌘ + L brings you to the song playing right now.
+Helpful if you lost yourself in your collection or are in iTunes Store and want to change something real quick.
+Very useful in combination with ⌘ + I to show the details of the currently playing song.
+
+A: Have a menu command/keyboard shortcut that you know exists, but you can't find it (or just don't want to touch your mouse)?
+Press ⌘-⇧-/ to get to the help menu.  It'll pop up the help menu that you can type into.  Type the word you want to search the menus for, then ↓ to the menu item you want.  OSX will helpfully show you where that item exists in the menu with a big blue arrow and you'll also see any associated shortcuts.
+
+
+A: Also TinkerTool shows some hidden features
+
+A: Safari also supports a subset of Emacs keybindings
+
+A: If you want to Open/Close FrontRow just use ⌘ + esc
+
+A: One of the most amazing things I know to do in the terminal is "doctor terminal" I just love it! :D
+I know it's a silly program that's easy to make but, no other operating system has it.
+This is accessed through emacs in the Terminal:
+
+
+*
+
+*Type emacs
+
+*Press Ctrl+X
+
+*Type doctor
+
+*Press Return
+After each question, you can recieve a response by pressing Return twice in a row.
+
+A: ⌘ + ctrl + "two finger swipe" = change the opacity of the window under the cursor
+
+A: In an any Open/Save dialog, you can use Quicksilver to quickly find the desired file or folder and just drag it anywhere into the file dialog, sendig the file chooser directly to that location. [Enter] will do the rest.
+(While not included in OSX, I assume, that the majority of users interested in this thread do run Quicksilver.app)
+
+A: Custom Alert Sounds - An old trick from OS9 days (tested to 10.8) is to create your own alert sounds. Not entirely productive but if you are into hacking your Mac / OS to make it your own, this is one on the list - it's fun to have Peter Griffin tell you it's time for lunch.  
+
+
+*
+
+*Sample your sound file as usual (download or record/input to the Mac using something like Sound Studio or QT Pro 7). 
+
+*edit down to 10 seconds or less adding a clean entry and exit
+
+*export as an AIFF file
+
+*place here: /System/Library/Sounds/*
+
+*select the alert sound via the System Preferences / Sound / Sound Effects panel
+
+
+Note: the Library folder may be invisible by default. If so open terminal and add the following to make it permanently visible: 
+chflags nohidden ~/Library/
+
+Note2: this route path will facilitate a sound file available to all users on your Mac. You can keep it to yourself by placing the AIFF here: 
+/Users/username/Library/Sounds/
+
+
+A: Text Edit - restore zoom feature in 10.7 / 10.8+
+This is a helpful tip to remedy Apple's less than useful update to the ubiquitous Text Edit application from OS 10.7 following which they removed the incremental 'Zoom' control shown below.
+
+I am aware of the keyboard shortcuts CMD + and CMD - that work post 10.7, however, the zoom increments with this method are pre-fixed and too large for me - I am most comfortable with 125% and to be honest, I am bugged that a useful function has been removed. So the action:
+
+
+*
+
+*Delete the default version of Text Edit in the system / apps folder (you can drag this app to the trash or use a program like AppZapper). If you go the manual method, delete the preferences file as well.
+
+*beg, steal or borrow a copy of OS 10.6. Most regular Mac users will have one archived (I have Mac OS's back to 6.5, although I am sad).
+
+*drag a copy of Text Edit 1.7.1 (or earlier - 1.6 should work from OS 10.5) to your current applications folder.
+
+
+
+
+
+*
+
+*Select any text edit document, get info (CMD + I) and set Text Edit 1.7.1 as the default application to open this type of file. 
+
+
+Note: you may get an error message from Text Edit stating that it cannot save the file due to a permissions error. Don't worry, the file is being saved OK under OS 10.7+ and the false flag is due to an Apple change in the way newer versions of Text Edit auto-save. To suspend this reporting, you can soft hack Text Edit 1.7.1's behavior in terminal with the following command.
+defaults write -app textedit ApplePersistence -bool false
+defaults write -app textedit AutosavingDelay -int 0
+Hope you find this tip helpful.
+
+A: You can drag-drop Finder objects (or any document window's proxy icons) while doing any of the following:
+
+
+*
+
+*App-Switching (⌘+Tab or ⌘+⇧+Tab), 
+
+*Spaces (⌃+→ or ⌃+←), 
+
+*Show Desktop (⌘+F3), or 
+
+*Mission Control (⌃+↑).
+
+
+Combined with dropping into open/save dialogues, this means you'll never have to navigate to a file in one app and then navigate to the same file again in the open/save dialog. You'll also never have move windows around in order to drop a file into Safari.
+Eg. I have an image open in Preview, and want to send it as an attachment in gmail.
+
+
+*
+
+*Gmail pops open the "select attachment" file dialogue:
+
+
+*Start dragging the proxy Icon from Preview - don't let go of it
+
+
+*While continuing to drag the file, switch apps with ⌘+Tab.
+
+
+*
+
+*Keep holding ⌘, but release/hit Tab or ⇧+Tab repeatedly to get to Safari.
+
+*Let go of ⌘ once Safari is selected, to bring it to the front.
+
+
+
+*Drop the file onto the file dialogue, and it'll become selected.
+
+File is selected and ready to send. Return to finish selecting the file.
+
+If you save screenshots to the desktop, then a similar trick is useful with the "Show Desktop" keyboard shortcut (⌘+F3).
+
+A: Quickly insert weird characters into text by setting Text-Replacement Keyboard Shortcuts for any characters you find in the "Emoji & Symbols" panel.
+I personally use LaTeX-style shortcuts, so typing \arrowright gets replaced with →. Type a Space after the \arrowright to do the replacement.
+Set your shortcuts in SysPrefs > Keyboard > Text
+
+You can copy/paste characters from anywhere into the Replace With... column. I prefer to double-click characters from the Emoji & Symbols pane, so I know they're in the standard font packages. The Emoji & Symbols pane can be enabled by selecting
+SysPrefs > Keyboard > Keyboard (tab) > Show Keyboard and Emoji Viewers in menu bar
+and then choosing Emoji & Symbols in the resulting menu item:
+
+
+A: Ever downloaded an app that Mac OS won't let you open because it's "from an unidentified developer"?
+Instead of completely disabling this security feature (via SysPrefs>Security), try the following:
+
+
+*
+
+*Right-click the .app file
+
+*hold Shift while clicking Open.  
+
+*The resulting warning now has an [Open] button, click it.
+
+*The warning is circumvented for this app only, but still enabled system-wide. It will never warn you again for that particular app.
+
+
+A: In TextEdit, you can go to a specific line number by hitting ⌘L. Useful if a script errors at a specific line number.
+
+
+A: If you have an iPhone (or iPad) with iOS 12, and a Mac with macOS Mojave, you can use the iPhone as a scanner or photo camera to directly scan documents or take photos. The scanner will even rotate and resize the document so that it appears as a rectangle. This function is integrated in a few Apple apps like Finder, Mail, Messages and the iWork apps.
+
+For more information, see the Apple Support article Use Continuity Camera on your Mac.
+
+A: On newer versions of macOS , you can access an interactive tool for taking screenshots via ⌘+Shift+5.
+Modes
+You can use three different modes.
+Capture/Record Entire Screen
+This mode is basic and lets you capture the entire screen. It replicates the functionality of ⌘+Shift+3.
+Capture/Record Selected Portion
+This mode allows you to crop out parts of the screen beforehand. You can move or resize the selected portion. The width and height of the portion will appear while resizing. This mode replicates the functionality of ⌘+Shift+4.
+Capture Selected Window
+This screenshot-exclusive mode allows you to take a screenshot of a window. Windows include context menus and other UI items as well. This mode replicates the functionality of ⌘+Shift+4 after pressing Space and selecting a window.
+Preview/Markup
+After capturing your screenshot or recording, you can view a preview of it. Right-clicking this preview allows you to set its save location, open it, delete it, or use Markup.
+
+Markup editor allows you to draw freehand circles, add text, crop, or rotate screenshots.
+
+The Markup editor also allows you to trim recordings.
+
+
+A: By long-pressing on the bookmarks tab on the sidebar, you can open a menu containing the structure of the bookmarks folder. You can move your mouse to jump to a folder from this menu.
+
+
+A: This is a pretty common one, but to show all hidden files you can type the command
+defaults write com.apple.Finder AppleShowAllFiles 1
+
+and then
+killall Finder
+
+in Terminal.
+To reverse, repeat using a 0 instead of 1.
+
+A: Image Wells
+All good mac programs contain image wells for opening files, such as the Desktop & Screen Saver pane in System Preferences:  
+1[]1
+or in Filemerge:
+
+This nifty litte things allow you to drag-and-drop files into them (and in some cases, out of) to load them into the program. Here, I am changing the wallpaper by dragging the file out of Finder and into the image well:
+
+
+A: In the terminal, you can pipe the output of any command to pbcopy to copy it to the system clipboard. You can also paste from the system clipboard using pbpaste, and pipe that to another command or write the value directly to a file:
+Copy a string: echo "ohai im in ur clipboardz" | pbcopy
+Copy the HTML of StackOverflow.com: curl "http://stackoverflow.com/" | pbcopy
+Open a new buffer in VIM, initialized to the content of the clipboard: pbpaste | vim -
+Save the contents of the clipboard directly to a file: pbpaste > newfile.txt
+
+A: Disable Caps-Lock
+The ability to disable the Caps Lock key is wonderful (open System Preferences, go to Keyboard, then click the button titled Special Keys or Modifier Keys). It is not really hidden, but I never need the key, but especially on my MacBook I sometimes hit it by fault.
+Some people also use this panel to replace Caps Lock with Control. Especially useful when you're using Ctrl+A, Ctrl+E shortcuts a lot.
+
+A: You can add spacers to your Dock. Some apps make them for you or you can use the Terminal:
+defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+
+Afterwards, use the following command to restart your dock:
+killall Dock
+
+You will see a spacer appear. Like normal apps, they can be removed and repositioned by dragging.
+You can add spacers multiple times by repeating the first command. For example, this Dock has 2 spacers:
+
+
+A: I always find the ⌘+⇧+4, space (you must press space at the end otherwise it doesn't work) command is really useful, and one that a lot of people don't know you can do. Upon pressing space, you get a large camera icon for your cursor, and it allows you to take a screenshot just of the highlighted window. The nice thing is that OS X preserves the window drop shadow, with full alpha transparency. So when you paste the images into other documents, they look fab.
+
+More screenshot magic from 3rdparty.
+Screenshot Secrets via: http://digitalmedia.oreilly.com/2006/01/01/mac-os-x-screenshot-secrets.html:
+
+
+*
+
+*⌘+⇧+3  Capture entire screen and save as a file
+
+*⌘+ctrl+⇧+3  Capture entire screen and copy to the clipboard
+
+*⌘+⇧+4  Capture dragged area and save as a file
+
+*⌘+ctrl+⇧+4  Capture dragged area and copy to the clipboard
+
+*⌘+⇧+4 then space    Capture a window, menu, desktop icon, or the menu bar and save as a file
+
+*⌘+ctrl+⇧+4 then space    Capture a window, menu, desktop icon, or the menu bar and copy to the clipboard
+
+*Another useful trick is to hold space while drawing a capture area to reposition it.
+
+*Another trick is to hold option while drawing a capture area, to resize the area in all directions, instead of just the one corner you're dragging.
+
+*For fine-tuning on a certain axis, you can hold shift and the axis you next move in is the one you'll control.
+
+*Hit esc while capturing an area or window to exit capture mode.
+Note: I added this because I find it to be useful. I don't mean any offense to anyone's answer in doing so.
+
+A: You can increase or decrease your volume, brightness, or keyboard backlighting brightness by quarter increments by using the following combination:
+⌥ + ⇧ + Volume Up/Down
+
+Note that this feature was disabled in Mac OS X Lion from 10.7 through 10.7.3. This feature was restored in 10.7.4.  For workarounds on how to accomplish this on earlier Lion versions, see this question.
+
+A: *
+
+*Hold down the ⌘ key to drag a background window by its title bar without focusing it or bringing it to front
+
+*⌥-click in a scrollbar's empty space to scroll to the clicked place (instead of scrolling up or down one page). You can switch this behavior in the Appearance panel of System Preferences.
+
+*⌘-click on the name of a page in Safari's title bar to show the URL path as a menu. Select to browse (this is the same as ⌘-clicking the title in document windows).
+
+A: My favorite trick is using Exposé with drag and drop. Once you've started dragging something you can use the Exposé keyboard shortcut, switch to the application you want to drag it to, and drop it wherever it's needed. It's great for doing things like adding images to a presentation.
+
+A: While ⌘+Tab-ing between applications, without releasing ⌘, you can hit Q to quit or H to hide the selected application. Works great with the mouse to get rid of a whole bunch of applications quickly.
+The bevel won't go away and you can repeat this for as many applications as you like as long as you're holding ⌘.
+If you have multiple windows of an app, use key 1, ↑, or ↓ to reveal the windows while that app is highlighted in the application switching strip. i.e.: while ⌘+Tab-ing, when you highlight the app with multiple windows, keep ⌘ held down and press one of those keys. Then use mouse to go that window. 
+
+A: Holding ⌥  (Option)while clicking menu bar icons will give you additional menu items or alternate menus. The alternate volume control menu will let you choose input and output audio devices.
+
+Bonus: On older versions of OS X, this gave you the alert volume instead of devices. You can still get the alert volume using ⇧ clicking.
+For the airport menu, you'll get WiFi connection information. 
+
+The Bluetooth menu will include debugging information and tools.
+
+Time Machine will show "Verify Backups" and "Browse Other Time Machine Disks". Unlike the other menus, the Time Machine menu will show the alternates if you hold Option after opening the menu, and will hide them if you release it.
+
+A: When clicking from one application's window to another's, holding down ⌥ while clicking will automatically hide the former app's windows.
+
+A: When you're ⌘+⇥ between running applications, if you press ⌥ before releasing command, it will raise minimized windows from the dock.  Otherwise, you may be in an application, but without a raised window.
+Also, while ⌘+⇥ goes to the right through the application list, ⌘+⇧+⇥goes left.  ⌘+ backtick (`) also goes left.
+ctrl+⌥+⌘-8 inverts the screen.  Sometimes useful for whacky lighting situations, especially with glossy screens.
+
+A: On any open file or save file dialog instead of searching for the file, you can grab any from the finder...
+
+And drop it in the window to select it! 
+
+This little trick has saved me hours in looking for files to be opened. You can also drop files directy on the file fiedls of any webpage.
+ 
+Specially useful tricks when you have files on your desktop or a finder window! Hope it helps!
+
+A: Proxy icons
+In a document-based application (like Finder, TextEdit, Preview, Pages…), after a document has been saved, a proxy icon for the document appears in the title bar. It represent the file itself, and can be likewise manipulated:
+
+*
+
+*click it for a few seconds and drag to another application to open it, or to the desktop/Finder if you want to copy/move it, etc…
+
+*⌘-click (or control-click, or right-click) it to view the path menu, useful to open the folder or any subfolders of the file in the Finder.
+
+
+
+*
+
+*⌘-click on the titlebar in Safari can help you easily move up the directory structure of a web site, too!
+
+
+
+*Since Mountain Lion you can edit the document titles:
+
+
+A: Pressing ⇧ + ⌘ + W will close all windows of an application at once, in most apps.
+
+A: Regarding tips and tricks. The most annoying part of MacOS for me always was the inability to put dock on the side of a middle monitor in multi monitor setup.
+I've managed to achieve it with a help of Wraparound app (Free). It wraps mouse around your monitors so you can setup you monitors arrangement so the monitor you want your dock to be on would be first (if you want dock on left) or last (if you want it on right) and then just wrap mouse movement horizontally.
+Here is example of my monitor arrangement before
+
+and this is after
+
+and here's how Wraparounds settings look
+
+so in the end my real setup looks like this 
+
+The only thing that doesn't work is dragging window from middle monitor to the left, it seems to work for an instant but then gets teleported back. But I'm using Spectacle app (Free) to manage windows and I use a shortcut to move windows between monitors so that's not a problem for me at all.
+
+A: I frequently use the shortcut: Shift + Home and Shift + End to jump to the begining and end (respectively) of a long command in Terminal. It is one of the most useful commands I have discovered for macOS to date.
+
+A: Advanced cursor navigation for text.
+
+
+*
+
+*optionleft/right arrow – Move cursor to previous/next word break.
+
+*commandleft/right arrow – Move cursor to start/end of line.
+
+*commandup/down arrow – Move cursor to top/bottom of textarea.
+
+*shiftleft/right arrow – Highlight left/right character.
+
+*shiftcommandleft/right arrow – Highlight left/right word.
+
+*shiftcommandup/down arrow – Highlight text to start/end of line.
+
+*optiondelete – Delete word.
+
+*commanddelete – Delete line.
+
+
+A: If you use a second monitor this one helped a lot
+fn + ⌘ + ↓ - combines the contents of both screens into one
+
+A: I love the fact that OS X will scroll the window that the mouse is hovering over, even if another application has focus.  That way I can scroll an example that I am coding in TextMate without having to lose keyboard control on TM
+
+A: Use widget in Desktop:
+This allows you to drag widgets out of Dashboard onto the desktop. Requires the dock to be relaunched to take effect, so type "killall Dock" and press enter. Now, if you click and hold onto a widget in the dashboard and press F4 to return to the desktop, the widget won't disappear with the rest.   
+If you want get it back to dashboard click it and press f4 (show dashboard) and release widget
+defaults write com.apple.dashboard devmode YES
+
+
+
+A: It's always worth pressing Alt when a menu is posted, as some menu items will change to offer previously-hidden options. For example:
+
+
+*
+
+*In Safari, File>Close Window and File>Close Tab become Close All Windows and Close all Tabs. 
+
+*In iTunes, File>Find Duplicates becomes File>Find Exact Duplicates, and Advanced>Create MP3 Version becomes Advanced>Convert to MP3...
+
+*In Mail.app, Edit->Add Link... becomes Edit->Remove Link.
+
+*In Finder right-click menu, Get Info becomes Show Inspector, and Keep Arranged By becomes Arrange By.
+
+*On the Window menu in any application, Minimize, Zoom, and Bring All to Front become Minimize All, Zoom All, and Arrange in Front.
+
+
+A: Have a laptop? ⌥+Click BatterySymbol in menu bar to view your battery's condition
+via @Mactip
+
+A: hold down ctrl and ⇧ while mousing over the dock to toggle magnification on-demand.
+
+A: Dialogs usually have two useful actions accessible from the keyboard. ↩ performs the default action (Save, in the image below) and space performs the secondary action (Don't Save, in the image below).
+
+
+A: Click and hold the Show All/▒ button:
+
+At the bottom of this list, there is a Customize... option.
+
+Clicking this enables "Hide mode", which adds a checkbox to the corner of each preference pane.
+
+You can hide a preference pane by unchecking the checkbox. You can later show it again by going back and checking it again. In addition, you can go to a preference pane without manually showing it again by using the same Show All button.
+
+A: Most applications on OS X respect emacs' style shortcuts for maneuvering about in text fields.
+
+
+*
+
+*ctrl+A: beginning of line.
+
+*ctrl+E: end of line.
+
+*ctrl+U: delete from cursor to beginning of line.
+
+*ctrl+K: delete from cursor to end of line.
+
+*ctrl+W: erase word to the left.
+
+*ctrl+T: transpose characters around cursor.
+There are others that are slipping my mind currently I'm sure. I miss this so much on Linux.
+
+A: Just came across this one...
+To enter a newline character in a text field you can use ⌥ + return. Similarly to enter a tab character use ⌥ + ⇥. This is particularly helpful in a find and replace window.
+
+A: You can Option ⌥-click menu items to bring up extra information.
+
+
+*
+
+*Battery:  
+
+*AirPort:  
+
+*Bluetooth:  
+
+*Sound:  
+
+A: It’s possible to enable AirDrop on unsupported (older) Macs running Lion by entering a single command in Terminal.app:
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
+This also enables AirDrop over Ethernet (not just WiFi). (CableDrop™?)
+Don’t forget to logout and login again, or reboot your Mac after entering the command.
+Disclaimer: This is just one of the many goodies in my .osx file.
+
+A: When I first switched to Mac a couple of years back, I was using it full time for nearly six months before someone showed me ⌘+space to bring up the Spotlight Search. Single best shortcut I've learned.
+The Spotlight search field and Siri (especially with text input) can also handle simple mathematical expressions. No need for Calculator.app for a quick bit of division!
+
+A: Photo Booth: 
+Hold ⌥ to skip countdown and take immediate photo. 
+Hold ⇧ to disable the screen flash.
+via @Mactip
+
+A: I really like the way of MacOS modifies the letter spacing of the fonts when resizing a pane.
+As long as the spacing can be decreased, the title won't be truncated.
+Example:
+
+UPDATE: This feature does not exist anymore. :(
+
+A: ⌘ + ⇧ + . will show hidden files in any file-open dialog box.
+
+
+
+A: If you hold down option while resizing the Dock, it will resize in multiples of 16 pixels.
+
+A: Switcher + Exposé
+(10.6+)
+While ⌘+⇥ing (holding ⌘, tapping ⇥), you can press ↑ or ↓ to switch to the currently selected application's window Exposé view. You can then use the keyboard arrows to highlight a window and ↩ to switch to it.
+
+
+A: Want tab to go to every field on a form not just input fields?
+I got sick of the state/country drop down fields of web forms being skipped when tabbing.
+Go to System Preferences → Keyboard and set Full Keyboard Access to All Controls.
+
+In system dialogs, if you tab-highlight a button, hit space to "click" it (hitting enter will still choose whatever the default action is, regardless of what button your tab has focused on).
+
+A: I needed this today, when I had to shut down several Macs.
+ctrl + ⏏ Shows the shut down dialog. Type R to restart, S to sleep
+ctrl + ⌥ + ⌘ + ⏏ Shuts the computer down
+⌥ + ⌘ + ⏏    sends computer to sleep
+⇧ + ctrl + ⏏    send display only to sleep (great for locking your computer instantly)
+ctrl + ⌘ + ⏏ restarts the Mac
+⌥ + ⌘ + esc    lets you kill not responding programs (including the Finder)
+and one of my favorites
+⌘ + , gets you to preferences of almost every program
+
+A: I avoid using the mouse, so I like to start applications using Spotlight. You can launch Spotlight by pressing ⌘ + space. Once Spotlight is launched, type in application name and press enter.
+So to start Safari without using the mouse, type:
+⌘ + space -> "Safari" -> ↩
+
+A: You can change screen brightness in quarter intervals by pressing ⌥ + ⇧ + Brightness Up / Down:
+
+
+A: I searched through all 5 pages of this thread and I'm surprised to find that nobody already mentioned this handy tip for Terminal.app:
+Press ctrl+R to bring up a search through your command history. It's a somewhat fuzzy search in that what you're typing doesn't have to be the initial characters of a command, but it still must be a contiguous section of the command.
+For example, you could find a previous usage of curl by typing "rl" in the search... or "post" if the curl command you want to find was a POST.
+You can also use the Up & Down arrows to flip through just the matching commands in your history.
+
+A: I prefer using the keyboard. Some shortcuts that kind of work together in Finder:
+
+
+*
+
+*⌘ + ↑ = Go to parent directory
+
+*⌘ + ↓ = Open selected directory/file
+
+*⌥⌘ + 2 = Clean up by type (see navigation bar for all the alternatives)
+
+
+And something I use all the time:
+When copy-pasting, ⌥⌘ + v (normal copy-pasting, but adding the option key when pasting) will move the file instead of copying it.
+
+A: While typing, just press F5 to get suggestions for what you're typing (almost equivalent to spell-check suggestions). Example:
+
+
+A: You can click on Dock app icons with modifier keys for special functions relating to that app:
+
+
+*
+
+*With the ⌘ key pressed, the clicked application will be shown in a Finder window (via @Mactip).
+
+*With the ⌥ key pressed, the clicked application will be hidden if it is visible.
+
+
+A: ⌘ + click on the title bar at the top of a Safari window to get a menu of URLs, each the same as the previous but with the last path component removed. Like this:
+
+
+A: When you use ⌘ + ⇥ to switch tabs, you can continue to hold ⌘ down and drag a file into any icon in the bezel.
+Combined with the trick of dragging from the proxy icon in the menubar, this is a powerful way to open a file in another application, especially if you rarely use your dock.
+
+A: In Safari, on a page that wants you to select a file for upload, instead of clicking "browse", you can usually just drag a file directly to the "browse" button. It will set the filename without even opening up the file dialog. 
+Slightly recursive example below :)
+
+
+A: It’s possible to set a blazingly fast keyboard repeat rate, much faster than the maximum possible setting in System Preferences → Keyboard → Keyboard → Key Repeat.
+
+The trick is to use this command in Terminal.app:
+defaults write NSGlobalDomain KeyRepeat -int 0
+
+After that, log out and back in, or just reopen all applications.
+Disclaimer: This is just one of the many goodies in my .osx file.
+
+A: In Finder, select any number of files. Press ⌘ + ctrl + N to automatically have them moved to a new folder. 
+Great if you forgot to create a new folder before selecting files, and in general.
+
+A: This isn't really a "feature", just a way to customize OS X, but I still think it's useful:
+You can edit the icons used by OS X at /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources
+You can also change the login screen to your liking here
+/System/Library/CoreServices/SecurityAgentPlugins/loginwindow.bundle/Contents/Resources
+
+There are so many ways to customize OS X... the dock, for example (/System/Library/CoreServices/Dock.app/Contents/Resources)
+And you don't really need to "resource hack" anything: just backup and change a couple png or tif files!
+
+A: The speech synthesizer, which is available from the command line, with the command say, knows how to correctly pronounce the operating system name:
+say Mac OS X
+
+It won't say "MacOSex", but "Mac OhEs Ten". That's attention to detail. It works even if you specify macosx as the argument.
+
+A: In Terminal (Applications/Utilities/Terminal), open can be pretty handy. It can:
+
+  
+*
+  
+*launch programs by exact path to the executable
+  
+*launch any program in the PATH directories by executable name
+  
+
+In Terminal, type open -a Application to launch an application that lives in the /Applications folder, or open <exact path to applcation> to launch an application that is anywhere on your computer.
+
+  
+*
+  
+*open files in default applications
+  
+
+Just us open <file>. open song.mp3 will open song.mp3 in the default audio player (in my case iTunes)
+
+  
+*
+  
+*open files with other applications
+  
+
+Open a file with Mail.app (i.e. mail the file) open -a Mail homework.txt
+
+  
+*
+  
+*open a Finder window into a local directory
+  
+*open a Finder window into a network share
+  
+
+open /Path/to/dir/ will launch the folder in Finder, whereas open . will open the current folder in Finder.
+
+  
+*
+  
+*open any URL with its default handler (e.g. a browser)
+  
+
+open http://google.com will launch the default browser and open the url. It also works for FTP (but i have not tested anything else)
+For more, just run man open in Terminal or see this page.
+From Super User
+
+A: It took me a while before I figured out that hitting the space bar while in Finder launches Quick Look on whatever is selected. VERY handy.
+Also note that holding ⌥ while doing this throws you straight into the full-screen view.
+
+A: In most Mac apps (TextEdit, for example), you can ⌥-drag* to select a rectangular area of non-contiguous text.
+
+You can also hold ⌘ while dragging to select multiple disjoint areas in a single selection.
+*Hold ⌥ while dragging your mouse over an area
+
+A: Running 
+pmset noidle
+
+or
+caffeinate
+
+in Terminal will prevent your Mac from sleeping. Press Ctrl+C to stop.
+
+A: *
+
+*Select a bunch of text and drag to the desktop and it will make a text clipping.
+
+*Drag it back to a text window and it will dump the text there.
+
+*Double-click and you can view the  selectively copy for pasting elsewhere.
+
+*Install the quicklook extension and you can view text and pict clippings in quicklook.
+
+
+A: Hold down ⌥ and click TimeMachine Icon in the menubar. Now you can search/restore from other backups
+via @MacTip
+
+A: In Terminal, if you hold option, your cursor turns into a small "+". While holding option, you can use this to highlight and copy any square/rectangular area of text instead of whole lines at a time.
+
+A: Often a simple spotlight query isn't enough.
+The shortcut ⌥+⌘+space brings up the powerful finder search window no matter what app is running.
+Not only can you use the normal search types like kind:app or kind:mail but you can force spotlight to show you files that are normally hidden.
+This is particularly useful to search for and inside hidden system files such as .ipsw packages, detailed logs and CoreServices utilities.
+
+You may want to add System files to your default search menu for quicker access.
+
+
+*
+
+*first click the circle plus to the far right of the Save button to show the optional search filters
+
+*then choose other under the Kind dropdown 
+
+*lastly search for System and check the include toggle.
+
+
+A: While you are using ⌘ + ⇥ to cycle through open applications, you can press Q before you release ⌘ to close the app. You can close several apps before release ⌘.
+
+A: A handy tip I discovered by accident.
+Highlight any file in an Open dialogue window, press the space bar and voila! there is your file in all it's glory.
+
+A: Use this plugin to allow QuickLook to view animated GIFs - Animated GIF QuickLook For Mac 1.0

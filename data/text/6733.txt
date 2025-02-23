@@ -1,0 +1,18 @@
+Q: exporting numbers 09 to excel with photos in spreadsheet When I export my numbers spreadsheet with photos in the column the photos do not transfer when I import it into excel. How can I do this?
+
+A: There are two ways that an image can exist in Numbers.app, to my knowledge:
+
+
+*
+
+*Within a cell (in a table) - here, the cell has an "Image Fill";
+
+*"On top of" the table.
+
+
+Excel doesn't support option 1.
+If you drag an image file into a Numbers spreadsheet, you'll get option 1: the image will be inserted within a cell.
+Instead, in Numbers, use the Insert > Choose… menu and select the image file.  You'll then get option 2, which is correctly exported to .xls format in my limited testing.
+
+A: I exported to PDF, and then use the "Export to Excel" function in the Adobe Acrobat app to convert the PDF back into Excel. It preserved the image fill nicely.
+Note that Adobe Acrobat is a paid app that's part of the Adobe Suite subscriptions.

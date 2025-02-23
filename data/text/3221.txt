@@ -1,0 +1,15 @@
+Q: Enhance Wifi range on a TimeCapsule I previously had a DLink modem-router (DSL-2740B). I replaced it with a small ADSL D-Link modem and a TimeCapsule.
+While I'm quite happy with it, the main and only criticism I could make is the loss I had in the Wifi coverage in my apartment.
+When I had an almost full signal in my bedroom with the DLink, I can now barely connect.
+I know that an Airport Extreme Base Station would be an option to extend the network but the distance from the TimeCapsule to the bedroom seems quite "normal" to me so that a single wifi emitter would be enough as it was before.
+I plan anyway to put in my bedroom an Airport Extreme Base station to dispatch my music collection on my hifi system, but I'm afraid it wouldn't even reach the network. 
+Are there any tips and tricks?
+In Airport Utility, the Transmit Power is already at 100%.
+Are there any other parameters to check/tweak?
+
+EDIT:
+Here is the screenshot of iStumbler. My network is highlighted.
+
+
+A: Run iStumbler from your Mac.  (Get it here). Look at the other wireless networks in your vicinity - and check what channel(s) they're running on.  You want your device to be as far away from those channels as possible.  There is a 3-channel overlap.  That means, a device on channel 1 will interfere (albeit only slightly,) with a device on channel 3 (or 4?  I forget.)  So if lots of devices are on channel 6 (most come out of the box on this channel,) you want to be on 9/10/11 or 3/2/1.  I almost always just use 1 or 11.
+There is also a "use network robustness" option which I think increases range but decreases bandwidth.  See this Apple Article.

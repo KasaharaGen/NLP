@@ -1,0 +1,26 @@
+Q: Problem setting up Exchange server on Outlook 2011 I have an Exchange server account which works fine on my Windows Vista pc. I have set it up with no problem on my iPhone. However, on my MacBook Pro it does not work: the icon under "Default Account" (next to the account name) remains yellow.
+I tried setting up a Gmail account on the Mac Outlook and that worked with no problem.
+What could be wrong?
+I have set up:
+
+
+*
+
+*Account description
+
+*Full name
+
+*E-mail address
+
+*Method (User Name and Password)
+
+*User name
+
+*Password
+
+
+Under "Advanced" I also entered the Server.
+The OS is Mac OS X version 10.7.1.
+
+A: Outlook 2011 requires an Exchange 2007 and above server. This is because Outlook 2011 works over the Exchange Web Services protocol (EWS). This wasn't Apple's decision, but Microsoft, as it is the latest form of the Exchange service as they are phasing out MAPI, the legacy Exchange protocol. Apple's Exchange implementation in 10.6 and 10.7 also uses EWS. 
+iOS devices however connect to Exchange via ActiveSync, which is supported all the way back to Exchange 2003. ActiveSync is designed for mobile devices and does not work on a desktop system. 

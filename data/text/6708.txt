@@ -1,0 +1,27 @@
+Q: 'Show Desktop' Mission Control/Expose Not Functioning I have recently upgraded to OS X Lion. I have mapped the keys via Mission Control preFpane as follows: F9 is 'Mission Control', F10 is 'Show Desktop'. F11 is 'Application Windows'
+F9 and F11 works as intended. F10 seems to not do anything.
+I thought it might be the keys themselves so I mapped the keys as: F9 'Show Desktop', F10 'Mission Control' and F11 'Application Windows'.
+In this case only F10 and F11 keys worked; This small test gives me the impression that it is the Exposé 'Show Desktop' function itself is the part that is malfunctioning.
+Does anybody have any further insight to this bug?
+EDIT
+You can view a recording of the problem here:
+http://www.screencast.com/t/oDVMhBqkb
+NOTE
+This problem was tested initially on my external keyboard, the problem does persist on the internal macbook keyboard. Those '4 finger swipe' works, as does the 'Cmd + Expose(f3)' keyboard shortcut work.
+
+A: Restart Dock, of which Mission Control is a child process.  In terminal, run:
+killall Dock
+
+A: I've solved this by deleting following plist files in ~/Library/Preferences. By default, they are hidden. Warning! Your Dock will revert to default state. Shortcuts and everything else will remain.
+com.apple.dashboard.plist
+com.apple.dashboard.plist.lockfile
+com.apple.desktop.plist
+com.apple.desktop.plist.lockfile
+com.apple.dock.plist
+com.apple.dock.plist.lockfile
+com.apple.dock.3A51CCF9-CDE4-5F17-8CFB-FF648B8A6CDF (or similar)
+com.apple.dock.3A51CCF9-CDE4-5F17-8CFB-FF648B8A6CDF.plist.lockfile
+
+At my system (fresh 10.7.2 installation), this affected only Function keys (F1 row). I still could set Show desktop to Modifier keys or Mouse buttons.
+
+A: I recently used MLpostfactor to upgrade my 2007 MacBook to Mountain Lion 10.8.3 from 10.7.5.  Since this is officially unsupported, I had a few glitches.  The most annoying was that Mission Control would display, but showed NO spaces and would not allow any to be added.  Deleting the preference files in the answer fixed my problem.  Mission Control now works completely.  This is the only reference I have located on deleting the Mission Control preferences.  

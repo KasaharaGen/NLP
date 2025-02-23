@@ -1,0 +1,12 @@
+Q: Chax with Lion: downgrading iChat to 5.0.3? I wonder if this could allow us to have Chax functionality on Lion.
+I've got iChat 5.0.3 from a Snow Leopard install: the next step would be to install Chax over it.
+The thing is that the Chax installer doesn't allow it (Snow Leopard only).
+How can one modify the installer so that it runs on Lion?
+
+A: Why you need Chax, if for strict HTML tags in AIM account
+You can change option in ~/Library/Preferences/com.apple.iChat.AIM.plist
+search option "ForceICQPlainText" change to YES
+save and set ReadOnly :)
+
+A: Even if you could install it, it won't work on 10.7.  
+I used to deploy Chax as part of my default build - the auto-accept file transfers from local Bonjour users was worth it - but it hasn't been updated in some time, and Apple is moving toward the new Messages app and away from iChat.  (Leave them feedback about how much of a regression AirDrop was, compared to iChat.)

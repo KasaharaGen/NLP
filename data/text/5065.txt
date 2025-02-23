@@ -1,0 +1,19 @@
+Q: How to check if internal HDD spindle is off after unmount I use SSD instead of optical drive in my Macbook MC516LL, so I have bunch of reasons why I wants to keep HDD's spindle off:
+
+
+*
+
+*Preserve HDD from shock
+
+*Reduce energy consuming
+
+*Reduce overall system temperature
+
+
+I use diskutil umount HD250 and it disappears from OSx.
+So how can I  check if spindle turned off?
+Thanks!
+
+A: diskutil umount HD250 - doesn't turn off spindle
+diskutil eject HD250 - turn off spindle
+confirmd by sound and mA usage

@@ -1,0 +1,46 @@
+Q: Recommendations for USB 3 ExpressCard/34 There is a proliferation of portable and cheap portable USB 3 drives nowadays and nothing of the sort for Thunderbolt.
+I was wondering if it is worth my while getting an ExpressCard/34 USB 3 card for my 17" Macbook Pro, to tide me over until some reasonably priced Thunderbolt drives come out.  
+I did a quick search and found a few drawbacks of the ExpressCard/34 USB 3 solution.
+
+
+*
+
+*It appears you need an external power supply according to this article http://www.notebookreview.com/default.asp?newsID=5985&review=aluratek+usb+3+expresscard+adapter
+Can anyone confirm this? That would be a pain, since I want to use portable drives, avoiding separate power supplies.
+
+*Performance is not as good using USB 3 through ExpressCard (although it is much better than USB 2, so this is not so much of a problem).
+
+*The need for drivers. Lacie provides one. http://www.lacie.com/au/more/index.htm?id=10112
+
+*Ugly (I'll forgive this one, since this is a temporary solution until Thunderbolt drives arrive).
+
+
+Does anyone have any experience with a USB 3 ExpressCard?
+Can you recommend one?
+My biggest blocking point is the need for an external power supply. Is there any card that doesn't require external power for USB 3.0 speeds? (Lacie don't mention this on their website as far as I can see).
+Please don't answer with suggestions about Firewire. I currently have several Firewire 800 drives. This question is specifically about ExpressCard/34 USB 3.
+
+A: *
+
+*You'll need a power supply.
+
+*The express card slot has a gross transfer speed of 2.5Gbit/s.
+
+*3rd party hardware kernel extensions (drivers) are horrible (expect kernel panics and maybe even data loss).
+
+*The LaCie adapter will only work with LaCie drives. Use of any other drive will cause a crash.
+
+
+It's simply not worth it.
+
+A: A) Consider eSATA instead of USB 3.0 if you just want storage.
+B) Most expresscard eSATA solutions reuse USB->eSATA bridges, creating a new bottleneck.  This is the major reason people complain about expresscard solutions in the first place.  Look for a true expresscard eSATA adapter.  The first indicator will be the price.  < USD40 is usually junk, > USD75 tend to be good.  I like the Sonnet cards: http://www.sonnettech.com/product/computercards/index.html#sataec34
+
+A: Since OSX Mountain Lion brings in native USB3.0 support, did any one try the seagate USB 3.0 upgrade cable package with express card adapter?
+According to seagate KB (http://knowledge.seagate.com/articles/en_US/FAQ/217951en#13) ,
+The Express card Adapter would provide USB 2.0 speeds in OSX as there was no USB 3.0 support, but since now we have USB 3.0 support does the adapter work and give better speeds than before . 
+I know the limitations of Express card bandwidth, and that it cannot give full USB 3.0 speeds for PCI based express card but a USB 3.0 support means a definitely higher speed for my 1TB seagate GoFlex Freeagent HDD. eSATA does not work for my HDD sadly, but this hardware might work now that some drivers are available from Apple.
+Update :
+@Jason S
+Guys I finally got a working USB 3.0 Express card based on ASM 1042 Controller for OSX and it works great with 1TB Seagate Goflex USB 3.0.
+Read my review of the same here - http://blog.indiandragon.in/2012/12/review-asmedia-1042-cheap-usb-30.html

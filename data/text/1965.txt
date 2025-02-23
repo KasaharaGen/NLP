@@ -1,0 +1,23 @@
+Q: Change the way how finder truncates file names Finder truncates file names (and other things). Is there a way of changing this behaviour?
+example: i have a file with a names 
+long_file_name_that_i_do_care_about.txt
+long_file_name_that_i_do_not_care_about.txt
+
+but what i see is
+long_file_..._care_about.txt
+long_file_..._care_about.txt
+
+So my main question is how get Finder to cut off only the end of the file so i can actually see the difference? And why is Finder truncating dates and file sizes too?
+
+A: I don't believe there is a way to change that - it's thought that it is more common to have the part of the file that differs be at the end of the name (i.e. Holidays and other important days 2010.xls vs. Holidays and other important days 2011.xls).
+As to the dates and file sizes being truncated, are you using the List view in Finder? You can change the column width to see more.
+
+A: Try enabling Finder > View (Menu) > Show Path Bar.
+Now, at the bottom of each Finder Window, you should see the path to the file and the file name. It appears that the full file name is always shown (if possible) and the truncation occurs in the path portion.
+
+A: About your truncating issue, I don't think there's anything you can do. Except maybe trying apps like PathFinder.
+About the date, if you the list view or the coverflow view, use View > Show View Options and uncheck Use relative date
+
+A: You cannot directly set where the truncation occurs.
+To avoid truncation of long file names, if you are in list or column view, you can make your columns wider. Drag the header when in list view. Drag at the bottom of the separation in column view.
+To avoid truncation of dates, you can set your date preference to something short. See System Prefs > Language & Text > Formats, and then customize to a short format like YYMMDD HH:MM. You will still have to have columns wide enough to see that.

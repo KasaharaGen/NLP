@@ -1,0 +1,38 @@
+Q: Bluetooth Not Available? Mac OS X 10.6.4, MacBook Pro, Apple Magic Trackpad.
+The trackpad is unresponsive. Right-clicking on the Bluetooth icon in the menu bar shows me gray text that says "Bluetooth not available".
+I don't see a system preference item in which to fight with this, but I don't see anything relevant.
+
+A: According to this article, resetting the System Management Controller might to the trick.
+Here's how to Reset the SMC on Apple's support site.
+
+A: Under System Preferences there should be a bluetooth preference pane. Make sure it's set to 'on' and 'discoverable'.
+
+A: In terminal, also remove the com.apple.driver.AppleBluetoothMultitouch.trackpad.plist and com.apple.driver.AppleBluetoothMultitouch.mouse.plist files from ~/Library/Preferences.
+cd ~/Library/Preferences
+rm com.apple.driver.AppleBluetoothMultitouch.mouse.plist
+rm com.apple.driver.AppleBluetoothMultitouch.trackpad.plist
+
+Then restart.
+That fixed it for me.
+
+A: Resetting the NVRAM as described here solved the issue for me:
+https://support.apple.com/en-us/HT204063
+
+A: Had this problem since 2015 and I have tried just about everything suggested by this thread similar ones. The only solution I have come across that works 100% for me is by going to System Preferences -> General -> unchecking Allow Handoff between this Mac and your iCloud devices
+It has been a month of observing this problem that occured daily and never had an issue afterwards. Hope this might help some of you out there.
+
+A: I fixed it by 
+
+
+*
+
+*shutting down the machine
+
+*removing battery
+
+*keep power button pressed for 10 sec
+
+*start machine again
+
+
+A: I have fixed by the same method as above.  shut down, remove battery, hold down power button for 10 seconds, replace battery and re-start

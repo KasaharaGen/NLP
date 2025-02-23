@@ -1,0 +1,41 @@
+Q: Are the changes to Lion's screen sharing documented anywhere publicly? I am looking for a general technical overview of the changes Lion brought to screen sharing (VNC).
+Specifically, the server now can differentiate and communicate the difference between dropping in and observing whatever user is presently logged in as opposed to starting a new and completely virtual loginwindow process and environment independent from the physical screen.
+
+If you can write the book here detailing all the changes, awesome. If not, any pointers to articles, resources or hints of what changes actually shipped with Lion would be most welcome.
+
+I am not finding any relevant documentation or discussion on the googles, the blekkos, or even the Apple developer site. (other than pre-release discussion that change is coming and the numerous VNC is now broken threads)
+I love screens on iOS as it works well with the Lion changes - I presume their screens for Mac handles these changes as well. Lots of other clients seem to be not so happy with the Lion changes:
+
+
+*
+
+*VNC Vinagre to OS X Lion
+
+*VNC from Windows gives blank login screen
+
+*Why isn't the multisession login in Lion's VNC server working properly?
+
+A: Maybe … multi-session screen sharing — the license for Mac OS X (Lion) uses the expression separate graphical desktop session.
+Mac OS X v10.6 to v10.7 API Diffs
+Items of interest but nothing overtly related to screen sharing.
+Open source
+Released for 10.7 but some of what's there (example: Open Directory) is not amongst Apple's list of open source projects, so I would not treat the latter as comprehensive.
+Again I can't see anything specific to screen sharing in Lion.
+Timeline of recent documents in the Mac OS X Developer Library
+http://developer.apple.com/library/mac/navigation/
+Filtering the list of documents for the word screen doesn't reveal anything obviously relevant, but you might like to review that list occasionally.
+Overall
+Considering what's in the license, my hunch is that Apple will not be especially open about recent and forthcoming changes (if any) to screen sharing in Lion.
+Update
+Comments from bmike rung a bell. Apple's article HT4715 About Apple Remote Desktop v3.5 includes a section Lion screen sharing with the following information:
+
+A third party VNC viewer will always be connected to the login window. If the login window is not on the display, a new login window is started that is not shown on the display. The screen sharing user can then log in with any valid account on that computer.
+
+If a third party VNC viewer has difficulty, then maybe it's not following best practice, or the most appropriate standard … whatever those practices/standards may be! With apologies for teaching grandmothers to suck eggs (bmike won't need this but someone else might): http://en.wikipedia.org/wiki/Virtual_Network_Computing
+
+A: Yes - the Apple Remote Desktop (ARD) version 3.5 relase notes discuss how Lion screen sharing works. It matters if the sharing mac had Remote Management or just Screen Sharing configured as well as whether the client appears to be a traditional VNC client or works like ARD.
+
+
+*
+
+*About Apple Remote Desktop v3.5

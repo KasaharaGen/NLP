@@ -1,0 +1,13 @@
+Q: How do I flush the DNS cache on a OS X 10.6 machine? Trying to flush the local DNS cache. How is this done on Snow Leopard?
+Using System Preferences and using the terminal?
+
+A: dscacheutil -flushcache
+
+
+A: Use
+sudo dscacheutil -flushcache
+
+or
+sudo killall -HUP mDNSResponder
+
+In 10.6 the handling of Unicast DNS is now managed by mDNSResponder - dscacheutil -flushcache now just tells mDNSResponder to restart (the second command above).

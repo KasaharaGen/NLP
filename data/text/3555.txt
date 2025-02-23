@@ -1,0 +1,28 @@
+Q: Scripting environment setup When I start a session programming on my macbook pro, I have a bunch of apps I'd like open and ready:
+
+
+*
+
+*DevNull smtp java server (run from terminal with java -jar DevNull.jar)
+
+*Terminal shell in the tomcat/bin directory with startup.sh;tail -f ../logs/catalina.out running after rm -rf work and test webapp directories
+
+*IntelliJ running
+
+*after tomcat loads (fine with just having a timer), Firefox with my webapp loaded
+
+*after tomcat loads, Chrome with my webapp loaded
+
+*ForkLift
+
+*TextMate
+
+*Couple of Finder windows open in particular directories
+
+
+Those are pretty core...  then it depends on what exactly I'm working on as far as other apps I need open.
+So how do I write a script I can double click on and have all the above ready for me, saving me a couple minutes each day and being a little less annoying getting started?  Is there a nice app that can easily do the above for me?  Do I need to write a bash or python script for this? Or learn applescript?
+
+A: I'd use a bash script for this as everything that you list can be opened in bash.  Use the open command pointing to the application to run the application or a folder location to open a particular folder with finder.
+
+A: I use Concentrate to load up apps relevant to whatever I'm doing right now - you can run terminal commands, Applescripts, load programs, etc. I hit 'concentrate', make some tea, and then return to everything running. I know I could do this with Automator, but I'm too lazy to learn how.

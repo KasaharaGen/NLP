@@ -1,0 +1,27 @@
+Q: Problem downloading iPhone/iOS upgrade, iTunes complains: "You do not have enough access privileges for this operation" When trying to upgrade my iPhone running iOS 4.1 to 4.2, iTunes displays the error message saying:
+
+There was a problem downloading the software for the iPhone "[Username]'s iPhone". You do not have enough access privileges for this operation.
+
+I kept trying the upgrade process repeatedly, but with no luck. Everything else, including app and music downloads, works fine. I'm running iTunes 10 on MacOS 10.6. What do I do?
+
+A: I found a fix on the Apple Discussions board:
+
+
+*
+
+*Go to ~/Library/ (i.e. open your home directory, then select the Library folder)
+
+*Get Info (click File -> Get Info or type ⌘I)
+
+*If possible, make sure the lock at the bottom right corner of the Get Info window is unlocked
+
+*Make sure the Sharing & Permissions: section is visible
+
+*Where it says "Username (me)" make sure the privilege is set to Read & Write
+
+*In the little tool/wheel pulldown right below, select Apply to enclosed items (say yes, if it asks you if you know it can't be undone)
+
+*Try the upgrade again
+
+
+This worked for me. Hope it helps!

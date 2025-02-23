@@ -1,0 +1,21 @@
+Q: Using locate.updatedb doesn't work in Lion A week ago I upgraded to Lion from Snow Leopard. I want to use the locate command, but the locate database has not been built yet. So I tried running
+sudo launchctl -w /System/Library/LaunchDaemons/com.apple.locate.plist
+
+The plist file only points to /usr/libexec/locate.updatedb and I keep getting the following error in syslog su: pam_acct_mgmt: error in service module
+When I try running locate.updatedb directly I get the same error in syslog.
+I could handle not using locate, but what bugs me the most is that I don't know what's causing the issue. 
+
+A: Debugging pam can be tricky.
+Have you tried making a real root shell with sudo -s and running the /usr/libexec/locate.updatedb command.
+Alternatively, you could try making a new admin account to be sure your admin account has correct privelages/authentication. Any odd things like server or OpenLDAP that we should know of?
+
+A: This seems to work for me.
+sudo /usr/libexec/locate.updatedb
+
+
+A: You can run the command to update the database used by locate directly by calling
+sudo /usr/libexec/locate.updatedb 
+
+This will take a while and should refresh the whole index.
+
+A: Check your .bashrc paths. Include /usr/libexec in the $PATH statement if its missing.

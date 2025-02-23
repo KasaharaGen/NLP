@@ -1,0 +1,17 @@
+Q: Keyboard shortcuts for renaming file and accepting extension When I try to rename a file (by pressing enter, then changing the extension of the file), it pops up with an alert asking "Are you sure you want to change the extensions ... " and the old extension is selected in blue. I haven't found a keyboard shortcut for selecting the new extension from the popup alert. Is there a way? I need to rename dozens of files, and doing it all through the keyboard would be so much quicker than selecting this one alert with a mouse. 
+
+A: You can disable the prompt under Finder's Preferences (see picture below):
+
+This might save you some time if you are renaming multiple files. Additionally, you may want to look at Rename. It is a free utility that should serve you well for such simple batch renaming.
+
+A: After trial-and-error, figured it out. It's ⌘+U.
+
+A: There is no keyboard equivelant that I am aware of...
+You could however use the terminal to make your life a little easier. If you need to rename the files one at a time, use the command 
+mv orig_file_name.ext new_file_name.newext
+
+
+A: Those buttons highlighted in blue (e.g in your case "keep old") press enter; for those button with a blue background (e.g in your case "Use ...") press space bar. 
+
+
+A: In Mountain Lion, ⌘ + A works like a charm

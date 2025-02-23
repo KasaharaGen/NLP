@@ -1,0 +1,13 @@
+Q: How can I recover from a frozen fullscreen application / game? A few times now, Starcraft 2 has frozen up on my wife's Macbook Pro, but the mouse pointer still moves and the sound keeps playing.  I can also SSH in from a different machine.  The keyboard shortcut for force-quit doesn't work though, and nothing in-game is clickable.  Command-tab won't switch windows either.
+If this were a straight-up Linux box, I'd find the application process and kill it from an SSH login.  If that failed, I might take out the X server.  Can I do anything like this in OSX?  Is there something on the "problem" machine I can do locally instead?
+
+A: *
+
+*Search for the Starcraft 2 process in the process list. I don't know the name of the binary but something like ps aux | grep -i starcraft should get you there
+
+*The number in the second column is the PID
+
+*kill PID or (if this doesn't work) kill -9 PID (if you are not the owner of the process, you can use sudo kill ... instead)
+
+
+Depending on the process structure of Starcraft 2 you may need to do this several times to hit the right one.

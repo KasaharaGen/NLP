@@ -1,0 +1,60 @@
+Q: I'm having problems putting my iPhone 3G into DFU mode I have upgraded my iPhone 3G from iOS 3 to iOS 4.2.1 using the iclarified Redhook for windows tutorial.
+Upgrade has gone fine but I cannot get Redsn0w (v0.9.6b6) to recognise the DFU state. Every time I restart in DFU mode, I get the following error:
+
+"No Device Detected. You probably misunderstood the instructions.
+  Please consult Google or YouTube on how to enter DFU mode"
+
+Please note I had problems entering DFU following the Redsn0w instructions (i.e. start from off then: hold power 2-3s, power & home 5-10s, then home 13s) as these do not work  from power off on my iphone 3g. If my iphone is off and power button or power & home button are held, iphone immediately starts in recovery mode (with icon). 
+I can enter DFU (black screen) by having phone on, holding power button and slide power off on screen, I then release power button 5-6s after phone has switched off (per DFU instructions on google utube etc), phone enters DFU mode but not picked up by redsnow 
+Any suggestions welcome
+
+A: To enter DFU mode:
+
+
+*
+
+*Make sure the phone is on and iOS fully loaded, and iTunes is closed.
+
+*Plug the phone into your computer using the Apple proprietary cable.
+
+*Once plugged in, turn your phone off by holding the power button.
+
+*When the phone is completely powered down, perform the following
+sequence:
+
+
+*
+
+*Hold the power button for 3 secs.
+
+*Without letting go of the power button, press and hold the home
+button for 10 secs.
+
+*Without letting go of the home button, release the power button for
+another 10 secs.
+
+
+
+Ignore what's happening on your screen, just time the sequence. If you are not succeeding, then you are not timing the sequence properly. There is only one way to enter the device into DFU mode. The one provided by Redsn0w is the correct one.
+
+A: I know there are a lot of instructions out there on Google, but I don't think your second set of instructions are correct (at least for DFU).
+I would stick with the first set, and just keep following the instructions, even if the phone starts to boot up (which is normal). Sometimes it takes a couple of tries to get the timing right, but it will work.
+
+A: DFU Mode can be entered by doing the following:
+
+
+*
+
+*Make sure your phone is either on the home screen or starting with Apple logo.
+
+*Hold down both the home button and sleep/wake button for exactly 8 seconds
+
+*Release the sleep/wake button and continue holding the home button until your phone     enters DFU mode.
+
+
+You can verify your iPhone is in recovery mode by going to the Apple menu>About this Mac>More Info>USB and checking the list of connected devices. You should see an Apple Mobile Device with "DFU Mode" in parentheses. 
+
+A: Put your iPhone in DFU modus and open Redsn0w. Then hit "next" and disconnect the cable. Connect it again after a while and by doing so, my Redsn0w recognized my iPhone.
+
+A: I had a very similar problem today.  Turns out (source) despite asking for the newest iTunes, redsn0w is only compatible with certain (older) versions.  Download and install iTunes 12.0.1 (Windows 32-bit - Windows 64-bit - OS X).  Uninstalling newer versions might be tricky.
+Even so, despite definitely being in DFU mode (iTunes said so!), I could not get that mode to work.  But having this version of iTunes installed let me do the non-DFU mode, which did work.

@@ -1,0 +1,64 @@
+Q: Are all pictogram fonts broken in Lion? Since I updated to Lion (Mac OS X 10.7.2) all pictogram fonts (Zapf Dingbats, Webdings et al.) seem to be broken.
+The application I have tested are below.
+TextEdit
+Zapf Dingbats and Webdings do not show up in the font menu. You can select it by selecting  :
+
+Format > Show Fonts…
+
+OmniGraffle
+Selecting either Zapf Dingbats or Webdings has no effect.
+Pixelmator
+Selecting either Zapf Dingbats or Webdings has no effect.
+BBEdit
+It seems to work in BBEdit (and TextWrangler), these both have Cocoa text handling.
+I have tested this on a MacBook Pro and a Mac Pro running 10.7.2.
+Firstly, can someone confirm this is an issue for them and not just an artefact of the way I have installed Lion.
+Secondly, any solutions?
+Update
+I forgot to add that all front look fine in Font Book
+Update 2
+Unfortunately Chris' idea is no good (for my specific issue) as the character I require is the lighting bolt.
+
+
+A: I think the fonts are fine - I've just checked them in Font Book.
+I tried Text Edit, Pixelmator and Pages and they all do as you state. But, if you load Font Book and find the fonts they are visible and populated with "dings". Could it be that the codes are different due to using Unicode?
+To get to Wingdings characters in the other apps:
+
+
+*
+
+*In Keyboard Preferences check "Show Keyboard & Character Viewers in menu bar".
+
+*In the menu bar these is now a new icon.
+
+*Click on the icon and select "Show Character Viewer".
+
+*Characters can then be cut and paste from the Character Viewer.
+
+
+A: As Chris Redman said, the fonts are fine.
+To access the glyphs in this font, you'll need to use the Character Palette. 
+Follow the directions he gave to show the Character Palette, then click on the Action button in the upper left corner of the window and choose Customize List…. Scroll down in the list and choose Dingbats, like shown in the image below:
+
+Then choose the Dingbats category in the main window, then choose the appropriate font in the popup menu in the center column. The lightning bolt is shown in the image below.
+
+As you can see, the Unicode value of that glyph is U+F07E, which is way the heck out of the range that you're going to be able to reach with your keyboard alone.
+P.S. Both BBEdit and TextWrangler are Carbon-based apps. (Well, they could be hybrid, but the majority of the text-handling appears to be Carbon (HITextView?)).
+
+A: In apps that follow the unicode standard I think you should really not be able to type dingbats or webdings using the normal US keyboard layout (i.e. just change the font and type).  The essence of the standard is that you no longer map pictographs (or anything else) to latin but give them their own codepoints, e.g. in the Private Use Area for web/wingdings and in U+2700 onward for dingbats.  This ensures that the meaning of the text does not depend on the reader having a particular font active to translate the data.
+The idea is that these characters should always be input via the Character Viewer or similar app (or a custom keyboard layout if you want to make one).
+Nonetheless there is a large amount of legacy data which does map dingbats to Latin and fonts that reflect that are still in wide use.  Also it seems that some Apple apps like Pages are designed to let you create web/wingdings via the US keyboard layout (though copy/paste to other apps will likely result in Latin text).  Exactly how and why they do this I don't know.
+
+A: "Follow the directions he gave to show the Character Palette..."
+I came here as a result of a Google search on how to get these special characters to work. The above quote is maddening, as the link to the instructions loops back around to this thread. 
+For for people looking for a direct answer, in TextEdit, do the following:
+
+
+*
+
+*Go to the Edit menu.
+
+*Select Special Characters from the drop-down menu.
+
+*Select the symbol you want, then drag to the text area. Done. Enjoy life. 
+

@@ -1,0 +1,84 @@
+Q: ssh-under-cron stops working in OS X 10.7 Lion Just upgraded from Snow Leopard to Lion, and my cron jobs that use ssh have stopped working.  It appears that ssh-agent is no longer functioning as expected.
+Here's a bowdlerized version of my called-from-cron script that worked great under Snow Leopard:
+#!/bin/bash
+whoami # just to verify I'm running as myself, not root
+ssh-agent # just to see what it outputs    
+eval `ssh-agent`
+ssh -vvv REMOTESERVER ls
+
+When run from the command prompt, this script works as expected.
+When run from cron, it doesn't work.  The ssh-agent output looks normal:
+SSH_AUTH_SOCK=/tmp/ssh-QRxPUMRxbu/agent.17147; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=17148; export SSH_AGENT_PID;
+echo Agent pid 17148;
+Agent pid 17150
+
+But the ssh -vvv output shows that it fails right when the private key should be read:
+debug1: Server accepts key: pkalg ssh-dss blen 818
+debug2: input_userauth_pk_ok: fp ...
+debug3: sign_and_send_pubkey: DSA ...
+debug1: PEM_read_PrivateKey failed
+debug1: read PEM private key done: type <unknown>
+debug1: read_passphrase: can't open /dev/tty: Device not configured
+debug2: no passphrase given, try next key
+
+In other words, it's expecting me to type in the passphrase for ~/.ssh/id_dsa, which of course doesn't work in cron jobs.
+This all worked in Snow Leopard.
+Note that I've got Keychain Access setup so that ssh, ssh-agent, and ssh-add are allowed to read my passphrase for my .ssh/id_dsa file - as a result I can SSH from a terminal prompt without ever having to enter my passphrase.
+Is this issue that I need to run ssh-add at some point in my login process?  Running it from a standard bash prompt doesn't help the cron job out (although, oddly, it does prompt me for my passphrase ... which I would think isn't necessary b/c of the Keychain Access configuration).
+NOTE 1 - before redirecting me - I'm aware there's a similar question here (
+Mac OS X Lion and sshpass) but it's specifically about a program sshpass that I don't use (although I believe that question would be answered by this one as well).
+NOTE 2 - I realize that passphrase-less SSH keys would solve my problem; however I'd prefer not to go this route.
+
+A: Adding the following code to your bash shell  script will fix the problem:
+declare -x SSH_AUTH_SOCK=$( find /tmp/launch-*/Listeners -user your_user -type s | head -1 )
+
+Replace your_user with your own user name.
+This code sets the correct value for SSH_AUTH_SOCK that informs ssh or scp about how to communicate with ssh-agent when the shell script is started out of cron.
+
+A: For anyone who ends up on this page, I realized I should post the answer:
+Using launchd instead of cron does indeed fix the authorization problem.  Your user launchd jobs (which run only when you are logged in) correctly use the SSH agent information that was unlocked via your keychain as part of login (as part of standard OS X key management, no other software required).
+To minimize my interactions with launchd, I created a single launchd job that calls a bash script.  In this way I can simply edit the script without dealing with launchd.
+Here's the launchd file:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.mycron.hourly</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/john/bin/cron.hourly</string>
+  </array>
+
+  <key>Nice</key>
+  <integer>1</integer>
+
+  <key>StartInterval</key>
+  <integer>3600</integer> <!-- start every X seconds -->
+
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+
+I saved the file to ~/Library/LaunchAgents/com.mycron.hourly.plist, and then loaded it with:
+launchctl load ~/Library/LaunchAgents/com.mycron.hourly.plist
+
+Once loaded, it will run right away and then again every 60 minutes.
+If you follow the same procedure, you'll want to change the `ProgramArguments' string with the right path to your script.
+
+A: I would expect enhanced security like sandbox and changes to further move things to 64 bit is causing unexpected grief. 
+It's not an answer, per se, but launchd is getting all the love from apple these days. 
+It's not fixing the cron issue, but is more stable as well as more people can help with it. 
+
+A: For anyone finding this now, trying to make this work in El Capitan, and still reluctant to turn your one-line cron job into a launchd script, Werner Antweiler's answer still works  but the path changed. The below worked for me:
+declare -x SSH_AUTH_SOCK=$(find /var/folders/*/*/*/*/agent.* -user your_user -type s | head -1)
+
+NOTE: remember to replace your_user with your username!
+It wouldn't let me submit this as a comment on his answer as I lack the reputation but I didn't want to leave her without updating this as it definitely helped me finally set it up.
+Edit: March 30, 2016
+After testing this for a while, I need to add that this only works once the agent has been used at least once during that login. Initiating an ssh connection or manually running ssh-agent is enough to do it. A startup script can also be used if you want it to run automatically. I created a startup.sh that just runs ssh-agent and then used Script Editor to save a .app with the following and added the resulting app to my login items:
+do shell script "/path/to/startup.sh"
+

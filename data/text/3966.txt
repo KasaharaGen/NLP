@@ -1,0 +1,34 @@
+Q: How to prevent resetting a login password in single user mode or from a recovery partition? There are a few ways to reset the login password of an OS X user account:
+
+
+*
+
+*Starting up in single user mode, running mount -uw /, launchctl load /System/Library/LaunchDaemons/com.apple.opendirectoryd.plist, and dscl . passwd /Users/username.
+
+*Starting up in single user mode, removing /var/db/.AppleSetupDone, restarting, creating a new admin account, and changing the password of another account from System Preferences.
+
+*Starting up from a recovery partition or installation media, opening Terminal, and running resetpassword.
+
+
+Is there some way to prevent people with physical access to a Mac from using them?
+
+A: It can be prevented. Boot up your mac with your Mac OS X install DVD, and after it has loaded, go to utilities and select Firmware Password Utility. Select the checkbox "Require Password to start this computer from another source" and type in a password.
+This password will prevent people from:
+
+
+*
+
+*Booting CD/DVDs
+
+*Booting into Single User Mode
+
+*Booting into another OS stored on another partition or disk
+
+
+No. 2 is the one where people type commands in it to reset the setup data in which they can go through the setup procedure and set up a completely new administrator account.
+However, the best way is to keep your mac with yourself. Anyone with root/administrator access can bypass this feature, by typing a few commands in the terminal. Keep your password secret and complex.
+It is also worth mentioning that the EFI password is easily crackable. Some people had success with resetting the PRAM and gaining access, while others used exploits in the OS X system to gain root access and disabling the password using terminal commands. The way Apple encrypts is also very lax and you should make it very much different from your OS password.
+
+A: If you have 10.7 or later, another option is to enable FileVault 2. It makes starting up in single user mode require entering the password of an account that has been allowed to unlock FileVault, like normally your own user account.
+Starting up from the recovery partition won't require a password. But the list of volumes in Reset Password.app will be empty:
+

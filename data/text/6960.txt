@@ -1,0 +1,53 @@
+Q: Moving folder to Trash in Finder is not synchronized with Terminal I tried to delete a folder which I access via terminal.app. Though the Finder moved the folder to the Trash, I was still able to see the contents and edit the file from terminal.
+
+
+*
+
+*created a textfile 
+
+
+
+
+
+*
+
+*Moved the entire directory to the Trash via the Finder
+
+
+
+
+
+*
+
+*I see files even after moving the folder to the Trash
+
+
+
+
+
+*
+
+*I still managed to edit/append content to the file
+
+
+
+The file is not available in Recent menu of Textedit after being moved to the Trash, but can be viewed in terminal with cat command. Even after moving to the Trash, the directory PWD doesn't update path (with trash/tmp path)
+View the complete screencast (5.20 min / ~24mb)
+Is there a way to synchronize the command line with Finder for this scenario?
+
+A: In a nutshell, yes, this behaviour is expected. It's less than ideal but it's completely explainable and it's a biproduct of how files and directories are represented on the filesystem level.
+It helps to understand how files and directories are represented on the underlying filesystem via inodes. And how moving a file on the same filesystem doesn't actually change the file blocks, it just shuffles the inode metadata around.
+Lets step back a bit though and make sure we understand that: when you delete a file via Finder you're (for the most part) not actually deleting it. You're just moving it to a trash location that's on the same logical partition as the file. That the trash location is on the same partition is important. It lets the OS exploit the inodes to make the delete really, really fast.
+Now lets talk about inodes. For regular files, inodes hold the metadata for the file along with some pointers to the data blocks on the filesystem that actually hold the data for the file. The metadata is stuff like the creation date, the last accessed date, the owner and group, the permissions settings, etc.
+For directories the inode holds all that metadata plus it holds a pointer to a list of all the inodes that are "in" that directory. So if I "move" a file on a filesystem all I'm doing is taking a reference to that file's inode out of its current directory's inode file list and moving it to another directory's inode file list. The list changed, but the inode reference to the file didn't.
+This metadata shuffle means that the physical location of the file blocks and the inode for the file itself don't actually change on disk. Any program currently accessing the file (assuming file locking isn't being used) can continue to access it even while I'm moving it because all the references it needs have remained the same. The inode for a file or directory doesn't change as long as it's kept on the same filesystem. And when programs access files and directories, most of that access is done via inode references.
+Pretty neat.
+But it can lead to some jarring behaviour if you're accessing a directory from multiple places and then you move the directory. And this is what you're experiencing.
+In your case you have a Terminal prompt in a directory. When you changed in to that directory your shell read the inode metadata for that directory and updated some data structures and environment variables. One of those environment variables was the PWD variable.
+Then you deleted the directory which placed that directory's inode under the .Trash directory's file list. The metadata for these two inodes was updated so the deleted directory now had a parent directory metadata attribute that points to .Trash and the .Trash inode metadata got a new entry in its list of children: the deleted folder's inode. But your Terminal app didn't know this happened. There's nothing that told it that it should reload its data structures. That's why pwd and $PWD continue to show the original path to the directory. You have to trigger an action in the shell that causes that inode metadata on the working directory to be re-read and the data structures and environment variables to be re-generated. It can be something as simple as called cd . to do a no-op change directory. Or you can move out and back in to the directory with absolute paths.
+The reason the reason that cat in the Terminal works to show you a file in that directory is that the inode that cat uses to access that file didn't change just because its location on disk changed. So cat can still find it given you're using a relative reference to the file. If your file was originally located at /foo/bar/moo.txt and you tried to do cat /foo/bar/moo.txt after you deleted the bar directory via Finder you'd see that the cat call would fail with a file-not-found error. But cat moo.txt would continue to work because all the file system data structures that cat needs to use to find moo.txt in your working directory have technically not changed enough for cat at your Terminal prompt to lose track of them.
+That's the long explanation. Hope I didn't lose you. :)
+
+A: I believe this is an expected behavior. Although PWD doesn't update the path right away, if you do something else like cd .. or even cd . you can see that the path gets updated.
+
+A: Moving something to the Trash in Finder does exactly this, it just moves the file/folder to a special directory (conveniently names .Trash). In Terminal.app you are working on Unix level and can still access the folder as usual. Once you empty the Trash it's gone for good.

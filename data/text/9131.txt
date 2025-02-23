@@ -1,0 +1,13 @@
+Q: All photos are gone after updating my iPhone to iOS 5 After installation of iOS 5, once it was done restoring my settings, apps, etc I got an error message -19. All apps restored successfully. But I don't see the photos. I tried to revert to iOS 4.3.3 again but I got stuck again with error -10.
+At this point, I just want my photos back. After that I can update the iPhone to the latest version. Is there a way to restore the photos from the iPhone's file system? I tried accessing the phone's contents using Ubuntu, there I got error message 15.
+
+A: According to Apple, iTunes should automatically backup your photos and videos:
+
+Backed-up information includes purchased music, TV shows, apps, and books*; photos and video in the Camera Roll; ...
+
+However, the format of the backup doesn't make it easy to access those photos. Therefore, you can use a program such as iPhone Backup Extractor which should make it a lot easier to recover data from the backup, including photos. I haven't tried the app, so I can't personally recommend it, but it did get good reviews on CNET.
+
+A: Try searching for previous backup data in iTunes folders:
+
+your user folder > Library > Application Support > MobileSync > Backup
+

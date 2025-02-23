@@ -1,0 +1,18 @@
+Q: Is there an AppleScript or Automator action to quickly edit Info for Video in iTunes? I ripped the DVD set of a television series to my iMac. But now, the filenames are weird and there is no meta info. 
+In Automator, I see there is an action to edit Info for a song. That's great, but it doesn't really work for TV Shows - it won't handle the stuff that you'd see in the "Video" tab when viewing Info in iTunes.
+Is there an Automator action for this that I can use? If not, AppleScript?
+
+A: It's possible on iTunes, here's a example
+tell application "iTunes"
+    repeat with i in (get selection)
+        tell i
+            set episode number to 1
+            set episode ID to "blah"
+            set season number to 1
+            set show to "blah"
+        end tell
+    end repeat
+end tell
+
+
+A: If your files are MP4s, you can use MetaX for this.

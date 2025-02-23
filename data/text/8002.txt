@@ -1,0 +1,7 @@
+Q: Is a Macbook pro not able to use dual screen on the integrated graphics card? I have a MBP early 2011 model and when running on the integrated GPU I'm unable to dual screen. The screen is a VGA monitor running at 1400 x 900 yet it won't display so do I always have to switch to my AMD GPU to run dual screens? I'm running gfxCardStatus to switch between them and i'm just trying to save power. 
+
+A: No, it does not. You need the discrete GPU to run an external display.
+Funny though, because the integrated GPU's of the MacBook Air can power up to a 27" thunderbolt display. But that's how Apple rolls.
+
+A: No, it appears that using an external display requires using the discrete graphics card.
+The reason for this is probably how the electrical connections are hooked up. Usually with a switchable-graphics setup like this, the internal display is connected to the integrated GPU and the external display is hooked up to the discrete GPU. In discrete graphics mode, the integrated GPU acts as little more than a framebuffer, routing the discrete GPU's signals to the internal screen. In integrated graphics mode, however, the discrete GPU is off, so nothing can talk to the external display.

@@ -1,0 +1,19 @@
+Q: Which graphics chip on MacBook Pro? My MacBook Pro has two graphics chips and automatically switches between them. How can I tell which one is currently in use? I'm just curious really; it's plenty fast enough whatever it's doing by default!
+
+A: gfxCardStatus is a free app that lives in your menu bar. When you click it, it tells you which graphics card you're using. It also has a beta feature that lets you manually switch to one or the other.
+Hope it serves you well.
+
+A: You don't need to use separate software to check which graphics are being used.
+Such information is provided by the System Profiler of OS X which you can access in two ways:
+
+
+*
+
+*Menubar → Apple → ⌥-click System Information) → Graphics/Displays
+
+*Terminal:
+system_profiler SPDisplaysDataType
+
+Only one GPU has the extra section "Displays, Color LCD". This GPU is the one that is currently in use.
+e.g. In the first picture discrete graphics (ATI Radeon HD) are being used. In the second, integrated graphics (Intel HD 3000) are being used.
+ 

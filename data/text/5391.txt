@@ -1,0 +1,26 @@
+Q: How to disable the most recently used items in App Exposé on Lion? When using App Exposé on Lion ( Control-↓ by default), the lower part of the screen above the dock is reserved for minimized windows. A new feature of at least TextEdit in Lion is that it also shows the most recent documents as icons, which makes for an absolutely crowded area. I never use MRUs in my workflow so that's an absolute waste of space and of time.
+Is it possible to disable this behavior and only show minimized windows?
+
+A: OK, after twiddling different combinations, I found a solution that works (at least on Mac OS X 9.5 Mavericks). 
+1) Open the app in question (e.g. TextEdit). 
+2) Click Menubar / File / Open Recent / Clear Menu. Note that there is also a Menubar / Apple / Recent Items / Clear Menu. Clicking this general one doesn't help; click the app-specific one. 
+3) Open System Preferences / General and set Recent Items to None. 
+Note: While this keeps the minimized-items section of exposé clear of recent items, it also unfortunately disables access to recent items in most other places (e.g. the menubar or dock). 
+Boo Apple: http://www.apple.com/feedback/
+
+
+A: Apparently setting the Number of recent items to None in general preferences does the trick.
+
+Unfortunately it also disables the Open Recent submenu, but I honestly care less: having an uncluttered minimized windows list in Exposé is much more important.
+
+A: I managed to figure out how to clear and permanently disable this in Expose so figured I'd post here.
+I'm using BBEdit but imagine the steps are the same for TextEdit(?)
+You have to set the Recent Items to 0 (as above) AND delete the contents of:
+/Users/[your username here]/Library/Preferences/com.barebones.bbedit.PreferenceData/
+(As I say I imagine there's something similar for TextEdit)
+This folder rather astonishingly contained the history of every file I have EVER edited in BBEdit(!!) some 4000 odd files - also a security risk in my book.
+If you were very paranoid (as am I) you could also chmod this folder to be readable only so it is never written to:
+sudo chmod -R 444 /Users/[your username here]/Library/Preferences/com.barebones.bbedit.PreferenceData/
+Hope that helps...  Apple/BBEdit should really include this functionality within Expose as an option so we can turn it off in my humble opinion.
+
+A: I have just cleared recent items by going to apple menu, selecting "Recent Items" then "Clear Menu".

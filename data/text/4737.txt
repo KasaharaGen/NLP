@@ -1,0 +1,19 @@
+Q: How can I log screen sharing access on OS X? I've got my firewall on (the OS X firewall) and I've got a lot of attempts on screen sharing.
+Allow AppleVNCServer connecting from 93.78.170.237:2223 uid = 0 proto=6
+
+I want to log successful connections to make sure no one is making it through, similar to what is done with /var/log/secure.log
+In fact, I'm surprised this isn't included with secure.log
+What can I do?
+For what its worth, I am running Mac OS X 10.5.8.
+Update 1:
+Daniel had a nice suggestion to use 
+netstat -a | grep vnc | grep ESTABLISHED
+
+redirected to a file to log what is going on.
+The problem is a connection is flagged as ESTABLISHED as soon as the vnc login screen comes up regardless of whether or not a login is ultimately successful.
+In other words, all those (hopefully) failed attempts that my firewall logs will look no different than my successful logins.
+
+A: You can very easily extend the script that was suggested to me in another question to solve my need for notifications when VNC connections were established.
+Basically, replace the notification aspect of the script with a line that writes to a log file.
+
+A: Screen shares are logged in /var/log/secure.log

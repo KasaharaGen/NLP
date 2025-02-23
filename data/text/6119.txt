@@ -1,0 +1,13 @@
+Q: Remove rogue app from menu bar I have a rogue item on my menu bar from a terrible piece of printer/scanner software. I long ago removed the app, but the button for the app remains in the menu bar. 
+Is there any central way for me to remove an item from the menu bar? Any plist I can hack? command line trick, etc?
+It's the one to the left of the Facebook icon:
+
+(I tried holding Command and dragging it away, but it doesn't seem to respect that convention.)
+
+A: This is likely a status item, not a menu extra. (Not being able to move it around or remove it by holding ⌘ and dragging is the way to find out.)
+In Activity Monitor (in /Applications/Utilities), set the pop-up menu to "My Processes" and look for anything that sounds related to the scanner vendor. Also, check ~/Library/LaunchAgents for a file that mentions the vendor in its name. Lastly, check System Preferences → Accounts → (your account) → Login Items.
+
+A: These icons are called menu extras.  Using Terminal, try this command:
+mdfind menu | grep \\.menu$
+
+This command shows a list of file paths for menu extras as indexed by Spotlight.  If the unwanted menu extra is listed in the output, navigate to the path using Finder or Terminal and remove it.  You may have to log out and log in again, or reboot, to clear the item from the menu bar if you are unable to drag it out.

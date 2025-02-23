@@ -1,0 +1,36 @@
+Q: Errors while syncing iPhone I did a restore on my iPhone 3GS running the latest 4.2.1 (after a failed attempt at jailbreaking).
+For whatever reason the applications won't sync. For each of the apps it gives me an error:
+The app "iDivide" was not installed on the iPhone "iPhone" because an unknown error occured (0xE8000001).
+I've shutdown and restarted the phone, all to no avail.  Everything else seems to sync fine (photos, podcasts, etc...).
+How do I sync my apps? 
+
+A: Many resources out on the web seem to suggest that 0xE8000001 occurs because of iTunes/associated daemons, not your device itself. Most folks report success after quitting iTunes, and using Activity Monitor to force quit the iTunes Helper, and any other process referencing iTunes, iPod/iPhone, etc.
+A blanket search for 0xE8000001 reveals most of these sources.
+
+A: This restore that you did, was it from a backup made pre-jailbreak or post-jailbreak? It may not matter but it always helps to isolate possible sources of errors.
+I know these are a bit of a generic set of tests, but have you tried:
+
+
+*
+
+*Deleting and re-downloading a couple of apps to test if the app files have been corrupted?
+
+*Reinstalling iTunes, to test if the iTunes installation has been corrupted?
+
+*Set up the phone "as a new phone", to test if the backup is what is causing the sync error? If this doesn't work you can still go back to restoring from backup.
+
+
+If none of those help, the more drastic options are:
+
+
+*
+
+*Delete and re-download the IPSW file and re-restore the phone with the fresh IPSW, to test if the IPSW file on your computer has been corrupted.
+
+*Copy your iTunes Library to another computer, to test if iTunes + your computer is having problems (Reinstalling iTunes isn't quite as exact as a fresh install).
+
+*Move your iTunes Library to a temporary location, start iTunes and let it create a blank Library, download a few apps to test, then see if it syncs.
+
+
+A: VxJasonxV is correct about the error. Though normally the fault actually lies with Antivirus software on a Windows machine causing said daemon to fail.
+Also: if a USB hub is being used, connect directly to the computer at try. The error is not consistent with that failure but it can cause problems.

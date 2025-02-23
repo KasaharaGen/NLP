@@ -1,0 +1,14 @@
+Q: Tilde with hiragana-input I'd like to type the two characters "tilde" ('~') and "fullwidth tilde" ('～') with a german keyboard, since I need those characters quite often, for example when writing hiragana in romaji, for example 'っ' which is spelled ~tsu or song titles, for example "惑いて来たれ、遊惰な神隠し～Border of Death".
+I tried the combination Alt+N, which produces '~' with the austrian keyboard map enabled, but does absolutely nothing in hiragana-mode.
+
+A: Could you not create entries for keystrokes to generate these characters in the User Dictionary?  I think the Kotoeri Help tells how to do that in general.
+Also you can make a wave dash by typing nami dasshu or part of it in Kotoeri and hitting space once or twice 〜
+
+A: Wow, never seen a 'fullwidth tilde' before. You can open the keyboard viewer (System Preferences -> Language & Text -> Input Sources, enable "Keyboard & Character Viewer" to see where special characters are. Click on the language flag in the top menu and select "Show Keyboard Viewer". On the virtual keyboard you can see all characters and modifiers that are available. I checked the German layout briefly, and can't find the long tilde, though. But I guess you can find it by using the Kotoeri/Hiragana layout.
+
+A: You could do that through services. You need the "Get Specified Text" action. Set input to "no input" and choose appropriate application. Also set "Output replaces selected text" if needed. In the text edit area type "~". Then duplicate the service, but replace "~" with "～" instead. Save them.
+Open System Preferences and go to Keyboard->Keyboard Shortcuts->Services. Look for services you just created and assign desired shortcuts to them. That's all, now you can paste those characters in any app which supports osx services
+I've created these services for you, you have to unpack the archive to the ~/Library/Services folder.
+
+A: Without repeating loads of the original post, you can take a look at this answer on this site, and follow the instructions to enable such special characters to be inserted using the press-and-hold method of text input - in the example below I used special keyboard character indicators, but you could make "~" bring up your own custom list, including the ones you need.
+

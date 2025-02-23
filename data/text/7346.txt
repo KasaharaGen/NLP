@@ -1,0 +1,13 @@
+Q: Protect each user account in Lion? I have enabled File Vault in Lion on a shared computer with several user accounts.  Is it possible to encrypt each user home directory such that other users cannot access their data?  As it stands, I can go on the terminal and (using sudo) access all the files in all accounts.  I'd like to be able to prevent this.
+
+A: As you know - the root user can undo anything that another admin/root does, but since all calls to sudo are logged, so you could use that to deter and detect access. If you only need to discourage idle copying/browsing, the command below will restrict access to all but the root user and the owner of the directory.
+sudo chmod go-rx /Users/username
+
+Unless you are going to physically restrain the mac (to prevent access to the insides) and use a firmware password to prevent booting from an alternate OS where the "bad actor" can bypass all account restrictions and permissions, you'll need to consider installing Truecrypt or another actual encryption tool. It has a plethora of options to encrypt files, folders, entire hard drives, etc.
+Also, for other hardening tips refer to this NSA document:
+http://www.nsa.gov/ia/_files/factsheets/macosx_hardening_tips.pdf
+The advantage of this over the legacy Filevault is it's more likely to be supported going forward and all of your encryption eggs are not stored in Apple's basket using just Filevault.
+
+A: It's easier to just have each user store their private information in encrypted disk images since the old Filevault (1) method of encrypting the entire home folder isn't something you can set up on Lion with easy tools.
+Lion does still support it, so you could migrate in a shell system that had the necessary accounts set up to use file vault, then encrypt the drive and finally move in the files from a backup external drive and presumably have both the legacy filevault storage scheme as well as the new scheme where the entire disk is unavailable until the drive password is entered.
+Keep in mind - root (and any admin user that knows sudo) has total control of the system and can delete, remove any protection that was set by root. Using encryption with a distinct password is the only method to prevent root from actually making sense of the files it can easily access.

@@ -1,0 +1,556 @@
+Q: What Window Management Options exist for OS X? I'd like to do something with my windows on OS X, where something includes options like re-arranging, moving, re-sizing, remembering positions, cloning across Spaces, etc. What options exist?
+Rules
+
+
+*
+
+*One app per answer.
+
+*Use this format for the first two lines of your answer:
+## [app name](link to website)
+[App Store](link to appstore) (price)   
+
+*Check for duplicates before adding new answers. 
+
+*If you find a duplicate, vote it down and encourage its poster to upvote the original entry instead (and remove the dupe).
+
+*Include short description about what this Window Managing app does.
+
+*
+
+*What makes this Window Manager app different than the others?
+
+*Is it focused on re-sizing using only the keyboard?
+
+*Is it focused on moving using only mouse gestures?
+
+*Etc.
+
+
+
+A: NuKit
+No longer available
+The feature set of this newcomer includes a mouse-driven window mover and resizer. I use ctrl+←+Mouse movement for moving windows, ctrl+←+⌘+Mouse movement for resize. Fast on my MacBook 2,1.
+Download the trial from their site, rather than buying blindly from the App Store - well, that's common sense for any app.
+The other main modules are a quite simple launcher and a shortcut manager, which are also sold separately. Nulana promises to refine them soon. Nice: the launcher offers dictionary entries (copy function promised) and an automatic calculator with fractions.
+
+A: DoublePane
+App Store ($4.99)
+It's cheap, lightweight, does the job (left half, right half, full screen, restore original window size).
+
+A: I just found this searching for Alfred plugins.
+Layouts is an AppleScript file and an Alfred Workflow to give you a lightweight window manager for your Mac. Out of the box, it allows you to resize your active window to top half, right half, bottom half, left half, top left quarter, top right quarter, bottom right quarter, bottom left quarter, center window and zoom (full screen).
+
+A: Moom by Many Tricks
+App Store ($9.99)
+
+Mouse controls
+
+
+*
+
+*Zoom button controls (pop up controls when hovering over a Zoom button):
+
+
+*
+
+*Move & zoom to: full screen, left, right, top, bottom, top-left, top-right, bottom-right, bottom-left.
+
+*Move & zoom to grid with customisable cells.
+
+*Move to other display.
+
+*Revert to original dimensions.
+
+
+*Snap to edges and corners (move & zoom when dragging a window to a display edge or corner).
+
+
+Keyboard controls
+
+
+*
+
+*Keyboard mode (triggered with a configurable hot key):
+
+
+*
+
+*Actions: move, zoom, grow, shrink, center, revert, move to other display.
+
+*Configurable keys: ↑ → ↓ ← (with optional modifiers ⌘ ⌥ ⌃ ), Return, Space, Tab, Esc.
+
+
+
+Custom controls
+
+
+*
+
+*Fully customisable actions with menu and hot keys:
+
+
+*
+
+*Actions: move, zoom, center, resize, grow, shrink, revert, arrange, move to other display.
+
+*Customisable grid.
+
+*Save and restore window layouts.
+
+*Hot keys can trigger a chain of multiple actions in sequence (eg: center followed by resize).
+
+
+
+A: BetterTouchTool (free $2.99, $7.50..$21)
+BetterTouchTool is known for bringing more functionality to multi-touch trackpads and mice. It also allows you to to snap to the right/left sides, and all four corners. I would highly recommend this application.
+
+
+A: ShiftIt (free)
+
+Provides keyboard shortcuts for arranging windows into the four quadrants of the screen, or filling any of the four halves (top, bottom, left, right), or centering a window.
+
+A: Divvy by Mizage
+App Store ($14)
+Provides a grid window you can use to select (via mouse) the size+location of your window. Has a finer grained selection dialog, and you can add keyboard shortcuts for preset sizes/locations.
+Activates via an icon in the menu bar, or by a configured global shortcut.
+ 
+
+A: Slate
+Slate is a relatively new option that's meant to replace all the previous window management tools. To use it you create a ~/.slate file, like a bashrc for window management. This gives you tons of options so you can make it work however you'd like.
+EDIT:
+Phoenix
+As some people have commented slate has seemingly been abandoned with a year since the last commit. Luckily I discovered Phoenix which is very similar to slate with similar configs.
+Mjolnir
+For a while, Phoenix got deprecated and substituted by Hydra, but now it's back in development, by another author, while Hydra is deprecated. Mjolnir is the successor to Appgrid, Zephyros, Phoenix, Hydra and Penknife, by the original author, Steven Degutis. 
+Mjolnir vs. other apps
+
+A: Window Maker
+MacPorts $0.00
+One of my favorite window managers (albeit for X11) is Window Maker.
+
+In every way possible, it reproduces the elegant look and feel of the NEXTSTEP user interface.
+
+You can download the Window Maker source code, but it is also available on MacPorts if you'd like to use package management.
+
+
+
+MacPorts
+MacPorts is a robust, stable, mature and easy to use package management solution, for OS X. It is modeled after FreeBSD's ports system, which has been adopted as the basis of NetBSD's pkgsrc. 
+install Xcode 5.1.1
+MacPorts requires an appropriate version of xcode; xcode_5.1.1.dmg is the most recent version for Mavericks (after registerring for a free developer account, and logging into developer.apple.com, that link will begin your xcode download). Once the download completes, open your Terminal.app and complete the installation: 
+ hdiutil attach -quiet -noverify -nobrowse -noautoopen ~/Downloads/xcode_5.1.1.dmg
+ cp -npR /Volumes/Xcode/Xcode.app /Applications/
+ hdiutil detach -quiet /Volumes/Xcode
+ open -g /Applications/Xcode.app
+ killall Xcode.app
+
+install MacPorts
+Get to know  MacPorts
+ curl -Ok https://distfiles.macports.org/MacPorts/MacPorts-2.2.1.tar.bz2
+ tar xf MacPorts-2.2.1.tar.bz2
+ cd MacPorts-2.2.1
+ ./configure
+ make
+ sudo make install     # *not war!*
+ cd ..
+ rm -rf Macports-*
+ sudo /opt/local/bin/port -v selfupdate
+ diskutil quiet repairPermissions /
+
+
+add MacPorts to your $PATH:
+
+ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+ export MANPATH=/opt/local/share/ man:$MANPATH
+
+install Window Maker and extra themes
+ sudo port -vsc install windowmaker wm_xtra
+
+
+And you can keep everything updated simply with:
+
+ sudo port -vsc selfupdate
+ sudo port -vsc upgrade installed
+
+If for whatever reason you are unsatisfied and/or need to remove MacPorts:
+
+to completely uninstall MacPorts
+
+ sudo port -dfp uninstall --follow-dependencies installed
+ sudo port -dfp uninstall all
+ sudo rm -rf /opt/local  
+ sudo rm -rf /Library/Tcl/macports*
+
+
+A: SizeUp ($13) by Irradiated Software
+
+SizeUp allows you to quickly position
+a window to fill exactly half the
+screen (splitscreen), a quarter of the
+screen (quadrant), full screen, or
+centered via the menu bar or
+configurable system-wide shortcuts
+(hotkeys). Similar to "tiled windows"
+functionality available on other
+operating systems
+
+Much of the arranging options provided by SizeUp are available for free in ShiftIt. However, SizeUp does have some additional functionality that may be worth the $
+Unique to SizeUp: It allows placement of a window at exact screen coordinates, X,Y, Width, and Height
+
+
+A: Amethyst (open source, free)
+Tiling window manager for OS X similar to xmonad. Was originally written as an alternative to fjolnir’s awesome xnomad but written in pure Objective-C. It’s expanded to include some more features like Spaces support not reliant on fragile private APIs.
+Source code: http://github.com/ianyh/Amethyst/
+
+
+A: Better Window Manager
+$3.00
+Better window Manager allows you to position and size windows where you like them, then save it's state and associate it with a keyboard shortcut so you can restore that window state any time.
+
+A: iSnap
+App Store (FREE)
+
+
+*
+
+*has up to 7 hot corners on the screen (the big benefit in comparison to Spectacle);
+
+*supports shortcuts, around 9 shortcuts in total;
+
+*attaching positions: half left, half right, half top, half bottom, and 4 quarters of the screen.
+
+*has iSnap and iShake out of the box (iShake - shakes the window on shortcut, to draw attention if lost around tons of other screens);
+
+*managing the windows on your computer has become a snap! With the iSnap app, you can organize various windows to fit perfectly on your screen and access them simultaneously!
+
+*by clicking and dragging your windows to various sections on your screen, you can optimize productivity with a snap. iSnap offers you 3 different templates to choose for optimal productivity.
+
+
+A: BetterSnapTool
+App Store ($1.99)
+BetterSnapTool allows you to easily manage your window positions and sizes by either dragging them to one of your screens corners or to the top, left or right side of your screen. This lets you easily maximize your windows, position them side by side or even resize them to quarters of the screen.
+In addition to that you can set custom keyboard shortcuts in order to move and resize your windows the way you want.
+Because there are so many positions available, BetterSnapTool can also popup a menu from which you can select the one position you want.
+
+Image source
+
+A: Flexiglass ($9.99)
+Flexiglass is no longer available and the link is dead because Nulana was bought by Acronis.
+Flexiglass featured complete and convenient window management with exclusive multi-touch gestures support, offering a simple way to manage many windows on a Mac with a mouse, keyboard, trackpad, and graphics tablet. It included different tools to move, resize, and arrange windows on the screen easily and joyfully.
+Features
+
+*
+
+*Move & Resize
+Usually, when you want to move or resize a window on a Mac you are limited by its title bar or lower-right corner. Flexiglass adds a Linux style Alt-Dragging to manage windows.
+
+
+*Multi-Touch Gestures
+You can use finger gestures on your MacBook trackpad or Magic trackpad to move and resize windows. Flexiglass can save different settings for a trackpad and mouse and automatically change them when you plug or unplug devices.
+
+
+*Quick Layouts
+Quick Layouts was an intuitive snap feature. It was a simple solution for working with multiple windows which can be resized to take up halves or quarters of the screen or full screen.
+
+
+*Quick Layout Shortcuts
+User-defined shortcuts allowed you to move windows to halves or quarters of the screen and back to original size.
+
+
+*Real Zoom & Real Close
+These options made title bar buttons much more useful. Right-clicking on the green Zoom button will truly maximize a window to full screen. Right-clicking on the Close window button will quit the application.
+
+
+*Double-click to Zoom
+Double-clicking on the window title bar was the easiest way to expand it to full screen.
+
+A: FastScripts adds functionality to other window managers such as SizeUp, including a script for tiling all open windows. Scripts can be run by binding to keyboard shortcuts.
+http://www.red-sweater.com/fastscript/
+
+A: Magnets
+App Store ($1.99)
+Main features:
+
+
+*
+
+*Snapping windows like Windows 7, works well with dual display
+
+
+Video review on youtube
+
+A: Spectacle
+Open source, available at GitHub, accepting donations
+App Store link (will not be updated past version 0.6.9)
+
+
+*
+
+*Center = Command+Option+C
+
+*Fullscreen = Command+Option+F
+
+*Left Half = Command+Option+←
+
+*Right Half = Command+Option+→
+
+*Top Half = Command+Option+↑
+
+*Bottom Half = Command+Option+↓
+
+*Upper Left Corner = Command+Control+←
+
+*Lower Left Corner = Command+Shift+Control+←
+
+*Upper Right Corner = Command+Control+→
+
+*Lower Right Corner = Command+Shift+Control+→
+
+*Left Display = Command+Option+Control+←
+
+*Right Display = Command+Option+Control+→
+
+*Top Display = Command+Option+Control+↑
+
+*Bottom Display = Command+Option+Control+↓
+
+*Undo = Command+Option+Z
+Per Spectacle' Github:
+
+Spectacle users have recommended Rectangle as an open source
+alternative.
+
+Rectangle is maintained as of 2020.
+brew cask install rectangle
+
+
+A: HazeOver: Distraction Dimmer
+App Store $4.99
+The app automatically puts a shade over all windows except for the currently focused one. The distinct idea is that with this app you don't have to manage the windows per se. No need to organize, minimize or hide windows. You focus on the window you're working with and stop caring about the rest. 
+
+
+
+*
+
+*The effect can be toggled with a keyboard shortcut
+
+*Intensity is adjustable with a mouse gesture
+
+*Options for handling multiple monitors
+
+
+A: Gridsutra Lite
+Standard suite of window management features, such as assigning hotkeys to various window sizes.
+https://apps.apple.com/au/app/gridsutra-lite/id1195876099?mt=12
+
+https://www.youtube.com/watch?v=VoCNTCayS2E
+
+A: ChunkWM (Free, Open Source)
+It seems surprising to me that nobody seems to have mentioned chunkwm yet, a successor to kwm. It is the one solution with the user experience and feature sets closest to a traditional Unix tiling window manager, even much more so than Amethyst.
+It supports all the intuitive tiling WM commands, including increasing/decreasing window size, swapping windows, changing focus between windows, spaces, monitors, etc. It even supports killing the currently focused window with one universal key, just as all the Unix window managers allow you to do.
+The default keybindings are also very intuitive and easy to press.
+It is in active development as of now (Mar 2019). The author has implemented a lot of difficult-to-implement functionalities, and now even plans to add the ability to throw a space onto another monitor, which no window manager on OSX has been able to achieve yet.
+Definitely worth checking out if you're acquainted with various Unix tiling window managers.
+
+A: HyperDock
+App Store ($9.99)
+In addition to some other fluff (like window previews):
+
+HyperDock brings advanced window management features to Mac OS:
+
+*
+
+*Move & resize windows just by holding down keys and moving your mouse.
+
+*Automatically resize windows when dragging to screen edges (Window Snapping).
+
+
+
+A: Afloat (free)
+
+
+*
+
+*Keep windows afloat (heh) on top of all others.
+
+*Pin windows to the desktop (new!)
+
+*Move windows from anywhere, not just the title bar.
+
+*Turn a window into an "overlay" on your screen that doesn't hinder your work.
+
+*Show a window's file in the Finder with nothing more than your keyboard.
+
+*Resize windows from anywhere, not just the corner (new!), and more.
+
+
+A: Zooom/2 ($20)
+
+
+
+*
+
+*Move and resize windows by moving the mouse anywhere over the window. I hold down fn+⇧ to move and fn+ctrl to resize.
+
+*Magnetism. If you like snapping windows the the edges of the screen or other windows (as in many X window managers), you will love this.
+
+*Snap to a grid to line windows up (similar to Divvy). 
+
+*Automatically raise windows when the mouse moves over them. (It doesn’t let you activate without raising, so I don’t use this feature.)
+
+*Show information overlay, so you can precisely set the dimensions if you need to.
+
+
+A: Cinch by Irradiated Software
+App Store ($7)
+A great application for bringing Windows 7 functionality to Mac OS X. 
+It allows you to drag a window to the top, right, or left and it will resize for you.Then, when you grab the window again, the window resizes itself to its original size.
+Window management is the one thing Microsoft did get right. :-)
+
+A: Magnet
+App Store ($0.99)
+This one is a simplified mash-up of Cinch and ShiftIt, bringing Windows 7 style docking along with a few helpful keyboard shortcuts.
+I'm going to stick with SizeUp for its Spaces and multiple monitor support, but this is a good, cheap option.
+
+A: Sticker (FREE prior v1.0, then $4.99)
+
+Version prior to 1.0 was FREE, can be downloaded here Sticker v0.91. It works flawlessly even on MacOS Mojave (10.14.4). The latest version can be downloaded from official website, and costs $4.99 after free trial.
+
+*
+
+*Mouse only or mouse and keyboard.
+
+*Drag a window to the part of the screen you want the window to fill, hit an arrow key and it snaps the window to where you want it to be.
+
+*For example, if you already have a window that fills up 2/3 of the screen to the left, drag another window to the right 1/3 of the screen, hit an arrow key and it fills up that area with your other window.
+
+*It also allows dragging of windows to the side and top edges to snap windows to half screen or maximize (sides for half and top to maximize)
+
+*Here's a link to the video for more details http://www.youtube.com/watch?v=DYpGo_g0n88
+
+A: Stay ($15)
+Stay automagically restores windows to a second monitor when it is connected. You need to set them up on the monitor and tell Stay to memorize the location before unplugging from the monitor.
+
+A: Optimal Layout ($14)
+Optimal Layout is a powerful window manager with tools to switch and arrange your app windows:
+
+
+*
+
+*Lists all your open app windows with a preview. Type to search the list.
+
+*Also searches your open tab titles from Safari, Google Chrome and Terminal.
+
+*Mouse positioning with a grid and buttons. 
+
+*Create new positions and save them to the menubar.
+
+*Keyboard shortcuts to position windows, move them freely around the screen and snap them to the screen edges.
+
+*Highly customizable user interface.
+
+
+
+
+A: Breeze
+App Store ($8)
+
+*
+
+*Setup your window sizes/positions beforehand, then associate them with hotkeys
+
+
+A: SizeWell
+Donations accepted. 
+I have tried a few alternatives, but I keep coming back to this solution. For me, the features and configurability are just right: 
+
+
+*
+
+*zoom
+
+*one quarter
+
+*one third
+
+*one half
+
+*two-thirds
+
+*resolutions (on my display, from 320 x 480 to 1920 x 1200)
+
+*position (without resizing)
+
+*whole screen (maximise, without full screen)
+
+*next screen, previous screen.
+
+
+It integrates with the Window menu, but I more often use it by right-clicking the zoom button of a window. Example: 
+
+
+SizeWell requires SIMBL. 
+Users may prefer EasySIMBL. 
+
+A: Arrange ($8.99)
+Rearranges and resizes windows both with keyboard shortcuts, by selecting a predefined (grid-based) or freeform position/arrangement from an overlay hud-style window with the mouse, or by moving the window to active zones on the screen edges.
+Each option supports multiple monitor configuration. 
+Screencast showing Arrange in action
+
+A: MercuryMover ($20)
+“[…] MercuryMover enables anyone to easily and conveniently move and/or resize the frontmost Window, directly from the their keyboard.
+“Main Features:
+
+
+*
+
+*Move and resize virtually any window without touching the mouse
+
+*Move and resize by 1, 10, 100 pixels at a time or to the edge of the current screen [in fact, freely configurable in the Prefernce file! thyx]
+
+*Configurable modifier keys
+
+*Unlimited undo/redo
+
+*Single key window center and maximize [after activation, e.g. ctrl+⌥+←, X]
+
+*Multi-screen aware [haven't tried that one]
+
+
+Good idea. Haven't heard about most of the others.
+
+A: I used to use an app called Zephyros which is open source on Github https://github.com/pd/zephyros
+Loved it because its essentially infinitely configurable and very lightweight whereas a lot of the commercial apps I've tried are always unnecessarily heavy on resources which bugs the crap out of me.
+But I've had trouble running Zephyros ever since I upgraded to Mavericks. :(
+It's worth checking out though.
+
+A: WindowKeys
+App Store (Free currently)
+Keyboard based minimal window manager. Shift to left, right, center, and drag adjust via keyboard. Adjust width, height, display. Switch between dragging windows or jumping.
+
+A: WindowMizer
+My favorite Window management utility is WindowMizer available from rgbworld.com.
+It allows you to roll-up windows without losing your focus. A double-click rolls up the window to get it out of the way. Double-click and it returns to its full-size.
+
+
+A: Split Screen Ultimate $19.99
+
+Comes with Dual Monitor Support
+
+Support Multiple languages including: English, Dutch, French, German, Italian, Russian, Spanish
+
+And Most Important: Includes Drag and Snap feature - just like what you find in Microsoft Windows!
+Disclosure: I own this app.
+
+A: RayCast
+Not in AppStore (free with paid team options)
+
+*
+
+*Differenciator: It's actually a spotlight replacement like Bartender, but there are native options to move windows around with it and there are options to bind hotkeys to this. What I do is to just bind some shortcuts to common window actions and manage my windows using that. As a bonus, you get a fantastic piece of software as a Spotlight replacement (not affiliated).
+
+*It's keyboard only, you cannot special-resize using the mouse when using this method.
+
+
+A: Use Gridsutra. Awesome UX and so easy to use. Apart from others, you will notice the effectiveness, easy of use, and features that no one else offers. Especially support for adobe package and the window sticking to corner. I am a happy customer and waiting for more excitement from that team.

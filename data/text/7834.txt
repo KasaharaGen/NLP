@@ -1,0 +1,17 @@
+Q: Enter a filename in the File Open dialog Can I enter a path to a file and its name instead of selecting a file in Mac OS X file dialog?
+I tried just typing into an open dialog but it will just try to "Go to a folder", it won't accept a full path.
+I'm on Mac OS X Lion
+
+A: Since it looks like you're just trying to open a hidden file, in the open dialog press command+shift+. and the hidden files will appear.
+
+
+A: The really nice thing about the "Go to folder" dialog is that auto-completion works - type the first couple of characters in the name, then TAB, and it fills in the rest of the characters.  If you get an error instead (say, you forgot one directory name in the path) you can correct it immediately instead of having to find the mistake at the end.  The only significant limitation is that you have to type an absolute path, starting at either your home directory or the file system root.  There's no concept of a current directory, as in bash.
+
+A: Yes. When the Finder dialog box is active type ⇧⌘G to bring up the Go to the folder direct entry dialog. You can enter the path to the file in the dialog using the Unix-type path expressions you'd expect: ~ for your home directory, / for a directory separator, etc.
+
+
+A: You can also do a "Utilities > Terminal"
+Then "open foo.txt" or "open fooApp.app"
+"open" also works with folders in finder.
+i aliased xdg-open to "open" on my linux boxes for this reason.
+If it's a particular file type requiring special app (e.g.: not text) set the association in finder.

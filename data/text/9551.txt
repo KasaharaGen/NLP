@@ -1,0 +1,31 @@
+Q: Macbook Pro become buggy after update I'm running on Mac OS X (ver 10.7.2) on my Macbook Pro 15. I did an update earlier this morning and after that everything I run fails or runs really slow. Some of my application also don't work properly anymore. My guess is when I did the software update and it rebooted, It failed to complete the installation and just rebooted. So I think the update wasn't installed properly.
+Here are some problems that it caused.
+
+
+*
+
+*Whenever I plug a thumb drive or external HDD it's not being mounted. But I can see the drive in Disk Utility. The USB port i think is working because I use it for my wireless mouse. - my guess is the drive for external drives got corrupted.
+
+*When I try calling someone on Skype it logs me out.
+
+*There are some lags with the animation. e.g. when i run the Launchpad it has a laggy and harsh animation. It's feels like the animation only has 3 frames so it isn't that smooth.
+
+*It's really slow!
+I just bought this laptop last week and It didn't come with a Mac OS X CD. Is this normal not having a CD?
+Some solution I'm planning to do:
+
+
+*
+
+*Reformat/Reset my Mac OS X
+-problem, I don't have the CD
+
+*Repair the driver
+-problem, I don't know if it's really the driver fault or which driver I should install
+Please advice what should I do. The nearest apple store is also far from where I live - so this is my last option to send it back to the store.
+
+A: Try a SMC Reset: http://support.apple.com/kb/ht3964
+You can also re-download the update and try again (=combo update): http://support.apple.com/kb/DL1459
+
+A: After re-installing lion the issues still remained. The drives are not being mounted, the animation are still laggy and sluggish, and speaker are disabled even i can hear the chimes from the start up. 
+After that I brought my MBP to the nearest Apple re-seller that I can find. (btw, The technician is very accommodating to hep me) We tried a lot of stuff and different approach to fix and got lucky in resetting the PRAM (Ctlr + Option + P + R).

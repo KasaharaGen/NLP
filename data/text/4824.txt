@@ -1,0 +1,22 @@
+Q: Is there a way to send a growl notification when an application reaches a certain memory threshold? I've been noticing that Safari skyrockets in terms of memory usage. I've been getting some results by restarting it, but I'm wondering if there is an app or some easy script to run that would send a growl notification (or some other sort of notification) to inform me that it has reached, let's say 200MB, and then I would know that it might be time to restart it.
+
+A: If you will run any "monitoring" program, will consume memory. My Safari after the restart occupiing 128MB RAM, now when writing this reply has 156MB - so 200MB will gain realy soon. I have usually 600+MB Safari and it is not problem (i have 4GB RAM).
+Do you really want restart it after 200MB?
+You can for example run the next shell script:
+#!/bin/bash
+mymax=200000       #in kb
+checkinterval=60   #in seconds
+
+while :
+do
+    ops=($(ps axu | grep Safari | grep -v grep))
+    [[ ${ops[5]:-0} > $mymax ]] && growlnotify -a "Safari" -m "memory; ${ops[5]}"
+    sleep $checkinterval
+done
+
+will every minute check your Safary memory usage. When the resident ram usage (rss) exceeds 200 kb the growl message will appear. For this you must have installed the "growlnotify" shell command from the Growl installation image -> Extras.
+You can save the above into "safariwarn.command" and double click on it from the Finder. (will run as Terminal.app)
+Or, it is possible run as an application what you can make with the Automator.app.
+
+A: I found someone's brilliant solution to this exact request over on MacHints.
+It's a four year old post, but the method should still work.

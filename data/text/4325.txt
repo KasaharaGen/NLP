@@ -1,0 +1,31 @@
+Q: Rsync Backup Script I'm having some issues backing up some data.
+Basically, I have FileVault enabled on my Macbook Pro and want to backup a folder I use - however, I don't want to use Time Machine (at work, I have one plug and I have to hot desk, meaning a large external is out) and the backup will never leave the site (I want to plug it in, backup and then drop back into my locked drawers). Data is currently about 1.5GB in total size made up of ~50MB files. Importantly, I need versioning and cannot use an off-site storage for this data.
+I was trying the following code (which is slightly modified from a Linux script I have).
+#/bin/sh
+
+#Backs up Work Data
+
+#Rotate backups
+rm -rf /Volumes/DOCSBACKUP/Documents/5
+mv /Volumes/DOCSBACKUP/Documents/4 /Volumes/DOCSBACKUP/Documents/5
+mv /Volumes/DOCSBACKUP/Documents/3 /Volumes/DOCSBACKUP/Documents/4
+mv /Volumes/DOCSBACKUP/Documents/2 /Volumes/DOCSBACKUP/Documents/3
+mv /Volumes/DOCSBACKUP/Documents/1 /Volumes/DOCSBACKUP/Documents/2
+cp -aL /Volumes/DOCSBACKUP/Documents/Store /Volumes/DOCSBACKUP/Documents/1
+
+#Backup Command
+rsync -rtDv --delete /Users/xxxx/Work\ Data /Volumes/DOCSBACKUP/Documents/Store
+
+Anyhow, the script fails to run nice - running the rsync command works but then the move fails and no symbolic links are created. Drive is formatted in Mac OS Extended.
+EDIT: The creation of symbolic links and mv commands seem to be where it fails as it copies the data to the Documents/Store folder fine.
+Can anyone help? Or recommend a program that will backup and keep a version?
+
+A: When using rsync there's an important distinction between paths with a terminating / and paths without. Try changing:
+rsync -rtDv --delete /Users/xxxx/Work\ Data /Volumes/DOCSBACKUP/Documents/Store
+
+to
+rsync -rtDv --delete /Users/xxxx/Work\ Data/ /Volumes/DOCSBACKUP/Documents/Store/
+
+
+A: I totally overlooked the fact that rdiff-backup works on the Mac using Macports.
+Therefore all sorted by using that.

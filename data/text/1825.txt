@@ -1,0 +1,13 @@
+Q: File location of kernel extensions? Is there an easy way to make the mapping from kernel extension to the file it came from?
+I can get the list of currently loaded kernel extension via kextstat. This gives me the bundle names, like com.AmbrosiaSW.AudioSupport or jp.plentycom.driver.SteerMouse. But how can I then find the actual file locations of these bundles? For example, the Ambrosia bundle is AmbrosiaAudioSupport.kext, and I can only find the bundle name in the Info.plist inside that bundle. I could grep the /System/Library/Extensions/ directory, but this does not necessarily contain extensions loaded after booting, and I assume there is a better way to do it?
+
+A: You can use kextfind -b <bundlename> to find the file defining a kext you only know the bundle name of.
+EDIT: newer versions of kextfind need a -print predicate to show output. Example updated below.
+For example:
+kextfind -b com.AmbrosiaSW.AudioSupport -print
+
+
+A: See kextfind
+
+A: Try About this mac -> System report -> Software section -> Extensions.
+It shows the filepath upon selecting an extension.

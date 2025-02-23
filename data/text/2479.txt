@@ -1,0 +1,32 @@
+Q: Does the iPhone support TRIM for flash memory? I'm asking if TRIM is enabled on iOS because, ever since I ran out of memory on my iPhone (have since cleared a few GB back), it seems to be slower than it was before. My suspicion being that, with most flash memory "sectors" now partially used, every write operation now takes longer…
+Relying heavily on flash memory, I wonder if the iPhone implements TRIM (or any "trim-like" feature) to maximize flash memory performance and specifically if that will let me troubleshoot a slow phone and/or know if I would want to jailbreak the device to enable TRIM or otherwise control storage more tightly than iOS is delivered.
+
+A: Since I'm just a generic curious who can do some research on the web, I'll make here some assumptions so we can be on the same grounds:
+
+
+*
+
+*TRIM is an SSD technology and, as such, can mean too many  different things.
+
+*iPhone uses MLC NAND memory, which is indeed a SSD.
+
+*We, people, (such as dhy8386 and maybe even Mr. Brian Klug) love to talk big about things we don't know deep enough. To know more, trust less.
+
+*Apple mostly does not disclose anything technically meaningful about their technology. And it does use many proprietary technologies nobody else does.
+
+*Even today, the iPhone will work way more flawlessly under deep stress (filled memory, many applications, etc) than any Android or Windows Phone. (yes, I've used them all and I currently own a S3)
+
+
+If you follow every link above deep enough, you may realize it's just not that simple. Even Android's TRIM support probably isn't the same TRIM as a notebook uses on its SSD.
+So, it doesn't matter if it supports TRIM or not. The whole point of going with an iPhone is trusting Apple and letting them do the hardcore tech work. And the whole point of jailbreaking is being able to do things Apple can't allow for any reason, such as unblocking carriers. Anything else on JB is doing it wrong (specially now we have android, even for iPhone) - and I'm saying that from my heavy experience using jailbreak from iPhone 3 to 4.
+Now, to address your main and unannounced question, best thing you can do to test if your hardware is malfunctioning is to backup your iPhone and reset to factory. Then fill it up with music or pictures, since you suspect a full disk is causing the malfunctioning, and avoid installing  applications at all. You probably won't see any problem and, if you do, just send it to warranty. You can also send it to warranty directly, but you risk of it coming back and just losing few days there.
+
+A: It is not a question that can be answered with yes or no as it depends on both which kind of iPhone (model) and version of iOS, you're interested in.
+In general I can say that TRIM is not used, simply because TRIM is a specific command found in the SATA protocol. As no iPhone uses a SATA storage interface, they cannot ofcourse implement TRIM.
+The disk on the iPhone is actually a NAND flash directly soldered to the PCB in the phone. This means that there's no SATA-connector or PCIe connector or similar. However the actual electrical and logical protocols used for transferring data differs depending on model and iOS versions.
+NAND flash chips work differently than an old fashioned hard drive. In order for the kernel and application software on an iPhone to treat them as a linear space of "blocks" or "bytes" something needs to happen.
+On iOS 1 and 2 this was done through a flash translation layer called VFL. On iOS 3 and 4.0 Apple switched to using YaFTL and VSFL. On iOS 4.1 and later, they changed again to PPNFTL for those phones that had physical hardware with PPN (Perfect Page New NAND flash). Only on the PPN hardware is there are an actual controller inside the NAND flash. However most of the flash translation work actually still takes place in software.
+In addition to handling the conversion between actual "flash realities" and the "linear space of blocks" logical view, the FTL is also responsible for doing wear-levelling. The functionality you know as TRIM is actually deeply rooted in the wear-levelling system.
+The short answer is that the use of a "TRIM-like" functionality is very much dependent on your actual iPhone hardware model, the iOS version used and on whether or not Apple has actually decided to use the functionality. It is however clear that Apple designed the NAND layouts and flash translation layers to actually support a TRIM-like functionality, and they did this many years ago. So it would make sense that it is also being used. However it is not documented publicly whether or not Apple actually uses this TRIM-like functionality in practice.
+You can read more about the layouts and flash translations layers in iOS/iPhone here:
+http://esec-lab.sogeti.com/posts/2012/06/28/low-level-ios-forensics.html

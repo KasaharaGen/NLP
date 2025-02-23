@@ -1,0 +1,73 @@
+Q: Can I set custom album artwork that isn't included in one of the songs? I have a couple of albums in iTunes that are "Various Artists" compilations, and the kicker is that each song has it's own artwork.
+Is it possible to add album artwork only to the "album", and not to any individual song, so that I'd see the logo for the game/album on the main iTunes/iOS album view, instead of the first song of the album's art?
+
+A: Yes, you can do this a few different ways depending on whether you want to preserve the current artwork or are OK overwriting it.
+Way 1 — Simple if you are OK overwriting the current artwork.
+
+
+*
+
+*Select all of the songs you would like to share the same album artwork.
+
+*Type Command-I.
+
+*You may see a dialog asking "Are you sure you want to edit information for multiple items?" if so click, "Yes" to continue.
+
+*You will see a editor like this: 
+
+*Drag the image you want as the album artwork for these songs onto the well labeled Artwork.
+
+*Click OK and you're done.
+
+
+Way 2 — If you want to preserve the current artwork.
+iTunes allows songs to have multiple artwork files associated with them. It displays the first artwork file as the album art for a particular song. Here's the slightly more painful way you could add your artwork to these songs.
+
+
+*
+
+*In the main iTunes window make sure that you have the small album art window displayed in the lower left. You can toggle it's visibility by clicking the icon near the bottom left that looks like this: 
+
+*Select the songs you want to add art to.
+
+*Drag your new art onto the cover in the lower left. 
+
+*Your art has been appended to the end of the stack of images associated with this file.
+
+*Now the annoying part: you have to open the info panel for each file by selecting it and hitting Command-I.
+
+*For each file move the new image to the top of the stack to make it the default album image and click OK. 
+
+*Once you complete step 5&6 for each file you're done.
+
+
+A: As far as I know, iTunes always have to take the album cover from one of the songs in the album, so making a dummy "song" just for the album cover (as explained in this answer seems to be the only way.
+I noticed some quirks however:
+
+
+*
+
+*While iTunes for Windows takes the album cover from track number 1, iOS takes the album cover from the first song in the album to be transferred onto the device. 
+
+*Because I only care about playing the album on iOS, I only wrote the same album and album artist into the dummy "song", and transferred it first onto the iDevice, before transferring the real album contents.
+
+*I tried deleting the dummy "song" afterwards, but that made the album cover turn into that of one of the songs again. So the dummy "song" cannot be deleted.
+
+
+PS: I only tested on iTunes for Windows 12.6.5 and iOS 10.3.3. Results may differ on other platforms and versions.
+
+A: I came up with a workaround by adding a blank audio file to the beginning of my album with the cover art that I want displayed as the album cover but preserving each individual songs album art.
+
+
+*
+
+*Find a blank audio file.  I used this one https://github.com/anars/blank-audio/blob/master/500-milliseconds-of-silence.mp3
+
+*Add the file to iTunes
+
+*Change the blank audio's cover art with the album cover that you want.  In the metadata set song: Album Cover, album: same name as your compilation, track: 1
+
+*Select all the files to be a compilation.  If the album is all ready organized into a compilation unset compilation for all the songs and then change it back with the blank file included.  As long as the blank file is the first in order iTunes should use it's album art as the cover album art.
+
+
+You may be able to delete the empty audio file after this.

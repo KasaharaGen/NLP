@@ -1,0 +1,12 @@
+Q: How can I insert text in middle of a document and have images move down too? I have a document with text and floating images. Let's say I want to insert some text in the middle of the document. If i click in the document and hit enter a bunch of times, I want the existing text and images to slide down so I can put my new content there, but only the text moves down and the images don't. 
+How can I make it so everything would slide down when I press enter.
+
+A: You could use inline objects that cause text to be wrapped:
+
+
+A: You can have text alongside the images by choosing "Object Causes Wrap" and then selecting one of the left three options. I don't know how the default is chosen, but it sometimes chooses one of the right two options, both of which keep it clear on either side of an object.
+You can also move floating objects in a long document by using Section Breaks (under the insert menu). These act like page breaks, but keep text and floating images together within a section, so a change on page one only affects images in that section. It is not perfect, but it is better than the alternative.
+If you really want to control things, bite the bullet and use Page Layout mode when you create a new document. You can set up linked text boxes where text rows around images that are fixed to a page.
+
+A: It's because you have floating images.
+If you select them and press the inline button in the toolbar, they will also move down when you insert content on above them.

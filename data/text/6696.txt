@@ -1,0 +1,17 @@
+Q: Can you send push message only for selected users? I'm an absolute newbie in Apple development, and I just want to know something special:
+Is it possible to send a push message not for all downloaders of the app, but some selected users?
+I thought about two possibilities
+
+
+*
+
+*send apple the push message command just for some selected devices
+
+*decide in the app wether to show the push or not
+
+
+If this is not possible at all, I do not have to keep on developing.
+
+A: I don't have an exact "developer" answer, but from the usage of app like Facebook or Twitter, it is definitively possible to send a push notification to selected user.
+Since the main goal of push notification is saving battery, I'd say deciding in the app if a notification is shown or not is not the smartest way, since you'll have to send the data to the phone.
+I would say that (and that's where I don't have hard facts) Apple keeps an unique ID for every iPhone that you can use on your server as well so that you'll only have to send to Apple to which phone you want to send the notification to.

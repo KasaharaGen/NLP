@@ -1,0 +1,10 @@
+Q: Can Time Machine volumes be easily encrypted with FileVault 2? Now that File Vault 2 can encrypt the entire disk and encrypt external drives, can I have a fully encrypted Time Machine volume?
+
+A: According to the Lion features page, encrypted backups are supported.
+
+A: Daniel Jalkut's blog today has a post that may be what you're looking for.
+http://www.red-sweater.com/blog/1935/lions-whole-disk-encryption
+Apparently, this:
+% diskutil cs convert /Volumes/Data -passphrase [yourPasswordHere]
+
+I haven't tried this yet, I just got Lion installed about an hour ago. Any destruction of your system is on your own head.

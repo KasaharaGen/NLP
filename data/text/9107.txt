@@ -1,0 +1,28 @@
+Q: Cant see MacBook in Windows Network I'm trying to access my MacBook from a Windows PC over the network. The computer is connected to the router, the MacBook is connected to a WAP, which is connected to a switch, which is connected to the router.
+When I click on Network on the PC, the MacBook doesn't show up. It has done previously. Sometimes the Windows computer shows in the Finder sidebar and sometimes it doesn't.
+How can I make the MacBook show in Network [Places] on the Windows machine? And how do I make the Windows machine stay in the Finder sidebar?
+
+A: In my experience there is no quickfix way to get windows and mac machines to always be visible in the others networks list. 
+The best thing you can do is enable Samba filesharing on your mac, then when you want to connect you just type smb://Jonathan's MacBook Pro into the address bar in Explorer (or into the run dialogue).
+To Enable SMB sharing on your Mac:
+
+
+*
+
+*Go to System Preferences > Sharing > File Sharing
+
+*Select Options 
+
+*Tick Share files and folders using SMB (Windows)
+This has always worked for me with networking windows machines in Mac environments. 
+
+A: Another issue is you might not be in the same workgroup. To fix this go to 
+System Preferences -> Network -> Advanced -> WINS:
+Make sure his Windows box is set the same. What OrangeBox suggested must be done as well.
+
+
+A: I was able to resolve the issue by copying the name given in the NetBIOS Name field in the answer given by rubixibuc and pasting it into a run dialog, typing \\ and then the NetBIOS Name (so in rubixibuc's example the full path would be \\MACBOOKPRO-D04A)
+To open the Run dialog, simply type +R
+
+
+A: Try changing the workgroup name from the iMac and windows PC. I have same problem and after I change the workgroup name it work. Try to ping your iMac check if the connectivity is good. Start - run - cmd - ping and the IP address of your Mac. 

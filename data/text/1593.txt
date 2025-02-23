@@ -1,0 +1,69 @@
+Q: Attaching 3.5" desktop drive to MacBook SATA I have a mid-2007 MacBook that, according to the Apple Store, has suffered some liquid damage and requires a new logic board to operate correctly, a ~$750 repair I've been told (would normally be around ~$300 were it not for the "liquid damage"). The unit itself works fine - the only problem I've been having is that the system does not recognize the battery and will not charge it. Curiously, the system can still be powered by the battery and even recognizes when the power cord is detached by diming the backlight, but I digress.
+Now that this laptop will likely become a desktop, I'm wondering if it might be possible to attach a desktop drive. I recently purchased a 2TB SATA drive and I'm wondering if it's possible to somehow attach it where the current internal drive connects. Obviously the drive itself will not fit inside the device, but as the unit will spend the rest of its days on my desk, that's not really much of an issue.
+My main questions are:
+
+
+*
+
+*Is this possible?
+
+*If so, how would I connect the drive? Would a SATA extender cable work?
+
+*Is the SATA port on my MacBook capable of powering a desktop drive? Or should I just get a SATA male-to-female cable and see if I can power the drive through other means (a cheap power supply, for example)
+
+
+The disk I'm referring to is the Hitachi Deskstar HD32000. Though I couldn't find that exact model on Hitachi's support site, these are the power requirements for a similar drive, the 7K2000 (2TB, 7200RPM, SATA II):
+
+Power
+Requirement +5 VDC (+/-5%) +12 VDC (+/-10%)
+Startup current (A, max.) 1.2 (+5V), 2.0 (+12V)
+Idle (W) 7.5
+
+From what I've read, 2.5" drives require 5V, meaning that my MacBook obviously is capable of producing it. The specs seem to suggest that this drive seems capable of accepting it instead of the typical 12V - is this an accurate interpretation of the power requirements? Or does it need both 12V and 5V?
+
+A: Just an update - I've successfully connected my 2TB HD to my MacBook's internal SATA data connector. If anyone's interested in doing this themselves, you'll need:
+
+
+*
+
+*external enclosure with eSATA to power the drive (I'm using a NexStar CX with eSata):
+
+
+
+
+
+*
+
+*an eSATA to female SATA cable (I got mine from http://satacables.com, see "eSATA DATA Cable Extension Male to Female" near the bottom of the page):
+
+
+
+
+
+*
+
+*You'll need to cut those plastic tabs off the SATA portion of the cable, leaving only the section with the pins - otherwise, the cable won't fit in the port.
+
+*Follow iFixit's steps for removing the keyboard section of the MacBook 
+
+*Remove the hard drive, connect cable. Since we had to remove the tabs on the cable in order to make the connection, the cable does not latch in place. I recomment taping the table to the bottom of the case where the hard drive was:
+
+
+*Reverse the disassembly steps to put the computer back together, with the exception of the memory cover and the battery. The cable should now poke out of the hole where the battery used to be.
+
+*Install the hard drive in the external enclosure, connect the eSATA and power cables, and enjoy.
+
+
+A: 1) Yes
+2) You have a couple options. You can use an external device such as this that will connect through USB, or you could connect the external SATA drive to the onboard SATA port. You would probably still need an external power source, but I can't find any links to back up that statement. (#3)
+Good luck!
+
+A: I've never done this but one thread I found has some ups and downs with some anecdotal evidence of frying a drive this way. I suppose looking into an external power supply would be best.
+
+A: FireWire 800 would be faster than USB, so I'd look into getting a FW800 enclosure. If it's a Pro model, you could use an expresscard esata adapter (I think the mid-2007's had those).
+Look at OWC's mercury elite external cases. They're expensive, but blazingly fast.. and they look cool. :)
+(EDIT: Whoops, did the mid-2007 macbooks have firewire 800? If not, my bad...)
+
+A: Okay, I've done a bit of looking on this one, because it got me interested.
+It seems the connector for the sata HD is not really a cable but more of a port that the HD slides into(1). This makes me think your idea of a female to male adapter is a good one. However, I'd still grab an eSATA case, and get something like an eSATA to SATA Type (“I”) to Type (“L”) Shielded External Data Cable with a female->male sata cable for between that and the one inside the lappy. I wouldn't use the laptop's sata power lead to run a full size drive, and this would mean one instead of two cables coming out of the lappy. Make sure to tape it down well so an accidental yank won't pull it out.
+Check that ifixit guide, they have really useful information if you didn't know about them.

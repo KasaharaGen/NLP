@@ -1,0 +1,19 @@
+Q: Ping command on iPad Is there some way by which a ping command or somewhat similar can be run on iPad ?
+I am trying to do this as my wifi connection dies out if there is idle time even for a few mins though it works with continuous ping on desktop browsers.
+So i want to simulate the same ping thing on iPad..
+
+A: Ouch - do realize that you will be working against two factors.
+
+
+*
+
+*If the ping app is in the foreground - it's a easy project.
+
+*For it to run in the background (where it will do you any good) it has to play by the background task API - all of which are designed to prevent the usage of the CPU and preventing the WiFi from dropping. Even if it worked a while, it would be a bug and likely to break every time Apple updates it's OS.
+
+
+Your battery life will be horrible - but that's your call since your network interruption might be more pain than a ten hour runtime. I have a solution that will work out of the box.
+Get yourself a mapping app like Runmeter. It can be configured to upload a map to the internet every 5 minutes. It can also monitor a twitter stream, so you could set up a bot account to push updates more rapidly if the mapping alone didn't keep your iPad from detecting the WiFi as idle.
+
+A: I just tried Network Ping Lite which worked well:
+https://itunes.apple.com/us/app/network-ping-lite/id289967115?mt=8

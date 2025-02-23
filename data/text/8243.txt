@@ -1,0 +1,8 @@
+Q: Help with kernel boot message I recently turned on my iMac (White intel) to find it wouldn't boot.
+Running the boot in verbose mode I get the following message:
+
+Does anyone know what this means? Is it a hard disk error?
+
+A: The message is coming from EFI (the firmware boot loader) telling you that the kernel (/mach_kernel) cannot be booted. This message is usually output if the kernel file was not found, or if it prematurely exited and got back to EFI. It could be, for example, because you rm'ed the /mach_kernel file.
+There actually is a way to fix this without reinstalling the system: If you can boot from a bootable disk with rEFIt and drop into an EFI shell, you might be able to copy over a good kernel (assuming you have one in the disk). Honestly, unless you prepare for these contingencies (i.e. have an alternate EFI boot), you are better off reinstalling/recovering (in Lion).
+Another idea which springs to mind - if you can attach a hard drive which has OS X on it, press ALT when the system loads (before the nasty message) - this gets you the option to boot from the secondary drive. Then, you can copy over /mach_kernel.

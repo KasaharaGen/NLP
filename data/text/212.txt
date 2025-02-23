@@ -1,0 +1,6 @@
+Q: Quicksilver goes straight to text-entry mode On my old-ish MacBook Pro (pre-unibody), Quicksilver has been misbehaving for quite some time. I fire the keyboard command to launch it (I like command-space, replacing Spotlight), and it comes up in text-entry mode rather than selection mode. I can hit escape and QS closes, but nothing I can do makes it come up prepared to navigate the objects it knows about.
+It used to work just great. But it's a waste of cycles right now because it's completely unable to function as what it does.
+I've re-launched it, I've deleted and re-installed it. Nothing seems to help.
+
+A: If I recall, there's a QS trigger called something like "Command Window In Text Mode."  Go to Quicksilver>Triggers>Quicksilver, I think, and look at what triggers are enabled.
+Another possibility is that you have the "Spacebar Behavior" set to "Switch to text mode" in Quicksilver>Preferences>Command, and this is getting triggered when you use cmd-space.  It shouldn't matter, but it's worth a look.

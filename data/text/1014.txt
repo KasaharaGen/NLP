@@ -1,0 +1,15 @@
+Q: In OS X is it possible to specify which network connection an app uses? My ethernet connects to the LAN, my airport connects to a different network (it's another mac sharing a VPN connection). I want all apps except the iPhone Simulator to connect via the LAN. 
+Is this possible?
+
+A: The main way you would have to go about this is probably using ipfw command line, although I really don't have much experience with it. You could make custom routing rules to do what you need to do.
+Some other options:
+
+
+*
+
+*If the app was trying to use something specificially on that network, it should route that way. As in, if you local network is 192.168.x.x, and your remote is 10.0.x.x, if you try to access something on 10.0.x.x, it should route that way.
+
+*Another idea that comes to mind (Which really just jumps around the problem) would be to have an applescript that changed the order of interfaces when you needed it. Your mac should be using whatever is at the top of the list as its primary network in preferences. If you drag airport up, it would use that as the main network. Maybe scripting this would be easy to do and a quick change when you need to test something in simulator. 
+
+A: You might want to try Little Snitch.
+I'm not sure it has this feature since I haven't used it in a while, but it's worth the try.

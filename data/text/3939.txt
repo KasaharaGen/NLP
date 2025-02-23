@@ -1,0 +1,27 @@
+Q: How can I keep my Macbook Pro cool and avoid fan noise? I use my MacBook pro for audio recording. With the summer coming up, the fans tend to come on more often, which can be a problem. Recording audio is fairly processor-intensive (especially when using plug-ins for monitoring), making this problem worse. This was actually less of an issue with my iMac G5 than it is with the Macbook Pro that's replacing it. 
+The obvious solution is to record in an air-conditioned room with good ventilation. However, that's not always possible. 
+It would at least be nice if I had some warning so this doesn't happen without warning in the middle of a take. How would I monitor this situation? Do the fans come on when the temperature gets to a certain point? Is it strictly related to CPU and hard drive load? Is it possible for me to install something that will let me know how long I have until the fan noise starts? 
+
+I'm using a Macbook Pro 13" 2.3 GHz Intel Core i5, with conventional hard drives (i.e., not SSDs), 8MB RAM, OSX 10.6.7
+
+A: Fan speeds are related to the temperature of your laptop.  If you're just interested in monitoring the temps, iStat Menus ($16) has an excellent temperature monitor that sits in your menu bar and can track any of the dozen temperature sensors built into your MBP.
+
+There are a few apps which purport to allow you to control your Apple laptop fan speeds.
+EDIT: Updated Aug 2018
+
+
+*
+
+*Macs Fan Control -- $15, last updated Mar 2018
+
+*smcFanControl -- Free, last updated Oct 2016, many users report that they can set fan speeds high, but not low
+
+
+I've found that the best solution to keeping my computer cool and the fans off, even when really tasking the processor, is to put it on a little stand to allow plenty of airflow underneath.  The one I swear by is a Podium Pad from 2004 which was discontinued long ago -- but there are many alternatives.  If you keep your laptop on your lap, almost any simple lap desk can help a lot, keeping the computer on a firm surface to let the fans do their work without smothering them with fabric/skin.  There are also active cooling pads with fans in them, some of which are very well-reviewed.
+Finally, I'm not sure what you're recording, but you could try using a directional USB microphone to eliminate extraneous noise from your recording environment.  There are many excellent options on Amazon for under $100 (be sure it is Mac-compatible before purchasing).
+
+A: I used to have that problem and a mix of a good laptop stand (I use a Griffin elevator stand to make sure it's not sitting directly on a heat-retaining desk) and keep an eye on iStat. 
+If you can access those stats somehow, you might be able to create your own script to pop a silent notification (Growl or otherwise) when it hits a certain temperature at which the fans are likely to launch into rocket-takeoff mode?
+
+A: Use Ice.
+If you don't know what I mean, watch this: https://www.youtube.com/watch?v=9VblFBTDw8U

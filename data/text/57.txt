@@ -1,0 +1,323 @@
+Q: Is there a free, lightweight text editor that isn't text-only but also isn't a heavyweight IDE? I'm not really satisfied with the text-editors available for Mac OS X.
+I tried TextWrangler, Smultron, Coda, SubEthaEdit, TextMate and others I do not remember. But none of the above satisfied my needs.
+I want a (free) text editor
+
+
+*
+
+*which is fast,
+
+*which does syntax highlighting
+
+*were I can define own syntaxes (or there are many plugins e.g. for YAML),
+
+*where the developers are active,
+
+*which does not have the look & feeling of TextWrangler (I hate the sliding sidebar) but or a real Mac-application
+
+*which can define projects (like Coda can)
+
+*which includes a basic support for Git and/or SVN
+
+*which supports a fast autocompletion
+
+*Mac OS X 10.6 compatible
+
+
+In plain English: the perfect lightweight text editor which is not yet a heavyweight IDE.
+
+A: Try Editra It's do lots of you want but not all of them, it's similar to notepad++ in windows.
+
+A: I can't vouch for it personally, but RedCar looks pretty promising. It supports TextMate bundles and runs on Mac, Linux & Windows. It doesn't support your entire feature list, I don't believe it has integrated source-control or project support (other than folders).
+
+
+A: You need Notepad++ running under wine! or winebottler!
+
+A: One trend I noticed this year is Mac programmers and web developers moving away from Textmate and the like to MacVim, including Ryan Singer of 37signals, who rocked MacVim during his Future of Web Applications talk recently.
+Lots of people have written about why they switched; "Coming Home to Vim" is my favorite. 
+
+A: What's wrong with BBEdit, other than you might have to pay for it?
+
+A: You might try KomodoEdit.
+
+I want a (free) text editor
+
+Free and free (under the Mozilla Public License).
+
+  
+*
+  
+*which is fast,
+  
+
+Reasonably fast
+
+  
+*
+  
+*which does syntax highlighting
+  
+
+Check
+
+  
+*
+  
+*were I can define own syntaxes (or there are many plugins e.g. for YAML),
+  
+
+There are lots of plugins; I'm sure it is possible to create your own syntax highlighter
+
+  
+*
+  
+*where the developers are active,
+  
+
+I believe so.
+
+  
+*
+  
+*which does not have the look & feeling of TextWrangler (I hate the sliding sidebar) but or a real Mac-application
+  
+
+I'm afraid it is not a Cocoa application; it is built off of Firefox's UI system.
+
+  
+*
+  
+*which can define projects (like Coda can)
+  
+
+Yep.
+
+  
+*
+  
+*which includes a basic support for Git and/or SVN
+  
+
+It looks like there may be some built-in Git support.  Here's a git plugin.
+It looks like support for SVN is built-in.
+Edit: Those features appear to require Komodo IDE, instead of Komodo Edit.  Komodo IDE is a for-pay upgrade.  You might find "Home-baked SVN support for Komodo Edit" to be interesting.
+
+  
+*
+  
+*which supports a fast autocompletion
+  
+
+It has autocompletion; you'll have to try it to see if it is fast enough for you.
+
+  
+*
+  
+*Mac OS X 10.6 compatible
+  
+
+Yes.
+
+A: There is a new editor on the block called Chocolat. I've been using it for a week now and really like it. It has a lot of the features of TextMate (as well as supporting TextMate bundles) but I've found it to work a lot better with large sets of files especially over the network.
+
+A: I'm partial to Coda these days, but came across this the other day when I was looking for something else.  I haven't tried it, so not sure if it meets all your needs. It's free, but only because it's not being developed anymore. 
+http://www.web-scripter.com/
+
+A: There's a new text editor called Kod that is modern, fast, and support projects. 
+A warning -- development on Kod is just starting, so things are a bit unstable. It's alpha-level software at version 0.0.3, although I think it will eventually turn into just the application you're looking for.
+Features:
+
+
+*
+
+*Written from the ground up for 10.6 using Grand Central Dispatch and other new things
+
+*Uses GNU Syntax Highlighting format so there's highlighting support for every language
+
+*Modern UI with Chromium tabs
+
+*Scriptable using node.js
+
+
+A: Atom by GitHub is a free and powerful text editor and IDE build with programmers in mind. At the same time, it also doesn't give the impression of being a heavy-weight IDE.
+Visual Studio Code is another similar offering from Microsoft.
+
+A: Have you considered Xcode?
+I know you said you don't like TextMate, but it's one that meet pretty much all your needs.
+
+which is fast  
+
+TextMate
+Really fast    
+Xcode
+Not that fast but not Eclipse/Netbeans-slow
+
+which does syntax highlighting
+
+TextMate
+Very complete and extensible  
+Xcode
+Does syntax highlighting, it depends on your needs  
+
+were I can define own syntaxes (or there are many plugins e.g. for YAML),
+
+TextMate
+Very, very extensible  
+Xcode
+Syntax extensions are possible 
+
+where the developers are active,  
+
+TextMate
+Some say it's vaporware, yet very few other text editor can compete with its current features
+Xcode
+Apple development of this program is very active
+
+which does not have the look & feeling of TextWrangler  
+
+TextMate
+If you don't like the sliding bar, there's a plugin to replace it by a drawer
+Xcode
+Doesn't have a sliding bar  
+
+which can define projects (like Coda can)  
+
+TextMate  / Xcode
+Do projects
+
+which includes a basic support for Git and/or SVN  
+
+TextMate
+Support for Git/SVN/Mercurial (and probaby more) via built-in and added plugins
+Xcode
+SVN support for 3.x, added Git in Xcode 4
+
+which supports a fast autocompletion  
+
+TextMate
+Basic variable/function completion
+very complete code completion via bundles  
+Xcode
+Basic variable/function completion
+
+MacOS X 10.6 compatible  
+
+TextMate
+Some compatibility issue
+Xcode
+Fully compatible
+
+A: Have you tried any of the Eclipse variants? I'm not a huge Eclipse fan, but the Aptana version of Eclipse (which is geared primarily towards front-end web developers) seems to satisfy all of your requirements above and may be worth a peek.
+http://aptana.com
+
+A: Your best bet in 2018 for free and active and extensible editors that are not heavy IDE are:
+
+
+*
+
+*https://code.visualstudio.com/
+
+*http://barebones.com/products/bbedit/
+
+*https://developer.apple.com/xcode/
+All are very fast on SSD modern Mac, even the MacBook (One) with a mobile CPU with minimum cores and clock rate. All are free, actively developed, extensible, support code control and completion and are extensible, scriptable and can be added to for many languages and syntax. 
+
+A: There is also Brackets, to consider. Written in Javascript, currently developed by Adobe as a "community guided, open source project", focuses on web development but can also be used as a generic text editor, has a solid API to extend it and a growing number of extension already available.
+
+A: I would say that MacVim but it's of course a more complicated tool based on the traditional unix vim text-editor with a steep learning curve.
+By the way, which aspect of TextMate didn't appeal you?
+
+A: Sublime Text 2
+Support for TextMate snippets, languages and color schemes.
+Split view, tabbing, projects, commands. Full-screen on Lion and a "focused" mode.
+Extensible, too.
+Very fast, great multiple selection mode and cross-platform.
+Currently priced at $59, but a free version is available with occasional alerts.
+It also has a rapidly-growing plugin API and surrounding community.
+
+Check it out, it's freaking awesome.
+Update: Sublime Text 2 is now superseded by Sublime Text 3 which features various enhancement and performance improvements.
+
+A: I think that Aquamacs might do the trick!
+
+A: You're not going to find it.
+
+  
+*
+  
+*which is fast,
+  
+
+TexMate is pretty fast. TextWrangler is faster for large files though.
+
+  
+*
+  
+*which does syntax highlighting
+  
+
+Most (if not all) have syntax highlighting.
+
+  
+*
+  
+*were I can define own syntaxes (or there are many plugins e.g. for YAML),
+  
+
+You might or might not get this.
+
+  
+*
+  
+*where the developers are active,
+  
+
+Best of luck with that.
+
+  
+*
+  
+*which does not have the look & feeling of TextWrangler (I hate the sliding sidebar) but or a real Mac-application
+  
+
+What's wrong with the sidebar? 
+
+  
+*
+  
+*which can define projects (like Coda can)
+  
+
+Define projects as folders and you're all set.
+
+  
+*
+  
+*which includes a basic support for Git and/or SVN
+  
+
+UNIX philosophy is to do one thing and do it well. Integrated support for an SCM is not something easily found. Perhaps you should use an external tool?
+
+  
+*
+  
+*which supports a fast autocompletion
+  
+
+As far as I know, only a few major IDE's support this. 
+You're not going to find what you're looking for free. Any IDE will feel slow as mud compared to a text editor like TM or TW. 
+If you want my honest opinion, try TextMate. Bundles will allow you to replicate some of the behavior you're looking for, the rest you can hope is in 2.0. 
+
+A: Check out Fraise, the successor to Smultron.  It meets many of your requirements.  Here are the ones that are not met:
+
+*
+
+*where the developers are active: Fraise looks like it's now dying like its predecessor
+
+*which includes a basic support for Git and/or SVN: not sure what you mean by this, but Fraise has command line integration
+
+*which supports a fast autocompletion: not positive but I don't think it has autocompletion... but it has commands and text snippets
+
+Everything else you mention is in there.
+on edit:
+I was a notepad++ guy for years doing windows dev work and over the last couple months I've slowly transitioned over to vim.  It does every single thing you're asking for and more.

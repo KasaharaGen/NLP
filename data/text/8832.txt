@@ -1,0 +1,18 @@
+Q: Why is my computer name new-host-2.home on the network? I configured my computer name to "Macbook of Matthieu" in the network sharing preferences.
+However, this name end up being used: new-host-2.home, how can I change that?
+
+A: The ".home" domain sounds like it might be something your router is providing. Check your router's settings for a DNS server configuration. If you want to use the Bonjour/mDNS ".local" names, then turn off the router's DNS server, or tell it to act only as a proxy for your ISP's DNS service.
+Unfortunately, the specifics of these settings, and even how they are named, vary widely across routers. You will have to look up instructions for your specific router model.
+
+A: Go to System Preferences, then the Sharing Pane. You can change the name of the computer there. 
+This sometimes happens when a new computer replaces an old one, or a new version of an OS is installed.
+Hope this helps.
+
+A: If you are looking at the shared Mac from a Windows machine, the discovery is done through Microsoft Network, which uses NetBIOS layer to get the name of the hosts. http://en.wikipedia.org/wiki/NetBIOS
+The NetBIOS name is set up in OS X from the Network Properties panel, as shown in the image bellow.
+If, you are having issues with the name seen under OS X, than you might have a synchronisation name problem, as described in the topic bellow:
+Why does my iMac have one name under sharing, but then say 'new-host3.home' as well?
+
+A: If your able to find the mac then you wil see its your own the answer you find her: whatismyipaddress.com/ipv4-parts
+As you see the mac's are al the same as one of my pc's
+You can copy past it in macvendor to find whitch pc

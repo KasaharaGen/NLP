@@ -1,0 +1,46 @@
+Q: Can I install Windows 7 on iPad 2? I want to use Windows 7 on my iPad 2. Could this be done in a general case? 
+If it can not be installed, please let me know how I might get as close to having windows running on the iPad as I can get. 
+
+A: 
+Can I install Windows 7 on iPad 2?
+
+No.  Windows requires and runs on x86 architecture processors, while the iPad 2 has an ARM architecture processor.
+Windows 8 does have an ARM option, and so does Android, so there is a small possibility in the distant future that someone will do the (significant!) work necessary to bring those systems to this hardware.
+But windows 7 cannot be installed on the iPad 2, due primarily to the differences in CPU architecture.
+
+I want to use Windows 7 on my iPad 2. Could it be done? 
+
+Yes, in a way.  Typically what people do is they run windows on an network connected computer, then run a remote control app on the iPad.  Windows 7 Professional comes with RDP, a remote desktop protocal which allows one to control the computer as if they were at the keyboard in front of the computer.  They run an RDP client on the destination - in this case the iPad 2 - and can use the computer on the iPad 2.
+This only works if you are on the same network, or if you're both connected to the internet and you have the network configuration set up correctly.
+VNC is another popular protocol for which there are free servers and clients that would also allow you to use Windows 7 on your iPad 2 even though it's really running on another machine remotely.
+If you ask a new question and give details as to how you want to use windows, how your network is currently set up, and details about the machine that's running windows, we can probably give you more detail as to the steps you would take to do this.
+If you want to spend a little more money for a solution that just works without fiddling with configuring the computer, the iPad, or your network, then do a google search for "go to my pc" and you'll find several companies providing this service that take care of all the details for a low cost.
+
+A: Other answers have addressed the problem with trying to run Windows 7 on an iPad, so instead, I will offer another workaround.
+If you are looking for a way to run Windows 7 apps such as Microsoft Office on the iPad, one of the easiest non-VNC workarounds is to use OnLive. It connects over the Internet to one of OnLive's servers running Windows 7 and let's you use it as though it was installed on your iPad.
+
+Here's a great article about OnLive from the New York Times: Windows on the iPad, and Speedy. They also mention how eventually it will let you run any application you want:
+
+For example, the company intends to develop a third service, called OnLive Pro ($10 a month), that will let you run any Windows programs you want. Photoshop, Firefox, Autodesk, games — whatever.
+
+
+A: It cannot be installed on the iPad 2. The processor in the iPad is an ARM processor and Windows (up to and including Windows 7) can only run on x86 processors, such as those from Intel and AMD. (There are other reasons that running Windows would be impossible, but this is the most important reason.)
+
+A: The closest would be to use a VNC program to use Windows that you have running on a different computer. This is easiest on a home network, but can also be achieved using cellular data but will use LOTS of data. VNC basically lets you take control of a different computer and shows that computer's screen on your device.
+A couple you could try out are:
+
+
+*
+
+*iTap VNC
+
+*Screens
+
+*Remoter
+Just search for them on the App Store.
+
+A: Another option is not actually installing Windows on your iPad, but rather jailbreaking it and installing Dreamboard and using a theme such as Vistapad. There are several other themes out there that have the Windows UI, just search in Cydia.
+
+A: I don't know why you want to do this, but you can check this link about installing a jailbreak app that pretends to be Windows.
+
+A: You can’t  run Windows 7 on an  iPad 2, but you can remotely control a windows PC from iPad. Download Splashtop Remote Desktop on your iPad 2. Then visit the Splashtop website and download its client server on a Windows PC. Now you can view your Windows desktop on your iPad whenever you want to use it remotely.

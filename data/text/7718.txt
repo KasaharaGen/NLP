@@ -1,0 +1,17 @@
+Q: View laptop hardware statistics How can I return the temperatures, fan speeds, etc, using Terminal?
+
+A: This website claims to have a free commandline tool to monitor temperature sensors.
+http://www.bresink.de/osx/0TemperatureMonitor/details.html
+
+tempmonitor command-line tool
+Temperature Monitor
+version for the BSD command-line of Mac OS X, temperature sensors only
+yes
+
+(Name of tool; part of package download; description; free of charge?)
+
+A: Here's a website with a script:
+http://hints.macworld.com/article.php?story=20051021115356696
+
+While hunting around in ioreg I found a bunch of hardware sensor readouts, including CPU and GPU temperatures. I had no idea this stuff was available without a compiled app, so I excitedly whipped up a bash script (tp v0.1) to display the values. 
+

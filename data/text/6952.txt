@@ -1,0 +1,9 @@
+Q: OS X assumes hostname of other network computer: how to prevent this? I just came across a strange quirck:
+I use my MacBook Pro in the office. Every computer is assigned their IP addresses by a DHCP server. It seems to be the case now, however, that my OS X changed my hostname by itself.
+I am assuming this is done because of the fact that my current IP address was previously used by the user with this hostname, but obviously, I don't want OS X to change my hostname without asking me to do so.
+How can I prevent this from happening?
+
+A: This issue has been going on for years, and there is no way to "fix" it on the Mac.
+What happens is the machine gets an address from DHCP, and then performs a reverse DNS lookup to see if there is a hostname associated with the IP in DNS.
+If you are on a Windows network, all of the Windows machines are automatically registered in DNS when they connect to the Domain.
+I went on and on with the techs at Apple about this... There is little that you can do at the level of your Mac.  It becomes an issue for your network administrator, and since there is nothing really wrong, he/she is likely to leave things as they are.

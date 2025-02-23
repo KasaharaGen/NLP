@@ -1,0 +1,10 @@
+Q: got rid of "others" but now I have more syncing problems A message appears stating that an error occurred while syncing, with the error number "(-54)". Then it says that I do not have "access privileges" to sync my iPhone and complete the process. All my contacts have been completely deleted. iTunes is not allowing me to restore my phone to a backup before installing iOS5 update.
+
+A: The -54 error is defined as follows : Software lock on file; Not a subscriber
+Is your computer Authorized ? iTunes -> Store -> Authorize this computer ?
+Otherwise you don't have the correct permissions to a file you are trying to use for the sync. Try running the following script to see if it helps. It will unlock all files in your ~/Music folder.
+tell application "Finder"
+set locked of every item of entire contents of folder "Music:iTunes" of home to false
+end tell
+
+Reference here

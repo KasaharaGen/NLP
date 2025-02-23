@@ -1,0 +1,19 @@
+Q: Xcode problem with directory permissions I'm trying XCode4. I created a new project, told XCode to put in my ~/develop/ directory, but then I immediately get asked:
+
+“Test project” is locked for editing and you may not be able to save your
+  changes. Do you want to unlock it?
+“Test project” is currently locked
+  because you do not own the parent
+  folder and have no write permissions
+  for it.  
+[Don't Unlock]     [Unlock]
+
+...which isn't true: my ~/develop/ folder is owned by me (staff group) and has drwxr-xr-x permissions. I write to it every day. XCode is running as my account.
+Is XCode right? What can I do to fix this? If I press “Don't Unlock” it seems to work fine.
+
+A: If you navigate to that folder from Finder, you can click Get Info and manage the permissions from the bottom of the window. You can navigate there by using the Go To Folder menu item in Finder or directly navigating their.
+
+A: Launch Finder and right click on your folder and go to Get Info. After this process you can change the permission.
+If you like Terminal for this job, this topic on StackOverflow will help you.
+
+A: After changing my home directory name Xcode gave the same warning on a project I was working on. The work around I used was to create a duplicate of the project.

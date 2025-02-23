@@ -1,0 +1,10 @@
+Q: How do I clone a dual-boot Macbook I have a Macbook Air set up for dual-boot (Lion & Windows 7) and am planning on buying a newer model. How would I go about cloning the entire hard drive to the new machine?
+Do I need to separately clone the Mac & Windows halves? Or is there a tool to move the whole thing verbatim?
+
+A: I would highly recommend Carbon Copy Cloner. I believe it copies invisible files.
+
+A: If you had any other Macs besides the MacBook Air, it would be trivial - put one Mac in Target Disk Mode, boot the other with the Installer disk, fire up the Terminal and dd from one disk to the other. If the new disk is larger, boot the new computer and either use diskutil resizeVolume to resize your OS X partition to take up the rest of the space, or create another partition in the free space (if the free space is not adjacent to the OS X partition).
+However, since you have two MacBook Airs, this gets considerably more tricky. The MacBook Air does not have a Firewire port, so it doesn't support Target Disk Mode. And you can't boot from the Installer disk (to bypass mounting the internal HD) because the new Air comes with a recovery partition instead.
+The only thing that could conceivably work is to buy or make an installer USB drive and use that to boot your new Air and use the restore USB that came with your old Air to boot that one, connect them to the same network (via USB to ethernet, if you have the adapters) then pipe the dd through nc. This will take a long time, especially over Wifi, but it's in theory possible.
+
+A: You can use SuperDuper!

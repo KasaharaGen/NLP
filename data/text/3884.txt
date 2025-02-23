@@ -1,0 +1,16 @@
+Q: Cursor navigation in Terminal I quite often find myself needing to move the cursor to the beginning or the end of the line.
+Is there a keyboard shortcut or other magic trick to move the cursor apart from the arrow keys. 
+
+A: ^ + A for the beginning of the line
+^ + E for the end of the line.
+Works with Cocoa control too.
+^ = Ctrl
+
+A: You can also hold down the alt key and click with your mouse wherever you want the cursor to jump to. 
+Note however, that this only works on the same line the cursor currently is on, so if you have a long command wrapping around two lines, you will have to jump to the beginning of the second line, jump one character back (so you´re on the end of the first line now) and then can use the alt+mouse to navigate again. 
+
+A: Meta + B is equivalent to ctrl+← in Windows, while 
+Meta + F is equivalent to ctrl+→
+by default the Meta key is the Escape, but that's configurable.
+
+A: You can use vi-style line movement and modal editing on the command line by adding set -o vi to your ~/.bash_profile.

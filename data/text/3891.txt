@@ -1,0 +1,32 @@
+Q: Quick OSX startup I am totally new to OSX so sorry for this beginners question.
+If I would like to reduce the startup time (from being completely without power to being able to use Safari) of a new (HDD only, no SSD) iMac as much as possible what do I need to do? Does using hibernation or something help ? What would that time approximately be? By how much could I improve this time if the iMac had an SSD?
+UPDATE:
+To make my question more clear, I need to cold start (be it from hibneration or some other nifty OSX thing that you could suggest) the Mac frequently because it is completely without power (unplugged) when not in use. I want to minimize that time as much as possible and would like know what average time I can achieve and with or without SSD. So I know whether it is worth getting a SSD.
+
+A: What you may want to look into is the hibernate mode that your mac uses. You should read the man page for 'pmset' for further details ('man pmset' from a terminal window) and be sure you understand what it means.
+By default on non-portable macs, the sleep mode keeps memory powered on while most of the machine sleeps. This way it only takes a couple of seconds to wake and sleep, BUT, you need to keep the machine powered.
+On portables, by default, in addition to keeping memory powered, it also saves a copy to disk, so that in the event of loss of power, the machine can resume from the disk copy, though this takes longer. In this mode the mac typically takes about 15 seconds to sleep, and about two to wake.
+There is another option - copy memory to disk, and then remove all power. This mode means that it'll probably take 10-15 seconds to 'sleep' and about the same to wake, but power can be removed completely once memory is copied. Setting this mode requires a terminal command:
+sudo pmset -a hibernatemode = 25
+Once this mode is set, you will be able to sleep your mac, remove power, reapply power and wake it up. The sleep and wake phases will probably take about 10 seconds. Depends on disk speed and the amount of memory installed and used.
+
+
+*
+
+*barry
+
+
+A: It will always depend on the individual situation -- hardware specs, startup programs, etc.  But when I swapped my 15" 2009 MacBook Pro's 250GB 5400rpm boot drive with a 120GB Intel SSD my boot time dropped from about 90 seconds to about 50 seconds -- just like that.  The difference in speed really was amazing, and worth every penny, in my opinion.
+To speed your bootup time in software, you should reduce as much as possible the number of programs that run on startup.  You can find some of these in System Preferences -> Accounts under the "Login Items" tab for each user.  Delete any entries that don't need to be there.  (If you're not sure what something does, it's best to leave it alone.)
+As someone new to Mac, this may be more advanced than you want to get into, but there are some other startup items run by "launchd" that won't appear in the System Preferences pane.  You can use the excellent app Lingon ($5) to view/edit these items.
+
+A: Apple Macs have an excellent sleep/hibernation system.  On my 2011 Macbook Pro, I just close the lid and the Mac goes instantly to sleep.  On an iMac there is a menu option or keypress to put the iMac to sleep instantly.
+To wake, on a laptop just open the lid, on an iMac press a keyboard key or move the mouse.
+The computer will startup almost instantaneously.  At most there will be a 2 or 3 second delay, particularly if you've put the computer to sleep with a lot of programs running.
+With the small amount of power these devices use during sleep, and the fact that they spin down the hard drives during sleep, it is definitely a more beneficial way to stop and start your Mac that powering it up and down each time you want to use it.
+
+A: Welcome to a mac. You will find that the longer you use a mac, the less you add customizations and system modifications that make the system less stable. 
+Over time the mac gets faster and faster so you only have to reboot once or twice a month. Just put it to sleep and you can easily reduce your cumulative startup time to 1/30 th of what you are used to by avoiding them as much as possible. 
+Do fire up activity monitor as over time memory will leak and you will have to log out and back in to clean up allocated ram and ocassionally reboot. 
+SSD generally make cold start times between 4 and 10 times as fast as a spinning hard drive. The more apps you start at launch, the more dramatic the startup difference. 
+Do read the man page for pmset to enable hibernation if you don't spring for a SSD - that will allow the machine to read the sleep image rather than fully bootstrap from nothing. 

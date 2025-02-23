@@ -1,0 +1,77 @@
+Q: After installing Lion my mac became super slow After installing Lion, my macbook pro became unbelievably slow.. what could be the reason?
+Safari sometimes freeze for 30 seconds (in particular when there's Flash content). When I open mail after long time, the interface takes a while before to load.
+Also Xcode and the simulator are slower.
+UPDATE
+So this how the system activity looks like when the mac slows down (even the dock bar is not responsive). I need to wait 2 minutes then everything starts to work again as before.
+http://cl.ly/9ccS
+http://cl.ly/9atU
+http://cl.ly/9cFk
+
+A: Activity monitor is your friend in this case. Check CPU/RAM usage and look for apps/services using a lot of resources, also check how your hard disk is doing in terms of throughput.
+I've seen machine's hard disks slow down or just fail after an OS upgrade/install. It's a pretty disk intensive operation and can finish off older disks that were on their way out. Consider that as a possibility - perform a backup as soon as possible if you don't already have a recent one.
+
+A: I have had the same problems after upgrading to Lion on my 2010 iMac, have tried repairing disk permissions which did seem to help. This article on how to Speed up Lion: recommends trying the following:
+
+
+*
+
+*Clean installation.
+
+*Check and repair Disk permissions.
+
+*Check your running processes to identify whats consuming your system
+resources
+
+*Check your Apps are compatible with Lion
+
+*Try disabling Browser extensions. Free up Disk space if under 10%
+left free.
+
+*Disk speed has a significant impact on the speed of Lion if you have
+an older 5400 hard disk it may be time to upgrade or consider an
+SSD.
+
+*Try Disabling Auto save / resume.
+
+*Turn off Versions.
+
+*Get more RAM!! you need at least 4gb.
+
+*Try deleting old Preferences files and Caches.
+
+*As a last resort you can turn some of Lion UI flourishes via the
+ terminal.
+
+
+A: There are issues with OS X Lion and Core 2 machines.  Everything suggested here is great troubleshooting, but the issues remain.
+On my iMac 3.06ghz Core 2 Duo with 4 GB, I did a complete wipe and install.  The system is slow and programs hang.  When I finally went back to 10.6.x, I regained speed and stability.
+
+A: Check if something is sync-ing in the background. Look in Activity Monitor, sort by CPU usage, and most likely you will find the culprit.
+In my case, it was Address Book Sync. I had to delete most of the prefs in ~/Library/Application Support/Address Book to get the Mac back to normal. In your case, it may be different, but that's the first place to check.
+Then also run a good maintenance Utility like Onyx or Cocktail - be sure to use the Lioin versions!
+Best of luck with it.
+
+A: Try:
+
+
+*
+
+*Clearing the OS X caches in case they're corrupt using the maintenance scripts
+
+*Doing a disk verify and if needs be repair with Disk Utility
+
+*Doing a permissions verify and if needs be repair with Disk Utility
+
+
+If you've done all of those then there could be corruption somewhere else in the system. At a really rough guess maybe it's having issues writing the application state to the sleep image.
+
+A: Convert your Mac from Super Slow to Super Fast by deleting these files.
+1. Cache
+2. duplicate files
+3. Useless data
+4. Unnecessary binary and language files.
+
+There are so many third party tools to speed up Mac Lion performance.
+
+A: I had the same problem. I even upgraded my hard drive, as it was failing and I thought it caused the problem. However, after upgrading the drive, the problem persisted. It was driving me nuts to waite for all the app to start working again and for internet to be up. I tried many solutions posted online, nothing worked. I reinstalled Lion and nothing.
+What did help me, was turning off the computer. Then turn in back on and at the same time press and hold "D" (try to press "D" before grey screen appears). Hold "D" untill the computer starts, It could take up to a minute. While holding, I notice "folder" icon on my grey screen with question mark inside. I kept holding "D" until my comp started up. I didn't bother to check if that fixed the problem. However, after I closed the lid on my macbook and opened it later on in a few hours I saw a miracle :-) It literally took 2 seconds for every app and internet to be up and running. I couldn't believe it, but it helped. Try it, it might help you too.

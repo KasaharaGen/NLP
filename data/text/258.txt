@@ -1,0 +1,32 @@
+Q: Finding Firefox bookmarks in Spotlight Is there a program that will allow me to use Spotlight to search my Firefox bookmarks and open the browser window?
+
+A: *
+
+*First, download this file to your desktop: ffmd.sh
+
+*Open a terminal, and run the following:
+
+sudo mkdir /usr/local
+  sudo mkdir /usr/local/bin
+  sudo mv ~/Desktop/ffmd.sh
+  /usr/local/bin/
+  sudo chmod 755 /usr/local/bin/ffmd.sh
+  sudo chown root:wheel
+  /usr/local/bin/ffmd.sh
+
+
+
+*
+
+*Now, schedule the task with crontab. The following line will schedule for 10 minutes: 
+
+
+
+0,10,20,30,40,50 * * * *
+  /usr/local/bin/ffmd.sh > /dev/null
+  2>&1
+
+This script is in the public domain, and intended for those with a little experience with UNIX.  
+the source is here.
+
+A: Here is a proof of concept ffmd_sqlite script that uses the Firefox places database. Webloc docs are created that will be found by Spotlight and can be opened with Firefox.

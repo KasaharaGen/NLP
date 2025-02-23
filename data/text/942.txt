@@ -1,0 +1,150 @@
+Q: How to get rid of firewall "accept incoming connections" dialog? I've accepted this so many times that firewall should already remember it.
+
+Do you want the application "AppName.app" to accept incoming network connections?
+Clicking Deny may limit the application's behavior. This setting can be changed in the Firewall pane of Security preferences.
+Deny | Allow
+
+For example, I get it for Eclipse when starting my java programs in debugging mode. Sometimes this dialog is displayed only very shortly, like half second, and disappears. I also get it for iTunes (when I enable sharing my library), and other programs, even though I have them listed in Firewall preferences panel (adv. settings).
+
+A: sudo codesign --force --deep --sign - /path/to/application.app
+
+I've never had to create a certificate using this method.
+If that doesn't help, try without --deep and without the trailing slash:
+sudo codesign --force --sign - /path/to/application.app
+
+
+Note, just to make it clearer: After having applied the signature, start the app, accept incoming connections one last time, then quit and start again to verify that the request is gone.
+
+A: While RedYeti's link is useful, just to save a few clicks for others let me recap how to generate a code-signing cert and to use it for code (re-)signing:
+
+
+*
+
+*Create your own code signing cert:
+
+
+*
+
+*In Keychain Access, Keychain Access > Certificate Assistant > Create a certificate. 
+This launches the Certificate Assistant:
+
+*Name: Enter some arbitrary string here that you can remember. Avoid spaces otherwise you'll need to escape the cert's name when using codesign from the command line.
+
+*Identity type: Self Signed Root
+
+*Certificate Type: Code Signing
+
+*Check the box "Let me override defaults", this is quite important
+
+*Serial number: 1 (OK as long as the cert name/serial no. combination is unique)
+
+*Validity Period: 3650 (gives you 10 years)
+
+*Email, Name, etc. fill out as you wish.
+
+*Key pair info: set to RSA, 2048 bits. Does not really matter IMHO.
+
+*From "Key usage extension" up to "Subject Alternate Name Extension": accept the defaults.
+
+*Location: login keychain.
+
+*Once it is created, set to "Always trust" in the Login keychain: right-click on the certificate, choose "Get Info", and in the "Trust" section, set "When using this certificate" to "Always trust".
+
+
+*Re-signing an app:
+codesign -f --deep -s <certname> /path/to/app
+
+*Verify that it worked:
+codesign -dvvvv /path/to/app
+Enjoy!
+UPDATE:
+People asked me why this is "not working" in macOS 10.14 "Mojave". Now that I have finally upgraded :-), here's what I learned. 
+Basically, don't use a self-signed certificate for code signing. Generate a certificate using your Apple ID in Xcode instead. To recap the steps briefly:
+In Xcode > Preferences > Accounts, select your Apple developer ID, click "Manage Certificates", select the "+" in the bottom left corner, it offers you the option "Apple Development". Select that, this will make a certificate for you. By Ctrl-clicking on the new certificate you can export it (in .p12 format), and by open-ing that .p12 file it gets loaded into your Login keychain.
+You will see that this certificate is valid for a year, "Issued by: Apple Worldwide Developer Relations Certification Authority". I suspect that is trustworthier than a self-signed certificate.
+Now you can sign your app as before with codesign -f -s <apple_ID> /path/to/prog. I tried it with a simple binary (compiled from hello.c :-) ), and it could be verified with codesign -v.
+I haven't tried it with Python packages yet, so I have no advice to people who mentioned in their comments that this cannot sign "python.app".
+
+A: If you're programming in Go:
+
+http.ListenAndServe(“localhost:8080”, nil)
+
+Instead of:
+
+http.ListenAndServe(“:8080”, nil)
+
+
+A: Just a note though, if you are using a Virtual environment, be sure to sign the app that is being used for the environment. I know this is obvious, but needed to be said nevertheless.
+
+A: I got help in Sayan Mohsin's answer, and I believe it's more generic than go.
+I had this issue with a piece of software that does not need to allow connections from the outside, only from my machine.
+Such software does not need to be signed to avoid this warning: it only needs to explicitly listen on localhost only.
+Depending on your environment, setting a host restriction will be done differently.
+In my case, I was working with an nginx server, and changing its configuration from listen  8080 to listen  127.0.0.1:8080 was enough to fix it.
+If this is also your case, you should definitely check out if your server exposes a way to setup host restriction and set it up to localhost or 127.0.0.1.
+
+A: If you're looking for a way to disable this alert for the iOS Simulator, you can use this script from Tom Soderling:
+#!/bin/bash
+
+# Script to disable the iOS Simulator app from showing the "Do you want the application xxxx to accept incoming network connections?" pop-up every time the app is run
+
+echo "> Enter password to temporarily shut firewall off"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate off
+
+echo "> Add Xcode as a firewall exception"
+/usr/libexec/ApplicationFirewall/socketfilterfw --add /Applications/Xcode.app/Contents/MacOS/Xcode
+
+echo "> Add iOS Simulator as a firewall exception"
+/usr/libexec/ApplicationFirewall/socketfilterfw --add /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator
+
+echo "> Re-enable firewall"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+
+exit 0
+
+Note that you have to run it again after every restart. You can do that with launchd by following these instructions. Be sure to specify this:
+    <key>LaunchOnlyOnce</key>
+    <true/>
+
+
+A: There are two options here:
+
+
+*
+
+*You can simply select "Allow All" in your firewall, or simply turn it off.
+
+*You can remove the apps from the list, delete the plist file for those apps, run them, and then add them to the list. The plist is responsible for a lot of behaviors and I'm willing to bet either an upgrade to the OS or the app can cause the "link" to break.
+
+
+About plist files...   A plist is a special kind of text file that contains properties the application and other resources, typically the OS, use to retain and reuse information needed to run the application. plist is a file type and has many uses, typically storing user preferences, but, essentially, it is an XML file. You can look to see if there are any caches, which are typically plist files, for the applications in question in /Library/Caches and /System/Library/Caches. There is also one in ~/Library/Caches/ but bad things can happen when mucking around in there, so just leave it alone. The system goes into those folders for a wide variety of reasons, and I usually clean out the first two folders I listed completely about once a month.
+
+A: This relates to whether the app is signed or not. If it's not signed, the preference won't be remembered.
+To see if an app is signed do this in Terminal:
+cd path/to/your/app
+codesign -vvv Eclipse.app/
+
+For Eclipse - mine says it's not signed at all. I can't comment further on how to sign the app since I've not bothered to do that but this answer on superuser covers it:
+https://superuser.com/questions/100013/why-does-the-mac-os-x-firewall-dialog-recurringly-pop-up-and-disappear-by-itself#300841
+
+A: I appreciate that this is an old Q & A, but it was the first hit on google for me when I had the same problem.  Just wanted to add something for others that may land here.
+In order to execute any of the codesign commands outlined here, it is necessary to have the xcode command line tools installed.  Without these, one gets an error message:
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+
+To fix this, install the tools with:
+xcode-select install
+
+I would've commented on ahall's post, but I don't have the reputation points to do so.
+
+A: My situation involves two copies of Eclipse installed on MacOS Mojave 10.14.5.  The first copy was authorised with the MacOS firewall.  The second copy would always present the "accept incoming connections" prompt.  Choosing "Accept" would continue to present the message after each reboot, apparently the firewall setting was not updated.  
+The solution was to open MacOS System Preferences -> Security & Privacy -> Firewall, unlock the screen, Firewall Options.  Select Eclipse.app "Allow incoming connections" and remove it with the "-" button.  The next time I selected "Allow" to the Eclipse "accept incoming connections" prompt was the last.
+
+A: The solution for me was to just disable the firewall completely. It's extremely common to create web-enabled pieces of software that are of course unsigned because you're compiling them natively. 
+Open the spotlight with CMD + Spacebar and search "privacy" and select "Security and Privacy". Then switch to the "Firewall" tab and disable the firewall there.
+
+A: I got this dialogue box (Canon ccpd) everytime after starting my computer. Open firewall > security and privacy > unlock to enable changes > click on button "Enable stealth mode" > click button "Block all incoming connections".
+No more irrating dialogue box from Canon printer driver after that.
+
+A: I tried all the above in Mac 10.13 and nothing worked. 
+In the end I wrote a script that ran at logout attached to login hook that turned off firewall so when logged in it no longer needed permission then using delayedlauncher ran another script that turned on firewall.
+All good now

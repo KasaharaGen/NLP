@@ -1,0 +1,79 @@
+Q: Where does $LANG variable gets set in Mac OS X? I've used wget for the first time after installing Lion OS X and I've noticed that wget got localized to my native language. Running set command in terminal showed that my LANG variable represents my local language. Where can I change this or make wget ignore this setting?
+update
+Here's what locale gives me:
+LANG="lt_LT.UTF-8"
+LC_COLLATE="lt_LT.UTF-8"
+LC_CTYPE="lt_LT.UTF-8"
+LC_MESSAGES="lt_LT.UTF-8"
+LC_MONETARY="lt_LT.UTF-8"
+LC_NUMERIC="lt_LT.UTF-8"
+LC_TIME="lt_LT.UTF-8"
+LC_ALL=
+
+Hence all the output of non-parameters (such as prompts and debug messages) are in Lithuanian. That is my problem. I'd like to get it back to English.
+I am using zsh as my login shell.
+
+A: It's set here...
+
+If you want more or less options in the pulldown, head over to the Encodings tab to view even more of the bounty.
+
+A: I solved this problem by setting the language in my .profile file which loads whenever I start a terminal.
+export LANG="en_US.UTF-8"
+export LC_ALL="POSIX"
+
+
+A: By default, Terminal sets the locale environment variables to match the currently selected language and time/date/number formats that Terminal is using, which is selected via
+
+System Preferences > Language and Text
+
+(That's the name on Lion. On earlier systems the exact name of the preference panel may vary.)
+A temporary solution is to drag English to the top of the list of languages, then open Terminal, then move Lithuanian back to the top. Then only Terminal will be in English. However, it will reset to Lithuanian if you Quit and restart Terminal.
+A persistent approach is to tell Terminal to not set the locale environment variables, by turning off
+
+Terminal > Preferences > Settings > [profile] > Advanced > Set locale environment variables on startup
+
+Then the locale will default to "C" with no language specified, and most programs will then default to English.
+Note that turning this off means that some programs won't be aware of which character encoding Terminal is using and will assume that it's ASCII or ISO-Latin-1 only. So if Terminal is using UTF-8 (the default), those programs may or may not behave as desired.
+If this is mostly about wget, I recommend that you make a copy of the default settings profile, turn off the locale setting in your custom profile, and only use that profile when using wget, so that you can continue to use UTF-8 with full support when using other programs, using the default settings.
+As others have mentioned, you can also override the initial locale settings supplied by Terminal in a shell startup script. For zsh, put it in ~/.zshrc. For bash, use ~/.bashrc (and if you don't already have one, create a ~/.bash_profile that runs ~/.bashrc).
+See x-man-page://1/locale for more information about each of the locale environment values.
+However, if you were to merely unset LANG or set it to "C", that would normally apply to all of your shells and programs, whereas most of the time you probably want to use UTF-8 and have Terminal set the locale variables to match, to get the highest degree of cooperation, fidelity and functionality.
+Therefore, if you're going to go that route, I suggest you write code to edit, rather than replace, the initial values, so that you preserve the encoding information ("UTF-8") and merely force the language to English, rather than setting the variables to "C".
+For example, this works in zsh and bash:
+# Replace Lithuanian with English
+export LANG=${LANG/lt_LT/en_US}
+
+When LANG="lt_LT.UTF-8", this will change it to LANG="en_US.UTF-8". I don't have wget available to test this, but this should suffice.
+Doing it this way means that if you change the character encoding preference in Terminal, you won't override that in your shell startup script.
+
+A: Based more on Linux exprience, if you do not want to change your localization completely with LC_LANG,  but would like just have system messages in english,
+you shuld just set
+LC_COLLATE=C    (to have standard sorting in ls, etc)
+LC_CTYPE=en_US.UTF-8
+
+
+A: The other answers are correct, i.e. about the Terminal setting for set locale environment variables on startup and using the shell's /etc/profile. However, there is another way that is worth understanding - especially if the "problem" is experienced due to a remote ssh login.
+OpenSSH (as used on Linux, BSD and macOS) can send environment variables from the client's environment to the shell that the server starts. It only does this if the client is configured to send them and the server is configured to accept them. The client (~/.ssh/config) would need to have:
+SendEnv LANG LC_*
+
+and the server (/etc/ssh/sshd_config) would need:
+AcceptEnv LANG LC_*
+
+If those are both in place then the client's local is propagated into the login shell on the ssh server:
+$ ssh me@my-mac locale
+LANG="en_GB.UTF-8"
+LC_COLLATE="en_GB.UTF-8"
+LC_CTYPE="en_GB.UTF-8"
+LC_MESSAGES="en_GB.UTF-8"
+LC_MONETARY="en_GB.UTF-8"
+LC_NUMERIC="en_GB.UTF-8"
+LC_TIME="en_GB.UTF-8"
+LC_ALL=
+
+The required server setting is not there by default on Snow Leopard; it is there on Sierra. Remember to restart the SSH server after modifying /etc/sshd_config !!!
+
+A: Using a debian server in french and a macsox bash client, i "just" had to add this to my .bash_profile on the user directory of macosx :
+
+export LANG=fr_FR.UTF-8
+
+Solved.

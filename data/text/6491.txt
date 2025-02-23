@@ -1,0 +1,45 @@
+Q: How can I add Trash icon to the sidebar in Mac OS X Lion? How can I add the Trash icon and empty Trash from the sidebar of Finder.app in Mac OS X Lion ? 
+I dont have a problem to add them in the list of favorites too, but the Trash icon is not draggable. 
+
+A: According to this article, each partition has its own trash folder, so dragging one to the sidebar is not a global trash. This script is:
+on open
+  tell the application "Finder"
+    move the selection to the trash
+  end tell
+end open 
+
+Save the script as an application, give it an icon, and drag it into the sidebar.
+I think that looks dangerous, though; what if you simply want to see the trash content while having a file selected? This answer looks safe:
+on open input
+    repeat with i in input
+        tell application "Finder" to move i to the trash
+    end repeat
+end open
+
+on run
+    tell application "Finder" to open trash
+end run
+
+
+A: First, open the trash can by clicking on it in the Dock.
+In the Finder, press Command-shift-G (go to folder) and go to ~/.Trash
+In the Finder window for .Trash, click the proxy icon in the title bar of the window and drag it to the sidebar.
+You then have a trash folder in your sidebar.
+To empty the trash from the sidebar, open Automator and create an application.
+As the sole action in the application, select "Run AppleScript" and use this AppleScript:
+on run {}
+  tell application "Finder"
+    empty the trash
+  end tell
+end run
+
+Save the application as "Empty Trash", and drag it to the sidebar.
+
+A: If you have iCloud enabled you may need to tweak the path offered by Daniel to 
+~/Library/Mobile\ Documents/com~apple~CloudDocs/.Trash
+
+
+A: In macOS Ventura, there's a new official way. You can open Trash from Dock, then click File > Add to Sidebar in the Finder's menu bar. (Thanks to this answer for the tip.)
+There's no official way to add "Empty Trash" in the sidebar, but once you click the new Trash option in the sidebar, you can just click the Empty button on the top right.
+You can also right-click (Control-click) Trash on the Dock and click Empty Trash. Unfortunately this option isn't present if you right-click Trash in the Finder sidebar.
+Of course, you can add one of the Automator scripts mentioned in other answers, or see whether the Shortcuts app can help.

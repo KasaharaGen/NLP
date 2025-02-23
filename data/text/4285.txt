@@ -1,0 +1,43 @@
+Q: Is there a way to access Google Contacts using iPhone? I have all my contacts in Google Contacts, so I was wondering is there anyway I could sync them with the contacts on the phone? 
+Edit: Now I've set it up properly, however there are still no contacts in my phone! Do I need to do anything else after syncing to get the contacts to my phone?
+Edit: For some reason I can read my emails using my phone but still no contacts!
+
+A: Google has made it easier to do this by implementing CardDAV for iOS5+.
+Here's the link: http://support.google.com/mail/answer/2753077?hl=en
+Instead of using a Google Exchange account you'll do this:
+
+
+*
+
+*Mail, Contacts, Calendars >>
+
+*Add Account... >>
+
+*Other >>
+
+*Contacts: Add CardDAV Account
+
+*Server = google.com; user name = [fullEmail]; pw = [gmailPw]; desc =
+[optional].
+
+
+It worked great for me on an iPhone5 with iOS 6.1.2.
+
+A: Sure. On your iPhone, go into Settings > Mail, Contacts, Calendars, select Add Account... and add Google as Exchange (!!!) account. Using Google as Exchange account allows you to sync calendars and contacts.
+See http://www.google.com/support/mobile/bin/answer.py?answer=138740&topic=14252
+Now, gathering together all info spread around, into a checklist format:
+
+
+*
+
+*Google Sync is only supported on Apple iOS versions 3.0 and above, because that's when Microsoft Exchange was implemented and that's the protocol we will use.
+
+*If your business, school, or organization uses Google Apps, your administrator will first need to enable Google Sync. If you're not, then there is no such setup - it's enabled by default.
+
+*Double check you're using the correct gmail account - many users have more than one gmail, or google apps, with similar mails due to forwarding and often mistake this.
+
+*Be sure to follow the steps mentioned above. Every configuration has to be done properly and it must lastly look something like this, from Mail, Contacts, Calendars > [your account] > Exchange Account [your email]:
+                                    
+
+
+A: I have had an iPhone since it first came out and have tried all kinds of ways of syncing Google Contact with it. The best by far is NuevaSync. If you update anything on your phone or Google Account it is automatically updated in real time. Great Tool.

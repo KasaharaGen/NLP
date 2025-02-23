@@ -1,0 +1,15 @@
+Q: How do I disable the Command-Control-D word definition keyboard shortcut in OS X Lion? Mac OS X Lion introduced a new feature where in many applications you can press  (Command-Control-D) to produce a popup with the definition for the word under the mouse cursor. A side effect of this is that you can no longer use the same shortcut to access functionality in other applications (for example, Emacs).
+Is it possible to either
+a) disable the word definition Command-Control-D keyboard shortcut, or 
+b) change the word definition keyboard shortcut to something other than Command-Control-D?
+
+A: Yes, through System Preferences, you can change and disable keyboard shortcuts.  Go to System Prefs -> Keyboard -> and hit the tab Keyboard Shortcuts.  Click the Services entry, and scroll down to the Searching set of shortcuts.  Uncheck the lookup in dictionary to disable it, or double click the space to the right to change the shortcut.  
+
+A: To disable the Control-Command-D binding enter the following in the terminal:
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 70 '<dict><key>enabled</key><false/></dict>'
+
+and restart.
+
+A: In Lion specifically, System Preferences / Keyboard / Keyboard Shortcuts / Searching / Look Up in Dictionary will allow you to assign an additional shortcut keystroke to do a Dictionary lookup, but it won't disable Command-Control-D for other applications to use.
+In Snow Leopard, the same Command-Control-D lookup is available, but it can be reassigned by the user.
+I hope this is just seen as a bug to correct in an update rather than a new 'feature'.  I'd grown accustomed to mapping that combination to other things in SL.

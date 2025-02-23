@@ -1,0 +1,52 @@
+Q: Is there a Windows remote desktop client compatible with Lion's virtual display feature? With Lion, you can use screen sharing to connect to a "virtual display", meaning that you log in to a new session instead of 'hijacking' the currently active one.
+Is there a Windows program that can make use of this feature and let me start and operate a remote session on a Mac?
+
+A: Since RDC requires windows to be running, that's a non-starter unless you are running BootCamp or virtualization and don't care to see the OS X windows.
+
+One big advantage of RDC / Terminal Services was the ability to log in a user that wasn't using the main screen. With Lion, this is now an option out of the box.
+Do note that on Lion, Remote Management behaves differently than Screen Sharing.  Enabling screen sharing seems to offer the most vanilla VNC-compatible stack. RealVNC seems to be the best client for working with 10.5 through 10.7, but I'm not often on windows lately.
+Do also read up on Are the changes to Lion's screen sharing documented anywhere publicly? for a discussion of the Lion specific changes. Especially Apple's latest ARD release notes.
+
+A third party VNC viewer will always be connected to the login window.
+  If the login window is not on the display, a new login window is
+  started that is not shown on the display. The screen sharing user can
+  then log in with any valid account on that computer.
+
+It shows the intent that all VNC clients will get a login screen - and not hijack the current session (if there is a current non-login screen session)
+
+A: I think screen sharing in Lion is still based on the VNC protocol, so any VNC client should work.
+There is a fairly comprehensive table on Wikipedia of VNC software, you can probably find a free Windows client that you can test this on.
+Edit: Based on the comments Screen Sharing looks to have changed quite a bit since the last version (where it was more or less vanilla VNC), so I'm changing this answer to a community wiki where we can all put up suggestions.
+
+A: I see some kind of ambiguity in answers here :-)
+I'd suggest to tell technologies and underlying protocols apart.
+VNC: uses RFB protocol.
+Apple Screen Sharing [SS] (which is enabled by checking "Screen Sharing" in System Prefs): it is a vanilla VNC plus some Apple-specific extensions, e.g. pasteboard auto synchronization, display selection, screen locking, encryption, drag & drop and file transfer in latest servers. Another thing it has is the Apple-specific "codec", which is easy to recognize by JPEG-like artifacts. It also includes new authentication types (by username and password and by requesting permission from remote user) and the very feature you're discussing - Session Select, which allows you to log in as active user or to create invisible ("virtual") user session.
+Apple Remote Desktop [ARD] ("Remote Management" in System Prefs): uses Apple Screen Sharing as a base for the screen sharing and another very different protocol (name it ARD protocol for instance) for computer management things, like performing spotlight searches, running shell commands, sending messages, transferring files and so on. 
+@zneak asked for a client that supports Session Select feature. Unfortunately, as far as I can see, even Mac OS X clients rarely support Apple Screen Sharing features. These are: first, Apple’s built-in Screen Sharing client; next goes Remotix for Mac, which seems to support almost all of SS features including Session Select; JollysFastVNC which supports Apple authentication, display selection and screen locking, and Screens for Mac that supports only Apple authentication.
+As for Windows, all I could find was already mentioned here Remotix for Windows, though it was marked as beta for a long time.
+Probably all these things are obvious for some of you, but I spent a good couple of hours sorting it out. Hope this post will save some time to someone :-)
+
+A: I just found a very cool solution.  It isn't perfect, but was very easy to set up and works for windows, mac and linux.  Google has released a remote desktop sharing client that is in beta.  It litereally took seconds to setup and I'm off running.  Give it a shot. Here's the link to the article.
+
+A: I have been furiously "googling" for the last hour and have finally found a solution.
+I have a Windows 7 PC in a corporate environment and need to be able to connect to a Mac running OSX 10.8.2.
+When using all other VNC methods, I would get prompted for a Mac username and password to get access to the box. This is very secure, but it doesn't help me to offer remote assistance to a colleague as I do not see there screen, I see my own loaded profile.
+The solution is to use this software:
+http://www.nulana.com/remotix-windows
+It has OSX authentication built in. Upon connection you get the option of logging on as yourself or viewing the users screen. 
+
+A: I believe the initial question speaks of Mac emulation on a Windows box. Maybe an SSH connection could then spawn a Mac screen independent of the actual Mac screen so the box could be used remotely and locally at the same time.
+I do this currently with my Linux box.
+A good option to try would be NoMachine. I also use this with my Linux box and will give it a try on Mac soon.
+
+A: I was trying to figure out how to connect to my Macbook using "Screen sharing" from my windows PC.
+I was suffering the same problems as discussed here: any windows VNC client just shows a "gray" screen with no way to get to the actual screen.
+After some digging on the internet, tried {tight!real!any}VNC client, I figure out how to actually PASS THE LOGIN screen:
+JUST TYPE YOUR USERNAME and PASSWORD
+Bum, the screen comes magically on the remote viewer!!!
+Caveats: you must set a vnc password in the Screen Sharing preference panel:
+- click on computer setting
+-select "VNC viewers may control screen with password" => insert the password
+It then allows you to connect to the VNC server on your Lion PC. Once the "gray" screen is shown, type your username and pwd...
+Hope this helps.

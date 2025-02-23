@@ -1,0 +1,27 @@
+Q: How do you delete apps from Lion's Launchpad? When pressing alt/option in Lion's Launchpad, only some icons get the delete X overlay to remove them.  How do you delete the others?  I've read that control-option-command should do this, but it simply launches the app for me.
+
+A: It seems that apps that the only apps that are directly removable from Launchpad have to be installed through the App Store.
+For every other app, you can simply do it the old fashioned way:
+
+
+*
+
+*Open programs
+
+*Select 'open in finder'
+
+*Delete the app that you want to delete
+
+
+Many people are using folders to reduce clutter of apps shown in Launchpad. (while eagerly awaiting either an update or some tools to manage Launchpad layouts.)
+
+A: Launchpad-Control is what you are looking for my friend. It's a free preference pane app that lets you uncheck what you want to hide. It even backs up for safety :)
+Alternatively, you could enter the following into Terminal:
+sqlite3 ~/Library/Application\ Support/Dock/*.db "DELETE from apps WHERE title='APP_NAME';" && killall Dock
+Replace the "APP_NAME" with the name of the app as it's displayed in Launchpad. 
+To display it in Launchpad again, simply move it from Applications folder and then put it back.
+
+A: You can drag the app to the trash.
+
+A: This youtube video shows the simplest and cleanest way to remove individual apps that you did not download from the Mac App Store.
+You don't need any external apps. It is very straightforward.

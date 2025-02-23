@@ -1,0 +1,71 @@
+Q: Is it possible to automatically configure multiple iPads with the same settings? I need to configure a bunch of iPads with the same settings. For instance, volume level, auto-lock, side-button, timezone and light level.
+Currently I'm doing this manually on each iPad through the Settings app in the device. This is both tedious and error-prone...
+I'm thinking it should be possible to create a master settings file or image file (or something) with the correct settings which could then be loaded on to each device.
+Is that possible?
+Background: We need deliver iPads preconfigured with our "kiosk" app for customers to place in their office/retail locations. For instance, disabling auto-lock is crucial here. Currently I have some 20-30 iPads that needs to be configured the same way. 
+
+A: iPhone Configuration Utility
+You can use Apple's free iPhone Configuration Utility on Mac or Windows to create custom .XML configuration profiles for the iPad and install them to iPads over USB. I do not know which specific parameters you will have access to configure.
+There is also a third-party MDM (Mobile Device Manager) server platform for rolling out custom apps and the like. That would probably be way overkill for your needs.
+Apple white paper, "Deploying iPhone and iPad in Business" . (PDF)
+Update
+March 7, 2012--Apple has released a new program called Configurator for mass deployment of iPads and iPhones in school, businesses, and institutions. It is free in the Mac App Store.
+
+A: Apple Configurator
+Apple released another program in April 2012 with considerably expanded capabilities. 
+This should come much closer to meeting your needs.
+
+Prepare devices
+  
+  
+*
+  
+*Configure up to 30 devices at a time 
+  
+*Update devices to the latest version of iOS Create and restore a backup of settings and app data from one device to other devices 
+  
+*Import apps into Apple Configurator and sync them to new devices
+  
+*Use the built-in editor to create and install iOS configuration profiles 
+  
+*Enroll devices with your Mobile Device Management solution for remote management
+  
+  
+  Supervise devices
+  
+  
+*
+  
+*Organize supervised devices into custom groups
+  
+*Automatically apply common configurations to supervised devices
+  
+*Quickly reapply a configuration to a supervised device and remove the previous user’s data
+  
+*Import apps into Apple Configurator and sync them to supervised devices*
+  
+*Define and apply common or sequential names to all devices
+  
+*Restrict supervised devices from syncing with other computers
+  
+  
+  Assign devices
+  
+  
+*
+  
+*Add users and groups manually or autopopulate via Open Directory or Active Directory
+  
+*Check out a device to a user and restore the user’s settings and data on that device
+  
+*Check in a device from a user and and back up the data for later use, possibly on a different device
+  
+*Apply custom text, wallpaper, or the user’s picture to a device’s Lock screen
+  
+*Import and export documents between your Mac and Apple Configurator
+  
+*Sync documents between assigned devices and Apple Configurator
+  
+
+
+A: You may want to have a look at Apple's iPad Enterprise Resources page. It has deployment guides, but I think the options you can set are more along the lines of security profiles and such. I'm not sure if general settings type options are in there. Worth a look however, as to my knowledge it's the only way of managing iOS settings other than manually on each one.

@@ -1,0 +1,16 @@
+Q: find video codec from terminal I'm writing some shell scripts that automatically convert some video files. Except I don't want to run the conversion on files that are already h264 encoded. Is there a way I can tell via a terminal command whether a video has a certain codec?
+
+A: This won't work for .avi files (at least it didn't for one I tried), but for .mp4 or .mov files, it should.
+To list a file's codecs:
+$ mdls -name kMDItemCodecs "/path/to/some/file.mp4"
+kMDItemCodecs = (
+    "H.264",
+    AAC
+)
+
+To find files that are movies, but don't have the H.264 codec:
+mdfind "kMDItemContentTypeTree == 'public.movie' && kMDItemCodecs != '*H.264*'"
+
+
+A: With ffmpeg : ffmpeg -i video_file
+see : http://videotranscoding.wikispaces.com/GetVideoMetadata

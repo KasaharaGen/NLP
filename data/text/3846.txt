@@ -1,0 +1,54 @@
+Q: What's the best way to extract audio from a video file? I am a huge fan of HandBrake. It is the epitome of simple. Select a video file (or DVD), select a preset, select an output path, click Start. A certain amount of time later relative to the size/quality of the content, and you have yourself a pretty much perfect video file suitable for the medium of your choice.
+I've been looking for similar qualities in an Audio Converter, and more preferably, an Audio Extractor (from a given video file). I would love to be able to drag a video file into an application, specify that I want the Audio File in AAC at a given bitrate, click Start, and let the app do the rest.
+I am not averse to using Handbrake to suffice the conversion aspect of this, so long as the audio extraction after the fact is a simple process. The point is to take as few steps as possible.
+Any tips? Apps? Ideas?
+
+A: I would drag the movie into GarageBand.  GarageBand will split the file into audio and video, at which time you can delete the video track (leaving you with just the audio track).
+You can then click the Send Song To iTunes option in the Share menu (see pic).  This will then come up with the various formats you want to export to.
+
+Best of all, this is free :)  as all Macs come with GarageBand.  Plus it also allows you to adjust aspects of the audio such as speed and volume.
+Having said that, if you want a truly automatic solution, and are comfortable in the command line with Terminal, let me know in the comments and I'll come up with a script to allow you to do this.
+
+A: Quicktime 7 will do the work really easily.
+Just open the video, and go to File > Export > Sound to AIFF/AU/Wave > select your path and you're done! :)
+
+A: QuickTime Player 10 is able to export audio (without re-encoding), too.
+Select File > Export > Audio Only…
+Tested on macOS 10.12 Sierra with QuickTime Player 10.4.
+
+A: I finally found the exact combination I needed, and I found it in ffmpeg.
+I will expand on the question a bit and spell out the fact that I was already working with mp4 contained video/audio, so MP4 Video (.m4v) and AAC Audio (.m4a). I absolutely wanted an as-is version of the audio extracted from the video.
+First off, it's pretty easy to install things like ffmpeg, mplayer, things built off them, and similar open source packages nowadays. Between Rudix, Homebrew, MacPorts, and Fink (does anyone even use fink anymore?), third party software is a snap to install.
+So, after installing ffmpeg, and having the ffmpeg accessible at the command line, I ran a command like this:
+ffmpeg -i videofile.mp4 -vn -acodec copy audiotrack.m4a
+
+ffmpeg: The command.
+-i videofile.mp4: The source video file.
+-vn: Do not record (do not consider) video data.
+-acodec copy: Copy the audio source as-is, here's where all the magic is. ffmpeg will write the audio data out as various supported codecs, but specifying copy leads a bit-for-bit exact copy of the stream. Coupled with disabling video via -vn leaves you with a lone audio track inside an mp4 container.
+audiotrack.m4a: The output filename.
+I can't believe something like this was so difficult and hidden for so long.
+Since I always intend to rip aac audio data out of an mp4 container/video, I wrote a quick little script to do it.
+#!/bin/bash
+
+INFILE="$1"
+TMPOUTFILE="${INFILE%.*}"
+OUTFILE="${TMPOUTFILE##*/}.m4a"
+
+ffmpeg -i "${INFILE}" -vn -acodec copy "${OUTFILE}"
+
+Now, I simply invoke rip_m4a_from_mp4 somevideofile.mp4 and I am left with an audio only version with the same filename, ending in m4a instead.
+Simple! For me anyways. No GUIs, lightning fast, this is just one of those things that the command line does better.
+
+A: You can do this directly in the Finder, starting with Mac OS X 10.7 (Lion), as described at OSX Daily.
+The short answer is, select the file or files in the Finder, then ctrl-click and choose Services -> Encode Selected Video Files. 
+Note that you may need to enable this service in the Keyboard preference pane.
+
+
+A: The avconvert command powers the Services > Encode Selected Video Files option.
+You can use it like so:
+avconvert --quiet --preset PresetAppleM4A --source foo.mp4 --output bar.m4a
+
+
+A: I simply open the video file with audacity and then export the audio.
+I can set the exported audio file parameters during the export.

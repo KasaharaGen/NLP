@@ -1,0 +1,6 @@
+Q: Share folder in VirtualBox Host=Mac OS, Guest=Debian how can I share a folder in VirtualBox between my host-OS Mac OS and my installed guest-OS Debian 6? I installed the guest additions and created a shared folder, but I cannot find it
+
+A: Not sure about Debian but in Ubuntu I had to do the following after setting it up in the VB GUI:
+mkdir /home/username/OSX # one time
+sudo mount -t vboxsf OSX /home/username/OSX # each time
+

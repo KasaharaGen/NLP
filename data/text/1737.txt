@@ -1,0 +1,15 @@
+Q: How to install an app on iPhone from a second machine? I actually took many hours this morning to find out how to do it, but I want to see alternatives to it.
+I got my iPhone in sync with my iTunes at home, my first machine. I could "just" bring the app folder/file back home and sync through that. It works just fine.
+The question here is on alternatives to that. Jailbreak or not, how could we do it on a second machine?
+edit: I mean to install an actual file like application.app or application.ipa just like they are on the Mobile Applications folder or on iPhone's own /Applications one.
+
+A: For most users, the headache free method is preserving the iTunes folder in its entirety and bringing it over to the other computer. You would then sign into the account you obtain the app with on that computer, and authorize it.
+If you're simply without the first computer and want to get the app back, then you would simply re-download from the App Store for free (assuming it hasn't been removed).
+
+A: I seem to remember this question being asked before, but the link eludes me at this moment. 
+In short, you can't. iPhone syncing is on a per iTunes-installation basis. Plugging the phone into a different machine and trying to sync will result in iTunes asking if you want to wipe the data and re-sync from the new iTunes repository.
+
+A: It's quite simple if you have iOS SDK installed. I've found the solution in the first place I should have looked for, because I actually generated the app file using Corona. But I suppose this is irrelevant to the question.
+Open Xcode Organizer, plug in the iDevice and drag n' drop the app into "applications". That's it.
+Now, if you don't have iOS SDK, I highly recommend against installing it just for this. It's almost 5GB of downloading. This is why I'd like to know of alternatives.
+edit: I believe the best way is using the iPhone Configuration Utility, yet again like that guide from corona. I've confirmed it works just like using the Organizer, but it doesn't need the Xcode. Just download it (this needs a free login, or find another place on the web with that file, v3.2 is about 10Mb), and drag the app / ipa inside your phone. Dealing with licensing the iphone is a whole nother issue (don't you love self promoting?).

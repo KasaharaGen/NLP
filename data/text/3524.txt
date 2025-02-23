@@ -1,0 +1,32 @@
+Q: What is "Software Update"  doing when it says "Checking for new software"? "Software Update" seems to take a long time.  What's it doing?
+Utilities -> Activity Monitor yields:
+
+
+*
+
+*CPU usage low ( 1% - 2% ) by the
+"Software Update" process. 
+
+*+ network traffic inbound, 
+
+
+[picture of Network activity after starting "Software Update"]
+
+[Network activity after ~30 seconds to ~90 seconds]
+
+[Network activity after ~90 seconds]
+
+*note: pictures modified to remove "Data received: [total] and Data Sent:[total]".  Network activity recorded after shutting down all other applications.
+
+A: Todays Date - Tue May 15 2018 
+By Philscbx Mpls Mn 
+This Question ( Software Update ) was stated incorrect ~ 
+Activity Monitor lists only one term - Titled ( Softwareupdated ).
+It's not a CPU concern of near Zero - 
+It's the Memory it holds at 460MB.
+This memory load is needed just to run a normal moment at average web site, when only 4GB is available.
+This is totally un-necessary load just sitting there when an updater process can randomly access applications when system is idle,, and report, and only report any needed, then owner can access list before going to sleep, and pick from list their choice. 
+There was a time one could trust Apple Update, not anymore.
+As for security updates,,, thats fine, but forcing OS updates is underhanded world order of destroying high end image apps at several thousand dollars each. Thinking it was safe to upgrade to Yosemite last month, 
+but was wrong again, as it wiped out some of the finest software made to force merge Pro Devices to clone themselves as iPhones & iPads. 
+When You recall 10.6.8,, this software OS was perfect.

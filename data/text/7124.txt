@@ -1,0 +1,98 @@
+Q: How can I convert a .mov into a .gif (or a .apng)? I want to put a .mov file I have as the background for a website. I am guessing the best way to do this would be to convert it to a .gif file but I can't find any programs that do it. 
+I have tried Handbrake, Graphic Converter and Gif Builder. 
+
+A: I've used www.online-convert.com to convert Keynote-exported .mov files in to animated gifs. Quick and simple. And the results were good.
+You can see the resulting GIF in the answer I gave to this question: How to partially uncover bullet points in Keynote
+
+A: Gif Ninja is a great site for converting videos to gifs. I've used it several times and the gif always comes out great.
+
+A: 
+Gifski makes it very easy to convert a video to an animated GIF. You just drag and drop a video, optionally trim it, choose dimensions, frame rate, and quality, click "Convert", and then done.
+Gifski is free, no watermark, and open source.
+The benefit of an app over a web service is that the video stays on your computer.
+Disclaimer: I'm one of the authors.
+
+A: For Terminal lover
+ffmpeg -i in.mov -s 600x400 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > out.gif
+
+
+
+*
+
+*-r 10 tells ffmpeg to reduce the frame rate from 25 fps to 10
+
+*-s 600x400 tells ffmpeg the max-width and max-height
+
+*--delay=3 tells gifsicle to delay 30ms between each gif
+
+*--optimize=3 requests that gifsicle use the slowest/most file-size optimization
+
+
+You need to install
+
+
+*
+
+*ffmpeg to process the video file
+
+*gifsicle to create and optimize the an animated gif
+
+
+
+brew install ffmpeg 
+
+#if cask is not installed
+brew install caskroom/cask/brew-cask
+
+#dependency for gifsicle, only required for mountain-lion and above
+brew cask install xquartz
+
+brew install gifsicle
+
+Above instructions taken from gist: dergachev/GIF-Screencast-OSX.md
+The following error occurred while installing the ffmpeg
+
+Error: The brew link step did not complete successfully
+  The formula built, but is not symlinked into /usr/local
+  Could not symlink include/libyasm
+  /usr/local/include is not writable.
+
+For this follow this answer
+sudo chown -R $USER /usr/local/include
+sudo chown -R $USER /usr/local
+
+Transparency
+The code above don't keep transparent layers. In order to do that, use:
+ffmpeg -i in.mov -f gif -lavfi split[v],palettegen,[v]paletteuse out.gif
+
+
+A: I've used "jiffy cat" with great results. 
+http://gfycat.com/
+
+A: Offline solution:
+http://www.gifrocket.com is an app for just that! Pretty simple app.
+
+A: Gifify is a node-based converter which uses ffmpeg and imagemagick under the hood.
+Installing on Mac:
+brew rm --force --ignore-dependencies ffmpeg
+brew rm --force --ignore-dependencies imagemagick
+brew install ffmpeg --with-libass --with-fontconfig
+brew install imagemagick --with-fontconfig
+brew install giflossy
+
+npm install -g gifify
+
+Now you can convert a video file with:
+gifify clip.mp4 -o clip.gif
+
+You can also set a start and end position in the video and add a text caption:
+gifify clip.mp4 -o clip.gif --from 01:48:23.200 --to 01:48:25.300 --text 'nip!'
+
+
+❗️ It can take several minutes for the conversion to complete even with smaller videos.
+
+
+A: I don't know much about there conversions but I just converted a short .mov file to an animated gif and if was simple and quick. I used the free app Adapter to do the conversion.  
+
+A: I was impressed by https://convertio.co/
+I uploaded a .mov, waited a few minutes, and downloaded a .gif. No fee, no fuss, no watermarks.

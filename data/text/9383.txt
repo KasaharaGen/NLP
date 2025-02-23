@@ -1,0 +1,38 @@
+Q: Why does Microsoft Word need to allow incoming network connections? When I turn on the Mac firewall I get prompted to allow the MS office apps (Word, Excel, Powerpoint) to accept incoming connections. Why is this, and is it safe to allow it ?
+I'm running Mac OS 10.7.2
+
+A: I can't speak for Office 2011 because it requires you to activate your serial number with Microsoft, but in Office 2008, Office 2004 and Offive v.X, the incoming network connection is part of Microsoft's anti-piracy efforts.  Since each copy of Office is activated with a unique product key, Office products open an incoming network connection and listen for connections from other instances of Microsoft Office on the network.  When connections are established, the two instances of Office will trade product keys and make sure they are not the same.  If they are the same, then one user is forced to close their copy of Office.
+I recommend instructing your firewall NOT to allow Office to accept inbound network connections.
+Here's a link to Macworld that speaks about this 'feature':
+http://hints.macworld.com/article.php?story=20020406142423494
+
+A: I was plagued mercilessly by this problem with all Microsoft Office 2008 applications on several fresh installs of Mavericks and Yosemite.  Here is how I finally got it to go away. Hope it helps some of you:
+
+
+*
+
+*close the affected apps
+
+*delete any firewall settings for that app
+
+*delete all .plist files and other preferences found in /Library/Preferences, /Library/Caches, ~/Library/Preferences, and ~/Library/Caches (in my case this included all files in preferences folders named com.microsoft.*.plist and all subfolders in those folders bearing the name Microsoft). Don't worry; properly coded apps will restore their own plist files.
+
+*launch each app again and choose "deny" (or "allow", according to your preference) in the dialogue about incoming connections
+
+*closing the app, and opening again to verify that the firewall setting had been remembered.
+
+
+Note that I also had previously forced a re-signing of the apps using ad-hoc code signing in a terminal window:
+ sudo codesign --force --sign - <full path to application>
+
+For example:
+ sudo codesign --force --sign - /Applications/Microsoft\ Office\ 2008/Microsoft\ Excel.app
+
+I am not sure whether or not the re-signing step helped the system remember the settings.  You can read about code signing here:
+http://forums.macnn.com/79/developer-center/355720/how-re-sign-apples-applications-once/
+
+A: This problem still exists more than 4 years after it was first reported.   I am running Office for Mac 2011 under Mac OS 10.10.5.  I get the annoying message asking me "Do you want the application “Office365Service.app” to accept incoming network connections?"  Of course I have nothing to do with anything concerning Office 360.  So I deny it, but it comes back up 10 or 180 minutes later, or a day later if I'm lucky.
+I have called Microsoft.  They claim it is because a .plist file has become corrupted.  Sure enough, when I deleted one or more of these files, the problem went away ... for a month or two.   Then it recurred.  Now I forget where the offending file(s) was(were).  
+My take on this:  it is a bug that Microsoft refuses to acknowledge or fix.
+
+A: I would add, that a lot of the Ms-Office documentation is online. It might has something to do with that. 

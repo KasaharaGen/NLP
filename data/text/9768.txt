@@ -1,0 +1,14 @@
+Q: Where is X11's error log located in OSX Lion? I'm trying to run the Xmonad window manager in X11 on OSX lion, I load Xmonad at x11 startup, and X11 just crashes, sometimes it does not. I'm just wondering how I can view some kind of error log to ascertain why it is crashing.
+Solution:
+The log file I needed was system.log in /private/var/log/system.log
+Thanks for the help
+
+A: *
+
+*Fire up Terminal
+
+*cat /private/var/log/system.log
+This will get up the System Log and let you see what is going on. You should be able to find the results you need in there.
+If need be, pass that onto the grep command get it to find the strings you want.
+cat /private/var/log/system.log | grep [string]
+This will output the strings you requrie to the screen specifically.

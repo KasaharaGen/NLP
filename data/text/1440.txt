@@ -1,0 +1,64 @@
+Q: Smartfolders- Can I narrow the query? When using Smartfolders in Mac OS 10.6.5, is it possible to choose where to search beyond the 2 button choices?  One button is usually "This Mac' (too broad) and the other one is a folder that has never been the one I want - in fact, I would want to exclude a particular folder (ie the Library folder in my user directory).
+Since we are given a choice of 2 places to query, why not any particular branch of the directory?
+
+A: Ok, there’s a way to “hack” into SmartFolders and change the locations. 
+Rules: 
+
+
+*
+
+*You can’t do it from the UI
+
+*It involves having the smart folder saved
+
+*I wrote it in spanish a long time ago in a blog post (spanish)
+
+
+For the sake of helping you (I’m assuming you don’t speak spanish), I’ll transcribe the relevant information here. 
+Please note that the blog explains how to add more than one location to the search, not how to exclude (something I don’t believe is possible).
+So, the short version: 
+
+
+*
+
+*Save your smart folder, the search location is really not important (we’re going to change it!) but make sure you use the searching “terms” that you want. Name it something like: IHATESMARTFOLDERS. Ok, you can name it differently if ya wish ;)
+
+*Go to your ~/Library/Saved Searches and you should see your saved smart folder. 
+
+*Once you have located your smart Folder, you have to open it with a text editor like TextWrangler (or anything that can save Plain Text). Do not use Pages…
+
+*Once you have it in your favorite editor, go to the end. You’ll see something like this: 
+
+
+
+<key>FXScopeArrayOfPaths</key>
+<array>
+           <string>/Users/martin/Desktop</string>
+</array>
+
+
+Note My smart folder was created for searching on my Desktop.
+Good. As you can see the path is in an Array. If you know something about arrays, you’ll know that they are a collection of items. This means we can go ahead and add more items to this particular collection:
+For example: 
+<key>FXScopeArrayOfPaths</key>
+<array>
+         <string>/Users/martin/Desktop</string>
+         <string>/Users/martin/Pictures/MacStuff</string>
+         <string>/Users/martin/Pictures/Me</string>
+</array>
+
+I have added two more folders to my smart -not so smart- folder. 
+Now in order for this to start working you have to: 
+
+
+*
+
+*Save the smart folder (remember to use plain text!)
+
+*Restart Finder. 
+
+
+And voilà. 
+Sadly, I haven’t found a way to exclude a location.  
+
+A: There is a 3rd party app EasyFind which has more constraints and customizations for your searches. I use it much more than smart folders. EasyFind is free from the App Store.

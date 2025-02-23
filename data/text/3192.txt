@@ -1,0 +1,13 @@
+Q: "Search in Google" always open Safari instead of default browser I want to make the Search in Google context menu to open my default browser instead of Safari.
+
+A: This worked for me. It shows how to create your own service that is independent of Safari.
+https://superuser.com/questions/369934/mac-os-x-lion-chrome-shortcut-for-search-with-google
+
+A: I believe "Search in Google" is a Mac OS X service provided by Apple. Maybe since they don't know how to pass a webpage in parameter for every browser in the wild, I suppose they limited it to Safari.
+What you might try, is to develop your own Service, then go to
+
+System Preferences > Keyboard > Shortcuts > Services
+
+Disable the "Search in Google" by Apple and replace it with your own.
+You could also try to edit Apple's Service and replace Safari with the browser you want.
+Since I'm not on my Mac right now, I can't search for them or look if you can edit them.

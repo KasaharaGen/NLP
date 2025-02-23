@@ -1,0 +1,42 @@
+Q: macOS cpu/mem monitor in system tray (menu bar) I would like to monitor CPU and memory usage in realtime with charts on a macOS system tray (menu bar). Is there a utility that provides such functionality?
+
+A: iStat Menus is an app by Mac / iOS developers Bjango, but it's not free ($16).
+
+
+
+A: I also have the same needs but many such softwares are not free, thus I made one myself. Feedback is welcome.
+https://github.com/ningt/iStats
+
+
+A: This is an old questions, but newcomers might be interested in Übersicht. This allows you to display the information on the desktop, not the menu bar, much like in Conky.
+Übersicht uses HTML5 web technology, so has a very modern feel to customize.
+
+
+A: iStat Menus 5 now has a free version and works well for monitoring all kinds of system stats, including CPU and memory.
+
+A: MenuMeters is popular among the Mac users I know.
+
+
+A: For OS X 10.11 or later, use this fork of MenuMeters: http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/
+(Open the .prefPane file by Ctrl clicking and selecting Open.)
+
+A: 
+Übersicht allows for creation of conky-like widgets using coffeeScript. coffeeScript uses HTML. So, display options, such as text size, font and opacity of the background are easily set. The widget sits in front of the background image, but behind any desktop items. Übersicht has many user contributed, downloadable widgets.
+I created a conky-like widget for Mac and OS X using Übersicht:
+https://github.com/dumbo25/conky-for-mac
+
+A: I recommend SystemPal which is available on Mac App Store.
+
+
+A: The iPulse program has been doing this since 2002.
+It is recently updated for the Mac App Store and El Capitan and also works on older OS.
+
+
+*
+
+*https://itunes.apple.com/us/app/ipulse/id1028916583?mt=12
+It's menu centric, dock centric and/or HUD style visualizations so you can choose exactly what and how you monitor the system performance.
+
+
+A: I recommend app called CheckMyMac
+http://www.nomasoftwares.com

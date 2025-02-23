@@ -1,0 +1,113 @@
+Q: Can I change the application icon of an Automator script? I have created a couple of automator scripts. I was curious if there is a way to change the application icon on those scripts to something other than the robot.
+
+A: You can also change the icon just as you would normally for any other folder or file in Mac OS X:
+
+
+*
+
+*Copy the image you want to use as your icon. Ideally it should be 512x512 already.
+
+*Choose Get Info on the file/folder/app in Finder
+
+*Click on the Icon and you'll notice a blue outline on the icon - now press Command-V or choose Paste from the Edit menu.
+
+
+
+(Screenshot taken from Super User question 37811)
+
+A: To complement the existing, helpful answers:
+
+
+*
+
+*The accepted answer works in principle, but:
+
+
+*
+
+*relies on extended attributes of the HFS+ filesystem, which are lost when copying the bundle to a filesystem that doesn't support them. For instance, you cannot store a custom icon in a Git repository.
+
+*the icon displayed by the bundle itself, such as when showing an alert, is still the original icon.
+
+
+*percent 20's answer is more comprehensive and portable in principle, but comes with two caveats:
+
+
+*
+
+*Any changes to AutomatorApplet.icns are lost whenever you modify and re-save the bundle in Automator.
+Thus, for instance, you'd need a script to put the updated icons in place programmatically every time the bundle is saved.
+
+*As others have noted, there are icon caching issues, which can be tricky to resolve; as of OSX 10.10.4:
+
+
+*
+
+*Even a reboot doesn't make the new icons appear in Finder (though it does appear in other contexts such as in the Dock), but there are two workarounds: either (a) move the bundle to a different folder, or (b) rename the bundle; given that reverting to the original path and name makes the problem reappear, you'd have to plan ahead: create your bundle in a different location or with a different name, then move / rename to the desired location / name.
+
+*Alternatively, you can use a tool such as OnyX and check IconServicesunder Cleaning > User to clear the cache.
+
+
+
+
+A: I found a hacky way to do it after you have created the applet
+
+
+*
+
+*(Create your icns icon file - however you want)
+
+*Open Applications Folder
+
+*Right-click on automator script
+
+*Click on view package contents
+
+*Add your icon to resources folder
+
+*Rename it to AutomatorApplet.icns
+
+
+I am sure there is a better way, but I figured out how to do it this way.
+
+A: After the script has been created do the following :
+
+
+*
+
+*Find the source app with the icon you want
+
+*Get Info of the source app (cmd-i)
+
+*Click on the icon inside the source app's info window
+(Not the one in the big Preview section at the bottom, if you have one of those; the little one in the top-left corner.)
+
+*Copy it (cmd-c)
+
+*Get Info of the automator script (i.e., the destination app) (cmd-i)
+
+*Click on the icon inside the destination app's info window
+
+*Paste the icon from the clipboard (cmd-v)
+This method works for every files in Mac OS X.
+
+
+A: Apple's official page on customizing files and folders works great for this! 
+For the sake of completeness, for others who view this, I am sharing this.
+
+A: This seems a silly answer but it taught me a interest addittional info
+
+Restore the original icon for an item
+  
+  
+*
+  
+*On your Mac, select the file or folder, then choose File > Get Info.
+  
+*At the top of the Info window, select the custom icon, then choose
+      Edit > Cut.
+
+Only drawback about this simple apple hidden feature: You can't undo the 'Restore original' icon by executting cmd + z from just made from inside Get Info... Or so it seemed.
+Lucky me, I noticed that my custom icon wasn't completly removed in all the places (still present in the top side of the Get Info and in the Finder window miniature I both left opened).
+So I found out a simple cmd + z from Finder window reverted my disaster.
+Maybe it should be safer to store the copy-pasted custom icon in Contents/Resources/description.rtfd inside Package Contents

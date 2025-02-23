@@ -1,0 +1,17 @@
+Q: How do I uninstall Xcode? I now have two versions of Xcode installed:
+
+
+*
+
+*Xcode 4 - installed in /Developer (bought from Mac App Store)
+
+*Xcode 3 - installed in /Developer-old (I believe it was installed from the second disc supplied with my MCB)
+
+
+Since I don't use either of those at the moment, how can I completely remove both?
+Would removing both folder just do the job?
+What about associated Library stuff?
+
+A: Xcode comes with an uninstaller. Just run
+sudo <Xcode directory>/Library/uninstall-devtools --mode=all
+

@@ -1,0 +1,72 @@
+Q: Good/inspiring uses of automation on Mac OS X I have been a mac user for quite a while now (about 5-6 years) and I would consider myself rather tech-savvy. That being said I have very little insight to the automation capabilities that have been introduced to OSX a couple of years ago. There are smart folders, folder actions, and other applescripts, as far as I know. 
+As I haven't come across a good tutorial, or some other resource for these new capabilities within OSX, I was wondering if people could give a couple real-life examples of how they are using these.
+
+A: Smart Folders are 'virtual folders'. They're useful for automatically adding or removing items that fit certain criteria.
+For example, I have a Smart Folder called 'Wallpapers'. I've made the criteria for entrance to this Smart Folder:
+
+
+*
+
+*.png filetype
+
+*2560x1600 pixels
+
+
+As such files appear (or are removed) anywhere on my system, so they'll be added to or removed from the Smart Folder.
+
+When I'm done I can just delete the Smart Folder without deleting the files that reside inside it.
+NB: The default behaviour is to add Smart Folders to the Sidebar. You can uncheck that option when you create the Smart Folder or you can simply drag the Smart Folder out of the sidebar to anywhere you wish. I've chosen the Desktop.
+This link has a good overview of how they work.
+
+A: Mac OS X Automation
+An AppleScript. Services, and Automator site from Sal Soghoian, Apple's Product Manager for Automation Technologies. Lots of explanations, examples, and links to tools and useful sites.
+The training section is particularly helpful if you want to learn more, with tons of useful video training.
+
+A: AppleScript is cool, you can use it and Automater to some really cool stuff from simple batch file renaming to extremely complicated things, like manipulating Illustrator, Photoshop or other files. Very generally speaking, you use AppleScript to drive the applications that you use daily to do the repetitive tasks that can be automated. I've done things like create a script to process emails as they come in. I've written scripts that plat graphs all kinds of stuff. 
+
+
+*
+
+*A good resource I have found is macscripter.net
+
+*I have also learned a thing or two from the guys at applescript pro
+
+*This is also a great book AppleScript: The Definitive Guide,
+That should get you started.
+
+A: Automator is useful whenever you need to do something to a bunch of files at once. For example: 
+
+
+*
+
+*Resize a bunch of image files to a maximum width or height
+
+*Add a watermark to a bunch of pdfs
+
+*Merge several pdfs into one
+
+*Get or set PDF metadata
+
+*Change which application opens files
+
+
+Many of these things would be easy if you had just one or two files, but if you want to do it to 30 at once, Automator is a time saver.
+
+A: I find where Applescript really excels is inter application communication. An example of a workflow relatively easy to create with Applescript and that I have previously used:
+Create a database with location data and photographs in Bento
+Sync the databse with an iPhone and then go out into the field and log the information you are interested in
+Re-sync the databse with a mac when returning from the field. 
+You can then use Applescript to:
+
+
+*
+
+*Export the data from the Bento
+Database to Google Earth
+
+*Take an image from Google Earth
+
+*Insert the photo and the Google Earth
+image into an automatically created
+report in Pages
+If you have 10's or 100' of data points this sort of workflow can save days. 

@@ -1,0 +1,21 @@
+Q: How do you create an archive file which unarchives into the current folder? At the moment, if I create a TAR or ZIP file foo.tar - containing multiple files and directories - when I double click on the archive it creates a folder foo containing all of the archived items.
+Is there a way to have an archive extract itself - when opened from Finder - so that the files are at the same level as the archive was?
+I'm trying to distribute an archive which users can use to setup a USB drive with a custom icon etc, however this requires copying hidden files into the USB drive's root, so I can't just get them to "copy/paste from this network directory"
+
+A: Unless I am mistaken (always a possibility), this behavior is set by the program extracting the archive file, not by the archive file itself.
+
+A: The way I would do this is:
+
+
+*
+
+*Create your .zip file, foo.zip with the desired USB drive contents.
+
+*Create an applescript named USB Drive Installer or whatever:
+tell application "Finder" to get folder of (path to me) as Unicode text
+set myDir to POSIX path of result
+set DestinationDirectory to choose folder with prompt "Select USB Drive Destination"
+do shell script "/usr/bin/ditto -xk " & myDir & "/foo.zip" & quoted form of DestinationDirectory
+
+
+*Create another .zip with those two files. Provide instructions to run the applescript after the files are extracted.

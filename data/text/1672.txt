@@ -1,0 +1,50 @@
+Q: Is it possible to run Nautilus on OS X? Is it possible to run Nautilus instead of Finder on Mac OS X Snow Leopard? How?
+
+A: Looks like it's available in MacPorts, so you could install MacPorts and then install Nautilus using that:
+sudo port install nautilus  
+
+You should then be able to run it using the nautilus terminal command.
+
+You may see the following during installation:
+############################################################################
+# Startup items have been generated that will aid in
+# starting dbus with launchd. They are disabled
+# by default. Execute the following command to start them,
+# and to cause them to launch at startup:
+#
+# sudo launchctl load -w /Library/LaunchDaemons/org.freedesktop.dbus-system.plist
+# launchctl load -w /Library/LaunchAgents/org.freedesktop.dbus-session.plist
+############################################################################
+
+Running the commands manually should be enough to run nautilus directly after installation (without rebooting).
+
+A: While Josh's answer regarding MacPorts addresses how to install nautilus, it doesn't address how to run it "instead of Finder". In the other answer(s), there seemed to be some confusion about whether it would be possible to prevent the Finder from running.
+Unlike an application such as the Dock, the Finder isn't considered a "required" application. For example, if you were to write an AppleScript to the effect of tell application "Dock" to quit"and then run it, the loginwindow would immediately re-launch the Dock, since it assumes the Dock must always be running. With the Finder, however, as long as you quit it in a way that allows OS X to know that you had a clear intent to do that, the loginwindow won't relaunch it.
+To do that, all you need to do is simply tell the Finder to quit rather than trying to kill it. When you kill the Finder forcibly by using the Force-Quit option or by using kill or killall in Terminal, loginwindow (or launchd for your user account) will immediately try to relaunch it because it saw that it terminated "unexpectedly".
+Telling the Finder to quit via an Apple Event won't result in it automatically being relaunched.
+[EDIT]: In more recent versions of macOS, as I mentioned in this answer, it's possible to prevent the Finder from running by running the following command in Terminal:
+launchctl unload /System/Library/LaunchAgents/com.apple.Finder.plist
+Alternatively, in older versions of OS X, an AppleScript like the following could be run at login to quit the Finder:
+property runningApps : {}
+property assureQuitMenuItem : true
+
+tell application "System Events" to set runningApps to name of every application process
+
+if (runningApps contains "Finder") then
+    tell application "Finder" to quit
+end if
+
+if (assureQuitMenuItem) then
+    set quitMenuItem to missing value
+    try
+        set quitMenuItem to (do shell script "/usr/bin/defaults read com.apple.finder QuitMenuItem")
+    on error
+        set quitMenuItem to "0"
+    end try
+    if quitMenuItem = "0" then
+        do shell script "/usr/bin/defaults write com.apple.finder QuitMenuItem 1"
+    end if
+end if
+
+A saved version of this in application form is at: QuitFinder.zip
+(You can open the application in AppleScript Editor to see its contents by dragging the script app icon onto AppleScript Editor's application icon).

@@ -1,0 +1,87 @@
+Q: Is there an OS X equivalent to the web debugging proxy Fiddler? I do web development on Windows for my day job, and I rely a lot on Fiddler, which is web debugging proxy.  What is an equivalent tool for OS X?
+
+A: These are both free and haven't been mentioned so far.  I found that both of these are far superior to the X11 Wireshark.
+
+
+*
+
+*Cocoa Packet Analyzer
+
+*Packet Peeper
+
+A: http://mitmproxy.org/ is text-based tool, but does a great job.  For any http-speaking app you want to analyse, and even modify and replay requests.
+
+A: Fiddler now has an Alpha build based on Mono.  
+
+A: Stuff that's Free:
+
+
+*
+
+*Burp Suite 
+
+*WiireShark
+
+*ParosProxy
+
+*NetTool
+
+*LiveHTTPHeaders
+
+*Safari WebInspector Network Tab
+
+*FireBug
+Stuff that Costs:
+
+
+*
+
+*$1.99 -  HTTPClient
+
+*$15.00 - HTTP Scoop
+
+*$50.00 - CharlesProxy
+
+A: I use CharlesProxy, and while it isn't as scriptable as Fiddler, it does the job. And with single license key, you can run it on all OSes (it's written in Java).
+My needs were little different when I needed it ... I used it to debug webdav connections or to debug http communication between servers.
+
+A: If you just want to see HTTP traffic, try Cellist.
+
+A: Try Tamper
+It's a Chrome extension that lets you view and modify HTTP requests in the current tab's scope
+
+A: Try Proxyman, which is exclusively built for macOS.
+
+*
+
+*Easy to use and set up the certificates on mac/iOS/Android
+
+*All advanced tools: Map Local, Map Remote, Breakpoint, Scripting, ...
+
+*Active development and bug/feature tracker
+
+*It's a premium app without time limit
+
+Disclaimer: I'm a creator of Proxyman. Just come here to suggest a better alternative to boost productivity. Hope you enjoy the app!
+
+A: ZAP Attack proxy from OWASP is an excellent OpenSource alternative.
+The already mentioned Burp is also excellent but the paid version is much better than the free version.
+I use both for work.
+
+A: Captor, available on mac app store
+It's a native app , can capture HTTP/HTTPS just like CharlesProxy.
+
+A: There's a mac version now via mono.
+Install Fiddler on Mac OSX
+About the App
+App name: Fiddler
+App description: fiddler (App: Fiddler.app)
+App website: http://www.telerik.com/fiddler
+Install the App
+Press Command+Space and type Terminal and press enter/return key.
+Run in Terminal app:
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null ; brew install caskroom/cask/brew-cask 2> /dev/null
+and press enter/return key. Wait for the command to finish.
+Run:
+brew cask install fiddler
+Done! You can now use Fiddler.

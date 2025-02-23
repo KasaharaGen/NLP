@@ -1,0 +1,18 @@
+Q: What is the difference between .command, .tool, and .sh file extensions? I saw a couple of questions about executing command line scripts? I saw that the .command and .tool extensions were mentioned. I have always used .sh. What is the difference between these different scripts? Do some extensions allow for different commands?
+
+A: I believe that .sh files are "owned" by Xcode by default, so if you were to double-click on one of them, it would open in Xcode instead of executing.
+.command and .tool files are owned by Terminal by default, so if you double-click on one of them, it will open and execute in Terminal.
+I am not aware of any other differences between them.
+I, too, have used .sh for shell scripts, but I've recently stopped because I've started writing my shell scripts in Zsh instead of sh, and it was confusing to try to remember whether a certain command ended in .sh or .zsh, so I finally just put them all in ~/bin/ and made sure they were executable, and don't use file extensions on them at all.
+
+A: *
+
+*.command - (Terminal shell script) Specifically associates a shell script with Terminal. Sometimes referred to as a "Terminal File."
+
+*.tool - (Terminal shell script) Same as the ".command" file extension.
+
+*.sh - (Shell Script) A basic shell script that is associated with Xcode 4.1.
+
+
+Programmatically, I'm sure the difference between the first two (.command vs. .tool) are subtle, while the third is essentially a simple, default shell script. And does in fact associate with Xcode 4.1.
+

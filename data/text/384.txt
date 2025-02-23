@@ -1,0 +1,9 @@
+Q: Software update never completes I have an eMac (PPC G4) with 512 MB RAM, running 10.5.8. When I run Software Update, the "Checking for new software..." process never completes. I have tried deleting my /Library/Caches/com.apple.SoftwareUpdate/Cache.db and running Software Update again, with no luck. I have also tried Repairing Disk Permissions from Disk Utility, and that hasn't worked either. Both of those suggestions I got from here
+Any suggestions??
+
+A: Try moving the contents of /Library/Receipts somewhere else. I have seen some weird problems caused by corrupted files there a couple of times. Also make sure apps like Little Snitch do not intervene in the process.
+
+A: Do it the CLI way:
+sudo softwareupdate -i -a
+
+this may help to get more verbose output.

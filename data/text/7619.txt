@@ -1,0 +1,11 @@
+Q: Why doesn't Automator service appear in iTunes? I'm trying to write an Automator service for iTunes so that I can immediately open a file from iTunes in VLC, so I don't have to do (show in finder, launch with other application, vlc).
+I go to Automator, create a Service, in the top right dropdowns, I choose: "Service receives selected audio files in any application", and the script itself is just "Open Finder Items" with VLC. 
+However, the service doesn't appear. Not in finder, not in iTunes.. I'm very confused. Any thoughts what's going on? I tried restarting computer, restarting iTunes, all to no avail.
+Thanks!
+
+A: To get it to work in iTunes, you can try setting it up like this:
+Service receives selected: text in: iTunes
+Actions:
+"Get Selected iTunes Tracks" - Get selected: tracks
+"Open Finder items" - Open with: VLC
+

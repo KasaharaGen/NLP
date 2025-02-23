@@ -1,0 +1,7 @@
+Q: Modify Global Mac OS X Path What is the best way to permanently change the Mac OS X path variable?  I've tried to add a .profile file in my user home directory with the below path, but that didn't work. Right now I have to run the export command every time I open up a new instance of the console.  Any ideas?
+export PATH=/Users/tom/sshfs-binaries:$PATH
+
+A: If that's for a single user, you can add export PATH=/new/path:${PATH} to ~/.bash_profile. If it's going to be really global (for all users), then add it to /etc/profile and make sure the users have permission to access the path you're including. After that, you need to re-launch the shell, or reload the configurations with source /etc/profile or source ~/.bash_profile.
+
+A: There's also ~/.MacOSX/environment.plist (also this and this).
+"Note: Any changes to ~/.MacOSX/environment.plist require that you logout and login again for the change to take effect."

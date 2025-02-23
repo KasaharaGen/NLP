@@ -1,0 +1,47 @@
+Q: Bandwidth shaper or bandwidth controller application for Mac OS X I'm looking for a bandwidth/packet throttle/shaper program with the following features:
+
+
+*
+
+*Similar to Windows-based Netlimiter.
+
+*GUI based and not terminal or command line.
+
+*Shows list of all applications communicating over network its connections, transfer rates and more.
+
+*Set download or upload transfer rate limits for applications, connections or groups of them. 
+
+
+A: There are multiple ways to do this.
+For example, using ipfw, pf, or trickle, or GUI front ends to these, such as:
+
+
+*
+
+*Speed Limit (not maintained as of 2014)
+
+*Throttled (only 10.4.x - 10.8.x)
+
+*Waterroof (10.7): http://www.hanynet.com/waterroof/
+
+*IceFloor (10.8): http://www.hanynet.com/icefloor/
+
+A: For those on 10.7 or newer, the easiest solution to the bandwidth limiting part of the question is Apple's Network Link Conditioner (NLC), a free utility that was originally included with Xcode. Then Apple got all sandbox-happy, so now it's a separate download from Apple's developer web site, called the Additional Tools for Xcode.
+The important points going for NLC are that it's from Apple, it's got a very straightforward UI, and it works. Some of the other suggestions given in other answers fail some or all of these criteria, particularly in failing to work on newer OSes.
+As for monitoring per-application bandwidth usage, I recommend iStat Menus.
+
+A: Since there wasn't a clear answer here.... somebody recommended vellum and that got me looking into it. Turns out velum gives you a license too their other product "snail" which is exactly what the post originally asked for.... so skip vellum just buy snail.
+https://www.murusfirewall.com/snail/
+
+A: Charles Proxy
+Limit the bandwidth and see requests, responses in real time. 
+Charles Proxy has quite a nice GUI.
+
+A: Waterroof or Noobproof, both free!!
+
+A: take a look at little snitch: http://www.obdev.at/products/littlesnitch/index.html
+Little Snitch features real-time network monitoring. It started as a nice GUI for adding per-application access rules and has grown into a bandwidth tool as well. I don't know how to use it to shape bandwidth. It's mostly an all-or-nothing, accept/reject network access monitor.
+Still, it will certainly help you find out which processes are spiking your Mac's network activity.
+
+
+A: In 10.15 and above, try: Vallum

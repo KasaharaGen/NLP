@@ -1,0 +1,26 @@
+Q: Internet sharing through WiFi disconnects I am currently using an iMac running Lion and am having problems sharing my internet through WiFi.  
+The iMac is connected to the internet through ethernet and I share that connection through WiFi to my iPad and iPhone.
+The WiFi icon in the menu bar will randomly switch from the sharing icon (grey with an up arrow) back to the normal WiFi icon. At this point my iPad and iPhone no longer see the network. 
+When I go into my sharing preferences in Lion, the "Internet Sharing" box is still ticked and it says its connected, but I have to stop it and start it again for it to actually work.  Any help would be appreciated.
+
+A: The first step is to know why the connection is failing, so you might need to look in the console log for messages that speak to en1 / link down / AirPort and such. I don't see a good troubleshooting article from Apple to start things out, but feel free to comment here or edit the answer yourself as we narrow down the when and then finally the why.
+
+A: Here are a few hints which may help in understanding your problem.
+
+
+*
+
+*In a Terminal or xterm window type:
+egrep 'Shar|boot|natp' /var/log/system.log
+
+If you don't feel at ease reading the output of this command,
+just paste it here.
+
+*When your InternetSharing is faulty check your Wi-Fi icon in
+the menu bar.Is it displaying as a set of grey or black arcs?
+
+*When your InternetSharing is faulty, open
+ System Preferences > Network.
+ Is your Ethernet "Connected" with a green light?
+ Is your Airport "On" with a yellow light?
+ Is there any other interface active or connected?

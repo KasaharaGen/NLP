@@ -1,0 +1,57 @@
+Q: What's a good Windows RDP client for Mac? I administer a number of Windows machines, and am trying to find a really good application to remote desktop in to them from my Mac.  I've tried CoRD, and I really like its library approach to saved sessions (as opposed to Microsoft's file based approach), and tabbed sessions are great when working on a bunch of machines.  Unfortunately, it's just too buggy for serious use, and given that it averages less than 2 releases a year, I have little hope that that will change.  Microsoft's official client is very bare bones and doesn't support connecting on non-standard ports (which I need).
+Is there a remote desktop client for Mac out there that's both fully featured and not buggy?
+Edit: Apparently the Microsoft doc I read that states that the Microsoft RDC client can't be used on non-standard ports is out of date.
+
+A: In my experienced opinion, CoRD and Jump Desktop are the best RDP clients for Mac. CoRD is more for those that know what they're doing - it's simple, stable, fast and reliable. Jump Desktop however is for those that are new to Remote Desktop Connections and want something that makes things easy. It's easily the slickest RDP client for Mac too and looks great. There's a useful extensive review of the best RDP clients for Mac here: http://machow2.com/rdp-for-mac/
+
+A: Reading this answer I learned about Royal TSX and after a few hours I'm happy with it.
+In addition to RDP it has a terminal plugin for SSH/Telnet connections with X forwarding. Mac OS terminal can do the same, but connection documents are handy.
+The terminal plugin also allows COM port use. I have not tested this but I hope that works OK because I have not found a good terminal program for plain COM port. I still use minicom.
+Licensing terms are generous enough that in my case I can use it for free but I may consider purchasing to encourage the maintenance.
+
+A: Use RDC (Remote Desktop Connection Client for Mac 2)
+This free download runs natively on both Intel-based and PowerPC-based Macs
+Use One Mac, unlimited Windows.
+
+
+A: The best RDP client for OSX (whether free or not) is Thinomenon RDC. It supports audio, printing, scanning, and most importantly, RemoteApp/RAIL.
+
+A: New Microsoft Remote Desktop 10 supposed to be best RDP client for Mac.
+Works super smooth btw. 
+
+A: Check out Royal TSX if you're after a full featured connections manager that can do RDP as well as other protocols like, VNC, SSH, Telnet, etc.
+http://www.royaltsx.com/ts/osx
+Disclaimer: I'm the developer of the mentioned product.
+
+A: I use a program called CoRD.
+It's worked well for me without fussing with any configuration files or properties.
+It's been a while since I tried any alternatives, so I'll give RDC another try.
+I don't remember why I rejected it before.
+
+A: If you are willing to spend some money, there is LogMeIn, which I have used for my home Macs with great success. On the free side, we used to use "Chicken of the VNC" but decided to go with Microsoft's official client for reasons unknown to me. Six of one half dozen of the other, if you ask me. Frankly, the VNC market is pretty banal.
+
+A: You may want to try iTAP. 
+It seems it does support NLA per the specs. (I only tested TSG, which works fine).  
+If you come from CoRD, you will find the overall frame quite basic, but the emulation itself seems to work pretty well (I normally work in full screen mode and switch windows with the top menu).
+
+A: Chrome Remote Desktop is cross-platform. "Provide remote assistance to Windows, Mac and Linux users, or access your Windows (XP and above) and Mac (OS X 10.6 and above) desktops at any time, all from the Chrome browser on virtually any device, including Chromebooks."
+Used LogMeIn til they yanked free utility, Chrome RD works almost as well, but I can't reboot a computer without losing connection completely.  It must then be reconnected locally - AHRRRG.
+So, still looking for cross-plat solution, too. 
+
+A: Since updating  my iMac to El Capitan 10.11.4, CORD Version 0.5.7 (5701) is no longer crashing.
+I've been using it since Tiger. It began crashing intermittently with OSX Yosemite, then would always crash on quitting with El Capitan before 10.11.4, and often crash on changing screen resolution. After 2 days of use, I have no longer seen a crash with OSX 10.11.4.
+
+A: try Teamviewer I am not sure about the multiple tabs for easy switch never had a chance to test it. Also you can set it for lan incoming connection so you can connect via a lan rather than internet.
+You can create a free account and add all machines to it, So you can even see which system is on and connect with one click 
+
+A: Microsoft now has a beta for yet another new RDP client: Microsoft Remote Desktop for Mac v8.2.20
+It still has a variety of problems, but it at least looks more like a MacOSX application.
+
+A: The best RDP client for Mac is Thinomenon. 
+I can even run .rdp files from remote apps and work only the application does not show the entire desktop 
+
+A: I’m looking for an RDP client to work with Windows on VirtualBox running on my Linux server. The idea is that when I upgrade my Mac with the newer processor, the Linux server can handle the old Intel stuff.
+I tried Microsoft’s RDP client, but window sizing is a real pain, and I really hate the way a window floats around inside the larger RDP window.
+So far, Jump Desktop is working well, and window resizing is good. It also does for my VNC client. I’ve had a few issues with sessions crashing when adjusting the Windows screen resolution, and have submitted a support request.
+
+A: I use Real VNC. It works really well for me.

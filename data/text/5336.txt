@@ -1,0 +1,31 @@
+Q: How can I set a different scrolling direction for mouse and trackpad in Lion? I want to give the new scrolling behavior in Lion a try (both on the built-in as well as on the magic trackpad).
+But on my Mouse (a Logitech Anywhere MX), I don't want reverse scrolling. In preferences, it seems as if there were two different settings (one in the mouse prefPane, the other in the trackpad prefPane), however changing one always changes the other.
+Is it possible to set this behavior independently?
+
+A: Posting this as a separate answer based on a recommendation.
+As of version 1.9.3 BetterTouchTool now supports inversing the scroll direction only for normal mice. It works with Sierra. BetterTouchTool is not free but it is very reasonably priced.
+I have noticed the scroll sensitivity is not what I expect when I use BetterTouchTool to reverse mouse scroll direction, so I personally prefer SteerMouse (mentioned in my other answer to this question). To be more specific, for some reason with Better Touch Tool mouse scrolling I have to scroll more than a few "clicks" for it to recognize that I have started scrolling, which means I can't easily scroll a small amount.
+
+A: Another (paid) option is SteerMouse. Years ago I bought SteerMouse and haven't had any problems with it. It has worked perfectly for me on Mavericks, Yosemite, El Capitan, and now Sierra.
+Sierra Update: Version 5 of SteerMouse is needed for Sierra support, but it is working fine. (From what I have read here, ScrollReverser is having some issues with Sierra.)
+
+A: Scrollreverser (free app) actually supports configuring the scrolling direction for each kind of device separately.
+
+A: Adding one more answer for a newer product I just came across, namely Mos (source code here). I have not used this one personally, but I have seen it mentioned. It is free.
+
+A: No
+Currently in Lion the preference for reverse scrolling sets the direction for both mice and trackpads.
+If you want to switch directions quickly you might look into Scrollreverser which puts the option in the menubar.
+
+A: I found this thread when looking for help on getting the wonderful Scroll Reverser running on Catalina.  The author has a note on the website saying that Catalina is causing issues and there is not yet a fix available.  For me, the app would launch and immediately segfault.  The icon for the app would appear for a split second on the menu bar and then disappear.
+I experimented a bit and found a workaround which works for me and might work well for others too.  
+It involves using the automator tool on MacOS to create an "application" which launches Scroll Reverser.  Just one action required which is "Run Applescript".  Below is the body of the action.
+do shell script ¬
+    "'/Applications/Scroll Reverser.app/Contents/MacOS/Scroll Reverser' \\
+        >/dev/null 2>&1 &"
+
+So create this automator application, save it into your applications folder with a new name eg. Scroll Reverser Catalina and run it.  
+On first launch, it will require the user to allow for security & private exceptions in the areas of "accessibility" and "input monitoring".  After ticking the boxes for Scroll Reverser Catalina in those security & privacy areas, it runs as expected.
+
+A: I recommend using USB Overdrive which is compatible with the latest MacOS Catalina. Reverse the scroll direction by selecting "down" on "scroll up" and vice versa for "up". If you want this setting only for specific mice this is also possible in USB Overdrive.
+Further you can disable or customize the default MacOS mouse acceleration with USB Overdrive, which I strongly recommend. 

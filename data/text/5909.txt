@@ -1,0 +1,105 @@
+Q: How would I use Tor with Colloquy I've been switching back and forth between Colloquy and Linkinus a lot recently as my IRC server has become more and more popular - since then I've been trying out the correct way to use my Tor proxy with Colloquy or Linkinus. I've read they both have support for Proxies but I can't find anything in either of the Apps nor any relevant documentation around the internet. 
+
+A: It requires that the IRC server in question already making itself availble as a Tor service. Apparently Freenode does this  at the address (THIS IS AN OLD ADDRESS) mejokbp2brhw4omd.onion, but most IRC servers don't.  While not strickly nessecary alot of IRC servers block TOR exit nodes.  You can try by replacing the .onion address in the socat line and see if it works.
+UPDATED Freenode IRC Service: The onion address of Freenode has changed: p4fsi4ockecnea7l.onion
+You can always check this by using dig +short irc.tor.freenode.net cname from a Un*x command prompt.
+The basic idea is to use socat to create the TORified connection for us, and our client will connect to socat.
+
+
+*
+
+*Install Tor. I'm using the Vidalia bundle from the Tor download page.
+
+*Install socat. This is a command-line power tool for manipulating network connections.
+I recommend using the Homebrew package manager (also a command-line program) to install it. If this all sounds confusing and scary, just open up Terminal (in /Applications/Utilities), paste the following line, press enter and wait for it to finish.
+ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)" && brew install socat
+
+(Pasting commands into the Terminal like this can do anything to your computer, so it's usually a bad idea unless you trust the source.)
+
+*NOTE: This step is not nessecary as we are already using socat which can handle the mapping for us. 
+The rest of this step is left for historical purposes.
+Edit your torrc file to create an internal IP address to use to connect tor and socat by adding the line
+MapAddress 172.28.184.12 mejokbp2brhw4omd.onion
+
+(replacing the .onion address if you're not using freenode). Tor has an FAQ entry about how to modify your torrc file, but if you trust me and are using Vidalia as well you can just enter this in the Terminal:
+mkdir -p ~/.vidalia/ && echo 'MapAddress 172.28.184.12 mejokbp2brhw4omd.onion' >> ~/.vidalia/torrc
+
+
+*Create a new launch daemon (background system process) to initialize socat when you turn your computer on. Enter the following Terminal command to create the configuration file and open in in your editor...
+Couple of things:
+
+
+*
+
+*Find the correct path to socat by typing which socat in your terminal
+
+*If you don't use IRC alot then a LaunchAgent is probably overkill, you can just start socat manually by typing: socat TCP4-LISTEN:6666,fork,bind=localhost SOCKS4A:localhost:p4fsi4ockecnea7l.onion:6667,socksport=9050
+Or you can create the LaunchAgent by pasting this into your terminal:
+mkdir -p ~/Library/LaunchAgents/ && touch ~/Library/LaunchAgents/org.dest-unreach.socat.irc.plist && open -t ~/Library/LaunchAgents/org.dest-unreach.socat.irc.plist
+...then copy the following text into the file, save and close it:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>Label</key>
+        <string>org.dest-unreach.socat.irc</string>
+        <key>OnDemand</key>
+        <false/>
+        <key>Program</key>
+        <string>/opt/local/bin/socat</string>
+        <key>ProgramArguments</key>
+        <array>
+                <string>/opt/local/bin/socat</string>
+                <string>-s</string>
+                <string>TCP4-LISTEN:6666,fork,bind=localhost</string>
+                <string>SOCKS4A:localhost:p4fsi4ockecnea7l.onion:6667,socksport=9050</string>
+        </array>
+        <key>ServiceDescription</key>
+        <string>SOCAT Relay for Freenode-TOR</string>
+</dict>
+</plist>
+
+
+*Load / Run the new LaunchAgent (or run socat from the command line)
+launchctl load ~/Library/LaunchAgents/org.dest-unreach.socat.irc.plist or you can just restart your computer.
+
+*Launch Tor/Vidalia and wait for it to connect.
+
+*Open Colloquy, and add a connection to localhost:6666 and connect to it. Ta-da! You're on IRC, through Tor!
+
+
+If you need to stop the socat LaunchAgent (i.e. for debugging) you can type the following into a terminal: launchctl unload ~/Library/LaunchAgents/org.dest-unreach.socat.irc.plist
+
+A: 4 additions to the answer given above:
+
+
+*
+
+*Vidalia has a torrc in ~/Library/Vidalia/torrc (no .). Edit this file from within Vidalia itself (adding the MapAddress line)
+
+*The plist above is slightly mangled. I use Fink's socat, so your path below may vary
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>org.dest-unreach.socat</string>
+        <key>OnDemand</key>
+        <false />
+        <key>ProgramArguments</key>
+        <array>
+            <!-- /opt/local/bin/socat ProgramArguments -->
+            <string>/sw/bin/socat</string>
+            <string>-s</string>
+            <string>TCP4-LISTEN:6666</string>
+            <string>SOCKS4A:localhost:172.28.184.12:6667,socksport=9050</string>
+        </array>
+        <key>ServiceDescription</key>
+        <string>Multipurpose relay (SOcket CAT)</string>
+    </dict>
+</plist>
+
+
+*FreeNode needs SASL support built-in. The nightly build of Colloquy supports this natively. Check irc://irc.freenode.net/colloquy for the latest version.
+
+*The onion address of Freenode has changed: p4fsi4ockecnea7l.onion
+You can always check this by using 'dig +short irc.tor.freenode.net cname' from a Un*x command prompt.

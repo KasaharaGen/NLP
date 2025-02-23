@@ -1,0 +1,22 @@
+Q: SIMBL Plugins not launching properly under OS X Lion I have OS X Lion installed on my 2011 MacBook Pro. I also have SIMBL with two plugins: Colorful Sidebar and Safari Omnibar. I (obviously) have Finder launch when I login, and I also have Safari launch at login.
+My issue is that when I first use either application, the desired effect of the application does not kick in. i.e. the icons in Finder's sidebar are still gray, and the google search box can still be found as a separate entity in safari.
+Restarting either application causes the SIMBL plugin to kick in for that application.
+My question is why are these plugins not activating and doing what they are supposed to do until after I relaunch their respective application?
+
+A: Unfortunately, this is the behaviour of the SIMBL plugin.
+
+One oddity about this solution is that you may need to kill the Finder
+  again to bring the color icons back after a full system reboot
+
+Source
+
+A: On the Omnibar page's FAQ they say that it is known issue and it is suggested to reinstall Omnibar since newer versions are shipped with patched SIMBL.
+See the third question from the bottom of this page.
+
+A: The plugins will not activate by themselves. They activate when the app is launched, as an intended accessory to the app.
+I do not know what to do about Safari Omnibar, but I have an Applescript someone compiled that runs on login.  It  shuts down the Finder and relaunches it immediately after the Finder is active at startup, giving me thee Colorful Finder window.
+I would imagine that the Applescript could be modified to do the sam for Safari Omnibar, but I am not a scripter.
+I just searched for the source of this script to provide the link, but failed.  Being new here, I don't know the protocol about sharing this script, as it is essentially a hack.  
+
+A: Here you can find the answers 
+http://hints.macworld.com/article.php?story=20110825114202681

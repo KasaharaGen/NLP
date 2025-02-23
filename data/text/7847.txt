@@ -1,0 +1,29 @@
+Q: Adding to Mac OS X contextual menu Templates like on Linux Ubuntu Does there exist some method to add the Create document function to the context menu?
+I would love a function like this with the Templates folder because I always need to create files with the same template inside and place it in different folders.
+Does there exist some app to do this or some Context menu modification for Leopard or Lion?
+
+A: There are a number of ways you could do this.
+
+
+*
+
+*You could use Automator to create new documents through a Service:
+http://pauloppenheim.wordpress.com/2011/06/03/mac-finder-add-new-file-context-menu-item-open-source/
+
+*Use a context menu plugin, but these are less common on 10.6 and 10.7. You may need to run them using Shortcuts:
+http://www.abracode.com/free/cmworkshop/macosx_10_6_snow_leopard_and_contextual_menu_plugins.html
+
+*Best of all, in my opinion, you can use a little known OS X feature called Stationary Pad. It's on the Get Info dialog of any file. The way you would go about using it is to create your template file, mark it as a Stationary Pad and then every time you double click it a new copy of that template will be created. Read more:
+http://ignorethecode.net/blog/2009/05/31/creating-new-documents/
+
+
+A: Not sure if I understand your question correctly. If you want to create new files from some template(s), there's no need for a context menu entry. Just mark the template file as "Stationery pad" by opening the file's Info window in Finder (⌘i or menu File > Get Info) and selecting "Stationery pad" in the "General" section.
+Then, double-clicking that template file will always make a copy of it and open the copy using the default application. You just save the copy under a different name wherever you need it, and your template stays where it was.
+
+A: Neu
+This applications adds "Create Document..." and "Create And Open
+Document..." menus to various places, including the main menubar, the
+Dock, and the Services menu that the Finder shows when you right-click
+on something. You can also trigger Neu from any application using a
+special key combination.
+Neu lets you choose what to make from a list of templates, which are simply existing files. Once you've chosen a template, Neu creates a copy of it, brings the Finder to the front, and selects the new file.

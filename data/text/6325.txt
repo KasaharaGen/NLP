@@ -1,0 +1,14 @@
+Q: Is it possible to use Linux USB drivers on Mac OS X? I have a USB device that I use on a daily basis and it has Linux and Windows drivers. I would like to use this device in Mac OS X (meaning not through a VM). Is it possible?
+edit
+System requirements from the read me:
+
+
+*
+
+*Linux 2.4 or 2.6
+
+*System setup for kernel compilation.
+
+
+A: No, because of completely different executable-architectures.
+Only if you're willing to recompile them for OSX and they're Darwin based.

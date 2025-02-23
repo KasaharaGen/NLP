@@ -1,0 +1,37 @@
+Q: How can I create an entry in the /Applications folder that runs a command in the terminal? I would like to have an item in the /Applications folder that will open a new terminal window and run a specific command inside. How can I create this?
+
+A: Use Automator which Apple made part of OSX..
+Create a workflow
+In the workflow choose Utilities/Run Shell Script
+Save as changing the File format to application - this will give a .app and choose the directory to be /Applications
+EDIT to show the output.
+The workflow need sto consist of three steps
+1) Text->Create New TextEdit Document
+2) The Utilities/Run Shell Script
+3) Text->Set Contents of Textedit Document 
+
+A: *
+
+*Create a new text file starting by #!/bin/bash and followed by your command  
+#!/bin/bash
+
+echo 'Hello world'
+
+
+*Save with .command or .tool as extension like myEchoCommand.command
+
+*Set execute right on this file with chmod command.
+
+*You just have to double-click this newly created file, Terminal will open and execute it's content.
+
+
+A: Playtypus
+
+It can be used to create native, flawlessly integrated Mac OS X applications from interpreted scripts such as shell scripts or Perl and Python programs.
+
+
+A: Most people just put a shell script in whatever folder they desire and make is executable with chomd a+x. You can use any old text editor and save the script as plain text. If you don't want to store the scripts in the /Applications folder that's fine as well - it won't matter where you store them as long as they are readable and executable.
+If you save the file as script.bash.command - you won't have to associate terminal with .sh or .bash since it runs command files by default. When the script ends, the terminal session is logged out, so it will run the command and exit letting you see the results but if you want a working window you have to open another window in terminal.
+Will that work for you?
+
+A: Maybe you need something like DTerm? It's just a shortcut away to invoke and freely installable from the AppStore. You can include it in your startup items and use it when you need it. If your command gives some output DTerm shows that in a floating window.

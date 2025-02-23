@@ -1,0 +1,26 @@
+Q: How to make special French keyboard characters work in MS RDC? I'm on a Macbook Pro with a French Keyboard. Keyboard layout works fine when connecting to Windows XP Professional but I cannot get certain keys to work:
+For example $, &, é, § and @ etc. work fine.  
+
+
+*
+
+*Forward slash / using ⇧ + : works.
+
+*Backslash \ using ⌥ + ⇧ + : does not work.
+
+*Pipe | using ⌥ + ⇧ + L does not work. 
+Is there any configuration that I can do to make my keyboard work?
+I've had this issue on my Windows VM in Virtual Box but fixed it with a custom keyboard layout. However when connecting to servers and workstations over the network this is not a solution since I can not configure each machine I need to connect to.
+Under preferences, if I disable the Alt key it still does not work and on-top of that working without an Alt Key in Windows is no fun.
+
+A: In windows symbols can be inserted by pressing Shift + relevant number key to insert symbol.
+When using a macbook on Microsoft Remote Desktop connection, you are required to Hold down Cmd + Shift + Number Key.  
+This is the hidden option for inserting symbols into Windows machines over Microsoft Remote Desktop Connection.  
+
+A: In the case of backslash \, the problem is a difference between where Macintosh French keyboards put the backslash (which is ⌥+⇧+:), and where Windows French keyboards put the backslash (which is ctrl+⌥+8).
+Since the way Remote Desktop works is that scancodes, not characters, are sent to the remote system, you have to honor the Windows keyboard and press ctrl+⌥+8 to get a backslash.
+Pipe | is ctrl+⌥+6
+I was able to debug this using the on-screen keyboards, which both Macintosh and Windows support.
+
+A: I press left ctrl + right ⌘ + right ⌥ key on my mac to imitate AltGr when using remote desktop to a windows computer
+I can type special characters and shortcuts that need the AltGr key on the remote PC.

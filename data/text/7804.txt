@@ -1,0 +1,30 @@
+Q: Any tool to tell me the exact color value at a point on a png image? I want to get the exact color value(RGB, HSB, or any other color space value that can be converted to RGB value) at any given point(preferably the point under the cursor) on a png image. Any tool for that? Thanks.
+PS: To be more specific, I'm not asking for screen color picker, but PNG image color data picker. General screen color picker can not perfectly pick the exact color value in a PNG image, for example, alpha channel is missing.
+
+A: DigitalColor Meter (found in /Applications/Utilities) tells you the colour value (RGB) of the pixel your cursor is hovering over.
+
+A: Using ImageMagick:
+$ convert image.png -crop '1x1+100+200' txt:-
+Outputs, e.g.
+# ImageMagick pixel enumeration: 1,1,255,rgb
+0,0: (236,236,236)  #ECECEC  rgb(236,236,236)
+Or, if the file is PNG-24 file, it outputs e.g.
+# ImageMagick pixel enumeration: 1,1,255,rgba
+0,0: (  0,  0,  0,243)  #000000F3  rgba(0,0,0,0.952941)
+
+At -crop option I've first defined the area to be cropped, which in this case is 1x1 pixels. Then I've defined the location of the crop relative to the North West corner, i.e. upper left.†
+Lastly I've converted the output to textual with txt:-. ImageMagick then outputs all the colors of the image to STDOUT (in this case there is only one color, as the image size is 1 pixel), meaning you could process it with normal shell techniques. So e.g. by piping the output to tail -n 1 you would get only the pixel info line.
+If you need the pixel's color in any other colorspace, you should look at the aptly named -colorspace option.
+†) Actually the location is relative to the specified -gravity value, but it defaults to "NorthWest".
+
+A: I found a feasible way on Stack Overflow by Roman Nurik:
+
+In Photoshop's Info panel, you can choose 'Opacity' as a readout mode, though it will show up as a percentage and not as a real alpha value.
+To enable it, simply open the Info window, choose Panel Options and then set the Second Color Readout mode to Opacity.
+
+… But you need Photoshop for this. I still believe there should be simpler ways. Hope someone else can help.
+
+A: If you don't have Photoshop, and don't want to spend the bucks just to get that feature, the FOSS (Free / Open Source Software) app GIMP will do the job for you.
+www.gimp.org
+
+A: colorhunter.com is what i managed to find while googling this same question. good luck

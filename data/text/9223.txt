@@ -1,0 +1,22 @@
+Q: Limiting network access for individual applications, on a per-WIFI-SSID basis? Today I am out-of-office and have to use my iPhone's tethering abilities to get my MacBook Pro online.
+I have an online backup utility, CrashPlan, that immediately noticed that I had connectivity, and started backing up.
+Since the data plan on my phone does not include unlimited data (at least not without having to pay extra per MB at some point), I stopped it immediately.
+Is there a way for me to configure my MBP so that when I connect to the iPhone's WIFI hotspot, some applications are denied bandwidth, either built-in or through 3rd party applications?
+
+A: Use ipfw to bind a rule to your specific interface, blocking the site in question outright. For example, if CrashPlan's IP is 224.2.2.4, the rule would write as follows:
+ipfw deny ip from 224.2.2.4 to me in via en0
+
+The "ip" tag blocks all traffic (tcp and udp, alternatively, you can set either or if you like). The IP address can be set to a range for more efficacy (e.g., 224.2.2.0/24). The "me" tag is self-explanatory. Alternatively, you can actually set that up to a specific IP address too. So if your home network assigns you 172.16.1.4 and tethering assigns you 168.128.1.5, then you can further ensure you only block the site when tethered, and not all the time. The "in" tag deals with direction of the traffic (in or out). And "via en0" deals with binding it to a specific interface.
+You can also set ipfw to launch during boot, so you don't have to run this manually all the time. It's not a trivial process but does require some cli. Alternatively, you could check out WaterRoof. It's a free ipfw front-end that pretty much automates the entire thing. A terrific ipfw primer and setup assistant.
+
+A: I haven't done this, but this the direction that I would explore: download Sidekick which is a utility that allows you to do all sorts of location based configuration. Setup a Location based on your iPhone's Hotspot and create an actions to turn Crashplan on and off via the command line. 
+Crashplan can be stopped via the command line with:
+sudo launchctl unload /Library/LaunchDaemons/com.crashplan.engine.plist
+
+and started with:
+sudo launchctl load /Library/LaunchDaemons/com.crashplan.engine.plist
+
+Not a direct solution for you, but Crashplan now offers a small menu bar app, that allows you to monitor the backup activity and easily manually pause backups.
+
+A: CrashPlan now has a way to block specific wifi networks. http://support.code42.com/CrashPlan/Latest/Configuring/Network. 
+What I really want is the inverse: to allow only specific (trusted) wifi networks. And to ignore by default anything else, like airport and hotel wifi.

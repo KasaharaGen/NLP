@@ -1,0 +1,16 @@
+Q: Why doesn't the red dot shut down the program? If I use the red dot in the upper left of the last window of a program, why doesn't it shut the program down?
+Except for rare programs that run without windows, what's the point of keeping programs running after all their windows are shut?
+
+A: Great question. This was one of my first confusions about the Finder when switching to Mac. Here's what I think: 
+On other operating systems, the program menu is contained in the active application window. As such, each window is in essence a full instance of the program. (There's not as much integration with Windows Explorer, as there is with Finder on Mac OS. It' a tiny difference, but it really alters user experience.(My proof is the fact that you're asking this question.)
+By contrast, on Mac OS X, the menu bar in the Finder is where all Apps' menus go. All running programs are tied to the Finder in a different way than on other operating systems. On Mac, a program may have auxiliary windows and such. In other operating systems, you generally have similar "panels" in their own window.
+Also, remember that the yellow and green buttons only effect the window that they're in, so it seems odd to group a control that effects the entire app with two that only effect one window. Therefore, the "red dot" only affects the active window. 
+One notable exception is the Mac App Store. In that case, you are one hundred percent correct. Clicking the red dot closes the entire app. Notice how the App Store has no auxiliary menus or panes? Closing that Window does indeed mean you're exiting the app.
+
+A: Actually it is an optional method in Cocoa that a programmer has the choice of implementing or not, a method aptly named applicationWillTerminateAfterLastWindowIsClosed:. Therefore it does not depend on the OS (things are different in Lion though, not sure by how much). And it could be a required thing by Apple for apps sold through the AppStore, although I didn't have the chance to experience it myself.
+Sadly it is not something that can be added afterward, and I agree for the sake of the user it would make sense to have this behavior standard across all apps except the one that are documents-based...
+
+A: Rule of thumb: If I can do something in an app without a window, it keeps running. So, I can make a new document in Word, I can open a new link in Safari etc., I can play music in iTunes... If I can't: it quits. So, iPhoto, SystemPreferences, iMovie all quit when you close the last window.
+Characterized another way: why would you assume that just because I've finished this letter to GrandMa, and I close that window, that I am also finished with all my correspondence?
+
+A: The above says it all, but in shorter form document based applications (pages, textedit, etc) may have multiple windows for 1 application, 1 for each document you have open.  When you close a window, you close the document, not the app.  If it's the last window, it can occasionally close the app also, but this isn't common.  Also, if it's not a document based app, like the App Store etc, then the window effectively IS the app, hence closing it shuts it down.

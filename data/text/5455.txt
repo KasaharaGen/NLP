@@ -1,0 +1,23 @@
+Q: How Do I Restore the Default Settings in Lion? I love playing with new operating systems, and also love to experience the default behaviour that Those That Be have decreed are the New Best Thing. Up until now, I've always - be it Windows or Mac OS X - nuked my hard disk before installing, so it would be easy to see what the authors had in mind for my new desktop experience. Now I'm married, however, and my wife has an account, files and preferences set up it was too much of a hard sell.
+But, from my point-of-view, I'd like to reset all the system preferences to what they would have been for a fresh install. Does anybody know an easy way to do this?
+
+A: I would start with a new user - if you felt it was easier to start there - you could always make one good back up, delete both users (keeping a third one for admin purposes) and migrate in your wife's account from the backup. You could make a new account for you and then copy in the files you want quite easily from the backup.
+Most things you need are Documents, Music, Pictures so it's trivial to copy them back from a backup.
+It's nicer to do this rather than go mucking among all the preference files unless you want to learn that end of things.
+
+A: Starting with Lion, you can install Mac OS X in a virtual machine.
+Go download Virtual Box and boot a new VM off the dmg inside the lion install package.
+It's a great way to play around with the new system, without actually having to go through all the trouble of installing/configuring all your apps.
+
+A: There are two ways you could achieve this but first open terminal.app and run this so that you can view your Library folder: 
+chflags nohidden ~/Library
+
+Rename Preference folder
+Backup your ~/Library/Preference folder and rename it then log out. Once you log back in Lion will recreate any preferences it can't find. And when you want to go back just delete the newly created Preference folder then rename your backed up Preference folder back to the original name and log and log back in again.
+Delete com.apple.* files
+If you want to make the change more permanent but you don't want to mess with third party app preferences you could just go into the Preference folder and delete all the files that start with com.apple. like com.apple.TextEdit. This might be a little difficult since some might be locked.
+
+A: The Launch{Agents,Daemons} preference files are the default, they are not written to.  ( it's in /var/db/launchd.db, one per user. ) 
+Thus you can blow that directory away, and you will be back to default plist files, unless you modified them by hand, instead of with
+launchctl unload -w /System/Library/com.apple.ftpd    #a personal example.
+

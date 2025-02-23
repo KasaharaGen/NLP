@@ -1,0 +1,16 @@
+Q: Make external optical drive appear identical to internal SuperDrive? Is there a way to make a external optical drive appear to applications as though it were an internal SuperDrive?  I am using the optical drive bay in my MacBook Pro for a secondary hard drive, and I would like to regain as much SuperDrive functionality as possible with the optical mounted via an external USB enclosure.
+I'm familiar with the hack to allow DVD Player to play via an external drive, but other apps won't recognize the drive in exactly the same way as when it's mounted internally (VMWare Fusion and Handbrake immediately come to mind).
+What's required with making a drive show up as a SuperDrive?
+
+A: you can get this working by editing a plist file:
+
+
+*
+
+*open a new Terminal window
+
+*edit: /Library/Preferences/SystemConfiguration/com.apple.Boot.plist
+
+*Insert mbasd=1 in the <string></string> value below the <key>Kernel Flags</key>. If the string is not empty to begin with (it normally is) or doesn't exist (sometimes happens), then use a space to separate the mbasd=1 from what’s already there or create the entry.
+The original solution was from Lukas Zeller's blog here
+A Gist is available on GitHub for this change also.

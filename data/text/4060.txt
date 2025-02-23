@@ -1,0 +1,25 @@
+Q: Dock Notifications Displaying Odd Red Icons Instead Having an odd issue. My dock is showing these strange red icons where normal numerical notifications should be. For example, Thunderbird will display a 3 when I have 3 new messages, but instead it is showing this red A? icon. This happens with all the apps in my dock that display a notification. 
+See attached screen shot:
+
+Notice the Thunderbird icon at the top and the Printer icon at the bottom.
+Anyway to get my standard notifications back?
+
+A: This looks like it might be a problem with a system font.  Try this...
+
+
+*
+
+*Open Font Book (in /Applications)
+
+*Select the "All Fonts" collection in the left-hand pane
+
+*Click any font in the right-hand pane to focus that pane
+
+*Select all the fonts using Edit -> Select All or Cmd+A
+
+*In the File menu, click "Validate Fonts"
+
+
+If any fonts are corrupt, this method should alert you to the problem.
+
+

@@ -1,0 +1,101 @@
+Q: Database program with CSV import and ad-hoc SQL queries? Is there a database program for the Mac that makes it easy to import a CSV file into a table and then query and manipulate the data using ad-hoc SQL queries?
+(A Windows example of a similar product would be Microsoft Access ... it also has forms and reports, which are not as important, but I would not mind a Mac solution that has those too.)
+
+A: Base by Menial is a fantastic SQLite editor that can do what you're looking for.  You can buy it from their website or from the Mac App Store.
+
+A: Check out SQLite and a tool like Base 2 from http://menial.co.uk/software/base/. I have not personally used it but it seems to be what you are looking for. The beauty of SQLite is the database is self contained.
+
+A: If you are looking for a fully relational database with a GUI front-end for Mac, I would suggest checking out 4th Dimension (4D)
+This database development platform has been around on the Mac since 1987. While you can do a lot of development without writing any code, you will soon want to dive in and start to learn to program in 4D. It is a PASCAL-like procedural language owing to it's original development in the 1980's.
+It now supports the SQL language as well.
+While the program is not for the faint of heart, I promise you will NOT outgrow it.
+You will most likely be interested in the 4D Developer Standard.
+It has everything you need to get started.
+
+A: Just like Microsoft Office includes Microsoft Access, NeoOffice includes a database application as well as part of the office suite:
+http://www.neooffice.org/neojava/en/index.php
+Is this what you were looking for?
+
+A: Bento is by the FileMaker team, but is super simple. It comes with a whole bunch of samples, does most of the heavy lifting for you, and has a solid database engine underneath.
+It's available on the App Store, and for iPad too.
+http://itunes.apple.com/us/app/bento/id413293930?mt=12
+http://www.filemaker.com/products/bento/
+
+A: Sorry for delay, was on vacation...
+I will edit my original short answer to give more extended answers.
+
+
+*
+
+*Original question asks about something similar to MS Access. I believe that MS Access was copied 4th Dimension, old good database from French. Its problems although IMO: pascal language, slow as access, expensive.
+
+*Bento have die just few days ago. FileMaker is similar to Access, although less powerful.
+These two products include own db engines and they have own server versions (near to 1000-1500$).   
+Other solutions are to use database server as mySQL/PostgreSQL and some GUI Manager app. Some already was mentioned: 
+
+
+*
+
+*mySQL Workbench - works only with mySQL
+
+
+*
+
+*pgAdmin - works only with PostgreSQL
+
+*Navicat - exists editions for single DB or Premium edition (~500) to all dbs
+
+*SequelPro - for mySQL only, free
+and others.  
+
+
+
+Since my first post was about Valentina Studio http://www.valentina-db.com/en/valentina-studio-overview and I was asked to provide more info, here it is. 
+
+
+
+*
+
+*I have found this application in April of 2013. It has totally free edition without limits. Perfect GUI for mySQL, PostgreSQL, SQLite and their own Valentina DB. I am using it up to now and so far all right.
+
+*Was asked about relational support, 1:M, M:1, M:M links. All this present in Valentina Studio for all that dbs. Diagrams can be used in free edition also. 
+
+*But there is no forms as in Access. Guys say they will add forms in nearest months, then this will be FileMaker killer IMO :) We'll see. Because note again, they have own Valentina db engine and Valentina Server, as FileMaker and 4D. 
+
+*I very recommend to check this video introduction http://www.youtube.com/watch?v=1wAd1IrwKAs Notice how perfect are diagrams and Data Editor.
+
+A: Filemaker Pro will be your best bet overall. It is easier to use than Access, and will give you what you want and more. It's going to be a learning curve with anything if you're used to Access, so just jump in to one of them.
+Filemaker Pro - 
+http://www.filemaker.com/products/filemaker-pro/
+If you're wanting to do something SQL related though, then I'd check out the following: Sequelpro; Querious; Navicat; or MySQL Workbench.
+Sequelpro is best out of all of these though, in my opinion, and it's completely free. Bam!
+http://www.sequelpro.com/
+
+A: Sequel Pro is a really nice GUI for working with MySQL databases. You can even connect to remote databases like you would connect to a server via ftp/ssh
+http://www.sequelpro.com/
+
+A: MySQL is a very popular open-source relational database. Sequel Pro (http://www.sequelpro.com) is an awesome,  free Mac app for working with MySQL. I use it every day at work. I couldn't do my job without it!
+
+A: I agree with the previous post.  
+Kexi crashes too often. I installed it into VirtualBox Ubuntu running on a MacBook Pro and gave up after 30 minutes and five crashes resulting in data loss.
+LibreOffice Base is native on the Mac, similar to MS Access but has a clunky interface and very poor copy/paste. Export is a bit limited as well. You have to go through the spreadsheet, save as CSV and then import into SQLite, but at least it's possible, sort of. It has the familiar Relationships View, Query Builder and Forms but so far unable to build a form with one-to-many dropdown box, still trying it.
+My advice is to start with LibreOffice Base.
+
+A: SQLite Professional is a good option and should do what your looking for. Its a SQLite frontend that will allow you to import csv files and execute queries on the results. I should note that I'm the developer.
+
+A: Bento by Filemaker may be able to do this.
+
+A: Why not MySQL with MySQL Workbench?
+It's an amazing GUI, you can of course view and edit the databases contents, but also create databases graphically with all kinds of relationships. It's worth checking it out:
+
+
+A: I would suggest looking at the latest offering from QSA Toolworks - they've taken over Helix an incredible relational database that doesn't use any coding whatsoever. Helix (the product) comes in a number of variants Helix RADE (Rapid Application Development Environment), Helix Engine (to allow databases to be used by those who don't have the Helix RADE element), there's also Helix Server and Helix Client. Check out http://www.qsatoolworks.com. This product has been running on Mac since 1983!
+
+A: Symphytum
+A personal database software for everyone who desires to manage and organize data in an easy and intuitive way, without having to study complex database languages and software user interfaces.
+Portofino
+A free and open source web framework that helps developers create outstanding enterprise applications by addressing three specific needs: productivity, features and architecture. A wizard allows the developer to create a web application by connecting to an existing database quickly and easily.
+Kexi
+Considered as a long awaited Open Source competitor for Microsoft Access, Filemaker and Oracle Forms. Kexi is an integrated data management application. Its development is motivated by the lack of Rapid Application Development (RAD) tools for database systems that are sufficiently powerful, inexpensive, open standards driven and portable across many operating systems and hardware platforms. It runs on OS X with Fink.
+
+A: check out http://servoy.com/ _____________________ 

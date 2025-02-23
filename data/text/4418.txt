@@ -1,0 +1,128 @@
+Q: How can I add a new application to the Open With menu? How can I add an application to the Open With menu (shown after right-clicking) for a given file type, without making that file always open with that application?
+In this specific instance, I'd like to the option to open an Web site location (.URL) file with TextEdit, while still defaulting to Safari.  
+I'm running OS 10.7.4.
+
+A: newtron's second solution worked for me but only after I opened Terminal and executed the following command:
+/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user
+After restarting the system the desired app was in my "open with" context menu.
+Thanks
+
+A: Instead of opening the file with the context menu, you can also drag any file to any desired application while pressing ⌥+⌘ keys. This will force any app to try even if it thinks it can't do so. I use this all the time. 
+
+A: You can add the option as a Service with Automator and then trigger it with a Hotkey from Keyboard Maestro.
+
+*
+
+*Open Automator and select Quick Action document type (formerly Service)
+
+*Select Files and Folders in the top Workflow receives selected menu
+
+*Search for and select the Open Finder Items action.
+
+*Now select TextEdit in Open with:
+
+*Save the service with a name you want to see in the menus
+
+You can now find this by:
+
+*
+
+*Right-clicking the file and searching near the bottom or in Quick Actions
+
+OR
+
+*
+
+*Finder Menu > Services (with a file selected)
+
+
+But you don't have to stop there!
+I then made a Keyboard Maestro macro so I can just use a Hotkey to do it:
+
+I got this idea from this site:
+http://www.mactricksandtips.com/2013/05/add-open-with-textedit-or-any-other-app-to-right-click-menu-item.html
+
+A: *
+
+*Add this to the CFBundleDocumentTypes array in /Applications/TextEdit.app/Contents/Info.plist:
+<dict>
+    <key>CFBundleTypeExtensions</key>
+    <array>
+        <string>url</string>
+    </array>
+</dict>
+
+
+*/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -f /Applications/TextEdit.app/
+
+*killall Finder
+
+*Change the default application back to Safari in Finder
+
+
+If the application is signed, modifying an Info.plist invalidates the code signature. It also makes a few applications like TextEdit and WriteRoom crash on launch on 10.8.
+
+A: Try selecting the file in the Finder and doing File > Get Info. From there you should be able to choose any application to open it with. Once you've opened that type of file in that application once, it should start appearing in the Open With menu.
+EDIT: The answer above does not work. Alternate suggestion: 
+I felt bad that my prev answer was incorrect, so I googled around. I found this tip from Mac OS X Hints:
+
+  
+*
+  
+*Control-click (or right-click) the app in question and select "Show Package   Contents"
+  
+*Open the Contents folder in the app bundle. There you'll find a file called Info.plist. This is an XML property list that stores all sorts of information about the app.
+  
+*Open the file with your favourite text editor. I recommend Hydra, but TextEdit will do just fine.
+  
+*Search for something that looks like the following:
+<key>CFBundleTypeExtensions</key>
+<array>
+    <string>txt</string>
+    <string>srt</string>
+    <string>suffix1</string>
+    <string>suffix2</string>
+    …
+
+and so forth, with the suffices the app is able to open contained within the tags. Then you simply delete [or add --newtron] the suffix for items you don't want [or want] the app to open.
+  
+*Save the file, and close it (or quit the editor).
+
+
+A: One follow-up to newtron's solution:
+
+There you'll find a file called Info.plist. This is an XML property list that stores all sorts of information about the app.
+  Open the file with your favourite text editor. I recommend Hydra, but TextEdit will do just fine.
+Save the file, and close it (or quit the editor).
+
+You can't save the edited .plist if your account doesn't have the correct permissions (the issue I'm dealing with now--even at admin status you won't have read+write permissions over some files and folders...). To save changes to the .plist files you need to give your user read+write permissions. 
+Some of the default Mac applications make this difficult to do and I'm currently searching for a solution (will update) to do this with TextEdit.
+
+A: This worked for me : 
+Right click your app and goto contents and open /Applications/*****.app/Contents/Info.plist
+Open Plist in Xcode as SourceCode and then place this :
+        <dict>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+                <string>jpeg</string>
+                <string>jpg</string>
+                <string>png</string>
+                <string>gif</string>
+            </array>
+            <key>CFBundleTypeIconFile</key>
+            <string>AutomatorApplet.icns</string>
+            <key>CFBundleTypeName</key>
+            <string>AutomatorApplet.icns</string>
+            <key>CFBundleTypeOSTypes</key>
+            <array>
+                <string>GIFf</string>
+                <string>JPEG</string>
+                <string>PNGf</string>
+            </array>
+            <key>CFBundleTypeRole</key>
+            <string>Viewer</string>
+        </dict>
+
+I had 'AutomatorApplet.icns' in Resources Folder.
+
+A: Check out the tech-recipes.com for detailed instructions. As @Anriëtte pointed out the app should appear on the Open with menu if it can open the specific file.

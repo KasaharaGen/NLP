@@ -1,0 +1,5 @@
+Q: How to test my video memory on a 2010 13" MacBook Pro? I have MacBook Pro 13" Mid 2010, NVIDIA GeForce GT 320M
+Recently (but right after installing OS X Lion) I've encountered artifacts on my screen. It's quite often and I can't say if the problem came from Lion (which brought me also problems with sleeping and few freezes, which I never had on Snow Leopard)
+So is there any good way how to test my graphics card? or just it's video memory?
+
+A: MBP 13" 2010 with NVidia GT320M uses shared video memory, so any ram test would be sufficient. My recommendation is to test using memtest86+. If there are problems - try removing one of the sims and run with half of your memory.

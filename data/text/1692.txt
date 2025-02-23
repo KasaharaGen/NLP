@@ -1,0 +1,33 @@
+Q: How to make an expanding compressed encrypted disk image? I'd like the following setup:
+
+
+*
+
+*A DMG file sits on my HD, taking up only the space of the contents, or perhaps only the space of the contents compressed.
+
+*If I double-click on it, I need to give a password for it to open
+
+*Once opened, I can drag files in and out, as long as I don't fill it up. The theoretical maximum should be the 4.6 or 8.3 GB DVD option from Disk Utility
+
+*Once I've added (or removed) files from it, I can eject / unmount it
+
+*When unmounted, it returns to the size of the contents and is again password protected.
+
+
+Is this possible with disk images (DMGs)? What is the best way to set this up?
+
+A: This is exactly what a dmg does.
+To create one use Disk Utility and hit the New Image icon. Then choose the size, encryption and choose the image format as one of the sparse images. Even if you choose a large size it will only take up space according to what you save in it.
+
+A: You can not write to a disk image where the format is compressed
+
+… files in and out …
+
+The compressed formats do not allow addition, edition or removal. 
+You can use existing files to create an image with a compressed format. Write once. 
+If you create a new blank disk image that is compressed — with or without encryption — it will be relatively useless: 
+
+
+Compressed — write once. The one write occurs when you create the image — not afterwards. The resulting volume is read only: 
+
+You can use Disk Utility to convert a compressed image to a format that allows writing. At http://www.wuala.com/%23%23Apple-support/members/grahamperrin/2011/08/04/a/?mode=gallery I posted a five-minute movie showing two conversions. 

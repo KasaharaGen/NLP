@@ -1,0 +1,20 @@
+Q: What is the safest way to triple boot Macbook Pro? I recently purchased a MBP 13.3 i5 system, and I'm keen on making it triple boot (Lion, Win7, Ubuntu 11.04). What is the safest way to do this ? I found quite a few websites online, but I'm not sure of whether they are entirely accurate/updated for Lion etc. 
+I would really appreciate it if someone could post a link that has worked for Lion/Win7/Ubuntu 11.04.
+Also, would this action invalidate the warranty of the MBP ?
+
+A: Lifehacker's guide to triple booting has worked well for me in the past. You will also definitely need refit. I've seen varying reports of how well refit works on Lion - it seems to be that if you don't have FileVault enabled, you should be fine. Obviously make sure to back everything up before starting - any sort of partitioning/boot loader editing/etc is always slightly risky.
+The basic steps are: 
+
+
+*
+
+*Install refit
+
+*Partition all the necessary partitions (OS X, Windows, Linux). Be careful at this step, it can be very difficult to resize partitions that aren't HFS+. You'll need three additional partitions: Windows, Linux, and Linux swap. 
+
+*Install Windows, then install uBuntu. 
+
+
+(Lastly, this does not invalidate the MBP's warrantee.)
+
+A: If you want to be really really safe and you don't mind a drop in hard drive I/O performance in Ubuntu, I'd recommend installing Windows normally with Boot Camp then in Windows installing Wubi: http://www.ubuntu.com/download/ubuntu/windows-installer. You can then boot into Ubuntu through the Windows bootloader.

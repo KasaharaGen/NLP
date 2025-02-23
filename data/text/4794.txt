@@ -1,0 +1,15 @@
+Q: How can I break a persistent association between .xcodeproj files and Xcode 4.2 beta? I've got Xcode 4.0.2 installed in /Developer, and the Xcode 4.2 beta in /XcodeBeta. My problem is that the .xcodeproj file type is now associated with Xcode 4.2 and I can't change it to Xcode 4.0.2.
+I've tried the usual thing of doing Get Info on an .xcodeproj file, selecting Xcode (4.0.2) in the Open with: drop down then clicking Change All..., but at that point the version of Xcode selected in the Open with: dropdown just flips back to Xcode 4.2 and the file type association remains with Xcode 4.2.
+If I rebuild my Launch Services DB using lsregister -kill -domain local -domain system -domain user this removes any reference to /XcodeBeta/Applications/Xcode.app in the Launch Services DB (as reported by lsregister -dump), but the next time I start up that version of Xcode it re-registers itself with Launch Services and re-hijacks all my file associations. It's driving me potty!!
+(Incidentally, this also affects other file types associated with Xcode, e.g. .plist, but it's .xcodeproj that's really causing my pain.)
+Any ideas?
+
+A: Use RCDefaultApp prefpane. You can get it from http://www.rubicode.com/Software/RCDefaultApp/
+Open it, select UTIs and scroll down to com.apple.xcode.project. 
+On the right you can change which filetype is associated to which application or disable the association completely.
+
+Edit: another alternative is Magic Launch, which allows the same kind of file association overrides.
+Open it, drag an Xcode project file into the pane on the left, set the Default Application on the right to the appropriate version of Xcode.
+
+
+A: This is caused by Xcode using the same bundle identifier across versions. You could try to rename the Xcode.app of the beta to something like XcodeBeta.app. This should make LaunchServices think that XcodeBeta.app is in fact older and let you open the .xcodeproj files with the other version. It's not a real solution, but this is as far as I can tell the only way (short of changing Xcode's bundle identifier, of course).

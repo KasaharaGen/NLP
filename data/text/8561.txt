@@ -1,0 +1,32 @@
+Q: Is it possible to specify a different root device to a MacOS kernel? I have an old iBook (2003, G4) with a burnt-out harddrive.  Being a poor academic, I don't want to bother with replacing the drive.  I'd like to use an external USB drive in place of the harddrive.  I managed to get a copy of MacOSX (it was Tiger at the time of the burnout) onto a USB before the harddrive completely gave out (it seemed to be a problem with overheating so I took it into the coldest part of the house and copied it there).  But all my experiments in the open firmware came to naught: it seems that my iBook is too old to be able to boot directly from a USB.
+Under Linux, this is not a problem.  I can put the kernel and boot stuff onto a CD.  The iBook will happily boot from a CD.  Then I can tell the kernel to find its root device from the USB stick (via a UUID).  This works well, and is my current system.
+But I miss Mac OSX ... a little.  More so now that I have an iPad and don't want to have to use Windows to sync stuff with it.  Plus, I hate the fact that I got so close and yet couldn't quite get it to work.
+So ... is it possible to specify a different root device to a MacOSX kernel than the device it is booted from?
+
+A: If your USB drive is partitioned with Apple Partition Map and the volume with Mac OS X is HFS+ formatted it will probably boot iBook G4 by simply holding Alt/Optn at startup and choosing said disk.
+This may not work on occasion of USB chipset in external box is not compatible.
+It will probably not work if you just copied content of your hard drive and not restored it through Disk Utility (or cloned by other means). 
+If you cloned it properly and it still not booting try this Open Firmware trick.
+P.S. Here is a link on how to change HDD if you will decide to go that route. I've done it few times. I've been putting this drive inside. But now I would definitely buy IDE 2.5 32GB SSD from ebay for the same money but better speed. Still I'm not sure if it worth it if you have one of the slowest of iBook G4 models.
+
+A: First, boot into Open Firmware shell.
+Then execute
+dev / ls
+
+and look for your USB drive. There should be something like
+ff98ab00:    /usb@01
+ff9a4f80:      /disk@1
+
+then type
+devalias
+
+and look up the alias name of your USB drive. Then you can issue the boot command
+<alias>/<device>:<partition>,\System\Library\CoreServices\BootX
+
+where  is the <devalias> you gathered in the second step (something like usb3), <device> the id of the actual drive which you can see from the first step in the line after your usb device (in this example they are /usb@01 and disk@1) and <partition> the partition number of OS X root partition, most likely 1.
+If that starts to you boot, but then panics, try setting the root device explicitly and redo the procedure. Back in the OF shell:
+nvram rd=disk<num>s<partition>
+
+where <partition> is the same as above and <num> is a best guess of the devices path of your usb device. It's most likely 1 or 2.
+Then repeat the steps above.
+This is UNTESTED!

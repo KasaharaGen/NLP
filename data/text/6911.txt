@@ -1,0 +1,8 @@
+Q: How do I un-trust or remove blacklisted root CAs from mobile Safari on my iPhone or iPad? The DigiNotar root CA has been compromised and has been blacklisted by Mozilla and Chrome. I've already un-trusted their root CA in Keychain on my OS X devices, but how can I do something similar on my iPhone and iPad?
+Edit: I'd like to do this without having to jailbreak any device.
+Edit: The i0S 5 update from Apple removes the DigiNotar root CA from your iDevice and also gets rid of trust for MD5-signed certs. See this Ars Technica article for details.
+
+A: You don't. (not without jail breaking iOS) More sadly, we've gone from the situation on iOS 4 -> 5 ->6 -> iOS 7 and still cannot choose what certificates are trusted by the OS.
+This is either a bug in the iPhone configuration utility or an unimplimented feature. If you care, do reach out to apple to ask for this. 
+http://www.apple.com/feedback or http://bugreporter.apple.com
+Unless you are comfortable writing a technically correct bug, the feedback link is a better avenue. Calling AppleCare or asking for this at the genius bar might also be worthwhile. 

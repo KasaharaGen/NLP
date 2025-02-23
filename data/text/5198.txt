@@ -1,0 +1,5 @@
+Q: Mac app to show cumulative CPU usage? Activity Monitor will show you how much CPU time the current instances of each process have taken. I want an app that will show the total CPU time all instances of each process have taken, so I can (for instance) see what's draining my MacBook's battery the most on average.
+If this exists, I can't find it. Does it exist?
+
+A: You'll want sa and accton commands to dump accounting information to a file.
+Here's an article that's a bit old. The perl script at the end works well - look out for * characters in the shell - those might need to get filtered or the input sanitized if the perl script doesn't show you totals.

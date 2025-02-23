@@ -1,0 +1,29 @@
+Q: Where does Mac OS X save the list of items/icons it shows in the Finder sidebar? Because a problem of compatibility between Mac OS X 10.6 and 10.7 (the problem was that the computer with Mac OS X 10.6 and 10.7 were both synchronized with the same Mobile Me account), I see an icon the desktop in the sidebar of Finder, even if the icon is not selected to appear.
+
+I even tried to remove it dragging it off the sidebar, or clicking it with the right button and selecting "Remove from Sidebar," but the icon is still there.
+The problem is that the dialog box to open files shows two icons for the Desktop, in some applications.
+
+I think that the only solution is to manually edit the preference file containing the information about the icons that appear in the sidebar. Which file is it?
+Is there any alternative for to removing that icon, or a tool that helps with these problems?
+
+A: The Finder Sidebar is defined in ~/Library/Preferences/com.apple.sidebarlists.plist. It may be stored in binary. If you have a property list editor, this won't matter; if you don't, you'll want to convert it to XML first:
+plutil -convert xml1 ~/Library/Preferences/com.apple.sidebarlists.plist
+
+Then, open it in a text editor. There's probably an entry like so in there:
+<dict>
+    <key>Icon</key>
+    <data>…</data>
+    <key>CustomItemProperties</key>
+    <dict>
+        <key>com.apple.LSSharedFileList.TemplateSystemSelector</key>
+        <integer>1935819892</integer>
+    </dict>
+    <key>Name</key>
+    <string>Desktop</string>
+    <key>Alias</key>
+    <data>…</data>
+</dict>
+</plist>
+
+(Note the key Name with string value Desktop.)
+Delete that whole <dict> node, and save.

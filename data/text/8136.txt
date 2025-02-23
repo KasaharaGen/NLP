@@ -1,0 +1,41 @@
+Q: Is there any way to create a hard link in the finder? Is there any way to create a hard link in the finder?  
+A hard link in terminal would be created with:
+ln /path/to/file /path/to/newpath
+
+whereas a symlink / alias can be done by holding command and option or
+ln -s /path/to/file /path/to/newpath
+
+(though apparently the behaviors of 'alias' and 'ln' are different)
+
+A: You could create an Automator service like this:
+
+This takes the selected files and creates hard links to them in the directory where they exist. You can then drag and drop the links to the location where you want them.
+This will work for files with spaces in their names, but not for files containing quotation marks in their name.
+You can access it from the Finder » Services menu, the context menu, and you can assign it a keyboard shortcut analogous to the ⌘ L shortcut for aliases (perhaps ⌘⌥L).
+
+A: There's no way to do this in Finder.app itself.  However, if your goal is just to avoid typing the commands into Terminal.app then you could use Automator.app to create a workflow to do the commands for you.
+
+A: I actually wanted the link term in the rename with the extension preserved
+otherwise finder wouldn't recognize the filetype.
+so I used Daniel's Answer(thanks for that) and changed it a bit
+for f in "$@"
+ do  
+  dir=$(dirname "$f")
+  filename=$(basename "$f")
+  extension=$([[ "$filename" = *.* ]] && echo ".${filename##*.}" || echo '')
+  filename="${filename%.*}"
+  ln "$f" "${dir}/$filename Hardlink$extension"
+done
+
+EDIT: added what I think is better extension handling code - should be blank if no extension is present.  Sorry, I am not good at coding scripts so please share any fixes you think this needs.
+
+A: Yes, indirectly. 
+Automator let's you make services that run any shell script and also can ask you for a path to the destination for the hard link (since it won't be in the same location as the original presumably). I suppose you could default the link location somewhere like a desktop too. 
+Just add a step to pop up a dialog to enter or otherwise choose the destination and pass that to your ln command. 
+
+A: Nice solution provided by Daniel, but I suggest replacing his script code by the one below which preserves the file type.
+for f in "$@"
+do  
+  ln "$f" "Plink-$(basename "$f")"
+done
+

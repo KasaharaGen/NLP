@@ -1,0 +1,19 @@
+Q: Slow transfer between iMac and Macbook Pro I've recently purchased a new Macbook Pro, and am attempting to copy files over my LAN from an iMac (both running Snow Leopard). I have about 100GB of data to transfer, and am finding I'm getting incredibly slow transfer speeds. For example, an 86MB file is taking about 7 minutes. 
+If I transfer this file from either the iMac or the Macbook Pro to a HP laptop running Windows 7, it takes about 60 seconds. Also, if I initiate the transfer of the file between the iMac and Macbook Pro on the HP (using Windows Explorer to transfer from iMac to Macbook), it also takes approximately 60 seconds. 
+Can anyone offer any suggestions as to why the file transfers, when initiated from the Macbook or iMac using Finder, would be so slow? I'm not very experienced with OSX yet, so please be gentle with me :-)
+
+A: To transfer via FireWire, turn off one of the Macs, then when powering it on hold down the 'T' key. This will put the computer in Target Disk Mode and make that computer's disk available to the other computer. You can then just drag and drop between the two drives on the other computer.
+If you connect the cable when both computers are powered on, your Macs will treat it like a network, assign themselves IP addresses, and use Bonjour to broadcast their sharing services. You will be able to connect via AFP/SMB/etc, but this configuration defeats the purpose of the firewire cable - you could just get a cat5e or cat6 ethernet cable and make the same connection, and it would be faster than Firewire in this case (assuming both Macs have gigabit ethernet ports)
+
+A: when you are telling LAN you mean wire or wireless?
+When you try to transfer files from iMac to macbook pro, what time transferring?
+also
+it's not possible to copy data faster than the maximum read or write speed of the hard drives. Most hard drives are going to have a maximum sustained transfer rate of maybe 45-50 MB/sec (some may advertise around 80 MB/sec this assumes completely contiguous data. Throw some randomized head-seek time in there and that will quickly degrade to about half of the max theoretical speed.
+Over 100 BaseT (100 Mbps ethernet) then the network would become the new bottleneck and it would not be possible to get a transfer faster than 10 MB/sec (and more likely 9).
+ If you're doing wireless. If it's wireless G then the max theoretical speed is 54Mbps (5.4 MB/sec) BUT... it's half-duplex. You'd be lucky to get 4 MB/sec.
+Also what king of router do you have?
+Possibly sustained traffic can crashing the cheap router....
+So as resume:
+Use Fireware800 or fireware400 cable to make this transfer as painless as possible
+
+A: I purchased a new router today (as it has been giving me problems), and this test file is now taking approximately 5 seconds to copy. So it was, as I suspected, a problem with the router after all. Thanks to all for the suggestions, and information regarding FireWire file transfer (which unfortunately I couldn't do, as the salesperson gave me the incorrect information regarding the type of cable to purchase).

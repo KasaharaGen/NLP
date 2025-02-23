@@ -1,0 +1,21 @@
+Q: Listing the terminal commands available for Mac OS I would like to make more use of the terminal. Is there a command I can use that could list for me all the available command of the Mac OS? I am using Snow Leopard.
+
+A: You can hold the esc button for a few seconds (or press it or tab twice in succession). That will list everything executable in the path as well as all shell functions.
+Also check out this question: Got any tips or tricks for Terminal in Mac OS X?.
+This is a good introduction: Introduction to the OS X Unix Command Line.
+If you type apropos .*, you will get a nice list of command and descriptions.
+
+A: I suggest you to read a command line introduction from Apple: "Command Line Primer" 
+
+A: One way to find new commands is via manual pages.
+For example man cd will take you to the man page on the cd command.
+At the bottom of the manual page is a "see also" section.
+
+A: I came across a site recently that has a good list of commands:
+ss64.com/osx/
+A few very interesting commands listed there that I had never seen before (though not documented only, use man *commandname* locally if necessary):
+dsenableroot
+dot_clean
+kextfind, and
+security
+Many of the commands listed on the site are not OS X specific, but a few gems in there are, including the above.

@@ -1,0 +1,20 @@
+Q: dont show unread mails from subfolders in Apple Mail when collapsed Expanded I see this:
+
+When I collapse the account, it shows the total unread count next to it:
+
+I don't want that. I just want to see the unread count of the actual inbox.
+In outlook I can exclude subfolders when showing the count of a folder. Is this also possible in apple mail?
+
+A: I don't believe that it is possible to change the way unread message counts are aggregated. However, you can change your folders so that they are not displayed under your Inbox. That way your Inbox will only show the count for unread message in your Inbox.
+
+On many mail servers, mailboxes are created and stored underneath the Inbox which is what you are seeing.
+INBOX
+INBOX.Drafts
+INBOX.Sent
+INBOX.Trash
+INBOX.Junk
+INBOX.Todo
+
+By changing your account settings in Mail.app, you can specify the IMAP Path Prefix so that Mail will ignore the first part (INBOX) display these folders independently rather than subfolders of the Inbox.
+To do this go to Mail -> Preferences -> Account and select the account in the left column. Then select Advanced on the right and you will see a text box to change the IMAP Path Prefix. Typically, you'll want to change this to INBOX, but this will depend on your mail provider (e.g. Google uses [Gmail]) so you may need to check with your provider.
+

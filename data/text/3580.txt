@@ -1,0 +1,15 @@
+Q: 2010 MacBook Pro does not DHCP on a certain network (WiFi and Ethernet) As the title suggests, My Mac will not receive an address via DHCP from a certain network. No matter if it's connected via WiFi or ethernet, it always fails. Even when I boot into Windows 7 there's no luck (so it's not the OS). All the other computers, older MacBooks, and iPod/Phones work great on the network. Take it to a different network and it works flawlessly. 
+Has anyone else had this problem? Did you find a way to fix it?
+Update: Manually entering a valid IP (copied from another computer that's on the network) gets me a connection. The issue seems to be just in the DHCP.
+
+A: Have you tried to set 'Configure IPv6' to OFF in the Network > Advanced settings for the en0 ?
+I've just had a sim problem as yours (never got an address, other windows machines worked) that was resolved by turning it off. Then my IPv4 address was received.
+
+A: Two shots in the dark here: does the network in question require a DHCP Client ID to be set in Network Preferences? (System Preferences > Network > Advanced > TCP/IP)? Some networks do require that.
+Second, is the router set to block the MBP's MAC address? That would account for the failure to connect via OS X or Win7. Hard to believe that could be the case, but I suppose it's possible.
+
+A: My issue was fixed by clearing the NVRAM (hold ⌘ Command⌥ OptionPR at boot up untill it chimes twice). I never did try the IPV6 thing so that might work, too.
+
+A: tl;dr Turn off DHCP Reservation on the router/modem in DHCP settings.
+My kids both got computers from school.  One Macbook Air and one Dell Chomebook.  Neither would get a DHCP address on our home network but worked fine everywhere else. After reading this forum and trying all things with no success the solution turned out to be turning off DHCP Reservation on the CenturyLink modem.
+All computers worked fine after disabling that.

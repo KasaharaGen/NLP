@@ -1,0 +1,21 @@
+Q: After upgrading Snow Leopard to Lion, can I reinstall the original Snow Leopard to a virtual machine? If I upgrade my Snow Leopard to Lion, is it technically and legally possible to reinstall the original Snow Leopard into a virtual machine, which is inside the same, original, Apple-branded iMac?
+From the Snow Leopard software license agreement §2. Permitted License Uses and Restrictions:
+
+A. Single Use License. Subject to the terms and conditions of this License, unless you have purchased a Family Pack or Upgrade license for the Apple Software, you are granted a limited non-exclusive license to install, use and run one (1) copy of the Apple Software on a single Apple-branded computer at a time. You agree not to install, use or run the Apple Software on any non-Apple-branded computer, or to enable others to do so. This License does not allow the Apple Software to exist on more than one computer at a time, and you may not make the Apple Software available over a network where it could be used by multiple computers at the same time.
+
+It would seem to me* that there's nothing wrong: the working operating system is Lion (not Snow Leopard), so I would enable only one copy of Snow Leopard to run. The virtualization software is running under Apple-branded computer. Right?
+Is it technically possible?
+*) iANAL
+
+A: Yes - it is technically possible. 
+The Leopard and Snow Leopard installers look for a file (even if it's empty) named /System/Library/CoreServices/ServerVersion.plist
+Armed with this, you should be able to search for many "how-to" articles like this.
+Be aware, the comments on the page call out issues that this "hack" causes when running the OS (software updates is confused by this file's presence/absence) 
+Legal and moral issues aside. (I'm not a lawyer but I too fail to see how the license prevents you from virtualizing your legally purchased Snow Leopard on a legally purchased Mid 2011 MacBook Air)
+Think of this as an iOS jailbreak - someone has to stay on top of the things that these changes break, but the payoff may be well worth the hassle.
+
+A: According to §3 Transfer, if you've upgraded you're not permitted to continue using the older release:
+
+If an Apple Software update completely replaces (full install) a previously licensed version of the Apple Software, you may not use both versions of the 
+  Apple Software at the same time nor may you transfer them separately.
+

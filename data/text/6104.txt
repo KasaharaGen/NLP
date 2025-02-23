@@ -1,0 +1,18 @@
+Q: How do I encypt Time Machine with Mac OS X Lion? I am thinking about upgrading to Mac OS X 10.7 Lion, because it offers full disk encryption.
+However, if I use Time Machine with on an external hard drive, will the Time Machine backups be encrypted as well? If not it seems to defeat the purpose of whole system encryption. :p
+Also, if the Time Machine backups can be encrypted, how does it handle restoring from a Time Machine backup onto a new system?
+
+A: Time Machine does have a checkbox to encrypt the backup, but it will read, encrypt, and write every block of the disk - which can take a long time. If you are using a new drive it is much faster to encrypt it with Disk Utility first.
+The encryption is handled by the OS – not Time Machine. Lion will prompt for the password whenever the disk is attached. Once the password has been entered it looks like any other disk to Time Machine.
+n.b. you will not be able to use an encrypted disk with older versions of OS X.
+
+A: It took me a little while to find the "Encrypt backup disk" checkbox, so I thought an answer explaining that may save you some time.
+Press the "Select Disk…" button in the Time Machine System Preferences panel, and the  "Encrypt backup disk" checkbox is enabled when you select a disk.
+
+I decided not to encrypt my Drobo after reading Alrescha's important note about not being able to use an encrypted disk with older versions of OS X than Lion.
+But I was curious to see if Apple would warn me:
+
+(See also "If I encrypt a Time Machine backup disk, is the entire disk encrypted or just the Backups.backupdb directory?".)
+
+A: Time Machine backups can be encrypted as well. When setting up Time Machine, it'll ask if you want to use encryption and to enter a password.
+I've not tried to restore to a new system, but I would think it would just ask for the password and work fine after you enter it.

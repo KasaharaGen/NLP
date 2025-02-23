@@ -1,0 +1,34 @@
+Q: How can I stop Spaces from taking me to an app's Space when I open a new file? Let's say I have two spaces with a program open in space one. If I'm actively working in space two and open a file that uses the same program as what's open in space one, I get hucked back into space one. How can I make the default behavior be to open a new window of the program in the space I'm in?
+
+A: Found an answer on Macworld.com
+
+You can achieve the same thing in QuickSilver with and some basic
+  AppleScript:
+
+tell application "Safari"   
+   make new document    
+   tell application
+   "Safari" to activate 
+end tell
+
+
+Simply save this AppleScript somewhere that QuickSilver will find it.
+The good thing about the above AppleScript is that it doesn't mess
+  around with focus (which can inadvertently switch Spaces).
+  Unfortunately not all applications have a similar AppleScript command
+  for making a new window (for example, Terminal does not).
+I saved mine in my home directory, and called it "New Safari Window".
+  I also changed it so that it had the Safari icon (by dragging the
+  Safari icon from the "Get Info" window of Safari.app, to the icon in
+  the "Get Info" window of the new script file). 
+
+
+A: This will help users running Lion but won't solve your problem in Leopard. 
+In Lion, there is a Control Panel setting under Mission Control  that says When switching to an app, switch to a space with open windows for that app. Deselect it. Note that when this option is deselected, if you click an app in the Dock with open windows in another space, on the first click you will get your desired behavior, but if you click the icon in the dock again, it will switch to the space currently containing windows for the app.
+
+
+A: Type the following in Terminal:
+# don't switch spaces automatically
+defaults write com.apple.Dock workspaces-auto-swoosh -bool NO
+
+Then killall Dock.

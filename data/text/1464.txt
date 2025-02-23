@@ -1,0 +1,5 @@
+Q: Terminal issue with export PS1="" So I tried to change the output of my terminal prompt but when I try something like /W it just puts the /W not the path.  For example export PS1="/W $ "turns my prompt into "/W $"
+
+A: It needs to be \W, with a backslash.
+
+A: That should be a backslash, not a slash: \W.

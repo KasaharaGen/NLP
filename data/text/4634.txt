@@ -1,0 +1,10 @@
+Q: I have a shared folder called "Foldername" that shows up on another computer as "Foldername-2" I shared a folder on my computer, called "Foldername". My account on the computer is UserA, my wife's account is UserB. I gave UserB read+write access on Foldername, and 
+clicked the "shared folder" box.
+On my wife's compuer, I log in to account UserB, and do "Connect to Server" and select my computer. It asks for the password for UserB, and it connects. In the dialog to select what folder to connect to, it lists "Foldername-2".
+I have searched both macs for anything named "Foldername" and there is only the one. Any idea what is causing this? It's not a huge deal since the folder appears to work, it just worries me that the OS seems to think there is a duplicate somewhere in the system.
+
+A: The -# suffix is appended to an item in OS X when another item with an identical name already exists in that directory. Is there a chance you're enabling a shared folder that's named exactly the same as a folder that already exists in that directory?
+
+A: You can check all the folders which your machine is sharing via:
+System Preferences > Sharing > File Sharing
+There, on Shared Folders list, you can see all shared folders and resolve the naming conflict by providing unique names for each one of them.

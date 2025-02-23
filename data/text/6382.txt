@@ -1,0 +1,20 @@
+Q: How fast does a modern Mac SuperDrive spin a CD or DVD? I am wondering how fast the current 2011/2010 era macs spin the optical media. I'm talking about real physical speeds even if it is complicated.
+Angular velocity is fine, linear velocity is fine - the radius is fixed, so the math is easy.
+If you can address both slot load and tray loading or go into details how the speeds vary, that would be very nice. 
+I am also curious of the read speed is different than the burn speed for writeable media of the various types. 
+Some times you can specify 1x or 8x - but don't know what is the "normal" burn speed. My understanding is they employ zoned constant linear velocity (ZCLV) but I don't see a good reference for hardware that is shipping presently that goes into any detail what 8x actually means.
+
+A: According to ISO/IEC INTERNATIONAL STANDARD 10149 (Second edition 1995-07-15), which is the basis for the "1x" speed, the linear velocity at whatever point on the disc is being read needs to be between 1.2 and 1.4 meters per second. That would translate into a different RPMs at different parts of the disc.
+A back of the envelope calculation suggests that the fastest a drive in a modern MacBook Pro would spin the disc would be during 24x read at the center of the disc; that would be around 12,000 revolutions per minute.
+The full text of the standard is downloadable for free at http://standards.iso.org/ittf/PubliclyAvailableStandards/s025869_ISO_IEC_10149_1995(E).zip
+
+A: Tray loading CD drives are the fastest, back in 2004 or so I had a 52x CD-RW drive (10,400 RPM) and it looks like they still make them. The fastest drive I see on the Apple website now is the 32x drive in the Mac Pro which tops out at 4,800RPM. 
+
+A: It depends on what you're doing:
+
+8x slot-loading SuperDrive (DVD±R DL/DVD±RW/CD-RW)
+Maximum write: 8x DVD-R, DVD+R; 4x DVD-R DL (double layer), DVD+R DL (double layer), DVD-RW, DVD+RW; 24x CD-R; 10x CD-RW
+Maximum read: 8x DVD-R, DVD+R, DVD-ROM; 6x DVD-ROM (double layer DVD-9), DVD-R DL (double layer), DVD+R DL (double layer), DVD-RW, DVD+RW; 24x CD
+
+From http://www.apple.com/macbookpro/specs.html
+These specs are for the current MBP, but I doubt there has been any significant change in quite a while. I remember 24x reads being available for the past several years.

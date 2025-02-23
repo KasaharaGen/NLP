@@ -1,0 +1,37 @@
+Q: Is it possible to connect automatically to a server on login without an opened window? I know how to have the connection established at login, but I don't know if it's possible that the Finder doesn't open a window of the server root... 
+I've tried the "Hide" checkbox, but this doesn't help. (I'm on Snow Leopard)
+
+A: Instead of whatever method you are doing now to mount the server, I would recommend a script which is launched at login for all users.
+Your best options are either a LoginHook or a launchd process installed to /Library/LaunchAgents/ 
+You will then need to figure out the syntax for the mounting the drive.
+UPDATE: 
+I decided I wanted to check this out further myself, and created this launchd script:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>luoma.mount.blackbook</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/luomat/Dropbox/bin/mount_blackbook.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+
+which I placed at /Library/LaunchAgents/luoma.mount.blackbook.plist (owned by root)
+The script  can be found at http://f.luo.ma/mount_blackbook.sh (note: script will display in browser window, to download, use click-click/save-as)
+
+A: In OS X Server, you can specify a share as an 'automount'. Is that what you had in mind?
+Then, when your users authenticate against your Open Directory server, they not only see their desktop, but are automatically connected to a server sharepoint.
+
+A: You could mount them with a simple Automator app that's added to the login items. You would just add a "Get Specified Servers" action, add the servers to it, then add a Connect to Servers action. It will mount all the specified servers without opening their windows.
+When you add your servers, be sure to include the name of the share point you want to mount, something like afp://10.0.0.1/SharePoint/, otherwise, you'll get the "select the volumes you want to mount" dialog.
+
+A: Another option (one which I haven't tried) is to disable Finder opening a new window whenever a new volume is mounted.
+I believe the proper syntax is:
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool false
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool false
+Of course this will change the behavior for more than just these particular items.

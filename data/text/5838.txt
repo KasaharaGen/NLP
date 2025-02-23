@@ -1,0 +1,28 @@
+Q: Mac Book Pro crashing I have a Mac Book Pro (late 2008, unibody design). Recently I replaced the HD with a crucial SSD and added more RAM (2x 4GB instead of 2x 2GB). I also installed Mac OSX Lion on it. It worked fine for a few days but then started to crash. Either the screen froze or the OSX Kernel panic dialog showed up telling me to reboot.
+I looked at the crash reports but have no idea what exactly is causing the crash (seems the look different every time) Here is the last one, I can post all of them if that helps.
+Mon Aug  1 16:01:16 2011
+panic(cpu 0 caller 0xffffff80002c268d): Kernel trap at 0xffffff80002a9ea2, type 14=page fault, registers:
+CR0: 0x0000000080010033, CR2: 0x0000000000000118, CR3: 0x0000000044c71000, CR4: 0x0000000000000660
+RAX: 0xffff7f8111e64000, RBX: 0xffffff800df9f540, RCX: 0xfffeffffffffffff, RDX: 0xffffff800df9f558
+RSP: 0xffffff8111e2b4f0, RBP: 0xffffff8111e2b570, RSI: 0x0000000000000000, RDI: 0x000000000000982a
+R8:  0xffffff80ccf90000, R9:  0x0000000000000000, R10: 0x000000000000ecca, R11: 0x0000000000000dc9
+R12: 0x00000000000000e0, R13: 0x0000000000000ff8, R14: 0xffffff800df9f540, R15: 0xffffff8111e64000
+RFL: 0x0000000000010202, RIP: 0xffffff80002a9ea2, CS:  0x0000000000000008, SS:  0x0000000000000000
+CR2: 0x0000000000000118, Error code: 0x0000000000000000, Faulting CPU: 0x0
+
+Backtrace (CPU 0), Frame : Return Address
+0xffffff8111e2b1b0 : 0xffffff8000220702 
+0xffffff8111e2b230 : 0xffffff80002c268d 
+0xffffff8111e2b3d0 : 0xffffff80002d7a3d 
+0xffffff8111e2b3f0 : 0xffffff80002a9ea2 
+0xffffff8111e2b570 : 0xffffff800027f60d 
+0xffffff8111e2b5d0 : 0xffffff8000273add 
+0xffffff8111e2b6c0 : 0xffffff800027487a 
+0xffffff8111e2b6f0 : 0xffffff800026e7c2 
+0xffffff8111e2b720 : 0xffffff80002261e2 
+0xffffff8111e2b740 : 0xffffff800022643d 
+0xffffff8111e2b00 : 0xf`fff8000
+
+I have no warranty anymore but would be glad if there is a way to figure out what's causing the crash and get it repaired for a reasonable price. Should I just hand it over to the next Apple store and ask them to repair it?
+
+A: Since I note that it sometimes beeps three times when turning on (and then it doesn't boot) I assumed that one of the (newly bought!!) RAMs is faulty. Having two of them I removed the first and booted again. After a few minutes it crashed. I therefore assume that the first one is fault. I exchanged the RAM modules and run it now with the other one for almost an hour. No problems so far..

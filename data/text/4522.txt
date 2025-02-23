@@ -1,0 +1,10 @@
+Q: Why doesnt my iPod show album art? I have the iPod 160GB Classic Black. In my music library, each music album is organized into folder on my hard disk, each folder having album art. Why doesnt my ipod display that album art while playing? Just to clarify, the problem is only with some albums, not all.
+EDIT: Is there a specific name that the jpeg file should have?
+
+A: Storing the art in file id3 tags is the only method. Yes, doing it via iTunes is tedious,  it can be automated though.
+Mass taggers exist on OSX, software such as beets or bliss. However they download cover art from online websites (google images, discogs...).
+If you're interested only in copying your folder image to mp3 tags, I'm not aware of an existing tool that do that in batch mode. But a python script could be written for that purpose quite easily using mutagen library.
+
+A: Go into iTunes and make sure the album is set up to have that album art. If it isn't, right click the album and click "Get Info" then drag the album art into the area for it in the "Artwork" tab. If this still doesn't solve the problem, try restarting your iPod, I have had an issue with my iPod (which is an iPod touch, but the issue might be the same) where album art won't show up until a restart.
+
+A: The album art preview would generate from the image imbedded in the file itself. Are you sure the files in question have the necessary album art attached?

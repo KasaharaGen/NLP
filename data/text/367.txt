@@ -1,0 +1,7 @@
+Q: Equivalent to alt-. in terminal I am curious as to whether there is an equivalent to the Alt-. command on Mac. On my computer it inserts the following character: ≥, instead of showing the preceding lines final parameter.
+
+A: ESC + . inserts the last argument, quite similar like Alt + . on Linux
+see https://apple.stackexchange.com/a/85152/31470
+
+A: You have to change the Terminal’s behavior to the alt key acts as a meta key (like in X11 Terms). After you check that, everytime you press alt + ., you’ll get the last argument from the previous command. (You can repeat that command n times)
+

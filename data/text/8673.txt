@@ -1,0 +1,6 @@
+Q: Is there a way to automate restarting with a different boot disk? I have Lion and Snow Leopard installed on my machine, and I switch between them all the time (I develop for compatibility on both platforms). Going into System Preferences and selecting the startup disk every time is quite a pain, it would be great if I could automate this process with a script that I can launch from my dock.
+
+A: sudo bless -mount /Volumes/"startup disk name" -setBoot
+Press Enter.
+reboot
+This should work.

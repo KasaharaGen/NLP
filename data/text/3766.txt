@@ -1,0 +1,11 @@
+Q: Why does ssh log me in as the wrong user? I am shelling into my Mac (ssh) and get logged in with the wrong userid. There are three unprivileged user accounts on the system, and when I log in, I give my password, and whoami gives me either of the other unprivileged user accounts. (And I can't write to files I own, etc.)
+I can workaround to access my account by su [my username], but I'm puzzled. Any suggestions?
+
+A: ssh can get confused if your short name is different between the two machines. You can check what your short name is on each machine with whoami. To go to a particular account, use ssh jhayward@mymac. If you still have trouble, use ssh -v jhayward@mymac. You may see things like checking ~/.ssh/config. If you want to avoid typing jhaward@ all of the time, you can make (or add to) the file ~/.ssh/config with the lines
+Host mymac
+Hostname 1234.1234.1234
+User jhaward
+
+editing each line for your particular case (the Host is your nickname, the Hostname is the IP address, or mymac.local or whatever you currently use for ssh).
+Then you can just use ssh mymac. 
+If you still have trouble, post some output from ssh -v but be careful to not post anything private (like IP addresses).

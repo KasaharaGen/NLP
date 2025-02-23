@@ -1,0 +1,26 @@
+Q: Set up OSX to act as router via Internet Sharing I have the following network setup:
+LAN====OSX++++Machine A
+        +
+        +
+        ++++++Machine B
+
+OSX is currently sharing an ethernet connection with A and B via an ad-hoc wireless network.  This works great, except that Machine A and Machine B can't see each other.  They can see the LAN and OSX, and OSX can see both of them.  I'm convinced some combination of ipfw and/or natd configuration options can solve this problem, but my networking knowledge is limited enough that I can't seem to Google effectively for a solution.  What do I want ipfw/natd to do for me?  How do I get them to do it?
+(Obviously, I could solve this problem much more easily by the expedient of purchasing a switch, but I feel like I should know how to do this sort of things regardless.)
+
+A: You need to enable routing.  I'm pretty sure on OS X this is a sysctl(like FreeBSD):
+http://securityreliks.securegossip.com/2010/10/enabling-ip-forwarding-on-mac-osx/
+doing:
+# sysctl -w net.inet.ip.forwarding=1
+
+as root should enable this.
+
+A: Try to enter each computer's address manually in the Network System Preference panel.
+eg.
+Machine A:
+IP address: 192.168.1.1 
+Subnet Mask: 255.255.255.0
+
+Machine B: 
+IP address: 192.168.1.2
+Subnet Mask: 255.255.255.0
+

@@ -1,0 +1,23 @@
+Q: How do I change a disk partition map scheme from MBR to GUID Partitions Table? I just finished the huge download of Mac OS X Lion, started the installer, and now I have a problem. The installer says that I must have the GUID-Partitions Table Scheme.
+The problem is that when I go into the disk utility, I can't change the format anymore, because I have Master Boot Record as type.
+Can anyone help me, please?
+
+A: Ok thanks for your help, but I solved the problem on my way, here's what I've done:
+
+
+*
+
+*Backup everything important to an external Harddrive
+
+*Inserted the Mac Installation Disc and ruined there the disc utility app.
+
+*I removed everything from my HD and it was GUID-Partioned.
+
+*Now I just installed Mac Os X 10.6.2 and updated to 10.6.8
+
+*Now I could run the installer of Mac Os X Lion without any problems and as a benefit of the whole thing, I started with a brand new Mac Os X Installation, without any trash in the file system.
+
+
+A: search: http://www.google.ee/search?q=convert+mbr+to+guid&ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:en-US:official&client=firefox-a
+http://www.insanelymac.com/forum/lofiversion/index.php/t183105.html claims that http://www.coriolis-systems.com/iPartition.php is able to do MBR -> GPT conversion.
+Then there's supposedly some not-for-faint-of-heart options mentioned in that thread, which IMHO judging from the tone of the original question, are not safe enough to use. At least make a whole disk backup first.

@@ -1,0 +1,34 @@
+Q: How do I view .wtv files in OS X? I have a Windows 7 Media Center machine for our family's DVR.  It creates recorded TV files in a .wtv format (used to be .ms-dvr in the Vista days).  We have a laptop running Lion that I'd like to watch TV shows on occasionally.  Obviously it has no idea what .wtv files are.  I checked out Adapter, but it doesn't look like .ms-drv or .wtv are supported for conversion.  What's the easiest approach to getting these files to play on my Mac?  I'd prefer to run a converter on the Mac if possible rather than the DVR just because it's not often that I'd want to watch a show that way. 
+
+A: How to watch a wtv file on a Mac without using VLC
+
+
+*
+
+*Install WtvWatcher on the PC - this will convert all of your wtv files into dv-rms by changing the packaging, not be re-encoding, so it is really quick and deletes the useless wtv file.
+
+*Share your recorded folder with your Mac. I simple turned on sharing on my PC and then connected to it over SMB://192.168.x.x
+
+*Use Handbrake to convert the file to m4v, then add it to iTunes, or watch in in quicktime player or whatever takes your fancy.
+
+
+How to watch a wtv file on the iPad/iPhone.
+
+
+*
+
+*On the PC install WtvWatcher as above.
+
+*Share your recorded folder with your mac as above.
+
+*Install "Air Video Server" on your Mac and tell it to share the shared folder from the networked PC
+
+*Install Air Video player on your iPad, iPhone etc.
+
+*Enjoy.
+
+
+iPad/iPhone alternative solution
+Just use Handbrake to convert the video file into a iPad/iPhone version.
+
+A: You can use VLC player which supports playing this file type and gets updates for new file types all the time.

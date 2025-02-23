@@ -1,0 +1,17 @@
+Q: Cannot open Xcode on new computer I bought a new macbook pro (13 inch with 500GB) and it came in yesterday (April 28th, 2011). 
+I tried downloading Xcode and was able to download it onto my computer. However when I try to and open it, it tells me that I do not meet system requirements. I did a software update check and updated all of my software.
+
+
+Why can can't I open Xcode? And what can I do to fix the problem?
+
+A: According to the crash log, it can't find the DVTFoundation framework that Xcode needs to run.  It seems extremely curious to me that Xcode is running straight off of the Desktop.  Xcode comes with an installer, which (by default) will put it and all other things inside /Developer.  You can change it to another folder, but even then Xcode is still within the "Applications" folder of the parent folder.  In other words, there's no way to get Xcode off by itself on the Desktop unless you copied it there or didn't install it properly.
+Xcode, like a couple other Apple apps, requires a whole bunch of supporting things to run (like this DVTFoundation framework).  You have to leave it in the place where it was installed.  Moving it to another folder is a great way to make it not work (yes, I know this isn't ideal, but it is what it is).
+To fix this, trash the Xcode.app on your Desktop and re-run the installer.
+
+A: Your copy of Xcode is running from your desktop folder (which should be fine) but it's not seeing a library / framework file it needs.
+If you got Xcode from the app store - delete the app (and all other copies of Xcode 4 that may be on your system) and re-download it from the MAS.
+If you are a paid developer - you'll want to re-run the installer to make sure everything is installed in the same folder. /Xcode4 is the default - but you should be able to let the installer install everything on your desktop and it should work, but you might have better luck leaving it in the default location. Do look for duplicates Xcode copies in case it's seeing an older framework from somewhere else on your. 
+Don't forget the developer discussions where everyone uses Xcode daily.
+
+A: Confirm the location from where you are launching the XCode.app.
+It has to be launched from /Developers/Application. Then only it will be able to find out all the frameworks & files.

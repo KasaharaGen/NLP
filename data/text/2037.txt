@@ -1,0 +1,41 @@
+Q: Are there Greasemonkey scripts for Safari? There's the wonderful Greasemonkey to run user-defined JavaScript on web pages.
+Is there such a thing as Greasemonkey for Safari? Or would one instead write a Safari Extension to customize behavior on other web pages? Maybe there's an alternative that runs on AppleScript instead of JavaScript?
+
+A: Another option to run GreaseMonkey scripts is NinjaKit (which is what I use). It's a Safari 5 extension, which means it's just a tad safer than GreaseKit.
+
+A: I use TamperMonkey and it works surprisingly well. It's also a Safari Extension.
+I have tried used NinjaKit in the past but it no longer works for me, a lot of scripts simply won't work.
+
+A: 
+Is there such a thing as Greasemonkey for Safari?
+
+You can use SIMBL and GreaseKit to run most Greasemonkey scripts in Safari, unmodified. Detailed installation instructions are found at this link, repeated here:
+
+
+*
+
+*Download and install SIMBL
+
+*Quit Safari
+
+*Download GreaseKit
+
+*Drag the GreaseKit.bundle file to ~/Library/Application Support/SIMBL/Plugins. You may need to create this location if it doesn't exit
+
+*Start Safari and you'll see a GreaseKit menu bar item
+
+*Install scripts from http://userscripts.org -- the installation process is a little different from the Firefox approach, but it works.
+
+
+
+Or would one instead write a Safari Extension to customize behavior on other web pages? Maybe there's an alternative that runs on AppleScript instead of JavaScript?
+
+The native-to-Safari equivalent of Greasemonkey is AppleScript extensions and plugins. For a nice library of native Safari extensions check out Pimp My Safari.
+
+A: The best place to start is probably going to be here: http://developer.apple.com/devcenter/safari/index.action
+I've seen safari extensions whose only behavior was to customize behavior of web sites; just yesterday I saw one that changed the layout of reddit to be more iOS-friendly.
+here it is.
+
+A: If you don't want to pay $2 for Tampermonkey, you can try Userscripts, which is free.
+Userscripts is simpler, you will have to add your scripts using the extension page instead of installing them from GreasyFork automatically, for example. But otherwise it does the job of CSS and JS customisations as well. See the documentation of Userscripts for more information.
+Mind that you won't be able to install extensions, which tamper with input devices, in recent versions of OSX. After the installation from the App Store you will have to enable them in the safe mode - after restarting holding the Shift key down. See an article at Apple about it.

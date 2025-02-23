@@ -1,0 +1,66 @@
+Q: Automatically delete a folder daily Is there a way to automatically have a folder deleted every day at 4am?
+I'm running 10.6.7.
+
+A: Hazel is a great app for doing this type of thing.  It's not free, but it works great.
+I use it to "Label" or highlight files that are have been downloaded in the last 24 hours, then to delete files from my downloads folder that are more than 7 days old.
+I then have it empty my trash once a month.
+This is just the basics of what can be done with Hazel, it's cool.
+[I have no financial interest in Hazel]
+
+A: Appplescript & iCal
+Open Applescript and enter the following code:
+tell application "Finder"
+  delete folder "folder" of home
+end tell
+
+Replacing folder with the folder you want to delete, and save the file.
+If the folder you want to delete is outside home directory, (for example the folder /Users) then replace the delete line with:
+delete folder "Users" of startup disk
+
+Then open iCal and create a new recurring event at the time you want and as an alarm choose Run Script and select the applescript you created.
+
+Cron
+Open Terminal.app and enter:
+crontab -e
+
+There to the file opened, add the following line
+0    4       *       *       *       rm -rf /Users/USER/folder
+
+replacing /Users/USER/folder with the full path of your folder and save the file.
+
+Launchd
+Create a new text document, and paste the following code:
+rm -rf /Path/to/Folder
+
+Let's call it script.sh
+Based on this article, create another new text document and paste the following:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>Recurring Folder Deletion</string>
+  <key>UserName</key>
+  <string>nuc</string>
+  <key>Program</key>
+  <string>/path/to/script.sh</string>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Minute</key>
+    <integer>0</integer>
+    <key>Hour</key>
+    <integer>4</integer>
+  </dict>
+  <key>Debug</key>
+  <false/>
+  <key>AbandonProcessGroup</key>
+  <true/>
+</dict>
+</plist>
+
+Replace nuc with your account username, and /path/to/script.sh with the full path of the script we created on first step.
+Save the file in /Library/LaunchDaemons/ as my_rfd.plist.
+Finally, launch Terminal.app and type:
+launchctl load /Library/LaunchDaemons/my_rfd.plist
+

@@ -1,0 +1,41 @@
+Q: How can I adjust additional cinema display screen's brightness? I have an iMac27 run Lion, now I buy a cinema display 27, but at display setting only main screen have brightness adjust controller. And use keyboard to adjust screen brightness also only change main screen.
+
+
+A: I search and search, finally find this article https://discussions.apple.com/thread/2649213?start=0&tstart=0 .
+Gilletty said that:
+
+I was having the same issue on my MacBook Pro. Here is what I did to resolve it:
+  
+  
+*
+  
+*Ensure lid of laptop is open
+  
+*Plug in power, mini-display, AND USB from the Cinema Display into MBP
+  
+*Restart computer (*this was the key step for me)
+  
+*When computer comes back up, launch System Preferences > Displays and you should now see the brightness option that was once hidden!
+  
+
+So I plug cinema display usb to iMac27, and reopen display setting, now cinema display has it own brightness controller.
+lik this: 
+
+A: It's way simpler than that guys. The brightness on the display is controlled by simply pressing:
+Control+F1 OR Control+F2 to adjust brightness on your secondary screen (the one without the menubar).
+F1 and F2 to adjust brighness on your main screen (the one on which the menubar is located).
+If you have adjusted settings in System Preferences for the Function Keys to behave as standard Function keys, you will need to hold the Fn key in addition to each combination too.
+If your Cinema display has a USB cable (older models), you will need to plug it in.
+
+A: None of the approaches work for my Cinema LED Display 24 inch. Later I found the acdcontrol software from Github. It could only be installed in the Linux machine. You may encounter a situation that the Product ID (PID) of your monitor is not listed as in the file acdcontrol.cpp. (There are more than one version of a specific monitor model.) You have to modify the Product ID in the acdcontro.cpp to your monitors' which you can find by using "acdcontrol /dev/usb/* --detect", according to the manual. And then, compile the program with "make". Good luck.
+
+A: It now works when I:
+
+*
+
+*Plug in the USB (if yours still has one)
+
+*Use DisplayBuddy to control the brightness (use the Apple Display Control in DisplayBuddy)
+
+
+A: I use Shades. This will solve your problem. I just hope it runs on Lion too.

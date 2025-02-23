@@ -1,0 +1,67 @@
+Q: How can I get my trackpad settings to work on the login screen? I enabled the System Preferences > Trackpad > Tap to Click which causes it to work while I am logged in. However, in the login screen, it does not work. How can I get this setting enabled in the login screen as well?
+
+A: Open Terminal and enter the following commands
+
+
+*
+
+*defaults write com.apple.finder AppleShowAllFiles TRUE
+
+*killall Finder  
+
+
+
+In Finder
+
+
+*
+
+*open Macintosh HD/Library/Preferences
+
+*Ctl+click/right-click a file called .GlobalPreferences.plist and click 'Get Info'
+
+*Change the permissions to allow you to alter it but make a note/screenshot of what they are first. (be careful here!)
+
+*open the file by double-clicking  
+
+
+ 
+Property List Editor will run and open the .plist file
+
+
+*
+
+*Click 'Root' at the top of the window
+
+*Click the 'Add Child' button
+
+*Add an entry called com.apple.mouse.tapBehaviour
+
+*Make it a Number type
+
+*Set the value to 1
+
+*Save the file
+
+Back in Finder, reset the permissions to what they were
+In Terminal enter the following commands
+
+
+*
+
+*defaults write com.apple.finder AppleShowAllFiles FALSE
+
+*killall Finder
+
+Reboot and the next time you login you should be able to use Tap to click
+If you run into issues with Terminal commands or with the plist file make sure your capitalization is correct, case matters!
+
+A: The latest method:
+sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking
+
+A: I think that this is impossible but I find below post (but didn't test myself)
+according to fds post:
+defaults write /Library/Preferences/.GlobalPreferences com.apple.mouse.tapBehavior -int 1
+
+
+A: I don't know if this is still the case, but the login window's session used to be run as root. So if you enabled the root account, logged in as root, and set whatever trackpad or mouse settings you liked in System Preferences, they would be applied to the login window.

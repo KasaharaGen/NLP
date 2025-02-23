@@ -1,0 +1,9 @@
+Q: Why can't I resolve machine names on my LAN to their IP address? I purchased a new ADSL modem/router last week (Belkin Share), and can no longer resolve machine names on my LAN to their respective IP addresses under OS X. My Windows machines and VMs are able to do this successfully. If I ping the IP address directly, it succeeds, but if I attempt to ping the machine name I get 'cannot resolve . Unknown host'. My previous modem/router (DLink DSL-G604T) did not have this problem. 
+If I look at the DHCP leases on the router, the list includes the machine name, and this coupled with the fact that the Windows machines can resolve IP addresses makes me think this may be an OS X config issue (although I'm not experienced enough with it yet to know exactly what). I tried removing and re-adding the Ethernet connection under Network settings, but that made no difference. 
+
+A: It appears the router doesn't support Bonjour at all (and Belkin support were totally clueless when approached about it), so I've returned it for a refund and am on the hunt for one that plays nicely with Macs.
+
+A: My Airport Extreme does this too. Try adding .local to the ends of the names of the machines you're trying to reach. This uses Bonjour to look up the names instead of your router's DNS, which should work if the computer you're trying to reach is a Mac. If it's a Windows PC (and using .local doesn't work) try installing Bonjour and seeing if that works.
+
+A: Just go to System Preference -> Network -> Ethernet/WIFI -> Advanced -> DNS.
+Add in search domains ".local" Apply and done.

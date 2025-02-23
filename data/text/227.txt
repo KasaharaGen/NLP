@@ -1,0 +1,15 @@
+Q: Adding a Second IP Address to an Existing Network Adapter On linux boxes it is possible to add multiple ip addresses to the same network interface.
+It's achived with the following command:
+ip addr add 128.133.123.83/24 dev eth0
+
+Is there any way to to the same with OS X ? 
+I've tried to put multiple ip addresses (comma separated like the dns) in System Preferences / Network with no luck...
+
+A: Yeah, it's pretty easy. Open System Preferences, go to Networking, then click the Plus sign under the left bar. Choose the interface, give a name to the adapter configuration you're creating, then press OK. You will have to provide manual configuration of IP address and DNS for the second entry -- DHCP won't work for it, because it shares the same MAC address as the original entry, so the router won't issue it another address. Click Apply when you're done, and enjoy. Your adapter now has two IP addresses.
+
+A: sudo ifconfig en0 alias 128.133.123.83/24 up
+and to remove...
+sudo ifconfig en0 -alias 128.133.123.83
+
+A: .. and to remove the alias added in brabic's answer
+sudo ifconfig en0 -alias 128.133.123.83

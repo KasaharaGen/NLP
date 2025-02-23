@@ -1,0 +1,38 @@
+Q: Free viewer for Excel files other than OpenOffice Other than OpenOffice, can you suggest a light free viewer for Excel files?
+
+A: Quick Look can be set to allow copying of text.  Launch Terminal and type the following command:
+defaults write com.apple.finder QLEnableTextSelection -bool true
+
+Then restart the Finder with the following command:
+killall Finder
+
+After selecting use the keyboard ⌘+C to copy.
+Read more at Cult of Mac
+EDIT
+Selecting text seems to be disabled in OS X 10.11.  But this Terminal hack works in many versions prior to 10.11.
+
+A: Isn't Quick Look enough?
+You could also try to upload them on Google Docs.
+
+A: I myself use OS X's Quick Look. I think it's good enough.
+Just select your xls (or xlsx) file and do one of the following:
+
+
+*
+
+*press Space
+
+*press ⌘ Y
+
+*right click and choose Quick Look
+
+
+and the file will be viewable in a separate window. Press Space again to close.
+Quick Look can also be opened in full screen by pressing ⌥ Space or  ⌥ ⌘ Y in the Finder. Press Esc to exit full screen.
+
+A: Apple Numbers can be used to view Excel spreadsheet files. Numbers is available for macOS, iOS and web. Numbers which was previously a paid app is now available free of cost. Numbers web app can be used on compatible browsers even on a Windows and Linux computer.
+
+A: This answer is just to provide an update as of March 2016
+Microsoft Office Online will allow you to not just view, but create, edit, and save Excel documents without having the software installed.
+
+For a complete list of features available for Excel Online, check out the page on support.office.com page

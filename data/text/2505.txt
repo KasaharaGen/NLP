@@ -1,0 +1,39 @@
+Q: How do I select more than one file in LaunchBar? Is it possible to select multiple files in LaunchBar?  (For example, I may want to select two files in a folder and "drag" them to another folder.)  How do I do that?
+
+A: I found a post on the Objective Development Forums that suggests a different approach:
+
+
+*
+
+*Select the file to move or copy (either in the Finder, or in LaunchBar).
+
+*Copy it (⌘-C)
+
+*Select another file (again, either in the Finder, or in LaunchBar).
+
+*Use ClipMerge (Press ⌘-C twice.)
+
+*Repeat steps 3 & 4 if you wish to select more than two files.
+
+*Select the destination folder.
+
+*Paste (⌘-V)
+
+
+I was skeptical until I tried it.  It works quite well.
+
+A: An update for LaunchBar 6
+Version 6.0 introduced a slick way of selecting multiple items. The LaunchBar folks call it the “Sixth Sense”. Selected items are held in a “staging area” and can be acted upon all at once using typical LaunchBar tools. 
+
+
+*
+
+*Typing Command-A will select all items in the search list.
+
+*Typing a Comma (“,”) will select the current item and allow you to move on to select more.
+
+*Pressing Shift will scrolling up or down with the arrow keys select continuously as you scroll
+
+*You can undo these actions by repeating them with a selected file. Hitting Escape clears the selections.
+The selection then works with other actions: Press Tab to send them to another folder, etc.
+There’s a discussion at the LaunchBar blog

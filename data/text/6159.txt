@@ -1,0 +1,8 @@
+Q: Using Launchpad with folders Prior to Lion I used overflow as a program launcher.  I'm trying to replace that with Launchpad (one less app to deal with) and it seems to be working...almost.
+Is there any way I can add an icon in Launchpad that opens a folder or a specific file (pdf for example)?  I've got all my application icons in place, I'm just trying to get the last few shortcuts from overflow into Launchpad.
+
+A: Yeah, I got a little trick that will do that, with Automator. Launch Automator and create an an Application workflow. Add the following actions:
+"Get Specified Finder Items" -> here's where you specify the folder you want opened.
+"Open Finder Items"
+
+Then save the workflow and drag it to Launchpad. You might wanna change the icon too. Works just like a folder.

@@ -1,0 +1,93 @@
+Q: Time Machine fails backup to a time capsule's attached hard disk I've been backing up my Lion OSX system using Time Machine to an second, external drive connected to a time capsule. It has worked but stopped working.
+The menu says "Faied" and the time machine prefs says:
+"The backup disk image “/Volumes/WD1-1/monster.sparsebundle” could not be created (error 22)"
+
+As far as I can tell the external hard disk is just fine.  One really weird thing is that the external drive is called "WD1". However the Volume in the error message is specified as /Volumes/WD1-1. In fact in shall I see this:
+monster:~ pitosalas$ mount
+/dev/disk0s2 on / (hfs, local, journaled)
+devfs on /dev (devfs, local, nobrowse)
+/dev/disk1s2 on /Volumes/MonsterHD (hfs, local, journaled)
+map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+map auto_home on /home (autofs, automounted, nobrowse)
+afp_0TSQUm1ubQ4400mmYF0Pyetl-1.2d000003 on /Volumes/WD1 (afpfs, nodev, nosuid, mounted by pitosalas)
+afp_0TSQUm1ubQ4400mmYF0Pyetl-1.2d00005c on /Volumes/WD1-1 (afpfs, nobrowse)
+
+and 
+monster:~ pitosalas$ ls /Volumes/
+BootHD      MonsterHD   WD1     WD1-1
+
+(notice that MonsterHD and BootHD are both internal drives of the OSX box called monster)
+What is that second Volume WD1-1? It has different characteristics in $ mount listing none of which are meaningful to me. Could that be related to the problem?
+
+A: Time Machine tries to track a UID for the volume and not a name, but it could be confused.
+Have you tried setting the backup destination to none and rebooting with no drives connected and no network connection.
+At that point /Volumes should be clean and you would be safe to delete any non-local drives at that point. My guess is it's perhaps a second route to the network - do you have a wired connection and WiFi to the AirPort/Time Capsule?
+diskutil list will also get you more information about drives than mount in case you want to post more details and can't get Time Machine happy with these steps.
+
+A: Thanks for the tips. Here are some more data points...
+
+
+*
+
+*I stopped backups and removed the indication in TM that it should use the TC's external disk as a target. I also then disconnected the network (wifi is the only path I have to the TC)
+
+*I rebooted my mac.
+
+
+Here's terminal output:
+monster:~ pitosalas$ ls /Volumes/
+BootHD      MonsterHD
+monster:~ pitosalas$ mount
+/dev/disk0s2 on / (hfs, local, journaled)    
+devfs on /dev (devfs, local, nobrowse)
+/dev/disk1s2 on /Volumes/MonsterHD (hfs, local, journaled)
+map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+map auto_home on /home (autofs, automounted, nobrowse)
+monster:~ pitosalas$ diskutil list
+/dev/disk0
+#:                       TYPE NAME                    SIZE       IDENTIFIER
+0:      GUID_partition_scheme                        *115.0 GB   disk0
+1:                        EFI                         209.7 MB   disk0s1
+2:                  Apple_HFS BootHD                  114.2 GB   disk0s2
+3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+/dev/disk1
+#:                       TYPE NAME                    SIZE       IDENTIFIER
+0:      GUID_partition_scheme                        *640.1 GB   disk1
+1:                        EFI                         209.7 MB   disk1s1
+2:                  Apple_HFS MonsterHD               639.3 GB   disk1s2
+3:                 Apple_Boot Recovery HD             650.0 MB   disk1s3
+
+So you can see, no sign of WD1 or WD1-1 (the name of the external disk attached to the TC is WD1 and its shadow is WD1-1.
+Now I assign WD1 to be the backup disk for TC and try to run a backup. 
+It says that it cannot find the external disk. So I go to finder, open the Share for TimeCapsule which shows two disks, it's own (TimeCap) and the external disk. 
+When I try use Finder to see the contents of the external disk, it hangs and eventually says "the operation cannot be completed because the original item for "WD1" cannot be found. Wha???
+At this point, TM is not yet working. It gives the same error: "The backup disk image “/Volumes/WD1-1/monster.sparsebundle” could not be created (error 22)." 
+And back on Terminal I see this:
+monster:~ pitosalas$ diskutil list
+/dev/disk0
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *115.0 GB   disk0
+   1:                        EFI                         209.7 MB   disk0s1
+   2:                  Apple_HFS BootHD                  114.2 GB   disk0s2
+   3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+/dev/disk1
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *640.1 GB   disk1
+   1:                        EFI                         209.7 MB   disk1s1
+   2:                  Apple_HFS MonsterHD               639.3 GB   disk1s2
+   3:                 Apple_Boot Recovery HD             650.0 MB   disk1s3
+monster:~ pitosalas$ mount
+/dev/disk0s2 on / (hfs, local, journaled)
+devfs on /dev (devfs, local, nobrowse)
+/dev/disk1s2 on /Volumes/MonsterHD (hfs, local, journaled)
+map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+map auto_home on /home (autofs, automounted, nobrowse)
+afp_0TSQUm1ubQ4400mmYF0Pyetl-1.2d000004 on /Volumes/TimeCap (afpfs, nodev, nosuid, mounted by pitosalas)
+afp_0TSQUm1ubQ4400mmYF0Pyetl-2.2d000005 on /Volumes/WD1 (afpfs, nodev, nosuid, mounted by pitosalas)
+afp_0TSQUm1ubQ4400mmYF0Pyetl-1.2d000006 on /Volumes/WD1-1 (afpfs, nobrowse)
+monster:~ pitosalas$ ls /Volumes/
+BootHD      MonsterHD   TimeCap     WD1     WD1-1
+monster:~ pitosalas$ 
+
+If you can be of any assistance in solving this riddle I would be super grateful!
+Pito

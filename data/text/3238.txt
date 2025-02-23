@@ -1,0 +1,67 @@
+Q: How do I combine two or more images to get a single pdf file? Say I have some image files (for instance, the result of scanning some sheets) and I want to combine them into a single pdf file, each image on a different page.
+Is there a faster / more convenient way than converting each one to a pdf file and then combining those (say, as explained here)? Or, if this is more or less how it is to be done, which is the most intelligent and less tedious possible way to do it?
+
+A: Open Preview, make sure the Drawer is open and Drag the Image in underneath the Page Thumbnail.
+
+A: Use imagemagick. 
+
+
+*
+
+*Install brew (https://brew.sh/)
+
+*brew install imagemagick
+
+*convert file1 file2 file3 output.pdf
+files 1 through n can be any image or pdf file.
+
+A: Here are the steps to save multiple images in Preview into a single multi-page PDF.
+
+
+*
+
+*Select all of the images you want in your PDF, right-click and choose open with Preview
+
+*In Preview's Sidebar drag the images into the order you want them to appear in your PDF
+
+*Select/highlight all the images to be included in the PDF document; otherwise only a single image may end up the PDF document
+
+*Then from the "File" menu choose "Print Selected Images" (or "Print..." in recent OS X versions) and then "PDF > Save as PDF"
+
+A: I made 2 quick screenshots for you:
+1) select thumbnails view:
+
+2) Drag second PDF e.g., from Desktop, into thumbnails pane, but above the thin silver line where the red arrow is pointing at (otherwise it won't be saved). And then just save the PDF
+
+
+A: This can be done using Automator. Follow these steps:
+
+*
+
+*Create a new Workflow.
+
+*Under Actions, Library, Files & Folders add the Get Specified Finder Items as a step.
+
+*On the bottom of that step click on Add and select the images.
+
+*Next, under Actions, Library, PDFs add the New PDF from Images. The workflow should look like the one on the image:
+
+
+
+*
+
+*Configure the step to your desire specifying among other things the location and name for the PDF file.
+
+*Run the new workflow.
+
+*In the Results tab of the New PDF from Images you now have your newly created PDF.
+
+
+A: If you use ImageMagick, the JPEG gets re-encoded, which results in generation loss, as well as worse performance.
+Use img2pdf instead. Install using pip3 install img2pdf.
+Source: https://unix.stackexchange.com/a/74341/374913
+
+A: paste in word and save as pdf...best possible way
+
+A: When you try to print, sometimes you get the pages displayed rotated at 90 degrees, which is annoying. You could rotate all of them with one click from the PDF viewer but you will have to do that every time you open the file.
+Instead, follow the top answer and when print to PDF, just uncheck Auto Rotate (preferred) OR select the horizontal orientation (hack). See the screenshot :) 

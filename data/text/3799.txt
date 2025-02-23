@@ -1,0 +1,9 @@
+Q: Change app icon permanently I know how to change an application icon, but when that app updates (e.g. browser), icon reverts to the one that application has.
+I imagine, that the update process works something like replacing the package I have, with a new one, so the icon change occurs because the new package simply doesn't have that icon associated.
+Is there a way around this? Is there an app/prefPane handling this? Or do I have to change icon every time an app updates?
+
+A: You have to change the icon every time it updates because, as you have correctly pointed out, the Package is replaced and therefore your icon is overwritten by the original one. 
+To make your life easier, you might want to take a look at CandyBar, it makes that job easier :)
+
+A: One solution I've found is to create an alias for the application (Using 'Right Click' > 'Create Alias') and then store the actual application someplace out of sight. Then, you can change the alias's icon and it'll function exactly the same.
+Since aliases only redirect you to the app, they don't actually become updated when used, meaning that the icon should never change.

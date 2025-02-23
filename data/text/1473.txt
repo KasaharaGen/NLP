@@ -1,0 +1,20 @@
+Q: Drag & Drop vs mv - Any difference? Is there a difference between bulk-moving files with Drag & Drop vs mv?
+Use case:
+Volume External_Drive_A has about 8000 files totalling 9GB. External_Drive_B has 74GB of free space. The desired end result is to move all the files from A to B so that A can be wiped and put to use in another location. 
+Drag & Drop approach is to open one Finder window for A, another Finder window for B, highlight all the files on A, then command-click-drag them to B.
+mv approach is to open a Terminal session and invoke 
+mkdir /Volumes/External_Drive_B/A_legacy
+mv /Volumes/External_Drive_A/* /Volumes/External_Drive/B/A_legacy/
+
+Does Drag & Drop do anything behind-the-scenes in addition to the copy and remove, or is it strictly a thing of Beauty? 
+Answered by jmlumpkin below: 
+They differ! Drag & Drop brings the metadata, mv does not. I tested this by adding a phrase to the Spotlight Comments section on a text file's Get Info dialog. When I dragged and dropped the file across volumes, the phrase was present when I invoked Get Info on the destination; but when it used mv, the phrase was missing when I invoked Get Info on the destination.
+
+A: Do not use mv or drag&drop for moving data between volumes.
+If anything bad happens during the operation, you will end up with half the data here and half the data there, and it will be hard to figure out where to restart. If this is done over the network, you may not even still have all the data on either volume.
+Do a copy (command line or drag&drop), and after that succeeded, delete the source. 
+
+A: In earlier versions of the Mac OS, Dragging and Dropping a file was actually closer to the 'ditto' command to retain resource forks, etc. 
+
+A: The end result is probably the same, but I would guess that edge cases might be treated differently, also depending on which mv you use (the default in /bin/ or a GNU version in /sw/bin/ from fink, or from macports, etc.)
+For example, an OS X alias or resource forks might not be treated properly by the unix toolchain, and there are probably cases where low-level unix file things might not be handled by the OS X drag-and-drop.

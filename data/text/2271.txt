@@ -1,0 +1,102 @@
+Q: QuickLook for files with no extension or an unknown extension I'm a programmer, and I find Mac's QuickLook a really great feature for quickly becoming familiar with a particular code base.  Basically, I open up a Finder window in the directory where my code files are, I push the spacebar (to evoke QuickLook), and then I arrow key up/down/left/right through all the files and scroll within QuickLook as needed.
+The problem that I run into are files with no extension and files with unknown extension.  How can I convince the Mac to attempt to QuickLook these files as text files (which they usually are).  Also, it's really nice how QuickLook automatically colors the code based upon the type of code it thinks it is.  How can I extend the types of code files that the Mac recognizes?  For instance, I want to be able to QuickLook the code in a *.html.erb file or a *.js.erb file.
+
+A: Update 2021 Jan
+If you are running macOS Big Sur (11.1) and you can't get QuickLook previews of certain files even if you installed QLStephen and other plugins, this is what worked for me.
+Background
+In macOS, each file is assigned a UTI. UTIs are used to identify file types (these are the types you see in the Kind column in Finder or in the Kind entry in the General section of the Get Info window). For example, a .txt file (a "plain text" file) has the following UTI: public.plain-text.
+To check which is the UTI of a particular file, you can run:
+mdls -name kMDItemContentType ~/my-file.ext
+
+where ~/my-file.ext is the path to the file.
+QuickLook checks the UTI of a file to choose a QuickLook generator to use for display. The QL generators that get shipped with macOS can be found in /System/Library/QuickLook/.
+QL generators have the .qlgenerator extension and you can see their content by right-clicking on them and selecting Show Package Contents. Inside the folder Contents there a file named Info.plist. This file lists which UTIs that generator will be used with.
+So, the Info.plist of the Text.qlgenerator will list, among others, the public.plain-text UTI. Any file that has that UTI will be previewed using Text.qlgenerator.
+The generators found in /System/Library/QuickLook/ are locked, meaning that you cannot (in principle) edit them.
+This is where the QuickLook plugins that can be found on the internet, like QLStephen, come in. These plugins are installed in ~/Library/QuickLook (note that this path starts with ~/, meaning it's your user Library and not /System/Library/) and extend QuickLook capabilities. In other words, they provide the system with new generators that work with UTIs not covered by the system's own generators, or extend them.
+Problem
+When you reassign the application a file type is opened with (e.g. Info > Open with > [app] > Change all`), the application might assign that file type a UTI that is not the default, meaning that QuickLook won't recognise the UTI and won't assign any generator (and you just see a file icon rather than the content of the file).
+For example, the plugin QLColorCode should preview the content of LaTeX .tex files, but in my case it wasn't. This is because I selected Sublime Text as the app that opens .tex files, and ST has assigned a UTI that is different from the UTI used in QLColorCode for .tex files.
+Solution
+The solution to the problem is simply to let the QL plugin know that it should also work with these "non-default" UTIs.
+To do so, you just need to edit the Info.plist file of the plugin in ~/Library/QuickLook (do not try to edit the system generators in /System/Library/QuickLook).
+More specifically, you first have to locate the following lines in Info.plist (to open and edit this file, you right-click on it and select TextEdit):
+...
+<key>LSItemContentTypes</key>
+  <array>
+    <string>public.source-code</string>
+    ...
+  </array>
+...
+
+Then, you have to add the "non-standard" UTIs in the array, like so:
+...
+<key>LSItemContentTypes</key>
+  <array>
+    <string>public.source-code</string>
+    ...
+    <string>dyn.ah62d4rv4ge80g5dx</string>
+    <string>dyn.ah62d4rv4ge81e5pe</string>
+  </array>
+...
+
+As mentioned above, to get the UTI of a particular file, do:
+mdls -name kMDItemContentType ~/my-file.ext
+
+In the output, you will see something like this:
+kMDItemContentType = "dyn.ah62d4rv4ge80g5dx"
+
+The string between double quotes is the UTI of ~./my-file.
+After you have added the UTIs, just save the Info.plist file and close it.
+Now QuickLook should work with the chosen generator for the files whose UTIs have been added in Info.plist.
+To be on the safe side, you can run the following to reset QL and its cache:
+qlmanage -r
+qlmanage -r cache
+
+Fin
+
+A: Take a look at the QuickLook Stephen plugin, it opens almost everything I throw at it (as long as it is text based).
+
+A: Fantastic details, much appreciated. A few added items I ran into:
+
+*
+
+*If the ~/Library/Quicklook/ directory doesn't exist, you must manually create it.
+
+
+*In my case, I wanted to extend text previews for .bat and .log. So I had to create the subdirectories for the Text generator Text.qlgenerator. When I look in /System/Library/QuickLook/ I see directories that I don't have in my home directory. These commands create the Quickview subdirectories if I didn't have them, then copy the system file into my home directory:
+mkdir -p ~/Library/Quicklook/Text.qlgenerator/Contents/
+cp /System/Library/Quicklook/Text.qlgenerator/Info.plist ~/Library/Quicklook/Text.qlgenerator/Contents/Info.plist
+
+
+*Next, I determine the UTI with the command provided:
+mdls -name kMDItemContentType ~/my_file.bat
+kMDItemContentType = "dyn.ah62d4rv4ge80e2py"
+
+
+*
+
+*And then edit the plist file to add the UTI dyn.ah62d4rv4ge80e2py to my plist file in ~/Library/Quicklook/Text.qlgenerator/Contents/Info.plist
+
+
+*Finally, I can check the quicklook worked correctly with the qlmanage -p option. This prints some debug info and then opens the QuickLook preview window on this file:
+qlmanage -p ~/my_file.bat
+
+A: The simplest way I've found to accomplish this involves installing the plugin QLColorCode. This is a great plugin that includes syntax highlighting of source code for a number of languages.
+Once it's installed, it's very easy to add support for additional UTIs (Uniform Type Indicator). Get the UTI for your particular file by opening Terminal, or your preferred terminal app, and using this command:
+mdls -name kMDItemContentType /path/to/file.ext
+This should result in something like this:
+kMDItemContentType = "dyn.ah62d4rv4ge81s7dg"
+Then navigate in Finder to ~/Library/QuickLook. Right click on QLColorCode.qlgenerator and choose Show Package Contents. Open Contents/Info.plist in a text editor. Find the following code:
+            <key>LSItemContentTypes</key>
+            <array>
+                <string>public.source-code</string>
+                ...
+            </array>
+
+On a new line after <string>public.source-code</string>, add <string>dyn.yourUTIhere</string> for each new UTI you want to add.
+Save the file, then run these commands in Terminal or your preferred terminal app:
+qlmanage -r
+qlmanage -r cache
+
+Files with the UTI you added should now open in QuickLook.

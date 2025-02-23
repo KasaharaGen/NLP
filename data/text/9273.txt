@@ -1,0 +1,19 @@
+Q: Is there something similar to the Greasemonkey script system for a browser in iOS? Greasemonkey is explained in this Wikipedia entry.
+I would like to add my own stylesheet to a particularly non-mobile-friendly website. Is there any way to accomplish this? Are there any browser apps that can do it?
+
+A: You can use userscripts on iOS Safari using the new Shortcuts utility (though it seems to be complicated) and a lot easier using the free Safari Snippets app. However, this approach does not load userscripts automatically, they have to be manually loaded on each page load.
+There seem to be at least two third-party browsers which support userscripts, the Gear Browser and the Alook Browser. I don't have experience with Gear, but in Alook you can create userscripts which are loaded automatically based on custom URL regexes (similar to Tampermonkey). While Alook has a one-time fee, note that Gear requires you to subscribe before you can use their userscript functionality (the monthly cost is currently higher than the one-time fee of Alook).
+Finally, there is an external way of injecting userscripts into sites via a MITM-proxy approach. I found at least two repos, however haven't tried them out yet:
+
+*
+
+*https://github.com/SimonAlling/userscript-proxy
+
+*https://github.com/eBay/userscript-proxy
+Note that encrypted websites complicate the proxy approach as you need to decrypt your HTTPS traffic using a certificate.
+
+A: At the moment there is the GreasePocket project in the works.
+Have a look at their website, but it's far from a finished product, it will also probably need to be run on a JailBroken device.
+
+A: Userscripts for Safari is currently in the process of being ported to iOS 15, as a Safari Web Extension.
+It's a big task though, they'll appreciate help.

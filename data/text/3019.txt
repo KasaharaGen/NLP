@@ -1,0 +1,32 @@
+Q: Customize Quick Look to allow me to view .yml files I would like to use "space" to preview *.yml files directly out of the finder on Mac OS X. 
+I think I have to tell finder to launch the text file quick view handler for files with that type and this has something to do with universal type identifiers (UTI.)
+But that's as far as I was able to get. 
+Can anyone give me the magic formula? Thanks!!
+
+A: Most of these didn't work for me.
+This did: https://github.com/sbarex/SourceCodeSyntaxHighlight
+Really excellent, worked immediately, lots of options.
+
+A: I use Ciarán Walsh’s TextMate in QuickLook plugin.
+
+This is a TextMate plug-in and a QuickLook generator which renders QuickLook previews (for certain filetypes) using the TextMate syntax highlighter. Currently it’s configured to highlight Perl, PHP, Ruby, Shell, C headers and Obj-C(++). Note: this effectively sets up TextMate as a server for the syntax highlighting, so it won’t work unless TM is running (QuickLook will just fall back to the standard preview if it’s not).
+
+Here is a convenience link to download the plugin and you can read more about it on Ciarán's web page.
+This is what it looks like when I QuickLook a .yml file:
+
+
+A: I've had great luck with the free QLStephen plugin for Quick Look. It displays lots of other plaintext formats.
+To preview YAML files with this plugin these additional steps need to be followed after plugin installation.
+You can get it here.
+
+A: You can use the QLStephen plugin as mentioned but you will need to edit it as described in the project's issue tracker: https://github.com/whomwah/qlstephen/issues/23#issuecomment-21769063
+Basically:
+
+*
+
+*Open the ~/Library/QuickLook/QLStephen.qlgenerator/Contents/Info.plist file in a text editor
+
+*Add the UTI public.yaml to the key LSItemContentTypes
+
+*Run qlmanage -r to reload the service
+

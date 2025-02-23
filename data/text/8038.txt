@@ -1,0 +1,35 @@
+Q: I do not have enough free space on the C:\ drive of my Windows computer to run the updater for iOS 5 in iTunes I am trying to update to iOS 5, but iTunes wants 10 GB in the C: drive. (I don't have that much free space in C, but I have it in another partition.)
+I have already reinstalled iTunes in my secondary partition (300 GB free) and moved the Preferences > Advanced iTunes Media to my secondary.
+But still when I try to update to iOS 5, iTunes tells me there is not enough free space (it still wants to use the C: drive).
+Are there any other settings I should check?
+
+A: I think that iTunes is trying to use your gobal Windows temporary folder. By default, this directory is in your user Local Settings directory, located on the same drive as Windows. This is a system-wide setting that applications are supposed to follow.
+You can change the path to this temporary folder by changing the value of the TEMP environment variable. You'll have to restart iTunes after changing the variable to have it take effect.
+
+A: Itunes uses the folder "%appdata%\Apple Computer\iTunes\ipad software updates" to store the iOS 5 update and uncompress it. If you don't have enough space on C: drive, you need to move this folder in order to be able to do the iOS 5 update.
+Since iTunes thoughtfully left out any means of doing this, you need to get your hands dirty.
+
+
+*
+
+*close iTunes.
+
+*Cut and paste the folder "%appdata%\apple computer\itunes\ipad software updates" to a different drive or partition with at least 30 GB free. Eg. D:\ipad\ipad software updates
+
+*download junction (http://download.sysinternals.com/Files/Junction.zip) and unzip in to C:
+
+*Click on "Start", select "Run". Type in "cmd" to open a DOS window.
+
+*Type in "cd.." and hit Enter. Keep repeating until the DOS prompt changes to "C:>"
+
+*Type in : junction "%appdata%\apple computer\itunes\ipad software updates" "D:\ipad\ipad software updates"
+
+
+Done.
+
+A: Success; I solved it!!!!
+The answer is with two parts, no dealing with the registry. One is changing the TEMP variable to D:\temp (or whatever the second hard drive is). The other does involve junction, but you got the wrong directory.
+While you got the right directory for where iTunes keeps downloads, that particular file is relatively small and not where it extracts to (where all the space is eaten). The initial dmg files are extracted to C:\Documents and Settings\All Users\Application Data\Apple Computer\iTunes\Temp . "All Users" seems static. The "Temp" part is dynamic (is created at the operation and deleted after) and appears to be hard coded in iTunes 10, so I moved the "iTunes" folder from above to the other drive, then made the junction point to "D:\Temp\Apple\iTunes" (you do where you want; I made "Apple" read only to avoid autodeleting and invalidating the junction. Overkill, but I was trying to work quickly- probably not a good idea to link to a sub off %TEMP%).
+Anyway, worked like a charm. The initial extraction of the download went to the linked directory on D:, then the DMG files were extracted in to %TEMP%\$app(n) and the iPod was soon rescued after that.
+
+A: Just like @cksum said in response to your question: move ten gigs of files from your C: drive to your secondary, update to iOS 5, and move the files back. It's not like iTunes is going to keep using the space after the update is complete.

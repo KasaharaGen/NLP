@@ -1,0 +1,38 @@
+Q: My Macbook's headphone jack stopped working, how do I fix it? my headphone jack output stopped working a couple days ago. As in - when I jack a cable (or headphones) the sound comes via the built-in speakers. 
+On the installed Windows (Bootcamp) it works OK (sound coming out via headphones when jacked in). 
+Any ideas how I can troubleshoot this? 
+The OS is Lion, freshly updated (update after the problem first appeared). 
+
+A: (posted as an answer so you can accept it and mark this issue resolved)
+Have you checked the Sound pref pane in System Preferences? There's a tab labeled "Output" where (I'd expect, as I don't have a portable in front of me just now) you can switch output between built-in speakers and the headphone jack. If the first toggle doesn't work, toggle it again.
+
+A: The question is quite old now, but issue still remains on latest macOS (former OSX) version 10.12.4 Beta (16E163f).
+One day I was using the headphones and the next day headphones jack port stopped working.
+Tried:
+
+
+*
+
+*Reboot
+
+*Settings -> Sound -> "Use audio port for: Sound output"
+
+*Select headphones instead of any other thing on "device for
+sound output"
+
+*Reset NVRAM (previous PRAM)
+
+*Reset SMC
+
+
+Nothing worked, then I tried to reboot with headphones plugged in, kind of worked, but if you unplug the headphones after rebooting, and then plug back in, it's not working anymore (it's kind of a workaround).
+SOLUTION: >> Shut Down -> Start MacBook and press CMD+R (Recovery Mode) -> Disk utility -> Select boot disk -> "First Aid" (both on the disk and the on the partition, did it also for the "Recover Disk Image", not sure if it helps) -> Reboot.
+
+So far it's working fine.
+Hope it solves your problem.
+P.S.:What I was going to try next (not sure if it's possible) was to update/force reinstall audio drivers.
+
+EDIT:
+It stopped working, and looks like it's not possible to reinstall audio drivers)
+Workaround: Without the need to reboot or anything, just: plug headphones in -> close the lid (sleep) -> open the lid (wake)
+Sound should now be coming out through the headphones.

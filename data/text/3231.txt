@@ -1,0 +1,5 @@
+Q: Starcraft 2 update crash I'm trying to update Starcraft 2 to patch 1.3.1. Everytime it tries to write the patched files the entire system freezes and eventually also crashes.
+The OS is 10.6.7 there is no log from starcraft itself most of the Times sometimes it tells me to Run the Blizzard Relais Tool. I tried fixing Disk permissions and Erlangung the filesystem. Also reinstalling didn't help. 
+Any ideas?
+
+A: I had a similar issue. Starcraft has a temporary file that generally sits at /Applications/Starcraft II/Battle.net/Battle.net-patch.MPQ, when I deleted this file and started the repair tool at /Applications/StarCraft II/Support/Repair it worked beautifully.

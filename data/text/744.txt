@@ -1,0 +1,17 @@
+Q: How can I increase the time before my external drive powers down? I have an external USB drive from LaCie that is connected to my MacBook Pro – almost all the time. So whenever I don't use it for a few minutes, it powers down. That means, it takes a few seconds to spin the disk up again if I need it. 
+Sometimes, other applications wake the drive up even when I don't want to, causing the applications to hang (i.e. wait for the drive).
+How can I increase the time before the external drive powers down?
+
+A: 
+Cocktail is an award winning general purpose utility for Mac OS X
+
+This app does exactly what you are after (plus much much more), but it will set you back $15.
+Alternatively, the command pmset appears to do this as well, but without the fancy GUI. For example pmset -c disksleep 60 will prevent all disks from spinning down within 60 minutes of activity when plugged in. You can change the -c part to specify a different power condition:
+
+The -a, -b, -c, -u flags determine whether the settings apply to battery
+       ( -b ), charger (wall power) ( -c ), UPS ( -u ) or all ( -a )
+
+
+A: Keep Drive Spinning is a free alternative that does what you want.
+
+A: The externals sleep routine is set by the drive's firmware. A few can respond to Energy Saver/Cocktail/pmset settings, most cannot.  The only way to keep a drive is to have an app/script write to it at intervals. The video editing folks need this and their forums are where to look for answers.

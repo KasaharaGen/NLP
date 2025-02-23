@@ -1,0 +1,42 @@
+Q: How can I stop my whole screen from flashing white on errors? Whenever I access Terminal and press Command ⌘ + Delete ⌫ my screen flashes white.
+It also happens when Chrome's Command ⌘ + F returns no results.
+Have I somehow messed up my settings?
+I already verified that Universal Access » Hearing » Flash the screen when an alert sound occurs was unchecked. I've tried toggling the setting and still get the flash animation.
+
+A: rm -f ~/Library/Preferences/com.apple.universalaccess.plist
+
+This will fix it every time.  Maybe someday apple will fix the bug that keeps corrupting com.apple.universalaccess.plist.
+
+A: Uncheck the 'visual bell' box in the preferences for your terminal style.
+Terminals->Preferences->Profiles->Advanced:
+Bell:
+Audible bell
+Visual bell <>
+
+A: This sounds ridiculously simple, but it has worked for me in the past. Try checking and then unchecking Universal Access » Hearing » Flash the screen when an alert sound occurs -- this really sounds like that is the behavior in question, and sometimes setting it and the unsetting it resets to the desired behavior. (Note, this might be under Audio in newer versions of Mac OS.)
+This basically checks that the preference file can be written to have a no then a yes and will clear up all sorts of minor issues in how apps can store preferences. The next step is to delete (or move to the desktop) the preference file for the affected application. In this case, the system stores this flash preference here:
+~/Library/Preferences/com.apple.universalaccess.plist
+At this point, you might need to expand to see if rebooting, trying a new user account helps isolate the issue.
+
+A: As discovered by corwin.amber in another post, the problem sometimes lies with a dead coreaudiod and can be fixed with:
+sudo killall coreaudiod
+
+
+A: Reposting here from another post as suggested by David Wolever. 
+In a similar situation, I was about to give up and reboot, but then I found that restarting the audio daemon resolves the issue:
+sudo killall coreaudiod
+
+The symptom was: in the "Sound Effects" system setting panel, selecting alert sounds didn't do anything (usually it triggers a preview of the selected effect). My guess is that OS X fails to play an alert sound, and falls back to the visual cue.
+
+A: Aware this is an old thread, but today I realized this was happening since updating to Mac OS Catalina, so hopefully, this can help others.
+user20095's comment above helped me to solve it.
+In Sound > Sound Effects, the output device for alerts (HDMI monitor) was set differently to my main audio output (Headphone port). As this selected output was muted, no alert sounds were playing, therefore Mac OS defaulted to flashing the screen - even though the screen flash option was unchecked in Accessibility.
+
+A: Restart. This happens to me periodically. Restarting always fixes it.
+
+A: You can turn it off in System Preferences > Accessibility > Audio > Flash screen
+
+A: Could have to do with your audio alert set-up. This worked for me in OS X Mavericks. Under apple > preferences > assessability > audio:
+uncheck "Flash the screen when an alert sound occurs".
+
+A: Checking and then unchecking Universal Access » Hearing » Flash the screen when an alert sound occurs works pretty well. Seems there is some bug. Apple need to solve this issue.

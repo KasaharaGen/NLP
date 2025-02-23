@@ -1,0 +1,13 @@
+Q: Finder does not show Path Bar and Status Bar, what to do? I have OS X Lion and when I open a finder window everything seems OK.
+But I can't see the Path Bar nor the Status bar.
+When I activate one of the bars with View->Show Status Bar or View->Show Path Bar the Finder window gets bigger in height ( growing downwards ), nothing else happens.
+Anyone have an idea what I can do to see the Bars?
+(The Bars are working in other applications like Safari, ⌘+/ and it pops up)
+
+A: Is it just this you are looking for? Finder > View > Show Path Bar?
+Also here: http://macs.about.com/od/usingyourmac/qt/findertip1.htm
+
+A: The bug did come from BetterSnapTool. An app for resizing the windows.
+
+A: Remove the Finder plist. You can find it at ~/Library/Preferences/com.apple.finder.plist.
+Then restart. This should reset any strange preferences keeping the Finder from showing the path and status bars.

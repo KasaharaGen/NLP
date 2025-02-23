@@ -1,0 +1,46 @@
+Q: How to list all available .plist keys on a certain domain application by defaults command? I want to know all keys (property list) which available on certain domain application, as example I could list available key for com.apple.dock by entering this command:
+$ defaults read com.apple.dock
+
+but somehow the output of this command only showed the active property list key, and yet not all available key for com.apple.dock listed there.
+Anyone can help me on this?
+
+A: This is not a trivial task, if I recall correctly people run the strings utility at the command-line against an Application, and look for things that match a structure similar to com.domain.FeatureName. (com.apple.iTunes, ch.cyberduck.CyberDuck, com.panic.Coda, etc.)
+The likely easiest way to manage these overrides is by a System Preferences Pane by the name of Secrets. Using this installs a Preference Pane into System Preferences, and gives you an interface into choosing an application and changing their settings to your particular preference.
+
+A: Found a website dedicated to these Mac OS X defaults write commands, some handy commands for Mac OS X Lion & Mountain Lion.
+http://www.defaults-write.com
+
+A: There really isn't a notion of "available" keys. The application is free to read whatever keys it wants. Most people discover "secret" defaults keys by using strings to look through the application binary to see what keys it will try to read.
+
+A: Most people here want to do everything via the command line, but I have a more practical suggestion.
+These two programs described below list a great deal of the known command-line customizable features of Mac OS X applications, sorted by application or function. The advantage is the list of functions is provided for you; you don't have to go searching Google to find out what the functions are and the command-line sequences needed to modify each one.
+There are several freeware or commercial applications that provide a graphical user interface listing most all of the customization options that can be modified via the Terminal. To activate any of these features, using these progams I'm describing, you do it within the application's GUI and you have no need to use the command line at all. You don't need to know anything about defaults write or .plist files.
+Two of these apps are:
+TinkerTool
+which is free, and
+MacPilot
+which has just been updated with new Lion features, and costs US $20.00.
+These are programs that I own and use.
+Download the free TinkerTool and the trial version of MacPilot and and click through all the tabs to see all the myriad features you can customize. There are too many to list here.
+
+
+Update
+Developer Frederik Wiker has released freeware apps (donations accepted) for creating defaults write customizations specific to Lion and Mountain Lion; many of them also work fine for Mavericks (Mac OS X 10.9) as well.
+Download these and see what customizations are available to you.
+Lion Tweaks
+Mountain Tweaks
+
+
+A: Perhaps a fairly long explanation how things work might clear up your and others' search for these "hidden" preferences.
+Most applications will read their preference files once when they start and the defaults tool exists to ensure the preference files are a valid structure and don't contain syntax errors. (It also allows the system to change how the keys are stored and people don't have to know the implementation details and can use the defaults command to do all the reading and writing.)
+English language style and grammar guides ensure the words I type here are meaningful to the average english speaker, and standardizing the defaults system sets a framework so everyone knows what to expect. The preference list formatting is far more rigid and mathematical than a human language, but the concepts are similar.
+The the Mac OS X user defaults system is a key value store (or database if you prefer). 
+You can write anything into these preference key value stores, a Shakespeare sonnet, numbers, a shopping list. If the program is coded to look for a specific key, it will read the value stored. If it's not looking for that key - it's value sits there unused and unread.
+This brings up how to know what values a specific program might be looking for when they start up. It boils down to you either have to know the value or reverse-engineer the program.
+Many tools exist to look into a program and try to figure out what strings (the keys) are embedded, such as strings and dbx/lldb as well as linking in your own library to dump the internal structure of a specific program.
+In practice, some things that are needed for testing are added in this "hidden" way so that you can't look over the program's preference pane and see these new features that are not ready for broad use. In a way, it's not at all simple to get a comprehensive list unless the author of that program releases the source code or otherwise documents these settings publicly.
+When you read the defaults store for a particular app - you are just reading the "book" that was written when the app created it's default set or the settings that shipped with the Mac OS X. That is why you don't receive the exhaustive list of things that are realistically possible to change with that application.
+
+A: As far as I know an application will only store a new key if it differs from its defaults, at least that's what my apps do.
+This is not something that can be controlled easily as it is part of the User Defaults framework, as the app only tell user defaults what needs to be stored and it takes care of the rest.
+I don't think that the information you are looking for is going to be easily obtained, sadly. It could be nice though to have access to this.

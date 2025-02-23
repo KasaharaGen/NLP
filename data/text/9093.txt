@@ -1,0 +1,9 @@
+Q: How do I force iCal to sync? I've recently set up my Google Calendars to hook into iCal on OS X Lion.  I've noticed though that when I make a change in iCal, it doesn't sync instantly to Google Calendar.  
+I'm sure that iCal will eventually sync when it gets a chance, but because I don't leave iCal open all day, I'd like the ability to force it to sync before I shut down.  
+Is this possible? 
+
+A: The equivalent in macOS Sierra's Calendar app is View -> Refresh Calendars.
+
+A: As far as I am aware, invoking iCal's "refresh" function, under the Calendar menu should do all server side communication and updates.
+
+Refresh will only update the calendar that hosts the event you currently have (or last had) selected. Refresh All will of course update all of your calendars. This should be a two-way process, and not just pulling down new changes, it should also send local changes back assuming it's not being done automatically.

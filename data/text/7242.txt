@@ -1,0 +1,17 @@
+Q: Is a quad-core i5 or i7 27" iMac a viable upgrade from a 2008 2.8ghz octacore Mac Pro 3,1? I currently have a 3,1 Mac Pro with dual quad xeon CPUs, 20GB RAM, 1TB SSD (8x256gb in two RAID 10 groups), ATI 5770, running Lion.  I currently have every DVD and BluRay I own ripped to a set of eSATA direct attached storage arrays at about 38TB (76TB in RAID 1).
+I'm looking at the new (2011) 27" iMacs and wondering how they would compare.  I'd probably buy a non-SSD version and migrate some of my existing SSD into the new machine, and I'd do the usual "minimum amount of Apple RAM" and max it out on my own.  I'd put the noisy Mac Pro[1] in the basement and use it as a file server as well as a xgrid compilation node, remote Mathematica kernel, and random server.  My main concern is compute speed.
+I use a lot of RAM and fast disk for Java/Scala/Erlang/Mathematica/Haskell/R/Rails/Mono/iOS development (often 3-4 of these at the same time), along with a bad habit of keeping too many Safari and Chrome tabs open (Chrome to sandbox Flash, which is otherwise uninstalled on my system).
+I've reached a point where I feel as if I've topped out on this machine, and need to upgrade.  Even with 4+ GB RAM free, it can't keep up with my "needs".
+The 3,1 was pretty magical in that the price variance from the low-end quad core to the top-end octo was only about USD1k-1.5k.  Now, to get a "hot" Mac Pro, I'd be looking closer to $5k.  With that, I'd still have a machine without Thunderbolt ports, which require motherboard support, according to Apple.  (Take that as you will.)
+I'm not up to date with the advances in Intel CPUs over the past few years.  What comparison could I draw between the i5 and i7 options?  Clock for clock, are they significantly faster than my Xeons?  Would the 3.1 or 3.4 ghz i7 zoom past my 2008 (westmere?) CPUs?
+I do use all eight cores very frequently, as I write and use a lot of parallel code.  I've been using multiprocessing systems for about 20 years now, so it's my native mode of developing.
+Thanks for any/all help!
+[1] It's not loud, but it hums at about 35dB at a frequency that causes my ears to ring when I leave the room.  I often wear noise-canceling headphones or ear plugs, but I am oversensitive to noise.  I can still hear the transformers in CRTs from 50+ feet away and behind walls at the doddering age of 39.
+
+A: It would be a lateral move in terms of processing performance. The following are scores taken from Geekbench (how fortuitous that they were right next to each other?):
+
+As you can see, it's a slight downgrade in processing power, and I stress slight, if that is indeed your current model (3.2 GHz). The other variants (3.0 GHz for example, which can be seen if you scroll down the list) clock in at slightly lower numbers (~9000). While you would gain the use of an additional Thunderbolt port, the 6 Gbps controller, and a faster FSB, they may not offset the cost of buying a new machine.
+It really doesn't look like it would be a significant upgrade from your current Mac.
+
+A: I can't answer directly, but maybe Marco Arment can. 
+I think it'll come down to your personal usage, there's been a lot of stuff floating round from Geek Bench for the i5s and i7s since Apple dropped them, and if I remember rightly they basically outperform a lot of 3 year old Mac Pros in certain aspects but not in others. 

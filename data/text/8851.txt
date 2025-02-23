@@ -1,0 +1,22 @@
+Q: How do you get a printer's IP in lion? How did you find out an existing printer's IP in lion?
+In Snow Leopard you can do it in this way:
+
+
+*
+
+*Open System Preferences
+
+*Select the printer that you want to find the IP for
+
+*Click 'Options & Supplies'
+
+*The IP is shown next to the 'URL:' label, and might say 'lpd://192.168.0.50/'
+
+
+How can you do this in OS X Lion?
+
+A: Use the built-in CUPS web interface to get detailed printer information:
+http://localhost:631/printers/
+On newer versions of macOS you'll need to run the following command to enable the web interface:
+cupsctl WebInterface=yes
+

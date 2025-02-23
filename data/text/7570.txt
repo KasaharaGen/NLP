@@ -1,0 +1,40 @@
+Q: Keyboard Shortcut for moving left/right a space doesn't work After going to:
+Preferences > Keyboard > Keyboard Shortcuts > Mission Control
+I am able to assign a keyboard shortcut to move left/right a space. However pressing shortcut I assigned does not activate the command. I have tried other keys which are not binded to any other system commands and they do not work as well. Other shortcut are fine 
+Any ideas on how to fix this?
+I am running Mac OS X Lion 10.7.1.
+
+A: This helped me:
+
+Paste this into Terminal (it's all one line, not two):
+mv ~/Library/Preferences/com.apple.symbolichotkeys.plist ~/Desktop/com.apple.symbolichotkeys.plist
+
+Press Return and log out/back in again. Then go to System Preferences and set up your hotkeys as you want.
+
+Background: the plist file can become corrupt. The mv command moves the file to your desktop (you could also directly delete it with rm). Since the file is no longer located in its original location, the operating system creates a new file with default shortcuts
+
+A: This solved the problem for me:
+
+*
+
+*Open the keyboard shortcuts in settings.
+
+*Change the 'move left and move right' for mission control to something new and obscure.
+
+*enable
+and change conflicting shortcuts for desktop 11,12,13 to something
+more obscure, then disable them again.
+
+*restart the computer.
+
+
+A: Did you have any luck with this? I'm having the same issue with Yosemite. All the shortcuts work except those ones, I try changing them to anything and they still don't work. I even tried assigning "move right/left a space" on BetterTouchTools and that doesn't work either, even if the assignment is done by using a touchpad gesture, it seems there is no way to move between workspaces, the only way it works is using a 4 finger drag with the touchpad.
+Shortcuts to move to a specific space work without issues. And the shortcuts work on the guest account. Still not working after logging out and back in.
+Edit: Restarting the computer seemed to solved the issue.
+Edit2: Happened again, but I think I finally discovered the reason behind this behaviour. It seems to me it's very strange bug with shortcuts.
+If you go to the preferences and change the shortcut from ^+→ and ^+← to something like ^+1 and ^+2 you're going to have conflict with the "Switch to desktop 1/2" shortcut. That's not really a problem if you disable them.
+Ok so you change the shortcut and you disabled the other one and now it works perfectly.
+Now try doing a killall Dock. Tachan! Shortcut is not working! Weird! Nothing you do makes it work, changing the shortcut doesn't work, nothing works!
+Now change the disabled "Switch to desktop 1/2" shortcut to something like ⌘+1 and ⌘+2 and to another killall Dock. And tada! The switching is working again!
+What's happening? I honestly have no idea, it seems the conflicting shortcuts interfere if the Dock is started with the 2 conflicting shortcuts, even if one of those is disabled.
+Edit3: Created a video explaining how to reproduce the defect, and how to solve it.

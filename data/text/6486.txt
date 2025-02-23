@@ -1,0 +1,16 @@
+Q: How to initiate VPN conection from command line? I would like to save some mouse clicks and keystrokes by initiating VPN connection from command line. Is there tool for this in Mac OS X? Ideally, it should accept VPN connection name and password and start VPN connection.
+Update: I'm talking about builtin VPN client for Cisco IPSec VPN.
+
+A: Your best bet seems to be AppleScript:
+tell application "System Events"
+   tell current location of network preferences
+       set VPNservice to service "VPN (L2TP) 2" -- name of the VPN service
+       if exists VPNservice then connect VPNservice
+   end tell
+end tell
+
+(from http://macscripter.net/viewtopic.php?id=22992)
+As for entering a username and password, I'm not sure how you could do that. Further scripting could get you the frontmost window and input the username and password, then submit the dialog, but as I don't have a Cisco VPN to test I couldn't tell you how to set that up.
+If you have the actual Cisco VPN client installed (which afaik is not necessary), you could just use this command:
+open /Applications/VPNClient.app --args -c -user <YourUsername> -pwd <YourPassword> <ProfileNameToConnect>
+

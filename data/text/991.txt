@@ -1,0 +1,35 @@
+Q: Which text editor can I use with large files (>500 MB)? What are your recommendation for opening large text files on OS X? I found both BBEdit and Textmate to be struggling in this department.
+
+A: BBEdit is pretty much the standard for opening large text files on a Mac. I've opened some good-sized files with it, and BBEdit didn't even break a sweat. It is not entirely free - you do not have to pay for a license unless you want features that are in the pro activation above and beyond the free license.
+How large of a file are you talking about? And how much RAM does your Mac have (both installed and free)?
+
+Edited to add…
+Bare Bones released BBEdit 9.6 today, and according to the Release Notes1 (under Changes):
+
+It is now possible to open files significantly larger than before; the ceiling isn't unlimited, but it is no longer limited by the previously extant constraints in the OS.
+
+Sounds to me like it's worth upgrading (free for anyone with BBEdit 9.x) and trying again.
+1 If you've never read a Bare Bones release notice before, you should. Even if you have no interest in BBEdit. Even if you have no interest in Bare Bones. Even if you have no interest in text editors in general. They're that good. Yes, really. Iä! Iä! Pnoies fhtagn!
+
+A: I'm using HexFiend to work with a 60 GB text file and it works great (apparently it can handle files as large as 118 GB).
+
+A: Check Sublime Text 2 out. It is one of the best out there. 
+
+A: TextWrangler is a great tool for opening editing and saving large files. I wouldn't recommend if for copying and pasting large amounts of content though. Use it if you don't want to have to deal with the vi interface/commands. Like Loic mentioned, MacVim is a great app if you're more familar with vi.
+Use BBEdit for free now that TW is discontinued if needed.
+
+A: I found MacVim pretty good at opening large files.
+There's even a plugin to speed it up, if the file is really large.
+(If you don't want to compile it yourself, you can download a DMG to install it pre-built.)
+
+A: If you are reading the file only, use the less command.  You can navigate and search through the file like vi, but much faster and without the nasty 'line too long' type problems.  For working with big production logs, this is an invaluable tool.
+
+A: If you are dealing with files over 2 GBs I recommend 010 Editor. It won't load the entire file in memory which means you can use it to open files larger than your available RAM and opening times will be much shorter (took about 20 seconds to open a 7GB file).
+
+A: For me, where BBEdit choked on 750MB, UltraEdit (not free) worked satisfactorily fast.
+
+A: My first choice is SlickEdit. It looks, well, is a bit old fashioned, but I have seen no other editor that deals with large files (even GBs of text) that fast, and still giving a ton of features.
+It is not a modern IDE by current day standards, but a really powerful editor, and as said, the only one I ever used that really works with large files.
+
+A: http://code.google.com/p/macvim/ worked with a 1 gig file
+searching file took about 1 min

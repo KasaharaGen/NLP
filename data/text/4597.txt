@@ -1,0 +1,58 @@
+Q: best free software to make/open rar files Which is the best software to open/make rar files in Mac OS?
+I am new to Mac and I want to open rar files.
+
+A: The Unarchiver will open them and almost any other compression format.
+
+A: The Unarchiver is probably the most highly regarded piece of OS X software out there for expanding archives.
+SimplyRar is free and can help you create RAR files, but the developer doesn't seem to be active any more. Not sure how well it works in the latest OS X release.
+RarMachine from CandyWare is $8 and can do RAR archive creation. That's pretty close to free.
+Entropy looks pretty snazzy. But $18.
+RAR is a proprietary, closed source format. You usually have to license it to build a tool that creates RAR files. They make the unarchiving available for free because it helps them sell licenses for archiving. Hence RAR-creation utilities rarely being free, but unarchivers being available for free.
+
+A: If you are comfortable using terminal app, then you can uncompress a rar file without installing any software on your mac book. Open the terminal application on mac and go to the location where your rar file is and type the following command (replace the compressedfilename with actual file):
+tar xvf compressedfilename.rar
+
+The above command will uncompress all files from the compressed rar file in current directory. You can type ls command to view the list of files, or use Finder to view all extracted files.
+x - extract the the compress file,
+v - verbose,
+f - name of archive file
+
+A: I just found this application: http://archiverapp.com. Looks promising!
+
+A: Default Terminal is also the best tool to open rar & zip. If you are comfortable with the terminal then try it without download any third party software in Mac.
+For zip files
+In the terminal (at .zip location):
+unzip <filename>
+
+
+For rar files
+Try using Homebrew...
+In a terminal type:
+brew install rar
+
+Now to use it just navigate to your file directory and type:
+
+*
+
+*To view the rar file:
+
+unrar l <filename>
+
+
+*
+
+*To extract the rar file in the same location:
+
+unrar x <filename>
+
+
+*
+
+*To extract the rar file in the desired location:
+
+unrar x <filename>
+
+In case you face any permission issue: Developer cannot be verified.
+'rar' cannot be opened because the developer cannot be verified.
+Follow this process:
+Open System Preferences -> Security and Privacy -> General -> Click the lock to make changes.

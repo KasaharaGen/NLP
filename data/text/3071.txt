@@ -1,0 +1,4 @@
+Q: how to know imac crash reason last day i put my mac on the whole night for downloading xcode.however today i noticed that it is shutdown in the morning.i used the "last" command to know when it was shutdown.it is showing time 11:00am and a word crash besides.how can i know the reason for this crash.is there any tool or utility to know the reason.is there any log of it stored in mac
+
+A: Use Mac OS X's Console (found in /Applications/Utilities) to monitor your system logs by filtering their contents.
+Check first system.log and console.log. Logs display their information in reverse chronological order,  scroll down to reach content around 11:00am.

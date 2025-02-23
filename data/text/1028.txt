@@ -1,0 +1,20 @@
+Q: Exporting iTunes smart playlist definitions I have 30 or so smart playlists defined in iTunes on the PC. What I'd like to do is export all of these definitions. To clarify, I don't want to export the songs in each of these playlists, I want to export the definition (e.g. "Artist contains Foo").
+I have a lot of conditions defined for each playlist, and would prefer a solution that doesn't involve manually performing the same steps 30 times. For example, if I could export registry settings, this would be the best solution.
+
+A: If you select a smart playlist, then choose File > Library > Export Playlist... and choose the XML file format, you can then use the corresponding Import Playlist... command from another iTunes library to import the smart playlist definition. 
+Unfortunately, iTunes only lets you select one playlist at a time, so there's no way to select multiple playlists and export them at the same time. You can do the "Export Library..." which does everything, but then you have all sorts of extra stuff you don't want. 
+If you're comfortable hacking around a bit though, you could export the whole library, then use PlistEdit Pro to edit the file and remove all the playlist and track dictionaries that you don't want, leaving just your smart playlists. Then you'd have all the playlist definitions in a single file that you can import into another iTunes library.
+
+A: After rebuilding my SmartLists for the seemingly 100th time, I had to find a better way.  I came up with a solution, but it takes some pre-planning - you have to export your lists as XML before you lose them.  I then remove all song references from the XML file so the file only contains the SmartList parameters.  Then when I need to restore the list (like after an update/upgrade), I simply import the XML file.  Here are the instructions to save copies of your lists:
+
+
+*
+
+*Right-click on your SmartList and choose Export, then be sure to select XML as Save As Filetype.
+
+*Open the .XML file with a text editor and search for <key>Playlists</key>. Set the cursor at the beginning of that line, then use your slide-bar to scroll all the way to the top.  Select all lines from where you started up to the line that has <key>Tracks</key> , then delete those lines. (Deletes the <dict></dict> section under Tracks.)
+
+*Look for the line with <key>Playlist Items</key> .  Skip the next line ( </dict> ), then click at the beginning of the next line.  Scroll to the bottom of the file, then select all lines down to the third line from the bottom ( </array> ).  Remove those lines. (Deletes the Playlist Items <array>)
+
+
+Doing this reduces the XML file size (2k to 3k depending on the complexity of your list), and stores only the parameters of your SmartList, not the actual songs list.  Importing these XML files will rebuild your song list, and this hasn't failed me yet. Remember to include these files with your backups so that you can recover these lists if your hard drive fails.  Also remember to repeat the process if you ever change the parameters of your SmartList.

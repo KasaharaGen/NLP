@@ -1,0 +1,19 @@
+Q: Lion, Filevault, Security, Require password immediately after screensaver is forced - any workaround? Here's my first question:
+In Lion, if you turn on Filevault, you can no longer modify the System Preferences/Security & Privacy/Require password... after sleep or screensaver.  The value is forced to 'immediately' and changes are not saved.  If you haven't turned on Filevault, this setting acts as expected.
+Has anyone found a workaround?
+It's not a security feature, in that you can set the screensaver not to come on for hours (or never), but it sure is annoying for those folks who reach over and wiggle the mouse when the screensaver comes on.
+A postscript:  my workaround is to change the setting and never close System Preferences.  Dumb, but it works.
+
+A: Upgrade to Mac OS X 10.7.2 or higher for the Security and Privacy setting "Require password time period after sleep or screen saver begins" to be respected after FileVault is enabled (though I don't see anything about this fix on the download page).  There is no longer a need to keep System Preferences open forever (what a silly but effective fix) or any of the other workarounds.
+
+A: I haven't been able to test it on Lion, but this works fine on Snow Leopard for disabling the password requirement on screensaver: defaults -currentHost write com.apple.screensaver askForPassword -int 0
+
+A: You can force System Preferences to quit. It doesn't get a chance to reset the the wait before dying.
+You can see the current value with: defaults read com.apple.screensaver. Mine now looks like this:
+{
+    askForPassword = 1;
+    askForPasswordDelay = 3600;
+    tokenRemovalAction = 0;
+}
+
+This also worked for setting the value without the hack of forcing system prefs to quit: defaults -currentHost write com.apple.screensaver askForPasswordDelay -int 3600 and I'd imagine the suggestion to set askForPassword would work too.

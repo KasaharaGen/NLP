@@ -1,0 +1,80 @@
+Q: Newly Installed App (gem) Via Terminal, Path? I have used sudo gem install to install a few gems. My question is how do I know where the executable was installed, so I can add it to the path in .bash_profile?
+
+A: Ruby "Gems" are not generally applications, most often they are libraries. From the Ruby Gems website
+
+1.1 Really Quick Start Question: I’ve installed RubyGems and I want to
+  install Rails (for example). How do I
+  do that?
+Answer:
+gem install rails
+
+1.2 What is a Gem?
+A gem is a packaged Ruby application or library. It has a
+  name (e.g. rake) and a version (e.g.
+  0.4.16).
+
+(emphasis mine)
+Also, see this information on how to inspect a gem:
+
+2.5 Looking at an installed gem When you run
+gem specification  progressbar
+# shortcut: gem spec progressbar
+
+you will see all the details of the
+  ’’progressbar’’ gem.
+
+You should consult the documentation which came with the gem, or, post more details so we can assist you more.
+
+A: Also if you type: gem list
+then you will get a list of all the gems that you have installed. At least that way you can check to see if it installed properly and which ones you currently have installed.
+The path to my gems on my Windows PC is:
+C:\Ruby192\lib\ruby\gems\1.9.1\gems
+
+Probably the same location/file hierarchy on the Mac as well. (except for that whole C:/ part ;-)
+EDIT
+I took the following quote from the page talking about installing Sproutcore. It might help you in figuring out this path issue. Let me know! (I am a n00b when it comes to this stuff. I just starting learning it yesterday! But I found lots of helpful information!)
+http://wiki.sproutcore.com/w/page/12412840/Abbot-Setting%20Up
+
+if you faced a problem during the last part then this probably because the PATH of the gem isn't the default one.  You can call the command as
+/var/lib/gems/1.8/bin/sc-init HelloWorld
+  cd hello_world
+  sc-server
+Or you may reconfigure the path  by running the following command
+
+      PATH=/var/lib/gems/1.8/bin
+      export PATH
+
+
+Then rerun sc-init command. 
+Now visit http://localhost:4020/hello_world to see your handiwork.
+
+
+A: Use the gem env command to display where Gems stores everything.
+Greg:~ greg$ gem env
+RubyGems Environment:
+  - RUBYGEMS VERSION: 1.3.5
+  - RUBY VERSION: 1.8.7 (2009-06-12 patchlevel 174) [universal-darwin10.0]
+  - INSTALLATION DIRECTORY: /Library/Ruby/Gems/1.8
+  - RUBY EXECUTABLE: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+  - EXECUTABLE DIRECTORY: /usr/bin
+  - RUBYGEMS PLATFORMS:
+    - ruby
+    - universal-darwin-10
+  - GEM PATHS:
+     - /Library/Ruby/Gems/1.8
+     - /Users/greg/.gem/ruby/1.8
+     - /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+  - GEM CONFIGURATION:
+     - :update_sources => true
+     - :verbose => true
+     - :benchmark => false
+     - :backtrace => false
+     - :bulk_threshold => 1000
+  - REMOTE SOURCES:
+     - http://gems.rubyforge.org/
+
+However, to avoid having to use sudo to install gems into the System version of Ruby, I use RVM, which sandboxes all my gems plus any additional versions of Ruby I want to install. I've been using it for a while and love it.
+
+A: I believe that al that is in /usr/bin and similar.
+You can always try whereis xxxxx and locate xxxx (after both db’s have been rebuilt via the daily/weekly scripts). 
+Most of those things go somewhere inside /usr sometimes /usr/local.

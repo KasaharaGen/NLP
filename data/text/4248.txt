@@ -1,0 +1,27 @@
+Q: Cisco AnyConnect causes OS X to kernel panic My Macbook Pro 15" (Early 2011 - the one with Thunderbolt port) constantly kernel panics whenever Cisco AnyConnect establishes connection.
+The panic tends to happen in the first ~30 seconds after connection is established.
+The crash log is available here:
+https://gist.github.com/d947e73b0b6c17a863b7
+Any thoughts?
+Some details:
+Macbook Pro 15" i7 Early 2011 (the one with Thunderbolt)
+Cisco AnyConnect version 2.5.2019
+PS. I asked this question on the Apple Support forum, but so far I have got no answer :(
+EDIT: This problem originally occurs in Snow Leopard, but problem persists in Lion (10.7), even after a fresh install (not upgrade from 10.6)
+
+A: I've experienced the same issue on an iMac running OSX Lion (10.7.3). I submitted a bug report to Apple and tweeted at @anyconnect. You will need to work with Cisco support or use another version of the app unless we can narrow down the specific setting that is causing this crash.
+
+A: I found a solution for this issue, and wrote about it here :
+http://technie.net/kernel-panic-on-macbooks-20102011-with-cisco-anyconnect/
+There's a bug in Cisco AnyConnect, but following the guide on the link, it will be able to work.
+On Macbook Pro 15″ and 17″ (Late 2010, Early 2011 – the one with Thunderbolt port) sometimes kernel panics whenever Cisco AnyConnect establishes connection.
+Usually the Panic comes approx 30 seconds after a connection is established.
+I found out that the following solves this issue :
+If your macbook kernel panics, reboot it.
+– close all apps
+– shutdown macbook from menu.
+– Make sure the powercord is in
+– Reset the SMC by pressing Shift+Crtrl+Alt + Power button for at least 5 seconds
+– Startup the macbook
+– Connect using AnyConnect.
+This has worked for me so far. It’s not optimal, Cisco should definately fix their client, but this is a way to at least be able to connect.

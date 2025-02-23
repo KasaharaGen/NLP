@@ -1,0 +1,16 @@
+Q: An anomaly (bug?) in iCal in Lion? Has anybody else noticed a problem with date display in iCal in Lion? It appears when "Show event times" is activated in the General tab of Calendar preferences.
+I spotted a date-display inconsistency with a weekly recurring event I have set up. Despite having system-wide dates formatted as 12-hour with am/pm included (Language & Text System Preference), this event fails to respect that preference. It is scheduled to commence at 1:00 pm and finish three hours later, at 4:00 pm. Rather than being listed in Calendar in this way, it appears:
+
+
+*
+
+*in the summary list in Daily view as "13 to 16", and
+
+*with a starting time of "13" in Daily, Weekly and Monthly view.
+
+
+Anxious to get to the bottom of this, I have played around with various date ranges in a number of test calendar entries. The conclusion I've arrived at is that the problem is confined to on-the-hour times, as illustrated here. Once the time does not end in 00, things display correctly; otherwise, the date displays in stripped-down, 24-hour fashion.
+So: has anyone else seen this, or am I alone with this problem? I'm inclined to submit bug feedback to Apple, but would first prefer to have corroborating evidence.
+
+A: No - I'm not getting it and can't seem to break things even trying to.
+An official bug might be warranted as you seem to have been careful to be sure it's happening. I would be very certain to file if you can make a new account and the same happens in a clean calendar.

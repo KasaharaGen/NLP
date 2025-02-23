@@ -1,0 +1,10 @@
+Q: Lion (10.7.2) -- CPU heats to 90-degrees and Java apps crash -- why? MacBook Pro 15" quad-i7.  Been running Lion since day one.
+Just started this week, Eclipse and Oracle SQL Developer crash unexpectedly, then a moment later the MacBook cooling fans kick in and the machine is hot to the touch.
+I installed iStat Pro and it looks like the CPU temperature approached 90-degrees at the time of the crash.
+Any ideas why this would suddenly start happening?
+Rob
+
+A: For the CPU temperature to get those sorts of levels something needs to be hammering the processor pretty hard. I'd start by looking at Activity Monitor to spot which particular process has decided it wants a supercomputer cooling system.
+If it turns out to be Java (which is likely), trash Java from your system and then reinstall it from there. It could be a damaged cache file, the application might have corrupt preferences, or some other combination.  
+
+A: I reinstalled Lion. This solved the problem for me.

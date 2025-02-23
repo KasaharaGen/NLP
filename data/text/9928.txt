@@ -1,0 +1,60 @@
+Q: Why can't I disable my iPhone's (iOS 5) new mail sound? I have an iPhone 4 running iOS 5.
+In the last month or so, it has developed an annoying habit. When a new mail arrives it makes a "boing" sound and a vibrate.
+It does this, even though the New Mail sound setting in Settings is switched to None. It does this, even when all sounds are switched off, via the mute button!
+It is very annoying! Does anyone else see this bug, and does anyone have a suggestion (short of a clean install) to fix it?
+
+A: None of the proposed solutions in this thread have worked for me. My setup is a mail account connected to a corporate Exchange server, plus Gmail synced to the phone via the Exchange protocol, with emails unselected in that profile. In addition, I have the Gmail app installed.
+I use this setup because it lets me easily separate work email from personal email.
+I have found that there are three places to possibly disable New Mail sounds in this setup:
+
+
+*
+
+*Settings -> Sounds -> New Mail
+
+*Settings -> Notifications -> Mail
+
+*Settings -> Notifications -> Gmail
+
+
+Even after setting all three to play no sounds, I am getting the default "Ding" sound whenever email arrives from my corporate Exchange server. When emails come in from Gmail, they honor the Gmail notification setting.
+My first attempt at a solution was to uninstall the Gmail app completely. Even after doing this, I still got the annoying Ding sound every time an email came in.
+Next, I completely removed the Gmail account from the phone. So no Gmail app and no Gmail connection in Settings -> Mail, Contacts, Calendars. Still no solution: Every time I got an email from my corporate Exchange server, my phone made the Ding noise.
+Next, I decided to do a cold reset by holding down the power and home buttons. After doing this, the sound finally went away!
+I added my Gmail account back to the phone (still no Gmail app), and did not select the Mail sync option. The sound was still gone!
+Finally I re-installed the Gmail app. Settings -> Notifications -> Gmail -> Sounds On. Email from corporate Exchange is still silent! Email from Gmail is making sounds just as I have configured it.
+So it's hard to say exactly what fixed it. Maybe it was the cold reset. Maybe it was the uninstall/reinstall. Maybe it was the combination of everything. But the important part is that this process worked for me, and I hope it works for someone else as well.
+
+A: Here is how I stopped email notifications on iPhone 5.
+I turned off notifications in:
+
+
+*
+
+*Settings -> Sounds -> New Mail -> Alert Tones -> None.
+
+*Settings -> Notifications -> Mail -> iCloud -> New Mail Sound -> None.
+
+
+This alone did not work, so I also turned off the iPhone and subsequently turned it back on, and it worked.
+I don't have Gmail, so I didn't address that.
+
+A: I had this problem. It was caused by the Gmail app. If you have it installed, go to your phones Settings and find the Gmail app in the list. Turn off Sounds and that should fix your problem.
+
+A: I had the same problem. It turns out it has to do with jailbreak and lockinfo. In lockinfo, go Plugins -> 
+ail -> (New Mail Alert) Repeat Duration, and set it to "None".
+
+A: I went to Settings.app, then to Gmail, and it directed me to go to "Notifications", which I did. I then went to Gmail and turned everything OFF. This worked correctly.
+
+A: I dont have Gmail but Yahoo and its the same DING problems...NOW SOLVED
+as mentioned before
+ Settings -> Sounds -> New Mail
+ Settings -> Notifications -> Yahoo
+...are the 2 areas you can change the sound to NONE and hope for silence, 
+STEP 1....CHANGE TO NONE as you would 
+STEP 2....TURN OFF THE PHONE
+I found this out after going thru this thread and especially trevorsky's great input...
+as I let the phone simmer for 10 ish seconds, I turned it back on and test tried sending myself emails from my laptop and see phone's response...sweet sweet sound of silence
+
+A: I found the solution on my IPHONE4 (IOS 5) here:
+Settings --> Sounds -- New Mail -- and set it to "NONE" ... :)

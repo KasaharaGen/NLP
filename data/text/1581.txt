@@ -1,0 +1,25 @@
+Q: Keep iPhone Screen On (when plugged in) Is there an app (normal, jailbreak) that will keep my iPhone (3GS, OS 4.x) screen on, indefinitely, when it is plugged in, regardless of what app is running in the foreground?
+
+A: The have moved the Auto-Lock option from General in iOS 10 (and possibly above):
+Settings > Display & Brightness > Auto-Lock
+
+A: An unexplained downvote brought to my attention this old post, so I decided to update it.
+I don't have an iPhone any longer, but my iPad screen simply stays on, whenever plugged in or not, if my setting to Auto Lock is set to Never. On iOS 7+ it is that simple.
+
+Now, if you want to automatically change it back (which is a completely different question), once you plug it out, you'll need to jailbreak. But since it's complicated and I haven't tried, I'll just give one pointer that seems to do it: get Tasker (found on lifehacker).
+I personally rather just manually switch it on and off, until apple decides to have some kind of NFC. It should be just around the corner, if not with NFC, then with iBeacon.
+Old answer (jailbreak only, iOS 4 or less)
+First, I just tried on my iphone and even calculator stays active after 1 minute, even if the screen dims out. So maybe your question is really just about keeping the screen on.
+Anyway, I can think of two solutions: kirikae with backgrounder might do the trick as a side effect. If not, you can use SBSettings with Autolock toggle to do it manually and temporarily set the auto-lock to never. All of them you should find in Cydia.
+edit: as none of the above actually worked, here's some update.
+Some custom toggles on SBSettings seem to just not work indeed. It's probably due to getting outdated or conflicting with something else, two common problems we find on cydia apps. BigBoss is kind of similar to SBSettings and also have an Autolock toggle. You could use it along with some multitasking, leave it on the background and use it as needed. It hardly have any conflicting issue.
+Unfortunately I can't find many more ideas to this.
+Only thing I can assure you is that I just tried SBSettings's Autolock toggle on my iOS 3.1.3 and it works. It also says it's updated to 4, so most likely it's either problem with 4.1 or conflicting with something else you've got installed. And believe me, there are conflicts from the least expected things (look at the comments).
+
+A: I use iTunes.  As long as you have a song playing the screen will dim, but it won't go black and it won't lock.  If you don't want to have music playing you can download a track that's just silence, then put it on repeat.
+EDIT: I should note that my IOS version is 7.1.0 - can't make any promises about other versions...
+EDIT: I should also note that the behavior described above only applies when the phone is on external power, that is, iTunes will not keep the phone unlocked when on battery power.
+
+A: The Gentle Alarm keeps the screen active when it is plugged in, but I guess that is a feature that each app has to implement, not something that you install to keep the screen active for all apps.
+
+A: I use Kensington's Nightstand every night. Sure beats having a separate alarm clock by the bed. And no, you don't actually have to use (or even own) their charger.

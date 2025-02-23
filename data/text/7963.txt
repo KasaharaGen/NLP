@@ -1,0 +1,42 @@
+Q: Selective file sharing in a public coffee shop Two friends and I are sitting at a coffee shop. I would like them to browse the family pictures that I keep in ~/Family-Pictures. We don't have any cables or cords and for unimportant reasons, both friends need simultaneous access that one folder without my giving them my password. I also dont want anyone else in the shop getting at my mac or its contents. 
+How can I set up my mac to share with two other computers? 
+
+A: You can share a folder by selecting it in the Finder, press CommandI (Or select Get Info), and check the box that says "Shared Folder". You will need to enable file sharing in System Preferences if you have not already done that. 
+Your second and third questions have a single solution that could solve both problems. Unless the users have accounts on your machine, you are correct that you would be making the files available to anyone on the network. However, you could create a peer-to-peer network that only your friends have the password to join. Go to the WiFi menu and select "Create Network." Assign your network a name and password, and give that information to your friends.
+Be sure to disable sharing when you are done, or else members of other, more public networks will be able to read your files.
+
+A: Based on your requirements that no one else be able to access the share, and that you don't want to hand out passwords, I'm going to suggest you go outside the OS and use third party software for this.
+Specifically: Dropbox.
+It happens to cover this use case in a nice way that gives you the security you want and the convenience you're after. It's also OS-independent which is nice if you're friends don't also have Macs.
+
+
+*
+
+*Download and install Dropbox on your Mac. Create your account and get it up and running.
+
+*Under your new ~/Dropbox folder create a new folder. Call it something like Shared with Bob so you know anything you put in it will be shared with Bob.
+
+*Log in to the Dropbox web console at http://www.dropbox.com
+
+*Find the folder in the web console. Click once on it to bring up the folder options menu and select 'Invite to Folder' from the list of options.
+
+*Put in Bob's email address.
+
+
+Once Bob joins Dropbox and the folder as a collaborator, anything either of you put in this folder will be sync'ed to the other person's Dropbox account and any computers they have linked to that account.
+Once you're done sharing, reverse the process:
+
+
+*
+
+*Find the folder in the Dropbox web console.
+
+*Click on it to bring up the options menu.
+
+*Select 'Shared Folder Options'
+
+*Click the 'Members' tab, find Bob in the list and say 'Kick Out'
+
+
+You'll be given the option to let him keep the files on his disk or have the wiped. Up to you what you do.
+With the slight inconvenience that the data you want to share has to live in your ~/Dropbox folder, this covers all your requests: it's secure (only you and whomever you invite to the folder can see the share), it doesn't require any passwords to be handed out, you don't have to enable any services on your Mac that might give other people on that public WiFi access to your machine.

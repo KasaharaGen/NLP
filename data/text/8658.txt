@@ -1,0 +1,22 @@
+Q: Can I remove just Music from All My Files? I like how Lion gathers everything in All My Files.
+I often use it to download and post pictures without thinking where exactly they are saved (Desktop, Downloads, whatever).
+However it really annoys me that Music is displayed above Pictures, and therefore I have to go through my entire music library just to get to the pics.
+
+I'd love to completely remove Music from All My Files because it only messes up the organization and doesn't help at all. Is this possible?
+
+A: Given that the results of “All My Files” smart search respects Spotlight Preference Pane's search results, if you uncheck or drag music below pictures, that order is respected.
+I infer this, because I have music disabled in Spotlight and I don't see music in my “All My Files”.
+I see PDF, Images, Spreadsheets, Developer and Documents (in that order). Which more or less mirrors what I have in my Spotlight: (considering that the canned search doesn't look for contacts, apps, etc.) 
+
+You will need to log off and on again for changes to take effect.
+NOTE: I don't use All My Files anyway, I have it removed from my finder Sidebar
+
+A: All My Files is basically a Smart Folder with a custom icon, prepositioned in the Finder sidebar. So you can easily change or replicate its functionality to suit your purposes.
+You can either make a new Smart Folder (⌥⌘N or File→New Smart Folder) and add it to your Finder sidebar, or right click on All My Files and choose Edit Search Criteria. While testing this, the editing seemed a bit buggy, so I'd suggest making a new Smart Folder instead.
+Whichever way you choose, you want to edit the search parameters to match this screenshot:
+
+To get the second and third lines, option-click on the "+", it will turn into "…" and give you the advanced options.
+To get the sorting in a new folder to match that of All My Files, goto View→Arrange by→Kind (or of course set it however you prefer).
+
+A: The All My Files search appears to be saved at /System/Library/CoreServices/Finder.app/Contents/Resources/MyLibraries/myDocuments.cannedSearch.  One should always be cautious modifying System files, but one might be able to modify the search query in this file to exclude Music files.
+

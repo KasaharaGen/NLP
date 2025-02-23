@@ -1,0 +1,91 @@
+Q: Can I change the brightness on a secondary display? I have a MBP with a secondary display. Is is possible to have the brightness keys (F1 & F2) change both the main display (laptop screen) and the secondary display (a VGA external monitor connected via a Thunderbolt port with an adapter)? If not, is it possible to change the brightness on the secondary display?
+
+A: One of my favorite tools for doing this is Shades which is "donationware."
+You can adjust each monitor separately, and set keyboard shortcuts for them as well.
+If you want a command line solution, I found brightness.c which compiled cleanly using:
+gcc -std=c99 -o brightness brightness.c -framework IOKit -framework ApplicationServices
+
+It will let you set the brightness for either monitor.
+Another tool available at: Command-line display brightness control for macOS  or just brew install screenbrightness.
+
+A: Knowing that this question is rather old I want to make you aware of https://github.com/the0neyouseek/MonitorControl which is open source, well maintained and quite handy.
+
+
+
+You can control brightness, contrast or volume directly from a menulet or with keyboard native keys. Keyboard keys even display the native osd.
+
+A: If you have an Apple Cinema display and are adjusting brightness via the "displays" preference pane, note that the preference pane will show up both on your main display (the cinema display) and on the MBP. It allows you to set the brightness separately.
+
+A: A dead-simple program called Brightness Control has been dimming multiple external monitors for me since 2006. Still working fine on OS X 10.11 in 2016.
+
+Only drawback is that you cannot simultaneously run f.lux. If you only have one external monitor, you can use Shady to dim that without quitting f.lux.
+
+A: You can use https://github.com/kfix/ddcctl - works for my Dell P2715Q
+And even better there is https://github.com/czarny/Brisync which even syncs brightness with your internal display
+
+A: Screen Dimmer isn't free ($2), but is the only tool I could find that handles multiple monitors (up to 3). 
+Seems nice and elegant the short time I've used it. Sits in menubar, and has a simple slider and monitor selector, as well as keybindings for brightness increase/decrease.
+My 3 external displays are non-apple (1 Dell with displayport, 1 samsung with displayport->dvi, and 1 old acer 19" with hdmi->dvi) on a MacBook Pro Retina 15" with 10.8.2.
+edit: For the OP's question this shouldn't matter, but fyi for 3 monitors - it seems to only allow one combination of monitors for dimming (i.e. can't dim completely separately -- this works for me as I use it to dim the 2 side monitors so they don't distract from the main middle monitor)
+edit2: The website appears to be down so here is the App Store link. Also of note it allows for dimming up to 3 monitors but remember your MacBook does count as 1 if it's open. If you have 3 externals this means you can't dim the far right one. But, you can just close your MacBook and then you can dim all 3 externals.
+
+A: I have two screens connected to my Mac Pro. (This also works for MacBook Pro.) I have the USB on the first screen connected to the Mac. The second screen has its USB connected into the back of the first screen (the 2nd screen display adapter uses an extender to get to the Mac - you could likewise use a USB extender to get to the back of the Mac).
+With both screens communicating to the Mac via screen as well as USB, F1 and F2 as brightness control the dimming of the first display, Ctrl+F1 and Ctrl+F2 control the second screen. No need to disconnect at all.
+
+A: I tried most of the other suggested solutions. On the latest High Sierra with a non-Apple external display over usb-C these suggestions didn't work. I did stumble upon an app called EasyOnTheEyes that actually does the trick. https://itunes.apple.com/ca/app/easyontheeyes/id799584781?mt=12 . It hasn't been updated in a while, but still seems to work.
+
+A: Another option is Brightness Slider, free in App store.
+
+A: I have 2 thunderbolt displays connected to my MBP. I had to connect only one display at a time in order to adjust the brightness. Then I reconnected them both and all was well. Too bad the control panel doesn't show the brightness slider on both displays but this is a simple solution.
+
+A: There are many answers here, but one wasn't mentioned (though it only has limited applicability---you need to have a second keyboard handy.)  When I have a second display hooked up to my MBP, and a second keyboard plugged in, then the built-in laptop keyboard's function keys control the built-in (main) laptop LCD and the external keyboard's function keys work for the secondary.  
+In case it's changed, this is on 10.6.8.
+
+A: I have MBP early 2011 connected to LED display and Thunderbolt display and I use the thunderbolt display as extended desktop.
+This is how you can adjust the brightness on second display.
+
+
+*
+
+*Press cmd+F1. This will mirror the displays.
+
+*Press F1 or F2 and both screens will increase or decrease in brightness.
+
+*When you are done, press cmd+F1 and your screens will revert back to extended desktop mode.
+
+
+Ok, its a pain if you are like me and have items configured on both screens but I found using "shades" the second monitor was always looking dimmer and not the same brightness as the primary screen.
+
+A: On Apple displays, if you press Control-F1 or Control-F2 the brightness on a secondary display will adjust. I have tested this on my MacBook Air 2011 13" and 27" Thunderbolt Display.
+Important note: You have to plug in the USB cable from the Display to the Macbook Pro in order that the keyboard shortcuts work.
+If you're using a MacBook with Touch Bar, this works for the "brighter"/"less bright" Touch Bar buttons but NOT for the Touch Bar brightness slider.
+
+A: Unfortunately, Macs don't have access to an external display's brightness settings. On most displays, that is only controllable using the physical buttons/menus on the display itself.
+I agree that this would be a great feature to see, but it isn't really possible now to control brightness over the video cable.
+Note that I can't speak for Apple's Cinema Display and Thunderbolt; I haven't tried that and it may be different.
+
+A: Lunar is an app which allows you to automatically sync the system display brightness with the brightness of an external monitor.
+With Lunar, you can use the standard display controls (and keyboard keys!) to adjust the brightness simultaneously on the main and external display, which is exactly what I wanted. It also supports tweaking of brightness and contrast ranges/offsets to get exactly the desired levels.
+Lunar is not restricted to any specific display type or connection method, so it should work with most displays connected over USB-C, Thunberbolt, etc.
+
+A: If you're using an Apple Cinema Display it is possible to control brightness as long as you connect the display's USB cable to your Mac. The causes a "Brightness" slider to appear on the screen's control panel in "Displays" System Preferences. Unfortunately the F1 and F2 don't change the brightness settings on the external screen.
+
+A: After experimenting with lots of hot keys I found a solution.
+I am using a dual screen setup with 27 inch iMac which is connected to a 27 inch Thunderbolt screen.
+Using cmd+ F1 (mirror displays) will also duplicate the screen brightness of screen 1 to screen 2.
+Now you can dim the 2nd screen with F1
+Repeat the cmd+ F1 and the 2nd screen will revert to last brightness.
+Now you can dim the iMac screen with the brightness keys.
+
+A: Open System Preferences;
+Click Displays;
+In the lower left hand menu, click the Show displays in menu bar;
+Once your menu bar has the little icon of your monitor, click it and select 
+Open Display Preferences;
+All monitors will have a Preferences menu linked to that specific object.
+
+A: If you are using a 24" thunderbolt display which has a USB cable in addition to the thunderbolt cable,
+you have to have both plugged in.
+Then Ctrl + F1 and Ctrl + F2 should work.
+
+A: If you run Windows Vista, Windows 7, or Windows 8, you can adjust brightness easily with Mac Brightness Control utility.

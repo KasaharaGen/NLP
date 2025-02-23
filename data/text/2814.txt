@@ -1,0 +1,127 @@
+Q: Change Mac OS X Wireless Card Country Code I have problem connecting to a wireless router using Mac OS X which is on channel 13. This is because there is some other router nearby which is broadcasting the US country code. The only way around this i have found so far, is to each time go to the router and restart the computer.
+I have asked google and it seems to be a mixture of people who think that it is setting the locale changes it, or that it is fixed in the router firmware. Both i have shown to be wrong. man ifconfig also has not been too enlightening. 
+Does anyone know of another way to force the card to use a different country Code or channels? 
+I would rather not change to another channel, as there is alot of interference near by (shown with KisMAC).
+Thanks 
+
+Edits
+Found 
+
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
+
+Which appears to allow for an arbitary channel to be set on the card, but not county code. This seems to have no effect.
+
+A: 802.11d is the protocol that wireless access points use to broadcast (among other things) the regulatory domain (i.e. country codes) in which it is supposed to be operating. It seems that there may be no clear rule for what to do when various equipment is broadcasting conflicting regulatory domain information.
+The ideal solution would be to disable/replace/reconfigure the equipment that is broadcasting the incorrect information.
+I found an (oldish) Apple Discussions thread that indicates that indicates that a Mac’s AirPort hardware will use the first country code it hears after powering on or waking from sleep. Later postings in the thread (on the second page) indicate that it is sufficient to just power off/on the AirPort hardware itself and not the whole system. A couple of people reported success using a script to repeatedly turn the AirPort interface off and on (using networksetup) until it happened to acquire the desired state (as reported by system_profiler).
+
+Based on TA25972, it seems that older equipment (presumably models that do not listen for 802.11d information) may not even be able to switch “country codes”.
+
+A: I got this problem to, and I solved it!
+All I wanted to do is to disable the 802.11d beacon function. This is impossible to do in any available settings on the Mac OS X. 
+However you can binary patch the network card driver thinking the country code is always X2.
+So apparently, what I would have to do is change/binary patch the network driver with the string 0x81 0x78 0x30 0x6B 0x10 0x00 0x00 0x0F 0x85 to 0x81 0x78 0x30 0x6B 0x10 0x00 0x00 x90 0xE0. This forces the driver to use country code «X2» whatever beacon is being sent, so it will never change. 
+You could either change this with a hex-editing utility or copy and paste the following very handy one-liner in the terminal application:
+sudo perl -pi -e 's|\x81\x78\x30\x6B\x10\x00\x00\x0F\x85|\x81\x78\x30\x6B\x10\x00\x00\x90\xE9|' /System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcm4360.kext/Contents/MacOS/AirPortBrcm4360 && sudo touch /System/Library/Extensions/
+
+This solution works for Mac Book Pro Retina 2013.
+
+A: the problem come from the implementation of 802.11d : wifi location and country ID conflicts.
+if there are different wifi Access points broadcasting mixed countries ID, Mac OS may shut down certain frequencies.
+Solution at the end of the post   :)))
+Just after a restart my MacBook Pro 16 is set to locale ETSi and country code X3
+All channels and frequencies are opened.
+If i stop and restart the wifi, or the Mac goes in power save mode and turn off the radios. When it wakes up i got this: Country code ID, and most of the supported channels are gone.
+There's a lot of posts about this on the internet, about either adding another AP and setting county code.
+Some APs (like mikrotik don't broadcast country codes)
+Some posts are about modifying the wifi drivers.
+Don't do any of that, the solution is quite simple !!!
+I'm now on MacOS 11.0.1 Big Sur.
+But i assume the solution is the same on previous MacOS Versions
+Go to:
+
+*
+
+*Apple Menu -> System preferences
+
+*Security & Privacy -> Location Services
+
+*Scroll down till you find System Services
+
+*Click on Details...
+
+*Uncheck WiFi Networking
+
+This will bypass 802.11d implementation and 5ghz will show up right away
+
+A: Easiest solution to conflicting country code - your MAC is picking up the incorrect country code from the 'nearest' broadcasting router.....so if one of your close neighbours has an incorrect country code your own router assumes it is in that 'wrong' country - and it messes up your internet connection - SOLUTION - get an old router that you no longer use - and just plug it into the power supply and place it near to your live router.....make sure your old router is set-up with the correct country code but DO NOT connect it to the internet. Then your MAC will pick up the country code from this 'dummy' router and adopt the correct country code.....problem solved. This appears to work for me, and I have been bugged with this problem for so long.....I live in China and there are about 60 neighbours  routers all around my apartment broadcasting many different country codes NIGHTMARE. 
+Incidentally, this solves one of my problems - but if anyone knows how to beat the Great Firewall and solve the problem of randomly high latency when using VPN that would be a bonus........just be grateful you are not working in China.....its internet is evil.   
+
+A: Here was my issue:
+I brought my iMac over from the US to Canada. In Canada, I could not connect to my home network and noticed Wireless Diagnostics reporting a conflicting country code issue. ( I could still connect to my US based iPhone hotspot without issues). It seems my iMac's network interface was still set to "US" and it was complaining about all the other routers in the area, including my home router, as being "CAN".
+Opening Wireless Diagnostics -> Scan, I could see that there was one network that was broadcasting "US" region. This network was probably what was preventing my iMac from automatically changing region to "CAN" (I had previously brought this iMac back and forth between US/CAN without issue). Despite multiple restarts to the iMac and the home router, I could not get the iMac to change its country code.
+The offending "US" network was a weak signal, broadcasting from somewhere in the neighbourhood. I figured if I could get the iMac to stop detecting this network, it might notice all the surronding as being "CAN", and automatically switch over to "CAN" as it's supposed to. So I relocated the iMac to the basement. Upon restart, I still had problems connecting to the home router. However, looking at the wireless diagnostic on the "conflict country codes" issue, I could see now though that the iMac's country code had changed to "CAN" and the "US" network was reported as being conflicting!
+Despite the iMac now having the correct country code, it took me a couple more restarts of the iMac and a restart to the router before WiFi finally started working.
+tl;dr try to weaken the signal of the offending network by temporarily relocating your Mac until the Mac fixes the country code
+
+A: I had faced a similar issue with my 2020 MacBook Air M1 series Big Sur laptop.
+The scan showed me a result which showed my default CC for 2.4G, but CC - DE for 5G network.
+Upon connecting to Apple support chat, I was provided this page https://support.apple.com/en-us/HT202480 which made me to connect the 5G network without any issues.
+However I am still able to see the CC as DE, but I do not have any issues in connecting to the 5G network and switching it between 2.4 to 5 or vice versa.
+Looks like this is a workaround. However for now I am happy with it.
+
+A: If you use AirPortBrcm4331 driver on El Capitan:
+
+
+*
+
+*restart in Recovery mode (CMD+r while booting), open terminal and run csrutil disable
+
+*restart, open terminal and run
+
+
+*
+
+*sudo perl -pi -e 's|\x30\x6B\x10\x00\x00\x0F\x85\xEA|\xFF\xFF\x10\x00\x00\x0F\x85\xEA|g' /System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcm4331.kext/Contents/MacOS/AirPortBrcm4331
+
+*sudo touch /System/Library/Extensions/
+
+
+*restart in Recovery mode (CMD+r while booting), open terminal and run csrutil enable
+
+A: So I had this issue where my Macbook Air sets the country code to "cn", thinking it's in China, not being able to connect and even see my 5GHz Wi-Fi because apparently my router doesn't support any Chinese channels.
+So as it turns out, the Wi-Fi adapter doesn't have a hard-coded country code but instead sets the country by sniffing around for specific packages to determine in which country is(This is supposed to help when travelling since the routers would not usually cross borders but your MacBook will). This means if there's network hardware which broadcasts packages indicating that this is China and it first picks that one, my Macbook will set the country code to "cn" and limit my Wi-Fi channels to Chinese ones.
+To find out about the BSSIDs and the county codes they are advertising run the following command in the terminal. A TextEdit window will open with a list of the networks.
+/S*/*/P*/*/*/*/*/airport -s | open -ef
+
+In My particular situation, the culprit was the Xiaomi Mi range extender in the corridor and turning it off before enabling Wi-Fi on my Macbook allowed it to pick the correct country code. 
+Credit goes to Linc Davis: https://discussions.apple.com/thread/6665548?answerId=27085786022#27085786022
+
+A: My problem is a bit different then the question, but I felt that I need to share as it is a bit related. 
+I can confirm that https://github.com/alessandro893/MacOS-WLAN-Driver app worked, I have MacBook Pro 13 Retina from 2013 that stuck in ID country code, I bought my MBP there. Long story short, I move to Israel, turn out they have different channel for 5Ghz, none of allowed 5GHz channels in Israel matched 5Ghz channel in Indonesia. 
+After a year trying to figure it out what to do, I decide to run that app. I was a bit skeptic as the previous answer was not the promoted one, but I have nothing to lose. The apps just recently updated to allow manually country code typed. So as previous answer suggest, I change to X2 country code, and now I can see all the available AP around me, including previous one that was unavailable. 
+
+Update: Sadly SIP (System Integrity Protection) need to be disable all the time for this trick to work, this make your Mac less secure. Today I tried to enable SIP (csrutil enable), and the trick stop working. I also notice that this trick didn't work in recovery mode and boot loader. I wish Apple provide a real way to change country code because it seems like it just driver problem.
+
+A: I very much prefer Rich Freed OM's solution, but for what it's worth:
+
+*
+
+*I set up my iphone as my hotspot.
+
+*The Mac connected to my iphone bypassing the country check.
+
+*I then selected my actual wifi connection and it worked.
+
+However my iphone is now having the same problem 
+Honestly I don't know why it doesn't either:
+allow disabling, or choose the country based on ALL routers rather than the first
+
+A: I had a similar problem with my wifi router but when I set the router to 5 ghz and the channel to auto the problem was solved. 
+
+A: I found a slightly bizarre solution. I tried all the solutions Google comes up with, none worked but I saw an article that mentions KisMAC can see channel 13. Installed it and then suddenly my country code changed from US to X3 and now I can connect on channel 13.
+
+A: All I had to do on my mid 2010 MacBook Pro is to change the kext name from AirPortBrcm4360 to AppleAirPortBrcm43224 and I finally got my location right! 
+
+A: https://github.com/alessandro893/MacOS-WLAN-Driver
+May be this helps, you can ask author for modifying US country code in os x driver

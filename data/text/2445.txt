@@ -1,0 +1,28 @@
+Q: Why does (Apple) Remote Desktop, with client ports correctly forwarded, report as "Offline" to administrator's machine? Administration Target
+An iMac Intel Core 2 Duo:
+
+
+*
+
+*Mac OS X 10.6.6;
+
+*ARD Client 3.4-current;
+
+
+Router Configuration
+
+
+*
+
+*WAN-side TCP & UDP 22, 3283 and 5900 forwarded to the iMac.
+
+*In desperation, I DMZed the administration target.
+
+
+Problem
+Before DMZing my administration target (i.e., with only 22, 3283 and 5900 forwarded), the iMac is listed as "Offline" on the Remote Desktop administration screen. However, I can ssh into it from Terminal.app successfully and I can control the screen — I simply can't do any 'special' tasks (copy, install, report, restart, sleep, etc): I essentially can't do anything other than viewing/controlling (and locking) the screen.
+Once the host was DMZed, my administration window lists the node as "Screen Sharing Only".
+Any ideas?
+
+A: Does The ARD Administrator client use a ping (ICMP_ECHO) to determine client status?
+A lot of firewalls silently swallow echo requests, even of the host is up.  Therefore, you may be getting false reports about host status.

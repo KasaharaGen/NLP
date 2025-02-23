@@ -1,0 +1,18 @@
+Q: Can't delete old Time Machine backups I changed hard drives for my Time Machine backup. I can't delete the backups on the older hard drive. I get an error code after I use "Move to Trash": -8072. It spends 45min deleting some 1,000,000+ files to end in error -8072. A google search didn't turn up the reason for the error.
+Also, for some reason creating a backup on this hard drive locked all my other folders and subfolders. I can unlock them one at a time but this will take a while. Is there a faster way?
+
+A: On Lion, you can use tmutil to clean things up properly.
+To delete backups one by one (snapshot by snapshot).
+sudo tmutil delete /Volumes/drive_name/Backups.backupdb/mac_name/YYYY-MM-DD-hhmmss
+
+If you are sure you have selected the correct path, you can delete all backups from that one Mac by not passing in the time and letting it delete the entire folder:
+sudo tmutil delete /Volumes/drive_name/Backups.backupdb/mac_name
+
+The sudo command needs your password (and it won't echo to the screen, so just type it and pause to be sure you're dating the correct files before pressing enter).
+
+A: The Time Machine backup format is not designed to let you use the Trash. If you are sure you don't need your old backups, you should
+1) Erase and reformat the drive in Disk Utility
+2) Go to your Time Machine Preferences, click on Select Disk..., and select the disk again, instructing the Time Machine preferences to take control of the disk and create a new Time Machine backup.
+Others have pointed out to me that you can store additional files of your own on your Time Machine volume if you like. But what you should not do is use the Finder to try to delete anything in the Backups.backupdb directory, or to move any files into those directories.
+
+A: I used Path Finder, the alternative Finder app. I connected my mac directly to my Time Capsule via Ethernet (faster than wifi). Then in Path Finder, I selected the Time Machine disk, selected the sparsebundle, and then chose "Delete" from the Commands menu. It took about 10 minutes to delete a sparsebundle that was about 250GB. 

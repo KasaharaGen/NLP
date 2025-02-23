@@ -1,0 +1,20 @@
+Q: After Lion can't access NTFS shared folders any more After upgrading to Lion, my NTFS shared folders are no longer accessible. I can see the shared folder, but when I try to enter from Windows 7 box it says Windows cannot access \path\to\usbsharedresource.
+Even BOOTCAMP partition which was shared and working now inaccessible... 
+SMB is ON.
+
+A: Upgrading to Lion breaks SMB.  Something to do with UUIDs or GUIDs I think.
+Create a new user on the system, give that new user access privileges through the SMB share, and connect to the share using the new user name/password.  Accounts that existed pre-Lion upgrade won't work due to this UUID problem.
+
+A: MacFuse is broken in Lion. Try http://www.offthehill.org/articles/2010/12/31/macfuse-for-64-bit-snow-leopard.
+
+A: A friend of mine had a similar problem. After upgrading from Snowleopard to Lion he could no longer access his Windows partition.
+He bought and installed Tuxera NTFS for Mac (There is also a trial available).
+For him it worked and he could again read and write his NTFS partition.
+
+A: Apple has changed the Samba's version that comes with Lion due to problems related to licenses and stuff.
+Fortunately for you, I was having the same problem and I have found a solution for it :)
+If you follow the instructions on the following link, you will be able to share your folders again.
+Attention: It's better if you're comfortable with Terminal and a few commands.
+http://www.johnlarge.co.uk/2011/07/19/osx-lion-samba-smb-shares-broken-xbmc-not-working/
+
+A: Here is a good description how to enable NTFS read/write on Lion http://fernandoff.posterous.com/ntfs-write-support-on-osx-lion-with-ntfs-3g-f

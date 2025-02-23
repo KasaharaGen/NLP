@@ -1,0 +1,76 @@
+Q: An iOS app for JIRA that works I am a Jira superuser, my company runs Jira and I am looking for a way to use it on the go.
+Unfortunately, none of the mobile Jira app I have been using seems to work with our setup.
+Does anyone have recommendations?
+
+A: Free iOS app for JIRA was released in March and there are a lots of features coming on mobile.Here is the link to official JIRA app, JIRA Mobile
+
+A: At present, the best mobile app for JIRA may well be Mobile Safari. Have you tried installing Atlassian's JIRA iPhone Web Interface plug-in?
+EDIT (based on subsequent comments):
+It seems like you've tried most of the available apps. The only one I haven't tried is Undock - it's $5, but it supports Gemini, Basecamp, and Bugzilla as well as JIRA. Has great reviews, so it might be worth a shot. 
+Failing that, they do have the JIRA plug-in source code on Bitbucket. Updating it to JIRA 5 would be pretty difficult but I bet updating from 4.2.4 to 4.3 would not be too bad.
+
+A: Here is nice free one officially from Atlassian: JIRA Real Life
+It allows you to quickly add issues on the go with voice notes, photos.
+Handy to add issues, but I guess it is not for browsing through existing issues.  
+
+A: You can try also JIRA.me application. We have released it 2 months ago (Pro version) and just recently we've published a Free, read-only version (you can buy Pro upgrade later) that allows you to get what the application is like.
+A quick summary of current functionality:
+
+
+*
+
+*pre-defined and user defined (through Web interface) filters available,
+
+*inline actions like assign directly from issues list, or issue details
+
+*editing an issue,
+
+*searching for issues
+
+*supports Confluence Wiki markup language
+
+
+A: Check out our new iOS JIRA App: Chronoscope for JIRA
+Some of the features included are:
+
+
+*
+
+*track your working time with the included stopwatch (chronoscope)
+
+*work on multiple JIRA systems simultaneously
+
+*browse the cockpit for a very fast access to your tasks
+
+*get an overview of all your work logs
+
+*search for specific issues
+
+
+Soon we are going to release a new version with a timesheet (looks like a calendar with all your worklogs).
+
+A: JIRA Board offers a nice, native way to visualize your kanban & scrum boards
+https://itunes.apple.com/us/app/jira-board-kanban-scrum-agile/id934196108?mt=8
+
+A: Easy Jira is an iPhone app designed as an alternative to Atlassian's mobile client. Just as Atlassian's "JIRA Cloud" it is simple to use, but has some unique differences:
+
+
+*
+
+*The app works with self-hosted JIRA servers
+
+*There is no "your session timed out" problem. App simply logs you in
+automatically. The auto-login can be secured by fingerprint
+verification if needed
+
+*Caching mechanism inside the app allows you to access tasks while
+offline (in read-only mode)
+
+*Unlike all other iPhone clients, the app allows you to attach any
+possible files to JIRA (not only images and videos)
+
+
+The app is designed to work with custom workflows. If you find any problems with your JIRA workflow - write me (I'm the developer of this app) and I will try to make respective corrections in the engine.
+The file uploading functionality is paid, but the rest 99% of the app is free to use.
+
+http://easyjira.in.ua

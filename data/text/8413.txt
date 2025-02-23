@@ -1,0 +1,11 @@
+Q: Why does my mouse cursor stick as the default arrow instead of a text selector? I use NetBeans, and when I activate other applications or windows then return to NetBeans, the cursor no longer changes to the text selection cursor, but instead it remains as the default mouse icon. I can solve the problem by hovering over the application toolbar, then go back to the editor area.
+I have this problem in another IDE, phpstorm, it also happens occasionally in Chrome. TextMate and TextEdit do not have this problem.
+Why is this happening? How can I fix it so I don't have to keep moving the cursor outside of the editor constantly?
+For further explanation, please pay attention to the mouse cursor in a video I made showing the problem.
+
+A: Try editing the NetBeans source code. I'm not an expert on Java GUIs, but there should be a setCursor() function you can put into onHover or something like that. Check the documentation of the GUI toolkit NetBeans uses.
+(@tubedogg, Chrome doesn't use a native GUI. Although it tries its best to use the OS look, the title bar is custom, which you can't do with Apple's native GUI toolkit.)
+
+A: I have had this problem in Snow Leopard with the cursor not changing from a beach ball (a frozen beach ball, not a spinning one) to a normal cursor. What I’ve done to fix this is mouseover the dock resizing point (see picture below).
+Hope this helps!
+

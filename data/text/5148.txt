@@ -1,0 +1,9 @@
+Q: What is the position of HD Heads during a spin down? So I'm debating between powering down and sleep mode when toting my macbook around in my backpack.  Apple says the HD 'spins down' when in sleep, which obviously means is not spinning.  But are the read/write heads completely removed from the platters as in power down or still poised at the last read/write position?
+If they aren't cleared of the disc, I'm not dragging it around in sleep mode.
+
+A: The heads are parked out of the way. See http://en.wikipedia.org/wiki/Hard_disk_drive#Landing_zones_and_load.2Funload_technology, specifically:
+
+Modern HDDs prevent power interruptions or other malfunctions from landing its heads in the data zone by either physically moving (parking) the heads to a special landing zone on the platters that is not used for data storage, or by physically locking the heads in a suspended (unloaded) position raised off the platters.
+
+
+A: In a modern hard drive, the heads are suspended above the platters by airflow. If the heads were over the data areas while the platters are not spinning, then they would touch and possibly cause damage. Therefore, hard drives must move the heads away from the data when not spinning.

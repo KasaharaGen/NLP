@@ -1,0 +1,15 @@
+Q: Printing full calendar invitation? I use OS X Mail and iCal connected to my company's MS Exchange server. Sometimes a co-worker sends a calendar invitation (using Outlook) with lots of agenda details in it. I'm trying to find a good way to print that.
+iCal has an option to print the day's events in list format, but the output is in two columns and a few of the lines write over each other and are completely unreadable.
+If I try to print the invitation as it came to me in Mail, the output has an iCal icon showing the attachment -- not the contents of the attachment.
+So, short of copy/paste into TextEdit, Word, etc, is there a clean way to print this?
+I asked this on superuser a few months ago and got no answers at all. Are the apple fanboys more active here?
+
+A: Better question: If the output from iCal was readable, would it be sufficient? The reason I ask, is because iCal word wraps within the two day columns, making the overlapping issue unusual. Perhaps the issue is with the iCal Application Support files or .plist
+
+A: Would going into iCal's day view, taking a screenshot & printing be a good solution for your needs?
+
+A: Revisiting this over a year and a half later...
+This has been improved in iCal in OS X Lion. On the print dialog, there's an option to print only the selected event. Also, the day option or list option will print the full contents without messing up the formatting or overwriting other lines.
+In other ways iCal in Lion is worse, but it's definitely better for printing calendar entries.
+
+A: If we're talking about a single invite, and you wanted to go backwards in time and rely on paper (again) you could print the email invite. If you're wanting to print a collection of events you could make an applescript to do that quite easily. Drop the email onto your script have it open the attachment, screen shot the window of the appointment & overly that on top of the email. Screenshot the 2 together & print the png or drop it into a PDF to print it.

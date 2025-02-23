@@ -1,0 +1,33 @@
+Q: Checking for folder/file changes using Automator? Is there there a way to check a folder/file for changes (includes adding files, deleting files, changes in files,...). The 'Folder action' in Automator is only checking if any files are newly added. 
+
+A: You can add a "Run Shell Script" action with the command:
+find <directory> -newermm <reference_file>
+
+This will give you all files and directories inside <directory> that have changed since the last change of <reference_file>. Just make sure you modify the <reference_file> each time you run the Automator script.
+Also give a look to the find manual page (enter man find in the terminal) for more options. Find is very powerful and further refining your search is usually a matter of a couple of additional options. E.g. to search only for directories modified after <reference_file>:
+find <directory> -type d -newermm <reference_file>
+
+If the version that ships with OSX is not enough, you can also try the version that comes with findutils (brew, macports etc) which should have slightly more features.
+
+A: I don't know of a way to do this with Automator, but there is an app in the App Store called Folder Watch that may do what you're asking. 
+
+A: So last time I checked, Automater is using Applescript in the background to script your actions. Applescript does not have much depth to it. While it can get the list of files in a directory (and so therefore you could find out when something gets deleted), I don't believe it can calculate changes to a file.
+What you really need to harness is file system notifications. And since that's a beast, I would take kraymer's advice and use launchd. It has hooks to execute anytime the contents of a folder is changed. Lingon (see also its outdated SourceForge page) is a great application for helping people jump into launchd. You can write your automator script/application to do whatever you were planning to do when your directory was modified and just have the launchd task call that.
+
+A: You can check at an earlier answer of mine, but it sounds like you want 
+fs_usage -f filesys  
+
+Launchd is not the way to go for file changes, fs_usage uses the underlying machine that powers spotlight.
+EDIT: I'm utterly wrong here. Launchd has exactly that functionality required, ie: do something on a file or directory change.
+You make a .plist file.
+Scream "XML SUX FOR CONF FILES!"  ( It really does. )
+and you'll want to use one or both of the keys below in your launchd job.
+WatchPaths <array of strings>
+ This optional key causes the job to be started if any one of the listed
+ paths are modified.
+
+ QueueDirectories <array of strings>
+ Much like the WatchPaths option, this key will watch the paths for modi-
+ fications. The difference being that the job will only be started if the
+ path is a directory and the directory is not empty.
+

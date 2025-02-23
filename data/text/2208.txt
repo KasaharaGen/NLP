@@ -1,0 +1,19 @@
+Q: I have 21.5GB free. Why won't my MacBook Air 2010 let me use Boot Camp? I'm trying to install Windows 7 on my MBA, 2010. 
+I open up Boot Camp and attempt to use it, but after the first screen it comes up with an error saying it can't install unless theirs 10GB of free disk space. Right now my HDD has 21.5 GB free. Disk Utility won't let me partition my drive either, so a manual install is out of the question.
+I need help! My original thoughts were that my disk needed to be defragged to get 10GB of contiguous space. Is this a possibility?
+
+A: To expand upon my above comment:
+64GB is just not very much space, especially when you consider updates, your own programs, data, etc etc.
+My recommendation, if it is possible and available, is to run Windows XP from a USB drive. There are a handful of documented procedures for getting WinXP on a flash drive and running it from there. I would recommend following this TechRepublic article to get it all set up for that.
+This should negate the issue with Boot Camp, let you keep the 64GB of HDD space to your trusty OS X partition, and hopefully provide enough room on your flash drive for WinXP to grow with applications as well. 
+Hopefully there is nothing Vista or Win 7 specific that you need to do. Good luck!
+
+A: Unfortunately the solution is not a great one.
+I had a similar problem on my MacBook a while ago, and the problem is actually due to file fragmentation, however no defrag tool could actually solve the problem. There are various solutions on Google indicating that a defrag does work, but I had no success with any of them.
+The problem is related to how the files are spread on the drive, and BootCamp requires a continues 10GB or more of free space on the drive to be able to create the required partition. 
+The only way I got around the problem eventually was to format and reinstall the drive. 
+My honest advice is to look at using something like VirtualBox which is free, and create a virtual image for Windows. Depending on what you need to do, you can get away with a relatively small image. Windows 7 can run quite happily with only a 1GB of RAM if you don't need Aero. You can also look at paid for options like Parallels or VMWare Fusion
+Alternatively, you could look at installing Windows on a secondary drive via USB. The speed won't be great, but if again, depending on what you need it for, it might be a sufficient solution.
+
+A: MacOSX has a defragmenting utility that is run in the background when your Mac is idling. It's possible that the "Free Space" being shown in Disk Utility is not accounting for any swap space that the Hard Drive uses. If you are down to about ~20GB of free space, it's probably not enough free space for the Disk Utility to move all of the essential files it needs to move in one piece to fit a new partition in that new space. I might also mention that even if you were to be able to get fit a 10GB partition into that ~20GB of free space, you would only have about ~10GB of free space left on your hard drive which is probably getting close to the point where your system slows down enormously because there isn't enough space on the hard drive to do all of the tasks it needs to do with moving files, file swap, etc.
+My best advice would be to use a utility like GrandPerspective (http://grandperspectiv.sourceforge.net/) which basically shows you a picture of all the 'stuff' on your hard drive and might give you an idea of some files that you can get rid of and what might be eating up a lot of space. 

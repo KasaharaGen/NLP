@@ -1,0 +1,12 @@
+Q: Lock Screen Screenshots I want to take a screenshot of my Lion lock screen to highlight the new circular user portraits.
+Is there an easy way to take a screenshot of the OS X lock screen?
+
+A: You can do this via the command line if you can ssh into the machine, using the screencapture command.
+Take a look at this question for some more info.
+
+A: I know this is old but this is a suitable solution for Lion through to Yosemite and it's pretty obvious.
+The commands is:
+sleep 5 && screencapture -t jpg -S ~/Desktop/screenshot.jpg
+
+This will take a screencapture in 5 seconds and save it to ~/Desktop/screenshot.jpg.
+You can quickly jump to the lock screen with Ctrl+Shift+Power or for older macbooks Ctrl+Shift+Eject.

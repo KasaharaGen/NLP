@@ -1,0 +1,49 @@
+Q: Do MP3's encoded by iTunes contain my email address, and how can I remove it? I heard that when you rip an Audio CD to MP3 with iTunes it hides your email address (or some other identifying information) in the MP3. Is this true?
+Is there any way to remove this identifying information?
+
+A: I've seen reference to various iTunes Data Anonymizer applications. This should be a reasonably comprehensive list of where you should and shouldn't be worried.
+
+
+*
+
+*DRM Encumbered Files (protected AAC media) do not carry direct personal information such as your name. They do of course have personal information to the extent necessary to examine and validate your license, but this is information that should only be able to be understood by Apple.
+
+*So called "iTunes Plus" unprotected MP3 files do contain your personal information. A cursory search led me to Privatunes. Note that I am not vouching for this software. Your mileage may vary. Make a backup of any files you have before running them through this, or any other modification software.
+
+*Files encoded via the CD Ripper does not tag data into the encoded files, no matter what format or quality you choose. Nor will arbitrary media files you choose to import into iTunes.
+Did I miss a means in which data may become "available" into iTunes?
+
+A: Two separate questions. For the first, "Is my name encoded in the file", you shouldn't trust the ID3 tag, as perhaps it is encoded elsewhere.
+In the Terminal, if you run the strings command on a file, it will give all the ASCII strings contained therein. I've done this on an iTunes-purchased MP4, and my name and email is there. I did it on an MP3 that I ripped, and my name is not there. However, I ripped this MP3 using iTunes about 5 years ago, and perhaps this has changed and information is now encoded in the file.
+If you are not Terminal-savvy
+
+
+*
+
+*open it (it is in /Applications/Utilities)
+
+*type strings (with a space at the end)
+
+*go to the mp3 in iTunes
+
+*select "Reveal in Finder" in the context menu
+
+*in Finder, drag the file to the Terminal
+
+*the Unix path to the file should appear
+
+*press enter
+
+
+A lot will scroll by. Perhaps after the path to the file appears, but before pressing enter, add commands to make the output easier to scan like |grep -i YourName or |less.
+
+A: @Jaso @mankoff Just quickly, a few points on that answer (since I don't have enough points to comment just yet)...
+iTunes Plus (all that you can buy now) isn't mp3 at all.  It's AAC.  It might not be DRM'd any more, but it does seem to have a checksum, so you can't simply open the file, find ASCII, and start editing.  I've got both my account's name (eg, johnDoe@me.com) and the name Apple has on my account (eg, John Q. Doe) embedded in AACs that I've purchased from the store recently.  Changing them in a text editor breaks the file.  It won't play.  You probably could edit those fields if you had the right tools, but it's not trivial.
+Mp3s purchased from Amazon have a tag that says stuff like Amazon.com Song ID: 212209761, but that's it afaict.  Much less Big Brothery.
+Now things you rip with iTunes seem to be clean, at least if you rip to mp3.  I'll take a look at the AACs that are produced when I have a music CD handy.
+So to sum:
+Stuff you rip: Likely free of any identifying marks.
+Stuff you buy from Amazon: Minimal identifying marks.  Probably nothing you can't edit easily.
+Stuff you buy from iTunes Music Store: Identifying remarks (your account name (likely an email) and the name they have on file for that account) that can't be removed straight-forwardly, assumedly from checksums against the file that are run when AAC files are played.
+This (among other googled up jive) seems to support these conclusions.
+IANAL.  Consult one before you believe anything written here in any legally binding way.

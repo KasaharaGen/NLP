@@ -1,0 +1,50 @@
+Q: Why does my iPhone use so much "other" space after upgrade to iOS 5? After upgrading my iPhone, there is about 10 gigabytes assigned to Other that I don't remember seeing before.
+
+What could be causing this space to be filled?
+
+A: It may be leftover data from a failed upgrade/sync.  I noticed the same thing on my iPad, which then disappeared once I re-synced it.
+
+A: I installed the iExplorer, then went to iTunes_Controls Music folder and cleaned it all including subfolders. My "other" went from 2.9 GB to ZERO... before that I tried to clean Safari cache, clean trash folders in my emails, etc, and nothing worked. 
+
+A: Here's what worked for me:
+I used PhoneView on my mac (not sure if there's an equivalent app for Windows) to archive and delete:
+
+
+*
+
+*Old (text) messages. All those videos take up a lot of space
+
+*Old Voicemails
+
+
+I deleted all of my voice recordings on the iPhone, then went into iTunes on my computer where they were saved, and went through and deleted all of the duplicates (2-5 duplicates per recording!)
+Nothing else worked for me, including doing a restore. I went from >5GB of "other" stuff to 1.2 GB (Mostly voice memos)
+
+A: My ex-wife's other space was 6 GB, and she couldn't hardly do anything.  It became apparent that her gmail account was the culprit - lots of big media files.  
+I reclaimed space in her gmail account by running it through findbigmail.com.  It's a web app that places all the big gmail files in three folders varying by size.  This takes them away from the inbox and frees up the space that the iPhone uses for gmail.
+Findbigmail.com is a wonderful service, and I recommend them whole-heartedly.  They removed the big attachements in her email in a few minutes.  They say on their site they don't read the emails at all or scan them, so I felt safer.
+It was then solved by erasing the iPhone after a backup.  To be clear, you must specify the erase all content-and-settings to remove all the bloat.  
+Then a quick restore brought up a fresh iPhone with 6 GB more of space, and she's happier!
+
+A: If it's jailbroken then Cydia and other JB AppStore apps may use it.
+Say for instance you have downloaded some App using Cydia and installed it. The installation-file (*.ipsw) stays in the filesystem. until you remove it.
+
+A: I had 6 GB of "other" and couldn't rid myself of it.  I finally realized that I send pictures all the time via text message.  I deleted my texts, and the "other" disappeared!!!
+
+A: I found that having the camera application in memory kept it from releasing the space when I deleted the videos and pictures after uploading them to iPhoto.  Quit all my apps and the Other shrunk from 7G to 0.7G
+
+A: I had the same problem and after multiple syncs, it still wouldn't resolve. I turned off all of my mail (I had my .mac and google email addresses on the phone) and synced again. That resolved the issue. 
+
+A: I've seen this a few times, and something different seems to be the cause each time. You can fix it by syncing with iTunes, then disabling different types of data to be synced, syncing again, and checking to see if "other" goes down. If not, enable that data again and move on to the next.
+For me, it was music, but I've seen books and podcasts and I think calendars do the same thing.
+
+A: For me, backup & restore fixed the issue. Had lost 13 GB, which went down to 1 GB after restore. 
+
+A: Whenever I deleted my music from my iphone, it also cleared out a huge chunk of what was labeled as "other".  My usage went from 6.9 gigs to 2.9 gigs.  Still a lot for just "other"...but for whatever reason my music was only showing up as 1.6 gigs in iTunes, but when I looked under usage in the iphone settings...it said it was 5.6 gigs.  I have no idea what the deal is...but at least I got my "other" down to a smaller size.
+Apple needs to get this fixed...
+
+A: I've pinpointed this to be mail related - specifically the time duration you're syncing mail. 
+I use exchange for work mail and when I had 1 month of mail sync, "other" was at 5.5gb. I changed that to be 1 week sync and it dropped to .5 gb. Don't know if icloud or gmail are affected as well but it appears to be an issue with the default iphone email app.
+I've done multiple factory resets and restored to new phone condition but the above is the only consistent solution
+
+A: Go to Settings > Safari and clear history, cookies, and data.

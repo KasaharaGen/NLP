@@ -1,0 +1,61 @@
+Q: Any way to get Time Machine to backup to Amazon Simple Storage Solution? Just curious if it is at all possible to have Time Machine backup to the 'cloud' using Amazon Simple Storage Solution. I've setup Time Machine to work over the network before to unsupported volumes (NTFS) but wasn't sure if this is possible. Anyone ever tried?
+
+A: If you have an extra ec2 instance, you could use netatalk and s3ql. It is a native time machine solution and works in Lion too. Your backups will be compressed and deduplicated. 
+From Ubuntu:
+Install S3QL (1.11.1) and netatalk (2.2.1)
+sudo add-apt-repository ppa:nikratio/s3ql
+
+sudo aptitude update
+
+sudo aptitude upgrade
+
+sudo aptitude install s3ql netatalk
+
+Create S3QL authfile
+mkdir ~/.s3ql
+vi ~/.s3ql/authinfo2
+
+Edit S3QL authfile as follows:
+[s3]  
+storage-url: s3://  
+backend-login: $AWSKey  
+backend-password: $AWSSecretKey  
+
+Set permissions on authfile
+chmod 600 ~/.s3ql/authinfo2
+
+Create S3QL filesystem
+sudo mkfs.s3ql s3://$bucketName
+
+Mount S3QL filesystem
+sudo mkdir /mnt/$bucketName
+sudo mount.s3ql --allow-other --nfs --compress lzma s3://$bucketName /mnt/$bucketName
+
+Configure netatalk
+sudo vi /etc/netatalk/AppleVolumes.default
+
+Edit the bottom of AppleVolumes.default to appear as below:
+(Note: tm is also added to :DEFAULT: options. Volsizelimit is in MiB#
+:DEFAULT: options:upriv,usedots,tm
+/mnt/$bucketName  "S3 Backups"  volsizelimit:238418.58
+
+Create User for backup
+sudo useradd $username
+sudo passwd $username
+
+Set ownership of the backup drive to the backup user
+sudo chown $username /mnt/$bucketName
+
+Then select Go -> Connect to Server -> and enter the server IP or hostname from the finder. Make sure you have port 548 open!
+
+A: Dolly Drive is newly-announced software that lets you do TimeMachine backups to "cloud storage". Their docs say the space is their own cloud-based storage space, not S3, so that might be sticking point. But other than that it's pretty much in line with what you're after.
+In addition to doing the TimeMachine -> cloud bridge, they also help you duplicate your data to a local drive so you can do fast restores without having to wait for delivery of an cloud -> hard drive dump of your data.
+Looks promising. I'm lukewarm on the pricing.
+
+A: There is a FUSE-based project calles s3fs that claims to be able to mount an Amazon S3 bucket as a local volume. Since Time Machine seems to be able to use any locally available volumes as a target, this should work. I was not able to test this, however.
+
+A: A different approach would be to use a local Time Machine backup and then use something like Arq to move it to the cloud (automatically). You get the benefit of local storage + cloud backup.
+
+A: If you can get Time Machine to recognize a FUSE-mounted filesystem, then s3backer should work.
+I have never done this but would be interested to hear if anyone gets it to work (specifically how they got Time Machine to recognize the mount).
+See also this wiki page.

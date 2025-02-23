@@ -1,0 +1,7 @@
+Q: Is it possible to update the preinstalled versions of both MySQL and PHP in OS X? I'm running 10.6.4 and PHP reports itself as version 5.3.2 (5.3.3 is available) and mySQL reports version 5.1.45 (5.1.51 is available)
+I know they are minor releases but is it possible to easily update either of these?  If so, any hints or pointers as to how?
+
+A: Briefly; no there is no easy way to update them. (Assuming that compiling from source is not considered easy)
+I would strongly caution against modifying the system installed versions as you're likely to have your updated versions broken when Apple issues an update that updates them. (Usually Security Updates and has bitten some users/sysadmins when Perl has been updated)
+If you wanted to update them it's a matter of downloading the source files and installing it over top of the provided versions.
+As a reasonable alternative I recommend installing your own managed version of PHP and MySQL into /usr/local or using your packaging software of choice (MacPorts, Fink or Homebrew) or prepared installer (eg. MySQL's .pkg installer that installs into /usr/local).

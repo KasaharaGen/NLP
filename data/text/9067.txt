@@ -1,0 +1,53 @@
+Q: Why does BBC Radio Player fail in Safari on my Mac? Sorry this is a UK-only issue.
+The BBC have a Flash-based player for their live radio on the following page:
+http://www.bbc.co.uk/iplayer/console/bbc_radio_fourfm
+This works fine in Google Chrome on my Mac, but in Safari, the Flash elements in this page fail to load, and the radio does not play.
+What could be causing this? Do other Safari users see it? How does one diagnose a Flash problem in a web-site?
+I have no extensions, nor Safari plugins installed.
+
+A: Clearing Safari's cookies fixed the problem!
+
+A: There are .wmv streams at this help question which do work for me with Safari on Lion
+
+A: I'm not sure either but another alternative stand alone app is Radio Aunty 
+
+
+A: Chrome uses its own integrated version of Flash, so that doesn't really rule out a great deal, other than a failure at the BBC end.
+Do you have the latest Flash plugin installed? Can you view other Flash-based websites in Safari?
+When the failure happens, are any errors reported in the Safari status bar? Also have a look in the Safari activity window (Window->Activity) for any messages relating to the failure.
+If nothing jumps out at you there, next step might be to have Safari's Web Inspector open while you load the page... it's accessible from the Develop menu, which you need to turn on first in the Safari Preferences, Advanced tab.
+
+A: I'm running Snow Leopard with Safari 5.05 and this site plays ok on my MBP.  Here is a quick list of my media-oriented plugins:
+DIVX, Flip4Mac, Java, Quicktime, Shockwave Flash.
+
+A: I cannot help you to get it working in Safari. However, I can show you some alternatives. 
+There are really convenient ways to enjoy BBC Radio on your Mac.
+1)
+Dashboard Widget: http://www.phantomgorilla.com/widgets/bbcradio/
+
+2)
+iTunes:
+
+
+*
+
+*Radio-> Top40 Pop-> BBC Radio 1 and BBC Radio 1xtra
+
+*Radio-> News/Talk -> BBC Radio 4 or BBC Radio 5
+
+
+Drag them to your sidebar for easy access.
+
+A: I had the same problem. I rememembred that I had Click to flash extension in Safari. I deactivated it and it worked.
+
+A: To use a Mac with Safari turn on the Developer menu (see below) then select Safari-iPad from the Develop > User Agent menu. This tricks the BBC into thinking you are watching with an iPad and they will send you the HTML5 stream.
+To enable the Developer menu:
+
+
+*
+
+*Go to Safar > Preferences
+
+*Select the Advanced tab
+
+*Tick the checkbox at the bottom for Show Develop menu in menu bar

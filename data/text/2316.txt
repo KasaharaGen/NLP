@@ -1,0 +1,39 @@
+Q: Sort trash files by date trashed One of the nice features of the recycle bin in Windows is the ability to sort it by the date an item was deleted. This way if you accidentally delete something, you can easily find it because it will be at the top of the list.
+Is there any way to do something similar in Mac OS X's Trash folder?
+I see that there is a date modified field, but that is not updated when the file is deleted.
+
+A: This hint from Mac OS X Hints describes how to create a simple Automator Folder Action that performs touch on every file that's trashed.
+
+A: Update for OSX 10.9 Mavericks:
+It appears that you can now sort by Date Added in OSX Mavericks. In Trash right click one of the columns and click to check the Date Added column. The click on the column header until the list of files is sorted by Date Added descending.    
+
+For OS X 10.7 Lion:
+Go to the AppleScript Editor, paste in the following script and save it in /Library/Scripts/Folder Action Scripts: 
+on adding folder items to this_folder after receiving added_items
+    repeat with this_item in added_items
+        do shell script "find " & quoted form of POSIX path of this_item & " -exec touch {} \\;"
+    end repeat
+end adding folder items to
+
+Then…
+
+
+*
+
+*Right-click on any folder in Finder, go to Services and click Folder Actions Setup.
+
+*Cancel the dialog asking which script to attach.
+
+*Click the checkbox to Enable Folder Actions
+
+*Click the plus sign to choose the Trash.
+Press ⌘ cmd + ⇧ shift + G and type in ~/.Trash, click Go or press ↩ return, and then click Open.
+
+*On the right side, click the plus sign to choose the AppleScript that you saved earlier.
+Thanks to Graham for the link which pointed me in the right direction.
+
+A: I don't think there is anything exactly like that in Mac OS X.
+However, if you accidentally deleted something in the Finder, you can use the "Undo" command to move the file back.
+
+A: Thank you for the above answers. I do not have a right click option on any of my Mac devices, but was able to do this:
+    With Trash folder open, use CTRL + click on a column head. Then choose Date Added from the drop-down menu. Worked perfectly for me, and I hope it works for you. Should be a default column if you ask me!

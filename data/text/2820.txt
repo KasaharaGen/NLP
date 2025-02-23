@@ -1,0 +1,8 @@
+Q: Reinstall Xcode? I need to reinstall Xcode. It seems that some of the installation did not work correctly and so I need to completely reinstall it.
+Xcode is a pretty hefty piece of kit and so I was wondering how you go about completely uninstalling / reinstalling it?
+Thanks
+
+A: The Apple recommended way to uninstall and install Xcode is in the "Read Me" document that accompanies each release, which basically says launch the Terminal.app then (if you  originally installed Xcode in the standard location) type 
+sudo /Library/uninstall-devtools --mode=all
+You'll be prompted for the superuser id which is generally the same password as the first (non-restricted) user registered on the Mac.
+I would recommend you restart your Mac before installing (newer and older) Xcode again.

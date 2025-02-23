@@ -1,0 +1,7 @@
+Q: Connecting to IP takes longer than name I'm seeing behavior from my mac mini that is confusing me, I'm hoping someone else has seen this before;
+When connecting to my mac mini from my macbook pro, connecting to the computer name is instant but connecting to the IP takes several seconds (10-15). This seems counter-intuitive to me, because connecting to a name involves the extra step of looking up the name I would think that connecting to the IP would be instant.
+Does anyone know why this is, or how to eliminate the delay?
+
+A: This is just a guess, but when you use the IP address it may try to do a reverse DNS lookup to get the associated name, and take a while to time out.
+
+A: When you connect by name you're probably connecting to the IPv6 link local address instead of the v4 address.

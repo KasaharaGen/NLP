@@ -1,0 +1,13 @@
+Q: Software to record and playback mouse movement/clicks and keyboard presses? I was wondering if there was any software out there that could record mouse/keyboard input and allow you to play back the input that was made?
+I've tried using Automator but for some reason it's not picking up all my input and when I play it back it does the wrong thing and gets into a mess. I've also tried using Systems Events in AppleScript but I can't get the "click" command to work at all.
+Thanks!
+
+A: Keyboard Maestro supports both creating macros by recording them and recording and playing back temporary macros:
+
+
+A: I've tried out a whole ton of software for doing this, but Sikuli is now by far the best automation software I've come across.
+It uses computer vision to automate any part of the GUI. For example, you can just take a small screenshot of the button you want to click on and paste it into your script and Sikuli will click on it. It also provides a series of really easy to use functions for automating keyboard input and mouse clicks. Plus, it uses Jython for its automation scripts so you can use Python or Java in your scripts too!
+Really recommended. Here's a link to their homepage.
+
+A: This worked for me Auto Macro Recorder 
+I was searching for hours, and this one finally did the job for me.

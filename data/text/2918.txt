@@ -1,0 +1,14 @@
+Q: Is it safe to remove the "Install Xcode" application after installation? Is it safe to remove the Xcode 4 installation program from my Applications folder after I installed Xcode? If there is a free update, will I still get it, or do I have to buy it again?
+The installer is 4,58 GB, which is space I could use on my hard drive!
+
+A: Yes, it’s safe to remove the XCode installer, once you’ve installed the XCode tools. XCode tools can be downloaded for free from Apple’s website. If you are registered at developer.apple.com, you may also download the iPhone/iPad SDK from developer.apple.com, to be able to create iPhone/iPad software (the XCode tools that ship with MacOS X will only allow you to build applications for Mac OS).
+
+A: According to this tread at the Apple discussion forum I can safely (re)move the installer application and still download it again from the App Store without paying again. It is unclear whether I will get update notifications.
+This comment on a story about an attempt to upgrade Xcode with low disk space indicates that the move to an external disk may be tracked by the OS, and an upgrade via the Mac App Store can result in the moved application (even if it's on an external disk) being upgraded.
+I did not get an upgrade notification for Xcode 4.0.1, even though my original installer application was still in the /Applications/ folder. I moved the installer application to an external disk (via sudo mv, because dragging it in Finder gave me the message "You may need to enter the name and password for an administrator on this computer to change the item named “Install Xcode”."), I'll report back what happens when I try to upgrade it via the Mac App Store.
+
+A: Additionally, I would back up the installer and save the 4.5 GB download - just in case.
+
+A: You can remove it, but my experience has been that you'll eventually want it again, and even as an apple developer you may lose access to it in the future as they upgrade xCode.
+It's not a big deal if you don't plan on maintaining your older apps, of you will always keep them updated and move them to new versions of xCode as they come out, but the transition from xCode 3 to 4 was hard for many developers, and even now some software is developed in xCode 3 to support kernel drive development for OS X 10.4, which is no longer fully supported in xCode 4.
+Generally your best option is to store that installation app somewhere you can get to it later.  It doesn't need to be on your mac all the time, but you may find yourself needing it down the road if you do develop anything in it you might have to update later.

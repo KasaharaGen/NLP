@@ -1,0 +1,11 @@
+Q: Mac OS X Server 10.6.7: Disable Apache? I'm doing some Rails dev, and I'm trying to get Pow running. After making the appropriate symlink, if I try to go to idealm_web.dev/ (idealm_web being the name of my Rails project), I get this:
+
+I was told that this was Apache. How do I disable this? I checked under System Preferences > Sharing, and there was no way to disable it.
+
+A: If this is OS X Server (i.e. the server product, not the regular desktop OS), turn off the web service in either Server Preferences or Server Admin.
+
+A: You could disable the launch daemon.
+I'm not an expert with launchctl but the following command should work.
+sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist
+
+A: Turn off Web Sharing.  You might have to restart.  There are other ways of doing it also.  Keep searching.

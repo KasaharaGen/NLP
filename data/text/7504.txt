@@ -1,0 +1,11 @@
+Q: Automatically change settings of Terminal when in full screen I often use emacs from a terminal (emacs -nw), and when comparing two files side-by-side (C-x 3) it is often useful to go into full-screen mode.  I'm using a 27" screen, so full-screen mode provides a lot of screen real estate, usually more than I need.  To counteract this, I typically increase the font size under Terminal->Preferences->Setings.
+Is there a way to have settings -- e.g. font size -- changed automatically when going to full screen in a Terminal application?
+I notice that one can define a preset Setting, which can be swapped out easily, but it would be nice if it was swapped out automatically when going full screen.
+
+A: You could try AppleScript to do something like
+tell application "Terminal"
+    set zoomed of window 0 to true
+    set font size of window 0 to 24
+end tell
+
+but I haven't found a way to activate fullscreen mode this way yet

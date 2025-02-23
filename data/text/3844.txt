@@ -1,0 +1,49 @@
+Q: CTRL+4 and CTRL+5 not working in OSX Recently, I've noticed that my MacBook Pro 5,1 (mid 2009) running Snow Leopard 10.6.6 doesn't respond when I press CTRL+3 or CTRL+4.
+When, for instance, I'm in an application that has no bindings for the CTRL-keys and I press CTRL+2, I will hear the OS X alert sound, because the application receives a key combination it doesn't understand. This is the case for all CTRL+n combinations, except 3 and 4.
+No matter where I try it — even in places where pressing the aforementioned key combination would have an actual effect — nothing happens.
+But it doesn't just seem to ignore the keypresses; it numbs the keyboard. If I, for instance, hold CTRL and press 5 and 6, I will hear two alerts. One for each unknown key combination. If I then do the same, but with the numbers 4 and 5 (which usually are responsive), there's no sound. In fact, no matter what key I press when CTRL is being held down after having pressed 3 or 4, nothing happens.
+At first I figured I probably added some shortcut to the key combinations by accident, but I can't find it anywhere. In System Preferences → Keyboard,  I've restored everything to default, but that didn't seem to change anything.
+I've tried with both the onboard keyboard, a wireless Apple bluetooth keyboard and a cabled USB Apple keyboard.
+
+A: I think this is a bug in Mac OS X and has something to do with the way the keyboard shortcuts for Spaces are processed. Try this:
+
+
+*
+
+*Make sure Spaces is turned on in the System Preferences with the standard 4 spaces layout, and standard key combination for switching to a space.
+
+*Open a folder in the Finder.
+
+*Press and hold CTRL, and press any of the number keys. If you press 5, 6, 7, 8, 9 or 0 first you will get a beep. Same if you press one of those keys again (still holding CTRL). If you then press 1, 2, 3 or 4, you will switch to that space number; or just stay in that space if you were already in it. If you then press any of 5, 6, 7, 8, 9 or 0 again, it won't beep anymore.
+
+
+If you simply turn off Spaces, the above won't happen and whatever order you press the keys in, they will continue to beep. If you change the number of spaces to only two, then 3, 4, 5, 6, 7, 8, 9 and 0 will give you a beep until you've pressed either 1 or 2. I don't know of an application in which those keys have a non-Spaces functionality and would do something useful other than beep, so I haven't been able to try what happens in such an application. In any case, I don't think you need to worry there's something wrong with your keyboard or the way you've configured the keyboard bindings; it seems to be a bug in Mac OS X.
+Edit: Try the above in a new folder in which you've created folders named "1", "2" and so on. I find the Finder's behavior in this case somewhat strange: if you press CTRL-8, it will beep yet also switch the selection to the folder named "8". But again, pressing 5 through 9 will neither beep, nor change the selected folder once you've pressed any of 1 through 4.
+
+A: I realize this is an old question but I had the same issue of unresponsive Ctrl+3 and Ctrl+4 keystrokes using OS X 10.8.4 and found a solution that worked for me using information from this answer.
+
+
+*
+
+*Open ~/Library/Preferences/com.apple.symbolichotkeys.plist (I used XCode).
+
+*Update keys 120 and 121, which represent the Ctrl+3 and Ctrl+4 keystrokes respectively, switching enabled to NO for both.
+
+*Restart your computer.
+
+
+Hopefully this helps someone else out there.  
+
+A: I use Ctrl+1 and Ctrl+2, instead of Ctrl+arrows to move to previous and next space, it saves me from letting go of the mouse.
+In Terminal:
+open ~/Library/Preferences/com.apple.symbolichotkeys.plist
+
+(Xcode should pop up)
+Update keys 118 and 119, which represent the Ctrl+1 and Ctrl+2 keystrokes respectively, switching enabled to YES for both.
+Then run:
+killall Dock
+
+Ctrl+1 and Ctrl+2 should come back.
+This works with El Capitan.
+
+A: I came across this question while trying to understand why "Ctrl-3" didn't work to switch to the new desktop (third one) I had just created. I tried messing with ~/Library/Preferences/com.apple.symbolichotkeys.plist as suggested in other answers but it didn't help. The solution for my problem was much more trivial: it had to be enabled in the Mission Control keyboard shortcuts (from System Preferences). I thought I'd post it here in case it might help others in the same situation.

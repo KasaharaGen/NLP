@@ -1,0 +1,19 @@
+Q: Unable to share screen over iChat I've been trying to set up iChat screen sharing between an iBook G4 and my MacBook (both running the latest Leopard) for some time now without success. iChat has been configured on both computers with Jabber connecting to GChat (both accounts are GMail addresses). I've been able to get it to work when both computers were on the same network, but I get this message when I try to connect over the Internet:
+
+Thanks, iChat. That's a lot of help. I do get this line in Console.app if it helps any:
+No iChat delegate set for vcc:initiateConferenceCompletedForParty: 
+
+Googling for this phrase yields only a handful of posts on the Apple forums, none of which are very helpful in addressing this problem. Is this a firewall/router issue? Is there a workaround?
+Oh, and I do know that Skype now supports screen sharing on Macs, and I'm going to attempt to use it as soon as I can talk my grandmother through installing it (no easy feat, so I'd much rather have a fix for iChat)
+
+A: Another thing to try is to use Screen Sharing directly. This means:
+
+
+*
+
+*Turn on Screen Sharing from the Sharing preferences
+
+*If the computers aren't on the same network, set up port forwarding for port 5900
+
+*Open Screen Sharing from /System/Library/CoreServices/, type in the IP address of the other machine and connect.
+

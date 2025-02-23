@@ -1,0 +1,18 @@
+Q: external hd mac ntfs 3g could not mount I got an external hd "clickfree hd" but when trying it with my Mac I get the following error:
+
+ntfs 3g could not mount, error
+
+I have tried NTFS-3G, MacFuse and FuseOSX. I'm running Lion but this seems not to be working. So I'm missing something to mount the drive with read and write capabilities.
+The second question is, is it better to format the HD, as I will only use it in my Macs and when using Linux? So if I format it, can I use it for time machine with the machine running Lion as well as backup for another Mac and a Linux machine?
+
+A: Install NTFS-3g in here: http://www.macupdate.com/app/mac/24481/ntfs-3g
+Then install OSXFUSE: http://osxfuse.github.com/
+MacFuse has been abandoned for a while now. Someone picked it up and rename it to OSXFUSE
+If you want to use it for Mac and Linux, use FAT. If you want to use it for time machine, use HFS Journaled.
+
+A: This solution (see link at the bottom) helped me without any problem. I have Lion 10.7.5 on a Macbook Pro from 2011 and have had the NTFS MacFUSE solution installed from the early beginning. There are also other solutions (that you can pay for), like from Paragon, as well as some others to. The solution that I used (below) looked quite difficult for me to do at first, but when I finally tried it, it only took about 10 minutes. Just don't be scared if you don't know the terminal yet -- you'll be prompted to type your password, and it will look like you can't type it, but you can. Just type your password and press enter.
+Here's the link that I used for help:
+http://web.archive.org/web/20130328025706/http://fernandoff.posterous.com/ntfs-write-support-on-osx-lion-with-ntfs-3g-f (sometimes archive.org takes a little bit longer to load)
+Hope this helps.
+
+A: Here is a good article that describes helps to setup NTFS on macosx.

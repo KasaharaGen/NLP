@@ -1,0 +1,31 @@
+Q: How can I automatically download trailers in iTunes? Apple gets the latest trailers. Is there any way I can automate iTunes to download the newest trailers? Similar to how it automatically downloads the latest podcasts?
+
+A: Unfortunately, Apple is not using itunes-aware tags in its RSS feed for the latest movie trailers.
+        <content:encoded><![CDATA[
+        <table>
+        <tr valign="top">
+        <td width="67"><a href="http://trailers.apple.com/trailers/independent/redstate/"><img src="http://trailers.apple.com/trailers/independent/redstate/images/poster.jpg" width="65" height="97" border="0"></a></td>
+        <td> &nbsp; </td>
+        <td><a href="http://trailers.apple.com/trailers/independent/redstate/"><span style="font-size: 16px; font-weight: 900; text-decoration: underline;">Red State - Trailer 2</span></a><br />
+        <span style="font-size: 12px;">The 10th film from writer/director Kevin Smith ("Clerks", "Chasing Amy", "Dogma", "Clerks 2", "Zack & Miri Make a Porno"), RED STATE unfolds in a small town dominated by a fundamentalist preacher, Abin Cooper. It tells the story of three high school boys who, on their way to an internet arranged meeting with a woman, end up crossing paths with Cooper. The encounter sets into motion a series of events that causes all hell to break loose. A horror thriller that could only come from the imagination of Smith, RED STATE stars Tarantino and Rodriguez favorite Michael Parks ("From Dusk Till Dawn", "Kill Bill Vols. 1 & 2"), Oscar Nominee for Best Actress Melissa Leo ("The Fighter," "Frozen River") and John Goodman, Michael Angarano, Kyle Gallner and Nicholas Braun.<br /><b>Directed by:</b> Kevin Smith<br /><b>Starring:</b> Michael Angarano, Kerry Bish&#x00E9;, Nicholas Braun, Kyle Gallner, John Goodman, Melissa Leo, Michael Parks, Kevin Pollak, Stephen Root</span></td>
+        </tr>
+        </table>
+        ]]></content:encoded>
+
+instead of something like
+<item>
+  <title>Car Talk #1110: Another Dodge Dart!</title>
+  <description><![CDATA[What's the best spare part to bring along on an extended road trip in your '64 Dodge Dart? Aside from our Show Title, we mean. Also, a case study in you should drive now, jelly later; a noxious Saab prompts a game of "Who farted" between mother and son; and is it worth it to each a teenager how to drive a stick shift?]]></description>
+  <pubDate>Sat, 05 Mar 2011 15:21:06 -0500</pubDate>
+  <link>http://www.cartalk.com</link>
+  <guid>http://podcastdownload.npr.org/anon.npr-podcasts/podcast/510208/134294214/npr_134294214.mp3</guid>
+  <itunes:summary><![CDATA[What's the best spare part to bring along on an extended road trip in your '64 Dodge Dart? Aside from our Show Title, we mean. Also, a case study in you should drive now, jelly later; a noxious Saab prompts a game of "Who farted" between mother and son; and is it worth it to each a teenager how to drive a stick shift?]]></itunes:summary>
+  <itunes:keywords>car,talk,car talk,click,clack,tom,ray,magliozzi,npr,public radio,advice,repair,fresh air,wait wait,puzzler,NPR,National Public Radio,Car Talk,Washington,District of Columbia,Morning Edition,All Things Considered,Fresh Air</itunes:keywords>
+
+  <itunes:duration>53:45</itunes:duration>
+  <itunes:explicit>no</itunes:explicit>
+  <enclosure url="http://podcastdownload.npr.org/anon.npr-podcasts/podcast/510208/134294214/npr_134294214.mp3" length="25861894" type="audio/mpeg"/>
+</item>
+
+So, when you try to subscribe to feed://trailers.apple.com/trailers/home/rss/newtrailers.rss, iTunes claims the content is text-only or missing.
+However, if you are using Apple Mail, you can add this feed to Apple Mail and it handles it quite nicely. It doesn't download the movies automatically but at least you see when there are new ones.

@@ -1,0 +1,25 @@
+Q: How to search in Mail.app within Gmail Chat history? I setup Mail.app to pull GMail data . I realized that I cannot search within my GoogleTalk chat history. Is there a way or a hack to get the chat history to my folders that get pulled as well so that my search results will include information from Chat as well. 
+
+A: Zevlag is right. You're not going to be able to do precisely what you were after (true IMAP syncing of chat logs). But here's a couple of things that you can:
+First, you could download your chat logs using this method: http://freshhorse.wordpress.com/2011/07/29/leaving-gmail-and-bringing-your-chats-with-you/
+
+
+*
+
+*This will take quite a bit of time and I doubt you'd want to do it over and over to keep your logs up-to-date. But it will allow you to have an easily searchable record of your chats on your local machine (Spotlight).
+
+
+Second you could look into Google's APIs for a way to get at your chats. Here's one example of a script attempting this:
+https://gist.github.com/1051628
+
+
+*
+
+*This will be even more complicated and still won't get you what you're after but if your a bit of a hacker you might be able to put something together with the API that would keep your local record up-to-date.
+
+
+Sorry there isn't a way to do just what you want.
+-Samuel
+
+A: It is not possible.  It was partially possible once a time, but has been discontinued due to not working properly.
+http://groups.google.com/group/Gmail-Help-POP-and-IMAP-en/msg/31a22885e3e9ed57

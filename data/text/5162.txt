@@ -1,0 +1,9 @@
+Q: TextMate not saving files in UTF-8 I set my prefs to save files in UTF-8 (the default). But I've noticed that my files are not UTF-8 but US-ASCII.
+With my newly created file:
+file -I myfile
+
+=> myfile: text/plain; charset=us-ascii
+What gives?
+
+A: I'm not an expert in the field, but I believe the reason for this is you probably saved your test file only with ASCII characters. When using only ASCII characters UTF-8 is simply indistinguishable from it. It's when you start using characters that are outside ASCII scope (e.g. accents in other languages, like ąśćż in polish) the difference is noticable.
+Try copy&paste the characters I used as an example, save your file again and test it.

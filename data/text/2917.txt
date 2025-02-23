@@ -1,0 +1,155 @@
+Q: What file comparison tool can I use under OS X? My favorite file comparison tool was Beyond Compare but since I recently switched to OS X, i'm no longer able to use it and I'm looking for an alternative, preferably a free one.
+Update: I made the mistake not to specify that I am also looking for a tool that does directory comparison, not only files. Because this could make the already answers invalid I made another question for this What directory comparison tools can I use on OS X?
+
+A: DiffMerge from Sourcegear is simple and free.
+
+A: This is an aggregation of the answers posted on SO's deleted clone, Graphical diff for Mac OS X. It includes links to each product, and the current price since last edit in USD.
+Note that any links to SO will only be visible to users who can view deleted content, which requires either moderator privileges or 10k reputation on that site.
+
+
+*
+
+*Sourcegear's DiffMerge, shareware
+
+*Joachim Eibl's KDiff3, free
+
+*Black Pixel's Kaleidoscope, $69.99
+
+*Bare Bones Software's TextWrangler, free
+
+*Araxis's Merge, $129 + $29/year
+
+*Deltopia's DeltaWalker, $39.95/$75.95
+
+*Kai Willadsen's Meld, free
+
+*Weipin Xia's DiffFork, $26
+
+*Biscade's RoaringDiff, free
+
+*tkdiff, free
+
+
+There were some other suggestions, which were not diff tools in their own right, which I will list below:
+
+
+*
+
+*It (Beyond Compare) runs well in Wine, but I miss the shell integration. - Danyal Aytekin, May 11 '12, 13:01
+
+*Eclipse also has a fairly decent comparison mechanism. - JeeBee, Oct 9 '08, 12:45
+
+*P4Merge that comes with Perforce is pretty good and comes for free with perforce client. Both terminal and GUI version. - amok, Jul 7 '10, 23:19
+
+*I had to use Vim because most of diffs mentioned here do not understand UTF-8. - user184880, Oct 6 '09, 9:56
+That about wraps up that thread's merge into this one, as covered here.
+
+A: You can use diff if you're using the command-line.
+
+A: Changes.app has a great reputation and lots of features. Kaleidoscope is great too, and has a beautifully designed UI.
+It's also worth mentioning if you're doing programming that Xcode 4 has visual diff tools built in now too.
+
+A: There's also DeltaWalker.
+It's $40, and there's a trial available.
+
+A: Here are which I've found:
+
+
+*
+
+*FileMerge (opendiff)
+It's bundled with Xcode with Command Line Tools installed
+
+*DiffMerge
+It's bundled with Xcode with Command Line Tools installed
+
+*vimdiff
+It's free and open source. Install by: brew install vim.
+
+*Meld
+Can be installed using Homebrew via command: brew install meld, but probably it won't work.
+
+*KDiff3
+Can be installed using Homebrew via command: brew install kdiff3
+
+*TkDiff
+Can be installed using Homebrew via command: brew install tkdiff
+
+*TextWrangler
+
+*VisualDiffer
+Available at App Store
+
+*Kaleidoscope
+Commercial with free trial.
+
+*Araxis Merge
+Commercial with free trial.
+
+*Changes
+Commercial with free trial.
+Check also Comparison of file comparison tools at Wikipedia
+for the full list.
+
+A: FileMerge is bundled with XCode, but I prefer Kaleidoscope which is not free.
+
+A: Beyond Compare 4 now runs also on OSX. Visit http://www.scootersoftware.com/beta.php?zz=beta4_whatsnew
+
+A: There are a great many comparison tools available. Many do directories and files. Some even perform as merge tools (2 and 3 way). Of these some have already been mentioned in other answers and your choice will depend on what features you require, and how much you are prepared to pay for the tool. There is a good Wikipedia page with a comparison of many of the better known ones.
+
+A: I use Folder Sync It costs $8.99 on the Mac App Store. It works really nicely.
+
+A: I use Kaleidoscope. Or just plain, old diff from the CLI
+
+A: It is not great, but the FileMerge bundled with the OS can be launched from the command line as opendiff a.txt b.txt.
+
+A: P4Merge is a free, very nice diff and merge tool. It can:
+
+
+*
+
+*Diff files
+
+*Do 3 way merges
+
+*Do Folder diffs
+
+*Visually diff 2 image files!
+
+
+Download it here for Mac and Linux
+Some screenshots:
+
+Visual diff of an image:
+
+
+A: This tool https://filecomparisontool.com
+
+
+*
+
+*Web based, so it is compatible
+
+*Mobile friendly
+
+*Save comparison up to 6 months
+
+*Share comparison via URL
+
+*It is free!
+
+
+A: vim also has built-in support for side-by-side diff -
+vim -d file1 file2
+
+Here is a page describing vim diff mode in detail -
+http://www.carbonsilk.com/development/vim-diff/ 
+
+A: 
+GitX-dev is a fork (variant) of GitX, a long-defunct GUI for the git
+  version-control system. It has been maintained and enhanced with
+  productivity and friendliness oriented changes, with effort focused on
+  making a first-class, maintainable tool for today's active developers.
+
+https://rowanj.github.io/gitx/
+

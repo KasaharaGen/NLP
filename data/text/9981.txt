@@ -1,0 +1,28 @@
+Q: .tar files on OS X Lion How am I supposed to deal with .tar files with OS X Lion? I'm trying to install Ruby Version Manager, but Lion is throwing a fit about not being able to expand the tar file. This isn't the first time this has happened either.
+Any tar command gives me this error:
+
+Launch of "tar" failed: the PowerPC architecture is no longer
+  supported.
+
+Any help is greatly appreciated.
+Update: 
+
+which tar
+
+outputs 
+
+/usr/bin/tar
+
+
+A: tar is installed as part of the system utilities, the only way it can be still an old version is if you upgraded your OS in place since before Intel days, or if you have an old version of tar sitting in your PATH that is being invoked before the system one is.
+First, run which tar in shell. If it says anything other than /usr/bin/tar, it's not the system-native version of tar, and you should just remove it because it's not working anyway.
+If it does say /usr/bin/tar, try running lipo -info /usr/bin/tar. The output should look something like
+$ lipo -info /usr/bin/tar
+Architectures in the fat file: /usr/bin/tar are: x86_64 i386 ppc7400 
+
+If the architecture list does not include x86_64 and i386, then you definitely have old versions of system utilities which are not compatible with Lion and
+should be reinstalled. Probably the easiest thing to do at that point is to run a full backup of the system, and do a clean reinstall, because this situation should never occur and if it is happening, there's no telling what other system utilities are broken.
+
+A: I accidentally installed an old version of Xcode, and this caused the same problem for me.
+
+A: I had this same problem.  In usr/bin I found tar, gnutar, and bsdtar. Calls to tar or gnutar died with the PowerPC complaint, bsdtar worked.  I renamed tar to badtar, renamed gnutar to badgnutar,  renamed bsdtar to tar, and Viola!  No more problems!

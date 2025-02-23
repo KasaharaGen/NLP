@@ -1,0 +1,8 @@
+Q: Flag/Unflag shortcut in mail.app I learned that ⇧⌘L in mail.app should toggle the flag of a selected message. However, it doesn't work for me... I'm using Snow Leopard and Mail 4.5. Any ideas?
+
+A: In Lion the shortcut is exactly that and you can actually take a look at the menu:
+
+Make sure you're using the right one. If you wanted to alter those, you'd have to go to System Preferences -> Keyboard -> Keyboard Shortcuts and add a new one:
+
+
+A: cmd-L was set as the input source shortcut. This caused a conflict with the cmd-shift-L of mail.app. Once I have changes the input source shortcut (to cmd-M) and restarted mail.app everything worked as expected.

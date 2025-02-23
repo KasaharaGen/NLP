@@ -1,0 +1,16 @@
+Q: How to limit log file size in /var/log/DiagnosticMessages? Every so often my Mac mini will fill up the hard drive with log messages in /var/log/DiagnosticMessages. It will be fine for weeks, then suddenly spew 30GB to a log file in a single day. I'd like to be able to limit the size of the log files so that it doesn't fill up my drive when this happens. 
+I have found /etc/asl.conf that appears to at least somewhat configure the logging. Is there an option to cap the log file size?
+One could argue that the real solution is to fix the problem that is causing all of the logging so bonus points to anyone that can answer that, but it seems a much harder task. It appears to be airport related with a 'com.apple.airport.autojoin.scan - failure' message and then recording hundreds of thousands of lines of CFString in a CFArray from airportd. Oddly enough I keep the airport disabled on this Mac.
+
+A: While I suspect that this is not what you want to do, you could always do something like schedule a maintenance task to run to limit the size of the file.
+Something like this in a shell script that you schedule:
+tail -n 10000 /var/log/DiagnosticMessages > /var/log/DiagnosticMessages
+
+Or if you want to keep a history of the contents, something like this:
+mv /var/log/DiagnosticMessages /var/log/DiagnosticMessages_$(date +%y%m%d)
+
+If you want to get fancy, you could:
+cat /var/log/DiagnosticMessages | wc -l
+
+and then only rename the file if > 10K.  As usual it all depends on how much effort you want to put into it, and whether or not you want a history of this file.
+And as you said....this doesn't actually resolve the root cause.

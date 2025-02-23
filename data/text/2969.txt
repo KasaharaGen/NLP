@@ -1,0 +1,38 @@
+Q: My mac has 64-bit EFI, but it only boots with 32-bit kernel I followed the guide at
+http://macperformanceguide.com/SnowLeopard-64bit.html
+to boot into 64-bit mode. I had no problems with the instructions and on the boot screen it says "PAE enabled, 64bit mode enabled" but when the system boots, both uname -a and System Profiler tell me that it has booted into 32-bit mode.
+I really need to boot into the 64-bit kernel, what should I do?
+System is MacBook Unibody (Early 2009, 6 GB RAM, 2.4 Intel CPU, 10.6.6)
+
+A: 64-bit Mac CPUs cannot boot 64-bit kernel due to one of the following reasons:
+
+*
+
+*The machine has 32-bit EFI.
+
+*The machine’s model is prohibited from booting K64 through a hardcoded list
+within the boot loader. (The list excludes "non-Pro" machines.)
+
+Both limitations are artificial and imposed by Apple, although the first one is important because if a 32-bit EFI were allowed to boot the kernel wouldn't be able to use firmware services.
+IF you really, really, really want to boot these machines with a 64-bit kernel, you'll need to perform hackery on /System/Library/CoreServices/boot.efi. This is quite risky. More info:
+Link
+
+A: 64-bit kernel mode is not supported on any of the MacBooks (see Apple's KB article #HT3770), even if they have a 64-bit CPU and 64-bit EFI firmware.  I don't know why it's not possible to boot them 64-bit, but I haven't found a way to do it (I'm in the same boat, as I have a 2007 MacBook Pro, also 64-bit EFI, but Apple only supports 64-bit kernel on the MacBook Pros introduced in 2008 or later).
+
+A: There is a plist at /Library/Preferences/SystemConfiguration/com.apple.Boot.plist which controls which kernel gets used at boot time. 
+You can hold 6 & 4 to boot into 64-bit kernel mode while booting. Also, you can boot 32-bit by holding 3 & 2 while booting. Or you can try
+sudo systemsetup -setkernelbootarchitecture x86_64
+
+and then reboot.
+
+A: I have the same computer as you.
+There is no way to boot in 64 bit mode.
+I tried modifying so many system files. It cannot be done, and it does not need to be.
+
+A: MacBooks like yours are artificially prohibited by Apple from booting the 64 bit kernel.  This restriction is in the boot.efi.  To bypass this restriction in the current 10.10.3 boot.efi you must do the following.
+1) Create a copy of the boot.efi file and name it boot64.efi (boot.efi is usually located in /System/Library/CoreServices/   or on your esp partition
+2) Using a hex editor search for the string 20 00 40 02 and replace it with 40 00 80 04
+3) Save the boot64.efi file
+4) bless the boot64.efi
+5) sudo nvram boot-args="arch=x86_64"
+6) reboot

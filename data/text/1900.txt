@@ -1,0 +1,103 @@
+Q: Emptying trash of the USB drive I have a USB drive plugged into my Mac. What I found was .Trashes was not emptied when the emptying trash (right click the Trash icon and run "Empty Trash") for the USB drive
+What might be wrong? Is there any other way to empty trash the USB drive? 
+
+A: I don't know wether it's the best answer, but at least it's working answer.
+Open the command line, cd to the USB volume (/Volumes/USB for my case), and type:
+/bin/rm -rf ./Trashes/* works fine with me.
+
+
+A: It's possible that there are files in some other user's trash.  The .Trashes folder at the top of each volume has subfolders for each different user, by user ID number (e.g. user 502's trash is in .Trashes/502).
+You can see if it for yourself using a command like this (replace VolumeName with your drive name):
+ls -la /Volumes/VolumeName/.Trashes/
+total 0
+d-wx-wx-wt@  3 _unknown  _unknown   102 10 Feb 18:15 .
+drwxrwxrwx@ 21 root      wheel      782 13 Feb 14:17 ..
+drwx------@ 35 _unknown  _unknown  1190 13 Feb 14:18 502
+
+Note: you might get a permissions error from this command, either because the .Trashes folder doesn't allow read access (solve this by adding sudo, e.g. sudo ls -ls ..., and entering your admin password when requested); and/or because of the privacy protections in macOS Mojave (10.14) and later (solve this by granting the Terminal access in System Preferences > Security & Privacy pane > Privacy tab > Full Disk Access category, see here for more details).
+As you can see, on my USB disk .Trashes folder there's a sub foder called 502, owned by user ID 502 (for reference, my current user ID is 501). Since this user doesn't exist on my system, I see it as _unknown, and my user can't look inside of it, neither delete it.  To look inside that folder we need to do it as administrator (i.e. use sudo).
+If you are sure that you want to, you can delete everyone's trash by deleting the entire .Trashes folder with a command like:
+sudo rm -R /Volumes/volumeName/.Trashes
+
+Warning: as with anything involving sudo ("do as super user", i.e. system administrator) and rm -R, use this carefully. If you type it wrong, it could have ... unpleasant consequences.
+
+A: 2 Solutions. 1 using Bash the other using Bash wrapped in AppleScript.
+Solution #1
+
+
+*
+
+*Create a new AppleScript with /Applications/Utilities/AppleScript Editor
+
+*Type the following code:
+
+do shell script "rm -rf /Volumes/*/.Trashes/*" with administrator privileges
+
+*Save the file to somewhere convenient and run it whenever you need to clear the USB Trash
+
+*This can be executed by double-clicking on it
+
+
+NOTE: This will empty the Trash for all connected volumes including your internal hard disk. If you have connected 5 USB drives and a Firewire hard disk, it will empty the trash for all of them.
+
+Solution #2
+
+
+*
+
+*Fire up your favourite text editor (mine is nano)
+
+*Paste the following code into your text editor and save the file
+
+#!/bin/bash
+sudo rm -rf /Volumes/*/.Trashes/*
+
+*Save the file to somewhere convenient with the extension .sh and then make it executable with chmod +x {filename}.sh from Terminal
+
+*Run that with ./{filename}.sh
+NOTE: Same note as above. This is executable from Terminal.
+
+A: I use this script AppleScript, save it as Application :
+on open these_volumes
+    set t_id to user ID of (system info)
+    repeat with i in these_volumes
+        if (kind of (info for i without size)) is "Volume" then
+            set tPath to (POSIX path of i) & ".Trashes/" & t_id
+            do shell script "/bin/rm -Rf  " & (quoted form of tPath) & "/*"
+        end if
+    end repeat
+end open
+
+Drag/Drop Volume(s) on the application.
+This script removes the items from your trash (user ID) folder on the volume.
+if other users use the volume  this script will not delete the items from their  trash folder, otherwise the script would need an administrator password to do that.
+
+If you want to eject the volume after emptying the trash, use this script.
+on open these_volumes
+    set t_id to user ID of (system info)
+    set volToEject to {}
+    repeat with i in these_volumes
+        if (kind of (info for i without size)) is "Volume" then
+            set tPath to (POSIX path of i) & ".Trashes/" & t_id
+            do shell script "/bin/rm -Rf  " & (quoted form of tPath) & "/*"
+            set end of volToEject to contents of i
+        end if
+    end repeat
+    if volToEject is not {} then tell application "Finder" to eject volToEject
+end open
+
+
+A: Usual behavior:
+When you delete something off a USB drive, it is moved to a .Trashes folder on that volume. When plugged into your computer, deleted items will appear in your trash bin with everything else.
+When you unplug it, items that you've deleted from that drive will no longer show up in your trash UNTIL you plug it in again. Then, you can empty the trash. It will really delete them from that drive.
+If that isn't happening for you, here's my suggestion:
+
+
+*
+
+*Select the drive in your Finder sidebar. 
+
+*Without selecting anything else, press cmd-i (or use menu item File → Get Info). 
+
+*Use the Sharing and Permissions section of that window to give Everyone the permissions to Read and Write.
+

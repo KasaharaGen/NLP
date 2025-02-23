@@ -1,0 +1,23 @@
+Q: How can I fix permission issue when I cannot start Mac OS X? I was creating a guest account and to prevent it from accessing the Macintosh HD as in other applications and stuff I assigned it as in "No Access" 
+When I switched to the guest account everything blocked, I restarted my mac and all I get is a blue screen.
+Now, I can't log in, not even in safe mode.
+What can I do to fix this?
+
+A: Boot to single user mode by holding command + S right after powering the system on (before the chime & apple logo). Once the system has booted to the command line, type these commands without the leading tick mark. Spaces matter, periods matter, it has to be exact.
+
+
+*
+
+*/sbin/mount -uw /
+
+*cd /private/var/db
+
+*rm .AppleSetupDone
+
+*halt
+
+
+The mac should shut off. Now power on - you will get played the normal welcome screen. Make a new user (try not to re-use one of the old names - "rescue account" might be a good choice). You can then go to the preference pane and see what happened to the users.
+
+A: I had the same issue, I tried the answer that bmike provided, logged in on a new account and repaired my disk permissions.
+After that I could login again.

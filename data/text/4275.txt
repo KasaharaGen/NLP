@@ -1,0 +1,55 @@
+Q: How do I split a video every X minutes? How can I split a video every X minutes using iMovie or some other Mac software, outputting the split videos to a folder, named by section (e.g. "video1of4", "video2of4")?
+
+A: You can also use -f segment with ffmpeg:
+ffmpeg -i input.mp4 -c copy -f segment -segment_time 300 -reset_timestamps 1 %03d.mp4
+
+-c copy disables re-encoding video and audio, like -vcodec copy -acodec copy. -reset_timestamps 1 makes each segment start with a near-zero timestamp.
+
+A: Split a video with VLC from the command line
+Open Terminal and run the following script:
+It determines the length of the original file and splits it into 2 min intervals. 
+You can change this by changing the $interval variable, which is in seconds.
+You will also need to change the $filename variable to whatever file you want to split.
+#!/bin/bash
+filename=test.mkv
+duration=`ffprobe -show_format $filename | sed -n '/duration/s/.*=//p'`
+duration=${duration/.*}
+interval=120
+start=0
+n=$start
+stop=$interval
+while [ $duration -ge 0 ]; do
+    /Applications/VLC.app/Contents/MacOS/VLC -Idummy $filename --start-time $start --stop-time $stop --sout=#file{dst=$n-out-$filename} vlc://quit
+    let start=stop
+    let stop=stop+interval
+    let duration=duration-interval
+    echo "Number of seconds left to process: $duration"
+    let n=n+1
+done
+
+
+A: QuickTime Pro does a great job using the Trim feature. It's intuitive too.
+
+A: VLC has an "Exporting Wizard" that will let you subset. VLC also has a CLI interface so you should be able to automate it.
+
+A: I used to do splits using ffmpeg on Fedora . I don't have the exact command handy though. 
+You could install ffmpeg and mplayer tools on OS X . 
+
+A: Movie Splitter
+If you are splitting mpeg4 movies and prefer a graphical application, you can use Movie Splitter. I wrote the application to split my movies by chapter marker but duration based splitting is supported:
+
+  
+*
+  
+*Automatically by chapter marker
+  
+*Into two halves
+  
+*Into four quarters
+  
+*Into unlimited custom sections
+  
+*Into regular durations; 1 second to multi-hour sections
+  
+
+

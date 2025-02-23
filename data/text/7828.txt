@@ -1,0 +1,61 @@
+Q: What are the steps to transfer an iPhone to someone else? I've seen several posts on the general process of handing off an old iPhone to someone else, but there are some details I'm not clear on. I have the following scenario to start with:
+
+
+*
+
+*Person A: iPhone 4
+
+*Person B: iPhone 3G
+
+*Person C: (dumb phone; no data plan)
+
+
+I'd like to end up with:
+
+
+*
+
+*Person A: iPhone 4S
+
+*Person B: iPhone 4 (from A)
+
+*Person C: iPhone 3G (from B; new data plan)
+
+
+Can someone walk me through the steps involved in making this happen? All folks involved have MobileMe accounts and Macs, and the 4S will probably be purchased initially for Person A. Those who start with iPhones have everything fully backed up and encrypted and password protected (so passwords will transfer).
+
+Note: This is specifically a question about what I can do on my own, without going to the carrier's (AT&T) store.
+
+A: There are two separate issues here:
+1. Transferring data plans
+This is best dealt with directly through your carrier as CajunLuke notes. For person A, a simple SIM swap should work though, for person B you'll need to cut the 3G's SIM down to micro-SIM size to fit in the iPhone 4. And you can probably swap the SIM from the dumbphone into the 3G and have the appropriate data plans added on the account. Still check with your carrier to avoid headaches.
+2. Transferring backups amongst the iPhones
+This is pretty straightforward. It sounds like the iPhone users have already got them backed up, so you're most of the way there. Do a final backup, and make sure they remember the passwords.
+I'd start with the 4S, since it's a clean phone anyway. When you plug it in to iTunes and activate it, it should ask if you want to set it up as a new iPhone, or restore it from a backup. If it doesn't, just right-click the iPhone in the iTunes source list and choose Restore from Backup. Check to make sure everything seems right on the phone, then you're good to go.
+To set up the iPhone 4, start by wiping it clean (this is why you want to do the 4S first, in case something goes wrong, you still have the data on the 4). Go to Settings > General > Reset and select Erase all Content and Settings. You'll have to enter the phone's passcode if you use one. Once the wipe is complete, plug it in to Person B's computer and set it up via iTunes as you did with the 4S, but using the backup from Person B's 3G.
+To set up the 3G, repeat the wipe process above, but set it up as a new phone in iTunes for person C. If the dumbphone has Bluetooth sync capability, you can try transferring contacts to the PC that way using iSync and Address Book (note that Lion no longer includes iSync, you'll need a 10.6 machine or lower). Alternatively, if the phone stores the contacts on the SIM, or has the option to copy them there, you can import SIM contacts on the iPhone by going to Mail, Contacts, Calendars in Settings and selecting Import SIM Contacts.
+Apple has a good KB article detailing any additional information you might want located here.
+
+A: I assume that the two existing iPhones and their SIM cards are from AT&T as well. Then you can do the following:
+
+
+*
+
+*Make sure the existing phones are backuped in iTunes
+
+*Get an iPhone 4S with a new plan (aka SIM card)
+
+*Give the new SIM card to C
+
+*Take out the other two SIM cards, they stay with the person who has them now
+
+*Give the phones to the new owner
+
+*A can register the phone in iTunes and will be prompted to restore from backup
+
+*B can reset the phone in iTunes and will then be prompted to restore as well
+
+*C can reset in iTunes as well
+
+
+A: If they're all on the same carrier, getting all the account holders together with the iPhones and going to the carrier's store would probably be the best solution. The employees there would know best how to handle a transfer like that.

@@ -1,0 +1,22 @@
+Q: Where does Mac OS X store contacts in my Address Book? Where does Mac OS X store contacts in my Address Book? Has this changed from Snow Leopard to Lion?
+
+A: The path is ~/Library/Application Support/AddressBook/ on both Snow Leopard and Lion.
+Note that you can't see the Library in your home folder (as it is hidden by default). You can type in chflags nohidden ~/Library in Terminal to make it appear permanently, or hold down ⌥ Option while in the "Go" menu of Finder.
+
+A: 
+On SL, it's in 
+  
+  
+*
+  
+*~/Library/Application Support/AddressBook/Metadata
+  
+  
+  I can't answer for Lion.
+
+Lion is the same....
+In High Sierra, its in ~/Library/Application Support/AddressBook/Sources/
+
+A: from my experience of just trying to recover those files with TimeMachine in Mavericks, the location in Mavericks appears to be incorrect.
+
+A: OSX 10.9.1 go to Contacts.app, highlight the contact(s) select more than one with the shift key, press DELETE then OK

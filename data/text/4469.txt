@@ -1,0 +1,90 @@
+Q: Can I cancel a download of a Mac Store app? I just got a really large Mac App Store app, (2GB), but Im having some trouble with my diskspace... 
+Is there a way to completeley cancel the download of the app? I mean not just pause it but cancel it. The icon on the dock kind of stresses me out, and it reappears even if I drag it out.
+
+A: Another way to do this by enabling the AppStore Debug menu.
+
+*
+
+*Sign out of AppStore.
+
+
+*Quit AppStore.
+
+
+*Open a terminal and execute the following command:
+defaults write com.apple.appstore ShowDebugMenu -bool true
+
+
+*Open AppStore again and a Debug menu is now present.
+
+
+*Debug Menu -> Reset Application.
+This will reset the current state of the AppStore, including current downloads. You will have to sign back in to see available downloads.
+In my case I was able to stop the not yet finished download of XCode 4.0.1 in favor of just starting up the Xcode 4.1 download (since Lion only runs 4.1).
+I wish I could have done Debug Menu -> Show Download Folder and just deleted the directory in com.apple.AppStore that was obviously 4.0.1 (based on size), but this didn't register in the AppStore. I wonder if the sqllite file in that same directory is where this status is stored.
+If you are not comfortable leaving the debug menu enabled just run the above terminal command again, this time setting it to false.
+
+A: In the Mac App Store "Purchases" tab, hold down the Option key, this causes the “Pause” button to turn into “Cancel”.
+I tested it on 10.8 Mountain Lion, but don't know if it works on previous OSX version.
+Added comment - This works on Sierra as well.
+
+A: Can't believe I just found this solution. I dont know if it was there before, Im sure it wasnt or I wouldn't have asked it here.
+Control-click the icon in the dock and select Cancel download. 
+Interesting.
+
+A: Specifically in Lion, here's how to do it:
+
+
+*
+
+*Go to Launchpad, click and hold on the downloading item
+
+*All icons will start wiggling
+
+*Click the (X) on the download
+
+
+or 
+
+
+*
+
+*Hold down the Option key from the “Purchases” menu in the Mac App Store, this causes the “Pause” button to turn into “Cancel”. See this article for detail.
+
+
+It will ask for a confirmation. I confirmed delete, and it was still there    - a reboot made it disappear, but I suppose you could restart just Launchpad as well.
+
+A: *
+
+*Quit App Store app.
+
+*Delete ~/Library/Application Support/AppStore folder.
+
+*To avoid App Store still display you have downloaded x bytes of y bytes, four solutions :
+
+
+*
+
+*Disregards.
+
+*Kill storeagent process (type killall storeagent into Terminal).
+
+*Logout / login.
+
+*Reboot.
+
+
+
+With Lion it's shadowed under random folder /private/var/folders/<three level random folders>/com.apple.appstore/<again random folder name>/<apple server name package>.pkg. Well…  
+
+
+*
+
+*Open Launchpad.
+
+*Find your app.
+
+*Keep alt key down.
+
+*Click on cross to delete it.
+

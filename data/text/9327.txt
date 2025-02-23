@@ -1,0 +1,18 @@
+Q: .HFS+ Private Directory Data? On my file exchange partition that both Mac and Ubuntu should have access to, I cannot manage to get access from Ubuntu.
+This partition was created with the Disk Utility in Lion.
+Unlike before, there is a file or directory called .HFS+ Private Directory  Data? (including the questions mark!) This was not there the last time I create such a partition. I cannot delete this file/directory.
+What is this? Why can't I copy/delete files onto this partition from Ubuntu? It worked the last time I created such a partition. This partition has journaling disabled.
+This .HFS+ Private Directory Data? cannot be seen with ls -la in the Terminal of Mac OS!
+
+
+
+A: ".HFS+ Private Directory Data\r" and "␀␀␀␀HFS+ Private Data" are special folders used by the HFS+ filesystem to handle hard-linked folders and files, respectively.  They're normally pretty well hidden, but apparently something went a little wrong and one of yours became visible. Don't worry about it, though -- as long as they're doing their jobs, you shouldn't need to interact with them directly.
+
+A: This is likely to come up again with macOS High Sierra and the replacement of the HFS+ filesystem with APFS, especially if you've used something to create hard links.
+After an upgrade to APFS from HFS+, all my hardlinked folders were replaced with either a same-name empty file or a symbolic link. I found all the files that were in those folders in folders under /.HFS+ Private Directory Data.
+
+A: Oh well! Repairing permissions with Disk Utility did the trick...
+
+A: Oh dear. If you're seeing the .HFS+ Private* directories, you're likely using a very old version of your HFS+ driver on Ubuntu. I would stop using this immediately and update to something more current.
+Basically, the purpose for that directory is that HFS+ doesn't support hard links—not really—and UNIX, upon which OS X/macOS is based, requires them. So what they did was to use a really obnoxious duct-tape kludge to simulate hard links; any file that has more than one link is moved into one of those invisible directories as an "inode"; the actual hard links are really just aliases to the "inode" file with a special flag set in its metadata. There's also a second HFS+ Private Data folder that holds something else; I can't remember what it is anymore, but it's another thing like this that really should be a file-system-level feature, but isn't.
+So basically, if you're using an HFS+ driver that shows those folders, you're basically dealing with an older version of the spec. If you interact with files in that directory, you can mess up your drive but good. And if you delete it—well—just don't. Find a newer version of the driver that supports the latest version of the spec, or better yet, upgrade to APFS, which is implemented in a much more sensible manner (or so we assume; they still haven't published the specification on the thing AFAIK).

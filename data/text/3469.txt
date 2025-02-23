@@ -1,0 +1,28 @@
+Q: MySQL - Ruby on Rails mysql gem not working on snow leopard i have installed mysql 5.5.11 and i'm running on Snow Leopard (10.6.7)
+when i create my rails application everything wokrs fine:
+rails fooTest -d mysql
+then 
+cd fooTest
+then
+rake db:create
+and i get:
+
+Couldn't create database for
+  {"reconnect"=>false,
+  "encoding"=>"utf8",
+  "username"=>"root",
+  "adapter"=>"mysql",
+  "database"=>"fooTest_development",
+  "pool"=>5, "password"=>nil,
+  "socket"=>"/tmp/mysql.sock"}, charset:
+  utf8, collation: utf8_unicode_ci (if
+  you set the charset manually, make
+  sure you have a matching collation)
+
+
+A: This looks like a permissions problem.  Make sure you have a password set in your mysql and are able to login from the command line
+mysql -u root -p
+
+This should prompt you for your root password.  If you can login there, that means you should be set.  All you need to do then is put the password in your database.yml file and retry the rake command.
+
+A: Try using the gem mysql2 in RoR. I had the same problem as well.

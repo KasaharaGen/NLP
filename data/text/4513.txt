@@ -1,0 +1,56 @@
+Q: Inconsolata font does not work in Terminal I'd like to use Inconsolata as the closest free approximation of the Consolas font for editing and programming on my Mac. After downloading Inconsolata's OpenType file I changed TextWrangler's preferences so that Inconsolata becomes the font for the editor window. 
+This worked just fine and the text is now properly rendered using Inconsolata. I take that as a proof that the font is properly recognized by the OS in general.
+Then, I tried to tweak Terminal's preferences to also use Inconsolata. To my surprise, the Terminal window shrank to this:
+
+For a test, I tried to increase the font size to 288 in order to check whether the text is simply rendered really small and therefore seemingly creating a blank window. Unfortunately, to no success.
+I tried to switch the fixed-spaced font in Mail and as the result, a mail window that previously displayed a message just went blank. I tried TeXShop and was able to successfully changing the editor font to Inconsolata.
+It seems as if the change works well in some apps and fails entirely in other apps. Does anybody have an idea why this is the case?
+How can I use Inconsolata in the Terminal (and Mail) under MacOS X 10.6.7?
+
+A: I can't reproduce your problem on my Mac (10.6.7). I downloaded the "OpenType file", opened it, installed it into Font Book, and configured Terminal to use it without incident. Maybe try deleting the font from your system and trying again?
+
+A: Try to clear and rebuild your font cache with the following:
+sudo atsutil databases -remove
+sudo atsutil server -shutdown
+sudo atsutil server -ping
+
+The above is "my standard answer" to font problems.
+After your reply, I tried to download the font too. Installed it and in the Terminal.app got the same result as you. So +1 to the question - I'm interested too.
+So,
+
+
+*
+
+*removed the otf version (does not work)
+
+*I downloaded the ttf version from the Google Fonts Directory
+
+*removed my cache as above
+
+*installed the ttf version
+
+*and works.
+
+
+after it, for the test:
+
+
+*
+
+*removed the ttf version
+
+*cleaned the cache
+
+*installed the otf version
+
+*does not work
+
+
+so again for ttf - and have a working version in my Terminal.app
+Haven't any idea why the otf version does not work. ;(
+
+A: Apparently there is a problem with OpenType fonts in Terminal since Snow Leopard. See this thread on Apple Support: https://discussions.apple.com/thread/2775619?start=0&tstart=0
+
+A: there's a pretty simple solution for this problem.
+Just convert the .otf file to an .ttf file.
+I used FreeFontConverter for that and now inconsolata works in my Terminal.

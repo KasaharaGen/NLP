@@ -1,0 +1,46 @@
+Q: Installing Homebrew on Lion I am trying to install Homebrew on Lion but keep getting an error.
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+
+I run the above code, which results in:
+==> This script will install:
+/usr/local/bin/brew
+/usr/local/Library/Formula/...
+/usr/local/Library/Homebrew/...
+
+Press enter to continue
+==> /usr/bin/sudo /bin/chmod o+w /usr/local
+==> Downloading and Installing Homebrew...
+bin/brew: Can't create 'bin/brew'
+tar: Error exit delayed from previous errors.
+Failed during: /bin/bash -o pipefail -c '/usr/bin/curl -sSfL https://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1'
+==> /usr/bin/sudo /bin/chmod o-w /usr/local
+
+I have seen a couple of 'answers' to this problem which basically suggest running the initial command as root. This fails with the following error:
+$ sudo /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+Don't run this as root!
+
+Any suggestions would be appreciated!
+
+A: As per this question I ran the following command:
+sudo chown -R `whoami` /usr/local
+
+And then re-ran the homebrew command:
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+==> This script will install:
+/usr/local/bin/brew
+/usr/local/Library/Formula/...
+/usr/local/Library/Homebrew/...
+
+Press enter to continue
+==> /usr/bin/sudo /bin/chmod o+w /usr/local
+==> Downloading and Installing Homebrew...
+==> /usr/bin/sudo /bin/chmod o-w /usr/local
+==> Installation successful!
+Now type: brew help
+
+I hope this helps someone in future!
+
+A: Wow - there's not much that can go wrong with this - is your user an admin user on the mac? (the id command should show 80(admin) for your user when in the terminal)
+That's about the only thing I can see that would prevent the script from calling sudo.
+You should see it asking you for a prompt here:
+

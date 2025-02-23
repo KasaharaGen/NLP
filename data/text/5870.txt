@@ -1,0 +1,20 @@
+Q: Is there a GUI for OS X LaunchAgents? I'm a web developer by day and a lot of the software I install on my computer (namely databases and web servers) come with an optional LaunchAgent to automate starting/stopping processes on boot. I'm wondering if there's a GUI for these types of services so I can use the LaunchAgent, then kill the services gracefully. Another great feature would be if I could turn off boot on launch and just use the LaunchAgent to start/stop a service as needed.
+
+A: Lingon (MAS link)
+It provides a nice GUI for creating daemons/agents, without writing plist file by yourself. You can also use it to delete daemons/agents that you don't want.
+
+A: To accomodate people that find this thread and just want to quickly create a new job: This very simple launchd online editor does the trick: http://launched.zerowidth.com/
+
+A: This seems to be exactly what you are looking for: LaunchControl
+
+A: I found this article: https://foliovision.com/2014/01/os-x-scheduling-tools
+Lingon looked very slick.
+
+A: Lingon X will do what you want. Please note, an earlier answer suggested Lingon, which is a version of this app that doesn’t have as many capabilities and is available from the App Store. For full functionality you’d want Lingon X directly from the developer.
+
+A: launchAgents are there to run in the background in conjunction with their respective Daemon, i.e. they have no GUI but you can load & unload them using terminal using:
+launchctl unload -S Aqua /Library/launchAgents/"launchAgent's name"
+
+"lanuchAgent's name" : enter the file name of the Agent you want to load/unload.
+/Library/launchAgents in OS X that is the default folder for Agents
+to load just replace unload with load

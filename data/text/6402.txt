@@ -1,0 +1,34 @@
+Q: Copying Files From Windows Share To OSX Share Results In Access Denied When copying files/folders from a share on a Windows server to a share on our OSX (10.4.7 Server) using a Snow Leopard workstation. The Linux workstations get "Access Denied" errors.
+All users are using the same credentials.
+
+
+*
+
+*Windows users can access the files on the OSX Server.
+
+*OSX workstations can access the files.
+
+*Linux workstations and the (admin) user logged on to the OSX sever itself cannot access the files.
+
+
+On the OSX server itself, the folder has a little red indicator on it with a line through the icon. Get Info -> Ownership & Permission has "You have [No Access]".
+
+
+
+*
+
+*I looked into chmod -R -N on the server, but I guess this version of OSX Server does not support then -N switch. Anyway, I would rather get to the root cause.
+
+*This only happens on files/folders that are copied from a separate Windows server's share. Folders/Files created by the OSX workstations can be access everywhere fine.
+
+*All copying is being done from the Snow Leopard OSX Workstations.
+
+*Tried copying the files from the Windows Servers to the local workstation, then copying them to the OSX server, same result.
+Any suggestions as to where to begin debugging this? Is there anyway for the Snow Leopard users to copy files from the Windows server to the OSX server without copying permissions? (or ACLs?)
+UPDATE: By checking "Ignore ownership on this volume" for the volume in question, I am now allowed to access the folders on the OSX server itself. However the Linux clients still cannot access said folders. And this actually locks out the OSX workstations from accessing said folders.
+
+A: Just open the shared folder in Finder where you want to copy. And open its info tab. In that you will find the permission section at the bottom. In that change the permission to read & write to everybody. I encountered the same problem and I solved it this way. To edit permission you will need super user access.
+
+A: This probably should have been asked on the Linux StackExchange. But I figured it out. 
+Our Linux workstations fstab entry was wrong, changing it from smbfs to cifs and adding the uid=linuxuser option to the entry seems to have fixed the Linux access issues. 
+This does not fix the folder access on the OSX server itself. However, it is not stopping production so I am not too worried about it right now.

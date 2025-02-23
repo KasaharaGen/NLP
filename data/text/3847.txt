@@ -1,0 +1,15 @@
+Q: How to make screen zoom little bit less terrible? You know how you zoom-in whole screen with your magic-trackpad + ctrl + 2fingers in snow leopard?
+The result is not-so-nice-looking screen. You can see pixels and basically the resolution is crapy... how do I fix that?
+
+A: There is no way of fixing that.  It is magnifying the screen, not a true resolution independent zoom, so as things magnify they will appear blocky.
+
+A: I don't think it is terrible!
+I occasionally do some graphic and web design work, and I do a lot of photography, and when I care about pixels the ease with which I can zoom in and see clearly what's going on down there is great.
+Also, as a bit of a typography nerd, I like to have a look at the sub-pixel antialiasing that's going on :B
+
+A: You can make display little smooth in Pref panes > Universal Access > Seeing tab > Zoom options… > Check Smooth images (or type ⌥⌘\) but RobZolkos right.
+
+A: As noted in the previous answers, the operating system doesn't re-render the information at a finer level of detail - it's like holding a magnifying glass on a printed page just shows larger detail instead of making the printing finer.
+The only way to "fix" the zoom is to make the Mac draw things larger and let you scroll around to see a window of the larger information.
+What you want is called an Oversized Desktop. Basically you trick the system into sending data to the graphics card to render a 2000x1024 sized desktop. Then your mouse or other commands control and a viewport of 1440x900 with some of the data drawn offscreen.
+I don't know of a single program that works with 10.5 or later - but at least you know what to look for and this might spark someone else with a recommendation.

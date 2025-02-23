@@ -1,0 +1,31 @@
+Q: Disabling the "keep pressed" function of OS X sticky keys I use the accessibility feature called sticky keys in OS X, what it does is that if you press a command modifier key (Ctrl, Cmd, Alt, Shift, Fn), it stays "pressed" until you press another key. This is very useful if you often use your keyboard with one hand, and actually quite convenient even when you use two hands.
+The thing is that if you press a modifier key twice it stays "pressed" until you press it again. While it is sometimes handy, for me it would be preferable if this aspect of the functionality could be disabled, since I trigger it accidentally every now and then.
+I realize that if this is at all possible it probably means fiddling with some system file somewhere, that's fine. I just want to see if someone out there might know where to look? :)
+
+A: You can't turn off the "key lock" functionality (last checked on OS X 10.8.2). You can however install KeyRemap4MacBook, which allows you to make modifier keys sticky without this "key lock".
+
+A: I believe you have to press it 3 times to release it.
+
+
+*
+
+*First Press - Locks the modifier key, and unlocks it after the next key press
+
+*Second Press - Locks the modifier key for multiple other key presses.
+
+*Third Press - Unlocks the modifier.
+
+
+Exmaple:
+Pressing Shift twice while sticky keys is on would be the same result as turning on CAPS lock.
+
+A: I've seen this behavior even when "sticky keys" is turned off in system settings, by unchecking the "enable sticky keys" checkbox.  I was seeing shift stuck "on" only for OS actions (not for normal typing) after coming back from a lock screen.  
+To resolve this, I turned sticky keys on (Mac Settings) and then toggled them off again using the shortcuts above. 
+
+A: You can get this behavior by using a third-party program called "Karabiner-Elements"
+Leave Enable Sticky Keys unchecked in System Preferences > Accessibility > Keyboard > Hardware.
+Instead, open "Karabiner-Elements" and click Simple modifications. Then select Add item > From key > left_shift and under To key > sticky left_shift. Repeat for right_shift and optionally Option, Command, Control.
+You might also want to investigate the function "sticky left_shift (pressing and holding down is disabled)."
+I've noticed problems with Apple's sticky keys feature ever since upgrading to Mac OS 12.2. And a discussion about it on support.apple.com indicates Apple is unwilling to fix it.
+
+A: go in to system pref, accessibility, keybord (left column) sticky keys, options, then "press shift five times to toggle sticky keys"

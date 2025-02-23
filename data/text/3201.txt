@@ -1,0 +1,77 @@
+Q: Why am I getting a "session could not be started with the iPad" error when syncing? This morning while trying to sync my iPad I started getting the following error from iTunes:
+
+
+*
+
+*iTunes could not backup iPad because a session could not be started with the iPad
+
+
+I've tried the following:
+
+
+*
+
+*Deleting the iPhoto cache "com.apple.iPhoto.plist" (might be corrupt)
+
+*Running the Repair Disk Permissions from Disk Utility
+
+*Delete existing backup (might be corrupt)
+
+*Backing it up to a new account (same Mac)
+
+*Different sync cable
+
+*Different USB port
+
+*Rebooting the Mac and the iPad
+
+*Turning off Photo sync
+
+
+So far, no luck. Still getting the error when trying to sync or backup my iPad. The iPhone 4 syncs fine. Running Verify Disk Permissions after the Repair still reported issues, but none of them seemed to be in any directories related to iTunes (all Java related).
+FYI, it starts trying to backup, but fails at around 90%. So it would seem it has a "session started", but fails part way through.
+UPDATE: I was listening to Pandora while my iPad charged and functioned as my AirDisplay when all of a sudden my iPad started rebooting repeatedly (not syncing or updating, checked iTunes.) It kept rebooting until I removed the sync cable. When it came back then it backed-up and synced fine. I'll leave this question open in case someone has any suggestions. If no one has any suggestions then I will probably delete it.
+
+A: OK, I cabled my iPhone and synced. After doing that, I unchecked the sync using Wi-Fi. I then applied the change. Then, I checked sync using Wi-Fi and unplugged my phone. I then synced using Wi-Fi. It worked for me. Hope it does for someone else.
+
+A: This happened again, and here are the steps I took:
+
+
+*
+
+*Delete existing backup
+
+*Restart iTunes
+
+*Restart iPad
+
+*Sync
+
+
+It seems to be caused by canceling the sync during the backup. I might try it again to see if those are the steps to fix it.
+
+A: I deleted iPod photo cache. No change.
+I performed iPad hard reset. No change.
+I pulled up applications menu (double menu button click) and then clicked the "minus" icon for every single App until they were all removed from the list.
+Sync then worked perfectly.
+The problem appeared to be that backups were being prevented by one of the Apps I had "open" in the background.
+
+A: I had this problem too but I found out it was caused by stopping a backup in progress. To solve, just quit iTunes completely and power off your iPad, then relaunch iTunes and turn your iPad back on.
+
+A: it seems that when this message "iTunes could not backup iPad because a session could not be started with the iPad" popped out, your itunes was actually backing up/restoring from your back up data. It happened to me also, then my ipad suddenly rebooted and then it was restored from the backup data
+
+A: There are items I've seen cause this:
+
+
+*
+
+*The device is not working properly. Shutting it down with a slide to power off usually remedies this temporary situation on the device.
+
+*~/Library/Application Support/MobileSync/Backup
+
+*~/Library/Lockdown
+
+*/private/var/db/lockdown
+
+
+Do be sure to make a backup before deleting files from locations 2-4 and I like to delete them and then reboot the mac to allow the programs to recreate the lockdown files as needed. You are removing all backups by deleting items from #2 above - use caution.

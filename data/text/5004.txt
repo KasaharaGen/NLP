@@ -1,0 +1,15 @@
+Q: Bookmark a POST request Certain online shops I use don't easily allow you to bookmark an Order Status page.
+That's because they use a POST request to access that info. So, the order number is not encoded in the URL. Which means that I can't bookmark the page (a bookmark just leads to the form to enter the order number).
+So, I'm looking for a way to bookmark a POST request so that I can easily view my order status page without having to enter the order number again.
+I'd love to hear about a browser extension (or built-in functionality), a dedicated app, or any other ideas.
+
+A: Save the page with the form locally on your hard drive. 
+You will then need to modify the source code to replace the textbox with a hidden field that has the same name and id as the text box and with a value of what you are searching for.   eg
+<input type="textbox" id="searchtext" name="searchtext" />
+
+and replace it with
+<input type="hidden" id="searchtext" name="searchtext" value="343434" />
+
+Replace "343434" with whatever you are normally putting into the text box.
+Save this file.  And book mark it.   When you visit the page, you should just need to click the submit button and it will send the form along.
+High chance that this won't work first time.  But let me know and I can guide you though any other changes that need to happen.  If its a publicly accesible site, let me know the url and I can help you out quicker.

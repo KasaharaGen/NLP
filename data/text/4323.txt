@@ -1,0 +1,56 @@
+Q: How to disable Acrobat Reader in Safari? In Safari, the default PDF-Viewer in Safari is "Preview". 
+Unfortunately, since I installed the Acrobat Reader, this default changed to the Acrobat Reader, which is extremely annoying.
+How can I change this back to "Preview"?
+
+A: A thread on macworld covers this. Should work by either by removing the plugin from the internet plugins folder or by changing the settings in the Adobe Reader preferences. The plugin is pretty annoying, I never installed the Adobe Reader again.
+
+A: Go to the "Help" menu in Safari and select "Installed Plug-ins". This will open a new tab displaying information about all of the currently installed plug-ins. Find the entry for Adobe Acrobat. Below it will be a line that reads something like:
+Adobe® Acrobat® Plug-in for Web Browsers — from file “AdobePDFViewer.plugin”.
+
+Note the name of the file from that line.
+On your hard drive you will find a Library folder.  In that folder will be another folder called Internet Plug-Ins. Inside that folder you should find the file that was shown in the "Installed Plug-ins" tab. The full path should be /Library/Internet Plug-Ins/AdobePDFViewer.plugin. That file needs to be deleted.  Dragging it to the trash will do the trick. 
+If you are not sure you want to delete the file, you can move it to another location. For instance, you could create a new folder named "Disabled Plug-Ins" in the "Installed Plug-Ins" folder, and move the file to the new folder.
+Then quit & relaunch Safari.
+Adobe acknowledges this is a "known issue" and recommends this procedure.
+
+A: The following solution below works well (for me) but misses a few steps. Here is what I did:
+
+
+*
+
+*Quit Safari
+
+*Find both the AdobePDFViewerNPAPI.plugin and the AdobePDFViewer.plugin files in "Library/Internet Plug-Ins"
+
+*Copy both files to your desktop (you might be prompted for the admin password) -- leave this folder open as well
+
+*Right-click on one of the files (doesn't matter which one you do first) and select "Show Contents"
+
+*Make the edit as per below to the Info.plist file
+
+*Repeat steps 3 & 4 for the other file
+
+*Copy both of the .plugin files back to the original folder (you might be prompted for the admin password)
+
+*Start Safari
+
+
+Original content is below:
+The other answers completely remove acrobat reader. While I dislike acrobat reader, it is simply the only choice when there are PDFs with acrobat forms which preview is not great at handling. So a better approach could be to retain the plugin for the PDFs with forms (which has a separate mime type) and open our simple PDFs with preview.
+To do this, open the file: /Library/Internet Plug-Ins/AdobePDFViewerNPAPI.plugin/Contents/Info.plist and remove the following block of code:
+    <key>application/pdf</key>
+    <dict>
+        <key>WebPluginExtensions</key>
+        <array>
+            <string>pdf</string>
+        </array>
+        <key>WebPluginTypeDescription</key>
+        <string>Acrobat Portable Document Format</string>
+    </dict>
+
+Removing this will un-register acrobat reader plugin from being utilized for simple PDFs while Acrobat reader will continue to open the PDFs with other form data.
+
+A: The solution is found on Adobe's help site:
+Place AdobePDFViewer.plugin and AdobePDFViewerNPAPI.plugin in a new folder.
+
+A: the best solution is just to put Acrobat Reader in the trashcan. It's 400 Mb of recovered space on my HD

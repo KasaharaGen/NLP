@@ -1,0 +1,12 @@
+Q: Mac webcam - get the device How do I access my default video camera on my mac? I know on Linux it is /dev/video0 but my Mac does not have that. I'm trying to capture my webcam into ffmpeg
+ffmpeg -i /dev/video0
+
+But it won't work because /dev/video0 doesn't exist.
+
+A: Unfortunately, it appears that ffmpeg can't record using the iSight, as reported in a ffmpeg-users thread.
+Really a shame that Apple doesn't expose this functionality!
+
+A: Macs use the AVFoundation framework to expose the camera programatically.
+You'll want to start with the StopNGo sample project if you've got a copy of Xcode. (and just browsing the source may help figure if you care to go down that path without needing Xcode to make a decision)
+It would be a big security risk to expose that API to the terminal on every mac by default, but someone may have writen a bridge you could use. 
+You might need to ask that specifically on the programming sites. Your query looking for an equivalent to attaching a pre-existing device is advanced consumer and on-topic here. Getting into API usage is generally off topic even when the simple "consumer" answer is "no - the equivalent video device isn't available on Mac OS X"

@@ -1,0 +1,8 @@
+Q: Interrupted Mac App Store Download - Xcode After losing my connection while downloading Xcode 4.2.1, the App Store has removed it from available updates and under purchases it says I am up to date (even though the date of the my installed version is before the latest update date). I have tried to do:
+defaults write com.apple.appstore ShowDebugMenu -bool true
+
+And then use the Debug menu item after restarting the App Store using these instructions:
+http://www.ryanragle.com/index.php?/site/comments/where-does-the-mac-app-store-download-temp-files-to
+Is there any other way to directly download 4.2.1 or to force the App Store to clear its cache, short of removing Xcode entirely?
+
+A: Click on Purchases by keeping the ⌥ key pressed (option key). It will need 10 seconds to initiate the tab (more or less), but afterwards you'll be able to re-download any purchased app.

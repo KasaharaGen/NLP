@@ -1,0 +1,7 @@
+Q: How can I get rid of excel files that I can't delete I run OSX Lion and I have an excel spreadsheet 2011 sitting on my desktop that I regularly open, update, and save.  Whenever I open, edit, and save the excel spreadsheet, a new file is created on the desktop that I can't delete (even when excel is closed). The files have names "BEE05630", "D5A1F120", etc. I have to restart for the files to disappear from my desktop.
+Any way to fix this?
+
+A: Force quitting finder "fixes" this but is a work-around. If no one has a better fix, I'm going to have to mark this as the answer.
+Press option down while right-clicking the finder in the dock, then click "Relaunch". It relaunched the desktop and the random excel file went away.
+
+A: open Terminal.app and run rm -f "Path-To-File"

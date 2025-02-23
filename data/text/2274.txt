@@ -1,0 +1,9 @@
+Q: How can I force MacOS to make a binary conversion of filesizes in MB, GB...? I noticed that MacOS (10.6) makes a decimal conversion for file sizes, instead of  binary:
+ 
+Is there any way to force it to make binary conversions instead in Finder? Because my mind kinda works in powers of 1024, regarding the file sizes.
+
+A: Unfortunately, you can't.  See this apple support document which explains that since 10.6 they started measuring storage capacity according to the decimal GB (Gigabyte) rather than binary GiB (Gibibyte) values.  This matches up with how hardware manufacturers measure the capacity of storage devices.  OS X 10.5 and earlier, along with iPhones, iPads and iPods still use binary measurements.
+
+A: This was changed when OS X 10.6 was released. It is not user-configurable, unfortunately.
+Related xkcd (comic) strip:
+

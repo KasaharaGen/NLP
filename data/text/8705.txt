@@ -1,0 +1,20 @@
+Q: Unable to delete a file/folder I've got a pretty scary problem.
+Yesterday I wanted to empty the trash but somewhere in the process it just hung up.
+I rebooted a few times and tried it again and again but with no result.
+I then used the terminal to delete the files out of the .Trash folder manually and I could narrow down the problem to one particular file/folder that I can't delete. If I try rm -rfv <file/foldername> it just hangs up. Even if I try to get more infos about the file/folder with ls -l it will hang up.
+I also tried to repair the volume using disk utility with no success.
+
+A: Tricky indeed, things to try
+
+*
+
+*steps recommended by Apple (HT1526 via archive.org) but it seems you did most of them already
+
+*remove and recreate the whole trash folder: cd ~; rm -rf .Trash; mkdir .Trash; chmod 700 .Trash
+
+*delete by inode: cd .Trash; ls -i should give you the inode number; find . -inum INODE -exec rm {} \; deletes by inode number
+
+*(if you are an admin user) run the commands above with sudo rm
+
+*boot into Single User or Recovery Mode (HT201255) and run fsck/volume repair
+

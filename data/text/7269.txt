@@ -1,0 +1,40 @@
+Q: Where is nmblookup in Lion? I'm trying to call nmblookup in a Terminal on Lion, but it's not available. How can I lookup NMB hostnames from the Terminal now?
+
+A: Samba is no more part of OS X: Lion has an own implementation of the protocol. It was dropped because Samba moved to a stricter license (GPLv3) which gives Apple problems with the publication of the software on the App Store.
+Edit
+Here you can find some more information: http://www.appleinsider.com/articles/11/03/23/inside_mac_os_x_10_7_lion_server_apple_replaces_samba_for_windows_networking_services.html
+nmblookup was removed along many other command line tools:
+
+[...]reducing the number of commands and subcommands from over a
+  hundred to just 19[...]
+
+Thanks to cksum for the hint
+As Ingmar answers you can use smbutil lookup
+
+A: On OS X 10.7 (Lion):
+smbutil lookup <hostname>
+
+Example:
+$ smbutil lookup NAS1
+Got response from 10.21.0.133
+IP address of NAS1: 10.21.0.133
+
+
+A: run the following command: 
+which nmblookup
+
+It should output the following: 
+-bash-3.2$ which nmblookup
+/usr/bin/nmblookup
+
+This is on 10.6.8
+
+A: The nmblookup utility should be in /usr/bin.  Check your $PATH to see if it has been included by typing echo $PATH at the system prompt.  If it does exist in your path, then you can run the command which nmblookup, as suggested by @Lyken.  Otherwise, to find a command that is not located in your path, type the following commands at the system prompt.
+cd /
+find . -name "<name>" -print
+
+There is also the whereis command, however, this only checks the standard binary directories for the specified program.
+The alternative to nmblookup is nslookup.  This is also located under /usr/bin.
+Note that I am running Snow Leopard 10.6.8.
+
+A: If you must have nmblookup you may install samba3 via MacPorts and probably brew, I don't use brew so I'm not completely sure.

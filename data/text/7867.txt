@@ -1,0 +1,15 @@
+Q: The excel doesn't show chinese characters I download an excel file which contains chinese characters, but the excel on my macbookpro/osx/snow leopard is not able to show these chinese characters.
+However if I copy a chinese character from somewhere and paste it into a cell, it is able to show the chinese character.
+What might be going wrong?
+
+A: We recently had a similar issue with all Asian fonts in Excel for OSX (Chinese, Japanese, and Korean).  The solution that worked for us was to change the font to "Arial Unicode MS".  You can do it for just the cells in question or the entire sheet.
+Answer originally found from the question chain here:
+https://discussions.apple.com/thread/3456247?start=0&tstart=0
+
+A: What does appear when you open the file instead of chinese -- nothing or latin characters?  If the latter, then it is probably an encoding difference.
+What version of Excel are you using?
+Is the file available on the internet so one could have a look at it?
+You may also want to search/ask in the forums run by the app maker:
+http://answers.microsoft.com/en-us/mac/forum/macexcel
+
+A: Much simple way of viewing Chinese characters. I have a csv file that I am trying to open to view the characters. All I have to do is save it is a text file and then open it as a delimited file with the comma being the delimiter.

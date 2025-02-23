@@ -1,0 +1,25 @@
+Q: How do I share NTFS folder from OSX Lion to Window 7 I have an NTFS drive in my mac and use paragon to read and write from it. All good. I now want to share it with my windows 7 pc. I did this by using the "File Sharing" feature in System Preferences.
+I can access the shares on the HFS drive but not the ones on the NTFS drive. Any help would be awesome. Windows just tells me:
+"Windows cannot access \192.168.1.150\d"
+Details: 0x80070035 (path not found)
+
+A: This is the reason why you can't share your NTFS drive from OSX to Windows: In OSX Lion Apple replaced the open source samba with apples own version which unfortunately ignores anything that isn't hpfs. So it hasn't anything to do with your drivers or such.
+This topic was discussed at length at MacRumors. The proposed solution is to install XCode and MacPorts followed by
+
+
+*
+
+*sudo port install samba3
+
+*Navigate to /opt/local/etc/samba3 and modify smb.conf to your needs
+
+*Disable File Sharing in System Preferences
+
+*Launch smbd & nmbd daemons: sudo /opt/local/sbin/smbd -D && /opt/local/sbin/nmbd -D
+
+*To have smbd/nmbd launch automatically during boot you may also need to add an appropriate launchd file.
+
+
+A: I think you will find that you are unable to do this.  I mac can read from an NTFS drive, but it cannot write to it.  Thus, it cannot make changes to the permissions on the drive in order for for file sharing to work.
+Sorry about that.
+Does the drive need to be in NTFS?   Could it be formatted Fat32 instead?  Then you should be able to read and write to it from both the Mac and Windows machine.

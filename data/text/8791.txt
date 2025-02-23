@@ -1,0 +1,28 @@
+Q: Removing favorite styles does not work in Lion’s TextEdit In TextEdit on OS X 10.7 Lion, I want to remove some custom text styles I created previously (see screenshot). I have tried the “Remove from favorites” button in the “Show Styles > Favourite Styles” dialog, however this only removes them until TextEdit is reopened. How do I delete the styles permanently?
+
+
+A: It looks like you have run into a bug in Lion’s version of TextEdit. For reasons unknown, the designers of TextEdit opted for storing favorite styles in the global preferences file (~/Library/Preferences/.GlobalPreferences.plist) when they introduced the feature. They might have intended to create a user global stored styles system for NSText based rich text editors (not the only oddity of the system – this post has a good write-up of TextEdit’s style implementation). This has worked up to and including OS X 10.6 Snow Leopard.
+In OS X 10.7 Lion however, TextEdit has been sandboxed (sandboxing means, in layman’s terms: the operating system only grants an application discrete rights to access the file system, network, OS services etc. as defined by the app – so called entitlements. Anything a sandboxed application tries beyond that what is covered by its entitlements will be denied and logged by the sandbox daemon sandbox). A look at the log, where you will find an entry similar to this one
+02.11.11 14:44:54,659 sandboxd: ([73342]) TextEdit(73342) deny file-write-create /Users/<user>/Library/Preferences/.GlobalPreferences.plist.c2n4nCb
+
+each time you try to store a new favorite style shows that writing to .GlobalPreferences is not among TextEdit’s entitlements. The result: Lion’s TextEdit can neither store new favorite styles*, nor delete ones written ether by previous versions of TextEdit (your case).
+To get rid of the old styles, you need to remove the NSFavoriteStyles key from the global preferences list. If you have Xcode installed, invoking
+open ~/Library/Preferences/.GlobalPreferences.plist
+
+will open the file in Xcode’s plist Editor, where you can remove / modify it manually. If you don’t,
+defaults delete -g NSFavoriteStyles
+
+will get rid of all stored (“favorite”) styles.
+
+* it might look like it does, as these are stored in memory while TextEdit runs, and with Lion’s revamped process management, it is difficult to tell when textEdit really quits. Still, once it does, the favorite styles disappear.
+
+ADDENDUM: Reported as a bug to Apple (OpenRadar rdar://10385163).
+According to Apple Developer Relations, this bug has been quashed as of OS X 10.8
+
+A: @kopischke, nice explanation, I had been wondering about this issue for some time.
+A little workaround I found useful:
+It seems MacJournal uses the same favorite styles as TextEdit (that's one place where those global styles are actually useful). As MacJournal is not (yet) sandboxed, I could edit (add/delete) my favorite styles from there and they were saved correctly. And after that I could use them in TextEdit also.
+
+A: For all tweaking their Favorite Styles (aka NSFavoriteStyles) in following Mac OS's after Snow Leopard like Mountain Lion or Mavericks: The settings (NSFavoriteStyles) have been moved to: 
+~/Library/Preferences/com.apple.AppKit.TextFavorites.plist
+

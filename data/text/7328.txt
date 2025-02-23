@@ -1,0 +1,25 @@
+Q: How do I spin down a secondary disk when not mounted? I have Macbook Pro 13" (Early 2011). I replaced the SuperDrive with a SSD that now is my main disk. The existing HDD is used for Time Machine and nothing else. 
+I have 2 problems with the secondary disk:
+
+
+*
+
+*After a Time Machine backup, it stays awake way too long. I want it to go right back to sleep.
+
+*When I eject the disk, it keeps waking up after a while, and then keeps spinning forever.
+
+
+How can I fix these 2 issues?
+Edit
+I found a program called Cocktail that you can set the sleep timer with, unfortunately this is for both disks. How will this affect the SSD?
+
+A: Solution is a terminal command with which you can control the sleep timer.
+I set it to 1 minute.
+sudo pmset -a disksleep VALUE
+
+This still means the disk wakes up every hour for the time machine backup, and also every 15 minutes-ish for god knows what reason.
+But its much better than before, just annoying that it regularly wakes up for a minute, which is distracting.
+
+A: Time machine backs up at 1 hr intervals but the interval can only be changed if you download an app called "time machine editor" located here:
+http://timesoftware.free.fr/timemachineeditor/
+First you turn off time machine from the Apple Time Machine app, then down load time machine editor and turn on time machine from within the editor.  The editor also allows you to set your back up interval to whatever number of hours you want.  From then onwards, time machine editor controls Time Machine.   BUT..... this still didn't solve my Mac waking up every 15 seconds......I suspect the external hard drive is causing this.  

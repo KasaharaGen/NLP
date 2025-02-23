@@ -1,0 +1,9 @@
+Q: Applications stop responding when waking up from sleep Lately when I walk away from the computer and it goes into sleep mode, I come back and try to us the computer, all the applications are stuck "not responding".
+I can use the computer and browse around, but any application that was open before going to sleep is now stuck. If I try to open Chrome after, it takes forever and 300% CPU. I have to force quit all the apps. Then I reboot (which also takes a long time).
+I have 8GB of RAM on my macbook pro, i7. It only started to happen in the last couple of days. I am running Lion.
+UPDATE: I now suspect something about the process called "qtkitserver". It happened today without going to sleep mode. One thing in common also was that uTorrent was running. I read online that QTKitServer is responsible for video thumbnails I think - maybe connected to the fact that I'm downloading videos.
+
+A: You might try seeing if trashing any files that have windowserver in them from ~/Library/Preferences/ByHost/ and seeing if that helps to temporarily remedy the issue.
+I would expect this to get cleaned up in an official patch once it's certain these files are causing some of the sleep/wake sluggishness - but I've seen anecdotal evidence that this works for some.
+
+A: Have you tried repairing disk permissions and reinstalling Lion?

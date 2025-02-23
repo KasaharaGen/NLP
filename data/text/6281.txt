@@ -1,0 +1,5 @@
+Q: Do the new macbook pro models (2011) still have a 4 partition limit? If I remember correctly, the older Macbook pro models (pre 2011) had a 4 partition limit: so, if you tried to install multiple operating systems, you had this limit.
+Do the new models (2011) still have this limitation? I'm planning to install two Linuxes, A Windows and a Mac partitions to boot.
+
+A: This is not a limitation of the hardware. This is a limitation of the MBR partitioning scheme required to allow Windows to boot with other non-Windows operating systems. The MBR partitioning scheme only supports 4 primary partitions.
+The GUID partitioning scheme that Mac OS X uses by default is able to handle more that 4 partitions but not all operating systems support GPT.

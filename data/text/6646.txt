@@ -1,0 +1,25 @@
+Q: Changed Lion Server's host name and now unable to browse to that site (Without thinking much) I set up my Mac mini server and used an actual domain name I use as the computer's host name. 
+I've since changed the host name to something that isn't an actual website, but I'm unable to navigate to the original hostname/domain. I've tried changeip in the terminal as well, as well as flushed DNS in case it was cached there as well.
+How do I get Lion to reach out to the WWW to find this domain?
+
+A: I was able to fix this by removing this from /etc/named.conf
+I'm now able to navigate to example.com.
+zone "example.com" IN {
+    type master;
+    file "db.example.com";
+    allow-transfer {
+        none;
+    };
+    allow-update {
+        none;
+    };
+};
+
+
+A: In terminal enter:
+hostname -fs
+
+That will tell you the hostname of your machine. You may need to edit your hosts file:
+sudo nano /etc/hosts
+
+If your machine is listed in the there simply remove it and then control-w to save the change.

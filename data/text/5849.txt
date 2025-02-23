@@ -1,0 +1,8 @@
+Q: What redundant, on-site, low-downtime backup strategies exist for servers? I'm helping manage a OSX snow leopard server for a small company and one of the first things we did was setup time machine to get backups going.  However, having at least one more of the copy of the data seems prudent. It's starting to keep me up at night.
+The thing we like about time machine is that it's so hands free and doesn't interfere.  I realize that we could shut down the server every week and do a full clone of the drive but I'm hoping for something much simpler and without any downtime. 
+Can anyone recommend simple to manage and cost effective strategies for redundant backups of OSX systems? In our case since we are really bandwidth constrained (low throughput + high cost), online backup isn't a practical solution.  Was hoping for a solution to automatically get the data to another drive located somewhere else within the building.
+
+A: CrashPlan and TimeMachine have been very helpful for almost all the situations I've seen where one copy isn't enough.
+Crash Plan software is very good - watch your java CPU usage until you're comfortable things are running smoothly in incremental mode, but it's as good as any of the other software that's out these days. The software will run on both the sending and the receiving computer elsewhere on your campus/building.
+You can of course back up to your offsite storage but once you've got it to the other computer, tapes, off site drive cloning and other non-bandwidth consuming options can work well.
+Just watch Java CPU usage when you have large file changes - you can throttle things if needed, but it's pretty self-sufficient with the out of the box settings.

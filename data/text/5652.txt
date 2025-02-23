@@ -1,0 +1,8 @@
+Q: What does "mds: (Error) Volume: Could not find requested backup type:2 for volume " signify? In Console.App I can see various log messages.  I've diagnosed a Time Machine problem and searched for "backup".  In the resulting messages from backupd I also noticed the message
+27/07/11 16.01.59,562 mds: (Error) Volume: Could not find requested backup type:2 for volume
+showed up (which is most likely not Time Machine related but has the word backup in it).
+Any suggestions on what this is and how I can fix it?
+
+A: I have only seen that in relation to Time Machine timing out when preparing a network sparse disk image for backup.(and I've seen it on Snow Leopard and rarely on Lion - but lion is young)
+mds is very tightly intertwined in the time machine process, so it could just be time machine asking mds to do some work. 
+You'll have to disable time machine and watch for other network mounts failing - separate the two and you'll have narrowed it down to one bad actor.

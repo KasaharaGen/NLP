@@ -1,0 +1,35 @@
+Q: How can I reformat my hard-drive? I am in Disk Utility under the Erase Tab. The Format section is grayed out even though I have my main disk selected. The only buttons active are Erase Free Space, but I want to reformat the entire disk.
+
+A: You cannot reformat the startup drive from which you booted (and from which the system is currently running). You would need to boot from a different volume, whether a different partition, or from a DVD.
+
+A: If your goal is to completely wipe all data which is on your current boot disk, then follow the procedure below.  
+
+
+*
+
+*Insert the Mac OS X CD.
+
+*Restart the computer.
+
+*Immediately after the startup sound, press and hold the "C" key to start up from CD. 
+
+*When the Installer screen appears, do not click Continue. Instead, choose Installer > Open Disk Utilities. 
+
+*Select the hard drive to erase. 
+
+*Click the Erase tab. 
+
+*Select the volume format from the Volume Format pop-up menu. 
+
+*Click Options. 
+
+*Select the checkbox for "Zero out data". (other options also available)
+
+*Click OK. 
+
+*Click Erase. 
+
+
+The reason to perform this procedure as described above is it removes all traces of data by securely wiping the entire disk.  This means that even with recovery tools, somebody couldn't find what was on your disk.  It's the best way to wipe a disk if you're selling/disposing of your computer or hard drive.
+UPDATE: Some additional information regarding theories on multi-pass erases can be found here: http://www.howtogeek.com/115573/htg-explains-why-you-only-have-to-wipe-a-disk-once-to-erase-it/
+TLDR; Its generally unnecessary with modern disk drives

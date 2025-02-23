@@ -1,0 +1,80 @@
+Q: How to remove unused MacPorts packages? Whenever I install a program via MacPorts, it gets and installs lots of dependencies. When I uninstall said program, how do I make MacPorts recursively remove all unused dependencies with it?
+
+A: The command to remove a port and its dependents is:
+sudo port uninstall --follow-dependents foo
+
+However, if the port you are uninstalling has dependents it will not uninstall without the -f (force) flag.
+Of course you should start by reading over the MacPorts Guide specifically looking into the Uninstall guide section.
+
+A: There's also a script in MacPorts' contrib directory called port_cutleaves you can run to remove unneeded dependencies: http://trac.macports.org/browser/contrib/. It'll ask you for each to-be-uninstalled port and allows keeping some, should you want to.
+This script is available as a port itself.
+sudo port install port_cutleaves to install and then sudo port_cutleaves to run.
+
+A: I have written some scripts to automate port cleanup: https://github.com/vasi/macports-tools
+The 'macportsfoster' script will output a list of all ports not required by anything in the requested-list, ordered such that 'port deactivate $(macportsfoster)' will remove all of them in one shot.
+
+A: To avoid accidentally cutting leaves that might be things you requested you should install the port_cutleaves package then run sudo port_cutleaves
+https://guide.macports.org/#using.common-tasks.keeplean
+
+MacPorts 1.9.0 added the sqlite portdbformat and MacPorts 2.0.0 dropped the old flat format. The sqlite port DB format is the default for new installations; old installations that were upgraded to 1.9.x will continue to use the flat format1. You can convert a 1.9.x flat system to the sqlite format by upgrading to MacPorts 2.0 or by changing the portdbformat value in  /opt/local/etc/macports/macports.conf and then issuing a port command as root (e.g. sudo port installed).
+One of the features of the new format is that it keeps track of “requested” versus “unrequested” port installations. An unrequested port is one that was only installed because some other port depends on it. The leaves pseudo-portname expands to all the unrequested ports upon which no other installed port depends. You can use this to “clean up” unneeded ports even if you did not originally uninstall them with sudo port uninstall --follow-dependencies portname (which will do what you want, but only if you remember to use it every time you uninstall something).
+
+You should examine your existing leaves before uninstalling any of them.
+port echo leaves
+
+Some common leaves (automake, gperf, libtool, pkgconfig) are build-time dependencies of common ports, so you may want to “request” them (sudo port setrequested port1 port2 port3 …) to avoid uninstalling them just to have to reinstall them later.
+You can uninstall any remaining leaves quite easily:
+sudo port uninstall leaves
+
+
+Note: Before pruning your leaves, you may also want to uninstall old versions of ports that are no longer “active”. This may reveal a few more leaves (i.e. ports that are dependencies of ports that are installed, but inactive):
+sudo port uninstall inactive
+
+
+There are several sections in the MacPorts Guide that also describe the process of using leaves to uninstall unneeded ports.
+
+A: From the docs:
+
+The uninstall action will uninstall an
+  installed port.
+%% sudo port uninstall vile Note
+To also recursively uninstall the
+  ports that the given port depends on,
+  use the ‑‑follow‑dependencies flag.
+  This will not uninstall dependencies
+  that are marked as requested or that
+  have other dependents.
+To recursively uninstall all ports
+  that depend on the given port before
+  uninstalling the port itself, use the
+  ‑‑follow‑dependents flag.
+If a port is a dependency of another
+  installed port, uninstall will not
+  remove it unless you remove the
+  dependent port(s) first. To override
+  this behavior, use the -f (force)
+  switch. This will obviously break the
+  dependents. Don't force uninstall
+  ports unless you know what you are
+  doing.
+%% sudo port -f uninstall vile
+
+Note the major caveat in the last paragraph. Dependencies are exactly that—dependencies—and different apps can (will) require the same dependencies.
+
+A: I think the other answers, and the --follow-dependents flag, do not do what you want. If you install A, and A requires B, then thanks to the wonderful package management systems, B will be installed for you. You can uninstall B and the --follow-dependents flag will be aware of and remove A. But what if you uninstall A, which is more likely, because A is what you manually installed in the first place? In this case, B is left behind.
+If you use fink, the debfoster package is designed to clean out your system and remove unused dependencies.
+
+Debfoster will help you get rid of
+  packages (libraries for example) get
+  left behind on your system when the
+  program that required it was removed
+  or upgraded to a version that doesn't
+  have the dependency.
+
+While debfoster will not work for MacPorts, there appears to be ports of debfoster, for example, portsfoster, although it seems to be discontinued...
+Perhaps no solution currently exists for MacPorts.
+
+A: I had a lot of py36-* packages. As currently Python 3.6 is older, I uninstalled all these packages uninstalling its dependents as:
+sudo port uninstall --follow-dependents python36
+
+I hope it helps

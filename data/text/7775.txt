@@ -1,0 +1,48 @@
+Q: How can you email an address book group to another Mac user? If I have an OS X Address Book group of people I want to email periodic updates to, and I want to send that list to a second person who wants to email updates to this group as well, how can I do that?
+If I drag the group to a Mail.app message and send that to my friend, they can open it and import all those contacts into Mail.app... however, it does not import the group, just the people. Since we know some of the same people, my friend will have some of the people from this group already in her address book. If she does and she chooses to not update her cards with my cards, then they won't even show up under "Last Import".
+How can you email an address book group to another Mac user so that it shows as a group in their address book?
+
+A: Without some sort of mailing list software, I'm not sure you'll really get the functionality you want.
+As a workaround I would try setting up a custom tag, using an existing unused field, or something in Notes, and then creating a Smart Ground around that.
+For example, all the contacts you want in your group, put 'mailing list' into their notes. Then create a SmartGroup to show those contacts.
+Send the contacts to your friend, and they can import and merge the data. If they setup the same smart group, you should have the same contacts, with the same info, in that group.
+The other option would be to stop her importing anything, and just use a Shared Addressbook, and maintain everything there. Google, Exchange, LDAP etc will let you use a remote address book, that isn't automatically synced to your local address book, but all contacts are accessibly, so you can both use that. In the groups page of the address book you'll see your local contacts, and remote contacts as distinct lists. Then, you'll just know to send to everyone in that shared address book.
+
+A: I just discovered that this is possible in Mac OS X 10.7 Lion... and after testing further I discovered it's possible in Mac OS X 10.6.8 also. I'm not sure if this works in earlier versions, but here are the steps to make this happen:
+For the sender:
+
+
+*
+
+*Create a new Group in Address Book either using the File > New Group menu item, or by clicking the + button on the Groups panel:
+
+
+
+*Click on All Contacts to view all your contacts. Find the contacts you want to add to the list and drag and drop them from the list of contacts on the right to the new list you created on the left.
+
+
+
+*Once you have added all the contacts to your new group you need to send the list to your friend. You can create a new email message and drag the name of the group from the list in Address Book and drop it on a the email message to send the list. Or, you can select the group and use the File > Export > Export vCard... menu item to export the list, and attach the resulting file to an email.
+For the recipient:
+The key to making this work is to create a new group first and then dropping the vCard on that group.
+
+
+*
+
+*Create a new group in the OS X Address book, just like in step #1 for the sender, using either using the File > New Group menu item, or by clicking the + button on the Groups panel:
+
+
+
+*Drag and drop the vCard file sent to you on the new group which you created. Make sure the new list "lights up" as shown below:
+
+
+
+*You will be asked if you want to import the new cards. **If you are told there are duplicates, click "Review Duplicates". If you are not told there are duplicates, click "Import" and skip the next step.
+
+
+*If you have duplicates to review, Select the "Keep Both" option, and then click "Apply to All" (if that option appears). This will create duplicates in your address book, meaning your original contacts will not be altered and you can delete your friend's copies later if you want to. The new group you created will be an easy way to find the new duplicates should you want to delete them later.
+
+
+*You now have a copy of your friends list added to your address book, without altering any of your cards. You can compose emails to this entire group (remember to use BCC!) if you want.
+If you want to delete the list (and the duplicates) later, you can select the group on the left and press the delete key on your keyboard. You are then presented with the option to delete the actual cards as well as the group, which will remove any duplicates you might have created in the previous step:
+

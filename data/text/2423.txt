@@ -1,0 +1,13 @@
+Q: How do I make an AppleScript file into a Mac App? I have an Applescript that simply opens a Dialog Box, asks for a user input and runs a Terminal Command and spits out the answer. It works great in AppleScript Editor yet I am trying to work out how I could package this Script File along with an icon to make a Mac App for my personal use. Thoughts.
+
+A: In El Capitan at least you can use osacompile, e.g:
+osacompile -o MyScript.app MyScript.scpt
+
+
+A: In Script Editor, select File > Save As and set File Format to Application. (In Mojave and later, the Save As choice in the File menu is not visible unless you hold down the Option key.)
+Open Bundle Contents drawer and see the applet.icns file, copy your icon to that.
+See "Saving a script as an application" in Script Editor help.
+
+A: to export an an application, do File -> Export and set the drop-down list to "Application"
+
+A: Open the information window for your Application cmd+i and drag your icon file (icns format) onto the top left default icon.

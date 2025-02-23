@@ -1,0 +1,54 @@
+Q: Application level volume control in OS X? I recently switched from PC to Mac and one thing I miss is Windows' application-level volume control (i.e. mute Firefox, turn up iTunes, turn down Skype etc). How can I achieve the same on a Mac? Or better yet, I want volume settings based on location (using HTTP location API or WiFi network name) and time of day or day of week etc.
+
+A: If you have Xcode installed, you can use BackgroundMusic. Xcode is required to build the binaries.
+
+A: A free and open-source solution is BackgroundMusic.
+A nicer and paid solution is Rogue Amoeba's SoundSource
+
+A: Just found http://volumemixer-app.com/ it's very similar to the one found on windows.
+
+A: Here's a possible workaround, for a subset of use cases, that doesn't require any new software.
+We use Slack at work, and I like to play iTunes kinda loud (in my headphones).  Sometimes I was missing Slack audible "bings".
+Just fyi that you can set iTunes volume lower in the iTunes UI, and then set the overall system volume in upper right system menu reasonably high, so that relatively the non-iTunes notifications will be noticeable.
+Basically:
+
+
+*
+
+*iTunes volume can bet set independently of other sounds, WITHIN the iTunes UI
+
+*And then the overall volume in the upper right controls the
+combination of everything.
+
+
+I suspect this works in other apps that have an independent volume control.
+Note: I see some possibly similar answers with negative votes, but I've taken the time to explain how it works, and clearly disclosed that it's a subset/workaround to what was asked, so please don't ding me for this answer.
+This is one of those things that's "obvious" to gurus, but not obvious to the rest of the folks using Mac.
+
+A: Rogue Amoeba's SoundSource utility does exactly this, and more.
+https://rogueamoeba.com/soundsource/
+
+
+A: I just figured out how to do this on macOS Sierra. I was playing Roblox, and I wanted to watch a YouTube video in the background, but mute Roblox. So I tried using Siri and just saying "Mute Roblox" did the trick. I honestly didn't believe that it would work, but there you are.
+
+A: Detour is no longer under development, and doesn't work in MacOSX 10.5+
+Hear is a rather expensive utility ($49.95) and has a number of other audio "Pro" features.
+Jack is a low-latency audio server written originally for GNU/Linux and I believe can change volume on a per-application basis. And it's free.
+
+A: SoundBunny ($9.99) also provides this function. Supports 10.6, 10.7 and 10.8
+SoundBunny by Prosoft Engineering
+Update: As pointed out below by Steve Moser SoundBunny cannot change the volume of Sandboxed applications.
+
+A: I use Butler & USB Overdrive to setup key commands and map media keys (play/pause/skip back+fwd/volume/mute) to control iTunes & Spotify, as well as other system wide controls.  Regular in-app key commands can be setup in the Mac OS System Prefs -> Keyboard -> Application Shortcuts.
+While these will give you more control via key commands when you're working in the app, they won't work if the specified app is in the background. So if you want to change the volume of iTunes or Spotify, skip tracks, or pause while you are working in another app, these 2 apps will allow you to do that. Both apps provide built-in basic iTunes controls, but I had to use AppleScript to control Spotify.
+Here are some Applescript examples that can be used for these types of functions in both of these apps:  Alvin Alexander: iTunes AppleScript examples (command examples).
+
+A: I also found Sound Control by Static Z Software. I've personally not used it so YMMV.
+
+A: On mac, with i tunes the command is cmd and the UP arrow, this also works for divx, vlc ext, with the internet, just use the volume controls F11 / F12. 
+No need to spend monies on silly apps!
+
+A: Control+Command+Up/Down Arrows works for me Mac OS 10.9.5
+
+A: While focused on the app.. OS X Mavericks: 
+Command+option+up/down arrows

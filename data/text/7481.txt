@@ -1,0 +1,22 @@
+Q: Launch terminal in new window by default Is it possible to set up Terminal to launch a new window by default? I recently came from running Ubuntu and I normally open hundreds of terminals a day. It's a pain to have to always right-click on the shortcut and select "New Window". If I could use Spotlight and have it open a new window instead of giving focus to the existing window, it would speed things up a lot.
+
+A: Not precisely the answer you asked for, but when Terminal is open, hitting Command-N will open a new window. Also, the first set of Terminal preferences (Settings tab, the "On startup, open:" buttons might be useful to play with.
+
+A: You can create a AppleScrip with this command:  
+open -n /Applications/Utilities/Terminal.app
+
+And add a global shortcut to call this script ;)
+
+A: If you want to have a means to quickly open a new Terminal window whether or not Terminal is already open, and whether or not it is the active application, you could use an AppleScript "applet" to do so. By placing the applet in the Dock, you can click on it to open a new Terminal window.
+This script will create a new Terminal window:
+tell application "Terminal"
+    activate
+    do script
+end tell
+
+To create an applet containing this script from the command line:
+osacompile -o "New Terminal Window.app" -e 'tell application "Terminal"' -e 'activate' -e 'do script' -e 'end'
+
+To reveal it in Finder so you can drag it to the Dock:
+open -R "New Terminal Window.app"
+

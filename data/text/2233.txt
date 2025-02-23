@@ -1,0 +1,43 @@
+Q: Applications for finding iPhone 4 locally? Like many people, I'm having trouble finding an iPhone 4 for purchase in my area. Right now, I'm using an advanced Twitter search to monitor tweets in my area, looking for people celebrating the purchases of their new iPhones, and I'm calling local personal electronics stores after they receive their shipments.
+Are there any applications (web or Mac) that could assist me in my search? Feel free to include applications that weren't designed for this purpose. I'm looking for an iPhone 4, but software that helps with this search could help others looking for hardware at other times also.
+
+A: I ran a shell script like this when the iPad 2 came out to track local availability at Target stores. The regular expressions might need to be changed if the site's formatting has changed since then.
+#!/bin/sh
+echo "iPad 2 Wi-Fi Black 16GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1830&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 Wi-Fi Black 32GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1831&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 Wi-Fi Black 64GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1832&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 ATT Black 16GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1833&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 ATT Black 32GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1834&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 ATT Black 64GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1835&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 VZN Black 16GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1836&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 VZN Black 32GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1837&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 VZN Black 64GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1838&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 Wi-Fi White 16GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1839&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 Wi-Fi White 32GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1840&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 Wi-Fi White 64GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1841&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 ATT White 16GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1842&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 ATT White 32GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1843&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 ATT White 64GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1844&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 VZN White 16GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1845&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 VZN White 32GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1846&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+echo "iPad 2 VZN White 64GB: "; curl -s --data "_dyncharset=ISO-8859-1&asin=&dpci=057-10-1847&zipcode=95014&city=&state=" http://sites.target.com/site/en/spot/mobile_fiats_results.jsp?_DARGS=/site/en/spot/mobile_fiats.jsp | grep -A 2 strong | sed -e 's/<p><strong>//' -e 's/<\/strong><br\/>//' -e 's/<br \/>//' -e 's/<\/p>//' -e 's/--//' -e 's/^[ \t]*//;s/[ \t]*$//'
+echo;
+
+(substitute your own zip code for Apple HQ's)

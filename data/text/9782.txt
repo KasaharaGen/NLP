@@ -1,0 +1,6 @@
+Q: User required in Profile Manager Exchange settings I'm working with Profile Manager in Lion Server 10.7.2
+I want the user to be prompted during the installation, not set the value here. To have the user prompted both fields need to be left blank. The User field, however, requires a value.  Is there a workaround? 
+Also we are using Google Exchange as our exchange server.
+
+A: You can use %short_name% and %long_name% to autofill some fields (such as email address, username, full name) in Profile Manager, and they will pull that information from your user directory.  
+If you're using Google Apps via Exchange ActiveSync, then that will only work if your on demand user accounts have the same short name as your Google Apps user accounts, or if you are syncing the two together.  

@@ -1,0 +1,41 @@
+Q: Is it possible to connect a single Dropbox Mac app with two or more Dropbox accounts? Is it possible to connect a single Dropbox Mac app with two or more Dropbox accounts?
+Assume I have corporate and private account. How can I use a single dropbox app for them?
+
+A: You can't do it out of one copy of the app, but it seems that you can duplicate the app. You can see (somewhat complicated) instructions here:
+http://maketecheasier.com/run-multiple-dropbox-accounts-in-mac-and-linux/2010/05/24
+I haven't done this personally, but this looks like it should work.
+
+A: I do this with one copy of Dropbox. For my secondary account, I run an automator script on login that sets:
+HOME=$HOME/Desktop/SECONDARY-DROPBOX /Applications/Dropbox.app/Contents/MacOS/Dropbox &
+I end up with two dropbox icons in the menu bar. I configure one to be alternate black/white icon so I can distinguish visibly between the two.
+
+A: My (less complicated?) fix to this was...
+I have two Mac accounts:
+Robert, Corp a/c
+Bob, Personal a/c
+Dropbox installed on both Accounts synching to 
+/Volumes/Working/Websync/Robert/Dropbox
+/Volumes/Working/Websync/Bob/Dropbox
+
+From a Terminal window in the Bob account
+bob$>su Robert -c /Applications/Dropbox.app/Contents/MacOS/Dropbox
+
+You'll be prompted for password for Robert
+Dropbox will run something like
+/Applications/Dropbox.app/Contents/Resources/lib/python27.zip
+/Applications/Dropbox.app/Contents/Resources/lib/python2.7
+/Applications/Dropbox.app/Contents/Resources/lib/python2.7/plat-darwin
+/Applications/Dropbox.app/Contents/Resources/lib/python2.7/plat-mac
+/Applications/Dropbox.app/Contents/Resources/lib/python2.7/plat-mac/lib-scriptpackages
+/Applications/Dropbox.app/Contents/Resources/lib/python2.7/lib-tk
+/Applications/Dropbox.app/Contents/Resources/lib/python2.7/lib-old
+/Applications/Dropbox.app/Contents/Resources/lib/python2.7/lib-dynload
+
+Open a new terminal shell 'Cmd-T' and then run Dropbox for Bob
+bob$> /Applications/Dropbox.app/Contents/MacOS/Dropbox
+
+I'm running Dropbox v2.8.2 on Mountain Lion
+Thanks to Mark for his answer to this Can I start an application as another user without actually switching users?
+Image: Two Dropbox Accounts running
+
+A: You can simply do that using multiple OS X accounts, running the same copy of Dropbox in each of them.

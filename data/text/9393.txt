@@ -1,0 +1,42 @@
+Q: Resetting user permissions to their default mode I'm on Mac OS X 10.7.2 with a serious permissions issue that affects most items in my Documents folder, which now require my password for modifications like renaming. The concerned files and folders also seem hidden from Spotlight and therefore do not show up in searches. Both issues are seriously problematic for everyday use.
+This is what ls -l gives me for folders:
+drwxr-xr-x  109 fr  staff  3706 Nov 22 14:43 Notes
+drwxr-xr-x+  16 fr  staff   544 Nov 22 14:51 Bibliography
+
+While the Notes folder is showing fine in searches and allows for password-free renaming, the Bibliography folder does not. My understanding is that the + sign indicates what is wrong here.
+Edit: tentative solution below, by removing all ACLs.
+
+A: Here's the tentative solution I have found to my own problem:
+
+
+*
+
+*print initial state: ls -l
+
+*remove ACL permissions: chmod -R -N /Users/fr/
+
+*equalize all permissions: chmod -R 755 /Users/fr/
+
+*rebuild Spotlight index: sudo mdutil -E /
+
+*print new state: ls -l
+The -N option, which is well hidden in the man chmod documentation but mentioned here, removes the + sign that indicate ACLs, just like @ indicates a hidden file extension or a custom icon (as far as I can tell). Using Repair Utilities on ACLs should have done that but did not.
+By using chmod with the 755 mode, I lost all custom permissions in the process, but did not need any. Rebuilding the Spotlight index then guarantees that all files get properly indexed. That solution worked, through without explaining how the initial problem emerged.
+
+A: If I understand your question correctly, you're attempting to reset the permissions on a user's home directory. This is easily accomplished by resetting ACLs on the desired home directly by using the Reset Password Utility in the Recovery Partition:
+
+
+*
+
+*Restart your computer from the recovery partition (if running Lion) or the gray disk (if not running Lion). 
+
+*Open Disk Utility and run a permissions repair on your startup volume. After this is complete, close Disk Utility. We're doing this just for good measure.
+
+*Open Terminal from the Utilities menu. Type in resetpassword and select your user account (NOT System Administrator/root) from the drop down menu. 
+
+*Click the Reset button at the bottom of the window in the Reset home folder permissions and ACLs section. 
+
+*Quit the Password Utility and go back to the main recovery screen. 
+
+*On your keyboard, hit ⌘ + Q and restart your computer. It's very important that you don't hold down the power button to exit the recovery session, or the ACL reset won't occur.
+Good luck!

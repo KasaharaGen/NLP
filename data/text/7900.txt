@@ -1,0 +1,21 @@
+Q: Calendar backup while away from time machine I am occasionally away from my time machine disk. During these periods I would still like to backup my calendar in case the hard disk (MacBook's) crashes.
+Which file or directory should I copy to backup iCal's entries?
+Edit
+I am looking for a maintenance-free backup method (i.e. one that does not require me to think about it until something bad happens).
+Might it be possible to sync iCal with a cloud-based (perhaps Google's) calendar? Is it possible afterwards to sync back into iCal?
+
+A: If you are running Lion, iCloud, launching in October 2011, will soon provide cloud-based back up for calendar information.
+To manually backup iCal entries, Apple recommends that you either
+
+
+*
+
+*Save an iCal Archive on your hard drive (File » Export » iCal Archive...)
+
+*or
+Export an individual calendar to a file on your hard drive (use this method for any CalDAV calendars) (File » Export » Export...)
+
+
+To protect against hard drive failure, copy the resulting files onto external media.
+If you wanted to sidestep the Apple recommended process, and simply back up a single folder, it appears your calendar data files are stored in ~/Library/Calendars
+Additionally, Google provides instructions for how to sync iCal with Google Calendar.

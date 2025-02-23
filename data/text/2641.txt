@@ -1,0 +1,16 @@
+Q: Paste clipboard data as plain text Service? Is there a Mac OS X service that takes clipboard data and pastes it as plain text? Or an easy way to create one?
+
+A: A couple options, gleefully swiped from Mac OS X Hints:
+Applescript, converting pasteboard contents to plain text and pasting: 
+tell application "Finder" to set frontApp to (name of 1st process whose frontmost = true)
+tell application frontApp
+    activate
+    set clip to «class ktxt» of ((the clipboard as text) as record)
+    tell application "System Events" to keystroke "v" using {command down}
+end tell
+
+Shell script, save it in your Scripts folder and chmod 755
+#!/bin/sh
+pbpaste | pbcopy
+osascript -e 'tell application "System Events" to keystroke "v" using {command down}'
+

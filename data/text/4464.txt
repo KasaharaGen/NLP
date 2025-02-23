@@ -1,0 +1,24 @@
+Q: Can I extract application data from an iOS device? I have a third party application on my iPad (Stanza) which has some data that I'm interested in doing some analysis of on my Mac (read statuses). Is there any way to get the data that the application has stored?
+
+A: There is a tool called iPhone Backup Extractor.
+It lets you extract app data from an iOS backup, which you create with iTunes.
+I posted a detailed tutorial on how to use it on my blog: http://adriansieber.com/how-to-extract-data-from-ios-apps-on-mac-os/
+
+A: There is no need to jailbreak.
+An application like JuicePhone will do the trick, if you have a MacOS X computer. Just make sure you turn off encryption for the backup.
+
+A: I use PhoneView to access (read and write) that data directly on the iPhone. It does not require you to jailbreak, but if you do, you can have more access. It doesn't care if your backups are encrypted as it just asks you for the password before reading the files on the iPhone. I am a very happy customer and have gotten support from eCamm even when I am running beta Mac OS versions with beta versions of Xcode and beta versions of iOS. It is rock solid on the shipping versions of the software and won't hold you back if you like to live on the edge or develop for iOS.
+
+A: In my opinion the best answer is the FREE answer.. which is use ifuse. The details in my answer to an iPhone question. The process/experience of downloading and using iExplorer made me mad enough to find the right answer.
+
+A: Depending what data you want to access, on macOS Catalina (10.15.5) I was able to just connect my iPhone 11 running iOS 14 to my computer with the lightning cable, and then access my phone through Finder.
+Scrolling to the far right of the options, there is one called 'Files', which shows me a list of the apps on my phone, and by expanding them, the files accessible within each app (see below):
+
+I'm not sure if this is the same level of access to files the other apps mentioned above can give you, but this was sufficient for my needs, and much cheaper/easier than using a 3rd party app.
+
+A: Jailbreak you iPad if you haven't, and install OpenSSH.  Then just scp the stuff you want from the iPad to your computer.  Most application-related data are in /var/mobile.
+
+A: I use PhoneDisk. It sits on your menubar, and auto-detects when you connect your iPhone via USB cable. 
+It can read files directly from your iPhone without having to jailbreak, so it doesn't make any difference if your backup is encrypted or not. To read files from a specific app, select "Change Connection Root" and then the app you want. It will mount the app dir as a disk that you can navigate through Finder.
+
+A: I'm amazed at how many options there are here. I don't use any of 'em, including the one I'm suggesting: Macroplant's iPhoneExplorer. But I doubt they can get much better. This will work both on jailbroken phone or not accordingly, over USB. And it's free. Obviously it's not as feature-full as PhoneDisk, which is simply awesome: they're from the same Macroplant. JuicePhone do look cool for its different purpose (exploring the backups).

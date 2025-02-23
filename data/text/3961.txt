@@ -1,0 +1,90 @@
+Q: Easy way to take a screen shot that's NOT color corrected? My displays are color calibrated every other month or so with a hardware calibration tool. When I take a screen shot of a profile aware app, such as photoshop or lightroom or some web browsers, I don't want the screen shot to be adjusted for my monitor. Is there an easy way to do this besides my current approach:
+
+
+*
+
+*goto system preferences, display, color calibration
+
+*change the profile to a generic monitor one
+
+*start the color aware application (most seem to require a fresh startup to deal with the change)
+
+*take the screen shot
+
+*change my profile back
+
+*restart the application
+
+
+To address @barryj's assertion that color profile only matters if I'm using a camera to take a picture of the display. Here are two screen shots of the same image, one with the default color profile applied to the monitor, and one with my custom profile applied, just to show you how much of a difference it really makes.
+
+
+A: The fact that the monitor's profile gets embedded is the only way the OS can preserve the appearance of colors in your photos. If you open a photo in Photoshop, take a screen capture (let's say for now via the built-in OS tool), then open this screen shot in Photoshop (and preserve the profile in the file) and compare both side to side, then you will see that the colors are visually similar even though the numbers for each pixel is different from one to the other.
+This is all normal behavior. The colors you see on your screen on a calibrated and profiled monitor is actually raw values sent by the OS to the graphics card which then "assigns" the monitor profile to the values in real time so that the colors look like they should on the monitor. This is the simple explanation of course, there is much more going on in the background.
+In the color management world there is only 2 options when you wish to play around with colors and profiles: assign or convert colors. When switching from one color space to another (i.e. from RGB to CMYK), your only option is convert since the laws of physics apply here. Within the same color space, if you assign profiles (or remove them, i.e. assigning nothing) you preserve the numbers while sacrificing (to various degrees) the appearance of the colors. When converting, you preserve the appearance of the colors while sacrificing the numbers in the file.
+In your case, you need to convert the screen shot to a device-independent profile like Adobe RGB, or a device-dependent but easy to play with like sRGB. You can do that in Photoshop or Preview, as long as you do convert and not assign. Removing the profile is not really helping, since the numbers will have no meaning...
+
+A: My Mac's screenshot colors were off and I was terribly confused. I found this question and started investigating.
+Summary
+Use the display color profile sRGB IEC61966-2.1 when you want to take screenshots.
+How I debugged it
+I created an image using GIMP that had a section of yellow RGB(255, 255, 0) and inspected it with the "Digital Color Meter" MacOS app. I thought the Chrome browser's color picker was acting kind of strange so avoided it.
+
+Notice 3 things:
+
+*
+
+*On the left, the color information of the file is not present.
+
+*Top right, you see the color meter show RGB(255, 255, 0). This is the color value that will end up in your screenshot file.
+
+*On the bottom, the monitor profile is set to sRGB IEC61966-2.1. This was the only profile that I found gave me accurate screenshots.
+
+Compare that with the readings when I activate other color profiles. The following Color LCD profile shows RGB(255, 253, 84) on the color meter. This was the default color profile, and although it might not be obvious on your screen, on mine it made the strong yellows look whiter, more like a banana. The worst part was that I just couldn't figure out which colors were the underlying real colors by analyzing screenshots.
+
+The Generic RGB profile shows RGB(255, 255, 11) on the color meter.
+
+Answering the original question
+I believe the answer is no, though you could develop a method. You can't have a color profile and take non-color-corrected screenshots. Looking at the MacOS APIs for capturing the screen:
+
+*
+
+*https://developer.apple.com/documentation/coregraphics/1454852-cgwindowlistcreateimage
+
+*https://developer.apple.com/documentation/avfoundation/avcapturescreeninput
+There doesn't seem to be a parameter that would allow ignoring the display color correction. What you could do is implement a tool that:
+
+*
+
+*Sets the color profile to sRGB IEC61966-2.1 by using CMSetSystemProfile
+
+*Takes a screenshot
+
+*Then sets the profile back to whatever color profile was active earlier.
+
+Also, there might be other APIs I'm unaware of.
+Here's my original test png:
+
+Image embedded color profiles complicate things
+If I take a screenshot when the Color LCD profile is active, the Color LCD profile is saved in the screenshot metadata. So even when I open that screenshot later when the sRGB IEC61966-2.1 profile is active, it's only slightly color-distorted to RGB(254, 255, 0), but some apps disregard the attached color profile, like the website photopea.com which will cause dramatically incorrect colors RGB(255, 254, 84).
+This investigation was really confusing. Hopefully folks that read this get slightly less confused.
+
+
+A: MacOS screenshots embedded color profile, but you can change this in some apps as Photoshop or Preview.
+So if you take a screenshot of the same image in 3 different calibrated monitors , they will look different when put together in same screen the 3 resulted images, BUT if you open them together in same Photoshop file, you will see the colors are exactly the same, as they would share same color profile.
+So any screenshot would be always somehow "color corrected" , if don't, any screenshot you would take in your i.e. monitor A) would be different of the original image as your are watching it color corrected already.
+The only way to have a standard screenshot all over your monitors, is having the same standard profile in every monitor, the problem is no monitor in the world shows same colors as default, so software must trick/correct this.
+
+A: This problem is made worse if you have a 2021 MacBook running macOS Monterey.
+An easy solution would be to change your screen's color profile to sRGB, which I tried. The problem: Apple decided that using this color profile, your screen should be super dim and you shouldn't be able to adjust the brightness anymore.
+Anyway, after trying a few things, I changed the preset back to Apple XDR Display (P3-1600 nits) and set up an Automator Folder Action to Apply ColorSync Profile to all my screenshots.
+
+For my uses (taking screenshots of websites) - this solved the problem. Hopefully Apple will bring back the ability to use other color profiles.
+
+A: MacOS comes with a bunch of scripts for manipulating image color spaces - Embedding profiles, matching an image to a profile, or 'proofing' an image through one space into another.
+It's likely that either Matching an image to a given profile, or proofing it from one assumed profile to another, will do what you want.
+The scripts are found in /Library/Scripts/ColorSync, and if you use the Scripts menulet, you can access them from the menu bar.
+They are of course a front-end for the sips command line tool.
+
+A: Try opening up the screenshot in "Preview" and then under the "Tools" menu select "Assign Profile..." and change the profile of the image that way.
+If that works, you should be able to automate the process with either a folder action and AppleScript to Automator.

@@ -1,0 +1,19 @@
+Q: Why can't I  update to iOS 5 my iPod Touch 4th gen? I am trying to upgrade my 4th gen iPod touch to iOS 5.
+First I downloaded the IPSW file from iTunes.
+When I press shift + "Restore" button, I get the following error:
+
+The iPod cannot be restored at this time because the iPod software update server could not be contacted or is temporarily unavailable.
+
+What can I do to prevent that? I have looked into the iPod update logs and see that I am getting error 1602 but don't know how to proceed.
+
+A: In general, you need to be connected to the internet to validate the install iOS packages with Apple's servers at the time of the restore. It is part of the install process that confirms to apple that your software has installed correctly and it generates the user license rather than asking you to enter a serial number for you allowing you to use the software.
+Specifically for Error 1062 you need to remove iTunes and Apple Mobile device support from you applications. Then install the latest version of the software on your PC/Mac.
+
+A: In case you have Tiny Umbrella installed, make sure to untick "Set Hosts to Cydia on Exit" under the Advanced tab! If you did use it and don't have it anymore, open /etc/hosts and add a # in front of
+74.208.10.249  gs.apple.com
+
+so it reads
+#74.208.10.249  gs.apple.com
+
+
+A: The error message you see seems to be different from error 1602. To recover from error 1602, please have a look at this Apple Support document, especially this section, and follow the proposed steps.

@@ -1,0 +1,50 @@
+Q: OS X Package Management I'd like to know if anyone out there has done a comprehensive comparison of the various package manager solutions available for OS X.
+More specifically, I'm looking for:
+
+*
+
+*A list of all the major package managers (ie. MacPorts, Fink, etc)
+
+*A pros and cons list or comparison matrix (either self-written or a web link to one)
+
+*Information about any caveats for particular systems
+
+*Information about possible incompatibilities or reasons for not having multiple package managers installed simultaneously
+
+*Subjective reasons why you think one is better than another
+
+Update Nov 29, 2010
+Chiggsy gave a great answer but I would really love some more input on this.  I've been using MacPorts recently and it seems to be pretty well done.  I like that its command line options work in a similar fashion to subversion and that it has an interactive mode.
+
+A: Homebrew
+
+
+*
+
+*Easy to use
+
+*Always up-to-date
+
+*Easy to extend (Github-based)
+
+
+A: Good question:  
+For me, macports is the one.  
+Why?  I'll bypass a lot of stuff and cut right to the chase:
+The party is over with regard to malware, trojans and the like.  Paging through the last security update, there were some vulns that were from the summer although the cure only came last week.  Redownload the developer tools, recompile your macports install, and you have a functioning toolchain that is not dependent on Cupertino, since the Dev Tools from your install disk will serve.  Who uses an old version of Openssh?  Now it does take some care and feeding, like running port selfupdate every day, and the big tip is to check 
+port variants 
+
+so if you have a python dependency, you can run 
+port install python +no_tkinter 
+
+and avoid the agonizingly long Tk install, which would be most unwelcome on a Quartz architecture anyway.
+With this, you can freely run software update and not have your stuff break, since it does not depend on anything but the compiler from apple.  I've used it for a long time, and although I tried some others, namely Homebrew, I think that depending on apples versions means inheriting their security flaws.  Remember that PDF hole on the iphone?  I deploy on Linux anyway, so for me, macports tree is the 'office' and my budding MacOS dev career is 'home'
+Just an opinion, but the separate tree for all the code is a big plus for me.
+
+A: The dark horse package manager for OS X is of course:
+
+
+*
+
+*darwinup
+It's seldom used and sparsely documented, but it does ship from Apple and managed packages on OS X/Darwin.

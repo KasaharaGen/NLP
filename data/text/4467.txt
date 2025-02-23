@@ -1,0 +1,19 @@
+Q: Time Capsule Setup Woes I received a 2TB Time Capsule today, and replaced an Airport Extreme. However, after replicating the settings from the Airport Extreme on the Time Capsule, there was no internet connection (amber light). I tried:
+
+
+*
+
+*turning DHCP on and off
+
+*manually applying the IP Address and DNS settings that the old router had
+
+*turning NAT on and off
+
+*playing with everything, pretty much
+
+
+but to no avail. If I set the IP address of the Time Capsule manually (green light), my computer still could not connect to the Internet. My computer is hooked up to the Time Capsule via Ethernet).
+Connecting the Airport Extreme back in allows everything to work fine. It receives an IP Address with no problems when configured via DHCP and public IP sharing. These same settings prevent the Time Capsule from working.
+
+A: If the old Airport Express was connected directly to your cable/DSL modem and the new Time Capsule replaced it (again, directly connected), you may need to reboot the modem (generally by unplugging it and plugging it back in, maybe holding down the reset button) to reset its DHCP. You may also need to do this in a particular order, generally 1) shutdown Time Capsule, 2) reboot modem, and 3) restart Time Capsule.
+Reason: some broadband modems seem to only assign one internal IP at a time and only check for a device on startup.

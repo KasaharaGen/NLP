@@ -1,0 +1,71 @@
+Q: How can I write-protect (make read-only) a USB drive in OS X? I have a USB drive with some archive data on it that I'd like to access from a Mac running Snow Leopard. However, I want to ensure that the data on the drive is preserved and no modifications are made to the drive. The drive is FAT32 formatted and does not have a write-protect switch on it. How can I make the drive read-only or otherwise write-protect it by the OS so that I can ensure nothing is modified on the drive?
+
+A: Seems like editing the fstab file would be the best solution as you don't need to unmount/manually mount the volume each time. It sounds very low level solution, so not even the system/root/spotlight would modify the drive.
+http://www.macissues.com/2014/09/02/how-to-make-secondary-boot-partitions-read-only-in-os-x/
+
+
+  
+*
+  
+*Open Disk Utility in the Applications > Utilities folder, and then select the volume in the device list on the left-hand side of the window. Now press Command-i to get information on the volume. In the window that pops up, locate the “Universal Unique Identifier” (UUID) string, which is a series of letters and numbers separated by dashes. Select the entire UUID and press Command-c to copy it.
+  
+*Open the Terminal utility 
+  
+*Run the following command:
+sudo pico /etc/fstab
+  
+*Add the following line to the fstab file, and change the
+  UUID from all zeros as shown here, to the value of the copied UUID
+  from Disk Utility:
+UUID=00000000-0000-0000-0000-000000000000 none hfs ro
+  
+*Press Control-o to write the file changes, and then Control-x
+  to exit the editor.
+
+
+A: Option 1: Mount drive read-only
+You can mount the USB drive read-only by using Diskutil.
+
+
+*
+
+*First, insert/mount the drive once, run diskutil list from Terminal.app and take note of the device representing the drive (should be something like /dev/diskN with N being any number).
+
+*Eject the disk by running diskutil unmountDisk /dev/diskN replacing N by the number noted in the first step
+
+*Mount the disk read-only by running diskutil mountDisk readOnly /dev/diskN
+This of course requires that you actively run these commands every time you want to use the archive stick. For an automated solution, have a look at MarcoPolo or write a launchd command (see e.g. here for inspiration).
+Option 2: Use access control on the drive
+Does the drive really need to be formatted in FAT32 or do you only access it from a Mac OSX system anyway? In the later case, you can save the drive content on another drive, reformat it as a Mac OSX drive, move/copy the content back and take away any write rights from anybody.
+
+A: If you leave the USB drive formatted as FAT32, you can't. I would propose a different solution: use Disk Utility to create an ISO9660 ("DVD/CD Master") disk image with your data and write it to the USB drive. Unfortunately, Disk Utility doesn't seem to be able to write an ISO9660 image to a USB drive. so you'll have to do it below:
+
+
+*
+
+*First, insert/mount the drive once, run diskutil list from Terminal.app and take note of the device representing the drive (should be something like /dev/diskN with N being any number).
+
+*Eject the disk by running diskutil unmountDisk /dev/diskN replacing N by the number noted in the first step
+
+*Finally input sudo dd if=/path/to/your/image.cdr of=/dev/diskN
+Just wait and done.
+
+A: Found Disk Arbitrator makes it very easy and straightforward. 
+As mentioned on tinyapps.com:
+
+OS X: Mount disks as read only or block automounting altogether
+Aaron Burghardt's open source Disk Arbitrator provides a simple GUI
+  for changing OS X's automount behavior. Automounting can be disabled
+  completely (especially handy for drive imaging / data recovery via
+  ddrescue, etc) or mounts can be forced as read-only (for forensics,
+  etc, though a hardware write-blocker is still recommended).
+
+and from Aaron Burghardt's project page on GitHub:
+
+Disk Arbitrator is a Mac OS X forensic utility designed to help the user ensure correct forensic procedures are followed during imaging of a disk device. Disk Arbitrator is essentially a user interface to the Disk Arbitration framework, which enables a program to participate in the management of block storage devices, including the automatic mounting of file systems. When enabled, Disk Arbitrator will block the mounting of file systems to avoid mounting as read-write and violating the integrity of the evidence.
+It is important to note that Disk Arbitrator is not a software write blocker---it does not change the state of currently attached devices nor does it affect newly attached devices to force a device to be read-only. The user still must be careful to not accidentally write to a disk with a command such as "dd". Owing to this fact, a hardware or software write-blocker may still be desirable for the most sound procedure. Disk Arbitrator compliments a write-blocker with additional useful features and eliminates the typical forensic recommendation to "disable disk arbitration."
+
+
+A: If it were my data, and I really needed to not write on it, I'd put a master copy in a safe place and only ever mount a copy of that master.
+
+A: I would recommend using a USB flash drive that has a secure element capable of enforcing read-only mode (see https://istorage-uk.com/product/datashur-pro2/).

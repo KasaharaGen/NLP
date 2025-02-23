@@ -1,0 +1,34 @@
+Q: live screencasting solution that supports Power PC Macs I have a Power PC and I have been wanting to do a live screencast of a this thing I do, but there doesn't seem to be a single widget out there that would help me out.
+It is not just a matter of grabbing the screen, I have Snapz Pro X and it will work, but I want to share it with a bunch of people in real-time. There is no love for the Power PC architecture.
+Any ideas?
+:(
+
+A: How about Copernicus?
+http://danicsoft.com/software/copernicus/
+Or this (More promising, as it is live): 
+http://b-l-a-c-k-o-p.com/GrabberRaster.html
+
+A: What about VNC? There is a good server for mac that I used to use named Vine Server.
+Or you could just use the built in one:
+
+
+*
+
+*Open System Preferences
+
+*Go to Sharing
+
+*Tick the "Screen Sharing" box
+
+*Open "Computer Preferences" and make sure the "Allow VNC users to control the screen with a password" box is unticked
+
+
+And then, on the viewing machine:
+
+
+*
+
+*Open Safari
+
+*Go to "vnc://hostname/" where hostname is the ip address/hostname of the server machine
+

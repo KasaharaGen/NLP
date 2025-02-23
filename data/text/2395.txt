@@ -1,0 +1,28 @@
+Q: How does Office 2008 for Mac store its Recent items? I don't have access to Office 2008, but require the information for a project I'm working on. I'm mainly interested in Word, Excel and Powerpoint.
+This is the information I have gathered so far...
+The preference file is: ~/Library/Preferences/com.microsoft.office.plist
+The property keys take the form:
+2008\File Aliases\{APP}{n}
+2008\MRU Access Date\{APP}{n}
+where {APP} represents an Office application, and {n} represents a number starting from 0.
+The applications are represented by the following values:
+MSWD (Word)
+XCEL (Excel)
+What value represents PowerPoint?
+In the property list I've seen, the numbers represented by {n} range from 0-10 (11 items).
+Is 10 the limit? or is this unrestrained?
+Finally, I've noticed that Office 2011 does not add its Recent Items to the Apple System menu:
+Apple -> Recent Items
+Is Office 2008 the same?
+
+A: At least on my machine, this is what I'm seeing:
+
+
+*
+
+*PPT3 does appear to be the PowerPoint value
+
+*I have lots of items. MSWD0, MSWD1, but then also MSWD99, MSWD109, etc. 
+
+*Interestingly enough, it looks like PowerPoint adds items to Apple -> Recent Items, but Word and Excel do not. Which seems crazy, but that's what's happening on my machine.
+

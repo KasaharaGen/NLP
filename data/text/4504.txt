@@ -1,0 +1,174 @@
+Q: How can I write a script to open multiple terminal tabs and execute code in them? I want to be able to open the terminal application and have it either automatically run a script that opens several tabs and run an arbitrary set of commands in each. For example I would like one tab to open, change directories, and run a rails server; have another open, change directories, and tail a log file; etc..
+Is there a way to do this either with a shell script or applescript?
+I found this question but it seems to hang if I want to open tabs with commands that don't end (like running the rails server).
+
+A: This is a little bit hacky, but you can achieve this in AppleScript. If there is a predetermined number of tabs you want, and preset commands you wish to run, this isn't difficult.
+tell application "Terminal"
+    -- Activate it.
+    activate
+
+    set targetWindow to 0
+
+    -- Get a window that's not busy.
+    -- If there are no open windows, open one.
+    if count of windows is greater than 0 then
+        repeat with currentWindow in windows
+            if currentWindow is not busy then
+                set targetWindow to currentWindow
+            end if
+        end repeat
+    else
+        do script ""
+        set targetWindow to window 1
+    end if
+
+    -- Do command 1.
+    set firstCommand to "cd ~/Desktop; clear"
+    do script firstCommand in targetWindow
+
+    -- Open a new tab.
+    tell application "System Events" to tell process "Terminal" to keystroke "t" using command down
+
+    if count of windows is greater than 0 then
+        repeat with currentWindow in windows
+            if currentWindow is not busy then
+                set targetWindow to currentWindow
+            end if
+        end repeat
+    else
+        do script ""
+        set targetWindow to window 1
+    end if
+
+    -- Do command 2.
+    set secondCommand to "cd /Applications; clear"
+    do script secondCommand in targetWindow
+
+    -- And so on...
+end tell
+
+Of course, replace firstCommand with whichever command you actually want to run, and so on. For whatever reason, Terminal doesn't really have an accessible way to create new tabs through AppleScript, so the long, hacky looking line in the middle just tells Terminal to type ⌘T to open that new tab, and then new commands will execute in it.
+You can run this AppleScript as is, or use it in Automator to create a new service, which you can then execute from anywhere using a keyboard shortcut if you'd like.
+Extras - If you want to fire some script/command in the newly opened terminal session, you can refer this 
+
+A: Here is a shell script that will do what you want - for both Apple's Terminal or iTerm (we have users of both).
+For your tabs that you open, this will execute another batch file in each tab, such as one for tomcat, one for you db, etc.
+#!/bin/bash
+
+function tab () {
+    local cmd=""
+    local cdto="$PWD"
+    local args="$@"
+
+    if [ -d "$1" ]; then
+        cdto=`cd "$1"; pwd`
+        args="${@:2}"
+    fi
+
+    if [ -n "$args" ]; then
+        cmd="; $args"
+    fi
+
+    if [ $TERM_PROGRAM = "Apple_Terminal" ]; then
+        osascript 
+            -e "tell application \"Terminal\"" \
+                -e "tell application \"System Events\" to keystroke \"t\" using {command down}" \
+                -e "do script \"cd $cdto; clear $cmd\" in front window" \
+            -e "end tell"
+            > /dev/null
+    elif [ $TERM_PROGRAM = "iTerm.app" ]; then
+        osascript
+            -e "tell application \"iTerm\"" \
+                -e "tell current terminal" \
+                    -e "launch session \"Default Session\"" \
+                    -e "tell the last session" \
+                        -e "write text \"cd \"$cdto\"$cmd\"" \
+                    -e "end tell" \
+                -e "end tell" \
+            -e "end tell" \
+            > /dev/null
+    fi
+}
+
+tab path_to_script1 sh script1
+tab path_to_script2 sh script2
+tab path_to_script3 sh script3
+
+
+A: Since it is so trivial to open a new tab, I would suggest making the execution of your commands as trivial as possible, and doing this the old-fashioned way.
+You called out two specific actions, so let's work with those. Note that I'm going to be making a lot of assumptions based off what I know of Rails, but not necessarily specific to your project.
+To cut a long story short, alias a command to do what you want it too, or create a trivial shell script to do what you want to.
+Create a shell script named myapp.start, with the contents:
+#!/bin/bash
+
+cd Development/rails/myapp
+# Do any common environment initializations here, such as RAILS_ENV=development
+script/server
+
+You will likely also have to make a file named .bash_profile in your home directory, or modify one already existing, and add a line like;
+export PATH="$HOME/bin:${PATH}"
+
+Then, create a bin directory in your home folder, and move the myapp.start script into it. Ensure also it has the owner execute bit at a minimum (chmod 700 myapp.start).
+Then, open Terminal.app, type myapp.start, and you have rails running. Alternatively, type mya then press Tab, and let autocomplete fill the rest, press return. Boom, server running.
+By extension, you may already understand how to do a log file tail, but I'll continue on anyways. Create another file in ~/bin named myapp.taillog, with the contents:
+#!/bin/bash
+
+tail -F ~/Development/rails/myapp/logs/development.log
+
+Again, place it in the bin folder, chmod 700 ~/bin/myapp.taillog, then after starting then rails server, quickly hit ⌘t, type myapp.taillog, and you have a log file being printed.
+Two commands, two additional keystokes (opening the tabs), perhaps that's sufficient?
+There are two very obvious improvements here. One is to write a shell function capable of "discovering" the names of rails apps, so you don't have to write a shell script for each, the writing a sub-command designed to start webbrick/your rails server of choice, and commands for tail -F'ing a few key log files routinely.
+The second improvement is that it is likely that you could write an AppleScript that does the necessary terminal interaction, and appropriate command execution inside each one. But frankly, I suck at AppleScript and work in bash code and perl code all day, so I'm offering advice relevant to my skill set :).
+
+A: Although you might be tied to the Apple terminal based on the wording of your question, iTerm is superior to the default terminal emulator for scripting and managing multiple windows.
+The concept of bookmarks allows easy management of a set of windows.
+Scripting of iTerm using AppleScript/Automater is simpler, more powerful, and better documented on the developer's web site. (compared to terminal)
+Do check it out if you find the scripting of normal terminal to not meet your needs. I also highly recommend you look into customizing your unix shell to set up aliases for frequently used commands. You will use them in scripting initial tasks for new windows, but also anytime you are in a shell and need to switch tasks rather than having to open a new window.
+
+A: Scripts are nice and all, but you could also just use Automator to record a 'Watch Me Do' where you open Terminal, and throw a few Command+N's in for your preferred # of windows. Et voila.
+
+A: There is a great answer to a very similar question over on StackOverflow, but it probably belongs over here now, so I'll just copy/pasta it in here.
+
+This is absolutely possible, but it will take some work on your part.  The first thing you need is to set up each window/tab you want in your Settings.
+I have 4 tabs that I open automagically every time I open Terminal.  DB Shell, Editor, Server, and Shell.  These are all within the Sasquatch (don't ask) project, thus the naming.  Each of these should then have a unique command associated with them.
+In this case, I'm executing vim.  If you happen to have a specific directory you'd like to start off in, you can use something like vim ~/projects/main/.  Really whatever you want to go in there is the command the shell will execute when it opens.  Now you need to open all your windows/tabs:
+
+
+*
+
+*Close everything.
+
+*Open a new window for each of your profiles.
+
+
+*
+
+*Go to the Shell menu => New Tab/New Window => Select the profile you created above.
+
+*Repeat for each window or tab you want.
+
+
+*Once you have all of your windows and/or tabs open, save them as a Window Group.
+
+
+*
+
+*Go to the Window menu => Save Window As Group....
+
+*Give your Window Group a name (this is helpful later).
+
+*If you want this group to open every time you open Terminal, check the box at the bottom of this screen, and then hit save.
+
+
+*Close out of all of your Windows/Tabs (time to test it!).
+
+*Open your new Window Group.
+
+
+*
+
+*Go to the Window menu => Open Window Group => Select the group you just made.
+
+
+
+This should pop up all the windows you just had, in the same position.  Each of the commands you set up in Settings should be launched in their respective tabs.  

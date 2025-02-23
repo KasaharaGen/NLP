@@ -1,0 +1,272 @@
+Q: Can I manually limit the %CPU used by a process? I would like to limit the amount of CPU time dedicated to certain processes (e.g. Firefox, Safari, ...).
+I can't understand why such programs, even when not used (nothing loading, no animations, running in the background, ...), are so resource hungry. Why must a browser eat 50% or more of my CPU? Can I limit it to 10%?
+
+A: The link that Nicholas Smith posted doesn't work anymore. So I found one other app that does the trick for the people who are searching it again. the app calls Apppolice.
+http://www.macupdate.com/app/mac/49836/apppolice
+
+A: This is based off a previous answer, but adding the trap for ctrl+c to make sure the process being throttled gets left in a continue state, and adding  set -e so this script will exit cleanly if the process itself exits:
+trap ctrl_c_fn INT
+
+function ctrl_c_fn() {
+    echo "caught CTRL-C, exiting"
+    kill -SIGCONT $pid
+    exit
+}
+
+echo "enter process id"
+read pid
+echo "press Ctrl-C to exit"
+
+set -e
+
+while true; do
+    kill -SIGSTOP $pid
+    sleep 0.009
+    kill -SIGCONT $pid
+    sleep 0.001
+done
+
+
+A: There is a simple one-liner for doing all that:
+ps axu | grep Chromium | grep -v grep | awk '{print $2}' | sudo xargs -n 1 -I'{}' sh -c 'cputhrottle {} 10 &'
+
+Write your app name instead of Chromium and desired percentage instead of 10 and you're good to go!
+
+A: Use cpulimit
+brew install cpulimit
+
+and use as cpulimit -l (Number of threads x 100) -p (PID)
+cpulimit -l 200 -p 947
+
+where 200 means two threads.
+
+A: cputhrottle is the tool you need. You can install it with Homebrew.
+You can monitor a series of processes by name by running the Bash script below. I'm not quite sure how to turn this into a login item since cputhrottle requires superuser permissions. Run it as a script, in an Automator workflow, whatever:
+# Get the Process/App names from Activity Monitor and put them here
+apps=("AppOne" "AppTwo" "AppThree")
+# Set the respective limits here
+limits={30 40 50)
+
+while true; do
+  for app in ${apps}; do
+    for limit in ${limits}; do
+      for pid in $(pgrep ${app}); do
+        sudo /path/to/cputhrottle ${pid} ${limit}
+      done
+    done
+  done
+done
+
+[Edited]
+I've added a different version for this script (a bash script), which might be useful for people looking for limiting the CPU for multiple applications.
+This new script also allows you to specify a list containing the application name and the CPU limit for it.
+The main difference is that you can add cpu limit per application, and it will run only once per application. I've also added the option for killing all cputhrottle processes.
+The script assumes that both cputhrottle and pidof are installed before running it.
+#!/bin/bash
+
+if [[ $EUID > 0 ]]; then
+  echo "Please run this script as root/sudo"
+  exit 1
+fi
+
+# Pass --kill as argument to kill all running cputhrottles
+if [ $1 = "--kill" ]; then  
+  echo "Looking for running cputhrottles..."
+  pids=`pidof cputhrottle`
+  for pid in ${pids}; do
+    echo "> Killing PID ${pid}"
+    sudo kill ${pid}
+  done
+  echo "Done!"
+  exit 0
+fi
+
+declare -a applications
+
+# Syntax='application;max-cpu'
+applications[0]='Chrome;40'
+applications[1]='Firefox;50'
+applications[2]='pycharm;40'
+applications[3]='webstorm;40'
+applications[4]='Safari;35'
+
+for i in "${applications[@]}"; do
+  app=(${i//;/ })
+  app_name=${app[0]}
+  cpu_limit=${app[1]}
+
+  printf "\nLooking for ${app_name}...\n"
+  pids=`pidof ${app}`
+  for pid in ${pids}; do
+    echo "> PID=${pid}, CPU=${cpu_limit}"
+    sudo cputhrottle ${pid} ${cpu_limit} &
+  done
+done
+
+printf "\nDone!\n"
+echo "Run this script passing '--kill' as argument to remove all cputhrottles."
+
+Source:
+
+
+*
+
+*https://gist.github.com/golimpio/692145a19666582f84e0e66bb5dd2b2b
+
+A: this sh worked for me
+echo "enter process id"
+read pid
+echo "press Ctrl-C to exit"
+
+while true; do
+    kill -SIGSTOP $pid
+    sleep 0.009
+    kill -SIGCONT $pid
+    sleep 0.001
+done
+
+
+A: The script Dimitri wrote does work well (on macOS), but it keeps running with errors after the application is closed. I changed it to make it finish (with an error message about PID not found):
+echo "enter process id"
+read pid
+echo "press Ctrl-C to exit"
+
+while kill -SIGSTOP $pid; do
+    sleep 0.009
+    kill -SIGCONT $pid
+    sleep 0.001
+done
+
+
+A: I just found CPUSetter, which, for me, is better than any of the previous options.
+This app comes with additional control over hyperthreading, number of used cores, preference of physical CPU and separate power-related settings.
+
+A: This is my final script, keep clean the command cputhrottle
+only execute new one if doesn't exist
+#!/bin/bash
+
+###
+# setup cputhrottle if doesn't exists
+###
+set_service_cpu_limit(){
+    service_pid=$(pgrep $1)
+    limit=$2
+    if [[ ! -z $service_pid  ]]; then
+        service_cpu=$(ps aux | grep "sudo cputhrottle $service_pid $limit" | grep -v grep | wc -l)
+        if [[ ! $service_cpu -gt 0 ]]; then
+            sudo cputhrottle $service_pid $limit &
+        fi
+    fi
+}
+
+###
+# main loop
+###
+while true; do
+    set_service_cpu_limit bzfilelist 2
+    set_service_cpu_limit bztransmit 2
+    sleep 0.5
+done
+
+
+A: I use AppPolice. It is a bit unstable and clunky but since there are no other options and the problems are minor I think it is a decent solution. Works on Catalina.
+
+A: You can indeed! There's CPUThrottle, which allows to specify a PID to restrict.
+Note, they're trying to use that much for a reason, it's a useful tool but whether it'll make it better or worse for you on a day to day will be something you discover.
+
+A: Its not exactly what you wanted, but, in regards of google drive and chrome this what did the trick for me:
+Google Drive ("Backup and Sync") 
+
+
+*
+
+*de-prioritize:
+for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +20 -p $f; done
+
+
+*set back to normal:
+for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice 0 -p $f; done
+
+Chrome 
+
+
+*
+
+*de-prioritize all current processes:
+for f in $(pgrep 'Chrome'); do renice +20 -p $f; done
+
+
+*set back to normal all current processes:
+for f in $(pgrep 'Chrome'); do renice 0 -p $f; done
+
+
+A: Although not a direct answer to the OP's question, if you're having an issue with a particular process taking up too much of your CPU time, and making your computer unusable, and you don't mind how long that process takes to finish the task it's working on, you can use the renice to alter the priority of that process, making it behave nicely (hence the name). 
+First, you need to find the PID of the process that's using up the CPU resources. You can either do that in Activity Monitor, or in Terminal.app with the ps command - e.g. to find the PID of the Safari browser, type: 
+MacBook:~  ps -ef | grep Safari
+  501 17452   263   0 11:36pm ??         4:15.60 /Applications/Safari.app/Contents/MacOS/Safari
+
+The second line above is the output, and the PID is 17452 in this particular case. 
+Then, the next task is to change the priority of the process (let's say it's Safari we want to make behave nicely). To do this, in Terminal.app type: 
+MacBook:~  renice -n 10 -p 17452
+
+The -n option changes the nice level by adding 10 to the current value (0 by default). The range of values are -20 to 20, with lowest value meaning highest priority. As an ordinary user, you can use values 0 to 20. To assign a negative value, you need to have root privileges (e.g. use sudo command). Read more about nice and renice by typing man nice and man renice in Terminal.app.
+nice and renice don't limit the percentage of the CPU available to a given application per se, they do however allow to change the scheduling priority, or in other words how much of the CPU time a process will get. This is all relative to the CPU load on your system, so if the system is under utilised, you most likely won't see any difference. 
+
+A: cputhrottle (refer to fny and Nicholas Smith's answers) works on macOS 10.15 as long as you sign the executable.
+You can do so simply and quickly by following the steps listed here: https://web.archive.org/web/20191223180139/https://sourceware.org/gdb/wiki/PermissionsDarwin
+You can download cputhrottle here: http://www.willnolan.com/cputhrottle/cputhrottle.html
+
+A: This script is what I use: this code runs the app at full speed when the screen is locked else it runs at about 50% of the speed. On my M1 Pro MacBook Pro this works great for an app that normally takes 800% CPU. The computer remains responsive while the app is running in background.
+#!/bin/bash
+
+PID=$1
+
+if [ "$PID" == "" ]; then
+    echo "no process id given! Use something like:"
+    echo "   ps -ef|grep whatever"
+    exit
+fi
+
+# exit if any command fails
+set -e
+# continue running when we exit this script
+trap 'kill -CONT '$PID'; exit' EXIT HUP TERM INT
+
+status=none
+prevstatus=none
+
+while true; do
+    if [ "$status" != "$prevstatus" ]; then
+        date
+        echo $status
+        prevstatus=$status
+    fi
+    if python -c 'import sys,Quartz; d=Quartz.CGSessionCopyCurrentDictionary(); print d'|grep "CGSSessionScreenIsLocked = 1">/dev/null; then
+        if [ "$status" != "running" ]; then
+            kill -CONT $PID;
+            status=running
+        fi
+        sleep 1;
+    else
+        if [ "$status" != "stopped" ]; then
+            kill -STOP $PID;
+            status=stopped
+        else
+            for _ in {1..10}; do
+                sleep 0.05;
+                kill -CONT $PID;
+                sleep 0.05;
+                kill -STOP $PID;
+            done
+        fi
+    fi;
+done
+
+
+
+A: Some others have mentioned App Tamer and the fact that AppPolice is free.  That's great, and if AppPolice meets your needs, you can be happy!
+But if you use your computer professionally, the time you've lost on processes sucking down resources is probably vastly higher than the tiny cost of AppTamer.
+All the options that AppTamer offers that AppPolice does not are there for a reason.
+AppPolice requires you to configure each process individually. The only thing it can do globally is stop throttling.  (Which could be done by closing it anyway.)
+AppTamer on the other hand can distinguish before foreground and background apps, so that you can throttle an app in the background but give it full power in the foreground. Browsers, for example.
+

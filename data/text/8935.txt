@@ -1,0 +1,51 @@
+Q: How can I remove the Finder icon from my Dock? I've started using Forklift as a Finder replacement, so I don't need Finder in my Dock. In fact, I would much rather have Forklift be the farthest left icon so I don't accidentally click on Finder.
+The usual method of dragging the app out of the Dock doesn't work, and neither does command-dragging. The contextual menu doesn't allow you to remove the icon.
+Is there some way to, on Lion, remove the Finder from the Dock?
+Perhaps there's a database or plist file I can change?
+
+A: There is no easy way to do this, but there is a little hack :)
+
+
+*
+
+*Navigate to /System/Library/CoreServices/Dock.app/Contents/Resources/
+
+*Backup DockMenus.plist
+
+*Open DockMenus.plist in your favorite text editor with root access
+
+*Find section finder-running and add new sub-section
+<dict>
+    <key>command</key>
+    <integer>1004</integer>
+    <key>name</key>
+    <string>REMOVE_FROM_DOCK</string>
+</dict>
+
+or just Download my version of DockMenus.plist
+
+*In plist editor file should look like this:
+
+
+*Open Terminal and run killall Dock. 
+
+*Right click on Finder icon in Dock - Bingo!
+ 
+p.s After Dock restart (manual relaunch or mac reboot) you need manually remove Finder icon from Dock 
+
+A: It works for me on HighSierra (10.13.6) with SIP disabled.
+I have used the following command to edit the .plist file:
+PL="/System/Library/CoreServices/Dock.app/Contents/Resources/DockMenus.plist"&&
+sudo -- defaults write $PL finder-running -array-add  '<dict><key>command</key><integer>1004</integer><key>name</key><string>REMOVE_FROM_DOCK</string></dict>'
+
+Check result with sudo defaults read $PL finder-running.
+If it looks fine run sudo chmod -v +r $PL; killall Dock.
+Here is the Italian formatted version of that AppleScript:
+tell application "System Events"
+    tell UI element "Finder" of list 1 of process "Dock"
+        perform action "AXShowMenu"
+        click menu item "Rimuovi dal Dock" of menu 1
+    end tell
+end tell
+
+That’s all, I hope it is useful as a quick complete recap.

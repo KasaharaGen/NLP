@@ -1,0 +1,8 @@
+Q: Coming from a Windows Server world, how does one connect workstations to an Apple server? I have a number of workstations on a LAN with a new OS X Lion Server. The server is "set up," in that there are user accounts on the server, among other things, but I actually don't know how to connect the individual workstations to the Lion Server. 
+In the Windows world, this would be called "Joining the domain" and, depending upon setup, could include setting up home directories, directory redirection to the server, policies related to mapping certain drives, among any number of things.
+Any help is appreciated. :-)
+
+A: The server admin tools and associated documentation will walk you through how this works on Mac OS X. There are even worksheets that help you work through the myriad possibilities before you set up OS X Server.
+It depends on how the server was "set up" so perhaps you can find out whether yours expects to control the user accounts and have the clients control themselves with a local policy file pointing to the server or if the server expects to set up the mac clients as well. 
+Hit the books and do know you can ask more specific questions later of one specific item is holding you up.
+I prefer using System Preferences directly from the client until I'm comfortable with the specifics for each site...

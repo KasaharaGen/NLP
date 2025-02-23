@@ -1,0 +1,83 @@
+Q: iOS 5 'home sharing' feature missing? Previous to the update to iOS 5, the 'home sharing' feature in the iPad's iPod app worked as expected. You'd simply choose the different 'library', and you'd be able to play items over the network from that remote library. 
+This functionality seems to be missing in iOS 5 on an iPad 2 (and perhaps other iOS 5 devices?). 
+
+
+*
+
+*There is no way to choose a remote library or 'Sharing' in the Music app. 
+
+*The same good Apple ID credentials are present in Settings, and has been re-entered just in case. 
+
+*iTunes is running on the same Windows machine as previous. No changes have been made there (save for the new version of iTunes). 
+
+*iTunes is running, Home Sharing is enabled.
+
+
+How can this feature be restored in iOS 5?
+
+
+
+A: On the computer
+
+
+*
+
+*Open iTunes
+
+*Turn on Home Sharing in the Advanced menu
+
+*Keep iTunes running
+
+
+On the iDevice
+
+
+*
+
+*Open Preferences
+
+*Open Music Preferences
+
+*Enter same AppleID for Home Sharing as in iTunes (note, you may have to re-enter the account if it appears already to be there. This both verifies the stored password is correct and re-registers the iOS device with your account's Home Sharing)
+
+
+
+To Use
+
+
+*
+
+*Start the Music app in the iPad
+
+*Tap on 'More' at the bottom right
+
+
+
+
+
+*
+
+*Tap on 'Shared' to see a list of shares music libraries
+
+
+A: I tried everything, but what FINALLY worked for me was going to my main iTunes library and turning off home sharing. I then turned it back on, put in my credentials, and then clicked "create home share". It began working as described after that.
+
+A: I'm having the same issue, only my desktop machine is an iMac. 
+What worked for me was:
+Under the "Advanced" menu in iTunes, there's a little item labelled "Turn On Home Sharing." Even though I had my Apple ID entered in Preferences, and the Sharing preference pane showed "Status: On," it didn't work until I found the item in the Advanced menu. 
+
+A: You have to make sure that your computer with iTunes and the iPad/iPod/iPhone device are connected to the same router. I have an Easybox router from Vodafone and my iPad was connected to that router. But this router has an Airport Extreme in bridged mode connected to it and that is where my iTunes was connected to. As soon as my iOS devices logged into the Airport Extreme, the button appeared.
+I guess you need to enable certain ports for Bonjour to work on the Easybox...
+
+A: iPhone 4S, iPad 2, Home shares showing on other PCs on the network but not iOS devices.
+Tried everything above, yada yada no changes.
+Solution: Check your wireless router settings. Specifically, Mulitcast Filtering
+On a Linksys WRT610N, go to Security \ Firewall \ Internet Filter
+Put a check beside "Multicast Filtering" and save settings
+No other changes required.
+Restart your IOS device
+"Shared" now appears under "More" button on both iPhone and iPad
+
+A: Tried all the above. In the end having everything set on my iPad and iTunes and then turning router off and on. Then it worked!
+
+A: Try enabling "Sound Check" in iPad's Music Settings. After this the "More"-button was shown on my iPad.

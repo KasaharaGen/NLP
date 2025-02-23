@@ -1,0 +1,34 @@
+Q: Open new terminal window in current space, regardless of other open terminals in other spaces When using Spaces on Mac OS X trying to open a new terminal instance results in focus being pulled to whatever space has the most recently accessed terminal window. With Finder I can click on the Desktop and then use ⌘-N to create a new Finder window. What I am looking for is a method for performing the same function for Terminal windows.
+How can I create a new Terminal instance in the current space, regardless of whether or not there is another Terminal instance in one or more other spaces.
+Thanks.
+
+A: You can create a new service using automator (from the applications folder). At the top of the automator window, enter: Service receives 'no input' in 'any application'. Then, in the workflow, add 'Run applescript'. Make the applescript contain the following:
+on run {input, parameters}
+
+    tell application "Terminal"
+        do script ""
+        activate
+    end tell
+
+    return input
+end run
+
+(You can add any command you like into the do script line between the " " (e.g. something useful to run when terminal first opens like uptime if you like, or just leave it blank).
+Save the service as 'Open Terminal' or whatever name you like. It should now appear in your services menu.
+Then if you want to add a keyboard shortcut, you just need to go to System Preferences -> Keyboard -> Keyboard Shortcuts tab, select services in the left hand menu, and find your new service (its probably near the bottom). Just click in the space to the right of your service name, and assign it whatever keyboard shortcut you like, and hey presto! it should all work
+
+A: In the application assignments in System Preferences -> Spaces, either set Terminal to "Every Space" or delete the entry. Then it should be no problem to open a new Terminal window wherever you want, e.g. by clicking on the dock context menu "New Window" (works even if you have the "When switching to an app, switch to space with open windows from that app" option enabled).
+
+A: tell application "Terminal"
+    do script ""
+    activate
+end tell
+
+To make this work under Lion, type the above into a new AppleScript window and save it. Invoke the script through a command launcher like QuickSilver or assign it to a keyboard shortcut. This should work, even if you have set the "When switching to an application, switch to a space with open windows for the application" setting enabled in Mission Control. The trick is to do the activate command last, rather than at the beginning.
+
+A: If you use the dock menu to open a new window it opens in the current space.
+
+A: You can disable OSX switching spaces automatically when you switch applications using the following commands:
+defaults write com.apple.dock workspaces-auto-swoosh -bool NO
+killall Dock
+Works on 10.6.8

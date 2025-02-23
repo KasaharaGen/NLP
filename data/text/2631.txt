@@ -1,0 +1,11 @@
+Q: Restore iphone backup to windows A few months back I sold my Iphone 3G because I was going to get 4 instead. Unfortunately my windows machine crashed and I was forced to reinstall from scratch. I now plan to (finally) purchase the new one and I want to restore from my old backup. I copied everything from My Music folder on the old HDD to a the new one and I also copied everything from:
+Appdata\Roaming\Apple Computer to the new one. I though that would be enough but the backup is not showing up in Itunes.
+What can I do? I lost the old HDD completely after this.
+
+A: There is nothing you can do about it, if the HDD is really gone. If you don't have a backup of your old phone, then you just need to gather all the lost data from your memory.
+Of course, if you still have the HDD, you could try and take it to a shop that restores data from broken drives, maybe you'll get lucky.
+
+A: The backups are stored in this directory (I think it is the same for XP and Windows 7 but haven't checked):
+C:\Documents and Settings\USERNAME\Application Data\Apple Computer\MobileSync\Backup 
+
+You could try some NTFS (assuming that was the format) recovery tools to try and get the data back. If you get the all the data from the backup you need you should be able to restore from that.

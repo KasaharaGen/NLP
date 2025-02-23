@@ -1,0 +1,32 @@
+Q: iTunes asks to transfer purchased apps from iPhone even though app sync is off A few weeks after iOS 5 came out, I disabled app syncing with my phone. I still sync my media with the computer.
+Today when I synced my phone, it asked to transfer purchases from my phone to my computer (picture below). I accepted and iTunes transfered all the apps from my phone to my computer. I deleted one of them from my computer and synced again, and the same thing happened. Once all the apps are on my computer, syncing no longer brings up the message.
+I deleted an app from the computer then synced again, this time choosing not to transfer. The app was not deleted from my phone despite the warning message telling me it would, and the app didn't transfer. However, every time I sync it warns me to transfer the app again.
+Can I get iTunes to stop trying to transfer app purchases from my phone? I don't want to use the "Don't ask again" setting because I still want to be warned about transferring music.
+I have the following environment:
+
+
+*
+
+*iOS 5.0.1
+
+*Mac OS X 10.6.8
+
+*iTunes 10.5.1
+
+
+*
+
+*Device settings → "Sync Apps" is unchecked
+
+*Preferences → Store → Automatic Downloads → Apps is unchecked
+
+
+
+The only change to my system I can think of was a week ago when my hard drive died and I restored my computer with a Time Machine backup. However, I've synced my phone since then without this problem.  I had also updated to iTunes 10.5.1 two weeks ago (before the backup was created).
+
+
+A: When you purchase apps (even free) on the device, iTunes always backs this up - and when it Syncs, before it does anything it backs up - and it notices that you have purchased an app/apps - so it wishes to make a backup of these apps. Click transfer and it'll all work fine - happens to me when I buy songs off of the store as well as apps
+
+A: Are you sure you have over the air syncing turned off? If not, your device will automatically wirelessly connect to iTunes if it is connected to the same WiFi network.
+In iTunes, try unchecking the box which says "Sync with this iPhone over WiFi". See below for more info:
+

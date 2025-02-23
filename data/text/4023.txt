@@ -1,0 +1,20 @@
+Q: iMovie '11 AVCHD videos I have an AVCHD camera that records 1080i clips. I want to retain this quality in resulting projects, but what is the best way to manage this raw footage in the long term, so that I do not fill my hard disk by importing Full quality Apple Intermediate Codec movies, but preserve the HD resolution by not importing 960x540 Large quality?
+I found a hint that shows how to easily save both original content and Optimized Large content, but this still does not preserve HD quality in exports, only for archiving.
+I also found ClipWrap, but without AIC the scrubbing is basically useless on my mid 2010 MacBook Pro - no audio and picture lags too.
+Long story short - is it a viable solution to craft a script/tool that will allow:
+
+
+*
+
+*wrap the footage in iMovie compatible container (MOV)
+
+*Manually import them into iMovie and optimize only when needed
+
+*Prior to exporting, use the tool to revert back to unoptimized HD footage.
+
+
+This way I could get HD exports and cut back on disk usage.
+Is there per haps such a script floating around? Can anyone see any dangers in this? Or is the best option still to shell out cash for bigger hard drive or Final Cut Express with MTS capabilty? (Can FCE scrub MTS files?)
+
+A: You can import the raw video through whatever means you like, and utilize Handbrake ([enter link description here][1]) to transcode it to mp4 format, which iMovie can use. This way, you can make use of the H.264 codec to encode your 1080i videos, retaining full quality, and compressing them better than Apple's compression schemes. Personally, however, as one video guy to another, if you're going to deal with a lot of HD, just shell out the cash for a bigger drive, like an external or something. It'll save you headaches in the long run, trust me.
+Good luck and happy transcoding!

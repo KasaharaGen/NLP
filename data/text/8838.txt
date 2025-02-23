@@ -1,0 +1,10 @@
+Q: What changes have been made to bash in Lion? I am working on some bash shell scripting for a local login script and it works fine on Leopard and Snow Leopard but fails on Lion.  I was curious if there was a place that listed the differences in bash on Lion?
+
+A: Assuming a SnowLeopard or Lion installation that has the latest software updates, the version of Bash is the same. 3.2.48(1)-release.
+On SnowLeopard you may have a 32bit compilation in some cases, whereas on Lion it is (by default) 64bit.
+The command username="$(whoami)" is extemely unlikely to ever change it's output on bash, since doing so would incur the fast moving, brain devouring wrath of an infinite number of ravenous zombie sysadmin types. 
+(By the way sysadmins are almost never undead, despite the occasional appearance to the contrary. The description was added for dramatic effect, and no offence to sysadmins was intended. I offer my heartfelt apology to any actual undead sysadmins, and their families, and I urge them to grab a shotgun immediately and barricade the bedroom door, double tap to be sure.)
+
+A: Within bash, the command echo $BASH_VERSION shows the version of bash. You can then look up what changed in the changelog file, which is bash's case is called CHANGES. (There's a more complete changelog in the sources, but it's mainly of interest to people who write and maintain bash.)
+If your machines are up-to-date, they'll be running the same version. Make sure all the external programs used in the script are up-to-date too: the script may behave differently because one of these programs produces different output.
+You can watch what your script is doing more closely by running bash -x /path/to/script. The -x option makes bash print a trace for each command that it runs. You can also put set -x in a script to turn tracing on, and set +x to turn it off.

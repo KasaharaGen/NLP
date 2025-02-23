@@ -1,0 +1,25 @@
+Q: Google Chrome repeatedly displays monospaced fonts wrong as “Times New Roman” I observe an extremely annoying font problem in Google Chrome for Mac. When I visit a page like GitHub or Bitbucket (which use monospaced fonts, e.g. for code) I see the HTML sections that are meant to be displayed in a monospaced font displayed in “Times New Roman”. This pretty much makes these sites useless for me.
+I found a blog post that describes a similar problem and which suggests to clear Mac OS X’s font caches with these terminal commands:
+$ sudo atsutil databases -remove
+$ atsutil server -shutdown
+$ atsutil server -ping
+
+This eliminates the problem but it only lasts until I restart the computer. I would have to issue these commands every time before I start Google Chrome after a computer restart to have monospaced fonts on these sites display correctly.
+For clarification here are two screenshots that display the problem.
+This is how it looks before I remove the font caches:
+
+This is how it looks after the font caches have been cleared and how it should look:
+
+Does anyone know of this problem and can provide a solution?
+
+A: I have been using Linotypes Font Explorer for quite some time now. There is a free version which is great. I have found less font issues on my Macs since using this app than with Suitcase, Fontbook or Fontcase, particularly with web sites. Once installed you can run a font cleaner which examines all your volumes on your Mac and eliminate sang potential problems
+
+A: Hmmm... I loaded this page as a test – I'm using version 23 of Chrome – and the text is being formatted correctly. Not in Courier, mind you, but in Menlo (which is effectively a revamped version of Monaco).
+You may want to check Chrome's font settings – paste chrome://settings/fonts#font into the address bar – and see what it has decided to use as its fixed-width font. Curiously, in my case it seems to think that it should be using Courier, but (as I mentioned earlier) it actually uses Menlo instead.
+
+A: Just wanted to chime in here and say that not only did this exact issue hit me (Github showing with Times New Roman), but long after I fixed it the first time around (several months ago) I had an interesting regression. Tonight I pulled up Github to find this:
+
+I assume that this is due to Bitstream somehow getting clobbered in the font cache (as opposed to it not being installed the first time this happened).  Luckily the CLI commands to reset the cache posted by the OP still worked great for me (after also restarting Chrome).
+Doesn't answer the question about why this happens, but hopefully this answer might provide a little more info if anyone else hits this same bizarre issue.
+
+A: Try re-downloading the font you need into the Font Book.  Then it should work.  If the problem persists, try going through the settings in your browser.

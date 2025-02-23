@@ -1,0 +1,22 @@
+Q: nvram -p... strange results I am having problems running the /usr/bin/purge commands on my iMac with Lion since the last upgrade. Someone suggested me that I may be running in safe mode and asked me to type "nvram -p" on terminal. According to this person, I should have any variable listed, but I have these:
+efi-apple-recovery (an array)
+fmm-computer-name
+fmm-mobileme-token-FNM
+EFICapsule_result
+System AudioVolume
+EFIBluetoothDelay
+
+Each variable assigned to a bunch of stuff, specially the first and the third. Is this what I should see typing nvram -p on terminal?
+thanks
+
+A: If your NVRAM was set to boot into safe mode, you need a boot-args variable set to -x.
+
+
+*
+
+*Safe mode on: sudo nvram boot-args="-x"
+
+*Safe + verbose mode on: sudo nvram boot-args="-x -v"
+
+*Clear verbose and safe flags: sudo nvram boot-args=""
+The details on these settings are straight from Apple Mac OS X: Starting up in Safe Mode.

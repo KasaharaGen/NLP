@@ -1,0 +1,39 @@
+Q: How to have multiple (wireless) network profiles? is the following scenario possible in Mac OSX?
+I want to assign specific TCP/IP configurations for different wireless networks that I connect to, and I want the system to remember the settings.
+For example:
+When I'm at work, I have two networks that I frequently connect to and switch between. The first one is the internet-enabled network, the TCP/IP settings in this network is configured automatically using DHCP. The second one is the internal testing network, this network is not connected to the internet and the TCP/IP settings must be configured manually.
+Every time I switch between them, I set the TCP/IP settings manually from Networks preference pane. Since I do this quite frequently, it gets quite annoying. Moreover, I can't use cables because I need to be mobile when I use the internal network. I want the configuration to be automatically configured for every known wireless network.
+Is there a way to do this, or are there any third-party tools for this?
+
+A: You can set up 'Locations' using System Preferences-> Network, which should do what you need.
+In the Network System Preferences panel, you'll see (at the top) a pop-up menu labeled Location. It will be set to Automatic. Click that menu and choose Edit Locations...
+Click the [+] button in the panel that appears. Name your new Location. Click Done.
+Make sure the new Location is selected under the Location: menu, and set it up.
+Then, when you need to change back to the other setup, change the location back to Automatic (or rename Automatic something more descriptive). When you need to change again, switch back to your new one.
+
+A: "Airport Location takes snapshots of the system settings you select and re-applies them the next time you use your machine at that location. The author's description: 
+
+Airport Location is a small menubar app for Snow Leopard laptops and
+  desktops. When you ask it to it records dozens of settings by taking a
+  Snapshot of your computer just the way it is setup at that time. You
+  can have as many Snapshots as you want – one for Travel, one for
+  Office, one for Home, one for watching Movies etc.."
+
+
+A: Try this.
+
+
+*
+
+*Go to "System Preferences" -> Network.
+
+*On the left pane, click on + to create a new service.
+
+*Call it let's say "Wi-Fi Work", and configure it once as per your needs.
+
+*Then right click on service button next to + and - in the left pane, and select Make Service Inactive menu item.
+
+*Redo steps 2 to 4 as much as you have different profiles.
+
+
+Then, whenever you want to activate a profile, instead of reconfiguring it, you just go and select it to make it active.

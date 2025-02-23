@@ -1,0 +1,10 @@
+Q: Passing selected folder path to custom Service executing AppleScript I have a custom Service I created in Automator. Right now, the service shows up in my context (right-click) menu, when right-clicking on any folder. In Automator, I added the Run AppleScript action, to execute this code:
+on run {input, parameters}
+    do shell script "/usr/bin/find ./ -type f -name .DS_Store -delete -print"
+    return input
+end run
+
+My objective is to delete all .DS_Store files in the selected folder (and all folders within it). I normally do this in Terminal by executing /usr/bin/find /path-to-folder -type f -name .DS_Store -delete -print, but I would love to get this to work from my custom Service.
+I'm thinking I need to pass the selected folders path to the AppleScript function (through input perhaps?), but I have no idea how, nor do I see any actions in Automator to pass this. I'm using OS X 10.6.5. Any ideas or suggestions?
+
+A: At the top of the screen, above your action, there should be a list-box that says Service receives selected <text> in <any application>.  Changing <text> to folders should give you the folders as input.

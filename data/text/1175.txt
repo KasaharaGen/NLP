@@ -1,0 +1,16 @@
+Q: Why is it that "Mac OS X Snow Leopard can't be installed on this computer"? I'm trying to install Snow Leopard on a MacBook (32-bit, Dual Core, ca 4 years old).
+I am presented with: "Mac OS X Snow Leopard can't be installed on this computer."
+Is it because of the 32-bit architecture? Should I just go with Leopard instead of Snow Leopard?
+
+A: Check to make sure you have enough RAM, Snow Leopard requires 1GB of RAM.  Snow Leopard does not require a 64-bit processor.
+
+A: What install DVD are you using?  If it's one that shipped with a Mac (as opposed one sold separately), it's probably locked to only install on the specific model it was included with.
+
+A: This error is very confusing. Time by time I face this problem because I mostly forget this 
+solution. I recenlty had this issue with an old iMac G4. It ended up the following way.
+After partitioning the volume, you have to click Erase and change the partition type from 
+DOS to Mac OSX journaled. I hope this will help everybody there because no one in most of 
+the solutions forums point to these steps. This solution might also work for newer Mac computers.
+
+A: It may also be because your old drive is not partitioned in the correct way. You might have to reformat the DRIVE with the GUID option ticked. The GUID option will appear in Disk Utility ONLY when you choose to reformat the internal drive. 
+Ask (or google) if you need more info about this.

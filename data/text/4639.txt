@@ -1,0 +1,30 @@
+Q: Find folder on network drive, based on username using bash shell in Automator. I'm new to Automator, but I've had a Mac for quite some time, and I'm not a total noob. :)
+Here is my problem:
+Users need to make a backup (to desktop) of a folder located on a network drive. The folder name on the network drive is the same as the user's short username.
+This is no problem if the user selects the folder themselves; I´ve made a workflow that does this. But I need this script to automatically find the folder on the network drive, based on the username and copy it to the desktop.
+Any ideas how to find that folder and pass it on as my inputfolder variable? I assume I need to use a bash shell or applescript command in my workflow?
+
+A: With the information provided, I think the following should work (screenshot follows):
+Run Shell Script
+echo "afp://192.168.0.115/foto/"
+Ignore input 
+Get Specified Servers 
+Connect to Servers 
+New Folder
+Name: Backup
+Ignore input 
+Set Value of Variable
+Variable: Destination  
+Run Shell Script
+echo "/Volumes/foto/$USER"
+Ignore input 
+Copy Finder Items
+To: Destination variable (drag the "Destination" variable from the variable list to the "To" menu)
+Check "Replacing existing files" if needed.  
+Variation for Incremental Backups
+If you want incremental backups, you could replace Copy Finder Items with New Dated Folder, also setting its Destination to the Destination variable, and setting the "Action with passed items" option to "Duplicate passed items to the new folder". Make sure to enter something in the "Name" field, otherwise it won't work. To keep the backups listed in chronological order, you can set the Format to be Year-Month-Day and check the following options: "Leading zero for day", "Leading zero month", and "Month as number". 
+
+
+A: Finally you told what you have done. Now need to know what is the result after your 3.Connect to Servers. Because, the path depends on it.
+Check the next screenshot, the connect returns /Volumes/minidata and the script add only the foto part.
+

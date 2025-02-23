@@ -1,0 +1,61 @@
+Q: Why does three-finger swipe gesture not support natural scrolling? There are three page swipe gesture options in Lion:
+
+
+
+*
+
+*Scroll left or right with two fingers, which is new to Lion, has a neat animation and is currently supported only by Safari.
+
+*Swipe left or right with three fingers existed in Snow Leopard and doesn't have the animation, but is supported by other applications.
+
+*Swipe with two or three fingers enables both of these gestures.
+
+Now, I would be happy with the third option, however it seems that three-finger swipe gesture completely ignores natural scrolling preference.
+If you disable natural scrolling, all options work identically, but if you turn it back on, two-finger swipe changes its direction, while three-finger gesture stays the same.
+This leaves me utterly confused because to go Back in Safari with natural scrolling I can:
+
+
+*
+
+*swipe right with two fingers, or
+
+*swipe left with three fingers.
+
+
+This gets just as confusing in Mission Control or any other application that supports navigation.
+
+Can I override this behavior and “invert” three-finger gestures, too, and should I?
+What was the idea behind this design decision?
+
+A: This may be one of those things that is labeled as a "feature not a bug." It's possible that the swiping gestures that are the same as the gestures on Snow Leopard are considered "Legacy" gestures. If that's the case then it is possible that having it "backwards" Is the expected behavior. If it's a legacy gesture then it may be considered to ignore natural scrolling because that is a "new" feature. I'm not saying that's how it should work, if you ask me if you change the direction of scrolling, it should apply to all gestures, not just the scrolling ones. I've moved mine back to the two finger option for the moment. You should file it at http://www.apple.com/feedback to make sure that Apple knows how confusing this is.
+
+A: A workaround to make the three finger swipe natural:
+
+
+*
+
+*Disable "Swipe between pages" in the trackpad settings
+
+*Install BetterTouchTool
+
+*Reassign the three finger gestures as following: 
+https://www.dropbox.com/s/ne5advnzd1xhvuq/Screenshot%202014-12-26%2010.43.11.png?dl=0
+
+A: Follow-up on this question, since I arrived here searching for how to invert the three-finger swipe gesture in the later versions of OS X (El Capitan etc.), where this is switching screens (Mission Control, aka spaces) and not pages anymore.  I hope this will be useful for others.
+Building on the answer by shock_one, you can use BetterTouchTool to invert the 3F swipe.
+Steps:
+
+
+*
+
+*In System Preferences/Trackpad/More Gestures, ensure "Swipe between full-screen apps" is disabled
+
+*In BetterTouchTool or equivalent, create new gestures for mapping "three finger swipe left" to the Predefined Action/OS X Functionality/Move Right a Space, and viceversa
+
+
+Alternatively, you can use other macro tools, by mapping the 3F swipe to the shortcut key used in Mission Control for switching spaces.
+
+A: I have found that toggling the following does the trick:
+System Preferences >> Trackpad >> Scroll & Zoom >> Scroll direction: Natural
+Note that toggling this option does not only reverse the direction of the three-finger swipe gesture; it also reverses the direction of two-finger scrolling (as both two-finger and three-finger gestures are affected by the one check-box).
+Tested on macOS Big Sur (Version 11.4)

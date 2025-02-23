@@ -1,0 +1,32 @@
+Q: Finder dragging hang / stuck Sometimes when dragging files from folder to another, or moving a folder, the items being dragged are stuck in the dragging mode and it hangs. I can see Finder use 30-35% CPU at that moment. 
+Anyone facing the same problem?
+I'm on 10.7.2 also using FlexiGlass for Window moving/resizing.
+
+A: *
+
+*I would say restart you Mac if you have not done so in a while.
+
+*Try repairing the disk and repairing permissions in Disk Utility. 
+
+*Next try deleting your Finder preferences. Your looking for a file called: 
+com.apple.finder.plist
+Note you might want to back this file up before deleting, if you spent a lot of time configuring Finder view, etc and this turns out to not fix the issue. 
+This file will be located at /Users/YourUSERname/Library/Preferences/com.apple.finder.plist
+
+*Restart and see if it happens anymore.
+
+*Try installing Onyx and use it to reset Finder related settings.
+
+*Try removing FlexiGlass if you suspect that is causing issues.
+
+*Try logging in as another user and see if the issues comes up while logged in as another user.
+
+*If all else fails, back up your stuff and reinstall Lion.
+
+A: If this happens again, try restarting the Finder service by the following commands:
+launchctl stop com.apple.Finder
+launchctl start com.apple.Finder
+
+
+A: TEMPORARY FIX 
+Ok, this is very a very odd & temporary fix but apparently put your mac to sleep and then wake it if you are having this finder hanging issue and it should resolve it. I thought I resolved the issue by deleting finder prefs but it came back a week later. Apparently there is a bug in lion that many other users are experiencing in 10.7.2 and 10.7.3. After waking from sleep I have noticed the issue is always gone, however it will not last across a reboot. Hopefully this is affecting enough users that it makes its way to apple engineers so they can correct it for the next point update.

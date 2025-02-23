@@ -1,0 +1,79 @@
+Q: Volume Keys not working with HDMI audio on mac OSX Lion? I have a mac mini 2011 with OSX Lion. And I have connected my monitor (with integrated speakers) through hdmi port. The sound is working fine, but the volume keys on the keyboard don't work. 
+When I press one of them the volume image appears on the screen but with a prohibited signal.
+Is there a way to fix this and make my keyboard keys change the system volume?
+By the way, they work very well when I use another audio output device   
+
+A: As SoundFlower is extremely outdated and not actively maintained. I've started looking for a better solution.
+I highly recommend this, works pretty great on my LG monitor:
+https://github.com/MonitorControl/MonitorControl
+This project also supports the default volume/brightness keyboard controls. Instead of using a digital line like SoundFlower, it tries to change the volume of your display itself.
+Edit:
+Since posting this answer, I've become a maintainer of this project, and it's grown quite a bit.
+I would still recommend it to everyone wanting to change volume/brightness on external monitors. Works on both Intel and ARM
+
+A: *
+
+*Install Homebrew:
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+*Install Cask
+brew install caskroom/cask/brew-cask
+
+*Install Soundflower:
+brew cask install soundflower
+
+*Reboot.
+
+*Start soundflowerbed (find it by pressing cmd-space to open spotlight):
+
+
+*Click the Soundflower icon in the top-right and select your output device (You should pick HDMI instead of DisplayPort):
+
+
+*In the sound preferences, pick Soundflower:
+
+
+A: A solution using the free version of Sound Siphon
+
+To solve both of these issues: 
+  Launch the Sound Siphon app. In Sound
+  Siphon’s preferences select your output device as the pass through
+  device. Turn Sound Siphon on.
+Sound Siphon processes the audio before it goes to your output device.
+  Now you can use your keyboard to control the volume"
+
+http://staticz.com/add-keyboard-volume-controls/
+
+A: See a solution here for the problem - http://www.vanetta.net/2012/07/enabling-hdmi-audio-controls-on-2011.html
+Requires the free third party app - https://code.google.com/p/soundflower/ but it works perfectly.
+
+A: The audio signal over HDMI is encoded. Encoded audio streams should be normalized to 0 dB. You cannot change this behavior as the audio signal would not be normalized anymore. You can only use the volume controls of your TV set.
+Some programs (like iTunes) have volume control themselves, those can be used to change the volume of that specific program. (Although this goes somewhat against the principle that HDMI audio should be normalized.)
+See also this discussion on Apple Support Communities (same answer).
+
+A: My solution: Sound Control.
+Soundflower is very old software and does not work well for me. Use sound control to specify output device to your HDMI/DP/Type-C device, and control the master volume (can define short key).
+Bonus point: You don't have to buy a license to control only the master volume.
+
+A: if you don't already have them (well, you should! ), install Homebrew and Homebrew Cask.
+Then, install Soundflower and Soundflowerbed:
+brew cask install soundflower
+brew cask install soundflowerbed
+
+Reboot.
+Now, from the Sound Preference Pane, you can configure your Mac to play sound on the Soundflower virtual audio device. And you can launch SoundflowerBed.app (it will sit in the menu bar) to configure this Soundflower virtual output to play on your external HDMI or DisplayPort interface.
+This way, macOS will allow you to control the audio volume (from the menu bar and from the keyboard).
+
+A: On Big Sur (or earlier), you can do this:
+
+*
+
+*Install Blackhole or brew install blackhole-2ch
+
+*Install AU Lab
+
+*Configure AU Lab (You'll be using blackhole as a substitute for Soundflower)
+
+This option also has the benefit of allowing you to setup audio effects, like a system wide EQ and use things like NoAudiophile's speaker corrections and AutoEq's headphone corrections.
+This worked for me on a monitor that didn't work with MonitorControl
+Alternatively, for $40, you can buy SoundSource.

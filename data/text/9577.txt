@@ -1,0 +1,18 @@
+Q: How to search text in files of all types (including binary)? I want to find some text inside binary files. Is it possible to do in Finder (it skips binary even if I set up "All kinds" of file types)? Otherwise I would be thankful for utility that can do it.
+PS: I need to search among many files in directory.
+
+A: You should use the strings application in the Terminal.
+strings filename(s) | grep text_to_search_for
+
+From Wikipedia:
+
+In computer software, strings is a program in Unix-like operating systems that finds and prints text strings embedded in binary files such as executables.
+
+I'm not aware of any way to use Finder to search for text in binary files. 
+
+A: After some digging on Google I found EasyFind.app. This app can search in selected or all file types.
+
+A: You can try Insider for Mac.
+
+A: Insider 1.1.1 is from 2013 but regardless, appears to work well on macOS 10.15.7 Catalina.  However, as of now (Feb 2023) its purchase-website is dead. I just hope the trial period is infinite...
+Its searching is apparently based on Spotlight backed up by find and grep (hence is not constrained to what has been Spotlight-indexed).

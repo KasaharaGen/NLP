@@ -1,0 +1,13 @@
+Q: Using TextMate, is there a hotkey to move the cursor out of the quotations? Using TextMate, I noticed when you open a new set of quotations, the ending quotation is automatically created and wraps what you are going to type. Let's say I am finished typing my string literal, and now my cursor in the position right before the ending quotation. I still need to write other things after the ending quotation. For example, I may be writing a parameter for a function, and the function has a few more parameters. I know CMD + ENTER goes to the next line, and I know CMD + SHIFT + ENTER ends the current line with a semi-colon and then moves the cursor to the next line. Is there a similar natured hotkey that moves the cursor to the position after the ending quotation? I understand that I can just press ' and then SPACE, and that I can use the arrow keys, but I want to know if there is a hotkey with similar a similar nature. Also, for future reference, I feel like I can never find all these hotkeys that I maybe look for. Where am I supposed to look?
+
+A: Currently using:
+TextMate version 2.0-alpha.9547
+Was trying to define it myself when I found out it is already defined as:
+Ctrl + f
+
+A: You didn't give any examples, but if this is your use case:
+somefunction("onestring", "otherstring")
+^^^^^^^^^^^^^^^^^^^^^^abc^^^^^^^^^^^^^^^
+
+Then you're asking for a hotkey to move your cursor from position ab to bc, which can be accomplished by hitting → (right arrow key) once. Any hotkey combination would result in more key-presses than this and therefore not be beneficial (unless you want to avoid moving your hand off the home position, in which case you may want to look at ViMate).
+For finding hotkeys the Textmate bundle contains a function called Show Keyboard Shortcuts, which lets you do exactly that. Hit ^⌥⌘K to quickly access it.

@@ -1,0 +1,22 @@
+Q: Does Safari for iOS 4.2.1 support WebGL? Does iOS 4.2.1, the latest release at the time of this question, support WebGL?
+
+A: Not at this point, no. WebKit, that which Safari for Mac OS and iOS are both based on, is supposed to support WebGL but I have yet to be able to get it work properly on Mac OS 10.6, much less iOS. I get the impression the whole thing is too new (relatively) for proper support.
+
+A: WebGL resources:
+
+
+*
+
+*http://www.khronos.org/webgl/wiki/Main_Page
+
+*http://www.scriptol.com/programming/webgl.php
+
+*http://learningwebgl.com/blog/
+
+*https://developer.mozilla.org/en/WebGL
+
+*http://planet-webgl.org/
+Looks like its only in Webkit, and even then you have to enable it:
+More info: http://webkit.org/blog/603/webgl-now-available-in-webkit-nightlies/
+
+A: I would not get your hopes up of iOs ever supporting WebGL. Not only because exposing the video drivers to untrusted parties poses a security risk. It would also give game developers a way to circumvent the app store for distributing games. Same reason you will never see the flash support extend beyond anything but video.

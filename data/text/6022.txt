@@ -1,0 +1,58 @@
+Q: Repairing macports after deleting image folders I was having problems uninstalling a package in macports (gimp2-devel, to be exact) due to some "directory not empty" errors. I discover from comments made by the maintainer of macports that it's OK to delete these folders, so I went and did so, thusly:
+rm -rf /opt/local/var/macports/software/aalib/1.4rc5_4
+
+(There was another one as well; I forget which.)
+However I am now re-installing gimp2-devel, and it bombs out thusly:
+--->  Computing dependencies for gimp2-devel
+--->  Dependencies to be installed: aalib
+Error: Target org.macports.activate returned: Image error: Can't find image file /opt/local/var/macports/software/aalib/1.4rc5_4
+Error: Failed to install aalib
+Log for aalib is at: /opt/local/var/macports/logs/_opt_local_var_macports_sources_rsync.macports.org_release_ports_graphics_aalib/aalib/main.log
+Error: The following dependencies were not installed: aalib
+Error: Status 1 encountered during processing.
+
+So, it seems that the advice I followed has in fact borked the two libraries I had to remove folders for. My question is - can I restore them with a macports command? I really really don't want to have to remove macports and reinstall it - my web server install and its dependencies are working quite nicely, and I don't want to upset it!
+I've tried a port selfupdate, and also a port clean all, to no avail. Any ideas? :-)
+Edit: an answer below raises a good point about checking the logs. This is what I get:
+version:1
+:msg:main --->  Computing dependencies for aalib:info:main .:debug:main Searching for dependency: ncurses
+:debug:main Found Dependency: receipt exists for ncurses
+:msg:main
+:debug:activate activate phase started at Sat Aug  6 11:12:28 BST 2011
+:debug:activate Executing org.macports.activate (aalib)
+:error:activate Target org.macports.activate returned: Image error: Can't find image file /opt/local/var/macports/software/aalib/1.4rc5_4
+:debug:activate Backtrace: Image error: Can't find image file /opt/local/var/macports/software/aalib/1.4rc5_4
+    invoked from within
+"registry_activate $subport $version $revision $portvariants [array get user_options]"
+    (procedure "portactivate::activate_main" line 4)
+    invoked from within
+"$procedure $targetname"
+:notice:activate Log for aalib is at: /opt/local/var/macports/logs/_opt_local_var_macports_registry_portfiles_aalib_1.4rc5_4/aalib/main.log
+
+Edit 11th Aug: I've also tried "port build aalib" which is initially quite promising, but subsequently trying Gimp again was just the same:
+--->  Computing dependencies for aalib
+--->  Fetching aalib
+--->  Attempting to fetch aalib-1.4rc5.tar.gz from http://www.mirrorservice.org/sites/ftp.freebsd.org/pub/FreeBSD/ports/distfiles/
+--->  Verifying checksum(s) for aalib
+--->  Extracting aalib
+--->  Applying patches to aalib
+--->  Configuring aalib
+--->  Building aalib
+
+
+A: I ran into something similar, however, it was during an upgrade outdated that the problem occurred. The issue happened because I had a connection failure part way through the transfer of gcc44, and it truncated the tar archive. I deleted this and expected it to fetch it again, but I just got the missing image error, and I couldn't find out how to get a copy of it. I tried all kinds of things like those above including rebuilding it, cleaning etc, but what eventually fixed it was
+sudo port uninstall -f gcc44
+sudo port install gcc44
+
+
+A: Did you try port -f activate aalib.
+
+A: Possibly obvious to you, but the first thing I'd try... look at [long-path-to-log-file]/main.log for anything relevant, especially near the end
+Then maybe ...
+port -f install aalib - hopefully a "manual" install can get it back
+
+A: Ah, here's a solution:
+sudo port upgrade outdated
+
+Possibly not ideal for people who do not wish to be forced to upgrade their installed ports, but for me it fixed the broken items and upgrading hasn't hurt anything. After this command, I was then able to install gimp2-devel without problems.
+Thanks all for your responses! :-)

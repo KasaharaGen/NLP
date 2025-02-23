@@ -1,0 +1,28 @@
+Q: How to configure Terminal to be "Putty-like" when it comes to copy-paste with mouse? As a long time Putty user, I love how upon selecting a text it gets copied  into the buffer and upon right clicking it gets pasted back in.
+Is there a way to configure Terminal to behave the same way?
+
+A: If you have a three-button mouse (e.g., the Apple Mighty Mouse scroll ball can act as a third button), Terminal will paste the current selection if you Middle-Click (just like X11 and xterm). It is the same as invoking the Edit > Paste Selection command, which has the keyboard shortcut Shift-Command-V.
+As of OS X 10.8, selecting text in a terminal copies the text to a pasteboard and Paste Selection pastes the contents of this pasteboard (akin to X11’s PRIMARY). It now behaves very much like xterm under X11. As a result, Paste Selection and Middle-Click are now available when there is no selection, pasting the same text until something else is selected, and the text persists when quitting/reopening Terminal. The pasteboard has the identifier com.apple.Terminal.selection and is available to other programs.
+Also, you can drag-and-drop selected text to Paste it. You can of course drag to other terminal windows (or other applications), but you can also just drag a few pixels and then release to Paste into the current terminal.
+
+A: NO need to download anything. In Terminal do
+
+
+*
+
+*select text to copy
+
+*to paste, click the middle button of the mouse, or
+(cmd + shift + v)
+
+
+I just tried in Yosemite.  
+Also works in High Sierra.
+
+A: shift-⌘-V works on El Capitan. Feel free to edit if you have information about earlier releases
+
+A: Highlight the command and press Shift-Cmd-V to paste the highlighted data.
+
+A: Terminal is limited in its configurability but iTerm2 is a Terminal replacement that does what you ask and more. Including bookmarks for ssh sessions not unlike puTTY.
+
+A: Simply install http://totalterminal.binaryage.com/ which includes both these options in the preferences.

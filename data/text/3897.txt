@@ -1,0 +1,25 @@
+Q: AppStore stopped working Today I wanted to download a free application from the AppStore.
+First it wanted me to review my account settings, I accepted the license, then filled out the empty fields and it asked for my payment settings. Since I don't have US payment method, I had to switch to the Hungarian store, because no payment was not an option there.
+They charged me (for around $4) and switched me to the Hungarian store. Later I could set it back to the US store with iTunes where I could check the no payment option.
+So I have an US account again.
+But since then I could not download any application. It starts to download it, finishes the progress bar and then this alert window appears:
+
+Of course there is no problem with my Internet connection.
+The application is installed nevertheless but the AppStore application could not see it as an installed app so I could not check the updates for it.
+Update: In the /var/log/install.log it seems the installation has been finished:
+May  4 09:33:16 krtek installd[14760]: PackageKit: ----- Begin install -----
+May  4 09:33:16 krtek installd[14760]: PackageKit: request=PKInstallRequest <1 packages, destination=/>
+May  4 09:33:16 krtek installd[14760]: PackageKit: packages=(\n    "PKLeopardPackage <file://localhost/Users/raszi/Library/Application%20Support/AppStore/414445104/mzm.cufsjzsc.pkg#com.most-advantageous.windowflow.pkg>"\n)
+May  4 09:33:16 krtek installd[14760]: PackageKit: Extracting file://localhost/Users/raszi/Library/Application%20Support/AppStore/414445104/mzm.cufsjzsc.pkg#com.most-advantageous.windowflow.pkg (destination=/var/folders/zz/zzzivhrRnAmviuee+++++++++++/Cleanup At Startup/PKInstallSandbox-tmp/Root/Applications, uid=0)
+May  4 09:33:17 krtek installd[14760]: PackageKit: Shoving /var/folders/zz/zzzivhrRnAmviuee+++++++++++/Cleanup At Startup/PKInstallSandbox-tmp/Root (1 items) to /
+May  4 09:33:17 krtek installd[14760]: PackageKit: Registered bundle file://localhost/Applications/WindowFlow.app/
+May  4 09:33:17 krtek installd[14760]: Installed "WindowFlow" ()
+May  4 09:33:17 krtek installd[14760]: PackageKit: ----- End install -----
+
+Update2:
+Moving away ~/Library/Application Support/AppStore/ did not help the problem, update still not working:
+
+
+A: The Reset cache solved my problem in the iTunes advanced preferences:
+
+Since then I can install and upgrade applications from AppStore.

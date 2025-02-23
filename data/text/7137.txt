@@ -1,0 +1,6 @@
+Q: How to recover .profile on Mac OS? I have mis-configured ~/.profile while adding new environment variable. I want to restore my original .profile for my Mac OS, I am not mac expert please help me. None of my shell command is working for me like ls, java, php etc Please help
+
+A: Show hidden files in Finder. Then you can either fix the problem in TextEdit, or simply remove/rename the file. There is no default ~/.profile on Mac OS X, only a global /etc/profile (and you may also have a ~/.bash_profile).
+
+A: If you still get to the shell prompt, you can use : > ~/.profile to create a new and empty file. Afterwards open a new shell in Terminal (by opening a new tab or window) and your environment should work again. 
+In addition: When editing .profile (or .bash_profile) it is always helpful to open a shell (terminal window) before you start editing. So even if you mess up the edit, you still have a working shell to fix issues (because .profile is only read once at start so further edits don't impact a running shell unless you source .profile again). And as usual: make backups.

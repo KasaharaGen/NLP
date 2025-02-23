@@ -1,0 +1,81 @@
+Q: Why can't I run `su`? (and how should I do?) Whenever I try to issue su I get this:  
+$ su  
+Password:  
+su: Sorry
+
+Needless to say, I'm entering the correct admin password which does work with sudo. What I want is not having to enter sudo each time.
+
+A: Modern solution: sudo -u
+To run as another use, use sudo -u.
+For example, to run a text-editor such as nano:
+sudo -u someuser nano
+
+…and enter your Mac admin user password when prompted. At this juncture, it is your Mac admin user who is invoking sudo, not the someuser user so you do not enter the someuser password.
+
+
+*
+
+*sudo means to run something using superuser privileges.
+
+*-u means “run a specified command as this specified user”.
+
+*someuser should be replaced with your desired user name.
+
+
+To simulate an initial login as a particular user, including running their startup scripts, use -I.
+sudo -u someuser -i nano
+
+This runs the nano app as the user someuser but only after having run the startup scripts for that user.
+If we opt to not specify a command or app to run, we get an interactive shell running as that user.
+sudo -u someuser -i
+
+Old-school: sudo su someuser
+Another approach uses the su command in combination with the sudo. The su command means “switch user”. 
+sudo su someuser
+
+Or, to include running the user's startup scripts, add the hyphen.
+sudo su - someuser
+
+root user
+The root user in Unix-related operating systems have absolute power to do anything. 
+Apple has chosen to disable the root account in macOS, to avoid security vulnerability exploits and to protect you from shooting yourself in the foot. Apple created the idea of the Administrator user accounts who have many powers, more powers than a Standard user account, but not absolute power like root has. See this Apple Support note for discussion.
+If need be, you can enable the root user in macOS and then switch to that user. This is strongly discouraged. I would go down this path only as a desperate last resort.
+
+For discussion of this within the context of the postgres user running the Postgres database system on macOS, see this Question on the sister site, DBA Stack Exchange.
+
+A: In MacOS X, the root user is disabled by default, therefore su will not work. As others have stated, it's best to use sudo. 
+If you must enable the root user, see Apple's technote: Enabling and using the "root" user in Mac OS X.
+
+A: You have two options. The first is to use sudo -s - this will give you superuser access, but you will still remain 'yourself' (so to speak), so things like ~ will still be your home directory. Alternatively, you can use sudo su, which gives you a shell as the actual root user of your Mac.
+
+A: I think you can't do this as a "normal" user...
+If there is another user account with admin rights you have to use this one
+restricted user$ su
+Password:(the root password here)
+Sorry!
+
+restricted user$ su - (an admin account here)
+password:(the admin account password)
+$ su - root
+Password:(The root password here)
+# -> You are root user now
+
+
+A: For instance, if you need move files or use git using the CLI then, in that case, the best solution will be to use the sudo -s command. After that command, you don't have to keep entering the password again and again.
+
+A: I had this same problem and as @Nohillside suggested, there is no way to access root through the su command as a normal user just using su. As stated, adding the admin account to the su command is recognized. I was able to connect as root that way. It's not something I will do often. I just wanted to test it and the result was an immediate connection.
+> admin-server:~ admin$ su
+> Password:
+> su: Sorry
+> admin-server:~ admin$ su - admin
+> Password:
+> admin-server:~ admin$
+
+
+A: Try the password alpine?! Legend has it that alpine was the root password on macOS for many years! You can get to root from an admin account shell with:
+sudo su 
+
+I recommend then changing the password for root with:
+passwd
+
+After this I can just run su and type the actual root password. Handy for going root from a regular user account.

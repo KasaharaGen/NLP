@@ -1,0 +1,8 @@
+Q: Is it possible to switch from Safe Mode to Normal and back without a reboot? Since 10.6.3, Apple has decided change the AppleIntelCPUManagement kexts, which leave me stuck with a kernel_task that pegs out at 135-185%, generating a lot of heat.
+Anyway, since I doubt anyone has a fix to the above, is it possible to switch from Safe Mode to Normal (and vice-versa) without a reboot?
+
+A: No.
+To start at the beginning, Mac OS X loads certain kernel extensions very early in the boot process. And, intrinsically, kernel extensions will only function if they are loaded at the start of the boot process. 
+The purpose of Safe Mode is to boot the computer without these kernel extensions.
+In Normal mode, these kernel extensions are permitted to load right at the beginning of the boot.
+So, by definition, the only way to have Normal mode is to load all the kernel extensions at boot time. Hence, if you are in Safe Mode, you must reboot to create Normal Mode.

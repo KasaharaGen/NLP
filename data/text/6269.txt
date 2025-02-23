@@ -1,0 +1,41 @@
+Q: UK spelling dictionary - teach OS X *all* -ize spellings The British spelling dictionary in OS X is customized to UK spellings, a very useful feature. However, the designers have made the unfortunate choice of only listing -ise endings for words such as advertise, customise, etc. Many Brits, such as myself, prefer the -ize spelling.
+In Lion, auto correct keeps changing all my -ize spellings to -ise. Not what I want!
+Can any of you suggest a clever way (perhaps a perl script?) to quickly add all -ize variants of corresponding -ise spellings to the local dictionary?
+Note: the suggestion "switch to US spellings" is not acceptable!
+
+A: I found a good-enough fix for this.
+I copied the Oxford English dictionary -ize words from here:
+http://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Spelling/Words_ending_with_%22-ise%22_or_%22-ize%22
+and pasted them into
+/Users/danbrowne/Library/Spelling/LocalDictionary
+This seems like a fairly comprehensive list. Anything which is missing I can add by hand.
+One remaining issue: Apple doesn't seem to be able to intelligently conjugate these words, but using copy-paste on the list (ize -> izes, izing, ized, etc.) sorted that out.
+
+A: Adding words to the local dictionary is tiresome!
+Just do this instead:
+System Preferences > Language & Region > Keyboard Preferences… > Text > Spelling > Set up… > Check both British and US English.
+Works for me!
+
+A: Switching to Canadian English will sort the problem out, and seems to allow other British spelling variants, such as programme and connexion. I share your frustration: -ize is not an Americanism (although -yse is) but is standard British English (alongside the -ise variant) and preferred by Oxford on etymological grounds and by Yours Truly just because. It is also allowed in Australian dictionaries, but not in Apple's Australian English setting. Apple really ought to sort it out themselves--they're the ones who've got it wrong, after all. There doesn't seem to be anything I can do about it on the iPhone, however. This only allows 'English' or 'British English' (the cheek!), and the latter only permits -ise. 
+
+A: There is an Oxford style British dictionary available here.
+You can download the bundle, extract the en_GB-oed.aif and en_GB-oed.dic files, and copy them into Spelling/Library.  It will appear in the list of spelling dictionaries as "English (Library)".
+Note though that this dictionary allows only -ize spelling, not -ise.  You may find this annoying, or helpful in keeping a consistent style.  Also, the dictionary is a bit old, and probably of slightly worse quality than the default British English dictionary.
+I'm a new Mac user, so I ave minimal experience with this on OS X, but I've been using this dictionary for several years with Vim.  Apart from a few words missing, it's very usable.
+
+A: Have you tried Canadian English?  I think it uses -our and -ize.
+
+A: If you have “correct spelling automatically” on then you have the problem you describe.
+As an alternative you can activate “show spelling and grammar” and check spelling after you complete your writing and ignore any and all suggestions to replace “z" with “s".
+
+A: I guess you could try using grep from the command-line to get the list words ending with 'ize' from the US dictionary (in [/System]/Library/Spelling) and append them into user dictionary (~/Library/Spelling/LocalDictionary or ~/Library/Spelling/en_GB). This should do the trick.
+
+A: There is a very good solution for this that solves more than the -ise/-ize problem: enabling more than one English dictionary at a time: for example you can have spelling for English to accept both US and UK dictionaries.
+Read this answer for details on how to set it up: https://apple.stackexchange.com/a/62551/1916
+
+A: If there are just a few which bother you, add them as custom spellings. Otherwise the Canadian dictionary is a good recommendation.
+Keep in mind, one can switch a single application to a spelling set if there's some documents which must be written with "-ize" but generally you write with "-ise" in your correspondence.
+You can also change the language for spelling while in an application.
+
+
+A: "Advertize", "customize" and so on are simply wrong in British English. I'm afraid there's no way to make it allow incorrect spellings en masse -- you should choose an accepted standard that's in the dictionary and stick with it. Or if you just want to make up your own spellings (which is what it sounds like) then simply turn off spell check altogether.

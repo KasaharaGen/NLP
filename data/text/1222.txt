@@ -1,0 +1,30 @@
+Q: Safari has some strange colors now Safari has suddenly started showing some strange GUI colors on the bookmarks screen. They seem to have started shortly after applying the latest iTunes update, although not IMMEDIATELY after (a few hours, and only after rebooting my machine). This is what it looks like now (I have not changed any settings):
+
+Is there a way to make it appear normal again?
+EDIT:
+I have uninstalled, rebooted, and even tried removing all apple settings from my "AppData" directory. Nothing is helping so far.
+
+A: I don’t have a lot of Windows Expertise, but I assume that uninstalling Safari (and iTunes) and try installing them from scratch (after a nice reboot), might fix it.
+
+A: I'm not a Windows 7 user, but I'd guess Safari is inheriting these colours from your appearance settings in your control panel, especially if you've deleted AppData/reinstalled. 
+Have a try playing with your Display Control Panel (especially the window appearance settings) to see if that fixes things, maybe Safari is using non-standard windows' colours for its bookmark background. 
+Windows XP's Advanced Appearance Window:
+
+
+A: Its due the the color management profiles on various screens. A fix can be found at http://support.microsoft.com/kb/939395
+
+
+*
+
+*Click Start, type Color Management in the Start Search box, and then press ENTER.
+
+*In the Color Management dialog box, click to select the Use my settings for this device check box.
+
+*In the Profiles associated with this device list, click the color profile that you want to remove, and then click Remove. 
+
+*Note If you receive a warning message, click Yes.
+
+*Close the Color Management dialog box and then restart the computer to apply the setting.
+
+
+I also found if you just delete the other one, then re-add sRGB IEC61966 2.1, and set it as default, you don't even have to reboot and it just works. and it solved the same issue I was seeing in other Applications, but mostly Safari

@@ -1,0 +1,6 @@
+Q: How can I bring back the "bounce" when scrolling in OS X? I just system restored after a kernel panic, and I am no longer seeing this feature.  It used to be that when you scrolled (say, down this page in Firefox), there was some physics in the scroll, rather than a hard stop and start.  Since system restoring, this is gone.  How do I bring it back? I am using Snow Leopard.
+
+A: I think you may be referring to the "Scroll with inertia" option, which is found in System Preferences > Trackpad. If it's set to scroll with inertia, but inertial scrolling isn't working, try toggling it to "without inertia" then back to "with inertia".
+If that doesn't work, you can try deleting the preference file, "com.apple.driver.AppleBluetoothMultitouch.trackpad.plist" found in ~/Library/Preferences. Then log out, log back in and check the Trackpad preferences again.
+
+A: Look at preferences for "Smooth scrolling"

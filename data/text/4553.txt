@@ -1,0 +1,46 @@
+Q: how to setup Mass Virtual Host using VirtualDocumentRoot on Snow Leopard Running Snow Leopard, I have enabled the build in apache(with indexing) and php, and installed and enabled mysql. I have setup my sites in the ~/Sites directory, named:
+
+
+*
+
+*www.site1.dev
+
+*www.site2.dev 
+
+
+It all works,localhost shows the index linking to them.
+Now I want to set up virtual hosts in the most simple way. I would like that typing www.site1.dev in the url bar serves me the site in that directory.
+So I outcommented the include vhosts rule in the httpd.conf file, and in the httpd-vhosts.conf pasted this code based on the apache docs:
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    DocumentRoot /Users/me/Sites
+UseCanonicalName off
+
+VirtualDocumentRoot /Users/me/Sites/%0
+AllowOverride All
+
+RewriteEngine On
+</VirtualHost>
+
+Yet my browser can't find the server. What am I doing wrong?
+I did notice that in my sharing system prefs the IP my ISP gives me, and their domain is included in the link created there to access my sites folder. I would expect a simple localhost there not an ipaddress....
+
+A: You need to update you httpd-vhosts.conf to something like this:
+<VirtualHost *:80>
+    DocumentRoot "/Users/me/Sites/www.site1.dev"
+    ServerName www.site1.dev
+</VirtualHost>
+<VirtualHost *:80>
+    DocumentRoot "/Users/me/Sites/www.site2.dev"
+    ServerName www.site2.dev
+</VirtualHost>
+
+Having each domain separately in your config allows you to have separate server options for each, e.g. Rewrite config, separate log files, etc.
+Then, update your /etc/hosts and add this at the end:
+127.0.0.1   www.site1.dev
+127.0.0.1   www.site2.dev
+
+This step is particurarily important as this is where your OS looks first when resolving domain names. Otherwise it will not know what www.site1.dev is.
+Then simply restart the server by disabling Web Sharing and enabling it again.
+To make sure your config works you can check apache logs (access_log and error_log) via Console.app (Files > /private/var/log > apache2).

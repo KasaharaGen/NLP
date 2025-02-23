@@ -1,0 +1,57 @@
+Q: Fixing "a sealed resource is missing or invalid" warning I've changed the application icon of my Eclipse editor, and this causes a confirm dialog to pop up asking me if I allow the program to accept incoming network connections. I faced this before, but then, I somehow got rid of it. Now I can't anymore.
+Here's the output of the codesign utility:
+$ codesign -vv /Applications/Indigo/Eclipse.app/
+/Applications/Indigo/Eclipse.app/: a sealed resource is missing or invalid
+/Applications/Indigo/Eclipse.app/Contents/Resources/Eclipse.icns.bak: resource missing
+
+Does anyone know how can I totally uninstall Eclipse so that the OS forgets about that "Eclipse.icns.bak" file?
+Thanks!
+
+A: Ok, I managed to do this. It's dirty but pretty safe so far.
+The database holding that info is located under /var/db/DetachedSignatures. This is an SQLite database, so it can be easily modified using the built-in sqlite3 tool. Here's an example session that deletes entries matching the "eclipse" keyword:
+# we're using sudo, so be careful
+$ sudo sqlite /var/db/DetachedSignatures
+
+# what tables does it contain?
+sqlite> .tables
+code global
+
+# what are the column definitions in code?
+sqlite> .schema code
+CREATE TABLE code ( 
+        id integer primary key on conflict replace autoincrement not null, 
+        global integer null references global (id), 
+        identifier text not null, 
+        architecture integer, 
+        identification blob not null unique on conflict replace, 
+        signature blob not null, 
+        created text default current_timestamp 
+    );
+CREATE INDEX architecture_index on code (architecture);
+CREATE INDEX id_index on code (identification);
+CREATE INDEX identifier_index on code (identifier);
+
+
+# what are the column definitions in global?
+sqlite> .schema global
+CREATE TABLE global ( 
+        id integer primary key on conflict replace autoincrement not null, 
+        sign_location text not null, 
+        signature blob null 
+    );
+CREATE INDEX location_index on global (sign_location);
+
+What we're interested in are code.identifier and global.sign_location.
+sqlite> SELECT * FROM code WHERE identifier LIKE "%eclipse%";
+sqlite> SELECT * FROM global WHERE sign_location LIKE "%eclipse%";
+
+Take a look and make a backup before deleting all matching entries from both queries.
+sqlite> DELETE FROM code WHERE identifier LIKE "%eclipse%";
+sqlite> DELETE FROM global WHERE sign_location LIKE "%eclipse%";
+
+I've also restarted my laptop, although I don't know if it's really necessary.
+That's all!
+
+A: Another workaround would be to replace the invalid code signature with a new one:
+sudo codesign --force --sign - /Applications/SomeApp.app
+

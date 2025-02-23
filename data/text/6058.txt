@@ -1,0 +1,16 @@
+Q: Can Mail.app be configured to insert a blank line before the text of the previous message in a reply? Currently, a reply window contains this:
+
+*new message text starts here*
+... old/previous message text starts here...
+
+What I want is this
+
+*new message text starts here*
+... old/previous message text starts here...
+
+
+A: Not ideal but: 
+Go into Preferences: Signatures, create a new Signature, erase the name and e-mail address, and hit Enter once to create a blank line. Then check the "Place signature above quoted text" box. 
+Note: once a signature has been saved with actual text, Mail won't let you blank it out, so make sure you do this with a new sig, rather than editing an old one.
+
+A: I believe you can configure the free QuoteFix Mail plugin to do what you want.

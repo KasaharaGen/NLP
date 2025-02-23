@@ -1,0 +1,5 @@
+Q: How to automate DropBox startup without logging in I'd like to have DropBox running under multiple user accounts on a Mac, even after a reboot. The Mac auto logs in as one user, not me. How to best achieve this? 
+
+A: You'll have to configure Dropbox identically for all users, at least to the extent of "start at login", and "save password/login information". But if you configure it for all the system users, it should work identically no matter who logs in.
+
+A: Create a script and it in /Library/StartupItems?  You may also be able to simply drop an alias in that folder.

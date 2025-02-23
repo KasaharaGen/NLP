@@ -1,0 +1,35 @@
+Q: Running Leopard on a MacBook Pro that shipped with Snow Leopard I have a MacBook Pro with 10.6 pre-installed. Is there a way to use this machine to test my software on 10.5?
+
+
+*
+
+*Do I need 10.5, or is there is a mode within 10.6 with which I can run 10.5?
+
+*If I need 10.5, how can I get it?
+
+*
+
+*Do I need to buy the 10.5 OS? (if so, where does one do that?)
+
+*Does 10.6 somehow include 10.5 with it?
+
+*Do I already have a license for 10.5 by buying 10.6?
+
+
+*How do I install 10.5 once I have it?
+
+*
+
+*Will it work in Virtualbox?
+
+*Do I need to dual boot?
+
+
+
+A: No, this will not work. You can have multiple versions of OS X on one machine, but you can only install newer versions than the one that came pre-installed. For example, if your machine came with 10.6.4, you can't run 10.6.3 or older.
+When Apple releases new hardware, the drivers for that hardware get rolled into a special build of OS X that comes only on that model. They don't get added to OS X in general until the next point release. (That means that drivers for the hypothetical machine I'm talking about wouldn't be added until 10.6.5.)
+Apple doesn't release drivers as standalone software, which effectively makes it impossible to install and older version of OS X than what your Mac shipped with. You'll find that if you put the install disc for an older version in the drive, it either won't boot or it will refuse to install.
+However, you can go the other direction. If you have an old Mac running 10.5, you can use Disk Utility to make another partition (HFS+ Journaled), then boot the install DVD for 10.6 and install it to that partition. To switch between the two after installing, hold alt when you boot up. (You can also select the default boot partition through the Startup Drive pane in System Preferences within either OS X install.) Boot camp is not required for this. Boot camp is only required for installing non-Apple operating systems like Windows and Linux.
+
+A: I would think partitioning the disk and using Boot Camp is all you need to do here.
+If you don't have a 10.5 disk already, then you'll need to go through Ebay and sites of its ilk. Apple doesn't sell previous versions of OSes.

@@ -1,0 +1,13 @@
+Q: iPad can't seem to view sites / pages that include the port in the URL? I've found that the iPad, using its Safari browser can't access web pages that include a port number in the URL:
+http://www.example.com:8080/
+or even
+http://www.example.com:80/
+In either case, the browser displays a message stating "Cannot Open Page, Safari cannot open the page because the network connection was lost."
+I understand that port 80 is the default port for the HTTP protocol (443 for HTTPS) and that usually it's omitted from URL's as most (all?) browsers know to use the default (including Safari when running on Mac OS).
+Before you ask, yes the sites are up and accessible (obviously the links above are just examples of syntax) and other devices (non-Apple phones, pads and laptops) can access the site - there is no issue with 3G / network coverage etc.
+Is this a bug with the iPad - or is it something that's configurable?
+
+A: You might want to exclude 'www' if possible. This can cause the page not being available as www mainly is pointing to port 80. If that doesn't work it might not be an Apple issue, and SuperUser might be a better place to ask the question.
+Or you could set a redirect on a url pointing it to the right location with matching portnumber.
+I can run different sites with portnumbers in it, as stated in the comments above.
+Example: Synology NAS port 5000, works on my iPad.

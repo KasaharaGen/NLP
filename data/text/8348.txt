@@ -1,0 +1,18 @@
+Q: How can I show only an .htaccess file in the Finder? I'm a web developer. I really need to use .htaccess file.
+How can make Finder show only the .htaccess file and not all the file prefixed with .?
+I am running OS X Lion.
+
+A: To my best knowledge, you cannot selectively display dot files in Finder. However, if you just need a way to easily open them via Finder, you could create a symlink to the file in its directory, omitting the dot in the name, i.e.:
+
+
+*
+
+*open Terminal, cd into your folder;
+
+*ln -s $PWD/.htaccess $PWD/htaccess.
+
+
+You can then open the file by double-clicking the newly created link, select an editor in the link’s context menu etc. However, if you want to copy, up- or download your .htaccess file, you are stuck with Terminal, full display of all dot files, or temporarily renaming the file (to _htaccess, say).
+
+A: Tried many method, the best way for me is use Houdini.
+Houdini can easily hide and display all hidden.

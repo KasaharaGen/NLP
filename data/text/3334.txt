@@ -1,0 +1,59 @@
+Q: Is there any alternative to MacPorts? MacPorts became really a pain because it does compile the packages on your machine, like the infamous gentoo and I would like something with a smaller footprint on your machine.
+I know that Fink and other solutions exists but from what I remember form few years ago they are less maintained than macports.
+I would like to read a more informed opinion regarding which solution would be optimal and why. 
+
+A: Alternatives for MacPorts
+Homebrew
+
+*
+
+*Uses OS X binary versions when available
+
+*Compiles OS X optimized versions
+
+*
+
+*Compiling usually faster than with MacPorts
+
+
+
+*Easy to use, e.g. to install wget: $ brew install wget
+
+*Tries to separate already installed software from what is installed through brew …
+
+*… while taking advantage of already installed software and libraries (e.g. doesn't install a working version of Perl twice)
+
+*Installing software doesn't need root access
+
+*Actively developed on github
+Fink
+
+*
+
+*Uses Debian tools like dpkg and apt-get
+
+*Easy to use, e.g. to install wget: $ fink install wget
+
+*Can be used to install precompiled packages or to compile everything from the source
+
+*Has a separate directory tree to avoid interference with the system
+
+Rudix
+
+*
+
+*Last version 2010-04-10
+
+MacLibre
+
+*
+
+*Has GUI
+
+*Nothing new on the website since 2008
+
+
+A: Yes, you can try Homebrew.
+​​
+
+A: Macports now provides compiled binaries for Snow Leopard and Lion for normal options. 

@@ -1,0 +1,36 @@
+Q: open new terminal tab in the same directory with the active tab In GNOME Terminal of Ubuntu when you open a new tab the new shell will automatically start you in the current working directory of the active tab shell.
+E.g. if in the active tab shell I am on ~/myproject and I open a new tab, the new shell will start on ~/myproject too.
+As you can guess, this is very convenient when you work deep in the directory hierarchy.
+Can I configure the OSX terminal to have this behaviour? 
+If not, is there any free (cocoa) terminal that does this?
+
+A: You may use iTerm2 and just select in preferences to "reuse previous tab's directory"
+
+
+A: In recent OS X versions (Mavericks and Yosemite, not sure about earlier versions) in the Terminal.app preferences, "General" tab, there are options for "New windows open with" and "New tabs open with":
+
+
+A: Here's my solution from a SuperUser question
+
+Get the current environment in your clipboard:
+env | pbcopy
+
+Open up a new Terminal window and export those environment variables
+for env in `pbpaste`; do export $env; done
+
+And to ease the process, you could always alias it, like so
+alias get_env="env | pbcopy"
+alias set_env="for env in `pbpaste`; do export $env; done"
+
+So that all you have to do is
+
+get_env ⌘+N set_env
+
+
+The accepted solution:
+#!/bin/sh 
+osascript <<END 
+tell app "Terminal" to do script "cd \"`pwd`\"" 
+END
+
+Place it in one of the folders in your path, make it executable (chmod +x filename). You can then run the name of this script to open a new terminal window in the same directory.

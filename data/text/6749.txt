@@ -1,0 +1,41 @@
+Q: Change the mouse wheel scrolling acceleration I am new Mac user and I don't really like the Magic Mouse so I reverted to a good old 3 button mouse with a scroll wheel.
+When I turn the wheel slowly, it only scrolls pixel per pixel (or per two pixels)
+If I turn the wheel more quickly, it scrolls nearly line by line. There is a kind of scroll wheel acceleration where the amount scrolled for each wheel step depends on the rotation speed of the wheel.
+This behavior is not present in Windows where you always scroll a few lines per wheel step.
+Is there a way to disable this behaviour or to tweak it in Mac OS X Lion?
+
+A: There is now a free program called DiscreteScroll - https://apple.stackexchange.com/a/262329/221420 - it will make it so that one mouse wheel tick scrolls 3 lines.
+
+A: https://mousefix.org/ -- Try this, I was facing the same issue. Sometimes wanted to use trackpad and a normal mouse together. It has a setting "Invert Direction" too. I am sure you will not go anywhere else after using this.
+I am on mac Mojave 10.14.6. Its FREE!
+
+A: If you have logitech mouse then you can try installing Logitech Control Center for Macintosh® OS X http://www.logitech.com/en-us/support/3129?section=downloads&bit=&osid=35
+
+A: The application found here fixes the issue:
+https://github.com/davekeck/DisableExtremeScrollAcceleration
+
+A: Hope you're still reading - I highly recommend one of the third party mouse managers like SteerMouse or USB Overdrive or ControllerMate. 
+I found the arch of the Magic Mouse just too low and went back to the old reliable Logitech MX Revolution, but I will never install Logitech software again without an excellent reason. These packages will let you configure all of the buttons and SteerMouse (haven't verified for the other two) will definitely let you specify linear or accelerated wheel scrolling with variable degree of acceleration. 
+
+A: After many years of frustration with macOS & wheel mice, I've developed Smooze.
+Disabling the scroll acceleration and setting the number of lines you want to move on each tick are free features.
+
+Smooze website
+
+A: USB Overdrive changes the default scrolling behavior so that single ticks of a scroll wheel scroll in larger increments.
+It also has an option to for example make a single tick always scroll a single line. It also supports changing the tracking (but not scrolling) acceleration, like SmoothMouse or MouseAcceleration.prefPane.
+
+
+A: SmoothMouse donationware works great for me on OS X El Capitan 10.11.3
+
+A: You can use this the Mouse acceleration Prefpane, download it free here:
+http://triq.net/articles/mouse-acceleration-preference-pane-mac-os-x
+
+A: System Preferences---Mouse
+There you can speed up the scrolling speed.
+Tracking Speed relates to how fast the mouse moves across the screen.
+Good Luck!
+
+A: SmoothScroll for Mac fixes this problem (you can disable acceleration or give your own parameters). Even better it makes scrolling animated between wheel ticks so you get a smooth experience. 
+By paying for it you ensure that there's somebody out there who cares about the mouse scrolling experience on Macs.
+(disclaimer: I am the developer)

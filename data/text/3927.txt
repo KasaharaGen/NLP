@@ -1,0 +1,34 @@
+Q: iPhone drops data connection when in call I'm on O2 Uk so I'm pretty sure it's a GSM network. I was under the impression that iPhones (at least) could browse the Internet while on a call. But when I switch to Safari while on a phone call I get an alert view saying I can't use data on a call. 
+And it doesn't matter if I'm in 3G Edge or GPRS (the dot) coverage. 
+Why is this, and why hasn't it always happened? And more importantly how can I change it?
+
+A: This is coming from an American, but the 3G coverage should allow simultaneous data and voice.
+From Apple's Website:
+
+You can tell iPhone is connected to
+  the Internet over a cellular data
+  network if you see , or  in the status
+  bar at the top of the screen.
+If you're outside your carrier's
+  network, you may be able to use a
+  cellular data network from another
+  carrier. Roaming charges may apply.
+Note: If not on 3G, while iPhone is
+  actively transferring data over the
+  cellular data network—downloading a
+  webpage, for example—you may not be
+  able to receive calls. Incoming calls
+  may go to voicemail.
+
+GPRS and EDGE will fail at offering both voice and data, and it might be that you initiated the call on an EDGE network, and moved over to the 3G areas, either way I would recommend resetting network settings on the phone.
+Settings>General>Reset>Reset Network Settings
+
+This will reboot your phone, reestablish network connections, and forget your wifi passwords.
+
+A: From my experience here in Brazil's GSM, if you're browsing and then either pick or make a call, the 3G (or even Edge sometimes) continues to work while on the call, though that doesn't happen always and sometimes I do receive the warning as well, not only on safari but anywhere I try to connect.
+Somehow seems like the problem is in making the connection while within a call. And that sucks. But I've never could solve it. I could never connect to the carrier internet if I didn't connect soon before entering any call.
+While wifi obviously works all the time.
+But if everything was working fine before and now it isn't anymore, as hobs said, the last thing you can do to fix it is Resetting the Network Settings.
+
+A: "GPRS and EDGE will fail at offering both voice and data, and it might be that you initiated the call on an EDGE network"
+True, if the network and the device do not support DTM (Dual Transfer Mode, look it up from Wikipedia). For example, Vodafone network in the UK does support this feature, which works with several devices (phones). I guess iPhone is not one of them, though.

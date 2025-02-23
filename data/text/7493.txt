@@ -1,0 +1,19 @@
+Q: Can you please explain how the terminal prompt works? I've got a question about the prompt in Mac's Terminal.
+I opened Terminal and was installing GIT. I don't know anything about Unix or how to use Terminal, so please forgive my ignorance. (I know that Terminal is very powerful, though. And it's easy to screw things up!)
+The prompt reads as follows:
+Macintosh-2:~ myname$
+
+What does the Macintosh-2 mean? I've never seen this in front of a Terminal prompt.
+Do you think that my mac is okay? What happened to the standard prompt?
+
+A: It's your computer hostname. You can see and edit the value in "System Preferences -> Sharing -> Computer Name".
+The prompt of the default shell (bash) can be changed by overriding the PS1 environment value.
+# will show >
+export PS1='>'
+
+# will show the hostname followed by a space and >
+export PS1='\s >'
+
+These values are entered in a file called .bash_profile located in the root of your home directory (e.g., /Users/yourname/ or ~/). The period before the file name effectively hides it. You can read more about unix hidden files here.
+You can see the complete list of special characters (e.g., \s) in the manual page of bash (your default shell).
+Type man bash in the terminal and scroll down to the PROMPTING section. And if you'd like to unlock their potential, head on over to Prompt Magic and play around.

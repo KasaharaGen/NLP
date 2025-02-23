@@ -1,0 +1,58 @@
+Q: MacBook Air (1st gen) running really slow, basic apps crash and no internet MacBook Air was working fine yesterday. Switched it on this morning and it wouldn't boot, just hung on grey screen.
+Eventually got the MacBook Air to safe boot, now MacBook Air boots normally (but very slowly). Once logged on (not through safe boot) AirPort is connected with IP Address but Safari will not connect to internet.
+Basic apps like Finder, System Preferences > Security, Transmit and AirPort Utility keep crashing.
+Have tried the following:
+
+
+*
+
+*Verify Disk is okay.
+
+*Repair Disk Permission ran.
+
+*Tried removing and adding AirPort.
+
+*Reset PRAM and SMC.
+
+*Unable to run AHT, can't remotely attach disk because MacBook Air can't be found on network by other Macs.
+
+
+The current installation of OS X is only about 6-8 weeks old and has all the latest updates.
+What's wrong? My thoughts are corrupt OS or RAM. I can't reinstall the OS with being recognised by another Mac and I can't test the hardware for the same reason. Am I missing something?
+Rich
+
+A: Have you run the Apple Hardware Test that came with the MacBook Air?
+
+To use Apple Hardware Test on your
+  MacBook Air:
+  
+  
+*
+  
+*Disconnect all external devices from your computer except the power
+  adapter.
+  
+*Restart your MacBook Air while holding down the "D" key.
+  
+*When the Apple Hardware Test chooser screen appears, select the
+  language for your location.
+  
+*Press the Return key or click the right arrow button.
+  
+*When the Apple Hardware Test main screen appears (after about 45
+  seconds), follow the onscreen
+  instructions.
+  
+*If Apple Hardware Test detects an issue, it displays an error code. Make
+  a note of the error code before
+  pursuing support options. If Apple
+  Hardware Test doesn't detect a
+  hardware issue, the issue may be
+  software related.
+
+If AHT found no issues, run a memory test. Download memtest86+ and burn that to a CD, and boot the MacBook Air from the CD. I have personally had RAM issues which AHT didn't find but memtest did.
+EDIT: Sorry, I only just not noticed that you said you're unable to run AHT, presumably because you don't have an external optical drive. I'd recommend taking the MacBook Air in to an Apple store. Or by using a USB Ethernet Adapter you could probably get it to boot AHT from the network.
+EDIT2: Have you tried booting from a USB drive? You could use another Mac to install a fresh copy of OS X to a US disk and see if the Air can boot that. or, you might be able to copy the Mac OS X Install DVD to a USB disk and try to run AHT off there...
+Ultimately, a visit to the Apple Store is probably your best bet :-(
+
+A: Turned out to be a HDD fault. Apple Store is replacing HDD as we speak.

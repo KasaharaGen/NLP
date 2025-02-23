@@ -1,0 +1,24 @@
+Q: Caps lock key response delay on Apple Wireless Keyboard I've noticed a semi-handy feature on Apple Wireless Keyboard: quick pressing the caps lock key won't enable the caps lock, it needs a determined push. Benefits are obvious, it prevents accidental all-caps text when you actuALLY INTENDED TO PRESS 'A'.
+Is there a way to hack this around? Adjust it or remove it completely? I like the idea, but for me it is more of a speed bump than a seat belt.
+I have checked the keyboard preferences and the usability preferences as well. Keyboard delay is off and repeat delay is at minimum. There are no delay on other keys (well, except the eject key, but it requires even more determined press), and there is no delay when turning the caps lock off.
+I'm on a Snow Leopard Lion and the wireless keyboard came with the mid-2010 iMac.
+
+EDIT: It seems like the functionality is in the driver rather than in the keyboard itself. When using the keyboard in Windows 7 the caps lock key works in a regular manner. The drivers that Windows uses are standard HID Keyboard drivers provided by Microsoft.
+
+A: Sadly, ends up the delay is built into the keyboard hardware, so it’s still there even if you remap the Caps Lock key to some other function, such as Control.
+
+A: My main answer:
+Apple deems this a feature, as documented in their knowledge base.  Apple does not document how to disable the delay.
+In my experience, if you remap the caps-lock key on Mac OS X (in System Preferences .. Keyboard .. Modifier Keys), and e.g. map it to Control, then the delay goes away while I am logged into Mac OS X.  So as koiyu suggests in the comments here, it seems like there is some variation available between the hardware and the keyboard driver.
+Remaining questions:
+My own problem is that the delay remains when I boot into Ubuntu Linux, and in that context, even when I remap the Caps Lock key to Control, the delay is still present.  So the vanilla keyboard driver provided on Ubuntu Linux still suffers from the delay.
+So my questions at this point:
+
+*
+
+*How is it that the standard Windows 7 driver has no delay and the Linux driver does have the delay?
+
+
+*How can one replicate disabling the delay in the context of a Linux installation atop the laptop?
+
+A: If you have both a laptop and external mac keyboard, turning on the caps lock on both of them might work. That's because you'll trick the mac keyboard into thinking its turning the caps lock off, which has no delay. This is probably only useful if your caps lock key is something that's not caps lock, so you are always pretending to "turn off" the caps lock, when instead the key is remapped to something else.

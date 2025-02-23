@@ -1,0 +1,13 @@
+Q: Some applications on MacBook Pro think Internet is not connected when it is I have had my MacBook Pro for about 6 months; bought it new in 2010. I am running Mac OS 10.6.5.
+Using Airport to connect to the Internet. Had no problems until this last week, when at an apparently random moment, some applications (e.g. Safari, iTunes, Adium and Tweetie) decide the Internet is no longer connected. The message from Safari is the standard "You are not connected to the Internet."
+Pinging different hosts on the Internet works completely fine, and I can browse without any issue on Firefox.
+Network Diagnostics reports that the Internet is connected. Turning Airport on and off, and closing and rebootting the applications doesn't seem to help.
+I did manage to fix the problem with a reboot but would rather find the underlying issue and a better solution. Can anyone out there help?
+
+A: Just stabbing in the dark here - DNS? Or rather, the relation of Safari towards DNS (since you mentioned that Firefox was working fine). 
+I know that Safari takes on the system wide proxy settings and firefox has its own - another possible avenue why firefox works when safari doesn't.
+Maybe you could try opening two new tabs when the issue occurs again and try accessing http://72.30.2.43 and www.yahoo.com on the second tab. Perhaps we could help eliminate DNS with that test.
+Muck around the system proxy settings is another possible investigation route.
+
+A: I've had this issue on my Macbook as well and found that if you go into terminal and clear the cache it loads the pages again.
+Type dscacheutil -flushcache

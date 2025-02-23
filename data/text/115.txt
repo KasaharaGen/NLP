@@ -1,0 +1,40 @@
+Q: How do I uninstall a program completely on a Mac? I come from a PC background... every time I want to uninstall an application, I must use add/remove programs. On the mac, you can simply run a .app file from wherever you want, and many say that the way to uninstall them is simply delete this .app file.
+However, I have noticed that many apps save files in the ~/Library/Application Support/ directory. So when I delete the .app file, all those files are retained in the Application Support directory. Isn't there any way to uninstall an app and have it remove everything it installed on my hard-drive?
+
+A: Also bear in mind that many applications will include an uninstall option as part of their installation package, either as a separate program/script within the .DMG file or as a specific option in the installation wizard itself.
+So although it might seem counter-intuitive, it's often worth mounting the original .DMG file (that you downloaded) again, and having a look for anything marked 'uninstall' - you sometimes find that utility program, driver-type packages and large games do tend to include software to clean-up after themselves.
+If I come across a couple of examples in the next day or so, I'll edit this to include their names.
+
+A: AppZapper
+AppZapper is by far my favorite way to remove an Application and clean up any associated files in Preferences or Application Support.
+Also, here's a tip.  Drag AppZapper to your Finder's toolbar like so.  This will then give you the ability to drag applications you want to uninstall by dragging the application on top of the the AppZapper shortcut in the toolbar.
+
+
+A: You can use this free app:
+AppCleaner
+(Synium used to offer CleanApp, but the product has been discontinued. You can still download a demo version which supports OS X 10.8 Mountain Lion up to macOS 10.14 Mojave.)
+
+A: AppCleaner all the way. The vast majority of apps on the Mac are self-contained, which is why there's no built-in uninstall method in Mac OS X. The only exception to that is plist files - essentially just application preferences. These are tiny text files and usually inconsequential if left behind when you remove an app. (Leaving them also preserves you application preferences if you later decide to reinstall the app.)
+Applications like AppCleaner are for purists who want to truly remove every last bit of an app when they uninstall it (nothing against purists, though -- I fall in that camp). Since all these apps mainly do is hunt down these stray plist files, paying for an app like AppZapper is a little ridiculous. AppCleaner is free and gets the job done perfectly.
+Alternatively, the automation app, Hazel, automatically finds related files when you delete an app and asks if you'd like to remove those as well. It's not free, but it is highly useful for a vast number of other purposes, so if you'd like to get the other features it provides, you can kill two birds with one app, as it were.
+
+A: Mac World magazine of August 2010 has this article, they mention several programs to do this, and explain why you should not rely on such programs 100%, but check all files they erase as sometimes they do what they shouldn't. 
+Let me check the article again and I will post the recomendations here. 
+
+A: Please note that apps installed from the App Store do not require an uninstaller for complete cleanup. To remove them:
+
+
+*
+
+*Open Launchpad and find the app's icon in there.
+
+*Hold down the Option key.
+
+*Click the "×" button on the app you want to remove and confirm.
+
+
+Apps not installed from the store will not have a "×" button, and may require manual intervention (as per the other answers).
+
+A: I recommend to use CleanMyMac. It has a very good uninstall functionality. Besides that it is able to perform other system cleanup tasks. I use it very frequently and am very happy with it.
+
+A: A way to uninstall a program completely even without the use of third-party software, which often causes damage, is by using the custom search function including the system files among the results, you have to search the name of the program and or the vendors

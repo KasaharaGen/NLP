@@ -1,0 +1,14 @@
+Q: Safe to post iOS crash logs in public? One of the iOS apps I use has been crashing a lot more than usual lately, so I'm posting about it on their forum.  I've got a bunch of crash logs.
+Is it safe to post iOS crash logs in a public place?  Is there any PII in them?
+I see a lot of hashes in them.  Are they completely arbitrary/random, or do they contain my hardware address or something?
+
+A: Crash logs are safe to post in public. There is no identifying information about you in them. All of the random looking text you see are addresses of the various methods that get symbolicated by Xcode into method names. This lets the developers see the exact line of code that caused the problem.
+Also know, it is harder to symbolicate crash logs that have been copied and pasted. It would be more helpful for the developers to get your crash logs in the original .crash file.
+It looks like this is no longer the case, I had no problem copy and pasting a crash log and symbolicating using the latest Xcode.
+
+A: No - it is not universally or unequivocally safe.
+Any programmer could save very personal data plainly, so you are at the mercy of the designers and programmers to sanitize and not expose any personal data in a crash. 
+The security by obscurity (values are in hexadecimal) is pretty good and the chance of something sensitive getting exposed is very very low, but sharing a crash report publicly could be hazardous to your privacy. 
+I would say don't post anything until you really understand what a device GUID is and how to read a stack trace or hexadecimal characters. Also your risk is directly affected by the nature of the program. Tiny Wings knows nothing because I've told it nothing. It's also unlikely to have scanned my address book or location/contact information.
+On the other side, my banking program has to store PIN numbers and things I enter clearly before it encrypts them. 1Password works with sensitive data like my social security number. Even though the program may eventually store the data encrypted - a crash report can crash at the point where the data is being turned into something you see clearly on the screen - a sequence of digits. Basically, for a fleeting moment, the data is not protected. 
+The general question "Is it safe to post?" has to be no without other qualifications on the data stored in the app. Especially when posting it to something so public and permanent as the internet.

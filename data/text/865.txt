@@ -1,0 +1,28 @@
+Q: Automator folder action questions As I asked in this post, I could make it that a file in a directory can be renamed automatically, but I have some questions about this action.
+
+
+*
+
+*Where to the workflow files are copied? When I run 'save as', it doesn't seem to show the directory where the file is copied.
+
+*How is this folder action stored and restored so that it runs automatically when system reboots? In other words, I guess I don't have to rerun automator whenever I reboot, how does this possible?
+
+
+ADDED
+
+
+*
+
+*I found that the automator workflow is stored in "~/Library/Workflows/Applications/Folder Actions/"
+
+*I also found that folder action from automator workflow is also registered by running "/System/Library/CoreServices/Folder Actions Setup.app" 
+
+
+A: 
+Where to the workflow files are copied?
+
+I don't understand this question.
+
+Is this folder action stored in a system so that it's working even after my reboot?
+
+By default, folder actions are stored in the /Library/Scripts/Folder Action Scripts folder.

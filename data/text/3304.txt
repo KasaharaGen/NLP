@@ -1,0 +1,12 @@
+Q: Software to produce plots for very large data sets? I'm looking to produce plots from some very large data sets. To start I've got a data set with 40 different series in it, each with 5000 samples that I'd like to produce a line chart out of, with each series represented by a line in the plot.
+Numbers chokes after about 450 samples. Excel fares a little better and gets to 1000 samples. But neither of them can handle the full set of samples across all the series.
+Is there better software I can use to generate the plot? Would OmniGraphSketcher handle this size of data set? What about R? Or gnuplot?
+Something with an easier learning curve is preferred (i.e. I'm avoiding gnuplot like the plague until it's clear it's my only hope...) and it doesn't bother me if the generation of the plot can't be done in real time. I don't mind setting things up and then waiting for an image of the plot to be produced in the background. Bonus points if it can produce plot output that's as easy on the eyes as Numbers will produce for smaller data sets.
+
+A: I assume that you mean 5000 observations. R will work, and RStudio will get you to use R with a bit more GUI than the native application. Commercial solutions like Stata -- which has a soft learning curve, in comparison especially to R -- will also work that kind of sample without any difficulty (by statistical standards, 5000 observations is a relatively small dataset).
+The learning curve will matter if you want to reach beyond a mere plot; otherwise, a quick look at the documentation for line graphs should suffice (for R, check there and there, for instance). HTH!
+
+A: R will definitely handle that size of data for you. If you routinely manage data sets, I would definitely recommend learning it.
+Shortcut to giving you the OpenOffice.org suggestion (also known as OOo).
+I'm surprised, however, that Excel crashes on you. I used Excel (on Windows) recently to manage 8 series of 27 000 samples with no issues, producing complex charts in fractions of a second.
+At what point do these two applications bug? Is it, by any chance, at the time they import your data set, or do they bug when you attempt to compile them into a chart? I don't know about Numbers, but Excel should be able to handle hundreds of thousands of rows without missing a step.

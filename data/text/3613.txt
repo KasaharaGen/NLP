@@ -1,0 +1,19 @@
+Q: How do I change GNU Screen's meta-key to Cmd-a? GNU Screen's default meta-key is Ctrl-a, which is really inconvenient for me because I frequently use Ctrl-a and Ctrl-e to move the cursor to the beginning or end of the line.
+I'd prefer to change this to Cmd-a instead. I know this can be changed in my .screenrc file, but how do I encode the Cmd key?
+
+A: I generally think the command idea is a bad one, because it is intended to be the system key for app manipulation. Cmd-l appears to be unbound in the application menus, but I couldn't use any tricks to view what it's keycode may be. Thus, I would suggest Shift-Ctrl-a.
+Having said that, if I understand the man page, and a resource on the Ubuntu Forums on the topic, I believe you can change it to Shift-Ctrl-a either by using the -e flag (which I suggest you use to test with before putting it in your ~/.screenrc).
+You should be able to run screen -e ^AA. ^ is a common identifier for "Ctrl", and A means capital-a (shift + a), as opposed to a lowercase a, meaning the character by itself.
+If that works, you should be able to add a line into your ~/.screenrc that says: escape ^AA for it to automatically take place on any standard execution of screen just by itself.
+
+A: As usual, I would also recommend trying out tmux. It's kind of a "screen on steroids". It uses C-b as its prefix key, but even that is configurable. tmux allows you to easily configure every aspect of it. As per the tmux FAQ, you can change the prefix to C-a like this:
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+Of course, since you wanted to get rid of C-a anyway, you may be happy with C-b instead.
+You can easily install tmux if you have MacPorts installed, by running:
+sudo port install tmux
+
+
+A: run 'cat' in a terminal and press cmd-a to see what characters it sends. You can then use that in your .screenrc

@@ -1,0 +1,19 @@
+Q: How do I burn a single ( > 7GB) file to multiple DVDs? I have single file that is 7GB that I want to burn to multiple DVDs. Is there a way to do this that's built into Mac OS X? 
+When I try through the finder, it informs me there is too much data and tells me to remove files and try again--so I realize it doesn't work that way. I've seen information about doing it through a shell script, but those seem too "Unix"-y, and this is something I'd like to be able to hand to a friend to copy.
+Failing anything built-in, can you recommend software (paid or free) to accomplish this task?
+
+A: The built-in way is to use the split command in the Terminal, which, yes, is Unix-y. Alternatively, .rar files can split a single file into multiple files. You might check out SimplyRAR for this route.
+
+A: Another alternative is to use Dual-Layer media. Dual-Layer DVDs give you 9.4GB per disk. Assuming > 7GB is not > 9.4GB, and you have a Dual-Layer burner, then you could do that instead of splitting the files up.
+
+A: If you want to go commercial, you have a few choices. In no particular order, these are two "big" players:
+Roxio Toast
+$79.99: Probaby one of the most complete packages out there. It explicitly says that it will copy a single Dual Layer to multiple single layer dvds (what you want) in their copy page. Expensive but complete. It has been one of the "first" programs to bring easy to use CD/DVD copy features to the Mac, because the Finder was very "limited" and not everybody wanted to use iTunes to copy their music (because it lacked certain features). Toast added all those missing features.
+Disco
+$19.99: A cheaper (with less features) and very decent alternative to Toast. It's a new player (compared to Toast) but it's a very simple to use application and I remember generating certain buzz because of the smoke effect while copying. It also mentions exactly what you need:
+
+Have more files than you can fit on a single disc but don't feel like manually weeding them out and dividing them? Well, Disco can handle it for you. If Disco detects the total size of the files you're burning is bigger than the disc, it will try to divide them amongst multiple discs so that they fit.
+
+And they even show a screenshot of how the program "automatically" informs you about the number of disks.
+I'm sure both programs offer respective trial versions so, decide for yourself if you need a super-I-can-do-a-lot-of-things type of program (Toast) or a more simple-I-do-a-lot-of-things-and-I-cost-less (Disco) type.
+My (not requested) opinion is: unless your job consists of creating DVDs all day with different types of content and a lot of "etceteras", I'd go with Disco. Not only the price is more attractive, but also the UI is simpler.

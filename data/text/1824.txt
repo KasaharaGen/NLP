@@ -1,0 +1,28 @@
+Q: How can I switch option (alt) and command (windows) keys for Windows 7 in Boot Camp? Installed Windows 7 via Bootcamp for some work-related projects. I've also installed the Apple Bootcamp drivers from the OS X install disk and updated to the latest version. It mapped all my keys just fine, but I was surprised it does not offer an option to switch the mappings of Alt and Windows keys; ie. Alt is left of Spacebar, Windows key is left of Alt.
+The current way directly maps to the physical keyboard layout, but not to the way people are used to working: e.g. OS X's Command+Tab for window switching is equivelant to Alt+Tab not Windows+Tab. I keep hitting the wrong keys because of muscle memory. :)
+Is there a built-in way to remap Windows and Alt keys? If not, what 3rd party app is the best way to do this?
+
+A: Here is a script file for the Apple keyboard with F hotkeys and CMD hotkeys too.
+https://github.com/stroebjo/autohotkey-windows-mac-keyboard
+
+A: I didn't like Sharp Keys because it requires a restart to swap mappings. Other AutoHotKey scripts here had too much extra stuff for my needs. This AutoHotKey script is only the win key swap, plus a hotkey to turn it off (ctrl+F6) if you also occasionally use a Windows keyboard.
+
+A: I had this issue.  Resolved it using Sharp Keys (free). 
+
+
+*
+
+*http://www.howtogeek.com/howto/windows-vista/map-any-key-to-any-key-on-windows-xp-vista/
+
+A: I've been using AutoHotKey for about a year on Win7 Ultimate x64. Works great. 
+In addition to swapping the left Command and Option keys, I've remapped the right Command to forward delete, and right Option to "AppsKey" (aka, context menu) which helps in Visual Studio and other apps.
+If you want function keys to work as, well, function keys (without having to hold down Fn), you can set that in the Bootcamp application via the system tray icon.
+Here's a script just for swapping left Option (alt) and Command (Windows):
+RAlt::AppsKey ; right-Option to context menu
+RWin::Del ; right command to forward delete
+LWin::LAlt ; left command to alt
+LAlt::LWin ; left alt to command (windows key)
+
+You may also consider remapping Caps Lock if you need an additional key since, really, how often do any of us use Caps Lock? 
+
+A: I would like to share a trick that you can remap some less used keys to keys you prefer. E.g. I map right CMD to DEL and right ALT to menu('application'), using Sharpkeys

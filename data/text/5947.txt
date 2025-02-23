@@ -1,0 +1,42 @@
+Q: Can't install Homebrew on Mac OS X Lion I followed the simple instructions on Homebrew's homepage:
+Paste this at a terminal prompt:
+/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+
+But I get the following permission errors.  What is the proper way to install Homebrew on Mac OS X Lion?
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+==> This script will install:
+/usr/local/bin/brew
+/usr/local/Library/Formula/...
+/usr/local/Library/Homebrew/...
+
+Press enter to continue
+==> /usr/bin/sudo /bin/chmod o+w /usr/local
+mkdir: /usr/local/Cellar: Permission denied
+mkdir: /usr/local/etc: Permission denied
+mkdir: /usr/local/include: Permission denied
+mkdir: /usr/local/lib: Permission denied
+mkdir: /usr/local/Library: Permission denied
+mkdir: /usr/local/sbin: Permission denied
+mkdir: /usr/local/share: Permission denied
+mkdir: /usr/local/var: Permission denied
+mkdir: /usr/local/.git: Permission denied
+Failed during: /bin/mkdir /usr/local/Cellar /usr/local/etc /usr/local/include /usr/local/lib /usr/local/Library /usr/local/sbin /usr/local/share /usr/local/var /usr/local/.git
+$
+
+
+A: Try this: sudo /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)".
+
+A: I just struggled with the same problem, but instead of manually entering any commands†, I used gist: 768518 to do the dirty stuff for me. Worked like a charm—and you won't need any sudoing!
+The aforementioned gist (aptly described as "Fix permissions on /usr/local for Homebrew") only fixes the permissions, i.e. it doesn't install Homebrew despite the fact it is a fork of the installation script.
+
+†) other than the required $ chmod a+x fix_homebrew.rb and $ ./fix_homebrew.rb of course
+
+A: the official oneliner from brew.sh is this...
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+why would you like to use a outdated gist version and not the original script???
+
+A: Github has a beautiful app for Mac that eliminates the painful commandline process (if the commandline is not your thing that is ;-))
+
+A: try these, these works for me..
+ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+

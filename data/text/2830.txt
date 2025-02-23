@@ -1,0 +1,20 @@
+Q: iWork '09 Keeps asking to be Registered I'm a teacher in a classroom with 8, 9 10 and 11 year olds who each have a macbook or a macbook pro. Fun job. We have a standard 10.6.6 image with iWork '09 (4.03). 
+In previous images, iWork would ask to be registered thrice (it changed to 'Never Register' on the third time), and then stop bugging you; but now for some reason it won't stop asking us to register. It's a real hassle. I've repaired disk permissions, but that doesn't fix it. Any ideas how to stop it from asking us to register? Bonus points if I can roll it out using a terminal script via. remote desktop. 
+Thanks!
+
+
+A: I found this via google Disable iWork registration nag screen. 
+defaults write /Library/Preferences/com.apple.iWork09 RegistrationHasBeenSent true
+
+I have no idea if this will work for you. I wanted to point this out in case you hadn't tried it.
+This blog was the first result in google from searching for iwork disable reg. If it doesn't work, you might see if there are more results that might help or a slightly different search that might provide something meaningful. In any event, good luck. I hope it helps.
+
+A: To change the global settings (/Library/..., not ~/Library/...), you must run the command with sudo:
+sudo defaults write /Library/Preferences/com.apple.iWork09 RegistrationHasBeenSent true
+
+
+A: The setting is a per user one. Every different user on a given Mac
+may register his E-mail.
+You can force the registration to be considered as sent with:
+defaults write ~/Library/Preferences/com.apple.iWork09 RegistrationHasBeenSent true
+

@@ -1,0 +1,32 @@
+Q: ffmpeg giving error on launch in Mac OS X Lion 10.7.1 I installed ffmpeg 0.8.5 in my Mac OS X Lion 10.7.1 with Homebrew
+brew install --use-gcc ffmpeg
+
+It installed without any error. But, now when I run, it gives the following -
+dyld: Library not loaded: /usr/local/Cellar/ffmpeg/0.8.5/lib/libavdevice.dylib
+  Referenced from: /usr/local/bin/ffmpeg
+  Reason: Incompatible library version: ffmpeg requires version 53.0.0 or later, but libavdevice.dylib provides version 52.0.0
+Trace/BPT trap: 5
+
+
+A: Try using:
+$ brew update && brew install `brew outdated` && brew cleanup
+
+This script will also help you track down changes on libraries that are needed.
+If you those don't work try:
+$ brew doctor (check your setup for common problems)
+$ brew missing (to check installed packages for missing deps)
+
+brew doctor checks your setup for common problems, brew missing checks installed packages for missing deps.
+You can always start fresh (which should take care of all the problems):
+$ brew uninstall --force `brew deps ffmpeg`
+$ brew install ffmpeg
+
+then
+$ brew update
+
+
+A: I ran: 
+brew install libav
+then after it complained about symlinking:
+brew link --overwrite avconv
+Works now.

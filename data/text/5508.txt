@@ -1,0 +1,88 @@
+Q: Temporary files listed by lsof don't exist I like copying flash videos for offline viewing later. I used to do this by loading the video in the browser (Firefox or Google Chrome), then running this command to see where the flash file was being cached:
+lsof | grep ^Google | grep folders
+
+This will show all the temporary files Google Chrome has open at the moment, for example:
+...
+Google    311 mike   21u     REG       14,1    262148 17819373 /private/var/folders/zz/zzTLi2haPMrCYxEbpkwFmS+++TI/-Tmp-/.com.google.chrome.p22bCa
+Google    311 mike   22u     REG       14,1      9974 17819369 /private/var/folders/zz/zzTLi2haPMrCYxEbpkwFmS+++TI/-Tmp-/.com.google.chrome.MUo4JT
+Google    312 mike  txt      REG       14,1      9974 17819369 /private/var/folders/zz/zzTLi2haPMrCYxEbpkwFmS+++TI/-Tmp-/.com.google.chrome.MUo4JT
+Google    312 mike  txt      REG       14,1    262148 17819373 /private/var/folders/zz/zzTLi2haPMrCYxEbpkwFmS+++TI/-Tmp-/.com.google.chrome.p22bCa
+... etc
+
+None of the files exist, though:
+$ ls /private/var/folders/zz/zzTLi2haPMrCYxEbpkwFmS+++TI/-Tmp-/.com.google.chrome.p22bCa
+ls: /private/var/folders/zz/zzTLi2haPMrCYxEbpkwFmS+++TI/-Tmp-/.com.google.chrome.p22bCa: No such file or directory
+
+Listing the directory doesn't show any files or directories like this existing:
+$ ls -lA /private/var/folders/zz/zzTLi2haPMrCYxEbpkwFmS+++TI/-Tmp-/
+total 0
+drwxr-xr-x  3 mike  staff  102 Jul 24 18:14 TemporaryItems
+srwxr-xr-x  1 mike  staff    0 Jul 24 12:10 com.apple.notify.206.32
+srwxr-xr-x  1 mike  staff    0 Jul 24 12:10 com.apple.notify.206.33
+drwxr-xr-x  2 mike  staff   68 Jul 24 18:25 hsperfdata_mike
+
+What's going on here? Why can't I access the temporary files?
+Since my goal is to copy the flash file for later viewing, is there anything else I can do?
+
+A: lsof without sudo may not list all open files
+Rule of thumb: 
+
+
+*
+
+*to ensure comprehensive results from lsof, use sudo
+Example
+Run the two commands below. Observe the differences in output. With privileges, expect to find many more lines. 
+Without superuser privileges
+lsof / | grep root
+
+Result:
+COMMAND     PID      USER   FD   TYPE DEVICE   SIZE/OFF       NODE NAME
+Spotlight   325 user_name_here  txt    REG    1,5     257996 8609539837 /System/Library/PrivateFrameworks/NLP.framework/Versions/A/Resources/root.cache
+
+With privileges
+sudo lsof / | grep root
+
+Result:
+Password:
+COMMAND     PID      USER   FD   TYPE DEVICE   SIZE/OFF       NODE NAME
+launchd       1               root  cwd    DIR    1,5        928          2 /
+launchd       1               root  txt    REG    1,5     345584 8624629318 /sbin/launchd
+launchd       1               root  txt    REG    1,5     973824 8624630575 /usr/lib/dyld
+launchd       1               root   44r   REG    1,5        358 8609644469 /private/etc/security/audit_control
+launchd       1               root   46r   REG    1,5        652 8609644467 /private/etc/security/audit_class
+UserEvent    60               root  cwd    DIR    1,5        928          2 /
+UserEvent    60               root  txt    REG    1,5      35184 8624631345 /usr/libexec/UserEventAgent
+... ...
+
+
+A: On some unix variants, lsof shows files that have been deleted but are still open. More precisely, these files have a “link count” of 0, meaning that there is no directory entry (no link, i.e. no name) that leads to them, but the file data still exists. The file data will be deleted when the file is closed.
+The ability of lsof to display files with a link count of 0 depends on the platform, and I can't find anything in the documentation regarding the situation on OS X. Try running lsof +L to see the files' link count, or lsof +L1 to list only files with a link count of 0.
+I wouldn't be surprised if the flash plugin created the file and immediately deleted in, it's a simple technique for making the data harder to obtain from outside the application. In other words, it's what the plugin author would do precisely to make it hard to do what you're trying to do. If that's what going on, you could counter it with something like libtrash for OSX.
+
+A: Have you tried putting the path in quotes? 
+Like this: 
+$ ls "/private/var/folders/zz/zzTLi2haPMrCYxEbpkwFmS+++TI/-Tmp-/.com.google.chrome.p22bCa" 
+
+
+A: Try this:
+cp /proc/$pid$/fd/$fdid$
+
+Where:
+
+
+*
+
+*$pid$ - Process id
+
+*$fdid$ - File descriptor id
+
+
+Process ids usually are 4 digit numbers.
+File descriptors usually have a letter next to them (r, u, w, etc.).
+Take this one for example:
+Google    311 mike   22u     REG       14,1      9974 17819369 /private/var/folders/z...
+
+Replace $pid$ with 311 and $fdid$ with 22 so that you get:
+cp /proc/311/fd/22
+

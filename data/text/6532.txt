@@ -1,0 +1,27 @@
+Q: How to use Xcode 4 mergetool in a standalone fashion? I sometimes have to make git merges on the console. Up to now, for resolving conflicts, I was using Xcode 3's FileMerge (you can open it on the console using the 'opendiff' command). If conflicts show, I use 'git mergetool' which automatically invokes opendiff for each of the conflicting files.
+However, Xcode 4 features a much nicer mergetool component for resolving conflicts. I believe this component is part of the Xcode 4 executable, rather than standalone. It allows you to preview the merged file, and directly edit merged code on a case-by-case basis, which makes merging complex conflicts incredibly fast and satisfactory.
+Is there any way to use the Xcode 4 mergetool when invoking 'git mergetool' from the Terminal?
+I cannot find an executable for this tool inside the Xcode 4 bundle. Any hack that achieves this would be welcome.
+
+A: opendiff takes two filename arguments, and an --ancestor parameter with a third filename, to produce a three-way diff, and a --merge parameter to say the output file to use for the conflict resolution.
+So go:
+[mergetool "opendiff"]
+    cmd = "opendiff \"$LOCAL\"  \"$REMOTE\" \"$(if test -f \"$BASE\"; then echo \"--ancestor $BASE\"; else echo \"--ancestor $LOCAL\"; fi)\" --merge=\"$MERGED\" "
+[merge]
+    tool = opendiff
+
+That should make git use opendiff as its merge tool, when there are merge conflicts.
+That said, I VERY much prefer DiffMerge from SourceGear, which is a free diff and three-way-merge tool that does much better, word-oriented, conflict resolution. And in DiffMerge's documentation there's what to tell git to make it the default diffing and merging tool.
+
+A: You can edit in the (very basic) text editor within FileMerge by opening the editor pane -- which is closed by default.  To open the editor in FileMerge, drag the dot below the center diff column up to open the editor pane.
+
+A: This ended up working for me
+[merge]
+  tool = opendiff
+
+[mergetool]
+  keepBackup = false
+
+[mergetool "opendiff"]
+  cmd = "opendiff \"$LOCAL\" \"$REMOTE\" -merge \"$MERGED\""
+

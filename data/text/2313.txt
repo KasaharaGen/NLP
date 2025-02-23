@@ -1,0 +1,32 @@
+Q: Is there a remote desktop solution that will transfer sound output to the client? I'm looking for a secure and hopefully free remote desktop client that will allow me to interact with my Mac OS X 10.6 machine from a 10.5 machine that will also transfer sound to the client.
+At a minimum, the software must support a tunnelable connection.
+If there is a vetted iPad app out there that will do it, that would work, too!
+Any suggestions? I found this http://en.wikipedia.org/wiki/Comparison_of_remote_desktop_software but it's a little heavy and doesn't readily indicate community acceptance/worthiness.
+
+A: RogueAmoeba's AirFoil product may be helpful -- it allows you to send sound from any Mac or Windows machine (or any specific application on that machine) to one or more other Apple devices or Windows PCs on the same LAN.
+The product has many features, e.g. a custom video player that ensures the sound your receive locally is in sync with any video you are viewing remotely.
+Because AirFoil only streams audio, you can use it in conjunction with whatever remote desktop viewing solution works best for you.
+
+A: I immediately thought of something like soundflower, and their support page points to a project called jackaudio that may be able to send audio over a local network.  This is, admittedly, separate intended functionality from VNC or other screensharing utilities.  A smart guy I know refers to this as 'a wonderful third-party opportunity'.
+iOS/Pad specific stuff would probably only focus on media, like AirView and StreamToMe. 
+
+A: This may not fit your needs because I think this requires a person present on both ends, but what I figured out is the simplest free approach I know of: use SoundFlower (a free download from Cycling 74) to pipe your system audio to iChat, and use iChat to send the audio to another computer.
+In your System Preferences go to Sound and set SoundFlower as both Input and Output. Note that this will make your system sound not go through your speakers, so to turn that back on also run SoundFlowerbed (the front end that comes with SoundFlower) and set SoundFlower's output to the speakers.
+Now launch iChat and go to Preferences. In the Video/Audio preferences you can set what input to use; it'll probably be defaulting to your microphone but you can set that to SoundFlower. Now when you do a voice chat with someone else they will hear your computer's audio.
+That takes care of audio. For the video you can use either the screen-sharing functionality built into iChat or use Screen Sharing through System Preferences.
+
+A: Logmein Pro will do this.  Not free however.  It does use encrypted connections and also allows for file transfer.  There's an iPad app as well.  I think it exactly suits your needs as you've outlined them here.
+
+A: Both iRAPP and Aqua Connect Terminal Server can do this.  See my reply to this related question for more details and links to those two products. 
+
+A: VNC and apple screen sharing do not support this, but RDS does. I got nuoRDS working as a server https://www.nuords.com/products/nuords/ and Microsoft Remote Desktop as a client. It only streams certain apps (system, finder, chrome, safari, simple applications) but their support helped me stream more complex apps (for music/audio with CoreAudio).
+
+A: I tried both Soundflower and Airfoil. 
+I must admit Soundflower was a bit tricky to get going, but is free.
+Airfoil works perfectly first time and the price is a reasonable $25 (free trial available).
+The Rogue Amoeba products are usually pretty solid.
+
+A: For the ones still reading this question:
+Finally found an easy solution for mac, which has a free plan as well!:
+https://www.remotepc.com/index.html
+(Be sure to first enable "Enable remote sound" on both (streamer and viewer) and set your playback device on the streamer (Settings -> Audio) to the RemotePC output device.

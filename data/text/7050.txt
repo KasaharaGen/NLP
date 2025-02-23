@@ -1,0 +1,12 @@
+Q: View desktop of *very remote* Ubuntu box from my MacBook Pro So, I’ve searched for literally hours on this subject.  Seen various solutions.  But practically all of them are for people who want to see their Ubuntu desktop on their Mac, with both machines on the local network.
+I want to log into an Ubuntu server that lives across the continent.  I can easily log in over SSH, and I managed to get X11 configured such that I can SSH in, run sudo synaptic, and get the Synaptic window to come up on my machine to manage packages.
+However, what I would really love is to be able to log in to the remote machine and see the desktop as if I were physically standing there.
+Remote machine is running Ubuntu 10.4, I’m on OS X 10.6.8.  I have admin rights on both machines.  I also updated the bundled X11 on OS X to the latest version of XQuartz.
+Anyone know if (and how) this is possible?
+
+A: You can do it easily using ssh port forwarding. Open terminal and enter
+ssh -L 5900:localhost:5900 remote_ip
+with any other applicable settings you need. This will forward port 5900 on your local machine to port 5900 on the remote machine. If you need to change to a different local port (say, if you're already running a VNC server on your local machine), change the first 5900 to something else.
+Then once the ssh connection is running, just VNC to localhost:5900, and you should get a connection to your remote machine.
+If you don't have a VNC client already, there's one built in to Mac OS X. Open Finder, press ⌘K and enter vnc://localhost:5900 as shown below, and hit connect.
+

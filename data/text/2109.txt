@@ -1,0 +1,15 @@
+Q: What does iTunes do while it's "Verifying iPod, iPad, iPhone"? What does iTunes do while it's "Verifying iPod, iPad, iPhone" 
+I see this most often after an abruptl disconnect and plug it back in but also sometimes when doing a second sync immediately after the last sync completes.
+Does it fix any errors that have occurred on the device?
+
+A: Your computer iTunes is waiting for the iPhone to "fix itself" and clean up from the interrupted sync.
+The mobile iTunes database (and I'm sure several others) will need to be rebuilt to clean up after an interrupted sync. You can see/test this by disconnecting your iOS device in the middle of podcast or music syncing. If you then immediately start up iTunes for iOS - you will get an Updating LIbrary screen while it itdbprepserver does its work. You'll get a "verifying message" until these post-sync and interrupted-sync cleanup activities finish. Once iTunes on the desktop has "verified" the phone is ready to start another sync, it commences with the normal backup and sync activities. My timing shows the interrupted recovery to take twice the time of a normal sync completion but usually less than a minute either way.
+
+
+A: connect the ipod to a different computer - one with only a few songs in the library you should find the verifying message disappears and does not come back when you connect it again on the other computer 
+
+A: I think it's part of the backup process iTunes does for your iPod/iPhone.  I don't believe it repairs anything on the device as such.  You could try deleting old backups if you feel this message is taking too long to disappear.  Backups normally speed up when you delete old ones off.
+
+A: I don't exactly know what it's doing, but since you disconnected your iPhone during sync, iTunes was probably writing data on the iPhone.
+When you reconnect it, iTunes is checking if it finished properly the last time and if not, where it was interrupted and if there is corrupted data that needs to be fixed.
+That's pretty much it. I don't believe there's a process of verifying with Apple's server if your iPhone is legally activated or anything else.

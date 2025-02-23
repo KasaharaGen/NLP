@@ -1,0 +1,32 @@
+Q: How do I run an app in Full Screen mode on OS X Lion on my second monitor? How do I get an app to run in Full Screen mode on OS X Lion on my second monitor? It seems to be stuck on my first monitor, and I'd like to move it.
+
+A: At present there is no way you can. I filed a bug on this during the developer previews and it was marked as a duplicate and the duplicate is still open. (rdar://9741058 and rdar://8056880 for the Apple folk)
+My assumption is that Full Screen mode is designed for single monitor setups and it does work especially well on single small monitor setups (read any MacBook or MacBook Pro).
+
+A: An upgrade to Mountain Lion will resolve the issue as it finally enables using full screen mode on multiple displays.
+You can "take an app full screen on either display. Drag the window to the desired display and click the full-screen button."
+
+A: This is an excerpt of Apple's AppKit Release Note for Lion regarding full screen apps & multiple desktops.
+
+Multiple Monitors and Full Screen (New since early 2011 seed)
+We have made some simplifying assumptions for Lion Full Screen
+  behavior on multiple monitors. Multiple monitors are treated as a
+  single unit by Spaces, and therefore are also treated as a single unit
+  in Full Screen. This means that all monitors will be dedicated to
+  windows belonging to the full screen application, and there can be
+  only one primary full screen window visible at a time. A secondary
+  monitor is useful for inspector windows.
+Secondly, because the menu bar is located on the main monitor, the
+  primary full screen window will be located on the main monitor as
+  well. This allows the menu bar, floating toolbar, and full screen
+  window to maintain their interrelationship on the same monitor.
+
+The full document can be found here:
+https://developer.apple.com/library/content/releasenotes/AppKit/RN-AppKitOlderNotes/index.html#10_7FullScreen
+According to this document, your full screen apps will always be shown on your primary monitor, and there is nothing that can be done about it.
+
+A: You can switch which monitor is the "Primary" monitor by opening the Displays in Preferences and dragging and dropping the menu bar to your secondary monitor.  That should make fullscreen apps use your other monitor.
+
+A: I find the easiest way to fix this problem when trying to watch Youtube videos fullscreen on my 47" 1080p TV, was to use Fullscreen Mode in Firefox, as this stays on the 2nd screen.
+ie Only the Apple supplied software has the annoying fullscreen bug/feature.
+Hope they fix this

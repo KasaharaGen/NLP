@@ -1,0 +1,30 @@
+Q: Is there a way to execute on applescript when a server becomes available? I am trying to execute a script when a server becomes available (a bit like when the OS detect the presence of a time capsule device and it starts the backup.)  I didn't find a simple way to attach an applescript to an system event. Is there a way?
+I am not looking for anything that requires a compiler. I am simply looking at attaching to an OS event (a bit like "Folder Actions" I guess, but for a server.)
+
+A: You can use launchd for that purpose. Here is an example of a launchd config plist that will execute an AppleScript when a disk is mounted:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>Example</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/usr/bin/osascript</string>
+            <string>/Users/sakra/Documents/Test.applescript</string>
+        </array>
+        <key>StartOnMount</key>
+        <true/>
+    </dict>
+</plist>
+
+To activate the config plist save it to the LaunchAgents folder in your Library folder as Example.plist.
+From the Terminal you can then use the command launchctl to activate Example.plist by running:
+launchctl load ~/Library/LaunchAgents/Example.plist
+
+The AppleScript will then be run each time a filesystem is mounted.
+To deactivate it, run:
+launchctl unload ~/Library/LaunchAgents/Example.plist
+
+
+A: The only way I can think of is run an script with an idle handler that periodically checks to see if the server is available and if so executes another script or another portion of the same script.

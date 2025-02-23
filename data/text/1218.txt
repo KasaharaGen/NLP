@@ -1,0 +1,30 @@
+Q: Run Command Line Script from Finder's contextual menu I have a shell script that deletes exif data from images.
+I would like to right-click the folder with the images and execute the command from the context menu. How can I do this?
+The Shell script is:
+exiftool -all= -overwrite_original test
+
+where test is the dir with the images
+
+A: If you're using Snow Leopard, you can create a Service, and it'll show up in a submenu of the contextual menu (as well as in the Services submenu of the Finder menu).  To do this:
+
+
+*
+
+*Run /Applications/Automator.app
+
+*Choose the Service template
+
+*Set the Service Receives Selected pop-up (above the workflow column on the right) to "Files and Folders"
+
+*Find the Run Shell Script action in the second column (the search field at the top can help), and drag it to the workflow column
+
+*Set the action's Pass input: pop-up to "as arguments"
+
+*In the template script that appears, replace echo "$f" with exiftool -all= -overwrite_original "$f" -- the script should now look like this:
+for f in "$@"
+do
+    exiftool -all= -overwrite_original "$f"
+done
+
+
+*Save the Service with some descriptive name

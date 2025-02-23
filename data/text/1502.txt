@@ -1,0 +1,30 @@
+Q: Why automatically adjust brightness doesn't work after I change the brightness Why automatically adjust brightness doesn't work after I change the brightness manually using the hot keys although it's set to do so in the displays configuration?
+
+A: I have noticed a few times that if I turn the brightness up very high, the auto adjust is not nearly as noticeable as it is on lower settings. 
+
+A: Theoretically it should, but it is all relative. The ambient light sensor turns the display brighter when its bright outside and dim when it's dark inside. The thing is, the Mac is designed to cater to the user, because supposedly a human being knows what it wants better than a little $.005 photo sensor, so the buttons on the keyboard (F1 and F2) override the ambient light settings for a set period of time, and then still until the light conditions change drastically enough to cause the auto-adjust to kick in again. Going from dark screen to bright screen is almost immediate, but the Mac will take a while to go from bright screen to dark screen except on opening the clamshell or waking from sleep. This kind of makes sense when you think about the real world situations where this would happen.
+So try this with auto-adjust ON and make sure "dim screen after inactivity" in Energy Saver prefs is off: 
+
+
+*
+
+*In a really dark room (no light except from computer), open the computer and manually raise the brightness to maximum, screen and keyboard backlight too if equipped.
+
+*Hold a small headed, bright flashlight (Mini Maglight or smaller) to the ALS, which is located to the left of the iSight camera on glass-paneled macs or in the speaker grille on older macs.
+
+*If the keyboard backlight goes off then the ALS IS WORKING
+
+*Lower DISPLAY backlight only to 1 above minimum level (minimum turns backlight completely off)
+
+*Put flashlight over ALS
+
+*You should see IMMEDIATE increase in backlight to full level.
+
+*Remove flashlight, display should readjust immediately to ambient level. Notice how after auto-adjusting the manual override is overridden so you can repeat steps 5 and 7 over and over again for entertainment ;)
+
+
+If the steps above produce no results, restart computer and repeat tests. If still no results take to Apple certified repair center or Apple Store for repair which will likely be covered under warranty.
+
+A: From my experience, if you put your head between the camera and the light the sensor will trigger the auto adjust no matter what.
+
+A: After manually changing the brightness you need a way to trigger the light sensor. Just place your hand on the camera area, which will make the brightness dimmer and once you remove your hand, the screen brightness will automatically adjust itself.

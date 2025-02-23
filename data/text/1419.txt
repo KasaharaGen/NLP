@@ -1,0 +1,11 @@
+Q: Is there a way to access the TOR network on iOS devices? What are my options for using TOR on an iPod Touch, either using something similar to the VPN settings, or through dedicated apps for browsing/email/RSS ?
+
+A: I suspect you would be able to use TorVPN's PPTP Server, just make sure you switch the "Send All Traffic" switch on the VPN configuration settings to "on". Otherwise it will be astoundingly ineffective :).
+Note that I have not used this service, but knowing what iOS supports (L2TP/IPSec, PPTP, Cisco L2TP), I have a hunch that it will work.
+
+A: TOR runs on the TorVPN server, actually - so you don't have to run the client software on your end at all.
+To enable it, just log in to your control panel at http://torvpn.com and in your VPN settings click the checkbox that says 'Transparent TOR routing' or something. It's a server side configuration you can do through the TorVPN website. Hope that clears it up.
+By the way, PPTP is very unstable in the sense that it works for some people, and doesn't work for others. This is probably because of the GRE protocol and natting issues. I have a feeling PPTP is the only TorVPN supported way that works with iPods, but generally I recommend OpenVPN above all.
+ps: i can hardly imagine what you want to do in an iPod that you want TOR for... could you help my curiosity?
+
+A: Yes. Open VPN can be used on all iOs devices. Open VPN Connect is a free app that you can load open VPN config files into. I use it to connect my iOs devices to the Private Internet Access VPN. I think you should be able to use it to connect to tor as well. Hope this helps.

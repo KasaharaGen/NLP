@@ -1,0 +1,38 @@
+Q: Cannot quit iTunes in OS X Lion Every time I try to quit iTunes (⌘ + Q) in OS X lion I encounter some strange problem and after some seconds I find it has run itself again!   
+If I use ⌘ + Tab I see iTunes in my running application.
+Why could be causing this and how do I stop it?
+
+A: I’ve experienced that kind of behavior from iTunes when an application keeps a connection to iTunes’ AppleScript interface open – whenever iTunes tries to quit, the open connection forces a restart. Are you running any kind of tool or app accessing iTunes? Menu bar control apps, sync solutions, or maybe an audioscrobbler? If yes, try to quit that first and see if iTunes quits cleanly after that.
+
+A: Looks like your iTunes installation is screwed up.
+Follow this tutorial to uninstall iTunes, it involves
+
+
+*
+
+*killing it using Activity Monitor
+
+*Moving it to the Trash
+
+*Moving the related plist to the Trash.
+
+*Rebooting.
+
+
+Then go there to download the latest version and install it.
+Once you have done that, see if it's still behaving. Then can (should) update to 10.7.2.
+
+A: I can't replicate this problem, the keyboard shortcut is working fine for me. (iTunes 10.5/141 and Lion 10.7.2).
+However, check to ensure iTunes is not in 32-bit mode:
+
+
+*
+
+*Navigate to iTunes in your Applications folder.
+
+*Click on iTunes, File -> Get Info
+
+*Ensure "Open in 32-bit mode" is not enabled
+
+
+Failing that there will surely be something printed to Console.app (Found in Applications/Utilities). Open that application and provide and relevant information that is printed to Console.

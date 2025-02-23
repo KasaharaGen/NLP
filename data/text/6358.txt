@@ -1,0 +1,66 @@
+Q: Connect my Windows XP to Mac OS X Internet Sharing I have Internet Sharing enabled:
+
+
+The WEP password is aaaaa. I understand that my MacBook Pro now acts as a wireless access point. My Windows XP PC can see this. However, when I enter aaaaa as a password, I can't connect :(
+Am I missing something? I've read about WEP being seriously outdated, that WiFi device manufacturers hadn't yet agreed on a unified way to treat passwords through WEP.
+So I did some experiments. As a control setup, I'll hold my Mac password to aaaaa or AAAAA at all times. I've tried the following passwords on my Windows:
+Mac password: aaaaa
+aaaaa - Fail
+6161616161 - Fail (61 is the hex ASCII code for a)
+Mac password: AAAAA
+AAAAA - Fail
+4141414141 - Fail (41 is the hex ASCII code for A)
+UPDATE
+Yes, I also tried using 128-bit WEP, trying out the same experiments above for aaaaaaaaaaaaa and AAAAAAAAAAAAA. It still fails.
+
+A: WOOHOO! think I finally solved the problem.
+From the taskbar I right-clicked on the MacOSX network and hit configure...(which now shows up as properties...) and saw that the security type had defaulted to none even though encryption type was still set to WEP.  I changed the security type to Shared and it now works.  It took a few minutes to register the network and only once I changed it to a home network did the internet connectivity kick in.  A 40bit wep key works fine, ABC12 or 4142433131...
+
+A: Have you tried using 128bit WEP? Even though it says 40 bit is more compatible, switching might work.
+Also, make sure that any drivers on the XP machine are up to date. If the XP machine has a vendor-specific networking application, try connecting using that instead of XP's built-in wireless menu, and vice versa.
+
+A: Try 40-bit WEP with password length of 10 characters. My MBP WEP key is  1234567890 and it works.
+
+
+I disabled my internet sharing in this pic.
+
+A: On the Mac:
+-- Use 128-bit encryption. (Windows has 64 and 128, Apple has 40 and 128.)
+-- Use a 13-character password.
+On the PC:
+-- Under "Wireless Security Type", select "Use Static WEP keys".
+-- And finally, under "Access Point Authentication:", select "Shared".
+
+A: Finally worked Mac Shared to Windows XP.  Frustrating.
+The problem I was having is that the key HAS to be 13 
+numbers with no spaces or letters.  
+Example - (4253648725908)
+Key is Not (Barney1233254) or (cb2535734825c)
+
+Mac Setup
+System Preferences - Sharing - Internet Sharing - Airport - Airport Options
+Channel Automatic
+Check on Enable Encryption
+Password is (13 NUMBERS) only.. no letters
+(kept trying to put a letter in the key and Windows will not
+connect with a letter in the password under any circumstance)
+WEP key length is 128-bit
+Click OK and Start Internet Sharing with Internet Sharing check box
+
+Windows XP PC
+Bring up Wireless Connections window showing nearby wifi networks.
+Click on Change the Order of Preferred Networks (not what I would think)
+A new unfamiliar window opens called Wireless Network Connection Properties; this is correct
+Click on the ADD button and a new window called Wireless Network Properties appears
+Association Tab
+Type the exact name of Mac Wifi network in Network Name SSID
+Select Network Authentication as Shared
+Select Data Encryption as WEP
+Uncheck the Key is provided for me and the Network Key line turns on
+Type the Network Key of (13 numbers) in the Network Key line
+Retype the Network Key of (13 numbers) in the Confirm Network Key line
+DO NOT check the ad-hoc network check box - leave blank
+Click OK and Click OK again
+Bring up Wireless Connections window showing nearby wifi networks.
+Click on your Mac network which should show in the wifi list.
+It should work straightaway.  

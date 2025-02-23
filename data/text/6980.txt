@@ -1,0 +1,21 @@
+Q: Native RNDIS USB tethering support for OSX Android phones can be USB tethered via RNDIS protocol on Windows and Linux. As far as I understood Apple does not provide RNDIS driver for OSX.
+Are there RNDIS drivers for OSX by third party (Android vendor) or community? 
+I don't want to use any any app for tethering, I want the real thing, as other operating systems can do it, so please no suggestions for alternative methods.
+
+A: Since then, this driver has come out. It's FOSS too.
+http://www.joshuawise.com/horndis
+
+A: RNDIS is a Microsoft-proprietary protocol and it's highly unlikely that Apple is going to support it just for the sake of Android tethering.
+http://en.m.wikipedia.org/wiki/RNDIS
+Your best chance is for a 3rd party to write a Mac OS X driver for RNDIS. Don't expect this to be free (as in beer) though.
+However you should be able to use the Android phone as a USB dial-up modem, which was the standard way for tethering before the iPhone came about and still a supported method in OS X and others.
+
+A: horndis is a brilliant solution - just started using it yesterday and it's completely stable
+I couldn't get my Andriod phone to work as a USB modem.
+I compiled it from source for 10.6.8 then used packagemaker and the included packagemaker project file to create a package to install.
+Only gotcha was using sudo su to change the ownership and permissions on the installed kext manually
+sudo su
+chown -R root:wheel /System/Library/Extensions/HoRNDIS.kext
+
+chmod -R 755 /System/Library/Extensions/HoRNDIS.kext
+

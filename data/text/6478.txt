@@ -1,0 +1,43 @@
+Q: Cannot Install or Update Apps in App Store - Error 13 I can currently no longer update or purchase software in the Mac App Store.
+I have cleared Safari's cookie cache, cleared ~\Library\Caches\com.apple.appstore logged in and out again, but none of these help.
+The error message is:
+
+We could not complete your request. There was an error in the App Store. Please try again later. (13).
+Anyone else experienced this? Any fixes?
+In the console I am seeing:
+17/08/2011 15:30:15.384 com.apple.SecurityServer: Failed to authorize 
+right 'system.install.software' by client 
+'/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/Resources/installd'     
+
+[6043] for authorization created by '/Applications/App Store.app' [9337]
+
+Update: I logged in as admin and the App Store works fine. So some sort of Prefs file is hosed in my main user. Does anyone know which one it would be?
+
+A: I seem to have fixed the problem.
+I used opensnoop to follow all file accesses while the app store was running. 
+I spotted that
+~/Library/Cookies/com.apple.appstore.plist
+was being accessed - this file had not been deleted by Safari when I cleared all cookies!
+The file had incorrect permissions - I deleted it.
+Now the App Store seems to be working again.
+Opensnoop is a great tool!
+
+A: This post seems relevant: http://www.ryanragle.com/index.php?/site/comments/where-does-the-mac-app-store-download-temp-files-to
+What worked for me in the end was this:
+
+
+*
+
+*Per post above, enable debug menu via 
+defaults write com.apple.appstore ShowDebugMenu -bool true
+
+*Sign out 
+
+*Clear cookies AND reset the app, using debug menu 
+
+*Select Menu->Store->Check for unfinished downloads 
+
+*Wait for the downloads to finish and then 
+
+*restart the app store app.
+

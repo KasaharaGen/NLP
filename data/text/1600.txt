@@ -1,0 +1,38 @@
+Q: How to get iTunes to keep downloading podcasts even if I don't listen to them right away? As the owner of a Mac and an iPhone, I've naturally been using iTunes as my podcasting program. It works pretty well, except for one huge problem: if it determines that I haven't been listening to podcasts for a while it stops downloading them. Is there any way to force iTunes to continue downloading podcasts regardless of how often I listen to them? For most it isn't a big deal, but there are some (like "This American Life") that only publish one episode at a time so it's impossible to download the ones that you've missed.
+This would also be useful to set up an iTunes server that shares the podcasts over the local network - since the podcasts would be listened to remotely, their "new" status would not be changed.
+I poked around com.apple.iTunes.plist to no avail - if there is a setting to disable it, it's not labelled in there.
+One idea I had would be possibly trying to fool iTunes into thinking that the podcast was listened to recently, as one of the criteria for automatically unsubscribing is that it hasn't been listened to in 5 days. Would it be possible to periodically set this value to the current time? Or might it even accept a future time so it doesn't have to be periodically set?
+
+A: Apple covers this feature in their Making a Podcast page.
+
+Automatic Unsubscribe.
+iTunes automatically unsubscribes from
+  a podcast if the following conditions
+  are both met:
+  
+  
+*
+  
+*The user has not played any episode downloaded in the past 5 updates
+  (there may be more than one episode
+  downloaded per update.
+  
+*More than 5 days have elapsed since an episode was played.
+  
+  
+  In addition to minimizing unnecessary
+  bandwidth costs for both the user and
+  the podcaster, the unsubscribe logic
+  built into the iTunes client makes it
+  more likely that episode downloads, as
+  reported by a podcaster to a sponsor,
+  are roughly in line with actual plays
+  of the episode
+
+And as far as I am aware, you cannot disable this feature.
+
+A: There is an Applescript called "Update Expired Podcasts" at dougscripts.com.  
+http://dougscripts.com/itunes/scripts/ss.php?sp=updateexpiredpodcasts
+You can run this automatically via your crontab or launchd using osacript:
+osascript ~/Library/iTunes/Scripts/Update\ Expired\ Podcasts.scptd
+

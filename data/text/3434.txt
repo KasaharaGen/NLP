@@ -1,0 +1,22 @@
+Q: Easy way to install additional spell-check dictionaries for OS X? I am looking for an easy way to install spell-check dictionaries for languages that are not supported by default on OS X (one example Romanian).
+By easy way, I mean a solution that does not require command line usage. While this is ok for me, for average OS X user this could be too complex.
+
+A: Mac OS X is compatible with the aff/dic open format dictionaries.
+All you need to do is to get one dictionary, and place it inside ~/Library/Spelling (you may have to create the directory).
+
+
+*
+
+*Get the Romanian dictionary from OpenOffice (or search for another language)
+
+*Extract the file using The Unarchiver or rename the extension to .zip and extract it
+
+*Move the files with the .aff and .dic extensions (ro_RO.aff and ro_RO.dic for Romanian) to your ~/Library/Spelling folder.
+
+*Go to System Preferences > Keyboard > Text > Spelling  and choose the language of your choice
+
+*...boom! you have system-wide spell checking :)
+
+
+A: Are you talking about in e.g. Word or Pages - or are you talking about in Browsers like Safari, FireFox etc. - or just a system wide configuration ??
+One solution for a system wide configuration could be to install the cocoAspell dictionaries: http://kitblog.com/2010/10/get_romanian_spell-check_in_osx.html

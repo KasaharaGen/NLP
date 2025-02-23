@@ -1,0 +1,38 @@
+Q: Quick way to enable only the web searches I want in Quicksilver Quicksilver has hundreds of different web searches available, but I only want to use a few of them. 
+I can manually deselect the ones I don't want by navigating to 
+Modules -> Web Searches -> Contents
+
+and unchecking the boxes one at a time, but this is extremely tedious. I don't seem to be able to select multiple entries.
+Is there a faster way to choose just the web searches I want? 
+
+A: The latest Web Search plug-in from http://qsapp.com/plugins/ has newer lists that don’t rely on Blacktree. You should install it.
+And if you don’t want to use the defaults (I don’t), just go into Preferences → Catalog → Plugins and uncheck them. No need to go digging into bundles and hacking at their property lists.
+From there, you can add your own using the method if your choice. (Manually, bookmarks, OmniWeb search shortcuts, etc.)
+Changes you make inside the plug-in’s bundle will be destroyed on every upgrade. Use the catalog preferences to ensure your search list stays around.
+
+A: Go to:
+~/Library/Application Support/Quicksilver/PlugIns/Web Search Module.qsplugin
+
+Right click and "Show Package Contents".
+Then open Contents/Info.plist and go to:
+QSPresetAdditions > Item 0 > Settings > path
+
+and delete the:
+http://docs.blacktree.com/doku.php?id=quicksilver:web_search_list
+
+Restart Quicksilver and your list will be empty.
+Then you may manually add your own.
+
+A: To expand on nuc's answer... 
+The default search list is at http://docs.blacktree.com/doku.php?id=quicksilver:web_search_list, which redirects to http://querymap.appspot.com/quicksilver-list. This contains a list of search engines, in this format:
+<div class=QSWebSearchContentStart></div>
+<a href="http://www.google.com/search?hl=en&q=***">Google Seach</a>
+<a href="http://duckduckgo.com/?q=***">DuckDuckGo search</a>
+...
+<div class=QSWebSearchContentEnd></div>
+
+To create your own custom list, create a web page with the desired search engines, and then point Quicksilver to your URL as nuc mentioned:
+Open: 
+~/Library/Application Support/Quicksilver/PlugIns/Web Search Module.qsplugin/Contents/Info.plist 
+and modify: QSPresetAdditions > Item 0 > Settings > path
+Note that http://querymap.appspot.com has a list of search engine URLs.

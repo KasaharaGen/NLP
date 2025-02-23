@@ -1,0 +1,13 @@
+Q: I used to be able to use g++ from the terminal, but now it's missing. I still have XCode installed I used to be able to use g++ from the terminal to compile c++ programs, but now when I try to use it, I get 
+
+-bash: g++: command not found
+
+General advice on the internet was to install XCode, but I already have XCode installed. I'm not sure what has changed since being able to use it. I'm running OSX 10.6.8 and XCode 3.2.4.
+
+A: I had the same problem at one point with gcc.  gcc and g++ usually link to a version-specific binary.  Look in /Developer/usr/bin for something like g++-x.y, where x.y is the installed version of g++.  You'll probably see gcov, gcc, etc. there as well.  Just create a symbolic link from the versioned g++ to g++.
+For example, on my machine, I would type ln -sf g++-4.2 g++.
+Hope this helps.  If the versioned compiler tools aren't there, you may need to reinstall the Developer Tools.
+
+A: Okay, this is embarrassing. But reinstalling XCode from the OS X disc DID work. I just didn't think to try it because I already had it installed.
+
+A: If you have more than one account try executing g++ from the other account. If it works, you probably have an issue with the .bash path definitions. 

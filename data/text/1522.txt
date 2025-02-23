@@ -1,0 +1,21 @@
+Q: How can I hide my top menu bar on Mac OS X? I need to temporarily (5 min) hide my top menu bar. Is there a glitch, or something that will let me do that?
+
+A: You have a few choices.
+
+
+*
+
+*MenuFela, site down, claims to do this.
+
+*MegaZoomer claims to zoom an app and hide the menu bar. Not sure if this will work, for example, with the Finder.
+
+*MenuShade does a so-so job. Hidden menu, but the shadow is there and the space is not usable
+
+*According to this hint you can edit the plist of the app and have the menu bar become hidden. Add the following to the Info.plist in the app bundle:
+
+
+
+<key>LSUIPresentationMode</key>
+<integer>4</integer>
+
+

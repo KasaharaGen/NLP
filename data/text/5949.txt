@@ -1,0 +1,15 @@
+Q: Diagnose disk I/O per application I have a Leopard system which feels rather sluggish, and which I suspect may be disk-I/O-bound. While I know how to check which app is using CPU or memory (top or Activity Monitor), I don’t really know how to check which application is heavy on disk-I/O, or if (and how much) swapping occurs on my live system.
+So, is there any application out there that would monitor and report disk I/O operations for me (in whatever unit is relevant)? Same for swapping: how can I check if (and to what extent) my swap memory is used?
+This is related to “Give a new life to my 2007 MacBook Pro”
+
+A: The tools are in the terminal app:
+
+
+*
+
+*fs_usage shows the io on a per file instance and grep will help you filter results to one app if desired. 
+
+*vm_stat 10 shows aggregate swap activity every 10 seconds - you can fiddle with the timing based on how close you care to look
+
+
+If you want a nice graph and full monitor, check out Instruments in Xcode. It has amazingly detailed documentation on how to profile, but it basically uses the same terminal commands to get it's raw data but has tons of ways to inspect, view and measure what is happening. Think of it as Activity Monitor Pro (I'd say Pro^10 if you are math inclined :-)

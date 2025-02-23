@@ -1,0 +1,81 @@
+Q: Prevent BootCamp partition from automatically mounting I don't want my BootCamp partitions automatically mounted on boot.
+For the main windows partition this can be accomplished by putting the UUID into fstab.
+# /etc/fstab
+# https://gist.github.com/968327
+# You can find the volume UUID in Disk Utility. Select the volume on the left
+# and then File->Get Info. See "Universal Unique Identifier".
+#
+# Options used below:
+#  ro for readonly (can be omitted)
+#  noauto to prevent auto-mount
+#  noatime to skip writing last access times (performance thing, optional)
+#
+# Remember to set the filesystem type (hfs, ntfs, etc) too
+##########
+# BOOTCAMP
+UUID=BCC6AB78-5605-4102-B4CE-D2CF9C3D2BDB     none     ntfs     ro,noauto,noatime
+LABEL="SYSTEM RESERVED" none    ntfs    ro,noauto,noatime
+
+But, as you see, I tried to prevent 'System Reserved' from mounting as well.
+Unfortunately it doesn't work with a UUID, because it doesn't have one.
+The LABEL option doesn't seem to work on OSX either.
+
+A: Your original solution using /etc/fstab will work, but you must use the volume's UUID (which DOES exist, Disk Utility just doesn't display it for NTFS formatted partitions- thanks Apple...)
+To learn the UUID use the following command in terminal:
+diskutil info /dev/diskXsY  ##substituting the X & Y for the disk and partition designation of the volume you want NOT to be mounted- which you can learn with: diskutil list
+For this command to succeed and show you the UUID you can not have Tuxera NTFS enabled for that partition.  If you are using that or probably any other non-native file system drivers for NTFS, you must disable them (at least for that partition) and reboot.
+The partition must also either be mounted or dismounted when you run the command- I can't remember which (and I remember that for me it actually turned out to be the opposite of what I found posted on a forum somewhere... so experiment).
+If for some reason you just can't get OS X to show you the UUID you can resort to booting up with an Ubuntu installation disk and using a tool like gparted (there are quite a few ways using either the command line or a GUI app- you won't have trouble finding more information on that).  You don't have to worry, the UUID will be the same between operating systems.
+Then add the following line to /etc/fstab
+UUID=(you know what to put here- no enclosing brackets or anything) none ro,noauto 0 0
+reboot and voila- no unwanted partitions mounted!  This is a system wide setting for all users, but you can still mount the partition using the Disk Utility.
+This is the most pervasive and effective solution to this problem- plus it's not broken if you happen to move the disk to another controller or port, or even if you change the volume's label.  However, formatting the partition will assign it a new UUID.
+
+A: In Mac OS Catalina 10.15.7 and above, you SHOULD NOT Edit the fstab entry directly. Instead you should use vifs with sudo. To accomplish what the original post is requesting in MacOS Catalina and above, you should take the following steps.
+
+*
+
+*Open your terminal app
+
+*Type diskutil list
+
+*Note the disk volume of your bootcamp partition, i.e. /dev/disk0s3
+
+*Next find the Volume UUID of your bootcamp partition by typing diskutil info /dev/diskXsY where X is your disk and Y is your bootcamp partition. i.e. diskutil info /dev/disk0s3
+
+*The result will return information of
+Type (Bundle): ntfs and
+Volume UUID: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+
+*Note both of those paramaters, and copy the Volume UUID into your clipboard.
+
+*Type sudo vifs and enter your password
+
+*Once in vifs, type 'a' and hit enter.
+
+*Create a new line on the bottom of the page.
+
+*Copy and paste this EXACTLY as it is printed here replacing the UUID with your UUID that you copied in step 6:
+
+# Forbid Mounting of Bootcamp volume at boot by uncommenting the line below
+UUID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX none ntfs ro,noauto
+
+
+
+*Press escape, then hold shift and type zz to save the file.
+
+
+*Bootcamp will now be properly forbidden from automounting at MacOS Boot.
+
+A: I found this forum post which has a couple options:
+The straightforward way is to create a login applescript, replacing /Volumes/Windows with your path:
+tell application "Finder"
+    if (exists the disk "Windows XP") then
+        do shell script ("hdiutil unmount /Volumes/Windows\\ XP -force")
+    end if
+end tell
+
+Another way is to modify /private/etc/rc.local to add:
+disktool -u disk0s3
+
+If you have more than one disk, or have formatted it into more than just a MacOS and Windows volume, you will have to use Disk Utility or something to determine the Disk Number (in this case 0) and Partition Number (in this case 3) of your Windows volume.

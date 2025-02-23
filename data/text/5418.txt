@@ -1,0 +1,9 @@
+Q: How to configure 802.1X without a configuration file? After upgrading to Lion, all my 802.1X configurations are gone. There also  does not seem to be a possibility to configure them via the system preferences:
+
+It just tells me to get a configuration file from my system administrator.
+Question:
+How can I create a profile manually like before, or, if this is not possible, can I create a configuration file myself with the data I have and how?
+Update:
+It turned out that it was sufficient to just provide my credentials at the when I connected to the network. I was just confused as there was not profile anymore in the preferences as you can see in the screenshot above. I hope the accepted answer will still be useful.
+
+A: You need a  .mobileconfig file that includes your 802.1X profile. Acording to apple ( http://support.apple.com/kb/HT4772 ) you can use the Server extensions of Lion to create it. Alternatively (and easier ) the Iphone Configuration Utility ( http://support.apple.com/kb/dl851 ) can also create it. If you upgrade to Lion from Snow leopard any existing profile is migrated. 

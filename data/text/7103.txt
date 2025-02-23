@@ -1,0 +1,17 @@
+Q: How can I use tmutil to figure out which files just got deleted? I'm on Lion and until ten minutes ago I didn't know that the nifty new tmutil existed. But now I'm a little uncertain with all its options and sub-commands which to use to try and figure out what went wrong and how to fix it.
+A program ran amuck and started deleting files from ~. It made only a little progress before I stopped it, but doubtless I lost some files. I just can't tell out of a drive with hundreds of thousands of files, which ones went away. I know there were some configuration files (for example .bash_profile) because those were right there in that folder, but doubtless it went off in some depth first rampage so no telling what got deleted and from where.
+I can't just do a restore of /Users/John (the Mac OS prevents it), I can't restore all the files inside of /Users/John using the GUI (the Finder ignores all the .something files and folders, some of which I know were deleted), so my current hope is to figure out from the command line exactly which files got the axe and somehow restore only those from my Time Machine backup.
+In other words... help.
+
+A: Run
+tmutil listbackups
+
+to get the list of snapshots available. Pick the one before the problem occured and run
+tmutil compare YOUR-SNAPSHOT-HERE | cut -c33- | grep /Users/YOUR-USERNAME
+
+to get a list of differences between then and now. If you leave out the cut part you may also get some indication concerning the actual difference (but it's more difficult to use the result afterwards).
+
+A: If I were in this situation, I wouldn't use tmutil; I'd use something like
+    cp -Rnp "/Volumes/Time Machine/Latest/Macintosh HD/Users/John/.*" ~
+
+to restore any dot-files or directories, and the GUI to restore anything else.

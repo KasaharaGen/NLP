@@ -1,0 +1,33 @@
+Q: When is the locate database updated? I use the locate command in Terminal regularly. When does its database get updated? On other systems, I could run updatedb as root to force it to update.
+Note: I know using mdfind to search with spotlight is another option
+
+A: The locate database is updated by the following cronjob:
+/private/etc/periodic/weekly/310.locate
+
+On Most Mac systems, Cron has been replaced by launchd, and you'll find that /etc/crontab doesn't exist. The schedule for this scheduled job is determined by launchd, and can be seen with one of the following commands:
+% cat /System/Library/LaunchDaemons/com.apple.periodic-weekly.plist
+    #### SNIP
+<dict>
+    <key>Hour</key>
+    <integer>3</integer>
+    <key>Minute</key>
+    <integer>15</integer>
+    <key>Weekday</key>
+    <integer>6</integer>
+</dict>
+
+Or, something a little more user friendly:
+% open /System/Library/LaunchDaemons/com.apple.periodic-weekly.plist
+
+launchd will then run the jobs specified in /etc/periodic/{daily,weekly,monthly}/*, using this schedule.
+
+A: sudo periodic weekly is the easiest way to kick it off the weekly script which will call the normal rebuild of the locate database.
+As noted launchd will start this script Saturdays at 03:15 AM if the mac is running. If the mac is sleeping at that time, it will run when the mac wakes. It won't run if the mac is powered off at the magic moment.
+
+A: From the locate manpage:
+FILES
+ /var/db/locate.database          locate database
+ /usr/libexec/locate.updatedb     Script to update the locate database
+ /etc/periodic/weekly/310.locate  Script that starts the database rebuild
+
+By default, the database is rebuilt weekly through launchd.  You can run locate.updatedb manually to do the update.

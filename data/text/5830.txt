@@ -1,0 +1,23 @@
+Q: How to convert an exiting partition to RAID on OS X? I just replaced my optic drive from MacBook Pro with another 500gb HDD and I want to speedup one of the partitions.
+The first drive has two partitions, named 106 and 107 and I want to convert one of them to use the second drive.
+The problem is that disk utility does not let me add any of the partitions from the first disk to a RAID set.
+What should I do? I don't want to reinstall everything.
+Here is what I would like to obtain from my 2 500gb HDD:
+
+
+*
+
+*one striped partition of 2*300GB, this would be used for speed (compilation)
+
+*rest of the free space other partitions,
+
+*still be able to have a partition with Windows on it, a real partition.
+
+
+A: Enabling a RAID is destructive to the existing data using disk utility and native OS X tools. 
+You will need to have a temporary copy of the data to re-load it onto the new RAID volume.
+I know several people that always set up their externals to be in a RAID so they can always mirror up existing drives after the fact to duplicate, snapshot or extend/stripe them after they have data on them. 
+Never been worth the hassle for me to set things up that way, but it works long term for many. 
+
+A: Unfortunately you have to format everything first.
+Easiest way will be to use Superduper! or similar software to make an image of your current setup on another disk, then create the RAID array and restore the image back.

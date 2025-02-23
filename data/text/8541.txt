@@ -1,0 +1,28 @@
+Q: How do I change Software Update server to official one on OS X Lion (or later)? I recently bought a new macbook pro with Lion, had some problems and had it checked by Apple people. It was returned to me but the software update server seems to have been changed and will not update. How can I change to the official one? I would like to avoid the 2 hour drive.
+Thanks!! 
+
+A: Before driving to the Apple technician, you can type the following Terminal command:
+defaults read /Library/Preferences/com.apple.SoftwareUpdate CatalogURL
+
+This will tell the the URL that SoftwareUpdate is checking.
+
+A: It depends on exactly how they changed the update server setting.  If they did the obvious thing, this should delete the setting (so it'll go back to normal):
+sudo defaults delete /Library/Preferences/com.apple.SoftwareUpdate CatalogURL
+
+If that doesn't work, it's possible it's configured as a per-user (rather than system-wide) setting, in which case this should do it:
+defaults delete com.apple.SoftwareUpdate CatalogURL
+
+
+A: On system newer than 10.10
+sudo softwareupdate --clear-catalog
+
+
+A: The above is almost, but not quite correct. It should be
+sudo rm /Library/Preferences/com.apple.SoftwareUpdate.plist
+
+Followed by a reboot.
+this will delete whatever server your Mac is looking at to get software updates and will let it default back to the Apple one. I've just done this on an iMac running El Cap which was trying to get updates from an in-house update server that was disconnected years ago.
+
+A: sudo defaults rm /Library/Preferences/com.apple.SoftwareUpdate.plist
+
+then reboot

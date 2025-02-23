@@ -1,0 +1,7 @@
+Q: How do I remote backup while waking up my computer from sleep? I am backing up remotely from a Macbook Pro to an external backup drive on a PowerMac G5 via Time Machine and AFP. When the G5 goes to sleep, the Macbook Pro can't back up because the drive is made unavailable. How do I get the G5 to wake up while the Macbook Pro is backing up, and to go to sleep after the Macbook Pro is done backing up?
+The MacBookPro is on Snow Leopard and the G5 (Early 2005) is running Leopard so I can't just use the normal sleep proxy / Wake On Demand or have an airport do the waking up whenever Time Machine tries to connect to the AFP share.
+
+A: You could use cron, or use the energy saver > schedules to wake your power G5 up.
+This post might help you as well superuser.com this other post might also help you, ont the apple website.
+
+A: The simplest solution to making sure that your G5 is backed up regularly is to disable its going to sleep. In System Preferences, under Energy Saver, you can set the G5 to never go to sleep, and you can un-check the option "Put the hard disk(s) to sleep when possible". This will increase the energy usage of your computer, for sure, but if regular backups are more important, I suggest you consider this solution.

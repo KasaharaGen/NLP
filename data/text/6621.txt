@@ -1,0 +1,15 @@
+Q: Mac OS X Lion Mail not sending Since upgrading to Mac OS X Lion, I consistently have issues sending mail from Mail.app. I can receive mail but when I send mail it stays in the outbox. Sometimes I can send the mail in the outbox by deleting it, rebooting my MacBook Pro, and then recreate the message and send it out.
+Does anyone have a solution?
+
+A: These problems usually come down to one of two things:
+
+
+*
+
+*You have incorrectly configured the log-in settings for your outgoing mail server run by the company that provides your email service. Port numbers, authentication method, user name, password, and other settings.
+
+*The problem is on the end of the company that provides your email service. Their servers are misbehaving.
+In either case, call the tech support line of the company that provides your email service and have them troubleshoot it with you.
+
+A: Use Activity when you send to see what happening. If nothing obvious shows up you could archive your mailboxes, and removed the account and re-added it,.
+You could also rename the ~/Library/Preferences/com.apple.mail.plist to com.apple.mail.plist_backup and re-open Mail.

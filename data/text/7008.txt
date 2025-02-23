@@ -1,0 +1,34 @@
+Q: How do I disable quarantine on Lion? I've been tearing my hair out trying to get rid of the quarantine "Do you want to open this?" warning because I don't like it.
+The well documented way (defaults write com.apple.LaunchServices LSQuarantine -bool NO) does NOT work.
+Also, I've used the Secrets Preference pane and that doesn't work either. As soon as I uncheck the box and close the pane and reopen, it's still checked.
+(I've tried rebooting right after these methods, no dice.)
+
+A: Never tried to disable the behavior entirely, but you can always remove the quarantine from a file with xattr. For example:
+$ cd ~/Downloads
+$ xattr -dr com.apple.quarantine ./*
+
+I think of it less as a moron check than it is a safeguard from browser vulnerabilities that might otherwise download and something without your knowledge.
+
+A: Here's a simple Automator folder action that will remove the quarantine flag from files as they are downloaded to the Downloads folder:
+
+
+*
+
+*Make a new Folder Action workflow in Automator
+
+*In the "Choose folder" menu, choose your Downloads folder  
+
+*Add a "Run Shell Script" command  
+
+*Change the "Pass input" menu to "as arguments"
+
+*Change the script to:
+
+
+
+for f in "$@"
+do
+    xattr -d com.apple.quarantine "$f"
+done
+
+Finally, save the workflow with whatever name you want and it should start working immediately.

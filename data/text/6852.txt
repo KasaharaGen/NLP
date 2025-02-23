@@ -1,0 +1,35 @@
+Q: Converting iso to img completes without creating the img file I'm trying to create a bootable USB drive for my downloaded Ubuntu 10.04 Server (ppc) iso using my MacBook. I followed the instruction on the Ubuntu website for creating the img using hdiutil convert -format UDRW -o ~/path/to/target.img ~/path/to/ubuntu.iso. However, after running the command, this is the output that I get:
+Reading Driver Descriptor Map (DDM : 0)… Reading Apple
+(Apple_partition_map : 1)… Reading Ubuntu-Server 10.04 LTS ppc     
+(Apple_ISO : 2)… Reading Ubuntu-Server 10.04 LTS ppc (Apple_HFS : 3)…
+...................................................................................
+Usage:  hdiutil convert -format <format> -o <outfile> [options] <image>
+    hdiutil convert -help
+
+Then it returns to the command line. When I check the supposed location of the img file, it doesn't exist.
+Questions:
+
+
+*
+
+*Am I running the right command?
+
+*If I am running the right command, where is the img file?
+
+
+
+On further examination I noticed the appropriate file is created when I run the command—but as soon as the "Reading Ubuntu-Server 10.04 LTS ppc (Apple_HFS : 3)" process finishes, the file gets deleted.
+
+A: Whenever a command line tool outputs it's Usage help text it means it couldn't parse your parameters. In this case you got the order of the arguments wrong, which can easily be gleaned from the man page (man hdiutil): convert image -format format -o outfile
+In your case that'd be:
+hdiutil convert ~/path/to/ubuntu.iso -format UDRW -o ~/path/to/target.img 
+
+
+A: Could you post the complete command line you used? I assume you didn't really enter
+hdiutil convert -format UDRW -o ~/path/to/target.img ~/path/to/ubuntu.iso
+
+since that is only an example and you replaced the '/path/to/...' with the paths and filenames of your downloaded Ubuntu image and your desired output filename.
+If the paths to the input and output file include any spaces you have to put them in quotes. Otherwise hditutil treats the parts seperated by spaces as different arguments:
+E.g. :
+hdiutil convert -format UDR -o "~/CD Images/my-ubuntu.iso" "~/Downloaded Files/ubuntu.iso"
+

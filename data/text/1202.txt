@@ -1,0 +1,50 @@
+Q: Where are the good docs? I have been reading the OSX security pdf from the apple site, it describes how to ensure Snow Leopard can be brought up to the Common Compliance standard.
+Entirely different than the diffident documentation available from  the "help" system. 
+I love it. What I don't love however, is the degree to which I had become complacent, treating the laptop as a secured place with a great UI to do my work.  I found out today, for example, that Spotlight seems to not index /System, which is lunacy, that is the most important place to keep an eye on files!
+Where is detailed documentation like this pdf available for the core system?  
+EDIT:  Am I asking on the wrong site of the increasingly fragmented stack empire?  There is no tag for 'documentation', or 'howto'?
+EDIT:  Found them.  Developer tools, 
+com.apple.adc.documentation.AppleSnowLeopard.CoreReference.docset
+That's the goodstuff.  How to master the system, not just play with it.
+
+A: I believe that you’re not asking in the wrong place, you’re really not asking a question. What you define like “The Good Docs” is completely subjective. The guide you linked clearly says: 
+
+Important: This document is intended for use by security
+  professionals in sensitive
+  environments. Implementing the
+  techniques and settings found in this
+  document impacts system functionality
+  and may not be appropriate for every
+  user or environment.
+If you’re using this guide, you
+  should be an experienced Mac OS X
+  user, be familiar with the Mac OS X
+  user interface, and have experience
+  using the Terminal application’s
+  command-line interface. You should
+  also be familiar with basic networking
+  concepts. Some instructions in this
+  guide are complex, and use could cause
+  serious effects on the computer and
+  its security. These instructions
+  should only be used by experienced Mac
+  OS X users, and should be followed by
+  thorough testing.
+
+So clearly these “good” documents are not that good for everybody. In any case,
+Spotlight doesn’t index /System because that could be a security problem on its own (it would need permissions to do that, a set of permissions that you don’t want to give to a userland daemon running all the time, with access to a UI). Why would a regular user want to keep an index of /System remains a mystery to me, it only has things that are for the System and not for the user to find and manipulate. 
+You can, however, use the terminal to touch that if that’s what you want, but no user should ever attempt to land in /System, it can only break so many things…
+Where did you get the idea that 
+
+
+*
+
+*/System is the most important place to keep an eye on files ?
+
+*Spotlight is a tool to keep an eye on files?
+
+
+The place to keep an eye on files is in your very own /Users/YourFolder, because that’s all the access you should have (to write that is).
+Spotlight is an indexing/searching tool, not a tool to monitor files that may seem suspicious in reserved system places. 
+All in all, if you still want those docs, I’m sure that most of them will be available in the developer’s area of Apple’s website.  (developer.apple.com). You can create a free account and start from there. 
+On the other hand, if you are a “security professional” then you are using the wrong tools for your job. Spotlight is ok as it is, if anything, you might want to restrict it. I’m sure that if you make spotlight run as root it will eventually index that, but of all the possible ideas that come to my mind, that is probably one of the worst security ideas ever conceived. There’s a reason why root user is disabled by default, there’s a reason for sudo and there’s a reason for normal accounts. Use them wisely, use them in peace. 

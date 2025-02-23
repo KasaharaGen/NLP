@@ -1,0 +1,21 @@
+Q: Using the ALT key in Windows with Parallels I need Windows for my development environment on my Mac. I use Alt-U and Alt-S a lot in this software. I can't do this on my Mac. Is there a way to send the Alt key presses to the virtual machine? 
+Alt-U shows the Accessibility Utility Manager. Pressing Alt-S just types an "s". At work on Windows XP, neither of these behaviors happen.
+
+A: I was able to get the desired effect by holding down the ctrl+alt keys, then releasing just the ctrl key to use the alt function.
+Hurrah! No editing keyboard preferences required. Hope this helps someone else too.
+
+A: For me the solution is to use the right Alt not the left Alt on the keyboard. For unknown reasons that does the trick.
+
+A: Disable the option for switching alt and cmd. The mapping should be: alt=option, cmd=windows.
+
+A: Go in to preferences on Parallels and add mappings individually for each letter combo of alt and a letter. alta maps to alta, altb maps to altb etc for all key combos that involve alt.  Time consuming but it appears to work so far.
+
+A: You should be able to use the option key - I just used it on the Windows 8 Dev Preview as well as Windows 7 using VMWare Fusion 4. See picture below for detail of option key:
+
+
+A: Can you use the "Optimize modifier keys for games" option; does it help you?
+Problems with Ctrl, Alt, Cmd, Shift and other modifiers in games
+(I want to use the option, but don't see it in my configuration panels...)
+Oh, it's moved to the Advanced pane.
+
+A: I just set one map: option to Alt, and it works.

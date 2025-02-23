@@ -1,0 +1,13 @@
+Q: Can FileVault show the login window as 'name and password', not 'list of users'? Normally, Mac OS X lets you choose to show the login screen as a list of users (you click to enter the password), or two text fields (you enter the username and password):
+
+But, I use FileVault 2. So, when I first turn on the computer I'm greeted with the login screen (with a blue background).
+This is fine, except for one thing: It's a list of users.
+But, for a variety of reasons, I prefer the 'Name and password' style.
+Is it possible to have FileVault give a prompt for username and password, instead of a list of users?
+
+A: I'm quoting this directly from a post in this thread at Apple Discussions:
+
+This isn't a bug. This is the way FileVault-2's EFI boot authentication UI is built. When your Mac first starts up, EFI-boot takes over to decide what to do. It either continues to bring up the system to the typical OSX login screen, which is managed by OSX's system preferences, or it starts a special EFI pre-boot where it displays the FV2 unlock screen with the icons of designated OSX accounts approved to unlock the disk. Once you log on, the EFI unlock sequence carries forth your credentials, performing a single signon.
+I have submitted a UI request (not as a bug) to be able to either edit the EFI boot screen (look at /usr/standalone/i386/EfiLoginUI directory, none are editable using normal applications) or ask that a feature is included, probably in the FV system preference pane, to add a custom banner.
+
+For now, there doesn't appear to be a way to change it.

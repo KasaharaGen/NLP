@@ -1,0 +1,4 @@
+Q: External drive format to be writeable on both Mac and Windows What file-format an external drive has to be for it to be writeable on both Macs and Windows machines?
+I have a 750GB external drive originally formatted in NTFS for Windows, but it's not writeable on Mac. I know FAT32 is writeable by both systems but am I correct to remember that it has limits to partition size (32GB if formatted from Windows or 2TB) and file size (4GB)? If that's the case then it's not good for me as I use it to transfer files over 5GB.
+
+A: According to this answer, you can use exFAT if your version of Mac OS X and Windows are new enough. That would be at least Mac OS X 10.6.5 and Windows Vista SP1. 

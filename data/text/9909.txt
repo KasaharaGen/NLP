@@ -1,0 +1,54 @@
+Q: Compress PDF with adjustable ratio One can use Preview to compress a PDF. However Preview on Mac OS X 10.7 does a too hard compression for my taste. There is only one compression setting.
+Are there alternative tools that allows you to adjust the compression ratio?
+
+A: Ahhh!  Turns out that you can fine tune the quartz filter that Preview uses.  This might be a faster way to compress:
+This is from a review of PDFCompress on Macupdate.com:
+With Quartz Filters, you can take total control of the compression process. In Leopard (perhaps Tiger or earlier, I'm don't recall), in your Utilities folder you'll find "ColorSync Utility". With this program, you can create you own quartz filters which allow to you compress PDFs as much as you see fit. When you start ColorSync Utility, you'll see how Apple programmed their "Reduce File Size" quartz filter that you see in Preview. It's remarkably easy to make your own filter by modeling it off Apple's filter. Head on over to for a quick tutorial. Also, some nice guy on Apple's Discussion boards put up a bunch of premade filters you can download that do the same thing. A follow-up poster even posted AppleScript code and Automator recommendations to make compressing PDFs a snap! Check out for more on that. Happy PDF-Shrinking! 
+
+A: As Guy mentioned, ColorSync Utility is what your looking for. For me the standard compression was also too little resolution & too lossy compression. So I created a new filter in ColorSync - which then becomes available in e.g. Preview: Resolution 200 dpi, jpeg quality ~75%  
+Step 1: Open ColorSync Utility & create the new filter such as below
+
+The above settings give me files with acceptable size and decent quality (e.g. for sending by e-mail)
+Step 2: Open the PDF in Preview, then choose File > Export, Click the Quartz Filter pop-up menu, then choose the relevant filter ("Reduce File Size 200dpi" in this case)
+
+
+Edit 2011-12-18: Seems for Lion it's not that straight forward regarding Preview integration. See here:
+
+Just copy your filter from /Users/YourName/Library/Filters/ to /Library/PDF Services/ and the customized profile will be back in preview.
+
+
+A: This is for anyone who is in the same boat as I was. I had a PDF of handwritten annotations on a book exported from Goodnotes. The Quartz Filter method didn't work for me, even when I applied a custom filter with aggressive settings. This makes me think that the filter is only applied to images in the PDF. In my case, the most aggressive filter reduced a PDF of size 104 MB to 103 MB!
+Using Automator to Reduce PDF Size
+Note: This method works by converting pages in your PDF to compressed JPEGs and then stitching them back into a PDF, so other PDF data such as bookmarks and notes will be stripped.
+
+*
+
+*Open Automator.
+
+*Go to File > New and Choose Workflow.
+
+*Create the Workflow as follows.
+
+*
+
+*In the left pane, look for Ask for Finder Items and drag it to the right pane.
+
+*Next, add Render PDF Pages as Images and set the Compression and Resolution of the JPEGs.
+
+*Finally, add New PDF from Images.
+
+
+
+*Click on Run (top-right), choose your PDF and wait for Automator to do its job.
+
+In my case, this reduced the file size to 10 MB.
+Here's a screenshot of my Workflow:
+
+I learned a lot from this Apple discussions post.
+
+A: I have used PDFCompress for years. It offers multiple options and hs been continuously updated. Highly recommended, but now $30. There may be cheaper options, but this has worked well for me.
+http://www.metaobject.com/Products/
+
+A: To compress a PDF using some settings, you can use PDF Toolkit+. It used to be $2, but it's currently free. It does not allow adjustable ratio, but has specific settings of 150 or 72 dpi.
+
+A: To compress a PDF using some settings, you can use PDFOptim - http://rootrisetech.com/product/pdfoptim

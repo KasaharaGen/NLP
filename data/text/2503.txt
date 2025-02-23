@@ -1,0 +1,22 @@
+Q: How do I create a symbolic link to a directory with a space in it? I was trying to create a symbolic link using the following command:
+ln -s "~/Foo Bar/" Foo
+
+... but it didn't work (i.e. when I go into finder and try double clicking it, it says that it's pointing to an invalid path and prompts me to delete the alias or fix it). I had to rename the folder to FooBar and then run the following command:
+ln -s ~/FooBar/ Foo
+
+How can I create the link without having to remove the space from the folder's name?
+I'm looking for a way to do this in Terminal and not in Finder's UI.
+
+A: The quote marks are preventing ~ from being expanded to your home folder, so you need to either quote just the part with the space in it:
+ln -s ~/"Foo Bar/" Foo
+
+Note: exactly how much is quoted doesn't matter, as long as the space is in the quoted portion and the ~/ isn't. ~/Foo" "Bar/, ~/"Foo Bar"/, ~/Fo"o B"ar/ etc are all equivalent. Also, single- and double-quotes have the same effect on spaces (although they differ on other characters), so ~/'Foo Bar/', ~/Foo' 'Bar/ etc would also work.
+You could also use an escape to prevent the space from being treated as a separator:
+ln -s ~/Foo\ Bar/ Foo
+
+
+A: I tested it myself. I don't have a problem with a space in it:
+    $ ln -s "/Users/joe/test/foo bar"/ linkToFoo_Bar
+
+ls shows:  $ linkToFoo_Bar -> /Users/joe/test/foo bar/
+and it works in terminal and finder without any problems. 

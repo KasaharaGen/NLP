@@ -1,0 +1,12 @@
+Q: Turn off Anti-Aliasing on Mac This is a followup to the Stack Overflow question, Why does there appear to be a different number of unique colors available on the Mac as compared to Windows?
+How can I turn off anti-aliasing on a Mac, either through manual settings or, more preferably, while doing a screen capture (i.e., when I capture the screen, I need the raw data without anti-aliasing algorithms applied)? 
+
+A: You can manually turn off font-antialiasing with this terminal command:
+defaults write CoreGraphics CGFontDisableAntialiasing YES
+
+to turn antialiasing back on again use this:
+defaults write CoreGraphics CGFontDisableAntialiasing NO
+
+
+A: Does the Command + Option + \ helps?
+This option keys disable the Anti Aliasing when doing the Zoom (using Ctrl + Scroll)

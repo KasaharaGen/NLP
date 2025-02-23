@@ -1,0 +1,29 @@
+Q: Accessing events on external drive in iMovie '11 on Lion I have my iMovie events stored on my external harddrive (located in a Synology NAS). It worked like a charm with iMovie '11 on Snow Leopard.
+I then received my new MBP with Lion and the external drive is not showing. I cannot thus access my events which is pretty annoying as it prevents me from using the application...
+
+Here is what I see in iMovie:(see edit 2 for new state)
+
+I previously had my external drive below the Macintosh HD one.
+
+My external drive is correctly mounted before launching iMovie:
+
+It has the iMovie Events folder at root level (and as I said, it was correctly detected under same iMovie version on Snow Leopard).
+I tried mounting it using afp: but result is the same.
+Any help appreciated as I don't get what could have changed between SL and Lion for this.
+
+edit: Same with volume now mounted using NFS:
+
+The list in iMovie stays desperately empty...
+
+edit 2: something new!
+My NFS mounts are now visible in the list (probably coming from an update of iMovie inbetween).
+Problem is that they are still empty and with a yellow warning sign, without any tooltip on it...
+
+
+A: Lion turned off an older and less secure method of authenticating AFP connections, which a lot of third-party vendors of NAS devices were using, including Synology. Synology have made available a beta release of their new firmware which fully supports Lion (as long as your Synology device was made in 2008 or later).
+
+A: OK, I did me a nice christmas gift by solving this, and quite easily in fact.
+It could be considered as workaround only but it saved my life.  
+Answer: symlink!
+Now, in my Movies folder, the iMovie Events folder is pointing to the iMovie Events folder I have on my external harddrive. All my videos are back and I can add videos without issue.  
+So waiting for the trick to get it work how it should, at least, I can use the application again!

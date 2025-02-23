@@ -1,0 +1,49 @@
+Q: Is it safe to upgrade Bash via Homebrew? I'm new to OS X. I'm running OS X Lion on a MacBook Pro. Is it safe to upgrade the bash shell using Homebrew:
+$ brew install bash
+
+If safe, how do I make it the default instance of the shell I run through Terminal?
+Thanks!
+
+A: I could be wrong here, but as far as I know brew would install it's own instance of bash, since brew works under /usr/local/bin while the system defaults works under /bin (and /usr/bin).
+About Terminal, you can make shells open with your own, custom command. Go to Preferences > Startup and select Shells open with: Command (complete path). Simply type the path to your new bash and vuala!
+Hope it helps!
+BTW: Backup! Best advice in this situations!
+
+A: Well before you do anything, back up your current file (of course, but always deserves to be said)
+sudo cp /bin/bash /bin/bash.3.2.bk
+
+Then create a symlink to the bash executable that Homebrew downloaded. I think it will be in /usr/local/Cellar, like so
+sudo ln -s /usr/local/Cellar/bash/4.2.10/bin/bash /bin/bash
+
+Now /bin/bash points to the file in your usr/local directory
+
+A: Binaries in /{,usr/}{,s}bin/ should not usually be replaced with other files. Other programs expect them to be the versions that came with OS X, and they are replaced by OS upgrades.
+After running brew install bash, you can change the default shell safely by:
+
+
+*
+
+*Adding /usr/local/bin/bash to /etc/shells
+
+*Running chsh -s /usr/local/bin/bash.
+
+
+Settings in Terminal or iTerm 2 don't normally have to be changed. Both of them default to opening new windows with a login shell of the default shell.
+The default shell can also be changed from System Preferences or with dscl, but all three options just modify /var/db/dslocal/nodes/Default/users/$USER.plist.
+
+A: I think it is safe if you just launch
+brew install bash
+
+and then add it as your default shell
+chsh -s /usr/local/bin/bash
+
+since you are only modifying your current user. However, I noticed that my default ~/.profile is
+if [ "/bin/bash" == $BASH ]; then
+    source ~/.bashrc
+fi
+
+so it needs to be updated. I changed it to
+if [ "bash" == $(basename $BASH) ]; then
+        source ~/.bashrc
+fi
+

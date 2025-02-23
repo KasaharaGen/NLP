@@ -1,0 +1,66 @@
+Q: How to Kiosk Mode a Web Page OSX - Chrome I have to let members of the public use my laptop to access a member signup web page at a student fair in a couple of weeks.
+Chrome doesn't have kiosk mode on Mac, is it possible to disable CMD+Q, prevent the title bar from showing up etc..?
+Is there software designed for this?
+Any other advice?
+
+A: Chrome has a Kiosk mode for Mac OS. Sort of. You can pass it command line args to get the kiosk mode as follows:
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk --app=192.168.168.53
+
+=> This opens a chrome window without any window decorations, maximized to full-screen (like any other Mac App that is maximized.
+For all the Chrome command line args check out:
+http://peter.sh/experiments/chromium-command-line-switches/#load-extension
+
+A: Have you considered using Opera as a browser for the signup. It does provide a kiosk mode that is easy to enable:
+/Applications/Opera.app/Contents/MacOS/Opera -kioskmode -noexit
+The documentation has information about a 'Go To Home' timeout mode that will restore the kiosk after a set interval.
+
+A: There's a plugin called Saft which enables kiosk mode in Safari. (Saft has been discontinued as of late 2012; it doesn't work beyond Safari 5.0.5.) If the computer is being used in public, create a new guest user in the system preferences and use this one for the fair. Even if somebody breaks out of the kiosk mode, they can't see your private data or mess anything up.
+If you want to stay with Chrome, there's an AppleScript on Superuser, to launch Chrome in kiosk mode.
+
+A: It's tricky but I managed to get Chrome in a proper kiosk mode. By editing the Chrome's Info.plist in the package contents you can force it to hide the menu bar in presentation mode (set LSUIPresentationMode to 3). The Continue where I left off setting might help.
+Use parental controls to block or white list websites.
+There is a Chrome plugin called kioskmodehelper that limits tabs and hides ui elements.
+
+A: try eCrisper from http://ecrisper.com
+
+A: If you setup a new user in System Preferences and setup the parental controls to let it have a simple finder then you can allow only Chrome to be opened and you can set it up so that the only webpage allowed to be accessed is your webpage.
+
+A: Open Script Editor and using the following:
+set strUrl to "https://example.org"
+do shell script "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --app=" & strUrl
+
+tell application "Google Chrome" to activate
+tell application "System Events"
+    keystroke "f" using {command down, control down}
+end tell
+
+This will open a url in app mode as kiosk isn't available on Mac.
+It then sends the keys ctrl + cmd + f to enter fullscreen as the older shortcut cmd + shift + f no longer seems to work.
+
+A: None of these answers worked for me as a command line solution. I had to pass the URL through the app parameter for it to work. 
+(MacOS 10.13.4. Chrome 66.)
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk --app=http://example.com
+
+*Looks like William's solution does incorporate this in his Applescript.
+
+A: http://barbariangroup.com/ Makes a free Mac kiosk WebKit based app called PlainView.
+Check it out, it's quite configurable.
+
+A: I'm working on a minimalist kiosk webviewer whose only purpose it is to provide a secured container for a predefined url/webapp. Features basically are:
+
+
+*
+
+*Normal-/Kiosk-Mode
+
+*Optional password protection for leaving Kiosk-Mode
+
+*Predefined URL (aimed at webapp)
+
+*Optional Webapp admin URL
+
+*In-App registration as login/startup application
+
+
+Could do with some tweaks and further "hardening" but serves its purpose - and it's open source for that matter.
+https://github.com/tschiemer/filmothek-kiosk-osx

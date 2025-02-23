@@ -1,0 +1,14 @@
+Q: Recreating iTunes library from a .itdb file? My Windows laptop (and HDD) have died, taking with it iTunes and my music. Things could have been a lot worse, but I fortunately have a back up of my mp3s. However, I have lost the iTunes library containing all my play counts, last played, ratings etc.
+I am keen to recover this data and have bought software to access my iPod Touch as a hard drive which has enabled me to view the underlying files. However I don't seem to be able to find a version of the iTunes Library.itl (or iTunes Music Library.xml) file which would contain the meta data I need.
+The only seemingly useful file I can find is the library.itdb file, which seems about the right file size to contain the data I'm looking for.
+My question therefore is can anyone advise if there is a way of recreating the library .itl or .xml file from this .itdb (iTunes database) file?
+
+NB. I have managed to extract the meta data I need, but the program I am using creates its own paths to the mp3 files, which would leave every track broken.
+
+A: You never said whether your hard drive is dead. If it's not, pull it out and use it as an external drive (with the help of a SATA-Firewire adapter). Use Migration Assistant.app to copy over your music, or just copy your iTunes folder (e.g., "~/Music/iTunes Media/").
+Then, the next time open up iTunes, hold down alt as you tell it to open. In the following dialog box, select the new location of your iTunes Media folder.
+
+My apologies if your hard drive is legitimately dead. I don't yet have privileges to comment on a question, which would have been a more appropriate vector for asking you to clarify the state of your hard drive.
+
+A: Is this what you're looking for?
+http://dougscripts.com/itunes/scripts/ss.php?sp=synchipoditunesdata

@@ -1,0 +1,34 @@
+Q: Best audio converter for Mac I'm searching for an audio converter for mac with wide capabilities. It should be able to:
+
+
+*
+
+*Convert to flac (not from flac)
+
+*Split cue files into separate tracks
+
+*Grab audio CDs
+
+*Edit ID3-tags in batch mode
+
+
+Ability to convert different audio formats to MP3 and ALAC would be a big plus :)
+If there is no such ultimate tool, could you please provide links to some separate tools that have the different functionalities listed above.
+Thanks in advance!
+
+A: I use Max converter  It can converts to many format but have some cons too :(
+ 
+
+
+A: My suggestion is the same presented here previously, but I use them for different things.
+Both Rip and XLD are good rippers for Mac. They support AccurateRip and use MusicBrainz for metadata, so you get certified rips with good tags.
+I always rip first to FLAC (single FLAC file + CUE) and them convert the rip into individual MP3 files. If I need to rerip, I go for the FLAC file, not the CD.
+If I used XLD for both tasks, I would be constantly messing with the configuration, changing from FLAC to MP3, and every now and then would forget and rip to the wrong format. So, I use XLD for the initial rip and Max to convert the FLAC into MP3.
+Later I learned about SBooth's Rip and started using it instead of XLD. Rip's advantage is that it adopts a smarter ripping strategy, only resorting to more powerful ripping technique when it finds a problem. So, initially Rip tries to fast rip a CD and match against AccurateRip, if it succeeds it is done otherwise it will try to overrip and else.
+So, usually, Rip is a lot faster than XLD and will generate a good rip, but now and then it will rip nothing because the CD has a fatal flaw. For those, I use XLD, that will try a lot harder to make a Rip and produce a file even if it can't rip correctly.
+
+A: My favorite converter is XLD. It converts to flac, splits cue files, it supports metadata correction (using CDDB), and embeds album artwork. It is the closest I could find to dBpoweramp.
+
+A: Max always crashes for me, had it on a few different versions of OS X too but it has a tendency to crash when you select the formats pane in the preferences. 
+The best fix for this bug that I have found is to trash the files in ~/Library/Application Support/Max then relaunch the application. 
+Stay away from mediahuman unless you like being infected with adware, it is infected with Nod32, a variant of Win32 /drweb OpenCandy.A/ Adware.OpenCandy.39. It is only adware but the way that it embeds itself deep into the OS X system means that it has root access and could quite easily do a lot more harm.

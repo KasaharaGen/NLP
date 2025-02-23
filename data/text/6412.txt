@@ -1,0 +1,33 @@
+Q: Will Time Capsule work on a college dorm's WiFi network? My daughter is headed off to college. I'd like to send her off with a Time Capsule so she can wirelessly backup her MacBook automatically.
+My concern is that Time Capsule will not work properly on her dorm's WiFi network, which she clearly won't have access to from a management perspective.
+I know she can connect her MacBook to Time Capsule via ethernet but that is effectively a manual backup and I know that my kids (and many others) won't do that every night.
+Does anyone have any more information on this or know how this could work?
+
+A: She could probably tie the time capsule into a ethernet line in her dorm (I assume there is a wired option) and then set the time capsule to be on bridge mode (where it doesn't issue a new IP adress but rather passes the one issued by the school's DHCP).
+She could then use her Time Capsule (which is also a wifi router) to have her own private wifi locked down for her dorm, this is what I do in my house as Telus doesn't offer DSL modems as a standalone.
+
+A: The best answer for laptop backup in a college dorm is NOT an Apple Time Capsule. Everyone here has already examined why that won't work well at length.
+If you haven't bought the Time Capsule yet, don't. Go with a simple bus-powered USB or FireWire mobile hard drive, like the WD Passport. Get one larger than the laptop's internal drive and configure it for Time Machine.
+If she just leaves it on her desk and learns to plug it in whenever she's working there with her computer, she'll be covered. As a recent college student (who used to advise his dorm-mates on that sort of thing), I'll attest that this is pretty easy for most people to condition themselves to do, and if it doesn't, it'll only take ONE case of data loss to teach them soundly how to practice good backup habits.
+
+A: Extending the network might be a little fussy and require some help/advice/rights from the school, but that won't affect setting up the Time Capsule.
+This slightly defeats the point, but a Time Capsule can also run as a standalone unit in such a way where you don't have to get the cords out, but you switch to the offline Time Capsule network and make your wireless back up that way; sort of a one-to-one wireless network.
+
+A: Fred,
+If the dorm does not have wired jacks, the latest TimeCapsule equipment can extend or relay a WiFi network, without needing any Ethernet cable.  It can pick up the dorm WiFi, and relay the same network name, or give it a new network name.  If using a new network name with security on, then only your daughter would be able to see it and get on it.
+If the dorm tries to prevent the double NAT WiFi relay, you can use an Airport Express to pick up the dorm WiFi, then run an Ethernet cable from it to the TimeCapsule WAN port, and create a private WiFi for her and her other devices.
+I'm @terretta on Twitter if you need to reach me to discuss further.
+
+A: As long as your daughter is allowed more than one device on the network, the TimeCapsule can join the net just like an iPod Touch or her Mac can.
+Just as her mac needs to be secured, her TimeCapsule needs a good password, but there is nothing inherently wrong about backing up to "her" Time Capsule using another WiFi network in between her mac and her capsule.
+She should have an ethernet cable to speed things up if she has a large backup or restore. Unless the network is locked down with 802.1x or some web client for authentication, she will have no problems.
+There are ways to get around those issues, but it's a bit of a pain and not likely to be an issue either.
+And of course - If she gets an ethernet drop in the room, she can secure things much better. Her mac can be set to prefer her room's WiFi connection created from her TimeCapsule and she will get the benefit of less access to her TimeCapsule disk (only people she shares her WiFi password with can even see the volume) as well as possibly faster backups and internet access since her Mac to TimeCapsule throughput may very well be significantly faster than the WiFi throughput in her room to the nearest campus base station. It's likely there will be less other traffic on her private WiFi network as well so this is a superior option for the reasons listed.
+
+A: All of the other answers here address some of the technical issues about getting it connected to the network, except for one.  
+Ever tried to use WiFi in a dorm?  It is nearly impossible.  Everybody likes to bring their own wireless routers and access points, flooding the spectrum, making it practically unusable.
+If you do decide to use it, put it in bridge mode and plug it in.  Don't use WiFi and expect it to work all of the time, and at any decent speed.
+
+A: A lot of it depends on how the network is configured, but most likely it will not work.  You also might not want to do it, because the connection may or may not be encrypted, so other users on the network would be able to sniff all the files being backed up to the device.  The best bet would probably be to use something like Dropbox if there are not gigs of data to be saved.   
+
+A: It will work. Time capsule is a base station, it is not a client station. Your kid can sign on to the college wifi and time capsule separately.

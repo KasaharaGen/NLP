@@ -1,0 +1,21 @@
+Q: My iPhone is over capacity. Is there a way to remove specific data from an iPhone Backup? Let me explain my situation.  I jailbroke my iPhone 4 when the untethered 4.3.1 jailbreak got released last week.  As precaution, I did make a backup of my Cydia apps back when it was 4.2.1 and my iPhone's personal data as well.  When I restored the Cydia apps it had to remove my phone's apps.  The problem is when I restore my iPhone data back on, it does not restore all of my apps due to it being over capacity.  And thus I don't have my app's data.
+So, I want to remove the photos and movies from my iPhone's backup as they eat up most of the phone's memory.  Is there a way?  Or is there another solution to handle this problem?
+What I did so far
+Remove any large Cydia apps.  Still over capacity.
+iTunes ver. 10.2.1  Mac OS 10.6.7  iPhone iOS 4.3.1
+
+A: Well since you are using Mac OSX, when you plug in your phone you can do the following to back up your pictures OUTSIDE of iTunes.
+Step 1
+Open up Preview with your phone plugged in. Go to File > Import Image. You will see it populate all your photos/videos. Save them in a separate folder (maybe somewhere on your desktop), then delete them all from your phone.
+If you are concerned about mass deleting these files, you can just do it with SSH. This is after you've imported all your images through preview.
+From Terminal on your desktop type 
+ssh root@your-iphones-ip-address-here
+
+Will prompt you with a PW, chances are if you haven't changed it it's alpine or Alpine. Change directories via the following command: 
+cd /var/mobile/Media/DCIM
+
+Depending on the amount of images/videos you have you will see 100APPLE/ and maybe 101APPLE/. In the directory type this to remove ALL images and movies in one command
+rm -r 100APPLE/ 
+rm -r 101APPLE/
+
+Backup in iTunes now and you have a fresh backup with just numbers/apps/whatever else. You can then import the pictures/videos back if you want after you restore it.

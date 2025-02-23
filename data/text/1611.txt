@@ -1,0 +1,125 @@
+Q: Can I extend the iPhone's maximum ringtone duration? I'm wondering if there is a way to extend the maximum duration of a custom ringtone i make for my iPhone past 30 seconds.
+
+A: Method that semtex41 mentioned still works on iOS 8. 
+On Mac (OS X) you can do this:
+
+
+*
+
+*Create two folders, one for short and one for long
+
+*Create two .m4r (.m4a, renamed) ringtones, one to each folder
+
+
+*
+
+*Short one must be LESS than 40 seconds
+
+
+*Give both files same name
+
+*Open iTunes and drag the short tone to tone library
+
+*Close iTunes
+
+*Open /Music/iTunes/iTunes Media/Tones
+
+*Rename the ringtone from eg. tone.m4r to tone.m4r_short
+
+*Copypaste long version to Tones folder mentioned in 6, and make sure it has same name as short one had
+
+*Open iTunes, the Ringtones (or Tones) sections shows, that your tone's length is same as the short one's but content is from the long one.
+
+*Connect your iDevice, select Tones, select tones to sync, and click sync
+
+*Done!
+
+
+A: A custom ringtone can be up to 40 seconds - my custom ones are 38 seconds, and are made with iTunes - like this: http://artoftheiphone.com/2009/01/19/how-to-create-an-iphone-ringtone-using-itunes/
+
+A: iOS 7 update: the below procedure requires that you first install the ToneEnabler tweak, as Apple changed the way ringtones are loaded.
+If your device is jailbroken:
+
+
+*
+
+*Create your ringtone file (neroAacEnc -if ringtone.wav -of ringtone.m4r).
+
+*Establish an SSH tunnel to your device (iphone_tunnel --iport 22 --lport 22).
+
+*Connect to your device using WinSCP or similar tool.
+
+*Browse to /Library/Ringtones/ (there should be a bunch of .m4r files in there).
+
+*Drag and drop your ringtone file in with the others.
+
+*Re-open "Sounds" in your device's settings.
+
+
+Your ringtone (of arbitrary length) should now be available to you.
+Note: Tested on iOS 5.1.1
+
+A: This is a way to trick the iPhone (iOS 6.0) into making ringtones longer than the ~40 second maximum:
+Note: This may now be a moot point since you can select songs for the default alarm, but the one advantage is it allows the phone to vibrate when it is a ringtone and the vibrate alert is enabled. 
+
+Summary: Add a short 15sec .m4r song to iTunes. Replace the source file with the full length .m4r version, then drag it from the Library to your iPhone. iTunes will be expecting the short version but will copy the whole thing without error. 
+
+
+Prerequisites: Create two .mp3 versions of the song. One the full length, the other a short version <30sec.
+Detailed instructions:
+1) Create two folders. One with the full length version of the song. The other with a 15s version.
+2) Add the short version to the iTunes Library via File>Add File to Library
+3) Convert the short version to AAC, then search for it in Music. Once you find it, right click to Show in Windows Explorer. Rename the file extension of the short song to .m4r. Keep the Window Open. 
+4) Move the .m4r version to the short folder in Step 1. 
+5) Remove the AAC listings in the Music Library. 
+6) Repeat the AAC conversion for the full version, following Steps 3-5 while working from the full length folder. This is to prevent confusion. Use file size to help separate if needed. 
+6) From the short folder in Step 1, drag the .m4r into the Library section in iTunes. 
+7) Rename the short .m4r file extension to .m4r_short
+8) Copy the full length .m4r into the short directory. 
+9) From within the iTunes Library, open Tones and then drag the song to your iPhone. The entire full length song will copy without any errors. 
+
+A: 
+I'm wondering if there is a way to extend the maximum duration of ringtones for my iPhone past 30 seconds.
+
+iPhone ringtones cannot be longer than 40 seconds.
+
+A: It's not a carrier setting it's a phone setting. Max I've seen is 30 seconds but there may be a way to get around that. I think that the file format .m4r has to be cut down to 30 seconds to work with the iphone. Even when I made custom ones they had to be edited down to 30 seconds.
+
+A: Yes, you can extend your custom-ringtone duration on any iPhone with any iTunes version. No jailbreak required.
+Here's how:
+
+
+*
+
+*Put your ringtone in your device by using the normal iTunes procedure (sync it, drag and drop in Ringtones, etc.). It must be less than 40 seconds. Say 10 seconds.
+
+*Make sure it's been transferred in your device by going to Settings →  Sounds.
+
+*You can already select it as your ringtone if you wish.
+
+*Download iBackupBot and install it on your computer (available for free for both macOS and Windows, google for it, first result).
+
+*Open iBackupBot. Make sure it detects your device. If it doesn't, just click on the Refresh button (blue circular arrow).
+
+*Click on your device name.
+
+*Click on "Raw file system".
+
+*On the right panel, click on iTunes_Control → Ringtones.
+
+*You will see a random-named file ending with .m4r extension.
+
+*That file is the ringtone. If you have multiple ringtones, you will see multiple m4r files.
+
+*On your computer, convert any full-length song/ringtone of your choice to m4r format. You can use any online service for that.
+
+*Once you got your full-length m4r, just rename it to the one currently in the Ringtones folder of your device (as seen in step 8-9). If you have multiple m4r, just choose one.
+
+*In iBackupBot, click the Import button located exactly on the top of the folder structure.
+
+*Find and select your full-length m4r file.
+
+*Confirm to overwrite.
+
+*Done.
+

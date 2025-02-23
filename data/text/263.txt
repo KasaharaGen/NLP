@@ -1,0 +1,46 @@
+Q: How can I sync my iTunes music library between two Macs for free? I have a desktop system that I use as a server. I also have a MacBook Pro that is my main computer. I've done a lot of organization and cleanup of my music library and have it all on my MacBook Pro.
+I'd like to be able to keep the music library on my MacBook Pro in sync with the desktop machine so that my wife can access everything from her own MacBook Pro.
+I thought about setting up folder actions that would copy the files into the "Automatically add to iTunes" folder.  However, since I like to use the "keep my iTunes library organized" option, the files get moved into the iTunes music directory and I can't write a script that will compare my MacBook Pro's iTunes music library with the "Automatic" directory on the server.
+Also, a simple file copy will not sync metadata like ratings and plays. Is there a free, automated solution for syncing iTunes libraries between 2 Macs?  
+Below is how I finally did it based on the rsync suggestion:
+I used the link provided by James in this answer (but I took out the --size-only option after the first sync): 
+iTunes Utility - Merging Libraries
+I also took out the --force option (because it's redundant when also using --delete). so my rsync command looks like this: 
+rsync -av --delete ~/Music/iTunes/ /Volumes/robert/Music/iTunes > ~/Automation/automator/logs/itunes_rsync.log
+
+I then integrated this into an Automator workflow. Looks like this: Get Specified Servers ► Connect to Servers ► Run Shell Script ► Eject Disk. 
+Creating it as an iCal Workflow is screwy for me because I use MobileMe and the iCal event gets synced with my other machines where I don't want this workflow to run.  So instead, I created an agent using Lingon that runs the workflow every 8 hours.
+
+A: It's possible to keep libraries in sync using rsync. Google for iTunes and rsync and you'll find some solutions.
+
+A: How large is your library? Dropbox has helped many people in this situation, and it will work from anywhere.
+
+UPDATE
+Do you use only one computer at a time? Are you the only user of iTunes in each computer? Is your desktop a Mac with the same version of iTunes?
+If so, observe this scenario:
+You backup your desktop's ~/Music/iTunes folder and then delete it. You then copy the entire ~/Music/iTunes folder from the Macbook Pro to the desktop.
+You have your laptop out of the house. You rip a new CD or download some tracks from iTunes or Amazon.com, etc. (but put a copy of the new song files aside in another folder temporarily), then listen, rate songs, etc. all day. Then when you get home, you copy the new files to the Automatically Add to iTunes folder on the desktop and iTunes does its magic of organizing the music files (just like on your Macbook Pro!) Then you replace everything inside the ~/Music/iTunes folder on your desktop with what's on your Macbook Pro EXCEPT the ~/Music/iTunes/iTunes Media folder (where the actual songs reside).
+Voilà!
+
+A: I have not tried this, but would like to some time: Mashduo. I found this via the excellent One Thing Well website: "A utility for OS X that lets you compare two iTunes libraries, generating a report of songs that don’t appear in both libraries and (optionally) making a zip archive of the missing tracks."
+Sounds like some manual work, but may be another approach to achieve what you need. 
+
+A: Soon iCloud will do this for you w/o all of that trouble.  Just connect up the libraries and presto (in theory).
+
+A: I haven't tried this yet (although I am going to soon) but I believe the newest version of Dropbox has a lan sync.  So that you can tell it NOT to backup your music over the internet (if it's larger than your plan allows) but keep them synced over the lan.
+
+A: You go to the little tab at the top that says "iTunes."
+Click it, go to preferences. Then go to Sharing. Then click "Share my library with my local library." Then click it to share my entire playlist on other home computers.
+and change whatever you want, then you should be able to access your entire library on all the computers that are registered in your home system.
+
+A: I use skydrive, its free and has 7Gb of space.
+1 - Create a hotmail or live account if you dont have it.
+2- Then go to skydrive.com log in and install the app. (also need to log in the app the first time).
+3 - On the PC or Mac, where you have the main music collection (i suggest to gather all your music to the same computer at first), then you create a folder for your music inside Skydrive's folder and past all your music there.
+4 - Then on itunes (reset itunes is HIGHLY recommended) go to "Preferences" > "Advanced Preferences" and choose as "itunes media folder" the music folder inside Skydrive. Also check both options "Keep Itunes Folder organized", this one is a must for to this to work so both Itunes (or more) can read your musics with no conflicts and the second options "Copy files to Itunes Media folder when adding to library" this one isn't a must but extremely useful because helps you to add new music to your collection, with this option ON you can simply drag a music from your desktop to your itunes with the option OFF you MUST put the music on the skydrive music folder.
+5 - For the other computers you want to sync the library, repeat step 2 and 4 (dont need to repeat step 3).
+This works for windows and mac.
+This works OUT SIDE of a home network
+Your computer will start syncing the second you turn on the computer just make skydrive to startup with the OS. So when you turn on itunes you will have your music there.
+cheers, berna
+EDIT: btw i dont recommend to use Home sharing feature, i try it out and duplicated all my music (In My Place 2.mp3) inside the skydrive folder...

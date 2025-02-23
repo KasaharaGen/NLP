@@ -1,0 +1,36 @@
+Q: How can I disable the Screen Saver on the login window? How can I disable the Screen Saver on the login window?
+
+A: You can edit the .plist file at /Library/Preferences/com.apple.screensaver either using a text editor, Plist Editor (requires the OS X Developer Tools) or the defaults command in Terminal to remove the screensaver at login window.
+Like this:
+sudo defaults write /Library/Preferences/com.apple.screensaver loginWindowIdleTime 0
+
+
+A: It isn't possible to disable the login screensaver in Mountain Lion due to a bug. According to https://discussions.apple.com/thread/4540671?start=0&tstart=0 the best you can do is log into root's screensaver settings and change it to Message which uses less resources.
+See https://apple.stackexchange.com/a/16515/21181 for how to do that.
+
+A: I believe this does the trick (at least it seems to have worked for mefor several hours now):
+sudo defaults write /Library/Preferences/com.apple.screensaver loginWindowIdleTime 0
+
+This disables the screensaver in the loginwindow.
+
+A: For some reason I don't understand yet, the solution in the accepted answer didn't work for me. Below is an alternative method that actually did work for me.
+Before doing anything, i noticed that a file called com.apple.screensaver.plist did not yet exist in /Library/Preferences/. But issuing the defaults -command as mentioned in the accepted answer created this file with correct loginWindowIdleTime-entry just fine. This was confirmed both with defaults read /Library/Preferences/com.apple.screensaver as well as by manually confirming the files' existence and inspecting its' contents.
+However, it didn't seem to have any effect on the screensaver-behaviour in the Login Screen whatsoever.
+I then used a different approach that actually did work:
+
+
+*
+
+*I opened a command-prompt (Terminal window)
+
+*First I issued $ > sudo -s to become root
+
+*Then, as root, I started System Preferences: # > /Applications/System\ Preferences.app/Contents/MacOS/System\ Preferences
+
+*And finally I went into the Desktop and Screen Savers Preference-Pane to use the regular GUI to disable the screensaver timeout.
+
+
+This did the trick for me.
+I'm wondering though, if the defaults-command perhaps did actually work fine already, just the changed plist-value wasn't picked-up (synced) yet by the (still running?) screensaver process…
+
+A: The problem is that the login screen is not the result of the screen saver, I lock my Mac when I go out. The screen saver appears by itself, even if it is disabled from SysPref.

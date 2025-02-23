@@ -1,0 +1,20 @@
+Q: show current playing song (dj, genius, playlist etc) in library When I hear a song playing in iTunes DJ or some other kind of playlist, I'd sometimes like to see which album it is from or even see which other albums I have by that particular artist.
+How can I do this?
+The only option it gives is 'show in finder'
+EDIT:
+Meaning to navigate directly to the track in the main music library
+EDIT:
+not sure how I really clarify this much more but here goes:
+When I see a file that is playing as part of a playlist, I often want some kind of 'show in library' function. You can select 'show in finder' and it will take you to the file in whichever folder it resides in the finder window. But I want to see the file in the itunes music library and cannot figure out how to make it do this.
+
+A: Open Terminal (found in the /Applications/Utilities folder)
+Type defaults write com.apple.iTunes invertStoreLinks -bool YES
+When you re-open iTunes, you will have some options next to the "Ping" drop down in any playlist to show and goto either the album, artist or genre for the particular selected song.
+
+A: Go to View > View Options or Cmd+J and select the columns you want to see on the viewer.
+
+A: If you just want to highlight the current track, when in library view (or a playlist containing the song), just press Command+L.
+
+A: By default, the drop down menu activated by the "Ping" button on the right of the song name will show links to  the album, artist or genre of the song in the iTunes Store 
+However it will link to your iTunes Library instead of the Store if you press the Option key while clicking on the "Ping" button.
+Typing defaults write com.apple.iTunes invertStoreLinks -bool YES in Terminal will reverse this behavior.

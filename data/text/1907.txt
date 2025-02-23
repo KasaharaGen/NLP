@@ -1,0 +1,24 @@
+Q: Why does my Exchange account work on my iPhone, but not Mail.app? I can set up my work Exchange account just fine on my iPhone, but I can't get it to work on Mail.app under Snow Leopard.
+I have read some forums and understand that mobile devices use ActiveSync in order to access Exchange mail and I thought Snow Leopard introduced this feature to Mail, but I can't seem to get it working.
+I have tried just about every combination of settings I can think of.
+My iPhone asks for a domain, but I can't find a similar setting in Mail. I have tried entering my username as domain/username to no avail.
+Has anyone had experience/similar problems with this?
+
+A: Most likely because your corporate exchange server is running Microsoft Exchange Server 2003. Snow Leopard now only connects to Exchange 2007 (See http://www.apple.com/macosx/exchange/) whereas Leopard used to connect to Exchange 2003 using the OWA mechanism.
+iPhone supports both Exchange 2003, 2007 and 2010 it seems (See iPhone User Guide , page 2);
+
+A: I'd been struggling with the same issue for over a year. Finally I installed DavMail Gateway which is free. 
+It provides support for Exchange 2003 ( using OWA ). Using it you can even get support for LDAP directory services & even events in iCal!!
+See page for details. Step-by-step instructions on:
+Setting up DavMail on OS X
+IMAP Mail setup
+
+A: Have you tried everything listed in this Apple doc?
+
+A: Try domain\username. I've never seen a forward slash work to indicate a domain. Then again, I've never tried. Do you get any error messages?
+
+A: I've been having this problem with Exchange Server 2003 and Mail under Snow Leopard, and it's because the IMAP process on the server periodically dies.  This affects the Mail app on the computer and not the iPhone because, as another answer here mentions, the iPhone uses ActiveSync, while the Mail app on the computer relies on IMAP if it's not Exchange 2007 or newer.  Someone needs to log into the server and restart it.
+One possible fix is here.
+
+A: AFAIK: Snow Leopard supports Exchange via Web Services (new in Exchange 2007). All mobile devices use ActiveSync (which is basically XML over long lived HTTPS sessions).
+Using IMAP to check email on Exchange is fine (if enabled on server) but you lose calendar and contacts sync.

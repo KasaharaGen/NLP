@@ -1,0 +1,19 @@
+Q: Charging iPhone 4S from closed MacBook Air Should an iPhone recharge when plugged in to a MacBook Air which itself is plugged into its wall charger?
+My MacBook Air was closed and plugged into its wall charger.  The green light on the power cord was lit.  I plugged my iPhone 4S into the MacBook Air USB port under the MagSafe connection.  I went to sleep.  When I awoke seven hours later, the iPhone was at 30% charge.  I thought it would be at 100%. 
+Is something wrong?
+
+A: I am not sure about MacBook Air, but in my MacBook Pro (Mid 2010) it will charge my iPhone if the MB is active (powered up and not sleeping) and it will also charge my iPhone when sleeping, but only if the iPhone was plugged in before the MB went to sleep.
+If your MB is shut down (not active & not sleeping) it will not charge your iPhone.
+
+UPDATE
+One of OS X/MacBook updates must have changed something at some point. Now, when a MacBook is plugged and sleeping and you plug in an iPhone, the MacBook will silently wake up, start charging the iPhone and fall back to sleep. It all happens with closed lid.
+
+A: If you plug in when the computer is asleep or shut down (even if it is connected to mains) iPhone will discharge slowly
+Charging iPhone requires 1000ma which is more than the standard 500ma draw from a USB port. To allow a high current device to take more than that it must negotiate with the host machine, which will not occur if the machine is not active.
+You used to be able to look in your console logs while connecting iPhone to see the negotiation happen. Not sure if this is still the case
+
+A: It will only charge when the laptop is active, eg. not sleeping. Prevent sleeping your computer (you will need to leave the lid open and possible adjust your power management settings), or use the adapter for the iPhone to plug it into a wall socket directly. I'd go for option 2, save the electricity.
+I recently also stumbled upon the following accessory, it's pretty neat and probably would serve you well: http://twelvesouth.com/products/plugbug/
+
+A: Looks like with the introduction of the authentication chip in the Lightning cable Apple is requiring the Macbook Air (MBA) to be up and running to charge your iPhone. 
+I found that by using a USB-Lightning adapter on an old 30-pin USB cable the laptop charges my iPhone 5 from standby. Tested it a number of times.

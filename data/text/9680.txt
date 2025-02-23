@@ -1,0 +1,5 @@
+Q: Which virtualization programs support hardware breakpoints? I am using my 2010 i7 MacBook Pro to debug some Linux programs; but I already have a Windows partition and it would be inconvenient to create another partition for Linux, so I am using a virtual machine with VMware Fusion 3.
+However, it appears that I cannot set hardware breakpoints with the hbreak command from GDB inside the virtual machine, and there are times where I would rather have them. However, it does work from the host operating system, so I assume that this is a limitation of Fusion 3.
+Which virtualization programs will support hardware breakpoints? Commercial products (including VMware Fusion 4) are not out of question.
+
+A: Actually, VMware Fusion does support hardware-assisted breakpoints. However, gdb has trouble creating them while the program is not running (which was my issue; you can issue break commands even when the program is off, but you need it to be running for hbreak to work, or something along these lines).

@@ -1,0 +1,11 @@
+Q: Bonjour/Airplay in restricted College Network I am trying to connect my iPad (running 4.3.3) with my Macbook (running Lion) in my college dorm room using my college's Wifi. It uses 802.1X Authentication. I can't ping my iPad from my Macbook. Is there any way I can make Bonjour or AirPlay work? Is there a tool that proxies or routes the Bonjour service somehow?
+
+A: If all else fails you can create a wireless LAN directly on your Mac and connect your iPad to this WLAN. TUAW has some good instructions on how to do this. To start pick the appropriate option in the Airport/Wi-Fi menu (picture shamelessly taken from the linked TUAW article):
+
+The rest is pretty self-explaining.
+
+A: if you have an ethernet port in your dorm, what about using an Airport Express to connect to your college's LAN network and use it as a wireless router?
+
+A: It seems you have enough information to surmise the end at this point. If it's unicast, then there's clearly some limiting going on from inside the network. If routers are not allowed (I fail to see how they'd be able to tell), then you're out of luck; It's ad hoc or nothing.
+
+A: Nambrot: What David said is exactly right. The college network is also almost certainly not able to detect if you're using a router, and routers are probably only not permitted in dorms in the sense that they make you potentially vulnerable to network breaches, packet sniffing, or incorrect subnets. If your college network doesn't permit static, externally visible IP addresses, and also (naturally) doesn't work with Bonjour, I think you're out of luck. I'm basing this strictly off of my own IT experience working at my university though, so YMMV.

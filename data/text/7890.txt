@@ -1,0 +1,39 @@
+Q: Map keyboard key to unix command Simple I am looking for a way to map a keyboard key to a unix command. It could be as simple as literal as opening up terminal and pasting a required bit of text. 
+
+A: You could use a tool like Keyboard Maestro but it might be a bit overkill. 
+If you just want to execute a command in Terminal and close the window again:
+
+
+*
+
+*Put command in a shell script
+
+*Make it executable (chmod +x ...)
+
+*Move shell script to a convenient place (e.g. our Desktop)
+
+*run shell script/command by double click
+
+
+A: Automator has a "Run Shell Script" action.
+
+
+*
+
+*Open Automator and create to new Quick Action
+
+*Search for shell in the actions menu
+
+*Drag "Run Shell Script" to the right panel
+
+*Save as "Run Unix command"
+
+*Open Keyboard and go to Shortcuts
+
+*Scroll to "Services" and scroll to the bottom
+
+*Bind "Run Unix command" to whatever you want.
+
+
+
+See also this answer.

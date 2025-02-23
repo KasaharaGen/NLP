@@ -1,0 +1,12 @@
+Q: How set up a local domain such as local.test? I'm web-developer and I need local domains. Before 10.7.2 update, I'm just fix /etc/hosts as I need, but new update crash this solution. How fix this new "feature"? 
+
+A: This answer on the question Lion “hosts” File Bug is relevant here as well.
+All additional entries to the HOSTS file must be above the:
+fe80::1%lo0
+
+Make sure there is at least one line break after the last entry. Like so:
+127.0.0.1 LLL.localhost
+127.0.0.1 LLL.localhost
+#
+
+Although you probably can't tell, there is another line following the # symbol. One more thing to mention, using Space instead of Tab between 127.0.0.1 and localhost might help too.

@@ -1,0 +1,201 @@
+Q: What is a good program for timing activities? I am looking for a program to time projects and activities, both computer- and real life-based, allowing me to tell him to start and stop timing this or that activity, in a very light, background, non-invasive way, and possibly keping past data about time intervals spent on various activities.
+I have been trying out such a program called TrackTime, but it is (at least on my 10.5 MacBook) quite slow to react, and cannot show easily data for more than five or so activities.
+Any suggestion for such a program?
+
+UPDATE: Thanks everybody for your answers, but I am not sure I have yet found what I am looking for. For instance, while I appreciate the usefulness of these features, I am not interested in iCal integration, nor in the ability to create invoices.
+Basically, what I am looking for is just a sort of "multi-timer", in which each timer can be easily started/stopped, and which logs the timings in any readable form. It may well be, as someone suggested, that it can be done with just some script.
+
+A: I am listing the apps I have looked at so far. I must emphasize that none of them really solves the problem stated above perfectly.
+Here's what I have looked at so far based on my google doc list
+
+
+*
+
+*On the Job looks great, but the developer seems to have abandoned it. At least he does not really fix bugs and is very slow to respond to his user base.
+
+*Timings light-weight but the UI to create clients, projects and tasks can be confusing. I am testing it right now. A friend uses it and says it crashes sometimes though it has not happended to me yet.
+
+*Harvest looks good, it does have a desktop client itself and an API that is used by lots of apps. But it is subscription-only which is a no-go for me and costs at least $12 per month.
+
+*The same goes for Toggl: looks good, but is subscription-based and costs $5 per month
+
+*iBiz and timeEdition have been discontinued
+
+*Klok is an Adobe Air app. The UI feels weird. Small typography, limited support for keyboard shortcuts and complex interface.
+
+*OfficeTime feels like the best match so far but the UI is very cluttered (see this screenshot of the Generate Bill dialog as an example). It feels a bit like a Windows app that has been ported to Mac but I am not sure if that's true.
+
+*Timecop is a very minimal approach. There is no way to test it without paying the $6.99 price. Has not been updated for 9 months, twitter account has been inactive for 5 months.
+
+*Tictoc seems very similar to Timecop. No way to test without buying either. 
+
+
+A: I haven't found the one I like and I created it myself, Qbserve.
+It fits most of your requirements:
+
+
+*
+
+*native stand-alone macOS app
+
+*detects idle time
+
+*comes for a flat fee ($40)
+
+*supports projects and tracks time for them automatically (based on opened documents and web pages) but it's also possible to assign time manually
+
+*generates invoices from the tracked time
+
+
+It also automatically recognizes productivity for sites, apps, and chats (you can assign Skype chats and Slack teams to different categories).
+Plus all the tracked information is stored locally on your machine in an SQLite database.
+
+
+A: I'd like to recommend my own app Timing (see the screenshot below). It automatically tracks which documents you edit, which websites you visit and which apps you use, so that you can later review what exactly you have done. You can also manually add offline activities so that they don't get lost.
+
+
+A: I like/use Billings.
+
+A: Been using Tyme for quite a while and pretty happy about it. Available for OSX ($9.99) and iOS($3.99).
+
+A: Not sure it'll do everything you've asked for, but Time Sink is pretty powerful and can generate a variety of reports. Its almost free at $5 and you can try it for 14-days. It can also run in a menu bar only mode so its out of the way.
+ 
+
+A: TimeLog, Chronories or TaskTime4?
+
+A: I strongly recommend Minco, which has tons of customisation features, but sits quietly in the menubar.
+In fact, it's SO unobtrusive that I sometimes forget to use it! 
+But it's very slick app, and has a free trial if you download from the developer's website.
+It's also available on the Mac App Store. 
+I'm not affiliated -- I just think it's a great product because it looks awesome, works very well and has plenty of hooks into iCal (and options for logging activities to calendars and even dynamically writing a text-file that can be imported into a spreadsheet or other apps later)
+Very nice app. 
+
+A: OfficeTimer (app)
+Slife (web-based)
+RescueTime (web-based)
+Other good time-based apps (that dont answer the question):
+AlarmClockPro, Cuppa
+
+A: As an associate of Touch Studios, an app developing company, I recommend our time-tracking app Finch. Finch does time tracking in an automated way: With the option to start the program on login, it runs in the background, records what windows you have open, and learns how to tag them based on your customized preferences and past behavior. At the end of the day, you get a bar chart showing where your time went. It's a really great app if you have trouble with the traditional 'stopwatch' type apps.
+
+A: WakaTime is an open-source Xcode plugin for automatic time tracking.
+Features:
+
+*
+
+*Fully automatic
+
+
+*Detects project name from revision control software
+
+
+*Language breakdown showing your most-used programming languages
+
+
+*Monthly, weekly, or daily email summaries
+
+
+*Open-source text editor plugins available on GitHub.
+
+
+A: I use Time Track Pro available in the MAS and more information is available from the vendor site at http://bloop.it/timetrack/ .
+The application is efficient, using minmal CPU resources, sits in the menubar (low visual footprint), can automate emailing of weekly reports if you like, and more. 
+I've used it for two months and it is great to track the particular documents and projects I'm in. At 9.99 it may be a little more cost than other tools, but I'm happy supporting a good developer here so I've no issue with the value of this software.
+
+A: My personal favorite is Paymo Plus 
+it tracks everything you do, even the individual tabs. On the upside it's great to know how much you're actually working, on the downside, it makes you work harder. Hope this helps.
+
+A: I've started looking at TimeLime. It's a paid app available on the Mac App Store. I've heard a lot of good things about it from other users I've chatted with.
+
+A: You should have a look at Caato Time Tracker. http://www.caato.de/timetracker
+
+A: If one is interested in a more basic (and hackable) solution there is selfspy - a Python command line tool that tracks keystrokes, active applications, mouse activity and other stuff. Reports are comprehensive and can be email to you automatically. Everything is stored in a sqlite database file. The tool is well documented and the source code comprehensible. 
+https://github.com/gurgeh/selfspy 
+
+A: I've personally been using RescueTimefor a long time now.
+The Premium version is based on a subscription (monthly or annually), so it may not fit your need, but there is also a free version, which is enough in my case.
+The data is collected automatically from a Desktop application, the dashboard and settings are web-based.
+I used TimeSink which is a Mac application available on the Mac App Store. It is a "buy once" application, cheap, light, but does not have so many features. 
+I like the way activity is displayed: every application has its own timeline, so you can really keep track of your day.
+I also used Time Track Pro for some time. I like the way data is displayed with vertical stacks. The Application is cheap, light, and available on the AppStore, but it hasn't been updated in a while.
+Finally there is Timing, also available on the M.A.S.
+
+A: I'm using ActivityWatch for about half a month and it really like it. So I recommend you try it :)
+By the way, there you can use the Stopwatch tab to manually track anything ;)
+                     
+
+ActivityWatch is an open-source automated time tracker that’s
+cross-platform, extensible, and privacy-first.
+We started building it years ago because we wanted highly detailed
+automated time tracking without having to run a proprietary app (that
+might not work on all platforms) or worse, sending it off to some
+company server.
+Features:
+
+*
+
+*Tracking – Tracks active application and window title out of the box, more with watchers.
+
+*Categories – Get a better overview of your usage by breaking it down into categories.
+
+*Browser extensions – Track the active tab using the extensions for Chrome and Firefox.
+
+*Editor plugins – Track how you spend time writing code with editor watchers.
+
+*Privacy – Data is stored locally and doesn't leave your device, we put local and privacy first.
+
+*Cross-platform – Runs on Windows, macOS, Linux, and Android.
+
+
+Originaly posted by Erik Bjäreholt on Quora
+
+If you want just to track computer activites, another option is to use the built-in Screen Time app, which is however only available in macOS Catalina or later...
+
+A: ChronosX
+I've only been using it for less than a full day, but it seems to work well, tracking precisely how much time you spend in each app and, most of the time, telling you which document or web page was foremost at the time.
+The downsides are that it only seems to store stuff in iCal, which has been pretty awkward so far; it exports in .odf which is a useless format unless you install Open Office or something similar; and it crashes at the end of the export.
+Still, it seems to track time well and it has a 30 day free trial, so it's worth a try.
+
+A: I use rescuetime. It categorizes applications, websites and documents on how helpful these are towards your productivity.
+It also shows how much time you've spent on distracting applications, documents and websites like facebook, games and such.
+
+A: I've been looking at TimeTrack 2 for a similar reason, though I like it because it's supposed to report time intervals back to FogBugz for me. While the FB integration is somewhat broken right now, the actual standalone timer functionality of the software is pretty good. The price seems a little steep and if you read through the GetSatisfaction posts for the app the support and feature updates aren't great (I was the first person to generate any activity in their bug DB in 25 days and the outstanding bug reports have been stale for quite some time).
+
+A: As the FAQ seems to allow, I add an answer to my own question.
+I have had a look to Time Tracker (free) and Cronograph (€19.95), which seem to have some features in common. Both are quite non-intrusive, allow creating projects and tasks within each project, and to time single tasks (no more than one task at a time). No invoices, client handling and the like, which are things I personally do not need.
+I have been trying out mostly the first one, with good results so far. 
+
+A: I use TimeThis (http://timethis.merryfools.com/). I'm a lawyer, so I use it all day everyday. It's $30 flat fee. The primary use case seems to be integration with various services (for me, it's the old basecamp with time tracking). It has a built-in feature that recognizes inactivity, but I'm not sure it's tied to screensaver/sleep at all. The killer feature for me was that it pulls Project/list/task info from Basecamp so I don't have to type my entry each time.
+I previously used Klok (http://www.getklok.com/features.html), which is similar. It's been a while, so I'm not certain if they cleaned up the spreadsheet export feature that was just clunky in the past. The visual metaphor helps identify untracked time as it happens, which is very helpful.
+
+A: I'm an author of Litt time tracker application - maybe you will find it useful for you.
+Application website is http://satorilight.com currently. 
+It has features that you mentioned - ability to stop tracking on idle intervals.
+Although it is not tied directly to screensaver stop/start events.
+Application is freeware and in beta stage now - but I use for few months already. 
+Application is not signed yet - Gatekeeper will warn on it.
+
+A: I feel you, none of the apps out there fit me either, so i built my own. It works by taking timestamps when an event happens, like git commits, looking in the browser and computer sleeps. It can read the calendar as well. At the end of the day it will calculate how long did you spent on your tasks. Then it can save the report to Jira. http://www.jirassic.com For now is a free time tracking mac app.
+
+A: I have tried three time tracking apps in total.
+Hubstaff, Staff Timer App and Time Doctor. All of them works perfectly fine in windows but for Mac OS, I find Staff Timer App 
+most easy to use the app. You can add different team members and assign each task to each member and in the end see the total time spend on each task.
+
+A: Check out TimeXchange. www.timexchange.net
+
+A: I recommend you try using Time Doctor. It’s a good tool for measuring how much time (automated) you spent working on the computer. It has multiple ways to confirm if the time tracked was real and the time was a genuine working time such as checking websites visited and software applications used on the computer.  I’m one of the satisfied users of this software that’s why I am recommending this to everyone…
+
+A: https://hubstaff.com does this but you need to select the project manually.  At the end of the day, you can see all the projects that you've worked on for that day, week, month, etc... and the exact amount of time spent on each.
+
+A: I would suggest you to go with the advanced version of apps, the cloud based app which could help keep track of the time in an hourly format and the lost of data which might be a risk in desktop app will be quite less. 
+But still if you are looking for some desktop app then 
+
+
+*
+
+*rescuetime
+
+*timedoctor
+
+*replicon
+would be good choices.

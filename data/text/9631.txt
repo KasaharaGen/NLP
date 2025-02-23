@@ -1,0 +1,46 @@
+Q: Is there a way to show the speed of copying files on a Mac? Is there a way to show the speed of copying files on a Mac?  For example, when copying a file from the hard drive to SDHC card and vice versa.  
+The reason is that I can check out the max speed of an SDHC card on my Dell PC, but it seems that on there, the card interface is limited to 20MB/s read or write.  So I want to check how it is on the iMac 27 inch.  Maybe some test program can be used, but I still like to find out any simple way to tell the speed of copying files on the Mac.
+
+A: If you're comfortable in the Terminal, you can use rsync to copy some files from one place to another and it'll give you summary stats on the speed:
+rsync -a --progress --stats --human-readable path_to_source path_to_dest
+
+E.g. rsync --stats --human-readable ~/Desktop/Large-File /Volumes/OtherDisk/Dir
+You can also type into the terminal just the command:
+rsync -a --progress --stats --human-readable 
+
+(note there needs to be one or more spaces after --human-readable to end that command and break before the source and destination file names are provided) 
+Then drag the file / folder you wish to copy and drop it onto the terminal window, followed by dragging and dropping the destination directory. Dragging and dropping a file / folder onto a terminal window will place that file/folder's path into the terminal window. Dragging a file is preferred in most cases since it will handle a space in any folder or file name. In this case the space needs an \ to indicate not to end the file name exactly opposite of needing the space earlier.
+The output of the above command will be similar to:
+[jnet@Kyle ~]$ rsync -a --progress --stats --human-readable /Users/jnet/Pictures/Screen\ Caps /Volumes/Scratch 
+building file list ... 
+644 files to consider
+Screen Caps/
+Screen Caps/.DS_Store
+      21.51K 100%    0.00kB/s    0:00:00 (xfer#1, to-check=642/644)
+Screen Caps/Can someone downvote me please.pdf
+      78.19K 100%    8.29MB/s    0:00:00 (xfer#2, to-check=641/644)
+Screen Caps/Can someone downvote me please.png
+     399.61K 100%   14.66MB/s    0:00:00 (xfer#3, to-check=640/644)
+Screen Caps/ChefVMMemtest.png
+       8.29K 100%  207.68kB/s    0:00:00 (xfer#4, to-check=639/644)
+[...]
+Number of files: 644
+Number of files transferred: 638
+Total file size: 176.85M bytes
+Total transferred file size: 176.85M bytes
+Literal data: 176.85M bytes
+Matched data: 0 bytes
+File list size: 12574
+File list generation time: 0.002 seconds
+File list transfer time: 0.000 seconds
+Total bytes sent: 176.92M
+Total bytes received: 14.09K
+
+sent 176.92M bytes  received 14.09K bytes  14.15M bytes/sec
+total size is 176.85M  speedup is 1.00
+
+
+A: The simplest method is to just tap into the overall IO speed measurements that the system maintains.
+If you like the command line, diskutil list shows you what drives map to which disk0, disk1, etc... and iostat 1 will dump the transfer speeds each second. You will need to press Control-C to quit this program when done. Also, if you want a longer measurement just change the 1 to however many seconds you want to average the IO speeds.
+If you like graphs, the "Activity Monitor" will aggregate the IO from all disks.  Select the tab "Disk Activity", there a live graph of either the IO per second or Throughput (Data) per second over time for all drives combined.
+

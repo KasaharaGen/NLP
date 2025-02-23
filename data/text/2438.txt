@@ -1,0 +1,20 @@
+Q: What are the differences between /usr/bin/login and /usr/bin/bash? Terminal.app has a setting to select which shell it uses, and the default setting is "Default login shell (/usr/bin/login)".
+What are the differences between /usr/bin/login and /usr/bin/bash?
+
+A: Griffo is correct. Now in your scenario, the difference boils down to the following:
+
+
+*
+
+*if you pick /bin/login, then this program will check in the user database what your default shell is and run that shell as a login shell, thereby invoking the rc files that are run only when the shell is run as a login shell (in case of bash those are /etc/profile, ~/.bash_profile, ~/.bash_login and , and ~/.profile.
+
+*if you pick /bin/bash, that shell will be executed as a login shell, independently of what shell is set in the user database. This can come in useful when the shell in the user database does not work properly, or you want to be able to use different shells.
+
+
+As per the comment by Chris Page, the shell is run as a login shell in both cases.
+If you have not changed your login shell from the default, which is /bin/bash, and you have not changed the rc files of this shell, then the difference will not be noticeable.
+
+A: /usr/bin/login is a program used to login to the system and is not something you invoke manually under normal circumstances.  Have a look at the info/man pages by issuing one of the following commands:
+info login or man login 
+/usr/bin/bash is a shell and its job is to interpret input from the user and invoke programs.  You can also see more info on bash by using the commands below:  
+info bash or man bash

@@ -1,0 +1,41 @@
+Q: Why is mds using so much Real Memory? I notice that mds is almost always on top for use of Real Memory.  I wouldn't mind if this wouldn't be also the case when Free Memory runs out.
+Usually mds uses over 600MB on a system with 4GB (I know I need a new Mac) and no Free Memory.
+I notice that it might be somehow connected to Time Machine running (mds memory goes up when/after a Time Machine backup is done).
+I kill mds from time to time but pretty soon it is again using over 600MB.
+Googling this brings some workaround tips but nothing which is really on any foundation or analysis.
+I'm having this problem on Leopard (still stuck on a Q G5) but have seen reports on the net that the same problem also exists on Snow Leopard.
+Don't know about Lion though.
+Update:
+After the question in the comments if my Time-Machine is also indexed by Spotlight, I did some more research and found Setting Spotlight preferences in Apples MAC OSX 10.6 Help:
+
+Note:If you add a Time Machine backup disk to the list, you will
+  continue to see messages that Spotlight is indexing your backup disk.
+  This indexing is necessary for Time Machine to function properly and
+  can’t be disabled. Spotlight will exclude from searches any items you
+  store on your backup disk that are not part of a Time Machine backup.
+
+So the Time-Machine partition is always indexed no matter what you set.
+
+A: The obvious thing to try is eject the Time Machine volume (or otherwise make it unavailable - turned off) and reboot the mac. mds will only use RAM when a program is asking it to supply spotlight answers. The files you have are using a large amount of space and being called upon. A clean boot should get your mds with little or no RSS until you start to launch apps or TM starts.
+
+Whether this is normal is harder to tell - even if it's caused by your files, it's likely made worse a direct result of the PPC architecture not having as optimized a time of indexing than the Intel architecture. The mds program likely is coded with parts of the code for PPC and part for Intel as part of the normal performance optimizations Apple or any large corporation will do before releasing a daemon that runs all the time. Furthermore, the frameworks it uses will be native to the processor - so it's not really the same program running when you have a different CPU.
+The comments to the question show that you have really down your homework and played around a bit with excluding volumes to see if the large memory is happening in response to many drives being indexed.
+Sadly, you don't have any real control over how large the process gets. It simply runs based on the spotlight importers that are present on your system and in response to all the filesystems you expose the spotlight subsystem to.
+If the obvious step of isolating Time Machine doesn't reduce the RAM usage, You can also try:
+
+
+*
+
+*cleaning out third party spotlight extensions
+
+*add more RAM and live with it
+
+*permanently disable the folders that are causing RAM usage to spike (and forego the usefulness of spotlight)
+
+*temporarily disabling all volumes by putting them on the privacy exclusion list and then slowly adding folders to be indexed and hope to determine which sort of data is causing the worst spike in 
+
+*use Shark and their kind (part of Xcode and the CHUD tools) to sample the running mds process and map out the memory allocation as it is happening. This is fairly high on the skill level and won't change your end solution either way - you'll just know why - and maybe still not have a cure.
+
+
+Also sadly for you - most people are not running 10.5 on PPC chips, so the number of people that can run some tests or have seen this and poked around the issue it to find out what sort of file or importer might be likely to  take more memory once mds gets it's hands on the metadata store.
+It does sound odd - so you have a very valid point with more than usual RAM usage. But, it's not necessarily something that is wrong - you just might have data that needs that large amount of RAM. Only by taking your data to a similar mac or doing the process of elimination can you know for sure.

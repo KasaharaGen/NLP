@@ -1,0 +1,39 @@
+Q: curl gives error - possibly fink related? When I try and run curl in the OS X Terminal I get the following error:
+dyld: Library not loaded: /usr/local/lib/libcurl.4.dylib
+  Referenced from: /usr/local/bin/curl
+  Reason: Incompatible library version: curl requires version 7.0.0 or later, but libcurl.4.dylib provides version 5.0.0
+Trace/BPT trap
+
+I have a suspicion this is something to do with fink - as I installed a number of things from fink. However, I have tried removing and reinstalling curl with fink and it still refuses to work. I can't seem to get it to find a correct version of libcurl whatever I do.
+Any ideas?
+Update:
+Output of running env in the terminal is below:
+MANPATH=/sw/share/man:/usr/local/share/man:/Library/Frameworks/EPD64.framework/Versions/Current/share/man:/usr/share/man:/usr/local/git/share/man:/usr/texbin/man:/usr/X11/man:/sw/lib/perl5/5.10.0/man:/usr/X11R6/man
+TERM_PROGRAM=Apple_Terminal
+TERM=xterm-color
+SHELL=/bin/bash
+CLICOLOR=1
+TMPDIR=/var/folders/+w/+wmZARshFrCjcx1M3ByCFk+++TQ/-Tmp-/
+PERL5LIB=/sw/lib/perl5:/sw/lib/perl5/darwin
+Apple_PubSub_Socket_Render=/tmp/launch-E8utdf/Render
+TERM_PROGRAM_VERSION=273.1
+USER=robin
+COMMAND_MODE=unix2003
+SSH_AUTH_SOCK=/tmp/launch-nlYhE5/Listeners
+__CF_USER_TEXT_ENCODING=0x1F7:0:0
+PATH=/sw/bin:/sw/sbin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/robin/todo:/Applications/TeXCount:/Applications/latexmk:/usr/local/Cellar/gettext/0.17/bin/:/Library/Frameworks/EPD64.framework/Versions/Current/bin:/Library/Frameworks/GDAL.framework/Versions/1.7/Programs/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/itt/idl71/bin:/usr/local/git/bin:/usr/texbin:/usr/X11/bin:/usr/X11R6/bin
+MKL_NUM_THREADS=1
+PWD=/Users/robin/builds/ridl
+LANG=en_GB.UTF-8
+AUTOJUMP_DATA_DIR=/Users/robin/.local/share/autojump
+SHLVL=1
+HOME=/Users/robin
+DYLD_LIBRARY_PATH=:/Applications/itt/idl71/bin/bin.darwin.x86_64
+PYTHONPATH=/usr/local/lib/python:
+LOGNAME=robin
+PROMPT_COMMAND=: && { (autojump -a "$(pwd -P)"&)>/dev/null 2>>${AUTOJUMP_DATA_DIR}/.autojump_errors;} 2>/dev/null
+INFOPATH=/sw/share/info:/sw/info:/usr/share/info
+DISPLAY=/tmp/launch-RRRwWC/org.x:0
+_=/usr/bin/env
+OLDPWD=/Users/robin/builds/ridl/CMake
+

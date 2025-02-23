@@ -1,0 +1,10 @@
+Q: Macbook Pro external monitor maxes out at 1360x768 I have a 13" MBP with a mini DP to VGA. I have it hooked up to my new Samsung 23" display that has a max resolution of 1920x1080, but it seems that I can't pick a resolution higher than 1360x768. The adapter is from CablesToGo and states that the max resolution supported is 1920x1200 so I should be fine.
+Note: I've tried on 2 MBP's and the resolution is the same on both.
+
+A: Turns out a reboot was necessary for it to display correctly.  Once that was done all is good in the world again.
+NOTE:
+Was never able to get this to work properly with a VGA adapter - a reboot is always required.  The only solution was going to HDMI.
+
+A: Seems like there may be a faulty piece of hardware somewhere.
+The Display Port to VGA adapter is a fairly complex adapter including a digital to Analog converter circuit board, it is not just passing copper wires straight thru like older DVI based adapters did, eg Mini-DVI. I would try connecting the adapter to different LCD Monitors and see if it is also providing incorrect maximum resolutions for those displays too.  If the answer is yes then contact Cables to Go, and let them know the issue with the adapter.
+If no, it might not be a bad idea to test the the Samsung display if you can't find a fault in the adapter. Try connecting the Samsung display to a native VGA source and see if the monitor is working correctly, because the display itself has a analog to digital converter that if malfunctioning could produce erroneous maximum resolutions as well.

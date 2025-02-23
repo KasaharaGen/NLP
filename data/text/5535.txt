@@ -1,0 +1,23 @@
+Q: Applescript to open javascript bookmark i have the following javascript that searches the current site (very handy)
+javascript:Qr=prompt('Search%20Site%20for','');if(Qr)location.href='http://www.google.com/search?&q=site:'+encodeURIComponent(window.location.hostname)+'+'+escape(Qr)
+
+I am a launchbar user, but launchbar will not open this javascript bookmark.
+Can i create an applescript that runs the javascript bookmark (in chrome, which is my default browser)
+Have tried:-
+tell application "Google Chrome"    
+    execute javascript "javascript:Qr=prompt('Search%20Site%20for','');if(Qr)location.href='http://www.google.com/search?&q=site:'+encodeURIComponent(window.location.hostname)+'+'+escape(Qr"
+end tell
+
+but nothing happens...
+
+A: There are three problems with the script you posted, and one of them may be just a problem that was caused when you pasted the code into your question.
+Starting from the beginning: You need to tell Chrome where to do the JavaScript, like this:
+tell application "Google Chrome" to tell active tab of front window to execute javascript "your script"
+
+That will run the script in the current tab of the first window you opened (AFAIK, you can't yet get the active tab of the active window).
+Next, you don't want that javascript: prefix; Chrome knows it's JavaScript.
+Finally, you're missing a paren at the very end of your line. Again, I'm not sure if this is just a copy problem, but it's something to be aware of.
+Making the above changes, I have this code:
+tell application "Google Chrome" to tell active tab of front window to execute javascript "Qr=prompt('Search%20Site%20for','');if(Qr)location.href='http://www.google.com/search?&q=site:'+encodeURIComponent(window.location.hostname)+'+'+escape(Qr)"
+
+...which works.

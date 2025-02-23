@@ -1,0 +1,9 @@
+Q: How do FaceTime and Push Notifications work on wifi-only iOS devices? Simple curiosity question. 
+How does FaceTime and Push Notifications work on Wifi only devices? I mean does the WiFi stays always on to achieve a continuous connection to Apple's servers?
+I have older iPad and iPod touches and they don't have Wifi on when the come from sleep. Is that the same thing with newer models?
+
+A: For what it's worth, my iPod Touches' (2g and 3g) WiFi remains on when the screen is off, and I do get push notifications from various things (in fact, as I was typing this I got one from Ambiance).  If you go out of range of known networks and "Ask to join networks" is turned on in the WiFi settings, you of course won't get push notifications unless you turn the screen on and accept an open network.  The Apple battery life optimization page has a little more information, including how to control on a per-application basis what push notifications will work.
+
+A: This is mainly due to how Push Notifications are designed in iOS. If the device does have a connection, it will be pushed to you through Apple's servers. Because of how push works (mainly with a device checking in now and then to say 'heres where I am'), you can get push notifications while the device is asleep. The notification comes through and pushes to the device.
+With iOS 4, there is also the option for developers to use local push notifications. This mainly works by just setting a designated notification at some point in the future. 
+Update: According to this Apple Support Document, if the screen is on, push comes on at any time. If screen is off, checks every 15 minutes. 

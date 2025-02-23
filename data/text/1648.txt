@@ -1,0 +1,63 @@
+Q: Keyboard shortcut for toggling between Fn and F keys Is there a keyboard shortcut for toggling between Function and classic F keys?
+
+A: There is now an app for this: https://github.com/Pyroh/Fluor
+It lets you specify the fn key behaviour depending on a rules engine, and also switches between one behaviour and the other when you press the fn key.
+
+A: You can create application specific shortcuts by creating a custom setting in your private.xml file. Check out the reference documentation for details, or my example below where I'm rebinding the Consumer keys back to Function keys when in PhpStorm (to use the debugger).
+<?xml version="1.0"?>
+<root>
+    <!-- PhpStorm & EAP Version -->
+    <appdef>
+        <appname>PHPSTORM</appname>
+        <equal>com.jetbrains.PhpStorm-EAP</equal>
+        <equal>com.jetbrains.PhpStorm</equal>
+    </appdef>
+    <!-- ============================================================ -->
+    <item>
+        <name>Switch to normal function keys when in PhpStorm</name>
+        <appendix>Change consumer keys to function keys in PhpStorm</appendix>
+        <identifier>private.app_phpstorm_switch_consumer_to_fn</identifier>
+        <only>PHPSTORM</only>
+        <autogen>__KeyToKey__ KeyCode::BRIGHTNESS_DOWN, KeyCode::F1</autogen>
+        <autogen>__KeyToKey__ KeyCode::BRIGHTNESS_UP, KeyCode::F2</autogen>
+        <autogen>__KeyToKey__ KeyCode::EXPOSE_ALL, KeyCode::F3</autogen>
+        <autogen>__KeyToKey__ KeyCode::LAUNCHPAD, KeyCode::F4</autogen>
+        <autogen>__KeyToKey__ KeyCode::VK_CONSUMERKEY_KEYBOARDLIGHT_LOW, KeyCode::F5</autogen>
+        <autogen>__KeyToKey__ KeyCode::VK_CONSUMERKEY_KEYBOARDLIGHT_HIGH, KeyCode::F6</autogen>
+        <autogen>__KeyToKey__ ConsumerKeyCode::MUSIC_PREV, KeyCode::F7</autogen>
+        <autogen>__KeyToKey__ ConsumerKeyCode::MUSIC_PLAY, KeyCode::F8</autogen>
+        <autogen>__KeyToKey__ ConsumerKeyCode::MUSIC_NEXT, KeyCode::F9</autogen>
+    <!-- I want to use these while in PhpStorm
+        <autogen>__KeyToKey__ ConsumerKeyCode::VOLUME_MUTE, KeyCode::F10</autogen>
+        <autogen>__KeyToKey__ ConsumerKeyCode::VOLUME_DOWN, KeyCode::F11</autogen>
+        <autogen>__KeyToKey__ ConsumerKeyCode::VOLUME_UP, KeyCode::F12</autogen>
+    -->
+    </item>
+</root>
+
+
+A: Depending on what you're trying to do, you may be able to cut out the keyboard shortcuts altogether and completely automate this.  KeyRemap4MacBook allows you to set key re-mappings based on what application you're currently using.  
+I am using a setting that switches F1 through F12 to standard Function keys whenever I'm using RDC (Windows Remote Desktop).  Any other time they operate like their icons (brightness, volume, play, etc).
+
+A: There might be an easier way, but the following comes to mind:
+
+
+*
+
+*Turn on Universal Access.
+
+*Create an AppleScript or Automator App that toggles this via the UI.
+
+*Bind that app to a key combo.
+
+
+A: I‘d suggest you try FNable. FNable will switch the behavior for the active application, when you tell it to. The next time you activate this application, FNable will automatically switch your function keys.
+That way you can use brightness/volume controls in most of the apps you are using and you can use the function keys in those apps where you need to.
+No configuration needed, switching behavior is just a matter of a single click.
+If you want to use a global hotkey to toggle the function keys, FNable supports that, too.
+
+A: This can be done natively with no 3rd party software needed by opening System Preferences -> Keyboard, and then check/uncheck the box that says "Use F1, F2, etc. keys as standard function keys". If checked, the keys act as F keys, if unchecked, they act as the system control keys, such as screen brightness, volume controls, etc. (I can't think of a better way to describe them).
+Source:
+https://support.apple.com/en-us/HT204436
+
+A: i know this is an old question, but what helped me that i didnt find here is using fn + esc. this toggles between using F keys and the media keys.

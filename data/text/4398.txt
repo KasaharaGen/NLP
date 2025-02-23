@@ -1,0 +1,140 @@
+Q: Why are dot underscore ._ files created, and how can I avoid them? I am using different operating systems on different machines on different locations. I am using a USB flash disk to keep my files (source codes etc.).
+I am new to Mac OS X and now I realize there are lots of files created with a dot underscore ._ prefix.
+Questions
+Why are ._ files created? 
+What are their purpose? 
+How can I avoid them?
+
+A: To minimise the presence of dot underscore files on non-HFS+ formatted drives, you can use the BlueHarvest preference pane.
+
+A: Purposes of .DS_Store and ._ files
+https://diigo.com/0nsozp for an annotated view of https://lists.apple.com/archives/applescript-users/2006/Jun/msg00180.html where Matt Deatherage (a former engineer at Apple) offers explanations. Also arnotify » On the origins of .DS_Store (2006-10-01).
+Since I have seen loss of user data (document content) where ._ counterparts are prevented or lost, I agree that it's:
+
+*
+
+*not acceptable to have things "vanish into the ether".
+
+
+Purposes of ._ files
+In addition to the purposes outlined in geekosaur's accepted answer, here are a few examples of how Apple and third party apps either use or require ._ in some situations …
+
+File business during a copy by Finder
+See my answer to a question on Stack Overflow.
+
+NeoOffice use of deprecated codes
+HFS type code NO%F without a creator code is:
+
+*
+
+*used considerately, only where appropriate.
+
+NeoOffice example 1
+NeoOffice 3.2.1 Patch 5 save to JHFS+:
+[macbookpro08-centrim:~] gjp22% xattr -l /Users/gjp22/Desktop/product\ of\ NeoOffice\ 3.2.1\ Patch\ 5.docx 
+com.apple.FinderInfo:
+00000000  4E 4F 25 46 00 00 00 00 00 00 00 00 00 00 00 00  |NO%F............|
+00000010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000020
+
+NeoOffice example 2
+NeoOffice 3.2.1 Patch 5 save to a USB flash drive with MS-DOS FAT32, cleaning by BlueHarvest:
+2012-05-12 06:42:08.349 BlueHarvest[31146]: Deleted ._product of NeoOffice 3.2.1 Patch 5.docx in /Volumes/FAT32/example.
+
+NeoOffice example 3
+NeoOffice 3.2.1 Patch 5 save to a volume mounted by OS X with file system type webdav, not SharePoint, cleaning by BlueHarvest:
+[macbookpro08-centrim:~] gjp22% mount | grep dav
+https://www.box.net/dav/ on /Volumes/dav (webdav, nodev, noexec, nosuid, mounted by gjp22)
+[macbookpro08-centrim:~] gjp22% xattr -l /Volumes/dav/product\ of\ NeoOffice\ 3.2.1\ Patch\ 5.docx 
+[macbookpro08-centrim:~] gjp22% 
+
+
+*
+
+*the save by NeoOffice to the webdav file system did not involve an extended attribute
+
+*BlueHarvest was not required.
+
+Hint: where Microsoft Office fails with webdav to save to Microsoft SharePoint (see below), NeoOffice succeeds.
+
+Microsoft use of deprecated codes
+The most recent version of Office requires an HFS type code and HFS creator code when a format such as Microsoft Word (.docx) is chosen. So — it seems that when saving to a file system that does not support those values in a com.apple.FinderInfo extended attribute:
+
+*
+
+*Microsoft Office can not save reliably without creating multiple ._ files.
+
+Microsoft example 1
+Word 2011 14.2.1 save to a volume mounted by OS X with file system type webdav, not SharePoint, cleaning by BlueHarvest:
+May 11 18:32:49 macbookpro08 BlueHarvest[14649]: BlueHarvest started.
+May 11 18:38:37 macbookpro08 BlueHarvest[14649]: Deleted ._Word Work File D_1.tmp in /Volumes/dav.
+May 11 18:39:57 macbookpro08 BlueHarvest[14649]: Deleted ._Hello world, this is Microsoft.docx in /Volumes/dav.
+May 11 18:42:28 macbookpro08 BlueHarvest[14649]: Deleted ._Hello world, this is Microsoft.docx in /Volumes/dav.
+
+Microsoft example 2
+Word 2011 14.2.2 (120421) saving example.docx in the same environment:
+2012-05-12 08:01:07.692 BlueHarvest[41131]: Deleted ._Word Work File D_769960778.tmp in /Volumes/dav.
+
+Microsoft example 3
+Word 2011 14.2.2 (120421) saving another.docx in the same environment, quitting then reopening, editing then saving, editing then closing and saving:
+2012-05-12 08:15:04.252 BlueHarvest[41131]: Deleted ._Word Work File D_.tmp in /Volumes/dav.
+2012-05-12 08:18:48.735 BlueHarvest[41131]: Deleted ._another.docx in /Volumes/dav.
+2012-05-12 08:21:12.658 BlueHarvest[41131]: Deleted ._Word Work File D_2.tmp in /Volumes/dav.
+
+Hint: Microsoft Office 2011 fails to save to Microsoft SharePoint when the file system type is webdav because SharePoint does not support file names beginning with a dot . (period). See Ask Different answers to Is it possible to mount SharePoint as a volume in 10.6?
+
+Type and creator codes: background, Apple Developer
+Apple began encouraging third party developers away from type codes and creator codes more than a decade ago. In Appendix B of the File System Programming Guide, File Types and Creator Codes advises that the codes are:
+
+generally deprecated, you may see them in legacy files and apps and in some places in the system.
+
+
+A: Use find . -name "._*" -type f -print to list out the files from local path 
+To remove these, with no warning or confirmation in bulk, use find . -name "._*" -type f -delete to delete all files.
+
+A: It really is simple, NTFS (current Windows)  FAT32 (Old Windows) have a very specific data structure for things like permissions, what program is assigned to open this file, creation date, modified date, tags, file comments, icon, and other metadata.  You'll also notice that the same properties won't show in the other OS.  (IE creation date may say it was in 1/1/1990 and other metadata is not accessible from the other OS.  Whenever you are using both a machine writing from HFS to NTFS or FAT32 along with a machine writing native FAT32 or NTFS these . or ._ files along with DS store files will show up.   It's show the OS's deal with the incompatibility factor of the varied elements above that aren't consistent.  So you probably want to keep these files around if you are switching back and forth between the OS's to use these files.  If you are only using one OS or the other ensure you have the media (hard drive, sd card, etc) formatted properly or have a driver which allows your OS to write to the drive format not native to your OS.  (These are available for both OSX to allow it to write NTFS & FAT32 files using Native properties and for Windows 7 & 8 to write to HFS+ & EXFat (linux) drives using the native properties.)  They aren't free, but if you do a lot of back and forth it cuts out the excess duplicate data cluttering the drive.
+
+A: use rsync
+it does not create ._ files
+
+A: These files are created by the operating system to speed up searches, store metadata (data used by the OS) about a folder preferences, etc. Windows and OS X both have these kinds of files. Following, is a description of these files pulled from http://annoying-file-be-gone.snack.ws/faq.html:
+.DS_Store – The name of a file in the Apple OS X operating system for storing custom attributes of a folder such as the position of icons or the choice of a background image (Read more)
+.Spotlight-V100 – This file holds information to speed up the 'Spotlight Search' feature. Deleting would simply force this information to be re-indexed if you performed another Spotlight Search for an item in this folder.
+.apDisk – This file holds information about shared folders and can be safely removed as it will be automatically re-created if Apple needs it.
+.VolumeIcon.icns – This file is used to store the icon of the volume (USB device) if the volume uses a custom icon and not the default icon. If you want the device to continue using this default icon, or if the folder/device you want to clean contains an application, you might want to keep this file in your system. As a side note, if you wanted to create a custom icon for your device you could create/download an .icns file and rename it .VolumeIcon.icns and place in your folder/device.
+.fseventsd – This file is used as a buffer for the File System Events daemon. If you are using a program that is monitoring this folder/device, this file might be used to store temporary data.
+.Trash & .Trashes – These folders are used to hold deleted items the same way that the 'Trash' icon from the dock works. If you don't need this feature on your folder/device, you can clean this folder to save space.
+.TemporaryItems – This file is used by the OS to hold temporary data when files are being copied/moved/appended. If you are running any programs that are accessing the folder/device you want to clean, and you aren't copying or moving any files, then this file can simply hold old data for caching.
+
+A: You can't avoid them (but see the dot_clean answer by Saeid Zebardast --they can be removed from a directory if that is what you need).  They're created to store file information that would otherwise go into an extended attribute on HFS+ (Apple native) or Unix/UFS volumes; in earlier Mac OS this would be the resource fork.  Finder file operations will create them automatically to store the icon information, plus Time Machine stores some information in them so if you copy a file backed up via TM it will have that information copied as well.
+(This is nothing new; I've noticed that XP and later leave various turds around as well, although not quite as many.)
+
+A: You can use dot_clean command to remove or merge the ._ files:
+dot_clean PATH_OF_FOLDER_OR_DRIVE
+
+If you move files to linux, or have Git Bash on your PC, and have access to the find command, you might also be able to do this:
+find . -type f -name '._*' -delete
+
+And they're gone!
+
+A: You can delete them through FileZilla or similar files manager.
+
+A: Yes, some of us have a use for both Macs and windows machines, and I used to use that method.  And if you have a USB with a bunch of .jpgs that you want to play as a slide show, you have to get rid of those pesky ._ files to do it.  After much searching, I found a way to use my mac to remove the ._ files:
+using Terminal:
+
+
+*
+
+*ls -a will list all files, including the one starting with ._
+
+*to remove just one file from the directory: rm -rf ._whateveryourfilenameis.jpg
+
+*to remove all ._ files: rm -rf ._*
+
+*to remove unwanted directories including .Trashes: rm -r .Trashes*
+Cleaned my USB right up for use as a TV input
+
+A: Be careful when deleting ._ related to Git, Visual Studio, and Xcode!  I have an app with a lot of .mov and images and these "._" files showed up to be committed.  I deleted them via Visual Studio Team Explorer's changes and somehow that project folder bloated from around 500MB to 40GB without adding files...still not sure what happened exactly, but I'm guessing it was related to deleting those files so every commit it cached each .mov and image multiple times before I caught on.  I saw each .mov and .png repeated 20-30 times when in Finder > All Files.  
+Just add "._*" to your .gitignore file and they won't show up as a changed file when using TFS for you iOS Xcode project.
+
+A: I have been using the following method for easy .* prefix file elimination on flash drives: Remove flash drive from Apple computer, insert into a Windows machine, search the flash drive for ".*.*", then when the search displays the files with the ._ prefix, delete them. I never delete .Trashes or .DS Store files. So far no issues. I hope I am not causing a future problem for myself.

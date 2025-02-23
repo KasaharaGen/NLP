@@ -1,0 +1,10 @@
+Q: Sequential LiveFont display with different text sizes in Motion I'm making some text-based animations in Motion, using LiveFonts to emulate handwriting. I want the individual letters to appear one after the other, so I set the "sequence" value in the inspector to 100%. This works great.
+The problem occurs when I try to mix text of different sizes in the same text object. For example, say I have something like this:
+
+When I run the animation, the big text and the small text start animating simultaneously, instead of in sequence from left to right. Here is what it looks like in the middle of the animation:
+
+I haven't been able to figure out how to fix this, after tinkering around for some hours, but I am a Motion n00b so I'm probably missing something obvious.
+For the time being, I've been using a workaround of making separate text boxes for when I need to use different font sizes, but there is a lot of formatted text in this animation and placing all the text boxes just so and getting everything perfect in the timeline has proven quite tedious.
+Thanks for any help!
+
+A: After some more tinkering, I found that I could get it to work by selecting the different sections of text and adjusting the "Hold First" attribute in the Format inspector. This is still a little tedious, but not nearly as bad as making multiple text boxes.

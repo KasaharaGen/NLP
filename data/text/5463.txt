@@ -1,0 +1,81 @@
+Q: Disable a user's ability to unlock a FileVault 2 volume at startup/login time I recently performed a clean install of Lion on one of my Macs. The installation process created one administrative user account. After installation, I enabled FileVault for the entire disk. Then, I created an additional administrative user. Both users are able to decrypt the drive during login.
+How would I revoke decryption rights to one of the users without deleting the user or temporarily disabling FileVault? I have tried revoking one user's administrative privilege, making them a regular user, but they are still able to decrypt the drive during boot.
+
+A: It is not impossible. (Although if you have deleted user you may have made this more complicated!)
+I wrote the article 'jaydisc' linked to and just tested that it still works in 10.7.4:
+Assume that you have an admin user 'charlie' that you want to be able to use, but not unlock, the computer:
+sudo su - charlie  
+$ passwd 
+Changing password for charlie.
+Old Password:**[enter old password here]**
+New Password:**[press enter]**
+Retype New Password:**[press enter]**
+$ 
+
+Note that you cannot do this:
+sudo passwd charlie
+Changing password for charlie.
+New password:
+
+because if you press enter when you get the 'new password prompt' it will come back and say:
+Password unchanged.
+
+
+A: Use fdesetup:
+sudo fdesetup remove -user username
+
+See: http://derflounder.wordpress.com/2012/07/25/using-fdesetup-with-mountain-lions-filevault-2/
+
+A: It looks like temporarily removing the users' passwords removes them from the EFI boot menu:
+http://www.tuaw.com/2011/12/12/prevent-certain-accounts-from-unlocking-filevault-2/
+Unfortunately, in my case, some of the users are Open Directory Mobile users, and I am unable to find out a way to set their password to empty.
+
+A: FileVault 2 and Recovery HD
+Recovery HD not to be confused with the Recovery OS (one is greater than the other). 
+When you enable FileVault 2 for a user: the non-encrypted hidden Apple_Boot Recovery HD partition, separate from but critical to the encrypted startup volume, is temporarily mounted for writes to EFI-related and other files. If you wish to view this file system activity, whilst enabling a user for unlock purposes: 
+
+
+*
+
+*before clicking Done, use a command such as fs_usage or an application such as fseventer.  
+
+
+A glance at the activity suggests that edits to the non-encrypted volume — in relation to the user account on the encrypted volume — are nontrivial. 
+If a user is given inappropriate authority to unlock
+Maybe an update to Lion (something greater than Build 11A511) will provide a way to remove, from the EFI loginwindow, a user who should no longer be able to unlock the startup volume. 
+In the meantime I can think of only two methods that may be used. 
+Method A: disable then enable FileVault
+
+
+*
+
+*disable FileVault 2
+
+*allow backward conversion to complete
+
+*restart the operating system
+
+*enable FileVault 2, but not for that user. 
+Method B: remove the user but not the home directory, et cetera
+I have not tested this method, I imagine that the following might work: 
+
+
+*
+
+*backup
+
+*remove the user but not the user's home directory
+
+*restart the operating system
+
+*create a new user with the same RecordName as the original
+
+*set a UniqueID number that differs from the original
+
+*associate the previous home directory with the new user. 
+
+A: Here is the very simple answer on how to disable a previously enabled user's access to a FileVault 2 encrypted drive:
+In terminal, use:
+sudo fdesetup remove -user Username
+
+You will see thereafter the disabled user in the list of users that are available for enabling in System Preferences->Security & Privacy -> FileVault as verification that the disabling was successful

@@ -1,0 +1,17 @@
+Q: How to set a Monospace Font for Dashboard Sticky Notes Widget? I would like to use a monospaced font on the Sticky Notes in Apple's Dashboard widget.
+However, only a few fonts can be selected, none of which is monospaced.
+
+A: This is possible, because widgets are HTML, CSS, and JavaScript based. Here's how:
+First, go to /Library/Widgets and find the Stickies one. Copy it to ~/Library/Widgets and name it myStickies (or something else).
+Close the Stickies widget in Dashboard.
+Now, go to the myStickies.wdgt version you copied and right-click it. Choose Show Package Contents.
+In the new window that appears, right-click on the Stickies.js file and open it with your favorite JavaScript editor (if you don't have one, TextWrangler is great and free).
+Now, use the editor to find the line var fontArray = new Array; (should be around line 407). You'll see below that line a bunch of lines similar to each other, saying something like fontArray["font name"] = 1,. You want to copy the last one of those (American Typewriter), and paste it back below itself. Then, change it so it looks like this: fontArray["Courier New"] = 8;
+Save and close this file.
+Now, open (from the same folder) Stickies.html in an HTML editor (TextWrangler works).
+Find the line that says, <select id='font-popup' class='popup' onchange='fontchanged(this);'> (should be about line 40).
+Below that, you'll find a bunch of lines similar to each other, each beginning with <option value. Copy the one for Gill Sans, and paste it below itself.
+Edit it to say <option value ="Courier New">Courier New</option>.
+Save and close this file.
+Open Terminal and type killall Dock. This restarts Dashboard.
+Now, double click the myStickies widget file you made. It will open in Dashboard. Follow the normal procedure of clicking the i and changing the font. You'll have a Courier option, and it will be that font. Yay!

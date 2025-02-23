@@ -1,0 +1,27 @@
+Q: OS X Kindle App: Where are the books located? I was expecting to find .epub or .prc files on my hard-disk, but didn't. Does anyone know: Where are the ebooks that the official Kindle App downloads located?
+
+A: The Kindle app stores AZW files, but only downloads them for Amazon-purchased content that you have opened in the Kindle app on that computer.
+The AZW files are saved in ~/Documents/My Kindle Content.
+Their names are random-looking (like B0043M4ZH0_EBOK), so it takes a little work to figure out which file corresponds to which book. Here's how you do that:
+Open the book of interest on Amazon.com (make sure you're looking at the Kindle edition). It's URL will be something like this:
+http://www.amazon.com/Ultimate-Hitchhikers-Guide-Galaxy-ebook/dp/B0043M4ZH0/ref=tmm_kin_title_0?ie=UTF8&m=AG56TWVU5XWC2&qid=1309013055&sr=8-2, but all you're interested in is the code after /dp/. In this case, it's B0043M4ZH0.
+So, you know that the AZW file with the name B0043M4ZH0_EBOK is The Ultimate Hitchhiker's Guide to the Galaxy.
+
+A: Well, by going to the "Content Folder" in Kindle "Preferences," and clicking on same, I found the .azw files, but greyed out. They are in ~/Library/Application Support/Kindle/My Kindle Content/.
+You can also use the "find" command in Terminal: find  ~ -name '*.azw' to locate them.
+
+A: These files are now (October 2012) stored in:
+~/Library/Containers/com.amazon.Kindle/Data/Library/Application Support/Kindle/My Kindle Content/
+
+If they move again you can find them by running the command:
+find  . -name *.azw
+
+
+A: You can find (and change) the location of your books in the general preferences. Simply choose Preferences from the Kindle menu. In the General tab, you can find an entry Content Folder and a button to change it.
+This works at least on a fresh installation of Kindle from the App Store, running Mountain Lion.
+Addition: Worth saying that if you change it that it will automatically move everything from the existing location to the new location so you don't have to worry about it losing track of your books.
+
+A: After reading the above, I created a new folder under /Documents and then changed the target file location in Kindle/Preferences. Kindle app then copied the files to their. Then they became visible. Before that I also couldn't find them.
+
+A: You can define the location of the files (and see where they are) in you application.
+Under Kindle -> Preferences you will find the content folder. if you hover the mouse over you can see all of them one at a time.

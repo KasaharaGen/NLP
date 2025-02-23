@@ -1,0 +1,47 @@
+Q: Choose a default app for opening files with no extension? Is it possible to set a default application to open files with no extension?  I'm not referring to files with hidden extensions, but those completely lacking an extension -- e.g. README, CHANGELOG, mbox, etc.
+"Open With" => "Change All" on these files doesn't work, returning the error shown below:
+
+Ideally, I would like the system to try opening all such files in TextMate.  I know I can drag files onto Dock icons to open them in specific apps, but I'm looking for a more seamless solution than that (especially since I have my Dock auto-hide, which makes it much more cumbersome).
+I am familiar with the QLStephen QuickLook plugin that can enable QuickLook for some of these files, but I would prefer a solution with selecting/copying/editing capabilities.
+
+A: You can do this using Magic Launch. After installing, you can create rules to launch based on various criteria. You need to create a rule for text apps where the extension is blank. You can set up more complex logic if you need it.
+http://michelf.com/software/magic-launch/
+
+A: Update for Catalina:
+defaults write ~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist LSHandlers -array-add '{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=com.sublimetext.3;}' '{LSHandlerContentType=public.unix-executable;LSHandlerRoleAll=com.sublimetext.3;}'
+
+This sets the default to Sublime Text 3. If you want to have any other app you have to simply replace com.sublimetext.3 with the app id of your favorite app.
+
+A: You can add a default application for public.plain-text in ~/Library/Preferences/com.apple.LaunchServices.plist.
+defaults write com.apple.LaunchServices LSHandlers -array-add '{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=com.apple.textedit;}' '{LSHandlerContentType=public.unix-executable;LSHandlerRoleAll=com.apple.textedit;}'
+Restart to apply the changes (logging out and back in isn't enough).
+I've added this to a duti configuration file:
+com.apple.textedit public.plain-text all
+com.macromates.textmate public.unix-executable all
+
+
+A: Take a look at RCDefaultApp (freeware). 
+
+RCDefaultApp is a Mac OS X 10.2 or higher preference pane that allows a user to set the default application used for various URL schemes, file extensions, file types, MIME types, and Uniform Type Identifiers (or UTIs; MacOS 10.4 only). 
+
+
+A: A bit late this, the question "How to avoid typeless files opening in terminal" being a bit old. However:
+The solutions above involve changing the existing rules, which can have unwanted side-effects. I find the easiest is to exploit the existing rules for typeless files and changing file permissions to get the result I want.
+Specifically: Switch off the executable bit on the file, because that's what's telling file service to open with terminal with "chmod -x filename" where filename is ... the filename.
+This can be automated to some extent (with caution): In my case, I have a lot of README files on a machine. I can use "find" to find all "README" files. And then use "awk" to construct a command to remove the executable bit on all of them as follows:
+find /$HOME -iname 'README' | awk '{ print "chmod -x " $0 }'
+
+type that into the terminal if you want to check what files will be changed: The output will consist of a listing for each README found looking something like this:
+chmod -x //Users/jimpsmith/things/README
+
+And to change all those permissions execute all these lines by feeing them to bash as follows:
+find /$HOME -iname 'README' | awk '{ print "chmod -x " $0 }' | bash
+
+Just beware of using wildcards too liberally and finding you're accidentally removed the executable bit from some executables that erroneously match.
+
+An easier way would be to just run
+find /$HOME -iname 'README' -exec chmod -x '{}' \;`
+
+or (to see what would happen)
+find /$HOME -iname 'README' -exec echo chmod -x '{}' \;`
+

@@ -1,0 +1,24 @@
+Q: Simplest way to audit and monitor my home network and deal with intruders (while leaving it all open) Please don't give me a suggestion that you haven't tried and approved yourself. Also please feel free so skip and not read anything below. I trust the title is already summing up pretty good.
+What I've got
+Strong passwords, updated system, some log monitoring with Who Is Connected and nothing else. Just the passwords and updates have been enough until now. But that's probably only because I have no presence online, random IP and, on the wifi side, I'm in a spot that not many people get close enough to get the signal. Which makes this a good sandbox environment.
+I've tried about all tools listed in links from this question, and they're either not working, too complicated or have some bug.
+What I'm looking for
+What you say? What are the simplest things that can be done on the mac to keep it stable, open and free within an open wireless network (and the already open internet)? That is, other than buying the fonera, which I'm waiting to arrive back from warranty - I want to know only mac-wise.
+Adding to that, I'd want the same thing when connected to any other network. But I believe that's nearly irrelevant as I don't care if data is being spoofed. I'm not trying to secure any data out of my machine / network.
+And yes, the question is a bit misleading on purpose. I do ultimately want to secure my whole home network, but I also know it can only be done starting on the router and applying strong policies in every machine within it. 
+For Instance
+Just the other day I've realized my mac is constantly being attacked over the web through SSH - and looks like there's nothing I can do fast enough to prevent a big harm in case someone could break in. I can barely knows if someone brute forced my password, even while highly unlikely, and does nothing else after that for whatever reason.
+So, in this instance, I'd like to be able to first block the attacker with some smart firewall rules, then to send back a message "I'm watching you" or anything like this, just to intimidate. It could also be changing any welcome message specifically to the attacker. Changing SSH port is the most suggested measure, but I'd really want to avoid doing that.
+There's another instance where the attack were through AFP, which I also want to leave open. Someone added a "Pamela" folder to my dropbox, which is perfectly fine. But if I don't go there and see it's there, I don't get any notification about it and don't get to see who did it and when. Ideally I would see the exact moment and even get to interact with the user somehow.
+Summing up
+The solution would probably be enough if it were one software able to: get me notified of any user connection anywhere (but just once per user / attack / minute or something), take a preventive automatic measure, give an automatic response and give me options to take action if needed.
+And
+Sorry for such a big and long question!
+
+A: Mocha
+
+Mocha is a tool that monitors your network activity and keeps a record of Ip / Mac address pairings and firewall logs. It will give a warning when it notices any suspicious activity, like any changes in Mac address or any connection attempt to the firewall.
+
+I hope that helps! :)
+
+A: Change your SSH port to a different one than the default 22.  Security by obscurity is generally a bad thing to solely depend on but you'll get a good ROI for this tactic in the way of less attacks for sure.

@@ -1,0 +1,11 @@
+Q: Why does the natd process hog my CPU? When sharing internet in my Macbook, from a 3G USB pendrive to Wi-Fi, if the 3G connection falls, the natd process rises up in CPU usage.
+Is this a real problem? Is it expected in some way?
+There's a easy way to solve the hogging, using the menubar disconnect option, but sometimes it doesn't work and I have to unplug the USB modem.
+My modem is a HUAWEI E226.
+Hope you can help me.
+
+A: natd should be runnng ... NAT means Network Address Translation, so it's basically translating (communicating) between the Modem and the Wifi Access Point to share your connection.
+You can read more about it here, natd 
+So in short this needs to run to share your connection,
+Hope this helps.
+Karl

@@ -1,0 +1,60 @@
+Q: Where does OS X store the profile photo it takes when you first create an account? When you first create your OS X login account it takes a picture of you. Where does that picture get stored? I can't find it in ~/Pictures or ~/Library.
+
+A: Unless your account is a network account from a server such as OSX Server using directory services (or AD on Windows or LDAP on *nix), then it gets stored in the plist file that stores the local directory services data on your Mac.
+Before Lion, these files were simply text formatted xml files stored as shortname.plist in the directory /private/var/db/dslocal/nodes/users
+The image is encoded as a JPEG file under the key:
+    <key>jpegphoto</key>
+    <array>
+            <data>
+            /9j/4AAQSkZJRgABAQAAAQABAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQA
+            AAABAAAAGgAAAAAAAqACAAQAAAABAAACAKADAAQAAAABAAACAAAAAAD/2wBD
+
+If you selected a stock picture instead of a custom one, you may be able to locate that file with the following command:
+    dscl . -read /Users/shortname Picture
+
+The system also caches more than a handful of previous pictures so you can usually go back to a favorite picture using the system preference graphical tools. If your plist is stored in binary format, you may use a command like this to dump a xml version of the binary file to /tmp:
+    plutil -convert xml1 shortname.plist -o /tmp/shortname.plist
+
+
+A: The photo can be found in the /Library/Caches folder, if you haven't cleared this folder yet.
+Otherwise, I recommend typing:
+dscl . -read /Users/short_username JPEGPhoto | tail -1 | xxd -r -p > 
+/PATH/TO/accountImage.jpg
+on one line in a Terminal window, from Chealion's brilliant answer here. In the above example, a JPEG copy will be saved to /PATH/TO/accountImage.jpg.
+
+A: take a look in ~/Library/Images/iChat Recent Pictures
+
+A: open finder, click: command,shift,G
+type: 
+~/Library/caches/com.skype.skype
+then click the folder that is titled as your user name. 
+then click the SKAvatar Cache folder. 
+it should be the first image. 
+Good luck! 
+
+A: Get image from profile
+
+
+*
+
+*Open new terminal window
+
+*Add the following command
+
+
+
+dscl . -read $(pwd) JPEGPhoto | tail -1 | xxd -r -p >
+  $(pwd)/Pictures/profile-photo.jpg
+
+Put image into profile
+
+
+
+*
+
+*Open the “Users & Groups” preference panel as usual
+
+*Drag and drop an image file into the existing profile picture thumbnail
+
+*Adjust as necessary and click “Done” to set the image as the profile picture
+

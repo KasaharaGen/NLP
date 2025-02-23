@@ -1,0 +1,56 @@
+Q: Is there an app that creates a system-wide audio equalizer? I like using iTunes' equalizer, but that only works in iTunes.
+I'm looking for some software that lets me apply a global, system-wide equalizer to Mac OS X.
+The app (or pref pane, etc.) would let me change EQ settings and have that apply to all apps (iTunes, Spotify, Chrome, etc.).
+Ideally the software would have some nice presets like iTunes does.
+Free preferred, but I'm certainly willing to consider buying something.
+
+A: There's a free method using Soundflower and an Apple Developer Application called AU Lab (you'll need a free Apple Developer account get it, search for "AU Lab" after login). 
+Basically:
+
+
+*
+
+*Install both programs
+
+*Change your audio output to Soundflower in System Preferences
+
+*Open AU Lab and pipe the Soundflower signal to your audio out.
+
+*Apply an AUGraphicEQ filter in AU Lab
+
+*Fiddle with levels to your heart's content.
+
+
+This solution was taken from a blog post at Dctr Watson. That page also contains better instructions and a startlingly informative comment thread.
+
+A: 
+I didn't want to pay to have an equalizer so I developed my own one and giving it away for free! Click  here to download eqMac!
+The app is signed by Apple and works for OSX 10.9 and higher!
+
+A: There is also Hear. It has an equalizer as well as bass boosting.  
+
+Hear greatly improves audio quality in movies and music throughout all of your Mac OS X applications. With Hear, music is richer, movie sound and dialog is clearer and games will blow you out of your chair!  
+
+Try the 30 day demo for Free:  https://www.prosofteng.com/hear/heardemo/
+
+
+
+A: Check out Boom, it's quite awesome.
+
+Boom boosts the volume of your Mac at all levels. From boosting the
+  volume of your music on iTunes, it boom the YouTube videos playing on
+  your web browser. You can now boost the volume of any application
+  playing sound or video like QuickTime, Podcasts, Skype, iChat, DVD
+  Player, Garageband, iMovie and so on.
+
+
+
+A: I use AirFoil, lets me take advantage of AirPlay, and the EQ works for all sound output.
+
+A: Audio Hijack application which is developed by the same company for AirFoil. This is a host application which accept various audio plugins (wide range of prices and audio effects).
+This is the setup I have tested with good reliability and effectiveness compared to other applications mentioned above this post (I have tried almost all of them before settled with this one).
+Note all these applications have to be system extensions of Mac OS X in order to provide system-wide effects. Thus they are very much dependent on versions of Mac OS X. Mac OS X upgrades bond to break some of them.
+Ultimately the best audio enhancement is to have an external DAC through USB port on Mac and a matching quality speaker without any of these audio enhancing applications.
+
+A: Soundflower combined with Element is a good solution. It lets you use the AU and VST Plugins that are integrated already in the macOS.
+Works great on 10.13

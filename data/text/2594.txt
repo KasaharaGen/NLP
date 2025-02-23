@@ -1,0 +1,40 @@
+Q: How do I undo overwriting my /usr/local/bin folder? I think i overwrote my /usr/local/bin folder - any way to undo this?
+I was installing MacVim and did the following command:
+sudo mv mvim /usr/local/bin
+
+Now instead of copying mvim into my /usr/local/bin folder, i think it replaced that folder with a file called 'bin'...
+Any suggestions?
+
+A: Well, it's not a complete disaster.  You could have done it to /usr/bin.  The obvious first answer is restore it from a backup.  If you don't have a backup then you can take some comfort in the fact that the /usr/local/bin directory isn't in the default search path for command-line executables without extra steps being taken so the damage you've caused is likely to be limited.  Really, without a backup all you can do is reinstall apps which had files there.  Without knowing what they were, you'll probably need to wait for apps to misbehave or crash and then you can try a reinstall to see if that fixes them.  Hopefully you have Time Machine set up in which case it's a simple matter of following the procedure below:  
+
+
+*
+
+*Open Terminal to run the following commands
+
+*defaults write com.apple.finder AppleShowAllFiles TRUE
+
+*killall Finder - this restarts Finder so it will show the hidden system files
+
+*Open a Finder window for your Hard Drive
+
+*Open usr, then local, then bin
+
+*Launch Time Machine
+
+*With the bin folder selected, scroll back in time in the time machine interface to your last successful backup of the /usr/local/bin folder and click restore in the bottom-right corner
+
+*In a few moments, your folder will be restored.
+
+
+Also, in future be very careful what you do with sudo and especially sudo mv.  You can use sudo mv -i mvim /usr/local/bin/mvim and the -i will warn you instead of just overwriting whatever it finds at /usr/local/bin/mvim.  
+After you're done, you can hide the hidden files again by running the following commands in Terminal  
+
+
+*
+
+*defaults write com.apple.finder AppleShowAllFiles FALSE  
+
+*killall Finder
+
+A: You have Time Machine running, right? Just go in your Time Machine back a few hours and restore the file from there.

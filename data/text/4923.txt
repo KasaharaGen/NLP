@@ -1,0 +1,58 @@
+Q: How can I see what bandwidth each App or process is using? I see suddenly that my downstream bandwidth is 400 KBps which is the maximum my ISP gives me, so there's an application downloading at its top capacity.
+The thing is I didn't start any download, so it's doing it in the background without telling.
+How can I know which app or process is using it?
+Or, basically, how can I determine how much bandwidth each open process or application is using?
+
+A: Just to complement the (terrific) nettop answer - some complained that the output is cryptic. For clean output, try:
+nettop -P -k state,interface -d
+Flags explained:
+-P collapses the rows of each parent process
+-k state,interface removes less informative columns that stand between you and the bytes in/out columns
+-d activates the delta option (same as pressing the d button)
+Use the h button or run man nettop for some more options.
+
+A: You can easily view all network activity from the Activity Monitor; it's built right in to OS X.
+
+
+*
+
+*Open Applications > Utilities > Activity Monitor
+
+*Click Network tab
+
+
+
+
+A: 
+Quote: "How can I know which app or process is using it?"
+
+You can try nettop(1) in the Terminal. It is pre-installed, and refreshes every few seconds to provide a dashboard of all open network connections (by process) with their usage. Better than lsof since it shows the usage data too.
+$ nettop
+
+Then hit 'd' and look for odd-looking entries or entries with consistently large traffic in the 'bytes in' or 'bytes out' column. The 'd' instructs nettop to only show differences in each screen refresh.
+Practical usage notes:
+If you don't recognize the process name, Google it.
+If you don't want the process around, get the pid (the number next to the process name in nettop), and kill it with kill -9 <pid>. If that doesn't solve it, find out if you can uninstall the process.
+If you're interested in what the process is transmitting over the network, use the client port number for that particular connection (e.g. '53133' from 10.0.0.1:53133->74.125.68.100:80) to run a tcpdump(1) to see the data in the packets being exchanged: sudo tcpdump -nnvvXSs 1514 port 53133
+If you're interested in the destination the process is talking to, but the destination IP address doesn't have a reverse DNS hostname (like in the previous example), then try visiting that IP address in a web browser as https://IP, click the broken lock icon in the address bar, and view the certificate details to find out which domain is served there (*.google.com in this case). This won't work if SSL port 443 isn't open on the destination.
+
+A: lsof and iftop (direct Link to install package) are the best tools that come to mind.
+Also, take a look at this question.
+
+A: Rubbernet is a really great app that allows you to see the per application network usage of your Mac plus it supports Remote Monitoring. You can install a Rubbernet plugin any Mac that you have administrative access and then monitor the per application bandwidth utilization of all the Macintosh on your network from your own computer.
+It does cost money (30 Euros on their website but for some reason its $19.99 on the Mac App Store but they have a fully functional Free Trial on their website. I haven't bought the app yet, so I can not confirm that you can buy one license for the app and then install the plugin on any number of Macs for now additional charge. But that seems to be the situation.
+The Developers are the same folks who do the Linkinus IRC Client.
+link to rubbernet removed as it lead to a website with a fake alert about updating out of date Flash
+
+A: This help at all? Take a look at the NetMonitor Sidekick add on. Have not tried it myself but will probably load on virtual machine to see how it works.
+http://netmonitor.s3-website-us-east-1.amazonaws.com/net.html
+
+A: Update: This app no longer exists
+Another option that is not quite as good as it does not have any kind of remote monitoring mechnaism and didn't seem to do as good a job is OS Track. Its also available on the Mac App Store for free. I didn't really like this app as it seemed to consume a lot of resources itself. But that might be something they fixed in a later version.
+
+A: sudo fs_usage might id the process
+
+A: Little Snitch offers a great Network Monitor that gives all sorts of details including transfer rates and which processes have used the most data. You can also block anything you want or dig into things in more detail quite easily.
+The nettop answers were by far the best, however if you're more of a GUI kind of person and want a recently supported and updated tool, check out
+Little Snitch.
+

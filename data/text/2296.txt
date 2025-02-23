@@ -1,0 +1,30 @@
+Q: Recieving Error Code 60 connecting iCal to OS X Server I have a problem with my Mac mini running OS X Server 10.6.6. I want to use iCal and Address Book on my iPhone, iPad, and MacBook Pro.
+
+
+*
+
+*I started the two services without SSL.
+
+*I installed port forwarding on my router: 8008, 8800, 8843, 8443
+
+*I added the account on my iPhone and iPad
+
+
+But now, on my iPad and Mac I get the error: Code 60.
+What did I do wrong?
+
+A: This may help:
+
+
+*
+
+*Open iCal on your client computer > Preferences
+
+*Go to the Accounts tab
+
+*Go to Server Settings tab
+
+*Make sure there is a port number entered. It should match the port number being used by the iCal server. Originally, this setting was on "Auto" and it worked fine. The "Auto" option no longer works. Also, be sure to check "Use SSL" if you are doing so. (In my setup, I have it on port 8443, with SSL on.) 
+
+
+Also make sure everything has been updated.

@@ -1,0 +1,14 @@
+Q: Recursively converting files from dos line endings to unix line endings I am looking for a command that I could use to run on an entire directory and subdirectory that will convert all line endings from DOS to UNIX.
+It should be able to detect if a file is text or binary.
+I installed dos2unix using macports but it looks that it does miss the recursive option.
+
+A: Try find . -name "*" -type f -exec dos2unix {} \;.
+
+In case dos2unix is not available on your system, you can use the following script (save as dos2unix and set as executable):
+#!/bin/sh
+
+perl -pi -e 's/\r\n/\n/;' $*
+
+
+A: Here is one line shell code
+find . -name "*" -type f -exec perl -pi -e 's/\r\n/\n/;' {}  \;

@@ -1,0 +1,42 @@
+Q: Unable to migrate between 10.5 machines When a MacBook fails at my workplace, we, in the IT department*, swap the computer for another one and migrate the user's account over (using the Migration Assistant).
+I have found lately that we are having problems migrating users from Mac OS X 10.5 systems (which is what we have licenses for) to other 10.5 systems, and haven't been able to figure out why.
+Here's what I've determined:
+Migration works perfectly when:
+
+
+*
+
+*I migrate from 10.4 to 10.5
+
+*I migrate from 10.5 to 10.6
+
+
+When I migrate from 10.5 to 10.5, I get:
+
+
+*
+
+*occasionally, the migration assistant refuses to recognize that I've plugged in another Mac in target disk mode.
+
+*often, I can see the machine, and accounts that should reside on it, but they all show up as being 0 KB in size, and the migration assistant refuses to transfer a sum total of 0 KB.
+
+*Distressingly, I've seen some accounts show up at what seems to be the right size, but other accounts, that only reside on the destination computer and aren't on the source computer at all, also show up!
+
+*I have not been able to migrate using a network cable at all; even with the airports turned off and an ethernet cable between two MacBooks, after I type in the verification numbers shown on the destination onto the source, the two computers do not see each other.
+
+
+I've wondered if our 10.5 image is messed up.  For a time, I though that perhaps the older image, on the machines we were migrating from, is to blame.  However, I see these sorts of issues using a freshly installed version of Leopard on both machines, either 10.5.0, or 10.5.8.
+If I use the Setup Assistant (which occurs at first boot) to try to migrate files, it will claim that the other computer does not have Mac OS X installed.  (Sorry, I don't have the exact wording handy).
+[Incidentally, if no one has an answer, have other people managed to migrate users from Leopard to Leopard successfully?  I could swear we've done it in the past, but I haven't been able to reproduce it!]
+
+*: I am assuming this question fits here better than at serverfault, because it is a procedure regular users can perform.
+
+A: Yes, i'm the IT Manager for an Ad Agency using mostly Macs, and i've done it all, 10.4-10.7 and it's almost never a problem. Are you using AD or something for authentication? Migrating from 10.4 all the way up to 10.7 has always worked for me.
+As a suggestion, try installing Applejack on the system and running it. It's an excellent a ppm, and has sorted out issues for me more than a lot of times.. It's been a lifesaver.. Also, Are you using Firewire? or Ethernet to migrate user accounts? Ethernet is by far the fastest/best way to migrate user accounts between 2 machines
+Wow, that was totally wrong. Sorry, i was not paying attention when i wrote that...
+EDIT: Firewire 800 is the fastest, Firewire 400 is the next fastest, Ethernet is the slowest, and Wireless is unusable.. Sorry... Msg me if you are still having problems, and I'll try to help!
+
+A: Allright, at this point it might just be easier to instead of migrating the account, just create a new one on the new machine. Then plug the old one in target disk mode, and just copy the folders from the user profile over one at a time.
+It's not the same as a migrate, but it will get you there.
+As for Applejack, i've always ran it twice, the first time as Applejack AUTO restart. The second time i just run 3, on the user account, usually 502 or the username. After that, i boot into the user account it's always slow for the first 1/2 hour or so but speeds up.
+But, if you are consistently getting inability to migrate from 10.5 to 10.5, are you using Filevault? 

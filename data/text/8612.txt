@@ -1,0 +1,11 @@
+Q: Icons as whole program I am new to mac. I was wondering something.
+When I download something from Internet (i.e. filezilla) it appears as a single file contained in a single icon. However when I double click it runs, and it doesn't need to install something.
+When I move the file it still works. What I wonder are these programs single files. On windows same programs need installing and have multiple files etc...
+What I wonder are this icons are containers or single file programs. How is this different from installable programs?
+
+A: This is one of the wonders of the Mac. Most Mac applications are packaged up in what's called an "application bundle." It's basically a glorified folder that contains all of the code and data for the application. So, instead of having an application installed to C:/Program Files for example, the app is self-contained. These programs don't have to be "installed" as everything they need is already present in that app bundle. Most apps save user preferences and other user data to the ~/Library folder, but the app itself can normally be placed anywhere on your system.
+You can run those apps from the Downloads folder, though it's generally better to drag them to the /Applications folder on your Mac. This keeps your apps better organized. And occasionally, some apps are improperly coded to work only from the /Applications folder. It's just best practice to keep everything there, but it's by no means required.
+Some Mac apps do have an installer (such as Microsoft Office) as they install files in various places on the machine that are required for the app (such as fonts). 
+
+A: The Mac OS X Finder displays a single icon for an app bundle directory.  This directory usually contains several files, including the executable(s), icon files, some data and information files (such as plists), and etc.
+You can see all this stuff by using unix file listing commands from the Terminal command-line.

@@ -1,0 +1,55 @@
+Q: How can I use NTFS partitions in OS X? My coworkers use NTFS partitions, and I can't share my data with them, as NTFS on Mac OS X is read-only.
+How can I read and write onto NTFS partitions?
+
+A: I payed(34$) for the full NTFS driver from Tuxera, the free version was not able to safely eject NTFS disks.
+Update: starting with Lion, you'll not be able to share the NTFS drives even if you use NTFS-3G or Tuxera NTFS for Mac.
+It may be a good idea to reformat your drive to EXFAT in order to overcome these issues. I know it's a real pain and time killer.
+
+A: You have 3 main choices : 
+
+
+*
+
+*NTFS-3G (free one)
+
+*Paragon NTFS (paid one)
+
+
+and even a built-in solution inside Mac OS X.
+
+A: If you're running Snow Leopard, don't bother with various MacFUSE based solutions - NTFS support is built in, but disabled by default. To enable it, read this.
+
+Snow Leopard has the ability to mount NTFS volumes as read/write, but it's not enabled by default -- just read only is supported, as in 10.5. Here's how to get full read/write support for NTFS drives in Snow Leopard. First, uninstall NTFS-3G or Paragon if you're using either one.
+Here's how to get read/write support for NTFS drives in Snow Leopard:
+
+*
+
+*In Terminal, type diskutil info /Volumes/volume_name, where volume_name is the name of the NTFS volume. From the output, copy the Volume UUID value to the clipboard.
+
+
+*Back up /etc/fstab if you have it; it shouldn't be there in a default install.
+
+
+*Type sudo nano /etc/fstab.
+
+
+*In the editor, type UUID=, then paste the UUID number you copied from the clipboard. Type a Space, then type none ntfs rw. The final line should look like this: UUID=123-456-789 none ntfs rw, where 123-456-789 is the UUID you copied in the first step.
+
+
+*Repeat the above steps for any other NTFS drives/partitions you have.
+
+
+*Save the file and quit nano (Control-X, Y, Enter), then restart your system.
+After rebooting, NTFS partitions should natively have read and write support. This works with both 32- and 64-bit kernels. Support is quite good and fast, and it even recognizes file attributes such as hidden files. My thanks go to Chrysaor, a MacRumors user who brought this to our attention.
+
+Alternately, you could use NTFSMounter, for a GUI utility to do the same thing.
+
+A: For free, you can use the NTFS-3G driver. In order to use it, you have to install MacFUSE first.
+In the end, you'll have a prefpane to mount and manage your NTFS drives
+
+
+A: I use NTFS-3G with really good success, never lost a bit also sharing the same disk with windows machines and a WD media player connected to my TV.
+Only very minor issue I've found was that to proper reclaim space from the disk when I delete file I need to run a Maintenance utility or the Disk Utiity to recover space.
+See also http://www.phillo.it/?p=9
+
+A: Here is a good description how to access NTFS partitions. Basically - install NTFS-3G via macports http://fernandoff.posterous.com/ntfs-write-support-on-osx-lion-with-ntfs-3g-f

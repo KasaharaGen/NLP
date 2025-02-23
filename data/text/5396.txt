@@ -1,0 +1,16 @@
+Q: make, gcc and other developer tools unavailable after installing XCode on Lion I installed XCode after I upgraded to OS X Lion, I downloaded XCode from the App Store. gcc, make and such are still not found and I cannot compile anything from source because of this. I did a find / -name make and it looks like it found something:
+/Developer/Library/Xcode/Project Templates/Framework & Library/JNI Library/make
+/Developer/usr/bin/make
+
+What's going on here? Is this normal?
+
+A: Is /Developer/usr/bin in your PATH variable?
+You could try ln -s /Developer/usr/bin/make /usr/bin/make
+
+A: Make sure that your system's $PATH has been updated. If you had a terminal window open before you installed, and are using the same one now that you have Xcode installed, open a new one and let it run through .bashrc/.bash_profile/etc again to update the path. If you know the specific file that the $PATH variable lives in on your system, you can also just run source on that file.
+If that doesn't work, you can manually add the path that the find command finds these tools at (should be /Developer/usr/bin) to your $PATH inside ~/.bashrc or ~/.bash_profile (depending on how your bash files are configured — mine has everything in ~/.bashrc but I've customized them heavily).
+
+A: Yeah, looks like Apple has moved all the Developer Tools under /Developer. Why, beats me. Fixing the $PATH is easy, but the annoying part is that the includes have also moved under /Developer/usr/include etc.
+I spent a good half a day trying to compile some PHP extensions, to no avail, running into all sorts of "blah.h not found" errors.
+
+A: Finally figured this out. They're under /Developer because installing Xcode from App Store does not install Xcode, but an app named "Install Xcode". After running it, everything went back to normal. :)

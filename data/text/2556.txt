@@ -1,0 +1,21 @@
+Q: Hiding home shares on file sharing computer Due to my email backup software, I had to create 'real' users on my 10.6.6 install rather that create 'share only' users.
+Now when users connect to the shares, they see a full home folder as well as the shares I have setup.  
+Is there a way for me to turn off sharing home folders?
+EDIT:
+When a user logs onto the server, I only want them to see the assigned shares, not the automatically made 'home folder' share.  For instance, I make a user on the server called 'Bob', and three shares called "One', 'Two', 'Three'.  When Bob logs onto the server from another computer via finders 'SHARED' list, he sees four shares 'Bob', 'One', 'Two', 'Three', I do not want 'Bob' to show up on that list.
+
+A: If you set up their accounts in the Accounts pref pane on the server as "sharing only" then they will only get access to shared folders set up in the Sharing pane of System Preferences.
+See the Apple docs on creating a sharing only account.
+Since you say the email backup software requires that the user has real folders, then you can't remove them as "shares", they have full access to these folders and the server will advertise that.
+Without knowing why the email software requires the user to have folders then a workaround is difficult to find.
+
+A: I'm not sure if I understand your question :)
+There is an option to select which folders are shared, in:
+
+System Prefences > Sharing > File Sharing
+
+
+A: This is the behavior of the server one connects to when a home directory is specified in the local user database.  So, my local account is created and by default I have a home folder.  When I connect to that server remotely, it will present me with that home directory as a Sharepoint.
+You can go into Workgroup Manager, select the user, and select the "Home" tab/button.  You should have a few options there, one of which is "none."  Select that and the user will no longer see a home directory when connecting to the server. 
+The only problem with this is the Preferences User & Groups app isn't smart enough to figure out this was done in workgroup manager, and it prevents you from looking at the Advanced Options for the user.  Shouldn't be a big deal if you have WM though. 
+t

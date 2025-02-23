@@ -1,0 +1,36 @@
+Q: Why has sound stopped outputting with VLC? Background: I tried recently to hook my Macbook Air to my TV using an HDMI cord and a converter. It worked completely using Netflix and iTunes but the audio did not work with ANY of the AVI files I tried using VLC, even when I connected the audio ports using a 3.5 mm audio jack cord. 
+A few days later I tried to use VLC when not hooked up my TV but the sound has stopped working and I don't know why. The files are not corrupt, because they work fine on my MBP using VLC. I deleted my version of VLC, downloaded the latest version and deleted my preferences in case I had changed something vital without realizing it.
+I have confirmed that my audio output is set correctly in my settings, but I don't have external speakers so I haven't tried that yet. Has anyone ever come across an issue like this before?
+Edit: It resolved itself after a few days and I have no idea. I guess I will leave this open because someone might know what happened and the question might help someone else?
+
+A: This has happened to me before. I discovered that if you start VLC before you plug the HDMI cable in, it won't play sound out the correct output. This works consistently for me:
+
+
+*
+
+*Plug MacBook Air in via HDMI
+
+*Verify proper output is selected in System Preferences
+
+*Start VLC up
+
+
+Hope it helps.
+
+A: On Mac go to VLC Audio Settings>Audio Device>Select HDMI. That worked for me. 
+
+A: Could you confirm if iTunes, Quicktime or/and Flash (youtube videos) are working correctly and have sound.
+I have experienced something very similar and the symptoms were:
+
+
+*
+
+*Starting iTunes resulted error -200 
+
+*Quicktime refused to play any AVI files (which it previously did)
+
+*No sound in ANY media app (including flash) but sound still working for system sounds and notifications in Skype, Adium.
+
+
+The way I resolved this was to just to restart my MBP in safe mode (when powering on your MBA, hold Shift until you see a grey progress bar under the grey Apple logo). Then see if iTunes and Quicktime worked (just started them and closed them) and restarted again in normal mode. 
+The problem above hides somewhere in that for some reason Mac OS X decides that there is no hardware output device available, when it IS available. Happened when I upgraded to Lion (10.7.0) 

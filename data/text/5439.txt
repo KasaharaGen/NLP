@@ -1,0 +1,12 @@
+Q: Convert bin/cue image to iso format on OS X? How can I convert an .bin/.cue image to .iso format? ... preferably free.
+
+A: If you can bring the image into Disk Utility, use the convert option.  Choose CD/DVD master, it will save as a .cdo.  Rename to .iso.
+
+A: A nice tool is bchunk (I have used it under linux) which is available in homebrew.
+$ brew install bchunk
+==> Downloading http://he.fi/bchunk/bchunk-1.2.0.tar.gz
+######################################################################## 100.0%
+==> make
+/usr/local/Cellar/bchunk/1.2.0: 5 files, 56K, built in 2 seconds
+Avatars-MBP:~ avatar$ bchunk a.bin a.cue test
+

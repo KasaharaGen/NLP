@@ -1,0 +1,23 @@
+Q: How to backup Bootcamp partition via Time Machine? I just started using Time Machine for backup of my late 2009 MBP.
+So far it's backing up only OS X partition and ignoring Bootcamp partition.
+I also see the point Time Machine completely ignores NTFS and FAT32 partitions.
+Looking for solution/ hack to include Bootcamp partition also included in my Time Machine backups.
+
+A: This may well be too late to be helpful, but it is quite possible to back up a Boot Camp volume via Time Machine. (And the previous answerer clearly didn't even understand the question, since he appears to be talking about writing backups to an NTFS drive.)
+In fact, it's really easy. Rename the 'BOOTCAMP' volume to anything other than 'BOOTCAMP' and Time Machine will recognize it as a back-up-able drive. Then go to the Time Machine preference panel and click on 'Options...'  You should now be able to select your NTFS volume and remove it from the exclusion list. Next time you run a backup, it will back up the NTFS drive.
+HOWEVER: It may not be possible to restore a bootable NTFS drive from a Time Machine backup, due to permissions issues, metadata, etc. (Restoring would involve installing NTFS-3g or otherwise mounting an NTFS volume as read/write, and then restoring files to that, too, so remember there's an extra step.) Given that, though, it's a good way of saving your data files on Windows, if you have enough room on your backup drive.
+If I have time, I may try a full restore from my backup to my boot camp partition. If I do, I'll record the results here.
+EDIT: This may only work with 10.6, and/or may only work if you have MacFUSE and NTFS-3G installed.
+EDIT: As far as I can tell, this has not worked correctly since 10.7. I have not yet tested it with 10.9, but in both 10.7 and 10.8 the boot camp partition is not backed up no matter what it is named.
+
+A: Time Machine relies on extended attributes that can't be stored in FAT32, and since OS X doesn't come with NTFS support Apple hasn't defined a way for Time Machine's extended attributes to be stored in NTFS, so even with NTFS-3g Time Machine wouldn't know how to keep its metadata.
+Any hack to add this support would have to hook into the guts of Time Machine, and as far as I know Apple hasn't provided any way to do this.
+
+A: What I ended up doing is using an external USB drive, but partitioning it into 2 pieces, one with HPFS+ for Time Machine and the other with NTFS for Windows 7 backup.
+This actually makes it where you have 2 different backups. One for OS X through Time Machine, another for Windows 7 through Windows 7 Backup. Make sure to make a restore CD from Windows 7.
+When you go to restore, first you will restore OS X, then go through the Boot Camp partitioning process. When it's time to boot from the Windows CD, wait for it to boot, then shut it down and put the restore CD in (making sure the backup drive is attached). Then go through the restore process for Windows.
+
+A: It sounds like you want Winclone, which will generate an image from your Windows partition, and allow you to restore that image to another partition.
+As others have said, Time Machine only works with Mac partitions, by design. But Winclone is a package designed for Mac users to take clones of Windows partitions from within OSX.
+It is not free (it costs $30), but you did not explicitly say that you needed a free solution.
+I am not affiliated with the people that produce Winclone, but I am a satisfied user.

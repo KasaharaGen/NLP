@@ -1,0 +1,89 @@
+Q: Possible to run scripts on sleep and wake? MacBook Pro 2010 running OS X Lion.
+Is it possible to run scripts on sleep and wake events?
+My specific application is that I've got Dropbox-synced Truecrypt volumes that  I regularly use on both my MacBook and iMac. I rarely shut down my MBP since closing the lid is much faster and easier, but this means that I have to remember to dismount my Truecrypt volumes and let them sync back up before closing my MBP. It's trivial enough to script mounting/dismounting of them, but I'd like to go a step further and have these scripts run automatically.
+
+A: I developed the following simple Launch Daemon to provide a 'wake' trigger for scripts on Leopard:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>wake-alert</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>z=/tmp/wake; test -s $z || { date > $z; say w; }; 
+tail -1 /Library/Logs/DirectoryService/DirectoryService.server.log | grep -v Sleep || > $z
+        </string>
+    </array>
+    <key>WatchPaths</key>
+    <array>
+        <string>/Library/Logs/DirectoryService/DirectoryService.server.log</string>
+    </array>
+    <key>ExitTimeOut</key>
+    <integer>2</integer>
+    <key>ThrottleInterval</key>
+    <integer>1</integer>
+</dict>
+</plist>
+
+You can replace 'say w' with your code. I write a date to z but you could change this to write anything. You may need to increase 'ExitTimeOut' for some scripts. My Launch Daemon resides at /Library/LaunchDaemons/wake-alert.plist
+The Launch Daemon watches DirectoryService.server.log and writes to a temporary file provided the file is empty. The file is cleared by a log 'Sleep' entry and by Shut Down.
+If you use 'fast user switching' to sleep you will find that scripts which require a logged in user will attempt to run too early and fail unless you modify the Launch Daemon - perhaps grep 'Succeeded' in 'secure.log'. 
+
+A: Was interested in that question previously but didn't find any step by step guide on how to achieve it. 
+Solution is based on open-source tool called sleepwatcher and apple launchd
+Was inspired by this article
+So enjoy! :
+
+
+*
+
+*Install sleepwatcher => brew install sleepwatcher
+
+*At first create => ~/.wakeup and ~/.sleep scripts and put some shell logic into it
+
+*Add necessary permissions => chmod 700 ~/.sleep && chmod 700 ~/.wakeup
+
+*Test it locally => /usr/local/sbin/sleepwatcher --verbose --sleep ~/.sleep - go to sleep with running terminal
+
+*If it works then load process as launchd agent for all users => /Library/LaunchAgents
+
+*Add symlink for sleepwatcher launchd task => sudo ln -sfv /usr/local/Cellar/sleepwatcher/2.2/de.bernhard-baehr.sleepwatcher-20compatibility.plist /Library/LaunchAgents/
+
+*Load launchd task => sudo launchctl load /Library/LaunchAgents/de.bernhard-baehr.sleepwatcher-20compatibility.plist
+Hope it will help anybody :)
+
+A: I use Keyboard Maestro (https://www.keyboardmaestro.com/), no affiliation.
+It can trigger an action when system goes to sleep or wakes up among tons of other features to ease working with Mac. 
+
+I used the sleep/wake events to trigger a url that connects to an IOT device that I designed to control an external fan that I put on top of the Mac Mini (Mac is upside down).
+
+
+A: Another program which you might discover and be tempted to try is EventScripts.  Although it is a very impressive program which I would recommend in general, after testing it for this purpose it does NOT actually appear to be able to trigger scripts quickly enough for them to run before your Mac goes to sleep, and instead the sleep script will not run until after the Mac has woken up, which (obviously) defeats the purpose.  
+I hope to save you and anyone else reading this the hours of testing it took me to come to this conclusion.  I'm sorry to have to say that it failed, however, because in so many respects it is a really nicely designed and quite powerful and flexible program.  It's also quite inexpensive ($3).  The low-level performance just doesn't seem to be there, however, for running a script before sleeping.
+On the other hand, in my tests (so far) sleepwatcher has appeared to be quite reliable and fast.  It's also free, which is awesome.  I'll keep testing and if I find it to not work sometimes I'll update my answer, and keep testing other options.
+UPDATE I have not found sleepwatcher to be consistently reliable since originally writing this answer, although it initially appeared to be working.  In my case I don't need to run arbitrary scripts, but instead just eject external drives.  I've found a small and inexpensive app that does this very well so far: Jettison.  This has very quickly become one of a small handful of utilities I can't live without.  If your needs are the same as mine, I think you'll find it well worth the few bucks they charge.
+
+A: SleepWatcher may be of use. 
+From the description: It can be used to execute a Unix command when the Mac or the display of the Mac goes to sleep mode or wakes up, after a given time without user interaction or when the user resumes activity after a break or when the power supply of a Mac notebook is attached or detached. It also can send the Mac to sleep mode or retrieve the time since last user activity. 
+It's working fine for me on 10.6.8. Various versions are available to support 10.1(!) thru 10.7
+
+A: It appears that as the OS ships, sleep/wake cannot trigger scripts, but third party solutions have been developed.
+
+
+*
+
+*Scenario appears to be one such solution.
+
+*Power Manager also seems to add some script triggering abilities. I can see it can trigger scripts on wake from sleep and it can trigger scripts on sleep.
+
+I have no personal experience with these programs or their vendors.
+
+A: WakeWatcher is a simple OS X faceless background application I created to address this issue. It runs ~/.onwake whenever wake is detected. You can then put the commands to mount/remount your drives in that script.
+WakeWatcher is suitable for use as a login item. It is not very sophisticated, but it is free and simple.
+To execute scripts on sleep would be a simple addition, but I'm concerned about the time available for the scripts to complete before the system actually does sleep. If you really need it, open an issue against the github project and I'll add it.
+
+A: This is my own app, so consider that, but ControlPlane has the ability to do actions based on Sleep/Wake. You'll find it at http://www.controlplaneapp.com/.
+ControlPlane is a fork of MarcoPolo and has been updated to run on Snow Leopard and Lion.

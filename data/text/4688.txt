@@ -1,0 +1,25 @@
+Q: Change the location of an icon in the menu bar? Every time I start up Radium the menu bar icon for the application shows up in the same place: dead smack in the middle of all my other menu bar icons. Doesn't matter if it's the last menu bar occupying application I've started.
+I'd like to have it appear as the icon furthest to left on account of it displaying song information in the menu bar area once I start streaming a station with it.
+Is this possible?
+I tried a few key + click combinations to see if that would let me drag it around but no luck. It seems stuck in this position.
+Edit: I did try a Command+click to move it -- no luck. Same for Option and Control click combinations.
+The image below show the current location of the icon. I'd like it to appear to the left of the Sparrow icon.
+
+
+A: While not a free option, the 1.0 release of Bartender allows you to move any menu bar item around, including system items such as the clock, notification center, and the battery indicator.
+
+A: I'm not a fan of adding more clutter (i.e. use extra apps) to de-clutter or organize something + most of solutions do not work well in EL Capitan.
+My personal annoyance was Fantastical icon separated from clock. What I found is that menubar icons order loosely follows respective app launching order, i.e. first launched app takes right-most spot, next to OS X system icons space. 
+All I had to do is re-arrage login items order and menubar icons got in their desired places. 
+OS X system icons (clock, wifi, battery) still can be re-arranged using CMD-drag. 
+
+p.s. to re-arrange login items you'd have to delete and re-add them. No biggie, just Apple-way of doing things lately :) 
+
+A: If a menu icon is allowed to move, command + mouse select will work.
+You might have to patch the program (or System Ui Server). Have you asked the developer if they can implement this as a feature?
+Only the Apple icons are movable on my 10.6.7 systems so it certainly isn't easy for a developer to get this working and may be impossible in practice. 
+The only workaround would be to have a script that delays the radium start as the leftmost item is the last to load. If you had a launch script that slept for 3 minutes and then killed, relaunched that app - it would be leftmost until another started... If it was really important, you could kill and relaunch it periodically every X minutes to ensure that over time it's the leftmost icon without you taking manual action.
+
+A: There is a free app for hiding and reordering icons: Broomstick
+
+A: While not able to reorder items as requested in the OP, the free app Dozer allows you to ⌘-drag position two separators also in the menu bar. The icons to the left of one can be hidden/shown with a click or automatically. Already liking this after my first 10 minute test drive of this app.

@@ -1,0 +1,12 @@
+Q: OS X Leopard profile hangs on load ON a current project, and really need help. Re-install would be a painful option right now.
+Running OS X 10.5.8 and just downloaded and reinstalled compbo update.
+Yesterday installed latest version of evernote and now having all types of problems. Don't think it was evernote, but actually GROWL. 
+If I login in with my creds, it takes over 20 min to load my profile. If I login with dummy acct, it loads in less than 2 min. Applications launch but every couple of mins hangs for @ 4-5 min.
+Ran permmisstions repair and disk repair twice. Some problems where found but fixed.
+Disabled all startup apps from Accounts. What else can I do?
+EDIT - 
+Just started in verbose mode again and ran /sbin/fsck -fy again.  the same error came out.  After Checing Catalog file, it said Incorrect block count for file 2011.04.18.U501.asl (It should be 734 instead of 367).
+
+A: In addition to what you've already done, temporarily move any system wide startup items from /MacintoshHD/Library/StartupItems using Finder.
+If you have done this, and removed startup items from your own account, repaired the disk, then there is really nothing else that should be slowing down the startup.
+If you cannot log in to your profile, you may need to start in safe mode (hold down shift whilst booting).  

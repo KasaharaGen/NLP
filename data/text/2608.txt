@@ -1,0 +1,34 @@
+Q: How to jump to a location using mouse on iTerm/terminal? I work on a terminal most of the time. 
+Is there an application / plugin over iTerm or any other terminal like application using which I can control the cursor location of my terminal using a mouse ?
+
+A: At least in Terminal.app you can hold down option while clicking to jump within your current line (that actually means just the line, so if your current prompt is so long that it wraps to a second line of input you'll have to option-click to the beginning of the "second" line and then hop with the arrow keys to the "first" line where you can  option-click again.)
+
+A: The keyboard is often your best friend. In a default configuration, your shell controls much of how you navigate around the command prompt.
+Option + b goes back a word (the cursor will end up at the first letter of the previous word).
+Option + f goes forward a word (the cursor will be at the non-letter character AFTER the next word).
+Shift + Fn + Left Arrow (←) will put the cursor at the very start of the line. (Ctrl + a will also do this.)
+Shift + Fn + Right Arrow (→) will put the cursor at the very end of the line. (Ctrl + e will also do this.)
+So if I have a long command, for example:
+$ rsync -avz --progress ~/Sites/Development/My/Project web@server:/deployment/output/area
+And I start hitting Option + b, the cursor will stop on the a in area, the o in output, the d in deployment, etc.
+If I go to the start of the line, and start hitting Option + f, the cursor will stop at the space after rsync, the space after avz, the space after progress, the / after Sites, etc.
+
+A: If you are specifically interested in movement in Vim, then you can add set mouse=a to your ~/.vimrc file.
+It does work in iTerm for movement. It also allows you to mark sections as if you had entered visual mode, so that you can yank or delete it or comment out code depending on your plugins.
+Very conveniently it also lets you quickly scroll through a large document using a two-finger slide or mouse wheel.
+The only drawback is that it makes it difficult to select text that you want to copy for use in other applications—though all you have to do is press option while you select.
+Also: note that, if you add something like vimpager (also on macports), then you can also scroll through man pages once you add:
+export PAGER=/opt/local/bin/vimpager #or wherever vimpager is installed
+alias less=$PAGER
+
+to your .profile or .bashrc.
+
+A: It's quite a time since this question came up and I did already mention the below on this platform in Option-click in iTerm and the issue tracker of iTerm2 but maybe it's of help for one or the other:
+Hi, just wanted to let you know that I implemented that feature in iTerm2. It's not yet in the official iTerm2 repo but if you'd like to give it a go, you can find it at github.
+Since it's tested only by me consider it not-stable. I did test it with bash, vi and emacs and did my best to resemble Terminal.app behavior.
+There's a precompiled binary on github too iTerm_v1.0.0.20120312.git-b919985b.zip (for i386/x86_64/ppc).
+Of course any feedback is welcome.
+
+A: In iTerm2 you hold down alt (left or right) and click to move the cursor to any position on any line.
+
+A: When option click doesn't work, it seems that it's possible to do this with the fn key. Over an ssh session in iTerm2, I was able to hold fn and click where I wanted the cursor to move in vim normal mode, for example.

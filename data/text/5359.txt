@@ -1,0 +1,23 @@
+Q: How can I rename desktops in Mission Control? The default new desktop space is named 'Desktop 1'. If you create a new one, it is named 'Desktop 2'. Is there a way to change those default names to something more meaningful?
+Additionally, it looks like you can't rearrange spaces either and the 'automatically rearrange spaces based on most recent use' checkbox seems to do nothing.
+
+A: [Update: creator here  - I have pulled this app from the App Store because it's a free app that I currently don't have a great way to test on Monterey, as I don't own hardware that can run it (I have a 2014 MBP). That said, users have emailed me still wanting it, and I have selectively put it in the store every week or two for a short amount of time so they can grab it. If you are interested in knowing when those windows are, shoot me an email via the support tab on the homepage https://currentkey.com through an email or twitter DM. But also, Apple should just go ahead and support named Desktops natively, they're inevitably going to do so eventually - as all other OS platforms do, and it should be sooner rather than later. Thanks!]
+There's an app (in the Mac App Store) that lets you name Spaces via the menubar.
+It's different than naming them in Mission Control (they don't show up there), but the names are persistent and the app lets you set a custom icon in the menubar per Space, for a quick visual reference of what Space you're in. Why not in Mission Control? Because macOS public APIs are limited, and this app is delivered via the App Store.
+It may be what you're looking for. Full disclaimer: I'm the developer of the app, called CurrentKey Stats. It's completely free in the App Store.
+The app also lets you jump directly to another (named) Space via its dropdown menu or via global hotkeys. B/c Apple lets you have up to 16 Spaces per screen, this is handy in navigating between them.
+
+
+A: It is possible to rename spaces using an app called Spaces Renamer. It is available on GitHub for free. I am unsure if it can change the "default" name of desktops as you requested, but it can customize the name of desktops you already have. Please check the below screenshots for an example.
+
+The compressed view after pressing F3
+
+The expanded view after hovering
+
+The interface for renaming the spaces
+Image sources: the GitHub page
+Please note that to use it you have to disable System Integrity Protection to use this tool. You'll need to download MacForge to use it. All of the installation instructions are on the GitHub page.
+It does not work for the time being on macOS macOS Big Sur due to increased system protections there. Only time will tell if it will be supported there. However, it works perfectly fine on macOS Catalina.
+A different way to "name" or "identify" different desktops is by changing their wallpapers, as desktops can have individual wallpapers. However, this unfortunately will not be helpful if you have applications and windows that are covering the whole screen area.
+
+A: No, there is no way to do that in the current build. Well, sort of. An example is if you have iTunes open in fullscreen in a separate desktop, and go to mission control, the desktop will be called iTunes.

@@ -1,0 +1,39 @@
+Q: How can you change the mouse cursor in OS X? I can't find many solutions for changing the mouse cursor on OS X 10.6
+I've seen http://unsanity.com/haxies/mightymouse but it does not support 10.6 at the moment.
+Any hints or tricks to change the cursor? Specifically, I need to modify the text selection cursor as it is almost invisible when using a grey background in my IDE.
+Thanks!
+
+A: There are a couple options:
+In System Preferences > Universal Access > Mouse pane, there is a control to change the size of the cursor.
+Mouseposé is an application that supports Snow Leopard used mostly for presentations and recording demos. You can set up a hotkey that dims the screen puts a spotlight on the current cursor position so you can find it quickly.
+
+A: Mousecape does a great job. It is almost completely undocumented, sub-1.0 release, and doesn't really come with any cursors. Still worth a look!
+
+A: Sorry, Apple doesn't allow people to change the mouse cursor anymore. 
+
+A: Use Mousecape. I'm currently using version 0.0.5.
+
+
+*
+
+*Download the program (version 0.0.5)
+
+*Double-click the program
+
+*Make a new mouse cape (cmd + n or by menus)
+
+*Drag image files on to each new pointer, choose what type of pointer
+
+*Move the Hot Spot to correctly register clicks
+
+
+
+I suggest getting images from free icon libraries. Google search or something. I downloaded some free icons and edited them.
+You can use custom capes that others have made but the only one I've found is the one included in the source code. To get it, download the source and find the .cape file in it. Simple drag and drop the file into the program.
+You can download the source code, etc, on github.
+
+A: You could use Mouse Locator and leave it on or turn it on via a hotkey when you need to find your cursor.
+
+A: The way you do this is "System Preferences" -> "Accessibility" -> "Display" -> "Cursor".
+Inside the cursor tab you are table to change the size.  You can't do any other customization than size but its a good start.
+

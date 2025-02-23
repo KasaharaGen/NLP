@@ -1,0 +1,77 @@
+Q: How can I copy files from my Mac to PC via Microsoft Remote Desktop? I installed Microsoft's Remote Desktop and connected to a PC. How can I share files between my Mac and PC?
+When I use RDP on Windows, I can simply add a file to the clipboard and paste it inside the RDP window. The same thing doesn't seem to work in the mac version of RDP.
+If I try to share one of my Mac's folders with the RDP computer, and then double click that drive in RDP it says:
+
+\\tsclient\Downlo1 is not accessible. You might not have permission to use this network resource. Contact the administrator of this server to find out if you have access permissions.
+Access is denied.
+
+
+A: Clipboard RDC is a free open source cross platform utility that uses clipboard to transfer files much like we transfer text to/from servers in RDP.
+Note, requires Java. 
+Disclaimer: I am the author
+
+A: Another possibility is to use a dropbox (et.al.) account.  Just log into the same one from both the Mac and the PC.
+
+A: Good news, copy and paste seems to work now (and for single files even)!  But drag and drop does not seem to.  At all.
+copy and paste:
+copy (command + c) in OS X Finder, then open an explorer window in rdp and "ctrl+v" in windows
+
+A: I ran into the same issue but I was able to paste to \\tsclient\OSX\Users\Shared
+
+A: When copying files from Mac to PC using Microsoft Remote Desktop I prefer to share a subfolder, not the entire drive.
+Here's how:
+
+
+*
+
+*In Remote Desktop on your Mac select your PC in the "My Desktops" section. 
+
+*Click the "Edit" button (pencil icon).
+
+*In the popup click the "Redirection" button (folder icon; see image below).
+
+*Check the "Enable folder redirection" box.
+
+*Click the "+" button at the bottom of that window and browse to the Mac folder you want to share.
+
+*Connect to the remote PC. 
+
+*Look for your shared Mac folder in your PC's "My Computer"
+directory (see image below).
+
+
+Finally, as noted by @Bart and @robbpriestley in the comments below, if you are already connected to the remote computer you need to re-establish your connection in order to see the shared folder.
+
+A: Troubleshooting steps for the inability to copy between a Mac and PC - http://mac2.microsoft.com/help/office/14/en-us/rdc/item/2aae839c-7f91-4738-aea7-9ffb25dbfe2e?category=ff488916-8b5e-4a0c-af96-37d065645612.
+I think this answer will likely fix it:
+Solution: Before you start the Remote Desktop session, make the Mac disks available to the Windows-based computer. 
+1.On the RDC menu, click Preferences.
+2.Click Drives, and then on the pop-up menu, select the option that you want. 
+Your disk or folder is now available so that you can access files that are on your Mac from the Windows-based computer.
+If you make this change after you connect, the disk or folder that you select becomes available the next time that you connect.
+3.On the Start menu, click Computer or My Computer.
+The Mac disk or folder that you have made available is listed with all other disks and folders on your Windows-based computer. 
+Note  If you can't see the Start menu, on the View menu, click Full Screen.To return to window mode later, point to the top edge of the screen until the RDC menu bar appears. On the menu bar, click View, and then clear the Full Screen check box. 
+4.Open the disk or folder that you want to copy from.
+5.On the Start menu, click Computer or My Computer.
+6.Open the disk or folder that you want to copy to.
+You should now have two windows open, one for the location that you want to copy from, and one for the location that you want to copy to.
+7.Drag the document that you want to copy to the location that you want.
+
+A: Try copy pasting the whole folder. It is easy and quite flexible at the same time It worked like a charm for me.
+
+
+*
+
+*Mark the folder in the macOS Finder and press Cmd+C
+
+*In the Windows Explorer in the remote Desktop press Ctrl+V
+(Tested with macOS 10.14.6 + Microsoft Remote Desktop 10.3.8 + Windows 10 Home 1903)
+
+A: Your shared folder has a name that is too long.  Try calling the share "foo," connecting to terminal services, and then accessing \\tsclient\foo.
+
+A: I will second the Dropbox recommendation. This is the single greatest way to keep many different machines in sync with files there is. If you save a file on your Mac, within seconds it seems, the same file is updated on your PC.
+A second approach is to use LogMeIn Pro which can do this but it costs money. In my experience, the speed of LogMeIn is much faster than RDP for remotely controlling another machine.
+
+A: If you right-click on the folder on your Mac and then "Get Info", what permissions do you see?
+Make sure your username (the user that initiated the RDC session) has read and write access to the folder. If that doesn't work, give "read & write" to "everyone" (be careful with this one - anyone with access to this folder will be able to modify the contents).

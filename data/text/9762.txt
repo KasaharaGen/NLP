@@ -1,0 +1,4 @@
+Q: Opening QR Code reader app from URL When using Android and ZXing for reading QR codes, one can open the link http://zxing.appspot.com/scan to start the/a QR reader app (as mentioned here at zxing)
+Are there any similar ways to activate a QR reader from an URL for iPhone?
+
+A: Your linked example reveals that you would like to use a concept called Intents. Unfortunately, these are not available on iOS. As explained in the latter article, you could try to experiment with custom URL schemes on iOS (this may be pretty much what you want, but with a different scanning app) ... Experiment!

@@ -1,0 +1,13 @@
+Q: Frequent crashing and unresponsive OS X About six months ago, my MacBookPro's (summer '09) HDD died. A solid, irrecoverable failure - flashing folder question mark, utterly invisible to Disk Utility, Disk Warrior, being housed in an external housing from different machines, the Genius Bar wonder disc (you knew they have one, right?), everything. 
+So after testing my backup strategy to its limits, I bought a new drive (Seagate Momentus XT 500Gb). This drive is updated with the latest firmware SD25 and I'm generally happy, the hybrid drive is everything you'd expect: nippy and reasonably huge. On a good day, my cold boot from off to active is less than a minute (much less). 
+But. And it's a huge but (and I have to assume it is something related to the drive): 
+It is crashing on me frequently: daily, sometimes multiple times daily, spinning beach balls, unresponsive when the Mac's lid is opened, failing when the screen saver kicks in; you name it, sometimes it could just be my typing something quickly into the Firebox toolbar. 
+Fortunately turning it off and restarting has, up to now, always worked, but many of the apps don't like it and many apps complain, fail and need reinstalling and I'm getting to the end of my patience. 
+I'm pondering on just reinstalling Snow Leopard (or waiting for Lion or whatever's next) and seeing if that solves it, but I've no real confidence in that as a solution. 
+A little background: I'm a professional Windows developer and a Mac user for a number of years, so I'm comfortable with the idea of logging, tracing, debugging and so on, but I'm a little lacking in the deep knowledge of where to look for clues on the Mac. 
+So I'm looking to the hivemind: if I'm not to just backup everything up and do a clean install, what should I try before that? Or should I just try that? Why should I believe that would work? 
+
+A: Interesting.  I have a ST9500420AS, is it the same drive?  Mine is loud but I don't have any issues with it.
+Does anything show up in the console during/after this occurs?  /Applications/Utilities/Console.app
+Also, if you can make the problem re-produceable, you could try fseventerhttp://www.fernlightning.com/doku.php?id=software:fseventer:start, or even a simple command into the terminal (lsof > ~/Desktop/open_files.txt) to figure out what might be going on.
+It almost sounds like it might, might be a hardware problem rather than software, but we may as well rule out the latter first.

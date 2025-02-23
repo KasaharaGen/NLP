@@ -1,0 +1,14 @@
+Q: Saving .htacess passwords on iPad I know it is possible to save form username/passwords on the iPad's Safari browser. The thing I can't do is to save .htaccess username and passwords. In case you don't know what those are, it's when a webpage is protected and you can't even see the page without authenticating. It usually displays a popup window so you can authenticate.
+Is it possible to save this type of credentials?
+
+A: This is HTTP Authentication and the iPad cannot "remember" the credentials of these sorts of logins.  It has no problems with a normal web form however.
+If you are happy to have your username and password stored in plain text on a bookmark in Safari however, there is a way to allow you to login without filling out those details again.
+Just visit the site with the following formatted url :
+http://username:password@domain.com/
+
+Rememer to change the 3 obvious variables (username, password and domain).  This should log you straight in.  You can save this as a book mark and then use that going forward.
+The username and password must be URL encoded if they contain any special characters.
+Just remember that anyone who picks up your iPad could view the bookmarks and see the clear text username and password, so I wouldn't use this on your banks website :)
+Hope this helps.
+
+A: For a more secure solution, I'd suggest 1Password for iPad. It has many useful features, not the least of which are auto-generation of strong passwords (so you can use a different password on each site) and strong encryption of your passwords. You can use 1Password with HTTP Authentication.

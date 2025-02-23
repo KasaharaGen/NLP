@@ -1,0 +1,15 @@
+Q: Running windows on iMac updates system settings When I boot my iMac onto windows partition and then reboot into Snow Leopard my system time is updated (reverted on hour back). 
+This occurs even though I have 'locked' the system time on Snow Leopard.
+I'm not sure if related but my connection to wi-fi is also affected. By this I mean I lose my internet connection and to re-connect to my internet wi-fi.
+
+A: Time issue
+It is a known issue that is due to the fact that OS X and Windows both store the time in the hardware, but OS X does in GMT while Windows stores local time.
+There are at least two distinct ways to fix it:
+
+
+*
+
+*Set Windows time zone to GMT and remove the daylight savings time offset and also turn off network time sync. (Source)
+
+*Use a startup batch script.
+

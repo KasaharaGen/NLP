@@ -1,0 +1,7 @@
+Q: Personal sorting system in the finder's windows Is there a way to use a personal sorting system in the finder's windows ? I don't want to sort the files and folders using the "Labels" (because of the colors). I just want to have the list ordered the way I want...
+Is this possible ?
+
+A: You could make a custom sort order using Spotlight Comments. Show the Comments column in your Finder window (View > Show View Options), then enter Spotlight Comments into your files (File > Get Info) so that they sort in the order you want. You could also use these comments for Spotlight searches and smart folders.
+
+You can use Automator to add the same comment to a whole batch of files by creating an Automator Service (for contextual menu) or Application (for drag & drop) and using the "Set Spotlight Comments for Finder Items" action. Make sure to change "Service receives selected" to files or folders. To have Automator ask you what text to use for the comment, show the Options for the "Set Spotlight Comments" action and check Show this action when the workflow runs.
+

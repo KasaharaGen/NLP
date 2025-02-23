@@ -1,0 +1,33 @@
+Q: How do I detect an iPhone user on my website? I want to forward my viewers on my site to a different place if they are using an iPhone. Is there a way to do that using iWeb?
+
+A: Don't.
+The only reasons to ever have a separate mobile site are cheapness and laziness.
+The right approach is to have your visitors all get the same content; the only thing that should change how that content is styled—and doing that doesn't need a separate site, or even a special page.
+If your next question is "Can iWeb do that?," the answer is that I doubt it, because iWeb just isn't meant to be a professional web development tool. If you're looking for an alternative, I recommend TextWrangler—it's both better and cheaper.
+
+References:1
+
+
+*
+
+*How to Make Your Website Mobile Today, InfoWorld, 20 September 2010
+
+*Mobilizing Your Web Site, Users Conference session at Macworld Expo 2011, 28 January 2011
+
+
+1 Yes, they're both me.
+
+A: You can use this script in the HEAD section of your index file.
+<script type="text/javascript">
+        var agent=navigator.userAgent.toLowerCase();
+        var is_iphone = (agent.indexOf('iphone')!=-1);
+        if (is_iphone) { window.location ="http://www.yourPage.com/iphone" }
+</script>
+
+and redirect your visitor to iPhone compatible page. See an example on http://www.barisoztekin.com
+
+A: You can do it from the environment settings passed to a CGI or app called by the server. The HTTP_USER_AGENT field describes the client connecting to the server, and is what is often used to branch or redirect based on a particular browser.
+The downside to sensing with that is it can be spoofed and/or changed in a lot of client software. 
+
+A: Typically this is done server side by evaluating the User Agent that is passed with the HTTP request. I believe iWeb just publishes static pages and doesn't support dynamic content. In that case you will probably need to resort to using JavaScript so that the redirect is performed client side.
+Be careful when using this approach though as it has the potential to create a poor user experience. It would be best to establish a way to allow the user to view the page if they really want to. Typically this is done with a cookie if the user selects that they want the 'normal' site rather than the 'mobile' one. 

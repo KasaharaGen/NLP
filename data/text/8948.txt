@@ -1,0 +1,9 @@
+Q: Once iOS files are backed up to iCloud, can you access them programmatically? Is there a way to get the same files you can find in a local backup of an iPhone / iOS device from iCloud programmatically? 
+Ideally, I would like to access them from a computer, but any access other than just restoring a backup onto an iOS device (and overwriting the current contents) as an intermediate step would be most welcome.
+For example, it would be useful to be able to retrieve the contents of my iOS address book data every week. Yes, there are other API for address book syncing, but I'm looking for a general case where I could get into iCloud data apart from the official restore procedure.
+
+A: Apple's iCloud programming guide states:
+
+Apps that use iCloud must be signed with iCloud-specific entitlements. These entitlements provide a level of security for your app by ensuring that only your apps can access the documents they create. 
+
+So I don't think it's possible to retrieve another app's data without compromising the application's private key, which should be safely stored on the application developer's computer. (And backups, hopefully)

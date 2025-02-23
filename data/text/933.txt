@@ -1,0 +1,53 @@
+Q: Why am I getting a "dubious ownership of file" error when Launch Agent runs my .plist file? I have a Launch Agent configured to run a .plist file for example: /Library/LaunchAgent/foo.plist. Inside this .plist, it is set to run during LoginWindow and Aqua.
+When I attempt to launch my computer and get to the login screen, this plist should run but instead gives the following error (in the console):
+
+launchctl: Dubious ownership on file (skipping): /Library/LaunchAgents/foo.plist
+
+When I attempt to login in to a non-admin account, it gives the exact same error message. When I attempt to login with an admin account, it works fine.
+I'll be honest, I don't know much about Mac OS X privileges and permissions.
+To create the file, I opened it up in emacs, with sudo on the admin account (e.g. by using the su command since the other account doesn't have sudo privileges) and then saved it.
+Which account do I need to use to create the file so that it works for all users?
+Do I need to use the sudo command?
+Do I need to change the file permissions (e.g. use chmod)?
+Is there an easy way to take an existing file and change its ownership instead of having to recreate the file?
+Could someone please explain why this error happens?
+
+A: If a plist is owned by root and writable by a user other than root, that's a security issue.
+You can change the owner to root with sudo chown root <filename>, and change the permissions with sudo chmod 644 <filename> (4 for read access, 2 for write access, 1 for execute access, added up. The first number is for the owner, the second for the group, the third for everyone.)
+
+A: From the launchctl(1) manpage’s description of the load subcommand:
+
+Note that per-user configuration files (LaunchAgents) must
+                be owned by the user loading them. All system-wide daemons (LaunchDaemons) must be owned by
+                root. Configuration files must not be group- or world-writable. These restrictions are in
+                place for security reasons, as allowing writability to a launchd configuration file allows one
+                to specify which executable will be launched.
+
+launchctl has several “Dubious …” messages. The launchd code for 10.6.7 (for example) has three such messages in its launchctl.c (see the function path_goodness_check).
+
+
+*
+
+*Dubious permissions on file (skipping): <pathname>  
+
+*Dubious ownership on file (skipping): <pathname>  
+
+*Dubious path. Not a regular file or directory (skipping): <pathname>
+To avoid these messages a pathname must be (#3) a regular file or directory1 (or a symlink to one) that is (#1) owned by root or the invoking user and (#2) not “group” or “other” writable (i.e. chmod go-w).
+1
+No named pipes, block/character special device nodes, local domain sockets, etc.
+
+Your file is probably owned by the admin user since you say that you do not get the message when logging in as that user (the pathname is owned by the invoking user in that case).
+To make the pathname work for other users, it should be owned by root.
+To arrange this, do:
+sudo chown root /Library/LaunchAgent/foo.plist
+
+
+A: Thanks for the answer (changing owner to root) -- that's all I needed.
+To make this a bit more than a 'me too' post... I got here via a convoluted path: I was getting "This API can only be used by a process running within an Aqua session" errors for a launchdaemon.
+Searching for an answer to that led me to Apple's technote on daemons and agents which explained how to resolve the 'Aqua session' error, but that left me with 'dubious ownership' issues. That's how I got here, where my final issue was resolved.
+Maybe adding all of that to this discussion will cause some search engine to link this page to one of the precursory issues, thereby saving some future adventurer some time.
+
+A: This is what happens when people do not know how sudo works. To disable services that are on files owned by your user just call launchtl without sudo. 
+
+A: for file in ~/Library/LaunchAgent owned by the user and not root dont sudo, if you do youll have to change the ownership since you are loading it from the root user

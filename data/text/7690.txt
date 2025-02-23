@@ -1,0 +1,11 @@
+Q: Connecting iPhone to hotel's ethernet network I am going on holiday tomorrow and the hotel I am staying in does not have wireless internet access in the bedrooms (awful oversight I know!).  They do however have ethernet points in each room.  I will only be taking my iPhone with me on this trip which obviously doesn't have an ethernet port.  However I do have a Netgear DG834PN modem-router which I can take with me.
+I had a thought that I could put the router in bridged mode and use it as a wireless access point so that my iPhone can utilise the ethernet network.  Does this sound correct?  If I understand bridging correctly, this will mean that I won't need to assign an IP address to my router as it will take the one handed out by the DHCP server in the hotel.
+Is any of this at all correct?  If not, do I have any options or am I stuck?
+
+A: Yes, this could work. It's an odd solution, but allowing your router to be a bridge, then presenting a wireless SSID to your iPhone is a way to make this work. Perhaps the hotel assumed guests would bring laptop computers, thus the hard-wired ethernet ports... 
+
+A: before you go, write down the MAC address of a PC. Tell your router to display the MAC address of the PC on the WAN port. Some Hotels do check and disallow the MAC of home routers.
+otherwise this is a good idea.
+
+A: Ignore the WAN port altogether and connect your in-room Ethernet to one of the LAN ports. Be sure to disable DHCP on the LAN side so that your router doesn't attempt to provide invalid addresses to your devices, or to other guests.
+No need for any complicated modes. Any home wireless router can be used this way. In fact, that's how I set up my wireless, since I use a separate dedicated router.

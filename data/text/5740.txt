@@ -1,0 +1,22 @@
+Q: Make locator.updatedb run daily on Snow Leopard w/o hacking /System/Library? On Snow Leopard, the locate database is updated once a week by a launchd job, /System/Library/LaunchDaemons/com.apple.locate.plist. I'd like to make the updater run daily, but AFAIK it's considered very bad form to edit anything in /System.
+What's the best way to change its StartCalendarInterval so it runs once a day?
+
+A: The way I understand it, that System folder launchd job does nothing but execute /usr/libexec/locate.updatedb itself.
+So simply create your own launchd job executing /usr/libexec/locate.updatedb that runs once a day.
+As a sidenote, here's a Super User answer which recommends using mdfind -name <filename> instead of locate so that you can use the Spotlight database which is continually updated.
+And this Ask Different answer has more info on creating launchd jobs if you need more help with that.
+
+A: The problem with 'locate' and with Spotlight is that it doesn't search every file. It used to be possible to work-around this by updating the updatedb as root, which would warn you that was a potential security hole (i.e. anyone with read access to the database could get a list of every file in any user's $HOME) but since most Mac users are the only user on their computers, that was not a huge concern.
+I finally got so fed up that I wrote my own script which will:
+
+
+*
+
+*make a plain-text index of every file, link, and directory
+
+*search that index using egrep
+
+*offer to restrict searches to $HOME or the current directory if certain arguments are given
+
+*if nothing is found in the index, offer to update the index, or search with mdfind
+You can download the script here [Dropbox link]. It should be fairly easy to understand how it works just by reading through it.

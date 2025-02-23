@@ -1,0 +1,8 @@
+Q: Why folders keep shifting their positions? I bought a new MacBook Pro 15-inch model with highest specifications in this June. I also installed newest version of Mac OS X, Lion (updated).
+Yesterday, I turned on my computer and noticed that some of the folders on my desktop were rearranged. Today, the same thing happened again. I would like to ask you what the possible problem could be?
+I did not touch any of the ".DS_Store" files.
+
+A: If you do not have auto arrange turned on (and it says "Arrange by: None", please try the following things.
+1) If you are only experience problems on the Desktop, but not in any other finder window, please delete the preference file com.apple.desktop.plist from your user/library/preferences folder
+2) If that does not solve problem, delete the .Ds_Store files in any folders you are having problems with, including the Desktop and let Lion recreate them
+3) Lastly, as I mentioned in your other thread, this does seem to be a known problem in Lion. Please keep an eye on this thread and this thread for other solutions and/or possible resolution in a future Lion update.

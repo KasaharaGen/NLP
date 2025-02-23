@@ -1,0 +1,14 @@
+Q: App that scans local network for shared folders? I'm looking for an application that can scan my local network and report any shared folders it finds.  I've tried iStumbler, but it only gives you information on machines that are sharing with Bonjour.  Anything out there that looks harder, ie. shows samba, nfs, etc?
+on edit
+The real issue here is that I have an external disk drive connected to my router, and I would like to make sure that the samba share I've created on it is working.  Basically I want a port scanner that is user-friendly and will give lots of information about what is really being exposed on the network.
+
+A: Finder by default will show shared folders for most services.
+For an more in depth look at what a machine is running you can always port scan the heck out of it. Then connecting is as easy as memorizing proper instructions over telnet or plugging into Finders 'Connect to Server' dialog.
+nmap (really sudo nmap) is one of the fastest, most informative port scanning tools out there. It spanks the pants off any GUI for speed and service comprehension. Try something like the the following.
+# [target ip] = Ip of the host to scan
+sudo nmap -PN -n -sV --version-all [target ip]
+
+
+A: Just to add more information, OS X has a portscan application since Panther (as far as I can remember). Network Utility (in /Applications/Utilities/Network Utility.app) will do a Port Scan.
+I lacks the power of nmap, but it’s a quick way to see if a service is running. namp is god anyway.
+

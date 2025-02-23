@@ -1,0 +1,30 @@
+Q: Cannot eject from Finder (Lion) I cannot eject anything from Finder, either by clicking the eject icon in the sidebar, or by dragging the icon to the trash (it does turn into an eject icon though). I'm using Disk Utility to get around this, but it's frustrating to have to open that up when I'm staring at Finder all day long. 
+This is a recent development, as it was working fine before. I haven't installed anything new that I can associate with when this started happening.
+ETA: I managed to fix this myself. Trashing the Finder and sidebar preferences and then restarting Finder did the trick.
+
+A: If this behavior persists past a reboot, you might need to go down some general problem isolation steps:
+
+
+*
+
+*Isolating issues in Mac OS X
+There used to be an article (it's gone or I can't find it at the moment) that walked you through setting aside the application preferences or testing this behavior in a new user. In your case - it looks like you figured it out, but I wanted to at least mention the official guide in case others have the same symptoms but a different cause.
+
+A: Easier way than trashing Finder is to restart its service by the following commands:
+launchctl stop com.apple.Finder
+launchctl start com.apple.Finder
+
+This should fix any glitches associated by Finder.
+
+A: EDIT:
+I have found and solved the problem:
+The reason why I could not eject from Finder was, because I apparently put a check-mark in Tinker Tool where I shouldn't have.
+This is one of the first things I do after freshly installing a macOS, take Tinker Tool, Onyx and so forth to tweak the system to my liking. Since this is a MacBook Air and it doesn't have a DVD drive, I must have thought, let's hide the eject function.
+Duh! This also eliminates the possibility to eject everything else, like DMG's, servers and so on.
+
+ORIGINAL POST:
+I'm having the exact same issue as OP but under Mojave. And it's also a recent issue that didn't exist from the beginning but I don't know what I have changed since that might have caused the issue.
+I cannot eject anything (external drive, network drive, mounted volume) from the Finder by clicking on the eject symbol. I get no reaction whatsoever. I CAN eject from Disk Manager.
+Restarting Finder with the launchctl command does not work, neither does deleting the Finder preferences neither in normal nor in safe boot mode. (I don't know what "sidebar preferences" are, but I also deleted desktop and dashboard prefs -- not effect.)
+Neither does clicking control, alt or command with the eject button.
+I'm flabbergasted as to why this happens and what could be the culprit. And also that it's quite hard to find anything about that issue on the internet.

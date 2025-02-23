@@ -1,0 +1,85 @@
+Q: How do I remove a user via single user mode in 10.7? I occasionally will setup a user's machine that has been in for repair beyond the simple re-install of the OS. For example: install a new hd, install the OS, create a user, install updates and then reboot into single user mode running a slew of commands to remove that user and give the machine back to the client with the welcome video on boot. 
+Below are the commands for 10.5 and 10.6 I have used over the years that is a walk-thru for any tech to accomplish regardless of experience. The 10.5 one has worked with 10.6 too, with the exception of line 8 or 9 due to some changes.
+I'd like to find a list of commands or a script or something that would be the most proper and efficient way to do this in 10.7. Remove the user, delete any trace of it and on next boot return to the new user setup screen.
+Removing a user and returning to the account setup screen (10.5)
+
+
+
+*
+
+* + s at boot (Single-User Mode)
+
+*mount -uw /
+
+*launchctl load /System/Library/LaunchDaemons/com.apple.DirectoryServicesLocal.plist
+
+*dscl -f /var/db/dslocal/nodes/Default
+
+
+Command prompt changes into Directory Services Command Line Tool
+
+
+*
+
+*cd Local/Default/Users
+
+
+ls - outputs a list 
+
+
+*
+
+*delete 
+
+*cd ../Groups
+
+*delete admin GroupMembership 
+
+*delete staff GroupMembership 
+
+*exit
+
+
+You are now at the Regular Command Prompt
+
+
+*
+
+*rm /var/db/.AppleSetupDone
+
+*rm -rf /Users/
+
+
+Choose one
+
+
+*
+
+*shutdown -h now (Shutdown)
+
+*shutdown -r now (Shutdown and Restart)
+
+
+A: There are several problems with the script you posted.
+Don't remove /Users/Shared - iTunes needs it and will fail on certain store and sharing operations.
+dscl on Lion will still whine if you start it (it's looking for the missing plist) - even if you launch /System/Library/LaunchDaemons/com.apple.opendirectoryd.plist as Ingmar Hupp has suggested.
+I've never been one to worry about cleaning up the groups since I'm deleting user 501. The system will just add UID 501 back into the Admin and Staff groups the next time the Setup Assistant boots, so I do the following: (assume the short name of the user 501 is test)
+
+
+*
+
+*⌘+S
+
+*/sbin/mount -uw /
+
+*cd /var/db/dslocal/nodes/Default/users/
+
+*rm test.plist
+
+*rm -rf /Users/test
+
+*rm /var/db/.AppleSetupDone
+
+*halt
+I do use the official Users & Groups Preference Pane to delete all users except 501 and/or create the test user as 501 as needed since launchd can have jobs stuck if the users you are clearing aren't trivial users set up for simple updates as your case allows.
+I would avoid saving a WiFi password or setting up WiFi outside the user account or use ethernet for your updates if you want to be fastidious about leaving as little of your settings behind (especially if the SSID/name isn't generic like Apple Network or has WEP/WPA keys).

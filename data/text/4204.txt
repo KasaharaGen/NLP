@@ -1,0 +1,13 @@
+Q: iPhone Tweak to override http links to other Apps Is there already an app or would it be possible to have an app which:
+Catches http:// links that are clicked from any application and can redirect them to other apps other than safari.
+For example a link to twitter could be set to goto Tweetbot, so  http://twitter.com/adamdempsey would be clicked but it would actually load tweetbot://user_profile/adamdempsey
+I know obviously this would be for jailbroken phones only, just asking if it could happen?
+
+A: There's a JailBreak tweak called Browser Changer, and it does almost exactly what you want. It's in the standard repositories in Cydia, and it's free. I've used it to make all links automatically open with Dolphin Browser. It works quite well, but it can only make one app open all http links, so other than that, there isn't anything that does exactly what you want.
+
+A: To the best of my knowledge, it is not possible to write an application that listens to http://anything. The fact that http://maps.google.com addresses shell out to the Maps application is a special case likely built explicitly into MobileSafari.
+All other iOS applications may register on a special URL. For example, many Twitter clients register for the twitter:// protocol and usually have references like twitter://messages, twitter://replies, etc.
+Unfortunately I don't know of a specific app to support customizing this in the Jailbreaking community.
+
+A: There is now a tweak called LinkOpener by HASHBANG Productions on the BigBoss repo which does exactly this with Facebook, Twitter and eBay links.
+They are working on a new version with setting which will allow you to choose if you have multiple applications, eg TweetBot and Twitterific etc.

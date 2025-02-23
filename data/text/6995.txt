@@ -1,0 +1,102 @@
+Q: DNS lookups fail with e.g. `ping`, but work with `host` I'm using pfSense 2.0rc3, and I've set it up as a DNS forwarder and enabled "Register DHCP leases in DNS forwarder" and what I understand are all the appropriate settings to get DNS server for local lookups.
+It works as expected with Linux and in particular I can run host abc and ping abc (and other applications) and they all work as expected.
+However in Mac OS X Lion 10.7 it does not work as expected. In particular, only lookups with the host command seem to work, i.e.
+$ ping abc
+ping: cannot resolve abc: Unknown host
+
+$ host abc
+abc.local has address 192.168.1.128
+
+$ ping abc.local
+ping: cannot resolve abc.local: Unknown host
+
+$ host abc.local
+abc.local has address 192.168.1.128
+
+Why does the lookup for abc work when using the host command but fail with ping (and other applications)?
+Thanks for reading.
+
+A: From the host(1) man page:
+
+Mac OS X NOTICE
+The host command does not use the host name and address resolution or the DNS query routing mechanisms used by other processes running
+on Mac OS X.  The results of name or address queries printed by host may differ from those found by other processes that use the Mac OS
+X native name and address resolution mechanisms.  The results of DNS queries may also differ from queries that use the Mac OS X DNS
+routing library.
+
+Unfortunately, there's no information on how exactly the host command resolves host names. This behavior makes it somewhat useless for debugging, IMHO.
+
+A: Basic history ... nslookup was the command, but it had it's own implementation of all it's resolver routines.  What started happening was that system resolvers on different platforms worked differently from nslookup.  Sometimes, this would produce some rather different results.
+The host and dig commands were created as the "rewrite" for nslookup.  They statically link in the system resolver functions.  The system resolver is a collection of functions in the standard C library of a UNIX or UNIX-like system (on Mac OS X, these functions are part of the netdb library).  By doing this, the host and dig commands always function the same way that the system resolver does for whatever OS they are built for, but they do not rely upon it.  In this way, they are excellent diagnostic tools in cases where the system resolver is malfunctioning.
+NOTE:  Host and dig both read the nameserver list from /etc/resolv.conf unless they are given a specific nameserver to talk to.  Only the host command uses the search list in the /etc/resolv.conf file; dig does not, which is why one must always give dig FQDN to resolve anything.  Both commands are otherwise fully self sufficient; e.g., the /etc/resolv.conf file is the only thing not in the binary file that they use.
+mDNSresponder is Bonjour.  I haven't dug into it too deeply, but I suspect that this config setting isn't fixing this or at least, not directly.  I've just experienced this same problem on Mac OS X 10.9.1 and simply restarting mDNSresponder fixed it for me.  I've never seen this problem before on 10.5 -> 10.8/10.9 on any other system.  Also, GUI applications were unaffected by it, it was only command line tools, like ping and ssh that broke.
+If I find time to dig through the library a bit more, I'll see if I can find a more complete explanation.
+
+A: I've put together a shell script to automate the fix (and an uninstaller if you need it later), here: 
+https://github.com/michthom/AlwaysAppendSearchDomains
+This was to give out to less-technical users at work that might shy away from manually editing system files.
+
+A: .local is reserved for multicast. mDNS and DNS servers on the same network using .local can be problematic.
+
+A: Host is appending the .local dns suffix. Ping is not. If you find this disconcerting, you can add .local as a default suffix in the network system preferences and the system will add that when attempting to resolve hostnames.
+
+A: Why they made this change, I don't know, but it's driven me crazy for a while. 
+I don't know why things work for host, but not ping, but I think it has to do with the nature of these two utilities. Ping is a simple (although very helpful) diagnostic utility for dropping packets on the wire that should get echoed back to you. The hostname lookup functionality is just a side effect of the job and handed off to the system's recursive resolver (I believe -- I haven't verified by checking linked libraries or anything of that sort). Host's main job is to do DNS name resolution, so it implements its own recursive resolver. 
+Apple's recursive resolver is mDNSResponder. For some reason, the version of mDNSResponder in Lion needs the "-AlwaysAppendSearchDomains" command line option to behave as it did in Snow Leopard (at least).
+Here's a quick way to fix it:
+sudo sed -i .orig '/ProgramArguments/,/<\/array>/ {
+s/\(<string>-launchd<\/string>\)/\1\
+                <string>-AlwaysAppendSearchDomains<\/string>/
+}' /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
+
+(There should be two tab characters at the start of the second-to-last line above, but I couldn't figure out how to get this little editor to insert tabs, so I added 16 spaces. Either should work, but the tabs fit the spacing of the original file better.) 
+This will add the "-AlwaysAppendSearchDomains" argument to the mDNSResponder startup plist file (and save a backup copy), but since this is controlled by launchd, that system needs to be told to restart mDNSResponder.
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
+
+Now, if you check your running mDNSResponder process, you should see it running with your new argument:
+ps auxww | grep mDNSResponder
+
+(Props to http://www.makingitscale.com/2011/fix-for-broken-search-domain-resolution-in-osx-lion.html and http://kavassalis.com/2011/07/wtf-bug-in-os-x-10-7/, where I found my answers to this problem.) 
+
+A: In case you tried all the above and nothing worked then you can add your nameservers and search paths to System Preferences>Network>Advance(bottom right of the window)>DNS tab 
+This updates /etc/resolv.conf and ping should now work. Updating the search path by editing /etc/resolv.conf doesn't really work but this does for some reason.
+UPDATE:
+Editing /etc/resolv.conf doesn't work because the OS rewrites the file based on the System Preference pane setting.
+
+A: I lack sufficient reputation to comment on Lamont Peterson's post. Restarting mDNSresponder worked for me on Mac OS X 10.7 (Lion). Unlike Lamont Peterson, this issue caused problems with one GUI application for me -- Safari could not resolve public or private hostnames. Here are the specific steps that I did and that I suspect Lamont Peterson also did:
+sudo launchctl unload /System/Library/LaunchDaemons/com.apple.mDNSresponder.plist
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.mDNSresponder.plist
+
+The unload shuts down mDNSresponder and the load starts it up again.
+This resolved the issue immediately; no reboot required.
+You can check that it has restarted successfully by using the list command:
+$ sudo launchctl list | grep '^PID\|mDNSResponder'
+PID     Status  Label
+708     -       com.apple.mDNSResponder
+-       0       com.apple.mDNSResponderHelper
+
+The presence of a Process ID (PID) means it is running. 708 will vary as it is assigned by the OS. If the status shows something other than a hyphen or zero, something went wrong.
+I do not know how mDNSResponderHelper interacts with mDNSResponder; I've only ever had to restart mDNSResponder.
+
+A: In one line:
+sudo kill $(ps ax | grep mDNSResponder | grep -v grep | grep -v Helper | awk '{ print $1 }')
+
+
+A: pls note on OSX names can be non-standard, so for completeness:
+
+
+*
+
+*FQDN are pingable 
+
+*names in "hosts" files are pingable
+
+
+Mac names are NOT in general: two fixes must be done:
+a) change spaces to "-"
+b) add .local
+so for example my Mac:  ingconti's MacBook Pro
+will be pingable at: ingcontis-MacBook-Pro.local
+And opening prefs you can see:
+

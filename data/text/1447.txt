@@ -1,0 +1,12 @@
+Q: Easy way to get gcc and make in OS X I want to install a few CPAN modules in OS X.
+It filed since the module I want requires make and gcc to be installed. A quick google on the subject tells me that I need to install "Apple Developer Tools".
+Do I really have to install the entire Xcode package (it's a 3 GB download) just to get make and gcc?
+
+A: I would highly recommend installing the developer tools. They are free from Apple. 
+If you really don't want Xcode after the fact, you could just remove the Application itself. You may also be able to not install any documentation, which I think also takes a bit of space. 
+
+A: You can use osx-gcc-installer to get GCC and related tools without installing Xcode.
+Note that there might be legal problems with osx-gcc-installer, and for this reason make-gcc-without-xcode has been made as an alternative. It requires the Xcode installer package, and generates an archive with only the necessary stuff -- no Xcode.
+
+A: While I would certainly suggest that you download and install the developer tools from Apple, you can obtain gcc, etc. in any number of other ways. My favorite alternative would be to obtain it from http://www.macports.org/
+There is a nice GUI for it here: http://porticus.alittledrop.com/

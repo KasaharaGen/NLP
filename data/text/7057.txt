@@ -1,0 +1,20 @@
+Q: How do I connect a Mac to an analog TV? Is it possible to connect my MBP with a Thunderbolt port to an old CRT TV? I think the TV has composite inputs at least, and maybe S-Video too.
+I'd also like to use other computers with the same TV, including one with a Mini DisplayPort and one with a DVI output (I think).
+I do video-editing and it's helpful to see my work on a TV.
+
+A: Instead of the 2-part chain Mini-DisplayPort-to-VGA-adapter --> VGA-to-RCA/composite-or-S-video-converter,
+you could use this one-step converter:
+Mini DisplayPort/ThunderBolt to RCA-composite/S-video converter (NTSC/PAL) (Amazon.com)
+Mini DisplayPort/ThunderBolt to RCA-composite/S-video converter (NTSC/PAL) (HDTV Supply)
+In addition to the above links, here is a corresponding Google search.
+
+
+A: The latest Mac models with either Thunderbolt or Mini DisplayPort can't directly output composite/S-Video (older Macs with micro-DVI could do this when using the right adapter).
+Therefore you need a converter box (powered via USB or separate power supply) that takes a VGA signal and converts it to composite or S-Video, which can be connected to the TV. You need to get one that can supply the correct video signal for your TV (PAL/NTSC/SECAM), although most will support all of those. These converters are available in a wide price range - generally the more expensive, the better the quality (of the signal).
+
+You will also need a Mini DisplayPort to VGA adapter to get a VGA signal from your Mac (this also works with the Thunderbolt MBP). For the computer with DVI output you will hopefully have a graphics card that can output a VGA signal, in which case you merely need a DVI to VGA adapter. If it outputs only DVI, you're in trouble, as you'll need another converter that converts this digital signal to a VGA one.
+Alternatively you could get a USB graphics card that outputs TV signals directly, although I can't seem to find one right now. This would be act like an additional monitor, which may be preferable.
+In case your TV has SCART inputs (Europe mostly) instead of composite/S-video, you'll also need a SCART adapter, although this may be included with some of the products mentioned above.
+The whole setup would look like this:
+Mac -> Mini DisplayPort to VGA adapter -> Converter box -> [SCART adapter] -> TV
+

@@ -1,0 +1,17 @@
+Q: How do I get notified when the Dropbox app is updated? I realized that I was running a very old version of Dropbox for Mac. Somehow I was not notified about the latest updates. I was expecting the same behavior as apps like 1Password.
+In the past, I missed out Selective Sync by few months which I was eagerly waiting for. 
+I was running 1.1.35 (Under Preferences/ Account) and the latest version is 1.1.43 . 
+Where can I find the config to let Dropbox auto-update/prompt me on every release, similar to 1Password. 
+
+A: Try MacDropUpdate.
+It's an automatic updater that automatically updates your Dropbox to the latest forum build of Dropbox. Works on OS X Leopard|Snow Leopard|Lion.
+Edit: it's also Growl-enabled, so you may get notified whenever Dropbox's been updated.
+
+A: Inspired by this question, I made an RSS feed for Mac betas. You can find it at http://feeds.feedburner.com/dropboxmacbeta
+The official RSS feed https://www.dropbox.com/release_notes/rss.xml has the release notes, the feedburner feed links directly to the DMG so you can download it, and it links to the forum discussion for that specific build so you can see if there are any details/issues that other people have found.
+(More info available at http://tj.luo.ma/post/9957496270/dropbox-rss if you want it.)
+
+A: Normally Dropbox pushes updates out in the background without you detect it - but not all updates will be pushed - it appears that it is only critical ones (or major releases).
+The latest Lion compatible release is however 1.2.28 (which is still a beta) - http://forums.dropbox.com/topic.php?id=43550&replies=16 
+
+A: "Bodega makes the process painless by automatically checking the apps on your hard drive, and then ensuring you have the latest versions installed on your Mac. If you have an app that’s out of date and in the Bodega catalog, Bodega conveniently downloads and even installs the update for you."

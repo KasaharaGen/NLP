@@ -1,0 +1,11 @@
+Q: Why does OS X prevent access to a folder if it ends with the word ".service"? I am sharing a win 7 folder and trying to access it from Osx.
+Everything works but if the folder is named something ending with the words ".service" the folder is not accessible any more, the icon is changed and if I try to access it I get the message below.
+If I remove the word "service" the folder is accessible again.
+The machine is hosted inside a VmWare Fusion machine but I don't think this could be a problem, maybe something related to osx-bsd naming for services.
+As I am working on folders where I can't change the names is there a way to prevent this behavior?
+ 
+
+A: If Finder thinks it is a bundle, maybe you can right-click on it and "Show Package Contents"...
+
+A: I don't think there's anything you can do to prevent it.
+OSX has decided, for whatever reason, that it's a service bundle (something intended to show up in the Services menu).  I'd consider filing a radar about it, but have no idea how likely it would be that Apple would do anything about it.  (Were it my call, I would have done something like requiring a bundle to have a valid Info.plist and treat it as a normal directory otherwise.)

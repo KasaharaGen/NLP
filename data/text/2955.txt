@@ -1,0 +1,36 @@
+Q: What is the md5/sha1 checksum for Xcode 3.2.6 and iOS 4.3 SDK final? I downloaded the iOS SDK file xcode_3.2.6_and_ios_sdk_4.3__final.dmg from the Apple developer site but I'm not sure about its integrity.
+Could anyone provide me the md5 or sha1 checksum for it?
+
+A: I believe that opening a .DMG file automatically verifies it. 
+Basically, it contains a checksum in the file (or are you worried about malicious packages, rather then just corruption?). 
+Anyways, when I open a .dmg file, I see the message box with a progress bar say "Verifying" for a while, before it actually mounts.
+
+Asmus added in a comment above:
+"you can use hdiutil verify /path/to/image.dmg on the command line to compare an image against its internal checksum."
+
+A: Having an external checksum would still be a benefit. I don't have the resources to download the 4G file without interruptions (power/bandwidth) and I would really like to get it from "somewhere else" where the download technologies are more liberal but be reasonably assured that the file would not be tampered with by some evildoer.
+
+A: For what it is worth, here are some of the hash values for the copy of the file that I downloaded:
+% md5 xcode_3.2.6_and_ios_sdk_4.3__final.dmg 
+MD5 (xcode_3.2.6_and_ios_sdk_4.3__final.dmg) = 7c202dee660271397112e1eef96e5f17
+% openssl sha1 xcode_3.2.6_and_ios_sdk_4.3__final.dmg 
+SHA1(xcode_3.2.6_and_ios_sdk_4.3__final.dmg)= b58be47d6d273b694904eba8fd7df629188fd1f8
+% openssl sha512 xcode_3.2.6_and_ios_sdk_4.3__final.dmg 
+SHA512(xcode_3.2.6_and_ios_sdk_4.3__final.dmg)= 86d8f84a6a0d5e863dacd1f926cc4a7997a140a7748ea03ce7ce774353fe2fa09fb58ffd86ba8f20843c2698faa2479bf93f0df3741dc6c8f59a17d8f6c2b95d
+
+The hashes can be useful to make sure you are not dealing with malicious modification, but if you are just worried about corruption during transfer, then the internal checksums should be sufficient.
+
+A: I wrote some unattended scripts that automate the download and installation Xcode and/or Xcode CLT.  
+It is most likely that Apple watermarks DMGs with your Apple ID.
+Supporting Evidence: Try googling for the md5, sha1, etc. of the dmgs.  0 results likely.
+Try this:
+
+
+*
+
+*Download a file using different accounts.
+
+*Use a binary diff tool to compare them.
+
+
+Betting against bitsquatting, MITM long-tail issues and other things end-users cluelessly ignore/dont understand are unnecessary, avoidable gambles.

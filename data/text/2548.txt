@@ -1,0 +1,13 @@
+Q: Toggle Ink's WriteAnywhere with AppleScript How can you easily toggle the Ink preference pane setting "Write Anywhere"?
+
+A: With this script you can toggle the Write Anywhere setting on and off, however it opens the System Preferences in the background:
+tell application "System Preferences"
+    reveal (pane id "com.apple.preference.ink")
+end tell
+tell application "System Events"
+            tell application process "System Preferences"
+                click checkbox "Allow me to Ink in any application" of group 1 of tab group 1 of window "Ink"
+            end tell
+end tell
+
+I use it for toggling WriteAnywhere from the "Radial Menu" of my Wacom tablet.

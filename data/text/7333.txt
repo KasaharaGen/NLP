@@ -1,0 +1,20 @@
+Q: How to send 'print' key with RDC (Remote Desktop Connection)? I use Microsoft's RDC on Mac. I need to click on print key to have some screen capture, but Mac Keyboard doesn't have one.
+How do I send print key with Mac through RDC?
+
+A: Try Option + F4- it worked for me!
+
+A: 
+The MS RDC has a preference menu so that you can customize the shortcuts.
+
+A: Try using the virtual keyboard windows has under the "accessibility" programs menu
+
+A: Shift+Control+3
+⇧+Ctrl+3
+It worked for me! (I'm using rdesktop on Linux > Windows Server 2012 R2, with -K option).
+
+A: The print screen command on a Mac is:
+Shift+Command+3 
+⇧⌘3
+So on Windows it would most likely be:
+Shift+Control+3
+⇧Ctrl3

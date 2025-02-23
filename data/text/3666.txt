@@ -1,0 +1,10 @@
+Q: Getting IP address of hotspot connection I want to find out the IP address of my iPhone Hotspot connection.
+I can enable it, and connect to it with a laptop, etc - but I want the IP address so I can telnet to the iPhone (I've set up the socket server software on the iPhone).
+Any ideas?
+
+A: Look at your 'router' or 'gateway' address.  Open up the network control panel, select the iPhone connection, and the address should be displayed there, no?
+Alternately it can be found by issuing an 'ifconfig' command in the terminal.
+Failing all that you could get the external IP by browsing to www.whatsmyip.com and use that instead.
+
+A: Depends what you mean. Do you need to check the "public" address? IE the address of the iPhone on the internet? In that case visit www.whatismyip.com.
+Do you want to see what address your iPhone is to your laptop connected via wifi to your iPhone? In that case on Windows you can check by going to properties under network. On mac you can Goto the Airport Icon, Open network preference, advanced, TCP/IP or open a terminal and type ifconfig.

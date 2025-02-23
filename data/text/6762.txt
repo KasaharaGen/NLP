@@ -1,0 +1,9 @@
+Q: My Mac Pro boots into recovery mode every time it boots up My Mac Pro boots into recovery mode every time it boots up. I have to select the start-up disk when in recovery mode.
+How can I make so it starts up in Mac Os X Lion every time without it going into recovery mode?
+
+A: The startup disk system preference is the usual method to set this. As the setting is written to NVRAM, you could also just reset that and the mac should prefer the OS over the Recovery HD
+If you can't select the Mac OS X, re-run the lion installer. 
+
+A: I had the same problem. Resetting NVRAM didn't solve the problem for me and my MacBook Pro late 2011 still booted to macOS Sierra Recovery. However, from there, I chose the boot device: from the upper-left menu, I selected my hard disk. After that I restarted and it started correctly.
+
+A: Once the recovery mode started, just click on  in the menu and choose restart.

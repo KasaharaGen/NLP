@@ -1,0 +1,33 @@
+Q: My Desktop seems to be "locked". How can I fix this? I am having some problems with my Desktop on a relatively new Lion install.  I can't move folders around (when I try, the icon gets the slashed-O "no" symbol and they bounce back where they came from), and the "New Folder" menu item on Finder is grayed out (and, likewise, shift-cmnd-N does nothing).
+I've tried the following:
+
+
+*
+
+*Making sure the "View" "Sort by" setting is set to "None".
+
+*Checking permissions.  "Get Info" shows all access control entries with "read and write" permissions (including "everyone" listed twice), and ls -le shows:
+drwxrwxrwx@  31 username username 1054 Nov 23 23:25 Desktop
+0: group:everyone allow list,add_file,search,add_subdirectory,readattr,writeattr,
+readextattr,writeextattr,readsecurity
+I also ran "Repair File Permissions" on the main hard disk.
+
+*Deleting my ~/Library/Preferences/com.apple.finder.plist file, and having that regenerate after a restart.
+
+*Confirming that the Desktop is not locked, both through Finder "get info" (confirming that the "Locked" checkbox is not checked) and through ls -lO (no flags listed).
+Further, I have noticed that although I cannot create a new folder on the Desktop using shift-cmnd-N or the Finder menu, I can "mkdir" a new Desktop folder in the terminal.
+Any ideas?
+Update: I may have found a clue -- the result of xattr -l Desktop shows that the com.apple.FinderInfo attribute is set, with bytes 9 and 10 set to 20 and 10 respectively.  Is this normal?  (By contrast, my older Mac has no attributes set on Desktop.)
+
+A: Aha!  My clue was indeed the right lead (I think) -- removing the com.apple.FinderInfo attribute with
+`xattr -d com.apple.FinderInfo ~/Desktop`
+
+appears to have fixed the problem.  See https://discussions.apple.com/thread/2741291?start=0&tstart=0 for a few more details.
+
+A: I had the same problem with my MacBook Air. Restarting the Mac did the trick, after changing the permissions to "Read & Write".
+
+A: For me, just a restart took care of the problem, after repairing permissions, and other suggestions did not work!
+
+A: Was having this problem with my Desktop folder. Was still getting Operation not permitted errors with these commands. What did work was Duplicate the data to another folder and then sudo rm -Rf 
+HTH someone else.
+David

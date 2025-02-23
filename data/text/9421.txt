@@ -1,0 +1,22 @@
+Q: Where does Lion's autosave feature save past versions? I just plugged in a USB stick, edited a text file a few times, and found that I could browse through the revision history of the file, even though it's on an external drive. Are these revisions saved on the USB stick? Where exactly?
+
+A: There are a couple SQLite databases located in a hidden folder on the root of your hard drive that are tasked with tracking the files and the differences between the versions.
+The directory is:
+
+
+*
+
+*/.DocumentRevisions-V100
+
+
+The two databases are:
+
+
+*
+
+*/.DocumentRevisions-V100/db-V1/db.sqlite
+
+*/.DocumentRevisions-V100/.cs/ChunkStoreDatabase
+
+
+Source: http://arstechnica.com/apple/reviews/2011/07/mac-os-x-10-7.ars/14#versioning-internals

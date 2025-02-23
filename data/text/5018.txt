@@ -1,0 +1,21 @@
+Q: Is there an application for Windows7 (in bootcamp) to adjust the level of brightness of screen of iMac? I want to darken the screen of my iMac because it is too bright for me. I use an application called shades, but it doesn't work in bootcamp.
+I found the software for Windows Vista called VistaShades (link). Is there a similar application for Windows7?
+
+A: You do not need any software to do this. The Boot Camp drivers from Apple supports changing the brightness of the screen (using the keyboard modifier keys).
+The drivers are already included in your Mac OS X DVD for installing Boot Camp Utilities. Otherwise, you can download the installation files using Boot Camp Assistant at /Applications/Utilities.
+See here for more details.
+
+A: Apple Bootcamp seems to have an inferiority complex. The solution that I have found to make Bootcamp brightness keys work properly is:
+
+
+*
+
+*Bootcamp.exe, Properties, Compatibility, Change settings for all users, Run this program as administrator.
+
+*Remove startup item using msconfig for bootcamp (as startup items don't work with run as admin)
+
+*Then create a Task Schedule for Bootcamp run as admin.
+
+A: Even without Apple's BootCamp, you can still dim your screen brightness with the help of the Mac Brightness Control software utility. However, it's NOT free.
+
+A: If you have the Apple wireless keyboard, The F1 and F2 buttons dim and brighten the screen.

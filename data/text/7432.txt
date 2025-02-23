@@ -1,0 +1,29 @@
+Q: Firing up Terminal from an Automator Workflow? I quite often use the python -m SimpleHTTPServer command in the Terminal to fire up a webserver for testing apps.  Having just learned the basics of the Automator, I figured this would be a great use for it - having added the following as a service I can now right-click on a folder and have a webserver launch pointing at that folder.
+cd $1
+python -m SimpleHTTPServer 8000
+
+The only problem I have, is the lack of output from the workflow.  Doing it manually I have a Terminal window displaying the requests coming in and enabling me to Ctrl+C to end the webserver.
+The Automator workflow is silent and I have to open Activity Monitor and quit Python to close it.  Is there a way to have it run the script in a Terminal window?
+
+A: Figured out how to do it myself based upon adapting the following article.
+http://hints.macworld.com/article.php?story=20050827164648766
+Added a line in to run the python command:
+on run {input, parameters}
+  tell application "Terminal"
+    activate
+    if (the (count of the window) = 0) or ¬
+     (the busy of window 1  = true) then
+      tell application "System Events"
+        keystroke "n" using command down
+      end tell
+    end if
+    do script "cd \"" & (POSIX path of ¬
+     (input as string)) & "\"" in window 1
+    do script "python -m SimpleHTTPServer 8000" in window 1
+  end tell
+  return input
+end run
+
+
+A: If you like using Automator try the Growl Notifier in Automator (below is an example). Growl is extensible to almost any application/script/service on OS X. It works really well for showing output for just about anything imaginable.
+

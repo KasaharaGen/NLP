@@ -1,0 +1,93 @@
+Q: Why is Git not found after installing OS X Lion? I just upgraded to OS X Lion and now cannot initialize Git where it used to work fine:
+$ git add .
+
+-bash: git: command not found
+
+I'm new to Git and to programming, so I'm sure it's a quick fix, any help is greatly appreciated.  Thanks guys!
+
+A: If /usr/local/git already exists, you'll need to either add it to your $PATH or make a symlink placing the symlink inside a directory that is in your existing PATH.
+A common practice is to make /usr/local/bin if it doesn't exist and add a link:
+sudo -s
+mkdir -p /usr/local/bin
+ln -s /usr/local/git/bin/git /usr/local/bin/git
+exit
+
+
+A: Lion (and Snow Leopard) didn't ship with git - so perhaps the way you installed git didn't survive the upgrade. You'll need to find your copy of git or just get a new copy. Using spotlight to search your Time Machine backups might be fruitful to find the files and know if it's a path issue or the binaries are truly gone after Lion migrated your data. 
+All of your repos stored in user space are fine. Do try to get the same or newer version of git. 
+The command line mdfind -name git will list all files that spotlight has seen with git in the name. Most installations of git should survive an upgrade to Lion and you only have to clean up your environment or link to the binary from somewhere in your $PATH.
+Xcode 4(4.0-4.2) drops git into /Developer/usr/bin along with most of the other tools you need like make and gcc. It might be simplest to maintain git after getting the (currently) free Xcode from the App Store. Xcode 4.3 puts giy and other tools in Applications/Xcode.app/Contents/Developer/usr/bin.
+To avoid issues with different versions, you might want to make sure any old versions are gone from your hard drive. (and certainly from your $PATH)
+
+A: Step 1: Reinstall git (I just installed the Snow Leopard version from here) if it's not in:
+
+/usr/local
+
+Step 2: Open Terminal and do the following:
+
+cd /etc
+sudo nano bashrc
+
+Then in nano at the top of the file write (as aaron suggested)
+
+PATH=/usr/local/git/bin:$PATH
+
+Press Ctrl+X to quit nano and press Y to save. Then exit terminal and reopen and git should be working for you.
+
+A: Possibly, you had installed git through MacPorts or Fink.
+I think it will take some time to have a release of either for Lion... or possibly you should try and reinstall it...
+Indeed, it seems that you need to install MacPorts from trunk to get Lion compatibility...
+Fink has also got some hints about upgrading to Lion.
+
+A: If you have XCode installed, the best solution is Xcode -> Preferences -> Downloads -> Install Command Line Tools.
+This put git (among other things) at /usr/bin/git.
+If you don't have Xcode installed, then installing it just for git would definitely be overkill.
+
+A: I think you will find that Git is still installed on your system.  It looks like the PATH is just messed up.  Check to see if /usr/local/git still exists on your system.
+I just added the following to my ~/.bashrc file and everything is back to normal.
+PATH=/usr/local/git/bin:$PATH
+
+To be more specific, this site - http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html - details the difference between .bashrc and .bash_profile. If you use Mac's terminal with Git, then adding the above PATH specification to your .bash_profile will do the job. Of course, you'll have to close the Terminal window and open a new one because the .bash_profile file is loaded on a Terminal window's opening.
+In summary, adding this to .bash_profile would work too.
+
+A: From StackOverflow: 
+export PATH=$PATH:/usr/local/git/bin/
+
+then run source ~/.bash_profile in Terminal
+Link to the post there: https://stackoverflow.com/questions/6810059/git-on-mac-os-x-lion/6810082#6810082
+
+A: If you are using brew, just run this command from the terminal.
+brew install git
+
+A: This happened because git stop being part of the $PATH (for some migration reason).
+There is a very simple way of fixing this in OS X:
+In OS X, you can add variables to $PATH by changing the file
+/etc/paths
+
+so, you can put back git doing the following:
+sudo vim /etc/paths
+
+add /usr/local/git/bin to the end of the file, save, and exit. Restart shell. Git should work.
+
+A: Just download the newest version from here: http://code.google.com/p/git-osx-installer/
+Install it, open up a new terminal, and it works like before :D
+
+A: Same issue here, downloaded and installed the snow leopard version from google code and off I went. Needed to quit and re-open terminal though...
+All is well again..
+
+A: When there is git path already,
+just add directory to your PATH variable. 
+echo 'export PATH=/usr/local/git/bin:$PATH' >> ~/.profile
+
+A: I fixed it by downloading and reinstalling git from here.
+
+A: I used the App Store to install Xcode and it just gives you an all in one app blob.  However it DOES have other apps and installers in it.  I just needed git so the path from that is 
+export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin
+Its a bit of a hack, but I don't use Xcode for a lot of stuff.  Add to your bash config as other posters described and your good to go
+
+A: You don't need to modify the path or install the Xcode command-line tools. Just use the "xcrun" utility from the Terminal:
+http://www.cocoanetics.com/2012/07/you-dont-need-the-xcode-command-line-tools/
+
+A: I solved it by following advice on this site:
+http://blogger.forgottenskies.com/?p=740
+It was just a pathing issue. To be honest, I expected a whole lot more issues. The upgrades are getting smoother. I remember when I upgraded from Tiger to Leopard, just about everything "open source" broke..

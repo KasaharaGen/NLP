@@ -1,0 +1,35 @@
+Q: Mac Pro 2007/2008 fresh Snow Leopard install with GT120 graphics card? I have a Mac Pro from late 2007, early 2008 and I want to perform a clean install but nothing comes up on my monitor. The graphics card is an NVIDIA GT 120 and the hard drive is an Intel SSD. I am assuming the graphics card is the problem but all comments point to it being supported. 
+How do I do a clean Snow Leopard install with the given hardware?
+
+A: The Apple NVIDIA GeForce GT 120 Graphics card is not compatible with the 2007/2008 Mac Pro, so in order to do the fresh install you will want to remove the GT 120 and re-install a compatible graphics card that will work with the 2007 / 2008 generation of Mac Pro.
+As noted on Amazon the following system requirements are noted for the Apple NVIDIA GeForce GT 120 Graphics card.
+
+Product Features
+  
+  
+*
+  
+*Requires Mac Pro (Early 2009 with 1066MHz DDR3 memory) with PCI Express 2.0 slot
+  
+*Requires Mac OS X v10.5.6 or later
+  
+
+
+A: You have to keep the stock video card in the first slot, and the new one in the second slot, then OS X should boot because it senses the EFI patched video card and allows you to see it.
+
+A: If you have reset the NVRAM to clear the device tree and let the mac have the best chance to run the installer, you still have some options to resolve this.
+
+
+*
+
+*A newer retail OS X DVD should
+have the original and updated
+drivers to drive that monitor
+(making a failure more likely
+hardware and less of a driver
+question) than the DVD that originally shipped with that model.
+
+*Taking the drive (or the whole Mac) to a shop that has all the boot images and several retail OS DVD on hand might be needed.
+
+
+DeployStudio running on another mac has saved my day more times than I can count. Their boot loader is quite up to date - the closest to a universal image as I have seen. If that fails, you may have to resort to installing an OS to the drive connected to another mac in target mode or by a dongle for SATA drives.

@@ -1,0 +1,14 @@
+Q: "Repair Disk Permissions" doesn't seem to repair the permissions I tried repairing the permissions on the boot disk, resetting the Mac, and repairing the permissions on the boot disk. All times I repair the permissions, the list of the files that needs to be repaired is the same.
+What does not allow to repair the permissions? What should I do to repair the permissions on the boot disk? Should I repair them from another Mac?
+
+A: How do you know that your file's permissions are not OK?
+What output does your repair permissions print? Any errors?
+You could also try running the repair from the command-line if it would make any difference:
+diskutil repairPermissions /Volumes/Macintosh\ HD/
+Replace the volumes name.
+You could also try running that with sudo or as root, to see if it changes anything.
+Edit:
+Actually, what you could be seeing is that some application is using the files that "need" to be repaired and thus Disk Utility can't repair them.
+Try shutting all applications off and the running the repair
+
+A: Have you tried AppleJack ? it runs at boot time and works for me.

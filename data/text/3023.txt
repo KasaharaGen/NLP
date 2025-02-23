@@ -1,0 +1,27 @@
+Q: Remapping keys to match Windows I'm completely new to the Mac and I have a whole lot of problems with the shortcuts etc.
+Is it possible to remap the keys to match my windows expirience? For example I'd like to have CTRL+C, CTRL+V as Copy & Paste.
+
+A: The best solution I found was the free KeyRemap4MacBook utility -- it lets you change the keyboard in many ways. My personal modifications (for the MacBook Air 2012 model):
+
+
+*
+
+*"fn + cursor left/right" for Home/End and "fn + up/down" for PgUp/PgDown, via For PC Users: Use PC Style Home/End, Use PC Style PageUp/PageDown
+
+*switching the function keys to work like on "PC" notebooks, i.e. F1-F12 without modifier and "fn + Fx" for the screen brightness etc changes, via Functional Keys to F1..F12 plus Fn+F1..F12 to Functional Keys.
+
+
+A: What I recommend for you is remapping the keys so that pressing the Control button on your keyboard tells you computer that you're pressing command. That way, you can use the button you're used to automatically without having to set up each shortcut you want. Here's how:
+Go to System Preferences (in your Applications folder) and click Keyboard. Go to the Keyboard tab and click the Modifier Keys... button.
+Select your keyboard from the Select keyboard... menu.
+To give yourself a Windows-like experience, do the following:
+In the first menu, Leave Caps Lock alone.
+Set the second menu to Command so that the line reads like this: Control (^) Key: ⌘ Command
+Change the third menu to Option.
+Change the fourth menu to Control.
+With this setup, pressing the Control button will make the computer think you've pressed Command. So, any shortcut that says command-v will work when you press control-v. The option key behaves like the alt key. The command button works as the control key usually does on a Mac. You can use it for things such as right-clicking.
+Hope this works for you!
+
+A: You can also try Karabiner Elements, a more complete tool for remapping keys
+
+A: go to system preferences --> Keyboard --> Keyboard Shortcut from left windows choose Application Shortcut and in the below of right window press + button and in Application choose All application and in menu title choose Copy and in keyboard shortcut press ctrl+c and do the same thing for paste shortcut.

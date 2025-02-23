@@ -1,0 +1,54 @@
+Q: command-backspace deletes a whole line. Is there a way to disable this? When I type command-backspace in a Cocoa text field, it deletes everything from the start of the current line to the cursor point. Can this be disabled? It's driving me nuts because I hit it all the time by accident. 
+I've tried adding the following to ~/Library/KeyBindings/DefaultKeyBinding.dict:
+<key>@\010</key><!-- cmd-backspace -->
+<string>deleteWordBackward:</string>
+
+or:
+<key>@\177</key><!-- cmd-delete -->
+<string>deleteWordBackward:</string>
+
+or:
+<key>@\U007F</key><!-- cmd-backspace -->
+<string>deleteWordBackward:</string>
+
+... all to no apparent effect. I can't tell if I'm getting the keycode for backspace / delete wrong, or if I'm wrong that @ is the command key, or if something else is wrong. 
+Finally - and I hesitate to mention this because of the source, but it's just the only clue that I have - some random commentor on this TextMate-related blog post says: 
+
+unfortunately most of the key combinations which include the command modifier never reach the control which have focus (they're eaten by the menu manager code).
+So these bindings generally do not work :(
+I go through hoops to get as many keys as I currently do in TextMate, and here I still can't get command backward delete (⌘⌫).
+
+Is there something else I can try?
+edit: realize I had pasted the wrong info in as the configs that I've tried. If you notice changes up there, I'm changing the question to match what I actually did. The behavior didn't change :).
+
+A: Make the contents of your ~/Library/KeyBindings/DefaultKeyBinding.dict look like the text below  
+/* my keybindings */
+
+{
+"@\U007F" = "deleteWordBackward:"; /* delete backwards one word */
+}  
+
+
+
+*
+
+*'@' represents the command key  
+
+*'\U007F' represents the delete key
+
+*'deleteWordBackward' is a keyword which Cocoa applications understand
+
+
+Once you restart any Cocoa app, this will now just delete one word to the left of the cursor instead of everything between the beginning of the line and the cursor.
+
+A: \U007f and \177 are specific to old-style property lists. On XML plists you'd need to use &#x007f; or a literal DEL:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>@&#x007f;</key>
+    <string>noop:</string>
+</dict>
+</plist>
+

@@ -1,0 +1,7 @@
+Q: How to reset spaces assignments after upgrading to Lion? On Snow Leopard I used to have 9 spaces organised just for my needs. Unfortunately new Mission Control approach broke it completely and I'm still feeling a bit lost with the new horizontal approach.
+Anyway, it seemed that the the settings for number of spaces and apps assignments have been kept after the upgrade. I'd like to reset this to the default state. Reducing number of spaces is quite trivial, but what about app assignments?
+Is the preferences pane for this long gone now?
+
+A: I was just looking into this myself. The settings are still accessible via the Dock, when you have more than one space set up:
+
+As far as removing these associations entirely, try removing ~/Library/Preferences/com.apple.spaces.plist.

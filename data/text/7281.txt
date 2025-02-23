@@ -1,0 +1,158 @@
+Q: How can I forcibly shut down my Mac at an appointed time? I'm looking for an auto shutdown app that will forcefully shut down the computer at an appointed time.
+The most important part of this is that the shutdown should not be cancelable (unless the process is extremely onerous).
+
+A: This can be scheduled in System Preferences > Energy Saver > Schedule. I'm not certain that this will initiate a forced shutdown, you'd have to try it out. But that's a built in option to automate scheduled power down/up.
+
+
+*
+
+*You can also forcibly shutdown the system with a terminal command (requires root):
+shutdown -h now
+You could put that command into a launchd or cron scheduled task. Check out this article for far more info on those two services.
+
+*You may also want to check out an application like the aptly named iWannaSleep (not sure if this forces shutdown).
+
+A: You can use shutdown directly to schedule a shutdown at any given time in the future:
+shutdown -h time
+
+where time specifies  a future time in one of two formats:
+             +number, or yymmddhhmm, where the year, month, and day may be defaulted to the current
+             system values.  The first form brings the system down in number minutes and the second
+             at the absolute time specified.
+
+A: Nicer Scheduled Shut Down
+If you want to safely shut down your Mac at a scheduled time, consider Power Manager; it shuts down nicely without letting applications block the process:
+
+
+*
+
+*All active users are given ample notification.
+
+*A large warning is shown shortly before shut down begins.
+
+*Running applications are asked nicely to quit.
+
+*Applications ignoring the nice request are more firmly quit.
+
+*Log out is left to complete, before the Mac is finally shut down.
+
+
+It is very difficult for a rogue application or process to block these steps.
+Why not shutdown
+Using shutdown will force quit all processes on your Mac, including graphical applications. For many applications this is aggressive behaviour and does not provide the application with much opportunity to save state or data.
+Schedule Assistant
+Power Manager includes a Schedule Assistant task for shutting down to a schedule.
+
+Disclosure: I work with the company who make Power Manager.
+
+A: Ok, so further to my previous answer, I can walk you through getting cron (a built in UNIX schedule service) to run a scheduled shutdown command for you.
+It will run as root and will be forced.
+
+
+*
+
+*Open Terminal (/Applications/Utilities/Terminal)
+
+*Input sudo crontab -e
+You'll need to enter your login password and then press enter.
+You'll now be in a text editor (vim). Carefully input the following keystrokes.
+
+
+*
+
+*Press i once (this will allow you to enter text)
+
+
+Let's say you want the machine to shutdown at 2am every day, we'd now enter:
+* 2 * * * /sbin/shutdown -h now
+
+If you wanted the machine to shutdown at 2:30am every day, you'd enter:
+30 2 * * * /sbin/shutdown -h now
+
+
+
+*
+
+*When you've typed this in, press esc
+
+*Then press shift+z shift+z (that's uppercase "z" twice, to writes the changes and quit the editor)
+
+
+You should now be dropped back to the command line where you started.
+You're done!
+
+A: cd ~/Downloads/
+
+curl --remote-name http://dl.dropbox.com/u/18414/ase/com.tjluoma.forceshutdown.plist
+
+# see note below
+sudo mv com.tjluoma.forceshutdown.plist /Library/LaunchAgents
+
+sudo chown root:wheel /Library/LaunchAgents/com.tjluoma.forceshutdown.plist
+
+sudo launchctl load /Library/LaunchAgents/com.tjluoma.forceshutdown.plist
+
+Note:
+As written, the plist will cause the computer to be shutdown at 11pm (local time) every day.
+If you want to change the time, edit the script in any text editor. Change the Hour and Minute keys, excerpted here:
+<dict>
+    <key>Hour</key>
+    <integer>23</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+</dict>
+
+(note the use of 24-hour time)
+
+A: 
+It can be canceled though:
+
+
+Halt at yymmddhhmm:
+shutdown -h 1109211555
+
+Halt in 4 minutes:
+shutdown -h +4
+
+
+/Library/LaunchAgents/me.lri.forceshutdown.plist:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>me.lri.forceshutdown</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>shutdown</string>
+        <string>-h</string>
+        <string>now</string>
+
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>23</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+</dict>
+</plist>
+
+If the plist was owned by a normal user, trying to load it would result in the error launchctl: Dubious ownership on file (skipping):
+sudo chown root /Library/LaunchAgents/me.lri.forceshutdown.plist
+
+The agent can be loaded by logging out and back in, or with:
+sudo launchctl load /Library/LaunchAgents/me.lri.forceshutdown.plist
+
+
+sudo crontab -e
+`08 16 * * * /sbin/shutdown -h now`
+
+
+This would perform a normal non-forced shut down:
+osascript -e 'tell app "System Events" to shut down'
+
+
+A: I'd take a look at this tech note by Apple

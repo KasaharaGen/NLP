@@ -1,0 +1,37 @@
+Q: How to increase "tracking speed" beyond the maximum? For a Macbook Pro, I've set trackpad settings for Three Fingers to "Dragging":
+
+However the tracking speed is too slow, and often it's impossible to drag for a larger distance due to the size of the physical trackpad.
+How do we increase the tracking speed beyond the maximum allowed?
+
+A: The value of the preference is stored in ~/Library/Preferences/.GlobalPreferences.plist and can be changed with something like defaults write -g com.apple.trackpad.scaling -float 5.0. The normal maximum value is currently 3.0. Applying the changes requires logging out and back in.
+
+A: Mouse Curves is a preference pane that allows you to customize the tracking speed of the mouse and trackpad. 
+http://triq.net/mac/mouse-acceleration-preference-pane-mac-os-x
+
+A: For those who come here searching for mouse speed up (as me), change the command/property mentioned on the answer of @user495470 to com.apple.mouse.scaling. 
+So:
+defaults write -g com.apple.mouse.scaling -float 5.0
+
+is what you're looking for.
+Here is  @Kodos Johnson :)
+
+A: BetterTouchTool does that, and lets you add application specific gestures as well!
+In BetterTouchTool, open Preferences. In the left bar under Advanced Settings choose either Trackpad or Magic Mouse. There is a slider that adjusts the tracking speed.
+I don't think I could use a mac without it, at this point. I have my browser-tab-management and finder shortcuts mapped to multitouch gestures.
+
+A: Ordinary trackpad-dragging can be done in segments, the same way mouse-dragging can be done in limited space, by lifting & repositioning {the mouse; your fingers} and making another swipe.  In your prefpane, enable one-finger click and drag, and you won't even need to press down.
+
+A: As mentioned before, the file is in ~/Library/Preferences/.
+But preferences will be found in more than one file.
+.GlobalPreferences.plist
+com.apple.driver.AppleBluetoothMultitouch.mouse.plist
+com.apple.AppleMultitouchMouse.plist
+com.apple.driver.AppleHIDMouse.plist
+Note that .GlobalPreferences.plist is invisible.
+Mouse speed is called scaling in .GlobalPreferences.plist.
+Setting scaling past 3 with defaults write -g com.apple.mouse.scaling 5 has no effect immediately and may require a logout.
+file://~/Library/Preferences/com.apple.AppleMultitouchMouse.plist
+file://~/Library/Preferences/com.apple.driver.AppleHIDMouse.plist
+file://~/Library/Preferences/com.apple.driver.AppleBluetoothMultitouch.mouse.plist
+
+A: If you turn inertial scrolling on, you can, once you've started a drag gesture, keep two fingers steady and flick with the other one to inertially "drag" the window around your screen(s).

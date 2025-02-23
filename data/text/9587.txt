@@ -1,0 +1,49 @@
+Q: How can I get rid of duplicate Sent, Draft, and Trash folders in my IMAP accounts? I use several IMAP accounts for e-mail, and, except for iCloud, all of them show duplicate folders for Sent, Trash, and Draft mailboxes: 
+
+These duplicate folders are (generally) always empty, and seem to have no special status (e.g. the absence of the special icons used in OS X or iOS Mail):
+
+But there seems to be nothing I can do to get rid of them. Is there a way to delete these folders or configure my IMAP accounts so that I at least don't have to see them in my iOS and OS X Mail clients?
+
+Addendum: Here's what the folders look like through the hosts webmail interface:
+
+
+A: *
+
+*Set Mail to use your operator’s folders by opening them and selecting Mailbox>Use this mailbox for>[folder function].
+
+*Move all messages from old folders to the new ones
+
+*Delete the old, now empty folders.
+
+
+A: This has to do with the IMAP severs. Some folders can be visible, others hidden.
+A program like Mail.app shows all folder that it see by default.
+If you want to hide some, you need to hide them in the preferences of the email provider.
+E.g.:
+I've got a Gmail account. By default in Gmail the folders/labels sent, marked, trash... etc. are shown. Unlike Mail.app, Google mail has an option to disable these in Gmail.
+On the other hand, Mail.app adds the Junk-E-Mail folder/label. I disabled the Junk-E-Mail option in the App and deleted the folder, since Google's spam filter is more reliable for my taste.
+Solution for Gmail
+Before:
+
+
+After:
+
+
+A: Ok, since you're using an iPhone - which is the reason for the extra labels - follow these instructions:
+
+
+*
+
+*On your iPhone, go to Settings -> Mail -> (Account Name) -> Account Info -> Advanced
+
+*Under Mailbox Behaviors for Drafts, choose Drafts. On the iPhone this will save all drafts locally.
+
+*For Sent Mailbox choose Sent Mail ON THE SERVER. 
+
+*Do the same for Trash.
+
+*In Mail.app, click on the Sent Mail mailbox of the provider. Then on Mailbox -> Use this Mailbox For -> Sent.
+
+*Do the same for Trash.
+After a few sync's it should work as expected.
+Source: http://www.google.com/support/forum/p/gmail/thread?tid=2cf4ecaa25aa7351&hl=en

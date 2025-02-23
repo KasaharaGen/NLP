@@ -1,0 +1,13 @@
+Q: How to activate mod_rewrite on MacOSX Lion I tried to activate the mod_rewrite module in the httpd.conf, but I do not succeed to make it work.
+I'm running Lion, and my goal is to do URL rewriting in ~USER/Sites/mysite
+Can someone help me please?
+
+A: You need to add a conf file to the following dir
+/etc/apache2/users/yourname.conf
+<Directory "/Users/yourname/Sites/">
+     Options Indexes MultiViews
+     AllowOverride All
+     Order allow,deny
+     Allow from All
+</Directory>
+

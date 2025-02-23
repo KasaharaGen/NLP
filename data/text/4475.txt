@@ -1,0 +1,47 @@
+Q: iPad screen sharing Consider this scenario: a mom and her kids are reading a single book using iPad. The mom is on a business trip and kids stay at home. Each of them has a iPad. The mom hopes that when she turns to next page the kids' iPad can do the same thing so they are always on the same page.
+Any idea how to do that?
+
+A: Ok, I like this question..
+In order to accomplish this we need the following components:
+
+
+*
+
+*A VNC server running on the children's iPads. VNC basically shares screen over the network. A VNC for iOS is called Veency and it's available in Cydia once the iPad is jailbroken.
+
+*A VNC client. I recommend iTeleport - works and feels great.
+
+*Since Children's iPads are probably with a fake (NAT-ed) ip, we should somehow connect to the home network. A VPN server on the gateway should do the trick. Once connected to the vpn server, the mother's iPad should see all devices in the home network.
+Once connected to the children's iPad via VNC, you'll be able to see everything the kid sees on the screen. This can be accomplished also from computer or iphone.
+
+A: If the mom uses a computer rather than an iPad, you can easily do this with Google Plus:
+
+
+*
+
+*The mom should initiate a hangout session with the child on the web version of Google Plus from her computer.
+
+*The child accepts the hangout invite using the Google Plus iPad app.
+
+*The mom can then choose to broadcast her screen's contents rather than what her video camera is recording.
+
+*She then opens up a reading application on her computer such as Amazon's Kindle reading app.
+
+
+The child should be able to see exactly what the mom is seeing on her screen, while at the same time being able to hear her voice.
+
+The problem with both parties using iPad's is that Apple's SDK prevents applications from capturing images of the screen outside of that application. If this is a necessity, then the only hope would be to jailbreak the iPad and find a solution that let's you do that. 
+The only other way is if you had an application which had both an e-book reader and screen sharing capabilities into it. The most popular e-book applications (iBooks, Amazon Kindle, etc.) don't have such a feature at this time.
+
+A: There are several possible approaches, all of which require a central server.
+
+
+*
+
+*quick and dirty: just poll an http server every 10 seconds to save/read the status (current page)
+
+*use apple push notifications (the device can recive and act upon them silenty if it's already running). This is a bit more complex but may put less charge on the server than a million users polling for changes
+
+*use socket connections: you'll need a dedicated server for that too but this will probably provide the most instantaneous effect (just like a realtime chat does)
+Then there's the whole part where you link devices into the same reading session. You could send an email with a clickable link featuring a protocol handled solely by the app (eg. Myappbooklink:userid,sessionid)
+In any case such a system would require a server system that is able to scale in case of success.

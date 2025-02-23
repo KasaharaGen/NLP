@@ -1,0 +1,5 @@
+Q: Why does iPhone navigation bar disappear when browsing certain sites? When I click on the Facebook bookmark I saved to my home screen, m.facebook.com appears in Safari but the navigation bar at the bottom and the URL bar at the disappear.  At first I thought I was launching the Facebook app by mistake but I verified that's not the case.  Any idea why this happens? 
+
+A: Yes, mobile sites can be programmed to remove the navigation bar whilst browsing the site.  Makes for a better user experience when these elements get out of the way.
+This is documented here  http://developer.apple.com/library/safari/#documentation/appleapplications/reference/SafariHTMLRef/Articles/MetaTags.html
+In particular the apple-mobile-web-app-capable element.

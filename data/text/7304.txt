@@ -1,0 +1,40 @@
+Q: Upgrading to Snow Leopard without optical drive I am currently running 10.4- Tiger.  I never updated because my optical drive went out and I never got it fixed. I called Apple and they said that I could upgrade to Snow Leopard, but not Lion.  So I have purchased Snow Leopard, but don't know how to load it.  Here's what I've tried:
+1) Remote Install- from an imac and mac mini.  It won't recognize the connection.
+2) I made an .iso of my Snow Leopard disc in disc utility.  I put it on a flash drive and tried to boot.  No going.
+I also tried to mount the .cdr directly from my desktop.  It goes through the beginning prompts and then says that I need to reboot to begin installation.  I suppose when it reboots, it loses the mount and doesn't begin the installation.  
+Long story short, any suggestions?
+
+A: You will need a USB drive (8GB) and access to another Mac. You can use any external drive instead of a USB drive, but be aware that you'll have to format the drive and you'll loose any content on it.
+
+
+*
+
+*Insert the Snow Leopard DVD and the USB drive into a Mac with a working optical drive
+
+*Start 'Disk Utility'. You should see your USB drive and the SL disk in the left pane.
+
+*Select the USB drive in the left pane.
+
+*In the right pane: Select Volume Scheme: 1 Partition
+
+*Format: Mac OS Extended (Journaled)
+
+*Enter a name for the USB drive in the 'Name' field. You can use "Mac OS X Install DVD".
+
+*On the bottom: click 'Options' and choose 'GUID Partition Table' and click 'OK', then 'Apply'. The USB drive will be partitioned and reformated.
+
+*When that is done select the 'Restore' Tab
+
+*There are two fields: 'Source' and 'Destination'
+
+*Drag the SL Installer DVD from the left pane to 'Source'
+
+*Drag the newly formated USB drive from the left pane to 'Destination'
+
+*Click 'Restore'
+
+*Once the restore is done eject the USB drive, put it in your Mac and reboot. Hold 'Option' while your Mac is booting, this will get you to the boot selection list. Choose your "Mac OS X Install DVD" and you're ready to go.
+
+A: Instead of USB, use FireWire target disc mode - it generally works better than USB on older Macs. On the non-install machine, pop in a Snow Leopard DVD and restart while holding down the T key with both machines connected via FireWire.  If you just have an ISO, create a new partition on the non-install machine and copy the iso to that partition via Disk Utility. 
+
+A: If you don't have access to another Mac, but you have access to a PC with an internal DVD drive, you can share that drive with your Mac using the remote disk feature (see Use the CD or DVD drive from another computer with your Mac). I don't believe that you can actually perform the upgrade this way, but you can at least use it to create a formatted flash drive startup "disk" by following the steps in the solution above.

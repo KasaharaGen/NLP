@@ -1,0 +1,93 @@
+Q: Homebrew wants me to delete /usr/local/lib? From the Homebrew installation page :
+
+We recommend you delete /usr/local/include and /usr/local/lib
+
+But my /usr/local/lib contains the following files:
+$ ls /usr/local/lib
+charset.alias                   libgettextsrc.la
+gettext                         libgpg-error.0.dylib
+libasprintf.0.0.0.dylib         libgpg-error.dylib
+libasprintf.0.dylib             libgpg-error.la
+libasprintf.dylib               libiconv.2.dylib
+libasprintf.la                  libiconv.dylib
+libassuan.0.dylib               libiconv.la
+libassuan.dylib                 libintl.8.0.2.dylib
+libassuan.la                    libintl.8.dylib
+libcharset.1.dylib              libintl.dylib
+libcharset.dylib                libintl.la
+libcharset.la                   libksba.8.9.6.dylib
+libgcrypt.11.6.0.dylib          libksba.8.dylib
+libgcrypt.11.dylib              libksba.dylib
+libgcrypt.dylib                 libksba.la
+libgcrypt.la                    libpth.20.0.27.dylib
+libgettextlib-0.17.dylib        libpth.20.dylib
+libgettextlib.dylib             libpth.dylib
+libgettextlib.la                libpth.la
+libgettextpo.0.4.0.dylib        libusb-0.1.4.dylib
+libgettextpo.0.dylib            libusb-1.0.0.dylib
+libgettextpo.dylib              libusb-1.0.dylib
+libgettextpo.la                 libusb-1.0.la
+libgettextsrc-0.17.dylib        libusb.dylib
+libgettextsrc.dylib             libusb.la
+
+What are these files for? Is it safe to delete these files?
+
+A: These look like most of the (recursive) dependencies of GnuPG 2.x (except those that are likely included with the OS or the development tools: zlib bzip2, perl, curl, openssl, autoconf, automake, libtool, etc.).
+Here is a rough overview of the structure of those dependencies:
+
+
+*
+
+*libiconv: libcharset, libiconv
+
+*gettext: gettext, libasprintf, libgettextlib, libgettextpo, libgettextsrc, libintl
+
+*gpg-agent
+
+
+*
+
+*libassuan: libassuan
+
+
+*
+
+*pth: libpth
+
+*libgpg-error: libgpg-error
+
+
+*libksba: libksba
+
+*libgcrypt: libgcrypt
+
+
+*libusb-compat: libusb (0.1.4)
+
+
+*
+
+*libusb: libusb (1.0.0)
+
+
+
+I wonder if maybe they are from installable packages of the macgpg2 project (it even includes a charset.alias its iconv package).
+Besides /usr/local, these packages also write to these locations:
+
+
+*
+
+*/Applications/start-gpg-agent.app/
+
+*/Library/LaunchAgents/com.sourceforge.macgpg2.gpg-agent.plist
+
+*/private/etc/paths.d/MacGPG2
+Note: I only scanned through the Info.plist files and the BOMs from the packages, there may be other files elsewhere. Pacifist might be useful if you want to try to go through your /Library/Receipts/ entries to try to find all the files it might have installed.
+
+If these all came from some installation of GnuPG, and you no longer need it (Homebrew only seems to have GnuPG 1.x, otherwise you could rebuild it yourself), then it is probably safe to delete the files. Though I would start /usr/local/ from scratch instead of just clearing lib and include (probably by mv /usr/local /usr/local.old like geekosaur mentioned).
+
+A: That's kinda the problem; Homebrew doesn't know what they are either, and randomly sourced libraries tend to break builds.  (MacPorts makes the same recommendation.  In fact, I was under the impression that was one of the things Homebrew relaxed.)
+If you don't know what they are or if they're used, the simplest solution is
+$ sudo mv /usr/local /usr/local.keep
+
+and watch to see what breaks.  Chances are they're used by whatever's in /usr/local/bin, though, so look there first.

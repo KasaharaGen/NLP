@@ -1,0 +1,29 @@
+Q: Search through terminal history with up and down keys in OS X Lion After I upgraded to OS X I am not able to use my ~/.inputrc bindings to search through the shell command history:
+# these allow you to start typing a command and
+# use the up/down arrow to auto complete from
+# commands in your history
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+
+Any idea what I have to change or do? Are there any default keys for that I could use?
+
+A: The up/down history scrolling in Terminal only works in bash, not sh. Try typing bash in Terminal, and see whether the arrow keys work. If this is the case, you can go to preferences and set your default login shell to /bin/bash.
+
+A: For those who are looking for Page Up/ Page Down key instead of up/down arrow. Use the below settings.
+# Page Up/Down
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+
+Tested with iterm and bash version 3.2
+
+A: For searching your history, you can also use a nifty feature of the bash shell.
+This maybe a little off topic, but in bash shell you can use CTRL-R to search backwards in your shell history.
+Example - search for ssh connections in your history:
+tatooine-2257:~ mallert$
+(reverse-i-search)`ssh': ssh mallert@localhost
+
+And when I hit CTRL-R again, bash does a search within the former search results:
+tatooine-2257:~ mallert$
+(reverse-i-search)`ssh': ssh localhost
+
+And you can hit CTRL-R again and again. You can also work with regular expressions.

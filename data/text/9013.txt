@@ -1,0 +1,25 @@
+Q: Why are so many Mac downloads a .dmg just that contains a single .pkg?  I've noticed that many downloads are a dmg (disk image) that contains a single pkg file (installation package). Usually the pkg seems to be already compressed since the dmg doesn't reduce the file size much if any.
+Example:
+
+
+*
+
+*MonoFramework-MDK-2.10.6_1.macos10.xamarin.x86.dmg is 119,242,061 bytes (119.2 MB on disk)
+
+*MonoFramework-MDK-2.10.6_1.macos10.xamarin.x86.pkg is 119,979,719 bytes (120 MB on disk)
+
+
+A savings of 737,658 bytes, or 0.6% of the original file size.
+Is there a reason not to just distribute the pkg? Is the 0.6% compression savings that important? Or is it just the way things have always been done on the Mac?
+(Yes, I realize that 737,658 bytes times all the millions of downloads that dmg gets does add up, but it just always seems annoying to have that extra steps in there to mount a dmg, run the installer and then unmount the dmg. Maybe a better question is "why doesn't Mac OS X recognize a dmg with a single pkg inside it as just a pkg and simply install it without requiring all that mounting and unmounting?")
+
+A: One possible reason could be that Safari by default automatically mounts DMG files, and that a Finder window would pop up with the contents. In turn the DMG folder could be styled with for example a background image. I assume that could be considered more user-friendly than having to look in your Downloads folder for an installer, but I agree it's pretty moot.
+Another reason would be the ability to group together other supporting files as well, for example documentation files or even secondary installers.
+However, it's not such a common distribution to start with. The majority of apps are distributed as self-contained .app folders inside a DMG file (if not via the App Store now). Your example seems to be rather an exception to me, though maybe it is more common with some particular distribution channels? Personally, I wouldn't dwell on it much further.
+
+A: Technically, a .pkg is not a file, but a folder.  So  maybe collecting it into a single file is essential for downloading.
+
+A: Yet another reason is that you can't run .pkg files directly from Network volumes, but you can run a .dmg from a network volume and then launch the package.
+
+A: Data on DMG image can be checked for integrity with Disk utility. You can make it mandatory for the user to agree to license before mounting dmg. It could be locked from modification. You can easily add hidden files and folders on DMG. You can make background image. You can make it safe from stripping during transit through non-metadata aware file systems like FAT.
+Plenty of reasons actually.

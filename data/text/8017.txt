@@ -1,0 +1,20 @@
+Q: What version of Lion do I have? I know it might sound like a pretty dumb question, but it's the truth, I have no idea whats going on. You see, my brother used this iMac since the times it had Snow Leopard. I have no idea what he did, undid, redid, or disdid (yeah, I just invented a new word there). 
+The point is now I use this iMac, and I  was blissfully living without knowing some weird thing was going on... until today. I noticed 10.7.2 was released, cool, but it's not on Software Update, so I head to support.apple.com and download the client version manually. 
+It won't let me install.
+Hmm... ok. I head to "About this Mac" and here is what I see. 
+
+Please notice the "Version 10.7.1". Should work, no? Well, I go to "More Info..." and, to my surprise, this is what I see. 
+
+Yup. Mac OS X Lion Server 10.7 (no 10.7.1) and not only that. Please note the build number. Turns out it apparently is the build version of Developer Preview 2. Nevertheless, I go to /System/Library/CoreServices/SystemVersion.plist and surprise! It says:
+
+Yeah, thats another build version. It turns out it IS the build version of 10.7.1. So it is 11B26? 
+
+Mmmmm... no. System Overview says 11A418 too. Half of my mac believes its one version, half believes its the other, and ultimately I can't install 10.7.2: Neither the Server Combo nor the Client Combo. Any ideas why this is happening? Suggestions? Or will I have to make a long distance call to my brother and wait like 4 hours for Lion to download and install agian? Any comments/suggestions welcome!
+
+A: It looks like a developer preview of Lion Server was installed at one point overtop your current consumer version of Lion. You can't do that.
+I can't (under penalty of compromising my confidentiality agreement with Apple) go into detail but installation of Developer seeds are not so simple as to keep installing new versions. There is a process to ensure nothing breaks.
+I assume your brother is not a registered developer and was not made privy to these processes, hence the errors above.
+In short, your system is hosed. I would recommend reinstallation from either the MAS or using the Recovery HD (boot holding ALT ). It's of note that reinstallation of Lion will not remove the contents of the user profile and aside from having to download the OS, quite painless. Simply boot using the Recovery HD, select the location of the installation (your case, Macintosh HD) and sit back. Once done, you will have a fresh copy of 10.7. Then you can use Software Update to install 10.7.2 (and any other updates you require).
+Then give your brother a good wallop for (allegedly) pirating OS X (and another for his ineptitude and pirating the wrong flavour)!
+
+A: You are obviously using an old Developer Preview version of Lion. The Developer Preview is completely separate from the retail versions of OS X and can't be updated through Software Update. If you want to run the latest developer version of OS X visit developer.apple.com.

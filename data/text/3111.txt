@@ -1,0 +1,15 @@
+Q: Turn Wifi Off via command line I'm sharing my internet in work and forgot to turn it off! Does anyone know how I can do it via the command line? I have SSH access but thats it. D'oh. 
+
+A: Try 
+networksetup -setairportpower en0 off
+
+
+A: You could use this to turn it off:
+sudo ifconfig en1 down
+
+And if you want to get it back up, just type up, instead of down
+Just make sure that en1 is the right interface or you can easily kill off your ssh access :)
+P.S. As Lri noted in the comments below, you can quickly disable the correct network interface with just 1 line:
+sudo ifconfig `networksetup -listallhardwareports | grep -E '(Wi-Fi|AirPort)' -A 1 | grep -o "en."` down
+
+This will detect the correct Airport/wireless device and will turn it off

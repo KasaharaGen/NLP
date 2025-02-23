@@ -1,0 +1,33 @@
+Q: Java applications (eg.Netbeans&Eclipse) constantly quit unexpectedly After upgrading to Lion and installed the Java runtime for Lion, Netbeans and Eclipse became very unstable. They quit unexpectedly very frequently.
+I tried reinstalling Java, I tried reinstalling Netbeans & Eclipse, I tried different versions of both programs. I cleared caches, deleted related files and folders, etc.
+I posted a crash report here.
+versions tried:
+
+
+*
+
+*java version "1.6.0_26"
+
+*Eclipse 3.6.2
+
+*Netbeans 6.9
+
+*Netbeans 7.0
+
+*Netbeans 7.1
+
+
+Anybody got a suggestion?
+
+A: I use Eclipse (64 Bits) latest Indigo version on Lion and I don't have those crashes. 
+Your Crashlog comes from a Exception Type:  EXC_BAD_ACCESS (SIGSEGV) which is usually: 
+
+
+*
+
+*A bug in the code (failure to release/retain/etc.) when coding in obj-c (very common).
+
+*A Memory problem (RAM) (hardware). 
+Given that Eclipse is written in Java (which has Garbage Collection and therefore doesn't suffer from EXC_BAD_ACCESS, as far as I know), I'd say you check your RAM, you might be having a hardware problem that manifests when "memory intensive" (to put it nicely) programs execute. 
+
+A: I am using the same Java version (both 32bit and 64bit), and Eclipse 3.7 (32bit), without hitting your problem. Quickly go through the crash report, maybe you try to unselect the Java 64bit in the Java Preference, and only use 32bit Java.

@@ -1,0 +1,17 @@
+Q: How to know what packages are available with (home)brew? I am new to Mac coming from Ubuntu Linux background. How do I find out what packages are available for Homebrew? With Ubuntu I could search packages.ubuntu.com for example, or Google since its using apt
+
+A: brew search lists all available formula (aka packages), requires you to install brew first of course.
+Additionally, if you want to get further information about that package before installing it brew info <package name> will list relevant information like version number, dependencies etc.
+
+A: There is a cool website where you can search for the packages and it will list the necessary command to install the stuff.
+BrewInstall is the website.
+Suppose you want to install wget but don't know the exact name of the package, search the it on https://brewinstall.org it will show you the necessary commands to install it.
+Here is how the commands looks like after searching the package:
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install wget
+
+
+A: If you don't want to install Homebrew first (in order to see all the publicly available packages with brew search as patrix answered), you could browse the formulas on GitHub to see which packages are available — and how they will be installed.
+Note: GitHub lists only the first 1000 files from a directory; which is far less than the number of Homebrew Formulae (3111 and counting). You can search for a known / partially known filename with file finder (or press t when at directory listing).
+
+A: There is, of course, the online package (a.k.a. formula) browser on Homebrew’s own website: formulae.brew.sh. You can find formulae (formulas on the street), casks, and analytics data.

@@ -1,0 +1,26 @@
+Q: Lion Apache Subversion (SVN) ignore problem I hope this is the right place to ask this kind of problem.
+So, before the Lion, when I tried to ignore something on Apache Subversion (svn), I just typed the following command: svn propedit svn:ignore .
+So this opened a temporary file for the current directory with the selected editor and I could write there my patterns, which where ignored by the svn.
+After the I installed Lion, when I type this command the following error appears: The document “svn-prop.tmp” could not be opened. The file doesn’t exist.
+Did anybody else met this error before? (I tried googling, but I didn't find any solution).
+
+A: The problem with GUI editors is that when launched from the command-line, they generally do not halt the process in the shell. That's why when editing a property, svn will create the temporary file, launch the editor, and wait for the exit signal to read and delete the temporary file contents. Because the GUI editor returns the exit signal immediately upon launching, the file will no longer be there.
+Some GUI editors like TextMate and Sublime Text support a -w (wait) option from the command-line, forcing them to halt the SVN process until the file is closed. I am not aware of TextEdit supporting such an option.
+You probably want to change your SVN editor to something more appropriate, like vim or nano. You can change the editor command in ~/.subversion/config
+
+A: As Gerry pointed out calling TextEdit directly will not work but you can use open:
+open -e -W -n
+
+in your case
+export SVN_EDITOR='open -e -W -n'
+
+
+
+*
+
+*-e opens with TextEdit (you can use -a to specify another application)
+
+*-W waits that the application exits
+
+*-n opens a new instance (so that you will not have to quit an eventually open TextEdit)
+

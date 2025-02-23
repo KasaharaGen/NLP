@@ -1,0 +1,5 @@
+Q: How to change MPM prefork to worker on default Apache OSX installation? On CentOS, the Apache configuration can be found in /etc/sysconfig/httpd
+How to change MPM prefork to worker on default Apache OSX installation?
+
+A: i dont think its that easy with default apache, not without the risk of it reverting on a software update, the config files would be in /etc/apache2 though
+its probably simpler and more reliable to install something like macports and install apache2 from there, that way it will be persistent of apple software updates and much more flexible in configuration

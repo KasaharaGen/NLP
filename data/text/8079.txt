@@ -1,0 +1,72 @@
+Q: How to completely disable auto-save and versions in Mac OS X Lion? I hate the automatic saving and versioning in Mac OS X Lion.
+Is there a way to completely turn it off?
+(This has been asked before here, but the answer and the linked article are completely wrong, so I thought I'd try again.)
+
+A: There is a much much simpler way to do it that was only introduced in OS X 10.8 Mountain Lion.
+According to this post, you just have to enable System Preferences > General > Ask to keep changes when closing documents.
+
+
+A: I agree, too many assumptions on Apple's side what users need and especially what can be controlled by the user → hint: new full-screen apps on dual-/multi-monitor setups (fail)  
+For Versions it's quite similar, no control for the user :(
+The only thing I found so far is checking the size of the Versions folder /.DocumentRevisions-V100 and deleting it if I think it takes up too much space.  
+Note: This is a very bad idea ! It will delete all your previous versions of doucuments/files
+sudo rm -rf /.DocumentRevisions-V100
+
+You could then prevent the re-creation of that directory by  
+sudo touch /.DocumentRevisions-V100
+
+But that creates a big mess, leaving you unable to re-save documents in Apps featuring "Versions & Autosave"  
+Not a satisfying solution. I really hope someone finds a way to turn it off or that one of the next OS X updates gives the user more control.
+Hackinations: 5 really good Lion tweaks mentions that the switch NSDocumentAutosaveOldDocumentDayThreshold could be used to tweak autosave but I couldn't find any details about its function. 
+And it seems the deamon
+/System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/Support/revisiond is responsible for creating the versions - if you rename or move it and restart, "Versions" no longer functions but this is a bad idea again as all processes that depend on that deamon run into serious troubles.  
+Anyone with better ideas ?
+
+A: I intentionally was searcing for hidden defaults1 and fortuitously stumbled across a defaults setting that disables Auto Save, Versions and Resume, all at once. 
+If you have a tolerance for potentially breaking things (joke), try the following Terminal command (for Preview in this example):
+defaults write -app 'preview' ApplePersistence -bool no
+
+Replace preview with the name of whatever app you wish to perform this on.
+Alternatively, you can configure this globally with this command (but beware that this causes slow logins, so not recommended):
+defaults write -g ApplePersistence -bool no
+
+I can confirm that this works for TextEdit, Preview, Automator and Safari (for disabling Resume), but it should also work for other Apple applications like iWork, Xcode, iPhoto etc. It also works for some, but not all, third party applications. My machine hasn't gone up in flames (joking again) but as long as you have a good backup system, these settings seem stable to change and test. 
+For TextEdit, you must additionally run the following command, in order to avoid sandbox errors:
+defaults write -app textedit AutosavingDelay -int 0
+
+[This effectively disables the old-style, pre-Lion autosaving completely, so the sandbox won't complain anymore about TextEdit trying to automatically save stuff without your "consent".]
+Another option, is a TextEdit fork called "TextEdit+", that thankfully isn't sandboxed (surprisingly, TextEdit is actually open source). It can be downloaded here.
+Disabling ApplePersistence also restores Save As in most apps, except in Preview, iWork and maybe some others. In those cases you can use the Export… menu item instead. This is almost identical to Save As, except that you have to manually open the document after saving it. Just assign Command-Shift-S to Export… in these applications, and you'll get something very similar to Save As there too.
+To restore normal behaviour, run:
+defaults delete -app 'preview' ApplePersistence
+
+defaults delete -g ApplePersistence
+
+defaults delete -app textedit AutosavingDelay
+
+
+1 Thanks to Lri for his excellent one-liner for finding hidden defaults settings. 
+
+A: I found a way to disable Versions (not Autosave) in a (hopefully) non-destructive reversible way: (re)move the SQLite database that Versions uses
+Careful, this comes with absolutely no warranty and may break your system!
+sudo mv /.DocumentRevisions-V100/db-V1 /.DocumentRevisions-V100/db-V1_off; sudo touch /.DocumentRevisions-V100/db-V1; sudo killall revisiond
+If it worked you'll be notified e.g. in Textedit when you close a document:
+
+That (probably) means that your document will still be automatically saved in certain intervals, but once you close it (or the program) you can only retrieve the latest version (and Time Machine backups, if available).
+The changes can be undone with sudo rm /.DocumentRevisions-V100/db-V1; sudo mv /.DocumentRevisions-V100/db-V1_off /.DocumentRevisions-V100/db-V1; sudo killall revisiond
+
+Edit 2012-04-04:
+Versions (especially of Autosave) may still end up in ~/Library/Containers as nicely described in this answer.
+
+A: Happily, I didn't have to resort to this. I studied all other safe measures and after trying out some clean disk apps OnyX did the work.
+This application requires full system admin privileges to install, and will essentially run the commands mentioned in some of the other answers automatically for you. Be sure you trust this application before you decide to grant it this level of access and control over your machine.
+It cleared up all the revisions folder without me having to run the scripts above or doing it manually. It freed up 75GB in 10 minutes. I'm using Yosemite still but they offer for other systems as well. And it's free. I had to post the comment to help others, I've been cracking my head in 7 pieces for the last day or so. - https://www.titanium-software.fr/en/index.html
+What to do: install OnyX /
+Close all apps that are running /
+Open Onyx - it asks to run a disk check, press ok /
+It will look like it has frozen but it's not /
+Then select tab Cleaning /
+Then Select tab Misc. /
+Then check option: Automatically saved versions of documents /
+Press enter /
+Tada!

@@ -1,0 +1,5 @@
+Q: User UUIDs on different Macs I have three Macs at the house and have the same user account setup on each of them. The users on two of the machines were initially set up using migration assistant to transfer user accounts.
+When accessing the Advanced Options menu under System Preferences > Accounts >  > Advanced Options, I notice that the UUIDs on each machine are different. The User ID and Group values are identical.
+Question: should the user UUID (different than UID) be set to the same on each of the computers? Any disadvantage if they are not? Does OS X use the uid (e.g. 501) to determine if the users on two different machines are the "same"?
+
+A: UUID means universally unique identifier. It sounds like the identifiers for the three accounts are unique. In other words, the system works.

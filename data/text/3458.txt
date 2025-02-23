@@ -1,0 +1,8 @@
+Q: Outlook 2011 search doesn't work anymore Whenever I use the search-field on Outlook 2011 I get "No results". 
+After installation it worked for a while, but now it's just quit on me...
+Any tips to make it work again? Resetting some index, recalculate some tables or something equally obscure?
+Thanks
+
+A: Outlook for Mac search uses Spotlight. Check Spotlight settings to make sure Outlook isn't excluded. If not, rebuild Spotlight index database. Lots of free utilities like ONYX for this or terminal command: sudo mdutil -E
+
+A: Turned out that the index file that Outlook uses had been removed from the Documents folder after some over-zealous house cleaning by me... 

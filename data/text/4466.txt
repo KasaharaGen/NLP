@@ -1,0 +1,28 @@
+Q: Professional video editing on Mac I'm totally unaware about Macs and video editing. I have an iMac and a Sony camera that produces .mt2s files. I've heard that the Mac is the best for graphic and video editing, so I was wondering how should I work with this file format on a Mac?
+
+A: Sony codes their recording in their own format, hence the .mt2s, and they want you to use a Sony Laptop to edit the footage. Anyways, there is a Mac app called, MPEG Stream Clip, that converts the footage to any format you want at any frames/second you want. You can download it for free from Squared 5, http://www.squared5.com/svideo/mpeg-streamclip-mac.html. 
+It is a great piece of free software.
+As for video editing software you can use Apple's iMoive (for the amateur) or purchase Apple's Final Cut Pro (wait until July, they are releasing a new version).
+
+A: AVCHD is not an editing codec but an acquisition codec, which means that in order to be able to edit the footage, it will need to be converted/transcoded into a more suitable format. 
+Another bottleneck is that most AVCHD camcorders, record interlaced video, which is not suitable for computer/web use but only for televisions. Which means that if you plan to use your resulting video in computer screens, you'll need to de-interlace the video (preferably prior importing to editing software, but after the initial transcode). Canon released some camcorders which record in 1080p (progressive - no need for de-interlacing) format, but I don't think a lot of models support this function yet.
+There are various workflows for these tasks, which they depend upon the available software you have.
+My personal workflow from my 1080i60 Sony videos (already copied to hdd) to Final Cut is:
+
+
+*
+
+*Rewrap the AVCHD videos to a Quicktime compatible format using ClipWrap ($49). This process is really fast, because it won't alter the video files, just replace their container/headers.
+
+*De-interlace the videos and transcode them to an editing codec (Apple Pro Res) using Jes Deinterlacer (free)
+
+*Import them to FinalCut
+
+
+For sure they will be other ways also to reach to the same result, but in order to help you more, please let us know of what software are you planning to use for editing your videos (I suppose iMovie will be your best choice).
+
+A: I've done some semi-pro video editing (summer camps, bar mitzvahs, weddings) on both PC and Mac. (I'm currently a Mac user and app developer.) Mac OS X seems to have a smoother user experience, but that has nothing to do with video editing per sè. 
+I've never heard of m2ts files before but a quick look at the links shown by others here (or Google) seems to indicate that it is an HD file format. To handle the video files, your best bet is to try a professional grade tool, such as Adobe Premier (Mac or PC), or Apple's Final Cut Studio. These programs may support editing the files uncompressed (although you'd better have some solid hardware for decoding HD video in realtime). Even if they don't, they might support conversion to another filetype.
+If you don't want to pay for a professional tool, and are not interested in trying the demo (at least for premiere, I don't know if Final Cut has a demo), then you can try a third part program, like handbrake. (I haven't had luck with handbrake, but it's been highly recommended to me by others.)Mac OS X comes with the excellent iMovie. It's not professional grade, but definitely worth a look. I don't know if iMovie can work with m2ts files though. 
+Regardless of what you choose, I strongly recommend familiarizing yourself with a video editing program. Pick a tool and explore it thoroughly. Trust me, you'll enjoy video editing that much more when you've picked your toolset and can command it. 
+Good luck!

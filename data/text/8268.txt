@@ -1,0 +1,5 @@
+Q: How can I install Octave with curl support via homebrew? I've installed octave with homebrew (via brew install octave), and it seems to work fine, including gnuplot support.  However, it looks like it's missing curl support.  I'm getting the message "error: urlread: curl: No error" when trying to execute str = urlread(url, 'post', params).
+I've tried making homebrew install curl by adding depends_on 'curl' to the octave formula and setting the CPPFLAGS and LDFLAGS environment variables to point to homebrew curl, but that didn't seem to change anything.
+
+A: I had a similar problem a while back that was caused by having my proxies set up funny. I ended up disabling them to get it to install.
+Also, are you sure curl is installed correctly? You could try installing it manually as well: http://curl.haxx.se/docs/install.html

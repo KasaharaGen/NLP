@@ -1,0 +1,9 @@
+Q: How do I create a new user in Lion from the Terminal? The older method of:
+dscl . -create /Users/username
+
+doesn't work because /System/Library/LaunchDaemons/com.apple.DirectoryServices.plist can't be found. From what I gather, OSX Lion doesn't use this method anymore.
+How can I create a new user solely from the Terminal?
+
+A: They renamed the Directory Services daemon in Lion:
+/System/Library/LaunchDaemons/com.apple.opendirectoryd.plist
+

@@ -1,0 +1,25 @@
+Q: iTunes Utility - Merging Libraries I would like to merge three separate iTunes libraries.  Here is more information:
+
+
+*
+
+*Currently have 3 separate iTunes libraries on 2 laptops and and dekstop.
+
+*Want to merge all three onto the desktop (i.e. it has all content), while maintaining the other two laptop based libraries as-is.
+
+*I want to avoid getting a slew of duplicates within the merged library.
+
+*I am not concerned about maintaining the library (i.e. playlists, etc.) on desktop.
+
+*I am not concerned with maintaining perfect sync, so could repeat the necessary procedure periodically to remerge libraries.
+
+
+I am ok with using the command line, Python or applescript if that's the way to go.
+
+A: You can sync libraries one-way with rsync:
+rsync -av --force --delete --size-only ~/Music/iTunes /Volumes/johndoe/Music
+
+A detailed writeup is here: Keeping 2 iTunes Libraries in Sync
+I actually use this technique myself.
+Creates a "carbon copy" of a library on another machine which you can then sync to reflect changes.
+Works best with two Macs, never tried it with a PC.

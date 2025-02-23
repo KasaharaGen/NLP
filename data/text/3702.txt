@@ -1,0 +1,18 @@
+Q: Porting Linux shell scripts The command
+shell$ ls . -R 
+
+works on Linux but not on OS X. This is because OS X command line options have to come before  the arguments,and not just anywhere as in Linux. 
+In particular, this means that any shell scripts I write on Linux will be unportable to Macs. 
+ Question  How can I fix this on the Mac? 
+I can either take care to write portable Linux scripts, or I can install MacPorts so that  ls  and other commands will be picked from MacPorts and not the Apple provided binaries. Is there any better way?
+
+A: Short answer: whichever suits you.
+If your Unix background is mainly from Linux, you’re probably used to GNU commands. As you’ve noticed, they can be different from other Unix/Unix-based operating systems. Depending on how complex your scripts are, you can either:
+
+
+*
+
+*make simple changes (like using ls -R . instead of ls . -R), which will work in most (if not all) Unix/Unix-based system and not only on GNU-based ones,
+
+*or install the GNU utilities from MacPorts if you think that there’d be too many/complex changes, or if you prefer to stick to the GNU commands you’re already used to.
+If you want to take some time and write portable scripts, do it. If you think that’s not worth it, then don’t. Just bear in mind that not every Unix/Unix-based system uses GNU by default.

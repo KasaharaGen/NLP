@@ -1,0 +1,50 @@
+Q: How to install TermKit on Mac? https://github.com/unconed/TermKit
+command:
+git clone https://github.com/unconed/TermKit.git --recursive 
+
+Prompt:
+fatal: https://github.com/LearnBoost/Socket.IO.git/info/refs not found: did you run git update-server-info on the server? 
+
+command:
+node nodekit.js 
+
+Prompt:
+node.js:134 
+throw e; // process.nextTick error, or 'error' event on first tick 
+^ 
+Error: Cannot find module 'socket.io-node' 
+at Function._resolveFilename (module.js:320:11) 
+....
+
+
+A: Sorry I can't post comment but this post is for the previous answer!
+Cloning Stisti's fork does work with no error as mentioned in the question but Termkit doesn's seem to work.
+Termkit.app just opens up with a blank dark window
+
+And node.js reports something like this:
+info  - socket.io started
+debug - client authorized
+info  - handshake authorized
+info  - handshaken 77af5778e12f2ea2aff9e2b10a26f087
+debug - setting request GET /socket.io/1/websocket/77af5778e12f2ea2aff9e2b10a26f087
+debug - publishing that 77af5778e12f2ea2aff9e2b10a26f087 connected
+debug - initializing client store for 77af5778e12f2ea2aff9e2b10a26f087
+debug - set heartbeat interval for client 77af5778e12f2ea2aff9e2b10a26f087
+debug - subscribing 77af5778e12f2ea2aff9e2b10a26f087
+debug - websocket writing 1::
+debug - websocket writing 4:::{"termkit":"1","timestamp":1310821016919}
+debug - websocket received data packet 3:::[object Object]
+debug - got packet
+debug - websocket received data packet 3:::[object Object]
+debug - got packet
+debug - emitting heartbeat for client 77af5778e12f2ea2aff9e2b10a26f087
+debug - websocket writing 2::
+debug - set heartbeat timeout for client 77af5778e12f2ea2aff9e2b10a26f087
+debug - websocket received data packet 2::
+debug - got heartbeat packet
+debug - cleared heartbeat timeout for client 77af5778e12f2ea2aff9e2b10a26f087
+debug - set heartbeat interval for client 77af5778e12f2ea2aff9e2b10a26f087
+
+
+A: Check out stisti's fork:
+https://github.com/stisti/TermKit

@@ -1,0 +1,43 @@
+Q: How can I tell the difference between display sleep vs. computer sleep on my MacBook Air (Late 2010)? How can I tell the difference between the entire computer sleeping and only the display sleeping?
+I'm trying to diagnose sleep problems, and one of the basic things I need to know is the difference between these two kinds of sleep modes. I can't rely on the times I set in the settings since that is what I'm trying to debug.
+I have a 13" Macbook Air late 2010, if that makes any difference.
+Things I thought might help:
+
+
+*
+
+*Trackpad move vs. trackpad click. I've noticed that when I force the computer to sleep via the Apple menu, it's not enough to move around the mouse via the trackpad... I must press down on the trackpad or another key.
+
+*Caps Lock light: If I leave caps lock on for testing purposes, sometimes I will see the light turn off, while other times it stays on. I thought that perhaps this could tell me the difference between the two.
+
+*The Apple logo on the back side of the laptop, although its light seems to go off in both cases, so that doesn't help
+
+*Plugging in a USB device which has a light, which indicates when the computer is supplying it power. The light seems to shut off when in sleep mode, but stays on when the display is sleeping. I'm not sure if this is a reliable method, though
+
+
+The problem with the first two methods is that I was able to recreate a situation where the caps lock key remains on, but the trackpad mouse move does not wake the computer.
+Are there any reliable ways to know if the entire computer has gone to sleep or not?
+
+A: There's a really simple way to test this if you have another Mac, or any other machine really.
+Turn on one of the Sharing features on the Mac in question (File Sharing, Remote Login etc.) and try to connect to it from something else. If the entire machine is asleep it won't work. If just the screen is asleep it will.
+I assume you're connecting to some kind of wireless network with the MacBookAir, so you could also check the list of connected wireless clients on your router. If the entire machine is asleep it should not be connected. It may still show up in the list of DHCP clients (clients that have requested an address from the router recently), but it should not be connected. 
+
+A: Use the power led:
+
+
+*
+
+*If the led is off, the computer is either full on or full off.
+
+*If the screen is dark but the led is on the display is off
+
+*If the screen is dark and the led is pulsating the computer is sleeping
+
+
+A: In all of my testing, I closed all running applications, and set the sleep to 1 minute. Normally the screen will dim at 30 seconds and turn off at 1 minute. (Just because the display turns off does not mean that the computer is asleep.)
+CapsLock key:
+This does not work. The light on the caps lock key seemed to turn off at around 5:50 seconds. However, the computer goes to sleep much earlier than that. In my testing, it seems that it goes to sleep at 1:05 seconds. Also, keeping CapsLock on causes the dim and turn off times to be different. Instead of dimming at 0:30, the screen dims at 0:54 and shuts off at 1:00.
+USB device:
+This doesn't work either. There are cases where the light remains on on the USB device, yet the computer is asleep.
+Trackpad touch:
+This seems to be the most reliable method. The only problem is that it will force the screen to turn on if it wasn't sleeping. This can be annoying during tests such as this because it resets the timer that causes the computer to go to sleep again. If you touch the trackpad and the screen does not turn on, it means the computer is asleep. If you touch it and it turns on, then only the screen went to sleep. Notice that this is different than depressing the trackpad (i.e. physically clicking it).

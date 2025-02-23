@@ -1,0 +1,31 @@
+Q: How do I set which Apache / PHP 10.6 should run? All my problems stemmed from trying to get mcrypt for PHP installed. Last night I gave in and followed a tutorial of how to do a totally fresh apache2 and php5.3.3 install. I did this using MacPorts.
+Sadly, that didn't enable mcrypt for me last night, although I was pretty pleased that I got 5.3.3 running. :)
+The problem is that I have woken up this morning to find that my php version is back down to 5.3.1 which can only mean that OS X has reverted to my original Apache and PHP.
+How to I tell OS X to use the software I installed via MacPorts?
+(And then I will as a new question of how to enable mcrypt)
+
+A: It's not so much your version of Apache/PHP have been reverted - it's just the wrong version is loaded.
+If you have Mac OS X's Web Sharing enabled it will auto enable the version of Apache and PHP Apple provides using the LaunchDaemon org.apache.httpd.plist in /System/Library/LaunchDaemons (this will override MacPorts version). You'll want to disable this by either turning off Web Sharing in the Sharing Preference Pane or by running sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist.
+When you installed Apache for MacPorts it installed a LaunchDaemon into /Library/LaunchDaemons which if enabled will start up the MacPorts version of Apache automatically. To enable it run sudo launchctl load -w /Library/LaunchDaemons/org.macports.apache2.plist and you're off to the races.
+If you're running apachectl to restart - make sure you've selected the right version. You may need to alter your $PATH to have /opt/local/apache2/bim before /usr/sbin
+As for what version of PHP is being used; on the command line this will depend on your $PATH while for Apache it's entirely in your configuration of where the libphp5 module is. (/etc/apache2/ for the built in version, /opt/local/apache2/conf for the version MacPorts installed)
+
+A: Why does OS X need to know which Apache to use?  Just run the correct Apache yourself.  Open up Terminal, cd to the MacPorts directory containing the correct Apache (probably /opt/something/something/something/Apache2/bin or something like that), and run it (probably something like ./httpd).
+
+A: You have two solutions : 
+
+
+*
+
+*You have to edit the global PATH variable to add MacPort folders at the beginning. It contains the order of folders the system uses to find binaries.
+
+*Backup original binaries (in /usr/bin, /bin, …), then add symlinks to MacPorts binaries.
+
+
+Normally, do not use option 2 until you really know what you're doing. I just mentioned it because it's technically possible.
+To edit the global PATH variable, edit the file /etc/paths, add /opt/local/bin at the beginning and finally reboot to apply changes.
+You can control, after the reboot, that changes have been made by do the following command : 
+
+echo $PATH
+
+You should see /opt/local/bin just before /usr/bin:/bin:….

@@ -1,0 +1,68 @@
+Q: How can Time Machine in Lion backup the volume content of a sparse bundle disk image? Using Mac OS X 10.7 (Build 11A511), attempts to backup volume content with Time Machine have failed. 
+With a simple non-encrypted image I tried three approaches: 
+
+
+*
+
+*the traditional workaround, which reportedly works on Snow Leopard
+
+*the removeexclusion verb of tmutil in Lion
+
+*(1) and (2) combined.
+
+
+This leaves the question: 
+How can Time Machine backup .sparsebundle volume content?
+
+
+*
+
+*content of the volume, not the bands of the image.
+
+
+Differences between Snow Leopard and Lion
+Finder preferences
+~/Library/Preferences/com.apple.finder.plist
+Within this file, the FXRecentFolders key contains an array of data. 
+Opening the required volume in Finder, then closing the window causes volume-related data to be written as a sub-key: 
+
+
+*
+
+*file-data sub-keys in Snow Leopard
+
+*file-bookmark sub-keys in Lion. 
+
+
+Time Machine preferences
+/Library/Preferences/com.apple.TimeMachine.plist
+The removeexclusion verb of tmutil (manual page not yet published by Apple): 
+
+
+*
+
+*seems to add — to the IncludedVolumes array of com.apple.TimeMachine.plist — key data that differs from the data found in com.apple.finder.plist
+
+*does not add a corresponding key string to the IncludedVolumeUUIDs array.
+
+
+Relevant commands
+For a volume named myVolume
+defaults read com.apple.finder FXRecentFolders | grep --before-context=1 myVolume
+diskutil information /Volumes/myVolume | grep UUID
+A similar question, asked in 2010
+How can I get Time Machine to back up the contents of a File Vault while logged in?
+
+
+*
+
+*that 2010 question focuses on FileVault 1 encrypted home directories in Snow Leopard
+
+*this 2011 question, not focused on FileVault, is more broadly about content of volumes attached from sparse bundle disk images in Lion.
+
+
+Other references
+How To: backup your File Vault home directory unencrypted (also works with Snow Leopard!) « Useful solutions (2009-12-12)
+10.6: Let Time Machine backup File Vault while logged in — Mac OS X Hints (2010-01-27)
+Test results
+To follow. 

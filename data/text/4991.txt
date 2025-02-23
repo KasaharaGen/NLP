@@ -1,0 +1,38 @@
+Q: How do you get Function keys to work on Mac Book Pro running Windows 7 under bootcamp? The Fn keys don't seem to work on my Macbook Pro when it's runnign windows 7 Under bootcamp. I can't turn the volume up or down or mute the sound etc.
+I've found articles leading to me to believe that I can do this using the bootcamp entry in control panels but I've had no luck doing this. all it seems to change is whether I have to press the Fn button to get the normal behaviour of the F keys. E.G. whether I have to press Fn and F5 to refresh the page of just F5.
+I think there is a driver issue with Windows 7 as people seem to have gotten them to work under XP.
+
+A: bootcamp.exe should launch upon Login. Sometimes it doesn't or at least it doesn't stay running. You can log out and log back in or try the following, it worked for me:
+Open Task Manager and see if bootcamp.exe is running. If not, open C:\Program Files\Boot Camp with Windows Explorer and launch bootcamp.exe.
+Function keys will work again.
+
+A: I was having a similar problem and just finally got it fixed. Heres how I did it:
+
+
+*
+
+*Update everything on the Mac side. I mean actually go over and make sure everything is updated, not just assuming it is via the 'Apple software' updates you get in windows... (I found about 14 updates windows had not updated for the Mac side of things)
+
+*Ensure Windows is fully updated. (This should be pretty easy to do, but again, double check.)
+
+*Get Boot Camp 3.3
+
+*Enjoy having your function keys back. (And the backlit keyboard, the real reason I missed it all.)
+I also noticed during this time that the boot camp icon is gone(no longer showing in system tray, even though it is supposed to be shown constantly). You may be able to just skip to step 3 and be done with it, but it never hurts to fully update everything anyway... :)
+
+A: It does sound like a drivers issue. Have you tried updating to the latest Boot Camp Drivers for Windows 7? The latest seems to be Version 3.2.
+Make sure you grab the correct version (32 bit or 64 bit).
+http://support.apple.com/kb/index?page=search&src=support_site.kbase.search&locale=en_US&q=Boot%20Camp%20Software%20Update
+
+A: *
+
+*Look in your task bar for Boot Camp, it should appear as a grey diamond.
+
+*Click it and select "Boot Camp Control Panel..." (click YES to UAC if activated)
+
+*Select Keyboard tab
+
+*Make sure "Use all F1, F2, etc. keys as standard function keys" is checked in the checkbox.
+
+*Click Apply and OK. You will now have your function keys as primary without needing a restart.
+

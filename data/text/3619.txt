@@ -1,0 +1,10 @@
+Q: Can't preview files in column view I'm suddenly not able to preview files in column view, or select them in the Open File dialog. Selecting the file gives me a spinning beach ball, and eventually I end up relaunching the Finder. I've confirmed that .jpg, .pdf, and .app files all do this, so I'm assuming it's an issue with previewing the files. Has anyone experienced this, or have any suggestions on resolving it?
+I'm running a G5 PPC Mac with OS X 10.4.11
+Thanks for the help.
+
+A: Two things you can try :
+If you don't need the preview feature in column mode (or for a short term fix), you can disable the preview column by going to View Options cmd-J in Finder and unchecking the "Show preview column" checkbox.
+Alternatively, you can disable Quartz 2D Extreme (which should be disabled by default, but may be active and been known to cause Finder and preview slowdown). You can run the following command to disable it regardless.  
+sudo defaults write /Library/Preferences/com.apple.windowserver Quartz2DExtremeEnabled -boolean NO
+
+Run this command in Terminal (found in the Utility folder in Applications).  You will then need to reboot your Mac.

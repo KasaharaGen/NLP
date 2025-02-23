@@ -1,0 +1,12 @@
+Q: Is there any utility or program that will let me assign keyboard shortcuts inside of apps? I'm a web developer, and use a specific IDE for all of my work. It does everything I need it to do, so please don't suggest a host of other IDEs. The only issue I have with it is that there is no keyboard shortcut for printing. It drives me up a wall to have to use the menus for this. I'm new to Mac - is there a program or utility like AutoHotKeys that would let me create keyboard shortcuts that work inside of apps?
+
+A: Usually Command + P is the keyboard shortcut to print. If it's not, you can add your own keyboard shortcut. You shouldn't need any additional apps to do this. It's built right into the Mac.
+Go to System Preferences -> Keyboard. Select Keyboard Shortcuts. At the bottom, click the + button to add a new keyboard shortcut. To add a keyboard shortcut to a specific application, select it from the Application dropdown menu. Enter the name of the command exactly as it appears in the menu (In this case it may simply be "print").
+Additional cool trick 
+If you don't always feel like setting a keyboard shortcut: You can use Command + ? to bring up the Search menu from within the application itself. Start typing in the name of the command you'd like to select. Once you have enough characters, the menu item should be highlighted. Hit Return and it will select that menu item. Instant keyboard shortcut!
+**EDIT**
+Since you specified that this issue is about Komodo Edit there's some good news and bad news:
+The bad news:
+Komodo Edit, like Firefox, is built using XUL. Many XUL applications have an ongoing bug when it comes to respecting keyboard shortcuts set from System Preferences on the Mac. Namely, they don't. (If anyone has any solutions or comments about this please let me know)
+The good news:
+Komodo Edit lets you set your own keyboard shortcuts from within the application! Go to Preferences -> Editor -> Key Bindings, search "Commands" for "Print", select it, and assign whatever keyboard shortcut you like.

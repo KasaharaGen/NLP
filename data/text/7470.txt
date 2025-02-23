@@ -1,0 +1,20 @@
+Q: How can I share a link to a folder on a Time Capsule drive? We have a Time Capsule in the office.  I'd like to share a clickable link to a specific folder on the Time Capsule with my fellow employees.  Is there any way to do this?
+Ideally, I'd like to be able to email out a link to people and they can click the link at it will open a Finder window in the specified folder on the Time Capsule.
+Thanks.
+
+A: Have you tried something like
+
+
+*
+
+*afp://gator._afpovertcp._tcp.local/Data/Test
+
+
+It's general with the following terms....
+
+
+*
+
+*afp://TimeCapsule._afpovertcp._tcp.local/Data/Test
+This would work for a Time Capsule with name TimeCapsule and a Folder Test inside the drive named Data (I added the emphasis for clarity - you'll want to simply send the link in plain text)
+You can get this by dragging the folder to your Finder sidebar and then looking in the Info window for that item.

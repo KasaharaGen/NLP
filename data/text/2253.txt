@@ -1,0 +1,7 @@
+Q: How do I change my display settings if I can't see my screen? I have a macbook in clamshell mode that's plugged into an HDTV for display output.  Yesterday, I changed my display settings via the System Preferences.  However, I inadvertently picked a setting that is not supported by my screen, and now I can't figure out how to undo the change.  The screen is blank.
+I can open my laptop and go to dual-screen mode and change the settings there, but as soon as I switch back to clamshell mode the system picks the broken display settings again.
+
+A: Try to to go /Library/Preferences/ and search for com.apple.windowserver.plist. It's the file that gets updated when you modify the display in System Preferences (I just tried).
+According to this Apple KB, it's safe to delete it. So move it on your desktop and try to reboot.
+
+A: From the command line, cscreen lets you adjust monitor resolution.

@@ -1,0 +1,32 @@
+Q: How do I do custom key binding in iTunes? How would I assign 
+
+
+*
+
+*⌘1 to Music (Library item) 
+
+*⌘2 to Movies 
+
+*⌘3 to Podcasts
+
+
+Surprisingly enough, these key bindings are not assigned to anything yet, and IMO they would be most convenient ones (see e.g. Mail.app).
+I can't see any relevant item in AppleScript dictionary for iTunes…
+
+A: For each Source/Library item (Music,Movies,Podcasts) you want to open with a shortcut, create a new Applescript as follows
+tell application "iTunes"
+try
+    set view of front browser window to (get some playlist whose special kind is Podcasts)
+end try
+end tell
+
+replacing "Podcasts" with "Music” or "Movies", and save it with to your ~/Library/iTunes/Scripts folder (if this doesn´t exist, create it!), giving it an unique name (like "show podcasts","show movies").
+Next, open "System Preferences">"Keybaord">"Keyboard Shortcuts" and select "Application Shortcuts". Click on the little "plus" button to add a new shortcut with:
+Application: iTunes
+Menu Title: show podcasts   —this has to be exactly the name you gave your script
+Keyboard Shortcut: <press your desired shortcut, eg. "cmd+2">
+
+Now pressing "cmd+2" (or whichever shortcut you defined) while being in iTunes will open the Podcast library item.
+
+A: Try going into Settings → Keyboard → Keyboard Shortcuts tab → Application Shortcuts in the left panel.
+There you can add a custom shortcut to any specific application menu item. Just add itunes to the list and add your shortcut.

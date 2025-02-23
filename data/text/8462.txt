@@ -1,0 +1,17 @@
+Q: Why is my iPhone 4S running iOS 5 not showing in iTunes sidebar when using WiFi sync? I've enabled WiFi sync for my 4S and my first gen iPad, both running iOS5. When my phone is plugged in to my computer with a USB cable, it shows up in the sidebar, but as soon as it's unplugged it goes away. The iPad stays in the sidebar until I manually eject it.
+It seems that my iPad is behaving 'correctly', at least based on This kbase article.
+Toggling WiFi sync when the phone is connected doesn't seem to solve it.
+I've also tried the steps outlined in this article to no avail.
+This was a fresh install, I didn't import a backup from a previous device. I've restored and set up as new, and the same behavior happens.
+I had originally thought it was because my computer had switched to an 802.11n 5Ghz network while my phone remained on the 802.11n 2.4Ghz network, but even when they're on the same exact network I see this behavior.
+
+A: I had this problem with an iPad. I did the initial setup over USB, enabled Wi-Fi sync, but then when I removed the iPad, it disappeared from the iTunes sidebar, but my iPhone didn't have that problem.
+Turned out that I had been disconnecting the USB end of the cable from my Mac first; disconnecting the dock connector end from the iPad (then removing the USB end) made it stay in the sidebar. Completely bonkers, really doesn't seem like it should be that way (or even that iTunes could discern what was disconnected when), but that's what fixed it for me.
+
+A: I have tried reinstalling iTunes, restoring the software, rebooting the router and pretty much every combination of checkboxes checked and unchecked and you know what fixed it for me?
+Rebooting my MacBook.
+I've been struggling with this for several hours and it never came to me to reboot my laptop.
+So my guess is that it has to do with the computer's wifi connection. Flush that cache, reconnect that wifi, or just reboot the thing.
+I hope this helps someone. I am very relieved.
+
+A: It disappears because the "show" selection on DEVICES needs to be activated and then it wil come back

@@ -1,0 +1,108 @@
+Q: Changing the default screenshot filename Is there a way to change the default screenshot filename prefix (the Cmd-Shift-4 type screenshot) to something other than the default? The default name looks like this:
+Screen Shot 2011-08-30 at 10.01.36 AM.png
+
+But I'd prefer to use something like:
+screenshot_2011-08-30_100136.png
+
+Basically so I can remove the spaces and junk, since it's annoying to browse dig through files in Terminal. Any easy way to change this prefix with one of the defaults write com.apple.screencapture style commands?
+
+A: I solved this another way. Using Automator I set up a Folder Action to monitor my screen shot folder and rename any new files exactly the way I want them. 
+There's a decent guide here with a similar approach and instructions.
+
+A: I have disabled the default shortcuts and assigned a shortcut to this command:
+screencapture -i ~/Desktop/$(date +%Y%m%d%H%M%S).png
+
+-i (interactive) is like ⇧⌘4 or ⌃⇧⌘4.
+
+A: Open terminal and enter:
+$ sudo su
+
+$ cd /System/Library/CoreServices/SystemUIServer.app/Contents/Resources/English.lproj
+
+$ plutil -convert xml1 ScreenCapture.strings
+
+$ nano ScreenCapture.strings
+
+change
+<key>%@ %@ at %@</key>
+    <string>%@ %@ at %@</string>
+<key>.</key>
+    <string>.</string>
+<key>Screen Shot</key>
+    <string>Screen Shot</string>
+
+to
+<key>%@ %@ at %@</key>
+    <string>%@_%@_%@</string>
+<key>.</key>
+    <string></string>
+<key>Screen Shot</key>
+    <string>screenshot</string>
+
+then
+Control + O to write the file, and Control + X to exit nano
+$ plutil -convert binary1 ScreenCapture.strings
+
+$ killall SystemUIServer
+
+One more thing to note here is that to get rid of AM/PM you will need to change it in System Preferences > Language & Text > Formats (24 hour format). Time stamps are displayed according to how this is set; keep in mind if you change this setting all filenames will use this format.
+~ Let me know how it works out.
+
+A: The same effect of the complicated terminal actions shown above can be achieved through the free secrets preference pane, which serves as an interface for all sorts of hidden setting in Mac OS and it's apps. Simply open the pref pane and find the setting u want to change
+
+A: You can change 'Screen shot' to 'screenshot' with the following commands  
+defaults write com.apple.screencapture name screenshot
+killall SystemUIServer 
+If you want to go digging a bit deeper in Terminal, you can achieve what you want by doing the following:  
+NOTE: Make a backup of any files you change in case you make a mistake.  
+
+
+*
+
+*cd /System/Library/CoreServices/SystemUIServer.app/Contents/Resources/English.lproj
+
+*Make a copy of the existing file:
+sudo cp ScreenCapture.strings ScreenCapture.strings.old
+
+*Enter Admin password if prompted
+
+*Convert to an editable format:
+sudo plutil -convert xml1 ScreenCapture.strings
+
+*sudo vi ScreenCapture.strings 
+Locate the following lines:  
+<key>%@ %@ at %@</key>  
+<string>%@ %@ at %@</string>  
+
+and replace with the following lines:  
+<key>%@ %@ at %@</key>  
+<string>%@_%@_%@</string>  
+
+
+*Convert back to binary:
+sudo plutil -convert binary1 ScreenCapture.strings
+
+*killall SystemUIServer
+which combined with the first change should get you something like this:  
+screenshot_2011-08-30_10.01.36.png which is very close to what you need I think  
+
+A: IMO you should absolutely not muck around with anything in /System/.
+For one thing, you are just asking for your customizations to be overwritten by a future update.
+Download the demo of Sharpshooter from http://www.kerlmax.com/products/sharpshooter/
+You can use it for 30 days. Then buy it for $15. It's a great utility.
+Alternatively, have you tried Skitch? It's completely free, and a lot better than the built-in.
+
+A: I liked Adrian B's answer. Here's the shell script I wrote to rename screen cap files: https://gist.github.com/DinoChiesa/7796444
+To set it up as a Folder Action, follow this article.  
+When you get to the Automator window, follow this guide: 
+
+Don't forget to save it (Command-S). 
+It takes 3-6 seconds, in my experience, for that folder action to "kick off" after I capture the screen.  
+
+A: just use 2 commands:
+d̶e̶f̶a̶u̶l̶t̶s̶ ̶w̶r̶i̶t̶e̶ ̶c̶o̶m̶.̶a̶p̶p̶l̶e̶.̶s̶c̶r̶e̶e̶n̶c̶a̶p̶t̶u̶r̶e̶ ̶n̶a̶m̶e̶ ̶"̶s̶c̶r̶e̶e̶n̶s̶h̶o̶t̶_̶$̶(̶d̶a̶t̶e̶ ̶+̶%̶Y̶_̶%̶m̶_̶%̶d̶-̶%̶H̶_̶%̶M̶_̶%̶S̶)̶"̶ ̶
+d̶e̶f̶a̶u̶l̶t̶s̶ ̶w̶r̶i̶t̶e̶ ̶c̶o̶m̶.̶a̶p̶p̶l̶e̶.̶s̶c̶r̶e̶e̶n̶c̶a̶p̶t̶u̶r̶e̶ ̶"̶i̶n̶c̶l̶u̶d̶e̶-̶d̶a̶t̶e̶"̶ ̶0̶
+
+you can also change the default screenshot location (in my case this is a folder in iCloud)
+defaults write com.apple.screencapture location "~/Library/Mobile\ Documents/com\~apple\~CloudDocs/screenshots"
+

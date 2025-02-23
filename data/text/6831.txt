@@ -1,0 +1,32 @@
+Q: Using screencapture when remotely logged in to a headless mac via ssh I'm trying to use screencapture from the terminal, when logged in over ssh, to a mac that has no screen attached. I can screen share to the machine, so I'd like to capture the same display.
+However when I try it, I don't get an image file.
+Here's what I've tried...
+screencapture -tpng /Users/slomojo/Desktop/image.png
+
+and...
+sudo screencapture -tpng /Users/slomojo/Desktop/image.png
+
+and finally, 
+sudo launchtl bsexec $(ps -ax | grep loginwindow.app | awk '{print $1}' | head -1) /usr/sbin/screencapture -tpng /Users/slomojo/Desktop/image.png
+
+None of which work... (note that the last attempt is getting the PID for loginwindow.app and attaching the screencapture process to it as suggested by the OS X man page.)
+Update
+FYI I'm running OS X 10.6.8.
+Additional update.
+I didn't mention that the machine doesn't have a screen attached, (I usually connect to it via VNC/Screen Sharing) I jumped to another machine on that network and the command works ok, (of course I guess!)
+I should also mention that, as I'm logged in on the remote machine on the same account as the local GUI session, the first version of the command works fine.
+In fact, just the following without all the launchctl stuff works fine:
+screencapture -tpng ~/Desktop/image.png
+
+However, I still need to figure out how to screencapture on the headless machine, ie. capture the same display I'd see over screen sharing.
+I'm not 100% sure, but I think that the screen sharing session may create/teardown a virtual screen device when it's connected/disconnected. So I'll try to do the screencapture when I can get a screen sharing session running at the same time.
+Update #2
+I tried doing the screencapture while another machine had a screen sharing session open on the same user account as the ssh session, no dice.
+However, interestingly enough I was in the same room as all the boxes in question and the target box made the "shutter" sound when I ran the screencapture remotely.
+Looks like it's not possible to screen grab on a displayless mac, without some serious additional work, I will VNC to it remotely instead.
+
+A: I'm not sure if this will work, but, it's worth a shot...
+What is you create an Automator script to take a screen capture, and then run that using the terminal?
+Similar to what is described in this TUAW article, however, without the part that mails the screen capture to you.
+
+Save the Automator script as an application, SSH in, and run open /path/to/the/automator.app

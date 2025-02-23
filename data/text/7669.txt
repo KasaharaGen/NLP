@@ -1,0 +1,9 @@
+Q: Why can't Mail.app send email on Lion? My mail account (OS X Lion) refuses to send email. It receives mail fine and I have checked and rechecked all the settings etc. My iPhone and iPad send and receive mail with no problems, using the same settings, the same network, and the same accounts.
+Any ideas why this is happening?
+
+A: My grandmother's computer had the same issue. After trying a bunch of stuff, I ended up deleting the IMAP account and re-added it and everything works fine now.
+As commented, you could also use the connection doctor (search for it in help if you can't find it under the menu structure for Mail) and see that all of the servers and passwords are set up correctly. Often an old setting can go stale or the preference file could get corrupt and need a new password to be stored for the sending side of email.
+
+A: Compare your outgoing server settings (SMTP, not IMAP) to those on your iOS devices. I'd imagine that's where your problems lies. Dig into the 'advanced' section and make sure you're using the correct authentication type, port, etc.
+
+A: I have the same problem, tried most of the suggestions, to no avail, still couldn't use Mail to send out. Downloaded Thunderbird, by Mozilla instead. Works a treat, same address, and has even hooked up with my address book, and to be honest looks a whole lot better.

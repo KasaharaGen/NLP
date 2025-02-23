@@ -1,0 +1,18 @@
+Q: How can I tell when Turbo Boost is active on my MacBook? I have one of the core i7 MacBooks, and I'm wondering if there is a way to see when Turbo Boost is active (other than the fact that the laptop gets really hot and the fan kicks on). 
+I use iStat to monitor CPU activity, but that doesn't show Turbo Boost activity.
+
+A: Check out the Intel Power Gadget. It provides info about the processor frequency in GHz and Processor Power in W.
+
+
+A: there's 2 utilities that could provide that info,
+
+
+*
+
+*one from Intel called MacCPUID (http://software.intel.com/en-us/articles/download-maccpuid/)
+
+*other called CPU-X (http://netkas.org/?p=72) rather outdated
+Hope this helps.
+Karl
+
+A: with a mac pro13" 2013 retina (2.4GHz, 2.9GHz turbo boost) this works and I can clearly see turbo boost kicking in with very tight numerical code and taking the cpu up to 2.88GHz. With this code I am getting ~ 10.22Gflops from a single core using SSE (peak would be 11.6Gflops at 2.9GHz)

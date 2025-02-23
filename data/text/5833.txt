@@ -1,0 +1,82 @@
+Q: What scenarios benefit from Mac OS X allowing apps to run when no document windows remain? As a rule of thumb programs on Mac OS X stay running when you close all their document windows.
+This is the behavior I noticed in MacVim, VmWare Fusion, Chrome and host of other applications.
+I personally find this of no use and frankly quite annoying, although having had some number of experiences confirming that my opinion is not always the prevailing in a given target group, I assume that there could be a reason for this decision.
+What are scenarios where this function could be useful?
+
+A: When you are using Windows and you open an application like MS Word or Adobe Photoshop, it will open up the application window with some sort of empty background. When you do this on a Mac however, there is no background, there is simply the menu options in the very top bar. So say you had a file open in Photoshop in Windows and you closed that file, you would see the same blank application window that you saw when you started up Photoshop. On a Mac, you will see the menu in the top bar, but again, since there is no background you simply see the desktop. So really, there is no difference in the way that Windows and Mac OS X handle the applications, other than one had a visible window and the other doesn't.
+The benefit of doing it the OS X way: If you DO plan on keeping the application open, it keeps you from having to minimize the app like you would in windows. All you have to do it click on something else in the background and it will make the applciation lose focus. To close it, simply right click on the application icon in the dock and choose 'Quit'.
+
+
+A: The upside of this behavior is that it caters to users that wish to enjoy the difference between having to launch an entire application framework or just open a new document within an already running app.
+You can set those apps to launch at log in if you have enough RAM or just a pokey CPU. The virtual memory system will sort out what pages you need swapped to disk and which can remain in RAM. 
+As long as the apps leak memory slowly, it is a great plan to not quit any app you may use again. 
+It's basic performance tuning - re-use work, divide the work into chunks, get the work done before the user is waiting for it.
+
+A: Fundamentally, OSX and Windows have different approaches to top-level windows.  In Windows, the window contains the entire application instance including the menu bar.  In OSX, the window contains the open document, which explains why you can have an application displaying only a menu bar.  
+Keep in mind that the handling of "empty" applications will be changing in the near future as more and more applications are updated for Lion.  The common behaviour will be that document-based applications that have no documents opened (as opposed to things like Calculator) will indicate to the OS that it can shut the app down when no documents are open.  The idea is that there will be less of a need to manage which applications are open.
+See John Siracusa's detailed Lion review for more on this.
+
+A: Interpretation
+Based on the accepted answer, I see two aspects to the question: 
+
+
+*
+
+*whether an application should run without windows
+
+*which windows should present when an application runs.
+
+
+Automatic and sudden termination
+Recommended reading for any user of Lion concerned about running applications: 
+
+
+*
+
+*Mac OS X Application Programming Guide: The Core Application Design: The Application Life Cycle: Automatic and Sudden Termination of Applications Improve the User Experience
+A highlight: 
+
+… the system … is better equipped to handle the job. Users do not need to manage processes manually …
+
+Quit quitting!
+If well-written applications are used, and if the user can break a habit of quitting applications (a habit learnt from less intelligent systems) then: 
+
+
+*
+
+*allowing the Lion system to manage things can result in a vastly improved user experience.
+
+
+It takes a leap of faith to work in this way — without command-q — but many user reports do confirm what's suggested by Apple. 
+Shift key suppression of windows
+Sometimes comparable to discarding windows. 
+In Mac OS X 10.7 (Build 11A511): without changing global or application-specific settings for restoration of windows (a feature of the Transparent App Lifecycle (TAL)), applications respond in different ways to use of the shift key before the application is launched. 
+Examples
+NeoOffice 3.2.1 Beta Patch 0 respects the shift key. If a saved file was open at quit time, then shift key before launch will suppress restoration of the window to that file. If in addition you prefer nothing at launch (a feature that's independent of the TAL) you'll get nothing. 
+
+Preview 5.5 (719) respects the key. If only saved files were open before quit, then shift key will cause Preview to present nothing, no windows. 
+Safari 5.1 (7534.48.3) respects the key. If your preference for new windows is an empty page, and if you were browsing various pages before quit, then shift key before launch will cause presentation of just one window, an empty page. 
+Terminal 2.2 (297) and TextEdit 1.7 (288) behave in ways that are consistent with Preview and Safari. 
+For each application, a different logic may apply but essentially, at launch time: 
+
+
+*
+
+*shift key should suppress something. 
+
+
+Mail 5.0 (1244.2/1244.3) seems to ignore the key. If you have multiple viewer windows, the activity window and a window to a received message: all of those will be restored. This inconsistency smells buggy and should be fed to Apple; I expect Mail to present at least one window (viewer), not everything. 
+Hint
+Do not release the shift key too soon. 
+Side note: resuming editions
+Editions that were unsaved before quit are usually resumed as editions. 
+In some environments, editions that were unsaved before quit are not resumed. When you open any such file you should find that the system (not you) saved a version. 
+
+A: *
+
+*Applications that take a lot of time to open can be kept running on the background even if they have no open windows
+
+*Applications without open documents don't have to display an empty window that covers the screen
+
+*You can close the last window of an application and open a new one without having to quit and reopen the application
+

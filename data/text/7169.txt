@@ -1,0 +1,75 @@
+Q: What are the downsides to using Time Machine? I hear a lot about the good aspects of using Time Machine, particularly the fact that it's so easy to use that people actually do backups!
+What are the downsides to using Time Machine compared to other contemporary backup programs? My particular interest is the disadvantages of using it in a (semi)-managed environment i.e. at a university.
+
+A: One substantial downside to Time Machine is that unlike clones produced with CarbonCopyCloner or SuperDuper, the backups it produces are not bootable.
+Disclosure: I have no affiliation with any software company, but for one term in college, I was roommates with the author of CarbonCopyCloner.
+
+A: In addition to the other downsides noted:
+
+
+*
+
+*System performance is significantly degraded while preparing and running a backup.
+
+
+(To mitigate this I generally avoid mounting my backup drive whenever I have a performance-critical process running.)
+
+A: I would like to add some more points here as a drawback of Time Machine:-
+
+
+*
+
+*Time Machine doesn't give you much control for backup data:-  You can tell Time Machine to ignore particular files or folders by adding them to its Do Not Back Up list,
+But, you can’t exclude files based on certain criteria e.g  all movie files over 2GB in size.
+
+*It Doesn't compress files:-  It doesn’t store duplicate copies of identical files, so it doesn’t compress your files.
+
+*Not compatible with FileVault:- Time Machine backs up FileVault-encrypted user folders only after logged out session—and does not permit file-by-file restoration of your FileVault.
+
+A: I agree with your comment that the main advantage of time machine is that it is easy to use and is low maintenance, so users will actually have backups. It works well for incremental backups, but may not provide a permanent archival snapshot of a system on an old date.  The reason for this is that it prioritizes recent changes over older data if backup space is limited. The recommended solution is to have a Time Machine drive be several times larger than the sum of the volumes that it is backing up, but this is not always feasible, so it is good to have a secondary mechanism for occasionally archiving critical data. 
+Time Machine will make it easy for users to recover data, from a local backup,  that they recently lost on their boot drive, without the need for I.T. personnel intervention. Without Time Machine this problem typically goes unaddressed and users just suffer in silence. As an I.T. manager you will probably be called upon to assist in storage and recovery of archival data, or may need centralized management tools not provided by Time Machine. So my feeling is that Time Machine would be a great addition, one that would make your Mac users very grateful, but it won't supplant your need for other archival or recovery tools. 
+
+A: Here are some of the limitations you have to accept or mitigate if you choose Time Machine:
+
+
+*
+
+*Time machine requires an apple specific HFS+ filesystem to store backups.
+
+*The backup isn't bootable.
+
+*The backup doesn't record differences inside a file. Large (database) files with tiny changes make each incremental save longer and move more data. This also can eat up storage space faster if these type files are not excluded and potentially backed up another way if they can't be regenerated after a restore (like mail stored on IMAP servers)
+
+*It must be an external drive or an official apple network destination like TimeCapsule or Mac OS X Server to be a supported by Apple. 
+
+*It will delete backups according to the official scheule ( hourly backups combine and expire after a day. Dailies expire after 31 days. Weekly backups can be deleted if there isn't enough space to contain the estimated size of the next backup.  In odd cases or if there is a bug, you could end up with all the history gone an one copy of the last backup. 
+
+*The destination volume must be larger in size than the boot volume. 
+Once you are aware of these limitations, it's fairly easy to work around all but the first limitation with some planning and/or extra software / hardware. The HFS+ format for storage is pretty inflexible with no realistic mitigation or workarounds. 
+
+A: Another thing worth mentioning, rather than which backup application to use, is the entire strategy behind your backup plan and the physical issue: If both your computer and the external drive with Time Machine are in the same location, and the building burns down, you lose both of them, and all your data. So people who are paranoid in a good way would back this up further with a cloud-based solution for backing up a sub-set of their critical data off site (say over the Internet using Carbonite, Mozy, and/or iCloud), or they would have multiple physical hard drives or tape backup systems and they would physically move a backup volume to a remote location (in another building, in another part of town) on a regular basis. Not everybody needs this extra security, but it's worth considering in the larger question.
+
+A: I'll add my answer from my own experience. With time machine:
+
+
+*
+
+*You can only really backup to one location automatically, be it USB or network, and to backup to two or more locations requires fiddling around in either System preferences each time or with complicated stuff on the command line
+
+*Network linked TM locations e.g time capsules use broadcast protocols to negotiate the connnection, which doesn't scale well on large networks
+
+*For the above reason you can't trivially backup to a network location in a different subnet - which ties in with one of the other comments needing to backup offsite
+
+*You can't change backup schedules easily
+
+*You can't easily anticipate what old backups TM will delete - I've been burned a few times by TM deleting my backup history when I've accidentally included too many files
+
+*It's not trivial to offer large amounts of TM backup space to end users. I'd like to allocate say 8TB for users to do TM backups but what should I use to do that? A mac-mini with a drobo attached??
+
+*It takes a bit of effort to move TM backups between media, e.g Upgrade time machine storage?
+
+*No deduplication, but that may be asking a bit much.  
+In my work environment we use Commvault Simpana to backup our servers and some desktops. We are able to backup offsite and onsite simultaneously to multiple locations and media, on a schedule we choose. Commvault is a difficult to set up, expensive backup suite so I'm not making a direct comparison here, but it's interesting to explore nonetheless what other backup software offers that TM doesn't. Please feel free contradict anything I've said above with examples, as I'd love to be able to get around some of these issues I've outlined.
+
+A: Time Machine was evil to me.  It did not properly prompt me how to deal with the file vault situation.  I am forever drag and drop and carbonite.  Note:  Carbonite does not store pictures and videos in the big format you may have them in so if you want your FULL DATA of your photos (bigger files with more detail) then you need to drag and drop them to an external hard drive and let carbonite deal with all the smaller files.  Carbonite does not turn your file vault data into encrypted data that you may NEVER have back again and it is LOST FOREVER!!!  Carbonite saves it (even while file vault is running) as perfect just the way you see it except as I said before larger files such as photos and videos.  
+I hope you all stay away from Time Machine if you have precious data and forget when you had file vault on or off.  There are no prompters like a window popping up saying "Please before doing this time machine back up turn off your file vault, log out of your computer and log back in and THEN run the time machine".  That would be a very simple window to have pop up don't you think?

@@ -1,0 +1,12 @@
+Q: Can Lion detect 1920x1200 screen resolution? I own a MacBook Pro, 17", MA897D/A, A1229, Mid 2007, with a display resolution of 1920x1200 which worked seamlessly under 10.4.
+As I upgraded to Lion I sadly noticed that the maximum resolution now is 1680x1050.
+Did anybody experience similar behaviour?
+Is Lion unable to detect the native resolution?
+Are there any 'power settings' I could use?
+
+A: The current 17" MacBook Pro which ships with Lion also has a native resolution of 1920 x 1200:
+http://www.apple.com/macbookpro/specs-17inch.html
+My guess is Making a new user or booting into safe mode will help you sort out whether something got munged in your user account in the Lion install.
+
+A: This is what I would try: 
+Open /Library/Preferences/com.apple.windowserver.plist with a PLIST editor. Look under DisplaySets > Item 1 > Item 1 for the "Width" and "Height" values. Change them to 1920 and 1200 respectively. Save, restart, see if it fixes it.

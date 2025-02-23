@@ -1,0 +1,29 @@
+Q: Severe Wifi dropping on Macbook Pro - Have to restart to turn back on I have a 17" Early 2008 Macbook Pro running lion 10.7.2. And about 3 weeks ago, this problem started occurring where my interent would stop working randomly. I go to toggle the Wi-Fi on and off, but when I try to turn Wi-fi on, it does nothing and the wifi icon remains an empty wedge.
+Trying to turn Wi-Fi on from System preferences also does nothing - same empty signal.
+But if I restart my Mac I can get on Wi-Ffi normally and it will last from a couple hours to a couple minutes till it drops again and I need to restart to get back on.
+I searched all over the web for a solution and tried to 
+
+
+*
+
+*reordering wifi above the other service in System Preferences
+
+*deleting 'SystemConfiguration' folder in under library>preferences
+
+*reinstalling Lion from recovery disk
+
+*Reset PRAM
+
+*Reset SMC
+
+
+Nothing works. And I haven't found anyone on the web with the same problem.
+Has anyone seen this problem before? Is it a Lion issue? Or is it hardware, like a messed up airport card?
+Any help would be so greatly appreciated.
+UPDATE
+For anyone else who may stumble upon this issue, I've been dealing with this issue for a couple weeks and took it to the genius bar. After having me completely wipe my harddrive and do a fresh install of the OS and manual install of all my programs, It is conclusively a hardware problem. And the fix is to have your airport card replaced. Which is about $120.
+
+A: I would strongly agree that in most cases, when WiFi signal starts strong after a reboot (when the hardware is up to normal operating temperatures) and then degrades over minutes, it is most likely a symptom that the amplifier is failing and the WiFi card (or router) needs to be replaced.
+You can hold the option key down when selecting WiFi in the menu bar and watch the Transmit Rate and RSSI change over time. A repeatable, measurable drop in transmit rate would back up the hardware fault as a cause for this.
+
+A: My macbook (late 2008) refused to get wifi from airport some months ago. The MacCleanse app worked for me. Run "scan and delete" with it (loaded recommended set). Now my macbook has kept wi-fi for several days now, without a single drop.

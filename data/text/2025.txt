@@ -1,0 +1,89 @@
+Q: How can I export SMS text messages from my iPhone? When answering this question, please note if the solution is:
+
+
+*
+
+*For Windows and/or Mac OS X users
+
+*The price of the solution
+
+*If you have successfully—and actually—used the solution
+
+
+How can I export SMS text messages from my iPhone?
+
+A: I rely on PhoneView which you correctly note is a Mac OS X only paid solution.
+It has always been updated very quickly by the developers each time a new iOS is released. I even received support several times for pre-release / beta versions of iOS and iTunes. Support emails are promptly answered and I have twice received custom builds from them to resolve issues using their product with pre-release iOS versions to assist me in managing the devices I use for iOS development.
+I've used PhoneView to save data from a phone that iTunes said was broken and could only be erased and then restored. It's been a reliable swiss army knife for me filling in many gaps that iTunes and Xcode leave for managing iOS devices. 
+
+A: *
+
+*Get /var/mobile/Library/SMS/sms.db
+
+*It is now exported. 
+
+
+What format do you want the export to be? The existing format is sqlite, so you can convert it to ASCII like so: sqlite3 sms.db .dump > sms.db.txt
+For step one, you can jailbreak and then scp, or you can just search your backup folder for the file, no jailbreak required.
+If your phone is not jailbroken, look on OS X in:
+~/Library/Application Support/MobileSync/Backup/<long_hex_string>/
+
+And, in my case, and according to various web sources, although not in all cases, is named:
+3d0d7e5fb2ce288813306e4d4636395e047a3d28
+
+
+To answer your other questions: Any OS, Free, Successful.
+
+A: I used CopyTrans Contacts for Windows (not sure whether it also operates on Mac) to export my iPhone SMS and iMessage text messages to my PC. 
+Here is where I found out about the tool: How to export iPhone SMS
+I do not know the price as I used their free version to export all of my 100+ messages I think you have to pay if you want to export a really large number of SMS text messages.
+
+
+A: I'm on windows and I bought Decipher Text Message (Mac $7, Windows $10). It did the trick for my needs and backed up all my work sms messages from my iphone. My girlfriend uses it too however, she is on a mac. The cool thing is that the program also saved my sms images, which I hadn't even expected. Has anyone tried any of the other tools?? Curious about them.
+
+A: A windows software solution is Save The Message
+The software is free (trial) however the costs after the 30 day trial are $9.99 for a basic account, $99 for a professional" account.
+
+A: There are numerous tools (as linked elsewhere here), both free and expensive, to export message data. They all rely on interpreting data from an unencrypted iPhone backup. You can actually do this yourself if you're particular about how the data is exported.
+The key facts are:
+
+*
+
+*Your backup lives inside ~/Library/Application Support/MobileSync/Backup/{uid}/.
+
+*The manifest.db is an SQLite database mapping all the files in that directory to actual filenames on the device.
+
+*The Library/SMS/sms.db file on your iPhone is another database containing all the message and attachment data.
+
+*Combining the manifest and sms databases lets you query and export all the conversations and attachments from decrypted files in your backup directory.
+
+I wanted to future-proof my exported messages (or make their contents human-readable and easily accessible), so I wrote a script to load these database, export the chats as JSON files, and archive all the attachments alongside each chat (message group).
+The result is a kind of hacky but working (for me) tool that I've uploaded to GitHub: iPhone message export. This script might be a good starting point if you're interested in doing these backups yourself.
+(The price is free, I've successfully tested on macOS with an iOS 14  backup. I think if windows backups are stored the same way, the same python code should work there as well.)
+
+A: AllYourTexts - free - Windows
+Full disclosure: I'm the author.
+
+
+*
+
+*Allows you to view SMS and MMS data from your PC
+
+*Supports exporting to plaintext or HTML files.
+
+*Shows you graph visualizations of your texting behavior over time.
+
+
+I was looking for a solution to this myself and I was unhappy with the 3rd party offerings. I felt like they were overpriced or poorly designed, so I wrote my own.
+
+A: Believe it or not, there's an app for that!
+The app SMS Export ($4.99) will allow you to export your SMS to the software on both your Mac and Windows. 
+You can make a back-up of your entire SMS-database or export the SMS-messages to your computer:
+
+You can converted SMS to HTML, CSV or Text. Then you can load your SMS
+  into any program like Excel or Word and print them.
+
+
+A: My destination for the export was a new Smasung Galaxy Note, so the Samsung Kies software (eventually) managed to import the SMSs from an unencrypted iPhone backup.  Kies is free for Samsung phones.  It was necessary to 'update drivers' from one of the menus in Kies before this worked for me. Kies also prevents me running Android File Transfer on 10.8, so I uninstalled Kies once the import was complete.
+Otherwise, I've successfully used DiskAid on the Mac to export my SMSs to a flat text file.  A useful reference, but I'd rather it exported a friendly (ie standard) SQLite database so I could easily use the data elsewhere.
+DiskAid is $29.90 at the time of answer, but they also offer free educational licenses to folk with email addresses at tertiary institutions.

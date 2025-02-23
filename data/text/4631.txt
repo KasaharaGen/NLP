@@ -1,0 +1,53 @@
+Q: How to move all iPhoto video files to an external disk or a NAS? The main harddrive of my MacBook Pro is filling up. So I need to move some files to an external medium.
+I use iPhoto to import my photos and (HD) videos from my digital camera. I want to keep all my images in iPhoto, but I'd like to move the space consuming videos to another medium.
+Is there simple, possibly automated way to move all the video files (.mov) that are in my iPhoto library to an external folder (NAS or disk)?
+
+A: Try this (not automated, because i don't like automated delete for anything):
+
+
+*
+
+*Make a "smart album" in the iPhoto with the condition "Photo is Movie". With this you get all movies into your new smart album.
+
+*press info (for check how much MB they're occupied)
+
+*Simply drag&drop movies out of the iPhoto (long time)
+
+*ensure (double check) they are really OK
+
+*move the movies from the smart-album into the Trash
+
+*empty
+
+
+(triple check before deleting - do not blame me, when your computer get destroyed or so)
+
+A: Just came across this, had a similar need.
+ Suggest the following changes. 
+Follow steps
+1: Make a "smart album" in the iPhoto with the condition "Photo is Movie".
+2: Select a movie in the smart album created at step 1.
+3: Press ⌘-a (select all)
+4: Choose Export in the File/Menu
+5: In the Export Dialog, choose kind:Original, then Export
+(optionally, you can choose subfolder :Event Name. This will put the movies in folders based on the event name)
+This will export all your movies. Now you simply need to delete the movies out of iPhoto.
+I have not found a way to do this in an efficient manner since Apple in their wisdom did not allow you to use delete on movie objects in a smart folder (you can for pictures.. odd, bug I find a lot of these inconsistencies in Apple products), instead you must find the actual file in the event folder and delete from there. You can use the smart folder to take you to a given movie in the smart folders source event by bringing up the context selection menu and choose show event.
+
+A: If you've upgraded from iPhoto to the new Photos app:
+For any video files you've imported, you can find the originals at:
+~/Pictures/Photos Library.photoslibrary/Masters  
+
+This way, you don't need to do an export; you can just copy.
+
+
+*
+
+*In Finder, go to Go > Go to Folder 
+
+*Enter ~/Pictures/Photos Library.photoslibrary/Masters
+
+*Navigate to whatever video files you want and copy them to your destination. 
+
+
+A: I'm facing exactly the same problem, and I have to say that by far the easiest solution is to upgrade to Aperture ($80), and use it to move the videos from the iPhoto Library (Aperture & iPhoto share the same library format) to the external drive or NAS. The files will thus change from "managed" to "referenced" status. Aperture can do this easily on a per-file basis. Most experts do not recommend using referenced (externally-stored) files with iPhoto.

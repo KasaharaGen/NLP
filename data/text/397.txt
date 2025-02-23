@@ -1,0 +1,55 @@
+Q: Where are bash profile startup files? I know that you can have a .profile or .bashrc file in your home folder to customise Mac OS X 10.6.4 Terminal bash startup.
+Every time I start up Terminal, there is a line that tells me "You've got mail". I am trying to find where this line is stated in my startup files, but can't find .bash nor .profile nor .bashrc in my home folder.
+I also read that the global settings file is in /etc/profile and /etc/bashrc, but they don't seem to tell me anything:
+/etc/profile
+# System-wide .profile for sh(1)
+
+if [ -x /usr/libexec/path_helper ]; then
+        eval `/usr/libexec/path_helper -s`
+fi
+
+if [ "${BASH-no}" != "no" ]; then
+        [ -r /etc/bashrc ] && . /etc/bashrc
+fi
+
+/etc/bashrc
+# System-wide .bashrc file for interactive bash(1) shells.
+if [ -z "$PS1" ]; then
+   return
+fi
+
+PS1='\h:\W \u\$ '
+# Make bash check its window size after a process completes
+shopt -s checkwinsize
+
+BTW, there is no /etc/bash
+Any ideas? Thanks!
+
+A: That particular line (You have mail) isn't actually part of bash's startup but an alert that your local account on your computer has received mail for some reason.
+You can use mail to read and delete the message or just delete the message (most likely a bounce back or something from development) from /var/mail/username
+
+A: This notification is configured by environment variable MAILCHECK. See man bash and search for MAILCHECK (press / and type MAILCHECK to search in the man page).
+Here's the relevant excerpt:
+
+ MAILCHECK
+              Specifies how often (in seconds)  bash  checks  for  mail.   The
+              default  is  60 seconds.  When it is time to check for mail, the
+              shell does so before displaying the  primary  prompt.   If  this
+              variable  is  unset,  or  set  to  a  value that is not a number
+              greater than or equal to zero, the shell disables mail checking.
+
+To verify that this variable is indeed set, run echo $MAILCHECK
+To disable this notification, add the following line to your ~/.bashrc
+
+unset MAILCHECK
+
+
+A: This probably doesn't answer the mail question but here is some more info on the startup files.
+Are you searching for the files in Finder?  Make sure that you are searching from a terminal and using ls -A so that hidden files (files beginning with a '.') show up.
+The following is from the Bash Reference Guide.  It describes the startup files that are executed when you start a new terminal window in OS X (which is an interactive, login shell).
+6.2 Bash Startup Files
+This section describes how Bash executes its startup files. If any of the files exist but cannot be read, Bash reports an error. Tildes are expanded in file names as described above under Tilde Expansion (see Section 3.5.2 [Tilde Expansion], page 19).
+Interactive shells are described in Section 6.3 [Interactive Shells], page 75.
+Invoked as an interactive login shell, or with ‘--login’
+When Bash is invoked as an interactive login shell, or as a non-interactive shell with the --login option, it first reads and executes commands from the file /etc/profile, if that file exists. After reading that file, it looks for ~/.bash_profile, ~/.bash_login, and ~/.profile, in that order, and reads and executes commands from the first one that exists and is readable. The --noprofile option may be used when the shell is started to inhibit this behavior.
+When a login shell exits, Bash reads and executes commands from the file ‘~/.bash_logout’, if it exists.

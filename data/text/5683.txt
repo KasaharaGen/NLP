@@ -1,0 +1,8 @@
+Q: How to make the scrollbars appearing on demand on Lion This is very neat to not always have the scroll bars displayed over every windows. I might be facing an edge case though: when opening a vnc session I sometimes need to scroll the window displaying the remote display but as expected it does not scroll when the cursor is inside the window as the mouse events are handled by the remote system. This means that to scroll I either toggle the show scroll bars to always or resize the window to make the scroll bars appearing a few moments.
+My question: is there a way to make the scroll bars appearing without having always as  show scroll bars setting or resizing the window?
+
+A: You should be able to grab the invisible scrollbars. Just click and drag near the edge of the window where the scrollbars should be and they should appear. I can't say if this works correctly for all types of windows though.
+
+A: Further to @deceze answer, I had to resize the window (in my case, it was Chicken of the VNC), the scroll bar appears, move the mouse slightly over the scroll bar & adjust.
+If I moved off the scroll bar, it disappears and I have to resize the window again.
+Same for Safari.

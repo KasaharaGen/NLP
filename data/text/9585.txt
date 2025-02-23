@@ -1,0 +1,13 @@
+Q: How can I repair an NTFS partition from Lion? What free tool can I use to repair an NTFS partition under Lion.
+I already have Tuxera NTFS on it and I do not want to install windows for this task.
+
+A: From the Tuxera for Mac manual:
+3.3 Checking and repairing NTFS file systems
+There is only limited support for checking and repairing NTFS file systems at this time. The best way to repair a damaged NTFS volume is using chkdsk in Windows.
+If you install NTFS-3G for Mac OS X, you will find that it includes a utility called ntfsfix, which can repair some fundamental inconsistencies of NTFS volumes. This utility is currently not integrated with the file system bundle, and thus can't be invoked through Disk Utility, because of reports that it has corrupted some users' NTFS drives.
+If you want to try it out despite these warnings, you will have to invoke it manually, from the Terminal. Type “man ntfsfix” for usage info.
+
+A: There is Disk Drill that can repair FAT, NTFS and HFS on a Mac.
+http://www.cleverfiles.com/file-system-recovery-mac.html
+
+A: I just used the free and open source TestDisk to recover an NTFS boot sector. While other tools couldn't even find the partition, TestDisk worked like a charm!

@@ -1,0 +1,29 @@
+Q: How to add space between each last body paragraph and heading in Pages '09? The only way I found is to manually add line breaks, which can lead to inconsistency. Is there a way to automate this ?
+
+
+A: Based on your question and comments to @nathang answer, you will need to create two paragraph styles. One will be the standard paragraph, and the second is a duplicate of the standard but with a value set in "After Paragraph" in the Inspector to use for paragraphs that come right before a header. 
+Using two paragraph styles is kludgy, but writing a script to automate this would be just as kludgy and unreliable.
+
+A: I am assuming that you are using paragraph styles. What you want to do is add space before one of the headings and then redefine the style to match the changes you have made.
+Step by step:
+
+*
+
+*Put the cursor in one of your headers. I suggest not the first one, because you won't notice what you are doing.
+
+
+*Show the inspector.
+
+
+*In the "Text" section of the inspector, give the appropriate "Before Paragraph" spacing.
+
+
+
+*Open the "Styles Drawer"
+
+
+*Click the triangle next to the style that you are using (e.g. Heading 1) and click "Redefine Style from Selection."
+
+
+
+*Use the same heading style for all of your headings in the document.

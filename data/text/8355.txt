@@ -1,0 +1,21 @@
+Q: Using SSH on an iMac running Lion I am trying to get SSH/SFTP working on my iMac running Lion so that one of my friends can connect to me remotely. I have managed to get it working using my local user account, but I need to understand how I can add an additional account that my friend could use to SSH into my machine. This is probably really simple, but if someone could point me in the right direction in would be appreciated.
+
+A: Easiest way in this case is to just
+
+
+*
+
+*create another user using the Preferences panel
+
+*log into this user locally
+
+*generate the appropriate SSH key pair
+
+*transfer the public key to your friend over a secure channel
+
+
+In addition you may want to tighten up your system a bit by preventing SSH logins without keys. Open /etc/sshd_config in any text editor and set
+PasswordAuthentication no
+PermitEmptyPasswords no
+
+Afterwards restart SSH by disabling and enabling remote login in Preferences.

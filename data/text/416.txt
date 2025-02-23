@@ -1,0 +1,37 @@
+Q: Best way to merge mp4 files Got a bunch of .mp4 videos (info shows H.264 Video + AAC Audio) that are chapters of a larger video.
+I'd like to merge them, but not sure which is the best way.  I don't have Quicktime Pro, but I'll get it if that's the best way to do this.
+Edit: Just to clariify this is Mac OSX 10.6 I'm on.
+
+A: Virtual concatenation script demuxer
+You only need ffmpeg
+
+*
+
+*At the end, write the video files that you want to combine into a text file. Here is an example, it is best to drag the video files into the text file. The name of the text file is in my example files.txt
+file 'Video 1.mp4'
+file 'Video 2.mp4'
+file 'Video 3.mp4'
+file 'Video 4.mp4'
+
+Now open the terminal and enter. Finish.
+ffmpeg -safe 0 -f concat -i files.txt -c copy output.mp4
+
+
+A: You don’t specify your OS but if you have OS/X, then you probably have iLife, then you have iMovie. Merging all that with iMovie is extremely trivial. Just import the videos to iMovie and compose the final movie using all the parts you want to use. 
+Effects, Transitions and Captions are a bonus ;)
+
+A: Quicktime Pro is a must-have in such situation. iMovie is great if you need a simple tool, but you may loose quality in the process.
+
+A: Yes, Quicktime can connect 2 Mpeg4s but if you want to upload to a video platform like Youtube or Vimeo they will still appear as 2 videos and will not upload properly. They must be "stitched" together by a program designed to do this. There are 3 ways to do this that I know of.
+
+*
+
+*Importing each MP4 into an editing program, editing them together and exporting the sequence to Mpeg4 (if your Editor has this capability. If not you must export at whatever formats your editor allows and then encode the sequence in another program). This is time-consuming and there will be a small loss in quality depending on your Editor as you have encoded them twice (on Import and then again on export).
+
+*There are apps designed to stitch multiple Mp4s together like the free "MP4 Joiner". They will do it quickly and work well if each Mp4 compression parameters match. For example if one has a resolution of 1920 X 1080 and the other is 1280 X 720 or if one was compressed at 4000 Kbps (Kilobytes per second) and the other at 5000 Kbps or if different codecs were used the app cannot connect them.
+
+*You could use a professional compression/encoder program like Sorenson Squeeze, Telestream Episode, Apple Compressor, or Adobe Media Encoder and re-encode your Mp4s to Mp4 using the same settings. These are expensive programs but will do the job without quality loss.  There are others programs that can do the job for far less money or even free like Handbrake, just Google Mp4 Encoders. If you use a decent program there will be little or no loss in quality.
+
+
+A: Well, I'm late to the game but the best way IMHO would be to just use mp4joiner and be done with it.
+It just does one thing, merging mp4 files, and does it really well and simple. Also: Free and open source and also working on Linux and even Windows.

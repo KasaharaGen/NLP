@@ -1,0 +1,17 @@
+Q: Will maintaining lot of files in trash affect Mac OS X performance? I maintain more than 20 million files in my trash without cleaning.
+Can it slow down my Mac OS X?
+
+A: I was thinking about whether or not the Trash is just like any other folder from a file system's point of view. Let's assume that it is for a second, then another way to look at this would be "what's the worse that can happen to the performance of my Mac if I keep thousands of files in any folder? Mac OS X probably does some sort of memory swapping using the hard drive, so that would be the first problem of an increase in used hard drive space. But this may be the case of any folder, not only the Trash. 
+That reminded me of my Windows days and how running utilities to defragment a hard drive made my system feel faster after frequent defragmentation. However, unlike Windows, Apple claims that due to its design, their OS does not need defragmenting. Take a look at this interesting article. On it, Apple claims that it can handle thousands of files. However, Apple here is talking only about the file system itself. 
+John Siracusa, on his Ars Technica review of Lion mentions that performance does in fact decrease with thousands of files. However, the way I read his article is that the performance decrease is on the Finder UI itself rather than on the file system as a whole (i.e., the Finder is not the file system). It makes sense that if there is more information to prepare graphically and your computer was running multiple apps to the point of your system being very taxed for RAM; then the Finder will probably have a harder time rendering a simple Finder window to show thousands of files in the Trash. 
+Coming back to your original question, it seems to me that a user who never empties the Trash and only accesses its contents occasionally would not seen any noticeable performance decrease on the rest of his system--other than perhaps the Finder struggling to render the contents of the Trash every now and then. I would consider any performance hits on the system the same as with any other growing folder. Hope this helps. 
+
+A: No, unless you're using up so much space on your hard drive that the system doesn't have any room left for VM swap space.
+
+A: I once deleted some video files (i.e large files) after emptying the trash the amount of inactive memory decreased & the amount of free memory increased. It was a slight difference but apparently it does the trash does affect your system.
+
+A: You could take the "wooden stick" approach to weather reporting.
+If the stick is wet, it's raining.
+Do you see huge bursts of IO in Activity monitor related to trash icon browsing or drawing? 
+Your mac is storing hundreds of thousands of files in a modern file system. Unless some app has poor IO skills and is looking in that folder, you shouldn't notice a thing.
+Finder is the only app that routinely checks on the various trash directories. As long as it's not using too much RAM for your comfort or using too much CPU - you've got your answer.

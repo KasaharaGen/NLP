@@ -1,0 +1,17 @@
+Q: Lion version of vim crashing repeatably - caught deadly signal SEGV whenever I work on multiple files in different vim buffers/tabs and do a :w to save, vim crashes with a segmentation fault. 
+I'm using vim 7.3 that came long with Lion (Actually with SnowLeopard which later I upgraded to Lion). 
+Is this issue Lion specific or is this only affecting upgrade users? Any one seen similar issues.
+I've been a linux user for most of the time but just bought a mac recently and also upgraded to Lion recently. 
+It's quite aggravating to spend so much money and now can't use vim :(
+
+A: There are two avenues when you have located a repeatable crash (and from the comments and discussions it sure looks like the shipping version is more crash than ideal for the latest shipping OS).
+
+
+*
+
+*File a bug at bugreporter.apple.com - it's free if you sign up for a free developer account.
+
+*Use something like homebrew to get a newer (or older) version of vim that isn't crashing.
+
+
+A: You could give MacVim a go. I switched over a few months ago and haven't looked back. The package comes with an executable that you can drop in your $PATH (e.g., /usr/bin/) to launch it from BASH/Terminal by typing mvim. Obviously this is not the solution you were looking for, but MacVim works exactly like VIM and with the polish of a GUI.  

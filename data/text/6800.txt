@@ -1,0 +1,13 @@
+Q: Archive emails on Google Mail using Apple Mail Is it possible to archive emails using apple mail? Or do I have to log in to the web UI to archive old mail? I am using 10.6.7.
+
+A: Two options work for this.
+
+
+*
+
+*Move the message to the [Gmail]/All Mail folder. Mail.app will show two copies of the message in there, but it will appear properly in other clients (definitely the web interface and on iPhones, should be respected elsewhere).
+
+*Goto the Mailbox Behaviours section in the Accounts tab of the Mail.app preferences and deselect "Move deleted messages to the Trash mailbox" and "Store deleted messages on the server". This way deleting messages out of your Inbox removes them instantly, but there's still the archived copy in [Gmail]/All Mail. Solves the duplicates problem, but if you really want to delete something, you've got to move it to the [Gmail]/Trash folder.
+Hope that helps. Google has published some other guidelines for using Gmail in Mail.app that may be helpful.
+
+A: Obviously it's a non-trivial fix, but upgrading to Lion would also enable the feature you are looking for.

@@ -1,0 +1,29 @@
+Q: Is it possible to run a shell script when the iChat online status changes on Lion? I had a script under Snow Leopard that would upload a tiny file to my server when I launched iChat to reflect my status on my website. For some reason it doesn't work anymore in Lion.
+Is there a way to trigger a shell script on online/offline status change in 10.7 without even launching iChat?
+
+A: Option 1: run a script like this every minute or so with cron or launchd:
+#!/bin/bash
+
+cd=~/Library/Caches/me.lri.scripts
+mkdir -p $cd
+cf=$cd/ichatstatuscheck
+status=$(osascript -e "tell app \"iChat\" to status")
+[[ -f $cf && "$status" != $(cat $cf) ]] && say "$status"
+echo "$status" > $cf
+
+(The script activates iChat every time it's run.)
+
+Option 2: save this as a stay open application in AppleScript Editor:
+repeat
+    tell application "iChat"
+        set prev to status
+        delay 5
+        if status is not prev then do shell script "say " & quoted form of status
+    end tell
+end repeat
+
+(Also activates iChat every time it gets the status.)
+
+Option 3: use an iChat event handler (thanks Kopischke)
+
+This worked for me on Lion, but only when iChat was active. (Not when it wasn't and I changed the status from iChat's status bar item — which I guess was the actual problem the OP had.)

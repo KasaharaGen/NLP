@@ -1,0 +1,50 @@
+Q: How can I make Safari cmd+number shortcut switch tabs instead of opening the bookmark associated with that number? I'm used to switching tabs with cmd+x where x is a number and takes me to tab x in firefox and pretty much every other browser I've ever used.
+I like safari's speed and would like to try it a bit, but the cmd+x shortcut is burned in my brain and every time I use safari I end up screwing up.
+I'd like to know if its possible to change this behavior, because this simple thing is a stopper for me.
+
+A: In most native OS X applications, the key presses Cmd-Shift-[ and Cmd-Shift-] will cycle left and right through tabs, respectively. Safari understands these.
+If you use something like BetterTouchTool, then you can assign gestures (such as a three-finger swipe left or right) to these key presses, and get tab cycling across most of OS X.
+
+A: *
+
+*To go to the previous tab, press ⌘ Command ⇧ Shift ← Left 
+
+*To go to the next tab, press ⌘ Command ⇧ Shift → Right
+Traveller’s note : These keyboards equivalents may be reversed in a right-to-left environment. 
+
+A: To go to the next tab ⎇ Control+Tab or
+ ⇧ Shift+⌘ Command+] or ⇧ Shift+⌘ Command+→ Right
+To go to the previous tab ⎇ Control+⇧ Shift+Tab or ⇧ Shift+⌘ Command+[ or ⇧ Shift+⌘ Command+← Left
+
+A: In case you are coming from Chrome and want to use 
+cmd+[0-9] for switching tabs (instead of cycling through your preset top sites) take a look at:
+github.com/rs/SafariTabSwitching
+
+Safari Tab Switching is a Safari SIMBL plugin which allow switching between tabs using Cmd+1-9.
+
+Update:
+Safari Version 9.0.2 (El Capitan) has native support for this:
+
+
+A: Safari 9.0, released today for 10.9 Mavericks and 10.10 Yosemite, along side with the 10.11 El Capitan release, has introduced this natively. 
+
+There are two options. If checked, ⌘-1 through ⌘-9 will switch to tab 1 through 9, respectfully. This will change the original behavior of mapping to the favorites bar bookmark 1 through 9. Those will be changed to Command-Option-1 through Command-Option-9.
+If unchecked, while it does not say it, the behavior is reversed. Command-Number will still be the favorites bar bookmark, while Command-Option-Number will be the tab. This flipping of behavior matches the Command-Click and Command-Option click behavior for opening a link.
+It's undocumented.
+
+A: Easy!
+Ctrl+Tab and Ctrl+Shift+Tab
+
+A: What about setting bookmarks 0-9 to be bookmarklets that change window tabs?
+
+A: Check SafariTabSwitching.
+
+A: In El Capitan, OSX 10.11, this has been included as a new feature of Safari Version 9.0 (11601.1.50). 
+Go to Preferences > Tabs > Use ⌘-1 through ⌘-9 to switch tabs
+
+A: I personally like the keyboard shortcut used in Chrome and Opera: Option+Cmd+(left/right arrow keys). This can be assigned in System Preferences-->Keyboard-->Shortcuts-->App Shortcuts. Press the plus button and add a pair for Safari with the command names "Show [Previous/Next] Tab" and then type the key sequences you want to use. Pretty handy. Good luck!
+
+A: control-tab
+the simplest way
+
+A: Yes ctrl + (0-9) by using this shortcut you can navigate across multiple tabs in windows

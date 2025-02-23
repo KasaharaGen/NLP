@@ -1,0 +1,73 @@
+Q: Why is the message body not displayed in iPhone's mail app? The normal mail app correctly shows a list of mails in my mailbox including a preview of the message body. When I tap any of them, the mail opens and correctly shows the mail header (sender, subject, date etc.) but the message body is blank.
+When I look at the same mailbox using Gmail webpage, I see the identical mails with message body intact so I know that it's not a problem with the mails or the mailbox itself.
+I'm using not-broken iOS 4.1 on an originally Apple-unlocked iPhone 4.
+I'm using Google's official setup for Google Apps on iPhone.
+I've tried purging the mail/contacts/calendar settings and following Google's setup from scratch. The problem is still there.
+How can I fix it so the message body is displayed?
+Response to answer:
+- This used to work flawlessly, but appeared recently, without any obvious change by me.
+- It might have been broken by the 4.0.2-->4.1 upgrade?
+- The problem appears on wifi and on GPRS/3G, in any location, and isn't related to download delays (keeping a "blank" message open for a minute doesn't make it appear).
+- It also isn't fixed by rebooting the phone.
+Follow-up:
+This is very weird. It seems to break every few months but only lasts a few days, then magically starts working again. Before, during, and after these incidents, I just use my phone normally and don't mess with any network settings or phone settings. I honestly have no clue what's going on.
+
+A: Has this setup ever worked?
+Have you tried just using plain vanilla IMAP?
+Is this possibly due to poor connectivity—maybe you have a weak network connection and it's just blank until the entire message downloads?
+
+A: Sometimes force quitting the Mail app forces a reload of the message.
+
+
+*
+
+*press home to exit mail
+
+*double tap the home screen button 
+
+*tap mail and hold until the icon shakes and a red  minus sign shows on the multitasking icons
+
+*then tap the minus sign on Mail
+
+
+On iPad IOS 8:
+
+
+*
+
+*Press home to exit mail.
+
+*Double tap the home screen button to show running apps.
+
+*Scroll left or right to show the mail app.
+
+*Swipe the mail app preview up and off the screen to end the app.
+
+
+Launch Mail and cross your fingers. This worked for me on my 4s.
+
+A: So i had this problem and i solved it. Basically you need to reset the settings of the network you are using i.e. Wifi or 3G. Once those specific settings are reset. Input any necessary APNs and usernames and passwords if required to access the net. Now restart your phone and then go to your mail program and Voila. It should be back to normal. It worked for me.
+Einstein
+
+A: I had this problem to, I restarted my iPhone and the problem went away.
+
+A: The suggestion provided for Einstein solved my problem too (body of emails not showing).
+Just to expand a bit on what I did to "reset" network settings, it was only a matter of going to: Settings/General/Network and  there, turn "off" all the options ("enable 3G" and "Celular Data"). Then, just in case, before turning back on these options, I also went to Settings/Wi-Fi and turned that option off as well. After that, went back to Settings/General/Network and turned back on the options I had turned off. 
+The problem was solved right away, since I went to check emails immediately and found all emails had their body content available.
+In case this doesn't work (I had tried other options I'd been suggested somewhere else), such as making sure the date of the device was right (which is another possible source of the "no email body problem", I adjusted email settings and had it show 5 lines of email preview (the max), which worked fine while I found the final solution written above.  To do this, go to Settings/Mail, Contacts, Calendars and scroll down until you get to the email section, where you adjust the "preview" option to 5 lines.
+I hope any of these solves your problem.
+
+A: I used a combination but what worked was to go to Settings then General then down to Network and select Reset Network Settings. Let the phone restart and you will have to re-enter any passwords to wireless networks but all email issues were fixed
+
+A: I ran into this problem today. But, shutting down and restarting my phone solved the problem. Very strange.
+
+A: Shutting down, waiting for a minute, and turning my computer back on solved this problem for me.
+
+A: It magically started working again after 5 days. 
+I've no idea why this problem started, and no idea what fixed it. But it was no dream!
+
+A: I just had this problem with my iPhone running iOS 5.1. Killing mail and reopening it fixed it (for now at least).
+
+A: The problem happened suddenly for me, but the restart solved it! I didn't need to do any resetting. 
+
+A: The problem is that you can't send emails when the phone is on 'vacation' mode! It's really annoying and defeats the purpose of having it on the phone .

@@ -1,0 +1,46 @@
+Q: How to share my Snow Leopard Mac's connection to my HTC Desire running Android? I have an HTC Desire that currently cannot connect to the internet and a Mac that can. I want the HTC Desire to be able to connect to the internet.
+My Mac (running Snow Leopard 10.6.6) is connected to the internet over Wi-Fi.
+Now I want to share my Mac's internet connection with my HTC Desire (Android 2.2).
+On my HTC Desire I don't have root access.
+On my Mac I have super user access.
+Can I share my internet connection?
+If it doesn't work with a Mac can i get this to work with Windows?
+I do have a jailbroken iPod touch 2g with iOS 4.0, if the helps with any of this.
+
+A: OK so you need to connect to the internet via your MacBook to get around a MAC filter on your router.  You can share your MacBooks connection but it would need to be plugged into the router.
+I don't think it's possible to do it like this:
+HTC >> WiFi >> MacBook >> WiFi >> router
+You need to do it like this instead:
+HTC >> WiFi >> MacBook >> Ethernet >> router
+So you plug the MacBook into the router and connect to that from your phone over WiFi.  You can do this as follows:
+
+
+*
+
+*Choose Apple > System Preferences, and then click Sharing.
+
+*Select Internet Sharing.
+
+*Choose a network service from the “Share your connection from” pop-up menu, Ethernet for example in your case.
+
+*Select a networking service to share your Internet connection from the “To computers using” list, AirPort for example.
+
+*Click AirPort Options and give your network a name and password.
+
+*Connect to your MacBook over the WiFi network you just set up.
+
+
+A: *
+
+*Use Jailbroken iPod 2G to spoof the Mac MAC address, so your iPod is now online.
+
+*Tether the Mac to the iPod and use PdaNET or MyWi on the iPod so that your Mac is online through your tethered iPod
+
+*On the Mac, set up Internet Sharing, and share your existing connection from the tether to a WiFi network
+
+*On the HTC, connect to the WiFi network.
+
+
+Schematic:
+Internet > (Wireless) > iPod > (Tether) > Mac > (Wireless) > HTC
+

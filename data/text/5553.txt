@@ -1,0 +1,43 @@
+Q: Is there a way to suppress badge counts and the dock icon bounce for Terminal.app in Lion? With the new state saving features (which I want to keep), the dock notifications are more aggrivating to me in Lion. Can I suppress the bounce and/or the notification badge functions?
+While I like the new restore feature in Terminal.app that re-opens the tabs and shows the last 500 or so lines in the history, I absolutely hate that the Terminal.app now is so much more communicative and intrusive as before. 
+If I have a command like tailing a log file in the terminal, it constantly keeps telling me when there are new entries, which turns out to be pretty annoying.
+Not only does the Terminal.app's icon jump in the Dock, it also has this nice little red badge telling me how many tabs have updates for me. Fortunately this only happens when the Terminal.app's window is hidden behind others, but nevertheless it's pretty annoying. 
+
+I looked through the Settings and can't find an option to disable this. Are there any hidden settings I could switch on/off there?
+
+A: Google finds an example of what is, I think, disabling bounces for all Dock icons (not Terminal alone): 
+
+
+*
+
+*Annoying infinite bounces of an icon on alert!!!
+defaults write com.apple.dock no-bouncing -bool TRUE
+However, that may be not the solution in this case. Puzzling me: 
+[macbookpro08:~] gjp22% date
+Tue  2 Aug 2011 13:40:41 BST
+[macbookpro08:~] gjp22% uname -a
+Darwin macbookpro08.centrim.freeman-centre.ac.uk 11.0.0 Darwin Kernel Version 11.0.0: Sat Jun 18 12:56:35 PDT 2011; root:xnu-1699.22.73~1/RELEASE_X86_64 x86_64
+[macbookpro08:~] gjp22% defaults read com.apple.dock no-bouncing
+2011-08-02 13:40:57.029 defaults[2501:303] 
+The domain/default pair of (/Users/gjp22/Library/Preferences/com.apple.dock.plist, no-bouncing) does not exist
+
+— nothing relating to no-bouncing my preference file, and I can run for example 
+tail -f -n 50 /private/var/log/system.log
+— then bring something other than Terminal to foreground, watch things added to the log and in my case: 
+
+
+*
+
+*lines added to the background window do not cause any bounce, do not cause any count to appear in the Dock icon. 
+
+
+A: defaults write com.apple.Terminal no-bouncing -bool TRUE
+
+That way, it only applies to the Terminal.  It didn't seem to work for me for the Dock anyway, so this is even better.
+
+A: Lion's window resume feature is set on an application by application basis. You can stop this in Terminal with the following command:
+defaults write com.apple.Terminal NSQuitAlwaysKeepsWindows -bool false
+
+Because you're editing the Terminal settings while having Terminal open, you'll need to close and restart Terminal twice before seeing the effect.
+
+A: Cmd-K seems to clear the scroll back.

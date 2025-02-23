@@ -1,0 +1,8 @@
+Q: Delaying spotlight indexing to avoid the fan noise I am attending a meeting in a quiet room where everyone has a soft voice, and my mac decides to index for spotlight (the job is 'mds'), bringing the fan to 6200rpm. It's not too bad, just a bit distracting.
+How do I tell mds that this is not the right time to do its job? Killing it to delay it could mean that it would choose to start a minute later.
+Please note that this is not a case of initial indexing. I don't know (and I don't really care) why mds has a tendency to spend a lot of time not only after inserting a USB flash drive that the machine has not seen in a while, but also after removing that flash drive.
+
+A: To turn off Spotlight indexing for all mounted volumes:
+sudo mdutil -a -i off
+
+See the mdutil man page for other options.

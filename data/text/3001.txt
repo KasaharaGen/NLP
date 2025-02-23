@@ -1,0 +1,8 @@
+Q: How do I get Xcode 4 to NOT clear the log between runs? In Xcode 3, the console only cleared when you specifically asked it to. This was nice to quickly compare log output between runs.
+In Xcode 4, the log clears between every run, and I'm looking for the setting (if Apple deemed it worthy of existence) that will switch this 'feature' off. 
+
+A: I feel the same way you do about this. That's why I've filed a radar at bugreport.apple.com. Please reference "Problem id: 9153445" when you filed your radar as the this will increases the incident count and making it likelier Apple Xcode team will prioritize a fix.
+Since bugreport.apple.com doesn't allow you to search and view another's radar, I've copied the radar I filed at Apple at http://openradar.appspot.com/radar?id=1144401.
+Thanks for reminding me that this regression needs people to start filing radars.
+
+A: You can always just use the Log Navigator (cmd+7). It shows a list of past logs. 

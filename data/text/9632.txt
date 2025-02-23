@@ -1,0 +1,34 @@
+Q: How can I move photos from iPhone to my local disk? This has me stumped. I have nearly 4GB of photos and videos on my phone, and I want to put them into my computer's pictures folder. 
+
+
+*
+
+*I have opened Windows Explorer and found the photos in the weird location Computer\Torbens iPhone 4\Internal Storage\DCIM\800AAAAA, but I cannot copy or move the files from here to a local folder. When I try, Windows says "Error copying file or folder. The parameter is incorrect."
+
+*I have synced with iTunes but don't see where iTunes would have made a backup copy of the photos. 
+This is immensely frustrating. I can't believe it has to be this difficult and I must be missing something, but I don't see what that is.
+1) How do I get my pictures off the phone and onto my local disk?
+Also, it would be so much simpler if Windows would just assign a drive letter to the device, just like it does for my digital camera and any other USB storage I connect. Is there any way to make Windows do this, or is Apple being restrictive again?
+2) How can I get a drive letter assigned to the phone? (Less important but mighty annoying.)
+Details:
+iPhone4, iOS 4.1.2, iTunes 10.5.1.42, Windows 7.
+Update:
+Am I understanding correctly that neither of the sync nor backup functions in iTunes backs up the photos?
+
+A: When you plug your iPhone into your computer, Windows should pop up a dialog asking what you want to do with it. You should see an option to import photos. If you choose this, you can choose where you want the imported photos to be stored. You can also make 'import photos' the default behavior when you plug in your iPhone.
+You are better off using the photo importer instead of trying to manually copy the files.
+If you are using iCloud and Photostream, you can use the iCloud Control Panel to set up your computer to automatically import your Photostream photos. However, this only works with photos and not with videos.
+
+A: I have the same problem you have: I can copy the items one by one, but I cannot bulk copy 10 more items. To solve the problem, I use Picasa to import my iPhone photos, instead of using Windows Explorer copy. It works. 
+
+A: According to this YouTube screencast, the error only appears when copying multiple folders at once. If you just copy one folder at a time, the error is avoided. It's a bit painful if you have many folders though.
+
+
+A: This might be a solution for you:
+Wifi Photo Transfer
+http://itunes.apple.com/us/app/wifi-photo-transfer/id380326191?mt=8
+Allows you to pull up your iPhone's images in the web browser of a nearby computer, view them and download them. The reviews are mixed but it might be worth a try and its free.
+
+A: Your iphone name may have an apostrophe (')in it and windows does not like them in a file path. You can try changing the name of your iphone from "Torben's iphone" to "Torben iphone" in the iphone general:about:name settigns. Then connect to your computer again and try the copy.
+The same thing happens with wifi hotspots- see this article for an example:
+https://community.particle.io/t/using-an-iphone-as-a-wi-fi-hot-spot-helpful-tip/21919 

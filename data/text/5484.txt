@@ -1,0 +1,18 @@
+Q: Startup disk has no more space available for application memory? I purchased a new Macbook Pro (8,3) last April, and have been using it heavily for xcode development, and little else.
+This morning a message popped up:
+"Your Mac OS X startup disk has no more space available for application memory"
+It then suggests closing applications and removing files from my startup disk.
+I presume this means virtual memory, however my disk has 600.26 GB available, according to Finder. I do have a time machine backup disk attached to the computer as well, but it has 664 GB available.
+What does this message mean when there is certainly plenty of disk space remaining on the primary hard drive?
+I have 8GB of RAM, a 750GB hard drive, and am running OS X 10.6.8. If any of the other system info is pertinent, let me know.
+
+A: I've seen that message in programs like Photoshop that have their own virtual memory systems rather than just assuming the OS can handle RAM and memory allocation.
+A reboot should clear things up. (safe mode boot might be nice if you want to run a full disk repair pass and then reboot normally)
+
+A: I've had the exact same problem. Running "Repair permissions" in Disk Utility cured it.
+My problem was probably caused by using CleanMyMac which messes around with booth system and app folders.
+
+A: If you have a relatively new HP printer, the software that came with it can cause a massive memory leak. I have a 2 year old 27" core i7 iMac that suddenly started giving me the same error message. I tracked it down to the HP software. Once I completely removed the HP software the error never came back. HP has yet to fix this issue. http://h30434.www3.hp.com/t5/Mac-Printing-and-Scanning/HP-Device-Monitor-takes-130-of-CPU-and-800MB-of-RAM-while-idle/td-p/655701
+
+A: I had some marginally bad memory that would crash the system occasionally, so for that reason I put the original memory back, and since that time I haven't received this error.
+So in my case it's probably related to bad RAM, as odd as that may seem.

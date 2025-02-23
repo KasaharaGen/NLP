@@ -1,0 +1,59 @@
+Q: Is Wifi enabled in iOS 5 even when the device is put to sleep? I've been under the impression that iOS shuts down WiFi when the screen is off - which is good as far as battery savings.
+Lately I've been suspecting that WiFi remains on, and I did a test. My iPhone's screen has been off for like 15 minutes. I opened iTunes and did a WiFi Sync, it worked! Does that mean my WiFi is on 24/7??
+Thanks
+EDIT: I don't have a data plan and I selected cellular data OFF. Maybe it's related?
+
+A: iOS 4
+If the phone is connected to a power source, then Wifi remains enabled, even if the phone goes to sleep. If the phone is not connected to a power source, then Wifi is disabled once the phone goes to sleep.
+This of course was by design in an effort to reduce battery consumption.
+iOS 5
+iOS 5 looks to have altered the behaviour of the device. If iTunes wireless syncing is enabled and iTunes is running, the device will listen to any Wifi connection and wake for it (even SSH, which requires a jailbreak to install). I've tested the device with iTunes not running and it indeed behaves as it did in the previous iteration of iOS, refusing to allow a connection through SSH until I woke the device.
+However, it seems this is not consistent. Leaving the phone unconnected and iTunes running, I started an SSH session and began transferring some files. When the phone went to sleep, the connection was lost. So it looks like the answer is "yes, but don't count on it?" Clearly iTunes wireless syncing throws us a curveball here.
+
+A: I think you'll find that the 4S is awake on WiFi for 10 seconds in every 4 minutes (240 seconds) irrespective of the iTunes Sync setting.
+This can be tested by opening a DOS prompt on a Windows machine (or in Terminal on OS X) connected to the same network as your iPhone WiFi.
+Find out the IP address allocated to your phone (on phone > Settings > Wi-Fi > {network name} > IP Address
+Type the following command (example):
+ping 192.168.1.123 -t 
+
+(where the number is the IP address of the phone and -t means keep pinging; on OS X, omit the -t as it isn't needed)
+Wait and you'll see a burst of responses for 10 seconds every 230 seconds (230 + 10 = 240 = 4 minutes)
+
+A: pretty sure iOS 4 shuts off wifi when screen is in lock. How do I know? because I went over my limit a few times like that and I called in AT&T and they confirmed the feature for me. I'm not about to risk paying more by testing if that's the case again... but should have been mentioned or featured when iOS 5 came out by someone.
+
+A: Seems to be the case according to chksum, with some additional details.
+
+
+*
+
+*iPhone reverts to 3G when in standby (iOS, any version).
+
+*iPhone will maintain Wi-Fi if looking for iTunes Wi-Fi Sync over network (iOS 5).
+
+*iPhone will maintain Wi-Fi if an app that requires Wi-Fi is active (apps can maintain the Wi-Fi connection even when in sleep mode by using the UIRequiresPersistentWiFi API flag available to developers.
+
+*When Music: iTunes Home Sharing is enabled (makes sense).
+
+*When playing music
+
+*A guess: when iPod touch must wake up and use wifi for scheduled 15/30/60-minute Fetch requests, or when iPod touch uses Push connections to servers.
+
+
+(see https://stackoverflow.com/questions/8850551/uirequirespersistentwifi-equivalent-for-cellular-connection)
+So essentially, the iPhone maintains a wifi connnection when it needs to because of Apple services (wifi-sync) or a third party app says to.
+I noticed this phenomenon myself the other day when I restored my iPhone to factory settings - previously I always used wifi-sync, but today I decided to use wired-only and so it was interesting to see this old behavior again.
+I recall setting up my friend's iPod touch and listening to it chime every 10 minutes or so (which may have been 15, psychologically speaking I didn't time it, as that was before such issues occurred to me.)
+Music seems very interesting. I wiped/restored my iPhone clean to reconfirm my observations and the results below seem consistent.
+
+
+*
+
+*If I play music and lock my iPhone (set a nearby Terminal to ping the IP per Hackencrash's instructions) the iPhone will maintain its Wi-Fi connection indefinitely (past the normal 15sec timeout). This happens regardless of whether the app is in the foreground or background when I lock the phone.
+
+*If you pause the music, after 15 secs Wi-Fi will time out as normal.
+
+*If you then resume the music OR play music (using Apple Earbud Controls) from a locked iPhone, the Wi-Fi will stay asleep.
+
+*If something causes wifi to reactivate while asleep (ex. incoming email over push connection) the iPhone will wake Wi-Fi and will stay active as in (1).
+
+A: Your observation is correct: the WiFi is on 24/7 unless you turn it off. I, too, remember this not being the case awhile ago, but I believe that WiFi always-on has been the case since iOS 4 at least.

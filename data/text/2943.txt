@@ -1,0 +1,7 @@
+Q: How can I install the X11 version of Firefox on Snow Leopard? (Preferably without MacPorts or Fink?) I’m doing some screen-scraping using Selenium, a framework which lets you programmatically control web browsers on your system. I’m running it as part of a web app on a Linux server, and on my MacBook Pro for when I’m writing the web app.
+On my server, Selenium uses Firefox headlessly (by using Xvfb instead of a real display). I’d like to do the same thing locally, so that I don’t have Firefox windows popping up all the time whilst I’m writing and testing Selenium code. In order to do this, I need to install the X11 version of Firefox on my Mac.
+I’ve seen a lot of references to MacPorts and Fink, but is there a way to just install the X11 version of Firefox, rather than installing MacPorts or Fink just for this one-off?
+
+A: Firefox requires a Window library to be linked with e.g. QT, Gnome and several other C libraries. Thus to build it will need a lot of other code so I think using Homebrew/Macports/Fink would save time.
+If you want any other X11 apps then Homebrew/Macports/Fink is likely to be the easiest way to get them.
+Also as per @Nathan G. I have found installing Macports not to be difficult.

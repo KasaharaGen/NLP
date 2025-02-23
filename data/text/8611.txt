@@ -1,0 +1,24 @@
+Q: Will my Mac Pro be able to run WebGL applications? I've got a 2007 MacPro, 8GB RAM, 2 x NVIDIA GeForce 7300 GT (256 MB). I tried to look at a couple of Google's WebGL demos, for example this one but am unable to do so because my system is not WebGL compatible.
+I'm running Lion and the latest version of Chrome - what else do I need to do? Will upgrading my GPUs work?
+Or is my 'bleeding-edge' workstation now a relic of the past ...?
+
+A: Here is the answer from Chrome help article: 
+You'll need Mac OS 10.5 and Mac OS 10.6 (recommended).
+10.7 I believe is also supported.
+If you have the following graphics cards, WebGL is unsupported and is disabled by default:
+
+
+*
+
+*NVIDIA GeForce FX Go5200
+
+*ATI Radeon HD2400
+
+*ATI Radeon 2600 series
+
+*ATI Radeon X1900
+
+*GeForce 7300 GT
+
+
+So, yes, upgrade videocard for WebGL to work.

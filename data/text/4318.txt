@@ -1,0 +1,25 @@
+Q: Automator or AppleScript Rename Workflow Is it possible to automate the following action:
+Example
+Folder name: "TEST" the name of the file inside the folder is: "Evelyn.jpg".
+How do I rename the folder using the name of the file inside of it:
+Result
+Folder name: "EVELYN" the name of the file inside the folder is: "Evelyn.jpg".
+Any ideas how to achieve this with Automator or AppleScript?
+
+A: Here's a script:
+set thefolder to "path:to:folder" as alias
+tell application "Finder"
+    set filename to name of first item of folder thefolder
+    set oldDels to AppleScript's text item delimiters as string
+    set AppleScript's text item delimiters to "." as string
+    set itemname to first text item of filename
+    set AppleScript's text item delimiters to oldDels as string
+    set name of thefolder to itemname
+end tell
+
+It gets the name of the first item in the folder, clips off the extension, and renames the folder.
+Note that it doesn't convert to uppercase as in your example. This is less than trivial with AppleScript, but let me know if it's real important and I can give you the code.
+
+A: Here is an Automator Workflow that will do it for you.
+
+

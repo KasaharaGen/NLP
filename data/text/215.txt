@@ -1,0 +1,30 @@
+Q: How can I unpack a .deb on Mac OS X without installing it?  I have a .deb file that I want to unpack and examine, but not install. I'm currently looking for where i can download dpkg for OSX, but can't find it. If you have a link, please share.
+
+A: ar is already installed on my mac on OS X. So just do
+ar -x path/to/deb/file.deb
+
+that's it. No need to install other software.
+
+A: You can install dpkg using MacPorts or just download the sources.
+
+A: While not OSX specific, if you have Docker for Mac installed, you could use an Ubuntu container to look inside the contents of the package:
+docker run -it -v $(pwd):/data ubuntu:latest /bin/bash
+dpkg -c /data/foo.deb
+
+
+A: if you use MacPorts you can install dpkg and more package (like do it in debian or ubuntu).
+after installing Macports go and install dpkg from here.
+also you can find more info about dpkg in osx here. (This is now down - I don't know if temporarily or permanently)
+
+A: At least on recent macOS versions, you can also use tar to extract UNIX archives:
+tar xf package.deb
+
+
+A: docker run -it -v $(pwd):/data ubuntu:latest /bin/bash
+# or with fish
+# docker run -it -v (pwd):/data ubuntu:latest /bin/bash
+cd data
+dpkg -x wkhtmltox_0.12.6-1.focal_amd64.deb out
+ls out/usr/local/bin/
+
+works well for wkhtmltoimage and wkhtmltopdf

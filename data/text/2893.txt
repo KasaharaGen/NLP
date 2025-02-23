@@ -1,0 +1,34 @@
+Q: How do I format a disk partition from the command line on OS X? How do I format a disk partition from the command line on Mac OS X?
+In case someone wonders why: because for some people Disk Utility fails.
+
+A: diskutil list
+In my case I wanted to format the parition as NTFS for installing Windows 7 on it. The last parameter is the partition 4 on first disk.
+diskutil eraseVolume "Tuxera NTFS" my-ntfs disk0s4
+
+A: For those of you looking to format an entire disk and remove all partitions here is the command:
+diskutil eraseDisk free itsfree /dev/disk6
+
+Even though I am formatting with free space-- I still had to give it a name for the command to work, in this case itsfree.
+To list your disks
+diskutil list
+
+To securely erase - Needs to have a mounted volume
+diskutil secureerase freespace 0 /dev/disk6s2
+To list available filesystems
+diskutil listFilesystems
+
+
+A: Multipe partitions
+sudo diskutil partitionDisk /dev/disk9 11 GPT \
+    JHFS+ one 298.1G \
+    JHFS+ two 298.1G \
+    JHFS+ three 298.1G \
+    JHFS+ four 298.1G \
+    JHFS+ five 298.1G \
+    JHFS+ six 298.1G \
+    JHFS+ seven 298.1G \
+    JHFS+ eight 298.1G \
+    JHFS+ nine 298.1G \
+    JHFS+ ten 298.1G \
+    JHFS+ eleven R
+

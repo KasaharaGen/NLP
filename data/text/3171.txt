@@ -1,0 +1,10 @@
+Q: Trying to install vsftpd via mac ports on snow leopard Using this guide: http://www.finiteloops.com/weblog/?p=79
+I get this error:
+500 OOPS: vsftpd: not configured for standalone, must be started from inetd
+
+I am trying to turn on and off LISTEN in the config, but how to either link VSFTPD with INET or XINET or let it start in listen mode?
+
+A: The man page for the config file for vsftpd should be of some help. If you set listen=YES in the config file, then vsftpd will be configured to run in standalone mode. It will then not be needed to be run from inetd or xinetd. 
+However, if you don't wish to run vsftpd in standalone mode, you will have to look at the man pages for launchd and launchctlto figure out how to set upvsftpdto load vialaunchd. Thexinetsystem was replaced withlaunchd` on Snow Leopard.
+
+A: Have you tried adding listen=yes in your config file?

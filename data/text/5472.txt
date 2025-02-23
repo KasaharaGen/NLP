@@ -1,0 +1,7 @@
+Q: Is it possible to access a FileVault 2 encrypted volume from Boot Camp? If I switch on FileVault 2 in Lion, can I still access my OS X volume from Boot Camp (Windows 7)? Are both volumes encrypted and decrypted together, or does it only affect the OS X volume?
+
+A: And the correct answer is: No.
+Encryption only affects the OS X volume. Booting into Boot Camp, the necessary password prompt to allow decryption is bypassed entirely. The volume becomes an opaque blob to anything but a running OS X system.
+
+A: In short, yes. John Siracusa from Ars Technica has a very long review of Lion with much more detail. Also, on a recent podcast he said to think of File Vault 2 this way - once you turn on your computer and enter the password (before anything boots) the disk is essentially unencrypted. Time Machine backups, Boot Camp, network access, etc all happens (essentially) unencrypted.
+While I haven't tried your particular method myself I have FileVault running and I can access my system just fine in other ways. I hope this helps!

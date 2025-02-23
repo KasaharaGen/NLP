@@ -1,0 +1,66 @@
+Q: Can I transfer backups when replacing a Time Capsule? If I get a new Time Capsule, how can I transfer the backups from the old Time Capsule to the new one. I see an option to Archive the Time Capsule from the Airport Utility, but I don't see any way to restore. Do I have to go through the initial back up process again with all of my Macs?
+
+A: From Apple Support Knowledge Base...
+Time Capsule, Mac OS X v10.6.3 or later: How to transfer your back up from an existing Time Capsule to a new one
+For this process, you should leave your computer in the same room as the Time Capsules, or use one Ethernet cable to connect your Mac to the Ethernet port on the existing Time Capsule, then use another Ethernet cable to connect from the existing Time Capsule to the new Time Capsule.
+
+
+*
+
+*Configure your Time Capsule for your network. See the documentation
+that came with your Time Capsule for information about setting it up
+on your network. 
+
+*Open Time Machine preferences in System
+Preferences.
+
+*Slide the Time Machine switch to Off. 
+
+*Open a Finder
+window. 
+
+*Locate both Time Capsules listed in the SHARED section of
+the navigation pane on the left of the Finder window.  Note: If you
+do not see your Time Capsules in that section, choose Preferences
+from the Finder menu and make sure "Connected servers" is checked
+under SHARED. 
+
+*Select the name of the new Time Capsule in the
+navigation pane. The default name is "Time Capsule xxxxxx", with
+xxxxxx being the last digits of the ID printed on the bottom of the
+Time Capsule. 
+
+*Mount the volume by double-clicking the name of the
+volume in the Finder window's main section. The default drive name
+is "Data". 
+
+*Open a new Finder window by pressing Command-N, or by
+choosing File > New Finder Window. 
+
+*Repeat the previous 2 steps with
+the other Time Capsule, to mount it. Drag your backup disk image
+from the current Time Capsule to the new Time Capsule. This can take
+some time to complete because your entire backup will be copied.
+
+*Open Time Machine preferences in System Preferences. 
+
+*Click "Select
+Disk...", then select your new Time Capsule. 
+
+*Perform a Time Machine
+back up. 
+
+*After the back up, you can remove the Ethernet cables if
+desired and configure your wireless network to your liking.
+
+
+A: This is a slow way but dead simple. After letting the new time capsule absorb the setting from the old one and hooking it up to your network then just reconnect with Airport Utility to the old one. Reconfigure the old one to extend your network instead of making a new one. 
+Now you can mount both drives and copy files between then as you wish.
+
+A: Some time ago I read an article about this procedure but it's a bit of a hack.
+I won't copy it here because it's a 12-point tutorial.
+Anyway, I was too lazy to test it, so I cannot guaranty it will work.
+Maybe someone will post a better solution.
+
+A: If you can find a way to hook up the TImeCapsule's drive to your mac directly you might get away with this simple Disk Utility trick:
+http://rolfje.com/2008/09/07/a-bigger-timemachine-without-changing-history/

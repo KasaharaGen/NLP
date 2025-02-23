@@ -1,0 +1,50 @@
+Q: Can I see my CPU and memory usage meters in the menu bar? I'd like to be able to view my cpu and memory usage in real time.  Not as a desktop widget or window application, but as a widget in the menu bar.  Is this possible?
+
+A: I made a simple app that displays cpu and memory usage on menubar, free and open sourced. Feedback is welcome.
+https://github.com/ningt/iStats
+
+
+A: I created a free app that shows percentage on the menu bar:
+
+You can download it from here:
+https://github.com/joelmora/macos-activity-monitor
+
+A: I use MenuMeters for this functionality, and have a hard time living without it.  How do other people know when their web browser is finally done downloading a page, or YouTube stalled out, or iPhoto still working, or ...?
+MenuMeters is freeware, but well worth the donation.
+The original author has stopped maintaining MenuMeters, but someone new has taken over for El Capitan.  
+
+A: I prefer SystemPal. iStat itself consumes too much CPU and RAM. SystemPal is quick, tiny, configurable, neat, and powerful. It's available on Mac App Store.
+
+A: Not sure how long this has been a feature, but it's possible to replace the Activity Monitor dock icon with a graph showing CPU usage, CPU history, network usage, or disk activity.
+
+For example, showing CPU history turns the icon into this little graph:
+
+
+A: iStat Menus has the functionality you are asking for. It is available starting at USD$14.39 for a single license or $17.99 for a family pack (up to five different Macs). It's also included with a membership to SetApp.
+
+A: Check out iGlance it's open source.
+
+
+
+A: A free open source solution is CpuInfo on GitHub (shows cpu only)
+
+A: I really liked eul. Slick design and great configuration ability. Widgets are also available.
+
+
+brew install --cask eul
+
+or install from Mac App Store.
+
+A: One that hasn't been mentioned yet is Stats, which describes itself as a
+
+Simple macOS system monitor in your menu bar
+
+It's an excellent open source project (https://github.com/exelban/stats) that can be installed via:
+brew install stats
+
+
+On big sur, after downloading, open launchpad, search for 'stats', and open it. It will start showing up in the menu bar.
+
+A: Or you can try some geeklets from the internet (or make one yourself) on Geektool. I find it more customizable than menu bar apps, and prettier when I get to use the fonts and sizes I like.
+
+A: Haven't seen this one mentioned yet: Menu Bar Stats 3

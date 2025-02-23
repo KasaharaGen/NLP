@@ -1,0 +1,11 @@
+Q: My MacBook Pro uses an extraordinary amount of RAM I bought my MacBook Pro about 1.5 years ago (with 4 GB RAM) but these days I think it uses an extraordinary amount of memory; when I open Firefox & Adium & Thunderbird & iTunes & last.fm it uses 3.84 of my 4GB RAM. I must say I installed several 3rd-party software packages on my laptop (maybe on start up they run some process of itself) is there any tool that exists to help me tune my laptop and find what processes run functionless in background, or is there any guideline to help me fix this problem?
+
+
+A: It's probably just been a while since you restarted your computer. When you close a program, the memory it was using doesn't go back to "Free", it gets marked "Inactive". It's still available for use by other programs, though:
+
+Inactive memory
+This information in memory is not actively being used, but was recently used.
+For example, if you've been using Mail and then quit it, the RAM that Mail was using is marked as Inactive memory. This Inactive memory is available for use by another application, just like Free memory.  However, if you open Mail before its Inactive memory is used by a different application, Mail will open quicker because its Inactive memory is converted to Active memory, instead of loading Mail from the slower hard disk.
+
+
+A: There are probably tools that make it easier to suss things out than using Activity Viewer, but in the end, you just have to be careful what you install. Depending on the applications you install, there may very well be frameworks, daemons, and the like that can run unnecessarily. last.fm is a music streaming application and that is a known resource hog. McAfee AnitVirus is another; I had McAfee slow my machine to a crawl trying to scan my iDisk. The best example I can offer is I got rid of all Adobe applications and related files including Flash off of my home Macs and I found things to be snappier all around (and if I do need Flash for something, which is fast becoming a rare event, I just crack open Google Chrome). I'd say it's simply time for some housecleaning.

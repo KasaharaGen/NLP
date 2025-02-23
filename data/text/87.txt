@@ -1,0 +1,32 @@
+Q: Real alternative to Tag&Rename I was using Tag&Rename (an MP3 tag editor) on Windows and I'm looking for a real alternative for OS X.
+
+A: Jaikoz and Music Man can do it for you.
+you can also use some free apps too:
+
+
+*
+
+*MusicBrainz
+
+*ID3 Editor
+
+A: The tagger
+
+A: To my knowledge there is no tagging software on OS X as polished and features complete as Tag&Rename.
+Beside the ones aforementioned, I use SimpleTagger which enables you to tag from Amazon (including cover) and rename your files from tags.
+
+A: 
+I mostly use mid3v2. Some examples:
+mid3v2 --artist Artist --title Title --album Album --track 1 file.mp3
+for f in *.mp3;do a=${f%% - *};t=${f#* - };t=${t%.mp3};mid3v2 --artist "$a" --title "$t" "$f";done
+mid3v2 -l file.mp3 # list tags
+mid3v2 -l file.mp3|sed -n s/^TPE1=//p # artist
+mid3v2 -D file.mp3 # delete all tags
+for f in *.mp3;do l=$(mid3v2 -l "$f");mv "$f" "$(printf %02d $(sed -n 's,^TRCK=0*\([^/]*\).*,\1,p'<<<"$l")) $(sed -n 's,^TIT2=,,p'<<<"$l"|tr '/:?<>\\*|"^' _).mp3";done
+mid3v2 --delete-frames $(mid3v2 -l *|LC_ALL=C sed -n 's,^\([^=]*\)=.*,\1,p'|sort -u|grep -Exv 'TPE1|TIT|TALB|TRCK|TYER|TDRC'|tr \\n ,) * # keep only specified tags
+
+You can install mid3v2 by running sudo easy_install pip;sudo pip install mutagen. id3v2 and id3tag don't support Unicode and id3tool doesn't support ID3v2.
+
+A: Tag & Rename works on PlayOnMac.
+PlayOnMac is a Windows compatibility layer (but it's not a virtual machine). It's free and you don't need a Windows license either. First, you need to download and install PlayOnMac, then buy Tag & Rename and install it from within PlayOnMac.
+After that, it just works like a usual app.

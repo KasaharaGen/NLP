@@ -1,0 +1,12 @@
+Q: iTunes videos on a different harddrive? since the TED HD podcast and iTunesU my iTunes library is getting bigger and bigger and thus free space on my MacBook HD smaller and smaller. I'm getting an iPad2 soon and would like to sync my TV shows and some movies as well, but this just doesn't fit into the library any more.
+I already tried to have two libraries, one on an external HD, one on the internal for on the go, but this is kind of complicated and not really 'the apple way'.
+Is there any way to outsource the movies and podcasts to an external library or HD and leave the music on the MacBook?
+Thanks!
+
+A: In your Music directory, go to iTunes/iTunes Media/Movies - copy the Movies folder to an external drive.  Then replace the Movies directory in iTunes/iTunes Media/ with an alias that points to the Movies directory on the external drive.
+What you'll end up with is iTunes thinking the same directory structure exists, but the Movies alias will point to the external drive.  You may not even need to re-add anything to your library - the file paths should remain the same.
+I have had my iTunes library set up like this for years for the same reasons you list.
+Instructions on creating an alias can be found here: http://support.apple.com/kb/TA26514?viewlocale=en_US
+
+A: I followed the guide from MacOSXTips. By holding the option key when adding the files just stay where they are (external HD) and can be used in the iTunes library as well.
+This seems to be the only solution, as with the symlinks/aliases files cannot be added to the library.

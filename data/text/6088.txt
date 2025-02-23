@@ -1,0 +1,263 @@
+Q: How do I use only the external display with my MacBook Pro lid open on Lion? Sorry for the wordy title, but my problem is thus:
+
+
+*
+
+*When I'm at my desk, I would like to use only the external display.
+
+*With the nifty gestures in Lion, I have decided I would like to use the internal trackpad on my MacBook
+
+*To physically touch the trackpad, the lid on my MacBook Pro needs to be open
+
+
+This used to be a piece of cake with Snow Leopard and below - you plug in the external display, close the lid, plug in a USB device or press a key on a connected keyboard to wake the machine, and once it's woken up and using the external display reopen the lid and the internal screen stays off.
+Unfortunately, Lion detects when my MacBook Pro is open and thinks its being helpful by activating the display. Is there a way to disable that? Is there a way to fool Lion into thinking my lid is closed?
+
+A: I ran into the same problem a while ago, and here's what I did:
+First, I mirrored the displays, as has already been suggested. Soon after doing this, I realized that it was very distracting to have the macbook's lit screen off in the corner of my eye. This required that I kill the brightness on the macbook's screen. But being the lazy guy that I am, I hated having to manually adjust the brightness every time I un/plugged an external monitor. So I wondered if there was a way to automate the process.   I found this free app called Control Plane which let's me set "contexts" based on whether certain devices (monitors, hard drives, etc) are plugged in, whether certain wi-fi networks are in range, etc; and based on these contexts, run certain shell scripts. So all I had to do was write an applescript (called killBrightness.scpt) to kill the brightness on the macbook's screen and a shell script to call killBrightness.scpt; and call this shell script in the required context.
+killBrightness.scpt
+tell application "System Preferences" to set current pane to pane "Displays"
+
+tell application "System Events"
+    tell process "System Preferences"
+        repeat with theWindow in windows
+            if title of theWindow as string is "Color LCD" then
+                tell tab group 1 of theWindow
+                    tell slider 1 of group 2
+                        set value to 0
+                    end tell
+                end tell
+            end if
+        end repeat
+    end tell
+end tell
+
+tell application "System Preferences" to quit
+
+The shell script
+#!/bin/sh
+
+osascript /path/to/killBrightness.scpt
+
+Since I plug many different monitors into my macbook, I noticed that when one with a different aspect ratio is plugged in, my windows hang off the edge of the screen. The solution to this would be to resize the windows, but that's highly inefficient when you use a ton of apps and windows like I do; also, me being as lazy as I am, didn't like that solution. So, with the help of the nice folks over at Stack Overflow, I was able to come up with this AppleScript (called resizer.scpt) to automagically resize all windows of (almost) all apps (the caveat is that some applications don't use the correct UI framework hooks, so it's quite difficult to resize them):
+resizer.scpt:
+property blacklist : {"Finder", "Preview", "Console", "AppleScript Editor", "Spotify", "TaskCoach", "Skype", "VirtualBox"}
+property buttonApps : {"LyX", "Eclipse"}
+property buttonMaps : {{name:"LyX", Button:1, pname:"lyx"}, {name:"Eclipse", Button:2, pname:"eclipse"}, {name:"Spotify", Button:3, pname:"Spotify"}, {name:"TaskCoach", Button:3, pname:"TaskCoach"}}
+
+tell application "Finder" to set theBounds to bounds of window of desktop
+
+tell application "System Events"
+    set bids to bundle identifier of processes where background only is false
+end tell
+
+repeat with bid in bids
+    tell application id bid
+        if name is not in blacklist then
+            set appName to name as string
+            if name is "Terminal" then
+                set newBounds to {0, 0, (item 3 of theBounds) - 10, item 4 of theBounds}
+                repeat with theWindow in windows
+                    if visible of theWindow is true then
+                        set bounds of theWindow to newBounds
+                    end if
+                end repeat
+            else if name is not in buttonApps then
+                try
+                    repeat with theWindow in windows
+                        if visible of theWindow is true then
+                            set bounds of theWindow to theBounds
+                        end if
+                    end repeat
+                end try
+            else if name is in buttonApps then
+                -- get the buttonNumber
+                repeat with buttonApp in buttonMaps
+                    if (name of buttonApp as string) is appName then
+                        set theButton to Button of buttonApp
+                    end if
+                end repeat
+                tell application "System Events"
+                    repeat with theProcess in (processes where bundle identifier is bid)
+                        try
+                            tell theProcess to tell window 1 to click button theButton
+                        end try
+                    end repeat
+                end tell
+            end if
+        end if
+    end tell
+end repeat
+
+Now, all I had to do was write a similar shell script to call resizer.scpt and put that into ControlPlane and I was all set to be lazy all over again!
+Hope this helps
+PS: I forgot to mention before that all of this was done on my 15 inch MacBook Pro, running Lion
+
+A: Update 2019
+Since OS X El Capitan, System Integrity Protection (SIP) don't let to change nvram options. Also boot-args="iog=0x0" is not working anymore. 
+To solve this issue I found this solution:
+
+
+*
+
+*Go to Recovery Mode: Reboot and hold down ⌘+R until Apple logo appears. 
+
+*Go to Utilities > Terminal
+
+*Type csrutil disable
+
+*Reboot Mac
+
+*Open a terminal and type sudo nvram boot-args="niog=1"
+
+*Reboot with lid closed
+
+*Log in with your user and you can open the lid
+
+*For security reasons, go to Recovery Mode again, type csrutil enable and reboot
+
+
+Undo (multiple options):
+
+
+*
+
+*Go to terminal and type sudo nvram -d boot-args.
+
+*...or reboot and press and hold these four keys together: ⌥+⌘+P+R for reset your NVRAM.
+
+
+A: I am a new MacBook Pro 2021 user and was searching for a solution to this coming from a Windows background.
+For me what worked was:
+
+*
+
+*Make sure the external display (connected with HDMI) is active (either as Primary or Mirror)
+
+*External keyboard and mouse connected
+
+*Power Cable attached to MacBook even if 100% charged -> This is so critical
+
+Once the above is done, closing the MacBook lid doesn't go to sleep. But the moment the power of the MacBook is turned off, it will stop the external display and go to sleep.
+
+A: I've taken up olivier's suggestion to arrange my monitors to eliminate a common border:
+
+I chose the bottom right because I keep my dock on the left hand side of my screen, and I use my upper right as a hot corner to sleep the display. I also moved the menu bar to my desktop monitor and the MacBook screen is completely dimmed.
+There was another option I heard about: using a magnet to make your MacBook think that the lid was closed. This does work - I placed a snippet of a refrigerator magnet near the bottom left side of my keyboard and sure enough my MacBook thought I had closed the display. Unfortunately, Mac OS X also disables keyboard and trackpad input when it thinks the display is closed, so this option didn't work for me.
+
+A: Quick WorkAround (Not an actual solution)
+Just check the option "Mirror Displays" in Display Preferences. See below screenshot.
+
+Then turn down the Macbook's brightness to zero.
+
+A: I know this is a bit of a kludge, but my work around for this issue is to hold down the brightness control on my macbook until the screen goes dark.
+Like you, I prefer to just work on the larger display, and keep typing with my laptop keyboard (with the laptop display open only partially and open just enough the I can use the laptop's keyboard).
+Anyway, this solution works for me.
+Re: "..and it's frustrating when my pointer disappears to the other screen.. "
+I get around that by just clicking on "mirror displays" option in the System Prefs > Displays > Arrangement 
+Hope this helps.
+
+A: Not sure if this works in Lion but if you have the lid closed and plug in a USB device it'll power up your monitor and then you can open the lid and your external monitor will be on and your lid will be off.
+
+A: This is a combination of a few of the other posts/comments here into one place.  I'm using a MacBook Pro running El Capitan.
+Advantages of this method over the terminal commands:
+
+
+*
+
+*no restart required
+
+*no modification of boot-args
+
+
+Steps:
+
+
+*
+
+*plug in and turn on external monitor
+
+*go to System Preferences -> Displays -> Arrangement
+
+
+*
+
+*uncheck "mirror displays"
+
+*drag the white menu bar from the macbook display to the external monitor (reference with screenshots).  This makes the external monitor the Primary display.
+
+*Arrange the blue boxes so that only the corners touch (screenshot provided by Kyle Cronin in posts above).  This prevents the mouse from moving between screens.
+
+
+*close the display options and tap the macbook's dimmer key (i.e. F1) until the screen is black.
+
+
+Undo steps (preserving the arrangement for later):
+
+
+*
+
+*tap the brighten screen key on MacBook (i.e. F2).
+
+*unplug the external monitor.
+
+
+Undo steps (to change it back to the default if plugged in again):
+
+
+*
+
+*tap the brighten screen key on MacBook (i.e. F2).
+
+*go to System Preferences -> Displays -> Arrangement
+
+
+*
+
+*drag the white menu bar back to the macbook display.
+
+*drag the blue boxes back into place.
+
+*check the mirror displays option.
+
+
+*unplug external monitor.
+
+
+A: Mac OS X Hints has discovered a command that will allow this:
+
+To go back to pre-Lion behaviour enter the following command in Terminal:
+sudo nvram boot-args="iog=0x0" 
+
+To undo this change type type the following command or zap the PRAM (press Cmd+Opt+p+r at power up):
+sudo nvram -d boot-args 
+
+
+
+A: Another solution, although ghetto, is to place a very weak ferrite magnet (like fridge magnets) near the Hall effect sensor of the laptop.
+This has the benefit to simulate the macshell mode while keeping the lid opened to improve the cooling performance.
+Do not use strong neodymium magnets. This could damage the Hall effect sensor. 
+To differentiate:  ferrite magnets are weak and made from a black compound, neodymium magnets are very strong and usually plated with nickel, having a shiny silver look
+
+
+A: I have an old 2009 MacBook which I got for free because the LED screen is damaged and I cannot see anything on it. Since I'm not prepared to spend more than it's worth to replace the LCD, I found a solution to use an external screen on native resolution.
+Mirror displays is enabled with CMD + F1 to get the external up. Then go to settings - display and turn mirror displays off. The "Gather Windows" button will hopefully get the display settings to now show on the external as it did for me.
+Now drag the white menu on the display settings to the external and it will become the primary display. Close the MacBook and reboot with an external keyboard and mouse attached.
+
+A: This is how I achieve this.
+
+
+*
+
+*Connect You MacBook with the power cable (charger).  
+
+*Connect with external Keyboard + mouse.
+
+*Turn the MacBook lid down.
+
+*Now click keyboard buttons.
+
+*Now you are using only your external display, your cursor will not go into your other display. There is only one display now.
+
+
+A: Once you have hooked up the external monitor, for sometime you do see this extended monitor setup. But if you don't want to use the laptop screen, simply close the lid of the macbook pro and continue working on the larger screen this works. The laptop doesn't go into sleep mode. This is with the Lion release.

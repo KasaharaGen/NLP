@@ -1,0 +1,61 @@
+Q: Mac can't connect to wifi network after password change I've got a Mid-2010 17" MBP freshly upgraded to 10.7.  I went to the coffee shop today to do a bit of work, but I was unable to connect to the wifi network.  I had been there yesterday(though without my laptop) and the wifi password had been changed.  I updated the password on my iPhone and iPad, and those devices have been connecting to the network with no problems.
+Today when I went in with my Macbook, however, I was unable to establish a connection with the network.  I thought it was a bit strange, since it never told me the password was wrong(keep in mind, the laptop still remembers the old wifi network password), it just grabbed a self assigned IP and complained that it couldn't connect to the internet.
+This is what I did in effort to establish a connection, with no success:
+
+
+*
+
+*Removed the network in question from my saved wifi networks.  Upon attempting to reconnect nothing changed, still gets a self assigned IP, never asks for a new password, no internet connection.
+
+*Removed all entries for the network in question from the Keychain.  After removing the keychain entry, any time I reconnect to the network, the keychain entry is re-added with the old, incorrect, password.
+
+*Edited the password in the keychain entry to the new, correct, password.  This resulted in the same behavior as my first attempt, nothing new.
+
+*Removed entry from saved networks, deleted keychain entry, restarted mac.  Exactly the same as before.
+
+
+So after a good 20 minutes of attempting to connect to the network, I could never even get it to prompt me for a new password(the password it has stored is definitely different than the current, correct, password for the network).  So I gave up and came home to attempt to figure it all out.
+Any suggestions on how to get connected to this network with a new password?  Have I done all the right things, and should now just go file a radar on this behavior?
+
+A: If you have checked both the user keychain and the system keychain for old passwords, we're left with obscure guesses.
+Two things come immediately to mind (from the obscure side).
+
+*
+
+*Your mac will join any base station with that SSID. I have seen people literally setting up a second router in busy coffee shops - you have to hold the option key and make note of the mac address you have connected to and see it change to catch this.
+
+*If your wifi connects to the router wifi, it doesn't mean the DHCP server has any more addresses to lease. You will need the owner to reset or power cycle the router to see if the leases are all out and unexpired. You basically have a great pipe connecting you to the main, but no water is flowing to you until you get a lease.
+
+
+A: What a puzzle.  You have tried all of the likely issues regarding wifi so perhaps you might rule in or out a couple of other pieces.
+I have a few ideas for you to consider.  
+First find and delete all session cookies, cache and browsing history related to this coffee shop.  If it fails in the same way, try to get online with another browser from the same user account. If this approach does not work, here's plan B. 
+Create a second user account on your mac and try to login. This is a popular approach often recommended by Apple when I have had problems.  If that works, we can assume something in your primary user account is getting in the way.
+One of the things that could be in play here is the "man in the middle" scheme or something akin to firesheep. I'm not the right person to help with issues like this but you are experiencing an unusual situation.  Googling these terms might help. 
+
+A: I had the same problem.  The answer above did not resolve it, but choosing "Join other Network" and then entering the same network name did work.
+A little more detail:  I had this problem when Verizon Fios Premium tech support turned off my WEP security on their router in order to diagnose a wireless connection problem with a Win XP laptop.  When they turned the security back on with the same password the Air book no longer connected, but if WEP was left turned off it worked ok.
+So when I chose "Join Other Network" the setting came up as no security.  Not sure if that was because I was last connected to the current network with no security.
+In any case when I entered the same name of the current network and selected WEP Security it asked for the PW and I'm off and running.
+Your mileage may vary.
+HTH.
+ed
+
+A: Situation: well-meaning staff will tell their customers to remove and re-join the wireless network in question after a password change, only to have their efforts thwarted by the OSX Network Settings that never bothers deleting the Keychain item associated with a formerly trusted network.
+I for one would love it if we could .. Opt-click-join to force the password dialogue, or something, anything would be easier than having to explain the following procedure:
+
+
+*
+
+*Open Keychain
+
+*Make sure you have Login keychain and the All category selected in the left pane
+
+*Enter partial network name into the keychain Search field
+
+*Select the corresponding found item, delete it, confirm admin password
+
+*Disable+Enable wireless network interface
+
+*Re-select the network, enter the updated password
+

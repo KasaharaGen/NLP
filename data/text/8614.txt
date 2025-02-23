@@ -1,0 +1,4 @@
+Q: Is kill -15 the same as File -> Quit? I want to quit a process but without force quitting it. Is that possible from the terminal?
+
+A: kill acts on Unix level, the targeted process is free to ignore any signal besides kill -9. And depending on the internal structure of the process you are looking at, kill -15 will not be the same as 'File->Quit'. 
+As an alternative you could do something like osascript -e 'tell application "Safari" to quit'. 

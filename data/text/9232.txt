@@ -1,0 +1,27 @@
+Q: How do I use tmutil to figure out what's wrong with my Time Machine? How do I use tmutil to figure out what is wrong with my Time Machine as it keeps backing up huge amounts of data each time it back-ups although nothing has changed since the last back up?
+I'm backing-up to a Drobo FS
+
+A: You can use timedog to see what's being backed up each time. 
+Usage:
+
+
+*
+
+*Open Terminal (in /Applications/Utilities)
+
+*cd /Volumes/Time\ Machine/Backups.backupdb/[Computer Name]
+Note Time Machine may be different on your system.
+Replace [Computer Name] with the name of your computer (see System Preferences => Sharing).
+
+*/path/to/timedog -d 5 -l
+For instance, if you unzipped timedog to your Desktop, the path would be ~/Desktop/timedog
+And then look at the output
+
+A: Use
+tmutil listbackups
+
+to get a list of existing (completed) backups.
+Then run one or both of
+tmutil compare # to compare current drive to latest backup
+tmutil compare /one/path/from/list /other/path/from/list # compare two backups
+

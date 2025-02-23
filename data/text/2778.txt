@@ -1,0 +1,13 @@
+Q: How do I find my CPU's temperature? There are a number of posts that talk about CPU temperature.  Is there a utility built in to Mac OSX that I can use to determine the current temperature of the CPU?
+
+A: While iStat Menus @Mark mentioned are no longer freeware, the iStat nano and iStat Pro Dashboard widgets are free.
+I personally use iStat nano for my system monitoring needs. Here it is showing the temps it can read on my iMac:
+
+If you hover over the widget, you can change the view. I usually have it running in "Overview" mode, which shows CPU, RAM, HDD*, fan*, temperature*, network* and uptime info. 
+*) user-configurable, e.g. which temp sensor's readings are displayed
+
+A: I use smcFanControl which can tell the internal temp of your computer as well control the speed of the fan (in case you need to increase/decrease the speed manually).
+
+A: There are APIs that code can call. Various utilities have been written touse them. Ones I have used are
+Temperature Monitor - free - there is also a Dashboard widget
+iStat Menus - which now has to be paid for the old version was free

@@ -1,0 +1,12 @@
+Q: How can I exit "bash"? I don't know how to get my .profile aliases back in to the terminal every time I try them, this error massage comes up:
+apaw:~ apaw$ cdp
+-bash: cdp: command not found
+
+How do i exit this -bash? I strongly believe it was named different while it still worked.
+
+A: I'm not sure I understand your question.  
+The -bash: prefix you see is simply bash's way of identifying itself as the source of the error message. In this case you entered cdp which is neither an external nor internal shell command nor was it defined as an alias or function.
+While in a (bash) terminal, you can simply type exit to leave the terminal and close the shell session.
+The aliases in your .profile are read when you start a new terminal or shell session, or if you source the files: e.g. source ~/.profile.  That should re-read your .profile and load any changed aliases.
+
+A: Okay, I've found out what the problem was, some script has created a .bash_profile file that was overriding my .profile file, now I've removed the .bash_profile file and it works again!

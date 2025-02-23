@@ -1,0 +1,32 @@
+Q: How can I prevent Homebrew from installing a duplicate of software I installed through other means? I like using Homebrew for installing Unix software on my Mac, and appreciate that it doesn't try to install multiple copies of things like Python.  There are some packages I've already installed manually, though, and I don't want Homebrew to install its own copies of them.  
+In my current situation, I installed OCaml using the standard installer.  Now I want to install Coq via Homebrew.  I see via brew deps coq that it depends on OCaml.  I know I can tell it to skip installing OCaml this time via brew install --ignore-dependencies coq.  However, I'd rather not have to do that every time I install a Homebrew package that requires OCaml.
+How can I make Homebrew pretend that it installed software that I installed through other means, so that it doesn't try to install a duplicate copy?
+
+A: Take the path that you used for --prefix= during your ./configure and sym-link that into the Cellar/ directory that Homebrew is using. Homebrew will see these directories and see the dependencies as satisfied (unless you need to have them compiled with or without certain features to make Homebrew's formulas compile correctly). If your manually-compiled deps aren't compiled correctly, you'll probably get errors out of Homebrew.
+ln -s /path/from/prefix/ /usr/local/Cellar/path/from/prefix
+(Note the trailing slash on the first path, and lack of trailing slash on the second. OS X can be picky about these slashes when creating sym-links.)
+This is the wrong way to do it, you should just be using --ignore-dependencies coq — that's what it's there for.
+
+A: A slightly different take, whichs ends up with a similar solution to @Bryson's answer but the way to get there may be more general and helpful to more people.  Also, I disagree with the statement that the proper way to do this is to use the --ignore-dependencies flag. When you use that flag is says
+
+Warning: --ignore-dependencies is an unsupported Homebrew developer flag!
+Adjust your PATH to put any preferred versions of applications earlier in the
+PATH rather than using this unsupported flag!
+
+Additionally I don't like that solution because you have to remember to manually check the dependencies of everything you install going forward, and manually do the work of installing all of those dependencies other than the one you want to avoid. I think that's a pretty bad solution.
+The warning actually contains a suggestion for how to fix the problem; adjust your path variable.  I ran into this with Java, not OCaml, but the solution should be the same for any software.
+brew puts executables into /usr/local/bin/ so the directory with the executable of the dependency which you want to use must be earlier in your path than /usr/local/bin/.  So I check what Java executable is being used
+$ which java
+/usr/bin/java
+
+And I check my path to see where that is relative to /usr/local/bin/
+$ echo $PATH | tr ':' '\n'
+...
+/usr/local/bin
+/usr/bin
+...
+
+I could change the order of those in my .bashrc or .bash_profile but I actually want to keep that order, so instead I'm going to create a symlink in /usr/local/bin to point to the executable of the dependency in /usr/bin then brew will be able to see my version of the depedendency at the same level as all the other brew dependencies.
+$ ln -s /usr/bin/java /usr/local/bin/java
+
+Now brew will not try to install a different version of Java, or whatever dependency you are dealing with.

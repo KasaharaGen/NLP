@@ -1,0 +1,40 @@
+Q: How can I open port 8080 of Mac OS X Lion? How can I open access to port 8080 from the outside world (private lan) on my Mac OS X Lion? I'd like to access a webpage that's running on my lamp stack on my mac (zend server ce) from within the lan. I can access port 80 just fine.  Port 8080 is blocked on the other hand.  I've also disabled the firewall.
+
+A: When you say that you disabled the firewall, do you mean the one in:
+System Preferences > Security > Firewall, or the ipfwIP Firewall that you can access from the command line? Or perhaps both?
+To check to see if you have ipfw rules, you can always go to the terminal and type in:
+sudo ipfw list
+You might also use nmap to check if the port is open from different places on your internal network. Of course, OS X doesn't comes with nmap by default, so you would have to try that from a Linux machine or use something like Fink or Macports to install it.
+nmap -p 8080 host.domain.com
+I hope this helps.
+
+A: You can disable firewall or you can allow a certain application to accept incoming connections. Plus to allow access to the outside world (e.g www), you'll need to forward traffic to your internal gateway:port via your router settings.
+Here's how to do this:
+
+
+*
+
+*Mac->Sys Preferences->Sharing->Enable “Web Sharing” checkbox
+
+*Mac->Sys Preferences->Security-> Turn off firewall, or allow your application to accept incoming connection
+
+*Open a port on the router (via 192.168.1.1) to forward traffic from your_web_ip:port to a local_gateway:port
+
+
+*
+
+*Router Settings -> Port Forwarding -> create rule: forward to local gateway (e.g. 192.168.1.4), custom port, protocol tcp, source=any, destination=3280, all connection types, forward to port = 8080.
+
+
+
+Done. Now from the remote computer, open your browser to your web ip address (find via http://www.whatismyip.com/) + destination port# above, e.g. 72.189.194.65:3280, this will connect to your local 192.168.1.4:8080
+
+A: In MAC OSX - Changing the httpListenAddress for Jenkins on OSX
+I installed Jenkins via homebrew and wanted the web interface to be accessible over the network. By default, Jenkins is launched with the --httpListenAddress=127.0.0.1 option and is only accessible on the local machine.
+I found the plist file that was used to launch Jenkins in ~/Library/LaunchAgents/homebrew.mxcl.jenkins.plist and changed the argument, but each time I ran brew services restart jenkins my changes would be lost. It turns out that this file only exists at run time. The config file that is actually used is located at /usr/local/opt/jenkins/homebrew.mxcl.jenkins.plist. If you change this file then restart Jenkins then your changes should take effect.
+sudo vim /usr/local/opt/jenkins/homebrew.mxcl.jenkins.plist
+brew services restart jenkins
+
+Ref: https://michaelheap.com/changing-the-httplistenaddress-for-jenkins-on-osx/
+
+A: If the firewall is off and you're sure Apache is listening on :8080, then you must have a firewall upstream somewhere that's blocking 8080. Unblock it there. 

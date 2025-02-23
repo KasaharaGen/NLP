@@ -1,0 +1,17 @@
+Q: Recommendations for a good Bandwith Tracker on OS X Is there a way I can track total bandwidth usage over the course of a month? My service provider requires me to stay within fairly strict limits.
+
+A: I really like BitMeter OS. It's free, runs as a service and has a slick browser-based interface. It also runs on Windows and Linux.
+
+
+A: If you want to measure it from your Mac: MenuMeters keep a running total of the network volume since last reboot. Of course this total does not differentiate between local and internet traffic so if you have other computers on your LAN you may be better of to measure it directly in the modem/router (which usually has statistics functionality builtin).
+
+A: Probably the most polished app is Rubbernet ($$). Does bandwidth throttling too. 
+
+Rubbernet provides a breakdown of per-app network usage, so you can quickly detect apps that phone home, connect to certain servers without your knowledge, or blame the app that's slowing down your network.
+
+
+A: Have a look at vnstat:
+
+vnStat is a console-based network traffic monitor for Linux and BSD that keeps a log of network traffic for the selected interface(s). It uses the network interface statistics provided by the kernel as information source. This means that vnStat won't actually be sniffing any traffic and also ensures light use of system resources. However, in Linux at least a 2.2 series kernel is required
+
+It also works on BSD and Mac OSX.

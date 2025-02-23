@@ -1,0 +1,52 @@
+Q: Searching by file name (as opposed to name and contents) in Lion In earlier versions of OSX, when you search in a Finder window, it gave you the choice of searching by contents or file name. In Lion this choice seems to have disappeared, I can only search by content now. Is there any way to search by name in Lion?
+
+A: Another way would be to use the Terminal and the mdfind command-line utility. Add this function to your ~/.bash_profile (or any other shell config file you might use):
+spot() {
+  mdfind "kMDItemFSName=='*$@*'cd";
+}
+
+You can then use the spot function on the command-line:
+spot foo bar
+
+This will search for all files and directories containing the arguments you passed to spot in their name.
+Note that cd in the above function is a modifier, making the search case-insensitive (c) and ignoring diacrtical marks (d). For more info about querying, see this document.
+
+A: ⌃⌘F (File > Find by Name…) also opens a Spotlight window that is set to search by name by default.
+
+A: *
+
+*Open a finder window
+
+*Open the folder you wish to search in
+
+*Click in the search box
+
+*Type the text you want to find
+
+*A dropdown should appear like the one in the image below which allows you to select the 'Filename contains' option
+
+
+
+If you've already run the search and want to alter the search to only look for files with your search term in the filename, you can click the '+' button just beneath the search box and change the search type from there.  See screenshots below:  
+ 
+
+Mike Scott has nice suggestions from the comments that are worth incorporating here to use the name: selector in spotlight.
+You can prefix your search with name: as shown below
+ 
+This results in a window which you can select 'Filename' or 'Everything' from if you click the button labelled 'name' in the search box as shown below:
+
+
+A: Ross is correct that the option to switch between searching filenames or contents disappears once you perform your search -- if you don't choose filenames to search filenames from the drop-down when you first type in the search term.  Once you perform the search without having clicked on that drop-down, the drop-down will not appear even if you click again in the search bar.  You have to type another character in the search bar, then delete it, and THEN the drop down appears.
+This is pretty stupid on Apple's part. They took something that was simple, very clear and self-explanatory, and made it hard to find, a bit difficult, less useful and inconsistent. If you want to search contents first and then switch to filenames, it's not as easy as the simple click of a visible button.  No logical reason for this. I hope they return the original, better-designed feature.
+
+A: Search using the name: selector
+
+The Found app was awesome. It was free on the app store and lightning fast (seems faster than LaunchBar to me - and that's saying a lot as it's also speed demon). More recently, find any file and HoudahSpot are my go-to tools when finder and spotlight are not the best tool for searching filesystem.
+
+*
+
+*https://www.houdah.com/houdahSpot/
+
+*https://apps.tempel.org/FindAnyFile/
+
+A: It does not disappear - just enter your query into the searchfield and hit enter - then click into it again and find the possibility to switch right there.

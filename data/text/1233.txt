@@ -1,0 +1,87 @@
+Q: How do I change the location of macOS screen captures? As a developer, I take a lot of screen captures. I often take screen shots to share with Stack Exchange members in chat.
+The problem is my Desktop is so cluttered with screen captures that they're now overlapping! I'd like to save all screenshots in a dedicated folder or directory.
+In macOS, how do I change the default location where screen captures are saved?
+These are the screen shots taken with CommandShift3 or CommandShift4 keyboard shortcuts.
+I would prefer a solution which doesn't require installing any software.
+
+A: As of macOS 10.14+, you don't need any specific software or scripts. The default screenshot location can be changed in the Screenshot app UI:
+
+
+*
+
+*Enter Screenshot mode:
+
+
+*
+
+*Press Command+Shift+5
+
+*Press the Touchbar's Screenshot button
+
+
+*Go to the floating screenshots options window.
+
+*Select Options > Save to > Other Location...
+
+*Choose a new screenshot location.
+
+
+
+Select "Options" here:
+
+Now all screenshots will be stored at the chosen location.
+
+A: According to this page...
+defaults write com.apple.screencapture location <path>
+
+Also, to turn on/off shadow:
+defaults write com.apple.screencapture disable-shadow -bool true
+defaults write com.apple.screencapture disable-shadow -bool false
+
+And to change file type:
+defaults write com.apple.screencapture type <format>
+
+You'll want to
+killall SystemUIServer
+
+to make the commands take effect.
+
+A: If you use TinkerTool you can change the location that screen capture will saved:
+
+And also you can Add control to the two shortcuts above to place the screen shot on the clipboard instead of saving it to the desktop., and paste it in image Editor like Acorn.
+
+A: I realize this question was asked years ago...
+Nonetheless, I arrived here yesterday trying to fix the names (base filenames) of the screencapture PNG files.  
+Later I found the answer I needed, so I offer it here for future visitors.
+If you hate the names looking like:
+Screen shot 2011-07-05 at 5.38.53 AM
+
+Then you can fix it in three steps:
+First, run:
+defaults write com.apple.screencapture name "screenshot"
+
+Or use any word you want as a replacement for the default "Screen shot."
+Then (bust out your superuser/sudo privileges and) edit this file:
+/System/Library/CoreServices/SystemUIServer.app/Contents/Resources/English.lproj/Localizable.strings
+
+If your computer is not localized to use the "English.lproj", then locate the appropriate lproj in that same Resources folder.
+Here is what to edit in Localizable.strings:
+/* Format screencapture file names */
+/* "%@ %@ at %@" = "%1$@ %2$@ at %3$@"; */
+"%@ %@ at %@" = "%1$@_%2$@_%3$@";
+
+Keep the left-hand-side as "%@ %@ at %@" and alter the right-hand-side  (after the equals sign) to your liking.  In the above snippet, underscores are used where previously whitespace was used.
+Lastly, of course:
+killall SystemUIServer
+
+I found this info on this webpage, and it works for me on 10.6.
+
+A: Apple's answer:
+
+Where to find screenshots
+By default, screenshots save to your desktop with the name ”Screen Shot [date] at [time].png.”
+In macOS Mojave or later, you can change the default location of saved screenshots from the Options menu in the Screenshot app. You can also drag the thumbnail to a folder or document.
+https://support.apple.com/en-us/HT201361
+
+
+A: Use the screen shots from Preview. You can save to any place you like, change the screenshot's name or file type. It is under Previews File menu.

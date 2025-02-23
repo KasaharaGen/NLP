@@ -1,0 +1,33 @@
+Q: Apple Mail - Making Reply and Forward Attributions the SAME? Sorry for such a simplistic sounding question, but I haven't found any resolution to this. As I migrate users from Outlook to Mail, this is one of the biggest things I miss...
+When you forward a message in Mail.app, it gives full attribution, listing complete To, From, Subject, and Date information. However, when you reply, all you get is "On so-and-so wrote:" and nothing else. The big missing piece is the To information. In a corporate environment, it is really important to see who had been written to in a historical message in a thread, since the distribution group often changes from reply to reply.
+Is there any way to get the full attribution in replies as well as forwards? It must be possible. I know that you can edit the Delayed.strings file which can help space things out more desirably, but I'd like to also have all the lines (From, Date, To, Subject) there in exactly the same way.
+Any ideas or advice would be most appreciated :)
+
+A: I'd be very interested in this if you can pull it off, as that reply header format is super annoying to me.
+For the previous version of Mail, a guy at Purdue wrote a plug-in to do exactly what we're looking for here.  He's since moved off OS X so he isn't maintaining the code for Lion, but it might serve as a good starting point for you.  The source is at:
+https://github.com/saptarshiguha/ReplyWithHeaders
+The author gave me the following tip (all Greek to me, but might be helpful to you):
+
+Fixing this to work in Lion might be as simple as including new UUIDs
+  (plugins require something called UUID compatibility IDs), or a
+  rewrite (the Mail internals might have changed).
+
+Hope this helps!  I know a lot of people that would be very excited to fix this little shortcoming in Lion Mail.
+-Rob
+
+A: Happy to report there is a solution to this now, as Purdue's Saptarshi Guha has updated his plug-in for Lion Mail.  You can now see the standard reply header instead of that ugly Mac standard.
+https://github.com/saptarshiguha/ReplyWithHeaders
+
+A: One used to be able to (sort of) change "REPLY_ATTRIBUTION” in /System/Library/Frameworks/Message.framework/Versions/B/Resources/English.lproj/Delayed.strings.
+Will try and see if that still works... (once the new Lion Xcode is downloaded....)
+
+A: The plugin mentioned above (https://github.com/saptarshiguha/ReplyWithHeaders) still works for Mountain Lion (Mail 6.5).  However, you will need to update the UUIDs as explained here: http://code2k.net/blog/2010-05-16/.  It is not as difficult as it sounds.  I'm no programmer, and it took me about 30 minutes total time.
+Hope this helps.  I almost quit using Mail over this issue as I absolutely need to be able to keep track of who received what.
+Robert
+Edit:  Just had to update the UUIDs again with the version change to Mail 6.6.  Still seems to be working fine.
+
+A: Hello ReplyWithHeader Users -
+ReplyWithHeader plugin development back on track. Plugin is compatible with Lion and Mountain Lion (up to Mail 6.6)
+Plugin Homepage and Download plugin from MacUpdate.com
+For any issues, you can report here
+PS: This is to share latest info, kindly not to delete!

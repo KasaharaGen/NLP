@@ -1,0 +1,8 @@
+Q: Can I use Time Machine to restore to a smaller disk I have used Time Machine to restore my MBP to a larger HDD with great success, but am about to purchase a smaller SSD for it.
+With the obvious caveat of not having more data than the SSD can hold, is there anything stopping me from going from a 500GB SATA drive to a 240GB SSD using a Time Machine restore?
+It's a 2010 MBP running Lion 10.7.1, if that makes any difference.
+
+A: Yes.
+The system is built to accommodate this if possible.
+The restore process does a fairly good check before starting to restore to ensure the space is free enough to land the data stored on your specific snapshot in Time Machine.
+Time Machine (and Disk Utility restores) work well as long as the "cargo" fits with maybe just a little extra room for overhead. Generally, less space is wasted at the end of files on smaller drives, so the thousands of small preference files pack more tightly on smaller drives.

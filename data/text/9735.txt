@@ -1,0 +1,16 @@
+Q: Why might a Macbook Pro go back into sleep shortly after waking up? Whenever I wake up my mac by opening the lid, approximately 20 seconds later it will put itself to sleep again, even though I'm actively working on it. I'm guessing it's "deep sleep" (hibernation) because the indicator light turns completely off, not just blinking.
+Waiting until the sleep process is completed and then pushing the power button will wake the laptop again, and this time it will work fine. So the whole business takes less then a minute, but it's still a little annoying.
+What causes this behavior, and how can I fix it? This happens every time I open the lid, but it's a relatively new thing, just happening for the past week or two.
+
+A: Possibilities include (listed from the best case to worst case):
+
+
+*
+
+*Incorrect SMC settings. To fix this: read
+http://support.apple.com/kb/ht3964 (your situation is described the Power section)
+
+*A battery that's not retaining its charges. To check: read about Battery Cycle Count at http://support.apple.com/kb/ht1519
+There are other possibilities but let's try these first. Feedback if these doesn't work for you.
+
+A: The problem sorted itself out. How? I don't know. Why did it happen in the first place? I don't know. But if any future victim encounters this question looking for a solution, be aware it might go away by itself after a few restarts.

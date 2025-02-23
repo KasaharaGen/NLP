@@ -1,0 +1,47 @@
+Q: What happens with existing apps on device when synching with new computer? I am synching my iPad with multiple computers. I now want to switch my "main" computer (as in the computer I really do the syncing with). Now the problem is that when I uncheck "Sync Apps" on the other computer, a dialog box says the following:
+
+Because of this dialog I managed all my apps solely via the iPad. I do not want iTunes to delete my apps on the iPad, only that I will have to re-download them on my other computer and re-synch them anew.
+What will happen when I click "Don't Sync Apps" now? Will it really delete all apps on the iPad?
+
+A: At that point, yes - if you click Don't Sync Apps you are telling iTunes to reset the link between another iTunes library and your iPad - which will result in this computer deleting your apps on the device and replacing them with the apps on that iTunes Library. Cancel should let the rest of the sync proceed and leave your apps alone this time. Go into the Apps tab and deselect app syncing to prevent this message from coming back the next time you connect.
+The iOS devices and iTunes are happy to have different computers feed it Apps, Information, Music, etc...
+
+I don't see an authoritative document specifying how many different computers can routinely share syncing duties - each providing the minimum amount of content in terms of the Info / Apps / Ringtones (etc...) tabs in iTunes.
+My experience is the six music related tabs are treated as one, so you could have your device get data from 5 different computers and not have any problems. In your case - you could easily sync everything but apps from computer A and the apps from computer B.
+
+iTunes stores the App purchase history and syncing in preference files as well as in two locations on a Mac or a PC.
+The two or three folders you need to move are:
+
+
+*
+
+*The iOS backup folder maintained by iTunes
+
+*The iTunes database folder (which contains everything else - except for potentially the music files)
+
+*The iTunes media folder(s) (which may be consolidated in one folder or scattered across multiple drives or network locations in the worst case)
+
+
+Assuming you want everything to move from the old computer to the new one and the new one has nothing (you can overwrite everything there), you simply:
+
+
+*
+
+*Optionally - consolidate all the music media to one folder (for ease of transfer and surety the library will link correctly when moved) 
+
+*Quit iTunes (to close all files properly before the move)
+
+*Move the backup folder (they are just plain files/folders)
+
+*Move the iTunes Library folder as well as the media
+
+
+*
+
+*iTunes for Windows: Moving your iTunes Media folder
+
+*iTunes for Mac: Moving your iTunes Media folder
+The first time you launch iTunes on the new mac - just be sure no devices are connected and go to preferences and review the settings - make sure the music library points to the correct folder on the new mac and try playing a song or two. You can then connect your devices and resume normal sync/backup as if the new computer was the old one. Do use care to destroy / not use the old computer - the device could get confused if you sync to two versions of the "same library".
+
+A: If you tell iTunes to sync, It will backup your apps from i*xxx to your "main" computer.
+More informations here Syncing and Backups

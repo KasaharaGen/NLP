@@ -1,0 +1,55 @@
+Q: Where are Photo Booth image files stored in Lion? On Snow Leopard, photos taken with Photo Booth were stored in ~/Pictures/Photo Booth. They were individual image files that could be opened with any image editor. After updating to Lion, when I go to ~/Pictures, I see an icon for Photo Booth Library. When I double-click to open, it just opens Photo Booth with the thumbnail strip along the bottom. 
+Where are those image files stored now? The whole point of them is to be able to use them for avatars, etc. which I can't do if I can't get at the individual files.
+
+A: in lion the folder 'Photo Booth Library' has some extended file attributes that will make you open photo booth rather than simply the folder. to access your files in the finder, eg. for using them in avatars or email attachments you need the terminal (Finder -> Applications -> Utilities -> Terminal) and have to go in the terminal to your Pictures folder by typing
+cd Pictures/
+now, you can either
+
+
+*
+
+*remove those extended file attributes (you'll need the developer tools for this) by typing
+
+
+xattr -d com.apple.FinderInfo Photo\ Booth\ Library/
+this removes the nice icon of the folder (side-effect, sorry) and changes the behavior of finder so that it just opens that folder rather than opening the photo booth app.
+
+
+*
+
+*or make a symbolic link to the place where your pictures are stored in the library. In your Pictures folder do
+
+
+ln -s Photo\ Booth\ Library/Pictures PhotoBoothPics
+the link PhotoBoothPics will be accessible in your finder as you would expect from a standard directory.
+For beginners, I recommend the second version. But maybe some expert can figure out which bit to unset in the finder info (rather than deleting the whole object).
+
+A: Just right-click on "Photo Booth Library" and select "Show Package Contents" your pictures should be in the "Pictures" folder.
+
+A: They're stored in ~/Pictures/Photo Booth Library on Lion. This is a package though and you can't just double-click in to the package to see the sub-folders. Double clicking on it will, instead, open Photo Booth.
+If you just want to get at the pictures, right-click (or control-click) on the Photo Booth Library package under ~/Pictures and select Show Package Contents from the menu.
+Under the package directory you'll see a sub-directory called Pictures -- that's where Photo Booth is keeping your snaps. Change in to there to access the images directly.  Movies are also stored in there (regardless of whether they had any effects applied) as *.mov files.
+From within Photo Booth you can also right-click (or control-click) on any image in the bottom bar and select 'Export...' or 'Reveal in Finder' from the pop-up menu to access the image. The former gives you a Save dialog that lets you place the image file in some easily accessible location. The latter opens up that Pictures directory in the package I mentioned above directly in a Finder window.
+
+A: Just copy all your pictures from the Photo Booth Library package to a different location, then delete the Photo Booth Library package from the Pictures directory
+When you re-open the Photo Booth app and it will ask you if you want to create a new Photo Booth Library package for your pictures and where you want to create it.
+
+A: If you want to open or access  photos taken by Photo Booth, follow these steps:
+
+
+*
+
+*Open Photo Booth by using Spotlight search
+
+*Click on the "View" tab and select "Show photos"
+
+*To use the photo further, you can upload it to the "Photos" album by clicking on "Add to Photos" in the Share option.
+
+*Open "Photos", select the photo and click on the File tab then export it to your desired location (Desktop, Downloads folder etc.) to use it.
+
+
+A: If you want to open or access photos taken by Photo Booth, follow this simple rules mentioned below:
+Open Photo Booth by using spotlight search
+click on the "View" tab and select "Show photos"
+To use the photo further,You can upload it to the "Photos" album by clicking on "Add to Photos" in share option
+Open "Photos"...Select the photo... Click on the file tab and export it to your desired location (Desktop, Downloads folder etc.) to use it...

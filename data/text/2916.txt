@@ -1,0 +1,223 @@
+Q: What orthodox file manager for OS X could I use? I'm looking for a graphical file manager fro OS X, for console Midnight Commander is ok.
+I need two panels, function keys operations and preferably FTP and SCP support.
+Also, it would be great to be free.
+
+A: Marta (free)
+
+Simple and fast file manager for basic tasks like copying, moving and managing files.
+Key features
+
+*
+
+*Open source
+
+*macOS native
+
+*Plugins
+
+*Macros
+
+*Dark/White themes
+
+*Installs from dmg/brew
+
+*Embedded terminal
+
+*Tabs
+
+Cons
+Limited functionality at the moment:
+
+*
+
+*No file/text search
+
+*No remote filesystems support (aws, ftp, etc)
+
+PS: I'm neither developer or affiliated with this software.
+
+A: Path Finder
+Although not free, I have been using Path Finder for years and love it dearly. Two features I like the most from this applications are:
+
+
+*
+
+*I can have two side-by-side panels, what you are looking for. Not only that, each panel can have multiple tabs.
+
+*I can go into a directory by hitting the return key, cmd+O still works.
+
+
+A: ForkLift (23,99 € / $29.99 / £20.99)
+Definitely a winner for me. Features list on its website: binarynights.com but it pretty much has anything you'd want from an orthodox file manager and it does look nice too :)
+
+A: Mover (free)
+
+
+*
+
+*open/run files and apps
+
+*batch copy/move/delete, file/folder creation
+
+*Operations queue
+
+*search files (with wildcards and regex)
+
+*show/hide hidden files
+
+*keyboard shortcut mapping
+
+*move to Trash
+
+*customizable UI
+
+*listening to file system events
+
+
+
+
+A: CRAX Commander
+This is a graphical, dual-panel file manager with support for operations (copy, move, delete). This software has built-in support for SSH and FTP. This is not free software but you can download a demo version from the program site.
+
+
+A: Double Commander (LGPLv2)
+Double Commander is inspired by Total Commander, and is a cross-platform application that works well on OSX (I'm running on Yosemite, 10.10.5, Early 2015 Macbook). 
+
+It is highly configurable (in the screenshot, compared with "out of the box", I have configured the free-space display, enabled the left-sidebar tree view, added zebra-stripes, and used Linux Bionlinum as the display font). A partial feature list from the website:
+
+
+*
+
+*Unicode support
+
+*Tabbed interface
+
+*Multi-rename tool
+
+*Custom columns
+
+*Built in file viewer (F3) to view files of in hex, binary or text format
+
+*Internal text editor (F4) with syntax hightlighting
+
+*Archives are handled like subdirectories. You can easily copy files to and from archives. Supported archive types: ZIP, TAR GZ, TGZ, LZMA and also BZ2, RPM, CPIO, DEB, RAR.
+
+*All operations working in background
+
+*Extended search function with full text search in any files
+
+*Configurable button bar to start external programs or internal menu commands
+
+*Total Commander WCX, WDX and WLX plug-ins support
+
+*+ supports FTP/Network operations
+
+
+It has recently (as of this posting) reached 0.7 and was noted on Webupd8 where a bit of a review plus more description can be found.
+For those Mac users who like their apps "pretty", this interface will probably leave something to be desired. For those accustomed to using "commander"-like file managers on Windows or Linux, but now are on Macs ... it is a treat!
+
+A: TotalFinder
+I use http://totalfinder.binaryage.com/
+
+A: Xmander (free)
+Xmander is a simple dual panel file manager with a hex file viewer. You can browse through all your system's files, including the hidden and perform the basic file operations like move, copy, trash or create directory.
+
+A: Moroshka File Manager (free)
+Today I discovered another commander, the Moroshka File Manager. It has multiple tabs. Looks great. In particular the footer of the main-window is neat.
+
+A: Cloud Commander is orthodox web file manager for Mac OS, Windows and Linux.
+
+
+
+*
+
+*Open Source (MIT)
+
+*Has Web UI
+
+*Has build in editor with syntax highlighting.
+
+*Has build in console.
+
+
+A: Disk Order ($25)
+Surprised I haven't seen it mentioned, Disk Order has been around since 2003. My personal choice, can do (S)FTP and all the operation expected from a dual pane file manager in a keyboard friendly way – unlike some of the Finder spin-offs.
+Not free though and lately updates haven't been happening that often.
+
+A: Commander One FREE/$29.99 PRO
+Another MacOS alternative of Total Commander that runs natively for both Intel and ARM CPUs. There are several versions of Commander One: FREE and PRO versions are distributed through the website as well as Commander One version at the Mac App Store.
+
+Major features of FREE version:
+
+*
+
+*Classic look with dual panes and command line
+
+*Build-in multi-format viewer
+
+*Advanced search with regexp support
+
+*Queue for file operations
+
+*Local network client
+
+PRO pack extends the functionality with:
+
+*
+
+*FTP client
+
+*Terminal emulator
+
+*Support for lots of Cloud services
+
+*Mount for iOS and Android devices
+
+Note that due to Apple sandbox restrictions, App Store versions of the software don't support some functionality.
+
+A: muCommander (free)
+muCommander has classic orthodox file manager keybindings. Sadly MC is not very mac'ish and lacks multiple tabs.
+
+A: FastCommander
+http://osx-fastcommander.appspot.com
+Supports all file operations. Fast, stable, small, lightweight.
+Can be freely downloaded and used - no restrictions, just nag screen.
+
+A: Newton Commander (free + open source)
+
+
+*
+
+*Each tab runs in its own process.
+
+*A tab can run as a different user, eg. root.
+
+*No beachballs since it's only the child process that is hanging and not the UI.
+
+
+A: XCommander ($4.99)
+I have recently noticed XCommander in the Mac App Store. It has classic NortonCommander keybindings, so it's already more usable than PathFinder and Transmit. 
+Sadly it has a long way to go to reach TotalCommander standards. No multiple tabs, no quicklook.
+What I like though is that it's new and it gets the keybindings right from the start. This is promising.
+
+A: Total Commander works on macOS under Wine. By far not the same experience as on a windows box, but adding this answer here for the sake of completeness.
+
+The procedure is not complicated, but requires some dependencies which you might have already installed for other purposes: 
+
+
+*
+
+*Install XQuartz with brew cask install xquartz
+
+*Install wine with brew install wine
+
+*Download the TC installer, then launch it from the terminal with wine tcmd900ax64.exe.
+
+*Create an alias or launcher script which will run  wine ~/.wine/drive_c/totalcmd/TOTALCMD64.EXE (if you installed under the default path).
+
+
+For some reason latest versions of wine do not enable font antialiasing by default. It can be enabled with winetricks by doing brew install winetricks and then running winetricks settings fontsmooth=rgb in the terminal.
+It might be possible that certain things, i.e. TC plugins might not work with the 64bit version of Wine. In that case you might want to try with the 32bit version under a 32bit version of wine.
+
+Note: An alternative way to do this without having to type in the terminal could be https://www.playonmac.com.
+

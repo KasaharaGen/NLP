@@ -1,0 +1,28 @@
+Q: Can't un-mute sound when mini-jack unplugged Situation: when I'm at my desk, I have speakers plugged in to my Macbook Pro and everything is working fine.
+The problem occurs  the next time I boot the computer without speakers connected: I'm now unable to mute or change the volume at all, it's set to maximum and greyed out (see screenshots in attachment).
+I can solve this by plugging in some headphones, father that the option becomes available again. After that, it works again but the problem reappears after a reboot.
+I've had this machine for about 2 years now, haven't had this issue until I installed Lion (first the GM release and now the version from the App store) so this feels like a software issue. I didn't upgrade to Lion but did a clean install and I've tried it with another user account as well, same issue.
+Any suggestions?
+
+
+
+A: If you are seeing the greyed out output volume when no headphones or plug is physically present than the physical switch to detect a plug missed the unplug event.
+The system things you still have speakers connected and is routing the information to the jack.
+Check for lint with a magnifying glass or very gently blow some clean compressed air. Service might be an option if this is something that happens very often.
+Responding to the comments about this happening each time at reboot, that would indicate that the hardware is somehow saving headphones on as a default setting or the hardware is mis reading things at boot. Resetting NVRAM might help if it's a saved setting issue.
+There are only 3 things in play here:
+
+
+*
+
+*The physical package in the jack that is responsible for sensing if anything is inserted and telling if it's a metal jack or an optical jack.
+
+*The brains of the hardware - storing settings in NVRAM and turning the physical sensor into something the software can show you on the screen.
+
+*The OS - Lion or Snow Leopard
+
+
+I would be very surprised it's Lion related - but I've seen strange things before where software doesn't make the correct read on a sensor. It's good you can restore things temporarily by plugging / unplugging a jack. If you took it to a repair shop, they would hopefully test your mac with Snow Leopard again to rule out lion before doing an actual repair on the jack or the hardware. If this is something you can depend on - it happens each and every time, you might test by booting from a backup or installing Snow Leopard onto a USB drive and testing. It sure sounds like an odd but reproducible thing you have happening to your mac.
+
+A: This problem is related to shutdown. If you shutdown with headphones connected and restart without them you'll have this issue on some hardware. 
+Entering a headphone will enable audio (through headphone off course) removing it again will disable the output again. Only a reboot without a jack connected will reenable normal audio output

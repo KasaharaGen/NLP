@@ -1,0 +1,11 @@
+Q: Xcode 4.1 does not show any recent projects I would like to ask you what is wrong with my Xcode 4.1. Every time I launch it, it show me that there are "No recents" nevertheless the fact that I have created lots of projects.
+P.S.: 
+
+defaults write com.apple.Xcode NSRecentDocumentsLimit X
+
+does not work
+Thank you in advance.
+
+A: Recent items menus can be tied to the "Number of recent items" preferences for the Finder in System Preferences, but this is particularly true for Apple's software now. Setting the OS preference for "Documents" to anything other than "None" will activate that feature in Xcode. I wouldn't have done it that way either.
+
+You might have to Quit and Discard Windows Command-Option-Q, change the number in the general pane and relaunch Xcode. It's a bit convoluted to get the change active with all the recent "save your workspace" changes in Lion.

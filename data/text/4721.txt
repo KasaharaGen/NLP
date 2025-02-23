@@ -1,0 +1,42 @@
+Q: Sync errors between iCal and Google Calendars For the most part iCal and Google Calendars via CalDAV just work for me. But irregularly, throughout the day, iCal will start bouncing in my dock and display a warning like the following:
+
+What I know about the problem:
+
+
+*
+
+*It happens randomly. I can hit Refresh All in iCal and this sync error won't occur.
+
+*The account with the error can change. It's not always a problem with the same account. I keep three Google calendars in sync with on iCal instance.
+
+*It happens randomly throughout the course of a day. I can't predict when a sync will fail with this error.
+
+*It does happen at all hours. I've had the pop-up show up at 9 am, and 9 pm and even 3 am.
+
+*I've been unable to tell if the error results in an out-of-sync state between iCal and Google Calendar. That's what makes me nervous.
+
+
+How can I make these sync errors go away for good?
+
+A: This is a common error. The iCal auto setup has created an incorrect address for you. There should be no "slash" / at the end of the address i.e. it should be
+/calendar/dav/youremail@domain.com/user
+To fix it, go to Preferences / Accounts and change the address, removing the final / from the Server Path setting.
+AFAIK Lion no longer has this bug.
+
+A: On visiting the URL mentioned with my email address, I get:
+
+Method Not Allowed
+Error 405
+
+So maybe Google changed something on their servers which prevented iCal from syncing. Try looking through Google's blog to see if any changes have been made, and how to fix it. 
+Ad@m
+
+A: A similar error tends to happen to me when I have recently switched wireless networks or my computer first comes out of sleep and I have iCal already loaded, but it hasn't reconnected to the wireless network.
+Have you noticed any correlation to your internet connectivity and the issue?
+So far, I haven't noticed any sync errors and I just hit OK.
+In the iCal prefs under Accounts, what do you have with your Refresh calendars interval?  Have you tried messing around with that?  Perhaps changing it to every 30 minutes or every hour might help.
+
+A: I've had this experience myself and have been using iCal with Google Calendar for several months now. Perhaps you are adding events too quickly. I found that these steps helped in resolving my issues:
+Firstly, I'd suggest backing up all of your calendars. To do this just log into the Google Calendar site with your username and password. Once logged in, access the settings tab in the left column and go to the 'calendars' pane. Once you're there, there should be an "Export Calendars" link somewhere on that page. Click on this link.
+Your calendars should all appear in a folder within the Downloads folder automatically (if using Safari). Once you definitely know that this is complete, remove all of your calendars on the Google Calendar settings page (DON'T UNSUBSCRIBE!). Once they are gone, then re-import them to the online Google Calendar Settings page using the "Import Calendars" link.
+You will most likely have to set up iCal again, particularly if you have multiple calendars which appear as delegates.

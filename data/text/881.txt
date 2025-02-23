@@ -1,0 +1,19 @@
+Q: How to convert .number file to any of the readble format including excel and pdf without having mac I have an important .number iworks file. My Mac is now no more... How do I convert .number file to any of the readble format including excel and pdf without having mac. 
+
+A: The .numbers file is actually a directory.  There should be an image 
+file.numbers/QuickLook/Thumbnail.jpg
+
+that contains a preview of the document.  It might contain the information that you are looking for.  The contents on the file are actually stored in a compressed xml file
+file.numbers/index.xml.gz
+
+If you are just looking for some bit of information, you might be able to find it in there.  For the most part, unless you have something to parse the xml, it would take quite a bit of work to reconstruct the spreadsheet from the xml.
+
+A: This is very difficult to do without a Mac. You possibly could try to manually extract the data by hand or with a conversion tool, but I am not aware of any conversion tools available.
+Therefore, I highly suggest that you use Numbers to do the conversion. Since you don't have your Mac anymore, perhaps you could borrow a friend's? Also, if there is an Apple Store near where you live, you could put the file on a flash drive and do the conversion there.
+
+A: There's a website called Zamzar offering converting services: http://www.zamzar.com.
+You can upload .numbers (among many other filetypes) and let them convert it to .csv, .pdf or .xls. You can have them mail you a link to download this converted file (for only one day).
+I don't know if they're trustable, but they just helped me out.
+
+A: Perhaps Numbers in iCloud could help, if you have an iCloud account and don't mind uploading your data to a server.
+https://icloud.com/

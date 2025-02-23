@@ -1,0 +1,6 @@
+Q: Airport Extreme Guest Network and Dual-band Does enabling the Guest Network on a 4th Generation Airport Extreme have any impact on Dual-Band performance?
+I have multiple 802.11/g devices that I want to use the 2.4GHz spectrum, and only occasional need for Guests.  However, when Guest access is required, it is usually required suddenly, so it would be nice to have it always on.
+Does enabling the Guest Network necessarily disable the dual-band, or do these capabilities co-exist?
+
+A: Guest network is just a VLAN and doesn't otherwise affect the channels or the antennas.
+So - the guests could use bandwidth because they are connected, so if you ignore those effects, the guest network just tags along with the main channels and settings which doesn't have any major effects on the system.

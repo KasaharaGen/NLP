@@ -1,0 +1,38 @@
+Q: Restarting sound service? My macbook pro running Snow Leopard stopped making sounds a couple hours ago. I've found other reports of people with sounds working through headphones, but that's not the problem I'm seeing. I get no sound when my headphones are plugged in either.
+I'm wondering if there's a LaunchAgent or LaunchDaemon to restart which would remedy this. I've already tried killing the coreaudio daemon (and it dutifully automatically restarted) but that didn't fix it.
+I need to reboot for an OS update, so I think that'll probably rectify things. 
+Is there another way?
+
+A: sudo pkill -9 coreaudiod kills the coreaudio process immediately. MacOS will automatically restart the coreaudio daemon, which will fix audio output in most cases.
+This works on all MacOS versions.
+
+A: sudo kextunload /System/Library/Extensions/AppleHDA.kext 
+
+sudo kextload /System/Library/Extensions/AppleHDA.kext
+
+These two commands will unload then reload the audio kernel extension. This is cleaner than sending a kill signal but might need an adjustment for newer OS.
+
+A: You can kill the CoreAudio process by opening Terminal and running:
+sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`
+
+It will restart automatically after a couple seconds.
+That fixes some problems my aging MBP has been having, where it sometimes fails to detect headphones or decides the speakers aren't connected. No guarantees it will work for every audio problem, but it's worth a shot.
+Source: zakgreant on macosxhints forums.
+
+A: In my experience, a reboot is required to fix this. It's a poor fix since it seems to recover from the failure and not address the root cause. I would like to have, but have not yet discovered if there is another quicker/simpler method to get sound back...
+
+A: I am on 10.9.2 and have the same problem. Since there are two answers, I wanted to document my findings:
+sudo kextunload /System/Library/Extensions/AppleHDA.kext 
+sudo kextload /System/Library/Extensions/AppleHDA.kext
+
+These two commands will unload then reload the audio kernel extension. This post fixes my problem 100% of the time, So please upvote that original post
+This solution did not work for me:
+sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`
+
+It shuts down the internal speakers and sends the sound to my 27" monitor but does not bring back the sound to my internal speakers or headset. Perhaps in some cases it works, but hopefully this post might explain when to use one solution vs the other.
+
+A: Use killall command with _coreaudiod user as parameter:
+echo -e "# CoreaudioD restart\nalias audiorestart=\"sudo killall -u _coreaudiod -SIGKILL\"\n" >> ~/.bashrc
+source ~/.bashrc
+audiorestart
+

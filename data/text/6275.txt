@@ -1,0 +1,26 @@
+Q: What is the difference between the variant language dictionaries in OS X? How can I see some or all of the individual word differences between the built-in dictionaries. I'm curious and inspired by this question where the UK typically adds the suffix -ise and USA typically spells it -ize.
+It would be nice to to see the differences between these variants from the list of languages/dictionaries available in Mac OS X.
+
+
+*
+
+*Australian English
+
+*British English
+
+*Canadian English
+
+*U.S. English
+
+
+In originally asking this question, I thought that the spelling was controlled by the Language tab in the Language & Text preference pane, but have since learned that there is a Spelling option under the Text tab of the same preference pane (is that new in Snow Leopard?). From here it appears that other dictionaries can be easily imported (in aff or dic file format) which would lead me to believe that the spelling dictionaries are a standard format that may be read by other tools. However, the /Library/Spelling folder doesn't have any files.
+
+
+As a bonus, it would be great to know how the language variants under the Language tab are used and why the variants there don't match up to the spelling dictionary.
+
+
+A: Many people have tried to find the files for Apple's spell check dictionaries but I don't recall any successes.
+As for the Language tab in Language & Text, it really doesn't have anything to do with spelling as such, although the top item on the list can set the default spell check dictionary in some circumstances.  The top item on the list also sets the OS and app language (for the 22 that are available), the default collation order, and the preferred language requested by Safari.  The order of the list can determine the app language used if a localization for the top item is not available.  The order can also determine whether a Japanese or Chinese font is used for text which is ambiguous in that regard. I think adding an item to the list can sometimes provide additional encodings in Mail app.
+
+A: I presume the other languages follow the example of the English ones, and provide for localised variations in spelling and grammar.  Look up "colour" and "color" for example, or words ending in "ise" rather than "ize" and so on.
+Not aware of a way of checking differences, but can't really see why you would need to - if required add multiple choices from the languages and text preference pane as input sources, then ensure the input choice is put in your menu bar for quick selection of them.  Then go play in dictionary in the dashboard.

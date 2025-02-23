@@ -1,0 +1,86 @@
+Q: Is there any multiple terminal emulator for Mac OS? I love the command line and I would like to see an app like Terminator (for Linux) in my MacOs:
+
+It seems there are ports of that app for Mac available using Fink or Ports. But I found it's a hell to install them... it depends on a lot of things which depends on other things which... etc.
+So I've been wondering if there's a MacOS native app like that (free or not)...
+
+A: Terminator was just ported to Mac OS X via the homebrew package Manager.
+brew install terminator
+
+See the PR or the recipe.
+Tested on OS X 10.9.2 the main functionalities work. 
+
+A: iTerm 2 claims to be able to do this.
+
+Edit: I just downloaded it, and it seems to work well enough that I think I'll switch from iTerm 1:
+
+I'm not sure what's going on with you and macports, but I just installed tmux using macports. it took about 30 seconds, and was completely painless.
+
+FWIW, I've subsequently spent enough time with GNU screen that I basically just use it for everything at this point. iTerm is nice if you want a local, mouse-driven multiplexer, but almost everything I do is server-side at this point, and doing it all over one SSH connection is much better anyways.
+
+A: Install GNU Screen, or TMUX via macports/homebrew or by compiling it by hand. 
+
+A: I'm a big fan of SizeUp which lets you tile windows using keyboard commands. This doesn't put different views in one terminal, but it does let me easily have a bunch of views open at once and organized neatly.
+
+A: I think iTerm 2 and TotalTerminal are all great tools to improve the efficiency when working on terminal and command lines.
+
+A: I found that GNU screen does exactly what I want (just type screen in terminal), but only after I spent a few minutes learning some basics.  Here is the jump start I needed on key bindings (straight from the man page) - note that you need to install the GNU version for vertical splits (listed after the FAU version that was in my Mavericks).
+Screen version 4.00.03 (FAU) 23-Oct-06 
+(included in Mavericks and likely similar in earlier)
+
+       The following table shows the default key bindings:
+
+       C-a '       (select)      Prompt for a window name or number to switch to.
+
+       C-a "       (windowlist -b)
+                                 Present a list of all windows for selection.
+
+       C-a 0       (select 0)
+        a|            a|
+       C-a 9       (select 9)
+       C-a -       (select -)    Switch to window number 0 - 9, or to the blank window.
+
+       C-a tab     (focus)       Switch the input focus to the next region.  See also split, remove, only.
+
+       C-a C-a     (other)       Toggle to the window displayed previously.  Note that this binding defaults
+                                 to  the command character typed twice, unless overridden.  For instance, if
+                                 you use the option "-e]x", this command becomes "]]".
+
+...
+
+      C-a S       (split)       Split the current region into two new ones.
+
+...
+
+       C-a ?       (help)        Show key bindings.
+
+       C-a \       (quit)        Kill all windows and terminate screen.
+
+...
+
+       C-a *       (displays)    Show a listing of all currently attached displays.
+
+Additional items with 'Screen version 4.02.01 (GNU) 28-Apr-14' 
+(installed using sudo port install screen just now)
+All of the items listed above in the 4.00.02 (FAU) version, as well as:
+
+      C-a S       (split)       Split the current region horizontally into two new ones.   See  also  only,
+                                 remove, focus.
+
+Same above, but this clarifies that it is horizontal.
+...
+
+       C-a |       (split -v)    Split the current region vertically into two new ones.
+
+Note: I tried searching the web for this, but words such as 'screen', 'terminal', and 'split' are so common as to make the man pages easier for me.
+
+A: Use gnu screen, it does what you want, split your single terminal window into many windows all within the same GUI window. (though you'll probably want a newer version than what comes with OS X as the ability to split on both axis is newer than the version of screen already installed on your mac.)
+
+A: There is also the following:
+csshx
+
+A: For macOS 10.12 cssh from https://www.macports.org works great, whereas the homebrew version fails.
+
+A: Check out SecureCRT: https://www.vandyke.com/products/securecrt/mac_osx.html They have a build for Windows, Mac, and Linux. I've used the Windows version for years, and started using the Mac version recently. Although the Mac version isn't as fancy as the Windows version, it is full featured for everything I've ever needed in a multiple terminal emulator. It would be nice to have MobaXterm on Mac, but sadly it's only for Windows.
+By the way, SecureCRT is not free. It is $99 for 1 year of updates or $139 for 3 years of updates. If you do cloud computing, server management, etc, it is well worth the price.
+
+A: Use Command + T to open new terminal window

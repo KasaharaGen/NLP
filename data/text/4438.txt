@@ -1,0 +1,21 @@
+Q: What is the best Homebrew version for an iBook running Tiger? I have an old iBook running Mac OS Tiger, and I want to install the Homebrew package manager on it. Which branch should I choose ?
+
+*
+
+*The Tiger one?
+
+*The PPC one?
+
+*Another one?
+
+
+A: According to this issue, it seems like the Tiger branch is the most exactly accurate in that case.
+
+A: In this case and noting we are 10 years later I would suggest using macports instead.
+Macports continues to support all versions of osx going back to Tiger including all possible CPUS, this includes binaries for most, if not all, of these. Homebrew prefers to update itself and drop support for older OS. This makes it essentially only support recent (usually N-2) versions of macOS.
+
+A: Looks like they add PPC support on the Tiger (see this commit), but the default behavior was to redirect to the PPC branch.
+So I'd say go to the PPC branch to be safe.
+
+You might want to contact the developer, too. They're usually eager to help in those kind of community (Github) and he's on Twitter.
+You have two choices : the one who made the fork or the original developer

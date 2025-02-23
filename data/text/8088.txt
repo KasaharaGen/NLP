@@ -1,0 +1,101 @@
+Q: Why is iOS 5 draining my battery so fast? My wife's phone went from lasting a full day to needing a recharge every few hours after upgrading to iOS 5.   Mine still works fine after the upgrade.  What might be causing this?
+
+A: After upgrading to iOS 5 I noticed a huge battery loss compared to normal (10% per hour) and my iPhone was regularly warm to the touch.   The steps that resolved this issue for me were resetting all network settings (this restarted the iPhone) and then erasing all email accounts, including iCloud, and manually re-adding them.
+
+
+
+
+
+ 
+After performing these steps my phone immediately cooled off and the battery was stable once again.  Your mileage may vary.
+
+A: To fix the battery drain issue:
+
+
+*
+
+*Go to Location services > System services
+Everything should be OFF in there.
+Also limit apps location service for those which you do not use frequently.
+
+*Notifications, disable those you do not use.
+
+*iCloud, set to sync manually now and then over WiFi.
+
+*Disable Ping
+Go to Settings > General > Restrictions
+Enter 4 digit pass code.
+Scroll down to Ping settings and disable it.
+
+A: As for the technical why of iOS5 draining your battery much faster than the previous OS, this Fastmail blog article might give some specific clues (Fastmail is an email provider, and the issue described applies to the IMAP email protocol, but it might be hinting about a more general change in iOS):
+
+Unfortunately, there’s a new and recent problem that has now appeared.
+iOS 5 now uses long lived persistent IMAP connections (apparently
+  previous versions only used short lived connections). The problem is
+  that our ping packets every 4 minutes mean that the device
+  (iPhone/iPad/iPod) is "woken up" every 4 minutes as well. This means
+  the device never goes into a deeper sleep mode, which causes
+  significantly more battery drain when you setup a connection to the
+  Fastmail IMAP server on iOS 5 devices.
+Given the rapid increase in use of mobile devices like iPhones, and
+  the big difference in battery life it can apparently cause, this is a
+  significant issue.
+
+
+A: The question has been mostly covered, but I'll also point out that iOS5 will eat your battery a bit more than previous versions, there's plenty going on in the background with the iCloud sync, Photostream et al.
+The ones that haven't been touched on that really helped my battery life over the betas are these:
+1) Find my iPhone occasionally will ping and not fully shutdown location services and take a bit more running.
+2) Heavy heavy games and apps won't always dump out of memory, this is mostly sorted now (mostly), and can cause a bit of a battery eating situation. If you've been playing a game and your phone is still warm manually kill it.
+3)Photostream seems to run quite a lot, disable it if you don't really need it. Your photos still get backed up to iCloud.
+4) Disable the weather and stock widgets 
+Those helped me get it back from half a day if I was lucky to a full day. There's a few that are a bit killing a chicken to appease the gods (looking at you number 4), but still worth ticking off if you want max battery life.
+
+A: Did you perchance set up a geofence? It keeps the location services on, it might explain the draining.
+
+A: Do you guy's have foursquare running? If so, turn off that new feature called "Radar". It's constantly running in the background that's why Location is ALWAYS active even if you kill the app
+
+A: I think I've found the answer for my case. Location services were completely innocent, and I've returned them to default settings. My phone synchronises with a Zimbra server, set up as an Exchange account. The update enabled sync of Reminders, but the Reminder sync didn't work. Removing Reminder sync from the Exchange account setup has stopped the battery level dropping while I watch.
+My general advice is to check your mail accounts to see if anything new is being synchronised, and then disable it if you're not using it.
+Edit: added image showing Reminders control.
+
+
+A: This is quite a general question, and you should compare how your wife and you use the iPhone to find out what was/were draining your wife's iPhone battery.
+You may need to check whether your wife was using iPhone more frequently than before, or she was using some app consumes more power i.e. games, or streaming movies from Netflix etc. 
+Also, the location service really drains battery, so make sure to check whether some app is using the location service all the time. 
+
+A: Go to location services-> choose System Services-> and switch Setting Time Zone off
+
+A: Taken from here : http://osxdaily.com/2011/10/16/ios-5-battery-life-fix-tips/
+Reset Network Settings
+Tap on “Settings” > Reset > Reset Network Settings
+Disable Bluetooth
+Settings > General > Bluetooth > “OFF”
+Disable Notifications & Apps in Notification Center
+Settings > Notifications > Turn OFF for anything you don’t need
+Disable iCloud
+Settings > General > iCloud > Turn everything to OFF
+Disable Location Services
+Settings > Location Services > Disable selectively for services you don’t use
+Disable Time Zone Adjustment
+Tap on “Settings” > “Location Services” > ‘System Services’ > Setting Time Zone to OFF
+Disable Ping
+Settings > General > Restrictions > Enable Restrictions > Ping > OFF
+Disable Diagnostic & Usage Reports
+Tap on “Settings” > General > About > Diagnostic & Usage > Don’t Send
+Delete eMail Accounts, Reset Network Settings, Re-add eMail Accounts
+Delete your email accounts by going to “Settings” > Mail, Contacts, Calendars > Account Name > Delete Account
+Now Reset Network Settings in “Settings > Reset > Reset Network Settings
+Reboot the iOS device
+Re-add email accounts back in “Settings” > Mail, Contacts, Calendars > Add Account
+
+A: Mine is draining the battery faster too, but I think it is due to location services. I usually have no location app running, but I've been trying the new Reminders app with the "at location" option and that implies keeping the location service active all the time.
+On the other hand, with iOS 4 my iPhone could handle 1-2 hours with the location service active, and now it works for almost 8 hours.
+I've turned the location service off to confirm that is the problem.
+
+A: For me, disabling iTunes WiFi sync seemed to do the trick. Before, other methods like disabling location services and Ping, removing mail settings, etc. did not make any difference before - the battery would go from 100% charged to dead within 3-4 hours.
+
+A: I have fixed a lot of iPhone batter problems in my day, and people who think they might even have a hardware problem find if they restore the device as new and sync the data back, they generally notice a large improvement in battery life. This is especially noticeable in upgrades of the operating system.
+Obviously this is just hearsay, but I have heard it and said it a good thousand times.
+
+A: GPS tracking does consume indeed a lot of power. Therefore disabling location based services should do the trick.
+Somebody suggested to switch off iTunes WiFi sync - however this should not matter, because it gets activated only when your iPhone is plugged in to power.

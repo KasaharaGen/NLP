@@ -1,0 +1,22 @@
+Q: Stopping a macports installed mysql daemon I'm trying to reset my root password on a macports installed MySQL on OS X. But none of the ways to do this that I can find works, for various reasons. One reason common to all is that I can't stop the mysql deamon.
+As I understand it, I should be able to stop it with
+sudo launchctl stop org.macports.mysql5
+
+Which makes absolutely no difference. No error message, nothing. Is launchd really this sucky, or do I misuse it? Reasonably it should give me an error when it fails, but nope, nothing.
+Trying to kill the processes with kill -9 just makes them restart again, so that doesn't work either.
+I also tried 
+sudo launchctl unload org.macports.mysql5
+
+But that gives me this error:
+launchctl: Couldn't stat("org.macports.mysql5"): No such file or directory
+
+(And I must confess I don't understand what "Unload configuration files and/or directories" means, which is what the Unload command apparently does according to the little docs I can find).
+So, what now?
+
+A: The correct answer is 
+sudo launchctl unload -w /Library/LaunchDaemons/org.macports.mysql5.plist
+
+And you start it with 
+sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist
+
+Thanks to kh13org for the pointer.

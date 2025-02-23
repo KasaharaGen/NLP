@@ -1,0 +1,43 @@
+Q: Is it possible to create an icon on home screen to a specific note? I'd like to to add an icon to my homescreen that takes me directly to a specific note. What I was thinking was doing it by having a bookmark in safari that triggers that note, and adding a shortcut to that bookmark to my homescreen. This would open safari, then open notes, to that note, similar to how an iTunes link in Safari opens the app store or iTunes app. Is this possible or is there an alternate solution?
+is there a syntax like apps//notes.app/noteid or something to accomplish this? 
+iPhone 4 
+iOS 4.2
+Why I want it: I use a specific note frequently and I'd like quick access to that one, without opening notes, scrolling to, and selecting it.
+
+A: Unfortunately there's no url scheme for the Notes app, so there's no way to jump to a specific one. 
+There are two good sites for finding iOS app url schemes, handleOpenURL and the iPhone URL Schemes page on Akosma's wiki. The former has many more urls, but the latter occasionally has something the other doesn't.
+A quick search in handleOpenURL for "text" and for "note" only shows one app that appears that it can do what you want (which doesn't mean it's the only app that does so, just that it's the only one listed in the site), though even then I'm not certain you'll be able to create the shortcut by hand. 
+I'm completely unfamiliar with the app and have no idea whether it's worthwhile, but I figure it's worth passing on: Notebooks for iPhone.
+
+A: If you want to open only the same note every time there is an app for that: DraftPad. It also has some nifty url scheme feature called Assists you might like.
+
+A: If you decide to switch to Notebooks (4.99 Euro at the moment) from the built-in Notes here's how you can create a springboard icon to your favorite note(s). It involves quite a bit of hacking and jailbreaking but I have tested it and it works.  
+
+
+*
+
+*Create a homescreen icon for a website (does not matter which, we will replace the URL anyway)
+
+*
+
+*For extra credit swap out its icon by following this tutorial
+
+
+*Install Notebooks from the Appstore (if you haven't already)
+
+*Create your note in Notebooks. Inside the note tap the second button from the right on the bottom button bar (an curved arrow pointing outwards from a rectangle) and tap "Copy Link". Now the URL for that note is in your clipboard.
+
+*Install iFile from Cydia (if you haven't already)
+
+*Browser in iFile to the folder /var/mobile/Library/Webclips on your iDevice. This folder contains all your homescreen bookmarks (Webclips). 
+
+*Look into each subfolder (each has a GUID as a name) until you find the webclip you have just created in point 1. (The easiest way I found is to take a look at the date the files in the folder were created shown right beside the file name.)
+
+*Tap on the "Info.plist" and select "Property List Viewer"
+
+*Replace the content of the URL field with the URL in your clipboard and tap Done.
+
+*Exit iFile and enjoy.
+
+
+If something goes wrong delete the webclip from springboard and try again.

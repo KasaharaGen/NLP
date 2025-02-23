@@ -1,0 +1,19 @@
+Q: Are there any native tools for SVG conversion on OS X? How can I convert SVG image to something raster? Are there any native [command-line] tools on OS X that can do that? I am able to open them in Safari or Firefox, but doing "Save as..." only proposes original (.svg) or web-archive formats and no rasterized image format.
+
+A: You can do this with Inkscape:
+/Applications/Inkscape.app/Contents/Resources/script --without-gui --export-png=raster-image.png  source-image.svg
+
+To change output resolution you can set the DPI value:
+/Applications/Inkscape.app/Contents/Resources/script --without-gui --export-png=raster-image.png --export-dpi=200  source-image.svg
+
+Here are more command line options.
+
+A: https://cloudconvert.org/svg-to-png - was fastest way for me.
+it's not my site.
+
+A: One (wonky) option would be to render it in Safari and take a screenshot of the result, although that's obviously not a good solution.
+Sadly there's little SVG support in OS X so far apart from Safari, Preview.app (the obvious choice for image format conversion) can't render it and I'm not aware of any bundled command line tools that can either.
+As for third party command line tools, Homebrew makes Cairo's svg2png as well as the ImageMagick bundle easily available.
+
+A: Try Gapplin. It works for me and creates PNG and JPG files from SVG. Simple and effective.
+If you have a lot of SVG files to convert, ImageMagick is probably your best bet (available directly from imagemagick.org or via Homebrew).

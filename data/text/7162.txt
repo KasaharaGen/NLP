@@ -1,0 +1,59 @@
+Q: Skype is showing up in Launchpad twice — why? How do I fix it? Skype is showing up in Launchpad twice. It's been acting like this for a while but if I remember correctly I think it first started when I let Skype auto-update itself a while back.
+Any ideas why Skype is showing up twice?
+How can get rid of the extra Skype instance?
+
+I have searched my hard drive using spotlight including "system files" for an extra application bundle. None exists.
+When click either of the Skype icons in Launchpad they both seem to launch the same application (Activity Monitor confirms this — they are at the same path).
+
+A: Well, a bit more research and I may have found a solution. 
+* Proceed with caution. Backup files. Be smart. This worked for me YMMV. *
+The Easy Solution
+The most straight forward way to fix this problem seems to be to delete the SQLite database that stores Launchpad's data. To do this simply open the following folder,
+~/Library/Application\ Support/Dock
+
+and delete any .db files you find in there. They'll have a file name that looks like this,
+58357ED0-F8D5-4EB3-9A1F-E6B71B0A001D.db
+
+Then open terminal and type this command followed by return:
+killall Dock
+
+But be careful, you will lose any icon groups you created in Launchpad. I didn't like this solution for that reason so I while this worked to get rid of the duplicate icons I used the following solution on my machine.
+The Hard Solution
+I opened the above mentioned folder and located the above mentioned file and then opened that file in SQLite Database Browser by dragging the file onto the icon for the db browser.
+Once I had the file open I clicked Browse Data and then selected Apps from the Table menu. 
+
+I then scrolled through the list of apps until I found one of the duplicate records for Skype and selected it.
+
+With the duplicate record selected I clicked Delete Record.
+
+I then quit SQLite Database Browser and acknowledged that I wanted to save my changes. 
+Then I switched to terminal and typed this command followed by return:
+killall Dock
+
+And Skype's doppelganger was thereby vanquished from my Launchpad.
+
+A: The EASIEST solution. Download the LaunchPad Control Preference pane, and use it to hide the pages, groups or single icons you don't want, like the duplicated Skype icon.
+
+A: An addition to the answer of Samuel Mikel Bowles. When editing the Launchpad database, best is to remove all references to the app. 
+The structure of the database is as follows:
+TABLE items This is the table where all items of your launchpad are stored. This is the first place to delete an app. The column "rowid" correspondents to the apps table "item_id". The column "parent_id" correspondents to the groups table "item_id".
+TABLE apps This is where all apps are stored (with a human-readable app name in the column "Title"). Find the app that you want to remove here and remember the "item_id" so you can also remove it from the items table.
+TABLE groups Contains the groups you created in your launchpad. The "item_id" column of this table correspondents to the "parent_id" column of the items table. I had some orphaned groups that I deleted by removing the entry from this table.
+This is off course the die-hard way, but gives you full control. Easier is to use Launchpad control.
+Update: deleting a row from the items table seems to also delete the entry in the apps table, so no need to delete it in different tables. They are linked I assume.
+
+A: Simpler, less potentially destructive, solution found on this forum: 
+
+
+*
+
+*Move the Skype.app  application from your applications folder to the trash, but DO NOT EMPTY IT.
+
+*Open Launchpad and click on the Skype icon in Launchpad, the Skype icon should show a "?", then disappear from Launchpad.
+
+*Move the Skype.app application from the trash back to your applications folder.
+
+*Open Launchpad again, there should be only one Skype icon now.
+
+
+A: Its because of update. You just remove the old one from dock by right clicking the icon and then selecting remove from dock.

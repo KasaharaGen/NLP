@@ -1,0 +1,9 @@
+Q: How do I add words to the OS X user dictionary? If someone has a word that they commonly use, but OS X Lion keeps "correcting" to something in it's dictionary, how does the user add the word to Lion's dictionary?
+
+A: Right click on the word and choose Spelling and Grammar from the list. Then select Show Spelling and Grammar.
+You'll see the option to "learn" the word (see picture).
+
+The learned words are stored in ~/Library/Spelling/. ~/Library/Spelling/LocalDictionary applies to all languages and for example ~/Library/Spelling/en only applies to U.S. English. When you press the learn button, the word is added to ~/Library/Spelling/LocalDictionary if the spelling language is set to automatic or to ~/Library/Spelling/en if the spelling language is set to U.S. English. 
+If you edit the files in ~/Library/Spelling/ directly, you can apply the changes by terminating the AppleSpell process. Just quitting and reopening applications does not apply the changes.
+
+A: It works not only for words but for sentences too; in my case the long fixed-form greetings used at the start and finish of messages in Japanese which are PITA to type on an iphone. :-)

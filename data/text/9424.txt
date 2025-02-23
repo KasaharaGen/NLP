@@ -1,0 +1,18 @@
+Q: Can I make Mail.app search Received: headers? I'm running 10.6.8 and I set up a smart mailbox with two conditions: one, to look in a specific folder, and two, to match any recipient = recipient2@foo.com.
+Problem:
+Mail.app doesn't seem to search the entire actual email message. Neither does Spotlight, which might be the crux of the matter. And so I can't search for the envelope-recipient address in some messages, and that routing address does sometimes differ from the header-recipient (the one in the To: field).
+Background:
+It may help, in this case, to consider an email as being similar to a physical envelope. The front of the envelope contains routing information, handled by the mail-transfer agent (e.g. sendmail, postfix, qmail, Exchange). The inside letter contains formal addresses handled by the reader, which in this case is the mail client.
+So, Mail.app doesn't necessarily have to care about the routing info -- the envelope-from address, which is Return-Path:, and the envelope-recipient address, which is shown in the Received: header -- it just cares about the To:.
+Any ideas? Example header below where env-rcpt address differs from header-rcpt.
+Return-Path: <sender@bar.com>
+Received: from mta.bar.com (mta.bar.com [1.2.3.4])
+    by mta.foo.com (8.14.5/8.14.5) with ESMTP id xA123abc012345
+    for <recipient2@foo.com>; Thu, 3 Nov 2011 01:01:51 -0500 (EST)
+    (envelope-from sender@bar.com)
+Message-ID: <20111103065648.184176mid2rn22o0@mta.bar.com>
+Date: Thu, 03 Nov 2011 06:56:48 +0100
+From: Sender <sender@bar.com>
+To: Recipient <recipient@foo.com>
+Subject: Hello!
+

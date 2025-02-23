@@ -1,0 +1,12 @@
+Q: Obtaining the .dmg file for OS X Lion on a new MacBook Pro that has Lion preinstalled I recently purchased a new MacBook Pro with Lion preinstalled. I'm about to replace the hard drive, and I wanted to burn the Lion installer to DVD so that I could install OS X on the new HDD. However, all instructions I've found for creating a Lion boot disc assume that you've purchased and downloaded Lion from the App Store. On my new machine, is it possible to get the .dmg file and burn it so that I can reinstall Lion on my new SSD?
+If this is not possible, what is the recommended approach?
+
+A: Sadly, Apple doesn't include a Lion install disc in the packaging with the new Macs, nor do they make it available to download.
+They did just release Lion Recovery Disk Assistant which will allow you to make a recovery disk out of an external hard drive, which you can use to recover the existing installation or do a new install.
+
+A: Turn on the MacBook Pro and hold down the Alt key. Select your Wi-Fi network from the dropdown list and enter a password if requested. Once connected you should see an Internet Recovery option (tested on my new MacBook Air).
+If you don't see this option, I guess the Lion shipping MacBook Pros do not have this feature and you will need to use the new Lion Recovery Disk Assistant which can create a Recovery Partition on suitable external media from which you can boot and reinstall Lion from:
+http://support.apple.com/kb/DL1433
+
+A: I believe that Lion makes a small, invisible recovery partition upon installation, and that there is a copy of the install dmg hidden away in there (likely within the Install.app bundle).
+I haven't dug into this myself, but it can't hurt to look.

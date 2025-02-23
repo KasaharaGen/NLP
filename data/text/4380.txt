@@ -1,0 +1,66 @@
+Q: How come Quicktime plays .avi files but iTunes doesn't? I think I might be missing something but it seems like Quicktime is happy playing my .avi movies but iTunes isn't. So I have to go through the rigmarole of converting .avi to .mp4 with iTunes before viewing in iTunes or on my iPod Touch. This of course means I end up with two versions of the same file (three if I need to view on iPod). Is there some solution to the issue? I'm going to have to buy yet another portable hard drive before the month is out ...
+
+A: As per this MacRumors forum post:
+
+There are three ways to get .avi files to load into the iTunes library, these are packaging it in a supported format (QT-Pro workaround), adding extra entries to the CFBundleDocumentTypes (may cause problems when updating iTunes) or adding the movie-type meta-data to the file. Adding the movie-type meta-data to the file is the quickest, easiest and safest of all of these options (IMHO).
+
+He then outlines a method to add the movie-type metadata.
+in Terminal (requires Dev Tools)
+$ SetFile -t "MooV" /path/to/movie.avi
+
+Then run this Applescript:
+tell application "Finder"
+   set file type of file this_file to "MooV"
+end tell
+
+The original post I linked above has a full Applescript droplet or Folder Action that could do this automatically.
+
+A: 
+So I have to go through the rigmarole of converting .avi to .mp4 with iTunes before viewing in iTunes or on my iPod Touch. This of course means I end up with two versions of the same file (three if I need to view on iPod). 
+
+I feel your pain!
+
+Is there some solution to the issue?
+
+z264
+
+check file for AVC encoding and flv, wmv, or mkv wrapper and rewrap in mp4 container otherwise, if not already am mp4, transcode to AVC mp4
+z264 has several dependencies (mediainfo, rmtrash, ffmpeg, SublerCLI, and HandBrakeCLI)
+
+
+
+*
+
+*copy and paste into text file, uncomment binary install section (remove #), save anywhere
+
+*open Terminal.app
+chmod +x z264
+
+
+*run once
+./z264
+
+
+*recomment binary section (replace #) after dependencies install into /usr/local/bin/
+
+*create ramdisk called 'Two' using command in ramdisk section
+diskutil quiet erasevolume HFS+ 'Two' `hdiutil attach -nomount ram://4194304`
+
+
+*double-check command definitions (locations of dependencies), and correct locations (to "/usr/local/bin/")
+change line 231 to read:  mediainfo="/usr/local/bin/mediainfo"
+change line 236 to read:  rmtrash="/usr/local/bin/rmtrash"
+change line 238 to read:  ffmpeg="/usr/local/bin/ffmpeg"
+change line 239 to read:  SublerCLI="/usr/local/bin/SublerCLI"
+change line 262 to read:  mediainfo="/usr/local/bin/mediainfo"
+change line 263 to read:  rmtrash="/usr/local/bin/rmtrash"
+change line 265 to read:  HandBrakeCLI="/usr/local/bin/HandBrakeCLI"
+
+
+*save as z264 in /usr/local/bin/
+
+*use Terminal to call z264 on single file, directory of files, or your entire drive
+z264 directory.full.of.mixed.video.filetypes/*
+
+z264 will examine everything, but will only touch avi, flv, mpg, mpeg, wmv, vob, mkv and mp4 video files, copying video and audio streams and rewrapping if possible, transcoding just the audio if necessary, and transcoding only what video is necessary, and leave you with iTunes friendly, atom optimized mp4 files, leaving the originals in your Trash. It makes reasonably intelligent decisions for you about how to transcode files based on how you set its HandBrake variables (set at lines 312-333).
+minor issues: does not yet count how many background processes it spawns, meaning if there are a lot of transcodes, it will take awhile for them to complete, but they will complete. You also need a lot of memory (8GB is ok). Snow Leopard users will need to install purge command from xcode developer tools.

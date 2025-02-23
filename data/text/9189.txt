@@ -1,0 +1,14 @@
+Q: Is it possible to attach a file to an email from the command line? I am often using the terminal, and I'd like to be able type a command that will attach a selected file to an email in mail.app.
+:~ mailme myfile
+
+Any idea on how to do that?
+
+A: Works also with Thunderbird
+open -a Thunderbird filename
+
+It seems that yout can attach only one file to a new e-mail.
+
+A: The command
+open -a Mail.app [filename(s)]
+
+opens a "New Message" window in Mail.app, with the filename(s) attached.

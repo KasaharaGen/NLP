@@ -1,0 +1,32 @@
+Q: 10.7 Launchd + rvm This question fits somewhere between server fault, stackoverflow and askdifferent. 
+I am installing some web apps on my Lion server using webappctl, which hooks into apaches vhost configs to setup up a reverse proxy (simply mod_proxy). It uses launchd to start the server, in my case unicorn serving a Ruby on Rails app, listening on TCP port 5000. I use RVM (mixed-mode) to facilitate in separate ruby versions and gemsets for each webapp.
+The problem lies with RVM and launchd, and the complete environment not being available for launchd.
+I tried to start from launchd using /bin/bash -l -c 'unicorn_rails -l 5000' but that gave me bash usage errors in the logs. 
+Any suggestions for making RVM play nice with launchd?
+
+A: I found a way to make a RVM-based rake command work with launchd:
+/bin/bash -l -c '/absolute/path/to/myscript.sh'
+
+My script was calling rake. I wasn't calling it directly.
+Have you tried using an absolute path for your unicorn_rails?
+The .plist looks like:
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"> <plist version="1.0"> <dict>
+        <key>Label</key>
+        <string>mylabel</string>
+        <key>ProgramArguments</key>
+        <array>
+                <string>/bin/bash</string>
+                <string>-l</string>
+                <string>-c</string>
+                <string>/absolute/path/to/myscript.sh</string>
+        </array>
+        <key>StartCalendarInterval</key>
+        <dict>
+                <key>Hour</key>
+                <integer>10</integer>
+                <key>Minute</key>
+                <integer>00</integer>
+        </dict>
+    </dict> 
+</plist>
+

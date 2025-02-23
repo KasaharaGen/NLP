@@ -1,0 +1,22 @@
+Q: LilyPond on Lion Did you succeed in installing LilyPond on Lion? How?
+After downloading the (precompiled) LilyPond, I am getting:
+
+In plain text:
+
+LilyPond Error
+An unexpected error has occurred during execution of the main script
+ImportError:
+dlopen(/Applications/LilyPond.app/Contents/Resources/lib/python2.6/lib-dynload/objc/_objc.so,
+2): Symbol not found: _objc_sync_notify
+Referenced from:
+/Applications/LilyPond.app/Contents/Resources/lib/python2.6/lib-dynload/objc/_objc.so
+Expected in: /usr/lib/libobjc.A.dylib
+
+And yet I duly have:
+
+ls -l /usr/lib/libobjc*
+-rwxr-xr-x  1 root  wheel  1997152 21 Jul 01:27 /usr/lib/libobjc.A.dylib
+lrwxr-xr-x  1 root  wheel       15 21 Jul 01:28 /usr/lib/libobjc.dylib -> libobjc.A.dylib
+
+
+A: The problem is solved in the development version, download from LilyPond Development Page and use at own risk.

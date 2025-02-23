@@ -1,0 +1,9 @@
+Q: Is there a way to configure Mac OS X Snow Leopard server as an Internet gateway with bandwidth tracking per user? I'd like to use Mac OS X 10.6.7 Snow Leopard Server as an Internet gateway.  My router would connect to the Internet facing NIC on my Mac Mini server and the internal NIC would connect to a WiFi access point.
+I want to be able to track the bandwidth users on the WiFi network are using, but I am aware of the fact that MAC addresses on wireless clients are easily changed.
+How can I do bandwidth accounting based on WiFi clients without MAC addresses, logons each time and having the Internet gateway server act as a DHCP server ?
+UPDATE - It appears I want to run RADIUS for WiFi auth and usage accounting...is this available in server/daemon form for Mac OS X 10.6.x Snow Leopard Server ?
+Thanks,
+Scott
+
+A: There's a RADIUS server in OS X Server, and it can easily be used for Wi-Fi authentication.
+However, traffic accounting is a different thing here. Mac OS X uses Freeradius, which can collect this information, but it is unconfigurable through Server Admin. So, you'll have to set up this by editing proper configuration files manually. 

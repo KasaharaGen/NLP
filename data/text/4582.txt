@@ -1,0 +1,16 @@
+Q: Is ipfw the same as pf in FreeBSD? I'm wondering if references referring to pf in FreeBSD are applicable to ipfw in Mac OS X Snow Leopard? I'd like to know to see if it's worthwhile to consult books on pf for use with Mac OS.
+
+A: ipfw is like as ipfw on freebsd. :)
+ipfw and pf are totally different packet filtering systems. ipfw is the old BSD (Internet Protocol Firewall), and pf (packet filter) comes from the OpenBSD.
+pf is much much more powerful as ipfw. In fact, pf is much more powerful as anything other. Here is too much differences, but the main "philosophical one" is:
+
+
+*
+
+*In IPFW, the first rule in a ruleset what matches a packet "wins" - and next rulesets are not evaluated
+
+*In the PF the packet is matched with all rules and the last rule that matches  the packet "wins".
+
+
+You should consult books, manuals about the "ipfw", not pf.
+Btw, here are two nice free applications: NoobProof and WaterRoof - both are helpers for the OSX's ipfw. http://www.hanynet.com/noobproof/

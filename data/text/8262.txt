@@ -1,0 +1,8 @@
+Q: Where are AirDrop temp files located? I started a transfer over AirDrop of a 4GB xcode dmg file. Something happened in the middle of the transfer (3.5GB) and I now have 3.5GB of space missing from my computer. I have restarted the computer and deleted the file in the downloads folder. I tried using grand perspective to find large files but I can't seem to find the location of the temporary airdrop file. Where are these temp files located so that I can delete them.
+
+A: I guess it'd be quite outdated answer, but maybe it will save some time for others
+AirDrop temp files hidden under this path /private/var/folders/, you need to look for folder called exactly like this "(A Document Being Saved By sharingd)" in subfolders. 
+In my case it was /private/var/folders/fq/51d9_5dn7hg445wwp5n7kyqm0000gn/T/TemporaryItems/(A Document Being Saved By sharingd)
+
+A: I believe that airdrop transfers directly into your downloads folder.  Should anything happen to interrupt the transfer, you will likely end up with a file called "transferred_file.txt.download", the file is renamed to remove the .download upon completion.  If you have any .download files sitting there and not changing in size, they are failed downloads and can potentially be restarted (if they originated from Safari), or removed.
+You can test this by transferring a new large file, and watching the file get created, increase in size, then get renamed.

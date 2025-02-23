@@ -1,0 +1,31 @@
+Q: how to print or export annotations in a pdf file? I have a pdf file containing annotations from someone else (I assume they are made in windows with some Adobe software, but I'm not sure).
+They look like that:
+
+and can be displayed in Preview.appor Skim.appon the left of each page:
+
+However, I'd like to print them (together with the pages) and/or find a way to export them to a text document.
+How can I do that?
+
+A: This is probably too late but I think I know the answer, so maybe it'll help someone. What you probably want to do is
+
+
+*
+
+*Convert notes to skim notes
+
+*Go to File > Export > choose File format either Notes as RTF or Notes as text.
+
+
+This answers your 'export to text document' questions. I don't see how you could print the PDF together with the text in the anchored notes, though.
+
+A: Skim has a "Take Snapshot" feature which allows you to print anything which is visually on the page. It also has a "Convert Notes" feature which turns PDF annotations into "skim notes" which you can then manipulate.
+All of this is under the File Menu:
+
+
+A: I just ran into this problem using Mac OS 10.14.6
+Loading in Preview with annotations and saving as PDF still left the annotations invisible in Chrome's PDF viewer.
+So I did "Save as Postscript", then loaded the .ps file in Preview, and did "Save as PDF", and the annotations showed in Chrome.
+
+A: There is a really simple yet robust tool for extracting highlights, notes and images from your pdf-files available at: http://www.sumnotes.net . Not only it supports various advanced features like exporting to DOC and TXT formats, but it also allows you to send extracted highlights into your Evernote account or email. All desktop browsers and operating systems are supported. We are in cloud, so no installation is needed. Try it out.
+
+A: I faced the same problem. To resolve it I created a free service to extract annotations from PDF to CSV: http://exportpdf.info . It exports only sticky and text notes, it does not export highlights and images. You can edit/print CSV files with any major editor like Microsoft Excel or LibreOffice Calc.

@@ -1,0 +1,14 @@
+Q: OSX 10.7 File Sharing does not respect Group: Everyone "No Access". Share publicly displays As the title says. I have a folder, which I added to my Shared Folder list under System Preferences > Sharing that I do not want to broadcast publicly. I'm the owner of the folder and my access is "Read & Write" and the Everyone group is set to "No Access". 
+Using a second computer I can navigate to this share, logged in as "Guest", and I can still see and navigate this private share. 
+I removed all my shares, turned off and back on again (AFP file sharing service) and instead of defining my share points in the System Preferences, I used ⌘I (Get Info) and checked the "Shared folder" checkbox. I then applied the same permissions at the bottom of the Get Info window with the same results. I can still see and navigate the private share over the network. 
+
+A: Any folder added to your shared folder list is broadcast publicly. If you don't want it to be visible to guest users, remove it from your shared folder list. You will still be able to access it by logging in as a registered user, using your user name and password. If you log in as a registered user, you will be able to see all your files, but a guest can only see files in the shared folder list.
+
+A: 
+… a folder …
+
+If the shared folder is a volume on a removable device, then – with some older versions of Mac OS X – the system defaults to ignoring the permissions that are set in System Preferences. 
+For example, this (denying access to everyone) would allow everyone to read and write: 
+
+It seems to me that the problem was, in essence, with the Sharing pane of System Preferences, which offers no hint that an operating system default may cause user-specified restrictions to be ignored. 
+I reported it to Apple as a security vulnerability, affecting five or more versions of the OS, but Apple treated it as expected behaviour. Please see Does setting sharing & permissions on "Ignore ownership on this volume" disk do anything?

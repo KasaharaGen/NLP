@@ -1,0 +1,21 @@
+Q: VPN on demand - does it ever work? We are running Snow Leopard Server and have setup VPN here and external users can pretty easily connect to it.  We want to make it even easier though.  The one option that I've spent several hours trying to get to work is "VPN on demand", which you of course can find in the 'Advanced' pane of the VPN network options.
+We recently tried it again after one client was updated to Lion but got the same result. That is, if one tries to navigate to an address that resolves to our server, it does not automatically connect to the VPN.
+Has anyone managed to get this to work? Is there a trick to it? I've seen several threads on other sites with the same problem but no answers.
+
+A: For me, vpn-on-demand works if the following conditions are met:
+
+
+*
+
+*use a named configuration for the VPN interface (not default)
+
+*the triggering domain must be a hostname that can NOT be resolved using public DNS
+
+*vpn connection is only triggered by Safari (and maybe Mail), but not e.g. afp, vnc, smb connections let alone cli triggered connections like ssh
+
+
+A: As I've read many topic about VPN on Demand seems like not work.
+then i was using route to manual routing for VPN Tunnel as interface name ppp0
+below is example for manual route to Pandora IP Address
+sudo route add -net 208.85.40.0/24 -interface ppp0
+

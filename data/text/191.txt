@@ -1,0 +1,25 @@
+Q: Mount home sparsebundle when SSH I'm using FileVault to encrypt my homedir. But when I'm not logged (locally) into my remote machine and I'm connecting to it trough SSH my home contains only the sparsebundle file.
+How can I mount it so my home dir appears normally as a local login on the machine ?
+
+A: Mount
+SSH lets you create a ~/.ssh/rc that will be executed right after the environment has been set up, but before any shell will be active (so beware of that; search for "sshrc" in man ssh(8) for more informations).
+So, to mount your FileVault partition you can add  this line to your ~/.ssh/rc file:
+hdiutil attach /Users/$USER/$USER.sparsebundle -mountpoint /Users/$USER
+
+Don't worry, your ~/.ssh/rc will be available to the system even before mounting the FileVault partition.
+Unmount
+Now you have to ensure the unmount at logout, and only if you are connected via ssh. To do that you can use your shell's logout script. These are the logout script paths for the 3 most used shells on Macs (feel free to add more in the comments):
+
+
+*
+
+*bash: ~/.bash_logout
+
+*zsh: ~/.zlogout
+
+*(t)csh: ~/.logout
+Open (or create) the appropriate file and add:
+if [[ -n $SSH_CONNECTION ]]
+    then hdiutil detach /Users/$USER/$USER.sparsebundle
+fi
+

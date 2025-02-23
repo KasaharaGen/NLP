@@ -1,0 +1,20 @@
+Q: What do I save to ensure successful downgrade to iOS 4.1 on iPhone 3G? I'll do the upgrade from ios 4.1 jailbreaked (on an iphone 3g with a foreign locked sim) without updating the baseband.
+My baseband is 05.14.02 (bootloader 5.9).
+So I should to obtain an iphone 3g ios 4.2.1 jailbreaked with the 05.14.02 baseband (I'm not interested to use it for phone calls).
+I would to know what I have to save before the upgrade to revert to the original state (ios 4.1 jailbreaked) in case of failure.
+
+A: You need to save the SHSH blobs for your phone.
+This can be done by:
+
+
+*
+
+*Allowing Cydia to save them for you automatically.
+
+*Using TinyUmbrella to back up the blobs to your computer.
+
+*Install iSHSHit from Cydia, which can access your SHSH blobs, save them on your phone, and send them as email attachments.
+
+
+Currently Apple is blocking access from Cydia to the servers that give the SHSH blobs out, so options #2 and #3 are left.
+Finally, Apple is no longer signing for 4.1, so unless you already backed up SHSH blobs somehow, you will not be able to downgrade.

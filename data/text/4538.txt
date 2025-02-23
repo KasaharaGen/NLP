@@ -1,0 +1,59 @@
+Q: How do I install Homebrew on Tiger? According to this previous question, I want to install Homebrew Tiger branch on my iBook running ... well, Tiger.
+Unfortunatly, when running the Ruby one-liner,
+ruby -e "$(curl -fsSL https://raw.github.com/gist/323731/39fc1416e34b9f6db201b4a026181f4ceb7cfa74)"
+
+I always get the following error :
+This script requires the user nicolas to be in the staff group. If this
+sucks for you then you can install Homebrew in your home directory or
+however
+you please; please refer to the website. If you still want to use this 
+script
+the following command should work:
+
+dscl /Local/Default -append /Groups/staff GroupMembership $USER
+
+I have unsuccessfully tried to add myself as a member of the staff group.
+What can I do to install Homebrew on my Tiger mac ?
+Thanks
+EDIT Yes, I have a version of XCode for my platform, it's a legacy 2.5 that I installed specifically for that purpose.
+Concerning the Ruby script, a rapid overview of its code indicates that the error appears as invoking groups does not return the staff group.
+And indeed, when I issue this command by hand, I get
+$ groups
+nicolas appserveradm appserverusr admin
+
+So, how can I add myself to the staff group in a fashion that this command will understand ?
+
+A: So, I finally managed to have a working version of homebrew, but it wasn't that simple.
+First, download from sources and make install of Git following these instructions.
+Then, using git, get the sceaga Tiger branch of Homebrew.
+All should then work correctly (more or less).
+EDIT There seems to be a tarball hidden somwhere that could be used with root installation procedure. It has the obvious interest of avoiding one to install git just for the sake of having a running homebrew to ... install another git version.
+
+A: Here is the single-step install of Homebrew on Tiger PPC:
+/usr/bin/ruby -e "$(curl -fsSLk https://raw.github.com/gist/1144389/5723f23d03c49912ffd460d32e958e71d7e0cd67/install_homebrew.rb)"
+
+It installs sceaga's Tiger branch, precisely the one you quote above…
+I've just forked the former install_homebrew.rb and modified it in order to work under Tiger PPC.
+You can review my code here
+
+A: I haven't Tiger, so something only from my memory:
+the above dscl should work. Or you can try the following:
+dscl . -append /Groups/staff GroupMembership $USER
+
+you can ensure who is added with
+echo $USER
+
+should print your short username.
+If this does not works, here is the more dangerous way. If I remember good, on Tiger is an application /Applications/Utilities/Netinfo Manager.app (or something like with Netino)
+You should start it and check it. Unfortunately I'm not remembering what exactly you must do. One thing: when you change something, in the menu is something like "Restart Netinfo Server", and you must restart it, when you make changes.
+Warning: REALLY (really really!) be very careful. You can lock out yourself from the machine, and will must start OS in singeleuser mode to restore things - and probably will not get any help, because here are only few users with Tiger.
+I was thinking about this post and maybe would be better write nothing - because of the dangerous command. But, on the other side - if you do things carefully (google for Netinfo), you can easily done your problem.
+Be careful - good luck. ;)
+
+A: Tigerbrew: homebrew forked for Tiger PPC
+Tigerbrew incorporates work from sceaga's Tiger branch. It installs under the admin group, so you don't have to add yourself to the staff group.
+Installation:
+ruby -e "$(curl -fsSkL raw.github.com/mistydemeo/tigerbrew/go)"
+
+And here is a link for downloading Xcode:
+https://developer.apple.com/downloads/download.action?path=Developer_Tools/xcode_2.5_developer_tools/xcode25_8m2558_developerdvd.dmg

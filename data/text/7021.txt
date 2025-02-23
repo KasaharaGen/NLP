@@ -1,0 +1,43 @@
+Q: Uninstalling Java on Lion I recently installed the Java runtime (through Software Update) and enabled the Java browser plug-in and WebStart on Lion, but I don't need them anymore.
+Unchecking "Enable Java" in Safari preferences gets the job done, but I'd rather get rid of Java completely. So the question is, how do I do this? I want to go back to a clean Lion install, Java-wise.
+
+A: Removing all traces of Java, cleanly, from OS X Lion
+Uninstalling Java for Lion is simple. Remove the following directory (which contains the file 1.6.0.jdk):
+/System/Library/Java/JavaVirtualMachines/
+
+Then (for completeness), clean up the installer records by removing them from /private/var/db/receipts/:
+com.apple.pkg.JavaForMacOSX107.bom
+com.apple.pkg.JavaForMacOSX107.plist
+
+And lastly, we clear out any traces of the product installation from Software Update by editing the following plist file: InstallHistory.plist, located in:
+/Library/Receipts/
+
+Note: Editing the install history plist file is better done by copying the plist to your desktop (as it owned by root and won't let you modify it), but make sure you restore the default ownership by running the following command:
+sudo chown root:admin InstallHistory.plist
+
+You can open the file up in Text Edit and remove the following lines:
+<dict>
+    <key>date</key>
+    <date>2011-09-06T14:43:35Z</date>
+    <key>displayName</key>
+    <string>Java for Mac OS X 10.7</string>
+    <key>displayVersion</key>
+    <string>1.0</string>
+    <key>packageIdentifiers</key>
+    <array>
+        <string>com.apple.pkg.JavaEssentials</string>
+        <string>com.apple.pkg.JavaForMacOSX107</string>
+    </array>
+    <key>processName</key>
+    <string>Software Update</string>
+</dict>
+
+Additional information
+There are two packages that are found in the Java for Mac OS X 10.7 dmg, JavaEssentials and JavaForMacOSX107. The former does not install anything. I have compared the files found on a clean OS X 10.7 install (that does not include Java) and those found in that package, and they are all present and moreover, are identical in every way (v14.0.3). Thus, the only package that needs to be removed is the SDK. Additionally, you can remove the receipts and the install record, but those are more cleanliness than anything. Remove the SDK is sufficient (try running a program that requires Java after the removal of that file, and you will once again be greeted with the notice to install Java).
+
+A: This is what I found:
+https://superuser.com/questions/5950/uninstall-java-on-mac-os-x
+It seems like the only way would be to go back to a "clean Lion install all-wise". Java used to be part of the core OS: it helps not only on running web content, but also some apps and scripts. 
+Having said this, I suppose the reason why it doesn't come pre-installed in lion is because its heavy, and Apple wanted to make the download as light as possible. Nevertheless, I don't expect it to be uninstallable because some of its components get deep into the OS. 
+I suggest you simply turn it off. As you said before it gets the job done, plus you never know when you might need it again; as I mentioned before, even some native apps make use of it. It's there. It's sleeping. It isn't hurting anyone... I think its the best option.
+Hope it helps. 

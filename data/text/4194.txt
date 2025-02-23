@@ -1,0 +1,29 @@
+Q: Is there a reliable, automatic subtitle downloader for Mac OS X? On Ubuntu I use SMPlayer or SubDownloader, which both reliably retrieve subtitles from opensubtitles.org. SMplayer even does this automatically for the file you are currently viewing.
+So far I've tried SolEol, FileBot, SubDownloader (which is a bit behind on versions for Mac OS; seems like the API URL for opensubtitles.org changed) and Undertext. None of them work reliably, some of them not at all.
+
+A: I know this is an old question, but I was searching for this same answer, and found a great solution. 
+Subliminal will allow you to set up a cron job, (or manually enter from CLI) whole directory trees, and download subtitles. You can also set it up as a post processor for SABNzbd or SickBeard or CouchPotato.
+It's working great for me.
+
+A: I found Subtitles recently. It looks nice and clean and seems to work quite well (I had lots of problems with Unicode support in subliminal).
+
+A: I developed a free app to download subtitles on the Mac.
+
+You can download it from here.
+It downloads from OpenSubtitles.
+It is not a signed application (I'm not willing to pay Apple two times, as I develop for iPhone and not for Mac), so you have to allow it to run through System Preferences → Security & Privacy.
+
+A: I, too, have made a free utility for this purpose.
+You can grab it fresh here: Sublime.
+
+A: Subsmarine from cocoawithchurros provides a commercial solution.
+
+A: I am using SPlayerX. It is a media player can auto download subtitles depending on the video you playing.
+
+A: I use XBMC and it works like a charm!
+
+A: I recommend Subtitles Wizard Plus for this use case.
+
+A: I wrote a Python Script myself to download Subtitles. First I wrote a Python Script to download subtitles using thesubdb API, then I used automator to create a service. Installation is really painless.
+Installation instructions and source is on my GitHub page.
+

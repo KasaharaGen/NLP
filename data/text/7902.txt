@@ -1,0 +1,26 @@
+Q: Will iTunes Match let me "upgrade" existing tracks to higher quality or bitrate? I want to pay the $25/year for iTunes Match specifically to get my thousands of low-bitrate tracks "upgraded" to high-bitrate.
+Will I be able to invoke the service, get high-bitrate tracks downloaded to my Mac, and sync it with my iPod Classic?  Or is it only for iOS/iCloud streaming?
+
+A: Yes, songs in your library that iTunes is able to match (either because you purchased them from iTunes, or because it recognizes them) will be available for download at 256kbps. Once downloaded, you will be able to sync them to your devices as usual.
+Note that the copy that is on your machine already will not automatically be replaced by the 256kbps version. To get that you may need to delete that version and then download iCloud's (high bit rate) version. Since the iPod classic isn't an iOS device, this should do the trick once you have a copy of the higher bitrate music in your locally stored music library.
+
+A: Yes, this is possible. Once the cloud has matched your lower bitrate song, make a final backup and delete that song from your iTunes library. You can then re-download the "standard" version from Apple's servers.
+
+Jason Snell has a great writeup on an easy way to keep track of the songs by using the power of smart playlists:
+
+Make a Smart Playlist Create a Smart Playlist with the following attributes:
+
+*
+
+*Bit Rate is less than 256kbps
+
+*Media Kind is Music
+
+*Any of the following are true: (to create this conditional, option-click on the plus button in the Smart Playlist window) iCloud status is Matched, iCloud status is Purchased
+
+Delete all those files Select all the tracks in your playlist, and then hold down the option key while pressing Delete. Be sure to not select the box that would delete them from iCloud!
+Bring ’em back All those tracks should still be [in the playlist]—but now they’re marked as being available only in iTunes Match. Select all of them again, then control-click on the selection and choose Download.
+
+
+A: At http://www.apple.com/icloud/features/, Apple announces that "It’s built right into the iTunes app on your Mac or PC and the Music app on your iOS devices." and "Even better, all the music iTunes matches plays back from iCloud at 256-Kbps AAC DRM-free quality — even if your original copy was of lower quality."
+So it looks like you're in luck, if the service as released has the announced features.

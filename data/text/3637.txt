@@ -1,0 +1,31 @@
+Q: Is there a good way to distribute WPA2 keys within the 'enterprise' Due to this whole cloud thing, we've started to end up with more and more macs within our enterprise network. And, like most enterprises, we've got an internal wireless network that we'd rather not distribute the password to. Currently we've got techs visiting people and entering their wifi keys, but we'd like to be able to send folks a file they can import. Is there some tool natively in OSX that handles this? Or some 3rd party package we can use?
+If you are familiar with Lenovo Access Connections and the key files one can send about for that, we are looking for a macbook version of that.
+Clairifications:
+
+
+*
+
+*MAC address cloning is not an option. Outside of it being sham security, we've got an existing ecosystem using the current WPA2-PSK scheme and we don't want to break that. The question isn't how we can re-architect our wireless security to fit a few outliers, it is how can we include the outliers in the current scheme.
+
+
+A: So, it turns out that Loin supports iOS-style .mobileConfig profiles, so the answer is "distribute mobileConfig files like the macbook is an iPad."
+I can't claim to have figured this out. The story went more like:
+Helpdesk Guy: hey, the CEO just called me, can someone get his mac on the wifi now?
+Me: Yeah, I'm in the office still, where is he?
+Sysadmin Guy: Dude, you don't need to visit him, just send him the iOS mobile config file we use for the iPads.
+Me: What? That works?
+Sysadmin Guy: Yeah, it does you PC loving doofus
+Me: [tests, it does open a newfangled window and holy smokes my mac has enterprise wifi] Wow, that does work, let me email this to the CEO.  
+Anyhow, I did a little looking around for documentation. I did find some verification that other people are doing this, and I also found this apple training doc which might be what you are looking for.
+
+A: Sorry if this is off-topic, but a better solution to your problem would be to setup a "captive portal".
+Basically, people can freely join your network but they need a username and password to leave the port (ie to connect to the internet).
+The nice thing about this is you can keep a central database of users, or use an existing database such as LDAP. Furthermore, this would allow you to make auto-expiring guest accounts. 
+Best of all, this can be setup for free with the right know-how.
+
+A: I don't know the exact answer - BUT reading this How-to - http://www.felipe-alfaro.org/blog/2006/01/29/wpa2-eap-tls/ - it looks like a few configurations steps.
+I think it should be possible på make e.g. an AppleScript that do all the nessesery steps, that you then can pack as e.g. a zip-file (key-file and AppleScript), the user then unzip and install/setup the connection.
+
+A: I would suggest using something like Packet Fence. We used to be in a similar situation where employees needed fast unobtrusive internet access and guests needed some kind of simple authentication.
+Packet Fence is a free web-based system. Our implementation involved storing all the employee MAC addresses inside Packet Fence so they can just pop open their laptops and start working without needing to authenticate.
+For our visitors, they could access our wifi, but needed to open a browser and authenticate using a simple password. We'd also be able to log when they accessed our network.

@@ -1,0 +1,75 @@
+Q: Command-Control-Arrow beeps (plays alert sound) in Lion I've noticed since upgrading to Lion that if I press Command-Control-Left/Right (and sometimes Down as well; see below), my computer beeps at me (plays alert sound).
+It doesn't occur in all applications:
+
+
+*
+
+*In Console, I can press any of the above key combinations, and there's no beep.
+
+*In Mail, it beeps if I press Command-Control-Left/Right, but not Up/Down.
+
+*In most every other application, every combination except Command-Control-Up causes a beep.
+
+
+I can't seem to find any menu commands that it might be trying to invoke, although even if that were the case, applications such as NetBeans and PhpStorm are the proverbial monkey wrench here:  I have Command-Control-Left mapped to "go to last edit".  When I press that key combination, my Mac still beeps at me, but it it also does move the cursor to the last edit location.
+What does Command-Control-Left/Right/Up/Down map to that my Mac is complaining about?
+
+A: Depending on the version of your macOS, you have to do the following:
+10.11 El Capitan through 13.0 Ventura (from Adobe/Brackets)
+You'll need to create the ~/Library/KeyBindings directory first. Then create the file ~/Library/KeyBindings/DefaultKeyBinding.dict with the following content. Restart the app or the Mac after saving this file.
+{
+    "@^\UF701" = "noop:";
+    "@^\UF702" = "noop:";
+    "@^\UF703" = "noop:";
+}
+
+<= 10.10 Yosemite (Found on GitHub/Atom)
+Create the file ~/Library/KeyBindings/DefaultKeyBinding.dict with the following content. Restart the app or the Mac after saving this file.
+{
+    "^@\UF701" = "noop:";
+    "^@\UF702" = "noop:";
+    "^@\UF703" = "noop:";
+}
+
+
+A: The beeping you are hearing in this context is not because those key commands are mapped to something but quite the contrary because they are not. 
+Typing an unmapped key command will result in an audible bell. 
+As you note Command-Control-Right in results in an audible bell in Mail.app. You will also note that Command-N results in a new message.
+So here's a proof to confirm my assertion: 
+
+
+*
+
+*Open System Preferences > Keyboard 
+
+*Select Keyboard Shortcuts from the pillbox at the top
+
+*From the menu at the right choose Application Shortcuts
+
+*Click the small + sign at the bottom left of the right panel
+
+*From the Application pull down select Mail
+
+*In the Menu Title field type "New Message" (no quotes)
+
+*Place your cursor in the Keyboard Shortcut field and type Command-Control-Right
+
+*Click Add
+
+
+Now return to Mail and type Command-Control-Right. A new message will be created but if you type Command-N you will hear the audible bell. This is because Command-N is no longer mapped to anything. We replaced it.
+So when you hear the audible bell it often means that you are trying to do something that is not possible (i.e. typing a key command that has no meaning for the current application).
+
+A: If you want Command+Alt+Control+arrow to also suppress the chime, use this:
+"@~^\UF701" = "noop:";
+"@~^\UF702" = "noop:";
+"@~^\UF703" = "noop:";
+
+(only tested in Monterey)
+
+A: If you have issues with control+option+command+arrow as well, then also add these: (tested with Monterey)
+    "@~^\UF701" = "noop:";
+    "@~^\UF702" = "noop:";
+    "@~^\UF703" = "noop:";
+
+Don't forget to close and re-open the app that you are using to see the effects!

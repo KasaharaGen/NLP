@@ -1,0 +1,5 @@
+Q: External SATA PM (Port Multiplier) Enclosure w/ Mac Mini I'd love to use one of the new Mac Mini Server models as a backup server, but need a lot more space.
+Has anybody tried attaching a port multiplied eSATA enclosure to the Mini? This is the one I'd really like to work: http://www.firmtek.com/seritek/seritek-5pm/
+I've read a few things that imply that the system controller in the Mac Mini supports it.
+
+A: No, the SATA the Mac Mini does not support port multipliers. Technically the MCP79 in it can support port multipliers, but either the driver or the firmware does not enable it.

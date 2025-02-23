@@ -1,0 +1,12 @@
+Q: What are some steps to troubleshoot problems sharing printers, files, and screen? I am having many problems sharing (printer, file, screen) from a Macbook Pro (10.6.8) to a PowerMac G5 tower (10.5.8). It was working just fine until we switched internet providers and got a new router. I have checked IP addresses, etc. 
+What are some general troubleshooting steps I can take to determine where the problem might lie?
+
+A: Please be more specific.  If nothing changed except for the router, though, let me ask: is the one machine plugged in directly to the network via Ethernet, and is the other accessing the network through WiFi?
+If so, it may be that the router has a feature enabled called "WAP Isolation" -- basically it creates a separate network segment (or collision domain, if you like) for the wireless clients.  Try disabling wireless with the laptop and plug it in directly.  If it works, that's probably where the problem is.
+
+A: Absolutely. The best step would be to connect the two macs with an Ethernet cable.
+You don't need a crossover cable - just any patch cable. 
+If the problem is software, it won't work when connected directly. 
+You will want to rule out the router as potential for causing the issue. 
+
+A: I did figure out the problem; my router had MAC address filtering on. So, I turned off the MAC address filtering and it works now.

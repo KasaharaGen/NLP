@@ -1,0 +1,29 @@
+Q: Looking for advice setting up a new Mac Mini with Lion Server I am setting up a new Mac Mini server which will serve as a web server (with Apache and MySQL) as well as some other pieces of functionality.  I have seen little on securing OS X for such a scenario (I am running Lion - and this is not Lion Sever).  
+I assume it is recommended to use ipfw as opposed to the application firewall.  I also assume that it makes sense to lock down SSH (put it on a non-standard port and use certificate authentication).  However, should I also lock down screen sharing (and force an SSH tunnel for this)?  Any tips on this are welcome.
+
+A: Although written for 10.5, this guide by Daniel Cuthbert (PDF) is fairly comprehensive and largely still applies to Lion.
+Closing off screen sharing and tunneling it (if you need it at all) through SSH is probably a good idea.
+Standard rules apply:
+
+
+*
+
+*Only open absolutely necessary ports to the outside world
+
+*Keep your software up to date
+
+*Disable any unused services & Apache modules
+
+*Disable any listeners you don't need, rebind those you do need to localhost only if they're not needed outside (lsof -i is your friend)
+
+*Check that your firewall is really working as expected (nmap from an outside host)
+
+
+Mac specific things:
+
+
+*
+
+*Make sure the console is password protected, locks if you're using screensharing and doesn't auto-login on startup
+
+*You may want to enable verbose boot messages by default, it'll make debugging easier in case things go bad: sudo nvram boot-args="-v"

@@ -1,0 +1,25 @@
+Q: How can I "clean out" my Time Machine backups if Time Machine won't backup because the disk is full? When Time Machine tries to make a backup, it informs me that it can't because the backup disk is full. 
+What it's mostly full of (about 700GB of 1TB) is prior backups of the same machine. Time Machine used to just delete the oldest ones, but now it seems unwilling or unable to do so.
+Is there some manual way I can make room by clearing out old backups?   When I go into the Time Capsule through Finder, the backups all appear to be in a sparse bundle, which I'm nervous to mess with.
+
+A: The other answer didn't work for me, perhaps because I was trying to delete extra backups from an inactive TimeMachine folder. (I don't get a "Delete Backup" option in my Finder dropdown, as shown. 
+In Mountain Lion, I was able to use tmutil, a terminal command with great power. A great description of how to use it is http://blog.hawkimedia.com/2012/08/reclaiming-a-timemachine-volumes-disk-space/
+
+A: Enter TimeMachine, then in the main window, select the backup you want to delete (on the right), then use the Action Menu (Gear icon) to select "Delete Backup".
+Using this menu, you can also, when a file or a folder is selected, delete all its backup.
+
+
+A: I think this essay will help you.
+the source of this essay related here.
+
+A: To perhaps state the obvious, if you have a second Time Machine backup for security and you only care about being able to restore the last working state (history is not important, just protection against drive failure), then you can
+
+*
+
+*format (erase) your Time Machine drive, giving it a new name,
+
+*add it as a new Time Machine backup drive, and
+
+*delete the backup under the old name.
+
+This is crude, but may be the most efficient approach for a certain subset of use cases.

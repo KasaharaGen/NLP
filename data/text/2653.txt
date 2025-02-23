@@ -1,0 +1,11 @@
+Q: OS X Downloaded File Warning Example at bottom.
+How does OS X apply this warning and what's the best way to disable it? 
+I'm a Web Developer and more than understand the risks of teh interwebs.
+
+
+A: Use the Terminal and this command:
+defaults write com.apple.LaunchServices LSQuarantine -bool NO
+
+That will disable warnings completely after you restart the system. To reverse it, run it again with "YES" instead of "NO".
+Or you can create a custom listing of safe files with the method described here:
+Custom assessment file for downloaded files

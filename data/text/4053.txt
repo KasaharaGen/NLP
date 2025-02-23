@@ -1,0 +1,12 @@
+Q: Always open app in "reduced" form When I Open certain apss (such as MacVim) I don't need the toolbar. So is there a way to make the app know this and always open in with the toolbar hidden (eg. as you would do by pressing the bean shaped button on the upper right)?
+
+A: Add this to your ~/.vimrc to auto-minimize the toolbar in MacVim:
+set guioption-=T    "hide toolbar
+
+
+A: If you collapse the toolbar on any application, it should remain shrunk across any invocation. I've collapsed the toolbar in Coda, which hides the Category (Sites, Edit, Preview, etc.) navigation, and I've never seen it since.
+If this doesn't work in an application you use, I suggest something is configuring the application1 to re-expand it, otherwise I consider this a bug in the application. You should do your due diligence to get in touch with the developer and talk to them about it.
+
+1 The toolbar in MacVim could come back due to reading in configuration files. e.g. /usr/share/vim/vimrc, ~/.vimrc, or more specifically because the default in the app is written to expand it explicitly if not otherwise defined. Either way, @michaelmichael is correct in specific regards to MacVim.
+
+A: Obviously this wasn't a solution at the time you asked the question, but in Lion, you can select "Restore windows when quitting and re-opening apps" and state will be preserved.

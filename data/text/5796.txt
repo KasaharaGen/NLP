@@ -1,0 +1,81 @@
+Q: How / is it possible to compare files on your hard drive with those in your time machine backup? I have snow leopard and have been using time machine to regularly backup files.
+How / is it possible to compare files on your hard drive with those in your time machine backup?
+I know you can restore folders. But I'd like to see if I'm missing any files and if files have changed ?
+
+A: I realize you tagged this as a Snow Leopard question, but if you upgrade to Lion, the new tmutil command-line utility will let you compare backups:
+Usage: tmutil compare [-a@esmugtdrvX] [-D depth]
+       tmutil compare [-a@esmugtdrvX] [-D depth] snapshot_path
+       tmutil compare [-a@esmugtdrvX] [-D depth] path1 path2
+
+Perform a diff of or against backups.
+
+In the first form, tmutil will compare the computer to the latest snapshot.
+
+In the second form, tmutil will compare the computer to the specified snapshot.
+
+In the third form, you can compare arbitrary things to each other, including things on the computer to things inside your backups.
+
+The compare verb allows you to specify what properties to compare. The default property set is equivalent to the -smugt option set. Specifying any property option overrides the default set.
+
+# this means "compare using the basic -smugt metadata set"
+$ tmutil compare
+
+# this means "compare all metadata supported by tmutil and data forks"
+$ tmutil compare -ad
+
+# this means "compare extended attributes, ACLs, file modes, and data forks"
+$ tmutil compare -@emd
+
+Options:
+    -a   compare all supported metadata
+    -@   compare extended attributes
+    -e   compare ACLs
+    -s   compare sizes
+    -m   compare file modes
+    -u   compare UIDs
+    -g   compare GIDs
+    -t   compare mod times
+    -d   compare file data forks
+    -r   ignore specified root paths and just compare descendents
+    -D <depth>   limit traversal depth to <depth> levels from the beginning of iteration
+    -E   don't take exclusions into account when comparing items inside volumes
+    -v   enable verbose mode (enables reporting of all identical items, which is noisy)
+    -X   print output in XML property list format
+
+
+A: I have just tried to use: tmutil compare and the output is quite devastating because  of the huge amount of data (and the lack of documentation that explain how to read it). In my opinion, tmutil help is a little bit too concise. 
+I want highlight the utmost importance of the first character in the line:
+
+
+*
+
+*! means file has changed (size, time, acl...)
+
+*- means file is missing
+
+*+ means file new
+
+
+So the output:
++ 0B                            /Users/me/Configuring
+! 37.4K   (size, mtime)         /Users/me/.viminfo
+!         (mtime)               /Users/me/Desktop
+- 7.3K                          /Volumes/Backup/Backups.backupdb/Macintosh/2013-01-24-014802/Macintosh HD/Users/me/file.csv
+
+In order to get only the lines you really need, for example the missing files I suggest to use grep:
+tmutil compare path1 path2 | grep -E ^-
+
+Where path1 is your local path and path2 is the path on your backup:
+tmutil compare /Users/me /Volumes/Backup/Backups.backupdb/Macintosh/2013-01-24-014802/Macintosh HD/Users/me | grep -E ^-
+
+This should return only the missing files, in our example:
+- 7.3K                          /Volumes/Backup/Backups.backupdb/Macintosh/2013-01-24-014802/Macintosh HD/Users/me/file.csv
+
+
+A: You can get a good search tool that indexes your Time Machine drive / volume and will let you do a file by file diff. The program is called Backup Loupe 2 and even with the new tools on Lion, I still find myself using it. For you, it will work fine on Snow Leopard and provide tools that the system doesn't.
+http://www.soma-zone.com/BackupLoupe/
+
+A: You could use
+diff -r <folder on your regular drive> /Volumes/<your TM drive>/Backups.backupdb/<your machine name>/Latest/<same folder path as in the first argument>
+
+to see the differences. If you don't want to see the actual differences for text files, add a -q switch to the diff command to suppress that kind of output.

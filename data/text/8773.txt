@@ -1,0 +1,24 @@
+Q: How do I change my (non-interactive shell) PATH? For example, when I launch Emacs from the terminal (an interactive shell), I can use "M-x shell".
+When I launch Emacs from the dock (which spawns process from some other shell), I cannot, because "grep isn't found" (or 'ls' or 'some other universal UNIX command'). Also, half my non-default applications have stopped working (MATLAB, DrRacket, X11, etc).
+
+
+*
+
+*How do I change the environment of the shell that is called by the dock?
+
+*What shell does the dock call / what else ought I know about different shells on a mac?
+
+
+A: You should create the file ~/.MacOSX/environment.plist with inside
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>PATH</key>
+<string>/Users/gio/.dotfiles/bin:/usr/local/bin:/usr/bin/:/usr/sbin/:/bin:/sbin</string>
+<key>PYTHONPATH</key>
+<string>/Users/gio/.local:/Users/gio/.local/lib/python2.7/site-packages</string>
+</dict>
+</plist>
+
+What I wrote above is just an example, but I think you get the main point here. After you create the file, log out, log in, and you should be all set. You could have a ruby path as well, etc.

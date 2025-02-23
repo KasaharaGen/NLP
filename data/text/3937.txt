@@ -1,0 +1,47 @@
+Q: Mac Pro fan makes constant noise. Why? I have a 2009 octocore Mac Pro. A few weeks ago it started making a constant noise. It sounds like a fan. The computer is not particularly hot. I checked with Temperature Monitor and CPUs/disks/etc. are around 40C. Only the Northbridge chip and sink are at 73C and 65C.
+Is there anything obvious that my Mac needs or that might have caused the fan to get so loud?
+
+A: In this Apple support article, Apple says that resetting the SMC can fix fans that are constantly spinning for no reason.
+
+After performing normal
+  troubleshooting, these symptoms may
+  indicate that an SMC reset may be
+  necessary:
+Fans The computer's fans run at high speed although the computer is
+  not experiencing heavy usage and is
+  properly ventilated....
+
+Here's what it says about how to reset the SMC on a Mac Pro:
+
+Shut down the computer.Unplug the
+  computer's power cord. Wait fifteen
+  seconds. Attach the computer's power
+  cord. Press the power button to turn
+  on the computer.
+
+
+A: I don't know if this was really the solution but it seemed to work.
+I opened the computer, took out the CPU board and blew the dust off it and the fans and the entire computer. Apparently that did it. Maybe I should do that once a year. The last time I cleaned the computer was last year when I put more memory in.
+
+A: Also, I would verify that this is not the issue: http://macsaregreat.com/?p=63
+I had an older Mac Pro that was constantly running its fan, and it turned out it was just a dusty graphics card.  YMMV
+
+A: I had the same problem... fan running constantly in a Mac Pro. I checked all sorts of stuff, including looking into the housing. It was more or less dust free. The I realised that the graphics card (ATI Radeon 1900, I think?) had it's own fan BUT the intake to that fan was absolutely covered in dust! A solid wall of dust (even though, every 6mos or so I'd wave the vacuum around the computer).
+Once I pried off that layer of compacted dust from the graphics card fan, the machine is running silently!
+
+A: You can try resetting the PRAM. 
+There's more info on the Apple support boards , including further steps you can take if this doesn't work. Also, there's a thread about what settings will be nuked when you reset the PRAM. 
+
+A: After reading the responses I used my compressor to blow the dust out of my 2008 Mac Pro and it solved the whistling problem.  I was also amazed by the about of dust the housing had gathered over the years.  Thanks to all who posted responses to this question.
+
+A: I'm a bit scared to admit this, but here goes…
+We have a bunch of Mac Pro's in office. One of them (in a rather quiet room no less) started making a persistent high frequency continual buzz. It was definitely a moving components, because shutting the computer down would stop the sound. Tracing the sound eventually led me to the video card. Despite how low it was spinning, the video card fan was spinning nevertheless. When I would press my finger onto the middle of the fan (forcing it to stop spinning), the sound went away.
+At that time the computer was highly highly mission critical, so downtime more than a few minutes was not a good idea. The Apple Store had none of our video cards in stock, and they were unwilling to take my word on the diagnosis and order it.
+So, I engineered a 0.01¢ fix. I took a piece of scotch tape, and stretched it across both sides of the fan (the fan is raised with a plastic housing), and smoothed down the middle on the fan's plastic. The fan stopped spinning, and the sound disappeared. The office was quiet again.
+Note that this is probably a TERRIBLE IDEA, because it restricts air flow across the video card which is a very hot device anymore. I honestly don't suggest this fix.
+But, what I am saying is that you should check out your video card fans, and you can temporarily stop it to see if it resolves the audible issue.
+And really, you can try this with every fan, not just the video card fan. Do be careful, however. Despite being plastic, some of these fan blades can hurt.
+
+A: resetting the SMC worked for me.
+
+A: Here is the answer after 3 years of noisy fan issues, My first solution was to replace the front fan in my Mac Pro Quad - this failed and was not the issue - second method was to pull the main board battery off the Motherboard, this worked but is very dangerous and if not done properly can damage the motherboard - the third solution is simple switch the machine off, pull out the power lead for 15 seconds, replug and wait 5 seconds, start machine, PROBLEM SOLVED. The problem is caused by the Pram remembering an incorrect command, resetting pram does not help, what is needed is to remove the power to the top level of the PRAM. My gut feeling is that it is an intel conflict with large volumes of ram but it is easily silenced.

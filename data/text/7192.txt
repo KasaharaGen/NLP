@@ -1,0 +1,14 @@
+Q: Resizing a window to a specific size, for screen recording? I want to record an application window for a demo/tutorial, and I'd like the video to be a particular resolution.
+Is there a trick/tool already installed in Lion that allows me to take a window and resize it to a specific resolution? For instance, take a window and resize it to 1280x720 in preparation for a HD 720p video recording?
+If not, is there a tool I can get from the internet that will do this for me?
+It just occured to me that perhaps Automator would help me here, but I'm not able to find an action to resize a window. An Automator script is OK as well.
+Basically, any free/cheap tool/trick/script that would do this.
+
+A: You could try an AppleScript like this:
+  set the_application to (path to frontmost application as Unicode text)
+
+  tell application the_application
+      activate
+      set bounds of window 1 to {1, 1, 1281, 721}
+  end tell
+

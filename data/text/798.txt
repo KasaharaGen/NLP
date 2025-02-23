@@ -1,0 +1,79 @@
+Q: Decimal comma in Spanish keyboard layout I have a Spanish layout keyboard (in Snow Leopard). Whenever I use the dot, or comma, in the numeric keyboad (right of the 0) it always shows a comma, but I'd prefer if it entered a dot, just like PCs do. Otherways, entering IP addresses, or decimal numbers when coding is a PITA. How can I do that?
+I have tried altering my regional settings so that the decimal separator is a point and the thousands separator is a comma, but that doesn't seem to affect text entry.
+I'd prefer changing some regional setting rather than remapping the keyboard, but I'll accept any answer that works - short of changing the regional layout of the keyboard, I really need my diacritics there.
+
+A: You need to change the layout of your keyboard. Not to another one, but to a new one that has been modified by an utility like Ukelele (there might be others).
+Download the tool, drag the App to your Application folder. Notice that in the Disk Image, there’s a folder called System Keyboards/Roman/, copy that to you desktop (it’s temporal). 
+Launch Ukelele and from the File menu select: “New based on…”
+Open the file Spanish-ISO.keylayout (found in the Roman folder that you saved to your desktop).
+You’ll see a big blue keyboard representing your current Spanish-ISO map (if you brought your computer in Spain, that’s they keyboard you should use). 
+Double click on the “,” that you want to modify (or any other key) and you’ll see this:
+
+Replace the “,” with the “.” (dot). And go to Keyboard Menu -> Set Keyboard Name. Rename the Spanish - ISO to something like: Spanish - ISO2.
+Now save it, the name will be Untitled, but you should put Spanish - ISO2.
+Where do you save it?
+According to Ukelele’s User Manual, you have different choices (and I suggest your read section 3.3 of the manual). Short answer is within the Keyboard Layouts sub-folder of the Library folder in your home folder. This can be created if it doesn’t already exist. If you do that, only your user will see (and be able to use) this Layout. 
+After installing the keyboard layout and logging out and logging in again, open the International pane of System Preferences (Language & Text on Mac OS X 10.6 (Snow Leopard) and later). On the Input Menu (Input Sources in 10.6 or later) tab, your new keyboard layout should be listed there. Enjoy your faster IP Address typing.
+
+A: KeyRemap4MacBook solves this problem as well, without having to set up a completely different keyboard layout in Ukelele. Simply enable the "Swap Dot and Shift+Dot" option in the "Change Keypad Key" section. 
+
+A: In macOS Sierra, you have to Ctrl+Shift+, in numeric pad to obtain a regular dot.
+Found this trying to do the same as everyone else and discovered it was different now.
+Hope this helps.
+UPDATE: in macOS Mojave, you can also use Ctrl+Alt+, in numeric pad to obtain a regular dot. I found some apps (I'm looking at you Slack) don't allow the original answer, but do the update.
+
+A: Just discovered an alternative solution, and at least for me a much better one, which does NOT require keyboard remapping and works on other people's macs too:
+press shift when you press the comma on the numeric keypad, it will be entered as a point (at least in snow leopard (osx 10.6))
+(As I have a Belgian keyboard layout, I've used the keyboard remapping solution [using Ukulele] for some time, but it didn't play well with all applications, e.g. Eclipse)
+
+A: David's answer was extremely helpful! Give a try to KeyRemap4MacBook
+The app is clumsy & little buggy but does the job.
+On my Spanish - ISO keyboard layout had to enable/change:
+
+
+*
+
+*KeyPad-Dot(.) to Command+X (Cut) with Italian (What?)
+
+*KeyPad Comma(,) to Dot(.) on "Italian Pro Input Source"
+
+
+A: You can also use a tool like Keyboard Maestro. I’ve set it up like this:
+
+
+*
+
+*Triggered by: The Hot Key Key Pad . is pressed
+
+*Action: Insert Text ‘,’ by Pasting
+
+
+It works surprisingly fast without having to create a new keyboard layout or remap keys.
+
+A: I use the app Better Touch Tool that allows you to do so all sorts of customizations with gestures and the keyboard.  I just added a keyboard assignment that essentially mapped shortcut "pad ," to "." and it works perfectly.
+
+A: The app its now called Karabiner. I figure it out on spanish ISO but I think it can be applied to all layouts. 
+In the simple modifications tab, after you have set up the app: 
+
+
+*
+
+*Select your target device on the list.
+
+*Add item in the bottom left corner
+
+*From Key: Keypad_period - To key: Period (.)
+
+
+A: There is NO need for an external program.
+Create a file named DefaultKeyBinding.Dict under ~/Library/KeyBindings/ (/Users/<username>/Library/KeyBindings/), create the KeyBindings folder if it doesn't exists.
+Paste the text below inside the file, save it and restart/logout-login to make it work.
+{
+  "#," = ("insertText:", ".");
+}
+
+Also, here is a gist with more configuration options.
+
+A: Ctrl+, (just for the comma in numeric keyboard) yields to a . (dot) when in spanish layout.
+Oddly enough this works in terminal and in some text editors (like textwrangler). MacVim, for instance, just renders a . when using , in numeric keyboard. And TextMate just ignores this modifier and prints a ,
+... You know, the good thing about apple stuff is that it "just works".

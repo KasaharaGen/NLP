@@ -1,0 +1,26 @@
+Q: Why are some Mail messages shown as empty with "This message has no content"? Sometimes new messages come in and Mail (on OS X Lion and Mountain Lion) shows them as empty, with "This message has no content" in the preview column. The message is empty in the full message view window.
+I'm connected to Exchange 2010 on the backend.
+When I open Outlook for Mac I can see the mail, and it's definitely not empty.
+When I quit and restart Mail the message appears in its entirety, but the middle Mail column (with the subject/from/snippet in it) still says "This message has no content".
+So a Mail restart sort of fixes the problem, but it's quite annoying.
+I didn't have this problem pre-Lion with the same Exchange backend.
+
+A: This is a sync issue that periodically affects exchange clients (Outlook included from time to time).  It is particularly prevalent if you have large numbers of messages in your inbox (rather than in sub-folders).
+The quick fix is to drag the message to a local folder, the mail will generally display correctly at that point.  If it is dragged back to the exchange folders it will remain displayed since the message is now correctly stored in the local cache.
+
+A: In my case: Select the message; Choose from menu View > Message > 'Raw Source'. Now close the 'Source window'. Select that message again. Contents appear now.
+
+A: I just had a user with a similar problem in Yosemite. She could read the original message, but once she moved into a new folder on the IMAP email server, she couldn't see anything other than the header info.
+Turns out the folder had a semi-colon in its name. Once I changed it to a dash, all the messages appeared correctly.
+
+A: I don't know why this happens either, but did I find a workaround that's a bit more lightweight than restarting Mail.app:
+
+Delete the message, and hit CMD-Z (undo delete) immediately after that. This brings back the message, including its lost content.
+
+
+A: I can confirm in MacOS Sierra 10.12.6 this issue still exists. I am getting undeliverable mail messages from GMAIL for my newsletter sign up. On my gmail account I can see the MIME encapsulated content. In the mail.app I only get a "This message has no content" message.
+However, when viewing Raw Source as the above comment says, the display window will now show the content of the email, but the 4-line snippet still says "This message has no content".
+I also get these kinds of issues for my Google Groups post approval/rejection emails from Google.
+Since both of these are auto-generated emails I get from Google, I suspect Google is either not conforming to an email rule or Apple is not conforming to an email rule.
+
+A: I had this issue on macOS Monterey (12.2.1), and other solutions didn't work for me. However, disabling the option Privacy > Protect Mail Activity worked for me. I left on Hide IP address and it still worked. Since that option is half of what Protect Mail Activity does, I'm guessing the background loading of remote content has a bug.

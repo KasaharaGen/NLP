@@ -1,0 +1,31 @@
+Q: How to open a new terminal window when using VIM does someone know how to open a new terminal window when opening a new text with VIM.
+I would like to have an autarchic window which can be resized and closed while the other windows will stay as and where they are.
+Regards
+mmm...
+
+A: You could write a little script like this :
+#!/bin/sh
+osascript <<END
+tell app "Terminal" to do script "vim"
+END
+
+Name this script v and make it executable :
+chmod +x v
+
+Then when you're in terminal, just execute the v script and it will open a new terminal window and run vim.
+Alternatively, if you want to open a text file as part of this:
+#!/usr/bin/osascript
+on run argv
+  tell app "Terminal" to do script "vim " & item 1 of argv
+end run
+
+Then just run v text.txt  and it will open a new terminal window, open vim, and open the text file called text.txt.   If text.txt doesn't exist, as usual, vim will create it in the buffer.
+
+A: You could simply use MacVIM to handle this.  When you install MacVIM it should give you an option to install the command line shortcuts.
+Then, in your Terminal, simply use mvim instead of vi:
+mvim /path/to/your/file.txt
+
+Or, if you are super lazy, add this to your ~/.profile:
+alias vi=mvim
+
+This also allows you to associate text files with MacVIM in finder, so you always get the right application for your files, weather you open them in the GUI or not.

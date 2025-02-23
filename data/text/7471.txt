@@ -1,0 +1,24 @@
+Q: equivalent of windows+L in osx snow leopard 
+Possible Duplicate:
+Is there a quick way to lock my Mac? 
+
+whenever i used to leave my system i just press WINDOWS+L in my windows system. Now i have macbook pro with snow leopard OS and i am searching for equivalent of windows+l.
+So my question is what is the keyboard shortcut to lock macbook pro? 
+i know the shortcut COMMAND+SHIFT+Q.
+But this shortcut is for logout not to lock the system.
+
+A: There isn't really a "lock" feature in Mac OS X. Your best option is to enable the "Require password after sleep or screen saver begins" option in System Preferences > Security & Privacy > General. Then, either put the screen or entire computer to sleep. To put just the screen to sleep from the keyboard, type Shift+Control+Eject. This will make the screen go blank, but your computer will still be running. To put the entire computer to sleep, type Command+Option+Eject. This will cause all running processes to stop until the computer is woken up.
+
+A: control+shift+eject sets the display to sleep. If you have then the option "Require password immediately after sleep or screen saver begins" set in "Security & Privacy" it will lock your machine.
+This will only put the display to sleep not the system: not exactly what you asked but the additional screen sleep is not bad (less energy consumption :-)
+There are other answers here that point out ways to establish a automation to lock the screen from a keyboard command of your choosing. See
+
+
+*
+
+*Is there a quick way to lock my Mac?
+
+*Lock screen with LaunchBar
+
+*https://superuser.com/questions/45740/fast-user-switching-apple-menu
+The last two show several methods to script this. You can then use LaunchBar or FastScripts or another tool to launch the action you prefer.

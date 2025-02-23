@@ -1,0 +1,12 @@
+Q: How can I change the desktop wallpaper for a restricted, parental controlled account? We have an iMac with several accounts (two admins, one normal and one parental controlled).
+My son's account (the parental controlled) will not let me change the desktop wallpaper!  Seriously?  I even told it to allow him to run system preferences (once) and even though I chose another wallpaper image, it won't work.
+SURELY there is a way to change the simple desktop wallpaper for a managed account without opening the terminal?
+Thanks for any tips.
+
+A: You can set the wallpaper to automatically show images from a certain folder, switching images every X amount of time. This way, your son can put the image he wants in the proper folder and remove the old picture, and the next time it is changed it will choose the only picture there.
+
+Use the + button to select the proper folder, change the stretching rule to fit your needs, and check the box for automatically changing the picture. If you don't set it to automatically change pictures, it will look for the last picture used and show a blank screen when it doesn't find it. You can force the image to be reloaded by logging out and back in, or by executing killall Dock from the Terminal.
+
+A: Have you tried making an automator application to take a dropped image and call the "Set the Desktop Picture" action?  
+Any image dropped on the icon should work once you allow the application to run.
+My guess is some other problem is preventing this since I've tested several restricted accounts and all of them allow desktop pictures from the control-click, control panel as well as the application suggested above.

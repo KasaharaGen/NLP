@@ -1,0 +1,52 @@
+Q: Wifi disconnects frequently in Macbook Pro 13" I am new to Macbook Pro and Mac OS X. I am experiencing irritating problem. My internet wifi gets disconnected frequently. 
+Is this a problem with my internet provider or Mac book pro? I bought MBP just two weeks back. I am worried wether I got the defective laptop or what?
+Thanks in advance.
+
+A: If the network you're connecting to uses WEP encryption, try switching it to WPA. You might remember a similar issue around the launch of iPad 2.
+
+A: Make sure you don't have multiple entries in your Keychain for the same network.  Sometimes it will get confused, try to use the wrong password and fail to connect.
+
+A: I have the same problem and call the AppleCare support to try to solve the problem. Here are the steps I performed:
+
+
+*
+
+*Renew the IP address via System preferences... / Network / Advanced... / TCP/IP / Renew DHCP
+
+*Shut down my Mac
+
+*Starting my Mac with Cmd + Alt + R + P
+
+A: Could be several causes, but first one I'd check is interference from other local WiFi networks, or from other electrical devices in your home. 
+An app like iStumbler will let you check if there are any nearby WiFi networks broadcasting on the same channel as yours -- if there are, you can set your router to use a different channel and see if that helps.
+Harder to pin down interference from other electrical devices, but in general, make sure your router is as far away from other potential sources of interference as possible -- that includes cordless phone base stations, microwave ovens etc. This is less of a problem now than it used to be, but it can still occasionally cause problems.
+
+A: Try your notebook on few other wifi networks.
+If on all you get disconnects, probably your macbook is broken. If in others your connection is OK, your current wifi have problems, what can be:
+
+
+*
+
+*DSL disconnects (some routers drop wifi too, when got DSL disconnect)
+
+*problems with wifi access point
+
+
+*
+
+*try disable encryption - or try change encryption scheme
+
+*try tweak some setting in the access point (e.g. channel or soo)
+
+*try this command for get some info
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I
+
+
+*can also try change channel number with the above command (for the help, run it without arguments)
+Other:
+
+
+*
+
+*stop microwave owen ;)
+

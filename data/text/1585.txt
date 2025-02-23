@@ -1,0 +1,62 @@
+Q: How do I edit a .plist file? What's the best application to open and edit a plist file ?
+
+A: If the plist file is in the XML format, you can edit it in any text editor like TextEdit. If the plist file is in the binary format, you can convert it to XML first by running:
+plutil -convert xml1 file.plist
+
+If you want to go back to binary format after editing:
+plutil -convert binary1 file.plist
+
+If you have Xcode 4.3 or later, you can use it to edit property lists in a graphical editor like this:
+
+Xcode 4.2 and earlier came with a separate application for editing property lists (/Developer/Applications/Utilities/Property List Editor.app/).
+
+A: A fine program like TextWrangler can edit binary .plist files without first converting them using Terminal. Simply open the file like you would any other (i.e. drag-and-drop on the program icon, or the File open dialog, or Open With in the Finder or...)
+
+A: Since Apple got rid of the GUI Property List Editor, Xcode is the best free option if you want to be sure of the result.
+There are some gotcha's using a generic code editor to edit plist files.  Since dictionaries use entries like
+<key>some key</key>
+<string>some value</string>
+<key>another key with boolean value</key>
+<true />
+
+You can create a valid XML file that is not a valid plist file, for example:
+<key>some key</key>
+<!-- oops, forgot to enter a value - still valid XML -->
+
+<!-- valid XML, not a plist -->
+<key>another key with boolean value</key>
+<true>yes</true>
+
+If you're willing to go commercial, Plistinator will edit both binary and XML plist files.  
+Full-disclosure: I'm the author of Plistinator and the $12.99 it costs pays for my ramen and rent.
+
+A: Free Visual Studio Code editor can open, edit and save plist files in binary format with the help of the Binary Plist extension:
+
+A Visual Studio Code extension that enables editing of binary property list files as XML. It is inspired by the BinaryPlist Sublime Text package, although the experience is not as seamless (the user must agree to opening a binary file and the editing takes place in an additional tab). A virtual file system is used to achieve this using the FileSystemProvider API.
+The extension is cross-platform but primarily uses the macOS plutil binary for conversion, the Python plistlib is used as an alterntative if available. The node package simple-plist is used as a fallback but due to JavaScript not having a float type real values that are whole numbers will be cast to integer types (a warning dialog is shown first).
+
+
+A: On a Terminal window, you can use PlistBuddy, available at /usr/libexec/PlistBuddy.
+PlistBuddy can read and modify values inside of a plist, either interactively or directly on the command line.
+However, PlistBuddy is not a GUI editor.
+Usage examples:
+# Show full help
+/usr/libexec/PlistBuddy -h
+
+# Print content of plist
+/usr/libexec/PlistBuddy -c print /Library/Preferences/com.apple.TimeMachine.plist
+
+# Print selected content of plist
+/usr/libexec/PlistBuddy -c 'print SkipPaths' /Library/Preferences/com.apple.TimeMachine.plist
+
+
+A: A PList file, like Mankoff said, is just a specially formatted XML file, so you can actually edit and create them in a program like TextEdit.
+Because of the specific nature of PLists to Development, however, using a special program like Xcode or Property List Editor becomes a much more fruitful endeavor. This is because it not only automatically formats the XML code for you, but it will actually translate the key identifiers and layers into readable words, and also for some values it will provide a drop-down menu to fill in the correct responses. Especially when dealing with iPhone plists, when multiple runtime variables can be set using the Plist, easily creating new fields and knowing what to put in them makes it so much easier.
+You can get both Xcode and PList Editor from the Apple Developer website for free by downloading the latest Xcode release.
+
+A: I have used PlistEdit Pro for macOS and found it to be useful and comprehensively feature rich.
+
+A: BBEdit will open plist files for editing, and do any necessary conversion of file types.
+It will also handle file permission access, if needed.
+You can also do things like create Text Filters to do things like encode/decode base64 encoding.
+It's the essential text editor for Mac. (No connection to the company, just a user for 30 years...!)

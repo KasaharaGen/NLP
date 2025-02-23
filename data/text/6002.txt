@@ -1,0 +1,38 @@
+Q: Best approach to offsite backups with Time Machine and USB Disks What is the best approach to using multiple USB disks and Time Machine to achieve a backup methodology with one drive being used for current backups and one stored offsite and updated periodically?
+I've considered swapping the disks periodically but that would mean that the drive that comes "in" from being offsite would be missing incremental backups for whatever period it was offsite.
+Is it better to simply backup to one disk and periodically clone it to the disk that is going offsite?  That seems simple but creates a window during which both disks are onsite.
+
+A: I have thought about that same problem for quite some time now. With online backups, large amounts of files are slow to upload and inconvenient to download; so I really like the two physical USB drives approach. Having both disks onsite while you clone the most recent disk is not as bad as long as you limit the time you use for this. Don't do it over a week, for instance. Get it cloned and offsite ASAP. 
+Having said all of that, my answer to your question is to use something like a Drobo. I haven't done it yet, but Drobo seems like it fits the bill: The Mac will see it as one big Time Machine volume, but in reality you are mirroring multiple disks at the same time. If price is not an issue, and you don't mind handling SATA drives around (You can get an enclosure for the one that will be traveling offsite) it may be something to look into. 
+Hope this helps. 
+
+A: Look into Carbonite. It's $59/year per computer and it backs up your computer automatically in the background. If your Mac crashes, it'll restore the files back on your hard drive where they were.
+
+A: You can use time machine on your main drive, and the use Carbon Copy Cloner to make an exact copy of your offsite drive. You can make as many as you want, and update it periodically.
+
+A: I have used two TM disks for offsite backups quite a lot with good results.  The key thing to keep in mind is that the longer you take to rotate disks, the worse off you will be if disaster happens.
+This is my strategy:
+
+
+*
+
+*Get two or more drives for Time Machine (TM)
+
+*Set up all drives for TM and perform the first backup on each
+
+*** Encrypt the backups **. This is very important if you feel there is even a slight chance of someone gaining physical access.
+
+*Take one drive off-site.  I took the disk to my office when I had to commute.
+
+*Continue the TM backup process on the other disk
+
+*When you plan to do the swap, take the recent TM copy from your home to your work.  ** Do not do it the other way around, as this creates a window where disaster can occur, wiping out all of your backups. **
+
+*Take the older disk from work to home
+
+*Plug in the older disk and it will resume where it left off.
+
+*On the next rotation, repeat steps 4-8
+
+
+I did my swaps once a week, so a worst case scenario is that I would loose a weeks worth of data.

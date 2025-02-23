@@ -1,0 +1,5 @@
+Q: Is there a way to rename a sound card in Mac OS X? I have multiple sound cards connected and would benefit from being able to rename them from their device name to something like "Headphones", "Surround system", etc. Is there a way to do this?
+
+A: The Sound Card’s name comes from the Device itself, which “publishes” its name. The operating system reads the name from there. I don’t believe you can rename it, but you can definitely go to /Applications/Utilities/Audio MIDI Setup and create an Aggregate Audio Device (with the names you want) and select the input/outputs of each.
+For example, you can create your headphones like this:
+

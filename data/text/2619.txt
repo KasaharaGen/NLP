@@ -1,0 +1,6 @@
+Q: Does powertop work with Mac OS X Snow Leopard or are there other power profiling utilities? I recently came across a blog post highlighting powertop for Linux (see: http://www.lesswatts.org/projects/powertop/).  Based on the FAQ, powertop relies on the fact that the Linux kernel is now tickless.  Given a specific Linux kernel requirement, I am doubtful that it will work with the Darwin kernel.  Freshmeat also mentions powertop, but they have a tag suggesting that a POSIX compliant OS can use powertop.  Since FreeBSD is POSIX compliant, I was wondering if anyone had tried powertop on Snow Leopard ?
+If not, does anyone know of similar, power profiling tools for Snow Leopard ?  Specifically, power profiling tools that highlight processes consuming power.
+Thanks,
+Scott
+
+A: Using dtrace and counting which processes wake and the reason and time, you might be able to get some of the information provided by powertop

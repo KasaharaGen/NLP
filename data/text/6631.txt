@@ -1,0 +1,35 @@
+Q: Quicktime now reopens last video. How to avoid? It seems to be a new behavior in Lion but here is what is happening for me:
+
+
+*
+
+*I open a video file
+
+*Quicktime launches and play the video
+
+*When I'm done, I hit CmdQ
+Now, with Lion, when opening another video the same way, it opens but the previously opened one also...
+To avoid this I have to do a CmdW before my CmdQ.
+I suppose it's linked to the General System Preference Restore windows when quitting and re-opening apps.
+If so, is there a way to deactivate it for some of the apps and not globally (as I must admit it's quite handy in other applications)?
+
+A: The NSQuitAlwaysKeepsWindows setting seems to work for me on QuickTimePlayer as well as with Preview. This undocumented setting seems to override any system wide preference.
+
+
+*
+
+*defaults write com.apple.QuickTimePlayer NSQuitAlwaysKeepsWindows -int 0
+For those that care - here is the syntax to set the same for Preview:
+
+
+*
+
+*defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -int 0
+
+A: This is not so much an answer as a suggestion, but here goes:  Try forgetting about Cmd-Q, at least for most things.  Lion has support for the automatic termination of apps if resources become constrained.  Most Apple-provided applications support this facility, and Quicktime is one of them.  It will quietly go away if it has no windows open and OS X decides that it is in the way.
+For an example of this technology in action, you might try keeping Preview running with no windows open – it can be a real challenge, for some folks it quits as soon as they switch away from it  :-)
+
+A: In Mountain Lion, which I believe it's also there in Lion, go to System Preferences, General, check the checkbox that reads "Close windows when quitting an application". The bottom of that option also explains the following: 'When selected, open documents and windows will not be restored when you re-open an application'.
+It worked for me. Quicktime stopped reopening the last video played.
+
+A: The shortcut CmdOptQ is for "Quit and Discard Windows" which will quit the app 'the old way', and not reopen the windows the next time it's launched. So if you only need to suppress this functionality some of the time, this is a good shortcut to know.

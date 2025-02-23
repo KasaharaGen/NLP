@@ -1,0 +1,5 @@
+Q: How can I re-route Cocoa applications through ssh -X? Is is possible to re-route Cocoa applications through ssh -X? I like being able to route X applications, but I want to route Cocoa applications too. Any ideas?
+
+A: No - Cocoa is not an X windows compatible system. The closest you will get is screen sharing (VNC). See this question for more info. For Lion like background sharing with 10.5 and 10.6 see this question on third party VNC tools.
+
+A: You might be able to connect a VNC server and client tunneled through ssh, and view an app remotely that way.

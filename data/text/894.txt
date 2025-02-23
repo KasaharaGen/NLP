@@ -1,0 +1,21 @@
+Q: Can I use the sound output on both my late 2009 iMac and my Cinema Display?  I purchased a 27" Cinema Display to go with my late 2009 iMac.
+What I would like to do is use the speakers on both displays.  This doesn't seem possible using System Prefs -> Sound.  I can only set it to use one set of speakers or the other.
+Ideally I'd have the cinema display output the left channel while the iMac outputs the right.
+Is there a way to use them both?
+
+A: I don’t know if you can get away with that, but I do know what you can’t do with “the tools you have”.
+The first approach would be to - having both output devices connected – create an Aggregate device that encompasses both. 
+Let’s say one device is called: Headphones and the other is Display. 
+The initial approach would be to create the Aggregate device in your Audio MIDI Setup panel, add Headphones and Display as devices, mute Headphones’ left channel and then Display’s right channel. Then happily select this new Aggregate device as your sound output and be super happy.
+Sadly that doesn’t work. (I’ve tried it). Apparently the clock synchronization between the “devices” doesn’t happen and OS X doesn’t really care, therefore only one device outputs audio. (Sad, but true).
+(more information on how to create an Aggregate device that can be found on this Apple Article)
+What to do?
+There’s hope, but I haven’t tried this solution.
+The idea would be to create an aggregate device of your two sources (Display and Headphones) like we did before, then install JackOSX, set its preference to your new aggregate device, start the Jack’s router, set AudioMIDI Setup to use Jack for I/O, open an app to play your music and connect its output send channels to whatever system playback channels you want in Jack Connection manager.
+That might work and I suggest you give it a shot. 
+More simple solutions, might involve cabling, Y-Splitters and weird things which I don’t think you want to dive into (specially given that all the audio is Digital and internal, you’re not talking about external speakers per se).
+Finally, although it doesn’t provide simultaneous playback, changing sound sources is very simple with a free utility like SoundSource from your menu bar. (I do it all the time to switch from headphones to speakers).
+Hope something of this makes sense. 
+
+A: Get two sets of external speakers (one for each monitor), and plug them into a Y-splitter cable, and plug that into the Mac. You'll get the sound balance you seek and, unless you are a hardcore audiophile or have perfect hearing, you won't notice the difference between the analog/digital sound and experience better sound overall. 
+Just because there are speakers on your Apple hardware doesn't mean you have to use them, or to put it another way: two pairs of powered, external, analog speakers will beat the sound of the internal-but-wired-the-same-way-as-external speakers any day.

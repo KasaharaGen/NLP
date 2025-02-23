@@ -1,0 +1,27 @@
+Q: "Hide Input Source Name" changes to "Show input source name" on every reboot, on Lion I use three keyboard layouts (three input sources), and I chose to show the source in the toolbar (I mean the main bar at the top).  
+Since I moved to Lion, in addition to the icon for the input source (usually the flag of the country speaking that source) it also shows the name (which takes a lot of precious space). I choose the "Hide Input Source Name" from the menu and the name goes away until I reboot.
+Any solutions?
+
+A: Another thing you could try would be to lock ~/Library/Preferences/com.apple.menuextra.textinput.plist in Finder. (OS X performs atomic saves on preference files so chmod 600 wouldn't work.)
+At least on my account the file contains just a ModeNameVisible key:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>ModeNameVisible</key>
+    <false/>
+</dict>
+</plist>
+
+
+A: As suggested by @Lri
+rm ~/Library/Preferences/ByHost/com.apple.HIToolbox*
+works, but you need to get the order right, 
+first make sure the label is not showing "Hide Input Source Name" 
+then remove the files as suggested, I guess it is also necessary to restart as well, then add the keyboards (input sources) back.
+But it comes back! 
+This is a bug or something, 
+For the record I am using 
+Dvorak-Qwerty
+U.S.
+Persian  

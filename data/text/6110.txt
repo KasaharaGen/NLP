@@ -1,0 +1,34 @@
+Q: Find information about host IP address? Is there anyway to ping a computer's IP and find out some basic information about it? Platform, OS, etc...
+If so, how would that be done?
+
+A: Using nmap from MacPorts you can run the following command to attempt to identify the OS of a remote machine:
+sudo nmap ipaddress -O
+e.g.:
+$ sudo nmap localhost -O
+
+Starting Nmap 5.51 ( http://nmap.org ) at 2011-08-07 17:58 CEST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000085s latency).
+Not shown: 989 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+88/tcp   open  kerberos-sec
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+515/tcp  open  printer
+631/tcp  open  ipp
+3689/tcp open  rendezvous
+5900/tcp open  vnc
+8888/tcp open  sun-answerbook
+9091/tcp open  xmltec-xmlmail
+Device type: general purpose
+Running: Apple Mac OS X 10.5.X|10.6.X
+OS details: Apple Mac OS X 10.5 - 10.6.3 (Leopard - Snow Leopard) (Darwin 9.0.0 - 10.3.0)
+Network Distance: 0 hops
+
+OS detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 8.80 seconds]
+
+
+A: WakeOnLan is a GUI based app that can give some of this information. Additionally it scans the network and lists all devices. It doesn't have any success recognizing Linux based machines.

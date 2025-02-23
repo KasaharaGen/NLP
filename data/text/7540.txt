@@ -1,0 +1,18 @@
+Q: Apache bonjour module and Sites folder template I just upgraded to Lion and because I do web design, first thing I did was turning on Web Sharing to get Apache running. While checking the logs I found that the Bonjour module can't find a file and warns me about this:
+mod_bonjour: Cannot stat template index file '/System/Library/User Template/English.lproj/Sites/index.html'
+
+So I listed the files under that location and it seems the whole Sites folder is gone. I found out later that Mac OS X doesn't include that folder under your user account by default.
+I'm still wondering how to stop this warnings. Is it safe to create a directory under this system location? I wouldn't like to do that.
+I tried commenting
+RegisterUserSite customized-users
+
+under /etc/apache2/other/bonjour.conf thinking the error was due to the bonjour module trying to compare my index.html with the system template to activate my personal site but it didn't work.
+Any ideas?
+Thank you!
+
+A: I was getting the same warning.
+I did the following:
+sudo mkdir "/System/Library/User Template/English.lproj/Sites/"
+sudo touch "/System/Library/User Template/English.lproj/Sites/index.html"
+
+apache now starts without the warning

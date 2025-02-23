@@ -1,0 +1,42 @@
+Q: Is there a way to "split" one display so that it treated as two separate screens? Is there any app or hack which can split a monitor into multiple screens? So for instance, a 1920x1080 display could be treated by the operating system as though there were two 960x1080 screens connected instead.
+
+A: There's a major difference between Window Management and actually having the operating system, macOS, see one single monitor as two (or more) physical monitors.
+The OP is asking for the latter.
+
+a 1920x1080 display could be treated by the operating system as though there were two 960x1080 screens connected instead.
+
+Emphasis mine.
+Until now, there have been no apps or hacks that would trick the OS into thinking there was two physical displays when there was only one.  The monitor, via EDID data, tells the system what type and configuration the connected display has.  In order for the OS to see two separate monitors, the monitor itself must present as two separate displays.  This also required separate display interfaces.
+The LG 43UN700-B is a true hardware answer to the question.  It has a true "4 screen split" that is supplied by 4 independent inputs.  These inputs can be from one source (your Mac) or from 4 different sources like your Mac, a camera, a video game console and your PC (or any other combination).  The Display's EDID info will tell the connected system(s) that it's either a single 43" monitor or 4 separate 21" monitors.
+
+Other than the accepted answer, the other answers address the question with window management tools.  These tools simply automate the task of sizing and "snapping" the window to a particular location on the screen.  These apps do not present multiple physical monitors to the system.
+TL;DR
+Is there an app or a hack that can make macOS think a monitor is actually two (or more) separate monitors?  No.  However, circa 2020, LG has created a monitor that actually does this
+
+A: There isn't a software solution that answers the OP's request exactly, but in its place you might consider a window manager:
+Window managers
+Original answer: Adding my vote for the window manager Moom! Excellent tool - as simple or complex as you need it to be, and keeps out of the way.
+This is a tool that, like the ones mentioned in the other answer, lets you resize windows to fit defined sections of your screen.
+
+Update July 2019: Since writing this answer, I have switched to using Magnet which is even simpler and more modern; matching my needs.
+
+Update October 2021: I am now using a combination os Swish (mouse gestures for window management) and Yabai (automatic or command-line driven window management)
+
+A: Ever since the Mojave update you can hold click on the expand button:
+
+of any window to go into multi-tasking view where the screen is split into two distinct window spaces.
+
+A: Since El Capitan, you can zoom two windows to "full screen" in the same Space: https://support.apple.com/en-us/HT204948
+To the best of my knowledge, you can't rearrange the two applications within the Space (for example, splitting vertically instead of horizontally) other than swapping them side-to-side, nor have more than two windows in the same Space.
+
+A: There is No: True Multi-Monitor Support for a Single Display
+There is no way to get the OS to treat a single display as more than one display.
+You Can:  Fill Defined Sections of your Screen with an App
+You can get very close to what you are looking for with a tool like SizeUp or Divvy. They will allow you to fill sections of your screen with an app. Halves, quarters, etc.
+Update: Answer still largely accurate as of 7/2020
+After many years a friend mentioned he came across this post. Here is an updated response:
+You still can't do true Linux-like window management or split a large screen into multiple monitors. Mac OS has added to it's Spaces feature including the ability to have fractional spaces (two apps side by side) which is really just a first party version of the third part solution mentioned above. It is still very limited as a window management system and generally less useful than any of the third party tools mentioned in this thread so far.
+You can find a pretty thorough walk through of Spaces over at Apple Insider.
+Also, today I use Moom (as mentioned by other commenters below). I find it to be the best modern answer to this question.
+
+A: You can use BetterDummy to make your virtual displays, then do PIP window streaming without title bar. NOTE that the PIP streaming is only available with the $15 Pro version. I also believe that you need macOS Big Sur or newer.

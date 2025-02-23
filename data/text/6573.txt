@@ -1,0 +1,30 @@
+Q: After disabling Filevault 1, is it possible to enable it again in Lion? It seems that after disabling Filevault 1 in OS X Lion, there no longer is an option to choose between Filevault 1 and Filevault 2 functionality.
+I actually prefer Filevault 1 over Filevault 2, since it does not interfere with my theft protection software and allows me to use a guest account.
+Is there a way to enable Filevault 1 again?
+
+A: Even if the creation tools are gone or hidden very well from us, you point out Lion is happy to keep running a user that has been migrated in so you can take advantage of that to get what you had back again.
+Lion makes it several steps with some minor "complications" - but you should be able to Migrate another user shell in and move your current data into that older style account.
+
+
+*
+
+*It's slightly tricky to juggle the users - you'll want a backup and need to set up a second admin account to do the move. You'll delete the user, but not the files and import the old user (clear the old data) and finally move the new data into place using the old storage mechanism.
+
+*You'll need one of
+
+*
+
+*a running Snow Leopard system or boot disk (to make and then migrate a FileVault 1 user)
+
+*a backup of the system from Snow Leopard days (even if the user data is wrong - you just need the account settings and shell sparse bundle to migrate in again)
+
+
+
+I keep an external USB drive with 15G partitions around with the last OS but no real user data. You could install Snow Leopard onto an external disk or partition and make shell user with FileVault 1 enabled or you could use any backup from your Snow Leopard time to move in another copy of your user with FV1 - and simply move the current contents into the old encrypted sparse bundle storage. 
+Let's start a new question if you want advice HOW to actually do this (since it will depend on your specifics) - this question stands well just with the simple fact that the built in tool to do this isn't available on Lion.
+
+A: Actually it is possible. I did it using a Time Machine backup, but I think it's possible starting from a freshly created user home dir.
+In brief: you must create a sparsebundle, move the home dir in and enable it as the user home directory at login.
+This involves using command line and an administrator account to change the home directory.
+
+A: There is not. FileVault 2 whole-disk encryption has replaced FileVault 1 in 10.7 - you won't be able to choose when turning it in. A user account using FileVault 1 encryption will continue to be able to do so. If it's turned off, however, there's no way to re-enable it.

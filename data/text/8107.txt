@@ -1,0 +1,23 @@
+Q: Why don’t events created in iCal show up in my iCloud calendar? Yesterday I installed Mac OS X 10.7.2, iOS5, and set up my iCloud.com account. I entered my iCloud details in System Preferences in Mac OS X, and in Settings on iOS. In both places, I set calendar syncing to “On”
+However, I just created a test event in iCal, and it didn’t sync to iCloud.com or iOS. Events created on iOS sync to iCloud and iCal just fine.
+What’s going on?
+
+A: It turns out I had to:
+
+
+*
+
+*Add my iCloud account to iCal, in iCal > Preferences > Accounts.
+
+*Set my default calendar to one of my iCloud calendars, in iCal > Preferences > General.
+See e.g.
+
+
+*
+
+*http://www.mac-forums.com/forums/os-x-operating-system/253324-lion-ical-not-syncing-icloud-calendar.html
+
+*http://forums.macrumors.com/showthread.php?t=1249011
+It seems a bit strange that I had to do this manually — you’d think just turning on Calendar syncing in the iCloud preference pane would do it.
+
+A: I changed my "Refresh" settings in iCal preferences from "push" to "every five minutes." For some reason, this got things moving again and started syncing.

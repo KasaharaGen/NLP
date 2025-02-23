@@ -1,0 +1,8 @@
+Q: Airport Express requires frequent rebooting I use an Airport Express to create a wireless network at home. Frequently (~2 times a week), all the computers using the network (eMac, Intel iMac, MacBook Air) can see the network as an option in the Airport/WiFi menu (one machine is running Panther, one Leopard, one Lion), but cannot connect, resulting in a Timeout error. I get the same problems when trying to connect my iPod Touch. The light on the Airport Express is still green when this happens. Rebooting the Airport Express fixes the problem.
+What could be causing this, and is there any solution that doesn't involve climbing under the desk in my family room twice a week to unplug and replug the Airport Express?
+
+A: In a WLAN used primarily with the same computers all the time, a DHCP lease timeout of 4 hours isn't necessary. You can easily set this to 4 weeks.
+
+A: I have the same issues - sometimes it'll die by the end of the day. It used to be much more frequent, then I saw a comment about turning off DHCP on it totally, and just giving it a static IP. I picked the top IP in the range, and it'll never get used. If you wanted you got adjust your IP range in your DHCP server and pick an IP that's out of that range.
+I've seen my uptime's jump up significantly. Still crashes, but much less often than it used to.
+Mine is getting old though, after several years it's outlasted every NetGear, Belkin, etc device I've ever owned. Time to get a new one.

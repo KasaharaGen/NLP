@@ -1,0 +1,10 @@
+Q: No .bash_profile in OS X Lion? I just did a clean install of OS X Lion and I see that now I have no .bash_profile file in my home directory.
+Should I create this by hand? (I want to save in it some alias.)
+Thank you.
+PS : The only file that exist now that I could use is /etc/profile
+
+A: By default this file does not exist on any version of OS X. And yes, it is up to you to create it manually:
+touch ~/.bash_profile
+Alternatively, you could use nano as well if you want to edit the file at the same time:
+nano ~/.bash_profile
+Do not monkey in /etc unless you know what you're doing. 

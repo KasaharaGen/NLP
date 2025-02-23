@@ -1,0 +1,29 @@
+Q: How can I know where does an app locate its configuration files? How can I know where does an app locate its configuration files such as in ~, /Library, ~/Library etc, other than browsing and guessing?
+I mean is there some command like findfiles this.app that prints them out or something?  
+
+A: There are a few programs which can give you insight into file system usage while programs are running. 
+There are a few good terminal ones like lsof, but I really like fseventer for its simple graphical interface and play/pause button.
+All you would do is run your program, run fseventer, and if you make a change to your preferences or configuration and it is stored in a file, it will show you the process touching the file.
+If it is something like Entourage which stores its rules in files but then keeps them in memory until quit/start, you may want to close other programs and launch your program of choice to see what it loads, then quit it to see the reverse process.
+
+A: Applications in Mac have their own application identifier. They use this identifier for naming their preference files and other files such as caches. To find this identifier, view the application's package content (right click and select) and go into the contents folder and open Info.plist in TextEdit.
+An example of an application identifier is:
+com.CompanyName.ApplicationName (for companies)
+
+or
+org.OrgName.ApplicationName (for organizations)
+
+So the application identifier for Google Chrome, for example is:
+com.google.Chrome
+
+To actually find the identifier, open TextEdit, and press Cmd+F to open the Find dialog, and type CFBundleIdentifier. The line after this is the application identifier.
+After finding the application identifier you can find the files easily in the usual folders. However, spotlight does not search such items, and you would have to use a terminal command:
+find ~ -iname "com.company.application"
+
+to search the whole hard drive:
+sudo find /  -iname "com.company.application"
+
+For other files, you can use fseventer, as hobs pointed out, to search in real time for what the application accesses, writes and reads on the hard drive.
+
+A: Found a good tutorial which scans for files modified after a defined timestamp.
+http://www.westwind.com/reference/OS-X/finding-settings.html

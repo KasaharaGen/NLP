@@ -1,0 +1,63 @@
+Q: iCloud calendar not sending invites As in the title. iCloud calendar is not sending invites to people being invited. No matter whether I try via icloud.com or iCal.app synced with iCloud - it just doesn't. No events no updates. Tested sending to a gmail address and at least two other.
+Why doesn't it?
+
+A: Here's what I found: when you send an iCloud calendar invite to someone's email address, if that address happens to be their AppleID username that is now also associated with iCloud, then Apple tries to outsmart the users, and routes that calendar invite instead to the recipient's AppleID/iCloud account calendar.
+Here's a thread I started on it: http://forums.macrumors.com/showthread.php?t=1267665
+
+A: I have found when I do not include a location with the invite it goes through.  I have even edited earlier invites and removed the location and the invite is received
+
+A: The problem still exists...
+However, Google Gmail is smart to ignore any suffix in your gmail address following a '+' sign.
+If your gmail is first.last@gmail.com, then any first.last+anything_i_can_add@gmail.com will go to your inbox.
+You can use this trick to ask your iCloud contacts to use a fake but valid address like first.last+icloud@gmail.com address when they invite you.
+This way, the Apple server logic is fooled, but you still receive all the notifications.
+
+A: Found this @ http://productforums.google.com/forum/#!topic/calendar/gtpX0F7kgKI
+For what it's worth, I started having a similar issue recently and came across this thread while researching the solution. My wife has an iPhone, I'm Android, and she routinely sends calendar invites to me. We just realized that I've recently stopped getting those invites to my Gmail account, even though she's still adding me the same way she always has. It turns out that since my iCloud account is setup with my Gmail address, iCloud has started to "intercept" those invites from her iPhone. Instead of going to my email account, they're being automatically added to my iCalendar. This can be disabled by:
+
+
+*
+
+*Logging in at https://www.icloud.com
+
+*Go to Calendar -> (Cog) -> Preference -> Advanced 
+
+*Beside "Invitations" select Email To  (Use this option if your primary calendar is not iCloud).
+
+
+This may solve your problem if:
+
+
+*
+
+*Someone with an iDevice is sending your the invite.
+
+*You have an iCloud account.
+
+
+A: Ok we have found a possible answer to this issue:  
+
+
+*
+
+*If you are using any other mail address other than icloud.com as your apple id all your invitation is being redirected to your icloud calendar.
+
+*If you do not sync your icloud calendar then you will remain unaware of the invitation.
+
+*You can correct this by logging in to iCloud, accessing the calendar preferences and going to the advance tab and tick the bottom box to not use in app serviced but to send mail to your primary address
+
+
+Please can someone force Apple to make this a default setting as the world is not on iCloud yet
+
+A: My was not working either as of yesterday.  I went into all of my events that I created yesterday and edited them to reflect a change so that an update email would have to be sent out.  I did this to check if they were working and they myself and all of the invitees WERE sent emails this time. 
+Not real sure why, but it seems to be working now.  Creating new events with invites also seems to work now.  Go figure.
+
+A: As in my previous problem with iCloud - it took a little bit of time for it to start working.
+It's also worth noting, that calendar invites don't get delivered to email accounts that are configured in your Mail.app.
+
+A: The person you are sending this to is using the email address as the log into iCloud.  That person needs to log into iCloud and go to calendar on the bottom left is a gear click it go to preference and then up top click on advance.  At the bottom on invitations In app should be highlighted as default under it click on use my email.
+
+A: Seems to be new iCloud accounts, that hasn't assigned with phone number can't send invites, but can accept them.
+I've just created new iCloud (with gmail email) account, logon on the iPhone w/o SIM and no one invite was send to contacts. I've tried: phone numbers, different email addresses, via iPhone / iCloud.com, and get no inapp invite, no email.
+At the same time, I've received invitations in this account.
+Probably, Apple denying sending invites from unphoned accounts to reduce calendar  spam. But nothing that said in KB

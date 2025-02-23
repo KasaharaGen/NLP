@@ -1,0 +1,33 @@
+Q: Where is the Launchpad database stored and is there a way to edit it directly? When exploring the new Launchpad feature, at first, it would seem as is it draws it's content primarily from the Programs folder.
+It seems to be the case, however, that the Launchpad database is drawn from somewhere else. 
+For example, when installing a game through Steam, the game itself will not show up in the Programs folder, but will show up in Launchpad. In this particular case, I want it to be in Launchpad. The drawbacks, however, are that I am unable to remove the game from Launchpad and am unable to change the icon.
+Where can I directly view and modify every Launchpad occurrence?
+
+A: Apologies for tacking this on to a 2-year old thread, but FWIW the value for some-hex-name is stored in ~/Library/Preferences/ByHost/com.apple.dock.*another-hex-name*.plist as LaunchPadDBName.
+It seems like the number itself is not important, and may in fact be random; but, it may probably needs to conform to the UUID format.  Changing this value for a user, then logging in, will result in a new .db being created if it does not already exist.
+You can use this to set multiple accounts to use a pre-defined LaunchPad configuration, etc.
+"another-hex-name" is the UUID of the computer
+
+A simpler way to access this value is to use:
+defaults -currentHost read com.apple.dock LaunchPadDBName
+
+This makes use of the -currentHost argument of the defaults command:
+Host  Optionally you can restrict changes to a specific host
+      by default changes will apply to any host.
+      [-host hostname]  Restrict to a remote machine.
+      [-currentHost]    Restrict to the host the user is currently logged into.
+
+
+A: The Launchpad database is located at ~/Library/Application Support/Dock/*some-hex-name*.db
+To edit it, you'll have to use SQLite. You can do this on the command line, or with a graphic interface.
+See this Ask Different question for recommendations for a GUI app.
+
+MacOS Sierra and newer
+On macOS Sierra and newer the old launchpad database does not exists anymore. Instead every user has his personal launchpad database somewhere inside /private/var/folders.
+How to find the database
+The /private/var/folders directory contains lots of cryptic folder names, but you can identify the path to your user's personal folder using getconf DARWIN_USER_DIR. You may note this command returns a path inside /var/folders instead of /private/var/folders, but /var is a symlink to /private/var.
+The following one-line command will return the path to the database:
+ echo /private$(getconf DARWIN_USER_DIR)com.apple.dock.launchpad/db/db
+
+After you have the path to the new database, you can continue to edit it like before (e.g. using sqlite3 command).
+Thanks to Chris Perry from Jamf Nation for sharing what he found! See his post here.

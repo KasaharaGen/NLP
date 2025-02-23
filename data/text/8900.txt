@@ -1,0 +1,7 @@
+Q: Torrent client for OS X that can be shared between multiple user accounts I am looking to transform my macMini into a media server that is shared by all my flat mates. 
+I want to fully share: the torrent client, the media centre application and the media library.
+Now the question is what torrent client can be used between several accounts and preferably from Guest account also. If Guest account cannot be used, I will create a generic user instead of goest.
+Still, I would strongly prefer a torrent client that is able to run as daemon, without requiring you to login.
+
+A: You could use Transmission. But instead of just using the app set up the daemon and use the web interface or the remote client GUI to access the service.
+This way you will be able to access the service even from other computers without having to open a user session on the computer.

@@ -1,0 +1,57 @@
+Q: For least power usage, should I turn off or put my Mac to sleep? If I'm not going to be using my Mac for a while, am I better off shutting it down completely or just putting it to sleep?
+Obviously it uses more power to "sleep" than to be off completely, but it uses much more power during the boot up and shut-down stages... Presumably, if I'm going away for a couple of minutes, I'm better of sleeping it, but if I'm leaving it for some longer period I should shut it down completely (assuming I know how long I'll be away for!).
+How can I tell when to shut it down vs sleep it?
+I'm interested in knowing the answer for a few different, specific models (me/friends/family):
+
+
+*
+
+*Mac Mini (late 2010)
+
+*MacBook Pro 15" i7 (late 2010)
+
+*MacBook Pro 15" Core 2 Duo (late 2007)
+
+*MacBook 13" Core 2 Duo (mid 2008)
+
+
+But of course it'd be useful to have some more generic information for others too.
+
+A: I have a fairly generic (mathematical) answer, but can only find some of the actual numbers.
+After finding the 2010 Mac Mini Environmental Report from Apple, there are four important numbers:
+
+
+*
+
+*Tbooting = The time taken to boot up and shut down (s)
+
+*Pbooting = The power consumption while booting or shutting down (W)
+
+*Psleep = The power consumption while sleeping (W)
+
+*Poff = The power consumption while off (W)
+
+
+The last is actually stated in the Mac Mini's environmental report, and for very low sleep power usage can't just be ignored!
+The total energy used during a period of sleep is:
+Esleep = time * Psleep
+
+The total energy used from shutting down, being off for a time and booting up is:
+Eshutdown = (time * Poff) + (Tbooting * Pbooting)
+
+Requiring that Eshutdown < Esleep, we can rearrange the inequality to give:
+time > Tbooting * ( Pbooting / (Psleep - Poff) )
+
+The Mac Mini's environmental report provides Psleep and Poff, and if we assume say 90 seconds total booting/shutting-down time and about 35W during said times, this would give an answer of 45 minutes.
+I've yet to find similar values for the laptops (they make a big deal about the Mac Mini being so energy efficient), and the booting power/times would really need to be measured to provide accurate figures. But it surprised me that it was only 1 hour (I was expecting somewhat longer based on claims I've read in the past, that went along the lines of this discussion).
+As @mankoff points out, there's another option which is to hibernate using something like DeepSleep. In my experience this is usually faster than a full shutdown, and of course it uses the same (incredibly low) power while off/hibernating. So to compare mathematically, you can consider it a "shutdown" of sorts and use the same equations (with the time taken to enter and recover from hibernate as Tbooting and the power usage while it swaps between RAM and disk as Pbooting). More than likely, this will reduce the the time answer since Tbooting should have been reduced somewhat.
+A final thought is that laptop batteries seem to lose voltage over time, even when off, at a higher rate than the Mac Mini's advertised Poff. So the Poff value might actually be quite a bit higher for a computer with a battery, which may significantly lengthen the threshold between standby and shut-down/hibernate (however the battery and charging circuitry will complicate measurements of Poff). And to further complicate things (and possibly ruin the whole argument!), more recent Mac laptops will write the contents of RAM to the disk even when they go to sleep, in case your battery runs flat while sleeping (effectively preparing for a hibernate in case it's forced).
+
+A: You are asking a very specific question:
+
+How can I tell when to shut it down vs
+  sleep it?
+
+If you want to know exactly when the time window is where the cost benefit changes from sleep to off, or vice versa, you'll want to buy a Kill-a-Watt and collect some data, such as exactly what the sleep power draw is of each of those systems, and what the boot power draw is.
+I expect the power draw will be a function of temperature, among other things. And the cost might be a function of time-of-day, depending on your power provider.
+A 3rd option to complicate the choice is hibernate mode, easily available via the DeepSleep widget.

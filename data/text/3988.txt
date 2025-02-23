@@ -1,0 +1,40 @@
+Q: prevent launchctl from starting a anonymous process I have installed dnsmasq and now I want to be able to start it with launchctl. The problem is that every time I start the app launchctl starts an anonyous process instead of using the specified label.
+10247   -   0x100107c30.anonymous.dnsmasq
+-       0   com.example.dnsmasq
+
+But I want it to be
+10247    0  com.example.dnsmasq
+
+The problem with the anonymous process is that I can't stop it with launchctl. When I run
+launchctl stop com.example.dnsmasq
+
+the anonymous process still stays alive.
+Here is my property file:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.example.dnsmasq</string>    
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/local/sbin/dnsmasq</string>
+        <string>-p</string>
+        <string>2155</string>
+        <string>-R</string>
+        <string>-A</string>
+        <string>/.dev/127.0.0.1</string>
+        <string>-x</string>
+        <string>/usr/local/var/run/dnsmasq.pid</string>
+    </array>
+  <key>RunAtLoad</key>
+  <false/>
+  <key>KeepAlive</key>
+  <false/>
+</dict>
+</plist>
+
+Any idea on how to fix this?
+
+A: That isn't actually launchctl creating a new process; it's most likely dnsmasq  itself.  If it fork()s into the background, launchd can't tell; then when it talks to launchd, launchd creates an anonymous entry for it.  Make sure dnsmasq doesn't background itself.
+(The - listed for the regular launchctl list output indicates that the original dnsmasq process exited.)

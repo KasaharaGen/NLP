@@ -1,0 +1,59 @@
+Q: How can I quickly navigate through man pages in the Terminal Is there any way to quickly scroll through text-heavy output in Terminal such as man pages ? Using the up and down arrows only move the screen one line at a time; is there any way to scroll faster?
+
+A: You can open man pages in a single, scrollable window from Terminal's Help menu. Just type the command into the search field in the Help menu, then click the command in the search results to open its man page. It may occasionally take a few seconds for the command to appear in the search results.
+You can also find most man pages online, with Apple-specific man pages found on apple's developer library. I generally google with apple man [command] replacing [command] with the actual command. One nice thing about this method is you can easily bookmark man pages you use frequently.
+
+A: If I understood you correctly, you want to skim through manual pages more efficiently.
+By default, man uses less as its pager. In less, you can use:
+
+
+*
+
+*Space or f or Control ⌃-f to advance one page
+
+*d or Control ⌃-d to advance half a page
+
+*b or Control ⌃-b to go back one page
+
+*u or Control ⌃-u to go back half a page
+
+
+You can get the full list of less keyboard commands in its manual page. If you don't like the default pager, you can set MANPAGER or PAGER environment variables to specify a different program for controlling the pagination of man pages that are longer than one screen.
+
+A: Shift ⇧-Page Up ⇞ and Shift ⇧-Page Down ⇟ will move man pages a page at a time.
+(On a laptop or other smaller keyboard, the keystrokes are usually Shift ⇧-Fn-Up Arrow ↑ and Shift ⇧-Fn-Down Arrow ↓.)
+
+A: For non-Apple specific commands which tend to be the same across various UNIX platforms something I do is Google man [command] in a browser. The top result will almost always be an HTML-ified man page.
+
+A: This answer gets around your question: Install Bwana.
+This will open man pages in the browser. I've used this for years and it's one of my favorite additions for Terminal functionality.
+
+A: I would recommend ManOpen, which allows you to open a man page in a normal text window.
+You can also create an alias (let me know if you need help with this) using
+pman() {
+    man -t "${1}" | open -f -a Preview
+}  
+
+
+A: I usually just use
+
+
+*
+
+*z to move forward one window
+
+*w to move back one window
+
+
+A: I have an app 'man reader' that lists all man pages on left and you can select one and it shows the man page in a Mac window.  Runs on Sierra and is pretty nice. Can scroll man page up or down.
+
+A: In VSCode on Mac
+
+*
+
+*g to go to the beginning of man pages.
+
+*G to go to the end of man pages.
+
+
+A: For me, on OSX, [fn] + [enter] works.

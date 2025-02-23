@@ -1,0 +1,12 @@
+Q: Setup proxy in Mac OS X Lion Installer I have "restored" one usb stick with the BaseSystem.dmg of the InstallESD.dmg of my Lion installation and it boots. However it wants to connect to the internet to check the system requirements blablabla. Due to the fact, that i am currently at university where we use a proxy the network tool tells me that i have no connection. How can i set up the right proxy? Via the Terminal?
+(Btw. the screen that opens is the Mac OS X Service Tools (don't know how to translate) which offers me to restore from Time Machine or to install Lion or to search online help. The Tools i can use are Firmware Password, Network tool and Terminal.)
+
+A: Open the Terminal and enter your proxy configuration using "networksetup".
+For example
+networksetup -setautoproxyurl Ethernet http://your.proxy.url/proxy.pac
+
+"Ethernet" is the name of the network service, use
+networksetup -listallnetworkservices
+
+to see which name to use. If you don't use automatic proxy configuration, see "man networksetup" to see how to set up a manual configuration.
+Then quit the Terminal and start the installation.

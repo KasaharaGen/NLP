@@ -1,0 +1,17 @@
+Q: Terminal PS1 and colors I am used from Linux to have a colored prompt in my shells and also want to implement that in my OS X Terminal.app. The Terminal reacts differently though. If I use my normal PS1 code the right side of any line will be cut down at a strange point (surely not the right end of the Terminal window). And also the next line will not show on the next line but on the same line.
+expected reaction:
+erik2:~[06:46 am]$ expectedexpectedexpectedexpectedexpectedexpectedexpect
+edexpected_
+
+real reaction:
+ectedexpected_am]$ expectedexpectedexpectedexpectedexp
+
+Is that normal for Terminal? Is there an alternative? Did I just code something wrong?
+Have a look at my PS1 code:
+export PS1="\033[0;34m\u:\W\e[0;32m[\@]\e[m\033[0;34m$\033[m "
+
+
+A: You need to escape the non-printing parts of the prompt by surrounding them with \[…\].
+export PS1="\[\033[0;34m\]\u:\W\[\e[0;32m\][\@]\[\e[m\033[0;34m$\033[m\] "
+
+Otherwise, readline gets confused about the remaining space on the command line.

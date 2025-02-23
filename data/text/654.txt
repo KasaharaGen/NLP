@@ -1,0 +1,11 @@
+Q: Speeding up and improving directory listing from windows Servers? When I connect to windows servers (called PC-servers in OS X) getting the list of files in a directory is really slow (20-30s) in comparison to using a windows machine (<1s). Sometimes the files in a directory even disappear for a while! The network is not slow - copying files goes at 1Mbyte/s.
+What can I do to improve this?
+
+A: If you are using the Finder then try with another file manager or try run a ls in the terminal. Let us know if you are experiencing the same kind of delays using the command line.
+Some good alternative file manager are muCommander and Midnight Commander. Try both.
+
+A: I was able to speed up the directory listing by mounting shares via the command line, like this: 
+mount -t smbfs //user@server/sharename share
+
+Where share is a directory in my home directory. 
+Somehow this is faster than mounting in the finder. Or is it ADmitMac slowing stuff down?

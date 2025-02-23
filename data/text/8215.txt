@@ -1,0 +1,7 @@
+Q: On Snow Leopard, the default unzip tool won't ask for password but just report it can't unzip? Yesterday, I zipped up something using 7-zip on the PC, using a password for the zip file.  So if I copy the file to another PC and unzip, it asks for the password and restore the file.  However, if I copy the file to a Mac with Snow Leopard and double click on that file, it will simply say, can't unzip the file.  (Archive Utility was the app).
+For me, since I know UNIX, I tried to open up Terminal and typed in
+unzip foo.zip
+
+and it actually asked for the password and unzipped for me, but I just wonder, what about if I don't use Terminal, or for people who are not familiar with the command line, how can it be done?
+
+A: I don't think the built-in decompression utility can unzip password protected files.  However, The Unarchiver is the way to go for all things compression related on OS X anyway.

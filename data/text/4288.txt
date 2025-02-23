@@ -1,0 +1,21 @@
+Q: Where are environment variables specified when .profile, .bash_login, .bash_profile cannot be found? When I type env at the terminal prompt, I get a dump of all the environment variables.  When I check / or ~, however, I do not see a .profile, .bash_login or .bash_profile.
+Where is this being stored in Mac OS X 10.6.7 ?
+Thanks,
+Scott
+
+A: It sounds like you are using bash.
+bash first runs /etc/profile. /etc/profile (on Mac OS X 10.6.7) runs path_helper(8) which is where your default paths get set. After that it runs /etc/bashrc which doesn't do much. Once the default configuration is set, it moves on to the user login scripts.
+bash looks in your home directory for .bash_profile, .bash_login, and .profile in that order. bash will run the first of these that it finds and stop looking.
+
+A: Usually those files should reside in your /etc directory. In case when you don't have your local copy of say .profile then the system uses /etc/profile .
+
+A: Have a look at the following links. Some of them may help. ;)
+
+
+*
+
+*https://superuser.com/questions/182402/setting-environment-variables-mac-10-6
+
+*https://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x
+
+*http://developer.apple.com/library/mac/#qa/qa1067/_index.html

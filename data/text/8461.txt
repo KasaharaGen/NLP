@@ -1,0 +1,32 @@
+Q: How can I find the product key of Office 2011 after restoring from backup? I had to restore my iMac from a Time Machine backup.
+Everything seemed fine until I tried to start Office 2011 and it is asking me to re-enter my product key. I am trying to locate my key (I believe I downloaded this version originally and it should be in my email but I can't find it)
+I tried a program that is supposed to "find the keys for products installed on your computer" (Mac Product Key Finder) and it found my very old Office 2008 key, but not 2011.
+I am surprised that if I had a totally working install before recovering from back-up that this wasn't restored as well - do I have any options to find it hiding somewhere on my drive?
+Note: The recovery was after a hard drive was replaced by the Apple store - if that makes a difference, so this is a new internal drive.
+
+A: Office 2011 requires activation and is tied to your hardware so it might very well be that you need to reactivate Office 2011 after the HD change. The whole activation procedure is described in Office for Mac 2011 Activation and Product key Information (via archive.org). According to this document, the product key was mailed to you in a mail with subject "Microsoft Office for Mac – Order Confirmation".
+
+Microsoft has replaced the support article linked above with a new one describing how to Activate Office for Mac 2011. As mentioned on the top of that page
+
+Support for Office for Mac 2011 ended on October 10, 2017. All of your Office for Mac 2011 apps will continue to function. However, you could expose yourself to serious and potentially harmful security risks. Upgrade to a newer version of Office so you can stay up to date with all the latest features, patches, and security updates.
+
+
+A: This thread is a bit old, but in case someone else finds themselves looking for the answer, this just worked for me:
+To move / re-install your licensed copy of Microsoft Office 2011 for Mac on a different computer / OSX installation, and re-authorize it without the license / serial / key available, copy the following from the old machine to the corresponding (same) spot on the new computer.
+Please note that you should be looking for these folders in the root directory of the drive on which OSX is installed-- NOT in your user directory. To get there, in the Finder click Go-->Computer-->[name of the hard drive that has OSX installed...usually "Macintosh HD"]...then look for the following folders:
+
+*
+
+*/Applications/Microsoft Office 2011 folder (copy the entire folder, with all its contents)
+
+*/Library/LaunchDaemons/com.microsoft.office.licensing.helper.plist
+
+*/Library/PrivilegedHelperTools/com.microsoft.office.licensing.helper
+
+*/Library/Preferences/com.microsoft.office.licensing.plist
+
+From:
+http://cwl.cc/2012/02/easy-way-to-move-your-microsoft-office.html
+Note NOV2020: If you just copy/paste the last file "/Library/Preferences/com.microsoft.office.licensing.plist" as instructed above, it should work as well. For transparency, this was tested on an old mbp with El Capitan and incoming connections blocked with Firewall (unsure if Firewall would affect outcome).
+
+A: Its only in your email if you bought it online. If you bought it in Best Buy and are in another city (as I am right now) apparently you are out of luck!

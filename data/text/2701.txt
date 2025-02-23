@@ -1,0 +1,30 @@
+Q: Port forwarding on iPhone? I'm using iPhone as a modem.
+Is there a way to port forward to my computer because I'm using it as a development server.
+
+A: Short answer
+Until now (iOS 9.1) there has been no way to configure port forwarding in Personal Hotspot
+Long Answer
+Activating Personal Hotspot on an iOS device enables it's built-in NAT router. Other devices that connect to this iPhone (using USB, WiFi or Bluetooth) get an IP in the 172.16.0.0/12 subdomain.
+There are no NAT settings in iOS, nor does it provide UPnP or NAT-PMP for remote NAT configuration.
+Why?
+Nobody knows Apple's reasons.
+Wild guess: Knowing that availability of the Personal Hotspot feature on an iOS device depends on it's carrier, Apple may have disabled further features as way to play nice with the carriers.
+Possible Workarounds
+
+*
+
+*On the device that needs to accept incoming connections: connect to a VPN that provides a public IP and incoming connections
+
+*If you have access to the remote device you could create a tunnel (e.g. with ssh)
+
+*If the remote device is connected to the same iCloud account, enabling Back to my Mac will put you on the same private IPv6 network
+
+*Using a 4G modem instead of your iPhone will give you a direct internet connection accepting incoming connections
+
+Edit: BUT...
+Even you could bypass NAT on your device, your cellular IPv4 internet connection is very probably also behind a carrier-grade NAT.
+
+A: There is no way to do port forwarding on an iPhone when using it as a Wi-Fi hotspot.  This is by design.  (IMO) the iPhone hotspot feature was to allow users to access the Internet via their phone's data plan so the user could check email, surf the web, chat, etc.   It wasn't designed to serve as a router with more advanced features.
+There are no ports open on either "side" of the iPhone hotspot in which to interface for management.  I did a portscan on both the public side and the private side (from a Mac and a PC) to see if I could access a management page - it's locked down and doesn't respond (though it does respond to a ping).
+However, I just tested and verified that my dedicated hotspot - AT&T Unite Explore does support port forwarding (page 60 of User Manual).  I was able to forward port 22 to my laptop and successfully connected via SSH to it.  
+One last thing - while I was able to do this successfully on AT&T, your provider may not allow you to open ports on your device - check with them first.

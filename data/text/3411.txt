@@ -1,0 +1,11 @@
+Q: IPhone App or OS function to stop all apps I am looking for a good way to stop all apps in the background without manually stopping each of them individually. Something straight from the OS would be preferred, but I would not mind using a management app either.Some apps are taking a lot of battery and I would like to kill them with as few as possible steps in the evening.
+
+A: Since you mentioned GPS apps specifically, you can turn off Core Location ("Location Services") in the settings app.
+Each app runs in it's own sandbox and is totally oblivious to other apps. There's no way with public APIs to know of other apps, so a "task killer" such as you might have on Android isn't possible on iOS.
+Generally, a well-written app will not use excessive background resources. If you can find out which app is sucking resources, I'd recommend sending a support ticket into the developer and let them know what's going on. From my own personal experience as a developer, I'd love to know what I'm doing that makes my users upset, so this is win for both you and h(im|er).
+The bottom line, though, is that you're stuck manually killing them. :(
+
+A: Restart your iphone. What I do every night is turn brightness down, and turn airplane mode on. If it's charged, it will last overnight with an app like Sleep Cycle open. I don't feel the need to close anything.
+Apps have no knowledge of each other, and there's nothing like this in Settings. I haven't heard of a jailbreak app able to do this, but I'm not a jailbreaker so I wouldn't know for sure.
+
+A: While I still hope for a better solution, I'm using SBSettings after jailbreaking. I can see available memory and press "Process -> Free Up Memory" when needed as well as see the apps that are actually taking up memory.

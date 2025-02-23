@@ -1,0 +1,9 @@
+Q: Change an app from "all users" to "this user only" I've been on my mac for quite a while now, using only a single account (mine).
+I've added a new account for my girlfriend recently (yes it's getting serious), but I have a little problem. 
+I'm a physicist and therefore use a lot of domain-specific apps (matlab, macvim, latex, ...) which my girlfriend doesn't need. 
+How can I change these apps so they only show up in my account's applications folder (I am the admin). Vice versa, I would also want that none of the apps she installs are visible on my account. 
+How would this be done? Do her privileges prevent her from installing global apps?
+
+A: You have two questions here. ( and ~ is short for the /Users/current_user folder)
+1) For apps only to show up in your account - move them to ~/Applications 
+2) If a user is not part of the Administrators group then that user cannot install apps in /Applications which is the normal place for shared Applications. Non admin users can install apps in their home folder ~ but not another user's Applications folder nor the system Applications folder.

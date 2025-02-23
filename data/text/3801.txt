@@ -1,0 +1,20 @@
+Q: "You need to restart your computer" freeze while waking up Yesterday I just closed my mbp and this morning I had the great pleasure to have this:
+
+At the login (passwork) screen...
+I had an uptime of more than 5 days but still ... I upgraded the memory from 4 GB to 8 GB (the Crucial kit) and since then I had this problem twice. Maybe it doesn't mean anything because I have the MBP for only 2 weeks and I upgraded the memory after a few days, so the statistics are maybe meaningless.
+My question is: do you have this problem sometimes ? Should I check something in particular to try to avoid that ? Is it possible that the memory is incorrectly installed (very unlikely...) ? Is it in any case a memory problem ?
+
+A: *
+
+*No, this is not a common issue and should not occur under normal circumstances. It's an indication that something unexpected (and unrecoverable) happened. That screen is the final net for catching a problem before your computer is completely locked.
+
+*If you just got new RAM, I'd try removing it an using the computer for a few days. If the problem persists, there might be a hardware problem and since the computer is new, you can take it to an App Store.
+
+*If you have "external" peripherals (drives, Audio interfaces, etc.) try working without them for a while. 
+Last but not least, act now that the box is new, don't let it "wait" because it didn't happen again in two weeks. If the above happened more than once in a short time frame on a new machine, there's something wrong. That's been my experience. 
+
+A: Most likely, it's the RAM since it's the last thing you changed.
+You can check the kernel panic logs under:
+  Console -> DIAGNOSTIC AND USAGE INFORMATION
+When I had RAM problems I noticed that my KP logs weren't consistent in either the process name or backtrace, which makes sense for a RAM problem but could also apply to other hardware problems.
+I was able to narrow it down to my 3rd party RAM using the stress test feature in Prime95. This was enough evidence to get replacement RAM from the merchant. Apple's hardware test never found a problem.

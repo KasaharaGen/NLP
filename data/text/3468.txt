@@ -1,0 +1,17 @@
+Q: MySQL - installation from source failed on ./configure I'm following this How-to on installing MySQL on Snow Leopard but instead of using MySQL 5.1 I'm downloading the source for MySQL 5.5.11
+so when I go into the source directory and run:
+./configure --prefix=/usr/local/mysql --with-extra-charsets=complex \
+--enable-thread-safe-client --enable-local-infile --enable-shared \
+--with-plugins=innobase
+
+I get:
+-bash: ./configure: No such file or directory
+
+What am I missing? what am I doing wrong?
+
+A: Why don't you install MySQL from the DMG image - it works.
+BUT - I'm not able to start v5.5.11 after the install, so I'm back on v5.1.56. It should only be a problem when installed on Snow Leopard.
+
+A: You've downloaded the binary version, not the source.
+This is the reason that you're getting the config error.
+:)

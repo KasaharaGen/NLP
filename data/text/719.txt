@@ -1,0 +1,27 @@
+Q: How can I get boot details when booting from Snow Leopard DVD? I'm running into a situation where I need to repair my main partition but I can not get my machine to boot off the Snow Leopard DVD. It will boot up, let me choose my language, then go to the "Preparing Installation" (I think that's what it says) screen just before you get to the install wizard and utilities. After that the screen goes gray and then the machine cuts off, black screen, no lights, no power.
+Also I seem unable to boot into an Ubuntu install cd (which seems to hang up) or into Safe Mode via holding Shift at startup (which gives me folder with a question mark in it).
+Does you guys know any way I can get details about what's going on to see what the problem is? The disc I'm using is the 10.6 Snow Leopard DVD when it first came out (no idea if newer burns have updated versions).
+Specs:
+
+
+*
+
+*2008 unibody MacBook Pro 15" 4 gb
+
+*1067 DDR3
+
+*2.53 Core 2 320 gb HD 
+
+*10.6.4 OS X (upgarded install from the original 10.5)
+
+
+I'm tempted to just try installing 10.5 fresh and see if I can do the upgrade, or find out how to get a detailed boot from the Ubuntu install disc. 
+EDIT: Just as a note, I can boot fine off my 10.5 install disc that came with my laptop originally. I'm just not sure if any changes between then and 10.6 would make using those disk utilities a bad idea. I know the versions are different. Also the memtest utility was successful off the Ubuntu disc, but it just sort of hangs up during the boot process.
+
+A: There should be a point—after you choose the language, but before it starts trying to install the OS—where you see a Utilities option in the menu bar. 
+
+Do you get to this point? If so, what happens when you choose Disk Utility? 
+There's more information about this at Using Disk Utility to Repair a Disk (University of Wisconsin).
+
+OK, now it's a different question, so here's my different answer:
+If repairing your main partition is what you want to accomplish, why not just run Disk Utility off the 10.5 system disk?

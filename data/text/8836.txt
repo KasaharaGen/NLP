@@ -1,0 +1,11 @@
+Q: ‘Web Sharing’ won't turn off I'm trying to turn off the Web Sharing service from the Preferences panel, but everything I try, it just gets stuck on ‘Interrupting...’, with an orange icon, and it doesn't do anything. If I close the Preferences panel and come back, I find it turned on again. 
+(I reckon that it's not stopping due to the missing /System/Library/LaunchDaemons/org.apache.httpd.plist, because when I try to stop it using the terminal, with sudo apachectl stop, I get an error that says that it can't find that file)
+What could I do to fix it? 
+
+A: Did you delete /System/Library/LaunchDaemons/org.apache.httpd.plist?  If so, either replace it with a copy from another Mac (so it can be disabled properly), or reboot the computer (since it doesn't exist, it won't get loaded on reboot).
+
+A: Perhaps try sudo killall httpd? I'd also check Console to see if there's any errors.
+
+A: If you're missing launch daemons from your /System/ folder, the best long-term solution is to perform an Archive and Install so that you keep your content and simply rebuild your damaged operating system.
+
+A: The only way to fix it was to reinstall OS X.

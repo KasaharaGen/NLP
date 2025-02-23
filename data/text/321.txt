@@ -1,0 +1,21 @@
+Q: How useful is spotlight? Personally, I am happy with Spotlight in the sense I just use it for finding something. But, I'm also not happy with Spotlight, as I sometimes feel it slows down my Mac pretty much. Even, I can find all the files that I need to find using PathFinder, LaunchBar, and even with find command. 
+
+
+*
+
+*Is there some case that Spotlight shines over other search tools?
+
+*Is there a way to (safely) disable spotlight? I googled to find some tips, but they all require some system change. I prefer some turn on/off method to speed my computer up by turning it off, and make use of the tool by turning it on. 
+
+
+A: Very useful as a task launcher - I use it much more often than I use the dock.
+
+A: Spotlight shines over more traditional file search utilities because it collects and searches the metadata on files all over your computer. A Spotlight search can look into your email messages from Mail (or other clients if they support Spotlight) while also looking into the contents of a PDF you downloaded and the file names in your Documents folder at the same time. Another example is that you could search on your computer for any image that was taken in a certain location (if you have photos with GPS EXIF data) or say taken with a certain camera.
+Turning off Spotlight can be done with some GUI tools (eg. Onyx or TinkerTool System) or directly from the command line using the command sudo mdutil -i off /PATH/TO/VOLUME (eg. sudo mdutil -i off / to turn off Spotlight for your startup drive).
+
+A: Personally, I disable it in favor of Quicksilver.
+
+A: I think Deeper can cover some of setting you want. if you mean by turn off that you don't want indexing if you have other notion with turn spotlight off then this answer is useless.
+
+
+A: Spotlight will be much useful if you extend it using Spotlight Plugins. Some implementations can be found here: http://www.apple.com/downloads/macosx/spotlight/ or here: http://mac.softpedia.com/get/Spotlight-Plugins---Utilities/

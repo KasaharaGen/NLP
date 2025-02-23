@@ -1,0 +1,10 @@
+Q: iPhone Backups on Network drive By moving my iTunes Library to a network drive, will iPhone/iPad backups also be stored on that network drive? (If not, is there a way to set this up?) 
+
+A: On a Mac, iDevice backups are stored in strangely (seemingly randomly) named subfolders in ~/Library/Application Support/MobileSync/Backup/
+This is outside of the ~/Music/iTunes folder (standard Library location on Mac OSX).
+You'd be wanting to take a copy of all the files and folders within this folder and put them on your network drive. I've not tested if a restore of these items works following a system reinstall and I suspect that iTunes may do some extra stuff behind the scenes to pair these backup folders and files to the devices that they came from.
+Backup location on Windows (Assuming system drive is C:\)Windows XP
+C:\Documents and Settings\user\Application Data\Apple Computer\MobileSync\Backup
+Windows Vista/Windows 7
+C:\Users\user\AppData\Roaming\Apple Computer\MobileSync\Backup
+(edit) Just realised that this probably doesn't fully answer your question, however, I've found this discussion which is along the lines of changing where iTunes reads/writes its backups

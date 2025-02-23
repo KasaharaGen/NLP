@@ -1,0 +1,63 @@
+Q: Accessing Mac's Virtual Hosts from Parallel's XP I am having problem with accessing Virtual Hosts (located on my Mac) from XP installed via Parallels.
+Here's the setup:
+
+
+*
+
+*Mac OS X 10.6.6
+
+*
+
+*using pre-installed apache running via Web Sharing (not using MAMP!)
+
+*several virtual hosts set in apache's config
+
+
+*Parallels 6
+
+*Windows XP Pro 64bit installed via Parallels
+
+*
+
+*Network setup set to Shared
+
+*virtual hosts from Mac added to C:\Windows\system32\drivers\etc\hosts file
+
+
+
+Pinging gateway (Mac) from Windows seems to work just fine, but cannot access websites hosted on it - neither by directly accessing IP nor by VHosts.
+Turning off firewall didn't seem to help.
+What am I doing wrong?
+
+A: Assuming there are no firewall issues, it may be worth double checking that you are using the correct IP address to connect to your Mac. When using Shared Networking, Parallels creates a separate sub-network that is used between Parallels and your Mac. As such, your Mac will be using a different IP address to communicate with Parallels than it will to communicate with your external/local network.
+Here is an example configuration:
+Mac
+
+
+*
+
+*Local Network IP: 192.168.1.10
+
+*Parallels Network IP: 10.211.55.2
+
+
+Parallels
+
+
+*
+
+*Parallels Network IP: 10.211.55.3
+
+
+Network
+
+
+*
+
+*Parallels Default Gateway: 10.211.55.1
+
+
+Because all of these IPs are non-routable, attempts to connect to your Mac using the 192.168.1.10 address will fail from Parallels. You will need to use the 10.211.55.2 address to connect to your Mac. Note that this is not the same as the Gateway address.
+It is also worth pointing out that the IP address for the Parallels network is assigned via DHCP and has the potential to change. This means that you would need to change the entries in your hosts file.*
+And finally, make sure that Apache is listening on the Parallels Network IP address. The default configuration should listen on all ports, but would be worth checking if you have changed the Apache configuration.
+*There are instructions here to change the Parallels network adapter on the Mac to use a specific address, but this is for Tiger.

@@ -1,0 +1,5 @@
+Q: How can I get some basic GNU utilities on my iPhone? I'm specifically looking for du, but really, I want the usual suite of command line power tools. Which package contains those?
+
+A: Using dpkg -S du I discovered that there is a copy of du in the Cydia libexec folder. It's not quite as nice as finding it in /bin, but it'll serve my purposes nicely. The general question is still open, though; where can I find awk, sed, and so on?
+
+A: coreutils provides du and other CLI tools.

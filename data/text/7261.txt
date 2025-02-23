@@ -1,0 +1,25 @@
+Q: Is there a way to get Terminal on Lion to start up cleanly (without the buffered history)? How can I prevent Terminal from showing me my old output when it starts? 
+I would like it to always start with a clean window.
+
+A: Besides setting the preference to always suppress Resume, you can also control this when quitting by pressing the Option modifier key, so that "Quit …" becomes "Quit and Discard Windows". e.g., you can type Option-Command-Q to quit without saving state. You can also press the Shift modifier when an application is opening to prevent it from restoring state for Resume.
+There is also a Terminal preference (without UI) for controlling how many lines of the scroll-back to restore, which you can set to zero, although it still restores the display contents:
+defaults write com.apple.Terminal RestoreScrollbackLines 0
+
+
+A: You can change terminal only with this one command to write a new preference for that specific app.
+defaults write com.apple.terminal NSQuitAlwaysKeepsWindows -bool false
+
+This is general, so of course, substitute safari or quicktimeplayerX or whatever in the com.apple.terminal portion of the command as needed. This setting switches the default save behavior upon quitting that one app. You'll find many of the other apps that work well with this setting by searching on NSQuitAlwaysKeepsWindows.
+Of course, you should issue this defaults command after closing all windows and then quitting the application to ensure the settings are read the next time Terminal starts.
+
+A: There seems to be one case where disabling NSQuitAlwaysKeepsWindows does not work: When the Terminal is killed by killall Terminal, and probably also when it crashes or when it is forced quit.
+I use killall Terminal regularly, but when the resume kicks in, it messes up my bash history. Basically, commands from the session after the resume will not be saved. Normal saving behaviour is only restored after I quit and reopen Terminal.app. It appears, though, that completely disabling any resume features fixes bash history:
+chmod a-rwx ~/Library/Saved\ Application\ State/com.apple.Terminal.savedState
+
+Thanks to willWorkForCookies’s answer to How to prevent one app from saving/restoring any Saved State.
+
+A: The only way to do this is to completely disable the resume feature in Lion
+http://www.macrumors.com/2011/07/20/how-to-disable-lions-resume-feature/
+
+A: You can actually deactivate "save state" on per-app basis, have a look at https://faqintosh.com/risorse/en/sys/swapsaveability/
+HTH

@@ -1,0 +1,8 @@
+Q: Applescript to change Wacom Driver settings Can an Applescript change the primary monitor option within the Wacom Driver, and do it near instantly?
+
+A: The Wacom driver allows you to set things up for individual applications. Have a specific setup for Photoshop (which excludes the display toggle setting) and then another one for all other apps.
+
+A: Thanks for the suggestions Joe. Tried Butler among others, and it seems to come down to needing a script, and the only type of script (or workflow, action etc) is one that will just mimic the actions of opening the pane, the driver within, and then the pulldown change. All too glitchy and long for the immediacy I require. If it's not as fast the Display Toggle action then it's no use. Maybe a shellscript can do these as a system event directly? 
+I started this quest first by trying to hack/remap/script the Display Toggle feature as a keyboard shortcut, but after trying every 3rd party app or hack there is, I just don't think it can be done. I can't even capture the button action because of the HID nature of the device. 
+
+A: There is apple script in this page How to switch tablet input between multiple monitors on a Mac. I tried it but I do not get it to work on my setup. I guess it's outdated, maybe somebody can update it.

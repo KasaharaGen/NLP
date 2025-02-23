@@ -1,0 +1,11 @@
+Q: How do I disable inline PDFs in Safari 5.1? Today, Apple updated Safari to 5.1 (6534.50).
+In Safari 5.0 or below it's very easy to disable opening pdfs inline, you simply say
+defaults write com.apple.Safari WebKitOmitPDFSupport -bool YES
+and it never bothers you again.
+In Safari 5.1 this no longer works. Does anyone know an alternative to prevent Safari 5.1 opening PDFs in the browser rather than as a download and then in Preview?
+
+A: I don't know of any way to disable inline PDF viewing, but option-clicking on a link will force a download instead. Not exactly what you asked for, though...
+What's interesting is that some PDFs actually get downloaded instead of previewed, so that could be a starting point for a hack: http://www.jbc.org/content/279/1/686.long (click on the link 'Full Text PDF').
+
+A: As cparnot mentions, this doesn't seem to be possible anymore, but you can work around it by option-clicking on PDF links. However, this doesn't always work; sometimes, links are opened with JavaScript code that ignores the option key.
+In those cases, wait until the PDF's URL appears in the address bar, click into the address bar, hit option-return, and then hit back. That will start downloading the PDF and bring you back to the previous page.

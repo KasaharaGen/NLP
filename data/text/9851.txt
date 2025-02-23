@@ -1,0 +1,15 @@
+Q: What is the location / path of the finder icons? What's the location (path) of these icons/buttons for OSX Lion? what is the width, height? What is it called? Finder Icon or Finder Button ?
+
+
+A: These icons are located at:
+
+/System/Library/CoreServices/CoreTypes.bundle/
+
+
+A: They are located in an Apple Asset Catalog proprietary .car archive format at:
+
+/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/Assets.car
+
+There are also other .car files in that folder with icon images for various system display settings.
+You can browse and export images from the Assets.car file by using the AssetCatalogTinkerer tool:
+https://github.com/insidegui/AssetCatalogTinkerer

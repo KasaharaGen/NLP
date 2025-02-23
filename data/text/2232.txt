@@ -1,0 +1,24 @@
+Q: define multiple release years for an album Is there a way to define multiple release years in the mp3 tags using iTunes? The reason I am asking is that I have a lot of "remastered" albums in my iTunes database that were released in the last couple of years but the original ones had been released much earlier. Now I would like to store the release year of the original album with it. So that for example I would be able to sort and search by original release year OR by acutal release year.
+
+A: As I understand it, there is no such capability in iTunes. However, the ID3 tag description on Wikipedia has some information. Basically, what you want is possible, but varies between ID3 tag version.
+
+
+*
+
+*In ID3 v2.3:
+
+*
+
+*There is a TORY tag for the original release year
+
+*There is a TYER tag for the actual release year
+
+
+*In ID3 v2.4:
+
+*
+
+*There is a TDOR tag for original release time
+
+*There is a TDRL tag for actual release time
+In effect, v2.4 got more specific with the tags (going from year to time), and any half-decent ID3 tag editor should handle either version of the spec just fine. However, iTunes doesn't handle these tags natively.

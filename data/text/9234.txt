@@ -1,0 +1,10 @@
+Q: How to connect to a FTP server from a Wi-Fi Hotspot that prevents direct FTP connections? I am using the wifi at a library where they prevent me to connect to FTP servers for some reason. I need to upload my work.
+Is there any tool or trick to go around this?
+
+A: I actually have found one solution:
+net2ftp - a web based FTP client
+Usual warnings concerning (non-)confidentiality of data etc. apply.
+
+A: You can do it by connecting directly via Internet Explorer.
+ You just have to tap in the url : ftp://ftp.yourwebsite.com / Then enter your password and that's it. 
+But it can only be a temporary solution because I don't think it's really safe to do it that way ...

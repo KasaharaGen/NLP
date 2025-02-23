@@ -1,0 +1,138 @@
+Q: How do I make my 1.5 GHz PowerBook G4 boot from a USB stick? I actually want to boot Linux but since that is not working I'm thinking some one might know on the Apple end. 
+If there's a way to boot Mac from a USB stick, then booting another operating system should not be impossible.
+Do I need to use an Apple bootloader to trick my PowerBook into thinking it's booting Mac OS and then slip in the Linux disc or what?
+
+A: boot usb1/disk@1:,\\yaboot
+
+OR
+boot usb1/disk@1:,\\tbxi
+
+is not a complete command. You need to list a partition number after the ":"
+for example, if you are trying to install on a Mac, you will need to enter something like this
+boot usb1/disk@1:10,\\tbxi
+
+(where "10" is the partition number of the usb drive, disk@1 in this example).
+To find out the partition number where OSX is located on your USB, use Disk Utility, Click on the partition you set up with OS X and then R-click or Ctrl-L click and select "Information".
+You will get something to the effect of: disk1s10
+s10 is the partition number. Refer to the example above.
+
+A: This thread is old, but i want to add some information that may be useful:
+On a Powerbook G4 A1138 (1,67 Ghz 15" late 2005) the above instructions didn't work out of the box.
+I used the finnix ppc rescue ISO, dumped with dd to the usb key.
+1.) OF creates the devalias ud for the usb key in the left port. This ud alias maps to /pci@f2000000/usb@15/disk@1
+2.) You can call yaboot with boot ud:2,\\yaboot - but then the kernel will panic because it still searches his initrd + rootfs somewhere at cd:2,/ ... (the cd  alias is hardcoded inside files like ofboot.b, yaboot.conf ... on the ISO)
+3.) Quick and dirty workaround: overwrite the cd alias in OF with the path to your USB Key (copy the path from the ud alias): devalias cd /pci@f2000000/usb@15/disk@1
+4.) Now boot with boot cd:2,\\yaboot
+5.) No problem anymore with hardcoded cd alias - it's now poiting to your USB Key. You can just choose a default kernel entry - *finnix in my case - and it will boot properly.
+The alias will be resetted to default at the next cold boot and thus you will have to repeat the procedure for every USB-boot.
+
+A: I have done this many times since I posted this question. 
+
+
+*
+
+*Create usb stick like this:
+sudo dd if=/<path to iso file>/<name of iso file> of=/<path to usb stick> bs=32768 conv=notrunc,noerror,sync
+
+
+*Put the USB stick into your Mac and press the power button while holding down Command ⌘+Option+O+F
+
+*At the prompt, type the following:
+boot usb1/disk@1:,\\yaboot
+
+Note: If you are booting linux then use ,\\yaboot, but if you are booting a Mac OS use ,\\tbxi.
+Note 2: If your stick is in the right side of the machine, then you need to do this:
+boot usb0/disk@1:,\\yaboot
+
+Note 3: If these commands don't work, then there is most likely a problem with your media or iso file.
+I have found that Ubuntu, Debian, and openSUSE work great. I cannot get Fedora or Gentoo to boot this way yet. My optical drive does not work anymore, so this is how I install OS X on my machine. I made a live USB stick of the OS X install disc this way.
+
+A: I've heard that using Super Duper works well for this.  I imagine if that's the case, then Carbon Copy Cloner should work as well.
+Deploy the image onto the USB through one of those utilities and you should be golden.
+Find Super Duper! here.
+
+A: so in my experience i've learned that on my Power Book G4 1.5 (A1106) that 
+
+boot usb1/disk@1:10,\tbxi 
+  was not helpful. try this
+
+
+
+*
+
+*
+
+*command, option, O, F (open firmware)
+
+*release keys
+
+*
+boot ud:3,\:tbxi
+
+if you're lucky it might work. i tried without the 3 and i got the prohibitory sign, everything else wouldn't work. Edit: i just got the prohibitory sign so i think my system has a problem
+
+A: What worked for me on a Cube G4 was the following (based on Joshua's advice):
+
+
+*
+
+*I formatted my USB thumb drive in Disk Utility with Apple Partition Map and a MS-DOS (FAT) partition. diskutil list should bring something like this up:
+
+
+
+
+
+*Now let's for the sake of it nuke the FAT32 partition: sudo pdisk L e /dev/rdisk2 d 2 w and exit CTRL+C. The entire process should look something like this:
+
+The deeply cleansed disk should appear like so (diskutil list)
+
+
+
+*Now we can copy over the Mac OS X 10.5 Leopard ISO with dd: sudo dd if=/<path to iso file>/<name of iso file> of=/<path to usb stick> bs=32768 conv=notrunc,noerror,sync. It should be something like this: 
+
+
+
+
+
+*Depending on your stick, this might take upwards of a few hours (even with a badass USB3 one!). At the end, diskutil list should show something like this:
+
+
+
+
+
+*Plug this into your G5 Cube, and, at boot, press both ALT keys (theoretically one should work but with my wireless keyboard the both button approach works best)
+
+*You'll get a very primitive version of the present day Boot Selection screen, WHICH ONLY WORKS WITH A MOUSE ! There you'll find the USB Stick and be able to boot from it, and install as if it were a very speedy and silent DVD drive :)
+For those wishing to install Mac OS X 10.4 Tiger, the ISO floating around for that seems to contain a very small Apple_Driver_ATAPI partition (disk2s2 in step 4), a few KB instead of half a GB. This unfortunately seems to be incompatible with steps 1-6..
+The workaround is the following: prepare a 10.5 Leopard USB stick, and overwrite the Apple_HFS partition with the Apple_HFS partition from the 10.4 Tiger disk:
+
+
+*Proceed with creating a Leopard 10.5 stick as in steps 1-4
+
+*Mount the OSX 10.4 Tiger image; it should look something like this:
+
+
+*With dd, copy over the Apple_HFS (disk3s3 or diskNs3) partition OVER the Apple_HFS (~7GB) on the stick. This will leave you with a stick having the ATAPI driver from the Leopard DVD disc, but the OS image of the Tiger disc. Through this method, I got it to show, and managed to install Tiger alongside Leopard xD. On my end, it looks like this:
+
+For those wanting to install 10.3 or lower Unfortunately, I haven't found any way to get those to boot off of a USB device (not initially though).
+To install 10.3 / 10.2 / 10.1 / 10.0, burn the CD1 image onto a disk, which you will have to be reading through the on-board IDE cable (connecting a USB cd-rom doesn't cut it, not USB allowed !). You'll install as per usual, pressing alt (both of them in case of the cube) at bootup, selecting the CD, installing ...
+You'll at some point be asked to insert the 2nd disc - those you may prepare the same as a Tiger installation: make a Leopard disc, and overwrite the 3rd partition (the Apple_HFS one that occupies the most space) with the Apple_HFS partition of the CD2 of the pre 10.4 OS you're installing. This time the system will accept it and continue installing from the USB device.
+
+A: Powerbook G4 1.0Ghz 12"
+External Pioneer/generic USB CD/DVD drive
+Plug into the rear-most USB port.
+
+
+*
+
+*Power on
+
+*⌘ CmdOptOF
+
+*boot usb1/disk@1:,\\yaboot
+
+*Return ⏎
+
+*restart
+Installs Ubuntu 16.04 PPC perfectly, first try.
+Love these old threads and old machines!

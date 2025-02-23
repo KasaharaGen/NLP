@@ -1,0 +1,13 @@
+Q: Mac doesn't recognize hosts on local network I have a Linux server in my cupboard. My Windows machines can connect to it via its hostname. I have never configured any DNS server; all I did was assign the Linux box a name when I installed Ubuntu on it. It's running a Samba file server. 
+My Macbook Pro doesn't recognize the host name. How can I make my Macbook find the machine the same way the Windows machines can? The Linux machine's IP is dynamically assigned via DHCP so I don't want to add a permanent entry to a hosts file or similar. (Despite this, the Windows machines can always find it.)
+Update: I can't ping the machine, but nmblookup can find it.
+grahamb@pickle:~$ ping fry
+ping: cannot resolve fry: Unknown host
+grahamb@pickle:~$ ping fry.local
+ping: cannot resolve fry.local: Unknown host
+grahamb@pickle:~$ nmblookup fry
+querying fry on 192.168.1.255
+192.168.1.8 fry<00>
+
+
+A: I believe what you want to do is to make the linux machine announce itself using mDNS. But then it's not a Mac question anymore, but a Linux question.

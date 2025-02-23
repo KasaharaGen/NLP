@@ -1,0 +1,30 @@
+Q: Why does it take so long for the Application folder to open? My computer is pretty snappy, and the UI is typically silky-smooth. However, for some reason, on virtually every Mac OS X computer I've used, opening the Applications folder takes an inordinate (>5 s) amount of time before any icons are shown in the window. Does anyone here know:
+
+
+*
+
+*What the heck is the computer doing?
+
+*How to speed this up?
+
+
+A: OS X applications are actually special folders which contain numerous smaller files, resources, binaries, localization settings, etc. When the Finder opens a folder with a lot of apps, it needs to do a lot more than it would to open a folder with the same number of ordinary documents.
+At the very least, the Finder needs to check for the localized name of each app and load each app's icon. It will also need to check whether it can launch the app, checking if it's Intel, PPC, Universal, or Classic, possibly checking if it's 64-bit or 32-bit, too.
+It's possible the Finder is gathering other info as well, possibly checking the folder structure of each app to verify it's actually an app, or checking its info.plist for file type associations, etc. Lion may also verify that each app is listed in Launchpad.
+Of course, the more apps you have, the longer this process will take. I would guess that, unless your Macs are starved for RAM, the only way to make this process faster is to startup from an SSD instead of a conventional HD. Or perhaps delete all unneeded apps (that were not installed by OS X).
+Also, the first time after each login, the Applications and Utilities folders may be slightly less responsive initially, even after the apps have shown up, because the Finder also needs to examine each app to calculate its total file size.
+
+A: Your experiencing a slow down both by limited ram (as icons are being saved to ram, space must first be cleared out from the inactive memory) and a slow (relatively speaking) hard drive read speed. The easiest fix would be a simple RAM upgrade in the case of constantly having 100% memory usage.
+
+A: When you open the Applications folder OS X "calculates" the sizes of each application by default. If you have a bunch of apps then the time it takes to do this process is longer; you will also notice it when scrolling through your applications initially upon a reboot/login. 
+How to speed it up? You can try:
+
+
+*
+
+*Finder > View Options > Calculate All Sizes [un-check]
+
+*Switching to View as List instead of Icons can help also.
+
+
+A: I have only a few applications that I use regularly, so I put all the others in a sub-folder called "Rarely used apps".  When I open the Applications folder, Finder doesn't have to slog through the contents of the sub-folder.

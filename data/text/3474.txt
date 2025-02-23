@@ -1,0 +1,35 @@
+Q: Bonjour setup question I have an iPad named aiPad, and a Mac named prosseek.
+With 'ping prosseek.local', I can find the Mac, but with "ping aipad.local", I can't find the iPad.
+
+
+*
+
+*What might be wrong with my iPad bonjour?
+
+*What kind of tools/methods can I use to debug this problem?
+
+
+ADDED
+The subnet that iPad logged in was different from the one of my Mac. When I use the same network, it works fine. 
+
+A: You can not do this when the display is asleep. Unless an app is actively utilizing it, the WiFi radio is put into it's sleep routines relatively quickly. (I don't know how the 3G radio in the iPad works, so I can't answer that half of the coin.)
+Outside of that, what is the actual problem at hand? Are you using some app that provides a webserver/other connection mechanism that you cannot connect to? Surely you're not concerned that you can't ping your iPad, only because you cannot ping your iPad.
+
+Besides all that, I do want to confirm that it's possible.
+
+$ ping ItsNew.local
+PING itsnew.local (10.0.3.127): 56 data bytes
+64 bytes from 10.0.3.127: icmp_seq=0 ttl=64 time=9.638 ms
+64 bytes from 10.0.3.127: icmp_seq=1 ttl=64 time=398.883 ms
+64 bytes from 10.0.3.127: icmp_seq=2 ttl=64 time=211.562 ms
+$ ping Its-An-iPad.local
+PING its-an-ipad.local (10.0.3.168): 56 data bytes
+64 bytes from 10.0.3.168: icmp_seq=0 ttl=64 time=210.275 ms
+64 bytes from 10.0.3.168: icmp_seq=1 ttl=64 time=130.986 ms
+64 bytes from 10.0.3.168: icmp_seq=2 ttl=64 time=154.825 ms
+
+No, neither my iPhone nor my iPad are jailbroken. Stock iOS 4.3.1.
+
+A: Would you edit your question to make is more clear what you really want to do? Specifically what process do you hope to have running on the iPad to listen to incoming network connections?
+Bonjour is almost certainly working fine on the iPad if it sees printers/AirTunes/AppleTV. As @vxjasonxv has shown - the iPad will answer pings when the display is on and the wifi connected with recent network activity.
+You can use tcpdump on your mac to see traffic from the iPad and you could use the Network Utility to port scan the iPad's ip address to probe for open ports. It might also help if you can log into your router to see the iPad's assigned IP address if you don't want to watch for the arp requests using tcpdump.

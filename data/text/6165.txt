@@ -1,0 +1,19 @@
+Q: How do I download a URL using Applescript I used to be able to download URLs from an Applescript, but I lost the Applescript. I want to enter a URL: i.e.: "http://wpclassic.com/go.php?http://www.revolutiontwo.com/download/tv.zip" and have it prompt for a place to put the file.
+
+A: set the URLs to the text returned of (display dialog "Enter the URLs you would like to download. If you have more than one, separate them with commas please:" default answer "")
+set the destination to (choose folder with prompt "Choose the folder you want to download the URLs to:")
+set AppleScript's text item delimiters to ","
+repeat with this_URL in the URLs
+    tell application "URL Access Scripting" to download this_URL to the destination with progress and unpacking
+end repeat
+set AppleScript's text item delimiters to ""
+
+If you are using Lion, the above code won't work (Apple removed URL Access Scripting for some reason). Use the shell command curl instead, as shown below:
+set the URLs to the text returned of (display dialog "Enter the URLs you would like to download. If you have more than one, separate them with commas please:" default answer "")
+set the destination to (choose folder with prompt "Choose the folder you want to download the URLs to:")
+set AppleScript's text item delimiters to ","
+repeat with this_URL in the URLs
+      do shell script "curl -L " & this_URL & " -o " & POSIX path of the destination 
+end repeat
+set AppleScript's text item delimiters to ""
+

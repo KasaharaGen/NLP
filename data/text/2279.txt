@@ -1,0 +1,28 @@
+Q: Time Capsule Interface List Per my other question on monitoring network throughput, I now have a series of graphs, some of which are distinctly non-obvious as to what they are.
+Is there documentation on what every interface on a Time Capsule (in this case, current generation, 1TB Wireless N Base Station), pollable via SNMP are?
+Here is the list that is available:
+gec0 
+ath0
+ath1
+wlan0
+wlan1
+wlan2
+wlan3
+vlan1
+rxq0
+
+
+A: gec0 and vlan1 are the most important for monitoring overall traffic flow. 
+gec0 corresponds to the local traffic (behind the firewall) and vlan1 represents external traffic upstream to the internet. I haven't seen anything that makes sense what gec0 but on larger cisco switches they were internal routing queues where packets went to get headers constructed and routed across Vlans in the switching fabric. Perhaps it's the same on airport hardware.
+athX are wireless vlans
+wlanX are wired vlans
+Apple used to publish MIBs for SNMP back when the first Airport Extremes were around but I don't know of anything better than using a generic MIB for the more recent hardware.
+There used to be more information on these ports up at http://www.uname.nl/closer-look-airport-extreme/ but I can't find it anywhere (since archive.org respected it's robots.txt directive) - the best is a dated summary from http://gigo.com/archives/blog/monitoring-apples-80211n-airpo.html
+
+A: The wlan[0..3] ones are the wired Ethernet ports.
+ath0 and ath1 are the wireless (2x antennas, this is an N model, isn't it?)
+vlan1 is a virtual LAN.  Lots of documentation around about those, just google it.
+Not sure about gec0 and rxq0.  One of those is the WAN port.  The other..  dunno.
+
+A: I too was looking for a more definitive answer as to the port names and there real functions.  I found this like that explained them in better detail:
+http://www.staze.org/airport-extreme-dual-band-and-snmp/

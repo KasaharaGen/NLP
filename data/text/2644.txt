@@ -1,0 +1,82 @@
+Q: Microsoft Remote Desktop through ssh-forwarded port I have a situation where I provide access to a Windows server by forwarding the remote desktop port 3389 with ssh from my Mac to the "inside" of an otherwise inacessible network.
+I can now connect with the Windows version of Remote Desktop, but the Mac version of Remote Desktop time out and do not provide access.  This is even when using the IP-number as the host to connect to.
+Any idea why this happens and how I can work around it?
+
+A: Don't forward local port 3389, various versions of Remote Desktop are too smart for their own good.
+My usual steps involve forwarding local 3390 to remote 3389. Then, in MacRDC I use: localhost:3390 as the address to connect too.
+I don't know if you're using anything to assist in the ssh connection setup, but from the command line, it would be something like:
+ssh -L 3390:172.16.5.32:3389 jason@remote.net
+Where;
+ - 3390 is the local forwarding port on my box.
+ - 172.16.5.32 is the remote windows host. and;
+ - 3389 is the Remote Desktop Port (obviously).
+
+A: On your mac, perhaps try out this solution:
+
+
+*
+
+*install sshuttle ( implements ssh tunnel/proxy, but also implements some routing changes ) ( https://github.com/apenwarr/sshuttle.git )
+
+*configure sshuttle to only route for the ip address of the windows box you want to reach:
+sshuttle --dns -r YourUserName@YourSSHBox.com 1.1.1.1/32 
+Replace:
+1.1.1.1/32 with the ip address of the windows host. If there are a number of hosts you need to access and they are in the same subnet, you can just change the /32 to something wider, say /24. 
+
+*Fire up your Mac RDP client and attempt to access the IP address of the Windows machine. Perhaps can use the hostname if you are also forwarding DNS queries to the box you are using as a bridge.
+This is a variation of the -D3389 method, but employs the socks proxy features of ssh.
+
+A: The Windows Remote Desktop implements more authentication and encryption algorithms specific to Windows. This happened to us often, in fact we're forced to use Windows Remote Desktop by our network administrators as we're using authentication methods OSX doesn't implement. Let's cross fingers and hope Microsoft releases a match for the Windows-grade Remote Desktop asap.
+
+A: Did you try to disable requirement for "Network Level Authentication" from "Control Panel -> System -> Allow Remote Access" on the target machine?
+
+
+A: Try CoRD: enter link description here
+I've found it works better than the official RDP client and tends to handle imperfect setups smoother.
+
+Update to this answer from the CoRD site
+
+2020-04-13: This project is defunct. Most people will be happy with Microsoft's clients. There's also an excellent free and open source project called FreeRDP that has great protocol support for multiple platforms. A sincere thanks to everyone who used CoRD over the years, reported bugs, donated, or contributed code - Dorian
+
+
+A: The OSX Microsoft Remote Desktop client does not seem to support the default authentication method used by Windows 7+
+The solution is to do the following on the Windows machine:
+
+
+*
+
+*Start -> Edit Group Policy
+
+*Computer configuration 
+
+
+*
+
+*Administrative Templates
+
+
+*
+
+*Windows Components
+
+
+*
+
+*Remote Desktop Services
+
+*Remote Desktop Session Host
+
+
+*
+
+*Security
+
+
+*
+
+*Change 'Require use of specific for remote desktop (RDP) connections' to Enabled and choose RDP from the dropdown.
+
+*Change 'Require user authentication for remote connections by using Network Level Authentications' to Disabled
+Now you should be able to connect using the OSX Remote Desktop Client without any problems through the SSH tunnel.
+
+A: Forwarding to port 3389 is bound to give you trouble. The system will recognize what you're trying to do and basically short circuit itself. This is the drawback of DIY Remote Desktop, imho.

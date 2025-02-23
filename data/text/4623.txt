@@ -1,0 +1,9 @@
+Q: [MySQL Server] MySQL Workbench can't find my.cnf on (clean installation of) Snow Leopard I have a clean installation of Snow Leopard on a MacBook and I want to get a MySQL Server running on it. I downloaded and installed the .dmg file provided by the homepage of MySQL and installed it. I did not yet try to start the server. I installed Workbench and configured it to localhost (standard settings). Now Workbench keeps telling me, that it could not find the file /etc/my.cnf. I was able to start the MySQL-Server from within Workbench, though. Now **Workbench wants to add a /etc/my.cnf file. Shall I proceed or is the file somewhere else already?
+locate my.cnf tells me
+/usr/local/mysql-5.5.13-osx10.6-x86_64/mysql-test/include/default_my.cnf
+/usr/local/mysql-5.5.13-osx10.6-x86_64/mysql-test/suite/federated/my.cnf
+/usr/local/mysql-5.5.13-osx10.6-x86_64/mysql-test/suite/rpl/my.cnf
+
+Is it possible, that it is one of those? I don't want to mess the configuration up by creating a new my.cnf so I hope for an inspiration by some expert. Thanks!
+
+A: Feel free to copy one of the example files into the /etc directory or make your own. You won't have any problems until you ever want to have more than one version of mysql installed and running - then you can set up shell variables to keep things apart - but for the short run - one file in one place would be good. So let the Workbench make /etc/my.cnf and the other files will probably be ignored since Workbench looks to be telling you it looks only in /etc.

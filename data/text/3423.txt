@@ -1,0 +1,23 @@
+Q: Finder Replacements? Since it appears to be impossible to disable the creation of .DS_Store files in Finder I'd like to know of alternatives to Finder.
+Ideally this would be a Community Wiki with one piece of software per answer and a description of the software with instructions for installing would be great.
+
+A: Possible duplication:  Are there any free alternatives to the finder.  (Note that one non-free alternative is discussed as well.)
+I don't know if any of the alternatives mentioned there help you evade the metadata issue.
+
+A: Checkout TotalFinder. It is amazing.
+
+A: Finder is much more than just the window you use to browse your files: its your desktop, and a key part of the OS. Youll keep getting the metadata files... just go ahead and hide them! Even if you use an alternative to finder, if you select to view hidden files they will be there. Just type this into Terminal:
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+or use an app like Houdini to hide/show them.
+Kevin
+
+A: Two more big names are Path Finder and Fork Lift.  Neither are free, but both provide two panel browsing and a whole whack of other features that I'm not going to list here.  A free alternative, although susbstantially less powerful is XFolders.
+I have no idea whether any will address your concern about .DS_Store files but all have trial versions, so you can quickly see if any do.
+
+A: Go for quicksilver @ http://www.blacktree.com/.
+This might be what you want.
+
+A: I'm unsure what your problem with the creation of hidden, useful .DS_store files are. They store the preferences for the icon size, spacing, background, etc. of the current folder.
+If your problem is using finder to open networked drives shared with windows pc's that can see .DS_store files (and you find them an annoyance) finder has a hidden option to not create .DS_store files on network directories.
+Check out this: Mac OS X Hints - Prevent .DS_Store file creation on network volumes 

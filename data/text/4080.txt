@@ -1,0 +1,20 @@
+Q: PowerBook G4 PMU Reset Required I have to do a PMU reset to turn on my G4 PowerBook (1.25 GHz).  This occurs on every shutdown of the system.
+What are potential causes of this?
+I'm perfectly happy to troubleshoot, but on Google I'm hitting a lot of misinformation.
+I notice that my battery also has 0 Remaining capacity (From System Profiler), even though it only has 125 cycles on it (i.e. not charging).  Not sure if this is important, but thought I would throw it in there.
+
+More Info:
+
+
+*
+
+*Did reset-nvram & reset-all from open firmware first
+
+*Sleep: light flashes on front, never wakes back up.  (Have to PMU reset)
+
+*Battery Removed: still have to reset PMU after each shutdown.
+
+*Removed PRAM Battery: still have to reset PMU after each shutdown.
+
+
+A: Sounds as if your PRAM battery needs replacing... Assuming you have a A-1046 G4 Powerbook which does have a PRAM battery and you are losing the time setting I would try the PRAM battery first. It is a simple job and the cheapest quick check.

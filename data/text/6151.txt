@@ -1,0 +1,12 @@
+Q: Where to put the .vimrc file for sudo in OS X Lion? I always put a .vimrc in my home folder for turning :syntax on. But in OS X Lion it seems that sudo vi foo.txt ignore or can't find this vim configuration anymore.
+Has anyone experiences the same thing?
+
+A: Try doing sudo visudo and making sure that this lines appears somewhere in there:
+Defaults  env_keep += "HOME"
+
+This should maintain the HOME directory and ~ should would as it did in Snow Leopard.
+
+A: I usually have use the same .vimrc and .vim folders as my main users and link them to a safe backupped place on Dropbox - wich btw is awesome for this kind of task.
+The location of the home folder for your su is /var/root. Therefore .vimrc and the .vim folder belong there.
+
+A: Try using vim instead of vi.  Sometimes the default for "vi" is compatibility mode.  Not sure if this is the case with Lion, however.

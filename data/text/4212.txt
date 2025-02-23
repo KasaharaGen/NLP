@@ -1,0 +1,20 @@
+Q: Mac keyboard layout incorrect when using Windows 7 and VMWare Fusion I have a Macbook Air (Late 2010) and am running Windows 7 Home Premium via VMWare Fusion. It works great, except that I have to press the key labelled as '@' (i.e. shift 2) to get a quote mark ", and vice versa - press the quote key to get an @.
+How can I configure Windows to know that I am using a Mac keyboard? It detects the keyboard currently as a standard PS/2 keyboard. I live in the UK so the keyboard might be set up for UK as well.
+
+A: You are using a US keyboard layout. Switch it to UK.
+
+A: Changing to UK keyboard did not help in my case as it was already the default, so I found this link removed (removed as page no longer available) with a zip file you can download as well as good clear examples. Which seemed sorted the key's being mapped in the wrong location out for my UK mac keyboard running Windows 7 in VMware fusion.
+Shift-2 = @
+Ctrl-Alt-2 = €
+Shift-3 = £
+Ctrl-Alt-3 = #
+Update:
+I removed the link above. However, I wrote a post about this topic, if anyone finds it useful. Please note I managed to locate the download on cnet, see my note at the bottom of the blog post.
+
+A: Windows does not support this keyboard layout without a lot of custom modification. You can install a keyboard driver for Windows from the Mac Install Disk (the one that came with the machine). But this does not include the keyboard layout.
+
+A: I have a French keyboard and had to create the proper keyboard layout "from scratch" (well I took the nearest working keyboard layout and modified it to behave like it does under Mac OS X, including dead keys and option/shift+option combos). To that end I used the official keyboard layout creator from Microsoft.
+
+A: Try changing the keyboard language from Control Panel on Windows 7 to match that of your actual keyboard, different languages map their keyboards differently. Eg. English keyboard starts QWERTY, German keyboards starts QWERTXZ
+
+A: If it helps anyone visiting this thread 6 years on, as I have: On Windows 10, I had to go to Settings > Advanced Keyboard settings and choose my keyboard again from the "Override for default input" settings - then my keyboard worked as expected.

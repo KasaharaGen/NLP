@@ -1,0 +1,7 @@
+Q: How to install iOS 4.3.3 (not 4.3.4) on an iPhone 4 with 4.2.1? I just recently bought an iPhone 4.
+It came with 4.2.1 firmware, and since 4.3.4 is released now it is not as simple as to just update the firmware with itunes. I have tried some good thing which tells you to use TinyUmbrella, but I didn't got it to work as I got error message 1604 when trying to restore. Anyone know how to upgrade to 4.3.3 firmware?
+
+A: TinyUmbrella is probably stopping you from updating your iPhone, because that creates a service that redirects port requests to itself rather than the Apple servers. I do not recommend using TinyUmbrella for anything unless you know exactly what it does and how to use it.
+The reason you are having troubles is because you are probably trying to install the wrong IPSW file onto the iPhone.
+Download the latest iTunes and install it (this will automatically update it) and then connect your iPhone, and in iTunes, request it to check for any iOS updates.
+iTunes will download the required IPSW, get a certificate request from Apple servers and then install it. Problem solved.

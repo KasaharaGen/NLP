@@ -1,0 +1,26 @@
+Q: How to change AppleScript path to a Terminal-style path? I have a custom Service that I've created in Automater (I'm on OS X 10.6.5). The Service executes an AppleScript which in turn executes a shell script. Here is the AppleScript:
+on run {input, parameters}
+    -- do shell script "/usr/bin/find " & input & " -type f -name .DS_Store -delete -print"
+    display alert "Path: " & input
+end run
+
+The problem is, the path passed by the Service (in the variable input) looks like:
+Macintosh HD:Users:Matthew:Documents:Programming:Apple Scripts:
+
+And for the command to execute properly, the path needs to look like:
+Macintosh\ HD/Users/Matthew/Documents/Programming/Apple\ Scripts/
+
+So, is there a way to translate the first path to the second path? I was hoping for a core function which handles this. But I suppose some kind of regex/find/replace/etc would work? I'm familiar with HTML/CSS/Javascript/PHP, not with Cocoa/AppleScript/C. Any direction or suggestions would be great!
+
+A: Use quoted form of the POSIX path of input.  Without the quoted form of part, it won't handle funny characters (like spaces) in filenames correctly.  See this Apple technote.
+
+A: Ok...this was easier than I had realized. After some Googling, it looks like what I need here is the POSIX path of command. This converts a given path to a Unix style path, which is the type of path you would see/use in Terminal. So:
+POSIX path of input
+
+Gives me a path like:
+/Users/Matthew/Documents/Programming/Apple Scripts/
+
+It seems to take into account that you just need a / at the beginning of the path, rather than the hard drive name. It does not, however, escape \ spaces (or handle special characters) in the path. So, as the other answer here mentions, you need to place the path in quotes ( " or ' ) in order for those spaces (or special characters) to be interpreted literally. You accomplish this by using quoted form of. Here it is:
+quoted form of the POSIX path of the input
+-- gives a path like: '/Users/Matthew/Documents/Programming/Apple Scripts/'
+

@@ -1,0 +1,7 @@
+Q: Unknown terminal 'xterm-256color' Keep getting a message in Terminal saying 
+tput: unknown terminal "xterm-256color"
+
+This message typically appears when running homebrew, and while I can swear it's popped up on other places, I can't precisely remember. echo $TERM outputs xterm-256color. I'm not the best at diagnosing Terminal problems, so any help is greatly appreciated. 
+(I know this may be an issue when SSHing to remote servers that don't support xterm-256color, but in this case I'm just concerned about my actual system.)
+
+A: Nevermind, answered my own question. Stackoverflow had a post that I missed that described how the /usr/share/terminfo folder can get corrupted. Downloaded a replacement from that post, and the error message went away.

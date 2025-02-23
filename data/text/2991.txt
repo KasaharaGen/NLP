@@ -1,0 +1,20 @@
+Q: What text editor under OS X can close current window when you press ESC key? I'm looking for a text editor that can close the current file when you press ESC key. 
+I am interested about this for using with a file manager, I open for edit a file and with ESC I want to return to the file commander.
+I tried to override the close window command on XCode but it didn't work, instead of closing the window it does write me an upside down question mark!?
+In addition, I tried to assign ESC as shortcut key in System Preferences, but this is not allowed.
+
+A: Emacs allows you to override shortcuts keys.
+Add this line to your .emacs file (located in your home directory) :  
+(global-set-key (kbd "<escape>") 'save-buffers-kill-emacs)
+
+
+A: Any word processor can be made to close its front window when you hit escape. Write a little AppleScript, like this:
+tell application "BBEdit" -- change this to the WP you want
+    try
+        close front window
+    end try
+end tell
+
+Get a copy of 'FastScripts' script menu replacement,
+and put your script in Library/Scripts/Applications/BBEdit folder.
+Assign the escape key to the script (in FastScripts preferences).

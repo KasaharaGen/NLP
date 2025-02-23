@@ -1,0 +1,65 @@
+Q: Why is my S key intermittently typing ß inßtead of s <----See MacBook (White) 2.4Ghz Intel Core Duo, 2GB 667 MHz DDR2 SDRAM, OS X 10.6.7
+Keyboard language - Canadian English (have also tried US English).  All other languages
+removed, computer language ENGLISH.
+All keys type fine apart from the S key which frequently types a ß or when capitalized an Í.  I am typing from a USB keyboard which types the S (s - see) fine no issues but as soon as I reach over and type on the laptop - ß there it is.
+Have looked and Googled without help, I see a few others with the issue with no resolve.  Ready to throw this computer out the window!
+
+A: You can check to see what OS X thinks is happening when you press the key by opening the Keyboard Viewer applet.
+First, go to Language and Text in System Preferences, to enable it:
+
+Then select 'Show Keyboard Viewer' from the Input Sources icon in the status bar.
+Now, when you press the key, you can see which combination of keys OS X thinks is being pressed. You can use the keyboard viewer to enter text, too, in order to work around the problem:
+
+You can confirm this way that it is indeed a hardware problem.
+
+A: If wiggling an option key doesn't help, it may be symptomatic of a deeper problem with the keyboard. I've had similar things happen if the keyboard has recently been exposed to liquid, or if it has simply been bent (even slightly) one too many times and has ended up doing damage to all the connections for the keys.
+I would not be surprise to see the problem progress; with luck, however, you will be able to continue to use a USB keyboard to get around the problem for some time. I've had previous laptops that would do repeating characters at random, even with a USB keyboard, which rendered the device inoperable until the keyboard was replaced.
+
+A: My 2010 13" White MacBook Unibody keyboard did the same thing. I tried all software tweaks but did not work for me. I decided to buy a new keyboard.
+I installed it but it did the same thing. So I realized that it could not be the keyboard. I checked the logic board very carefully and found out that some  someone had spilled hot chocolate on my macbook. 
+It had gone down the key 6,7,
+T, Y, U, 
+G, H, J, K,
+V, B, N, and M and through the touchpad.
+A drip was on one of the tiny component next to the Keyboard flex connection. It was the same thing that had gone in the keyboard.
+I cleaned with 91% isopropyl alcohol and blow dried with a hair dryer and also with compressed. I lifted the keys that had got soiled by the chocolate. I took out one of the scissors but that is not necessary because I could clean the other scissors thoroughly while still on the assembly. I took cotton swabs and lightly dipped on that alcohol I mentioned and dried them. I washed the keys I had plucked from the keyboard with warm water to get all the stains out. After drying them well I assembled them and turned on the computer. In fact, this is the same keyboard I am typing from.
+I think you all can try this. I was absolutely lucky because the chocolate did not ruin anything. The liquid sensors on the touchpad and the keyboard had turned red which means the liquid had come through. Anyway, if you are careful you can do like what I did. Keep the screws well marked so they don't get lost or not to have extra screws once you close your computer.
+Now I have a working computer back again and an extra keyboard I can sell back on eBay or amazon. If you need the keyboard let me know. By the way my macbook model number is A1342. It's a 2010 Model.
+The cheapest one goes for $150 on eBay.
+~1234567890-=
+QWERTYUIOP{}|
+ASDFGHJKL:"
+ZXCVBNM<>?
+üé
+All of the keys including the functions keys work 100%
+Enjoy life and help everyone while you can.
+
+A: It sounds like one of your option keys is stuck. If you hold option on the USB keyboard and press S, you get ß. Try wiggling the option keys a little and see if they become unstuck. Also make sure you have sticky keys off (System Preferences -> Universal Access). If neither of those work, you may need to get your keyboard replaced.
+
+A: Did you try to look into the Language & Text pane of the System Preferences, in the Text tab?
+There's a module to automatically replace some characters. Like 1/4 with ¼, etc.
+Maybe you have some weird entry there.
+
+NB : I'm not 100% sure it's in the Keyboard pane, it might be in the Universal access one. I don't have a Mac with me to check.
+
+A: If there is a popup let you choose something like ß,ś,š,è,é,ê,ë,ē,ė,ę when you long press keys such as s and e
+Try this command in terminal:
+defaults write -g ApplePressAndHoldEnabled -bool NO
+
+It will turn off this feature.
+
+A: I have same problem. It seems like Option key stuck. Cause, I didn't config at all. It's bring keyboard back like a charm. 
+If you can login to your Mac cause input problem. You can access to Recovery place (Cmd + R while start your Mac) and open Terminal to check what show to you when you input. 
+Tap on option key many time to bring it back.
+
+A: I wasted this whole day struggling with this issue, and I was on the brink of tears because I rely on my laptop for work, and if it doesn’t work well, I am colossally scre****.
+So I have a 2010 Macbook running on Sierra, and it started giving me headaches a couple of months back, first only the letter P was not working, then O also stopped, and soon half of the keyboard wasn’t working either. I tried every troubleshooting option, and some would work temporarily, but soon I just got tired of it. I can’t take it in yet for a battery change (which most people say is the cause for the keys spat-zing out), and I still need it for work.
+The best go in-between was getting a wired keyboard to use with it. I thought of going for a wireless option but couldn’t find one. Either way, I was so happy to finally be able to type out all letters without having to copy and paste them, you can just imagine how arduous that was!
+The wired keyboard worked excellently for about a month now, up until today when the shift, ctrl, a, q, w, z, x, c, v, m, n, and full stop keys would just type out some random symbols. I have literally spent the whole day researching and trying out every troubleshooting solution suggested. Funny how few cover Macbooks, so I was just trying whatever I could.
+I even just updated my OS but that did not solve the problem. I was this close to popping the back open and unwiring the keyboard connector, as some have suggested, but then I thought, why don’t I clean up the USB ports. 
+Guess what, that did the trick. I also toggled around with the Options buttons of my actual Macbook keyboard like some had suggested in case they are stuck, and most of the keys on the onboard keyboard are working too!
+So, I had to come back and share, albeit a long story. I just hope that it can help someone not waste an entire day like I had to. 
+
+A: In my case, I have an external keyboard which started doing this (Keychron K6).
+The keyboard has a switch for selecting between MacOS keys and Windows keys.
+I realised that the switch was not 100% set on the MacOS option. Fixing that sorted out this issue.

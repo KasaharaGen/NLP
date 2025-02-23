@@ -1,0 +1,38 @@
+Q: "Enter/Return" with, or without "Fn" Does Mac OS X, and any Mac application, handles Fn+Enter differently from Enter?
+As optional question, does any application handles Fn+Return differently from Return?
+
+A: 
+Does any application handle Fn+Return differently from Return?
+
+Yes!  In iTunes 10.5, Return will make a highlighted song start playing but Fn+Return will allow you to rename the song.  This was revealed to me at How can I rename a song in iTunes with a keyboard shortcut?
+
+A: I guess since fn+return equals enter, the fn+enter-combination would equal fn+fn+return which does not make much sense, so my vote is: no, there is no app that can receive this combo. 
+To prove, you'll need to read the key codes sent from keyboard to the system when it´s pressed (ie. Full Key Codes could do this for you)  - since I don´t have a keyboard with a physical enter I unfortunately can´t do that.
+
+A: This is not hard to find out.
+Open vim and enter insert mode 
+( Note: I just hit 'j' several times to move the cursor.  Why must I live like this?  Vim mode! Just did it again.)
+Hit control-v
+Hit your keystroke combo
+Observe the char printed
+repeat
+check if printed char is different
+if yes then they are different
+if no , such as <Tab> and <Shift-Tab> on the console, then they are not different.
+EDIT:  Some background:  
+
+CTRL-V
+Insert next non-digit literally. For special keys, the terminal code is inserted.  It's also possible to enter the decimal, octal or hexadecimal value of a character
+i_CTRL-V_digit.
+The characters typed right after CTRL-V are not considered for mapping.
+{Vi: no decimal byte entry}
+Note: When CTRL-V is mapped (e.g., to paste text) you can often use CTRL-Q instead 
+i_CTRL-Q.
+
+I tried this in my terminal.  
+ControlVEnter gave me ^M
+ControlVFnEnter gave me ^C
+So vim sees the two as different. They send different codes.  
+
+A: fn+Return is also recognized in Finder as the same way as iTunes. 
+in fact, this combination is like if you do one click on a selected item to rename it. in Windows world, it is like F2 key.

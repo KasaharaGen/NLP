@@ -1,0 +1,17 @@
+Q: Is it possible to use Time Machine on a shared USB Hardrive? I've a iMac with an external HD derserved to Time Machine. I also have a MacBookPro. 
+Is it possible to make this config :
+
+
+*
+
+*Share the disk on the iMac so that the MBP sees it on the network
+
+*Ask Time Machine on the MBP to use this shared disk for the backups 
+
+
+?
+Note : Currently, I use this HD for Time Machine on both Mac, but I have to change the USB connection from one Mac to the other each time I want a backup to proceed. 
+I'll prefer just to have to mount the shared HD.
+
+A: It should be possible, but it will not be able to use your existing MBP backup (you will need to start it from scratch). Just plug the disk into the iMac, make sure it is being shared, and then select it in Time Machine setup on the MacBook Pro and let it do the initial backup.
+The reason you can't use the existing backup is that when you use a disk for Time Machine it uses that disk directly, since it is attached to the machine and the machine knows no other machine is modifying it. When you use it over a network it creates a disk image and puts the time machine data in the disk image (in essence, it is a poor man's version of thin provisioning. Migrating between these two configurations is possible, but non-trivial.

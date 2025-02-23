@@ -1,0 +1,10 @@
+Q: Can I delete the /Developer-3.2.6 or /Developer-3.2.5 folders? I did a quick, pseudo-system audit this morning and found an unexpected directory hogging up ~10GB of space on my drive. I assume that it's a remnant from a reasonably recent upgrade to XCode 4, but that's more of a guess than anything else.
+I'm not an Objective-C/Cocoa developer. XCode is really installed just to support Homebrew. Off the top of my head, I can't think of anything else that I do with it. 
+Are these older 3.2.x directories safe to delete if I can reinstall Xcode 4 or will doing so make kittens cry?
+
+A: Nuke it (you've got a backup, right?)
+If you run sudo /Developer-3.2.6/Library/uninstall-devtools it should clean up things like terminal add ons, but they take little space.
+Since you only use gcc and such for homebrew - you'll not need all the SDK and such from this old alternate install of Xcode. One compiler set is plenty unless you're really into maintaining some old code that breaks when the newer compiler sees it.
+It's probably from an old install where you could pick an alternate destination - not something Xcode 4 moved around.
+
+A: Do you use XCode? If you don't go run the XCode uninstaller script, then go to the GCC installer github page and download that. It should let you keep running Homebrew without needing all the very disk heavy XCode iOS/OS X stuff included.

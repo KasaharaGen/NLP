@@ -1,0 +1,7 @@
+Q: Why can't I set a metadata content provider on Plex? There's no Set Content button when I add a media source in Plex (0.9.3.4) to select a metadata provider.
+I've installed Plex on a Mac Mini running Lion and added a content source.  To add the source, I went to Video Plugins -> Add Source.  I added a folder called movies from my smb share by clicking Browse, selecting the folder, and clicking OK.
+Now all tutorials and screenshots I've seen show a "Set Content" button on the Add Video Source menu, and this button allows you to set a metadata content provider.  I see all the buttons (Browse, Add, Remove, OK, Cancel) except Set Content.  
+How do I set a metadata provider for Plex if there's no Set Content button?
+
+A: Plex comes with 2 components:  The browser and the media manager or media server.  The media manager is what manages your movie library.  If you just go into Video Plugins and select Add Source, then Plex just treats it as a random collection of videos, not movies, and you cannot assign a metadata provider.
+To add movies with the metadata providers, you have to add them to the Media Manager.  You access the media manager by clicking on the small Plex icon up by your system clock.

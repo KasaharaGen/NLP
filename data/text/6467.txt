@@ -1,0 +1,37 @@
+Q: iMac not logging probably due to keychains problem iMac OS X Lion.
+I have 2 accounts with password.
+On the first account, I was messing up the keychains thing. If I recall correctly, I think I deleted all private keys I had and added exported keys from a different Mac (long story).
+I have logged out.
+Now, when I try to login to the first account, I write the password, the screen goes blank for a moment, and then goes back to the login screen. No popup messages at all etc.
+I can, however, enter my second account, probably because I didn't mess with the keychains in it.
+So I need help figuring out how can I.. err, login to the first account and fix this keychains problem?
+I was suggested to enter safe mode, following the steps here: iMac Lion not logging in but it doesn't seem to work.
+
+A: You need to boot your Mac into Recovery HD mode, and then use the Reset Password utility utility to reset your log-in password.
+Shut down your Mac, and press the power button. As soon as you heard the start-up chime, hold down the Option key. Images of more than one boot volume will show up. Use the arrow keys to select Recovery HD. When bootup in Recovery HD completes, you can find the Reset Password utility in the menu commands. Sorry, I don't have a screen shot.
+
+A: Okay. I DID IT. It was the most horrible IT experience in my life. This kind of problem is rather unusual, but it is annoying as hell, so let me post the answer to help people who might get into this unusual situation.
+
+Problem: On Mac OS X Lion, I deleted my keychains, including the login one, and exported some (including login) from a different mac (for whatever weird reason). Now, it is impossible to log in into the account in question even though you know the password: the screen goes blank and keeps throwing you to the login screen.
+
+Solution: Essentially, we have to delete the keychains located in the account in question. Now, it is commonly said that in order to edit keychains, you have to do it through the Keychain Access utility in the account in question. But that's impossible since you can't even login.
+Well, we will need another account with admin privilegies. There are lots of ways to create one even though you can't access your only account. Just google it, it is everywhere.
+So, we got our second account with admin privilegies. In theory, you can access the original account's Library folder and then the Keychains folder and delete all files within. Such folders are protected and we need permission to access them. Fortunately, we are admin. Basically, we can right click the folders, Get Info, and give ourselves permission.
+But we can't do that, either. In Lion, the Library folders, including the ones in other Users, are hidden. We can't right click something we can't see. So we will need to use the Terminal. Open it and run:
+sudo cd Users/Alex/Library
+
+Where Alex is your original account. Now the Finder pops up with, miraculously, the Library folder selected, and of course, visible. Right click and give yourself permission to Read & Write. Enter the folder. Now look for the Keychains folder. Do the same (right click and get permission for it). Now, inside the Keychains folder, delete the files in it. I think it is enough to just delete the login.keychain file.. or just move it away.
+
+THE QUICK SOLUTION (in case you don't want to read bunch of things)
+Google a way to create another admin account. It is easy.
+Enter the account, open Terminal, and run:
+sudo rm Users/Alex/Library/Keychains/login
+
+Where Alex is your original account's name. Enter password when Terminal asks. Now things should be working.
+
+Congratulations. You should now be able to log in to your original account. Chances are that the keychain will need you to re-enter passwords you used before etc... but that's simple enough.
+
+A: I accidentally deleted a keychain on a works MAC we use for video editing while trying to sort the NAS out, whenever I tried the terminal commands above, it came up 'folder not found'.  I then found this little tool - http://www.bresink.com/osx/TinkerTool.html
+I installed as an admin, once installed, go to the 'Finder' option on the extreme left, click 'show hidden & system files', click 'relaunch finder' bottom right, 
+then my other user showed up in the dock, went into the hidden Library files, keychains and as above, deleted the Keychain file and could log in again.
+I'm not a MAC tekkie so there may be a better way of explaining it but it got me back in after several hours of panicking.

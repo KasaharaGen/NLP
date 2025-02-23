@@ -1,0 +1,18 @@
+Q: How do I assure that all files from a shared HFS+ drives are always writable by all users? I have a shared drive on a Mac and I keep having problems accessing different directories.
+For example, while logged on the server as root I create a new folder aaa on this drive.
+Now, I discover that a normal user cannot write to this directory.
+Is there a way for me to change the default permissions/ACLs so I prevent this from happening in the future.
+I am looking for a one-time solution, not running chmod or chown each time.
+Details: 
+
+
+*
+
+*it seems that root is not member of staff group because when I do ls -l I see group _unknown listed for files created by root.
+
+*By default the files do get only xr write for the group (drwxr-xr-x), how can I change so the group will have the same rights as the user, by default?
+
+*Can this be changes per mounted volume or directory, or changing this would affect the entire system? Risks?
+
+
+A: Get Info on said drive and checking Ignore Ownership might help you.

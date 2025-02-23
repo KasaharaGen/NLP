@@ -1,0 +1,61 @@
+Q: How can I get a list of programs installed on an iPad? I'm using a rental iPad2 this week and it came with a lot of cool pre-installed programs. When I get my iPad2 back next week I'm thinking of installing some of these programs.
+Is there an app or tool I can use to export a list of the installed programs? I tried to do this via iTunes but it says
+"this iPad is linked to another computer and if you want to connect it 
+to this iTunes it will erase a bunch of stuff off of it"
+
+So other than writing them all down, is there an easy way to get a list?
+
+A: The only things i can think of, and this probably isn't what you really want, is to go into the App Store on the iPad and hit the purchased button. It should give you a list of everything purchased on the iPad.
+Second, and very basically, you could take a screenshot of the screen with all of the apps on it and email it to yourself.
+
+A: You can get a daily log file from iTunes after a sync to list each app activation that happened in the past day.
+If iTunes offers to erase content - say no and just set it up to do a basic sync (not syncing any content in the many tabs). Once the sync is complete, you will have copies of the system logs. Should you not be able to do this, there are also programs like PhoneView that will peep into the device without needing a sync.
+On a mac, look in ~/Library/Logs/CrashReporter/MobileDevice for the name of the folder matching the rental device. Look for files named log-aggregated-2011-11-14-000000_loanerPad.log and you can see a daily summary of the amount of time each app is active as well as how many times it was launched.
+Presumably, you will open each app you wish to record to get all of them listed in this one file for later reference. You will only find the internal name of the app, so a bit of googling (or getting screen shots) might be needed to find the app store name of an app if it's internal name isn't the same as what you expect in iTunes. I would also use the screen capture (and expand each folder as needed) just to be sure you have all the information you need to find these apps at a later date.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>ADCrashLogVersion</key>
+    <integer>1</integer>
+    <key>ADDistributions</key>
+    <dict/>
+    <key>ADMetadata</key>
+    <dict>
+        <key>ADUserInterfaceLanguage</key>
+        <string>en</string>
+        <key>ADUserSetRegionFormat</key>
+        <string>US</string>
+    </dict>
+    <key>ADScalars</key>
+    <dict>
+        <key>appActivationCount.com.apple.MobileSMS</key>
+        <integer>3</integer>
+        <key>appActivationCount.com.apple.Preferences</key>
+        <integer>3</integer>
+        <key>appActivationCount.com.apple.gamecenter</key>
+        <integer>1</integer>
+        <key>appActivationCount.com.apple.mobilemail</key>
+        <integer>2</integer>
+        <key>appActivationCount.com.apple.mobilesafari</key>
+        <integer>13</integer>
+
+
+A: For devices that have been updated to iOS 5, the 'Show all Apps' feature in Usage shows all the installed apps, as a by-product of showing how much space each app takes up:
+
+
+*
+
+*Settings
+
+*General
+
+*Usage
+
+*Show all Apps
+
+
+(And if you need to reclaim some space, it allows you to uninstall individual apps too.)
+
+
+A: If your iOS device is jailbroken, I found this great app called AppInfo that can export amazingly detailed information (apps, notes, contacts, cydia packages, you name it). Check the developer site.

@@ -1,0 +1,69 @@
+Q: Troubleshooting MacBook Air boot issues I have a late-2010 MacBook Air (11inch, 3,1), running Snow Leopard.  I hadn't run software update in a month or two, so I plugged it into the wall and ran software update last night.  Unfortunately, the update failed, giving the informative message "An error occurred."  Nothing happened for an hour or so after this, so I forced a restart.
+Now the MBA won't boot up at all.  It hangs on the grey screen, with the little grey wheel spinning forever.  I was wondering what additional steps I should take before bringing it in to the apple store?  I've already:
+
+
+*
+
+*Booted from the provided USB drive and repaired permissions.  Permissions repair finds lots of SUID issues it can't repair, but I guess I can ignore these.
+
+*Booted from the provided USB drive and run disk utility.  It runs without issues.
+
+*Re-installed Snow Leopard from the USB drive.
+
+*Re-set PRAM
+
+*Re-set the PMC
+
+*Ran the apple hardware test (the short one, not the long one) from the USB drive. Everything passed.
+
+
+None of these procedures fixed the issue.  Ominously, when I try to boot in single user mode, this also fails.  It displays lots of errors messages, and never actually gets to a command prompt.
+Have there been any recent firmware updates for the 3,1 macbook airs?  It doesn't seem to be a software problem, but I'm stumped, and any help is appreciated.
+Thank you.
+Edit: Here's what the screen looks like:
+
+Edit 2: I did a "Safe Boot" and that appears to hang too.  Here's the last few lines of output:
+fsck_hfs: Volume is journaled. No checking performed
+fsck_hfs: Use the -f option to force checking
+launchctl: Please convert the following to launchd: /etc/mach_init.d/dashboardadvisory.plist
+systemShutdown false
+AppleMCP89TMS::powerGatingDown(0): Done
+
+and nothing more for over an hour now.
+
+A: If single user mode boot fails, the OS is broken on a fundamental level and since you already did the reinstallation of Snow Leopard the mac now should boot into safe mode or single user mode if it were working properly.
+No matter how bad your user account or third party software was corrupted, a safe boot after a reinstallation of the OS should work. It's odd the installation didn't flag an error since i've almost never seen an install complete and not be able to get a safe boot/single user mode boot afterwards. 
+You did a great job of following the steps in Mac OS X: Gray screen appears during startup - I'm assuming you checked the peripherals, etc...
+It's probably time to make a call to Apple for service, but if you care to try some more - here are two things I would do.
+
+
+*
+
+*fire up disk utility and repartition the drive - make three partitions to see it can accept a new partition map, then make it back to one.
+
+*write zeroes to the entire drive
+
+
+It's rare, but sometimes the drive needs to be really cleaned out and installing into the existing partition clearly didn't help you. Both of these make it almost impossible for even a professional to do data recovery if you don't have a backup - so use care before trying these.
+
+A: You can try the following steps : 
+
+
+*
+
+*Backup all your data
+
+*Perform a clean install from the Apple-provided USB drive (boot from the drive, choose your language, then go in the utilities -> Disk Utility. There, you can re-create a new partition in order to eliminate drive partitionning problems). 
+
+*quit the utility and re-install SL
+
+
+If nothing helps, that probably means that the mac encountered a hardware problem. 
+Perhaps you could post here the error messages you encounter in single user mode, that could help understand the problem.
+
+A: Try checking your /var/log/system.log and look for some recent errors.
+In my case the curl library was broken (dyld: Library not loaded: /usr/lib/libcurl.4.dylib) after PLAY ONLINE modem installation, so I've fixed it by copying it from MAMP directory.
+See also some command-line hints here:
+http://www.westwind.com/reference/os-x/commandline/single-user.html
+As well as Startup key combinations for Intel-based Macs:
+http://support.apple.com/kb/HT1533

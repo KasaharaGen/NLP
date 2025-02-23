@@ -1,0 +1,88 @@
+Q: Can I make a symlink (to a .app folder) in Applications directory show up in spotlight? I used brew to install MacVim and it put it in /usr/local/Cellar/macvim/7.3-61/MacVim.app
+I would like to be able to go to spotlight and type MacVim to launch the app. I tried creating a symlink in the Applications directory to /usr/local/Cellar/macvim/7.3-61/MacVim.app. But that doesn't seem to show up in Spotlight. I set the executable bits on the symlink. open MacVim.app from the command line works. How can I get MacVim to show up in Spotlight search?
+
+A: The way I've solved this is using a shell script and appify.
+For example make a script with a text editor that contains
+#!/bin/bash
+
+/usr/local/Cellar/macvim/7.3-61/MacVim.app
+
+Then get appify - http://git.abackstrom.com/appify.git 
+Run appify on the shell script and it will make an application you can put in /Applications that will invoke MacVim. This will show up in spotlight.
+
+A: *
+
+*Symbolic links (ln -s) did not work well for me, it did not appear that Spotlight would see this as an application.  
+
+*Making a finder alias (as described by Daniel) worked better regarding launching from Finder, but did not when using Finder Open With..., the alias would remain grayed out.
+In particular, like mentioned in other comments here, I also wanted MacVim to be available when using Open With... from Finder, but with either the symbolic link or Finder alias, MacVim would remain grayed out.
+What worked for me was the simple Automator script (as zim described), with the "Run Shell Script" command.  The only thing I had to do differently than what zim showed in his answer is adding the -a parameter to open:
+open -a /usr/local/opt/macvim/MacVim.app $@
+
+Without the -a, when used with "Open With...", MacVim would launch, but also the parameter filename would open with whatever its default application was -- so I would get both MacVim with empty document AND TextEdit with the file I had selected to open (rather than MacVim with my selected file opened).
+The automator script can be copied or aliased to the Applications folder.  I also changed my automator script's icon to MacVim's icon by copying & pasting the icon from the Finder's Get Info popups.
+
+A: In the Finder, press CommandShiftG for Go to the Folder. Type /usr/local/Cellar/macvim/7.3-61/ and press return. Select the file (actually a folder) MacVim.app Press CommandL for Make Alias. Depending on permissions, you may be prompted for an administrator password here.
+Press CommandN to create a New Finder Window.
+Press CommandShiftA to go to the Applications folder in that window.
+Drag the newly created alias from the window in which it was created to the window containing the Applications folder. Rename the alias so it no longer ends in " alias".
+
+A: To keep things nice and scriptable, you can use osascript to run a little AppleScript and create your alias automatically. 
+osascript <<END
+
+  set macvim to POSIX file "/usr/local/Cellar/macvim/7.3-61/MacVim.app" 
+  set applications_folder to POSIX file "/Applications"
+
+  tell application "Finder"
+    make alias file to macvim at applications_folder
+  end tell
+
+END
+
+
+A: After trying several of the suggested solutions, the best thing that worked for me was to copy the app from the Homebrew Cellar to the applications directory: 
+cp -r /usr/local/Cellar/macvim/7.3-66/MacVim.app /Applications/
+Spotlight found it instantly.
+
+A: For those who use homebrew to install macvim (totally recommended)
+Run the following after install
+brew linkapps macvim
+
+
+A: The alias method did not work for me. A better option is to use Automator to create an Application that runs a shell script:
+Also, linking directly to the MacVim.app in the Cellar directory like some of the other answers suggest binds you to a specific version. If brew upgrades MacVim, your link will still point to the old version. Rather, you should use:
+open /usr/local/opt/macvim/MacVim.app $@
+
+as this location is automatically symlinked by brew to the most recent version.
+This worked great for me. I save the Automator file in iCloud so I can conveniently add the app on other machines.
+
+A: Best way doing it come from homebrew it self
+osascript -e 'tell application "Finder" to make alias file to POSIX file "/usr/local/Cellar/macvim/7.3-61/MacVim.app" at POSIX file "/Applications/"'
+
+here is the reference:
+
+A: The simple act of installing homebrew allowed me to create a symlink to Sublime Text.  Perhaps you are needing more.
+Install homebrew here if you have macOS
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+and then from command line (assuming ST is installed)
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+
+A: Sounds like you could do the following from the Terminal.
+$ ln -s /usr/local/Cellar/macvim/7.3-61/MacVim.app /Applications
+You might have to use sudo to put the symlink in the /Applications directory.
+
+A: This doesn't directly answer the question, but instead inverts the install process so that MacOS will find MacVim like any app.
+
+*
+
+*If you already installed macvim with brew, uninstall it with brew uninstall macvim.
+
+*Download MacVim and install the .dmg like any application.
+
+*Add an alias to your .bash_profile:
+
+# Create a MacVim alias if it's installed as MacOS application
+[ -x "$(command -v /Applications/MacVim.app/Contents/MacOS/Vim)" ] \
+  && alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+
+Now the MacVim GUI will work like any MacOS app (including with Spotlight), and the next time you open the terminal, the command vim will open MacVim in the terminal instead.

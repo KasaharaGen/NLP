@@ -1,0 +1,8 @@
+Q: Final Cut Express 3.5 HD quits unexpectedly I am running FCE 3.5 HD on a Macbook Pro and whenever I start rendering, it (FCE) unexpectedly quits. Here’s the crash report:
+http://inventaweb.net/matthew/fcecrashlog.txt
+I have no idea if this will even help, as I have no idea even how to read it...but....
+UPDATE: I am still having the problem, but not necessarily from rendering. Just moving video around can cause it to quit. Or selecting "Show video filmstrips"
+EDIT: I sent a bug report to Apple. We'll see what they say.
+
+A: The problem was with the cross-dissolve transition that I was trying to render. Technically, I haven't figured out the problem, but now I know what is causing the problem. I am able to render video in other sequences and that works just fine. I haven't tried rendering a cross-dissolve transition in another sequence. Thanks so much to bmike for helping me with this!
+UPDATE: I have tried rendering other cross-dissolve transitions in other sequences and even in the same sequence that had a problem. It was only that edit that was having a problem. The cut that I had placed the transition on was a full 1080p video. I don't think my version of FCE likes 1080p video. When I try to do other stuff to that clip, it wil sometimes quit.

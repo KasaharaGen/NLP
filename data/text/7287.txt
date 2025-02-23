@@ -1,0 +1,11 @@
+Q: How do you record audio from command line with osx? I've tried ffmpeg but there is no /dev/dsp device.
+
+A: Try SoX or Ecasound.
+
+A: I'd recommend looking into MPlayer OSX Extended -- it's a port of the linux app "mplayer" and will let you record from a multitude of audio sources (including streams and remote files).
+/Applications/MPlayer\ OSX\ Extended.app/Contents/Resources/Binaries/mpextended.mpBinaries/Contents/mpextended.mpBinaries/Contents/MacOS/mplayer \
+    http://server.com/stream.pl \
+    -cache 1024 -ao coreaudio:device_id=49 -volume 65 -ac hwac3, -slave \
+    -identify -noar -dumpstream -dumpfile ~/Desktop/stream.mp3
+
+See http://www.mplayerosx.ch/ for more information

@@ -1,0 +1,38 @@
+Q: Change search Google in Safari to use Firefox Cmd+Shift+L searches for the selected text in Google using Safari. Can I change this to use Firefox instead?
+
+A: You can create a new service with automator, use the "Run Shell Script" action, and use:
+open -a FireFox "http://www.google.com/search?q=$1"
+as the shell script text, then save it as "Open with Firefox" or whatever you like.
+-or-
+follow this summary from this thread:
+
+*
+
+*Download and Install OnMyCommand/OMCEdit
+
+
+*Open OMCEdit
+
+
+*Click on "Download Commands" then "Download"
+
+
+*Go in "Command Library"
+
+
+*Choose #22 and click on "Append to Command"
+
+
+*Change the name if you want (in "Command Name")
+
+
+*Write " Top Level " in location if you don't want a sub-menu, or choose a name for the sub-menu ("In On My Command" is the default)
+
+
+*Save
+
+
+*You're done!
+
+A: What you need to do is create a new Automator service. Unfortunately, Firefox's AppleScript support sucks, so you'll have to do it manually.
+You should be able to use a combination of the tips in this article and this comment, and the page Calavera linked to should give you a general idea of how to format the URLs.

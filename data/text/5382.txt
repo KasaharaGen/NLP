@@ -1,0 +1,9 @@
+Q: Repairing Time Machine volume taking forever Over 18 hours and counting, currently in the "Checking multi-linked directories" phase, but it's been there all night long. 
+I see disk I/O, not a lot, but some. I assume its from the TM drive as the machine is nominally idle (as idle as these machines get, anyway).
+What prompted me was that I kept glancing up and see it backing up. It was stuck doing a backup for a long time, so I simply stopped the backup, and tried again. Later, it was still taking forever and nothing happening. So I shut down TM, unmounted the drive, unplugged it, replugged it in. Then I decide to run Repair.
+The basic question is if this repair time is "normal", or is the drive bad. I'm debating simply erasing the drive and starting over, but if the drive is bad, then it's not trustworthy.
+Advice appreciated.
+
+A: The structure of a Time Machine disk is very complex.
+Hundreds Gigabytes with hard links everywhere need a long time to check.
+18 hours is not surprising.

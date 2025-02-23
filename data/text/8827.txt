@@ -1,0 +1,17 @@
+Q: Is there a way to Split one 42 Inch TV into Multiple Displays or Virtual Displays? I am a video editor and I want to split up my 42 inch TV into multiple desktops. I want to shrink the display into multiple shrunk sections, so the Mac Pro thinks that there are 2 or 4 monitors hooked up but there is actually only one super freaking huge TV, made to look like 4 monitor displays. I want to have sharper resolution. Just having a bigger screen isn't doing it for me. I need 2 monitors for Final Cut Pro - not just big Final Cut Pro windows.
+I do not want to "Size Up" or Split the screen into multiple windows, I want multiple displays. I want to trick my monitor into thinking that there more than one display. 
+Any ideas. It looks like Microsoft has similar programs but nothing for Mac. 
+
+A: You wouldn't necessarily get "sharper" resolution - splitting a 1080p HDTV into two monitors side-by-side would result in two 960x1080 displays:
++----------------+    +--------+--------+
+|                |    |        |        |
+|                | -> |        |        |
+|                | -> |        |        |
+|                |    |        |        |
++----------------+    +--------+--------+
+
+Is that what you're looking for? Despite the admonishments in your question, I don't think that's really what you're looking for. You'll get the exact same thing by just resizing your FCP windows to take up half the screen and putting both of them on the same screen. (You're stuck with the 1920x1080 pixels your display has any way you slice it.)
+In (more-direct) answer to your question: no, I don't think such programs exist.
+Note: I'm not familiar with Final Cut Pro, so I'm assuming it's multi-screen behavior is implemented with multiple windows. 
+
+A: You can use BetterDummy to make your virtual displays, then do PIP window streaming without title bar. NOTE that the PIP streaming is only available with the $15 Pro version.

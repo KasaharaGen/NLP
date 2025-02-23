@@ -1,0 +1,62 @@
+Q: Emacs on Mac OS X - To Alt or Command? It's official. I love to hate Emacs on Mac OS X.
+No matter what I do, I get a thorn in side.
+When I try to write \ using Alt + Shift + 7 I get errors because Alt == Meta in Emacs. If I bind the Meta to the Command key I circumvent that error. All is fine. Till I want to use Meta-Tab. Now I'm suddenly trying to Command-Tab away from Emacs into some other application.
+I'm furious at the moment, could anyone help me solve this problem? I would prefer it if I could have Alt as meta, not install aquamacs.org and not use the fn key.
+Oh, by the way, I use Swedish locale.
+EDIT 1:
+First solution: add (global-set-key [C-tab] [M-tab]) to ~/.emacs. This will tie the Meta-tabto Control-tab instead. Not what I entirely wanted, but should work.
+
+A: I have the same problem when I came from Linux to macOS, and I resolved it by add following codes to my emacs config file:
+;; check OS type
+(cond
+ ((string-equal system-type "windows-nt") ; Microsoft Windows
+  (progn
+    (message "Microsoft Windows")))
+ ((string-equal system-type "darwin") ; Mac OS X
+  (progn
+    (setq mac-option-key-is-meta nil)
+    (setq mac-command-key-is-meta t)
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier nil)
+    (message "Mac OS X")))
+ ((string-equal system-type "gnu/linux") ; linux
+  (progn
+    (message "Linux"))))
+
+Please notice this part of codes that have commented with 'Mac OS X', it'll swap option key with command key in emacs application, but in the whole view, command is still command, you can use command+tab just like before.
+
+A: Some people I know always buy Macs with US keyboards for exactly this reason.
+I cursed at Emacs too (in Swedish, as well) and the only solution I've found is to use the US Extended layout, but using my Swedish keyboard. I spent several years with a US keyboard as my main keyboard so I can switch more or less without thinking.
+If you're not willing to go the layout-switching route, OS X Emacs in Swedish is just painful.
+
+Edit: Just found a hint for Spanish that might be of help. The idea is to remap the character that gets sent to Emacs to the one you desire. I haven't tried it, but it sounds promising.
+
+A: It's not really elegant, but you could use the Escape key for meta and keep the alt key for special characters. E.g. ESC x instead of M-x.
+But agree with molbdnilo, most non-US keyboards suck for programming. I once worked in Finland for a couple of weeks, and the first thing I did was switch the KB to US. Even blind typing was easier than figuring out how to type those characters you need so often in programming languages. (well, actually the first thing I did was to switch the language; fortunately I knew how to do that by muscle memory :-)
+
+A: See the options under M-x customize-group ns
+There you can adjust the behavior of the modifier keys. I have set the right alt to "No modifier" - that's the same behavior as on PC keyboards with Alt-Gr.
+Another setting I like is to unset both alt keys and use the function key instead for alt.
+
+A: I have also had this problem for years! Just recently I tried out Emacs in OS X again. I finally fixed the problem by adding the following in my .emacs: (This is with Emacs 24.3)
+(when (eq system-type 'darwin)
+  (setq mac-right-option-modifier 'none))
+
+
+A: I am not sure if it encompasses all your needs but yes I understand the problem with Meta and have it from time to time when I fresh install Emacs. Here is what I can suggest simply:
+Just in your init.el or whatever is your emacs startup config file, set mac option modifier to 'meta and mac right option modifier to nil, in that order.
+That way:
+
+*
+
+*You will be able to use right option as a normal mac Alt key for special chars like #, $, {, [, ], } that requires Alt as usual
+
+*You will be able to use the left option key as a normal Emacs Meta key.
+
+*You won't need to mess with command (cmd) key.
+
+*You won't even need ESC x combination which is still there for Meta
+Add the following in your .init.el file:
+(setq mac-option-modifier 'meta)
+(setq mac-right-option-modifier nil)
+

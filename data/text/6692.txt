@@ -1,0 +1,15 @@
+Q: How do I change back from MacPorts Python to system default version? I used MacPorts to install a newer version of Python on my system (10.5.8 PPC), and then used the MacPorts select command to change the default invoked version of Python to the MP version. Now I want to change it back to the system version of Python, but I can't find a command to do so in the documentation.
+I know all the MacPorts command did was to change a bunch of links to point at the MP version instead of the system version. Unfortunately I don't know what all the affected files are.
+Does anyone know the command to reverse the setting or know the list of affected links that I would have to change?
+
+A: Macports select can change it back.
+The current macports does it using the port select command - older versions had python_select
+To see the possible pythons run
+port select --list python
+
+From that list choose the one you want and change to it e.g.
+sudo port select --set python python25-apple
+
+In Monterey  the python??-apple targets don't exist nor does an Apple python2. Thus you can set python to Apple's python but you can set python3 to /usr/bin/python
+sudo port select --set python3 nil
+

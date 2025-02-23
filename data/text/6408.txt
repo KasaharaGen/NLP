@@ -1,0 +1,24 @@
+Q: How to determine out what Wi-Fi channel is used from the command line? If I hold Alt/Option and click the Airport icon at the top, I get a bunch of extra data about the access point I'm connected to.
+Most interestingly for me right now is the Wi-Fi channel. ifconfig doesn't seem to include it.
+How can I get this same info from the command line?  
+
+A: There is a command line airport that is buried deep in the system framework that seems to be safe to call from the terminal. You can make a quick shell alias if you prefer short commands.
+From macworld
+
+
+*
+
+*Create an alias in your ~/.profile for the Airport Utility:
+(this should all be on the same line with NO SPACE between airport='..., but it won't fit on one here!)
+> alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+
+*Then you can run this command to find out more info: > airport en1 scan
+
+A: Try running system_profiler SPAirPortDataType from the command line - that will probably give you all the info you need. It's not terribly speedy though (just checked it with Lion, looks like the format has changed but it's still all there).
+
+A: In Mountain Lion try
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I
+
+To see other options use
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -help
+

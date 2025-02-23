@@ -1,0 +1,12 @@
+Q: Set iTerm2 as the ssh:// URL handler Currently, Terminal is set to handle SSH urls. For example, if I do:
+$ open ssh://machine.example.com
+
+Then it will spawn a new SSH session in terminal. I'd like these to be opened in iTerm2 instead. How do I tell macOS to use iTerm2 to handle ssh:// URLs instead of Terminal?
+
+A: iTerm2 can set itself as the default SSH handler. In its preferences, go to “Profiles”. Create a profile to handle SSH sessions, or select an existing one. In the “General” section, bottom right, you can select which URL scheme this profile should handle:
+
+Select SSH. iTerm2 will ask if it is to set itself up as the default SSH handler:
+
+Confirm and you are done. Happy remoting.
+
+A: Make sure you dragged the iTerm2 app in the Applications folder.  If you set iTerm2 to be the SSH terminal handler it will not save nor use it. It appears that when you invoke the handler it only looks in Applications. If it doesn't find it there it will default to the system handler. I was running it from Downloads and it would never save the SSH handler. When I moved it to Applications, it open iTerm2 for the SSH handler every time.

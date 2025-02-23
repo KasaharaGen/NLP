@@ -1,0 +1,48 @@
+Q: How to sort files entirely by date? Is there any way to sort all files in a particular directory by date, even ones in subfolders? For example:
+drive root -> documents -> mysite -> dev
+Drive root contains a bunch of individual files, plus a folder called documents. Documents contains a bunch of files, plus a folder called mysite, and so on. What I want to see is just a list of files sorted by date, from all the folders, rather than having to open each folder separately and seeing only its files sorted by date.
+I have Cocoatech's Pathfinder installed, so if it isn't possible in the standard Finder, maybe there's some way to do it in PF?
+(If the folder tree were really as simple as my example, it wouldn't be an issue, but what I'm really looking at is a website's build directory, which contains about 5 levels of subdirectories, and I need to see all files sorted by date so that I can move whatever changed today (regardless of which folder it's in.)
+
+A: If you don't mind using the terminal you could try this:
+find . -type f -exec ls -lth {} +
+
+This will list files from current directory and all directories below, sorted by modified date. A variant not listing modification date would be:
+find . -type f -exec ls -t {} +
+
+But I believe that it would be better to just list the files that have changed the last 1440 minutes
+find . -mmin -1440
+
+
+A: You could use spotlight to do this.
+
+
+*
+
+*In Finder, select the folder that contains everything.
+
+*File -> Find or cmd+F
+
+*Now, you need to do some sort of search or else nothing will show up. Pick something that all relevant files will satisfy, for example "Last modified date is within the last 100 years"
+
+*If you aren't already doing so, view the results as a list (View -> as List or cmd+2)
+
+*If there is no header that says "Date Modified" you can get one by going to (View -> Show View options) and selecting it in the "Show columns" category.
+
+*Click the Date Modified column header to sort by this value.
+
+
+One thing to consider:  Folders also show up in the list. Perhaps you can get around this by requiring size to be greater than 0.
+If for some reason spotlight is not working for you, you could do use a python script, like this one:
+#! /usr/bin/python
+
+import os, time
+
+for path,dirs,files in os.walk("/path/to/folder"):
+  for file in files:
+    fullname=path+"/"+file
+    mtime=os.stat(fullname).st_mtime 
+    mtimestring=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(mtime))
+    print "\"" + fullname + "\"," + mtimestring
+
+Save the output to a .csv file and use your favorite spreadsheet program to do the sorting. Or you could alter the script to do the sorting for you.

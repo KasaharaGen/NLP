@@ -1,0 +1,22 @@
+Q: Seeking good quality DVD ripping software for PPC G5, 10.4.11 Subject says it all, but here are the requirements in full:
+
+
+*
+
+*Power Macintosh G5 Dual 2.5 Ghz, 2 GB RAM, 2 TB HDD (destined to become a media and file server for v1 Apple TV and home network)
+
+*Mac OS 10.4.11, but will be upgrading to Mac 10.5 at a later date
+
+*Surround sound support (Dolby 5.1, DTS)
+
+*Movies are intended for use with an v1 Apple TV, so no disk images or VIDEO_TS folders.
+
+
+Web searches reveal a lot of software out there but it all seems fairly random, so I'd like to see if anyone has had any experience with a particular application on older hardware and OS. Please note the Handbrake PPC build will not run on this particular machine (quits without error before loading is complete) and RipIt does not support anything before Mac OS 10.5.
+I know I can go the route of Mac the Ripper to Handbrake, but that's doubles the process in time, space, and computers needed. I'm looking to avoid that if at all possible.
+
+A: Use the RipIt App. Choose the Compress option and within the Applications preferences you can specify the output file format. I have to say they made the process simple and worry free. I am using it on Snow Leopard so my experience may not be the same as yours.
+
+A: You want HandBrake. Does everything the apps in the other answers do, bit it's open-source and free.
+The latest builds have discarded PPC support, but the version before the current (0.9.5) build does have PPC builds available. You can grab those here (Version 0.9.4).
+It Explicitly supports AppleTV.

@@ -1,0 +1,14 @@
+Q: Show Hidden Files OS X 10.7 Lion 
+Possible Duplicate:
+How to show hidden files and folders in finder? 
+
+How do I show the hidden files in OS X 10.7 Lion?
+
+A: Open Terminal.app (Applications > Utilities) and type the following commands:
+defaults write com.apple.finder AppleShowAllFiles TRUE
+killall Finder
+
+To undo re-open Terminal.app and run
+defaults write com.apple.finder AppleShowAllFiles FALSE
+killall Finder
+

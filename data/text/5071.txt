@@ -1,0 +1,26 @@
+Q: Does Mobile Safari have an image file size limit? I'm developing a website which contains, by its nature, very large images. When testing on an iPad, I'm noticing that any image on the page larger than 2MB is not showing up, just showing the dreaded blue '?' instead. The only reason I can think of is that there is some sort of built-in resource size limit.
+I've tried Googling, but there doesn't appear to be any published limit, and the only reports I've found mention 6.5MB... but I'm way below that.
+Does anyone have any concrete sources that indicate if this limit exists, and what it may be?
+
+A: This official article what you are looking for. As expected there is no file size limit, the answer is more complex and depends on the device memory and image compression algorithm used:
+
+  
+*
+  
+*The maximum size for decoded GIF, PNG, and TIFF images is 3 megapixels
+  for devices with less than 256 MB RAM and 5 megapixels for devices
+  with greater or equal than 256 MB RAM. That is, ensure that width *
+  height ≤ 3 * 1024 * 1024 for devices with less than 256 MB RAM. Note
+  that the decoded size is far larger than the encoded size of an image.
+  
+*The maximum decoded image size for JPEG is 32 megapixels using
+  subsampling. JPEG images can be up to 32 megapixels due to
+  subsampling, which allows JPEG images to decode to a size that has one
+  sixteenth the number of pixels. JPEG images larger than 2 megapixels
+  are subsampled—that is, decoded to a reduced size. JPEG subsampling
+  allows the user to view images from the latest digital cameras.
+  
+*The maximum size for a canvas element is 3 megapixels for devices with
+  less than 256 MB RAM and 5 megapixels for devices with greater or
+  equal than 256 MB RAM.
+

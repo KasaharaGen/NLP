@@ -1,0 +1,7 @@
+Q: How to let Terminal on Mac OS behave show folders and executables and such in different colors? On Linux (e.g. Ubuntu) the terminal shows you executables and folders and such in different colors so you can identify them easier. Is this possible on Mac OS Terminal, too?
+
+A: To add color output of the ls command, you need to edit your ~/.bash_profile and add:
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+This is just an example, look at the ls manpage on how to change specific color values.

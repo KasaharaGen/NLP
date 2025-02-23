@@ -1,0 +1,7 @@
+Q: OS X Lion: App-Specific Resume I know there's a system wide preference to disable 'Restore windows when quitting and re-opening apps', but is there any way to have it restore only specific apps?. I would like to have Safari open in full screen every time I launch it.
+
+A: defaults write com.apple.Safari NSQuitAlwaysKeepsWindows -bool YES will enable it just for Safari.
+Note that you can also temporarily toggle the behavior by holding ⌥ and choosing Safari → Quit And Keep Windows (or ⌘-⌥-Q).
+
+A: If you want to DISABLE restore for a particular application, it appears you can close all open documents for a program, quit the program, then go to ~/Library/Saved Application State/«app name», Get Info, and lock the folder.
+This could work to preserve the state of "no windows open", or to preserve any other window state that you always want to launch into.

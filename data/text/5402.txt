@@ -1,0 +1,48 @@
+Q: How do I take a steathy picture with my iSight camera from the command line? Is there a command line utility that allows me to take a picture from the built in camera?  Something like screencapture allows for, well, screen captures.
+The reasoning for a command line tool is I would like for it to be stealthy, without a countdown or flash or other indication to the user that a picture is being taken.
+
+A: OS X does not come with any utilities for this purpose.
+A third-party solution is imagesnap. It lets you capture an image from any connected video device, defaulting to the built-in iSight camera. It's available as a single binary file you could bundle with your software, and is released into the public domain.
+There are many references around the internet to the iSightCapture utility, which used to be a popular choice for this, but it is no longer maintained.
+
+A: Unfortunately imagesnap no longer appears to work on OSX10.11/El Capitan so another alternative is to install ffmpeg (MacPorts: port install ffmpeg or brew install ffmpeg) and run:
+ffmpeg -f avfoundation -video_size 1280x720 -framerate 30 -i "0" -vframes 1 out.jpg
+
+
+A: Natively, there is a way but it is extremely basic. You can use Automator to make an application that takes a picture. The action is called "Take Video Snapshot" and requires a "built-in camera, iSight or other webcam, or digital camera connected to your computer." Just check the box to take picture automatically and you now have an app you can call from the command line. Save it as an app and then you can call it from the command line like open TakePicture.app.
+
+
+A: As another poster mentioned there is a utility called iSightCapture which can do this.
+I once wrote a script to periodically grab an iSight image and a grab of my two monitors and post it to a private website so I could see what's going on at my computer.  Here's how I scripted iSightCapture to do so.
+#!/bin/bash
+~/scripts/isightcapture -w 320 -h 240 -t jpg ~/capture.jpg 
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+    growlnotify -s -a FaceTime -m "isightcapture failed ($RESULT)" $0
+    exit 1
+else
+    sips -f horizontal ~/capture.jpg
+fi
+
+screencapture -S -tjpg ~/scr1.jpg ~/scr2.jpg 
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+    growlnotify -s -a FaceTime -m "screencapture failed ($RESULT)" $0
+    exit 2
+else 
+    sips -z 240 320 ~/scr1.jpg 
+    sips -z 240 320 ~/scr2.jpg
+fi
+exit 0
+
+Note the use of 'sips' to flip the isight capture horizontally.  
+A working download link (2012-10-05): iSightCapture (via), tested on OSX 10.8.2
+
+A: Use imagesnap. It can be installed with brew install imagesnap or by downloading the binary from the website.
+One use for it is to take series of snapshots:
+while :; do
+    imagesnap ~/Desktop/$(date +%y%m%d%H%M%S).png
+    sleep ${1-1}
+done
+
+It doesn't crop images horizontally either. (Photo Booth changes the aspect ratio to 3:2.)

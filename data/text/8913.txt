@@ -1,0 +1,9 @@
+Q: How can I add external Interface to my OS X with a valid IP? I connect my Macbook pro to internet through Lan and if I type ifconfig in terminal my en0 interface get valid IP now I want add en1, en2 and en3 to my configuration and they all be able to get valid IPs, I don't want to add additional network card I just want to use my internal network card. I don't know if I must use bridging or nating or ... . please help find my solution.
+
+A: In System Preferences -> Network click on the + to add a new interface, in the popup choose Ethernet.
+This will not create an additional en1 or en2 interface, but add an additional address to your en0 interface.
+
+A: What you are looking for is called IP address aliasing. In Mac OSX you can create an aliased address by issuing the following command (see the ifconfig manpage for more details):
+sudo ifconfig en0 alias $ADDRESS $NETMASK
+
+However, you cannot receive DHCP leases on these "virtual NICs" (see here for why) so you will need to have an available static IP address and know the appropriate gateway, all information you can get from your ISP. Depending on what your ISP's upstream subnetting and routing looks like you may also have to add a static route (see the route manapage).

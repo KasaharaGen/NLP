@@ -1,0 +1,12 @@
+Q: Since upgrading to version 10.0.1 of iTunes, playback is bumpy Since I upgraded to version iTunes (10.0.1), playback is bumpy and full of hiccups. Typically, for video playback the video will freeze for a second or two at random times, and then skip to the current location in time, meaning that content will be skipped over. This happens every time I play videos now, and it is seriously starting to annoy me.
+For mp3 playback, sporadic hiccups seem to be happening as well, but with nowhere near the frequency of videos.
+The videos I play are all content purchased from the iTunes store, typically TV shows in 'standard definition'.
+I have (obviously) tried to close other resource-hungry apps etc, but that does not help. iTunes is typically at 5-15% processor usage when playing video.
+I use Mac OS X 10.6.4 on a 2.53 Ghz Intel Core 2 Duo MacBook Pro with 4GB RAM. Hard drive has about 10 GB of free space.
+Any ideas as to what is wrong here?
+
+A: This might come a little bit as an obvious question but… have you restarted your box since you installed that? A zombie process could be causing delays in other areas.
+Check with /Applications/Utilities/Activity Monitor.app and sort by CPU usage to see if there’s anything “red” (zombie) or any process not behaving. 
+In any case, a sane box restart (if you haven’t already) is usually a good advice. Turn the box off for a few secs and then turn it on again, the VRAM might be corrupted and a simple “restart” won’t always do the right thing. (It happens to me in the Mac Pro).
+The reason for mentioning this is that your computer is more than capable to play videos. 
+Do you have Perian or any other third party codecs laying around that might interfere?

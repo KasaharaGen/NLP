@@ -1,0 +1,20 @@
+Q: Disable "...application downloaded from the Internet. Are you sure you want to open it?" on certain file types? Is it possible to modify which files Apple's quarantine warning pops up on?  Specifically I download hundreds of PHP files (web developer) and I'm tired of seeing "...is a script application downloaded from the Internet. Are you sure you want to open it?"  I don't mind the warning on most downloads, but don't want warnings on scripts I'm opening to edit.
+FYI, Quarantine can be completly disabled with:
+    defaults write com.apple.LaunchServices LSQuarantine -bool NO
+and can be removed from existing files with:
+    xattr -d -r com.apple.quarantine ~/foldername
+
+A: If you download files from the internet into the ~/Downloads folder, you could assign a folder action to ~/Downloads via Automator:
+Open Automator
+Create a new Folder Action
+As the action, drag over "Run Shell Script"
+Assign the following shell script:
+    for f in "$@"
+    do
+        test "$f" == *\.php && xattr -d -r com.apple.quarantine $f
+    done
+
+
+A: Building from @Daniel's answer, you could do this from a shell:
+find /path/to/your/app -name '*.php' -exec xattr -d -r com.apple.quarantine {} \;
+

@@ -1,0 +1,18 @@
+Q: How do I convert FLIC files properly I need to open and convert old Autodesk Animator FLIC (.FLI) files (from MS DOS) into something more useful, like say AVI or even an image sequence. I realize both Motion and QuickTime "can" do this, but they mess up the films, probably because of a faulty decoder. 
+I've already downloaded the UNIX app xnview, but it doesn't work well. While it can handle the format well, it can only store one frame at a time as a standalone picture, which is PAINFUL to do when there are usually several hundred frames in any given animation.
+
+A: I don't know what you can do about converting the files....   However, if xnview will export the still frames to a folder, and if the files are sequentially numbered, QuickTime will be able to make a movie out of these images.  
+Perhaps xnview can be scripted to export all of the still frames.
+Will that work for you?
+
+A: Maybe the command line tool ppm2fli which includes unflick?
+DESCRIPTION
+
+The program unflick extracts single images or a series of images from
+  a given FLI-animation. The extracted images are stored in separated
+  files. The formats PPM (raw and ascii) and FBM (mapped 8bpp) are
+  available. Additionally unflick can call an external filter program to
+  convert the output in another file format. The file animation contains
+  the input FLI-animation. The output file names are controlled by the
+  parameters base and extension...
+

@@ -1,0 +1,6 @@
+Q: Changing the icon on the "window bar" Mac OS X I was wondering how I could change the icon in the "window bar" of my Mac app 
+I've also added a picture of the icon I want to change since i believe window bar isn't the correct term.
+
+Thank you in advance! :)
+
+A: You'll want to use -setRepresentedFilename:or the other similar methods. I don't think you can just change the icon to anything, it has to be associated with a file.

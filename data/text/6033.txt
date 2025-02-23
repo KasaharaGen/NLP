@@ -1,0 +1,21 @@
+Q: After upgrade to Lion, Mailplane experiences repeated failures to connect I'm a happy longtime Mailplane (Mac gmail client) user, but it seems to have become buggy since installing Lion.
+There's nothing official on the website about problems, so maybe its just me and/or my configuration.
+Anybody else have problems? Any ideas?
+
+A: FWIW, I have been using Mailplane on Lion on my MacBooks (Air&Pro) without any bugginess. (Have you contacted the dev? He's been very responsive in my experience.)
+If you didn't do a clean install of Lion (or used MobileMe to sync preferences) you might want to backup
+
+
+*
+
+*${HOME}/Library/Application Support/Mailplane
+
+*${HOME}/Library/Preferences/com.mailplaneapp.Mailplane.plist
+
+
+(If you don't have your license file, be sure to save
+defaults read com.mailplaneapp.Mailplane License
+
+too.)
+zip/email them to yourself and then delete them -- not just trash them -- from your system. Reboot.
+Then try setting up Mailplane again.

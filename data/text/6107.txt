@@ -1,0 +1,33 @@
+Q: Disable OS X feature to reopen windows at login time In Mac OS X Lion, when I do Apple > Shut Down, there is a checkbox that says "Reopen windows when logging back in". 
+Even though I constantly UNCHECK the box, it seems OS X doesn't care - and still opens some Finder windows and sometimes Chrome...
+How can I turn this feature off?
+
+A: For the record, we’re talking about this:
+
+The problem is that OS X doesn’t remember if you uncheck the checkbox on the last shutdown — it will always keep the checkbox checked by default on subsequent shutdowns.
+I found two different solutions for this problem, that seem to do the trick, although they aren’t ideal.
+Open Terminal.app and enter the following commands:
+defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+
+This effectively disables the “reopen windows when logging back in” option, although the checkbox will still appear to be checked. You can just ignore it.
+I’m afraid there’s no better solution, at least not at the moment.
+
+Update: OS X 10.7.4 fixed this — it now remembers your selection:
+
+
+A: This bug has been fixed with the Lion update 10.7.4:
+
+The OS X Lion v10.7.4 Update includes fixes that:
+Resolve an issue in which the "Reopen windows when logging back in"
+setting is always enabled.
+
+
+(click here for more information)
+
+A: Do you ever want applications to restore to their closed state, or just at startup? If you want something resembling pre-Lion behavior (i.e. not picking up where you left off), try this.
+Back up your system before trying this, in case it messes anything up, but I'd recommend this procedure:
+In the Finder, press Command-shift-G for "Go to the folder:" then type "~/Library/Saved Application State/" (without the quotes). Delete all the folders in Saved Application State, then press Command-I to Get File Info. In the Get File Info window, check the "locked" box. This should keep applications from restoring their state.
+
+A: Be sure that Google Chrome isn't included in System Preferences > Users & Groups > Login Items.  
+Also, Finder windows restore by default regardless, as they did in Snow Leopard.

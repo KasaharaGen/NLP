@@ -1,0 +1,28 @@
+Q: How do local TimeMachine backups work exactly? Since Mac OS X 10.7 (Lion) TimeMachine performs local backups to /.MobileBackups if enabled (tmutil enableLocal, default enabled on portable macs).
+The different types of backups are color encoded in the fancy TimeMachine space thingy, local backups are white, external storage purple. They mostly differ only by a minute. What exactly is the concept of those local backups? 
+Are they simple a completely parallel, additional backup? Or are they at least merged into your external storage backup when you come home after begin away from your backup drive for a week? And what happens if i require lots of disk space suddenly? Do i need to remove the local backups manually?
+
+A: I also thought that the Local Snapshots were supposed to merge into your Time Machine backups but it seems, in my experience, that they don't. You can see both when you're in Time Machine and "About This Mac" shows that they still exist after multiple backups to an external harddrive. I do think that they are supposed to merge with themselves the way that Time Machine backups do, to save space, merging into daily and weekly backups instead. As far as Finder is concerned, the space is not used. Looking in the info bar at the bottom of a Finder window showing your root drive will show that you have more space than something like iStat Nano will show on Dashboard. I think this is because the backups are supposed to be expendable. If your computer really needs the space I assume that it will get rid of some of its snapshots to make room.
+We may see that in the future they merge back into regular Time Machine backups as Lion matures more.
+It's also worth noting that I don't think they count as real 'backups' in the sense that you can't restore to them the same way you can restore to a time machine backup from the Recovery HD. They are really meant to help you recover a file instead of your whole filesystem.
+
+A: Local Time Machine backup purpose is to have an hourly backup even when your external hard drive isn't connected. When you connect your external drive, it copies the local backup to the external drive.
+That's why it is activated by default on portable Mac as they suppose the external hard drive of your desktop Mac is plugged permanently if you're interested in hourly backup with Time Machine.
+
+A: Local backups do not use any space, so far as the user is concerned.  The area they are kept is marked as unused to the OS, so your 30Gb free space may actually contain 5Gb or backups for example.  The local backups are not quite the same as the full time machine backups tho, which (within reason) takes copies of any changed files including application binaries.  The local backups are more for changes made in your documents etc and dovetail nicely with Versions etc.  Should you need more space the system will cycle through and overwrite your local backups in order of age to preserve the most recent changes where possible.  And, as Olivier rightly mentions, they get shuttled off to your proper Time Machine should you have one when it is connected.
+
+A: So, I investigated part 1 of the question: The backups are not merged into the external TimeMachine backups when the external disk reappears.
+[15:21:35] I disconnected my backup drive
+[16:40:01] I checked the contents of my /.MobileBackups folder
+# ls -l /.MobileBackups/Computer/ | tail -n2
+drwxr-xr-x@ 3 root  wheel  102 Aug 11 15:36 2011-08-11-153653
+drwxr-xr-x@ 3 root  wheel  102 Aug 11 16:36 2011-08-11-163653
+
+[16:55:31] I reconnected my backup drive and clicked "Back Up Now"
+[17:00:10] Backup finished, checked the contents of the external backup drive
+$ ls -l '/Volumes/Time Machine Backups/Backups.backupdb/<myhostname>' | tail -n3
+drwxr-xr-x@ 6 root  staff  204 Aug 11 14:41 2011-08-11-144112
+drwxr-xr-x@ 6 root  staff  204 Aug 11 17:00 2011-08-11-170010
+lrwxr-xr-x  1 root  staff   17 Aug 11 17:00 Latest -> 2011-08-11-170010
+
+As one can see, the local backups performed inbetween have not been included in the external drive. The backups seem to be entirely independent - pretty poor implementation :(

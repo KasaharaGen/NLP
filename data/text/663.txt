@@ -1,0 +1,219 @@
+Q: How can I change the title of a boot image? I have an external Hard Drive with two bootable partitions on it. The first is an image of a Mac OS X 10.6 Install DVD, and the second is an image of a Mac OS X 10.6.3 Install DVD.
+When I plug the hard drive into a Mac Mini, and turn it on holding down the Alt key, I get the option to select which boot device to use. However both my bootable images are named "Mac OS X Install DVD".
+How would I change the name of the bootable image?
+I have already tried changing the partition names but this has no effect.
+Any ideas?
+Note: I originally asked this on SuperUser, but upon discovering this site, I asked it here also.
+Edit: Here are some related pictures:
+
+The Partition in Finder
+
+Disk Information in Disk Utility
+
+Volume Information in Disk Utility
+
+A: Note that since a firmware update that came in with High Sierra (late 2017) the root of the drive is now a secondary source for the disk label files. The primary source is within a directory called:
+.IABootFiles
+
+For example, to hit both sources:
+sudo bless --folder "/Volumes/Install macOS 10.12" --label "Install macOS 10.12"
+
+sudo bless --folder "/Volumes/Install macOS 10.12/.IABootFiles" --label "Install macOS 10.12"
+
+
+A: Unless I'm totally misunderstanding your question, this is pretty simple.  You can change the volume name just by right clicking it in finder, choosing "Get Info", and modifying the "name and extension" field.  Or slow clicking twice on the name of the volume as it appears on the desktop, and editing it just like any other file name...  I do this all the time with bootable volumes and it works just fine.
+Your installer doesn't have to be called "Mac OS X Install DVD".  The installer doesn't care what you call it.  Name one "Crap Bag" and the other one "Princess Consuela Banana Hammock"... no one will care and OS X will still install just fine.
+edit:
+I just tried this with a USB stick I created that has the 10.6.3 installer on it.  I had already changed the name from "Mac OS X Install DVD" to "10.6.3 Installer minus Optional".  I just changed it to "10.6.3 Banana Hammock" and when I booted with alt, that is what was displayed.
+There must be something not explained here that is causing this... maybe partition schemes other than GPT don't work this way?
+on second edit:
+What method did you use to put the images on the bootable partitions?  I ask because I'm wondering if you just copied the images themselves rather than cloning or restoring them to the partitions.
+I've never tested this, but I'm wondering if it's possible to have .dmg files that are bootable on a partition.  The behavior that would arise would be in line with what you're describing.  You could change the partition/volume name, but it wouldn't affect the name of the dmg file.  Even if you changed the dmg file name, that wouldn't affect the name of the disk image (volume) contained within the dmg file.
+If this is the case, I would think you could change the name by mounting the image in OS X, and then changing the volume name (the name of the volume that shows up on the desktop or in disk utility) that was mounted from the dmg or iso.
+edit III
+Below are the steps I used to create my installer image.  The main difference is Carbon Copy Cloner.  It may not work any better, but at this point it may be worth a try since mine has the behavior you would like to see.
+
+*
+
+*Inserted OS X Install DVD.
+
+
+*In Disk Utility, clicked "New Image".
+
+
+*Named it "Installer_image.dmg".
+
+
+*Chose "compressed" and "none" for encryption, clicked save.
+
+
+*Once complete, I mounted the image and deleted the optional folder.
+
+
+*Right clicked the mounted volume, chose "Get Info", wrote down the exact amount of space used in the image for files and folders, and unchecked "Ignore Ownership on this Volume".
+
+
+*Went back to disk utility, inserted my flash drive, and made a partition named "10.6.3 Install minus Optional" that was about 500MB larger than the disk image's used space.
+
+
+*Did another "get info" on the new flash drive volume and unchecked the ignore ownership option.
+
+
+*In Carbon Copy Cloner: as source, chose the mounted installer volume, target was the new flash volume.  Chose "Backup Everything" and "Delete items that don't exist on the source". Clicked clone.
+Afterwards, I am able to change the name of the flash volume, and whatever I change it to is what shows up in the boot menu.
+
+A: This is an older post, but I came across it today and figured I'd share what I found.
+The 'bless' command seems to make this work. First make sure the disk is mounted, find out which folder it is mounted to, and:
+sudo bless --folder <mount_path> -label <desired_label>
+
+For example:
+sudo bless --folder "/Volumes/Mac OS X Lion Install ESD" -label "Lion Install"
+
+Whatever you put for the label is what should show up at the choose disk screen when holding option during a boot.
+Note that you'll probably want to do this in addition to renaming in Finder or Get Info just to keep them somewhat in sync and make them easier to identify in either case.
+
+A: Do you ever try use rEFit:
+rEFIt is a boot menu and maintenance toolkit for EFI-based machines
+
+A: Installer media
+devguydavid's answer definitely leads in the right direction, but probably only works for older installer media.
+The other David's answer likely works for contemporary installer media, but I haven't verified it.
+But what about boot volumes for permanant operating systems or non-macOS installers?
+Non-installer boot volumes
+To label any EFI boot volume, the bless command must be pointed to the folder containing the bootloader—boot.efi or bootx64.efi—in an EFI system partition (which may be the actual OS volume, or a separate volume dedicated to the task).
+The exact location of the bootloader is ultimately arbitrary (i.e., one could move it around by changing settings in NVRAM), but it is typically one of a handful of locations, depending on the OS.
+Locate the relevant bootloader
+Run through the following conditions for the boot volume you want to change, then take note of the folder containing boot.efi or bootx64.efi.
+
+*
+
+*For standard installations of macOS:
+
+*
+
+*With an HFS+ startup volume format:
+
+*
+
+*boot.efi is in /System/Library/CoreServices on the startup volume.
+
+
+
+*With an APFS startup volume format (generally macOS 10.13 or later when the boot volume is stored on an SSD):
+
+*
+
+*The bootloader is stored on the Preboot APFS volume (in the same actual disk partition as the boot volume).
+
+*
+
+*To mount this volume, run diskutil list, look for Preboot next to the name of your startup volume (Macintosh HD or whatever) and then run sudo diskutil mount diskXsY, substituting X and Y to specify the Preboot volume.
+
+
+
+*boot.efi is in /Volumes/Preboot/<some-UUID>/System/Library/CoreServices
+
+*
+
+*where <some-UUID> is the longest filename shown by ls /Volumes/Preboot.
+
+
+
+
+
+*(Source: Booting the Mac: bless, and what makes a volume bootable from Eclectic Light Co.)
+
+
+
+*For Linux installations, installers or other live media:
+
+*
+
+*There is no definitive, uniform bootloader location for Linux OSs, but the following location is somewhat likely:
+
+*
+
+*In the EFI partition on the startup disk (the EFI system partition).
+
+*
+
+*Presumably (if you are running Linux on a Mac) you know how to mount this, but the gist is diskutil list followed by diskutil mount diskXsY, substituting X and Y to specify the EFI partition.
+
+
+
+*bootx64.efi or similar is in /Volumes/EFI/EFI/boot. (Note that this is technically a fallback location—the actual firmware will likely be somewhere else, and you may have to do some poking around using bootoption as described below).
+
+
+
+*(For an extremely informative deep dive into the standard EFI boot process, I highly recommend UEFI boot: how does that actually work, then? from Adam Williamson)
+
+
+
+*For Windows:
+
+*
+
+*In the EFI partition on the disk where Windows was installed (mount it under macOS as you would for Linux):
+
+*
+
+*The EFI firmware (which Windows calls bootmgfw.efi) should be in /Volumes/EFI/EFI/Microsoft/Boot.
+
+
+
+
+
+*Anything and everything:
+
+*
+
+*If you still can't find your bootloader, I recommend using bootoption:
+
+*
+
+*Run bootoption list and find the identifier for the boot entry you want to label. It should be BootXXXX where X is 0–9.
+
+*Run bootoption info BootXXXX as appropriate. Look for a Partition UUID or a pair of Container Partition UUID and APFS Volume UUID. Also note the Loader Path.
+
+*Run through each volume printed by diskutil list with diskutil info diskXsY until you find a matching Disk / Partition UUID or Volume UUID.
+
+*
+
+*For APFS volumes, consult Container Partition UUID to find the actual disk partition. The volume (in the container partition) containing the bootloader has Volume UUID = APFS Volume UUID.
+
+*For all other volumes, look for a volume such that Partition UUID = Disk / Partition UUID.
+
+
+
+*Finally, the bootloader is located at Loader Path on the volume you just identified.
+
+*
+
+*e.g., \<uuid>\System\Library\CoreServices\boot.efi, \EFI\ubuntu\shimx64.efi, etc., etc.
+
+
+
+
+
+
+
+Change the label
+OK! Knowling the location of the bootloader, we can now use bless to add or change its Boot Manager label:
+sudo bless --folder <bootloader-folder> --label '<new-label>'
+
+This creates the files .disk_label and .disk_label_2x in the bootloader folder.
+The reason this process is so complicated is that the labels are actually stored prerendered in an extremely simple image format. This obviates the need for font rendering in the preboot environment.
+
+A: Given that you can't change the name of the disk images, what you need to do is be able to tell which disk image is which. To what you're doing now, you'll need to add one extra step… 
+
+
+*
+
+*Plug in the external HD.
+
+*Boot the mini from its internal HD.
+
+*Go to System Prefs > Startup Disk. Each bootable system listed should display its OS version. Choose the specific installer you want.
+
+*Click the "Restart…" button.
+

@@ -1,0 +1,21 @@
+Q: Outlook removes text after inline attachment from mail send by Mail.app Whenever I send an e-mail from Mail.app to someone with Outlook, they can't read any text that is placed beneath an inline attachment.
+When I send an e-mail to myself from Mail.app any text that is placed beneath an inline attachment is attached as text-files.
+This is very annoying, does anyone know how to fix this problem?
+
+A: Under Edit > Attachments, check Always send Windows-friend attachments.
+That way, the text beneath the attachment won't be cut off.
+Alternatively, you can do that on a per-message basis in the attachment file selector window, like so:
+
+
+A: Their is no solution. A workaround is to insert attachments at the end of the message.
+You can set that as this as a default:
+
+*
+
+*For the current message: Choose Edit > Attachments > Insert Attachments at End.
+
+*For all messages: From the Message viewer, choose Edit > Attachments > Always Insert Attachments at End of Message (a tick shows it’s on).
+
+This is not a solution because you loose the benefit of inline attachment. It's also problematic if you have conversation where you recopies the past answer in the body of your email.
+Note the "send Windows-Friendly Attachments" option do not fix the problem.
+Please report this bug to https://www.apple.com/feedback/mail.html . All other major email client are capable of sending inline attachment to outlook without this issues. Apple Mail can only send attachment inline which make this issue terrible.

@@ -1,0 +1,20 @@
+Q: Lion: Application's window size doesn't persist after quit/re-open (Disclaimer: I'm not sure if my question is isolated to Skim.app – if so, it's fine if someone changes the title to reflect that – or if it's a Lion thing.)
+I'm using Skim to read PDFs.
+Every time I …
+
+
+*
+
+*Open a document
+
+*Resize the window to cover my whole screen
+
+*Quit the application
+
+*Re-open the document
+
+
+… the application's window revert to small size (about 2/3 of my screen instead of the whole screen.
+I find this very annoying, as I expect the application's window size to persist after closing and re-opening the app.
+
+A: If you find the window size of one app not retaining the window size value after closing it, the suspect is the .plist for that app. ~/Library/Preferences/ should contain the file. Deleting it while the app is closed and re-opening it will forcibly rebuild it with minimal negative impact to the app itself.

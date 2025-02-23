@@ -1,0 +1,29 @@
+Q: Migrating from MacPorts to Homebrew. Is there any specific advice in how to minimize disruption? I want to stop using macports, and use homebrew instead, I have been reading on their approach and it makes more sense to me.
+Now, I don't care much about having to reinstall my packages, even if some of them might not exist yet -- apparently, creating a new formula is straightforward.
+But I'm a bit concerned about data which is installed in system-owned directories, like the data in MySQL or PostgreSQL. I'd like a bit of advice on how to proceed so as to have the less amount of problems migrating data from one installation to another.
+I'm also curious about start scripts for daemons. Macports have complicated wrappers for launchd, but I don't know how homebrew manages that aspect. Can anyone clarify this for me?
+Also, any generic advice you can provide regarding this migration will also be welcome. Things to look for, what to avoid, etc.
+
+A: A bit off-topic but wanted to share my experience on this topic.
+About 6month / a year ago, I decided to do some cleanup and uninstalled port and fink to the benefit of brew, which I prefer.
+Today... Got the three again. Why?
+
+
+*
+
+*brew as my main source
+
+*port provides MANY more packages than brew and I needed some of them (like wireshark+nox11)
+
+*fink for some rare packages (I think I only reinstalled it for some dpkg utils)
+
+
+Just my 2 cents, not everyone needs these packages. But before uninstalling port, check twice the packages you need ;)
+
+A: Moving data is dependant on the application that manages it, e.g. if it's a database you could do a dump and restore it on the new installation, if it's a configuration file just copy it, etc.
+HomeBrew packages create the config files for launchd in the Cellar (read: formula's install dir) and at the end of the install process display an how-to install those files (the caveats method in formulas source) which  generally is a simple cp and launchctl sequence.
+Creating formulas is indeed easy, and the developers will happily accept your new or updated formulas. The process is,
+
+In summary: fork, clone, create, commit, push, audit (new-formula)
+
+Last but not least: take a look at the wiki.

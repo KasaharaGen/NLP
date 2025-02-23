@@ -1,0 +1,29 @@
+Q: Looking for USB-over-ethernet solution I'm doing development with the Windows phones, but I'd really like to ditch my Windows box.  I have access to a virtual Windows installation in the cloud, but I need to be able to deploy to, and debug on, my phone which is most decidedly not in the cloud.
+I'm looking for software which provides virtual USB ports with client/server TCP/IP support, which supports intercommunication with OS X and Windows.  Anyone heard of anything like that?
+
+A: I've not found anything that supports OS X as a the server, and Windows as the client.  The best solution I can suggest would be Belkins network USB hub or digi's AnyWhereUSB product.
+
+
+*
+
+*http://www.belkin.com/networkusbhub/ - hardware share to win or os x
+
+*http://www.digi.com/products/usb/anywhereusb.jsp#overview - Hardware share to Win
+
+*http://www.virtualserialport.com/products/usb-over-network/ - Win/Linux - OS X coming soon 
+
+*http://communities.vmware.com/thread/77230 - Reviews
+
+*http://www.intellidriver.com/products_1.16.html - Win
+
+*http://www.usb-over-network.com/usb-over-network.html - Win
+
+*http://www.fabulatech.com/ - Win/Linux
+
+*http://usbip.sourceforge.net/#about - Linux/Win
+
+
+A: Microsoft's Remote Desktop Connection system has a way to forward arbitrary Plug-and-Play devices to the remote computer. That may work with your phone.
+EDIT:
+Apparently (according to VxJasonxV) the Mac version of RDC doesn't have these options. Since you have a valid Windows license from your old box, you could run that in a VM (like VirtualBox) and run RDC in there when you need to forward your USB connections over the network.
+Look into the 3rd part RDP clients like rdesktop and CORD.  The RDP protocol supports it.  You just need an RDP client that does too.  MS has a habit of leaving features off on non Windows OSes....

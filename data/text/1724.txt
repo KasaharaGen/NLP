@@ -1,0 +1,17 @@
+Q: Preparing my MacBook Pro in case it is ever stolen How might I best prepare my MacBook Pro in case it is ever stolen?
+I hardened my security by flipping on FileVault (home directory encryption) and enabling the password prompt after waking from sleep or screensaver. My account has a secure password.
+But then if a thief steals my laptop, they'll be completely locked out. So then they will be forced to reformat, and any potential security measures I have will be thrown out the window. Should I then create another user account or something, to allow them a way into my laptop without compromising my home directory and let something like Prey run in the background?
+Can I enable some sort of guest account for this purpose, is it a good idea, and what is the security implications of doing so? And then what else should I do to protect my laptop and allow me to potentially recover it? What are my options besides Prey for sneaky background things? How do I prevent the thief from reformatting my laptop and bypassing everything entirely? (is there a BIOS-level theft prevention program?)
+How can I best ensure that I can recover my MacBook Pro if it is stolen or lost, while also keeping my physical security of passwords and such to prevent anyone from walking up and using my computer when I'm not looking?
+(2010 MacBook Pro, OS X 10.6.5)
+
+A: You want to set an Open Firmware Password. This makes it so that a thief needs a password to boot to another disk (or do anything other than a normal boot). This means that they can't reset your password from the OS disc and get in anyway. This is an important security measure to take. The only problem is that you can't do things like safe boots and verbose mode. Here is an article about how to set up the OF password (and how to reset a user password).
+And here is a general article about physical and virtual options to increase security (ways to help locate a stolen Mac, make thieves think it's broken, or even just lock it to your desk).
+
+A: Considering the other answers, and the possibility of not getting a laptop back, perhaps you need to consider using time machine for a backup, and put the target NAS somewhere not close to the laptop - like in a discrete cupboard with good wi-fi coverage, or a wired ethernet port. You should do this anyway - for the dozen other reasons that the data on one hard drive may become irretrievable.
+That way, you can have reasonable drive encryption, as even with the OF password, it does not prevent them removing the drive and using it in another machine to retrieve interesting contents. Your bank details may be far more value to some thieves than a working MBP depending on their level of sophistication.
+
+A: I use and like Undercover by www.orbicule.com
+
+A: Use Find My Mac. You can find your computer on a map and even lock/wipe it remotely, and they'd have to turn off Activation Lock before wiping the computer to sell.
+It's in System Preferences > iCloud.

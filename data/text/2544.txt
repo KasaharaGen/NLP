@@ -1,0 +1,9 @@
+Q: Suppress load screen when using rEFIt? I have rEFIt installed.  Is there any way to choose a default OS to launch which would in turn suppress the load screen from showing up when you start up the computer?
+I'm looking for a way to make it more like the native boot loader of Mac OS X's. Where by default it will launch the last OS you ran without showing you the menu. The menu will only be shown if you hold down option while the computer starts up.
+If there's no way to do this, is there a way to customize the time it automatically selects the OS to boot? That is, by default I believe you have 20 seconds to choose an OS. Failure to do so will cause the highlighted OS to launch. I would like to change this 20 second interval to something like 2 seconds.
+
+A: At the moment there is no such option in rEFIt. It has been requested, but there has been no acknowledgement of implementing it.
+You could always participate in developing the application and thus getting the feature implemented :)
+
+A: With version 0.7.8 (if not earlier), OS boot timeout has been implemented in rEFInd. Download the package, run ./install.sh, and then edit the configuration file at /EFI/refind/refind.conf.
+It also supports hiding of the menu, but I don't think it can launch the last OS you selected.

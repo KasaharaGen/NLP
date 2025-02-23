@@ -1,0 +1,21 @@
+Q: How do I revert my iPod touch 8 GB (2nd Generation) to ios 3.2? I have a couple questions regarding this:
+
+
+*
+
+*Is there a good source for old firmwares, including 3.2? (iClarified doesn't have 3.2)
+
+*Does Apple support downgrading for OS compatibility testing?
+
+
+Thanks
+
+A: As bckbck already said, you need the SHSH blob from the earlier version. If you don't have it for the desired OS version, it's too late.
+And iOS 3.2 was only supported on the iPad, so it won't run on iPod touches.
+Should the data on http://theiphonewiki.com/wiki/index.php?title=SHSH be correct, then you can downgrade to iOS 4.1 with your device.
+And you can get all firmwares at http://www.felixbruns.de/iPod/firmware/.
+
+A: First, iPhonos (my way of saying “iPhone OS”) 3.2 was a unique version that was only available for iPad users. Since iOS 4, the iPad versions have the same version as the iPhone and touch version. 
+Second, on iPhone 3GS and touch 3g and later, plus all iPads, it uses a unique number, called a SHSH, which is a code made up of other codes in your device, including your device's firmware version and serial numbers of the hardware inside the device. But, the touch 1g and 2g, as well as the original iPhone and the iPhone 3G, do not have some of the hardware required for the SHSH to be generated, so they have to fill in some of the gaps in the SHSH that the missing hardware would have filled in. This needs to be done by the software, not hardware. iDevices that run iPhonos 3 or earlier don't know of this, so you can downgrade to any earlier iPhonos version without needing to save a SHSH. 
+You should use the firmware page that @jan.h mentioned, but make sure you use the second dropdown list, as the other dropdown is for iPods that don't run iOS. 
+Ad@m

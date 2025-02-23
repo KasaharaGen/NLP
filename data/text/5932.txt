@@ -1,0 +1,23 @@
+Q: File sizes greyed out (strange extended attributes) in Finder on Lion? I just got a new machine with Lion preinstalled. After transferring all my applications, I noticed that the file sizes (and only the sizes) of some applications and folders are greyed out:
+
+Does anybody know what this means?
+Update:
+ls -la gives the following lines for DjView and Dropbox:
+drwxr-xr-x   3 daniel  staff    102 31 Okt  2007 DjView.app
+drwxr-xr-x@  3 daniel  staff    102  3 Mai 10:06 Dropbox.app
+
+I.e. Dropbox.app has extended file attributes, namely
+$ xattr -p com.apple.FinderInfo Dropbox.app/
+00 00 00 00 00 00 00 00 00 00 FF FF FF FF 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+Cheers
+MrMage
+
+A: I have only the craziest of guesses, but since we're all striking out so far, here goes.
+Is there any chance you've turned on the Asepsis mode which installs a kernel extension? You may have not disabled that in your testing (a safe boot should confirm / rule this out as well). It seems possible that it's intentionally showing you which folders it has replaced the normal .DS_store file with entries in /usr/local/.dscache
+I would also use mdls to inspect the metadata for these folders (since apps are really folders these days) in case some clue jumps out at you.
+
+A: It seems that those Apps are only sym links. Maybe those apps are in your ~/Applications folder, and are linked to the /Applications one.
+Could you check it.
+Edited to reflect the edit of the author.

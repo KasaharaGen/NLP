@@ -1,0 +1,36 @@
+Q: Moving files >4GB from a Mac to a Windows box Normally, when I want to take video files from my Mac to friends who use Windows, I move the files on a FAT32-formatted flash drive or external hard drive, but FAT32 cannot handle files larger than about 4GB.
+I could archive the file into some multi-part format (e.g., RAR) or I could use some not-quite-perfect userspace filesystem drivers (MacFUSE) on the Mac to write to an NTFS-formatted disk, but it seems like there should be a better way.  What other options are there?
+
+A: You have five options:
+
+
+*
+
+*Network transfer through FTP or
+Samba directly to a NTFS drive on
+the windows machine
+
+*External drive with NTFS filesystem, which of course is the
+one of the best ways to do it on an
+external drive, [edit-add] though you would need some additional software on the Mac's end to be able to write to the NTFS partition. 
+
+*Multipart archive, like you said above. 
+
+*Use some software on the windows machine to read HFS
+partitions. In the past I've tried
+the trial of MacDrive and it
+worked quite well, but is paid software. There may be some alternative to it.
+
+*(bonus) Do a hackintosh setup on the windows machine, so you can
+read HFS partitions :)
+
+*(edit-add) With an external harddrive with NTFS partition and a VirtualBox with linux on it. You can then upload the files through virtualbox, as linux supports writing to NTFS partitions through NTFS-3g. This would be the the "hackiest" way, but it would come at no money cost, because all of the software is free (virtualbox, linux(easiest is ubuntu))
+
+A: If you are under 10.6.5 or later and Windows Vista or above, you can format your memory stick or usb hard drive to exFAT, a newer version of FAT with large file support and almost unlimited partition size. It has no permissions to speak of so it's perfect to transfer files around.
+Older systems will not see it however.
+I use this file system on my external 1TB WD hdd and it works beautifully.
+
+A: Y'could use ext3 and then install Ext2Fsd in Windows, though you're still using a userspace filesystem driver in that case (albeit one maybe better than MacFUSE's NTFS driver?)...
+
+A: My solution to this is to partition a drive into two partitions: one for actual data formatted as exFAT and one small partition for variants of exFAT driver for WinXP, latest 10.6.x combo update and 10.5.8 Combo update and Paragon beta exFAT driver for 10.5.8 (I've got it during their beta test and since I've never used don't know if it has any time limit=). And I format that small partition in NTFS under Windows so it will not become corrupted with improper eject like FAT32 usually do.
+Probably I should cover Linux also but I'm not knowledgable about it.

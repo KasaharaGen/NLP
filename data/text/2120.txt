@@ -1,0 +1,82 @@
+Q: How do I stream Mac audio to Linux computer? is there any way to stream audio from my Mac to my Linux computer (my av receiver is connected to that)?
+
+A: I think VLC can stream the audio over the network - take a look at http://www.videolan.org/doc/streaming-howto/en/ 
+
+A: If you don't want to pay money for AirFoil, you can use SoundFlower on the Mac and ESounD or PulseAudio's ESounD-compatible module on the Linux machine. This article explains how to do that.
+
+A: You can use AirFoil ($25) for Mac to stream the sound to AirFoil Speakers for Linux (free).
+This software works great.
+
+A: This guide worked for me http://tdotc.wordpress.com/2012/05/28/sound-matters/
+Summary:
+Install Soundflower in your Mac.
+# open network port 16002 to receive raw data for PulseAudio (in your receiver)
+while true; do nc -l 16002 | pacat --latency-msec=1; done
+
+# connect the audio input on OS X to a remote raw sound sink via esdrec and netcat (in your Mac)
+esd -tcp -bind ::1 & sleep 2 && esdrec -s ::1 | nc <SERVER> 16002
+
+
+A: With XBMC installed on a Linux machine and without any other software on my Mac, I can stream anything I want.
+To do this:
+
+
+*
+
+*Configure XBMC as an Airplay receiver : go to System > Services > Airplay and enable Airplay (I do not use password)
+
+*On your Mac, Open Audio Midi Setup
+
+*Right click on the Airplay item on the left side and choose “Use this device for sound output” from the Action pop-up menu.
+
+
+Now, anything you play on your Mac should output to your Airplay device.
+To reverse back to normal output (e.g. on a MacBook), right-click on another output (e.g. the standard speaker or integrated output) and choose “Use this device for sound output” from the Action pop-up menu.
+See also : Audio Midi Setup: Set up your audio devices
+
+A: Use ShairPort on the Linux box.
+Everything can be setup within minutes with zero software installed on the Mac, which is what I wanted.
+Install from PPA
+This should work pretty straightforwardly on any Debian-based distro.
+sudo add-apt-repository ppa:dantheperson/shairplay-sync
+sudo apt-get update
+sudo apt-get install shairplay-sync
+
+Install from source
+These instructions are valid for Debian, and worked on my raspberry pi within minutes. Other distros/OS may need to adapt the packages to be installed.
+
+
+*
+
+*Install Alsa:
+apt-get install alsa-utils alsa-oss libasound2 libasound2-plugins alsamixer
+
+
+*Install PulseAudio:
+apt-get install pulseaudio pulseaudio-utils
+
+
+*Install perl SDP. Follow instructions on the perl-net-sdp repo
+
+*Clone & install ShairPort:
+git clone https://github.com/hendrikw82/shairport.git
+cd shairport
+sudo make install
+sudo cp shairport.init.sample /etc/init.d/shairport
+sudo chmod a+x /etc/init.d/shairport
+sudo update-rc.d shairport defaults
+
+
+*(optional) Rename your receiver (like the room name):
+vim /etc/init.d/shairport
+
+Change/add the following:
+DAEMON_ARGS=”-w $PIDFILE -a AirPlayName”
+
+
+*Start all the services (PulseAudio, ShairPort, etc)
+
+*You can now redirect your audio output to your new ShairPort device by alt-clicking the sound icon on your Mac.
+
+
+All of these instructions were found on this blog post and copied here briefly in case the link goes down.

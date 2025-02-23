@@ -1,0 +1,18 @@
+Q: Restoring Missing iPhone Messages A friend of mine has an iPhone 3G and around September his phone seemed to lose all of his SMS messages, and now only messages received since then are visible. I have found some sources saying that this can happen when the message database becomes corrupt (or there is a message which is corrupt somewhere and it's breaking things). I understand that the database archive is an SQLite DB and that somebody with similar symptoms solved this by deleting the offending message from the database manually. I'm happy to do this but the iPhone is not jailbroken and I assume I won't have write privileges on the device.
+I've tried backing up the iPhone via iTunes and extracting the messages using a tool but it only found the messages that the device can see, and there are no backups from before the issue occurred.
+Is it likely that the messages still exist on the device and can be extracted? Is it possible to restore them so that the device can read them again?
+Edit in response to mankoff's reply:
+I've now performed a backup of the iPhone in iTunes and have analysed the SQLite database dump and the message with the earliest timestamp is as follows:
+INSERT INTO "message" VALUES(2,NULL,1315907872,NULL,131,0,NULL,1,0,0,0,0,NULL,NULL,NULL,NULL,1);
+
+For reference the table schema is:
+CREATE TABLE message (ROWID INTEGER PRIMARY KEY AUTOINCREMENT, address TEXT, date INTEGER, text TEXT, flags INTEGER, replace INTEGER, svc_center TEXT, group_id INTEGER, association_id INTEGER, height INTEGER, UIFlags INTEGER, version INTEGER, subject TEXT, country TEXT, headers BLOB, recipients BLOB, read INTEGER);
+
+This corresponds to Tue, 13 Sep 2011 09:57:52 GMT which is the earliest message that the phone can also see. I'm not sure how a NULL sender could occur and the database seems to contain no instances of this.
+Given this information is there any way that the data could still be on the phone and extractable (short of forensics)?
+Edit 2
+I'd also like to ask: what could have caused this problem?
+
+A: You should try accessing the SMS db from the command line. Some explanation is here: How can I export SMS text messages from my iPhone?
+If you see old messages, you can find the corrupt one and retrieve them. If the Sqlite dump command doesn't show them, and the size of the DB implies they are not there, it is likely they are gone.
+If you can find old copies of that file in backups, look there, otherwise I think the messages are permanently gone.

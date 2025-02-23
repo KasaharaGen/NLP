@@ -1,0 +1,18 @@
+Q: Suppress vibrate when docked? When I dock my iPhone in the charger (desk stand), it briefly chimes to say it's charging. If it's on silent, then it vibrates instead of chiming. When I go to bed and put the phone in the bedside charger, the noise from either is very annoying.
+I want to suppress the vibrate-on-charge. How can I do that? 
+It's already jailbroken so suggestions in that genre are fine too.
+
+A: The only way I've found to deal with this on a non-jailbroken phone is to set the side switch to the non-silent setting, plug in headphones and then dock the phone. The chime sound will only play through the headphones and the phone will not vibrate.
+
+A: For the vibration:
+Since you jailbroken your iPhone already, use Silent Charge.
+First, open Cydia and go to Manage>Sources>Edit>Add. Add the ModYouri repo (http://repo.modyouri.com) and select Add Source:
+
+After adding, browse through the repo and find the Silent Charge package and install it.
+
+After installing the package, Cydia will ask you to reboot. Reboot, and viola~! No charge vibration! If you want the vibration back, uninstall the package.
+
+For the sound:
+Install WinterBoard and Silent Charge Classic (you can get it from the ModMyi repo). After installing both, launch WinterBoard and select Silent Charge Classic, and respring. Your iPhone should not make any sound after installation.
+
+A: I found that PowerSoundDisabler  is most up to date and solves all this: http://www.ijailbreak.com/cydia/powersounddisabler-cydia-tweak/

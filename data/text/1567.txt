@@ -1,0 +1,46 @@
+Q: How can I mount SFTP/SSH in Finder on OS X Snow Leopard? My Question is seemingly simple. I need to mount an SSH/SFTP volume and make it visible in finder to be able to use it as if it were a local volume (think SMB share). I have tried everything I could find (MacFUSE + sshfs (whatever version), Macfusion (couldn't install),...).
+Is there anyway to do this seemingly simple thing? It feels like I'm missing something here. Also, I'm not looking for an SFTP client for download/upload. My personal machine is an Ubuntu box, and that's easily doable on that.
+
+A: As of March 2013, the current free software solution is macFUSE plus a package for SSHFS (a download link on Fuse for OS X webpage).
+Macfusion is a GUI for easy mounting/unmounting remote shares but it needs to be patched to work with SSHFS/Fuse for OS X.
+
+A: Well, MacFusion was going to be my answer but since you've tried that I'll recommend my second favourite app when it comes to mounting shares: Panic's Transmit. It's new, very awesome, feature lets you mount any share that it can connect to in the UI as a "disk" in your Finder that you can drag files to. SFTP, SSH, S3...very cool.
+
+A: The best solution I've found today (2017) is to use Homebrew and Cask to install osxfuse and sshfs. Note that Homebrew core deprecated all FUSE-related formulae in 2020 so you need to install sshfs from a tap:
+brew install --cask macfuse
+brew install gromgit/fuse/sshfs-mac
+
+And then:
+sshfs username@hostname:/remote/directory/path /local/mount/point -ovolname=NAME
+
+It works! :-)
+
+A: I use Cyberduck for this task. It's a cross-platform (but native on mac) app that is full of features and it's free to use. You can support the developers by donating or buying it directly from the Mac App Store.
+The developer also has an application named Mountainduck which let you mount the path you want to a folder and access it through Finder app.
+
+A: Best ones that you can use are Transmit, like has been said before, or Expandrive, which is probably more like what you're looking for, as finder integration is its main feature.
+
+A: Another solution is WebDrive (35$+). I successfully used the Windows version of the same product, so I expect the same from the OS X version. Too bad, that they require you to buy separate licenses for Windows and OS X.
+
+A: If you already have FUSE for OS X installed (e.g. you got it directly from SourceForge), then @eskatos solution can reduced to just installing sshfs instead of the whole cask which includes FUSE.  You can do this by using:  
+brew install homebrew/fuse/sshfs
+
+You might want to check if you have the latest version of FUSE for OS X through your System Preferences while you're at it.
+
+A: Given I cannot comment, I'll add to this answer that if you want to unmount the recently mounted sshfs disk, you need to execute:
+umount <MOUNTPOINT>
+
+The sshfs man page states that you should do fusermount -u <MOUNTPOINT> but that command doesn't exist in macOS
+
+A: Just in case you are having problems unmounting the disk, you can unmount it simply writing
+umount ~/mounted/folder
+
+hope it saves some headache to someone else
+
+A: I use Filezilla, its free, connect as sftp.
+
+A: ExpanDrive is a commercial version with an outrageous $50 price tag, but is very clean and slick. 
+It also mounts Dropbox, Google Drive, OneDrive, Amazon S3, OwnCloud folders, plus a bunch more and supports ssh keys and sftp. 
+
+A: You can download CloudMounter from the Mac App Store.
+This app, permit virtual mount units like, GoogleDrive, DropBox, S3, SFTP, FTP, etc.

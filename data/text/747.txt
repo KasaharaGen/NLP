@@ -1,0 +1,29 @@
+Q: How do I change the Icon for a USB device? My phone uses a standard icon when mounted. I just want to replace that icon with a custom one.
+
+I'm opening a PNG image in Preview and copying the image, then pasting onto the icon in the Get Info window, but I get the system PNG icon instead of the image itself:
+
+How do you use a custom image? OSX gives you no feedback on this at all.
+Update: After some further investigation, it appears that the image is being set correctly in .VolumeIcons.icns
+
+So for whatever reason, Finder is refusing to display it correctly. Is there some kind of icon format requirement that Finder isn't telling me?
+
+Update: Now the cut-n-paste method works fine. I have not changed anything, so I have no idea what was wrong before. I can only chalk this up to a Finder bug.
+
+A: just drag and drop :)
+sometimes it does not work so, you do a simple:
+
+
+*
+
+*COPY: copy to clipboard the icon you want to use
+
+*SELECT: select the icon you want to remove
+
+*PASTE: paste it 
+
+
+
+
+
+A: Also you can use DiskUtility with Repair disk for USB memory.
+Icon appears correctly.

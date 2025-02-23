@@ -1,0 +1,16 @@
+Q: What's the best way to install command line utilities such as GIT? I'm a Windows/Linux guy that just got my Macbook Air. I do web dev, and am currently trying to setup this machine for some on-the-go development.
+After some research attempts, I'm wondering: what's the best way to install command line utilities in Lion, such as GIT? Best as in easiest to install, maintain, upgrade etc.
+As I understand it, there are some alternatives: macports, homebrew etc. Or in the GIT example, maybe just download the installer from their website.
+Thanks.
+
+A: Git's bundled with the free version of Xcode 4 on the app store. That's about as easy and official as it gets in my book. You won't do wrong by choosing homebrew as it's solid and got great momentum plus mindshare presently.
+
+A: I think it depends on how many tools/libraries you need to install. 
+If just git then use Xcode 4 which you will need for any port package. If you are doing pure HTML/Javascripy/CSS then the git installer will work. 
+For python and perl and similar interpreters the the language install tools can be used unless there are complex C/C++ libraries
+If only a few others then build into /usr/local
+However if you have several things to install or there are complex dependencies then I would use a ports package like Fink, macports or homebrew (which is best is debatable and should be a separate discussion)
+
+A: If it's just git then, by all means, their installation procedure works well. But you know it won't stay like that.
+I really prefer homebrew over macports. I brew everyday =) It's super easy to install: https://github.com/mxcl/homebrew/wiki/installation
+And it hasn't bitten me yet. Their non-sudo approach rocks. Maybe there aren't always formulas for everything, but I most often take that as a hint. =)

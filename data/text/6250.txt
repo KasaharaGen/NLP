@@ -1,0 +1,16 @@
+Q: Two key combos for Enclosing Folder, but same result While exploring the effect of different keys on menus in Finder in Lion, I spotted what seems like a redundancy in the case of the Go menu.
+When pressing the ⌥ key while the menu is open, not only is the user Library added to the menu list, but the key combination for Enclosing Folder changes from ⌘↑ to ⌥⌘↑. The additional modifier appears to be redundant, since the same enclosing folder opens with both key combinations.
+
+
+At first I thought this was Lion-specific, so was surprised to notice that this also applies in Snow Leopard.
+Can others confirm that they too experience this behaviour and, if so, explain why the two combinations exist?
+
+A: In Lion and Snow Leopard, the option/alt key makes a subtle change:
+
+
+*
+
+*⌘+▲ reuses the existing finder window (preserving sort, view and size of the child folder).
+
+*⌥+⌘+▲ opens a new finder window with the saved settings for that parent folder (closing the child folder)
+

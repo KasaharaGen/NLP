@@ -1,0 +1,9 @@
+Q: How to manually restore emails in Lion? Before upgrading to Mac OS X Lion with a clean install, I backed up Mail app according to this article on Apple Discussions. I know have the com.apple.mail file and the Mail directory and I have no idea how to restore it. As it seems, theses paths have changed. Do you have any ideas on how to restore my emails?
+
+A: Put the contents of the mail directory in /Users/yourusername/Library/Mail (or  ~/Library/Mail in other words)
+com.apple.mail.plist goes to /Users/yourusername/Library/Preferences (~/Library/Preferences)
+
+A: Firstly copy the com.apple.mail.plist from the backup to the user library (~/Library/preferences) and it does ask to replace, just click yes. 
+
+Secondly copy the mail folder to the user library (~/Library) and when complete, just open mail as normal.
+

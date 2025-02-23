@@ -1,0 +1,21 @@
+Q: Safari extension to get rid of Google redirect links in search results? I'm looking for a Safari extension that can rewrite the google search results so that it gives you the direct URLs rather than the long jumbled redirect links that often pop up. 
+If you're wondering what I'm talking about, Google often (but not always) gives you the results with redirect URLs like this:
+http://www.google.com/url?sa=t&source=web&cd=1&ved=0CBgQFjAA&url=http%3A%2F%2Fextensions.apple.com%2F&ei=56lZTvqqCNP-sQKKzoGZDA&usg=AFQjCNG8RJkKTqQOF1SSdxFTGI4J6iArug
+which make it a pain when trying to share/copy&paste a link, not to mention whatever additional tracking nonsense goes on behind the scenes.
+It's definitely possible, as there seem to be some Greasemonkey scripts available for Firefox, but I haven't been able to find any Safari extensions that do this so far.
+
+A: Canisbos has released another extension called gDirectLinks, which is a more efficient subset of LinkThing focused solely on the task of removing the hidden redirects from Google's links. It handles both regular Google search and the more modern Google Instant search (AJAX; most people are using that version these days without knowing it, as it's on by default). It also has the option of re-writing Google Images results to point directly to the image.
+It's very important to note that gDirectLinks (and its big brother, LinkThing) is the only extension of its kind that properly handles Google Instant results.
+More information is available at the official website. Enjoy!
+
+
+A: Here's the extension you're looking for:
+http://pedrocc.com/safari
+It's called Disable ClickTracker by Pedro Campelo Cavalcanti.
+"Disable ClickTracker" removes click tracking on the initial page load. It will not work for people using Google Instant Search.
+The only extension that handles both regular and Google Instant results is the new gDirectLinks.
+
+A: Clean Links for Google is another Safari extension that removes Google's redirects. Seems to work on Safari 10, and handles Google Instant. For those that are interested, here is the source code.
+
+A: I know this question is old but I found it trying to find an extension I had used on another machine (which no one else mentioned).
+Safari History Washer is what I was looking for, incase it helps anyone else.

@@ -1,0 +1,55 @@
+Q: Can the finder edit mp3 sound file tags like artist? How can I change artist of multiple selected mp3 files in finder?
+Like in windows we can select multiple mp3 files and can change the artist of all selected file in properties.
+
+A: iTunes can do this for you easily. You cannot do it in the Finder, so do it in iTunes instead. You do not need any third-party program. This method works for iTunes on Macintosh as well as iTunes on Windows.
+1) Select multiple files
+
+2) Right-click or control-click and select "Get Info"
+
+3) Read the dialog box and click "Yes".
+
+4) In this dialog, any change you make will impact all the multiple files you selected. Click OK when you are done.
+
+
+A: Finder doesn't have the smarts to change this - but finder does have a services menu that will allow you to craft a custom automator service that would help automate the process.
+You can pop up a dialog to get the artist name, store it, import the songs to iTunes and set the Artist (and/or many of the other tags)
+This is a nice way to learn automator if you care, but Finder won't be doing the writing of the mp3 tags. iTunes will launch and do the writing once finder hands off the file(s) and the variable name storing the artist string to iTunes.
+
+
+A: I am 99% sure that Finder cannot change tags. Check here for free ID3 editors.
+
+A: A very easy way is using VLC Media Player.
+Right click into select the song and click at Window ->  Media Information. Shortcut ⌘+I.
+
+
+It saves to the file automatically.
+
+A: In iTunes you can change a field (artist, album, ...) of multiple mp3 files at once. 
+If you don't want to use iTunes (what's the alternative on OSX?), I'll think you'll have to use a special editor (like ID3 editor) to do so.
+
+A: For those seeking a free terminal-based solution
+
+
+*
+
+*Per the rest of the answerers in here, Finder (as of El Capitan) does not do this.
+
+*I arrived at id3v2 referenced in a Linux forum.
+
+
+Installation
+
+Via HomeBrew - Update HomeBrew and install commands
+
+brew update && brew install id3v2
+
+Example Usage
+Change Artist to Prince
+id3v2 -a "Prince" 01\ Wow.mp3
+
+Change Title to Wow
+id3v2 -t "Wow" 01\ Wow.mp3
+
+
+A: As Wheat said it before, it's not possible to do it directly in the Finder.
+The closer (UX wise) you can get is doing it via a Finder plugin such as MP3-Info freeware (see screencast).

@@ -1,0 +1,30 @@
+Q: Reset Mac OS X Bluetooth service? Any way to do this either via a utility, command-line, or otherwise? I regularly have my headphones and moused paired which causes the Bluetooth service to crash nearly daily. Sometimes I can just repair the devices but other times the service breaks completely. When that happens I have to reboot; very annoying indeed.
+Is there a "Factory Reset" option for Apple Bluetooth keyboard, mouse, trackpad?
+
+A: There's a command-line tool for the bluetooth service called blueutil — you could try if it can help you.
+Alternatively, you could reload blued:
+sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
+sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
+
+This should first kill the service if it's still on and the second enables it again.
+I don't know if this fixes your problem, since I don't have BT service dying on me to test it :)
+
+A: This (and only this) worked for me besides restarting my machine. 
+From Restart Bluetooth Daemon on Mac OS X without restarting
+sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport
+sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport
+
+
+A: Go to the Activity Monitor, and under process names there should be one called "blued", click it, then "Quit Process", Force Quit, then the bluetooth service should have restarted on its own.
+
+A: On newer OS X, you can access these advanced features from the Bluetooth icon in the menu bar. Hold shift and option (only) when clicking on the icon:
+
+The debug menu has most of the action oriented items you'll need:
+
+I've never seen resetting the module work better than powering it off, but I'm sure theres cases where that saves a trip to the repair shop.
+Logging is useful, but the logs are very very large, so keep that in mind and set a reminder to turn it off tomorrow.
+On older OS, you needed a developer tool to systematically remove pairing records and HID devices. Bluetooth Explorer ships with Xcode 3. (as of today, early June 2011 - this is something available at no cost if you agree to the terms of the free developer program. It might also be bundled with Xcode 4 - available with paid download or paid mac developer program -  but I can't vouch for that) You can also browse the developer documentation for free to learn more about bluetooth implementation.
+The explorer has a detailed window with many settings to automate resetting devices for testing. Here is a portion of the window showing that not only are the local mac settings cleared, it will reach out to Apple Bluetooth devices and reset their internal state as well.
+
+Since bluetooth has to start very soon in the boot process (and is part of the setup assistant since new macs that have no accounts have to know how to set up Bluetooth keyboards and mouse out of the box) it's not just a simple user preference file but instead a system level preference and stored in several locations.
+You will be able to make your mac factory fresh to test bluetooth with the Bluetooth Explorer.

@@ -1,0 +1,11 @@
+Q: How do I find out the status of a large download from the Mac App Store? I just started downloading OS X Lion, and it's 3.49 GB.
+This is the extent of the user interface for the download process:
+
+Is there a place to see the download progress? Can I pause and/or resume the download?
+
+A: Aha... found it. In the App Store application menu, you can choose Store > Check for Unfinished Downloads which pops up a window like this:
+
+
+A: It's a bit of a hack, but you can check the size of ~/Library/Application Support/AppStore with Get Info in Finder -- assuming it's Lion that you're downloading, it should be about 3.5GB in total (I'm currently on 444MB, so it will take me a while).
+
+A: You can also just check the Purchased tab.

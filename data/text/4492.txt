@@ -1,0 +1,22 @@
+Q: Backup software for backing up specific files only I need some backup software for just backing up files of a particular type or a smart folder. In this case I need to backup all my video. Is there a free backup software available that will accomplish this for me?
+
+A: Your Mac has batteries already included. The only drawback (for some people) than it is command line (Terminal.app) solution.
+The following shell script can do the job
+case $# in
+    (2) SRC="$1"; DEST="$2";;
+    (*) echo "Usage: $0 source destination"; exit 1;;
+esac
+
+cd "$SRC" || exit 2
+find . -type f -print0 | grep -ziv 'cpan' | grep -ziE '.(avi|mov|mp4)$' | rsync -n -av0 --files-from=- ./ "$DEST"
+
+Save it into some file (e.g. mybackup.sh) and run from the terminal: sh ./mybackup.sh /path/to/the/source /path/to/the/dest, e.g.:
+sh ./mybackup.sh ~/Downloads /Volumes/your_usb_hdd_name/path
+
+Run the scipt and if you satisfiled with the result (will print out what will backing up), remove the '-n'. (The '-n' mean dry run)
+rsync can do network backup to, or is possible emulate the TimeMachne functionality too, (incremental backup), etc - rsync is extremely powerful.
+If you interested, can learn more with man rsync from the Terminal.
+Ps:
+Or, it is not enough simply select in finder's search "All Movies" and simple drag&drop to result into the destination?
+
+A: http://www.crashplan.com/ is free for offline usage and can backup folders to an external drive or over LAN. Maybe this helps!

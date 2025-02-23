@@ -1,0 +1,189 @@
+Q: How to set to open folder with enter in finder? I want to set to open a folder in finder with Enter.
+I know it's possible to open a folder with ⌘ Command + ↓ Down Arrow but I don't like it and I never use it because it's easier to use the trackpad, but enter would be the easiest way.
+I tried to set it trough the keyboard shortcuts but I can't do it.
+
+A: You could also use KeyRemap4MacBook, but it would make pressing return open items even in rename mode. And there are a lot of other places besides Finder where return renames items and other key combinations open them.
+
+If you don't use a QWERTY keyboard layout, change KeyCode::O to KeyCode::CURSOR_DOWN:
+<item>
+  <name>Use Return as Open</name>
+  <identifier>private.app_finder_return2commandO</identifier>
+  <only>FINDER</only>
+  <autogen>--KeyToKey-- KeyCode::RETURN, ModifierFlag::FN, KeyCode::RETURN</autogen>
+  <autogen>--KeyToKey-- KeyCode::RETURN, KeyCode::CURSOR_DOWN, ModifierFlag::COMMAND_L</autogen>
+</item>
+
+
+A: Edit: Well crud, got halfway through typing this up and then found that Karabiner doesn't work on Mac OS 10.12+. They are working on Karabiner-Elements but it's still pre-alpha. 
+These instructions still work for 10.11 and lower though: 
+Karabiner was easier than the top answer here because you don't have to make a System Integrity Protection exception (El Cap).
+
+
+*
+
+*Install app from here: https://pqrs.org/osx/karabiner/
+
+*Open Karabiner with Spotlight Search (Cmd+Space)
+
+*In Karabiner search menu (upper left): "use return as open"
+
+*Check the box
+
+*Option-click on Finder in taskbar, Relaunch it. 
+
+A: For anybody looking for this in 2018: use BetterTouchTool to make the Enter key simulate ⌘ Command + ↓ Down Arrow key press.
+
+A: Any person new to Apple and Mac would find lot of things un-intuitive or just forced on the user, w/o any options to change it.
+Or it might be that just many of us had their first experiences on Win/Linux systems.
+But just found this plugin to finder XtraFinder which among lot of other options allows you to ENTER/RETURN to open a file.
+Feeling a lot relieved now! Hope it helps.
+
+
+A: As I know you can not set it to enter in a normal way (but maybe exist some tricky way) 
+but you can change open shortcut by going to System Preferences > Keyboard > Keyboard  Shortcuts tab  from the left window choose Application Shortcuts and press + to add new shortcut then find Finder in Application and choose Open in Menu Title and press any desired shortcut in textbox.
+
+
+A: PresButan (Mac OS X 10.4.x-10.7.x): An idiotically named solution to a spectacular UI oversight (rather apropos, eh?).
+It also lets you use either the backspace or delete key to delete files.
+I can confirm it works (just installed it). Apparently it leverages the accessibility system and uses a daemon to catch the return events.
+If you are on 10.3-10.5, you also have the option of using ReturnOpen.
+
+A: In current 2022 Karabiner version,
+go to "Complex modification" tab > "Add rule" button at the bottom >  "Import more rules from the internet (open a web browser)" button at the top 
+Then you should find "Application specific" -> "Finder" section on the web-page and import it to your Karabiner.
+
+
+Then use the same button "Add rule" to select rules you like from that group.
+
+(Careful with using backspace, you can't backspace when renaming files)
+
+A: Copy from here: https://superuser.com/a/1758821/1201428
+
+As for today the simple solution is:
+
+*
+
+*Install Karabiner-Elements: https://karabiner-elements.pqrs.org/docs/getting-started/installation/
+
+
+*Add complex modification rule:
+a) Automatically - one click import from official rules site: https://ke-complex-modifications.pqrs.org/#finder_improved_navigation
+b) Or manualy - add code into to complex modifications:
+{
+ "title": "Finder: enter -> open, f2 -> rename",
+ "rules": [
+   {
+     "description": "Use Return as Open if not renaming file",
+     "manipulators": [
+       {
+         "conditions": [
+           {
+             "bundle_identifiers": [
+               "^com.apple.finder"
+             ],
+             "type": "frontmost_application_if"
+           },
+           {
+             "type": "variable_unless",
+             "name": "onedit",
+             "value": 1
+           }
+         ],
+         "from": {
+           "key_code": "return_or_enter",
+           "modifiers": {
+             "optional": [
+               "any"
+             ]
+           }
+         },
+         "to": [
+           {
+             "key_code": "o",
+             "modifiers": [
+               "right_command"
+             ]
+           }
+         ],
+         "type": "basic"
+       }
+     ]
+   },
+   {
+     "description": "Use Return to finish renaming when onedit=1",
+     "manipulators": [
+       {
+         "conditions": [
+           {
+             "bundle_identifiers": [
+               "^com.apple.finder"
+             ],
+             "type": "frontmost_application_if"
+           },
+           {
+             "name": "onedit",
+             "type": "variable_if",
+             "value": 1
+           }
+         ],
+         "from": {
+           "key_code": "return_or_enter",
+           "modifiers": {
+             "optional": [
+               "any"
+             ]
+           }
+         },
+         "to": [
+           {
+             "key_code": "return_or_enter"
+           },
+           {
+             "set_variable": {
+               "name": "onedit",
+               "value": 0
+             }
+           }
+         ],
+         "type": "basic"
+       }
+     ]
+   },
+   {
+     "description": "Use F2 as Rename and set onedit",
+     "manipulators": [
+       {
+         "type": "basic",
+         "from": {
+           "key_code": "f2"
+         },
+         "to": [
+           {
+             "key_code": "return_or_enter"
+           },
+           {
+             "set_variable": {
+               "name": "onedit",
+               "value": 1
+             }
+           }
+         ],
+         "conditions": [
+           {
+             "type": "frontmost_application_if",
+             "bundle_identifiers": [
+               "^com.apple.finder"
+             ]
+           }
+         ]
+       }
+     ]
+   }
+ ]
+} 
+
+The original answer is posted here: https://superuser.com/questions/307048/making-the-backspace-key-go-to-the-previous-folder-in-finder/1636251#1636251
+
+
+A: ControlOptionSpace serves as an Enter  key
+Also enabling voice over for when you need to navigate, helps a lot too 

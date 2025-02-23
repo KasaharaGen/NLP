@@ -1,0 +1,8 @@
+Q: How can I make a file un-hidden permanently? I have some files that were hidden on a PC. Now they live on my Mac. How can I remove the hidden property on each of these files?
+
+A: In Terminal defaults write com.apple.finder AppleShowAllFiles TRUE, relaunch  Finder. After that you'll see all your hidden files in Finder. 
+Now type 
+chflags nohidden
+
+into Terminal and just drag&drop file that you want to unhide on the line. Enter.
+defaults write com.apple.finder AppleShowAllFiles FALSE will reverse Finder back to normal.

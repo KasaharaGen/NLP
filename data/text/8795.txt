@@ -1,0 +1,19 @@
+Q: How can I modify the Date Added field in iTunes 10 I haven't tried doing this in quite some time (iTunes 7 era), but I seem to remember simply editing the XML file iTunes creates was NOT sufficient in updating the Date Added field in iTunes.
+In case you're curious why I would want to edit Date Added, it is because I most often enjoy listening to music with iTunes sorted on Date Added field. Most of the time this is a logical order for me, but occasionally (when importing more than one album at a time) iTunes imports a batch of songs in a seemingly random order, so I might have very differing albums intermixed. In these cases, I'd like to go in and make sure the Date Added times are grouped by album.
+
+A: Just change the system clock and add the file again:
+
+
+*
+
+*Remove the track. 
+
+*Change the date on your system clock to the desired date. 
+
+*Add the track. 
+
+
+A: You could try sorting by the Date Modified field. Date Added is readonly, but you can modify Date Modified. There's an app called SortHelper for iTunes.
+
+A: The Date Added field is officially read only. AppleScript can't change it, nor can any menu or command within iTunes. iTunes Music Library.xml is a text file, so in theory it could be edited to modify the Date Added information, then force iTunes to rebuild the iTunes Library.itl file. Not particularly easy.
+If there's a better solution, I'd love to see it, but I'm afraid Apple made the Date Added field difficult to modify.

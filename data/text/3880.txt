@@ -1,0 +1,6 @@
+Q: When does the keychain unlock itself? I am using the "lock when sleeping" preference of the login keychain. When I use my computer after wake up, as expected i have to enter my password when an application (such as the webbrowser or instant messenger) try to access a keychain entry. However, sometimes the login keychain is unlocked after entering the password, sometimes it remains locked and the application gets single-time access. What rule does that follow? System is up to date 10.6.
+
+A: There is a setting that can lock the Keychain after a period of inactivity.  So if you have unlocked it after sleep and then find after a few minutes that it is locked, it probably means that this option is turned on.
+
+It's also possible that on some items you haven't checked 'always remember' and so it is popping up the request for credentials via keychain.
+You can also repair your keychain using this guide.

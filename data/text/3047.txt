@@ -1,0 +1,115 @@
+Q: Mail signature changes font size when sent to Gmail I have created a signature in Mac mail. However, every time I send an email to a gmail account it enlarges the font size. Has anybody else come across this? Is there a workaround?
+
+A: Here are the steps to make this work, even tried them on Mac OS X 10.7 Lion GM / Mail.app 5.0
+
+
+*
+
+*Open Mail.app
+
+*Create a signature
+
+*Close Mail.app
+
+*Open Terminal and in Leopard/Snow Leopard go to ~/Library/Mail.app/Signatures, in Lion it's in ~/Library/Mail.app/V2/MailData/Signatures/
+
+*You'll find there a file with random digits such as: 4E725456-58C1-4FD7-8490-3048F994CC33.webarchive
+
+*Open that file in Safari, use View Source or Inspect to get the HTML content
+
+*Create a new file using your preferred editor, I used nano, and paste the html
+
+*Look for 'font-size = medium' and change it to the size you want, i changed it to 12px to match my Tahoma 12px mail font
+
+*(Optional) if you want to embed an image, call it using <img> to a remote, public location and remove all <object> </object>
+
+*Save the file as .html
+
+*Open that .html file in safari and save as .webarchive
+
+*cp the .webarchive you created to the location of the original .webarchive file while keeping the correct name (replace it)
+
+*Open Mail.app and check that the signature is the way you want it... 
+
+
+A: In Mountain Lion OS X 10.8 and Mail 6.x,
+
+
+*
+
+*Using Terminal, execute open ~/Library/Mail/V2/MailData/Signatures/
+
+*Your signature will be in a file named something like 4E725456-58C1-4FD7-8490-3048F994CC33.mailsignature
+
+*Right-click on this file and select Open With... -> Other... and choose TextEdit
+
+*Look for 'font-size = medium' and remove it to use the same font as your message, then save the file.
+
+*Select the file in the Finder and select File -> Get Info, then check Locked to ensure the file doesn't get overwritten by Mail.
+
+
+Thanks to Haytham for the original solution on older versions of OS X.
+
+A: If your mail is composed in plain text and the font in the signature is smaller than the mail default font you will lose control of font sizes when sending.
+Also try changing your message fonts and signature fonts to several other common fonts (Helvetica, Times New Roman) to eliminate a font substitution problem.
+Feel free to add a comment or edit the question to add some more detail on whether all mail clients show the sizes wrong, just on the web, or just in a certain mail client.
+
+A: Just a reminder for those who don't see this embedded in the other great answers:
+Mail 6.2 (Mountain Lion), when it launches, rewrites the signatures. It appears, though, that if you:
+
+
+*
+
+*Quit Mail
+
+*Make the changes outlined by emmby
+
+*Lock the files via the Get Info pane in Finder
+
+
+before launching Mail again, your changes will be preserved as Mail cannot rewrite the .mailsignature file
+Now - if you run your mail on multiple systems and the signatures sync, you will need to do the edit and lock on each system. Fortunately the filenames seem to stay the same across systems, so I just make sure that Mail is not running anywhere, copy my cleansed files to the new system and lock the files before launching Mail again.
+
+A: If you use non (web)standard font, receivers may watch mail with there own standard fonts.
+
+A: @emmby's instructions did the job for me. However, I found that this still leads to weird signatures in mail clients like Outlook on Windows, since that renders my mail messages in Times New Roman by default, whereas my signature font is fixed in my Apple Mail signature to e.g. Helvetica.
+Since I want my mail signature to look as if it's part of the e-mail itself (as if I typed it myself), I want the signature to adapt the font of the mail body. To achieve this, I removed all of the surrounding div's and body element. E.g. I changed this:
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+    charset=us-ascii
+Message-Id: <09E9E5C6-8082-4339-A894-1ABA63E40BEB>
+Mime-Version: 1.0 (Mac OS X Mail 6.0 \(1485\))
+
+<span class=3D"Apple-style-span" style=3D"border-collapse: separate; =
+color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-border-horizontal-spacing: 0px; =
+-webkit-border-vertical-spacing: 0px; =
+-webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: =
+auto; -webkit-text-stroke-width: 0px; font-size: 12px; "><body =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; "><div><div style=3D"font-weight: =
+normal; "><div>Kind regards,</div><div><br></div><div>=
+Pascal</div><div><br></div></div><div></div></div></body></span>=
+
+to this:
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+    charset=us-ascii
+Message-Id: <09E9E5C6-8082-4339-A894-1ABA63E40BEB>
+Mime-Version: 1.0 (Mac OS X Mail 6.0 \(1485\))
+
+<p>Kind regards,</p>
+
+<p>Pascal</p>
+
+This works best for me across the mail clients I have checked so far.
+
+A: I followed the instructions by emmby, 23 Sept. 
+Brilliant! The first instructions I found anywhere that actually work. I have been struggling with the Apple Mail complete lack of control of signature formatting.
+I have sent my own Gmail address hundreds of mails, all of them arriving in a variety of abused formatting. 
+I replaced in a signature file all "font-size = medium" by "font-size = 13px", which is my default font-size. As a result, the mail as it appeared in Gmail is no longer in "Arial", but in "Lucida Sans", which is my actual chosen font. Also the line-spacing of the following part of the signature, which is in Times New Roman 11 pt, is now normal, instead of the line-spacing that it previously took over from the 13-pt or "medium" size.
+I still have some experimenting to do, but at least this defies all comments in other threads that formatting of rich text emails is something that cannot be controlled, because it is (partly) managed by the receiving mail client.
+I stick to my conclusion that Apple ignores this highly annoying lack of control of its mail programme. 

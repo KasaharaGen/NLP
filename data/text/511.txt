@@ -1,0 +1,17 @@
+Q: Are iPhone screenshots geo-tagged? When I take a picture using my iPhone's camera, it attaches the current location to the image in the metadata. Does it also do this for screenshots that I take?
+
+A: According to macosxhints iPhone screenshots have no EXIF data, so no geolocation data would be saved. Not sure if this is still the case on the iPhone 4.
+
+Screenshots are saved as PNG files on the original iPhone and the iPhone 3GS (the two models I had access to) and have no EXIF records. The only other metadata fields available are filename, file size, and modified, and imported dates. 
+
+
+A: iPhoto will not show screenshots as geotagged. This does not mean the information is not there somewhere, but it's highly improbable.
+
+A: Checked today on iOS9 and geo data is still not stored.
+
+A: I just checked EXIF Metadata of screenshot took on iPhone using EXIF Viewer by Fluntro App. Screenshots in iOS are not geotagged. (As on iOS 12)
+Like what mentioned in previous answers, Screenshots are saved as PNG file and doesn't store location coordinates.
+
+Disclaimer: I have developed the EXIF Viewer by Fluntro App :)
+https://itunes.apple.com/us/app/exif-viewer-by-fluntro/id944118456?mt=8
+To know more features about the app, checkout https://www.youtube.com/watch?v=ycz0b0uDn9A

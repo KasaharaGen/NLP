@@ -1,0 +1,71 @@
+Q: How do I execute command line scripts? In Windows, I can create .bat files. I double click it and all lines are interpreted as if I had entered it into the console.
+In OS X, what file or program do I have to use? If I want write a file with;
+ echo hello world
+
+I want to double click this file and have it execute in a console. How I do this?
+
+A: The equivalent of the Console or Command Prompt in Windows is the Terminal app located in /Applications/Utilities/
+The equivalent of DOS (or whatever they're calling it these days) is "bash"
+The equivalent of a batch file (.bat) in Windows is a shell script (.sh)
+Just do a Google search for "bash" "reference" and you'll figure the rest out. I would also recommend buying the Bash Cookbook (O'Reilly).
+Specifically, this would be what you would type into a terminal window to get your "hello world" script:
+To create the file:
+    echo "echo hello world" > file.sh
+
+To change permissions to make the file executable:
+    chmod 755 file.sh
+
+To run the script:
+    ./file.sh
+
+If you want to be able to double-click it from the Finder, right-click (or control-click) on the file and select Get Info, then under Open With, select the Terminal app. Or you could use the .command extension instead of the .sh extension.
+
+A: The terminal underpinnings in OS X are the same as those used in Linux. What you are specifically looking for is commonly referred to as "Shell Scripting".
+The default shell when you open Terminal.app (located in /Applications/Utilties) is the bash shell.
+OS X has had a built-in shell handler accessible via Finder and other applications via the .command extension, though frustratingly not via the .sh extension. However, setting the script up to run via the Finder is even more complicated still.
+
+
+*
+
+*Create a simple shell script, like your example I've made a Hello World application:
+
+
+#!/bin/bash
+echo "Hello World"
+
+
+
+*Save this file as HelloWorld.command.
+
+*Give this file permission to be executed. chmod u+x HelloWorld.command should do that.
+
+*Open the directory where you saved this file in Finder. Then double click on the HelloWorld.command file.
+This will open up a terminal and execute the script, the output on my computer is the following:
+
+$ /Users/jason/Applications/HelloWorld.command ; exit;
+  Hello World
+  logout  
+[Process completed]
+
+The alternative way of executing this file is while still in the Terminal yourself, simply issue ./HelloWorld.command assuming you're in the same directory as the file.
+Doing so will result in much simpler output:
+
+jason-mac Applications $ ./HelloWorld.command
+  Hello World
+  jason-mac Applications $
+
+You've just created and executed a shell script in OS X!
+
+A: You probably want to give AppleScript a look. This book by Sal Soghoian is considered by many the go-to book on AppleScript. 
+Another nice way for users to automate Mac apps is using Automator. You may want to give it a try as well. Hope this helps. 
+Update
+It seems that you're looking for something like Unix shell scripting. This two tutorials are decent and seem to cover the basics. 
+
+A: Shell scripts. I don't think Ask Different would be the suitable place to discuss it in depth but there's a very detailed guide here:
+http://tldp.org/LDP/abs/html/index.html
+Mac OS X is UNIX Certified from 10.5 on (right?) so this wisdom here is also applicable to Linux and other UNIX-like OSs.
+(in a less complex way, Mac OS X's Automator is pretty damn powerful, as is the AppleScript Editor, both of which can execute shell scripts and other commands with programs, and wrap them up into a convenient .app bundle for Launchpad or sharing with friends)
+
+A: For mac is the .sh file aka Shell script
+
+A: I made a video a couple of days ago explaining this. Hope this helps: http://www.youtube.com/watch?v=Q2jxpJAlsyg

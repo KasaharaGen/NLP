@@ -1,0 +1,53 @@
+Q: Control-F2 "Move Focus to Menu Bar" only works occasionally I don't want to use my trackpad too much due to a strain injury, hence I use the Control F2 "Move Focus to Menu Bar" a lot.
+However this feature only works occasionally, it can work for hours and then suddenly stop working, sometimes I can fix in the Keyboard Shortcuts pref pane by unchecking and checking the "Move Focus to Menu Bar" checkbox, at other times it takes a restart of the system.
+
+I'm a big Apple fan-boy, and I always marvel at the cool features in OSX, this is the first time I have a Windows-esque experience with the OSX UI :(
+
+A: When you're sure you've got your Fn key settings the way you want them and it STILL doesn't work:
+My solution:
+
+
+*
+
+*Go back into Preferences > Keyboard > Keyboard Shortcuts pane.
+
+*For the item "Move focus to the menu bar",
+assign a DIFFERENT function key, other than F2.
+(Something you're not using, like, say...^F9...or whatever.)
+
+*Now use THAT key instead.
+Sounds kind of nuts, I know.  And it's annoying to use a different key.  But I've found that ^F2 just won't consistently work after I've been using enough 3rd party programs, particularly if they're complex.  Sometimes ^F3 will also fail, and that keyboard pane can start acting a little strange on its own to be honest.  This does seem to work though.
+
+coder
+
+A: *
+
+*I've had the same struggle with keyboard shortcuts to the menu bar (tried many different combinations).
+
+
+the only one that has consistently worked is the help shortcut ⇧ ⌘ ? (shift+command+/)
+from the help menu just use the arrows to navigate to file/edit/view…
+
+A: Same here: ^F2 almost never works
+Workaround that works for me (without assigning new shortcut):
+press ^F3 and then immediately ^F2 
+
+A: From this other question:
+Why do Ctrl+F2 and Ctrl+F3 sometimes stop working?
+A possible cause is accidentally hitting Ctrl-F1, which (wait for it...) disables Keyboard access! So use it again to toggle these keys back on.
+
+A: I asked a question in the following link and got a hint to answer your question:
+https://stackoverflow.com/questions/16390279/applescript-to-show-apple-menu-bar-items
+What I do is as follows:
+
+
+*
+
+*create an .app using Automator using the scrip in the above link,
+
+*create a hot key for the .app,
+
+*create a key stroke linked to the hot key (using KeyRemap4MacBook in my case).
+
+
+It works great for me at least.

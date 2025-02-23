@@ -1,0 +1,25 @@
+Q: Why does my Mac Pro have two ethernet ports on the back of the computer? I'm curious as to how or why I might want to take advantage of two ethernet ports on the back of the tower?
+
+A: @Griffo Had some great ideas, I have one more:
+Share your network connection with another computer. Usually, you'd use a router, but what if you don't have one, or it's misconfigured? You could connect your external network to one port and use network sharing over the other.
+
+A: *
+
+*If you wanted to connect to two different networks you could use this.  So say you had an internal network which you had your own computers all linked to but were not connected to the internet, you could use one port to connect to this network.  Then you could connect the other port to a broadband router/modem and access the internet on your Mac Pro.  It's really more of an interest to businesses than domestic users.
+
+*You could also use the second port to connect to Network Attached Storage (NAS) such as a MyBook World or similar.  This would allow you to use the full bandwidth of one port for backups to disk while not affecting the speed on the other network.
+
+*Backup interface in case one fails.  You could have each interface connect to different switches on your network in case of a failure on one you still have access to the network on the other.
+
+*There's also something called link aggregation which allows you to combine the ports to act as one port with twice the speed.  However, this depends on your other network equipment supporting this mode.
+
+
+A: Provide one of the ports to a Virtual Machine for bridged networking. This allows the guest VM to have direct access to the network on its own IP instead of sharing the host's network card via NAT.
+
+A: *
+
+*Connection to the modem for your regular internet.
+
+*Network connection to an old Windows computer for easy file and data sharing.
+
+I am glad mine has 2 ethernet ports.

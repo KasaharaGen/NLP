@@ -1,0 +1,32 @@
+Q: How do you md5 an entire disk in OS X? I want to validate a "dd" image of a USB disk in OS X using the terminal. The terminal command md5 works on the dd image but not on the entire disk.
+$ dd if=/dev/disk2 of=image.dd conv=notrunc
+1974152+0 records in
+1974152+0 records out
+1010765824 bytes transferred in 149.033958 secs (6782118 bytes/sec)
+$ md5 image.dd 
+MD5 (image.dd) = 3efc7e341b1bf2d729ffcd9b6a313428
+$ md5 /dev/disk2
+MD5 (/dev/disk2) = d41d8cd98f00b204e9800998ecf8427e
+$ md5 /dev/rdisk2
+MD5 (/dev/rdisk2) = d41d8cd98f00b204e9800998ecf8427e
+
+I tried using /dev/rdisk1 and got the same results. I am OS X Lion.
+
+A: If you are not trying to checksum disk the running system resides on (this won't ever be consistent) you may try
+
+dd if=/dev/disk2 | md5 -
+
+
+A: You could mount both filesystems (read-only, if possible) and then recursively checksum each file.  
+EDIT:
+example command:
+cd /Volumes/xyz
+find . -type f -exec md5 {} \; | cut -c15- > log1.txt 
+15 in this case is the string length of /Volumes/xyz or what ever your mount point is.
+Do this on both file systems and make sure the filenames do not have the starting root path (by using cut).  Then use the 'diff' command to compare the 2 files.
+
+A: Hmm...Is the dd image functional?  
+What you are seeing might be a result of the dd command possibly putting some junk at the tail end of the transfer so that you get a copy of an even number of records. 
+You do not say, but it is assummed that you are dd'ing/md5'ing a quiet/unmounted/unused disk to make the image file.
+
+A: I know this question is old, but I thought for other people that may read this they would find this helpful... I found that OS X is mounting and writing to the volume immediately upon dd completing. This makes it impossible to checksum the newly written volume and compare with the file. I had to use a forensics tool call DiskArbitrator to prevent volumes from being mounted after dd completes. This allows there to be time to checksum the volume before spotlight messes it up.

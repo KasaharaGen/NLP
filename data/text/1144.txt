@@ -1,0 +1,24 @@
+Q: Can I use iPhone earbuds as a microphone on my MacBook? The only microphone I have is the one built-in to my iPhone earbuds. I want to try some line-in stuff, so I plugged the headphones into the microphone port. I then went to System Preferences/Sound/Input and selected Line In. It doesn't appear that this is working as a microphone. Should it?
+
+A: On late 2008 MacBooks and on, iPhone earbuds will function as headphones and a mic if plugged into the headphone port.
+
+A: This depends - do you have separate jacks for headphones & microphone or just one jack? If you have two jacks you'll have to get a splitter for it to work properly.
+
+
+A: In short, the microphone won't work as a microphone the way you're trying it, but the earbuds will.
+Longer answer...
+In order to use the microphone from your iPhone headphones, they must be plugged into the headphones socket. You can see in the images below that the MacBook Pro "Sound" preference pane recognises that they have a microphone and switches the "Built-in Microphone" to the headphones one when they're in the headphones socket.
+If you plug the iPhone headphones into the Mic/Line-in socket, it seems to be only set up for a standard stereo 3.5mm jack, and so will use the earbuds (both of them) as microphones — a stereo microphone effectively (though they're not great at picking up sound or well matched to the hardware as microphones, so will require lots of amplification).
+Sound preference pane without the headphones plugged in the headphones socket:
+
+Sound preference pane with the headphones plugged in the headphones socket:
+
+Plugging the iPhone headphones into the Mic/Line-in socket shows no change (i.e. looks like the top image) and having tested it, only the earbuds seem to produce any response in the computer (i.e. they're connected but the microphone isn't).
+
+A: You can use the microphone on the iPhone earphones (as well as the volume and music forward/next on newer machines). But I think the reason its not working for you is by selecting Line In. What if you keep it as microphone?
+
+A: Apple supports using an "iPhone" headset on Macs that display External Microphone in the Built-in Audio section of System Profiler (Also called System Information on newer versions of the OS). 
+
+Any computer that displays "External microphone" in the System Profiler will work with the Apple Earphones with Remote and Mic.  To confirm that External microphone is in your System Profiler, choose About This Mac from the Apple () menu and then click More Info.  Select Audio (Built In) under the Hardware section.
+
+The operation is plug-n-play, the computer will automatically detect the microphone and earphones when you plug in the headset.

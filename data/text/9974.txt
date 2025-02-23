@@ -1,0 +1,21 @@
+Q: Terminal behaving differently since updating to Lion Ever since my company updated to Lion, terminal.app has been behaving differently. When I click on the dock icon, it sometimes opens several terminal windows at once, instead of a single one, and all of them display my previous session's activity, rather than just opening to a shell prompt. 
+What can I do to make the terminal go back to behaving the way it used to? I can't find anything in the prefs that would account for these changes.
+
+A: This is the resume feature of OS X Lion.
+Undo resume for a specific application
+Type the following command in the Terminal. Then restart the specific application.
+In general the syntax is:
+defaults write com."producer"."program-name" ApplePersistenceIgnoreState YES
+
+Thus, in your case (Terminal.app) it is:
+defaults write com.apple.terminal ApplePersistenceIgnoreState YES
+
+If you want to set the resume feature again, simply write NO using the same syntax.
+Undo resume for all applications
+In order to disable this for all applications do this:
+go to System Preferences->General
+
+
+A: If you prefer a graphical interface you can use the app TinkerTool.
+This application gives you access to additional preference settings and allows to activate hidden features in the operating system.
+

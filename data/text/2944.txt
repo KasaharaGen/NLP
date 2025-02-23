@@ -1,0 +1,13 @@
+Q: Can I change the color of my Mac OS X Terminal window depending on which server I am ssh-ed to? I'd like to have the background as black for server 'foo' but have the background be say gray  or blue for server 'bar'.
+I am worried I'll run the wrong command on the wrong ec2 instance because all the pwds are /home/ubuntu! How is everyone else solving this?
+
+A: you can use a script to connect to your servers, which also changes the bg color of your terminal before it connects.
+http://www.macosxhints.ch/index.php?page=2&hintid=1001
+
+A: Use different bash scripts to launch each session and change the background color depending on the server.
+https://stackoverflow.com/questions/4404242/programmatically-launch-terminal-app-with-a-specified-command-and-custom-colors
+
+A: You may use iTerm2 bookmarks, where you can customize each bookmark with its own settings!
+
+A: Further to the iTerm bookmarks that are in @nuc's answer where you have to create a profile for each machine and then make its script the ssh command.
+iTerm also has some shell integration which you can use to choose different iTerm profiles (these include colour schemes) depending on the machine name. Thus your terminal changes colour when you ssh into a machine which you can do at any time and not just at the start of a session as in the above case.

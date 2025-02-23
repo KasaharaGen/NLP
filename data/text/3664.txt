@@ -1,0 +1,7 @@
+Q: Is there a way to stop the MobileMe synchronization from Terminal? It happens to me that, sometimes, the MobileMe synchronization starts when it should not, when Mac OS X is busy doing something time-consuming. In such cases, I try to stop the synchronization using its menu extra, but for some reasons the synchronization doesn't stop.
+Is there a way to stop it from Terminal?
+
+A: Try this :
+sudo kill -9 /System/Library/PrivateFrameworks/DotMacSyncManager.framework/Versions/A/Resources/mobilemesyncclient
+
+I don't use Mobile Me so cannot test this but this is the location of the Mobile Me sync command.  So killing it should stop the syncing.

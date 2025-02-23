@@ -1,0 +1,30 @@
+Q: Does my Time Machine backup disc need to be dedicated? I have an external HD that's about 60% full. The remaining space is more than enough for a Time Machine backup of my hard drive. If I enable Time Machine using that disc, will it erase my existing files, or just use the free space?
+
+A: If you want an encrypted backup, Time Machine will erase the contents on the drive as part of the encryption process. (It is a full disk encryption.) In that case, yes, you'll need a dedicated blank drive.
+
+A: No, it does not. It creates a Backups.backupdb/ directory for itself and leaves your other files untouched.
+However, if (on Lion) you want to encrypt your backup it uses the same full-disc encryption as FileVault, and I think your other files on the disc will also be subject to that. (I haven't tried this myself.)
+
+A: It will require you to erase the disk if it doesn't like the format of the disk. In this case, I have an ExFAT disk that has 7.5TB and even unencrypted, it requires me to erase it. It requires HFS+ or AFS.
+
+
+If I click "Don't Erase" then it takes me back to the home screen and nothing happens.
+
+A: It will just use the free space but it won't backup the files on that disk as stated on the relevant Apple support document 
+
+Time Machine works best if you use your backup disk only for Time Machine backups. If you keep separate files on your backup disk, Time Machine won’t back up those files, and the space available for Time Machine backups will be reduced. 
+
+
+A: No it will not erase your existing files. Time machine will create a folder on your external hard drive called Backups.backupdb. This will contain your time machine backups. Once your disc space is full, time machine will start erasing old backups however so it can always store your most-recent backup.
+
+A: If the disc was formatted for Windows/PC use, it would need to be reformatted and formatting it for Time Machine will erase all data.
+"Time Machine can’t back up to an iPod, iPad, or iPhone, or a disk formatted for Windows. If you connect a disk formatted for Windows, it can be reformatted (permanently removing all data) to a Mac filesystem format and used as a backup disk."
+Backup disks you can use with Time Machine
+
+A: The drive needs to be in HFS+ format first. However if you select the drive in Time Machine, it will still want to erase it first — therefore — create a folder on the drive called: Backups.backupdb
+Then when you go to select the drive for backup, it will see the existing Backups.backupdb folder on it, and validate it as a Time Machine backup drive, and continue with using the drive as a backup destination.
+
+A: I created 3 1G partition on my 3G external drive. One is for Time Machine, one for general use and otherfor Carbon Copy Cloner. All 3 partitions work fine. No data has been deleted.
+
+A: It doesn’t have to be, but for the cost of a second drive, I’ve never ever regretted keeping the backup simple and using a second external for scratch.
+You want to backup your files in most cases so storing them on the main backup volume is backwards. Even if you don’t care about the files, putting them on a dedicated scratch disk reduces the risk of a mistake to the backup volume.

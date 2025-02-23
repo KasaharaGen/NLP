@@ -1,0 +1,54 @@
+Q: How can I set a default zoom level in Safari? I've got a Mac Mini that I'm using as a Home Theatre PC, and my only real complaint is that I can't set a default zoom level in Safari. It's hard to read all that tiny text from 7 feet away from my TV set, so I'm always zooming in.
+So: is there some extension or hidden hack way to force Safari to zoom in automatically?
+
+A: There is a wonderful safari extension, SafariMagnifier, which can set default zoom-in scale for every page. 
+http://www.wannseii.com/safarimagnifier/
+
+A: As Am1rr3zA mentioned, you can select a custom style sheet from the preferences:
+
+I have added these rules to my safari.css file:
+html {
+    zoom: 125%;
+}
+img {
+    zoom: 75%;
+}
+@media print {
+    html {
+        zoom: 100%;
+    }
+}
+
+It has a lot of annoying side-effects though. But ZoomBySite and AllPagesZoom have the same side-effects, and there is also a noticeable delay before AllPagesZoom changes the zoom level.
+
+A: If you go to "preferences" in the Safari tab and then to "advanced" you can click the "Never use font sizes smaller than" button and then pick the font size you want.  Then you won't have to squint and get real close to the screen to read it anymore.
+
+A: All Pages Zoom
+...allows to "easily set one zoom level for all websites and have it remembered." I'm using it in Safari 5.1.7.
+You can download it from Apple's extension gallery under productivity or directly from the developer.
+
+
+A: After 6 years, we finally have this feature in native Safari 10, so no more CSS or extension required (I used to apply CSS, but it broke many sites as pointed out by @adib):
+
+UPDATE: Thanks to @wisbucky, Safari 11.0 actually has a new design. It can now memorize the zoom level per site. Also, we can custom this by the menu item "Safari" --> "Settings for This Website...", and the exact option "Page Zoom" can be found there. More detailed information can be found here and here.
+
+A: According to this post from Apple's Safari Support discussion forum:
+
+1) Create a file named defaultzoom.css (or any name you like, just make sure it has a css extension.)
+2) Copy and paste in the following:  
+    body {  
+      zoom: 130%;  
+    }
+
+change 130 to whatever number suits you. >100 means zoom in, <100 means zoom out. Don't forget the % percent sign!
+3) In safari, go to Preferences > Advanced. Under style sheet, select Other... and point to the file you created.
+4) You may need to restart safari for the change to take effect.
+
+
+[In the above, both the emphasis and code formatting (for non-code-related text) were added to the original quote by Am1rr3zA].
+
+A: In the latest version of Safari (11), go to:
+Safari -> Preferences -> Websites -> Page Zoom
+There you can set the default page zoom for all sites or a specific site. 
+This seems to be a native feature of Safari now (the Page Zoom setting under the Advanced tab in preferences is gone.)
+

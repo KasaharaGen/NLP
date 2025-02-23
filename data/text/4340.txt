@@ -1,0 +1,15 @@
+Q: Powering on while the lid is closed in clamshell mode For a recent MacBook Pro, lid closed, non-Apple keyboard: can I map some key (like F15) to be the same as the Apple power key so I can do a full shutdown and start up without opening the lid?
+
+A: Launchers like Alfred.app allow you to assign keyboard shortcuts to run commands (it has built in ones for restart and shut down).
+There is a default shortcut alt+cmd+eject for putting the computer to sleep.
+Additionally, control+alt+eject will log you out, and;
+shift+control+eject will sleep your displays (and keyboard lights if you have them).
+As for booting the computer without using the power button, I'm not sure that's possible, as I don't think the laptop gives power to the keyboard while it's powered off. 
+You could setup something like scheduled startup/shutdown, to automatically boot at the set time. Find this in the Energy Saver preference pane.
+Update: Newer laptops don't have an eject button, but instead the button in the top right corner of the keyboard is the power button. The above shortcuts will work with the power button i.e. shift+control+power for turning off the displays.
+
+A: I do not believe this is possible.
+You can schedule your Mac to power on automatically using Energy Saver or our Power Manager software. This requires setting specific times for starting up and shutting down.
+If the lid is closed, your Mac should start up on schedule. It will then immediately go into sleep mode because the lid is closed. This appears to be a deliberate design choice by Apple's engineers to avoid overheating your Mac.
+To run with the lid closed, you must start up with lid open and have an external display connected. Only with an external display connected can you close your MacBook Pro's lid and avoid automatic sleep; doing anything else is not supported by Apple.
+The exact behaviour you will see also depends on which MacBook Pro you have. Power features and capabilities tend to change between hardware revisions.

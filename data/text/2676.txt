@@ -1,0 +1,10 @@
+Q: Why did the Sparrow dock icon stop bouncing on launch? The Sparrow mail app icon had been bouncing fine on launching the app till a few days ago but has stopped doing so recently. Any reasons why it might be so? I miss the bouncing dock icon.
+
+A: This is mentioned in the release notes for 1.0.1:
+
+Be aware that implementing the ‘Menu bar only’ mode breaks the usual bouncing behavior of the dock icon. We know no AppStore compliant workaround for the dock icon to behave properly when the ‘Menu bar only’ is implemented.
+
+
+A: Have you set the "Show Icon In" option on the General tab of Preferences to "Only in Menu Bar"? If you have then the dock icon won't bounce anymore and when you have Sparrow open you probably won't see the little hightlight at the bottom that normally indicates when an application is open.
+Actually I just set that option back to "Dock and Menu Bar" and my Sparrow dock icon doesn't bounce either.
+This might be a bug in the 1.0.1 release they issued fairly recently.

@@ -1,0 +1,22 @@
+Q: I wish I could get a new Finder window launched if I double-click the Finder icon in the dock. Is this possible? I wish I could get a new Finder window launched if I double-click the Finder icon in the dock. I'm not sure if this would be possible with an Automator script, or if I would have to try to program some type menubar software or something. Any ideas?
+thanks!!
+
+A: Hyperdock will let you do something similar. It doesn't seem to support double clicking, but I have my system set up so a middle-click on the finder icon opens a new window.
+It's also an awesome dock enhancement, and brings the dock much closer to the usability of the windows taskbar (i.e. you can switch to a specific other window without having to use expose or alt-tab). 
+
+A: The following AppleScript does what you want:
+on run
+    tell application "Finder"
+        make new Finder window
+        activate
+    end tell
+end run
+
+Open Script Editor in the /Applications/AppleScript folder, and paste the above in to a new script. Save it somewhere as a "File Format: Application" with "Stay Open" not checked.
+
+Then drag that application to your Dock. When you click it, the Finder will be brought to the front and with a new finder window.
+The disadvantage is, this takes about 1.5 - 2 seconds to run on my machine. I could probably tweak it by making the script stay open and watch for being brought to the front... You might also get better performance by saving it as a normal script in your "Scripts" folder and putting it in the scripts menu.
+
+A: All you're trying to do is open a new Finder window, yes?
+
+Why not just right-click on the Finder icon in the Dock and choose "New Finder Window"?

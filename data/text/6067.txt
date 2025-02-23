@@ -1,0 +1,42 @@
+Q: Limit the size for backups on a Time Capsule I want to store both backups and shared data on my Time Capsule. Hence, I need to limit the space taken by backups. I see two options:
+
+
+*
+
+*Partition
+
+*Limit the size of the backup sparse bundles.
+
+
+Which one should I chose? If you say 2.: How to best do that, so it won't take forever? 
+
+A: I've been looking at this as well to limit the space a single machine can use when sharing a time capsule (slightly different application, but same concept). Here is what I found:
+
+
+*
+
+*External Drive - The quickest and easiest solution. The backups and data are completely separate and won't interfere with each other. The main disadvantage is having the clutter of extra devices and cables.
+
+*Partition - This is probably the best option to ensure dedicated space for the backups and the other data. As such it is the least flexible if you want to reallocate space at a later date. The other disadvantage is that it is difficult to do in that you aren't able to do it from within the Air Port utility.
+
+*Sparse Bundle Size Limit - At first I thought this would be the best option because it is self-contained within the Time Capsule, is flexible, and not to difficult (though perhaps a bit tedious). However, it seems that there issues with some versions of Mac OS X not respecting the size limit. I am not clear yet on whether this is a bug or a feature. When moving my sparse bundles to a large Time Capsule, at first they all appeared with the smaller size, but then they were resized to the capacity of the larger Time Capsule.
+Those options cover the 'prevention' approach to make sure that no more space is used than allocated. Another approach is to just let it be and then prune backups when needed. This a good way to go if you have a lot of room. I tried this before getting a new Time Capsule but it was just too tight of a squeeze in my case.
+
+
+*
+
+*tmutil - As bmike points out, tmutil can be used to clear out old back ups, but was introduced with Lion so may not be an option for some people.
+
+*Delete Files - You can delete files from a backup by entering Time Machine, browsing to the file or folder, and selecting the option to delete from backup in the gear icon.
+
+*Force Thinning - By artificially increasing the backup space required, you can force Time Machine to run its thinning procedure deleting older backups. I attached a large external drive to my mac and removed it from the exclude list in Time Machine options. This allowed me to clear space from one machine's backup image to make room for the others. It worked, but the downside is that it can take a very long time. I imagine tmutil would do this more efficiently.
+
+A: A third option would be to purchase an external hard drive and attach it to the USB port on the back of the Time Capsule.  
+This drive could be used exclusively for shared data or backups and would still appear on the network.
+Also, I do not believe it is possible to partition a drive over the network.
+
+A: For me this is a non-problem.  I have terabytes of data side by side with Time Machine.  Put your files on the disk and let Time Machine do its thing.  Time Machine will happily keep a backup volume almost full, but it always cleans up to make sure there is free space.
+The exception to this advice is if you are in a mode where you suddenly have to drop gigabytes worth of files onto the volume you might find that Time Machine hasn't left you enough space.
+
+A: Why not script tmutil to prune older backups more aggressively than Time Machine will?
+The other proposed solutions are hacky or cause you to have a second mount point.

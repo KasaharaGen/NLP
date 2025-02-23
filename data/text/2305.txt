@@ -1,0 +1,14 @@
+Q: How can I use Wireshark on a MacBook Air? I have a new MacBook Air. I would like to run Wireshark on it. But when I choose capture in Wireshark there is no interfaces to capture from. Doesn't Wireshark have support for the MacBook Air WiFi nic?
+How can I use Wireshark on a MacBook Air?
+
+A: You need to set the right permissions.
+Go into Terminal and enter the following commands:
+cd /Library/StartupItems  
+sudo chown -R root:wheel ChmodBPF
+
+You might need to restart the computer to take effect.  You also need to be admin (a sudoer) to perform these commands
+I should mention that you need to have copied ChmodBPF from the .dmg file for Wireshark into the /Library/StartupItems folder as described in the 'Read me first' document.  ChmodBPF is a file located in the Utilities folder in the .dmg
+
+A: I just run it by doing
+sudo open /Applications/Wireshark.app/
+

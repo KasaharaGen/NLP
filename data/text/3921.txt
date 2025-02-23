@@ -1,0 +1,6 @@
+Q: Launch Gedit while sshing in terminal I know i can do it in linux, anything similar in osx?
+
+A: Firstly make sure X11 is installed (it's an optional install on the OS X dvd)
+You need to ssh in with X11 forwarding.
+Open terminal and type ssh -X username@host  where username and host are the relevant details.
+This will log you in.  Once logged in type gedit and the X11 server on your mac will start and show the gEdit window.

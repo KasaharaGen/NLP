@@ -1,0 +1,169 @@
+Q: Why has my iMac gotten slower for the past few months? My iMac has gotten slow lately. The (wireless) keyboard lags if I type while a program or dialog box is opening. A couple of Chrome tabs crash every day. A few days ago, Preview and TextEdit started crashing on open. Finder sometimes takes over seconds to come up when I click it in the dock. TextEdit sometimes takes ten seconds to launch, sometimes takes two.
+Info dump:
+I have an iMac from 2007, upgraded a year ago by a third-party vendor, currently with these specs:
+
+
+*
+
+*Processor: 2.8 GHz Intel Core 2 Duo
+
+*RAM: 2 GB 667 MHz DDR2 SDRAM
+
+*Graphics: ATI Radeon HD 2600 Pro 256 MB
+
+*HD: 1 TB ATA Disk (466.76 GB free)
+
+*Backup drive (nightly 4:30 AM backups with SuperDuper): External 1 TB USB Disk (479.21 GB free)
+
+*OS: Lion
+
+
+I usually concurrently use:
+
+
+*
+
+*Adium
+
+*Google Chrome (often six to twelve tabs open)
+
+*iTunes
+
+
+On top of that, I often open one to three of these apps:
+
+
+*
+
+*Pixelmator
+
+*Photoshop
+
+*TextEdit
+
+*The Hit List
+
+*Word
+
+*The official Twitter app
+
+*Transmission
+
+
+My menu items include:
+
+
+*
+
+*Textexpander
+
+*Last.fm scrobbler
+
+*Dropbox
+
+*Flux
+
+*iStat Menus
+
+
+My active Chrome extensions are:
+
+
+*
+
+*Adblock Plus
+
+*Add Facebook Events to Google Calendar
+
+*Better Gmail
+
+*Clickable Links
+
+*Clip to Evernote
+
+*Google Calendar Checker
+
+*Google Mail Checker
+
+*Google Reader RSS Subscriber
+
+*History Calendar
+
+*Hover Zoom
+
+*Instachrome
+
+*Logitech Device Detection
+
+*Missing e
+
+*Page One
+
+*Read WSJ Extension
+
+*Reddit - display user link titles
+
+*Reddit Companion
+
+*Reddit Enhancement Suite
+
+*Search by Image (Google)
+
+*Speeddial 2
+
+*StumbleUpon
+
+*Turntable Scrobble
+
+
+I have about a dozen disabled extensions.
+Here's a screenshot of Activity Monitor with Chrome (three tabs), iTunes, Adium, Hit List, Activity Monitor and Word open.
+The top of the computer is uncomfortably hot to the touch. I tried tracking the system temperature with iStat Menus, and it reported 50° C and lower.
+What's making my computer so slow? Too many Chrome extensions? Not enough RAM? Dusty insides?
+My MacBook Pro, on which I do the same work, run the same apps (though usually not iTunes) and the same Chrome extensions, behaves much faster. It has 4 GB 1067 MHz DDR3 RAM and a 2.66 GHz Intel Core 2 Duo processor.
+
+A: Here's a few things I would try:
+
+
+*
+
+*Do basic system maintenance (repair permissions, clean caches, run daily-weekly-monthly maintenance scripts). I like ONYX (http://bit.ly/eCzYfj) for doing this, but there are plenty of other options that do the same thing.
+
+*Make sure you have at least 20% free disk space. If not, try clean up and free some space.
+
+*If things are still slow, try creating a new user account and logging in with that. If that account runs much better you still have some cleanup to do.
+
+*Check your login items (in system preferences, User & Groups). If there are login items you don't recognize/need try disabling them.
+I would also look into investing in at least a 2MB memory upgrade. Not too expensive and it looks like you could use it.
+Good luck...
+
+A: Man...you are running a lot your computer. I have never run even close to that on my Intel Core 2 Duo.
+1. I would suggest making sure that you don't have Dashboard widgets open.
+2. I would also reboot into Safe Boot mode (startup with the shift key until the gear starts spinning). Then, restart the computer (without any keys).
+3. Though I've heard that repairing permissions doesn't help, it won't hurt to try that too.
+4. Make sure your hard drive isn't too full. (I think 90% is the mark). You can download a free disk space visualizer here. It's called Disk Inventory X and it's really great for seeing what takes up the most space on your hard drive.
+Also take a look at this article. for more info on how to speed up your Mac.
+
+A: It is hard to tell what exactly was the problem with your mac when you took your screenshot, but you give us some very interesting info : 
+
+
+*
+
+*With high demanding apps like iTunes (especially when coverflow is used and/or with a huge library) or photoshop, the more RAM you get, the better. I can only advice you to upgrade your RAM to 4GB. Mac OS X also performs better with high amounts of RAM.
+
+*You seem to have too many chrome extensions : my chrome main process consumes 93.3MB RAM with 4 tabs, and each tab consumes about 30MB RAM. Yours uses much more RAM per worker (one worker per tab)
+
+*check your disk space : Mac OS behaves really (really) badly when the system disk is full or soon-to-be. 
+
+
+Sometimes, creating a new user session improves performances (I assume some old files that should be deleted are never "cleaned up" by the system)
+And a last thing : the speed of the RAM is very important for the whole computer's performance. So, even with a more powerful CPU and the same amount of RAM, I am not sure that your iMac will be faster than your macbookpro. But unfortunately, you can't use faster RAM without changing the motherboard.
+PS : Sorry for my english...
+
+A: Your page-outs are telling you that you are short on RAM.  Your machine is swapping programs out of memory and onto disk to make up for the lack (enough so that OS X has created 4 GB worth of swap files on your hard drive).
+If you want to continue running a lot of applications/extensions at the same time, doubling your memory would be a good place to start.
+
+A: Your iMac can handle a maximum of 6GB RAM
+, not just 4GB, if it is the correct rev. Check here.
+http://eshop.macsales.com/shop/apple/memory/iMac/Intel_Core_2_Duo
+I would highly recommend purchasing all the RAM that your system can accommodate.

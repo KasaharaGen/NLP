@@ -1,0 +1,17 @@
+Q: Tools or scripts for tracking a stolen or lost Mac? Actually I do use the prey project but was wondering about other tools or scripts one could use to find back information about a lost/stolen Mac.
+With features like:
+-Getting the ip address or any other localization information.
+-Triggering the webcam remotely.
+-Protect/destroy personal files remotely
+
+A: One of the more popular ones is Lojack, a pretty well-respected software program for both Mac and Windows.
+
+A: Take a look at Undercover: it does all that you need, and more (simulating hardware failure, etc.).  
+Their recovery stories section is quite encouraging, too.
+
+A: If you are comfortable writing your own script, it is very easy to make a LaunchAgent that uses curl to check for a file on a site you maintain. Web logs now show you the IP. If you put commands in that file, the script on the computer can take action based on those commands.
+isightcapture can be used to take images from the camera, and screencapture of the desktop (showing email accounts of the unauthorized users).
+And of course DropBox. If you keep your important documents there, then you can easily delete them. If you want to transfer images from iSight or screencapture off, you can do so. If you want to transfer images on, or upload scripts that a local agent will run, etc, you can do all that very easily.
+MarcoPolo could be used to take a screenshot and an iSight image each and every time the computer wakes up or changes network, and email those images (along with IP) to an email account, which you only need to check if you don't know where or who is using the laptop.
+
+A: I'll throw a couple more track-spy-recover products into the list: BAK2u's Phoenix Anti-theft and GadgetTrak.  I have no experience with either, so you'll have to make your own judgements.

@@ -1,0 +1,28 @@
+Q: Unable to resize Lion partition I decided to do a clean install of Lion on a new partition, then after copying my stuff removed the old one. I'm now stuck with 100~ GB of free space and a 20 GB partition that Disk Utility won't let me resize... oops.
+
+I really don't want to have to:
+
+
+*
+
+*create a partition in the free space
+
+*install Lion onto it then copy my stuff (again)
+
+*delete the old partition and resize the new one
+
+
+Is there anything else I can do?
+
+A: Yes - boot to your Recovery HD and use Disk Utility there to perform the operation. If it's missing, you can download and re-install Lion which will recreate the Recovery HD.
+It's likely the volume is in use or one file that is open needs to be closed so it can be moved.
+
+A: bmike's suggestion is correct; boot from the Recovery HD itself in order to change anything.
+I would also advise that before making any changes of this sort, you first make a complete bootable disk image backup of your hard disk to an external hard disk using a utility like SuperDuper or Carbon Copy Cloner.
+You cannot resize with Disk Utility from within Lion because of the existence of the hidden Recovery HD partition. Furthermore, if you try to reformat or re-partition anything on your disk, you risk deleting the hidden Recovery HD partition altogether. This will cause no immediate harm, but it will interfere with many operations should you need to change anything further, or recover from a disaster.
+By way of providing further insight, there is a procedure for making the hidden Recovery HD partition visible from within Disk Utility while you are booted into the regular Lion or Snow Leopard. You perform a command-line operation to enable Debug Mode in Disk Utility, and this gives you an extra menu in Disk Utility from which you can make the hidden partitions visible.
+
+The Recovery HD partition is something completely new from Apple. It is my understanding that the makers of utilities like SuperDuper and Carbon Copy Cloner are hoping for further API information from Apple, and have yet to figure out how best to deal with this new situation.
+
+A: I had this issue and was also unable to resize my partition. I called Apple Care and spoke with a senior rep. He said that because I had once installed Boot Camp, but had removed it improperly (with Disk Utility instead of Boot Camp Assistant) that one of those tiny Windows partition was still there, even though it doesn't show up in Disk Utility. He said he'd seen this before and every time it couldn't be fixed, the user had removed Boot Camp via Disk Utility.
+He said (paraphrasing) to fix the partitions I'd have to back up and re-partition the whole disk. I will update this answer when I've done so.

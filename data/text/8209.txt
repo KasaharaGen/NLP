@@ -1,0 +1,21 @@
+Q: Can I show a 24-Hour clock on my Mac's Lock Screen? I just got a MacBook Pro, and different from my iMac is that I'll be using the lock-screen much more on this one.
+I noticed that in the upper right corner of the lock screen, the time is shown, but it is in 12-hour mode with AM/PM indicators.
+I guess this is some remnant of the machine having been configured to use english language as the main language (I'm a developer, I don't want to have to fight with badly worded Norwegian translations of error messages on google).
+I have configured my main user to have normal Norwegian formats for everything, but I guess that on the lock (and possibly on the logon screen as well?) screen, there is some kind of global system-wide configuration in use.
+So, can I:
+
+
+*
+
+*Configure the lock screen (or the system wide configuration) to use 24-hour clock?
+
+*Remove the clock altogether?
+
+
+A: Since at the login window (and the lock screen) your user is not logged in, you´ll have to edit the global preferences: 
+sudo defaults write /Library/Preferences/.GlobalPreferences AppleLocale en_GB
+
+and:
+sudo defaults write /var/root/Library/Preferences/.GlobalPreferences AppleLocale en_GB
+
+and then do a reboot. This fixed it for me (and I hope, Apple fixes that sooner or later). :-)

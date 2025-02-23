@@ -1,0 +1,42 @@
+Q: command line ps has stopped working correctly after an update I use to be able to run this ps command from the terminal:
+ps -u whoami -o pid,rss,command
+But recently the RSS size returned are all 0!
+ps -u `whoami` -o pid,rss,command
+158      0 /System/Library/CoreServices/Dock.app/Contents/MacOS/Dock
+159      0 /System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/SystemUIServer
+160      0 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
+165      0 /usr/sbin/pboard
+
+unless I run it with sudo
+sudo ps -u `whoami` -o pid,rss,command
+158  17556 /System/Library/CoreServices/Dock.app/Contents/MacOS/Dock
+159  22488 /System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/SystemUIServer
+160  82176 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
+165    840 /usr/sbin/pboard
+
+Does anyone know how to fix this or how to get the original functionality back?
+
+A: I have 10.6.7 and your
+ps -u `whoami` -o pid,rss,command
+
+producing
+  PID    RSS COMMAND
+  180    696 /sbin/launchd
+  185  19108 /System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/SystemUIServer
+  189     32 /usr/sbin/pboard
+  .... etc ....
+
+so, the problem is in your system. So, what return this:
+ls -l /bin/ps
+
+should this
+-r-sr-xr-x  1 root  wheel  134816 12 okt  2010 /bin/ps
+
+if your ps has other permissions, repair with:
+sudo chown root /bin/ps
+sudo chgrp wheel /bin/ps
+sudo chmod 4555 /bin/ps
+
+
+A: This looks on the face of it to be a permissions issue.
+I would try and Repair Permissions as per http://support.apple.com/kb/HT1452

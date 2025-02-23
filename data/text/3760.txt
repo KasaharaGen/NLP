@@ -1,0 +1,16 @@
+Q: Mail.app folders + iPhone/iPad = missing emails? I have a specific mail setup on my mac where I use Mail.app to access my Gmail via IMAP, and the app filters emails into folders ("On my mac" as opposed to in Gmail itself) for my different projects, school, etc. The problem is that whenever Mail.app moves an email into a folder (out of the main Inbox), it gets put in the Gmail Archive (All Mail), and then is no longer accessible via my iPhone - i.e. when I search for it, it's not there. Is there a way to make emails in folders available on iPhone/iPad, preferably actually synced with the device so you have the real folders from Mail.app available? 
+
+A: Be sure that you are making folders that are stored on gmail using IMAP.
+It sounds like you are moving the messages to a local folder (on my mac) and the correct behavior in that case is to delete the message from all IMAP folders.
+Mail keeps a local copy of all messages - so you still have offline access, time machine backups going back in time, and all the benefits of local storage when messages are "stored in a folder in gmail." Think of the location as the authoritative copy and not the only copy or even the most correct copy. When you make changes offline - those time stamps let the system sync your changes back to gmail once you reconnect and properly integrate changes with new mail that has arrived while offline.
+Just to be totally clear - here are some pictures...
+Try making a new IMAP folder like the picture below - you can rename it later if needed to see what creating a folder stored on Gmail looks like on your mail client.
+
+You don't want it stored locally like this:
+You can drag messages into the new folder or drag entire folder structures as long as you have time for the operation to sync / upload all the data to gmail servers. I have seen folders with 5,000 messages take two or three hours to upload even on normal internet with decent upload speeds so try first with smaller mailboxes to get the hang of things.
+
+A: You need to update your rules to move mail to the gmail IMAP folders rather than the ones from 'On My Mac'. When it does that, it is copying them out of the gmail box to your local mail store. 
+You could also have the rules set up in gmail which will parse them before sending mail to your device, so on both your Mac and iOS devices they would already be in the correct location.
+
+A: iOS 4.0 and newer seem to set Gmail up as IMAP, but older setups are probably POP3, giving you only INBOX access. If you (have) set up your Gmail account on your iPhone as Exchange account or IMAP (for iOS 4.x, just re-set Gmail up, for 3.x follow these instructions) then you can get out of the INBOX by touching Mailboxes button up left and then navigate to All Mail folder where you can see all your mail and search among them.
+If this suffices, no changes have to be made to Mail.app filters.

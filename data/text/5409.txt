@@ -1,0 +1,59 @@
+Q: Can you disable rubber-band scrolling in OS X Lion? In OS X Lion, is there a way to disable rubber-band scrolling? This is the bounce that occurs when the window is scrolled beyond the top or bottom edge.
+I'm aware that non-apple input devices don't rubber-band and hope to find a setting or software to eliminate this on the Apple trackpad and mice.
+Follow-up: There's a very good discussion on Apple Support Communities regarding this topic. Apparently defaults write -g NSScrollViewRubberbanding -bool false disables rubber band scrolling for some applications.
+
+A: I found a hidden preference for disabling rubberband scrolling with strings /System/Library/Frameworks/*.framework/Versions/*/* 2> /dev/null | grep -iE '(rubb|elastic)' | grep -v ' ' | sort | uniq:
+defaults write -g NSScrollViewRubberbanding -bool false
+
+It should take effect after reopening applications. It doesn't seem to affect web views like Safari windows though.
+
+A: For anyone else trying to figure this out, this may be of help:
+Apple uses the word "elasticity" in reference to this part of rubber-band scrolling.  Xcode's documentation includes more details.
+Also, look into the content of "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit".
+
+A: Disabling the rubber banding when scrolling past the end of a page can be done.  It simply requires you to ditch your Apple pointing device and use any third party mouse, like my 8 year old Logitech mouse.  No bouncing rubber band effect when scrolling past the end of any page.
+Of course, this means giving up all gestures.  If, like me, you hate the rubber band effect enough to trade away all gestures to be rid of it, run out to the dollar store and get that $4.99 USB mouse.
+
+A: I have found this CSS snippet that apparently disables it:
+http://www.smilingsouls.net/Blog/20110804114957.html
+Now to figure out how to implement the CSS rule in every web page we visit... probably via a Safari extension, like QuickStyle or NinjaKit.
+QuickStyle: http://canisbos.com/quickstyle
+
+A: I think the answer is no: you can't disable that feature.
+Keep an eye on third party software like MagicPrefs and Secrets. If anyone figures out how to do it, it'll probably be one of those.
+
+A: This is not an answer, but a hint in the right direction. 
+I have a non-multi touch trackpad and I rubber band scrolling is disabled in Lion for me. So this setting is linked to the multi-touch support.
+
+A: Rubber band scrolling cannot be disabled in Lion.
+The best solution to your issue is probably to use applications that do not include rubber-band scrolling.  Looking around, it appears Chrome and Path Finder do not include this. Many other apps also do not use rubber band scrolling, but this is just a temporary fix as some apps will be updated to include this Lion standard.  
+Another fix is to stop using a Magic Mouse, Magic Trackpad, or MacBook Trackpad.  Any other mouse that is used will not have rubber band scrolling.
+
+A: It's somewhere in NSScrollView.NSScrollElasticity
+NSScrollElasticity
+These constants determine the elasticity behavior for an axis of the scrollview.
+We need to find a way to set NSScrollView.NSScrollElasticity of every application to 1, which = none.  Details below:
+enum {
+    NSScrollElasticityAutomatic = 0,
+    NSScrollElasticityNone      = 1,
+    NSScrollElasticityAllowed   = 2,
+};
+typedef NSInteger NSScrollElasticity;
+
+Constants
+NSScrollElasticityAutomatic
+Automatically determine whether to allow elasticity on this axis.
+Available in Mac OS X v10.7 and later.
+Declared in NSScrollView.h.
+NSScrollElasticityNone
+Disallow scrolling beyond document bounds on this axis.
+Available in Mac OS X v10.7 and later.
+Declared in NSScrollView.h.
+
+A: For Safari, I built an extension: https://github.com/lloeki/unelastic/releases
+the rest, as they say, is history:
+defaults write -g NSScrollViewRubberbanding -bool false
+defaults write com.apple.iTunes disable-elastic-scroll -bool YES
+
+
+A: Yep, you can. Go to System Preferences -> Universal Access -> Mouse & Trackpad -> Trackpad Options or Mouse Options. You can select with inertia or without inertia.

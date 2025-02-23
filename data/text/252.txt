@@ -1,0 +1,65 @@
+Q: How do I encode mp4 files with H.264 (or x264) codec in AVIDemux? I am trying to get AVIDemux set up with the X264 codec using this tutorial. The following is what goes down when I get to the ./configure --enable-mp4-output command
+Thomas-Phillipss-MacBook:x264 tomdabomb2u$ sudo ./configure --enable-mp4-output
+Password:
+Unknown option --enable-mp4-output, ignored
+Found no assembler
+Minimum version is yasm-0.6.2
+If you really want to compile without asm, configure with --disable-asm.
+
+So I tried it. 
+Thomas-Phillipss-MacBook:x264 tomdabomb2u$ sudo ./configure --enable-mp4-output --disable-asm
+Unknown option --enable-mp4-output, ignored
+Warning: gpac is too old, update to 2007-06-21 UTC or later
+Platform:   X86_64
+System:     MACOSX
+asm:        no
+avs:        no
+lavf:       no
+ffms:       no
+gpac:       no
+pthread:    yes
+filters:    crop select_every
+debug:      no
+gprof:      no
+PIC:        no
+shared:     no
+visualize:  no
+bit depth:  8
+
+You can run 'make' or 'make fprofiled' now.
+
+I issued make, and then Thomas-Phillipss-MacBook:x264 tomdabomb2u$ ./x264 -v -q 20 -o foreman.mp4 foreman_part_qcif.yuv 176x144. And as expected, the results are: 
+x264 [error]: not compiled with MP4 output support
+
+So I'm stuck. Any ideas?
+
+A: That's a pretty old tutorial. Try this one (linked from the official Avidemux site).
+
+A: Fast solution:
+
+
+*
+
+*If you have x264, don't worry about un-install. Stay with it.
+
+*Check your assembler yasm verison.  
+
+*Install gpac --> from svn.code.sf.net and compile it. 
+
+*Copy gpac/inlucde/gapc/ into x264
+
+*inside x264 and configure as follow
+./configure --extra-ldflags=-L/home/../gpac/bin/gcc --enable-mp4 --enable-shared --enable-debug --enable-PIC 
+
+
+*You get the list in the configure x264 and you can easily find that your MP4 from 'no' changed to 'gpac'
+
+*Enter make 
+
+*Enter make install
+
+*Write x264 command as x264 big_buck_bunny.y4m -o big_buck_bunny.mp4 to test it. Now you have mp4 video. In this process it's not necessary to convert raw video to h264 and then in a second step with another tool to mp4. 
+
+
+A: Installed the latest version at http://nasm.us
+in /usr/local/bin/nasm, ran ./configure again, fixed.

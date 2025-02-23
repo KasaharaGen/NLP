@@ -1,0 +1,11 @@
+Q: How do I Convert FLAC files to ALAC for iTunes? I have a pretty large music library in FLAC, and I need to import it to my iTunes library somehow. I want to use the ALAC format to keep everything lossless so I can transcode to different lossy formats later if I need to.
+
+A: I'm a fan of XLD and since the original question was posed it gained the drag-and-drop folder capabilities that the person asking the question as after. No need to install Growl to get it to work. It also handles embedded images in FLAC files when doing the conversion and will keep them in the ALAC output files.
+
+A: Have a look at Max. Freeware and Open source. Has a GUI.
+
+A: You could also use ffmpeg:
+for f in *.flac; do ffmpeg -i "$f" -c:a alac "${f%flac}m4a"; done
+find . -name \*.flac | parallel ffmpeg -i {} -c:a alac {.}.m4a
+
+It preserves common tags, but it doesn't currently preserve artwork.

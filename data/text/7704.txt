@@ -1,0 +1,11 @@
+Q: My mac boots to a grey screen - target disk mode works My macbook boots to a grey screen - BUT the hard drive is OK.
+I tested it in target disk mode and the drive loads fine on  my other machine, so I can only assume it is something to do with the display.
+I've reset the PRAM/NVRAM , can anyone offer any advice on how to proceed from here?
+
+A: Boot to Single User Mode (Cmd S) let it do it's thing and then type: 
+cd /var/log
+(press enter)
+grep disk0 * 
+(press enter). 
+Towards the end of the outputted logs if you se IO Error your hard drive or flex cable are going. 
+If you can boot in safe mode (holding down shift at start up) maybe you have a dodgy 3rd party kernel extension. 

@@ -1,0 +1,7 @@
+Q: Binding an AppleScript to a button in OS X I have asked a question here. But it is for adding a custom button in OS X Finder toolbar.
+Suppose I have an AppleScript and I want to bind it on a custom button. And then I want to place that button on a toolbar - how that would be possible ?
+
+A: You can drag and drop an AppleScript (script and application) to the Finder toolbar, which places the icon for the AppleScript in the toolbar just like any other button (though I prefer the menu bar's AppleScript menu for such things because I can have more scripts available in a smaller space). I don't think you can create a button out of nothing and bind an AppleScript to it, however.
+
+A: No, you can’t add a custom button to the Finder directly to an Applescript, because the Finder’s toolbar is not an “Application Launcher”. It is, however, possible to create a small app (using Xcode) that does that. Out of my mind, you can check ShellHere, which is a very simple application that puts a button in the Finder to “open a terminal here”. 
+The little app is Open Source, so you could see how he did it. It’s a very small project and if you have a little bit of Xcode/Cocoa experience, you’ll grasp the concept immediately.

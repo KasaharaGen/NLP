@@ -1,0 +1,30 @@
+Q: Finder is very slow in showing the content of server shared folders I'm accessing a Windows File Sharing folder on my home server in Finder on my Mac (OS X 10.7.2) using the SMB protocol. When I'm navigating through the folders, sometimes (most of the time) I have to wait up to 10 seconds until I can see the list of files in the selected folder. Also, there is no visual clue that Finder is fetching the file list, so the first time I got this behavior in Mac OS X Lion, I was thinking the folder was empty.
+Even worse, when I'm copying some large files to the server, Finder is delaying the process of getting the file list more or less until the copying is finished.
+Is this something I can fix? Or is it a known bug in the Finder/SMB protocol implementation?
+
+A: In finder make sure you have status bar showing under view options.  You should see a spinning gif animation while the folder is loading.  If you have visited the folder recently the file list should be cached.
+
+A: It is an issue with Apples smb implementation.  They used to use Samba but because of licensing issues they have now created their own smb client.
+There are two solutions you can choose from:
+
+
+*
+
+*Configure the server to play nice with Apple's smb (if you have access to the server).  You can do this by enabling the vfs_fruit module in samba.
+
+*Replace Apple's smb implementation with Samba3.
+I detailed the solution in more depth in Slow SMB connection Buffalo Linkstation and you can see everything else I tried and my complete experience in Apple OS X Finder Is Listing Files Very (Very) Slow Over SMB With Shared Hard Drive Connected Directly to a WiFi Router at my company's blog.
+
+A: I would say this is an expected result of mixing designs.
+
+
+*
+
+*Windows wants certain information to paint the folder contents and serves that to anyone that asks.
+
+*OS X wants different information to paint the folder contents and takes longer to retrieve things from each file (icons to drawn, etc...) since it doesn't get what it wants from the initial directory listing request.
+
+
+You can experiment with different views (list view, icon view, etc...) to see if your 10 second delay can be minimized, but using the Mac OS to view remote files on a windows share can take a while to get the listing if the data takes time to arrive. You can convince yourself it's not the mac by opening a local folder with similar file count.
+
+A: Doing option-command-escape and relaunching Finder helps me.

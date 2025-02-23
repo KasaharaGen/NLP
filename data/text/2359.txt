@@ -1,0 +1,89 @@
+Q: Terminal window as its own app During my work day as a software developer, I frequently have multiple Terminal windows open, each dedicated to a specific purpose and directory. I switch between them on a regular basis.
+I'd like to create entirely separate applications for each of them. This would give me several benefits over and above the normal windows I have now:
+
+
+*
+
+*Separate icons in the Dock
+
+*Separate icons in the Command-Tab task switching
+
+*I could pin each window to separate spaces.
+
+
+Is there some way to accomplish this?
+
+A: @mankoff got me on the right path. Here's what I had to do in order to get what I want:
+
+
+*
+
+*Copy Terminal.app to a new file (ex: MyTerminal.app)
+
+*Change the icon of the app by:
+
+*
+
+*Copy an icon image to the clipboard from Preview 
+
+*Right-click (Command-click) on the app
+
+*Select "Get Info"
+
+*Click the app icon in the upper left corner
+
+*Pasting the new icon image from the clipboard
+
+
+*Right-click on the App and choose "Show Package Contents"
+
+*Change the following values in Contents/Info.plist:
+
+*
+
+*"Bundle display name" -> "MyTerminal"
+
+*"Bundle identifier" -> a unique app-specific string. I chose "ca.softcraft.myterminal" as I own the domain "softcraft.ca"
+
+*Bundle name -> "MyTerminal"
+
+*Document Types -> Delete
+
+*URL Types -> Delete
+
+*Application has localized display name -> uncheck
+
+*Exported Type UTIs -> Delete
+
+
+*I deleted a bunch of the localization settings (Contents/Resources/*.lproj) as they're not necessary for me; I just need English
+
+*In Contents/Resources/English/InfoPlist.strings, I deleted the "CFBundleName" and "CFBundleDisplayName" override settings
+
+*In Contents/Resources/Initial Settings, I deleted all but one of the *.terminal files.
+
+*
+
+*I'm using a custom terminal setting, but there's no reason you couldn't use Basic
+
+*In Contents/Resources/Initial Settings/settings.plist, I made sure my "Default Settings" value was set to the name of my .terminal file
+
+
+*I set the values in the .terminal file to match what I wanted on open
+
+*
+
+*This is just a .plist file with a different extension; you can use Property List Editor to modify it
+
+*You can also set these using Terminal itself and then export them
+
+*I mainly changed "CommandString" to be what I want launched when I run the new "app".
+
+
+
+This works excellently. The new "Terminal" apps are independent of each other and of the main Terminal. I can spin off new ones fairly quickly now.
+I also did this with Firefox to create a site-specific browser for my development website. (I had tried Mozilla Prism but found it too limiting).
+
+A: You could do something like this but with iTerm or Terminal.
+
+A: Just copy Terminal.app or iTerm.app and rename each copy ProjectA.app, ProjectB.app.

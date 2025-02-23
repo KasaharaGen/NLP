@@ -1,0 +1,106 @@
+Q: How to keep your MacBook Pro cool (unibody) I'm a developer/system admin/unix guy so I have many IDEs/Editors/Terminals running and I'm also temperature freak... I like it cold, here are a few tips I did to keep my MacBook Pro Unibody under 46 degrees C ~ 115 degrees F. Please list your tips.
+
+
+*
+
+*Clean your MacBook Pro fans from within... it's simple, open the bottom closure and blow the hell out of these fans.
+
+*Download and install Fan Control and run your fans @ 2800-3000 RPM
+
+*Position your MacBook on a hard surface
+
+*Ditch all browsers to Safari, i tried them all Firefox up to version 5 and 7 (Aurora), Chrome and Opera... nothing beats the CPU usage (less of it) than Safari. Also flash youtube videos run with less resources on Safari for some reason. Block unneeded content (Ads)
+
+*If possible - don't use Adobe Flash
+
+*Use your faster GPU on AC Power, and lower on Battery power (use gfxCardStatus for source-based GPU switching)
+
+*Replace your internal hard drive with an SSD
+
+*Keep your monitor running @ 90% brightness or less
+
+*Keep your keyboard lights off or low
+
+
+A: Laptop stand
+Don't forget environmental concerns: use an external keyboard/mouse and a laptop stand.
+I am partial to Targus' NoteBook X: http://www.targus.com/US/productdetail.aspx?sku=AWE09US  ..and many of my users have Griffin "Elevator" Stands: http://store.apple.com/us/product/H2619ZM/A
+Added bonus: your laptop is more likely to survive a liquid spill on your desk.
+
+A: Cool MacBook Workstation
+Build your self a workstation to keep your MacBook cool – both figuratively and literally. In two easy steps.
+Step # 1 – Roost
+Buy one of these groovy MacBook lifters, the Roost. I bought the original model and am completely happy and satisfied with it. Now a new second generation is due for release.
+Add a keyboard and mouse to restore ergonomic sanity to your work-life.
+Notice how the hot bottom of your MacBook becomes exposed at an angle.
+
+Step # 2 – Fan
+Buy this seemingly high-quality little 4-inch fan from BestBuy.com. Only USD $ 6 on sale, ten bucks regular price. Your choice of white, blue, or “sorbet” pink.
+Position the fan to the rear, behind your Roost. Angle upwards, aiming at the bottom of your MacBook. Turn on the quiet steady stream of cooling air.
+
+
+
+See my blog post for details.
+
+A: Cooling plate
+Energy efficient but noisy cooling plates use a compressor, like your fridge/freezer at home, a.k.a. compressor deck or mechanical cooling unit. Bonus is their energy efficiency, f.e. eta=70~286% for a Danfoss BD35K direct current compressor (COP=0.70~2.86). These units are for example sold as to-be build-in units in the maritime and ready-to-use in the food&beverage and funeral industry. Downside, beside the noise, is the highest setting for the thermostat is often +2ºC. Such low temperatures are below dew point, resulting in condensation. An example of a compressor based cooling plate is produced by Indel Webasto. Be inspired by the pen-sized Embraco Micro Compressor press release, retired in 2014 according to archive.org.
+Alternatively a Peltier element a.k.a. thermo electric cooling a.k.a. TEC, allows you to build your silent, about 20~450% efficient (COP=0.2~4.5), cooling plate. Feeding electrical current results in one side of the plate gets up to 70ºC below its hot side. To not damage the element by overheating the heat does need to be transferred away using a medium, like air or water. Using air requires a heat sink and a fan, which are produced for example by Fischer Elektronik as LAM (miniature 30mm wide) and LA hollow fin fan units (62mm wide). To optimize energy efficiency, run TEC's at lower current then their maximum rated value: f.e. running at 2.5 instead of 6 amps results in an efficiency increase from COP 0.4 to 2.6. The temperature difference between hot and cold side, thus cooling capacity will be lower, needing more TEC elements.
+To verify that a cooled down bottom side of the MacBook body would lower the internal battery temperature, I did 2 experimental test runs with a 200 ml ice pack (my guess: equivalent to ±5 watt hours of cooling capacity) on a MacBook Air 11 inch running with the lid closed. One time I could cool the internal battery down 7ºC (from 34.5ºC to 27.6ºC) and 6ºC (from 32.4ºC to 26.5ºC) at 26~28ºC ambient.
+
+
+A: I tend to remain sceptical of anyone making claims without valid and reliable data. With that said, some practices you list are of critical importance; others, I'm not sold on one bit. Please don't take this a slight against you, but rather as a criticism of your general claims (and lack of scientific data therein). Moreover, if you enacted all those changes at once, you'll never know which one made a real difference, and which one did absolutely nothing. Proper scientific methodology calls for the manipulation of one variable against a control (unless you want to run the more complex ANOVA).
+
+Clean your MacBook Pro fans from within... it's simple, open the
+  bottom closure and blow the hell out of these fans
+
+Absolutely. This is by far the most effective way to ensure your system continues to operate nominally over the years. It is sadly also the most neglected. Dust sticks to the blades (and most of the internals) creating a "sticky" residue and not only prevents the fan's blades from spinning at their optimum, but seriously restricts air flow. Computers generally accumulate far more dust than people expect. Regular cleanings are essential!
+
+Download and install Fan Control and run your fans @ 2800-3000 RPM
+
+This of courses comes at a sacrifice to noise (increasing it) and I'd like to see data on how much cooler the chips operate with such a small increase to RPM.
+
+Ditch all browsers to Safari, I tried them all Firefox up to version 5
+  and 7 (Aurora), Chrome and Opera... nothing beats the CPU usage (less
+  of it) than Safari. Also flash youtube videos run with less resources
+  on Safari for some reason
+
+Again, I'd like to see some data being this claim. These guys have conducted some very loose tests that support your assertion, and I'm inclined to agree that Safari, being so tightly integrated into OS X should net improvements over its competitors across the board, but a few CPU cycles here and there aren't going to amount to a drop (drastic or modest) in temperatures (these saw extremely small differences in performance).
+
+Use your faster GPU on AC Power, and lower on Battery power (use
+  http://codykrieger.com/gfxCardStatus for source-based GPU switching)
+
+GPUs put off heat, wether they're integrated or discrete. I can see a reduction in power, but a reduction in heat, again, I'm not sold. In the case of MBP, models that possess discrete video cards have dual fans (one for the CPU and one for the GPU). So using the discrete card may kick off additional heat, but it's also got a dedicated fan to push that heat away from the machine. Stressing the integrated chip will see the CPU spike in temperatures, which means that fan will be doing more work to handle the additional load. It may be the case that the fan on the CPU (together with the integrated GPU) may be sufficient in pulling away the excess heat, but at no doubt the cost of excessive noise (generated by 6,000 RPMs). I don't know if anyone has done testing, but from my own anecdotal experience with my old MBP1,1, the GPU fans rarely switched gears (unless playing intensive games and then the issue would be moot as you'd want to use the discrete video). It was always the CPUs fans that took the brunt of the work.
+
+Replace your internal hard drive with an SSD
+
+Not only will this greatly improve performance, but it can't hurt in reducing temperatures. The idle/active power consumption of an SSD is about 0.5W to 2w, respectively. The average power consumption of a traditional HDD is about double that (1W to 2.5W, respectively). I won't know what that transfers to in the temperatures department, but it certainly can't hurt.
+
+Keep your monitor running @ 90% brightness and keep your keyboard lights off or low
+
+I'd love to see data on this. LED backlighting is already quite efficient and distributing heat, but I'm not sure a reduction (at least that small) in power would have any effect. As for the keyboard lights, those are LEDs and as is with such small LED bulbs, they are incredibly power efficient and produce little to no heat as a result.
+With all that said, I'd saying re-application of Arctic Silver 5 (or thermal compound of equal quality) and the cleaning of dust from the internals is the most effective (and proven) way to keep your system cool. I've never seen data to convince me that turning off some service, or placing your system on a pad with a couple of fans does anything (other than perhaps keep the case cooler to the touch) worth merit.
+
+A: Uninstall flash - http://daringfireball.net/2010/11/flash_free_and_cheating_with_google_chrome
+Chrome isn't bad for sites you need to view flash - and it's easier to quit that app to reclaim your CPU cycles from that plug in. I get hours of real life battery use with this one tip.
+
+A: If you have a login account to YouTube, you can configure your account to play back most videos with HTML5 rather than Flash. It's called the HTML5 Beta program. Do a search for it at youtube.com.
+
+A: I rather like ClickToFlash/ClickToPlugin for keeping Safari's CPU usage under control. Keeping flash from loading (except for the 1% of the time when I want it) really helps to keep the fans down.
+
+A: I agree that the monitor running @90% brightness doesn't help at all. 
+
+
+*
+
+*The SSD did however impact my overall system temperature and how the touch feels.
+
+*My fans are set to 3500 RPM and i never hear them, so that never bothered me.
+
+*I also noticed that switching through Mission Control peaks the CPU (for obvious reasons).
+
+*Browsers change, i'm back on Firefox 7 now, it's highly well optimized, CPU cycles are minimal
+
+*Lion's 10.7.0 & 10.7.1 coreaudiod runs at 8~10% CPU when playing music/iTunes making the CPU in heat
+
+
+Here's an overall temp of my system: http://cl.ly/3R2S3x1a1f1A3h0q2009

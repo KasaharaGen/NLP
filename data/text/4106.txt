@@ -1,0 +1,93 @@
+Q: Is it possible to use Back To My Mac DNS or routing information from the command line? I often want to ssh to a Mac and would love to make use of of iCloud to look up IP/DNS routing information. Can this be done without signing up for a dynamic DNS service and configuring it on each Mac in addition to iCloud?
+Let's assume of my on-all-the-time Mac at home's hostname is "maui" and it's running Snow Leopard. When I'm on my laptop connected to the home network, I can ssh maui.local. It sure would be nice to be able to ssh maui.whatever.icloud.com or whatever would work. I'm guessing I would need "maui" and my iCloud name to let it know which machine under my account needs reaching.
+Does anyone know if this is possible through API or command line? I've browsed the public developer information several times but don't see anything promising. Any pointers or code examples would be welcome.
+P.S. Please don't suggest free DNS accounts as I'm really interested in MobileMe exclusively for this question. I know those will work but I'm looking to avoid installing anything else or another account/external dependency on these Macs.
+
+A: This has changed a little with 10.7 and you'll want to note that this uses IPv6 almost entirely so test with ping6 and traceroute6 to debug things.
+It's no longer done via @computername.mobilemename.members.mac.com, it's now done via members.btmm.icloud.com, and its no longer as simple as your mobilemename.
+Step 1: Find out your iCloud BTMM domain
+Either of these commands will provide your BTMM domain:
+# dns-sd -E
+# mDNS -E
+
+The output is formatted slightly differently, but what you're after is the numeric ID, it'll be something like 12345678.members.btmm.icloud.com.
+Step 2: List Computers
+You can use these tools to browse that domain for services, e.g. for ssh servers:
+# dns-sd -B _ssh 12345678.members.btmm.icloud.com
+
+Or if you already know the hostname just access it directly as computer-name.12345678.members.btmm.icloud.com. (Any spaces in your computer name will be hyphens in this domain).
+You can only access this from a computer that is also set up for BTMM on the same account, because this hostname will resolve to an IPv6 address that is really the end of an encrypted network tunnel between your BTMM computers.
+If you want to see the IPv6 address for a specific host, you can type
+# dns-sd -G v6 computer-name.12345678.members.btmm.icloud.com
+
+And it'll output something like:
+17:37:47.504  Add     2  0 computer-name.12345678.members.btmm.icloud.com. FD11:993E:64AE:4DEA:011F:FBD1:F444:11A1%<0>  152
+
+Step 3: Connect
+# ssh username@computer-name.12345678.members.btmm.icloud.com
+
+Note
+I'm not sure if that number will ever change, so you may or may not need to repeat Step 1 at some point later on...
+
+A: I read a few articles on the underpinning of Back To My Mac and supposedly some people have effectively connected via ssh, check out the discussion contained in this Macworld post.
+The best post in the thread is as follows:
+
+Use the following format for
+  connecting as a differnent username:
+ssh
+  user.name@hostname.username.members.mac.com.
+If you do this regularly and wish to
+  save having to use the username all
+  the time for ssh and scp then create a
+  file called ~/.ssh/config with
+  contents like the following:
+Host
+  hostname.username.members.mac.com.
+  User user.name
+Host host2.some.domain.com. User
+  username2 Port 2222 LocalForward 3389
+  internal-pc:3389
+The second host in this file also
+  includes using a port other than 22
+  and allowing access to a Windows
+  computer called internal-pc with
+  Remote Desktop by connecting to
+  localhost with the Remote Desktop
+  Client.
+
+Now obviously Apple has switched .mac to MobileMe, so I dont know if that has switched to .me.com, and frankly I dont have a MobileMe account to test it. 
+Edit:
+Another interesting post you may want to try is at the veery bottom
+
+Turns out it is even easier! :P
+just open the Terminal go to Shell >
+  New Remote Connection...
+then choose ssh and there you have
+  your BackToMyMac Computer listed (if
+  the OS sees it).
+type in your username and click
+  connect.
+voila, you can even see the connection
+  string used. And you can also use
+  ftp/sftp... from this dialog to your
+  remote Mac.
+Way easier than typing in some shell
+  command like suggested in the original
+  tip.
+
+
+A: You can ssh to your machine which has "Bac to my Mac" enabled like this:
+ssh -p 22 username@computername.mobilemename.members.mac.com
+
+
+A: Big thanks to hobs and ghoppe who both had workable solutions. The main problem is that MobileMe Back To My Mac uses IPv6 addressing if available and perhaps exclusively, so I didn't think to use ping6 or traceroute6 and ssh is apparently smart enough to resolve either IPv4 or IPv6.
+ssh -p 22 username@computername.mobilemename.members.mac.com. works very reliably for me in testing today.
+Since this tripped me up as I was expecting ping and host and nslookup to work, I figure I'll put up a nice summary of what worked for me. (with pictures! - I really like pictures)
+To summarize sftp, ssh, ping6, and traceroute6 should work with this naming scheme.
+Apple's built in terminal (and iTerm) is great to make sure your user name and remote short name are correct. The name is the short host name (what hostname prints out) and not necessarily the longer sharing name Finder will show for the remote Mac).
+
+Here is what the Terminal shows when it discovers Back To My Mac machines running. The menu item is New Remote Connection... and the shortcut is Shift+Command+K. It shows how the finder name "Mikey's Mac" might be different than the short host name mi
+
+
+A: That's because the IP addresses for resolution are version 6.
+If you use ping6 or traceroute6 you can reach your host as well.

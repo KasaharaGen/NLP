@@ -1,0 +1,50 @@
+Q: Cannot start MySQL server with AppleScript - Snow Leopard I've sucessfully installed MySQL server (5.5.11) on my MAC Snow Leopard. I can start the server using PreferencePane, using command line sudo /usr/local/mysql/bin/mysqld_safe but cannot use the same command within AppleScript.
+This is the output from running sudo /user/local/mysql/bin/mysql_safe:
+ngocminh@MBP[304]:~$ sudo /usr/local/mysql/bin/mysqld_safe 
+Password:
+110428 09:52:03 mysqld_safe Logging to '/usr/local/mysql/data/MBP.local.err'.
+110428 09:52:03 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+
+Apache2 server can be started using the command sudo apachetl start, then it could be implemented using an AppleScript script like this:
+do shell script "apachectl start" password "mypassword" user name "ngocminh" with administrator privileges
+
+However, I can't simply do the same for starting mysql server
+do shell script "/usr/local/mysql/bin/mysqld_safe" password "mypassword" user name "ngocminh" with administrator privileges
+
+The apple script result says:
+"110428 11:03:06 mysqld_safe Logging to '/usr/local/mysql/data/MBP.local.err'.
+110428 11:03:06 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+110428 11:03:06 mysqld_safe mysqld from pid file /usr/local/mysql/data/MBP.local.pid ended"
+
+Then MySQL server cannot be started!
+Would anybody tell what's wrong with my script or I've missed something. Any suggestion will be highly appreciated. Thank you!
+-- EDIT 1 --
+Try to run this script instead
+do shell script "apachectl start" password "mypassword" with administrator privileges do shell script "/usr/local/mysql/bin/mysqld_safe > /dev/null 2>&1 &" password "mypassword" with administrator privileges
+
+No error reported by AppleScript but MySQL server is still not loaded according to ps command
+ngocminh@MBP[315]:mysql$  ps aux | grep mysql
+root      5652   0.0  0.0  2435544    872 s000  T     9:51AM   0:00.04 /bin/sh /usr/local/mysql/bin/mysqld_safe
+ngocminh 16127   0.0  0.0  2435120    528 s001  R+    2:30PM   0:00.00 grep mysql
+ngocminh@MBP[315]:mysql$  ps aux | grep http
+ngocminh 16141   0.0  0.0  2425524    172 s001  U+    2:30PM   0:00.00 grep http
+ngocminh 16092   0.0  0.0  2452692    644   ??  S     2:29PM   0:00.00 /usr/sbin/httpd -D FOREGROUND
+ngocminh 16088   0.0  0.2  2456532   8960   ??  S     2:29PM   0:00.07 /usr/sbin/httpd -D FOREGROUND
+root     16035   0.0  0.2  2452692   9832   ??  Ss    2:29PM   0:00.43 /usr/sbin/httpd -D FOREGROUND
+
+-- EDIT 2-- PROBLEM SOLVED!
+I found the way around it. Just creat an AppleScript with sudo inside for mysql server startup
+do shell script "apachectl start" password "mypassword" with administrator privileges
+do shell script "sudo /usr/local/mysql/bin/mysqld_safe > /dev/null 2>&1 &" password "mypassword" with administrator privileges
+
+
+A: PROBLEM SOLVED!
+I found the way around it. Just create an AppleScript with sudo inside for mysql server startup
+do shell script "apachectl start" password "mypassword" with administrator privileges
+do shell script "sudo /usr/local/mysql/bin/mysqld_safe > /dev/null 2>&1 &" password "mypassword" with administrator privileges
+
+
+A: Have you tried something like this, starting from administrator?
+do shell script "/sw/sbin/apachectl start" password "mypassword" with administrator privileges do shell script "/usr/local/mysql/bin/mysqld_safe > /dev/null 2>&1 &" password "mypassword" with administrator privileges
+
+Source: http://menial.co.uk/2008/11/16/applescript-for-starting-and-stopping-apache-and-mysql/

@@ -1,0 +1,10 @@
+Q: Can I bind multiple key shortcuts to the same action? I do a lot of pair programming. Some developers that I pair with use Linux as their primary desktop. So none of the keyboard shortcuts they are used to work.
+What I would like to be able to do is bind multiple key chords to the same action. For example I want both ctrl-t and cmd-t to open a new tab in chrome.
+I know that you can rebind shortcuts in system preferences/keyboard. I just don't know how to set multiple keystrokes to the same action.
+
+A: It seems like adding a shortcut in the Keyboard preferences will override the built-in defaults. You can use Keyboard Maestro (a paid app) to add such things - easiest would be to add a trigger for the alternative combo which translates into a menu action or into the original keyboard shortcut being sent to the application of choice.
+
+A: I ended using Karabiner
+probably not as powerful as Maestro, but for simple needs it does the job beautifully.
+
+A: I use BetterTouchTool for this. Here you can create a keyboard shortcut which sends a shortcut of your choice. Simply as that!

@@ -1,0 +1,48 @@
+Q: What's the tool that can do some actions when a file is copied? I use Cmd+L to make a alias, and the alias has "alia" appended to the original file name. I move the link to a directory, then remove the "alias" part manually.
+Is there a tool that can do this kind of automatically? I mean, if a tool can catch the event a file is copied to a specific directory to call a tool (python, ruby or applescript) with a parameter, I can easily rename the file name.
+ADDED
+Thanks to Ben and Dori, I could get it working.
+
+
+*
+
+*Go to /Library/Scripts/Folder Actions directory to Folder Actions Setup.
+
+*Run Automator
+
+*Utilities -> Run Shell Script
+
+*Use python as a shell, and pass input should be as arguments
+
+*Run the following code
+
+
+
+import sys
+import os
+
+for f in sys.argv[1:]:
+    (name, ext) = os.path.splitext(f)
+    newname = "%s%s" % (name, ".pdf")
+    os.rename(f, newname)
+
+Philip's method should work, but I think Automator is easier to get it work. 
+On my Snow Leopard, I couldn't see the folder action context menu.
+
+A: In addition to Applescript, Automator allows you to create Folder Actions as well, at least in 10.6. (This should have been a comment on Philip's post, but I don't quite have enough rep for that yet.)
+
+A: I'm not sure what you're using to make symbolic links (it's not built in to OS X), so I can't say if something could be added at that step.
+For Folder Actions, the three places to look are:
+
+
+*
+
+*/Library/Scripts/Folder Actions
+
+*/Library/Scripts/Folder Action Scripts
+
+*/Library/Scripts/Script Editor Scripts/Folder Actions Handlers
+
+
+In the first folder, you'll find Configure Folder Actions - run that, and you can enable folder actions, including choosing folders and what scripts apply to those folders.
+The last two folders will give you some places to start writing the script you want.

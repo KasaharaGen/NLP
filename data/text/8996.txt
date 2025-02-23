@@ -1,0 +1,55 @@
+Q: Saving a Safari page as a PNG image Is there some way in Safari, possibly via a third-party extension, to save the running contents of a Web page as a PNG image?
+I understand I could print the page to PDF and use Preview to export it as a PNG image. However:
+
+
+*
+
+*I’d prefer not to create a temporary PDF file and then manually open Preview to export the PDF contents to PNG;
+
+*I’d like the contents to be running instead of paginated, i.e., no page breaks;
+
+*When the PDF file contains multiple pages, Preview seems to export the current page only to PNG.
+
+
+I don’t have any experience with OS X automation but I suspect it could be used for this, though I want conditions 2 and 3 to be met.
+I’m running Safari 5.1.1 on OS X Lion.
+
+A: webkit2png should be pretty close to Safari. It also works with webarchive files saved from Safari.
+$ webkit2png -F http://apple.stackexchange.com/questions/30637 -o nameprefix
+Fetching http://apple.stackexchange.com/questions/30637 ...
+ ... done
+$ webkit2png ~/Downloads/test.webarchive
+Fetching ~/Downloads/test.webarchive ...
+ ... done
+$ ls
+0testwebarchive-clipped.png 0testwebarchive-thumb.png
+0testwebarchive-full.png    nameprefix-full.png
+
+Awesome Screenshot is an extension for that should support full page screenshots. I couldn't get them to work with all pages though.
+
+A: Not sure when it got added, but certainly in Safari 12 you can do this without any extensions. You need to enable the Safari Developer menu (tick in advanced settings).  Now you can select "Show Web Inspector" in the "Develop" menu which will open a window showing the page source.  Hover your cursor over the  tag and right click it. Then, select the "Capture screenshot" option and save when prompted.
+If you only want a specific element, just right click on the appropriate bit of html.  If you are not sure, as you hover over the code the corresponding screen element is highlighted blue.
+Of course, I'm now wondering if this could be apple scripted...
+
+A: Try Paparazzi! It can save the entire website to a single png file and it lets you specify the size. Once installed, you can also launch it from within Safari by adding 'paparazzi:' to the URL. For example paparazzi:http://www.nytimes.com
+
+A: Here is how to save a full web page with Safari, Chrome and Firefox without any plugin or third party software - it uses the developer tools included with each browser.
+https://gist.github.com/algal/972c43b533cade4332faf4ec4458fd93
+Also works when you need to scroll.
+
+A: To capture the whole page
+With current versions of Safari (14+), this is really simple:
+File > Export as PDF..
+Will save a PDF version of the whole page with no page breaks and all styling intact.
+Note that the other way of creating a pdf, via File > Print... does something different. It will respect any print-specific stylesheets on the page and break the PDF into print-ready pages.
+To capture part of the page
+If you want a sub-section of the page, @Alan's answer is the best way to do it. First make sure you have Safari's developer tools turned on, then right click the parent element you want to capture and Inspect Element:
+
+This will open up the Elements pane of the dev tools.
+From here you can right-click on any element you want (the one you inspected will be highlighted by default) and choose Capture Screenshot:
+
+
+A: I am using LittleSnapper, which has a feature to "Snap Web Address from Safari":
+
+The LittleSnapper menu item and browser bookmarklet both allow you to snap webpages as you visit them - no interruption required. Alongside these tools, there's even a Safari Extension that allows you to add a Snap button to the Safari toolbar. LittleSnapper also saves the HTML behind each page for future reference.
+

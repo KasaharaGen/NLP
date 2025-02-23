@@ -1,0 +1,7 @@
+Q: How can I image my Macbook Pro's hard drive prior to sending to Apple for repair? I don't just want to back up my data. In case the hard drive comes back completely wiped I want to avoid the hassle of reinsalling everying OS X as well as a Bootcamped Windows install.
+What tools can I use to backup/image my hard drive such that when I got my laptop back and if I needed to, I could just dump the image back onto the hard drive and be right back where I was last?
+
+A: I would choose either SuperDuper or Carbon Copy Cloner. Make a clone of your hard drive that is a bit-perfect bootable copy. You can either use an external drive or one of those docks that you pop bare drive into. 
+SuperDuper costs just under $30. Carbon Copy Cloner is donationware. Either one is great. But I like CCC because it can schedule cloning sessions on a regular basis.
+
+A: If you're running OS X 10.5 (Leopard) or higher, you could just run a Time Machine backup on the system. Restoring from that will return your system to the state at that time.

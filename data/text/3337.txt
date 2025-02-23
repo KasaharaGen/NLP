@@ -1,0 +1,15 @@
+Q: Time Capsule alternatives Can someone tell me the best alternative to Apple Time capsule? Common question, I know, but couldn't find it in the list.
+People who have actually tried out the alternatives only please.
+
+A: Since there have been no "hardware" answers by someone who has used one, I'll add that there are third party drives who support Time Machine.  Just as some examples, LaCie has support in their NAS products and Drobos also have support.  I've used neither, although I have a LaCie d2 Network 2 on order.
+The cautionary note here is that "support" means that they (a) make it possible to connect to the NAS from Time Machine and (b) typically provide size restrictions on Time Machine so that it doesn't eventually consume all free space on the drive.  Apple does not support any NAS other than a Time Capsule, so there is no guarantee that the third party drives won't stop working with a future Time Machine software update, or have other problems.
+
+A: I use tar with rsync and it works very well, it's also scriptable which make it even more powerfull!
+
+A: DéjàVu is a nice System Pref that do the job
+EDIT : The answer stays the same. DejaVu + an external or NAS disk will do the job.
+
+A: I use both, but if I had to ditch TM for some reason, I'd continue to use Arq for backing up to "the cloud".
+
+A: You can use CrashPlan, for free, to do incremental backups to another drive, another computer or to a friends computer. As long as you can mount the drive on your Mac, you can backup to it. That means you could use a router that supports sharing a USB-attached drive. Or a NAS box on your network. Or the drive from another machine. You get the idea.
+And when you're ready to back up to the cloud, CrashPlan does that too. It's been doing cloud-based backups for me for about 6 weeks now and I'm pretty pleased with how it performs. Initial seeding took a few weeks, but now it can complete the incrementals in an evening.

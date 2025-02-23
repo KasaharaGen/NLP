@@ -1,0 +1,78 @@
+Q: Can I use 45/60/85W MagSafe era MacBook chargers interchangeably? I have a 13" Macbook Pro that came with a 60W power adapter and a 15" Macbook Pro that came with a 85W power adapter. There seems to be disagreement in the Apple forums.
+Can I use either adapter with any portable Mac?
+
+A: There is a lot of misinformation in some answers. I will give some facts along with my reasoning.
+All MagSafe adapters, when plugged into a mechanically matching receptacle on a MacBook/MacBook Pro, are designed to run safely. This is a given for the systems to receive safety certifications. So no, a 60W adapter won't overheat when connected to a machine that needs an 85W adapter. It will clearly run at full capacity for longer than a higher wattage adapter or even fail to keep up with the energy demands of a machine using more than 60w giving you a flat battery if you run a deficit of energy “while charging”.
+The MacBook it's plugged into won't operate in a "brownout". It will operate safely, but the CPU performance will be diminshed. The below explains why.
+A MacBook's power management works very simply: it maintains a balance of power between the power consumed by the loads and the power available from the sources. There are two sources of power:
+
+*
+
+*power adapter,
+
+*battery as a power source.
+
+There are two loads:
+
+*
+
+*battery charger,
+
+*the machine (logic, drives, memory, screen, speakers, USB devices, etc.)
+
+Both loads are adjustable and the power management's function is to adjust them as needed.
+The battery as a power source is exclusive of the battery charger: a battery may operate as a power source, or the battery charger may operate, but never both at once.
+The power management must maintain the following inequality balanced, in terms of power: (power adapter + battery as a power source) >= (battery charger + the machine). The loads are prioritized: the machine has priority over the battery charger. The power management system also knows the electronic nameplate of the power supply and thus its rated power.
+Thus, given an available input power, the machine load is satisfied first, and any leftover power is provided to the battery charger. If there isn't enough power left for the charger, the battery is by definition discharging unless it has no charge left. This is important. Conversely, a fully charged battery will demand a zero charger load, and that's fine.
+If there isn't enough power for the machine, the load shedding kicks in and throttles the CPU (and perhaps GPU - I don't recall offhand). The CPU load shedding will, by design, always manage to balance the power. The 60W supply, even if connected to a 17 inch MBP, will satisfy all internal and external loads (USB, FW, drives, screen), except for the CPU and GPU. So the latter will be throttled to maintain the power balance. That's why the performance will be poor with an inadequate power supply.
+Since the machine load takes priority and doesn't shed until there's insufficient power available, the battery will be always discharging whenever the supply can't provide sufficient power to cover the machine's needs. This means that with a 60W charger, the battery will charge only during light CPU load. If you have both cores going full-throttle, the battery will be always discharging until it reaches a zero charge state.
+The rate at which the battery charges will also depend on the machine load. The battery charger can consume up to ~30W or so. With an 85W adapter, that leaves about 55W for the machine, and it's insufficient to power a full machine load. Since the machine load takes precedence, the power available to the charger will vary depending on the entirety of the machine load: CPU/GPU, drives, USB/FireWire, screen, etc. With a very high machine load, the charger is left with very little power to use, even with an 85W supply, and will take very long to charge the battery. The longest I've seen was 20+ hours with everything going full blast (full CPU+GPU load, all USB and FireWire ports delivering full rated power, all drives spinning, screen at full brightness, speakers blaring).
+Finally, the supply's electronic nameplate is stored in the chip residing in the MagSafe jack. If the MagSafe jack is damaged or doesn't have the nameplate chip, the power manager does two things:
+
+*
+
+*Assumes a 60W power supply.
+
+
+*Disables the battery charger.
+
+A: Apple's official word on the matter is:
+
+Make sure the proper wattage adapter for your portable computer is used.
+  Select the appropriate power adapter for your Apple portable computer. You can use a higher wattage power adapter, but you cannot use one with less wattage without potential operating issues. (here + discussion here). 
+
+So your 13" can use your 15" charger, but not vice versa. 
+I've never heard of it voiding a warranty (nor experienced it when we've used the wrong charger), but it's better to be safe than sorry.
+
+A: I did use a 13'/65W power adapter on my 15'er for a long time.
+What happened with me was that the battery got significantly bloated (visible from the outer aluminim shell and only after ~150 loadcycles) while still delivering proper batterylife...
+Please take into consideration that this might be completely unrelated, probably. Plus my battery was replaced at no cost in an Apple store (Macbookpro late 2008, 1st gen unibody) while I'm still not sure if Applecare also covers the battery on 3yrs.
+
+A: Do NOT use a lower-than-spec'd power-supply with your portable. It will power on, but will be running in a brown-out condition, causing shortened life due to excessive heat.
+We found this out the hard way with an after market power-supply on an iBook. It was just under the needed power output, causing the unit to always run hot, and eventually shutting down because of too much heat. After several months it got so it would run for 10-20 minutes then turned off, and eventually quit entirely. We tried getting it repaired, but it was too far gone.
+
+A: You will not harm anything using the incorrect adapter. The charging circuitry in Intel Macs is very sophisticated and won't let anything bad happen.
+Using the higher-wattage adapter with a low-power-requirement notebook will work. The computer will only draw as much power from the adapter as it needs.  Using the low-wattage adapter on a high-draw notebook will result in the adapter powering the computer OR charging the battery, but not both. If you plug a 60W adapter in to a MacBook Pro at 50% battery charge, the battery will just stay at 50% (or either drain or charge very slowly) while the computer is on. If the computer is asleep or shut down, the battery will charge at a normal rate.  
+
+A: I took a close look at my '65W' adapter.  Apparently, it's not a 65W adapter after all, but an 85W with the older connector (the fat head connector).  I always assumed it was 65W because of the age of our 2006 MBP... I guess the guy we bought it from used had replaced the adapter. You may want to check yours closely since they can get mixed up.
+
+A: I have been using the 60w adapter from my old 13"macbook pro(which was stolen a while ago) for my new 15" macbook pro for about a month because I assumed that all the cables or adapters are the same from Apple(since it is the case for the usb cable) and I did not realize until one day it turned off itself. Most of the time, my macbook pro was connected to the power. Now I have switched to the 85w adapter and everything works fine, thank god. my question is: will this cause any issue or damage to my battery or hard drive or other parts of my macbook pro?
+
+A: Update. Apple has added a support page to break this down. Note that the power adapter (square block) is a separate from the cable on USB Macs
+https://support.apple.com/en-us/HT201700
+Disclaimer: I am not affiliated with Apple inc.
+
+A: I'm using a 60W power adapter for my 2009 15 MacBook Pro. It runs fine if I'm doing light tasks, however, if I'm running an intensive application like Starcraft 2 on Bootcamp the battery will stop charging and drain very slowly.
+
+A: I have both a Macbook Unibody from 2010 and a MacBook Pro early 2008. I swapped the adaptors and it works fine for both machines. Also, the MacBook Pro using the 60 W power adaptor is charging the battery, although it is a little bit slower.
+
+A: Is it a good idea? Nope. Does it work? Yes. The wattage rating is matched up with your particular laptop's needs. If you use a lower rated power supply, in many circumstances it will work ok, it may just charge a little bit slower. If your laptop is powered off, it'll charge decently fast too.
+However if you then boot into something less power efficient like linux or windows, you'll notice that despite being hooked up to a power supply, you are slowly losing battery life because there's simply not enough wattage to drive the whole thing and a lot of the power saving features aren't properly implemented. This also can be an issue if you have modified the hardware in your laptop, or if you try to do heavy gaming (anything that gets disks and fans spinning). If this is your situation, you can still use the lower power supply, but you're going to eventually hit a point where the transformer will overheat (really bad), or you will just run out of power.
+So in a perfect world, you should always have the adapter that apple intended you to have (or a higher rated one). But if you have to use a lower rated one for a little while it won't be the end of the world.
+
+A: Just my two cents.
+I don't think this talk of "Brown out" is correct. The MacBook will always have enough power from the battery to operate without "Brown out". It's only when the battery gets critically low that the computer may think it's getting sufficient power to operate as it's plugged in but will probably be in a reduced performance mode due to the low voltage of the battery. This will manifest as operation of the computer being sluggish. As a battery nears "empty" it will produce more heat, so despite being in low performance, this may cause the fans to spin up, even though the computer isn't doing as much.
+To prolong the life of a battery it's best to keep it at 50%, perhaps a bit more, especially if you're going to put the computer to sleep when unplugged as this will draw some power. If you're storing a laptop, make sure you charge it before hand and periodically top it up. If possible, remove the battery as this will slow the discharge.
+So I believe that a low wattage adapter is fine if you only use it to charge the laptop when it's sleeping or off. If you use the adapter while operating the computer then I would keep a careful eye on battery level and stop using it when power gets to say 10%.
+It's bad to store your computer fully charged as this will age the battery but it's even more detrimental to store your computer fully discharged as some power will still be used, even if the computer is off, and the battery charge will drop below "0%" and this will kill your battery faster than anything else and cause battery bloat. Puffed batteries are always a symptom of fully discharging it.
+I have experience with RC batteries that have no intelligence built in. There is however some management built into the systems they're plugged into. I have LiPo batteries that are 12 years old that still perform ok because I make sure to try and store them at 60-70%, or at least not fully charged or discharged.

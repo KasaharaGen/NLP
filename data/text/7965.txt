@@ -1,0 +1,11 @@
+Q: How can I see which of my Login Items is slowing down my startup time? Recently — perhaps when I upgraded to Lion, perhaps some other time — I've noticed that OS X is not ready to go after startup as fast as it used to be. 
+I have a fast SSD as my only internal drive, and I used to be able to do whatever I wanted within a few seconds of logging in. Now, as my Login Items and previously-open applications are reopened, there is at least one point at which I have to wait ten or so seconds while nothing happens.
+It seems to me that Login Items are launched (somewhat) serially and not (entirely) in parallel. From that assumption I conclude that at least one of my Login Items is holding up the rest of the queue.
+So my question: Is there a way for me to log the startup process and look at the log to see which app is hanging the queue?
+
+A: If you go to System Preferences » Users & Groups » Login Items, there is a list of items to automatically open.
+I have not been able, in Lion, to drag items to arbitrary positions in the list, as I remember being able to do in earlier versions of OS X. One can, however, drag items to the bottom of the list.
+So it would appear that you could one by one drag everything that appears in your list before Alfred to the bottom of the list, thus launching Alfred first.
+
+
+A: You can see the start time of the individual processes in Terminal (ps aux). This may give you an indication about relative start time and any delays occuring.

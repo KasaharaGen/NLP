@@ -1,0 +1,7 @@
+Q: How can I make an automator service always show up? I have an AppleScript that adds the subject of a selected email in Mail to my task manager.
+I have put this AppleScript in an Automator service so I can hotkey it.
+Only problem is this: Lion insists on only showing the service when I have text selected. Somehow OS X thinks its a text based script even though I specified there is no input.
+Is there any way to have the service show up in the services menu independent of the selection I have?
+
+A: In Automator at the very top of your workflow, there is a dropdown box for which the prompt reads Service receives selected. If you are getting the results you report, the word text likely appears in the dropdown box. Change it to no input and save the service.
+

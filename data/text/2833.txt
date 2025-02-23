@@ -1,0 +1,42 @@
+Q: Is it possible to somehow default the OSX preview window size on open for PDF files? I have had this bug-bare for a while where preview always opens documents too small, I'm visually impaired and want them to default to open with two options
+
+
+*
+
+*Default width to nearly 100% of screen, last used would be perfect
+
+*Default PDF display to "Single Page Continuous"
+
+*Default the mouse tool to "Move"
+
+
+No matter what I do it always opens in a window 1/3 of my screen size to what I assume is "100%".
+
+A: Customize Preview (easy)
+Have you looked under Preview preferences? You can set Initial Document Scale to 100% or larger if you want. You might need to adjust the option below that, defining size equal to screen or print sizes.
+Use a better PDF viewer
+If Preview.app can't do what you want, look into Skim.app
+Skim has an option to open PDFs as Default, Maximized, or Fit. One of these ought to improve.
+Customize Preview (complex)
+If you want all three points requested above and want them in Preview.app, I would do the following:
+
+
+*
+
+*Turn on Universal Access so you can script applications via the GUI
+
+*Make a new app in Automator that accepts PDFs. Replace Preview with this (open with this by default, put it in your dock so you can drag-and-drop onto it, etc.)
+
+*The new app should simply take the input PDF and pass it to Preview, so it displays there
+
+*The new app should then use Universal Access commands to 
+
+*
+
+*Maximize the window
+
+*Set to "Single Continuous Page"
+
+*Select the mouse tool you want.
+
+

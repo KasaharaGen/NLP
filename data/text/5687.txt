@@ -1,0 +1,24 @@
+Q: Mount .NRG image file on OSX 10.6 I have a Nero Disk Image(.nrg) File and I would like to mount it on OSX to copy it's contents. I've tried to rename to .iso and to use NRG2ISO with no luck.
+Any tips ?
+
+A: Had the same experience as the OP. Tried using nrg2iso, tried renaming the file to .iso and also tried the dd command from that MacRumors thread. Nothing worked.
+However, I then found nrg4iso which worked perfectly! The project has been abandoned since 2007 but it still works.
+
+A: dd variant not work for me. So, i find another one with poweriso:
+http://www.poweriso.com/download.php
+Use:
+./poweriso convert ~/Desktop/image.nrg -o ~/Desktop/image.iso -ot iso
+
+A: A little googling led me to this thread on MacRumors.com
+It appears that if the ISO is a single session CD image you can just knock the first 600 bytes off with a terminal command and it'll be readable as an ISO (change file type to .iso after performing the command).
+I'd recommend making a backup of the .nrg file before trying this though!
+$ dd if=image.nrg of=cdrom.iso bs=512 skip=600
+
+(↑ credit to balamw on macrumors forums)
+Also, If you're just looking to extract pictures from the disk, File Juicer may also be worth a look!
+
+A: With .nrg images from audio CDs, the solutions proposed in the other answers do not work (e.g. failing with Source is a Nero DAO (Disk at once) with 1 session(s) ).
+However, the commercial Deamon Tools are now available for Mac OSX. Using these, you can mount the .nrg as an Audio CD.
+
+A: There are not many options on Mac for this purpose. I think AnyToISO is good freemium choice. Its freemium version supports up to 870 MB.
+

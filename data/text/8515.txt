@@ -1,0 +1,37 @@
+Q: Getting the longitude and latitude from Google Maps I got a friend who sent me his location via WhatsApp. I am also having the navigation software sygic installed, and it accepts the longitude and latitude to specifiy the location.
+For it can I pull the longitude and latitude from google maps and sent them in Sygic?
+
+A: Yes, you can get your coordinates via Maps app. To do that:
+
+
+*
+
+*Tap on your current location or drop a pin to a location of your
+choosing and then tap.
+
+*Tap on the arrow within the blue circle
+
+*Tap on share location, choose email
+
+*Send it to yourself.
+
+*On the email, there should be a link and a vcard. Both of them include coordinate information. However to get the actual coordinates you'll need to copy the link in the email and paste it into, e.g. Notes, to then select just the coordinates.
+
+
+And you can input the coordinates into the Sygic app.
+
+A: Copy and paste the following code into your browser address bar:
+javascript:void(prompt(”,gApplication.getMap().getCenter()));
+
+A: Go a random webpage using Safari (e.g. http://google.com).
+Go the address bar, and type javascript:navigator.geolocation.getCurrentPosition(function(p){var c=p.coords;document.write(c.latitude+','+c.longitude);}); (if you see any popups, select OK).
+Because Safari is not user-friendly, it doesn't allow you to type certain characters in the address bar. To be able to type javascript:navigator.geolocation.getCurrentPosition(function(p){var c=p.coords;document.write(c.latitude+','+c.longitude);}); in the address bar, you have to:
+
+
+*
+
+*Open your Messaging app, go to "Write a Message", type javascript:navigator.geolocation.getCurrentPosition(function(p){var c=p.coords;document.write(c.latitude+','+c.longitude);});
+
+*Double tap >> Select All >> Copy
+
+*Now go back to Safari app and paste what you have copied into the address bar.

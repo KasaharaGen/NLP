@@ -1,0 +1,12 @@
+Q: After a few days, my Macbook's connection to the PC will go bad, how to solve it? I use smb to connect to the PC to look at the files:
+In Finder,  Go -> Connect to Server
+and I use
+smb://mypc      <-- this is my pc's name in the config
+
+to be able to look at the shared folders on my PC from the macbook (wireless).  But after a couple of day or sometimes a few days, the connection goes bad, and reconnect is waiting for 10 minutes and it still tries to connect.
+Is there a way around this?  Using a different method?  For example, if I set up a webserver on my PC, then the files can be more easily accessible because the macbook has no problem accessing any websites, but i just don't want to need to set up a webserver to do file access.
+
+A: Just a guess; does you home network use DHCP? I wonder if the address lease is timing out and the Mac isn't looking for the PC via your DNS.
+You could try changing the address lease time on your router to never expire (depending on router type), or you might consider giving the PC a fixed address instead of using DHCP.
+
+A: Not an answer so much as a strategy, I find that sometimes going to a "Recent Folder" ( Finder → Go → Recent Folder → some folder name) where some folder name is on the smb share works instantly. 

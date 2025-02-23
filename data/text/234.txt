@@ -1,0 +1,15 @@
+Q: Time Machine backup .sparsebundle file inaccessible on new computer I've been at this for a solid 6 hours now, hoping like heck someone here can help me.
+I've had a Time Capsule for nearly 2 years, consistently backing up two different laptops in my home using Time Machine. A MacBook and a MacBook Pro.
+Last night, my MacBook Pro up and died. I was working on it when everything froze up and shut down, and it won't boot now. All indicators are that the logic board went. Whatever, **** happens. Sucks, but not entirely a loss because of my incremental backups, right?
+Wrong.
+Brought my work laptop (another Macbook Pro) home this evening to open up my Time Machine backups and retrieve any files that I needed or wanted to keep going forward. Or so I thought.
+When I connect to the drive, I can see two .sparsebundle files, one from the Macbook, and one from the Macbook Pro. In the past, I've been able to mount these as disks and manually sort through them without having to resort to the slow Star Wars interface of Time Machine.
+The .sparsebundle for the MacBook works exactly as advertised. The .sparsebundle for the Macbook Pro? Not at all. Double-clicking it gives the error "No mountable file systems." Disk Utility (pictured below) has it greyed out and refuses to run any Verify or Repair procedures on it. I've tried the Googles, gone through countless discussion threads in Apple's support site as well as other popular Mac tech sites, resorted to Terminal hdiutil mount -readwrite style hacking, all to no avail. As far as I can tell from the research I've done, what may have happened is that my MacBook Pro was in the middle of a Time Machine backup at the very second it went kaput, which seems to have locked the .sparsebundle into some kind of hyper-militant read-only state from whence not even light can escape.
+The message in the window pictured below comes up immediately after I click "Repair disk", though the candybar progress stripe keeps spinning and spinning indefinitely.
+I've got no ideas left. Extra sloppy-kisses may be provided as incentive if anyone can help me through this. I'm one step away from introducing the Time Capsule to the business end of the 12 lb. sledgehammer sitting in my toolshed at this point.
+
+A: Have a look here and try doing what he does (I know the problem is different).
+
+The key came from a comment buried down near the bottom of the page. Running fsck kept getting clobbered with a "Disk In Use" error, but this solved it:
+FWIW, I found that even with -noautofsck, snow leopard would auto-fsck, meaning I would get ‘resource busy’ or whatever. I have no idea why it is ignoring my no-auto-fsck request. Whatever.To allow the process to go, I ‘ps auxwww | grep fsck’ to find the PID, then ‘sudo kill (PID)’ to kill this fsck so I can run my own.
+Killing the auto-fsck allowed me to run it myself. Not sure how long it took, I started it at 2am and it was done by the time I got up 6 hours later, but it was on a 500+ GB .sparsebundle, so I'm assuming it took a while.

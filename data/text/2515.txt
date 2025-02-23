@@ -1,0 +1,16 @@
+Q: Default installation folder I am unhappy with the inherent insecurity of having to type in my system.install.root.user password when installing some applications.
+I realize this is necessary to install to the system wide Applications folder.
+Does anyone know how to set the default installation location to be the Applications folder inside my home directory?
+Thanks,
+Teo
+
+A: First of all, they do not (should not) require your root password, but your admin password (superuser privilege). Secondly, if you happen to be working as a standard account (so no admin privileges) on your daily basis, than yes, installing to /Applications requires an admin´s authentication; if you have admin rights, then installing something into /Application/ (and only there) should not be a problem (if it is, you need to fix permissions).
+More in general, if we assume that the application developers know what they are doing (which unfortunately is sometimes not the case), then no, installing the ApplicationName.app bundle into your userfolder would still require admin rights. Because if they really need admin-rights to install their software, it´s probably (hopefully) because they need to install stuff other than the ApplicationName.app bundle; this can range from kernel extensions (say, you install a VPN software like OpenVPN, Hotspot Shield, etc.) to simple utilities that display your network traffic and even some Adobe Tools that all need to go into folders that are owned by other users (not in your group) to enhance overall security. And even if they just place an application into /Applications/ , they might still want to play nice and fix the permissions to root:wheel 755 .
+Basically, the Applications you install per drag&drop should be free to go where ever you want, but Installers for software that (even just for add-ons) require more than your daily userrights to run need to be run with admin rights, and thats an actual security feature. 
+Or even shorter: If you do not trust the installers source, do not install. With or without admin rights, your personal data might be endangered. 
+
+A: If I'm not mistaken, the default installation location is determined by the author of the installer package and not by the operating system. See the Apple Developer "PackageMaker User Guide" for more information.
+In a perfect world, only Applications that require system level support files (mostly files in /Library like plugins and drivers), or absolute paths (XCode), or have complex post-install scripts, should be PackageMaker installers. Obviously we aren't in a perfect world and some folks build restrictive installers even when not 100% necessary.
+If there is a particular application who's installer bugs you -- you might want to contact the maker and see if they can explain why they are using an installer that requires the admin password.
+
+A: Although it may not solve the security problem, and in fact will make it worse, changing permissions on the /Applications directory to make it world writeable would then allow a non-admin user to install applications in it without entering a password.

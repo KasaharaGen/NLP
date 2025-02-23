@@ -1,0 +1,15 @@
+Q: Is there a way to change font sizes system-wide while preserving UI resolution? I have a 17" widescreen mac book pro (1920 x 1080) and find it hard to read the small fonts in the finder menu and in the Finder let hand panel even though my vision is good. Even the font's in most applications appear small. I know certain applications will allow you to configure font size but I'm really looking for a system-wide/global solution.
+I have tried several solutions such as:
+ 1.> defaults write NSGlobalDomain AppleDisplayScaleFactor 1.5
+ 2.> User Interface Resolution with Quartz Debug application
+
+and both these mothods/features seem incomplete in that the GUI elements are not scaled smoothly.
+I also tried lowering my monitor resolution but that wasn't ideal cause the display gets a bit blurry.
+
+A: You can use TinkerTool to change the default system fonts and increase their size.
+
+
+A: Sorry I forgot to mention earlier, I've also tried tinker tool. While it does increase the font size for most mac apps it doesn't allow customizing other apps (such as the adobe suite that I tend to use day in day out). Also another aspect the problem for which I require a solution is UI resolution (I know mac doesn't fully support it yet). The toolbars and other panels in the adobe suite is are so tiny that it's almost a nightmare to use it. I do get around it sometimes by changing to a lower resolution like 1200x800 but it isn't effective cause it display get blurry (due to non-native resolution).
+
+A: Try holding down the <Ctrl> key and scrolling the mouse wheel up. This zooms in to the part of the screen where the mouse cursor is located.
+<Ctrl>-scroll mouse wheel down to zoom back out to normal level.

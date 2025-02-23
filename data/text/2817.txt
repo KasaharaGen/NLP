@@ -1,0 +1,34 @@
+Q: Force a file to overwrite instead of appending I've got an application that won't overwrite a file with the same filename. It will only append the filename with a 'space 1'. If I write a file more than once I get something like this:
+
+
+*
+
+*filename.jpg
+
+*filename 1.jpg
+
+*filename 2.jpg
+
+
+What I need is to only ever have the newest file without the extra space and number.
+Is there anyway around this? Perhaps an applescript running in the folder?
+
+A: The application is in complete control of how it saves files (overwrite v. append). The answer is to pre-clean your destination before you start whatever work flow you are doing in Capture One. There are any number of ways to accomplish that. 
+
+
+*
+
+*use the rm command from the terminal
+
+*write a bash script that does something more complicated
+
+*write an applescript
+
+*create a new folder each time to point the application at
+
+*create a disk image via Disk Utility that you can clone and throw away when finished
+
+
+These are just some of the ideas. I am sure there are other ways as well. Just need to find one that works for you.
+A final thought, contact the makers of Capture One and make a case for why you would like them to change the software. Perhaps they will listen. :)
+Good luck.

@@ -1,0 +1,15 @@
+Q: Changing yahoo messanger's status using mac terminal Does anybody know how I can change my yahoo messenger's status using a command in mac terminal !? Or anything except the regular way to change it !?
+thanx
+
+A: You could try to see if "Automator" would allow you to automate it, but I don't see any cmd line parameters to messenger on the mac.
+
+A: Yahoo Messenger doesn’t provide an automation mechanism, however not all is lost. You can set set a keyboard shortcut for the statuses (they are in the menu) so you could do this:
+Go to System Preferences, Keyboard -> Keyboard Shortcuts, then from the list select “Application Shortcuts" then click “+” to add a new one.
+
+Select Yahoo Messenger and type the name of the command exactly as it appears in the yahoo statuses menu. It is case sensitive. A simple typo will cause the shortcut to fail.
+I.e.: “Busy" is not the same as "busy”.
+Then set a key combination:
+Look at mine:
+
+DRAWBACK: You need to have Yahoo active (i.e. focus) so the menu displayed belongs to yahoo. That means is not a “global shortcut”.
+PLUS: This method is useful for any other application/Command.

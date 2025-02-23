@@ -1,0 +1,42 @@
+Q: Mac Pro: Splitting network traffic based on destination I have a Mac Pro tower with two ethernet ports. One of them is connected to the company intranet and the other to my home network. I'd like my Mac to use the former ethernet connection only for those services within the intranet; for everything else I'd like to use the latter connection (e.g. the web).
+Given that the intranet addresses will fall into a specific range, how can this be done?
+Update
+Thanks to some huge help from bmike I've been making some progress but am still not quite there yet. Here is my original routing table (with some details omitted) showing the two default paths leading out of either Ethernet port:
+default    A.B.C.D    UGSc           17        0     en0
+default    E.F.G.H    UGScI          12        0     en1
+
+The first entry is to the company network via Ethernet 1 (en0); the second to my home network via Ethernet 2 (en1).
+The goal is to force all traffic not destined for a location within the company to route through Ethernet 2. My understanding thus far has led me to modify the routing tables as such:
+sudo /sbin/route -n delete default A.B.C.D
+sudo /sbin/route -n add -net A A.B.C.D
+
+Giving me the following modified table:
+default    E.F.G.H     UGScI          1        0     en1
+A          A.B.C.D     UGSc          28        0     en0
+
+The end result is not quite what I'd expect, however. I am still able to access all sites on the company intranet however all traffic to e.g., stackoverflow.com or anywhere else other than the intranet fails. A sampling from ping confirms this:
+FooBar:~ username$ ping latimes.com
+PING latimes.com (144.142.224.43): 56 data bytes
+ping: sendto: No route to host
+
+Is the default entry above not sufficient for that purpose, or am I missing something?
+Update 2
+Apparently adding the following got things working as I'd expect:
+sudo /sbin/route -n add default E.F.G.H
+
+Resulting in the following table:
+default            E.F.G.H     UGSc            0        0     en1
+default            E.F.G.H     UGScI          25        0     en1
+A                  A.B.C.D     UGSc            2        0     en0
+
+But I don't understand why the original default entry didn't suffice? The documentation for the I flag reads:
+I       RTF_IFSCOPE      Route is associated with an interface scope
+
+So how does that default entry's I status prevent its use for my stated goal? (I've asked a related question to the same effect here.)
+
+A: The solution was to perform the following:
+sudo /sbin/route -n delete default A.B.C.D
+sudo /sbin/route -n add -net A A.B.C.D
+sudo /sbin/route -n add default E.F.G.H
+
+(details as to the above can be found in the question.)

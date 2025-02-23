@@ -1,0 +1,30 @@
+Q: Why do I have to source ~/.bash_login every time I open Terminal When ever I close and open Terminal.app, it never loads my ~/.bash_profile. I have my RVM setup at the top of the file but it never loads it. 
+As you can see, when I type rvm into Terminal, it says command not found this is a pain as I have to run source ~/.bash_login every time I open Terminal.
+
+Am I the only one with this problem? What am I doing wrong?
+
+A: Does it have to be .bash_login? Try renaming it to .profile.
+
+A: Bash only reads the .bash_login file if it's started as a login shell (was passed the --login flag). Try renaming it to .bashrc instead, which is evaluated when bash was invoked as an interactive shell without the --login flag.
+
+A: Make sure your .bash_login script doesn't contain relative paths like
+source .profile
+Change to
+source ~/.profile
+Lion changes the directory to your current tab or where your last session is, so all paths have to be absolute now.
+
+A: For me bash in Lion does not load ~/.profile either.
+Adding source ~/.profile command to run at startup in shell preferences helped, but is quite unelegant.
+
+A: Changing .bashrc from
+source .bash_profile
+
+to
+source ~/.bash_profile
+
+did the trick for me.
+
+A: The default behavior on my MacBook running Sierra (I don't know about High Sierra) seems to be that Terminal will run .bash_profile on login.
+Only if .bash_profile does not exist will Terminal go and run .bash_login instead.
+Check to make sure that you do not have an empty .bash_profile sitting around in your home directory. If you do, delete it and re-login; then you should see Terminal running your .bash_login.
+(Empirically: my MacBook does not open or run either .profile or .bashrc. But indeed, I can disable my .bash_login by running touch ~/.bash_profile, and restore it to working order by running rm ~/.bash_profile.)

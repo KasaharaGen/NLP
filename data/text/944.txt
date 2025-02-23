@@ -1,0 +1,26 @@
+Q: Seeing current permissions for a file? How can I see the permissions for a file (e.g. if I want to recreate those permissions for another file using chmod)?
+For example after I run chmod 644 on foo.txt, what command, if any, can I run on foo.txt which returns 644?
+
+A: If you type ls -l in terminal you get the permission for your file
+drwxr-xr-x   7 ---  staff   238 Apr 14  2010 images
+-rw-r--r--   1 ---  staff  2628 Aug 26  2009 index.html
+drwxr-xr-x@ 11 ---  staff   374 Feb 28  2010 simplemvc
+
+You can use table below to convert rwxr-xr-x to number and vice versa:
+
+And get more detail here.
+
+A: The easiest way to get the octal permissions from the command line is by using stat(1) with a format specifier. 
+You can read more in the manual page, but the following will give you what you want:
+
+stat -f "%OMp%OLp" <file or directory>
+
+%OMp returns the setuid/setgid/sticky bits in octal and %OLp the user/group/other permissions in octal.
+For example:
+$ ls -ld Data
+drwxr-xr-x  6 mj  staff  204 20 Feb 11:09 Data
+$ stat -f "%OMp%OLp" Data   
+0755
+
+
+A: The easiest way I'm aware of that will list all permissions, including ACLs, is simply to use the Get Info command from the Finder on the concerned file.

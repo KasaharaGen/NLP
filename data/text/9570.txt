@@ -1,0 +1,32 @@
+Q: How can I remove Firefox using terminal? I'm a beginner with Mac OS X. Would somebody please tell me how to fully uninstall Firefox using Terminal on Mac OS X Lion?
+I'm experiencing hangs and crashes with Firefox 5.0.1, so I want to remove it then re-install it.
+Thanks so much in advance.
+
+A: To remove Firefox.app:
+
+
+*
+
+*Login with an administrator account
+
+*sudo rm -rf /Applications/Firefox.app/
+You get the same result by just dragging the Firefox app from /Applications/ to the trash. 
+If the crashes continue after reinstalling, deleting preferences and support files in the user library may help:
+
+
+*
+
+*~/Library/Preferences/org.mozilla.firefox*
+
+*~/Library/Application Support/Firefox
+
+*~/Library/Application Support/Mozilla
+
+*~/Library/Mozilla
+
+*~/Library/Caches/Firefox
+
+A: It's very probable that your profile is corrupt, rather than Firefox itself (in which case, deleting Firefox won't help as any new installation will use the corrupt profile). 
+Creating a new profile may help - the safest way to do that is using the Profile Manager.
+
+A: You might also consider uninstalling it using AppZapper, which will remove the app and all of its configuration files.  There is a fully-functional free trial available.

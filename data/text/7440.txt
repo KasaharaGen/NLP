@@ -1,0 +1,51 @@
+Q: Lock screen with LaunchBar I extensively use Launchbar and have almost all my daily productivity items working through it.
+Since I use my personal MacBook at work, I do not have use a screen saver password, however, when at work, when I leave my desk, I use the Lock Screen feature of Keychain to lock my machine. When at home it hardly ever gets locked, so putting a password on the screensaver is really not useful to me.
+I have searched far and wide, but can't seem to find a way to have Launchbar emulate the Lock Screen feature of the Keychain. 
+Any suggestions on how this can be achieved using Launchbar? 
+I would also be happy if someone can just provide me with guidance on an AppleScript that can achieve my goal?
+Solution
+bmike gave a very usable solution, however I ended up purchasing Lock Screen 2 from the App Store which allows you to set a hotkey to lock your screen among other options.
+
+A: First you need a script. There are countless ways to script things, based on individual skills and knowledge of AppleScript or other languages. For simplicity, let's use automator. 
+You will want to use the Watch Me Do action to show Automator how to trigger the menu item to lock the screen.
+
+I made this a service, since I like to use FastScripts for something like this. Launchbar will find your service as the top hit if you name it LockScreen as I did in this example when saving from Automator.
+(You can make an Application and store it in Apps, but services seem more light weight to me and perhaps a little faster...)
+To start, click the record button at the top. Once the screen locks and you get back in, do edit down the action - you can get rid of the "ScreenSaverEngine" task if recorded you getting back in before you stopped the "recording"
+I moved the Playback speed to the max. I also told automator that this service receives "no input" just under the record button.
+Here is what you should have after saving your new service. Pay attention to the requirements of the Watch Me Do action in the lower left if you have any problems with training your mac to sing itself a short lullaby.
+
+
+A: In AppleScript:
+do shell script "/System/Library/CoreServices/Menu\\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+This doesn't require you to keep the menu bar item.
+
+A: A simpler version is here: http://www.harukizaemon.com/2008/02/lock-your-screen-with-launchbar.html
+Repeating it (with an update for LaunchBar 5):
+
+
+*
+
+*Open the the Script Editor, /Applications/AppleScript/Script Editor
+
+*Enter the text activate application "ScreenSaverEngine"
+
+*Save it to ~/Library/Scripts/Lock Screen
+
+*Open the LaunchBar
+
+*Press ⌘⌥I
+
+*Select "Actions"
+
+*Click "Options"
+
+*Check "~/Library/Scripts/"
+
+*Click "Index"
+
+*Click "Update" to make sure your index is up-to-date.
+
+*Close, saying yes to save.
+

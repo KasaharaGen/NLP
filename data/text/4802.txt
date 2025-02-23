@@ -1,0 +1,8 @@
+Q: Why might a MacBook not detect an Apple A1152 Mighty Mouse? It seemed that the USB connection was OK.  
+Is there any way to solve this problem?
+
+A: With a problem such as this, the first thing you must always try is to connect a different USB mouse. If one works, and the other doesn't, then the problem is almost certainly with a defective mouse, and not with the computer. This is a basic troubleshooting step known as "isolating the fault".
+In all problems of this sort (not just with mice) you need to test with a second peripheral that you know is working correctly, which we refer to as the "known good" item.
+
+A: Open system profiler and look at the USB connection area. You can refresh to see if it's seen on the system bus. If it is - look in the console app - system.log for more USB related errors.
+If it isn't then it's a bad port / cable or mouse.

@@ -1,0 +1,34 @@
+Q: Syncing Contacts and iCal between multiple Macs and iOS? I have a two Macs, an iPod Touch and an iPad, so 4 devices in total.
+I wonder if there is a way to sync contacts and ical calendars between these devices automatically (or in case of the iPod/iPad when they are connected to a mac).
+So far, I'm seeing these options:
+
+
+*
+
+*MobileMe - seems really expensive for what it offers and stores data in the cloud
+
+*Mac OS X Server - requires a dedicated machine and is also not cheap
+
+*Syncing with Google Contacts and Calendars - requires the data to go to the cloud, but is free
+
+
+Is there anything that simply allows me to sync from Mac to Mac to iOS through my local network?
+
+A: I've been extremely happy with iCloud syncing between MacBook Pro, iPhone, and iPad. Once set up it works flawlessly and reliably unlike MobileMe which I had for years and was useful but never totally trustworthy. iCloud really is a great solution for syncing address book and calendar and reminders. I'm also enjoying it's syncing of bookmarks and other safari browser data.
+My only caveat about it is that some MobileMe users have had some issues in doing the move. None of these issues to my knowledge have been unsolveable but there have been some bumps. For users with an Apple ID and no legacy of MobileMe use it's extremely smooth to set up.
+All iOS devices need to be running iOS 5, Macs need latest version of Lion.
+http://www.apple.com/icloud/setup/
+
+A: I'm using Google Calendars and Contcts for this, it works really well. My iPhone has been set up with Google sync, so the calendar/contact updates get pushed automatically (when there's a network connection).
+
+A: The iOS devices will sync with a Mac when they're connected to it and you sync via iTunes, so we don't need to worry about those.
+MarkSpace's SyncTogether product will allow you to sync your calendars and address book (and some other stuff) between the Macs. BusySync (or its big brother BusyCal) will do the calendars but not the address book. Fruux does calendars and address books, but its in beta and I know nothing about its reliability. But none of those is free -- I don't know of any free options other than syncing via Google.
+
+A: For calendars you might want to look into BusyCal (if you really don't want your data in the cloud).
+Otherwise go with iCloud (the MobileMe replacement). It's free and syncs a lot more than just contacts and calendars.
+
+A: This is the Calender Server from OS X Server that works on normal OS X fine. It's fairly simple, the instructions are included.
+http://www.macosforge.org/post/calendar-and-contacts-server/
+
+A: For information about the full article "Mac OS X and iOS Syncing with Google"
+http://devicegadget.com/apple/mac-os-ios-syncing-google/1214/

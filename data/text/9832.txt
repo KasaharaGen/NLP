@@ -1,0 +1,19 @@
+Q: Quicklook is broken in Lion [Turns out this is known bug #9536151]
+I have a strange issue with Quicklook in Lion. This is on a clean install and happens with  more than one user. It also isn't fixed if I clean out the Quicklook cache in /var/folders
+I have to push the spacebar twice to get Quicklook to work properly. 
+The first time the usual Quicklook 'window' appears but it is blank:
+
+Push the spacebar again and the image appears. If I restart the Finder the problem goes away briefly. It's driving me nuts.
+
+A: This sounds like a bug; you can report it at bugreporter.apple.com with an Apple ID and password.
+Can you reproduce the problem, then check for new error messages in /Applications/Utilities/Console.app? There's a small chance that this will indicate the source of the problem.
+
+A: You might see a message in the console like this:
+com.apple.quicklook.32bit[22808]): Job appears to have crashed: Abort trap: 6 
+
+You should file as bneely says.
+Have you tried the usual stuff of repairing permissions, restarting etc.
+Also, if you file a report, you should include your system.log (/var/log) and Apple System Profile report (About this Mac > More Info > System Report > save....)
+
+A: Some people recommended deleting your ~Library/Preferences/com.apple.finder.plist file to fix it.  I wasn't able to simply delete the file to fix the problem.  I had to go into my back up account and make a copy of the file from ~/Library/Preferences/com.apple.finder.plist and then move it into my user account.  I'm sure you could do the same thing with your Guest user account, too.
+For me, the problem was caused by making the text in QuickLook copyable.  I noticed when I turned on defaults write -g QLEnableTextSelection -bool true that the blank Quicklook bug was coming up as talked about in this thread.  When I turned it off, (defaults write -g QLEnableTextSelection -bool false) the problem went away.

@@ -1,0 +1,51 @@
+Q: How can we unlock an iPhone backup file if we don't know the password? I've got a rather peculiar problem. My wife's iPhone got stolen and we bought a new one from the insurance money. When trying to restore the backup file to her new phone, iTunes asks for the password:
+Enter the password to unlock your iPhone backup file.
+The problem is, that she removed the password a long time ago. Hence she can not remember it. All we know is that it must be a number between 1111 and 9999.
+Is there any way to brute force this? Other than by hand?
+
+A: The password used to encrypt the backup file might have been saved to the user's keychain.
+
+
+*
+
+*from /Application/Utilities open the Keychain Access utility
+
+*make sure that on the left side "All items" is selected under categories
+
+*in the upper right search field enter "iphone" and then look for a keychain item named "iPhone Backup" of kind "application password". If there is no such item, you´re mostly out of luck
+
+*double click on the "iPhone Backup" entry and in the new window that will open, click on the "show password" checkbox 
+
+*you will now be prompted to enter your password (the one your user has on your Mac) to show the iPhone backup password; click Allow (once). You should now see the iPhone Backup password in clear text. 
+
+
+I don't think windows has an equivalent store for saving the password. If not, you will have to try brute forcing it in iTunes - just me methodical - write down all sorts of passwords that may have been used - brainstorm a bit. Then try them one by one. Hopefully with the pressure off a bit you will stumble upon the pass phrase that was used.
+
+A: On my Mac when this happened to me unexpectedly, I simply entered the password for the machine I synced the phone with and it worked.  So the password is likely to be the password for the user account you sync your phone to.
+You might also try the password for your AppleID as many people will enter that thinking that iTunes wants the AppleID password when in fact they are independent.
+
+A: There are a wide variety of brute force cracking options that will repeatedly try passcode or other engineering to crack the protection.
+
+
+*
+
+*Elcomsoft markets one to unlock or decrypt iPhone backup files.
+
+*http://www.jihosoft.com/itunes/itunes-backup-unlocker.html
+
+*http://www.windowspasswordsrecovery.com/product/iphone-backup-unlocker.htm
+Most of these run in the $50 range for price, and depending on what password was used, it might take weeks or years to try all possible combinations before the software "guesses" what you used.
+
+A: Brute force is possible to crack the password unless:
+
+
+*
+
+*The password is week. According to my test, it took 8 hours to break a password with 6 pure digits.
+
+*The Computer should have a high profile especially for GPU.
+
+*The backup made by lower version of iTunes has more possibilities for breaking.
+Edit: Here is a step by step guide to unlock iTunes backup password in response to the comment.
+
+A: It's 1234 - I never set this password I am quite sure, and someone on the Apple discussion board suggested it and it works. Crazy, but it works. 

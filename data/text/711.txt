@@ -1,0 +1,44 @@
+Q: How to convert a pdf file into a text file? Is there an easy way to extract plain text from a pdf file?
+On *nix systems I used to have a command ps2ascii that would do the job, but it seems that this command is not installed by default on my Mac.
+What would be the easiest way to extract text from a pdf file or, alternatively, how to get ps2ascii on my system?
+
+A: Adobe Reader has a "Save as Text…" option under the File menu. Easiest way.
+
+A: The following python script will output the text from a PDF document to a .txt file. (Note: There is no guarantee that the text is necessarily in 'logical' human readable order, due to the way that data is held in the PDF format.)
+The script will create text files for any PDF files supplied as arguments to it on the command line (e.g. pdf2txt.py myPDF.pdf), or you can use in Automator's "Run Shell Script" action, setting the shell type to python and Pass input to "As arguments".
+#!/usr/bin/python
+# coding: utf-8
+
+import os, sys
+from Quartz import PDFDocument
+from CoreFoundation import (NSURL, NSString)
+NSUTF8StringEncoding = 4
+
+def pdf2txt():
+    for filename in sys.argv[1:]:   
+        inputfile =filename.decode('utf-8')
+        shortName = os.path.splitext(filename)[0]
+        outputfile = shortName+" text.txt"
+        pdfURL = NSURL.fileURLWithPath_(inputfile)
+        pdfDoc = PDFDocument.alloc().initWithURL_(pdfURL)
+        if pdfDoc :
+            pdfString = NSString.stringWithString_(pdfDoc.string())
+            pdfString.writeToFile_atomically_encoding_error_(outputfile, True, NSUTF8StringEncoding, None)
+
+if __name__ == "__main__":
+   pdf2txt()
+
+
+A: I’m not aware of any OS X native utility that does that, however, you can install most of the unix/linux commands with any of these three methods:
+Homebew: Homebrew is the easiest and most flexible way to install the UNIX tools Apple didn't include with OS X.
+Fink: The Fink project wants to bring the full world of Unix Open Source software to Darwin and Mac OS X.
+Macports: The MacPorts Project is an open-source community initiative to design an easy-to-use system for compiling, installing, and upgrading either command-line, X11 or Aqua based open-source software on the Mac OS X operating system.
+Homebrew is the “new kid on the block” and promises to solve the “problems and limitations” that the other two have (whatever those problems may be). I suggest you take a look at all of them and use what you consider most flexible/simple for your needs.
+There is, however, an app (Payware) that used to do that (I don’t know if it still does it). I’m talking about DEVONthink, and you can try a demo for a few days.
+update: According to this post, you could install DevonThink (trial version) and extract the ‘pdftotext’ binary "which is free, of course" [sic] out of the bundle.
+
+A: If you don't mind using a GUI, you can select text from a PDF opened with Preview.app
+
+A: ps2ascii is a part of Ghostscript, which can be installed on Mac OS X (and it might already be by default from the factory).
+
+A: Use Online document converters like Saaspose.PDF that can convert your PDF file to a TXT-based document. And because its a cloud API, there is no need to download or install anything.

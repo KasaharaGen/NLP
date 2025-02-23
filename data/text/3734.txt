@@ -1,0 +1,55 @@
+Q: Why is cron being deprecated? I just found out that cron has been deprecated in Mac OS X. Why is this, and will it eventually be completely removed from future releases?
+
+A: I don't even know if cron has been deprecated. man crontab seems to indicate that it hasn't:
+
+(Darwin note: Although cron(8) and crontab(5) are officially supported under Darwin, their functionality has been absorbed into launchd(8), which provides a more flexible way of automatically executing commands.  See launchctl(1) for more information.)
+
+Daemons and Services Programming Guide says that it has been deprecated though:
+
+Note: Although it is still supported, cron is not a recommended solution. It has been deprecated in favor of launchd.
+
+crontab is also required by POSIX, and OS X is supposed to be SUS compliant.
+In any case, cron won't probably stop working any time soon, and I don't know if it can be said to be slower or less secure than launchd. The cron process should use almost no CPU time or memory. Some advantages of using or learning cron are that it is also available on other platforms, and the configuration format is simpler.
+
+A: With the release of Mac OS 10.4, launchd was chosen to supersede cron in Mac OS. Here's a cached version of the launchd page from the Apple Developer Connection in 2005. It explains why cron was deprecated, as well as the benefits of launchd from Apple's perspective.
+The summary: launchd was created to not just replace cron but also init, xinetd for better performance, and better control over configuration and the actual tasks themselves.
+
+The launchd daemon offers a single, standardized, interface to any and all programs started automatically by the system. Furthermore, the configuration files that determine when to run a given program can also specify resource limits and environment variables, which simplifies setup and security for many programs. The same configuration file format is used whether a job is launched once at system startup or user login, on demand over the network, or at intervals.
+
+
+A: cron still ships on macOS 11 Big Sur, but that being said...
+The wikipedia article on launchd has a very good summary, extended discussions as well as some great videos and external links for a deeper dive into this decision by Apple.
+In a nutshell, launchd replaces 7 major tasks and a boatload of scripts (inetd, init and rc and associated shell script structures, crond, atd, watchdogd, SystemStarter) with one much more powerful open sourced tool.
+Why:
+
+*
+
+*faster due to optimized control of launching and delayed launches until needed, more sophisticated sequences of actions are now possible
+
+*handles power efficiency concerns more in tune with new CPU design
+
+*more powerful overall than the old tools
+
+*unified and centralized process control
+
+*more secure by design
+
+When: 29 April 2005 (When OS X Tiger was released for sale)
+There's nothing from preventing us all from using launchd to start cron now on Tiger, Leopard or Snow Leopard.
+Should future Apple stop shipping /usr/sbin/cron, it will surely end up like wget and other mature open source tools that get compiled and need to be added as a separate command line tool.
+
+A: Others have already answered why cron was superseded. As for the other question:
+
+will it eventually be completely removed from future releases?
+
+cron is a required utility/service of the POSIX and Unix standards. Thus, there are only two circumstances under which cron would actually be removed from macOS:
+
+
+*
+
+*Apple decides that being an officially certified Unix system is not worth their time (unlikely)
+
+*cron gets removed from the Single Unix Specification (even less likely)
+
+
+If one of those two things happens, then you might need to feel some urgency about porting your crontabs to launchctl services. Or just compile an open source cron and run it on macOS in order to run your crontabs.

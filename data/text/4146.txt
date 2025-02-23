@@ -1,0 +1,27 @@
+Q: OS X keeps crashing while compiling I have a fresh install of Snow Leopard on a 32bit Core Duo.
+Ever since I installed Snow Leopard, I have random crashes when compiling:
+i.e. - during brew install imagemagick. While brew installed dependencies (tiff and little-cms) it finished just fine, but when it went to compile imagemagick itself, it crashes.
+During make install for imagemagick, the system fans just spin up then my computer shuts down.  
+I've looked at mkmf.log and CrashReporter, but nothing is in them about this install.  
+I'm using Xcode is 3.2.6 with iOS SDK 4.3.
+Any other log files I can view?  Any ideas?
+
+EDIT - I noticed that this was happening during compiling only.  Also noticed that fans started to spin up before crashes but never got a chance to spin to max speed.  I guess somewhere along the way, either one of my fans went out, or something of the sort.
+So I did the following:
+I downloaded and installed MenuMeters, then smcFanControl.
+I set the Higher RPM in smcFanControl to max.  Right before I started to install apps which needed compiling like imagemagick I turned smcFanControl to max and monitored CPU temp.  So far I've been able to install without crashes, but now I know I need to be replacing my mac soon.
+
+A: Maybe this is a hardware error. Heat or memory related issues?
+You should try the hardware test using your Install CD.
+
+A: The most serious issue here is your shut down. We need to see what the cause of this is.
+
+
+*
+
+*Open Console: Finder -> Go -> Utilities -> Console
+
+*In Console: Files -> system.log
+
+*Search for: "Previous Shutdown Cause"
+Please let us know what this is.

@@ -1,0 +1,169 @@
+Q: What do I type to produce the command symbol (⌘) in Mac OS X? What combination of keys do I press to produce the command symbol (⌘) on Mac OS X?
+(I copied the above symbol from http://en.wikipedia.org/wiki/Command_key.)
+
+A: This is the simple way on how to do it.
+
+
+*
+
+*Download BetterTouchTool
+
+*Open the application
+
+*Select 'keyboard'
+
+*Click Add New Shortcut
+
+*Set keyboard shortcut to 'Option+C'
+
+*Set trigger predefined action to 'Paste predefined text'
+
+*Copy '⌘' into the box.
+
+*Click Ok
+
+
+Now whenever BetterTouchTool is open all you have to do is press 'Option+C' and it automatically types the '⌘' symbol.
+You only have to do steps one to eight once.
+
+A: I also found it hard to find a straight answer for this, so I just went into System Preferences > Keyboard > Text and created a use symbol and text substitution option where when I type (cmd) it replaces it with the command symbol.
+
+A: For what it's worth (on OSX and maybe Windows): In Libre Offices's Writer I found the symbol as the 5th entry in both the LiHei Pro and LiSong fonts. 
+
+A: The Mac Characters popup is definitely the straightforward solution if you need to insert some chacters once in a while. But if you regularly need to use Unicode characters which are not present on your keyboard then a radical solution would be creating your own keyboard layout with Ukelele that will map those characters to your physical keys.
+The app is only used to create an OSX compliant layout file (XML or bundle) which can then be added via Preferences > Keyboard > Input Sources > ＋.
+With Ukelele you can clone your existing standard keyboard (File > New from current input source), and remap any of the keys to your liking.
+In the default keyboard layout holding the Option key ⌥ in combination with any letter/symbol key will insert extended math characters which normally are never used, e.g. œ∑´®†¥¨ˆøπ“‘«æ…¬˚∆˙©ƒ∂ßåΩ≈ç√∫˜µ≤≥÷¿˘¯Â˜ı◊Ç˛¸ÅÍÎÏ˝ÓÔÒÚÆ»’”∏Øˆ¨Áˇ‰„„. Holding down Shift+Option will give you yet another set of special characters.
+With Ukelele you can remap Option+key and Shift+Option+key to anything you like including Unicode emoji characters.
+Here is an example of assigning ⌘ to the Option+c combination:
+
+You can pick the required character for mapping using the built-in Characters app as explained in other answers.
+
+Note: If you have a non-US keyboard (i.e. non-ANSI) you might need to set the correct type under View > Keyboard Type > Coding: ISO 
+
+While this might be overkill for a single character, it actually makes sense when you want to tweak other things on your keyboard and have complete control.
+Once you have created your custom layout you can use it on any number of macs by simply copying it to ~/Library/Keyboard\ Layouts and then adding it in Preferences without the need to use any third party apps. The layout can be installed directly from Ukelele via the File > Install option. Once installed you still need to add it manually via Preferences > Keyboard.
+Disclaimer: I am not affiliated with the app author. I simply found the app very useful in solving some issues with my keyboard which had some keys in the 'wrong' place.
+
+A: How to type the modifier key glyphs on MacOs:
+
+*
+
+*"control+command+space" in any application
+
+*type "up arrowhead" to find: ⌃ (control)
+
+*type "option" to find: ⌥ (option / alt)
+
+*type "place of interest" to find: ⌘ (command / super)
+
+*type "upwards white arrow" to find ⇧ (shift)
+
+
+A: If you're just looking for the Unicode versions of Mac OS X keys, you can use this Apple support document to copy and paste them:
+
+Mac keyboard shortcuts
+https://support.apple.com/en-us/HT201236
+
+
+*
+
+*⌘ Command (or Cmd)
+
+*⇧ Shift
+
+*⌥ Option (or Alt)
+
+*⌃ Control (or Ctrl)
+
+
+More generally, Mac OS X provides a pane to insert special characters. You'll find it under Edit -> Emoji and Symbols in any program that takes text input. The Command key symbol can be found by searching for it's name "place of interest". To insert the character, double click it.
+
+
+If you're really hardcore and are looking for a way to type the character by entering the Unicode hex code, this is possible:
+
+*
+
+*Go into System Preferences -> Keyboard -> Input Sources, click "+", scroll to "others", select "Unicode Hex Input" and click "Add"
+
+
+
+*From the input source selector in the menu bar, select "Unicode Hex Input"
+
+
+
+*To enter a Unicode character, hold down option and type the 4-digit hex code for the character and it will be inserted. In this case, it would be option+2318.
+
+A: If you are using keyboardmaestro simply create a macro in the Global Macro Group (if you want to have the macro available globally) as follows:
+
+
+*
+
+*Create new macro
+
+*Give the macro a name like "insert ⌘"
+
+*Add "Typed String Trigger": =cmd
+
+*Add "New Action" and choose "Insert Text by Pasting"
+
+
+Now whenever you type the string "=cmd" a "⌘" will be inserted.
+
+A: For future reference, you can copy and paste from here:
+⌃  <- Control
+⌥  <- Option aka alt
+⌘  <- Command
+⇧  <- Shift
+
+These are rendered like this:
+
+
+A: You can also add Your favourite characters to "press and hold" key behaviour.
+
+Here's explanation how to do it on apple stackexchange: How to add characters to the press and hold character picker in OS X Lion? 
+Keep in mind that this is done inside System directory, so be careful and remember that there's a chance of losing Your setup after upgrading the OS.
+
+A: An answer for OSX Lion (circa 2014):
+You can also type ⌘+^+Space (aka Cmd-Ctrl-Space) to bring up the characters menu, then start typing to search, and search for place of interest, then press enter to start selecting them, then tab to the correct result, then enter again to insert it.
+
+Sounds like a lot, but it can really be narrowed down to ⌘+^+Space, typing pla, and then two presses of Return.
+
+A: If you have TextExpander, one can also make a snippet for it, ala Dr. Drang.
+
+He also has a Keyboard Library with snippets for a host of keyboard symbols available.
+
+A: With the document open, place the cursor where you want the symbol,
+Open the Character Viewer as described above. Type "Place of Interest" in the character viewer search field. It shows up on at the bottom of the window. Double click it and it shows up where you placed your cursor. Save it to your favorites in the Character Viewer window to make it easier to find next time.
+This under OS 10.9.1 "Mavericks"
+
+A: For my money, PopChar remains the best character/glyph selector utility for finding, browsing, and pasting characters into text.
+It has been a Mac essential since the 90s at least.
+https://www.ergonis.com/products/popcharx/
+
+A: [Answer for people who type Japanese text]
+Japanese IMEs are surprisingly good at finding characters.
+If you are already routinely typing in Japanese, then the easiest way the get the ⌘ character is to type k o m a n d o, then press tab and return to select the character in the suggestions popup that appears:
+
+That's 9 keystrokes but:
+
+*
+
+*Much easier to remember than an hexadecimal code (plus you don't need to remember how to enter hexadecimal codes)
+
+*You don't need to install or configure anything that you don't have already.
+
+*You don't need to start any program.
+
+*IMEs spend a lot of effort making sure they are usable absolutely everywhere, so it works in any text field of any program.
+
+
+A: If you writing out keyboard shortcuts for Mac users, I'd recommend using the Apple Style Guide (https://help.apple.com/asg/mac/2013/) way of doing this so whatever you write is consistent with other Apple documentation. In this case you would type out Command rather then use the ⌘ symbol. So, for example Paste would be:
+Command-V
+
+Alternately you could use Key Graphics.
+command+V
+The thing is if you are typing it out always use Command.
+
+A: I normally use "SHIFT + ALT + K" to generate a  Symbol.
+Instead of using a ⌘ Symbol whenever writing anything which requires keystrokes / shortcuts because for most of the time that I have been using Apple computers it was called the "apple key" . (and the symbol physically written on the key was a  and not a ⌘) 

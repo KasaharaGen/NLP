@@ -1,0 +1,18 @@
+Q: Can Numbers ’09 import an Excel XML file? Can Numbers ’09 (part of the iWork suite) import XML files? Specifically, the format created by Excel when exporting as "XML Spreadsheet 2003."
+I can't just use Excel's native format because the files are generated for our clients by a web app.
+If Numbers can't handle these files, are there any other plaintext formats that could be used? I could use csv, but I would prefer to store formatting within the exported file itself.
+
+A: Numbers ’09 supports Excel native format (.xls) but it can’t convert from an Excel XML Spreadsheet. In fact, if you rename it as “xls” and try to open it (trying to fool Numbers), you’ll probably see all the XML but not the actual spreadsheet. Which is more scary than Psychosis II back in the 80s.
+Your only bet is some CVS or TEXT format, which excel can even export with Macintosh format for line endings and carrier return (if I’m not mistaken). 
+The big drawback is that all format and binary stuff is automagically lost in translation (certain pun intended). ;)
+You’ll get the data, but not the format. 
+Another alternative is trying to automate the Excel XML to Excel Native format, even if your webapp outputs a XML, you could try to “transform them” before anything else.
+For that, I haven’t investigated but you can start with a google query like this. There seem to be some Windows solutions, maybe something you can use/try. 
+
+A: 10 years old but as I stumbled on this post, maybe someone else will too.
+The easy way is to view the XML in a browser (I used Firefox), in the Inspector (not source code) you'll find an HTML table. Choose Edit as HTML, copy the table, you can then paste that into Numbers
+
+A: I ended up changing the output to native .xls format by using the PHPExcel PHP wrapper from http://phpexcel.codeplex.com. The files now open fine in both native windows Excel and iWorks Numbers '09.
+UPDATE
+PHPExcel is now available at https://github.com/PHPOffice/PHPExcel but was deprecated in 2017 and is no longer being maintained.
+You should use PhpSpreadsheet instead, available at https://github.com/PHPOffice/PhpSpreadsheet.

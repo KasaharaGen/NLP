@@ -1,0 +1,34 @@
+Q: Open iTunes when iPhone is connected on a Mac I remember that during the installation of iTunes (while I was upgrading it on my Mac) it asked if I want to install an application so that iTunes can be opened when my iPhone is connected. Initially I didn't want this so I answered "No". Now I want this behavior, but have no idea where that option is.
+How can I get iTunes to start up when my iPhone is connected?
+I tried disabling/enabling the option "Open iTunes when this iPhone is connected" in my iPhone's Summary page on iTunes, but it doesn't help. I believe it needs that application it wanted to install initally.
+The option to disable auto sync was enabled in the settings, but now I disabled it. 
+
+A: Go to System Preferences → Accounts, and view your Login Items. One of them should be
+iTunesHelper.
+If iTunesHelper is missing from Login Items, here's how to add it:
+iTunesHelper is located inside the iTunes.app bundle, at
+/Applications/iTunes.app/Contents/Resources/iTunesHelper.app/
+
+
+
+*
+
+*Navigate into the iTunes.app package; in Finder, Right-click iTunes.app and select Show Packaged Content to get inside it. (Or use Terminal to navigate and then open Finder with open .)
+
+*Locate iTunesHelper.app, and drag it to the Login Items pane. 
+
+*Logout or even restart may be required for changes to take effect. 
+
+
+Whew, that was weird. I'm glad I got it added back too. :-)
+(Alternatively you could reinstall iTunes, but the above is much quicker and easier.)
+These forum threads were helpful: 
+
+
+*
+
+*How to prevent iTunes from opening when iPhone connected
+
+*iTunesHelper is gone in login items...
+
+A: You could try turing the option on in the summary panel when you have your iphone selected under devices. Otherwise uninstall and reinstall probably will work. On windows you might have a registry entry but I have not dug around in there looking for itunes prefs. 

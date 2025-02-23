@@ -1,0 +1,42 @@
+Q: How do I force iPhoto to download new photos in my Photo Stream? I'm listing some items for sale online, and have taken a bunch of pictures with my iPhone.  About half-way through the process, iPhoto '11 stopped downloading new photos into its local Photo Stream.  I've quit iPhoto and re-opened it.  I've gone into the Photos app on my iPhone and confirmed all the pictures are there. 
+Is this normal behavior? Is there any way to tell iPhoto to download my pictures?
+
+A: In iPhoto, turn Photo Stream off then on.
+Go to Preferences > Photo Stream.  Uncheck "Enable Photo Stream".  Close the preferences window.  Click Photo Stream in the left-hand navigation pane and confirm there are no photos.  Turn Photo Stream back on in preferences (check "Enable Photo Stream").  After a few seconds, iPhoto will start to download all the photos again.  Depending on the number of photos, and your bandwidth, it may take awhile.
+
+A: I have found a better way. One that doesn't involve resync'ing the entire stream.
+
+
+*
+
+*Quit iPhoto
+
+*Open up Activity Monitor
+
+*In the search field enter: photostreamagent
+
+*Select all the PhotoStreamAgent processes listed
+
+*Click the Quit Process button
+
+*In the confirmation dialog that pops up click the Quit button
+
+*Confirm that all the PhotoStreamAgent processes are no longer alive by waiting for the Activity Monitor window to show no processes with that name
+
+*Re-start iPhoto
+
+
+When you restart iPhoto it will re-start the PhotoStreamAgent process for your iPhoto session and kick off a new Photo Stream sync. You'll get your lastest pictures updated and you won't have to sit through a full re-sync of all your Photo Stream.
+
+Update for Yosemite where the process name has changed to iCloud Photos. This is the what you want to kill:
+
+Update for Yosemite 10.10.4 where the process name has changed to Photos Agent. This what you want to kill:
+
+You can also do this, quickly, from the command line like so:
+sudo pkill cloudphotosd
+sudo killall cloudphotosd
+
+
+A: Turning off Photo Stream and turning it back on seems to work even with OSX Yosemite 10.0!  And yes, since I have a ALOT of streams it took a long while to download and refresh them all.
+
+A: It depends on whether the photos have made it to iCloud or not. If not see my answer at https://apple.stackexchange.com/a/103856/33389 ... if so the existing answers are adequate. 

@@ -1,0 +1,44 @@
+Q: Why do I have to drag my new apps into the application folder? I'm a new Mac user and I've been installing a few different apps for different things. A lot of these use .dmg files.
+Why exactly do they all expect me to drag the icon into the application folder? What is the point of this?
+
+A: The /Applications folder is just a convenient place to store all of your applications. You can theoretically store them anywhere. Some software (such as Butler) will automatically search for applications in these standard locations, so if you store them elsewhere (such as /Users/Shared/Applications) such software won't find them by default.
+Generally there are three standard places to store applications, and 99% of Mac users only work with the first one:
+
+
+*
+
+*/Applications (available to all
+users)
+
+*/Users/username/Applications
+(available to the logged in user who
+owns that folder)
+
+*/Developer/Applications (available to
+all users, used for Xcode software)
+
+
+A: You don't have to put your new Applications in the Application folder - it's just the default place to put them.
+
+A: You can create /Applications/Imaging, /Applications/Internet, etc. if you want categorize them. Just don't move any of the standard applications into these folders because further updates will expect them to be directly in /Applications.
+
+A: An application on a Mac is just a folder full of files with a .app extension. However, macOS hides this fact from you and displays the folder as a file with an icon. Now when you download something it's very uncomfortable to download multiple separate folders (without a download manager). Therefore this "App Folder" has to be put inside a single file somehow. This is  accomplished one of three ways:
+
+
+*
+
+*Using a .zip file (a container that compresses its contents to save space)
+
+*Using a .dmg file (which is a flat file filesystem–as opposed to a hierarchical file system)
+
+*Make an installer (which, however, also has to be either in a .zip or .dmg because installers are folders on a mac, too)
+
+
+Since most apps are self-contained and do not need anything outside of the app folder, an installer is not only overkill but also slower than just distributing the app folder.
+You can obviously launch apps from wherever you want; it's only a custom or a recommendation to put them into /Applications as it easier for you to find it again and it works with multiple users.
+
+A: Keep in mind there are plenty of applications that assume they are in a folder called "Applications" and apps that looks for other specific apps in the "Applications" folder.
+
+A: DMG files are compressed and read-only. Applications frequently need to be able to update or change components inside themselves; at a minimum, when a new version is detected and it offers to install an update - it won't be able to delete itself and put the new version in its place. Indeed, you'll probably find that running an application off a DMG will result in an "was downloaded from the internet" message on every launch. That doesn't happen if you move it to the right place.
+Running an application off a locked DMG is a sure-fire way to run into problems. Just drag the application to some place on your hard disk - preferably one of the Applications folders.
+There are certain locations on your Mac that have special significance to the system - these are places where the Mac goes looking for launchable applications when you double-click a document. They include the top level Applications folder, and a folder called "Applications" in your personal home folder. Mounted DMGs are not part of this, if only because they're not always mounted.

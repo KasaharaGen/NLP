@@ -1,0 +1,117 @@
+Q: Can I watch 1080p torrents while downloading? Most large torrent files (8-20 gb) take quite a while to download. Is there software for Mac OS X that allows me to watch them while downloading?
+
+A: Yes. There are three requirements:
+
+*
+
+*A video player software that doesn't mind about incomplete video files
+
+*A torrent client that lets you choose the order in which the pieces are downloaded
+
+*A fast–enough broadband connection
+
+# 3 is trivial. Although you could cope with slower connection, if you download enough buffer for playback.
+# 1 is somewhat trivial. VLC can start the playback of a file if the file's headers are downloaded (first pieces of the file). Seeking is a bit limited and I don't remember correctly if VLC stops when encountering a (too long) gaps in video. On Windows I've used GOM Player, which was more laid-back with missing frames.
+# 2 is counter-intuitive. While many clients allow you to prioritise the files, prioritising pieces is less common. This is simply because torrents are designed to transfer big sets of data fast. A large reason why torrents are faster or more efficient than an ordered transfer of a file is due to the fact that torrents pick the easy fruits - whatever parts of the file are available from the least loaded / closest source are what get downloaded first. Statistically, you should expect to be missing key parts of the beginning of the video until the transfer is almost complete.
+The speed is achieved by initially splitting the file(s) to pieces, sending the pieces to the clients in the network and then all the clients will share and merge the different pieces. The operation is best described with an animation found in BitTorrent's Wikipedia article.
+Unfortunately I can't recommend any torrent clients that give you the option to prioritise the pieces—if there even are any—as I've never really had the need.
+Also note that BitTorrent isn't exactly designed for playback while downloading (QED), but for just sharing data. You might get better luck with on–demand video rental services available in your area, which usually use software and protocols specifically designed for HD-playback over the net.
+Sadly that leaves out lots of great indie content. Maybe the best way to deal with the issue is to gain patience or plan more ahead :-)
+
+A: http://www.qbittorrent.org at least can download sequentially
+
+A: *
+
+*We need a torrent client that can download the movie file parts in order, not randomly.
+
+*We need a player that supports playing incomplete files.
+
+*We need a connection that is faster than the movie’s bitrate (and a torrent with enough peers obviously).
+
+
+The torrent client
+Previously I used BitThief. It is developed by a technology institute in Zurich. It didn’t have a polished GUI and took a little bit too much CPU while downloading.
+There's new client I found thanks to @diimdeep. It is called qbittorrent and it is awesome.
+
+You can see that while downloading it downloads as a normal torrent client – the parts are downloaded randomly:
+
+But there is an option:
+
+After that we can see that the rest of the file is being downloaded sequentially (blue – downloaded, green – requested):
+
+The connection speed
+How can we tell if the speed is good enough? By the estimated time of arrival (ETA):
+
+If the movie is 1.5 hours and the ETA is 17 minutes, then the speed is sufficient.
+The player
+The player is and always has been mplayer (I don't know why the domain is Hungarian)
+
+
+*
+
+*low cpu usage
+
+*plays almost anything (although very rarely it crashes and burns)
+
+*lots of options (boosting volume, control of cache on streams, indexing...)
+
+*arrow keys navigation (I can't live without that)
+
+*playing incomplete files (and reindexing them, which allows navigation)
+
+
+I use MplayerX - a nice OSX gui. Download and associate movie files with mplayer (avi, mkg):
+
+The final step is to to play the file after the downloading started:
+
+That’s it.
+
+Happy watching.
+
+A: No, because Torrent download files in chunks and not sequentially, so you cannot be sure to download the various pieces of the file in the required order to view it.
+You can try a specialized Torrent client (like Miro), but I do not believe if will works.
+
+A: There is a program called Vuze that is available but requires a yearly subscription of $25 for streaming while still downloading.
+
+A: I found this question when searched for same things 
+And I found at least two free working solution not yet listed here: 
+
+
+*
+
+*isoplex - http://isoplex.isohunt.to/ this player has very ascetic interface, but has function to open and play torrent file. I watched part of 1080p movie with very little waiting on beginning and flawless playing latter.
+
+*tribler - http://www.tribler.org/ is more torrent client that player but have ability  to stream torrent file while downloading. 
+
+A: currently, there are only window and Linux clients that support this feature
+q torrent - windows - linux
+utorrent 2.1 alpha build - you need videolan
+utorrent 3.1 you need to install Videolan or mpcstar
+deluge - Linux and windows, Probably Mac you need the Pieces Plug-in,and VLC
+Video Tyrant - you need java installed, with vlc
+bit-comet  1.32 - windows - works with vlc or mpcstar 
+NextSharePc European Union project, AKA known as P2p http://trial.p2p-
+next.org/   - windows - Linux unsure about mac
+http://www.tribler.org/trac - windows , linux , unsure about mac 
+last one, is of course vuze 5.1 whatever version it is. you need to pay for 
+the streaming feature.
+thats about it.
+
+my recommendations are, bit-comet for private torrent trackers, you can change the user agent in the options which allows you to download from them.
+the best public client is Video Tyrant, as it never buffers the video. bit-comet works also really good on public trackers.
+streaming 20gbs on a home broadband is impossible, i can guarantee you this your going to experience buffering every 12 seconds you need either 100mbit or 50mbit home connection.
+you should download 10mbit per /sec to be able to stream HD torrents.
+thats about it.
+
+A: *
+
+*Download popcorntime 
+
+*click on the folder icon
+
+*drag and drop your file
+
+*wait a moment and the video will start
+
+
+Source: Youtube tutorial

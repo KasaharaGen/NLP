@@ -1,0 +1,12 @@
+Q: Is it possible to tune OS X so it will execute exe files without having to prefix the command line with wine? I'm writing cross-platform scripts that are executing utilities and some of them are windows executables.
+I would like to find a solution that would not require me to prepend the command line with wine when I run from OS X.
+I know that on Windows it is possible to define executable files based on file extension but I would like to know if this is possible to do on OS X and how.
+I am open to suggestions ;)
+
+A: How about setting all .exe files to "open with" wine?
+
+A: Right-click (or Ctrl+click) on any .exe file and select Get Info from the menu (or just select the file and hit Cmd+I). Go the the Open With section in the info panel and choose Wine (depending on your setup, it may already be in the dropdown list, or you may have to select Other and find it yourself). Then click on Change All to set all .exe files to open with the same app.
+
+A: I don't think there is any sort of setting you can change that'll solve this problem exactly. One thing you could try: on the Mac, rename the windows utility, and write a shell script (made executable with chmod +x) that runs that utility with wine.
+
+A: have you tried "chown -x" on the files, that should set it to executable.  Works with Ruby & Python scripts, should in theory work with exe.

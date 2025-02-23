@@ -1,0 +1,15 @@
+Q: OpenAFS client configuration I can't find any detailed guide on how to setup a client OpenAFS on Mac OS X.
+I downloaded OpenAFS 1.5.78 from OpenAFS.org but I can't make it works.
+I read that a panel for the system preferences should be installed, but I don't see anything.
+My goal is not configure a server but just to connect to a cell as a client.
+Any help would be very welcome.
+
+A: Did you download http://www.openafs.org/dl/openafs/1.5.78/macos-10.6/OpenAFS-1.5.78-Snowleopard.dmg ? 
+Upon opening it I was presented with a window with a few options, one of which said "Click icon to install".
+
+I ran through this installer, entered my password, entered in a false cell name as I do not have a cell to connect to at the moment, and finished the install. 
+I do now have a system preferences area called OpenAFS. 
+
+It has all of the options though upon first running it does tell me there is an error with a config file not existing, I assume because I would create it and save it. 
+
+Could you post any error messages from the console when you install OpenAFS? Are you an administrative user? Any other information would be useful in troubleshooting this.

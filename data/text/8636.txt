@@ -1,0 +1,21 @@
+Q: Disable mounting Internal Macintosh HD at boot My iMac (mid-2010 model, Snow Leopard) has a problem with S.M.A.R.T status: Failing and it has become read-only. Because I didn't want to waste money on the repair, I bought an external HD, so the internal HD is now unnecessary. How can I disable mounting the internal Macintosh HD at boot?
+
+A: This is quite old, but still works perfectly under Lion, I'm using it for several partitions: http://hints.macworld.com/article.php?story=20060930150059172
+Fast path:
+
+
+*
+
+*find the Macintosh HD volume UUID: while your Macintosh HD partition is mounted, open Terminal.app and type diskutil info /Volumes/Macintosh\ HD, then read the line beginning with Volume UUID
+
+*edit /etc/fstab as root (I personally use vi but any editor will do, the article even mentions pico! If you have TextWrangler installed - you should - with the command line helpers, sudo edit /etc/fstab will work too)
+
+*add a line like this one: UUID=F0E430C1-5558-3BB3-9FA9-6904B663FEEA  none  hfs  rw,no auto of course replacing the uuid with yours.
+
+
+A: I'm not sure if it works with external drives, but the "normal" way to change your start drive is this:
+http://www.dummies.com/how-to/content/how-to-change-mac-snow-leopards-startup-disk-prefe.html
+
+A: I know this isn't what you've asked, but why don't you transplant the working external drive (which is no doubt SATA) and replace the faulty internal drive. It should work directly, basically plug and play, ermmm boot.
+
+A: I'd also recommend you try to use my util to auto disable your second drive on booting OS with an opportunity to enable it in one command whenever after. Please check it out: https://github.com/igorleanch/2ndrive

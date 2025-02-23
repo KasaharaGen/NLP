@@ -1,0 +1,40 @@
+Q: How to place Dictionary definitions higher up in spotlight results I used to use spotlight fairly frequently to quickly look up words in a dictionary.  With Lion, I've noticed that my dictionary results have dropped down much lower in the list of results:
+
+I'd like to bump up the priority of these results so they show up near the top of the list.  However, looking at the system Spotlight preferences in Lion, I don't see an obvious way to do this:
+
+How can I make Dictionary.app results show up higher in the list of Spotlight results?
+
+A: In 10.8+, you can open Spotlight, type in the word to look up, and press ⌘L to jump to the definition within Spotlight. Pressing ⌘D instead of ⌘L opens the definition of the typed word in the Dictionary.app.
+
+A: Finally, I found a hack! I wrote a blog post about this which you can find here (in Chinese). 
+These are the key steps:
+
+
+*
+
+*Open the file with Xcode:
+~/Library/Preferences/com.apple.spotlight.plist
+
+If you do not have this file, change the order System Preferences → Spotlight  which will cause the OS to create it.
+
+*Within the orderedItems node, add a Dictionary item as follows:
+
+
+*Save the .plist file.
+
+*Open System Preferences → Spotlight, you will find a blank entry, this is what we had added above. You can drag it like other entries to change the order as you like.
+
+*You are done! Now type a word in spotlight and see what happened.
+
+
+A: After a bit of searching, I don’t have a direct answer to your question. But I have a couple of possible fixes:
+
+
+*
+
+*Find your Dictionary in the Applications folder. Drop it in the dock. Highlight a word in whatever application you are working in, and drag and drop it into the Dictionary icon in the dock.
+
+*Google makes the "Google Quick Search Box" (QSB) which is a lot like QuickSilver and LaunchBar (more like Quicksilver of the two). I think for your purpose, QSB is the best option. Google will give you Dictionary results quite readily based on some criteria. I found that if the definition was not immediately available, I could invoke it more explicitly by typing the word whose definition I am seeking followed by ‘definition’.
+
+
+Here is a little more information about those ‘quick launch’ applications. Google’s QSB is free, quite capable, clean in appearance, but is a little sluggish. … LaunchBar is faster, pretty powerful, not as ‘pretty’, and costs around USD 25-40. Quicksilver has been discontinued, and the developer has recommended that users switch to LaunchBar.

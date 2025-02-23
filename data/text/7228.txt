@@ -1,0 +1,7 @@
+Q: Manage a multilingual iTunes library? I just imported a huge music library to iTunes.
+This library contains plenty tracks that are already in my library, but the info is in a different language, my question is, is there a way to have the file info multilingual, so I'll be able to merge the files while keeping the info in both languages?
+
+A: No. Every field is part of the songs ID3 (or meta tag) and only one field can exist at any given time. A song can only have one track name, one genre, one composer, one album title, and so on:
+
+Whether you set the name of the song, for example, to English, or some other language, it doesn't matter as it would require two distinct fields for one ID3 entry, and that is not supported in the metadata container.
+This is not a limitation of iTunes, but of the songs container.

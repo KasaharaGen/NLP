@@ -1,0 +1,17 @@
+Q: What is a .apple extension? What is a .apple extension? I am recovering some files and I recovered several files with the .apple extension.
+
+A: What does the terminal command file f0009024.apple show you about the files have.
+It's highly unlikely they are truncated Apple Single or Apple Double files, but that's the only guess I have at the moment.
+
+A: To decode AppleDouble, try this AppleScript
+on run   
+    tell application "Decode AppleFile"
+        activate
+        set outputFile to decode file "Macintosh HD:Desktop Folder:encoded:SomeFile.hqx"
+        -- set outputFile to decode file "Macintosh HD:encoded:%aFile" data fork file "Macintosh HD:encoded:aFile"   end tell   tell application "Finder"
+        activate
+        select outputFile
+        move selection to folder "Macintosh HD:decoded"   
+    end tell 
+end run
+

@@ -1,0 +1,137 @@
+Q: App to empty trash on a single drive The "Empty Trash" is a bit non-specific for me, as it empties the trash on all connected volumes.  In order to empty trash from a single drive (for instance, on a USB stick), I've been going to the terminal and using:
+sudo rm -R /Volumes/<volume_name>/.Trashes
+
+What I'd really like is some App/Finder Extension/Menulet/etc that would let me empty the trash without having to run to the terminal (and without having to supply a password).  
+I could wrap the bash command in an Applescript/Automator script, but supplying the volume name is troublesome.
+Any ideas?  Bonus points if I can choose to "Securely Empty Trash." 
+
+A: You can easily empty Trash on a specific drive with the Finder. There's no need to use a command line or any external software.
+The trick is that Finder can remove files directly, without using Trash.
+The solution
+
+*
+
+*Open the root folder of the USB drive in Finder and press Cmd+Shift+. to show hidden files.
+
+*Find the .Trashes folder, then press Opt+Del and confirm the permanent removal.
+
+
+
+
+*Press Cmd+Shift+. again to stash away hidden files.
+
+The conclusion
+If you need to permanently delete something in Finder – just press Opt+Del and confirm the removal.
+
+A: I haven't tried it myself, but had this conversation with someone else who used SmartTrash. Give it a go.
+
+A: I had a bit of time and the occasional need for something like this, so I thought I'd try writing up a quick AppleScript to do this.
+The following AppleScript should do what you need. Paste it into a new AppleScript Editor document and save it as an application, then you can drag a volume onto it to delete only its files from the Trash. 
+If you drag your startup disk to it, it will delete files from the current user's Trash in their home folder. 
+If you drop multiple volumes on the script, it will empty all of their trashes.
+The script only looks at the current user's trashes on volumes. On non-startup volumes (partitions & external drives), the user's trash is in /Volumes/volumeName/.Trashes/userID/; on the startup volume, it looks in ~/.Trash/.
+It will ignore anything dropped onto it that is not a volume.
+
+There are a few properties you can change to alter how it behaves.
+Prompt for Secure Delete - If you want the script to ask you each time whether to delete securely, set the askForSecureEmpty property to true (at the top of the script).
+Default Delete Command (rm or srm) - If you don't want the script to ask you each time, set askForSecureEmpty to false, then set rmDefault to either rm for normal or srm for secure.
+Disable Trivial Dialogs - The script will show a dialog if it didn't find any Trash files to empty, e.g. if there were no files in that volume's Trash. To disable these, change the property, showDialogs to false. If there is an actual error while trying to delete files from a volume's Trash, you will still get an error message.
+
+Disclaimer
+The rm command can be very destructive. I wrote this script fairly quickly and only tested it on my own Mac, so please use it with caution and at your own risk. That said, it really shouldn't do anything to any files that are not already in a Trash folder somewhere.
+One scenario I have not tested that could cause a problem is if you have two or more volumes with the same name. 
+Any ideas to clean up or improve the script are welcome.
+-- Script to empty selected volumes' trashes --
+
+property askForSecureEmpty : false -- change to true if you want to choose each time script is used
+property rmDefault : "rm" -- command to use when askForSecureEmpty is "false"; use "rm" for regular, "srm" for secure
+property showDialogs : true
+
+on run
+    set theVolumes to {choose folder}
+    emptyTrash(theVolumes)
+end run
+
+on open theVolumes
+    emptyTrash(theVolumes)
+end open
+
+on emptyTrash(theVolumes)
+    if askForSecureEmpty then
+        set useSecure to display dialog "Use Secure Empty Trash?" buttons {"Cancel", "No", "Secure"} default button "Secure"
+        if useSecure is "Secure" then
+            set rmCommand to "srm"
+        else
+            set rmCommand to "rm"
+        end if
+    else
+        set rmCommand to rmDefault
+    end if
+
+    -- Get the user ID to empty only the current user's Trash --
+    set userID to user ID of (system info)
+
+    -- Set up a counter to later determine if any volumes were dropped on the script --
+    set volumeCount to 0
+
+    -- Cycle through each item dropped on the script to empty its Trash --
+    repeat with theVolume in theVolumes
+        if kind of (info for theVolume) is "Volume" then --ignore anything that's not a volume
+            set volumeCount to volumeCount + 1
+            set volumeName to name of (info for theVolume)
+
+            -- Check if we're working on the startup disk, if so use user's home Trash --
+            tell application "System Events" to set startupVolume to name of startup disk
+            if volumeName = startupVolume then
+                set trashPath to "~/.Trash/"
+            else
+                set trashPath to quoted form of (POSIX path of theVolume & ".Trashes/" & userID & "/")
+            end if
+
+            -- Try emptying the trash --
+            try
+                do shell script "cd " & trashPath --make sure the expected Trash folder exists
+                if (count (paragraphs of (do shell script "ls -l " & trashPath))) > 0 then
+                    try
+                        do shell script "cd " & trashPath & "; " & rmCommand & " -R ./*" --try to empty the trash
+                    on error
+                        display alert "Error on volume " & volumeName as warning message "There was an error trying to delete the files." buttons {"Cancel", "OK"} default button "OK"
+                    end try
+                else
+                    if showDialogs then display dialog "The Trash for volume '" & volumeName & "' appears to be empty." buttons {"OK"} default button "OK"
+                end if
+            on error
+                if showDialogs then display dialog "No Trash folder on '" & volumeName & "' for this user." buttons {"OK"} default button "OK"
+            end try
+        end if
+    end repeat
+
+    -- Report an error if no volumes were found --
+    if volumeCount = 0 and showDialogs then display dialog "No volumes found."
+end emptyTrash
+
+
+A: I use Cocktail for this, which I already have for other reasons.
+
+A: Here's one freeware option (Smart Trash and Cocktail are commercial):  Super Empty Trash
+Seems to work fine - very simple, delete from one volume at a time.
+
+A: A very simple GUI-based solution (for SD cards, USB sticks and external disks).
+
+
+*
+
+*Unmount the disk you want to 'clean'.
+
+*Create 'temp trash' folder on desktop and drag everything out of trash into this temp folder.
+
+*Now mount disk and open trash - hey presto only the trash files on the disk you want to clean.
+
+*Empty trash
+
+*Now drag everything from your temp folder back into the trash.
+
+*For good measure you can now drag the temp folder in to the trash too.
+
+*Job done
+

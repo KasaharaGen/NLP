@@ -1,0 +1,11 @@
+Q: Is there a way to sleep your mac through iPhone/iPad? In the remote that comes with Apple TV, if you pair it with a mac, you'd be able to press and hold the play/pause button and your mac will go to sleep. Is there a way to do the same with iPhone/iPad Remote app?
+
+A: If you just need the sleep/wake function, you may want to take a look at iNet WOL, which does a great job. It's the little brother of iNet Pro, a much more extensive network tool for the iPhone.
+
+A: I use Screens and Prompt to manage my macs remotely (whether it's the couch or from afar).
+The little command osascript -e 'tell application "System Events" to sleep' can be mapped to a function key or alias in your shell and will sleep the mac no matter how it gets called.
+Screens: Using the mouse itself requires no setup or you could customize a gesture to activate a Function key that calls the script to automate things a bit.
+
+A: Yes, you can search different alternatives on the iTunes Store. I've used jfcontrol in the past with great success. Not the prettiest application, but it deliver. You need a small (very small) server installed on the machine (it's just a little app that runs on the Menu Bar). Pretty much all these apps need a small server. 
+
+A: Not out of the box, but there might be an app for that. What I would recommend is simply installing a VNC app on both devices - something like TeamViewer or LogMeIn. Then, you can  use your iPhone to navigate the system menu like you normally would. 

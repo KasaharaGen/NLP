@@ -1,0 +1,94 @@
+Q: Why won't my MacBook Pro automatically sleep? I have my MacBook set to go to sleep after 2 minutes while on battery (via the Energy Saver preference pane.) However, when I leave it idle, it only turns off the screen—it does not actually sleep. This means that if I leave it and forget to close the lid, it always ends up with a dead battery.
+The system sleeps correctly if it is triggered manually ( – Sleep) or by closing the lid. I have tested it with no USB devices connected and on a fresh user account, on the chance a background program was preventing sleep. There is no relevant information printed to the Console at the time when the system should sleep.
+I've performed a PRAM and SMC reset to no avail, as well as the usual superstitious Verify Disk Permissions.
+Is there anything else I should try before I reinstall OS X?
+This is a MacBookPro5,5 running OS 10.6.6.
+It's worth noting that I suffered from this issue some time ago due to a bug in a helper daemon for the product Things, but that this issue was slightly different and involved display sleep. Also, I have verified that the helper daemon was not running during my tests.
+Additional information:
+I started working through the Apple document titled "Why your Mac might not sleep or stay in sleep mode." I discovered that this issue does not appear when I Safe Boot my computer. I diff'd the process lists and discovered that the following programs are only running when in normal boot, and are thus possible culprits:
+
+
+*
+
+*Quick Look Helper
+
+*cvmsComp_x86_64
+
+*kextcache              
+
+*launchd                
+
+*mdworker               
+
+*mdworker               
+
+*nmblookup              
+
+*vmnet-bridge           
+
+*vmnet-dhcpd            
+
+*vmnet-dhcpd            
+
+*vmnet-natd             
+
+*vmnet-netifup          
+
+*vmnet-netifup
+
+A: To help debug sleeping issues, try the pmset command in the terminal:
+$ pmset -g assertions
+
+Assertion status system-wide:
+   ChargeInhibit                           0
+   PreventUserIdleDisplaySleep             0
+   PreventUserIdleSystemSleep              1
+   NoRealPowerSources_debug                0
+   CPUBoundAssertion                       0
+   EnableIdleSleep                         1
+   PreventSystemSleep                      0
+   DisableInflow                           0
+   DisableLowPowerBatteryWarnings          0
+   ExternalMedia                           0
+
+Listed by owning process:
+  pid 2520: [0x0000012c000009d8] PreventUserIdleSystemSleep named: "com.apple.audio.'AppleHDAEngineOutput:1B,0,1,2:0'.noidlesleep" 
+
+In this case, it's the process 2520 messing up. Check it out in activity monitor and kill it (/usr/sbin/coreaudiod started by iTunes).
+After that, run the command again:
+Assertion status system-wide:
+   ChargeInhibit                           0
+   PreventUserIdleDisplaySleep             0
+   PreventUserIdleSystemSleep              0
+   NoRealPowerSources_debug                0
+   CPUBoundAssertion                       0
+   EnableIdleSleep                         1
+   PreventSystemSleep                      0
+   DisableInflow                           0
+   DisableLowPowerBatteryWarnings          0
+   ExternalMedia                           0
+
+No flags for PreventUserIdleSystemSleep. 
+
+A: I’ve had this same issue with my MacBook Pro 3,1. It’s extremely frustrating. I went so far as to completely reinstall OS X, which didn’t solve the issue. This leads me to believe that it’s likely a hardware issue in my case.
+I’ve given up troubleshooting the issue and just use PleaseSleep.
+
+PleaseSleep is a utility software designed for Mac OS X that helps put your computer to sleep when you know some other app is preventing your Mac from going to sleep.
+PleaseSleep sits in the background and waits for the sleep timer you set in Energy Saver preferences pane. Depending on the preferences you set, PleaseSleep will try to put your computer to sleep when the scheduled sleep timer kicks in. PleaseSleep is very easy to configure, you can enable, disable, and access its preferences via the system menu bar icon. You can choose to have PleaseSleep activate the sleep function all the time, or you can tell PleaseSleep to activate the sleep function only when certain apps are running.
+
+
+A: I finally have my system reliably idle-sleeping again. I changed three things to reach this point, all of which I believe were contributors:
+
+
+*
+
+*I was low on disk space (less than 5% free) on my primary volume. The kernel was complaining about this to system.log (viewable in Console.app) about the time it should have been sleeping.
+
+*I disabled Dropbox, which accesses the disk frequently and obnoxiously, and is reported to prevent sleep in Snow Leopard.
+
+*I upgraded from an embarrassingly old Chromium nightly, and I'm now on 11.0.658.0 (73560). There are several bugs open about this Chrome/Chromium preventing idle sleep. However, I discovered this only after getting the system to idle sleep after a reboot with no programs running.
+Technical observations follow:
+It's worth noting that the Energy Saver preference pane lies a little bit. I have it set to sleep and turn off the screen after 1 minute, but the system doesn't actually go to sleep for 3 minutes and 30 seconds, give or take a few seconds to write the Safe Sleep image. The screen actually takes 2 minutes to go to sleep. I suspect this is a case of Apple knowing better than us—1 minute is probably just too fast. Regardless, this makes debugging issues like this hard because you have to wait longer than indicated to see if the system is really going to sleep.
+That these two applications were contributors despite not doing anything particularly intensive suggests that Snow Leopard changed something about how the system decides whether idle sleep can occur. There is a documented API for disabling idle sleep, but it also appears that disk activity (specifically writes) more than once a minute also resets the sleep timer and thus delays sleep. Any application that writes frequently is thus a possible cause. sudo fs_usage -e grep -f filesys | grep -e write in a Terminal window can help reveal culprits.
+
+A: Might be Spotlight indexing.  You could test this by going to System Preferences > Spotlight > Search Results and unchecking everything.  Then see if your MacBook goes to sleep.

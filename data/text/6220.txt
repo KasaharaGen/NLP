@@ -1,0 +1,12 @@
+Q: I can't find otool on my jailbroken iPod From what I understand is that when you change your settings in Cydia to developer you should be able to access extra utilities. Otool being on of them.
+However, when I attempt to use otool it tells me that the command isn't found. So I look in my bin file and can't find it there. (i'm attempting to use it via ssh from my computer)
+Can anyone offer suggestions on where to find the tool for my ipod?
+
+A: When you change your settings to Developer in Cydia, what you are actually doing is changing the package list filter. This means that certain packages will only be shown as available to download and install in the package list according to which filter you select.
+Having set your filter settings to 'Developer' you'll then need to find and install the package you want.
+otool is included in the package called: BigBoss Recommended Tools
+
+A: If you have a mac, you could use otool there on iOS binaries, should work with ARM-based code as well. (otool is installed with Xcode's command-line tools.)
+Update: Based on this answer to a related question, you can now find otool in the "Darwin CC Tools" package from the Cydia/Telesphoreo repository. Doesn't seem to be in "BigBoss Recommended Tools" package anymore.
+
+A: Just install BigBoss Recommended Tools, oTool is included there.

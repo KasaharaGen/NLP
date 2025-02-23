@@ -1,0 +1,23 @@
+Q: Lightweight Audio Waveform Viewer I'm doing a large amount of music library updating and de-duplicating and evaluating, and I would like a piece of software that would allow me to quickly be able to view a waveform of a selected audio file.
+I currently use Fission for editing, but it loads slower than I would like, and I have no need for the actual editing aspect of the software. Additionally, Garageband is antagonistically slow and too hard to examine the waveform like I would like.
+Is there software, or maybe something like a QuickLook plugin, that would allow me to select an audio file, and quickly get a rendered version of the waveform data within the file?
+Loudness levels labels are appreciated, but not required.
+
+A: It's not a Quick Look plugin, but Sound Studio it is fairly lightweight, and displays the waveform:
+
+However, I'm afraid I don't think you'll find the waveform itself to be particularly useful for determining duplicate songs.
+
+A: Try Audacity.  It doesn't seem to heavyweight for just waveform viewing.
+
+A: I have tried two options:
+
+https://github.com/seagirl/QLWaveForm/releases/tag/v1.0 << that worked
+https://github.com/ideoforms/qlspectrogram << Doesn't work on catalina
+
+A: Checkout Snapper 2 from Audio Ease:
+http://www.audioease.com/Pages/Snapper/SnapperMain.html#
+I was looking for the same thing but this is the only all-in-one, finder level waveform viewer I could find.
+
+A: The 'lightest' app I've found to see a waveform is Nulloy
+http://nulloy.com/
+But I wish there were a Quick Look plugin.

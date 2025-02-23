@@ -1,0 +1,12 @@
+Q: Why is my ethernet connection between two Macs so slow? I'm currently trying to port all my old stuff from an old Power Mac G4 (MDD) to a newer Power Mac G5 (Late 2005). Both have gigabit ethernet and so I decided to connect the two via ethernet cable (Cat6). Both are running OS X 10.5.8.
+However... I'm only getting speeds of up to about 40Mbit/s, and it's taking hours (nearly a whole day in total) to transfer about 200GB. Are there any reasons why it might be so slow, and is there any way I can speed it up?
+Thanks!
+:-Joe
+
+A: I already have this problem in the past and solve it by disabling internet sharing. I don't know why disabling internet sharing speedup bandwidth but it maybe useful for you.
+You can also try another ethernet cable.
+
+A: You could try FireWire Target Disk Mode. Boot the source computer while holding down the T key and connect to the destination computer. The source's drive(s) will show up on the desktop and you can copy files that way. 
+I don't know if it will be any faster; the bottleneck could be your hard drive speeds. 
+
+A: Considering they're older Macs, you're probably hitting the hard drives' I/O limit.

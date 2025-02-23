@@ -1,0 +1,90 @@
+Q: Is there any way to add an ePub book to iBooks without iTunes? I purchased a book and have it in ePub and PDF formats. I can easily add the PDF to iBooks from Safari. However, I can't find a method to get an ePub book into iBooks without iTunes. I'm away from my laptop with iTunes where my iPhone syncs, so that's not an option at the moment.
+Is there anyway to add an ePub book to iBooks without iTunes?
+
+A: Now you can use dropbox. 
+Put the epub in dropbox and open them using the dropbox app in ipad. 
+Dropbox will not be able to open epub but you can choose to open it in ibooks or other supported apps.
+
+A: GoodReader is capable of this. You can add a bookmark in Safari which will save the linked ePub into GoodReader's "filesystem", from where you can tap the ePub file and open it in iBooks.
+As an aside, GoodReader makes a fairly good Swiss army knife tool for file management on non-jail broken iPads.
+
+A: Calibre might work. It's pretty flexible.
+Here's the calibre conversion list. 
+
+A: Just download an app like "iFlashDrive", this way you can copy ePubs from any computer with iTunes even if it is not the one syncing with iTunes.
+Then you copy the files on the iPad/iPhone. In iFlashDrive you select "Send via EMail", then press "cancel", then go in the Mail-App and select the Mail from Drafts and delete it. Now go to the Trash and from there you can open the Attachment in iBooks :)
+
+A: What you need is some way to get it on your device: for this there are a lot of options available (and some are mentioned above).
+Personally I have used two methods to achieve this. The first one is easy: place the file in Dropbox.
+The second one is a bit more complicated, but preferred as it does not involve an external application or service on your Mac or your iDevice.
+
+
+*
+
+*Open Terminal
+
+*cd to the directory where the ePub is placed (or drag the directory in the Terminal window)
+
+*Type (or copy/paste) python -m SimpleHTTPServer
+
+*Open on your iDevice Safari
+
+*Enter the IP address of your Mac (you can find this in the "Network" pane of "System Preferences"), along with the port number opened by the SimpleHTTPServer (default 8000). E.g. if your IP address is 192.168.0.187, enter 192.168.0.187:8000 into the Mobile Safari address bar.
+
+*The directory can be viewed as a simple listing: all files are shown as links. Click on the title of your ePub and it is downloaded to your device. Mobile Safari offers you the applications that can open ePub files (I only use iBooks for this).
+
+*Close the server in Terminal on your Mac with keystroke "CTRL-C".
+
+
+A: If you email the epub file to yourself, opening the attachment in iBooks will be an option in iOS Mail.
+
+A: At the moment, you can't add ePub to iBooks without using iTunes (at least for non-jailbroken iDevices).
+You could use Stanza that supports this feature.
+Maybe, one day, Apple will add this functionality.
+
+A: You can use iTools for this. It's free and allows you to import/export PDFs and ePUB files for iBooks. But it also allows import/export of pictures and videos.
+Works for Windows and Mac OS X.
+iTools does not need to be installed and can even be used as a portable app.
+Keep in mind: iTunes needs to be installed and have a trusting relationship with your iPhone/iPad. 
+See also: Copy PDF or ePUB without iTunes
+
+A: *
+
+*Get any of a number of free or paid book-reading apps on your iPhone. Marvin is a good example of such a free app.
+
+
+*On your computer, download CopyTrans Apps which is a free beta program that can add files and documents to iPhone apps
+
+
+*Connect the iPad and let the iOS apps load in the program window
+
+
+*Click on the Marvin app or on the reader-app you have installed on your iPad
+
+
+*From the right-hand side of the program window click on Add Documents and browse to the ePub book file on your computer
+
+Source: How to transfer ePUB books and PDF documents to iPad
+
+A: AirDrop
+AirDrop is Apple’s new (2011) technology for quickly and easily sharing files between computers and devices over a shared Wifi or Bluetooth. Works on many of the later models of Macs and iOS devices. As of OS X Yosemite and later, Macs can communicate with iOS devices over AirDrop (two separate worlds before that).
+
+*
+
+*On the Mac, in the Finder app, choose Go > AirDrop.
+
+*Wait a long moment as your Mac probes the network. Any running iPad or iPhone currently running on the same wifi should appear within the Finder window.
+
+*On your Mac, in the Finder, drag your .epub files on to the desired device that appeared in the Finder window. A message appears on the iOS device telling you that copying is in process.
+
+*On the iOS device, in the panel that appears, tap which app should accept the files. You probably want to tap the iBooks item.
+
+Done.
+
+A: Use a file manager and copy the epub to the correct folder. It should be there the next time you open the app.
+
+A: I purchased an item called 'SanDisk Wireless Flash' that now allows me to load or copy from any of my iDevices (pads, phones, etc). It is a small USB device that creates a small area WiFi zone (a few meters at best). First you connect it to your PC and drop whatever data you want on it. Next, you connect to the device through the wireless app on the device and it allows you to see what is on the wireless device and to download what you want: books, pictures, movies, documents, etc. I bought a 32 GB device but there is at least a 64 GB one. 
+It has been wonderful when I want to share data with family and friends. It also helps expand the memory capacity of the iDevice you are using for only a small financial cost. I am completely satisfied with mine.
+
+A: yes there is a way to send ePub files to iBooks without iTunes.
+copy trans manager ;) will allow u to sync music and books without the itunes hassle

@@ -1,0 +1,28 @@
+Q: Is there a way to export syntax color settings from one Xcode installation to a new one? I have installed a new XCode 4 on a machine and I'd like to copy/paste the syntax coloring settings from the first one to the new one. How may I do this ?
+
+A: Custom syntax color themes are located in
+~/Library/Developer/Xcode/UserData/FontAndColorThemes/
+
+(Note that this directory may not exist if you've not yet modified any of your themes or haven't created a custom theme of your own, but will be created as soon as you do.)
+The files have a .dvtcolortheme extension. Simply retrieve the file from that directory and copy it into the same directory on another machine.
+
+I quite like Ethan Schoonover's Solarized themes; I find them to be very readable and easy on the eyes, and can be installed as explained above.
+
+A: I found this answer while looking how to move the new (at the time of writing this answer) Civic theme in Xcode 8 to Xcode 7.3. Now themes are bundled inside of the Xcode application's bundle at following path:
+Xcode.app/Contents/SharedFrameworks/DVTKit.framework/Versions/A/Resources/FontAndColorThemes
+
+Also Xcode8 theme has extension xccolortheme while Xcode7.3 has dvtcolortheme. From my experience - it's safe change the extension without modifying the file itself.
+
+A: As of Xcode Version 11.6 (11E708), the file extension for color themes is xccolortheme.
+The path to the included themes is:
+/Applications/Xcode.app/Contents/SharedFrameworks/DVTUserInterfaceKit.framework/Versions/A/Resources/FontAndColorThemes
+
+
+The path to a user's custom themes is the same as in the accepted answer:
+~/Library/Developer/Xcode/UserData/FontAndColorThemes/
+
+
+To install a custom theme, you can simply drag the xccolortheme file into the folder for custom themes; quit Xcode, then restart Xcode. The theme will now appear in Xcode's Preferences for Fonts & Colors.
+
+A: With Themeinstaller, you can just open .dvtcolortheme files and they will be installed in your Xcode folder.
+In case you wanted some new themes there are many to be found on codethemes.net, having Themeinstaller, you can install them, just by clicking "install" under any of your choice.

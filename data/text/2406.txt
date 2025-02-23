@@ -1,0 +1,36 @@
+Q: Can I get push notifications for emails in my Gmail Priority Inbox only? Is it possible to get push notifications only for the emails in the Gmail Priority Inbox and not for the unimportant mail?
+I would like to set up my iPhone 3GS iOS 4.2.1 so that I get notified (with sound, vibration, etc) only when I receive a mail that Google thinks is important to me.
+
+A: After days of searching I have found the solution. https://www.ultimatenotifier.com/
+
+
+*
+
+*You have to buy Ultimate Notifier from the AppStore. $2.99 at the moment. 
+
+*Create a free account on their site or through the app.
+
+*Login to the web interface on your computer and under Add Notification select Add Gmail / Google Mail - NEW Priority Inbox
+
+*Complete the fields username and password with your Gmail username and password. (I know this is a BIG leap of faith.) 
+
+*Save.
+
+*Log in to the app on your iPhone to receive push notifications
+
+
+A: You can do this with MailMinder on an iPhone. Just set up a Source of Gmail with
+the folder set to the Priority Inbox, then set up a Minder with a Subject of ...
+This will match any message that has a subject with 3 characters. I know the developer
+is planning to have a button to match anything in the next release.
+Mail Minder has a free mode if you don't mind ads.
+
+A: Try this:
+Install Boxcar on your iPhone. Create a Boxcar forwarding email address. After you created it, add the Boxcar forwarding email address in your GMail Settings under "Forwarding and POP/IMAP".
+In your GMail Settings create an new filter. Under the search criteria "Has the words" enter "in:important". Test your new filter by clicking "Test Search". If you get your shown your messages from the Priority inbox, then the filter works.
+Now under the "Create a Filter" tab check "Forward it to" to the Boxcar forwarding email address. Now you should get push notification from Priority inbox.
+NOTICE: I can't assure you that this will work since I didn't try it.
+
+A: Strictly speaking your question is specifically about gmail because first you have to resolve how to separate messages labeled as important and that labeling is a gmail only feature.
+On the iPhone side your best bet to have push notifications for selected messages is to create two accounts. The challenge here is how to forward emails to your second inbox (in wich the boxcar suggested by cahuk is a nice idea).
+All that being said there's nothing we can do until google fixes those unexpected filter behaviors.

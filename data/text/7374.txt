@@ -1,0 +1,27 @@
+Q: External applications opening Safari links in new window rather than new tab I've noticed that when an application, such as iChat or Twitter for Mac, sends a link to Safari it opens in a new window rather than a new tab. I can manually force it to open in a new tab by holding down cmd, but I'd like this to happen automatically. I don't recall links opening in new windows in Snow Leopard.
+To be clear, I'm not talking about opening links within Safari itself, I've set these to open in new tabs already. I'm talking about external applications sending links to Safari.
+
+A: So this is strange - I just got this to work.
+In the above window I set "Open pages in tabs instead of windows: Always" and then I unchecked the option for command-click opens a link in a new tab. After doing that - links from external apps opened as a tab in the same window.
+
+A: In Safari > Preferences > Tabs, there's a preference for setting when pages should open in windows or tabs. 
+Look here:
+
+
+*
+
+*Open Safari > Preferences and select Tabs along the top
+
+*Under the option for "Open pages in tabs instead of windows:" select "Always" from the drop-down.
+
+
+
+This will force every application to open links in tabs.
+
+A: If it only happens occasionally, it can be because there's some unsubmitted text on the location bar. If you've typed something on the location bar, open http://example.com opens a new window even if you've told Safari to always open pages in tabs.
+
+A: What I want to say is... the "Safari > Preferences > Tabs > Always" is correct.
+But my suggestion is that... set the value "automatically" instead of "Always".
+in Always... if code wants to open the page in new window then also browser restrict it
+to open the page in the new page and open in new tab...
+but in automatically... it opens according to requirement..

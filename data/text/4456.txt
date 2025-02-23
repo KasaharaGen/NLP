@@ -1,0 +1,62 @@
+Q: Is X11 still used today? I have had X11 installed on my Mac for quite some time (as long as I have owned it I think) and have never used it. Do applications still use X11 or is out outdated at this point? Should I "learn" how to use it because I may use it in the future? The reason I ask is that I read that you can run X over SSH and I thought it might be useful to run a window manager to get some graphics from a remote machine. Then I realized I have never used X11 and launched it only to become confused. So should I use X11 and why?
+
+A: X11 is still used extensively for very expensive *nix-based CAD/CAE software packages.
+I used it to run the free Gimp editor on Macs for which I couldn't justify installing Photoshop.
+But unless you need some specific *nix software package that uses X11, there is much general need for it on a Mac.
+
+A: X11 is used for most Unix GUI apps. All Linux GUI apps use X11 and it is often the easiest way to port them to run on OSX to keep using X11. the only Linux GUI apps which don't use X11 when under a simple port are some of those using Qt and Java apps where the underlying GUI has been ported to OSX aqua.
+Command line apps like ssh and other Unix utilities don't use a GUI and so port directly.
+You can use Macports, Fink and Homebrew without using a X11 app - it depends on what apps you port.
+
+A: The following is a list of popular programs that require X11:
+
+
+*
+
+*Gimp - open source photo editing
+
+*Inkscape - open source vector drawing program
+
+*FreeCiv - open source version of the Civilization games
+
+*Scribus - open source desktop publishing software
+
+
+Basically, if you plan on using only commercial software, you don't need X11. If you plan on using open source software, you may want to keep X11 around just in case. Many open source projects used to require X11 but now have native Mac versions (OpenOffice, for example).
+
+A: Yes. X11 is very much still in use as it is a very powerful windowing system and there is nothing that Apple has released that replaces the core functionality of X11.
+I wouldn't spend time learning X11 in the abstract until you have a need to produce code that runs on X11 or you need to run software that is written for X11.
+In a nutshell - it is a very flexible client/server system. The server runs where the keyboard and mouse and display are. The client is the program running locally or remotely on a different computer. For example I can run protein folding engines on large servers that are in a university across the country (or world) and interact with the user interface in a cafe on my MacBook Pro.
+I have a choice of a wide variety of window managers to use. The virtual and extended desktop concepts in X11 are very different than Mac's typical you only get a screen if something is physically connected or enable spaces.
+There are several downsides in that the system is different and to use it, you have to do some learning. Also - it doesn't map perfectly to Apple - cut and paste can be disorienting, mouse buttons have different functions, keyboard mapping can be tricky, and the uniformity of the Mac interface is disturbed as most X11 programs come with a wide variety of widgets. Even the most die hard fan of X11 chrome has to admit that a lot of it is "quaint" and some of it is really hard to use for people that expect the Macintosh user interface experience. (This is more of a culture thing - some countries have delicacies that are off-putting to others - it's not right or wrong - just different heritages and long assumptions on how something is "supposed to be done".)
+Cheers and good luck!
+
+A: Yes.
+I personally don't use it because I have Linux installed beside Mac OS X.  But many of my coworkers and fellow students use X11 in Mac OS X frequently.  This is largely because we need to do plotting a lot, and so we use Gnuplot quite often.  Gnuplot has a Mac native terminal (GUI) (I think), but it's no match for its X11 and wx (requires X11) terminals.
+Also many other cool stuff (usually cross-platform programs) require X11, for example Wireshark, Audacity (a wave editor), and Inkscape (an awesome vector image editor), etc.  Of course Audacity and Inkscape both have their Mac OS X native equivalent, but most of them are large and expansive.
+
+A: Hm. It is interesting to see how much linux-users converted into OS X world. Here is my 0.02$. (as a heavy Linux user in past).
+
+
+*
+
+*When me converting into OS X (from Linux - approx 6-7 years ago) I started using heavily X11 based applications, simply because i know them much more than X.
+
+*today, I have only ONE application installed what is X11 based and using it sometime - gimp - because I don't want spend much money for a photoshop. Anyway, because i'm not an photo-editor-expert, maybe will find some easy-to-use freeware native cocoa app and will throw gimp out too.
+
+*X11 is really very powerful. Its base design is 30 years old and this showing how stable it is. But have a cost (pros) too - but this answer is not the right place discuss them.
+
+*So, if you have NATIVE variants of your applications, you probably will not need to use it.
+
+*Maybe will need to use it, when:
+
+
+*
+
+*you haven't native version of some app, what is exists for X11
+
+*you are in heavy X11 envinroment, where is a common way executing things like xterm --display somecomp:0 or soo...
+
+
+
+A: I do web-dev and media stuff and I personally think there's no use for X11 on a Mac as long as you're not a unix network administrator or something. There's still no native port of Wireshark, but beside that I don't use X11 at all. Beside Fink and MacPort there's also Homebrew, which is much easier than the other two and there's no X11 required.

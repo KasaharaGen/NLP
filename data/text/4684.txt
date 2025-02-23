@@ -1,0 +1,53 @@
+Q: Application to notify user of active VNC connection I want something more visual than Apple’s very subtle binoculars in the top right status menu when there is an active incoming VNC connection to the machine.
+Preferably just a floating window notifying the user that there is an active VNC connection, and maybe the IP address. The best solution I have found is running the below command in the Terminal. But that doesn’t really solve my monitoring issue as I actively have to go and find the data.
+netstat -a | grep vnc | grep ESTABLISHED
+
+
+A: You always can make this script and run from a terminal
+#!/bin/bash
+
+alertme() {
+    say "Big brother watching"
+}
+
+while :
+do    
+  netstat -a | grep vnc | grep ESTABLISHED && alertme
+  sleep 60 #wait 60 seconds
+done
+
+and you got a spoken warning. If you save the script with .command extension, you can start it from the finder by doubleclick.
+You can install growl from the Extras directory the growlnotify package. You can change the say in the alertme to:
+growlnotify --appIcon TextEdit "Big brother"  -m 'watching'
+
+and got an notifying window.
+Or, you can make Automator workflow with shell script & popup-window alert. :)
+Or, you can use the next:
+sudo fs_usage -f network AppleVNCServer | grep -E '(accept|close)'
+
+instead of netstat | grep and will get exact connect and disconnect times, like next, but you need run it as admin... (sudo).
+14:19:20  accept                                                                                             0.000024   AppleVNCServ
+14:19:33  close                                                                                              0.000047   AppleVNCServ
+14:27:01  accept                                                                                             0.000024   AppleVNCServ
+14:28:19  close                                                                                              0.000055   AppleVNCServ
+14:28:26  accept                                                                                             0.000018   AppleVNCServ
+14:28:34  close                                                                                              0.000037   AppleVNCServ
+
+
+A: Since launchd starts and stops the screen sharing process, you can create a new launchd job that uses a KeepAlive dictionary with an OtherJobEnabled clause to tie your warning tool to the launchd label com.apple.ScreenSharing.server
+When ScreenSharing starts, your job will also be started by launchd. (or vice versa if you prefer)
+The system job you wish to key is /System/Library/LaunchAgents/com.apple.ScreenSharing.plist
+Your plist should go in ~/Library/LaunchAgents or /Library/LaunchAgents  depending if you only want one user warned, or all users warned. I would also set LimitLoadToSessionType to Aqua.
+As mentioned by @jm666 - Growl can make some very pretty notifications with a lot of control and transparency, overlay etc.. 
+growlnotify --appIcon Screen\ Sharing "Screen Sharing" -m "is now active - click to dismiss" -s
+You could get very fancy with a shell script to determine the source IP, date and time, log the connection or do all sorts of fun things since launchd has great support for shell scripts as well as full applications.
+A quick and dirty Apple Script might be good for testing to be sure launchd is working and you can always polish the presentation later.
+osascript -e 'tell application "System Events" to display alert "Incoming VNC session started" as warning buttons {"Cancel", "OK"} default button "OK" cancel button "Cancel" message "Screen Sharing is now active and someone can see and control this Mac until the menu bar icon of \"binoculars inside a monitor\" turns back into binoculars alone. "'
+See these links for more info on launchd and AppleScript dialog for reference.
+
+A: If you're satisfied with what is being reported by
+netstat -a | grep vnc | grep ESTABLISHED
+
+you could use the OS X Console utilily to read this file. Just send the logfile to /var/log/ or /Library/Logs and you'll see it in the Console log list.
+You can also get the system to keep track of the size of the log and automatically turn it over and compress old versions after a certain size is reached.
+Check out newsyslog if you're interested in that.

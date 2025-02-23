@@ -1,0 +1,35 @@
+Q: How to monitor file access for an OS X application? I am looking for the OS X corespondent of FileMon, that was later included in ProcessMon.
+BTW, it is essential to be able to filter by process.
+
+A: Instruments—a part of the Apple Xcode development suite—can monitor all file access and writes. Open it from /Applications/Xcode.app/Contents/Applications/Instruments.app, select your application or process, and press Start. You have extensive filter options available in the menus.
+Older versions of Xcode are storing the App at /Developer/Applications/Instruments.app
+
+A: There is the command opensnoop. Run without arguments, it may overwhelm you with output, but it can be run with arguments -n name to limit output to processes named name.
+
+A: 
+lsof
+
+command on the Terminal.app can do that for you?
+use the man lsof to catch up with it's use.
+Cheers
+
+A: The faster way is:
+$ lsof [path_to_file]
+
+This solution doesn't require the root password and gives you back the following, clear, result:
+COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF     NODE NAME
+Finder     497  JR7   21r   REG    1,2   246223 33241712 image.jpg
+QuickLook 1007  JR7  txt    REG    1,2   246223 33241712 image.jpg
+
+
+A: Also available are iosnoop and iotop depending on your specific needs. These terminal commands can be piped through grep to watch for filesystem events from a specific process or against a specific file.
+
+A: No one has mentioned Activity Monitor, found in the /Applications/Utilities folder.
+Click on the Process Name in the list, then hit the "Inspect" button on the toolbar.
+There are three tabs in the resulting window: Memory, Statistics, Open Files and Ports. The Open Files and Ports tab will show all the open files being used by the process.
+
+A: Launchd is the main system level tool for monitoring files (and a folder is a special file) since it's always running. Hazel is one program that helps put a pretty GUI around launchd WatchPaths. Look here for lots of tips on launchd as well as hundreds of tutorials, a good wikipedia article and the Apple dev docs.
+fseventsd will log some changes - so you might use FSeventer or access those files if launchd isn't your cup of tea.
+fs_usage and lsof are process aware command line tool to tap into the IO subsystem as it's running. The fs_usage buffer can get overloaded so if you want something more guaranteed and less of a "take a quick peek" it's less dependable for total correct results as the other commands.
+
+A: There's a graphical interface to lsof type information. It's donationware from HAMSoft and it's called What's Keeping Me. Designed to answer that "Why can't I delete this from my trash?" question that comes up every so often on OS X, it also happens to be a handy way to watch for open I/O handles on running processes if you're just curious about what's going on. It allows you some simple search and filtering.

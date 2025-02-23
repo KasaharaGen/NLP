@@ -1,0 +1,31 @@
+Q: Strange behaviour from delete key on a non-apple keyboard I have a fairly generic USB keyboard plugged into my MacBook Pro. The Delete key doesn't seem to do anything most of the time. When I try to create a shortcut using it (to display the key code) it acts as if it's dead.  Other keys around it (Home/End/PgUp/PgDn) seem to work fine.  
+Now here's the really interesting part. When I push the key in text edit, it seems to do a delete-forward.
+I want to use this key with Cmd (the Windows key on my keyboard) to move files to the Trash. Can anybody explain why this key is acting the way it is? Can anyone suggest a utility which will tell me which key I am pressing on my keyboard?  I used to use xev on an X Windows system.  Is there something like that on a Mac without X installed?
+Actually, I want the Delete key, by itself  to do what Cmd Bkspc does in Finder. It moves a file to the trash.
+But the standard OS X keyboard shortcut window won't accept any of the keys in the 6-key block with (Ins/Del/Home/End/PgUp/PgDn)
+It's interesting.  When I first pull up the keyboard viewer, it shows a diagram of a standard Mac keyboard.  As soon as I hit one of the above 6 keys, the map changes to an extended keyboard closer to what I have.  But the diagram has my Cmd/Opt keys swapped.
+Is there any way for me to tell the OS I am using an extended keyboard?
+The frustrating thing is, Mac OS is training me to use that key.  It does something useful in lots of built-in applications. But I can't assign it to a hot key.
+iCal - deletes an appointment (Cmd+Backspace does the same)
+textedit - deletes forward
+
+A: That's completely normal. The key called delete on Windows is called forward delete on OS X, even though it's often labeled like delete ⌦. It deletes a character forward in text views. It doesn't delete items in many applications like Finder, presumably because it would be too easy to press accidentally.
+Many shortcut recorders don't allow using just forward delete as a shortcut. You can often edit the property lists that store the shortcuts directly though. See How to remap delete and shift+delete keys to delete and permanently delete a file in Mac OS X Lion?.
+
+A: Perhaps you should replace your generic PC keyboard with a modestly-priced external USB keyboard designed specifically for Mac OS X.
+I use the Matias USB 2.0 keyboard, which costs US $30.00.
+MacAlly makes a range of models that start at US $20.00.
+
+A: There's an (albeit old) application called "AsyncKeys" (http://asynckeys.mac.findmysoft.com/)
+You'll need Rosetta for this to run if you're on an intel mac.
+It should tell you what key you are pressing.
+Cheers.
+
+A: You don't say whether you've tried it already, but I'd try the built-in OS X Keyboard Viewer first -- you access it from the menu bar, but you need to turn it on in the Keyboard system prefs, Keyboard tab first.
+
+A: ControllerMate should do the job. 
+It lets you map any key to any function anywhere (aside from hardware keys like the on/off button). All functions are keyboard-specific, that is you can and must consider each keyboard separately. E.g. my ShiftLock keys function as a left-hand equivalent of Return, ⌘-Return, ⌘-P and Delete and Forward Delete key, in combination with modifiers. 
+Only problem: it's not really the most straightforward UI, with flow sheets on a plane and several floating windows. I spent quite some time trying and configuring some media keys... Still, a single reassignment is pretty simple. 
+Most important: it's a hack close to hardware but it's been rock solid on Leopard and Snow Leopard, after a short period without a stable version. No comparison to some vendor's drivers.
+
+A: Use BetterTocuhTool to assign cmd+delete to cmd+backspace. I have just done this for my old full USB Mac keyboard (alu/white) on my M1 Macbook Air : 

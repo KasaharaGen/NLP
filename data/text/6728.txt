@@ -1,0 +1,35 @@
+Q: Changing Airdrop Folder I have changed the location of many other applications to save files to a custom folder instead of ~/Downloads.
+Is there a way to change the default Airdrop location from the Downloads folder to something else?
+
+A: I work for a school district and just had to do this.  The teacher receives student iMovie files for review, and I need to move this automatically from the Downloads folder to something else.
+
+*
+
+*Create the folder you want files moved to.
+
+*I went into Automator (Applications folder) and created a new "Folder Action."
+
+*At the top where it says "Folder Action receives files and folders added to" choose your Downloads folder.
+
+*In Library (far left) choose Files and Folders, then Filter Finder Items.  Drag this to the workflow area to the right.  In my case, I added two criteria.  Kind is movie, and File extension contains m4v.
+
+*Below "Filter Finder Items" drag Move Finder Items from the left side, and choose the new folder location.
+
+That's it.  When someone airdrops a file that meets the criteria you set up, it should automatically move to the specified folder.  Hope this helps someone!
+
+A: Not easily, but you could enable Folder Actions on the Downloads folder before entering AirDrop and achieve the same effect on a more manual and case by case basis.
+In practice it might be easier to change the other programs like Mail and Safari to not use the same default Downloads folder that AirDrop does have hard coded as the save point.
+
+A: I am using Mark Lilbacks's Automator action (see his answer from June 2016), and I can't recommend it highly enough. It's the perfect solution.
+https://github.com/mlilback/QuarantineAutomatorAction
+Have created a dedicated Airdrops folder with a custom icon, which always goes to the bottom of my Download stack (set to Fan mode) when a new arrival appears.
+Just DL the v0.1 Release, install the Action in Automator (with usual permissions - and caveats) and create a workflow. Works perfectly under High Sierra, though I can't comment on later OSs. Thanks Mark
+(Newly registered here so can't comment or upvote yet)
+
+A: I wanted to change the default folder, but there does not appear to be a builtin way to do it. Therefore, I wrote an automator action that can be used in a folder action on your downloads folder. For example, I have one set to move any airdropped files to my Desktop. There is a binary for download at my Github repository
+
+A: This is not a direct answer to your question (which has already been sufficiently addressed), but it could be a workaround for some people who need a quick fix.
+I noticed that immediately after receiving an AirDrop download, all of the newly received files are selected for you. This means you can simply right-click on them and choose New Folder with Selection. You will then have all the items you just received, neatly organized in one place.
+
+It just requires a bit of patience, waiting for the items to be transferred, and not clicking on any other items in Finder during the process (so as not to risk deselecting the ones you want to group together).
+I know it's not the same as changing the default download location, but it's good to be aware of, just the same - especially since we don't always receive files on computers we have full permissions on. It's equally handy when transferring files to someone else too, if you instruct them to do this, or do it for them.

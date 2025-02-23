@@ -1,0 +1,150 @@
+Q: For applications that do not store Quick Look information within the file, where does Lion (or a Server) store that information? Some applications can store Quick Look information (previews and thumbnails) within the file. Others can not. 
+Two aspects to this question
+For a file that is local and without integral Quick Look information: 
+
+
+*
+
+*where does Lion store that information?
+
+
+For a file that is remote, on an AFP server (Mac OS X Server (Leopard)/AFP 3.2+ or greater) and without integral Quick Look information: 
+
+
+*
+
+*does Server store the information remotely?
+
+
+(An AFP client can cache some information locally, with limitations, but I strongly suspect that there must be a more permanent store.)
+Initial guesses
+Much Quick Look information is stored in the attributes B-tree. 
+If so, an attributes B-tree in a more modern version of Mac OS X Server may be potentially better (than older versions of Server) for AFP clients where bandwidth is limited. 
+Please, does anyone have more definite answers? 
+Reference and other items of interest
+Quick Look — Wikipedia
+Mac OS X v10.6 to v10.7 API Diffs: QuickLook Changes
+Apple Filing Protocol Programming Guide: AFP Client Caching: File Metadata Caching
+
+
+*
+
+*I don't know whether Quick Look-related information is classed as metadata for AFP client caching purposes.
+
+
+Technical Note TN1150: HFS Plus Volume Format: Attributes File, in particular: 
+
+IMPORTANT:
+  The exact organization of the attributes B-tree has not been fully designed. Specifically:
+  
+  
+*
+  
+*the structure of the keys in the attribute B-tree has not been finalized and is subject to change, and
+  
+*addition attribute's file data record types may be defined.
+  
+
+Quick Look Programming Guide: Quick Look Architecture
+Quick Look Programming Guide: Saving Previews and Thumbnails in the Document
+In Ask Different: 
+
+
+*
+
+*How do I prevent document preview over slow connections?
+There are various other  Quick Look-related questions in Ask Different and Super User but at a glance, none of them answer this question. Examples: 
+
+
+*
+
+*https://apple.stackexchange.com/search?tab=relevance&pagesize=50&q=quicklook
+
+*https://superuser.com/search?tab=relevance&pagesize=50&q=quicklook
+No significant amount of Quick Look-related information in application support or cache areas
+[macbookpro08-centrim:~] gjp22% date
+Fri  5 Aug 2011 08:33:02 BST
+[macbookpro08-centrim:~] gjp22% uname -a
+Darwin macbookpro08-centrim.home 11.0.0 Darwin Kernel Version 11.0.0: Sat Jun 18 12:56:35 PDT 2011; root:xnu-1699.22.73~1/RELEASE_X86_64 x86_64
+[macbookpro08-centrim:~] gjp22% du -sh ~/Library/Application\ Support/com.apple.QuickLook/
+4.0K    /Users/gjp22/Library/Application Support/com.apple.QuickLook/
+[macbookpro08-centrim:~] gjp22% du -sh ~/Library/Caches/com.apple.quicklook.ui.helper/
+ 52K    /Users/gjp22/Library/Caches/com.apple.quicklook.ui.helper/
+[macbookpro08-centrim:~] gjp22% du -sh ~/Library/Caches/com.apple.QuickLookDaemon
+ 52K    /Users/gjp22/Library/Caches/com.apple.QuickLookDaemon
+[macbookpro08-centrim:~] gjp22% du -sh ~/Library/Caches/com.apple.QuickLookDaemon32/
+ 52K    /Users/gjp22/Library/Caches/com.apple.QuickLookDaemon32/
+
+Meta
+Quick Look (two words, in Finder and elsewhere) seems more proper than QuickLook. 
+
+A: Graham - quick look generate the data on the fly. The inspectors know to use the previews when present, but will do the heavy lifting when needed.
+The virtual memory system of course caches these files so it feels faster after the first render until it swaps out or gets disposed if the pages are not marked for a swap to disk.
+
+A: com.apple.QuickLook.thumbnailcache
+In combination with qlmanage, using fs_usage and fseventer drew attention to the following directory: 
+/private/var/folders/*/*/C/com.apple.QuickLook.thumbnailcache/
+Whether this is used for previews as well as thumbnails, I don't know. 
+A Google search for com.apple.QuickLook.thumbnailcache found (amongst other things) FileVault and QuickLook leak some information from encrypted volumes (2010-07-25) with a comment, 
+
+Thumbnail cache is disabled for encrypted volumes, including file
+  vault users. You should be able to confirm with following terminal
+  command:
+qlmanage -m disks
+…
+
+For FileVault 2 in Lion, that may be no longer true. 
+I do have thumbnails.data outside my home directory, 42M, a reset using qlmanage does not reduce its size: 
+[macbookpro08-centrim:~] gjp22% date
+Fri 12 Aug 2011 07:46:24 BST
+[macbookpro08-centrim:~] gjp22% uname -mrv
+11.0.0 Darwin Kernel Version 11.0.0: Sat Jun 18 12:56:35 PDT 2011; root:xnu-1699.22.73~1/RELEASE_X86_64 x86_64
+[macbookpro08-centrim:~] gjp22% ls -h@l /private/var/folders/*/*/C/com.apple.QuickLook.thumbnailcache/
+total 87256
+-rw-------  1 gjp22  staff     0B 16 Jul 19:42 exclusive
+-rw-r--r--  1 gjp22  staff   1.0M 12 Aug 06:35 index.sqlite
+-rw-r--r--@ 1 gjp22  staff    18B 19 Jul 00:25 resetreason
+    com.apple.TextEncoding    15B 
+-rw-------  1 gjp22  staff    42M 12 Aug 07:41 thumbnails.data
+-rw-r--r--  1 gjp22  staff   4.0K 12 Aug 06:35 thumbnails.fraghandler
+[macbookpro08-centrim:~] gjp22% find /var/folders -name "*QuickLook*" -exec du -h {} \; 2 > /dev/null
+find: 2: unknown option
+[macbookpro08-centrim:~] gjp22% sh
+sh-3.2$ find /var/folders -name "*QuickLook*" -exec du -h {} \; 2>/dev/null
+ 43M    /var/folders/!!/!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/C/com.apple.QuickLook.thumbnailcache
+sh-3.2$ qlmanage -m disks
+disks: 
+    /: local fs
+    /Volumes/MobileBackups: distant fs
+    /home: distant fs
+    /net: distant fs
+
+sh-3.2$ date
+Fri 12 Aug 2011 07:47:09 BST
+sh-3.2$ qlmanage -r
+qlmanage: resetting quicklookd
+sh-3.2$ ls -h@l ~/Library/Caches/qlmanage
+total 104
+-rw-r--r--  1 gjp22  staff    52K 12 Aug 07:47 Cache.db
+sh-3.2$ ls -h@l ~/Library/Caches/quicklookconfig
+total 104
+-rw-r--r--  1 gjp22  staff    52K 11 Aug 10:34 Cache.db
+sh-3.2$ ls -h@l /private/var/folders/*/*/C/com.apple.QuickLook.thumbnailcache
+total 87256
+-rw-------  1 gjp22  staff     0B 16 Jul 19:42 exclusive
+-rw-r--r--  1 gjp22  staff   1.0M 12 Aug 06:35 index.sqlite
+-rw-r--r--@ 1 gjp22  staff    18B 19 Jul 00:25 resetreason
+    com.apple.TextEncoding    15B 
+-rw-------  1 gjp22  staff    42M 12 Aug 07:47 thumbnails.data
+-rw-r--r--  1 gjp22  staff   4.0K 12 Aug 06:35 thumbnails.fraghandler
+sh-3.2$ date
+Fri 12 Aug 2011 07:48:00 BST
+
+(I use ! above to obscure a path to a private area.)
+Also found, amongst help for Cocktail: 
+
+
+*
+
+*Manage user caches — useful, but maybe not up-to-date (the list does not include some of the areas mentioned in the opening question). 
+

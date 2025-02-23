@@ -1,0 +1,31 @@
+Q: Is there any way to bring back H.264 support in Chromium I'm using Chrome on a daily basis or to be exact, latest-builds of Chromium. I recently uninstalled Flash, in order to increase battery life on my MBP and in general rid my laptop of the evil Flash imply.
+Now with Chromium's drop of H.264 codec support, enjoying the web is becoming harder and harder. Is there any way to re-enable H.264 support in Chromium? 
+I know Microsoft (of all players) released such a codec plugin for Chrome recently. Safari isn't really an option although it's sweet.
+
+A: While announced in January, Chrome hasn't actually dropped support for H264 yet.
+
+A: There doesn't seem to be an easy way to do this. I first thought the following steps would solve the problem, but alas no!
+
+
+*
+
+*Download and install Google Chrome v40.0.2214.91 from http://google-chrome.en.uptodown.com/mac/old
+
+*In Applications, CTRL-click on the Google Chrome icon and select Show Package Contents
+
+*Go to /Contents/Versions/40.0.2214.91 which contains Google Chrome Framework.framework
+
+*In the Finder, change to list view if you haven't already, so that you can see which files and folders are contained in the above framework
+
+*Copy the file ffmpegsumo.so from the Libraries folder and paste in the the corresponding folder of your Chromium app
+
+*Uninstall Google Chrome
+
+*Restart Chromium
+
+
+I have found that some users have been successful using the Chromium Embedded Framework. Follow this link to head to a post on the forum detailing how to build CEF with support for proprietary codecs (namely H.264 and MP3).
+On Mac, prior to building CEF by running the automated script automate-git.py, open the Terminal and set the GPY_DEFINES variable as follows:
+export GYP_DEFINES="proprietary_codecs=1 ffmpeg_branding=Chrome"
+
+Instructions explaining how to build the CEF may be found here.

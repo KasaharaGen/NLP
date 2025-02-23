@@ -1,0 +1,49 @@
+Q: How can I force command-line arguments to a program shortcut in the dock? I have Chrome installed in Applications, and a shortcut to it in the Dock.
+How can I achieve to force some command-line arguments to each start-up of this app?
+Let me be clearer, in the Terminal, I can do this:
+open /Applications/Google\ Chrome.app --args --explicitly-allowed-ports=6666
+And that way I modify Chrome's behavior as I like it.
+How can I have this option by default when launching the app from the Finder of the Dock?
+
+A: If you go inside the app bundle (right-click on the app in Finder and select "View Package Contents") and go to the Contents/MacOS folder, there should be a file called Google Chrome whose icon is a black square. Make a note of its name and rename it (something easy like Google Chrome orig). Make a blank text file in the folder with the same name (Google Chrome) as the original file and paste in the following script:
+#!/bin/bash
+
+/Applications/"Google Chrome.app"/Contents/MacOS/"Google Chrome orig" --args --explicitly-allowed-ports=6666
+
+Make your script file executable (chmod +x "Google Chrome orig") and see if that starts Chrome properly!
+
+A: According to Mac OS X Hints article (found by Googling mac gui application command options), this can be accomplished by editing the application's bundle. I would do this on a backup copy of Chrome to test it out first.
+
+
+*
+
+*Open the Google Chrome application bundle by right/ctrl-clicking on it and selecting Show Package Contents.
+
+*Within the package, navigate to Contents/Mac OS/Google Chrome and rename it something like Google Chrome-bin.
+
+*Create a text file at that same location with the name Google Chrome with the following contents:
+!/bin/sh
+
+exec '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome-bin' --args --explicitly-allowed-ports=6666"
+
+
+*Use terminal to change the new file to be executable (chmod 755).
+Note, I've not actually tried this, only outlining what's mentioned in the linked article.
+
+A: One way to do this is with AppleScript.
+Open AppleScript Editor (/Applications/Utilities) and type this in:
+do shell script "open '/Applications/Google Chrome.app'  --args --explicitly-allowed-ports=6666"
+
+Save it as an Application, and add that application to the Dock.
+Click on the app's icon and you Chrome will open with your custom parameters.
+This way works, but it isn't exactly ideal for a couple reasons:
+
+
+*
+
+*Running the AppleScript will take a little longer than just opening the app
+
+*You'll have two icons in your dock (the script and Chrome)
+
+
+This will work, but I'm interested to see if someone comes up with a better answer.

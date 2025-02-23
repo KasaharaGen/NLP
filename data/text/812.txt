@@ -1,0 +1,26 @@
+Q: What is the thinking behind pushing the writing area in Pages to the left? For better or for worse, I am so used to Microsoft Word. The page is in the center of the window surrounded by gray. Pages pushes the writing area to the left. Why is this?
+I don't like full screen mode (because I don't like to be fully immersed so as to better grab notes, links, do research, etc), and I don't always like the page thumbnails open. I don't like the window to be any smaller than the whole screen because I don't like seeing the clutter underneath windows. 
+What's the rationale? Is it just to be 'different' than Word? 
+
+
+*
+
+*Microsoft Word's Page Layout
+
+*Apple Pages closest attempt to mimic this layout
+
+A: The reasoning behind these kind of differences is what makes OS X different from other OSes. The MS Word behavior you describe was born in (or at least comes from) Windows. The Pages “page” allows you to resize the window and make the content fit the size, therefore occupying the entire document window. Since you can option+cmd+P to show the pages thumbnails, my guess is that the way Cocoa control works makes more sense if the page is left-aligned. Since under OS X you can only resize a window from the lower right corner, this also means they don’t have to worry about keeping your page visible if you perform a fancy resize from a different place (because you can’t). Lower right means you’ll just be making the visible area smaller, but never really “covering” part of the horizontal part of the page, and if you do, Pages will make it smaller to a certain degree until it won’t let you make the window smaller (horizontally speaking).
+Could all this be made if the page was in the middle like MS Word? 
+Possibly, but it would have looked much worse and the space on the left of the page would have been wasted space. You would also have a “moving” page when you resize if you had previously  zoomed in in order to accommodate the contents in a proper way. 
+If you keep you document window the size you want to see it, I don’t see why you need the page in the center, since the MS Word border you talk to, is a wasted screen space. If you want to see the text in a more “relative to a real page” thing, you can always use “Page Thumbnails” (and make it bigger) or turn on “Show Layout” shift+cmd+L, but that’s as best as you can get.
+I really never thought about this difference until I read your question, but after using Pages for a couple of years, I can say I like the Pages’ approach better.
+It’s a matter of window management and operating system differences I guess.
+
+A: The application Isolator might help you, at least a bit. It should allow you to keep the Pages window not maximized but still hide the windows underneath it so you can better focus on Pages.
+
+A: The Microsoft Way =/= the intuitive choice of all humans.  It's just what you're used to if you're used to using Microsoft software.
+It took me a while to figure out what you guys were even talking about, because I hate seeing that gray wasted space anyway and configure my windows in either program so there isn't any.  The Pages way minimizes this wasted space, though, therefore to me it is better.  (Though I do wish they had something like the Word 'normal' view.)
+
+A: I don't understand your arguments of "more natural" and "simple and logical" when talking about placing a piece of paper.
+If I write something, I like to keep the paper on my right side as I write with my left hand.
+I'm not saying this is the only way, I'm just saying that for me it's more natural and more logical to keep the paper closer to my writing hand for less strain and movement of the arm.

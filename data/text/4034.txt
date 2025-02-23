@@ -1,0 +1,28 @@
+Q: How to upgrade a jailbreak iOS without loosing Cydia applications? How to upgrade a jailbreak iOS without loosing Cydia applications?
+Are there any additional steps required in order to keep you configuration and applications between iOS upgrades?
+
+
+*
+
+*itunes backup
+
+*itunes upgrade
+
+*jaibreak (probably using redsnow)
+
+*restore backup using itunes
+
+
+A: You can use AptBackup or PkgBackup to backup your Cydia downloads before restoring, then reinstall after the restore and run again to reinstall all the Cydia stuff that you had.
+
+A: You can back up and restore your Cydia package selections as follows: 
+Backup installed package list on current machine
+dpkg --get-selections > selections.txt
+
+Move selections.txt to the new machine. 
+Set package list on new machine and install packages. 
+dpkg --set-selections < selections.txt
+apt-get update
+apt-get upgrade
+
+Source: farslayer's post on LinuxQuestions.org

@@ -1,0 +1,47 @@
+Q: Mac music tagging software Since the switch from Windows to Mac, I've been looking for a good music tagging application for Mac OS X. 
+I've tried apps such as Tagalicious, TriTag and a few other apps, but none have made me happy so far. Basically I'm looking for something similar to Mp3Tag (which is Windows only).
+Just asking before I consider starting an open source project and do this on my own.
+
+A: Here are a few options:
+
+
+*
+
+*MediaRage: http://www.chaoticsoftware.com/ProductPages/MediaRage.html
+
+*TuneUp: http://www.tuneupmedia.com/index.php
+
+*Pollux: http://polluxapp.com/
+You may also want to take a look at http://osx.iusethis.com/search?order=users&q=id3
+
+A: I've mostly used TriTag or temporary AppleScripts like this:
+tell application "iTunes"
+    repeat with t in selection
+        --set AppleScript's text item delimiters to "-"
+        --set ti to text items of n
+        --set track number of t to item 1 of ti
+        --set artist of t to item 2 of ti
+        --set album of t to item 3 of ti
+        --set name of t to item 4 of ti
+        --set name of t to (get track number of t)
+        --set name of t to my titlecase(get name of t)
+    end repeat
+end tell
+
+on titlecase(x)
+    do shell script "ruby -Ku -rubygems -e 'require \"titlecase\"; print STDIN.read.chomp.titlecase' <<< " & quoted form of x without altering line endings
+end titlecase
+
+on replace(input, x, y)
+    set text item delimiters to x
+    set ti to text items of input
+    set text item delimiters to y
+    ti as text
+end replace
+
+on split(input, x)
+    if input does not contain x then return {input}
+    set text item delimiters to x
+    text items of input
+end split
+

@@ -1,0 +1,57 @@
+Q: OS X: Is there a built-in scheduler program? I would like to schedule a task to execute with parameters at a specific time/date in the future.
+Does OS X include any such tool (even if it's command-line)? If not, are there any free or relatively cheap tools out there to accomplish this?
+
+A: You can also start Automator workflows with iCal if you just want something simple. Otherwise I would do it through launchd. 
+
+A: iCal can be used to run AppleScripts, launch applications, and perform tasks to a schedule.
+There are limitations to using iCal, but it is included with Mac OS X and relatively easy to set up. The limitations and a visual walk through on how to set up a scheduled AppleScript are included in the link above.
+
+
+A: There are two Unix command-line tools that do what you want.  at will allow you to schedule a task to execute once at a specific time in the future.  Of course, part of the task could be to schedule another task.
+cron allows you to schedule tasks to regularly execute at the same time, based on time of day, day of the week, etc.  
+One thing to note is that both of these will not run tasks if your machine is not running at the time they are scheduled.  There are alternatives, such as anacron, that will run scheduled tasks the next time the machine boots.
+
+A: Scheduler for MacIntosh is a gui-based task scheduler for macOS can be downloaded at https://macscheduler.net/. Been using it to run a backup app I wrote.  Runs in background, doesn't need to be opened at startup. Can launch apps, scripts, docs.
+
+A: While KeithB's answer is correct, actually, cron is being deprecated in favor of the OS X specific launchd.
+Commands to be run via launchd are described in Apple "plists", or property lists, which are really just XML files:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.
+com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>  
+    <key>Label</key>
+    <string>com.apple.periodic-daily</string>
+    <key>ProgramArguments</key>
+    <array> 
+        <string>/usr/sbin/periodic</string>
+        <string>daily</string>
+    </array>
+    <key>LowPriorityIO</key>
+    <true/>
+    <key>Nice</key>
+    <integer>1</integer>
+    <key>StartCalendarInterval</key>
+    <dict>  
+        <key>Hour</key>
+        <integer>3</integer>
+        <key>Minute</key>
+        <integer>15</integer>
+    </dict>
+</dict>
+</plist>
+
+Having said that, it's not a very user friendly (nor Mac-like) way of scheduling commands to be run. This question on SuperUser lists a few GUI alternatives, including:
+
+
+*
+
+*Lingon (http://sourceforge.net/projects/lingon/) (Free, may not work on 10.6)
+
+*Lingon (http://www.peterborgapps.com/lingon/) (Not free, works on 10.6)
+
+
+
+launchd Editor ($5 Shareware)
+

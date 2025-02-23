@@ -1,0 +1,36 @@
+Q: Why do some calendar events shift in time when daylight saving time goes into effect? Recently the UK changed from winter time to summer time, I have noticed that the timing of some of my calendar appointments (Google Calendar via Google Sync) have also been shifted forwards by an hour, whereas some have not changed.
+It could well be that the split is down to events created on the iPhone and those created on the Google Calendar web interface.
+Does anyone know a work around for this, that will stop me turning up an hour early to things when the clocks change back in October?
+
+A: You may be able to fix it by doing the following:
+
+
+*
+
+*Open the Settings on your iPhone
+
+*Select "Mail, Contacts, Calendars"
+
+*Scroll down to the Calendars section
+
+*Select "Time Zone Support"
+
+*Turn on Time Zone support
+
+
+Or maybe you want to turn time zone support off? It's a little confusing. Here's what Apple says:
+
+When Time Zone Support is on, Calendar displays event dates and times in the time zone set for your calendars. When Time Zone Support is off, Calendar displays events in the time zone of your current location.
+
+
+A: Time zones are a bit tricky with phones and the settings are not obvious since they are spread in several places. Also complicating the issue is the introduction of "Floating Time Zone" support. The idea of an event in iOS and on mac is that a floating event will happen at 5PM based on the time zone the phone is currently in. 
+I'm not a power user of Google Calendar, but you should be able to see it and clean things up on the Google web interface to change the events with issues to be relative time or DST or absolute time. I've had good luck doing this by subscribing to the calendar in iCal, exporting the calendar. Figure a fix and then replace the bad data with good from the computer.
+It's entirely likely the iPhone sent new appointments in a format that Google interpreted as fixed offset (or absolute time) instead of a DST offset.
+
+A: This happened to me
+It's explained in a David Pogue blog at the New York Times web site.
+This only covers the iPhone side of the problem, not the Google Calendar side, but I suspect it's involved in your problem. With my iPod touch, it's my responsibility to manually change the time (whether crossing a time zone like we do frequently in the USA, or with Daylight Savings Time going on or off). Syncing my iPod with my Mac does not necessarily change the time zone automatically.
+
+A: There are a lot of possible answers, but to isolate the cause, find two events, one that moved and one that didn't. Export them, and look at the calendar data. In all likelihood, the time zone embedded in event can explain why happened.
+If you want to do this, I'll try to walk you thru gathering the data. 
+(I don't have a ready answer because I don't work on calendar products anymore, I used to have most of the edge cases memorized...)

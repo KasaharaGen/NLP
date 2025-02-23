@@ -1,0 +1,7 @@
+Q: Process "mtmfs" is using 98% of cpu, heating up the core and runing the fans flat out Process "mtmfs" is using 98% of cpu, heating up the core and runing the fans flat out.
+I have quite the process through activity monitor, but does anyone know a longer term solution?
+I am running a MacBook Pro 2.2 GHz Intel Core i7 with 8GB RAM and OS 10.7.1
+
+A: Presumably you're using Time Machine?  mtmfs is Mobile Time Machine file system daemon.  Have you tried disabling Time Machine?
+
+A: I was running a search on EasyFind and forgot about it - started up Clean My Mac 2 - this is when mtmfs started cranking up my CPU/fan. I quit EasyFind and the CPU % went down immediately. Took a few minutes for fan to slow down. I think maybe the two programs running a thorough search at the same time did it. Haven't had a problem with either one when run alone.

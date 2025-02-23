@@ -1,0 +1,17 @@
+Q: Moving my iTunes library file to a new machine I have machine x (running Windows) that has my iTunes library file on it in the My Music folder.  All the media files in the library are on an external hdd.  I use machine x to sync my iPod on a regular basis, and have built up quite a history of songs played, recent songs, etc.
+I now want to replace machine x with machine y (also running Windows).  Is it a simple case of 1) Installing iTunes on machine y; 2) moving the iTunes library file to the My Music folder on machine y and 3) then connecting the HDD to machine y (ensuring it has the same drive letter)?  Then launch iTunes.  Will machine y now know about all the song history (like play and skip counts, ratings...) as it was on machine x?  The thing I'm most afraid of is sync'ing my iPod on machine y only to have something go nasty wrong and I lose my history?
+Any pointers?
+
+A: Apple has a support document, iTunes for Windows: Moving your iTunes Media folder.
+The answer to your questions is "yes".
+
+A: You can (and have to) certainly move the .XML file, because that's where your history (as you call it) lives. All the playing count, ratings, etc. is stored in your library.xml (and -under Windows- perhaps another file). The reference to where the media is physically stored (your external drive) is also there, so that shouldn't change unless the new drive is on a different Letter on the new machine. (That'd be another mess)
+So Yes, you have to move the library folder to the new computer and then, you also have to make sure that you Deauthorize your old computer and Authorize the new one, so the new computer can play any DRM content. 
+
+A: In iTunes, on your first machine, you will have to go to File|Library|Export Library.
+This will generate your Library.xml file.
+If you take a look in it, you will see for each file all the fields you will find in iTunes (location on HDD, play count, rating, etc...).  
+Now, on your new machine, after having installed iTunes, you have to go to File|Library|Import Playlists (not obvious at first as I was looking at an Import Library menu but it doesn't exist) and select the xml file you exported on your first machine.
+If you try, as I did first, to edit the xml file and overwrite the newly created one, when launching iTunes, it will delete it and create again an empty new one. You have to go through this Export/Import process (which is quite quick).  
+PS: you may have to edit the xml file anyway before importing, if the paths to the music files changed from your initial machine. For example, I upgraded from WinXP to Win7. As the user folder path changed, I then had to edit the paths c:\users and documents\myuser\My Documents\My music to c:\users\myuser\Music, or something like that, I don't remember exactly.
+PPS: Always keep your exported xml file untouched somewhere until you have everything OK on your new machine...

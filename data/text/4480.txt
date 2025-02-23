@@ -1,0 +1,16 @@
+Q: Change Account Password to Blank I recently changed an account password by accident, and was wondering how to set it back to a blank password via the shell. I have root privileges. Please help :)
+passwd USER doesn't accept blank passwords
+
+A: The passwd command rejects the idea that you can have a 0 length password. 
+Instead use dscl which is more accepting of the notion that the password is nothing.
+dscl . -passwd /Users/foo
+
+You can press enter to make the new password blank and then may get an error and have to enter the old password if you are not root
+Once you authenticate (or are root already) the blank password will be set for the account in question. 
+
+A: You can set the account password to no password using the Users and Groups Pane in System Preferences.
+
+A: macOS no longer allows this using the System Preferences and this is why.
+macOS and iOS turn on sharing of all your photos by default so that Apple can keep all the photos of billions of people on their servers.
+Additionally they by default turn on iCloud end-to-end encryption for some specific things on your devices and that end-to-end encryption is secured using your local device login password.
+Apple wants you to store all your life on Apple servers and they cannot do that if you do not have a local device password. So that is why you are not able to NOT set a password.

@@ -1,0 +1,154 @@
+Q: Editor or notes application with Markdown support? Are there any editors or notes applications out there that support Markdown? 
+I am often having to make notes or documents where markdown formatting would be ideal, and have gotten into the habit of using markdown on a daily basis.
+
+A: It's not a note taker per se, but Textmate has a Markdown mode that will make it easier to use some of the syntax. Like bold, italic, list, etc.  
+
+
+A: If you want a Mac app that actually looks like a Mac app, supports Markdown out of the box (no plugins or add-ons required), and updates on a regular basis, you want BBEdit. I can't recommend it too highly.
+
+A: Since you are using MacVim, you might want to try the vim-pandoc plugin, which supports highlighting, folding, snippets, and conversion (though that can also be done from the shell, even within vim, using things like markdown2pdf) to other formats.
+
+A: emacs supports markdown if you like it, but I guess if you are not used to it, the learning curve is a bit steep.
+
+A: I use Byword with pleasant results.
+
+
+A: I use iA Writer and I am very satisfied (iA Writer is available at the Mac AppStore)  
+
+
+
+A: I used TextMate when I was co-writing a book using Markdown a few years ago. I still write a lot of Markdown, but now my tools of choice are:
+
+
+*
+
+*Sublime Text
+
+*plus Markdown Editing plugin
+
+*plus OmniMarkupPreview
+One nice thing about Markdown is you don't get locked in to a specialized app like Microsoft Word just to write and read it. 
+What makes for a good toolchain in my experience is a solid text editor as the base, plus good live previewing and some custom coloring of the source. Sublime Text is an excellent text editor (available for Windows and Linux too) and those two (free) plugins trick it out for Markdown nicely.
+
+A: On mac try Marked2 http://marked2app.com/
+You can basically use the editor of your choice and it will display the markdown when you save the text.   Window can float above.   Good if you have enough screen realestate to keep your plain text and markdown preview visible at same time.
+Written by Brett Terpstra who also did NVAlt.
+
+
+A: It's on old question with many answers, but Github now also has their own texteditor which supports Github flavoured markdown (and any other markdown you wish, by means of plugins/settings)!
+Atom is highly customisable and by default lightweight, so for markdown I think it's absolutely awesome! https://atom.io
+
+A: I have been impressed with letterspace
+
+It is available both on iOS and OS X, and syncs vi iCloud.
+Notes are stored in plaintext for easy retrieval/backup/migration.
+
+A: Disclaimer: I am just a user of this applicaton and am not in any way affilliated with the devloper.
+
+Quiver
+
+I have been using Quiver for a bit and have been quite impressed with this $10.00 USD app.  It is available on the Mac App Store
+Features
+The features are too numerous to mention and I am still discovering many more, however here are a few particularly related to the use of Markdown as requested by the OP.  It is important to know that Quiver uses a concept called Cells.  Cells can be freely mixed in a single note.
+
+Cells are snippets of text, code, Markdown or LaTeX that you can freely mix. You can even set different languages for different code cells inside the same note.
+
+Markdown
+Markdown cells support standard Markdown syntax as well as GitHub Flavored Markdown (GFM).
+(I like using it for editing AskDifferent answers, but StackExchange has a few Markdown limitaions easily coped with in Quiver.)
+
+Basics
+
+Headers
+
+# H1
+## H2
+…
+###### H6
+
+Horizontal Rule
+
+---
+
+Italic, bold, strike-through, inline code
+
+*italic* _italic_ ~~Strike~~
+`inline code`
+
+
+Lists
+
+ 
+1. First ordered list item
+2. Another item
+  * Unordered sub-list. 
+1. Actual numbers don't matter, just that it's a number
+  1. Ordered sub-list
+4. And another item.
+
+Screenshots
+Edit | Preview
+
+Edit
+
+Preview
+
+Switch views
+
+Export Options etc.
+
+
+Currently five cell types are supported:
+
+
+*
+
+*A "Text Cell" lets you edit rich-text in-place. It supports images and links too.
+
+*A "Code Cell" packs the awesome ACE code editor, with syntax highlighting support for 120+ languages, 20+ themes, automatic indent and outdent, code completion, and much more.
+
+*A "Markdown Cell" lets you write in Markdown with inline formatting and custom CSS options.
+
+*A "LaTeX Cell” uses MathJax to typeset mathematical equations in your notes.
+
+*A “Diagram Cell” lets you create sequence diagrams and flowcharts from text.
+
+
+Themes and customization
+Customize themes or use built in ones.  The application can be further tweaked with CSS.
+
+
+A: Textmate has a markdown bundle which includes multimarkdown.
+The bundle allows you to convert to PDF, HTML or to view the generated output on screen.
+There are also tab-complete commands and a bunch of shortcuts.
+
+A: Let's add another: 
+
+
+*
+
+*Sublime Text 2
+
+A: Mashable has a quite comprehensive list: http://mashable.com/2013/06/24/markdown-tools/. It is from June 2013, but if you combine it with something more recent like http://codegeekz.com/markdown-editors-and-tools/, you might find most of the general purpose markdown editors for the Mac.
+
+A: Go Edit for iOS allows you to write text in markdown or rich text (HTML) and makes it easy for you to switch between the two. You can also embed photos into markdown documents from your photo library without needing to upload them into the web beforehand.
+
+
+A: nvALT does the trick.  I prefer the plain Notational Velocity myself, but Markdown fans seem to really like the nvALT fork.
+
+A: Mou
+Mou is my favourite Markdown editor for editing GitHub files and other documentation. Its live preview is priceless for editing in this way, especially using the specifically-designed GitHub theme that mimics the end result as shown on GitHub's preview and wiki pages.
+
+The app also lets you export to HTML along with the CSS so that you can upload the documentation outside of GitHub but retain the style.
+
+The app is one of a very few apps that even supports tables not in the core Markdown:
+
+Mou can be launched from the command line with a file using the standard OS X app launching method:
+open -a Mou text.md
+
+
+A: The original Markdown script by Gruber is part of BBEdit. BBEdit also has a life preview of Markdown documents.
+If you want more than plain old Markdown, the best application is Multimarkdown composer by Fletcher Peny (the author of MultiMarkdown), or Marked 2 by Brett Terpstra (already mentioned above).
+
+A: I use Ulysses on OS X and iOS. It syncs via iCloud and can export to ePub, PDF, text bundle, docx and plain text. 
+http://www.ulyssesapp.com

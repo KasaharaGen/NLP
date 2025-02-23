@@ -1,0 +1,158 @@
+Q: Can anyone recommend a programmers' editor? I'm looking for a programmers' editor. I know Xcode and I use it for application programming but I'm looking for something that will:
+
+
+*
+
+*Syntax highlight PHP, SQL, Javascript (including jQuery) and CSS not required but would be nice; also Lua, Python, and Perl   
+
+*IntelliSense type stuff, start typing and get all the functions/objects/variables it could be and any parameters. Xcode does this well for C/C++/Objective-C but looking for languages that are listed above.
+
+*Would be nice if it worked with projects and not just files   
+
+*Integrated with SVN, CVS, or GIT
+
+*Had upload-to-server functionality built in
+
+
+I am aware of Coda but am looking for other options before I drop 100 bucks.
+
+A: Eclipse has addins for those languages and does all of the things you mention 
+
+A: One more thing.
+Sublime Text 2
+
+A: Smultron is one of my favorites, along with TextWrangelr. Both are free.
+
+A: Espresso is nice.  Similar to Coda.
+
+A: ActiveState's Komodo is an excellent cross-platform IDE (it's based on Gecko, so feels as native to OS X as Firefox does).
+It includes all of the features you mention.  There's also a free, open-source, version, Komodo Edit that includes nearly all the features (e.g., no source code repository integration).
+
+A: NetBeans is my development environment of choice. While it's not my text editor for regular files - I'm using TextWrangler or vim on the shell for that - it is the most usable IDE I've come across so far.
+It has great code completion, supports various languages, has a great formatting engine, extremely well done and easy to configure debugging functionalities and a very good SVN integration. 
+
+A: TextMate
+Doesn't address all of your needs but I think it's pretty snaz.
+
+A: BBEdit by Bare Bones fulfills all of your requirements. Pricey but 100% worth it.
+
+A: jEdit do some of your requests, but not all of them, and it's also free.
+You can read here its feature and languages that it supports.
+
+
+A: Ultraedit is now available for MacOS X. I haven't tried it yet. But if it comes with the same features as the Windows version (which I use on a daily basis as part of my job) it is absolutely a good recommendation. 
+It can do all the stuff you are asking for with the exception of providing an integration with software configuration management. Man, would I love to see this implemented.
+
+A: An editor that gets overlooked a lot is MacVim. It's based on the venerable vim editor, from *nix, and can do everything you asked via plugins. 
+I show it supports 176-ish different languages, including all the ones you mentioned.
+I regularly do lookups of existing methods, variables, random text phrases via a CNTRL_N or CNTRL_P mapping which searches all the open files and pops up a list of the hits.
+Vim calls its projects "sessions", which stores all the files, window settings, macros, etc., for later reloading. From vim's "direct" mode, :mksession path/to/sessionfile will create it. Sourcing it later from the command-line is simple: vim -S path/to/sessionfile.
+There's a great plugin called VCS, that handles my SVN stuff:
+
+...CVS, SVN, SVK, git, bzr, and hg within VIM, including committing changes and performing diffs...
+
+Upload to server functionality is handled by the netrw plugin.
+vim does have a steep learning curve, the vimtutor, which comes with the app, can help jump-start you. Also, there are active users here and on SO's sister sites, plus on the vim IRC node on freenode.net.
+Probably the most awesome thing about vim, is its available in an interfaced version on Mac OS as MacVim, on Linux using gvim, on Windows, and from the command-line of any of those OSes. vim on any of them will use the same commands, same plugins, same themes, etc., within the limitations of those environments. I bounce back and forth from Mac to Linux all day long and have at least one vim window open somewhere. 
+And, lest anyone think I'm not familiar with the Mac-only alternatives, I own all my copies of Coda, BBEdit and TextMate, and use them. I go way back with BBEdit, and actually used to occasionally demo it at MacWorld. It's great, but I use vim with the same settings everywhere, and none of the other editors can do that. So, if you need that cross-platform compatibility, look into it.
+
+A: i'd go with Fraise, which used to be Smultron. works with very many languages and has a minimalist interface. syntax highlighting.
+
+A: Beyond up-voting @philip's BBedit recommendation, I am compelled to emphatically endorse BBEIT: BBEdit Simply the best coding editor I've used PC or Mac. I've not used VIM but I've been coding since before DOS existed, so I understand the speed of all-keyboard-all-the-time editing. I'll give you that and yet stand by my BBEdit endorsement.
+P.S. Did I mention I like BBEdit?
+
+A: I'd second the recommendations for Sublime Text and the JetBrains products (I use WebStorm extensively in my job). If you want something free, atom is well worth a look. It's fairly bare-bones, but has a wide selection of plugins that should encompass what you need.
+
+A: It has been mentioned, but only in passing:
+Atom (https://atom.io/) is open source and developed by GitHub. Integration with github is superb and it is particularly interesting these days since there is a lot of development with new features and new ideas regularly. I think it will cover your whole list of requirements through extensions (packages - https://atom.io/packages).
+
+A: For me Jetbrains PHP-Storm is simply the best & most complete IDE!
+It has a lot of good and usefull features though it stays simple to handle and setup.
+It's available for Linux, OSX and Windows. .
+Pros:
+
+
+*
+
+*PhP 5.x 
+
+*Javascript (JSLint, JSHint code hints)
+
+*HTML/CSS/SCSS/SASS
+
+*Lua, Perl and Python plugins do exist. (checked at JetBrains IntelliJ IDEA plugin Repository)
+
+*Intelligent and configurable code completion in all languages mentioned:
+
+
+*
+
+*Object calls
+
+*chaining methods
+
+*method list on objects
+
+*namespace proposition when typing or creating
+
+*all kind of syntax errors
+
+*Intelligent searching & replacing in files and directories, also with regular expresions
+
+*etc...
+
+
+*Project based
+
+*FTP/SFTP
+- Automatic upload when saving or when leaving the window (when Alt+Tabing to the browser)
+- Upload external changes, coming from the terminal/console, SCSS/SASS compiler, etc.
+- Remote/local file comparison by timestamp or content with the option to merge
+
+*GIT, Mercury and CVS fully integrated. For SVN at least one plugin exists at the JetBrains IntelliJ IDEA plugin Repository...
+
+*Local files comparison & merging, (2 files)
+
+*Console/Terminal
+
+*Debugging
+
+*Editor code style settings
+
+*etc
+
+
+Cons:
+
+
+*
+
+*About 100 $ for a personal licence.
+installable on several machines, but usable only by one machine at the time in an internal network.
+
+*It's written in Java, so it needs quite a lot of memory and CPU.
+PhpStorm 9.0.0 system requirements: 
+The absolute minimum!!! 
+
+Intel Pentium III/800 MHz or higher (or compatible)
+512 MB RAM minimum, 2 GB RAM recommended
+1024x768 minimum screen resolution
+
+A 24 inch late 2009 iMAC with a 2.66 Ghz Core Duo, 4 GB RAM and Mavericks installed is definitively too slow to get the work done in time!
+I'd recommend as a minimum 8GB RAM on a OSX Mavericks and 16GB on a windows machine. Linux should stand with whatever you have ;-)
+
+A: These are some of my favorites from a front end designer's standpoint: 
+
+
+*
+
+*Coda
+
+*Espresso
+
+*Sublime Text
+
+*TextMate
+
+*Atom (my personal choice currently)
+

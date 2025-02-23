@@ -1,0 +1,35 @@
+Q: Full Screen with Microsoft's Mac OS X RDP client? I have a MacBook Air and I'm using Microsoft's RDP client (Remote Cesktop client) for OS X to remote in to Windows machines.  Is there any way to get the client to use the full screen?  There seem to be no options for this in the menu bar on on the dock icon.
+If not, are there any alternative RDP clients for Mac OSX that will allow me to go full screen? (I'm not really a VNC fan, in any of its forms)  It seems a shame to waste my screen real estate, especially since I am on only a 13" screen.
+
+A: There's also Royal TSX, which is similar to CoRD but much more powerful. It is a commercial app, but provides a shareware version that allows you to manage up to 1 document, 10 connections and 10 credentials for free.
+It also offers native OS X fullscreen mode and an extended fullscreen mode that minimized the UI down to only the tab bar being visible.
+Check it out at: https://www.royalapplications.com/ts/mac
+Disclaimer: I'm the developer of the mentioned product.
+
+A: In more recent version of Microsoft Remote Desktop for Mac, the combination is: Command-1 to switch between Window and Full Screen.
+If you're trying to exit Full Screen, you can also hover your mouse at the top of the screen, it'll show up the menu as below.
+
+
+A: I think the best option here is to use Microsoft Remote Desktop. This is different than the Remote Desktop Client you mention. It has a orangish / red icon and can be found in the app store for free.
+During setup for the connection there is an option for resolution, have that selected to "native" and you should be able to take advantage of full screen. 
+I have also found this very useful for connecting with dual monitor applications. 
+
+A: Click View menu > Full Screen at the very top of the screen. Or press Command-2.
+
+A: For an alternative that does full screen, try CoRD.  http://cord.sourceforge.net/
+
+A: You can try Ericom Blaze, a software-based RDP acceleration and compression product that accelerates RDP performance by up to 10-25 times and delivers higher frame rates and reduces screen freezes and choppiness. 
+Ericom Blaze works with any standard RDP host, including VDI, Terminal Servers and remote physical machines.
+You can read more about Blaze and download a free evaluation at:
+http://www.ericom.com/Blaze
+You can also check out a demo of someone using Blaze to connect from a Mac to a Windows PC:
+http://ericomguy.blogspot.com/Blaze4Mac
+
+A: Control-2 will take you back and forth from full screen to windows mode when using Microsoft RDP on a mac.  You can also configure your RDP preferences but must exit and then log back into the RDP session for them to take effect.
+
+A: Before you type in the name of the Computer, select RDC > Preferences... (or Command + ,). This will turn on additional settings at login including a Display tab where you can change the Remote desktop size to full screen.
+
+A: RDP 8 is Command 1 for Full Screen, Command 2 for Scaling.
+
+A: For this remote desktop client for mac, in addition to the above preferences settings, changing the specific display settings for the current session helped it for me. 
+Click on edit the current session (pencil icon) and then set it like below 

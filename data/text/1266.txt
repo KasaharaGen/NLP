@@ -1,0 +1,34 @@
+Q: Constrain Columns of Files in Finder to only 3? I like how in Finder, they only have 3 columns of files before the files wrap to a new row. However, when I lend out my USB to some friends, they don't have "Snap to Grid" enabled, which causes them to "add" in the 4th column, which messes up the view of the USB. Every time this happens, I have to manually drag everything back. This is quite time consuming and fine if I only have to do this once. However, I lend out my USB multiple times every week. It's quite a headache.
+Is there a way to force Finder to constrain the columns of files to only 3 columns?
+
+A: The setting your refer to, is stored in a hidden Finder file called .DS_STORE
+This file is obviously overwritten by your friend’s Mac who obviously uses different settings. 
+As far as I know, there’s no way (other than perhaps making the file .DS_STORE read only in the USB so your friend’s Mac cannot write the “new annoying settings” to it). 
+You’ll need to jump into the Terminal (/Applications/Utilities/Terminal.app)
+Connect your USB Drive, open Terminal.
+In Terminal, type:
+cd /Volumes
+ls 
+
+You should see your own Macintosh HD (or whatever name your internal drive(s) have) and the USB drive (with the name it might have).
+Cd into the USB drive like:
+cd MyUSBDrive
+
+if the drive has spaces in its name, you must enclose it between quotes
+For example: 
+cd “My Strange USB”
+
+Once in there, you can perform an ‘ls’ to view the contents of the USB. Do that to make sure it’s the right one. Else go back to cd  /Volumes and start over :)
+Now adjust the settings in the finder the way you want them.
+Done?
+Now to change the permissions in the USB drive: 
+sudo chmod 444 .DS_Store
+
+NOTE: The above command might ask you for your password, that is ok. The password won’t be seen when you type it. Just type your password and press enter. Remember the commands in Terminal are case sensitive. 
+What does that do?: chmod is a command that changes the permissions of files and/or directories. In this case, since the file is a hidden file from the finder, we have to do the job from the terminal (which can always see hidden things). The numbers (444) are read only for everybody. 
+If you don’t know what chmod does or how it works (or why 444) I recommend you take a look at the help (man page) for the command. In Terminal type:
+man chmod
+
+Will this work?
+To be honest, I don’t know. I believe it will, but I’m not sure if ACLs are preserved in USB devices. If the USB is formatted with FAT32  (they usually are so Windows can read/write) the above might not work. 
+Other than that, there’s no magical way to tell finder do this, and do it this way. Because if there’s a .DS_Store file, Finder will read settings from there. 

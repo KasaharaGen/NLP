@@ -1,0 +1,9 @@
+Q: Upgraded to Lion with an application in Snow Leopard called LaunchPad Recently I upgraded my laptop from Snow Leopard to Lion.  However in Snow Leopard, I fooled around with the system a bit and "named" an app called LaunchPad.app(It's actually called quickpick)  Now in Lion, it retained the old app and didn't change it to the actual LaunchPad.  When I try to delete the LaunchPad app now, it says the it is necessary for the system and I can't delete it.  What should I do now?  Thanks everyone.
+
+A: Create a Time Machine backup of your current system, reinstall Lion, restore everything but applications from backup, then restore the other applications manually from Time Machine.
+
+If you're feeling adventurous, and have good current backups, you could launch Terminal and enter the following exactly as shown:
+sudo rm -rf /Applications/LaunchPad.app
+
+Enter your password and the application should be removed.
+Now you shouldn't have LaunchPad.app anymore. You could try to get LaunchPad from a friend, by installing a 10.7.2 combo updater, or by reinstalling Lion.

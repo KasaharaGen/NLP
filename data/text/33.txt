@@ -1,0 +1,14 @@
+Q: How can I get Snow Leopard to properly reconnect to my Windows network drives after it goes to sleep? My mac goes to sleep. It wakes up. The volumes mounted to a Windows server in my house all work. I can see pictures and listen to music. Until I can't. After two or three sleep/wake cycles, I can't connect to the Windows server at all, with Finder hanging infinitely on trying to connect. I have to reboot the entire machine to reconnect properly. With OS X 10.5, I never could get the volumes to reconnect after sleep, but at least they didn't sabotage Finder. Anyone have any ideas? I hate leaving the mac running all the time.
+(27" 2010 iMac, OS X 10.6.4)
+
+A: This is a known issue, and has no current hotfix or resolution.  The problem is in the samba implementation.
+The only thing I can think of doing is writing a script to umount your samba just before sleep, and mounting right after sleep.  (Nobody has done this yet)
+Most educated source on the problem I could find:
+https://superuser.com/questions/144327/mac-os-cant-connect-to-smb-shares-after-sleep
+
+A: I had this issue as well and found sleepwatcher to do what I need.
+I found this article
+http://imclumzy.wordpress.com/2009/12/28/mac-osx-automatic-smb-mount-script-using-sleepwatcher/
+I used created the main script as he has it and then another to calls this one with one line for each volume I need to mount, for example: sh ~/Scripts/mountShare.sh /Volumes/Music bundywhs/Music.
+I don't have the username and password in it since i store it in my keychain.  
+One other note, his article has the sleep time set to 10 seconds in his wakeup script.  That seems to work fine when I am on wireless but for me my wired network takes longer to come back so I changed it to 30 seconds.

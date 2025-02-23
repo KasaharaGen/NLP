@@ -1,0 +1,4 @@
+Q: Sips not working with pict, qtif and sgi files The terminal command sips -s format pict /path/to/image.ext --out /path/to/output.pic ouputs Error: Unsupported output format com.apple.pict even though if you do man sips and go down to format, there is written that it supports jpeg | tiff | png | gif | jp2 | pict | bmp | qtif | psd | sgi | tga.
+Is this normal and can you fix it anyway?
+
+A: Not the definitive answer but be careful with sips. It seems to me sips itself has been updated but the man page remained the same. On my Mac PICT creates no output at all and PSD creates a file that is totally garbled when viewed in Photoshop. It seems you can also export to PDF, and the result opens just fine in Adobe Acrobat, but when opened in Photoshop or Illustrator what you see is very, very different of what should be there ...

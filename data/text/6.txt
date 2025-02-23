@@ -1,0 +1,80 @@
+Q: How do I disable or get rid of the startup sound my Mac makes? Everytime I turn on my Macbook Pro it makes a start up noise. This is annoying since there is no volume or ability to turn it off. I just don't want the sound to play at all.
+How do I disable this startup sound?
+
+A: Open Terminal.app and type:
+
+sudo -s
+
+Give the password when asked for
+then:
+cat >/private/etc/rc.shutdown.local
+#! /bin/sh /usr/bin/osascript -e 'set volume with output muted'
+
+then press Ctrl-D and type "exit".
+Next time you'll reboot in silence BUT you'll have to manually reset the sound volume (F10, slider ...) if you want to hear some music again. Theoretically it should be possible to run under /private/etc/rc.local a script to do it ('set volume without output muted') but that seems to behave erratically.
+
+A: I haven't noticed that sound on my MacBook Pro for ages, and today I figured out why. The MBP seems to remember 2 sets of volume settings; both for having-no-headphones-plugged-in, and for having-headphones-plugged-in. 
+I usually have my external speakers plugged in-when I'm at home, and when I'm travelling/way from home obviously I don't. At some point in the past I have turned the volume down to zero when headphones weren't connected, and now when I start the MBP up there's no sound.
+You could try this (though it's not particularly practical) - turn the volume on your Mac right down to zero, then restart the computer. I suspect you won't hear the startup-sound. Like I say, not really practical but if the start-up noise annoys you enough, you might just get into the habit of turning the volume down before switching off. :-)
+EDIT: Just realised this this point about turning the volume down has already been made in other answers here, so feel free to ignore this! 
+
+A: For Snow Leopard and earlier machines download and install "StartupSound.prefPane" which will install a preference pane in system settings to allow you to adjust the startup volume and disable the startup sound:
+http://www5e.biglobe.ne.jp/~arcana/StartupSound/BETA/index.en.html
+Note that the above has mixed results in Lion.  For Lion users the following is recommended:
+
+  
+*
+  
+*Login as administrator and open a terminal window
+  
+*Create scriptfile for muting
+sudo nano /path/to/mute-on.sh
+  
+*Enter this as content, when done press control+O to save and control+X to exit:
+#!/bin/bash
+osascript -e 'set volume with output muted'
+  
+*Create scriptfile for unmuting
+sudo nano /path/to/mute-off.sh
+  
+*Enter this as content, when done press control+O to save and control+X to exit:
+#!/bin/bash
+osascript -e 'set volume without output muted'
+  
+*Make both files executable:
+sudo chmod u+x /path/to/mute-on.sh
+sudo chmod u+x /path/to/mute-off.sh
+  
+*Check if any hooks already exist (these will be overwritten, so make sure it is OK for you)
+sudo defaults read com.apple.loginwindow LoginHook
+sudo defaults read com.apple.loginwindow LogoutHook
+  
+*Add hooks for muting
+sudo defaults write com.apple.loginwindow LogoutHook /path/to/mute-on.sh
+sudo defaults write com.apple.loginwindow LoginHook /path/to/mute-off.sh
+Notes:
+  
+  
+*
+  
+*/path/to/ is the location of the scripts, I used /Library/Scripts/
+  
+*you can skip the unmuting loginhook (i.e. each logout will silence your machine), but I like it this way because I always have sound
+  available exactly at the volume level I set last time
+  
+*root has to be the owner of the script files - running an editor from command line with sudo is the easiest way to achieve that
+  (otherwise you need to chown)
+  
+*to delete the hooks, use the following:
+sudo defaults delete com.apple.loginwindow LoginHook
+sudo defaults delete com.apple.loginwindow LogoutHook
+
+(source)
+
+A: You can use StartSound.PrefPane which basically just sets the volume to 0 when you shutdown and then turns it back up after login.
+
+A: Hold down the mute button on your keyboard whenever you boot it
+
+A: If you keep your volume off when you shut down your mac/laptop it wont make the sound when you start it up again!
+I don't know if this is true but its what my laptop does :)!
+Hope this helps!

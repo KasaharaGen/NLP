@@ -1,0 +1,30 @@
+Q: How do I change the time format used by ls command line on osx? I want to make ls display time in ISO format (military format). How can I change this behavior?
+On Linux I knew that I could force ls to display time in long format by usin --full-time but this doesn't work on OS X.
+Update: I know that the format used by the command is based on the locale settings. The problem is that on OS X I was not able to use the trick of setting LC_TIME=en_DK.
+
+A: If you install gnu coreutils then gnu ls is available, which will do as required. If you use brew as a package manager, it's as simple as:
+brew install coreutils
+gls -l --time-style=full-iso
+
+
+A: OS X's built-in ls command does not take time formatting arguments, but the stat command takes strftime format strings so you can get an approximation of what you want by doing:
+stat -l -t '%FT%T' *
+
+The %FT%T produces an ISO8601 local timestamp. Add a %z if you want a UTC offset.
+But while the timestamp is right, the rest only approximates what you'd get from ls. For instance, ls -l properly aligns fields into columns, can colorize output, and of course it lists directory contents rather than requiring you to pass all filenames as arguments. You can at least reproduce the proper alignment by piping the output through tr to convert all spaces into tabs:
+stat -l -t '%F%T' * | tr ' ' \\t
+
+Alternatively, I think it should be possible to get ls -l to produce an ISO8601 timestamp by defining a custom locale, but I have not seen it done.
+
+A: stat -l -t '%FT%T' *
+
+That worked fine for me. I needed to see both file size and time stamp. Wonder why Apple saw fit to discard the pretty-much-standard time mod o/p from ls -l. I even hauled out my UNIX in a Nutshell!
+
+A: Using macOS Monterey 12 the following works for me:
+ls -lD '%FT%T'
+
+I'm using an alias that also preserves colored output:
+alias ls="ls -D '%FT%T' --color=auto"
+
+
+A: ls -l --time-style=iso works fine for me.

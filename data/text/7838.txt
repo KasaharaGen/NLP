@@ -1,0 +1,18 @@
+Q: How can I get Safari to reopen my last closed tab? I'm switching back to Safari from Chrome. Now that I figured out how to get Safari to let me navigate tabs the way I want, only one thing remains: I want to be able to reopen my last closed tab with cmd+shift+T. 
+Near as I can tell, it's not a matter of making a keyboard shortcut in System Preferences, since Safari does not have a menu item for opening the last closed tab. So how else can I go about this? 
+(I've got one slot left available in the free version of FastScripts, so it'd be handy if there were an AppleScript solution for this.)
+
+A: Try clicking ⌘-Z (for undo).
+
+A: As of macOS Sierra beta 1, ⌘ + shift + T works the same way on safari.
+Reference: https://www.reddit.com/r/apple/comments/4v07pt/command_shift_t_now_works_in_safari/
+
+A: or you can download the app SafariTabs
+There is a feature that saves the tabs and you can restore them for each session. It requires SIMBL to be installed. I haven't tried it yet.
+
+A: As it was mentioned already ⌘+Z only works for one tab.
+If you would like to be able to reopen more than 1 tab, try retab, an open source Safari extension. You can customize the key-bindings to match Chrome-style ⌘+⇧+T too.
+
+
+A: If you are using Keyboard Maestro you could emulate the Chrome behaviour (including multiple undos) with a HotKey trigger. I did an initial run at it. Thats the gist of it.
+(Keep in mind, that you're loosing the history in each tabs. Its really only to get the URLs back.)

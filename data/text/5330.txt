@@ -1,0 +1,22 @@
+Q: I just installed Lion, and now I'm hanging on startup. What went wrong? I purchased Lion from the Mac App Store and installed it on my mid-2009-era MacBook Pro. The installation went smoothly and the computer restarted itself on schedule. I heard the startup noise, saw the Apple logo and the spinny thing... and then it turned to this: 
+
+I let it hang like that for fifteen minutes or so before I got bored/antsy. I then forced shutdown with the power button and started it back up - same song 'n' dance. It's been doing this for thirty minutes or so now. The machine is hot and whirring away about something, but no progress is being made. It all feels very foreboding. 
+Do Not Enter can't be a good thing, but as far as I can Google, there are a bunch of different things it could mean. What do you think, Apple.SE?
+(FTR, I have some experience with software and troubleshooting, but very little with hardware maintenance/repair/fiddling about.)
+Update:
+As far as I can tell from Googling around and from friends' tips, this denotes an issue reading or communicating with the hard drive. I've made a Genius bar appointment for this afternoon and will report any useful information that comes out of that meeting.
+Post-Genius-Visit Update:
+I visited the geniuses today and, long story short, I am getting a new hard drive. They were unable to mount my drive, and Disk Utility was able neither to repair it nor to reformat it. The Genius I spoke to believed that the fact that this happened to my computer immediately after installing Lion is a coincidence, or that the drive was on its last legs and that Lion was the proverbial backbreaking straw, not that the problem was caused specifically by the installation. One of the other Geniuses around also mentioned, though, that he'd seen a few cases like mine today, including the Lion part. Does this sound odd to anyone else? If not, I'll post & accept an answer saying a new HD is the solution - assuming I can install Lion on the new one without it becoming all borked up...
+To be continued, I suppose.
+
+A: What went wrong was your hard drive is failing. The system cannot find a valid bootable system. You can test this by booting to an external drive (which looks like might have to wait for getting home or to the shop)
+If the failure is happening fast - you just had bad luck and it would have failed within days no matter what. Get your stuff off and be glad you got things out before the "house burns to the ground".
+If you had a slow failure, then the upgrade could have made things worse. This slow failure can often be made better by zeroing out the whole drive. Bad blocks get marked and for a while, it is reliable. You might buy some months or a year, but it's starting to fail.
+
+Did the technician let you know if she or he felt you had a crisis or a slow issue with the HD?
+As an analogy, Imagine a large "house" made of four decks of cards and lots of levels. If the far left hand side is shakey but you only are adding cards to the right, it might stand for a long time. As soon as you touch the left, down it comes.
+A system upgrade touches everything - and re-writes the core software needed to boot. Your mac just wasn't up to having critical files written reliably and the upgrade brought those errors to stark light.
+
+Put another way, Lion is running on millions of macs. 
+Sadly for you, something about your mac was different than most and the results quite painful to your productivity. The good news is many are going through the same pain - discovering how fragile HDD/SSD storage can be when a critical file fails to get written correctly.
+I hope you get everything fixed, lose no data and can start enjoying Lion.

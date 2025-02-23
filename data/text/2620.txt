@@ -1,0 +1,9 @@
+Q: What is the difference between console.log and system.log? I am checking system logs via the Console utility.  I am wondering what the difference is between the console.log and system.log file?
+
+A: Console.log is usually written to by calls to Apple's NSLog() function call. (I can't find any other way to write to it so might be the only way) This writes to the log of the user that the app is running as
+system.log is written to by the unix call syslog. syslog can be configured to write to different files and machines. system.log is a central file written to by all users.
+Thus only code written specifically for OSX will write to console.log and only by the current user.
+syslog is used by pure unix apps and if you want central logging.
+OSX since 10.4 actually writes the logs to a database using asl
+
+A: Generally, the Console log contains log messages from processes owned by the currently logged-in GUI user, whereas the System log contains log messages from system processes owned by root or other "system accounts" (e.g. "nobody", "www", etc.).

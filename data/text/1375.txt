@@ -1,0 +1,6 @@
+Q: What does a CUDA driver do? I've heard talk of installing a CUDA driver for the new unibody mac (Nvidia 330M) to possibly resolve graphics problems (though it seems it actually doesn't do so). I'm not having problems but I was wondering exactly what the CUDA driver does, if it supplements or replaces the default graphics driver, and if it gives better performance. Please explain!
+
+A: Nvidia offers a CUDA driver and OpenGL driver, for use with their APIs. The application would need to be recompiled with these options for the .app to use the cuda driver. 
+Here is the latest info, from a last month...
+http://developer.nvidia.com/object/cuda_3_2_downloads.html
+Scroll down to Mac OS X section for some good non-programmer - adv programmer info.

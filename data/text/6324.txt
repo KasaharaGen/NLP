@@ -1,0 +1,19 @@
+Q: Stock widget doesn't save list of stocks I am running Lion and I wanted to add certain stocks to the Stock widget. I was able to add them fine and remove the default ones but everytime I go back to Dashboard the Stock widget is reset and the default stocks appear. Does anyone now how this can be fixed?
+
+A: If you haven't removed the widget from the widget screen, do try that. Press the circle with a plus on the lower left and then the x on the top left corner of all the stock widgets on your dashboard (you can add more than one). If it's still broken when you add it fresh to the dashboard, you'll have to poke it a bit harder.
+The widget isn't going to like this - so you'll have to manually clear out the file where the stocks are recorded.
+Get ready to log out so save all your work and quit all apps.
+Go to the folder below in Finder using this command (or the Go menu) shift+command+G
+~/Library/Preferences
+Move these two files only to your desktop. 
+widget-com.apple.widget.stocks.plist
+widget-com.apple.widget.stocks.plist.lockfile
+
+Then log out shift+command+Q
+When you log back in (or reboot), the widget will make a new container to store your stocks and things should be better. This little dance is called setting aside your preferences (plist files) and starting again with the defaults.
+If it works, you can trash the two files on your desktop. If not - you can move them back or not however you prefer. For an app with lots of settings, it's nice to be able to move back the ones you prefer once you've ruled out that file as causing you some pain or other.
+
+A: Go to the ~/Library/Preferences/widget-com.apple.widget.stocks.plist file, highlight the file name and use Get Info (Command ⌘ + I) to change permissions for "Everyone" from "No access" to "Read & Write"
+This will cause the list to be retained and updates to populate even when the market is closed. The only caution is this: once you have done this, if you remove and re-add the widget, while it will have preserved your list, the re-add will also have changed the permissions for the "Everyone" back to "No access", so you'll need to follow these instructions again.
+
+A: Try re-downloading the widget. This isn't the Apple widget, but you can also try this one.

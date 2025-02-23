@@ -1,0 +1,13 @@
+Q: How to fix usbmuxd spam in console when iPhone is connected? Since I've upgraded from Snow Leopard to Lion (including the latest 10.7.1 update), my usbmuxd seems awfully chatty. This only happens when my iPhone is connected.
+It spams the following message at least once per minute:
+18/08/2011 16:30:25.941 com.apple.usbmuxd: HandleUSBMuxDictionary client 0x101005430-iTunes/com.apple.iTunes using library usbmuxd-211 built on May 16 2011 at 00:10:01, running usbmuxd-211 built on May 16 2011 at 00:14:56
+
+I've already tried reinstalled iTunes, which seems to include all the mobile device connection stuff (instructions: http://support.apple.com/kb/ts3540), but without success.
+I've also braved the horrors of the Apple forums, and while some people report the same issue, there's no fix or explanation for this.
+Any advice other than "ignore it" or "reinstall OS X" welcome. Yes, I've already repaired permissions.
+
+A: The spam arrived with a recent update to iTunes.  It happens in both Snow Leopard and Lion.  Short of downgrading iTunes versions until the messages go away, there's probably nothing you can do about it.
+An update:
+The usbmuxd spam only happens when you have a device (iPhone, etc) plugged in and listed in iTunes under 'DEVICES'.  One obvious workaround is to leave your devices unplugged.  A more useful workaround is to just eject them in iTunes – the spam will stop and your devices will continue to charge.
+
+A: This has been resolved in iTunes 10.5 (141). No more usbmuxd spam since upgrading.

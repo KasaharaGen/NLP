@@ -1,0 +1,25 @@
+Q: Can command-line commands be made insensitive to order of filenames and options? I'm new to Mac usage.  It seems that most commands trip over options given after the file names. In linux, which I've used for years, it doesn't matter.  On Apple, it does.  Is there some setting somewhere or some hack to make commands like ls behave "normal"?
+dwilson 0====> ls -l p*
+-rw-r--r--@ 1 dwilson  owner  184 Jul 29 13:57 poo.c
+-rw-r--r--@ 1 dwilson  owner  133 Jul 29 13:57 poo.h
+
+dwilson 0====> ls p* -l
+ls: -l: No such file or directory
+poo.c        poo.h
+
+dwilson 1====>
+
+
+A: The reason for this is that Mac OS X uses BSD utils (which have a specific order to their parameters), whereas Linux uses the GNU utils, which can accept arguments in any order.
+You can download and compile the GNU coreutils package, which should provide you with the utilities you're used to; I would recommend just getting used to the BSD utils, however, as you'll otherwise have problems moving to other systems. The BSD method works fine on GNU systems, but the GNU method is less portable.
+
+A: The example you have given is normal. I know of no *nix environment that will take flags/options after the file list for ls
+Some commands are just different versions from whichever *nix environment you are coming from.  You can fix things like this by using alias or other shells.
+
+A: If you are using MacPorts (and as a Linux connoisseur you probably are), you can install GNU coreutils with:
+sudo port install coreutils
+
+and then make sure to add the coreutils path to your path:
+export PATH=/opt/local/libexec/gnubin:$PATH
+
+[Sources: TJ Luoma comment to the accepted answer and this blog post.]

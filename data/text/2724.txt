@@ -1,0 +1,31 @@
+Q: Uninstall VMWare Fusion and VMWare Tools on boot camp partition I was using VMWare Fusion on a boot camp partition and installed VMWare Tools on the Windows volume.
+How can I completely uninstall everything related to VMWare Fusion?
+
+A: *
+
+*Uninstall the VMWare Tools in the VM using the uninstaller in Add/Remove Programs
+
+*Use the Fusion uninstaller on the installation DMG to remove VMWare Fusion
+
+*Follow this VMware KB article to clean up Fusion completely.
+
+
+Sidenote: I can't find an official KB article for removing the tools, and those I do find all only mention Add/Remove. I am assuming it does a complete removal.
+
+A: *
+
+*Uninstall VMWare Fusion: (source)
+
+*
+
+*Quit VMWare Fusion, making sure that the VM is not running.
+
+*Run the uninstaller that came in the original .dmg file.
+
+*Launch the uninstaller.
+
+
+*Restart the machine and boot into the Windows partition.
+
+*Uninstall VMWare Tools normally via Add/Remove programs (source).
+

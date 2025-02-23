@@ -1,0 +1,23 @@
+Q: Caffeine taking up 2.88GB virtual memory 
+Caffeine is a small program. Why is it taking up so much virtual memory or am I reading this wrong?
+Edit: persists across application and os restarts
+
+A: So apparently I was reading it wrong. According to Thomas Franzén ( lightheadsw )
+
+Virtual memory size is a meaningless
+  number for most uses. An application
+  having a big virtual memory size
+  doesn't affect you, because it's just
+  a virtual memory space. The column you
+  should be looking at is RSIZE. That's
+  the actual amount of physical RAM an
+  application is using.
+
+I verified with ObjectAlloc and it seems like it is using only 8MB or so.
+
+
+A: On my machine, it's using 30.2 MB, so you're right that yours is doing something out of the ordinary.
+When you reboot, does it start at a lower number, or immediately jump to this level?
+Do you usually have it clicked? (I don't)
+Is it adding any messages to your console log?
+What version of Caffeine are you running?

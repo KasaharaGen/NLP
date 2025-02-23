@@ -1,0 +1,49 @@
+Q: Remove item from Context Menu I noticed extra options pop up in my context menus, I'm not sure how I managed to get it (or how long ago I installed this item), but does anyone know how I can remove it? Particularly the iconStiX item, which doesn't work.
+I've tried looking in /Library/Context Menu Items, but there's nothing there
++1 if you can tell me where it came from.
+
+
+A: You can modify what's in your right-click context menus going to Keyboard Shortcuts -> Services and unchecking the services there.
+
+A: I've just installed and then uninstalled iconStiX again - just to see where the stuff was placed.
+The uninstall is like this (see Readme.pdf in iconStiX.dmg):
+
+Throw away the following 4 items into the Trash:
+
+
+
+*
+
+*the iconStiX program in your Applications folder (or any other place of your choice)
+
+*in your ~/Library/Preferences:
+
+
+*
+
+*li.loos.trollin.iconStiX.plist
+
+*li.loos.trollin.iconStiX.LSSharedFileList.plist (if any)
+
+
+*a folder named iconStiX in your ~/Library/Application Support folder
+
+Empty the Trash.
+
+BUT this doesn't remove the Contextual Menu Items - unless you reboot your Mac (I did that, and the items was gone).
+
+A: Look into
+
+
+*
+
+*~/Library/Contextual Menu Items
+
+*/Library/Contextual Menu Items folders
+
+*~/Library/Services
+
+*/Library/Services
+To access them, open a Finder icon, press ⌘+⇧+G, or Go > Go to Folder and paste one of the two paths above.
+You'll find there all the contextual menu extensions and your services. Move them to the folder to disable them.
+You may need to Log Out/In to apply the changes.

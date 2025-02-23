@@ -1,0 +1,8 @@
+Q: Get back some colors in Finder's sidebar Since Lion, every item in the Finder's sidebar are gray. I miss the colors, as they were helpful to quickly find a specific item.
+The problem is the same in Open File dialog box.
+Do you know of a way to get back some colors in the Finder's sidebar?
+I'm ok to modify files owned by the System (such as system images), but I'm not ok to use SIMBL. This project seems nice, but I don't want to use it.
+
+A: You aren't alone in wanting the color back.  Unfortunately, it looks as if the Finder code actually shifts the hue from the fully-colored icon resources that are included (see the Go menu in Finder, which has the colored versions).  
+According to a commenter on this MacThemes Forum thread, the developer documentation actually details how to shift the hue in the same way that Finder does; with the associated speculation that we'll see grey icons in every app that has a sidebar in the future.
+Looks to me as if you can bite the bullet and use ColorfulSidebar (with SIMBL) or live with the grey.

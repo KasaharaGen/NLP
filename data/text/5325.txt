@@ -1,0 +1,41 @@
+Q: Home and End commands in Lion After installing Lion, ⌘ + ← doesn't go to the line start and ⌘ + → doesn't go to the line end.
+Anyone know how to reconfigure this?
+
+A: Coming from Windows I've had a tough time adjusting to the way home and end behaves. Luckily the guys at MacroMates had a blog post about this.
+http://blog.macromates.com/2005/key-bindings-for-switchers/
+Create a file at ~/Library/KeyBindings/DefaultKeyBinding.dict with the following contents:
+{
+    /* home */
+    "\UF729"  = "moveToBeginningOfLine:";
+    "$\UF729" = "moveToBeginningOfLineAndModifySelection:";
+
+    /* end */
+    "\UF72B"  = "moveToEndOfLine:";
+    "$\UF72B" = "moveToEndOfLineAndModifySelection:";
+}
+
+I restarted and my keys were behaving as expected!
+
+A: You could try restoring defaults by using the 'Restore Defaults' button in System Preferences shown below:  
+
+
+A: Removing ~/Library/Preferences/com.apple.universalaccess.plist.lock and logging out and back in did the trick for me.
+
+A: This problem was driving me crazy.
+Ortwin Gentz wrote:
+
+Removing ~/Library/Preferences/com.apple.universalaccess.plist.lock and logging out and back in did the trick for me.
+
+I didn't have a file with that name, but I had one with this very similar name:
+~/Library/Preferences/com.apple.universalaccess.plist
+I moved that file to the trash, then logged out and back in. Problem gone. Hooray!
+Thank you, Mr. Gentz!
+
+A: It seems to have something to do with the language you selected.
+I had mine set to English - Canadian (eh :P)
+setting Language & Text > Input Sources 
+uncheck English - Canadian 
+check US
+Once I did that my cmd + arrow key was back to normal.
+
+A: Option + Command + right arrow (on the latest Lion update -- it changes)

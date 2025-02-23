@@ -1,0 +1,82 @@
+Q: Is it safe to install Windows Updates on a Boot Camp'ed OS? I just installed Windows 7 on Boot Camp, and when I login to windows, it says that there are Windows Updates available. The problem is that one time when I tried to install these updates, it prevented Windows from starting up again. So I'm wondering if it's okay to run all of the Windows updates as they appear, if I have to avoid some of them, or if I have to wait until Apple releases a patch which would permit the updates to be installed without any adverse effects.
+Here is the series of events that occurred as I remember them:
+
+
+*
+
+*Installed boot camp
+
+*Installed Apple's drivers via a USB flash drive
+
+*Restarted
+
+*Connected to internet
+
+*Windows noticed that there were a few recommended updates and installed them.
+
+*Restarted
+
+*I manually checked for updates in Windows Update to see if there were any more, it showed 40 or so.
+
+*I began the update process.
+
+*While it was downloading and installing the updates, I ran Apple's Software Update. It showed that there was an update to Boot Camp (3.2, I believe). I didn't install it since Windows Updates was already in the process of installing updates.
+
+*Restarted
+
+*Windows didn't load, instead Startup Repair loaded which said that Windows was unable to load normally.
+
+*One of its suggestions was to perform a system restore, I approved this.
+
+*After some time, Startup Repair said that wasn't successful at finding a solution. (It's ambiguous as to whether or not the restore worked.)
+
+*Restarted
+
+*This time it launched Windows correctly.
+
+*I checked how many updates there were in Windows Updates, and it showed only 4.
+
+*I launched Apple's Software Update, and updated to the latest Boot Camp.
+
+*Restarted
+
+*This time when I checked for Windows Updates, it showed more than 40.
+
+
+My guess is that the restore did work, since after restarting, Windows launched. Plus, it showed more than 40 updates left.
+
+A: For practical purposes, when you boot into your Boot Camp partition you are on a regular PC: All updates pushed thru Windows Update should work as expected. I have used Boot Camp since the beta period all the way to Snow Leopard and I have never experienced a situation like the one you describe. 
+I believe that Windows Update will only push updates that are critical (like security updates) and everything else (like driver updates) is listed as optional. I recommend enabling the option that makes Windows Update prompt you whether or not it should install updates when available. That way if you are in doubt, you can always review and make sure any driver updates are not pushed into your system, and things like security updates are. 
+It might be a good idea to stick to the drivers provided by Apple. 
+I am unsure why you had to manually install the drivers on a USB drive, since they are usually installed automatically from the Mac OS X DVD right after Windows completes its setup. I wonder if there is a particular situation with your system and that the fact you had to install the drivers separately is related to what is causing your hardware to be unreponsive now. 
+
+A: You should be just fine to install Windows Updates.
+It sounds like you have Apple updates already installed, which I would highly recommend before doing Windows Updates.
+
+A: The cautious Bootcamper will disable multi-touch prior to updating:
+The Apple-authored driver appletmp.sys halts Windows 7 startup on Macbook Air
+
+A: There are lots of windows updates that can cause BOOTCAMP to stop working correctly on Apple Hardware. It is good practice to boot back into MacOS occasionally and run any updates on the MacOS side (which may include Firmware updates for the hardware).
+It is a good idea to run Apple Software Update on the Windows side to also update any BOOTCAMP drivers specific to the Apple Hardware.
+I also disable Windows Update from downloading and installing Drivers.
+
+How to stop updates for drivers with Windows Update using Group
+Policy.
+
+*
+
+*Use the Windows key + R keyboard shortcut to open the Run command.
+
+*Type gpedit.msc and click OK to open the Local Group Policy Editor .
+
+*Browse the following path: Computer Configuration > Administrative    Templates > Windows Components > Windows Update.
+
+*On the right side, double-click the Do not include drivers with    Windows Update policy.
+
+*Select the Enabled option.
+
+*Click Apply . Click OK .
+
+
+Most other Windows Updates are installed as they become available.
+Some previously released Windows updates have broken Wifi as well as caused Bluetooth issues with Magic Mouse and Magic Keyboard devices (Currently fixed with the third party 'Magic Utilities'). Graphics drivers are usually the worst and it is best to stick with the Apple Supplied drivers, rather than using the GPU Manufacturer or Windows supplied drivers.

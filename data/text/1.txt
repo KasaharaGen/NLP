@@ -1,0 +1,23 @@
+Q: Turn on Back To My Mac via a Script or Command Line The VPN software I use for work (IPSecuritas) requires me to turn off Back To My Mac to start it's connection, so I frequently turn off Back To My Mac in order to use my VPN connection (the program does this for me). I forget to turn it back on however and I'd love to know if there was something I could run (script, command) to turn it back on.
+
+A: There is no supported way to do this. Having said that, you can do it using scutil:
+louis@Arios:~$ sudo scutil 
+> set Setup:/Network/BackToMyMac
+> d.add <YYY>  <XXX>.members.btmm.icloud.com
+> set Setup:/Network/BackToMyMac
+> quit
+louis@Arios:~$ 
+
+Replacing <YYY> with the UID of the user account on the system (for most people with  single account that is 501), and <XXX> with your iCloud account number. If you don't know that you can check your dns-sd registrations:
+louis@Arios:~$  dns-sd -E
+Looking for recommended registration domains:
+ DATE: ---Wed 22 Aug 2012---
+ 9:11:04.789  ...STARTING...
+Timestamp     Recommended Registration domain
+ 9:11:04.789  Added     (More)               local
+ 9:11:04.789  Added                          icloud.com
+                                             - > btmm
+                                             - - > members
+                                             - - - > <XXX>
+
+The last line will list your iCloud user number. I think they are all 8 digit numbers, at least mine is.

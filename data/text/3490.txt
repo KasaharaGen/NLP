@@ -1,0 +1,38 @@
+Q: How to clear the cache or do a hard refresh in Safari? I am used to doing this in Windows with FireFox or IE by pressing Ctrl+F5.
+Is there a way to do this for Safari on a Mac?
+
+A: Go to Safari > Empty Cache, or hit ⌘ Command+⌥ Option+E. To refresh, click the refresh button on the addressbar or press ⌘ Command+R.
+Another tip. If you want to restore Safari, like completely clear all the caches, or parts of it, go to Safari > Reset Safari. I use it usually when I need to clear a lot of memory from Safari, for it will clear the webpage screenshots, the cookies, the favicons, etc. 
+
+Edit: On the latest version of Empty Cache isn't on the Safari menu any more. It's now on the Develop menu. To show the Develop menu it, go to Safari > Preferences..., click the Advanced tab, and check Show Develop menu in menu bar. The keyboard shortcut remains unchanged, though.
+Safari > Reset Safari isn't an option any more. To clear history you can use History > Clear History... and to clear cookies/local storage data, go to Safari > Preferences..., click the Privacy tab, and either click Remove All Website Data... or Details... to view and remove it for individual sites.
+
+A: If you haven't already, enable developer tools: open settings (Cmd + ,), go to the advanced tab, and check the box that says "Show Develop menu in menu bar."
+Empty caches a single time: Develop > Empty Caches
+Keyboard shortcut to empty caches a single time: Opt + Cmd + E
+If you want to disable caching (for example, if you are developing a website and need to consistently reload changes to files on your site) you can do so: Develop > Disable Caches.  Select this option again to reenable caching.
+Note: for Safari 11 the disable caching feature was moved to the Network section of the web inspector.  Open the web inspector with Cmd + Shift + I, go to the Network tab, and click the icon on the far right that looks like this:
+
+
+A: ⇧ Shift and clicking the Refresh button generally does a full refresh. You can also empty cache with ⌘ Command+E, and then refresh.
+
+A: You must click References->Advanced->check to Show develop menu in menu bar. Later in Inspect Element press ShiftCmdR.
+Note: Your mouse must click into the element within "Elements tab", then you can press Shift+Cmd+R.
+
+
+A: ⌘ Command⌥ OptionR
+This is the correct answer for people looking for Safari's equivalent for ⌘ Command⇧ ShiftR in Chrome. This works for both Safari and the Web Inspector when connected to an iPad/iPhone.
+Keep in mind this does not clear cache, it simply does a "Hard Refresh".
+
+A: on Safari version Version 11.1.2 (13605.3.8), it seems to be Opt+Cmd+E. 
+You can check by 
+open up Develop menu on top > look for Empty Caches item on the drop down list > see what the shortcut is. 
+
+A: ⌥ + ⌘ + R
+Tested in Safari Version 12.0.1 (14606.2.104.1.1)
+
+A: 
+If Develop Menu not show in your bar, setting it on Safari→Preferences→Advanced and check in "Show Develop menu in menu bar"
+Or, you can press ⌥ Option ⌘ Command  E
+
+A: If you are use safari browser in windows, then ctrl + alt + e use for empty cache.

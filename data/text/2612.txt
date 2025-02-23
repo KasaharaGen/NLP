@@ -1,0 +1,28 @@
+Q: Launch default browser spotlight shortcut? I often switch my default browser between Safari and Chrome. I would like to create a shortcut that will launch the default browser, whatever that may be. This way I don't have to remember what my default browser is and switch between typing "Chr" or "Saf" in spotlight. I would like to type the same word such as "Browser".
+What are my options?
+
+A: I'd make a little AppleScript that does this:
+on GetDefaultWebBrowser()
+    set _scpt to "export VERSIONER_PERL_PREFER_32_BIT=yes; " & "perl -MMac::InternetConfig -le " & "'print +(GetICHelper \"http\")[1]'"
+    return (do shell script _scpt)
+end GetDefaultWebBrowser
+do shell script "open -a \"" & GetDefaultWebBrowser() & "\""
+
+Replace the URL (in quotes) with your homepage.
+The rest of the code serves to figure out what your default browser is, and make it the active application. That part lifted from a Daring Fireball article.
+Save it as an app called Browser and put it somewhere. Once Spotlight indexes it, you can type Browser in and hit enter. This will open the URL in your default browser.
+Directions:
+Open AppleScript Editor from your Applications/Utilities folder (if you have older than 10.6, it will be Script Editor in your Applications folder). Paste that line in. Go to File-> Save As. Set the File Format: menu to Application. Choose a location and save.
+
+A: This may be too low tech of a solution for you but what about creating a web shortcut file (naming it "Browser") to say, your homepage, and then either putting that shortcut in your dock (and accessing it from there), or searching for that file via spotlight - when clicked the default browser would open.
+
+A: Edit: Nathan edited his answer after I posted this, so mine seemed completely pointless. So I added the reopen verb — it's a bit tidier way to make sure that the browser doesn't open up with no windows.
+Also, you don't have to save Applescripts as .app to run them from Spotlight — .applescript and .scpt also work
+set a to do shell script "export VERSIONER_PERL_PREFER_32_BIT=yes; perl -MMac::InternetConfig -le 'print +(GetICHelper \"http\")[1]'"
+tell app a
+    reopen
+    activate
+end tell
+
+Original Perl script from a Daring Fireball post (!).
+I've also been changing back and forth between browsers recently, but I just use F11 as a shortcut for a script that opens the main browser.

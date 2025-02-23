@@ -1,0 +1,113 @@
+Q: How do I diagnose a slow login? After logging in (typing the passwort) my MacBook Air will display a white screen for about 10 seconds before the desktop appears.
+How can I find out what is going on and fix it?
+So far I've tried:
+
+
+*
+
+*deleted the ~/Library/Caches and /Library/Caches folder
+
+*checked that there are no login items
+
+*logging in without 'reopening windows'
+
+*disabled the network (in case it's waiting for a timeout)
+
+*repaired the disk permissions
+
+*verified the keychain
+
+*looked at the output from Console (there is a large gap where apparently nothing is happening)
+
+
+but none of this made any difference whatsoever.
+I've also created a new user account and I can login to that in about 2 seconds - so I assume that the problem has to be with my account.
+The system is Lion (with the latest updates). I've installed Vbox, KeyRemap4MacBook and Xcode.
+EDIT: As suggested, here is the console output for the account that takes about 15 seconds to login:
+2011-09-22 11:54:33.748 PM SecurityAgent: User info context values set for chris
+2011-09-22 11:54:33.748 PM SecurityAgent: User info context values set for chris
+2011-09-22 11:54:33.830 PM SecurityAgent: Login Window login proceeding
+2011-09-22 11:54:33.830 PM SecurityAgent: Login Window login proceeding
+2011-09-22 11:54:34.074 PM loginwindow: Login Window - Returned from Security Agent
+2011-09-22 11:54:34.113 PM airportd: _doAutoJoin: Already associated to “wifi1”. Bailing on auto-join.
+2011-09-22 11:54:34.158 PM loginwindow: USER_PROCESS: 2849 console
+2011-09-22 11:54:34.203 PM com.apple.launchd.peruser.503: (com.apple.quicklook.32bit) Unknown key for boolean: DisallowDataExecute
+2011-09-22 11:54:34.203 PM com.apple.launchd.peruser.503: (com.apple.ReportCrash) Falling back to default Mach exception handler. Could not find: com.apple.ReportCrash.Self
+2011-09-22 11:54:34.821 PM UserEventAgent: CaptiveNetworkSupport:CNSServerRegisterUserAgent:187 new user agent port: 32703
+2011-09-22 11:54:35.501 PM KeyRemap4MacBook: observer_IONotification
+2011-09-22 11:54:36.907 PM KeyRemap4MacBook: skip checkForUpdates
+2011-09-22 11:54:37.000 PM kernel: KeyRemap4MacBook --Info-- RemapClass::allocation_count_ 167849/2097152 (capacity 8%)
+2011-09-22 11:54:37.564 PM com.apple.dock.extra: Could not connect the action buttonPressed: to target of class NSApplication
+2011-09-22 11:54:37.565 PM com.apple.dock.extra: 2011-09-22 23:54:37.563 com.apple.dock.extra[2902:1707] Could not connect the action buttonPressed: to target of class NSApplication
+2011-09-22 11:54:37.565 PM com.apple.dock.extra: Could not connect the action buttonPressed: to target of class NSApplication
+2011-09-22 11:54:37.565 PM com.apple.dock.extra: 2011-09-22 23:54:37.564 com.apple.dock.extra[2902:1707] Could not connect the action buttonPressed: to target of class NSApplication
+2011-09-22 11:54:37.566 PM com.apple.dock.extra: Could not connect the action buttonPressed: to target of class NSApplication
+2011-09-22 11:54:37.566 PM com.apple.dock.extra: 2011-09-22 23:54:37.565 com.apple.dock.extra[2902:1707] Could not connect the action buttonPressed: to target of class NSApplication
+2011-09-22 11:54:37.566 PM com.apple.dock.extra: Could not connect the action buttonPressed: to target of class NSApplication
+2011-09-22 11:54:37.566 PM com.apple.dock.extra: 2011-09-22 23:54:37.565 com.apple.dock.extra[2902:1707] Could not connect the action buttonPressed: to target of class NSApplication
+2011-09-22 11:54:45.344 PM com.apple.loginwindow: chris-pc
+
+Can anyone spot the problem?
+And here is the output from a new account that takes only 1-2 seconds to logon:
+9/22/11 11:33:39.404 PM loginwindow: Login Window - Returned from Security Agent
+9/22/11 11:33:39.452 PM airportd: _doAutoJoin: Already associated to “wifi1”. Bailing on auto-join.
+9/22/11 11:33:39.501 PM loginwindow: USER_PROCESS: 2278 console
+9/22/11 11:33:39.597 PM com.apple.launchd.peruser.501: (com.apple.quicklook.32bit) Unknown key for boolean: DisallowDataExecute
+9/22/11 11:33:39.597 PM com.apple.launchd.peruser.501: (com.apple.ReportCrash) Falling back to default Mach exception handler. Could not find: com.apple.ReportCrash.Self
+9/22/11 11:33:40.096 PM UserEventAgent: CaptiveNetworkSupport:CNSServerRegisterUserAgent:187 new user agent port: 27435
+9/22/11 11:33:40.472 PM KeyRemap4MacBook: observer_IONotification
+9/22/11 11:33:40.772 PM com.apple.dock.extra: Could not connect the action buttonPressed: to target of class NSApplication
+9/22/11 11:33:40.772 PM com.apple.dock.extra: 2011-09-22 23:33:40.770 com.apple.dock.extra[2332:1707] Could not connect the action buttonPressed: to target of class NSApplication
+9/22/11 11:33:40.773 PM com.apple.dock.extra: Could not connect the action buttonPressed: to target of class NSApplication
+9/22/11 11:33:40.774 PM com.apple.dock.extra: 2011-09-22 23:33:40.772 com.apple.dock.extra[2332:1707] Could not connect the action buttonPressed: to target of class NSApplication
+9/22/11 11:33:40.774 PM com.apple.dock.extra: Could not connect the action buttonPressed: to target of class NSApplication
+9/22/11 11:33:40.775 PM com.apple.dock.extra: 2011-09-22 23:33:40.773 com.apple.dock.extra[2332:1707] Could not connect the action buttonPressed: to target of class NSApplication
+9/22/11 11:33:40.775 PM com.apple.dock.extra: Could not connect the action buttonPressed: to target of class NSApplication
+9/22/11 11:33:40.776 PM com.apple.dock.extra: 2011-09-22 23:33:40.774 com.apple.dock.extra[2332:1707] Could not connect the action buttonPressed: to target of class NSApplication
+9/22/11 11:33:42.094 PM KeyRemap4MacBook: checkForUpdates http://pqrs.org/macosx/keyremap4macbook/files/appcast.xml
+9/22/11 11:33:42.000 PM kernel: KeyRemap4MacBook --Info-- RemapClass::allocation_count_ 166656/2097152 (capacity 7%)
+
+
+A: It is clear that you are having USER file permission issues. What you need to do is run repair permissions on your user folder which you cannot do with Disk Utility's "Repair Permissions" option. Using Disk Utility only repairs system files.
+To repair user file permissions you would need to boot into Lion's built Repair Utilities.
+
+
+*
+
+*Power off your computer
+
+*Power on your computer and press and hold Command + R until you see the Apple Logo. This may take little longer than usual to load.
+
+*Once the Repair Utilities loads, click on Utilities on the menu bar and select Terminal
+
+*Within Terminal, type resetpassword and hit Return. This will open up a password reset utility
+
+*In this window, select your hard drive (Macintosh HD) and then select your user account from the drop down menu located just underneath your hard drive's icon
+
+*With your username selected, click on the Reset button at the bottom right of the window. This process may take a couple of minutes to complete. This will repair all file and folder permissions for all files and folders located within your User Folder.
+
+*Once completed, quit the Reset Password application then the Terminal application, and finally, the Utilities application which will reboot your computer.
+
+
+Source: Repair User Permissions in Mac OS X Lion
+If your disk is encrypted you have to unlock it first:
+
+
+*
+
+*diskutil coreStorage list will give you the UUID.
+
+*diskutil coreStorage unlockVolume YOUR_UUID will unlock the disk (the passphrase is the password for your user account)
+
+
+A: Some next steps to isolate the issue:
+
+
+*
+
+*Does a new account take the same 10 seconds to load. Be sure to discount the first log in as the system has to populate many preference and cache files the first log in. By logging out and back in to the test account you can see what your current mac has for speed on a thin user. Do turn off automatic log in and reboot the mac to re-test a log in to the test account when the files are not cached in RAM.
+
+*Take your home folder to another mac and verify it's fine there, delete and migrate it back. This often fixes problem accounts where I can't just nuke it and have the user set it up again.
+
+*Erase the Mac after ensuring your Time Machine (or other) backup is properly updated.
+

@@ -1,0 +1,19 @@
+Q: Safari is not showing style sheets For some reason, starting yesterday, Safari will not show ANY style sheets for any webpage I visit.  I updated today to Safari 5.0.5 thinking that might help, but it didn't.
+I restarted, and that didn't help either.  Here's an example of what it looks like:
+
+I am not running extensions or any custom style sheets.  I did notice something odd with the extensions section of the safari preferences:
+
+Any ideas / suggestions?
+
+A: You could try recreating your Safari Preferences plist:
+
+
+*
+
+*Quit Safari.
+
+*Open Finder -> Library -> Preferences
+
+*Move com.apple.Safari.plist to your Desktop.
+
+*Open Safari.

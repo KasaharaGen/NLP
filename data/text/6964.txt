@@ -1,0 +1,18 @@
+Q: can't run GlassFish because something is using port 8080; but how to find it? I develop on Mac (Lion) with Eclipse and GlassFish 3.1. GlassFish uses ports 8080 and 4848. Suddenly, when I try to launch GlassFish it tells me it can't because there's a port conflict.
+As far as I can tell, nothing is using that port. I shut down everything and restarted the Mac and still get the same error when I ran GlassFish. I uninstalled GlassFish, deleted all the directories, restarted my machine, reinstalled GlassFish and same problem.
+I created a new test user on my Mac, log out as me, log in as him, install GlassFish under that users account and it runs fine there.
+It's like there's something in my user account that makes my Mac or GlassFish think that port is in use.
+Does anyone know how I might solve this problem? I hate the idea of having to create a new account on my Mac and transfer all of my data there. Seems like an excessive solution.
+
+A: NMAP will provide a listing of open ports and programs that are currently using them. It is actually a powerful networking tool that can perform a wide variety of network maintenance tasks.
+You can read more about it here: http://nmap.org/book/inst-macosx.html
+It is a small commandline utility (although GUI front-ends are available) that is quite easy to use and should give you a detailed view of your current network state.
+
+A: You can use lsof -i TCP:8080. The only problem, I think, is that it will find out that Java is using that port; if you kill that java process, you still won't be able to start Glassfish.
+My solution is to delete all the domains in the glassfish directory, and then delete the Glassfish server, and installing a new one with a new domain.
+For me it's a domain issue.
+
+A: netstat -nap would also work. If the process isn't your own you'll need to use sudo. It'll list out all the open ports, with their status, and the PID of the owning process.
+Something like:
+sudo netstat -nap | grep 8080
+

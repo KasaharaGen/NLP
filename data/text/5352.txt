@@ -1,0 +1,32 @@
+Q: Why can't some of my machines boot to my Lion install USB drive? I purchased and downloaded Lion yesterday. As always when there's a major release, I like to keep things clean as I have a huge tendency to fiddle with the system once installed and that might render future updates instable, so I'm going the full reformat-then-install route.
+Well, so I "burned" InstallESD.dmg onto a reliable 8Gb USB thumb drive with Disc Utility. I just reformated and reinstalled my mid-2009 17" MacBook Pro, from which I'm writing this right now. Flawless install, nothing to say.
+Then the problem arises : I've got two other machines, a 2008 white (plastic) 13" MacBook, and a 2008 MacPro. When I boot them from the USB drive by holding Alt, the kernel starts then halts with a "no go" sign. Booting the USB installer drive into Verbose mode tells me that's it's "still waiting for root device", whichever USB port I use on the MacBook or the Mac Pro.
+I am just looking to get Lion installed several clean / erased macs while avoiding another download of the Lion package each time I start an install.
+What should I do? 
+
+
+*
+
+*Try another USB drive. 
+
+*Burn the .dmg to an optical disc? (haven't touched one in... well... ages). 
+
+*Reinstall a fresh Snow Leopard on them, then perform the latest Software Updates, then install Lion the "official" way?
+
+
+Thanks for any tips.
+
+A: It sounds like the USB drive doesn't have the drivers to boot the other macs. :-(
+The fastest path forward is to simply erase install a basic Snow Leopard OS onto the failed macs. While this is happening, do download the 10.6.8 Combo update to your USB drive just in case it's needed. 
+Don't bother running the updates unless the Lion installer forces you to get to a higher version than your 10.6 installer delivered.
+Once you boot into Snow Leopard - you can try again to mount the USB and execute the Lion upgrade package. I don't know if it runs well from the USB or needs to be copied to the internal boot drive.
+There's a little uncertainty in my brain - so I don't want to write too much without making sure this makes sense to you.
+
+As an alternative - you could try instead to transfer the recovery partition, but this may not be universal (include the drivers the older macs) either.
+There is a step-by-step recipe here for copying any bootable volume to one file on a USB drive.
+If you are curious or feel it's worth a shot, image the recovery partition from your Lion mac.
+You should be able to boot from DVD and use disk utility to make an equivalent partition on the "non bootable" mac and drop the recovery data to get a minimal bootable system and avoid a full Snow Leopard install.
+Unless you are familiar with Disk Utility and the steps to capture, the reinstall option might be more likely to succeed on first attempt. I certainly don't know if this partition is customized by Lion and not universal so I've made it an aside for the curious.
+
+
+A: Just to be safe, I would just reinstall Snow Leopard on your computers (Why would you even have to do that? Booting from USB wouldn't affect Snow Leopard, would it?) and then install Lion the traditional way. It doesn't cost any extra money, for any of your computers registered with your account on the Mac app store get Lion free. 

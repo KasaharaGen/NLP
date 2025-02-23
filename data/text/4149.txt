@@ -1,0 +1,25 @@
+Q: Use MacVim as standard Terminal? I used to love the terminal.app for many reasons.
+I especially liked the way I could navigate to a file and edit using vim it all in one app, without having to leave the keyboard. 
+But, since the terminal.app doesn't support many of vim's rich features, I decided to make the step to MacVim. 
+This breaks the symmetry though, I have to use terminal.app to navigate to a file, edit in MacVim (using mvim of course), quit MacVim and open up the terminal again. 
+Isn't there a way to use MacVim in stead of terminal to do all this? I'm not talking about iTerm 2 etc, these apps don't cut is for me. I'm talking about true unix command line in MacVim.. 
+This should be possible, I guess, only... is it?
+
+A: This is an old thread, but just in case someone else has this question:
+mvim -v
+
+A: If you are looking to navigate and open your files from within VIM, there are a couple things I suggest trying out.
+:Sex
+:Sex in VIM or MacVim splits the screen and lets you navigate the file system to find a file.  I have this bound to ;o in my install.  
+NERDTree
+NERDTree is a VIM add-on that gives you a navigable tree view of the filesystem on the left-hand side of VIM.  :NERDTreeToggle ~/path/to/whatever/ will open NERDTree for you, and the root of the tree will be ~/path/to/whatever/.  In my VIM installs I use my home directory, and have it aliased to Control+o in .vimrc:
+map <C-O> :NERDTreeToggle ~/<CR>
+
+
+A: You're confusing the terminal with the text editor, as other commenters have pointed out. Still, there are a number of ways to make the terminal more vim-like, or vim more terminal-like.
+If it's vi-style keybindings in the terminal you're after, add set -o vi to your ~/.bash_profile (assuming you're using bash). This will allow you to use vi-style keybindings at the command line (hjkl movement, modal editing, etc.)
+If you just want to be able to execute unix commands from within vim, prepend ! to the beginning of those commands at the (Mac)Vim command line. For example :!pwd will print the working directory.
+There are also plugins like Conque which allow you to run a shell from within Vim, which sounds like it may be exactly what you're after.
+
+A: At least now, in 2020, this is built into MacVim. You can open the terminal with :terminal and you can navigate to and from it by tapping <C-w> twice.
+For more information on usage, type :help terminal.

@@ -1,0 +1,35 @@
+Q: Will I lose my game saves when I upgrade to iOS 5? I have heard that if I update my iPhone to iOS5 it will take all of the apps off of my phone and I will have to manually put them back on. Does that mean I will lose any savegames or game progress in the games I have on my iPhone?
+
+A: The short answer to your question is no. You will not lose your games. However, you must know how to save them and how to bring them back after upgrading to iOS 5. A friend of mine with an iPod Touch had the same concerns about his saved Angry Birds data. I walked him thru upgrading to iOS 5 and this is how we did it: 
+
+
+*
+
+*Using iTunes and an USB cable, we backed up the iPod Touch. Make sure you are running the latest version of iTunes (10.5 as of this writing). 
+
+*We upgraded to iOS 5 from the Summary tab for his device.
+
+*Once iOS 5 starts, on the initial setup screens (in the iPod Touch itself), we told the iPod Touch to restore from a backup in iTunes. 
+
+*We continued the rest of the set up as normal. We used his Apple ID to create an iCloud account. I highly recommend using iCloud. 
+
+*Once you're done with the initial setup, you can go to your device in iTunes and check on "Use Wi-Fi syncing for this device". You can detach the USB cable for good--This is one of my favorite features of iOS 5. 
+
+*In the iPod Touch, we went to Settings > iCloud > Backup and Storage to tell iCloud to backup this device. You can then manually trigger your first backup from that screen. 
+
+*Once backup is completed, your device will show up on this same screen as backed up. You can tap on its name to go to another screen where you can individually set which apps you want to keep in and out of your iCloud backup. This is very handy when deciding how to use your iCloud storage space. Most apps take very little space on the server, but there may be some apps that not, so it is worth to take a peek. This screen tells you exactly how much each app is using. Make sure to add all of your games that have data that you wish to back up. 
+
+
+Next time you need to restore your device, iCloud will restore all of your saved games this way over the air, rather than having to restore from iTunes with a USB cable. Hope this helps. 
+
+A: Yes, you can upgrade your iPod and have your game data saved.  The caveat is (at least with the below solution), you must have an operating system current enough to backup via iCloud on both your old and new iPods.
+Solution We Used
+My son unfortunately bought an 8GB iPod that quickly became useless so we upgraded eventually to a 32GB.  Both iPods have a current operating system (OS) with iCloud backup ability.  The first step is to backup the "old" iPod to iCloud (Settings, iCloud, Storage & Backup, iCloud Backup to "on" and then backup).  Then take the new iPod and start walking through the intro menus until you eventually have the choice to restore from iCloud backup.  Choose that option.  As you should be using your same Apple ID as the "old" iPod it should find the last backup you did from that "old" iPod.  Use that to restore.  It will restore all of the general data first and then proceed to reload all of the games.  When the games load, they should have your game progress saved as well (did for us anyway).
+NOTE: If you had made previous unsuccessful attempts to restore onto the new iPod, before using iCloud simply erase the new iPod and start over (Settings, General, Reset, "Erase All Content and Settings"). 
+iTunes Limited in Success
+We tried a number of methods before this using iTunes and only some game progress transferred to the new iPod (basically those that save data via the internet like Clash of the Clans).  But other games like Subway Surfer, etc. wouldn't save progress.  Using the iCloud backup method worked and was fairly simple to do.  As far as the other jail breaking efforts and finding specific game files, etc. (the Angry Birds post) we didn't have to do any of that (but may be necessary if "old" iPod does not have iCloud backup ability).  You would think an iTunes restore and backup should be at least as effective as an iCloud backup, but apparently not.  
+Good luck.  Hope this helps.
+
+A: I just upgraded to iOS5 last night and all of my apps, with their data, along with all my music, photos, videos, and the like were all restored. I will say that the content restoration process is a choice automatically presented to you that can opt out of. The process takes a while—I have a very full 32GB iPhone—and the whole process took a few hours including the time backing up and restoring. Just pay careful attention to all of the dialog windows presented and you should be up and running in no time.
+There is, however, a backend feature change for the OS that developers need to manage that might affect your data. The caches where apps can store temporary data will get cleaned automatically upon a lack of space on the iPhone. A lot of apps store their data in caches as opposed to Documents, but not all of them. If an app developer uses the cache folder and doesn't do something about this automatic cache cleaning on the part of the OS, then, yes, there is a possibility that you will lose your data like game saves. But, just to make very clear, it all depends on how the app was programmed by the developer. There is nothing about the cleaning the developer can do, but you can by making sure you don't completely fill up your device. 
+You can read about this cache-cleaning issue in detail here: http://www.marco.org/2011/10/13/ios5-caches-cleaning

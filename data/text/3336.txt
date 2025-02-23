@@ -1,0 +1,36 @@
+Q: Netcat -e on Mac OS X I'm a newbie macuser coming from Debian, and I'm a big command line user.
+One one my preferred one is netcat (aka nc on mac). I especially loved the -e option which enabled to create a process that deals bidirectionnally with the strems.
+Unfortunately, when I use the classic:
+nc -l -p 6666 -e /bin/bash
+
+Netcat does not agree with me, and I get this:
+nc: illegal option -- e
+usage: nc [-46DdhklnrtUuvz] [-i interval] [-p source_port]
+      [-s source_ip_address] [-w timeout] [-X proxy_version]
+      [-x proxy_address[:port]] [hostname] [port[s]]
+
+What does that mean? Can I use this command in another way?
+Thanks for your help,
+Rob
+PS: if someone can edit the tags, would be better -- netcat, nc are not known here :)
+
+A: I've just checked the man page.  Doesn't look like that flag is supported.  I suppose you could download a different version.. (perhaps 'netcat' instead of 'nc').
+
+A: If you install Nmap (debianports) you will also get ncat.
+ncat is basically an advanced version of nc with the options like:
+-e, --ssl, --broker, --chat, ...
+
+A: After doing some research, it appears that the netcat distributed in MacOS is a rather old (imported at 2005-10-07) version of netcat-openbsd clone. Here is the header file from the netcat.c hosted at opensource.apple.com.
+/* $OpenBSD: netcat.c,v 1.82 2005/07/24 09:33:56 marius Exp $ */
+There are three popular versions of netcat in the wild:
+
+*
+
+*gnu-netcat or netcat ver. 0.71
+
+*netcat 1.10 or nc110 (also known as netcat-traditional in debian)
+
+*and the openbsd version (netcat-openbsd, the netcat metapackage points to it) which is in active development.
+
+Currently only the gnu and 1.10 versions support -e option and it's considered insecure. In the 1.10 version you should compile with -DGAPING_SECURITY_HOLE define to enable the -e switch.
+The easiest way to install this version would be to use homebrew or other ports system (homebrew uses netcat 0.71 source).

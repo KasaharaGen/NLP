@@ -1,0 +1,6 @@
+Q: In Lion, if I keep pressing a key, why doesn't it repeat? I don't know if there are any settings to toggle, but I figured out that if I keep pressing a button on my keyboard it doesn't repeat it and displays only one character! Can this be fixed to go back to the previous repeating behavior?
+
+A: This is a new "feature" that Apple introduced in Lion.  To disable no key repeat, enter 
+defaults write -g ApplePressAndHoldEnabled -bool false
+in Terminal, and then restart your computer.
+Source: https://discussions.apple.com/message/15678809

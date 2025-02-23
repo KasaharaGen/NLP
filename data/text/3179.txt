@@ -1,0 +1,38 @@
+Q: How to get iTunes to stop encrypting iPhone backups without the password? Is there a way to disable the checkbox near Encrypt iPhone backup without knowing the password. I don't need the data that is encrypted but I would like new backups to stop being encrypted as I forgot the password so I would like to disable old backups and keep new backups in place without password. 
+I know one of the options is to wipe iPhone clean and start over but that doesn't seem good to me. So i'm searching for a more pleasant way to drop old backups with password and be able to make new ones :-)
+I use Windows 7.
+
+A: Things you can try (that I haven't tried myself), other than hoping it's not an Apple bug:
+
+
+*
+
+*If you have a 4 digit lockcode on the iPhone, the encryption on iTunes might share the same password. Try the same pin. Also try older pins, if you change it. It could be an old one.
+
+*Get iPhone Explorer, delete /var/Keychains/Keychains-2.db (may need to jailbreak the phone to be able to see it) on it and restart. Be aware this will clear all your passwords. Now delete your iTunes encrypted backups and re-sync.
+
+*Enter DFU mode, wipe your phone, and sync back - this is an easy way to remove the lock code, not sure about the encrypt iphone check tho. Probably.
+
+*Use some mysterious magic tool, enter in recovery mode to begin with a lot more of hacking. I won't get into much detail here because this isn't a simple procedure. You're on your own. Just wanted to cite it's possible and that maybe even today the "encryption" is quite fake.
+
+*Restore from an old unencrypted backup. Yes, this is the closest step to "wipe".
+
+*As you already suggested, wipe your phone (just for the sake of completeness).
+
+
+Good luck!
+
+A: Think I've fixed it!
+My encryption backup password in iTunes WAS an old iPhone lock screen password I used a while ago (probably when I set up the encryption). But that code won't work if the phone number is different—very stupid if you ask me!
+I tried and failed several times this evening to disable the iTunes backup encryption using that passcode and then I noticed that the "Phone Number" quoted in the iPhone summary tab was different, because I recently got a new pay-as-you-go SIM. I got the old one out of the drawer, put it in and now my old passcode lock code works.
+So:
+
+
+*
+
+*Ensure the SIM in the iPhone is the same as when you encrypted the file
+
+*Enter an old passcode lock 
+
+
+Regards to point 2 above, I don't know if I chose that myself or if it's a default, but the point is that the code WOULDN'T unlock it with a different SIM and then DID with the right SIM. 

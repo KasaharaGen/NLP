@@ -1,0 +1,10 @@
+Q: How to restore Parallel's Applications folder? Normally when you install Parallels, it adds a folder to the dock which acts exactly like the default Applications folder on the Mac, except for all the Windows apps.
+It even organizes them in folders exactly as the start menu on the PC is organized.
+I accidentally dragged it out of the dock, and I'm not sure how I can restore it.
+
+A: The way I was able to resolve the issue is by launching Parallels and then going into the "configure" settings. Next, I went to the Options > Applications, and checked "Show Windows applications folder in Dock".
+Apparently when you drag the folder out of the dock, it will automatically uncheck this setting for you. In fact, if you try adding the folder manually and then launching Parallels, it will automatically remove the manually added folder.
+
+A: In Finder, use the command Cmd+Shift+G ("Go to Folder") and enter the following path, then click "Go":
+~/Library/Caches/Parallels/Applications Menus
+In there, you'll find folders of applications based on the operating system(s) you installed under Parallels.  For example, if you have installed Windows XP, the folder will be called Windows XP Applications.  Simply drag the folder down to the right side of the Dock to create a shortcut for it there.

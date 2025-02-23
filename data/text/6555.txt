@@ -1,0 +1,38 @@
+Q: How do I delete a locked, invisible file in the Trash? On an external disk (that contains a clone), the /.Trashes/501/Users/myusername/Desktop folder contains (within some subfolders) a locked invisible file that I cannot delete. The whole folder starting with 'Users' is visible in the Trash in my Dock.
+I have tried:
+
+
+*
+
+*secure empty trash (it asks whether I want to delete locked files and I say yes)
+
+*empty trash via Cocktail
+
+*launched Terminal as root and went down to the file (admin user alone cannot cd into ./Trashes)
+
+*files has these properties: -rw-------@ 1 myusername  myusername  4635 Mar  3  2010 int10923.ris
+
+*rm asks me whether I want to override override rw-------  myusername/myusername sappnd,arch,schg,hidden for int10923.ris? 
+
+*I say yes, and it answers: Operation not permitted
+
+*a get info on the file (in the Dock trash, first enabling viewing of invisible files for the Finder) shows it as locked but unchecking the box, it immediately re-checks itself, it permissions are myusername Read & Write, everyone No Access, trying to change that immediately reverts back to its previous state
+
+*trying chflags nouchg or chflags dump on the file changes nothing (with Terminal running as root) 
+
+A: *
+
+*The file could simply still be open by something. Use lsof <file> to see which process is hogging it, if any.
+
+*Otherwise sudo rm -rf /.Trashes/501/Users/myusername/Desktop should get rid of it
+
+*If that didn't work, try removing all the flags it's complaining about first: chflags nohidden,nosappdn,noarch,noschg <file>
+
+A: In order to modify a file that has the schg and/or sappnd bits set, you must be started up in Single-User mode.
+See man chflags for more information:
+
+As discussed in chflags(2), the sappnd and schg flags may only be
+  unset when the system is in single-user mode.
+
+
+A: I am basically using the FEmp2, you can take a quick look at http://www.macupdate.com/app/mac/38723/femp

@@ -1,0 +1,32 @@
+Q: Compare Excel Spreadsheets I would like to compare two excel spreadsheets. I have found many Windows-based solution but nothing for Mac OS X.
+Are you aware of
+
+
+*
+
+*a build-in way to perform a diff (didn't find much in the help)
+
+*a standalone tool (for Mac)
+
+*an online tool (data is not sensitive, comparing in the cloud would be no problem)
+
+
+At the moment the only solution I got is exporting to a comma separated file and compare with diff on the command line. I was thinking to write a small Perl script but before investing too much time I wanted to be sure I am not missing a simpler option.
+
+A: Usually what I would do is copy the Excel spreadsheets into Word, then use Word's Merge Documents feature (might have been Merge/Compare or simply Compare Documents previously to 2011) to see the differences between them. Depending on how big your spreadsheet is, however, that might not work for you.
+
+A: There is a Mac version of Araxis Merge, which is an excellent program for comparing and merging mange kinds of files, and folders of files.
+Its History page seems to suggest that it does compare Excel files on Mac.
+There's a 30 day evaluation, so you could try it out and see if it does what you need.
+(I have no affiliation with the company - am just a very frequent user of the Windows version of the tool)
+
+A: You might want to try this tool. It does the job and it's free.
+http://www.nunobrum.com/excelcomparator.html
+It works in Windows and on MAC OSX. It's based on a VBA macro running in the native Excel Application, so it doesn't need any installations.
+Only suffice to enable the Macros and it works. 
+Contrary to other Excel comparators, this one also enables you to compare different sheets of the same workbook or, different ranges of the same sheet. Compares Values or Formulas.
+This tool annotates the differences directly on the sheets you are comparing, and offers the possibility of navigating through the differences on the Report sheet.
+Note: the author of this answer is also the author of this donationware software.
+
+A: You can compare 2 Excel sheets with highlighting the differences (update, new, removed) cells and rows without using any formula using Dose for Excel Add-In:
+https://www.zbrainsoft.com/Compare-Sheets.html

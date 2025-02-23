@@ -1,0 +1,22 @@
+Q: Secondary click in Lion with two fingers OR bottom-right corner click I just did a clean install of Lion on my 2010 MBP. It seems as though in the system preferences for the built-in trackpad, I have the option of setting the secondary click gesture to "Click or tap with two fingers", "Click in bottom right corner", or "Click in bottom left corner".
+Previous to this fresh install, I had simply upgraded from Snow Leopard where I had been able to initiate a secondary click either by a two-finger tap or a click in the bottom right corner. That setting was preserved when I upgraded from Snow Leopard to Lion. When I simply did a fresh install of Lion, it's now either one or the other. Not both.
+Does anyone know how I can get the "both" behavior back?
+
+A: Sadly, I don't think it's possible to do that without a third party solution. Two popular applications that allow you to tweak the touchpad and mouse are Magic Prefs and Better Touch Tool.
+
+A: Run the following six commands, by pasting them into Terminal.app. You can paste all six lines all at once. (the last two lines aren't required on older versions of OS X, but there's no harm including them) Remember to press the return key:
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+
+defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
+
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+
+Important: now reboot your Mac. 
+When you log back in, you will be able to right-click both with a two-finger tap, and by clicking in the bottom right-hand corner.
+Hope this helps.

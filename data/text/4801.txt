@@ -1,0 +1,7 @@
+Q: iCal loads, but quits after a few seconds I added a calendar from my Google account in Ical and now it quit about 3 seconds after loading.
+I have tried the solution described here:  https://discussions.apple.com/message/3680441#3680441
+but I don't even have user's Library > Application Support > iCal
+OS X 10.6.7
+
+A: You could try the same solution in the post you linked, but the calendars are stored in a different location (and format) in Snow Leopard. The calendars are stored as sub-folders of ~/Library/Calendars in Snow Leopard.
+If you have multiple calendars, you can check the date each folder was created to see which one would be the Google calendar.

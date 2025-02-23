@@ -1,0 +1,20 @@
+Q: Time Machine over SMB/CIFS share? As far as I understand there's no way to make Time Machine with SMB/CIFS; you have to connect using AFP.
+Is that true ? Is there a way to make it work ?
+I'm using OS X Lion.
+
+A: You'll need to create a HFS+ .sparsebundle disk image and use the tmutil command line utility to tell Time Machine to use that drive as the backup destination. In turn, you can put that drive just about anywhere. Note that you need to give a permanent home (i.e. don't move it elsewhere) to the disk image first before targeting it with tmutil as a backup destination.
+I've recently wrote a blog post how to use a network drive as a Time Machine destination. You can also use the same technique to use drives with other filesystems (like NTFS for example) as a Time Machine destination drive, as long as Lion can write to it (for NTFS, you'll need either NTFS-3G, Tuxera, or Paragon's drivers to write to them).
+
+A: For reference, Time Machine now officially supports SMB shares, tho they need special protocol extensions (supported e.g. by Samba >= 4.8). Sources:
+
+
+*
+
+*https://support.apple.com/en-us/HT202784#nas
+
+*https://developer.apple.com/library/archive/releasenotes/NetworkingInternetWeb/Time_Machine_SMB_Spec/index.html
+
+*https://kirb.me/2018/03/24/using-samba-as-a-time-machine-network-server.html
+
+A: A guy worked on this:
+Lion, Time Machine and AFP feature bits 

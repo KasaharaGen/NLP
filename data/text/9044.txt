@@ -1,0 +1,11 @@
+Q: How do I keep the new line/line break/end of line in a file consistent across mac and windows I use DropBox on both a windows and a mac.
+Whenever I add lines to a .txt file on my mac and sync it with DropBox to my windows, the "new lines" are skrewed up when reading the file on my windows, and vice verse.
+My mac insists to use it own form of new lines even so that the file was created with a different type of new lines. The end result is a file with mixed new line types.
+I know that new lines are different on windows and mac os x (and on linux for that matter) and I know that this is the problem.
+See http://en.wikipedia.org/wiki/Newline
+I would expect textedit in OS X to detect the type of new line used and stick with it.
+Is there anyway that I can accomplish that ?
+
+A: Which editors and viewers do you use?
+This topic describes how to set newline in BBedit and Textmate. Also you can use TextWrangler and Notepad++ which are freeware
+PS: I commonly use Vim in Windows and Mac (MacVim). In this editor I do ":set fileformat=dos" to convert to CR-LF

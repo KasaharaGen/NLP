@@ -1,0 +1,13 @@
+Q: How do I write a script to disconnect all network drives? I work in a windows environment with active directory. Just logging out doesn't disconnect (unbind) the network drives. I need something more forceful, and faster than shutting down and restarting. Because if my mac awakes in another network without connection to the windows shares it gives me the spinning beach ball of death.
+
+A: Are these shares automounted?
+You could use AppleScript, or even bash quite effectively to do this using a Log Out Hook (or running manually):
+tell application "Finder"
+    if ((count of disks) > 1) then
+        set drives to disks
+        repeat with drive in drives
+            eject drive
+        end repeat
+    end if
+end tell
+

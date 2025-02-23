@@ -1,0 +1,54 @@
+Q: How to disable Developer and Web Searches in Spotlight? Yesterday I upgraded to Lion and it seems it got some additions on Spotlight - the Developer and Web Searches groups. 
+Sadly I couldn't find a way to disable them. There isn't an option in the Spotlight preferences and I couldn't find the right defaults option. 
+Any ideas on how to hide them? They are cluttering Spotlight FAR too much :)
+
+A: As the top answer is a link to a forum post, below is the steps from post in case it disappears one day.
+The fix below describes how to remove the spotlight developer category without installing XCode first.
+Convert the plist to XML:
+plutil -convert xml1 ~/Library/Preferences/com.apple.spotlight.plist
+
+Open the file in the editor of your choice:
+vim ~/Library/Preferences/com.apple.spotlight.plist
+
+Just before </array> at the bottom, add the following:
+<dict>
+    <key>enabled</key>
+    <false/>
+    <key>name</key>
+    <string>SOURCE</string>
+</dict>
+
+Convert the file back to binary:
+plutil -convert binary1 ~/Library/Preferences/com.apple.spotlight.plist
+
+Log out and back in again.
+
+A: Spotlight thinks you are a 'Developer', if you have Xcode installed, or happened to install it at any time in the past, and hence shows you search results that maybe relevant to a developer. 
+When Xcode is actually installed and present on the computer, a check-box called 'Developer' appears in the System Preferences > Spotlight > Search Results panel giving us the option to disable 'Developer' results from appearing in our searches. When Xcode is not detected, the check-box disappears from the Preferences Panel, but Spotlight continues to show results from the 'Developer' category. 
+I am currently on Yosemite, and had installed and un-installed Xcode way back on Mountain-Lion or Lion, opting to use the 'Command Line Tools' instead. I also had Spotlight disabled until recently, and started getting hundreds of Search Results under the Developer category, once I re-enabled it. The clutter was making spotlight unusable. 
+Unable to find a solution anywhere on the Web, this is what I finally tried, and it worked:
+I created an empty file called Xcode.app in the Applications folder, and the missing 'Developer' check-box showed up in Spotlight Preferences, which I could then un-check to solve my problem.
+Open Applications > Utilities > Terminal.app then type and press Enter after each of the following lines to create the dummy Xcode app
+cd /Applications
+touch Xcode.app
+
+then head to Spotlight Preferences and uncheck 'Developer' (you might need to restart the System Preferences app to see the missing check-box appear). 
+Notes: 
+
+
+*
+
+*You need to keep the dummy Xcode.app even after changing the
+setting, deleting it will cause the setting to revert back.
+
+*Another solution would be to install Xcode itself
+
+
+A: I detailed a fix in this forum thread: http://forums.macrumors.com/showthread.php?t=1193533
+
+A: Only one solution I could find, block all spotlight web access using little snitch. I guess this is up there with iCloud helping itself to your personal files.
+
+A: Although the Search Results do not have toggles to sort or suppress these results, it's trivial to add the folders to the Privacy Pane.
+Perhaps something like this might work to Suppress the Developer hits?
+
+I don't see an obvious way to suppress the Web Search yet, but thankfully it's placed last as a catch all - last resort. I'll probably feedback / bug Apple if 10.7.1 doesn't address that with a preference.

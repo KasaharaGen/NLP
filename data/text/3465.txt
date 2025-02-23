@@ -1,0 +1,23 @@
+Q: SSH sessions hang after VPN reconnect I am a new user to OS X (MacBook Air, 10.6.7) migrating from Ubuntu and extremely happy with it. I use terminator running on X11 for my terminal program, and I'm using SSH: OpenSSH_5.8p1, OpenSSL 1.0.0d 8 Feb 2011
+My problem is that when tunnelblick VPNs reconnect all my SSH sessions hang and I must close the terminal and re-open it. In Ubuntu what would happen is the sessions would automatically continue working again once the VPN connection was re-established.
+Is there any way to make it so these connections re-establish once the VPN is back up? Occasionally my VPN hiccups and its annoying to close all my windows. I'm aware I could use screen but it doesn't really solve the problem as easily as it was working under Ubuntu.
+
+A: Unfortunately, I think each VPN client will be picky about this in its own way.  Since the network is dropping from underneath the SSH connection, you will have three scenarios that could cause it to "hang", or just drop (that I can think of).
+
+*
+
+*Data is flowing back and forth, and the connection is gone.
+
+*You get a new IP address when reconnecting.
+
+*Timeout/Alive conditions trigger before you reconnect.
+
+2 Suggestions...
+
+*
+
+*Use screen (you said you don't want to do this, I know, but it really is the most robust solution.  There are scripts out there that can greatly enhance/automate the reconnection process).
+
+*Compare your SSH configurations.  Usually stored in /etc/ssh_config or similiar.
+
+BTW -- I don't think you should need to close windows, just do return~. (return tilde dot).  Tilde is used to control the ssh session.  See the manpage for more details.

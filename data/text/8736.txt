@@ -1,0 +1,21 @@
+Q: Cmd+Tab switches to the correct space, but doesn't bring app up to front I have a problem (bug?) with application switching on Lion.
+I use two Spaces. Say one has Postbox open, and another has Firefox and Vim.
+Vim is in the foreground, and Firefox's window is behind it.
+When I Cmd+Tab from Postbox to Firefox, the space is switched correctly, but Firefox remains in the background.
+If I Cmd+Tab to Firefox again, or select it in the Dock, the window comes up front normally.
+The bug isn't limited to Firefox only, seen it with many apps.
+What am I doing wrong?
+
+A: I agree with jerseyboy, it is pretty much a bug.  So, under Lion 10.7.3, in mail, I switch to safari, which is in a different space.  Then I switch back to mail, and the space duly switches to where I was.  However, the window that was previously on top is now hidden behind terminal and a few other windows I have open on that space.  This is an annoying interference in rapid switching between applications.
+One slightly less awkward approach to get the application back to the front again is to cmd-tab to the application in question, release (which switches to the right space), and then hit cmd-tab cmd-shift-tab (faking a switch to another application but actually going back to the same one).  This sequence is really awkward being 3 combos when one ought to be enough.  Come on Apple, at least let us select this behavior in system prefs or a mysterious plist command line thingy.
+
+A: KeyRemap4Macbook allows remapping command+tab to command+tab+option, if you want this to be the default behavior. It also has some very cool/powerful customizations like remapping keyboard shortcuts only for specific applications - e.g. remap command+tab in Firefox to control+tab to switch between browser tabs.
+
+A: It's a feature not a bug :-)
+Start tabbing with Cmd-Tab until you get to the application you want to switch to, then press and hold Option before releasing Cmd-Tab.
+
+A: To the original poster, you weren't doing anything wrong. 
+Whether it was intended as a feature or not, it is clearly a usability issue, aka a bug. The problem is that often the affected app window was left stacked on top of all other windows, not behind them. Upon switching back and forth with Spaces Mission Control, the app often gets stuck under other open windows. 
+The finger-twisting CMD-TAB-OPTION-release fails more often than not: it either doesn't do anything differently or it is impossible to accomplish due to autorepeating keys, making it a worthless gesture. 
+It is definitely a bug, not a feature. Keep flipping back and forth with CMD-TAB, and the window will pop back to the top, then drop down again, erratically. 
+Oh, it doesn't appear to affect Spaces, so it seems to be a regression. 

@@ -1,0 +1,164 @@
+Q: Linux' `ps f` (tree view) equivalent on OSX? How can I get a tree view like the one below on OSX? 
+vartec@some_server:~$ ps xf
+PID TTY      STAT   TIME COMMAND
+11519 ?        S      0:00 sshd: vartec@pts/0
+11520 pts/0    Ss     0:00  \_ -bash
+11528 pts/0    R+     0:00      \_ ps xf
+
+To clarify, I'm mostly interested in the tree structure, not the extended information. 
+
+A: I made a different script that takes (should take?) all the arguments you can normally give to "ps" on OSX:
+https://github.com/jhthorsen/dotfiles/blob/master/bin/ps
+Example output:
+$ ps Af
+   PID TTY      STAT      TIME COMMAND
+     1 ??       Ss   198:44.08 /sbin/launchd
+   141 ??       Ss     2:40.76   \_ /usr/sbin/syslogd
+   142 ??       Ss     6:54.11   \_ /usr/libexec/UserEventAgent (System)
+   145 ??       Ss     0:32.48   \_ /System/Library/PrivateFrameworks/Uninstall.framework/Resources/uninstalld
+   146 ??       Ss     1:12.84   \_ /usr/libexec/kextd
+   147 ??       Ss    18:51.47   \_ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.f
+   148 ??       Ss     0:14.31   \_ /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoted
+   151 ??       Ss    59:43.39   \_ /usr/sbin/systemstats --daemon
+   441 ??       S      0:05.39       \_ /usr/sbin/systemstats --logger-helper /private/var/db/systemstats
+...
+
+> ps Af -o ppid,pid,cpu,command
+  PPID   PID CPU COMMAND
+     0     1   0 /sbin/launchd
+     1   141   0   \_ /usr/sbin/syslogd
+     1   142   0   \_ /usr/libexec/UserEventAgent (System)
+     1   145   0   \_ /System/Library/PrivateFrameworks/Uninstall.framework/Resources/uninstalld
+     1   146   0   \_ /usr/libexec/kextd
+     1   147   0   \_ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versi
+     1   148   0   \_ /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoted
+     1   151   0   \_ /usr/sbin/systemstats --daemon
+   151   441   0       \_ /usr/sbin/systemstats --logger-helper /private/var/db/systemstats
+
+
+A: The below small perl script I've called 'treeps' that should do exactly that; works on linux (Sci Linux 6) + OSX (10.6, 10.9)
+Example output:
+$ ./treeps
+    |_ 1        /sbin/launchd
+        |_ 10       /usr/libexec/kextd
+        |_ 11       /usr/sbin/DirectoryService
+        |_ 12       /usr/sbin/notifyd
+        |_ 118      /usr/sbin/coreaudiod
+        |_ 123      /sbin/launchd
+    [..]
+           |_ 157      /Library/Printers/hp/hpio/HP Device [..]
+           |_ 172      /Applications/Utilities/Terminal.app [..]
+              |_ 174      login -pf acct
+                 |_ 175      -tcsh
+                    |_ 38571    su - erco
+                       |_ 38574    -tcsh
+
+Here's the code..
+#!/usr/bin/perl
+# treeps -- show ps(1) as process hierarchy -- v1.0 erco@seriss.com 07/08/14
+my %p; # Global array of pid info
+sub PrintLineage($$) {    # Print proc lineage
+  my ($pid, $indent) = @_;
+  printf("%s |_ %-8d %s\n", $indent, $pid, $p{$pid}{cmd}); # print
+  foreach my $kpid (sort {$a<=>$b} @{ $p{$pid}{kids} } ) {  # loop thru kids
+    PrintLineage($kpid, "   $indent");                       # Recurse into kids
+  }
+}
+# MAIN
+open(FD, "ps axo ppid,pid,command|");
+while ( <FD> ) { # Read lines of output
+  my ($ppid,$pid,$cmd) = ( $_ =~ m/(\S+)\s+(\S+)\s(.*)/ );  # parse ps(1) lines
+  $p{$pid}{cmd} = $cmd;
+  # $p{$pid}{kids} = (); <- this line is not needed and can cause incorrect output
+  push(@{ $p{$ppid}{kids} }, $pid); # Add our pid to parent's kid
+}
+PrintLineage(($ARGV[0]) ? $ARGV[0] : 1, "");     # recurse to print lineage starting with specified PID or PID 1.
+
+
+A: Another option is htop, which has an option to display in tree format. You can either press F5 interactively, or use htop -t when launching it. To install: brew install htop
+
+Source: ServerFault
+
+A: You can install the pstree command using either Homebrew (my personal favourite), MacPorts or Fink and you'll get a command-line, tree view of processes on your Mac.
+With Homebrew installed, just run:
+brew install pstree
+
+then use it like pstree from the command line.
+
+A: I adapted Greg Ercolano's perl script to python script.
+#!/usr/bin/env python2.7
+
+import subprocess as subp
+import os.path
+import sys
+import re
+from collections import defaultdict
+
+def psaxo():
+    cmd = ['ps', 'axo', 'ppid,pid,comm']
+    proc = subp.Popen(cmd, stdout=subp.PIPE)
+    proc.stdout.readline()
+    for line in proc.stdout:
+        yield line.rstrip().split(None,2)
+
+def hieraPrint(pidpool, pid, prefix=''):
+    if os.path.exists(pidpool[pid]['cmd']):
+        pname = os.path.basename(pidpool[pid]['cmd'])
+    else:
+        pname = pidpool[pid]['cmd']
+    ppid = pidpool[pid]['ppid']
+    pppid = pidpool[ppid]['ppid']
+    try:
+        if pidpool[pppid]['children'][-1] == ppid:
+            prefix = re.sub(r'^(\s+\|.+)[\|`](\s+\|- )$', '\g<1> \g<2>', prefix)
+    except IndexError:
+        pass
+    try:
+        if pidpool[ppid]['children'][-1] == pid:
+            prefix = re.sub(r'\|- $', '`- ', prefix)
+    except IndexError:
+        pass
+    sys.stdout.write('{0}{1}({2}){3}'.format(prefix,pname,pid, os.linesep))
+    if len(pidpool[pid]['children']):
+        prefix = prefix.replace('-', ' ')
+        for idx,spid in enumerate(pidpool[pid]['children']):
+            hieraPrint(pidpool, spid, prefix+' |- ')
+
+if __name__ == '__main__':
+    pidpool = defaultdict(lambda:{"cmd":"", "children":[], 'ppid':None})
+    for ppid,pid,command in psaxo():
+        ppid = int(ppid)
+        pid  = int(pid)
+        pidpool[pid]["cmd"] = command
+        pidpool[pid]['ppid'] = ppid
+        pidpool[ppid]['children'].append(pid)
+
+    hieraPrint(pidpool, 1, '')
+
+Example output:
+launchd(1)
+ |- syslogd(38)
+ |- UserEventAgent(39)
+ |- kextd(41)
+ |- fseventsd(42)
+ |- thermald(44)
+ |- appleeventsd(46)
+...
+ |- iTerm(2879)
+ |   |- login(2883)
+ |   |   `- -bash(2884)
+ |   |       `- Python(17781)
+ |   |           `- ps(17782)
+ |   |- login(7091)
+ |   |   `- -bash(7092)
+ |   |       `- ssh(7107)
+ |   `- login(7448)
+ |       `- -bash(7449)
+ |           `- bash(9040)
+ |               `- python(9041)
+ |- installd(2909)
+ |- DataDetectorsDynamicData(3867)
+ |- netbiosd(3990)
+ |- firefox(5026)
+...
+

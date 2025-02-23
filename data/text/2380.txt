@@ -1,0 +1,64 @@
+Q: Running a command whenever Mac boots up with launchctl/plist I need to run nohup nice synergys -f --config ~/bin/conf/synergy.conf & command whenever the computer boots up.  
+As is written in this post, I came up with the following plist code.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN http://www.apple.com/DTDs/PropertyList-1.0.dtd >
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>synergy</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>nohup nice /usr/bin/synergys -f --config /Users/USER/bin/conf/synergy.conf &</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>LaunchOnlyOnce</key>
+    <true/>
+</dict>
+</plist>
+
+And, ran this command.
+launchctl load ./synergy.plist 
+
+However, I got this error message.
+launchctl: no plist was returned for: ./synergy.plist
+launchctl: no plist was returned for: ./synergy.plist
+nothing found to load
+
+What's wrong with my plist? Or is my launchctrl command wrong in options?
+
+A: The immediate problem is that your .plist file isn't correctly formatted -- the contents of <string>...</string> should be encoded with HTML entities, i.e. & needs to be encoded as &amp; (note: you can check the format of .plist files with plutil -lint filename.plist).  But there are some other changes that need to be made...
+Starting programs with launchd is rather different than starting them from a shell.  The biggest difference is that from the shell, you want the program to go into the background and run independently of the shell, so you wrap it in nohup ... &.  With launchd, it's actually best for the program to stay in the "foreground" so launchd can keep an eye on it.
+Also, the elements of ProgramArguments won't get parsed by a shell, so listing the command and its arguments with spaces between them doesn't work -- make each argument a separate element of the array.
+Here's my stab at a synergy .plist.  I haven't tested this, so it may need a little tweaking to work properly (see notes below):
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN http://www.apple.com/DTDs/PropertyList-1.0.dtd >
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.synergy</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/synergys</string>
+        <string>-f</string>
+        <string>--config</string>
+        <string>/Users/USER/bin/conf/synergy.conf</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>Nice</key>
+    <integer>10</integer>
+    <key>KeepAlive</key>
+    <false/>
+    <key>AbandonProcessGroup</key>
+    <true/>
+</dict>
+</plist>
+
+The last two keys above deal with how launchd should react if/when the synergys program exits.  By default, it kills any surviving subprocesses and launches a new instance; these two keys supress both parts, which may or may not be what you want.  Also, one thing this doesn't do that your version with nohup does is redirect stdin and stdout to nohup.out (in case the terminal goes away); instead IIRC launchd logs things that get sent to them.  If synergys is in the habbit of sending output, you might want to add something like this to the .plist:
+    <key>StandardOutPath</key>
+    <string>/dev/null</string>
+    <key>StandardErrorPath</key>
+    <string>/dev/null</string>
+
+Also, as mankoff said, you should put this in ~/Library/LaunchAgents so it'll be autoloaded every time you log in.  Oh, and you should probably add a local. prefix to the filename (as I did with the label) to conform to the reverse-DNS naming convention.

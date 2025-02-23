@@ -1,0 +1,75 @@
+Q: What's the difference between Real, Virtual, Shared, and Private Memory? The different columns in Activity Monitor are a little confusing
+
+A: Real mem relates to physical memory (actual RAM modules in your computer).  Virtual Mem is how much "fake" memory is allocated to the process, meaning memory that is allocated on the permanent storage medium (hard drive, solid state drive, etc) for that process.  Shared memory is physical (Real) memory that can be shared with other processes.  Private memory is "real" memory that can only be used by the process it is allocated to.
+These explanations may help as well... directly from activity monitor --> help --> viewing system memory usage:
+Here is an explanation of some of the information displayed at the bottom of the memory pane:
+
+
+*
+
+*Wired: Wired memory contains information that must always stay in RAM
+
+*Active: Active memory that contains information that is actively being used.
+
+*Inactive: Inactive memory contains information that is not actively being used. Leaving this information in RAM is to your advantage if you (or a client of your computer) come back to it later.
+
+*Used: Used memory is being used by a process or by the system.
+Used memory is the sum of wired, active, and inactive memory. If the system requires memory it takes free memory before used memory.
+
+*Free: Free memory is not being used and is immediately available.
+
+*VM size: Virtual memory, or VM, is hard disk space that can be used as memory. VM size is the amount of disk space being used as memory. Mac OS X can use more memory than the amount of physical RAM you have. A hard disk is much slower than RAM, so the virtual memory system automatically distributes information between disk space and RAM for efficient performance.
+Page ins/outs: The number of gigabytes of information Mac OS X has moved between RAM and disk space
+
+
+A: Apple updated the Activity Monitor in OSX 10.9 (Mavericks). They have a good article about what everything means here http://support.apple.com/kb/HT5890. In summary...
+
+
+
+*
+
+*Physical Memory: The amount of RAM installed.
+
+*Memory Used: The amount of RAM being used and not immediately available for other apps.
+
+*Virtual Memory: The amount of memory mapping that apps have asked for. This is not an actual consumption of RAM resources and it size is determined by the author of the app.
+
+*Swap Used: The space on your drive being used to swap unused files to and from RAM. It is normal to see some activity and it is not a indication that you have depleted RAM resources. Seeing memory pressure in the Red state will indicate that RAM resources are depleted.
+
+*App Memory: The amount of space being used by apps.
+
+*Wired Memory: Memory that can’t be cached to disk, so it must stay in RAM. This memory can’t be borrowed by other apps.
+
+*Compressed: The amount of memory in RAM that is compressed, making more RAM resources available for other apps.
+
+*File Cache: The space in RAM marked as available for apps to use that contains recently used files.
+
+
+
+Memory Pressure graph
+The combination of Free, Wired, Active, Inactive & Used memory statistics in previous versions of Activity Monitor have been replaced in Mavericks with an easy to read "Memory Pressure" graph.
+Memory pressure is indicated by color:
+
+
+*
+
+*Green – RAM memory resources are available.
+
+*Amber – RAM memory resources are being tasked.
+
+*Red – RAM memory resources are depleted and OS X is using the drive for memory.
+
+
+A: Taken from my answer at Server Fault:
+Mac OS X Memory Jargon:
+Wired : This refers to kernel code and such. Memory that should not ever be moved out of the RAM. Also know as resident memory.
+Shared : Memory that is shared between two or more processes. Both processes would show this amount of memory so it can be a bit misleading as to how much memory is actually in use.
+Real : This is the "real" memory usage for an application as reported by task_info() - a rough count of the number of physical pages that the current process has. (RSIZE)
+Private : This is memory that a process is using solely on its own that is used in Resident memory. (RPRVT)
+Virtual : The total amount of address space in the process that's mapped to anything - whether that's an arbitrarily large space for variables or anything - it does not equate to actual VM use. (VSIZE)
+Active : Memory currently labelled as active and is used RAM.
+Inactive : "Inactive memory is no longer being used and has been cached to disk. It will remain in RAM until another application needs the space. Leaving this information in RAM is to your advantage if you (or a client of your computer) come back to it later." - Mac OS X Help
+Free : The amount of RAM actually available without any data.
+
+The best documentation I know of (and have been able to find in followup research) is Apple's own Managing Memory article on their developer website.
+Other worthwhile sources: Darwin-dev mailing list: [1], [2] and an old article on MacOSXHints. Additionally Mike Ash has posted a good layman's introduction on his blog

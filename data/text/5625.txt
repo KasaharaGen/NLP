@@ -1,0 +1,10 @@
+Q: Why do editors such as BBEdit and Textmate have the option of ending your file in a newline (line break)? Why is that important? Sorry about the n00b question but why is this an option? Is there any caveats to not ending a file with a line break?
+
+A: This is probably because some other users of files require  complete lines
+e.g. C code will complain if there is no newline at the end of file - see this SO question
+and one main use of Bbedit etc is programming
+So the reason is not really specific to the Apple editors mentioned but more for what use the files is made of.
+Also see the comment to that question 
+
+Not really the reason, but it's very annoying if you cat a file and it does not have a trailing newline as the new shell prompt will appear after the last line of the file (i.e. not in column 0)
+

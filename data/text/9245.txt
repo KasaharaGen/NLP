@@ -1,0 +1,18 @@
+Q: Why does iTunes Match match only some songs from the same album? Throughout my library I'm seeing cases where some songs from a given album that I've imported from CD are matched by iTunes Match, while others — on the same album — are not recognized and are instead uploaded (at a lower bitrate):
+
+What accounts for this difference in treatment of tracks from the same album? Is there anything I can do to acquire the high bitrate tracks?
+
+A: It's been confirmed elsewhere that metadata alone will not give success in matching (if it were, someone would quickly find a way to just create thousands of dummy files with the right metadata). Some audio fingerprinting is going on, and you can test it by changing the metadata of one track to that of another one, and see if if matches the audio or the metadata. Still, metadata plays a role as well.
+MacWorld have a note on the problem of one or a few songs not matching from an album:  Basically, it seem to affect specific songs (rather than just randomly failing every n:th song). Two possible reasons for this:
+
+
+*
+
+*The audio or metadata specific to that track confuses the matching algorithm (as we know, audio fingerprinting is not an exact science)
+
+*There is a rights issue with particular tracks that Apple haven't been able to find agreement for.
+
+
+A: I think the problem stems from the fact that the album metadata with Itunes is different to the ones that are in your CD.
+You can browse that particular album in Itunes store and change the metadata in your local library to match the ones in the store. This way the matching program will find all the songs.
+Edit: The album's Metadata may not be the only dimensions used while performing the matching, but I am sure that, it is among the more dominant dimensions. Itunes match supposedly uses Gracenote's MusicID and it seems to use multiple identification techniques. More here.

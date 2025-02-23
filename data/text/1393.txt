@@ -1,0 +1,16 @@
+Q: Most reliable way to mirror large number/size files/folders between drives & computers Often I find myself shuffling large directories (20 GB+) of data between computers or drives.  What is the most reliable way to ensure that all data is being exactly mirrored with permissions/dates intact?
+Bonus points if it's wrapped in a GUI rather than a terminal command.
+I saw this question regarding copy utilities for OS X, however the answers were skewed towards speed.  My concern is ultimately file/data integrity.
+
+A: rsync has proven to be very stable and effective throughout its years of Unix service. It’s included in any OS X since Tiger and it’s relatively easy to use. 
+If you want the bonus of a GUI, you can use Arrsync, a free utility better described as: 
+
+A Mac OS X graphical front end for the utility rsync.
+
+If, on the other hand you want something more “easy to use” I can recommend you take a look at the two winners:
+SuperDuper! ($)
+Carbon Copy Cloner (Free, Donationware).
+Either will allow you to clone entire drives or folders or anything you can imagine. 
+Their reliability to copy permissions, ACLs, and that stuff has been proven throughout the years.
+
+A: As an alternative to CCC or rsync, you could check out ChronoSync; I've been using it for years and it's just rock-solid.

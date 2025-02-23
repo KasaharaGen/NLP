@@ -1,0 +1,99 @@
+Q: How can I make auto-hide/show for the dock faster? I really like the auto-hide feature of the dock in Mac OS X.
+However, the animation for the dock to reappear is just a bit too slow for me. Since this is quite annoying, I disable the feature.
+
+Is it possible to manually shorten the time for the dock
+  to reappear?
+
+Btw: I am aware that one can use the key-combo ⌥⌘D to toggle auto hide/show for the dock. But I want solution without using the keyboard.
+
+A: I also find the Dock slow to use and the Launchpad can be sluggish. You might want to try an application launcher such as LaunchBar or Alfred. The former is a paid program (with a free demo), the latter is free. Either let you very quickly launch apps along with hundreds of other functions with applications, files, folders, and more. I don't use, or miss, the Launchpad or the Dock... even on a new Mac they are too slow, not to mention being mouse driven.
+
+A: To make it a tiny bit easier... here jonathan's answer, with semi colons so it can all be copied and pasted into the terminal window in one go. (And I tweaked the animation time to how I like it) BIG BIG Kudos to Jonathan for this suggestion, I tried to vote him up but I don't have enough rep!
+Open Terminal and copy the following code into it :)
+defaults write com.apple.dock autohide-delay -int 0; defaults write com.apple.dock autohide-time-modifier -float 1.0; killall Dock
+
+Tweak the -float number to change animation time
+
+A: To make the Dock instantly leap back into view when it’s needed, rather than slide, open a Terminal window and type the following:
+defaults write com.apple.dock autohide-time-modifier -int 0;killall Dock
+
+
+I find this useful, but if you’d like the animation for the dock to reappear to last for a split-second, try the following:
+defaults write com.apple.dock autohide-time-modifier -float 0.15;killall Dock
+
+To explain, changing "0.15" with any number can let you tailor things as it represents the time in seconds taken for the dock to reappear fully.
+
+To revert back to the default sliding effect, open a Terminal window and type the following:
+defaults delete com.apple.dock autohide-time-modifier;killall Dock
+
+
+A: You can manually set the time it takes for the dock to appear.
+
+Unlike the autohide-time-modifier tip posted by Marius Butuc, this command does not remove the animation of the Dock when it appears.
+First, activate auto-hide in System Preferences → Dock → Autohide or type ⌘+⌥+D
+Then open the Terminal and type:
+defaults write com.apple.dock autohide-delay -float 0; killall Dock
+
+
+
+*
+
+*0 is the time it takes for the Dock to appear in seconds. You can choose floats and integers e.g. 2, 0.5,...
+
+*killall Dock causes the Dock to restart.
+
+
+Restore the default behavior using...
+defaults delete com.apple.dock autohide-delay; killall Dock
+
+Note that com.apple.dock is case sensitive.
+According to MacOSHints this trick was found by reverse engineering from the developer Christian Baumgart of Hyperdock.
+This command only works in OS X 10.7 or newer.
+
+A: The modifications in both @gentmatt's and @Marius Butuc's answers are important. I did some testing and in my opinion the delay (before the slide animation starts) should be zero while the animation duration should be 0.4s (to feel natural but fast). You can easily apply these settings by hiding your Dock ( > Dock > Turn Hiding On or ⌥⌘D) and entering these commands in Terminal:
+defaults write com.apple.dock autohide-delay -int 0
+defaults write com.apple.dock autohide-time-modifier -float 0.4
+killall Dock
+
+You can change the values for 0 and 0.4 to see if a different setting works better for you. Don't forget to change int to float if you want to use a float instead of 0.
+If you don't like it, you can undo the changes using these commands:
+defaults delete com.apple.dock autohide-delay
+defaults delete com.apple.dock autohide-time-modifier
+killall Dock
+
+
+A: Nice tutorial, but the problem is that it still takes some to show up after you point your mouse to the dock area. To reduce the delay you need to use this code instead
+defaults write com.apple.Dock autohide-delay -float 0 && killall Dock
+
+This way it comes up instantly! And you might want to leave a 1 second animation so that it looks nice and smooth 
+defaults write com.apple.dock autohide-time-modifier -int 1 && killall Dock
+
+
+A: This is a bit of a kludge, but it does make the Dock appear slightly faster.
+If your Dock is on the right side of your screen (mine is; vary this for your desired Dock location), set upper and lower right Hot Corners to trigger Launchpad. When the mouse hits a hot corner, it triggers the action instantly, as opposed to after a brief delay with Dock Hiding. If the Dock is hidden and Launchpad gets triggered, the Dock appears. Ignore Launchpad; click what you want on your Dock.
+So if you move the mouse to the edge, you get the Dock to appear after a brief delay, but hit either corner and the Dock appears faster. There's distracting action on the rest of the screen (i.e. Launchpad), but if you can ignore it, you get your desired results.
+
+A: @gentmatt, I always install Secrets on my computer. It has lots of various system and application variables that you can toggle or set and the dock animation is one of them. It also allows you to put spacers on the dock to organize it by block a little. And the best thing is that it works as a control panel so no Terminal experience is required. http://secrets.blacktree.com
+
+A: Short answer: There's no known way to actually speed up the animation.
+But you might be able to make it marginally faster with a few tweaks.
+Your best bet is to get one of the 3rd-party "tweaker" apps such as Cocktail or TinkerTool and disable any of the eye candy related to the Dock.
+I'd recommend TinkerTool as it has more Dock-related options right now.
+In particular, I'd recommend turning off "Use transparent Dock icons to show hidden applications". And turn on "Disable the three-dimensional glass effect of the Dock".
+This will likely have only a minimal benefit, but it could help a bit.
+And if anyone ever does figure out how to speed up that animation, it'll be the teams at Cocktail or TinkerTool, so having one of these apps means you'll probably be one of the first to know.
+ETA: Fastest way of all: disable Auto-Hide. 
+I keep my Dock on the right side and it takes up very little screen real estate. It's mostly the vertical pixels that are precious.
+And with Lion's new FullScreen feature, if I ever really need to hide it to minimize distractions, I just go FullScreen with the current app.
+
+A: via Cocktail.app
+You can modify almost everything with this app. 
+
+A: my two cents only to be complete. (in my case I DO hate not seeing bar at all, so I want it to stay ever)
+from docs in terminal You can use:
+a) usual animation:
+   defaults write com.apple.Dock autohide -bool TRUE; killall Dock
+
+b) always Shown:
+   defaults write com.apple.Dock autohide -bool FALSE; killall Dock
+

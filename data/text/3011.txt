@@ -1,0 +1,46 @@
+Q: Check if a process is running, if not execute it again in Terminal Is there a way to periodically check if a process is running with (probably with Apple script, or some other shell script) and if not then to execute it in Terminal?
+I have a PHP script that is needs to run, but after some time it breaks, so I need to start it again.
+Thanks.
+
+A: In OSX use launchd to to this. launchd will start a command at login or boot and if the process dies it will restart it.
+The process is controlled by a .plist file formatted as defined in Apple docs the example in that manual page is for the case you ask for.
+  <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN
+   http://www.apple.com/DTDs/PropertyList-1.0.dtd >
+   <plist version="1.0">
+   <dict>
+        <key>Label</key>
+        <string>com.example.exampled</string>
+        <key>ProgramArguments</key>
+        <array>
+             <string>exampled</string>
+        </array>
+        <key>KeepAlive</key>
+        <true/>
+   </dict>
+   </plist>
+
+If you want to to start when a user logs in the this file goes in ~/Library/LaunchAgents. If when the machine boots then /Library/LaunchDaemons (which can't have access to the GUI)  but this will run as root unless you add a UserName key. (Thanks to @Gordon Davisson for the correction and a reread of Apple definitions)
+For ease of setting the .plist up you can use Lingon.app available from the Mac AppStore
+
+A: If you wanted to do this via a shell script I'd do something like this:
+#!/bin/sh
+PROCESS=`ps A | grep PROCESS_NAME | grep -v grep`
+if [ "$?" -ne "0" ]; then
+        echo "not running"
+        ### COMMAND TO EXECUTE HERE ###
+        exit 1
+fi
+
+You could call that via cron every minute or so.
+
+A: Why you need to actively poll for the script? Why not just put it in a shell script loop and restart it when it fails. 
+#!/bin/sh
+
+let c=1
+while ! php -f myscript.php; do
+    echo "The script has crashed $c times so far..."
+    let "c=c+1"
+done
+
+In the case it doesn't fail gracefully, polling for a running process won't save you either. It may as well keep running while not doing its job.

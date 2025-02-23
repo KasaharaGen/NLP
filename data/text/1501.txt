@@ -1,0 +1,36 @@
+Q: Running .NET binary with mono When I have abc.exe generated from C#/Mono source, I use 'mono abc.exe'.
+Is there a way to run abc.exe with 'abc.exe' not 'mono abc.exe'? I mean, when I run 'abc.exe', can I make 'mono abc.exe' called automatically?
+
+A: See this link
+Basically what you have to do is to use one of the Mono tools (mkbundle is a generic one while macpack is designed to work on Mac OS X) to link all your application executables, resources and dll in a single executable file that can be later run as a single app.
+From the macpack doc:
+macpack is a tool that must be used to bundle Cocoa# applications into Double-Clickable, Finder friendly, bundles on Mac OS X. It bundles static libraries and resources, as well as generates a basic info.plist into the .app bundle.
+For example the following commands are used to build the CurrencyConverter.exe into an application bundle:
+$ mcs -g -debug+ CurrencyConverter.cs -out:CurrencyConverter.exe -pkg:cocoa-sharp
+$ rm -rf CurrencyConverter.app
+$ macpack -m:2 -o:.  -r:/Library/Frameworks/Mono.framework/Versions/Current/lib/    
+  libCocoaSharpGlue.dylib -r:CurrencyConverter.nib -n:CurrencyConverter 
+  -a:CurrencyConverter.exe
+
+The resulting CurrencyConverter.app is just another Mac OS X application as far as the Finder is concerned, and can be opened from Finder, or launched from Terminal using the open -a CurrencyConverter command.
+
+A: Improving Calavera’s answer to allow you to do it with a parameter, the script should look like:
+#!/bin/bash
+mono $1
+
+That way you can do:
+./abc.sh name_of_the_app.exe
+
+I would have added this as a comment, but the format would have been lost
+
+A: I don't have a lot of experience with mono but you'll probably have to create an executable shell script that does the mono call for you.  Something like:
+$ vi abc.sh
+
+#!/bin/bash
+#abc.sh
+mono abc.exe
+:wq
+
+$ chmod +x abc.sh
+$ ./abc.sh
+

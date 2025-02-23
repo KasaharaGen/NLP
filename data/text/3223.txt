@@ -1,0 +1,27 @@
+Q: Print to File list of media file names, types and most importantly length I'm looking for an easy way to print to a file the following information in a directory full of video files:
+File Name, File Type, Video Length (in Seconds)
+I realize the first two are very easy, its the 3rd bit of information that I'm having trouble finding an automated way to accomplish.
+
+A: You may install the command line utility exiftool.
+Then open a text file and copy/paste the following bash script:
+#!/bin/sh
+
+find "~/Movies/" -name "*" -not -name ".*" -type f | while read file
+do
+    FILETYPE=$(exiftool  -p "\$FileType" "${file}")
+    FPS=$(exiftool  -p "\$FrameRate" "${file}")
+    TOTALFRAMES=$(exiftool  -p "\$FrameCount" "${file}")
+    DURATION=$[TOTALFRAMES*FPS]
+    echo ${file} ${FILETYPE} ${DURATION} > output.txt
+done
+
+Replace ~/Movies/ with the full path containing the movie files and output.txt with your resulting file name.
+Save the file to your user's home folder, as 'meta_generator' or by whatever name you want.
+Then fire up /Utilities/Terminal.app and type:
+chmod +x meta_generator
+./meta_generator
+
+Edit:
+I just saw that you wanted the length in seconds, so I've replaced the Duration tag.
+By multiplying the framerate and the total frame count, you'll get the desired seconds..
+But you may find other easier ways though :)

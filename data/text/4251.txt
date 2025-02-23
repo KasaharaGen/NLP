@@ -1,0 +1,21 @@
+Q: Display facebook profile pictures full size on call I synced my friends' Facebook profile pictures with the facebook iPhone app. When I get a call from someone it has the picture displayed in small in the top right corner.
+When someone calls whose contact photo I've taken with the iPhone itself, however, it looks like this:
+ — the picture is "full screen".
+Is there a way to (automatically) get the Facebook profile pictures displayed this way? My iPhone is a 3G jailbroken on 4.2.1, so a Cydia tweak would be absolutely fine.
+
+A: I am still learning iPhone development so hopefully someone more knowledgeable pitches in on this idea surrounding phone calls and pictures and makes it known to the Facebook Dev. Team that the sync is not how people expect it, I ran this experiment:
+
+
+*
+
+*Go to a contact
+
+*Edit the contact
+
+*Edit the photo (Don't Move or Scale just tap Choose)
+
+
+Now when you try, though the picture is the same, it is maximized to the edges of the screen. Though if you have huge friend lists 500+ , it could a lot of data though going through the sync (so maybe getting the high quality version may not be a good idea). Also notice the edited photo is not saved in your Photo Library. So I am thinking that where "Facebook Sync" saves the photo is different from where edited Photos are stored.  
+I dont know if this is a restriction/security with the OS SDK such that pictures saved from apps for contacts are stored differently than those taken via the Camera or the Photo Library.
+
+A: SmartSync for iOS does what you want. However, not all providers support high res contact images. Gmail, for instance, doesn't as far as I know. iCloud does. Make sure you disable Facebook contact sync.

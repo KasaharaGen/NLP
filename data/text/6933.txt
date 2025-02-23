@@ -1,0 +1,16 @@
+Q: Does Mail log errors into a console or text file? Does Mail log errors into a console or text file somewhere?
+
+A: Start with:
+/var/log/mail.log
+
+most easily viewed with /Applications/Utilities/Console.app
+
+A: Go to /Library/Scripts/Mail Scripts/Turn On Logging.scpt and Run that.
+Otherwise, go here: http://hints.macworld.com/article.php?story=2004101603285984
+
+A: Apple have provided an API to a logger database. Apple use the datbase in Mail
+The messages are then viewable using the Console.app
+Choose All Messages in the lefthand sidebar
+Filter on Mail
+e.g.
+

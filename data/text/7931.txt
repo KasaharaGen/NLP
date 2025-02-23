@@ -1,0 +1,27 @@
+Q: How to disable ellipsis autocorrect on macOS? Every time i write ... in a text editor like TextEdit or Coda, Lion has started replacing it with a single Ellipse character, which doesn't encode to HTML. This started after I upgraded to Lion and happens across multiple programs. This persists in the latest Big Sur betas.
+Any idea how to stop it?
+
+A: On older OS X, you could see and disable this autocorrection, but now the interface is similar but you have to add this entry to manage it.
+
+Make three periods generate three periods. Also look for app settings like smart quotes and dashes. Those can really be bad when writing code.
+The official term for this is “Create text replacements” and you have to add the ones you prefer like I have shown...
+
+*
+
+*https://support.apple.com/guide/mac-help/replace-text-punctuation-documents-mac-mh35735/mac
+
+A: It is a system-wide feature for text input, I guess it comes for free in Cocoa, maybe someone knows better.
+To disable it right click in a text box (or open the Edit menu) and go to Substitutions and disable Smart Dashes (the dashes features also transforms -- to an en dash —.) You can also enable the Substitutions window from there if you need to toggle settings on a frequent basis.
+The setting seems to be on a per document (or text box?) basis
+
+
+A: Go to System Preferences, select Language & Text, then the Text tab, and deselect the box for that option.
+
+Or you can disable the feature completely by deselecting the box at the top.
+
+A: In Mavericks at least, this seems to be controlled by the "Use smart quotes and dashes" feature found in System Preferences → Keyboard → Text. Uncheck the box, and the behavior goes away, even in Evernote.
+
+
+A: If "Smart Quotes" is active in Keyboard Settings but you don't want smart ellipses, Edit menu in most applications on OS X Yosemite, unchecking "Smart Dashes" found in Edit -> Substitutions -> Show Substitutions stops autocorrect of three periods to ellipsis.
+
+A: Press CmdZ immediately after a text substitution to undo it.

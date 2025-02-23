@@ -1,0 +1,129 @@
+Q: How to get the fully resolved path of a symbolic link in Terminal? I have a tangled mess of python installations on my laptop.  I was looking at the executables in /usr/local/bin and they are all symbolic links to ../../../Library......
+There's some weird behavior surrounding this.  If I do ls -lhaG I see ---> and the relative path to the right of the symlinks:
+lrwxr-xr-x  1 root  wheel    69B Dec  7 22:29 python3 -> ../../../Library/Frameworks/Python.framework/Versions/3.1/bin/python3
+
+However, I can't seem to get any of the command line tools to resolve that path and display the actual path to python3.  I've found some tidbits here and there regarding use of pwd -P and the find utility to do this.  The problem is that these don't seem to work on OS X the way that people describe them working on linux (i.e. outputting the full path to the symbolic link).  They just print the symbolic links path for me:
+FantasticMrFox:bin robert$ pwd -P python3
+/usr/local/bin
+FantasticMrFox:bin robert$ find `pwd -P` -name python3
+/usr/local/bin/python3
+
+Any ideas on what's going on here?
+
+A: I think that pwd -P and readlink are going to be your friends for this task.
+"How can I get the behavior of GNU's readlink -f on a Mac?" is a handy resource.
+pwd -P only works if you're inside the symlink directory:
+14:07:13 jason@mac ~ $ cd bin
+14:08:08 jason@mac bin $ pwd -P
+/Users/jason/Applications
+
+readlink works by specifying the target (thus it can be used against files):
+14:09:03 jason@mac ~ $ readlink bin
+Applications
+
+14:09:34 jason@mac ~ $ readlink /var
+private/var
+
+The output of readlink appears to be relative to the parent of the specified target.
+Ex: The parent of /var is /, so private/var is correct, relative to /. Per my above example of bin -> Applications, both are in my Home Directory, no matter where I run it, the output is the same.
+
+A: GNU coreutils-8.15 added in 2012 a new command-line tool realpath that does what you want: it resolves chains of symbolic links and outputs the result as either an absolute (default) or relative path.
+Apple does not yet include realpath in macOS (they sadly seem to shun all GPLv3 tools), but you can easily install it yourself, e.g. using Homebrew: brew install coreutils.
+
+A: In zsh:
+echo /usr/local/bin/python3(:A)
+
+Or more robustly, in case there are backslashes in the path:
+print -lr -- /usr/local/bin/python3(:A)
+
+This prints the absolute path to the file with all symbolic links resolved (i.e. it's equivalent to GNU readlink -f, not to a plain readlink).
+Explanation: the parentheses (…) at the end of a word surround a list of glob qualifiers. A colon : in the list of glob qualifiers starts a list of history modifiers. The history modifier A turns the given path into an absolute path and resolves all symbolic links.
+If this is the python3 in your $PATH, you can save typing with equals expansion.
+echo =python3(:A)
+
+Even if you aren't running zsh, you can invoke it just for that.
+zsh -c 'echo /usr/local/bin/python3(:A)
+
+or (putting the history modifier directly on the parameter expansion)
+zsh -c 'echo $0:A' /usr/local/bin/python3
+
+
+pwd -P can work as well, but only for a (symlink to a) directory. pwd only prints information about the current directory. It doesn't take an argument. So it's useless for a regular file, and for a directory you need to change into it first.
+(cd some/where && pwd -P)
+
+With find, I don't even know what you're trying to do.
+
+A: This resolves recursively and returns an absolute path:
+$ python
+>>> import os
+>>> os.path.realpath("/usr/local/bin/python3")
+
+Or the non-interactive version:
+python -c "import os; print(os.path.realpath('/usr/local/bin/python3'))"
+
+
+A: Maybe this discussion on Stack Overflow is of help: How to resolve symbolic links in a shell script
+In particular, please consider this answer.
+
+A: There are other answers using a python one-liner, or suggesting to install GNU programs using homebrew so you can have access to readlink -f or realpath. A recent update to macOS (12.3) has apparently introduced readlink -f natively as well.
+Developing a solution in Bash to do the job across more platforms is a tricky problem, but the following canonpath function correctly handles the edge cases that cause some simpler solutions to fail:
+canonpath() (
+    # Print absolute canonical path, like GNU's `readlink -f`
+    # - target may be symlink, file or directory; path may contain ., .., symlinks
+    tgt=${1:?Non-null path required for canonpath}
+    [[ -e $tgt ]] || { echo >&2 "target path must exist"; return 2; }
+
+    # resolve symlink(s) at basename (possible chain)
+    while [[ -L $tgt ]]; do
+        tgt_dir=$(dirname -- "$tgt")
+        tgt=$(readlink "$tgt")
+
+        # handle relative symlink and tgt_dir=/
+        [[ ${tgt:0:1} == / ]] || tgt=${tgt_dir%/}/$tgt
+    done
+
+    _canon_dir() ( builtin cd -P "$1" &>/dev/null && pwd; )
+
+    if [[ -d $tgt ]]; then
+        # handle paths like this/is/a/link/..
+        printf '%s\n' "$(_canon_dir "$tgt")"
+
+    elif [[ -f $tgt ]]; then
+        printf '%s/%s\n' "$(_canon_dir "$(dirname -- "$tgt")")" "$(basename -- "$tgt")"
+
+    else
+        echo >&2 "unknown file type"
+        return 3
+    fi
+)
+
+Testing examples:
+# use `set -vx` if you want to see the gory details of unwinding the paths
+# can also compare against `greadlink -f` if you have installed it with homebrew
+
+canonpath /var
+# outputs /private/var on macOS
+
+ln -s ~/Documents /tmp/alink
+canonpath /tmp/alink/..
+# outputs HOME path as expected
+
+ln -s /etc /tmp/e
+mkdir /tmp/a && cd /tmp/a
+ln -s ../e b
+cd ..
+canonpath a/b
+# outputs /private/etc on macOS
+
+touch /tmp/f
+cd /tmp/a
+ln -s ../f
+cd ..
+canonpath a/f
+# outputs /private/tmp/f on macOS
+# rm e f a/b a/f && rmdir a
+
+Handling paths that don't exist
+There is a small difference in functionality between the canonpath function above and GNU's readlink -f, in that canonpath explicitly requires that the path must exist. readlink -f allows the final path element to be a broken symlink, or simply non-existent. The function could be adapted to accommodate this functionality, but I suggest simply testing for path existence before calling canonpath, and passing the parent directory of a non-existent path if necessary.
+
+A: You may use readlink -f. It recurses through all the links. Suppose the link is to a path that is further a link. You would like to have the final absolute path. 

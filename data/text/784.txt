@@ -1,0 +1,11 @@
+Q: Time Machine with only one internal disk Is it possible to use the time machine backup system without an external (or second) HD? 
+I know that the protection to disk failure will not be guaranteed anymore, but the file accidental deletion, the wrong edit etc. will be avoided...
+Is there a trick to make Time Machine believes that he has a disk dedicated for him to do the job ?
+Note : The situation is using a laptop on travel.
+
+A: You can partition the disk and run the OS on one partition and Time machine on the other.
+Disk Utility can repartition without losing data. but as usual take a backup first.
+
+A: Lion enables this quite easily (and by default in most cases). It's no where near as good as backing up to another drive since most failures of that drive will render the originals and backups equally inoperable.
+Just issue sudo tmutil enablelocal if you think you have the room for this. The normal Time Machine preference pane should show local backups when the main volume isn't connected.
+You may need to nominate another drive to be the "main" backup and then never connect it again. It's not 100% clear to me yet all the in-s and out-s of this.

@@ -1,0 +1,30 @@
+Q: Mail.App deleted, how do I restore it (It's not anywhere accessible on restore media) This is a pretty simple question.
+I removed the Mail.App app early on on my Macbook Air, and now I want to take a look at using Mail.
+It's not in my time-machine backups, and looking at the files on the restore thumbdrive, I can't see where it could be. Apparently it's not part of iLife, so short of reinstalling the entire OS, I'm not sure how to get it back.
+Also, *Doh*
+
+A: The official word from Apple on this is that you need to reinstall the OS.
+
+If I remove one of the bundled
+  applications, such as Safari or Mail,
+  how can I get them back?
+  You must
+  reinstall Mac OS X from the MacBook
+  Air Software Reinstall Drive to
+  restore bundled applications. To bring
+  your computer up to date, use Software
+  Update after Mac OS X finishes
+  installing.
+
+Another Mac - Before reinstalling the OS, I'd check with a friend that has a Mac and see if you can copy the app from another Mac.
+Reinstall to Another Drive - Rather than reinstalling the OS to your  main MacBook Air drive, you could try reinstalling to another drive (e.g. external USB drive). Then you could simply copy the app to your main MacBook Air drive.
+Standard Reinstall - If you have to reinstall the OS over your current system, it isn't as painful as on Windows if that is what you are used to. You can keep your user accounts and settings so it may not be too painful.
+
+A: It's there, just hidden from casual viewing via the Finder.  Open a Terminal and type
+$ open /Volumes/Mac\ OS\ X\ Install\ DVD/System/Installation/Packages
+
+(Tip:  typing "/Volumes/Mac" and the Tab key should autocomplete the DVD name.)
+
+A: CharlesSoft's Pacifist can open and browse inside .pkg files on the install disk.  I presume you could do the same with an install stick.  This could work if Mail has its own installer; but it's fairly tightly tied into iCal, Address Book, and who-knows-what else, so it may not.  I've only done this with more self-contained applications.
+
+A: If one of your friends has a MacBook at the same version of OS, Simply copy Mail.app from his/her machine.

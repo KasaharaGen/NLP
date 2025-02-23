@@ -1,0 +1,13 @@
+Q: Custom shortcut executes service twice Following this answer I have created a custom service that executes a shell script that looks like this:
+open -a FireFox "http://dict.cc/$1"
+
+It works fine when I click. Then I defined a custom shortcut for it, (⇧ ⌘ L), and when I use that, the script seems to get executed twice (two tabs open, both showing the desired page). How can I fix that?
+Edit: This only seems to happen when I invoce the service using the shortcut from within FireFox.
+Edit 2: This gets weirder and weirder. I now created a second script for looking up stuff in Google, and bound it to the hotkey ⇧ ⌘ T. Now when I press that, it actually opens both my custom services. I have no idea why this happens.
+Also, I removed both the hotkeys temporarily to check if they were used, but nothing happened when I pressed them.
+
+A: Strange… maybe trying to rebuild your services menu (and then restarting) will help? See the top answer here:
+https://superuser.com/questions/43700/snow-leopard-services-menu-says-its-building
+
+A: Rather than a direct answer to your question, why don't you try something like Alfred which allows you to setup custom web queries which are a keyboard shortcut away.  
+

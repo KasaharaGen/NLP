@@ -1,0 +1,28 @@
+Q: ERROR 1013 Restoring iPhone 4 I have a MacBook 2.4 Intel Core 2 Duo version 10.6.6 i updated the iTunes to the newest version 10.2.1 & and an iPhone 4 .. when i was updating to the newest software of the iPhone a error occurred 1013, i went to the apple store and they change my phone.. i came back to restore the iPhone again (the new one) and the same error happened is it my iTunes or my computer making my phone break down?
+
+A: According to the Apple Support forums, it looks like a fix for this is to comment out gs.apple.com in your hosts file. 
+Comment it out in /etc/hosts by doing the following (taken from that page):
+
+
+*
+
+*Open Finder
+
+*Hold down COMMAND + SHIFT keys and press 'G'
+
+*Enter "/private/etc/" in the field and press "Go"
+
+*Find "hosts" file in the directory
+
+*Drag the file to your desktop
+
+*Open it in text editor
+
+*Remove the line that has gs.apple.com entirely or put a # at the beginning of it to comment it out
+
+*Save the file
+
+*Drag it back to the /private/etc/ folder.
+
+*You'd need to enter your username and password to authenticate the move
+

@@ -1,0 +1,20 @@
+Q: This Device isn't Eligible for Requested Build restore error in iTunes So a search around Stack Exchange and days on Google hasn't rendered any solution. You guys are pretty much my last hope short of restoring my Mac, etc.
+I'm attempting to restore iOS 4.3.2 on to my iPhone 3GS, currently running said version. The issue occurs on modified and legit firmwares.
+Shortly after attempting to do so, I'll get a message: "This Device isn't Eligible for the Requested Build" and the restore fails. Searches show a common theme of people who have modified their Mac hosts file, prohibiting or modifying the Mac's connection to gs.apple.com. Be it a hash or removing the entire entry, neither has any effect on the issue, even following a restart or forced cache flush for the hosts file.
+Since it's a system-wide modification, a new user shouldn't have any effect. I've also compared the basic entries to a known-good hosts file and nothing is missing or broken.
+Hopefully you've got some answers!
+
+A: I would take your phone to another computer that works well to restore devices (hopefully that exact device if possible). With so many variables in the restore process, it's nice to be sure it's not a malfunctioning iOS device before reinstalling Mac OS / iTunes.
+Once you rule out the device having issues - do run through these two articles (and yes, you may have done most or all the steps). You might want to try forcing your phone into recovery mode. Power it off, plug in USB to power or a computer and hold the home button until it goes into recovery mode. This will erase everything if you restore from recovery mode.
+
+
+*
+
+*iTunes: Advanced iTunes Store troubleshooting - covers time, firewall, hosts, etc...
+
+*iTunes: Specific update-and-restore error messages and advanced troubleshooting - covers restore mode, and other potential issues.
+
+
+A: Okay, finally today I came upon the answer, though the 'why' behind it makes little sense. The iOS device would not restore on 4.3.2 on multiple computers, versions of iTunes, and using modified and legitimate .ipsw files to test. Though admittedly anticlimactic, what ultimately did work, however, was to restore and update to 4.3.3
+Why that is, I haven't the slightest clue...but it works now.
+Thanks for the input from everyone!

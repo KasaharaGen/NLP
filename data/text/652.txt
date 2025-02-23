@@ -1,0 +1,64 @@
+Q: Does anyone have any tips or best practices for using NFS mounted directories? Does anyone have tips for conveniently dealing with a variety of NFS mounted directories in Mac OS X?
+When I drag them to the sidebar in finder they can't be renamed.
+When I mounted them using "connect to server" they get mounted under /Volumes.
+Alternatively I can access them using /net/host/export and they will get automatically mounted.
+But there doesn't seem to be any way to visit a /net/host/export directory using the finder GUI.  Although it seems I can use "open" from the command line to visit it and then drag it to the side bar.
+So anyway.   Any "best practices" out there?
+
+I seem to have a choice to drag either /net paths to the side bar or to drag /Volume paths to the side bar.  The finder seems to implement the auto-mount functionality when I click on /Volume-based sidebar links.
+I could also create symlinks to /net paths and use those symlinks.
+One of the core problems I have is that the /net paths (and the /Volume paths) are long and unfriendly.  I'm looking for a way to "manage" these in a way that lets me use shortcuts or aliases of some kind.
+
+I'm still collecting tips.  When I get more, I'll come back here and rewrite this.
+Basically /net paths are treated by the finder as local directories.  In some ways it treats them as local (must use 'Goto' to open them) and in some ways it knows they are special (they don't show up in the "Mac HD" location).
+If you have any other tips, please add them.
+
+A: In Finder press: 
+
+
+*
+
+*⇧+⌘+G to go to a directory. Since the automounting of /net is handled by the operating system (via Autofs, see the technical white paper) it will mount the share.
+
+*⌘+K to open the Connections window, where you can even save your commonly accessed locations.
+(see the Go menu)
+But I don't think you can rename connections.
+
+A: You can mount any NFS share using the fstab file (http://www.tuxfiles.org/linuxhelp/fstab.html). I found it to be the best alternative for mounting share so they appear in the top level of Finder (and also available in the sidebar), a feat impossible using autofs. Most importantly, it gives you the ability to add mount options like nolocks and rsize/wsize, which usually increase performance. YMMV.
+
+A: Here is what I did with all network shares I use:
+
+
+*
+
+*Mounted all of them using Finder Go menu item "Connect to Server".
+
+*Set checkbox "Connected servers" under Finder's Preferences General
+tab. That makes all that shares appear on my Desktop.
+
+*Created a folder "Network" inside my user folder (on the same level
+as Documents, Movies, etc.
+
+*Dragged all of the network shares from my Desktop inside that
+folder.
+
+*Dragged that "Network" folder on Finders Sidebar and also dragged it
+into my Dock.
+
+
+Now I have easy and quick access to all my network shares and they mount automatically. And I also renamed them to my taste to better reflect what they are about. Is that the thing you want to accomplish ?
+Tips:
+
+
+*
+
+*One can have several such "Network" folders like Home and Work.
+
+*One can create and put there Screen sharing and Remote Desktop
+shortcuts as well.
+
+*One can change their default "remote volume" icons to better
+differentiate them.
+
+*One can create new network aliases by dragging items from "Remote Volumes" section (Finder>Go>Computer.)
+

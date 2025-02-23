@@ -1,0 +1,43 @@
+Q: How to enable OS X screen sharing (VNC) through SSH? I forgot to turn on "VNC viewers may control screen with password",
+to enter on my working Mac,
+is there way to turn-on this feature remotely via SSH (I'm on WindowsXP now)?
+
+A: Here is a different way, that enables screen sharing access for all current users, instead of using a single VNC password:
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+ -activate -configure -access -on \
+ -configure -allowAccessFor -allUsers \
+ -configure -restart -agent -privs -all
+
+Disable it with this:
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -configure -access -off
+
+This allows you to connect to the remote computer from a mac using the share screen button in Finder.
+Reference: http://ss64.com/osx/kickstart.html
+
+A: Source: http://technotes.twosmallcoins.com/?p=279 (archived)
+Putty is a good SSH client for Windows.
+
+*
+
+*SSH into your remote OS X machine with an administrator’s log in and password.
+
+
+*Enable Remote Desktop (a.k.a. Screen Sharing, a.k.a. VNC) with this command:
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+-activate -configure -access -on \
+-clientopts -setvnclegacy -vnclegacy yes \
+-clientopts -setvncpw -vncpw mypasswd \
+-restart -agent -privs -all
+
+
+
+*Login using a VNC client. As I mentioned, TightVNC worked for me;
+for some reason, RealVNC and UltraVNC didn’t.  Your password is
+“mypasswd” (see the -vncpw flag in the above command;  you can and
+should change this).
+
+
+*When you are done, turn off screen-sharing using your SSH session:
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+-deactivate -configure -access -off
+

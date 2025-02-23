@@ -1,0 +1,29 @@
+Q: Remapping keyboard shortcuts in Chrome and Firefox I recently switched from Windows to Mac.  One of the things that's really ingrained in my muscle memory is hitting Alt+D in a browser to go to the address bar.  On Mac browsers, ⌘+D creates a bookmark, the equivalent to move to the address bar is ⌘+L.  
+I've used the Keyboard pref pane to remap ⌘+D to the "Open Location..." command in Safari, Chrome, and Firefox.  In Safari this works great.  In both Chrome and Firefox, hitting ⌘+D now goes to the address bar and creates a bookmark.  Is there any way to get this to work properly in Chrome and Firefox?
+Mac OS 10.7, Chrome 13.0.782.220, Firefox 6.0.2
+
+A: Unfortunately none of the extensions I have work. However, there is a way to do this in the version of OSX I'm using, at least. Go to Settings->Keyboard->Shortcuts, and then from the list on the left select "App Shortcuts". Click "+" to add a new app shortcut and then select Google Chrome from the list of Apps.
+Now, you must assign "Bookmark This Page..." to something else first so that you can truly override command+D. I chose to select shift+command+B.
+After that click "+" again, and assign "Open Location..." to command+D. Now it should work.
+I can't believe how long it took me to find this answer, I guess everyone else uses Alt+L or Firefox. Thanks to Pysis for their answer here.
+Edit: This was so frustrating I made an account just to respond to this.
+
+A: ShortcutManager (Chrome extension) allows you to:
+
+Customize shortcut keys; Assign any Javascript code or browser actions to any key strokes.
+
+Here's an article on remapping keyboard shortcuts for Firefox. You'll need the keyconfig extension.
+
+A: You can achieve this using the keyboard prefs just as you were trying. You simply need to create one more shortcut.
+In Chrome you would:
+
+*
+
+*Set Command-D to Open Location…
+
+*Set Command-L to Bookmark This Page…
+By setting an explicit shortcut for Bookmark This Page… you get rid of the conflict an ensure there aren't two menu options with the same shortcut.
+
+A: You can do this from System Preferences→Keyboard→Shortcuts. https://apple.stackexchange.com/a/174979/1443
+Here are my current settings:
+

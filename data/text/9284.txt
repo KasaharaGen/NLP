@@ -1,0 +1,45 @@
+Q: 2010 Core 2.4 GHz Mac mini RAM Upgrade I have a mid 2010 Mac mini 2.4GHz with 2GB of RAM.
+I want to upgrade the RAM to 8GB.
+Willing to buy this RAM:
+http://www.bimeks.com.tr/urun/112447/kingston-4gb-1333mhz-ddr3-non-ecc-cl9-sodimm-kvr1333d3s9-4g-.aspx
+Will it work with my 2010 Core 2 Duo Mac mini?
+
+A: From Support Apple's page:
+http://support.apple.com/kb/HT4223
+Mac mini (Early 2009), Mac mini (Late 2009), and Mac mini (Mid 2010) computers have two internal memory slots. These slots accept a standard PC3-8500 DDR3 204-pin SO-DIMMs (Small Outline DIMM) with the following specifications:
+
+
+*
+
+*PC3-8500 DDR3
+
+*unbuffered
+
+*non-parity
+
+*204-pin module
+
+*1066 MHz
+
+
+DIMMs with the following features will not work with these Mac mini models:
+
+
+*
+
+*registers or buffers
+
+*PLLs
+
+*ECC
+
+*parity
+
+*EDO RAM
+
+
+A: I am not endorsing their products, but you should check online with Other World Computing and see exactly what RAM they recommend for your specific model of Mac mini.
+First, make sure you find your Mac's exact model identifier number using the Apple System Profiler (System Information) utility.
+Other World Computing specializes in upgrading Macs and their prices are usually competitive with the market. They stand behind their work and they will guarantee that the RAM they sell you will meet the necessary specifications for your exact model of Macintosh.
+
+A: Shortly, But memory with the same bus speed as the current one. Most Mac minis do have a bug that prevents them from using faster memory. You will loose precious time if you do not do this, especially because the memory is not rejected but the system became instable.

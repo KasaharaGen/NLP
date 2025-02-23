@@ -1,0 +1,132 @@
+Q: Why is Preview excessively slow after upgrading to Lion? After upgrading to OS X Lion, I noticed that my preview app is now excessively slow, taking minutes to open a file instead of seconds, even when opening a local file. In addition, it is often unresponsive.
+What is the cause of tis, and do I have to reinstall Lion to fix this issue? I'd rather not go through the whole process again if possible.
+
+A: OptCmdQ worked for me on a new Macbook Pro i5 2.4Ghz
+I can only presume that discarding the previous windows cleaned out something that was causing the app to run slowly.
+
+A: Using the fs_usage command to view file system activity
+If you're happy working in Terminal, a result from the following routine might help to estimate the causes of slowness. 
+
+
+*
+
+*open Preview then alt/optioncommandq to Quit and Discard Windows
+
+*in Terminal, open a new window
+
+*paste the following line to Terminal then key return or enter 
+sudo fs_usage cmd Preview
+
+*if prompted, enter your admin password
+
+*observe the hints for usage — you probably won't need them now, but it's good to be aware of them
+
+*key up to represent the same line but do not return or enter 
+
+*be prepared to bring Terminal quickly to foreground
+
+*in rapid succession: click the Dock icon for Preview — bring Terminal quickly to foreground — key return or enter
+
+*at your leisure, when Preview is ready: open a file that you associate with delays
+
+*after that file is open, key commandw to close the window
+
+*after the window closes, key commandq to quit Preview
+
+*bring Terminal to foreground, maximise the window then key controlc
+
+*if you see nothing confidential or sensitive in the Terminal window: select all text, copy the text
+then: 
+
+
+*
+
+*edit your question to include the pasted text. 
+
+
+
+Screenshots
+Examples of Terminal as it might appear after steps (6), (8) and (12): 
+
+
+
+Other readers
+Is there a smarter or more user-friendly way of getting similar information? 
+In this case I aim for fs_usage because its output includes time stamps, which could help to understand the points at which delays are most noticeable. 
+Reference
+fs_usage(1) Mac OS X Manual Page
+
+A: Before you reinstall, why not do a couple of easy isolation exercises - the network, other processes or your user account could be the issues and none get resolved with a reinstall.
+Lion has obviously made Preview app do more things. It tracks open files so they get opened again at the next launch, it has smarter detection of data, a new loupe - your mac might just have more to do and this could be the proverbial "straw that has broken the camel's back"
+Rather than just reinstall - you might poke a bit to see what it really going on. Are there other background processes? Is it still indexing the hard drive?
+The order here might help, but feel free to do whatever makes sense: (you'll run your preview test after each of these steps)
+
+
+*
+
+*Turn off the network (all of them if needed)
+
+*Log out and back in
+
+*Reboot
+
+*Make a new user
+
+*Safe boot
+
+
+There are some great but exhaustive procedures on isolating a software issue on apples support sites, but these are a few that might fast track you in ruling out this one issue. 
+If preview is slow with nothing else going on - you have a good chance at figuring out why. Best luck in chasing down the culprit.
+
+A: I had the same problem and managed to resolve it disabling the "resume" feature. This can be done system wide, but to solve just the Preview problem, type this in the Terminal:
+defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
+
+You might need to go to the ~/Library/Preferences folder for this to have effect (for me it didn't work at first).
+cd ~/Library/Preferences
+
+
+A: I was having this issue with OS X Lion 10.7.3 2GB RAM in a MBP. I tried the above terminal steps but couldn't find anything there.  I was reading through my code and noticed that it named "font" early on in the terminal output.  I recall having duplicate fonts in the past causing issues in Snow Leopard.  
+What to do:
+
+
+*
+
+*Open up Font Book (spotlight search) and selected All Fonts in the Collection column.
+
+*Scroll through the Font list and look for a font with a yellow triangle indicating that it is a duplicate.
+
+*Click on the triangle and choose remove automatically.
+
+
+Preview and TextEdit now open much much faster.
+
+A: Try this: it made a big difference on my Mac.
+Under Preview, Preferences, General, select Open each file in its own window.
+
+A: Just stumbled on an answer that worked from me on the apple.com forums:
+In Preview, select File -> Open recent -> Clear menu.
+When I restart after doing this, it's lightning fast again.
+Unfortunately, this is a manual fix; the menu will clearly fill up again and slow Preview down, so Apple has some work to do to get this fixed. But at least there's a way to clean it up from time to time.
+
+A: If you have Axiotron Quickscript installed you will need to disable/remove it until they supply a fix.
+
+A: I would consider this a bug in Lion, probably related to the auto-quitting of apps introduced with Lion. 
+I have a similar thing happening, does it sound familiar? 
+I open a file, which activates Preview. I see my last opened documents, and a grey overlay over them, with a spinner. 
+What helps me is force quitting Preview, and reopening the file.
+Preview is definitely eager to close itself in Lion, see this tidbits article for more info: http://tidbits.com/article/12398
+
+A: As described by others, one possible reason for slow performance of Preview under Lion is related to the new resume feature. This can be disabled in multiple ways:
+
+
+*
+
+*temporarily by closing Preview using OptCmdQ which causes a clean Preview on next startup. 
+
+*Permanently for Preview only using the Terminal command:
+defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false [but see note below] or
+
+*Globally for all Applications from the General System Preferences [but see note below]
+
+
+But, in my experience with a similar slowdown in Preview (5.5.1) after a recent upgrade from Snow Leopard to Lion (10.7.3) you may need to use Multiple Techniques. Specifically, Even after I disabled resume for Preview from the command line and globally in systems preferences, I still experienced very slow Preview performance until I also closed preview using OptCmdQ. Now finally, Preview is back to running fast.

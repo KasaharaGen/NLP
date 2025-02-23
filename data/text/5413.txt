@@ -1,0 +1,11 @@
+Q: How to join an Active Directory domain in Lion? where do I begin in joining an OS X Lion workstation to an existing AD Domain (Server 2008 R2)?
+
+A: Looks to me like it's under System Preferences > Users & Groups > Click on 'Login Options' > then click 'Join' button next to where it says "Network Account Server".
+Then the dialog box that comes down allows you to enter the AD domain server there. Click Ok.
+
+
+A: There are major problems with the Mac OS Active Directory plug-in that actually started with 10.6.8 and they were NOT fixed in 10.7.2.  I've found that the AD plug-in from Likewise Open to be a very good solution, and it's free.
+Kent
+
+A: I joined MAC OS X 10.8.3 to AD (windows 2008 R2 SP1) successfully. However faced system hang when accessing 'Security and Privacy' from 'System Preferences'. 
+In logs saw lot of permission errors. Solved it by 'Repairing Disk Permissions' from Disk Utility.

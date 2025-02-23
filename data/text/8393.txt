@@ -1,0 +1,80 @@
+Q: Proper group ID (gid) for Lion? If you create a brand new admin account in Lion, the following will be your id and group memberships (from $ id [new Lion account] | perl -lne 's/ /\n/g; s/,/\n\t/g; print;'):
+uid=504(lt)
+gid=20(staff)
+groups=20(staff)
+    402(com.apple.sharepoint.group.1)
+    12(everyone)
+    33(_appstore)
+    61(localaccounts)
+    79(_appserverusr)
+    80(admin)
+    81(_appserveradm)
+    98(_lpadmin)
+    100(_lpoperator)
+    204(_developer)
+    403(com.apple.sharepoint.group.2)
+    401(com.apple.access_screensharing)
+
+In contrast, an older OS X account will have these uid, gid, etc:
+uid=501(andrew)
+gid=501(andrew)
+groups=501(andrew)
+    403(com.apple.sharepoint.group.2)
+    204(_developer)
+    100(_lpoperator)
+    98(_lpadmin)
+    81(_appserveradm)
+    80(admin)
+    79(_appserverusr)
+    61(localaccounts)
+    12(everyone)
+    401(com.apple.access_screensharing)
+    402(com.apple.sharepoint.group.1)
+
+Note that the gid=20(staff) on the newer account and the that user is a member of 20(staff). 
+When you upgrade an older account to Lion, the older user and group names are kept.
+There have been issues reported with not having staff group membership on upgraded accounts:
+
+
+*
+
+*Inability to install or upgrade Homebrew;
+
+*The display of 'Fetching' when pressing Cmd+I on files in your user folder
+
+*ACL and permission issues.
+
+
+The current workaround seems to be this:
+
+
+*
+
+*Add the user to staff (i.e.: $ sudo dscl . append /Groups/staff GroupMembership `whoami` or equivalent)
+
+*Use Lion Recovery to restore default home folder permissions (Click on the 'No Disc – Lion' tab). 
+
+
+So far, this has fixed a lot of the issues I had with the upgrade, and I seem to have longer battery life and lower CPU usage.
+However, here are the questions I have: 
+1. Should I go through the trouble of changing the gid=501 to gid=20 on my account or is just being a member of the group staff good enough?
+2. Is being a member of 20(staff) the same as having gid=20(staff)?
+3. If I did change the gid= part of my account, how do I do that on Lion? I only know how to do it on Ubuntu...
+
+A: I haven't seen any difference in how OS X treats the primary group vs. a user's other groups, so I don't think it makes any real difference.  I'd be inclined to "fix" it for neatness, though.  These commands should set the primary group to 20, and then add a "secondary" membership in the old andrew group:
+sudo dscl . create /Users/andrew PrimaryGroupID 20
+sudo dseditgroup -o edit -a andrew -t user andrew
+
+(Note: using dscl to add secondary group memberships doesn't quite do it right -- use dseditgroup instead.)
+
+A: I fear there is no easy answer on that:
+
+
+*
+
+*when accessing files it doesn't matter whether your gid is staff or you are just member of this group
+
+*when creating files it might matter because new files belong to you but get the group from the directory they are created in. But because the file is owned by you in this case you should be able to access it anyway
+
+
+For most practical purposes belonging to the group is probably enough (especially as your problems seem to be resolved currently). 

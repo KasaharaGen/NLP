@@ -1,0 +1,49 @@
+Q: How can I increase command line memory_limit for PHP with MAMP PRO? I've edited every single php.ini on my Mac (at least all the ones found by "locate") and still can't seem to increase the memory_limit directive for PHP.
+I'm using MAMP PRO and running PHP scripts in the terminal.
+How to solve this?
+
+A: From http://drupal.org/node/66187  (drupal may be irrelevant for your needs, but their site had a good explanaton - wanted to source it for you, and give credit to them) 
+By default, MAMP has the memory limit that a script can use set at 8MB, which is the PHP default. Looking at PHP's php.ini-recommended file, this memory limit is normally set at 128MB. To adjust this amount, open the php.ini file in a text editor and change the following line (approximately on line 232):
+memory_limit = 8M      ; Maximum amount of memory a script may consume (8MB)
+PHP.ini file locations:
+/Applications/MAMP/conf/php4/php.ini  
+/Applications/MAMP/conf/php5/php.ini   
+In MAMP PRO, don't alter the file directly since it will be recreated at each server start. Please edit the appropriate template (menu File > Edit template > ...) instead.
+Even with larger PHP memory limits you can get timeout errors trying to import large Drupal databases into MySQL. These issues are discussed at length elsewhere with regards to the cache and views cache. Generally the solution is to empty the Drupal cache before importing/exporting databases to/from MySQL.
+
+A: For me, I did the following:
+Edit the /Applications/MAMP/conf/php5.4.4/php.ini
+and 
+php.ini.temp
+
+to be:
+memory_limit = 128M      ; Maximum amount of memory a script may consume (8MB)
+
+Then in finder simply make the php.ini and php.ini.temp read only for all users. This way, MAMP cannot overwrite it with default files. Restart the server and check your phpinfo.
+
+A: Instead of guessing which php.ini you need to alter, run this command to locate the file:
+php -r 'phpinfo();' | grep 'php.ini'
+
+Even though I use MAMP PRO, by default my command-line PHP commands are not executed using their copy of PHP. In my case it says the file is found at /etc/php.ini
+Once you have located the file, follow the instructions on all of the other answers to bump the memory_limit setting:
+memory_limit = 256M
+
+
+A: After messing around for a while a found something that worked for me:
+# backup original php.ini
+sudo mv /usr/bin/php /usr/bin/php.bkp
+
+# create a symlink from MAMP's php.ini in /usr/bin directory
+# (I use 5.2, change the path for 5.3)
+sudo ln -s /Applications/MAMP/bin/php/php5.2.17/bin/php /usr/bin/php
+
+There!
+
+A: Quick and dirty way to do this is to set it as argument when calling your script.
+Ie:
+php -d memory_limit=512M myScript.php 
+
+
+A: if you use Homebrew, your php settings are at /usr/local/etc/php/<php version>
+
+A: If you have Opcache on in Mamp Pro it will not you get the proper setting... stop it, restart your Mamp Pro server...  

@@ -1,0 +1,14 @@
+Q: Sharing one IP address among multiple Apple devices Is it possible to share one IP address between two Apple laptops (both running Snow Leopard in my case) so that both devices can connect to the internet?
+
+A: Yes, but with caveats.
+MacOS X has an "internet sharing" mode in the "Sharing" control panel, but you have to use different network interfaces for the "internet facing" and "internal facing" sides of your network.
+So if you're connected to the Internet over your ethernet port, you can share your connection to WiFi clients.  What you can't do is connect and share over the same port.
+
+A: i think it's better to get a router than use internet sharing mainly because the mac sharing the internet connection will need to remain powered on when your second mac needs the internet. =)
+
+A: Yes - either use a router or turn on "Internet Sharing" on one of the laptops (effectively the same thing as using a router).
+System Preferences => Sharing => Internet Sharing
+
+A: In order for computers to talk on the same network, they must have different IP addresses. However, it is possible to have two or more computers share an internet connection by having them on a private network separate from the internet, then routing their data through a gateway that is able to be on more than one network. The gateway usually uses a system called "Network Address Translation" or NAT to allow the computers on the private network to operate as if they are on the internet.
+This is what most home routers do. They provide a private network and a NAT gateway, often combined with a wireless access point and and ADSL modem.
+Internet Sharing (in System Preferences => Sharing) allows a Mac to act as this gateway. It will set up any unused network interface with a private IP address and allocate private IP addresses to any other computers you put on that network. It will then route data from computers on that network to the internet, performing NAT so that all the traffic on the internet seems to be coming from it, and not the other computers.

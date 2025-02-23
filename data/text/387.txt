@@ -1,0 +1,31 @@
+Q: Why do local network hostnames resolve only in certain cases?  I have a linksys router which runs "tomato" Linux and serves as the local DNS server. It runs dnsmasq.
+I recently upgraded from OS X 10.4 to 10.6. Since then, resolution of hostnames on my local network works in some cases but not others. Previously, this all worked as expected.
+Here's an example:
+tesla:~ cell$ ping watt
+ping: cannot resolve watt: Unknown host
+
+tesla:~ cell$ ping watt.local
+ping: cannot resolve watt.local: Unknown host
+
+tesla:~ cell$ ping -c1 192.168.42.1
+PING 192.168.42.1 (192.168.42.1): 56 data bytes
+64 bytes from 192.168.42.1: icmp_seq=0 ttl=64 time=0.659 ms
+
+--- 192.168.42.1 ping statistics ---
+1 packets transmitted, 1 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.659/0.659/0.659/0.000 ms
+
+tesla:~ cell$ host watt.local
+watt.local has address 192.168.42.1
+
+tesla:~ cell$ host watt
+watt.local has address 192.168.42.1
+
+My guess is that the host command is querying the DNS server directly, whereas ping and any GUI apps (ie. Safari) are using some sort of Mac DNS resolution routines, which are not working properly.
+Please let me know if there's any other info I should provide.
+Edit: included pinging ip directly in above example
+Edit 2: My domain is using .local
+
+A: If you're serving .local via unicast DNS (instead of multicast DNS, as specified in this draft internet standard), include an SOA record for .local; as of v10.6, OS X detects this and switches .local resolution to unicast DNS.  Earlier versions of OS X have other methods of forcing unicast resolution - see Apple's KB article #HT3473 for details.
+
+A: solution: don't use '.local' as your domain name.  lame.

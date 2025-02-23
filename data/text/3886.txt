@@ -1,0 +1,12 @@
+Q: Are there fonts that include musical note characters? On my Mac, there is a font that contains the BEAMED EIGHT NOTES Unicode character, but there are no fonts that contains the MUSICAL SYMBOL PLUS NOTEHEAD or the MUSICAL SYMBOL QUARTER NOTE Unicode character.
+Are there fonts that contain such characters?
+
+A: Try installing the Musica font from page. This will install the musical notes you need (free). You can then test it out on this page.
+Hope this helps.
+
+A: The Musica typeface, available on Unicode Fonts for Ancient Scripts) has both of the unicode characters you mention; I tested it with the Character Viewer on Mac OS 10.6.6 and it seems to work fine.
+
+A: (The links to the Musica typeface don't seem to lead anywhere useful.)
+Uptake of the Musical Symbols in Unicode has been very limited: there were already fonts that allowed music symbols to be incorporated into text blocks, such as the Bach Musicological Font (which is now hard to find); and notation applications use their own fonts, whose symbols tend to use the 'ASCII' glyph range.
+However, over the last few years, a standard for music notation symbols in Unicode has been formulated, called SMuFL. SMUFL-compliant fonts will also include glyphs in the Unicode reserved locations that you are after.
+The SMuFL reference font, Bravura, comes in two versions, one for notation software, and the other, Bravura Text, for use in text. Either of these will include the characters you want. You can download the fonts here.

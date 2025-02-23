@@ -1,0 +1,68 @@
+Q: How to cd to a directory with a name containing spaces in bash? I tried cd "~/Library/Application Support/"
+-bash: cd: ~/Library/Application Support/: No such file or directory
+also cd ~/Library/Application Support/
+-bash: cd: ~/Library/Application Support/: No such file or directory
+
+A: You can alternatively just drag a folder to the Terminal window too, the complete file/folder path will be auto-pasted on drag.
+
+A: You need to escape the space in "Application Support"
+Try $ cd ~/Library/Application\ Support/
+
+A: The core issue here is how the shell (bash) does quoting and how that affects tilde expansion and splitting into “words” (arguments for the program being run).
+bash only treats the leading tilde specially if it is not quoted. In addition, the following slash must also not be quoted.
+At the same time, bash parses command lines into “words” based on non-quoted whitespace. The cd command typically requires exactly one argument (the destination directory). A command line like cd foo bar means to run cd with two arguments: foo and bar. If you only wanted to send a single foo bar argument, then you need to quote the space:
+(e.g.) cd foo\ bar (see more quoting example below).
+In your particular situation, you need to leave the tilde and the following slash unquoted while quoting the space in the directory name. Your cd "~/Library/Application Support/" trial ends up quoting too much (the tilde and its slash), while your cd ~/Library/Application Support/ trial quotes too little (it omits quoting the space in the directory name).
+The most common solution is to use single-character escaping to quote just the space:
+    cd ~/Library/Application\ Support
+
+You can also use single or double quotes around either just the space or the space and some other bits of that argument (but not the ~/!):
+    cd ~/Library/Application' 'Support
+    cd ~/Library/Application" "Support
+    cd ~/Library/App'lication 'Support
+    cd ~/Library/Application" Supp"ort
+    cd ~/'Library/Application 'Support
+    cd ~/"Library/Application "Support
+
+These kinds of quotes have different meanings, but they are identical in these examples. Single quotes protect literal strings while double quotes allow various expansions and substitutions in the quoted region.
+Often, you can just let the shell do the work for you.  
+
+
+*
+
+*Globbing (wildcards):
+cd ~/L*/Ap*
+
+You can use shopt -s nocaseglob to make globbing case insensitive:
+cd ~/l*/ap*
+
+
+*Completion:
+Pressing Tab after entering cd ~/L will probably expand it to cd ~/Library/.
+Pressing Tab again after entering Ap (you now have cd ~/Library/Ap) will probably expand it to cd ~/Library/Application\ Support/ (the shell automatically inserted the escaping backslash).
+You can use bind 'set completion-ignore-case on' to make completion case insensitive:
+cd ~/l Tab → cd ~/Library/; ap Tab → cd ~/Library/Application\ Support/
+
+A: You can use the Tab key after pressing the first few characters (this will then "fill in" the rest of the folder for you e.g. type cd ~/LTab fills in cd ~/Library/ then type ApTab and it will fill in the rest for you.
+If there is a space between words and you don't want to use the methods above, put a \ (backslash) before the space, e.g. cd ~/Library/Application\ Support.
+
+A: When you double-quote a path, you're stopping the tilde expansion. So there are a few ways to do this:
+cd ~/"My Code"
+cd ~/'My Code'
+
+The tilde is not quoted here, so tilde expansion will still be run.
+cd "$HOME/My Code"
+
+You can expand environment variables inside double-quoted strings; this is basically what the tilde expansion is doing
+cd ~/My\ Code
+
+You can also escape special characters (such as space) with a backslash.
+
+A: You can try this for spaced folders/files by
+If the file or folder name contains
+1)file name.extension 
+the command should be
+cd ~/file\ name.extension/ (or) cd ~/"file name.extension"/
+
+A: If the normal ways don't work, trying substituting spaces with %20.
+This worked for me when dealing with SSH and other domain-style commands like auto_smb.

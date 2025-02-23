@@ -1,0 +1,13 @@
+Q: How do I make Terminal.app's scrollbars disappear in Lion? Once I upgraded to Lion, I found out that the vertical scrollbar is always plastered to the right side of the application window. 
+Because I run GNU Screen within Terminal.app, the right side of the screen session gets hidden partially underneath said scrollbar. Likewise for emacs sessions.
+Is there a way to disable scrollbars in Terminal.app in Lion?
+
+A: I assume you're not using a trackpad, and/or your Show scroll bars preference in System Preferences > General is set to either Automatically based on input device or Always (otherwise, you shouldn't be seeing persistent scrollbars).
+Try changing this setting for Terminal only:
+defaults write com.apple.Terminal AppleShowScrollBars -string WhenScrolling
+
+Then close Terminal and reopen it for the change to take effect.
+
+A: System Preferences > General > Show scroll bars > When scrolling
+
+A: Try LionScrollbars. It's the only thing that worked for me (besides setting the entire system to "When scrolling"). Works like a charm under 10.8.2.

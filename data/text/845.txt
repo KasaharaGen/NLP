@@ -1,0 +1,30 @@
+Q: Keep Preview from autoresizing print output Whenever I want to print a PDF file from Preview, the print dialog defaults to shrink the page to fit the bounds of the page. I have to manually select scale: and enter 100 into the text field. Is there a hidden default or other way, to tell Preview to always default to 100% print size? 
+Using a saved print setting as suggested below does not work in this case. I'm using Preview 5.0.2 (504) and Mac OS X 10.6.4, perhaps a bug?
+When I save the setting I want to have, open another PDF file, select print, and select my saved settings, the scale: setting jumps to some arbitrary value around 100% (90%-105%) and the radio box stays at "scale to Fit:".
+
+A: quit the Preview App, enter the following into your Terminal application and then start Preview again. Problem solved!
+defaults write com.apple.Preview PVImagePrintingScaleMode 0
+
+to revert this setting, you can use the following command:
+defaults delete com.apple.Preview PVImagePrintingScaleMode
+
+
+A: I would use Terminal commands slightly different from @Bart's above, although those work just fine.
+To disable Preview's default print scaling:
+defaults write com.apple.Preview PVImagePrintingScaleMode -bool false
+
+To restore Preview's default print scaling:
+defaults write com.apple.Preview PVImagePrintingScaleMode -bool true 
+
+That way, the default stays in Preview's plist, so I don't need some external reminder about that default if I'm poking into it next year when I've forgotten I did this.
+Incidentally, the first time I started up Preview after disabling its print scaling, it seemed to hang on launch, so I force-quit and then tried again and it was fine.
+Hmm. Tried to edit to make the code lines show...
+
+A: The Print dialog window allows the saving of presets. Set things how you want them to be and save the settings. You can apply the settings to all printers or just one printer. You can also change your settings and then select "Use last settings" as well.
+
+A: To disable Preview's default print scaling:
+defaults write com.apple.Preview PVImagePrintingScaleMode -bool false
+
+To restore Preview's default print scaling:
+defaults write com.apple.Preview PVImagePrintingScaleMode -bool true 
+

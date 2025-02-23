@@ -1,0 +1,37 @@
+Q: How to clone an entire disk with Lion (+Rescue) & Bootcamp Partitions I have a faulty (hardware-wise) drive in my 2011 macbook pro and will probably get a replacement drive from the vendor, but I was wondering whether there is (by now) a way (tool) to clone the disk completely, including the (main) lion-, its rescue- and finally the windows7 bootcamp partition without having to completely re-install both systems?
+
+A: I know this is not a fully integrated solution, but you can use the tools available on Mac OS X and on the Mac OS install DVD/FlashDrive. You will have to restore both systems separately, but it will save you from having to reinstall everything in Windows and OS X.
+
+Note: If your drive is phisically damaged you might end up with corrupted data or being unable to clone your partitions.
+
+There is a thread here explaining how you can save and restore your Bootcamp partition using only Disk utility and BootCamp: http://forums.macrumors.com/showthread.php?t=997823
+It goes along the lines of (parts are just copied):
+
+
+*
+
+*Use Disk Utility to backup your bootcamp partition to an external drive.
+
+*You can also use Disk Utility to backup your Mac OS partition if you didn't use Time Machine.
+
+*Install/Restore Mac OS to a new Hard Drive
+
+*Use Bootcamp to setup your drive for windows and to allocate the new space.
+
+*Use Disk Utility to restore your .dmg image to the new Boot Camp partition you just created. Be sure to run IMAGES --> SCAN IMAGE FOR RESTORE in Disk Utility before restoring. You may need to unmount the Boot Camp partition in Disk Utility before it begins to restore.
+
+*Use fdisk in Terminal to mark the Boot Camp partition active. First, enter the fdisk MBR edit mode by running the following:
+$sudo fdisk -e /dev/disk0
+Ignore the error "could not open MBR file /usr/standalone/i386/boot0: No such file or directory". Then, determine which partition number to mark active by running the following (in bold):
+fdisk: 1> show
+
+Your windows partition should be #3 labeled "Win95 FAT-32". Now, mark the partition active:
+fdisk: 1> flag 3
+Partition 3 marked active.
+fdisk:*1> write
+Device could not be accessed exclusively.
+A reboot will be needed for changes to take effect. OK? [n] y
+Writing MBR at offset 0.
+fdisk: 1> exit
+
+Now, reboot and hold the OPTION key and Windows should be listed as a bootable option."

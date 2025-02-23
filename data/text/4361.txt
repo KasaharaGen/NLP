@@ -1,0 +1,7 @@
+Q: Untick the 'Open Safe Files' preference in Safari with Terminal After all the fuss over Mac Defender, I thought it might be a good idea to disable the open safe files option in safari for the users in our network. I'd like to do this with the 'Send Unix Command' via Remote Desktop. 
+
+How can I use terminal to disable this preference in Safari?
+
+A: You can use the defaults application to change the preference for this using the following command: 
+defaults write com.apple.Safari AutoOpenSafeDownloads 0
+

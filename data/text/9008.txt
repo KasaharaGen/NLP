@@ -1,0 +1,29 @@
+Q: How do I gain permission to generate ssh keys on my Mac? I tried to generate ssh keys for GitHub (access through SSH in terminal), but I do not have access to the .ssh directory.
+I tried to ls -l ~/.ssh, but I got this error ls: .ssh: Permission denied
+I tried to read on the internet tuns of tutorials and tips for fix it, but unfortunately nothing works me.
+What am I doing incorrectly and how can I fix it? I am running on Mac os X 10.6
+
+A: chown -R YOUR_USER: ~/.ssh
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+
+
+A: sounds like you don't have eXecute permission on your .ssh folder: try running ls -ld ~/.ssh and verify that the permissions are drwx------, and that the directory is owned by you. If the permissions differ, run chmod -R u+rwX,go-rwx ~/.ssh; if you're not the owner, run chown -R <your account name> ~/.ssh (find out your account name by running whoami). 
+If either the chmod or chown commands fail due to permission errors, run them again but prefic them with sudo.
+
+A: Run
+man chown
+man chmod
+
+and read how to change the ownership and permissions for the directory.
+
+A: Go into Terminal and type in:
+chmod a+rwx ~/.ssh
+
+And generate your keys.
+Once you're done generating your keys, relock your .ssh directory by doing:
+chmod go-rwx ~/.ssh    
+chmod u+rwx ~/.ssh
+
+The first command removes permissions from "group" and "others" and the second is probably not necessary, but it explicitly sets your own rwx bits.
+I'd expect the reason the .ssh directory would be locked to "others" and "groups" would be to keep malicious apps & processes from sniffing out any keys that live in that directory.

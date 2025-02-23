@@ -1,0 +1,55 @@
+Q: Using "+Left/Right" to move between words in an editing window I've recently switched to a MacBook as my main platform for doing work. Previously, I was an all-Linux sort of person (I now run Linux under VMware). But there are still a few UI differences that are driving me crazy, and one of them is this:
+I am used to being able to use ctrl+→/← when in a web form, or even in most editing apps, to move left and right by a whole word. However, on my MBP those keys switch between desktops in Spaces. And where MacOS tends to use the ⌘-key for common control-isms (like ctrl+C, etc.), ⌘+← and ⌘+→` do start-of-line and end-of-line, respectively.
+Is there a modifier for moving by words, under MacOS?
+
+A: *
+
+*⌥← and ⌥→ move word backward or forward
+
+*⌥⇧← and ⌥⇧→ move word backward or forward and modify the selection
+
+*⌥⌫ and ⌥⌦ delete word backward or forward
+
+
+The same shortcuts with ⌃ substituted for ⌥ are used to navigate subwords in some editors like Xcode and TextMate.
+A reference of the standard text editing shortcuts: hcs.harvard.edu/~jrus/Site/System%20Bindings.html
+
+A: Recently updated by Apple for Mac OS X 10.7 Lion: 
+Mac OS X Human Interface Guidelines: Appendix A: Keyboard Shortcuts
+
+… driving me crazy … I am used to being able to use  ctrl+→/← …
+
+I highly recommend adopting the shortcuts given in the guidelines. There'll be a period of craziness whilst you learn the norms, but ultimately it'll make for a better overall experience of the operating system. 
+There may be user-friendly ways of re-mapping things — on a system-wide or per-application basis — but my personal experience of remapping things (years ago) is that eventually, despite best intentions, there'll be some unexpected conflict or muddle, after which you could find yourself not only choosing to learn the norms, but also extracting yourself from a muddle (making painful the deferred learning). 
+A good example of potential for muddle: Terminal in Lion now follows HIG (Human Interface Guidelines), which is good. You might be able to remap things for Terminal but — depending on your uses of Terminal — I imagine the risk of something going horribly wrong. 
+
+A: ⌥ + arrow keys will let you navigate by word. As you said, ⌘ + arrow keys will move to the end/beginning of the line or document. Both of these can also be used with ⇧ to select, or the delete key. Furthermore, you can double-click to select a word and triple-click to select a paragraph — and if you double-click-drag or triple-click-drag, you can select multiple words or paragraphs.
+Also useful, and perhaps familiar to you coming from Linux:
+
+
+*
+
+*ctrl A moves to the beginning of a paragraph
+
+*ctrl E moves to the end of a paragraph
+
+*fn ⌫ deletes forwards (and can be combined with ⌘ or ⌥;
+you can also use ctrlD which doesn't work with the other modifiers)
+
+*ctrl K deletes to the end of the paragraph (kill)
+
+*ctrl Y pastes that text back (yank)
+
+*ctrl L scrolls so the selected text is visible
+
+*ctrl T transposes the two characters next to the cursor
+
+*ctrl O inserts a newline after the cursor
+
+
+More interesting shortcuts and uses of the keyboard can be found here and elsewhere on the internet.
+
+A: Try pressing ⌥ + ← or →.
+                   
+
+A: Use "Application Shortcuts" in "Keyboard Shourtcuts" of System preferences for assigning a custom key command mapping for system level or individual application. More info can be found by searching for "How to Remap Keyboard Shortcut in OS X".

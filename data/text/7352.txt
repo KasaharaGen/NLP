@@ -1,0 +1,14 @@
+Q: Show text in large type on the screen via terminal I can put large text on the center of my screen with certain apps, such as Address Book (click on a phone number and choose "Show in Large Type") or using Quicksilver (type some text and choose the "Large Type" action). 
+Is there any way I can invoke this functionality from the terminal, to show arbitrary large text by writing, say, Applescript or a bash script? 
+
+A: Since you already have QuickSilver installed:
+osascript -e 'tell application "Quicksilver" to show large type "your text here"'
+
+You can use this to define a bash function (and put somewhere like ~/.profile):
+function big {
+        osascript -e "tell application \"Quicksilver\" to show large type \"$1\""
+}
+
+Then you can invoke it with arbitrary strings by doing
+$ big "This will cause large text to appear"
+

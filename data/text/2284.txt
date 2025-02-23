@@ -1,0 +1,44 @@
+Q: How do I change a calendar's color in iOS 4.2.1? This is very similar to this question however the only problem is that I'm running solely Windows OS on my PC.  I also only sync with google calendars and that's all.  However, it appears the sync doesn't match the calendar colors.  Is there anyway to synchronize or directly change colors on the iPod/iPhone?
+
+A: A partial-workaround is suggested on this Google thread:
+
+There is a workaround that solved the problem for me.
+The iPhone assigns calendar colours in
+  this order: red, orange, blue, green,
+  purple (then repeats that cycle). So
+  the first step is to switch off
+  Exchange syncing for Calendars in the
+  iPhone settings then go into the
+  m.google.com/sync web app and just
+  enable one of your calendars. Then
+  re-enable Exchange syncing. Now you'd
+  think it would colour that first one
+  red and it may do in your case but for
+  me it coloured the first calendar
+  orange, possibly because I had some
+  other local calendars already on the
+  iPhone.
+If it colours your chosen calendar
+  with a colour you were not expecting,
+  just start again (disable
+  Exchange/change sync settings and
+  re-enable) and take whatever colour it
+  chose as the starting point in that
+  cycle above. Once you've got the first
+  calendar/colour combination working as
+  you like, go back into
+  m.google.com/sync and select the
+  calendar you want to go with the next
+  colour in the cycle. Wait a few
+  minutes. Check that it's showing up as
+  expected in the calendar app. And then
+  go back to m.google.com/sync and
+  repeat. If you take this one calendar
+  at a time approach, you can assign
+  colours as you want them, except of
+  course you will face problems if you
+  have say three green calendars and no
+  purple ones...
+
+
+A: I just opened calendars in google on my laptop. Changed the colour of it there. Then just clicked the sync button on my iPod in the list of calendars. The colours and name changes just synced. I have iOS 5.1

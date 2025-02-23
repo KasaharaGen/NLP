@@ -1,0 +1,14 @@
+Q: Multi threaded file copy? Windows os has tools to spin off multiple threads for copying files: RichCopy, Robocopy or vXCopy.
+I was wondering if there exists a method or tool to copy a lot (thousands) of small files/directories using multiple threads on macOS?
+
+A: Give Ultracopier a try
+
+A: The bottleneck for copying files is going to be the disk, not the CPU. I don't think you will gain much at all by doing a multiple threads. In fact there's potential for it to be slower, especially if you are on a hard drive, with the increased seeking. 
+
+A: Limited by Storage
+Copying files is Input/Output (I/O) bound. This means the copy can only go as fast as the reading or writing of the data. Another limit will be the bandwidth within the computer's bus or the interface the data is being sent over, such as  USB, ethernet, or wireless.
+Multi-threading or using a faster processor will not significantly reduce copying times. Once the maximum I/O limits of the storage device are reached, increasing the threads or processing power will do nothing; it may even slow the copy due to the administrative overhead.
+rsync - reliably copying thousands of files
+On macOS, a reliable tool for copying thousands of small files and folders is rsync (Remote Synchronisation). rsync is included with macOS, so there is no third party software to download and install.
+rsync has the ability to compress and decompress data on the fly and can deal with partial copies.
+See Fastest and safest way to copy massive data from one external drive to another for a related question about how to copy massive amounts of data.

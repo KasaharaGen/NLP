@@ -1,0 +1,47 @@
+Q: Fastest way to delete all Timemachine Backups for a machine What is the recommended way to get rid of a whole TimeMachine archive (aka Backups.backupdb)? 
+Using Disk Utility to erase the whole disk is not an option.
+I moved everything to the Trash, but "preparing to empty trash" was counting files to delete forever. I cancelled at -100,000 files.   
+So what's the recommended way to delete huge amounts of files?
+
+A: If you've got:
+
+Operation Not Permitted
+
+after executing
+sudo rm -rf Backups.backupdb
+
+you should follow this approach, which is adding bypass before the remove command:
+sudo /System/Library/Extensions/TMSafetyNet.kext/Contents/Helpers/bypass rm -rfv Backups.backupdb
+
+
+A: If you're comfortable with using Terminal.app (located in Utilities folder), you can try using Unix sudo rm -r <path>/Backups.backupdb command. Note that <path> is the placeholder for the path to the hard drive where your Time Machine backup is located. Please be careful with the path that you pass to this command by ensuring there is no typo. 
+The complete steps are:
+
+
+*
+
+*Launch Terminal.app 
+
+*In one of Terminal.app's window, type sudo rm -R followed by a space
+
+*Use a Finder window to navigate to the Backups.backupdb folder, then
+
+*Drag that folder to the Terminal.app's window of step 2, and press the Return key.
+
+*You may be asked to type the password for the admin account.
+
+*The default prompt will reappear in the Terminal.app's window when the deletion is done.
+
+
+Type man rm for documentation. 
+
+A: Mattorb's approach works fine.
+sudo /System/Library/Extensions/TMSafetyNet.kext/Contents/Helpers/bypass rm -rfv Backups.backupdb
+However the path for Backups.backupdb can be more easily entered by dragging and dropping the folder into the terminal window after the command rm -rfv[space]
+It still works if you have put Backups.backupdb in trash - all that is needed is to move it to it's original disc and then apply the above terminal command from there.
+I hope this helps
+
+A: Once terminal is open, I used the following command:
+rm -rfv /path/to/folder/
+The r means recursive, f means forcefully, v means verbose so you can actually see the files being deleted. 
+Be careful when using this command. You must specify the exact path otherwise there is no undo for this command (unless you have a backup which is wise).

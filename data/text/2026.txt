@@ -1,0 +1,292 @@
+Q: How can I change a file or folder icon using the Terminal How can I change or set the icon for a file or folder, in the terminal, do I need to use a scripting language?
+
+A: Check out setfileicon (source code), an utility created by Damien Bobillot.
+Download the binary here: http://maxao.free.fr/telechargements/setfileicon.gz
+After unpacking the file, make it executable:
+chmod +x setfileicon
+
+Then you can use it as follows:
+./setfileicon "my-icon.icns" "my-file-or-directory"
+
+
+A: You'll need the Developer Tools installed, and then the following might work. This takes the graphic in icon.png and applies it to file.ext.
+# Take an image and make the image its own icon:
+sips -i icon.png
+
+# Extract the icon to its own resource file:
+/Developer/Tools/DeRez -only icns icon.png > tmpicns.rsrc
+
+# append this resource to the file you want to icon-ize.
+/Developer/Tools/Rez -append tmpicns.rsrc -o file.ext
+
+# Use the resource to set the icon.
+/Developer/Tools/SetFile -a C file.ext
+
+# clean up.
+rm tmpicns.rsrc
+# rm icon.png # probably want to keep this for re-use.
+
+
+A: With the benefit of several years of hindsight:
+user588's answer and koiyu's answer work well, but they rely on utilities (Rez, DeRez, and SetFile) that:
+
+*
+
+*are not installed by default (they come with either Xcode or the developer command-line utilities)
+
+*are now deprecated (Rez and DeRez, because they relate to Carbon)
+
+The osxiconutils project looks interesting, but is no longer maintained and won't compile any longer (as of macOS 10.10.4).
+
+*
+
+*velkoon points out that the linked repo offers downloading a ZIP file with (x64) binaries that still work as of macOS 13 (Ventura). You'll have to authorize the binaries for local execution by running the following against the ZIP file before extracting its contents: xattr -d com.apple.quarantine osxiconutils.zip.
+
+*A notable limitation of the seticon utility is that it can only assign .icns files, not also other image formats - unlike the fileicon utility discussed below.
+
+
+Therefore I've created CLI fileicon, which should work on a pristine macOS machine (no prerequisites); it is a Bash script based primarily on xattr, xxd and an embedded Python script that calls Cocoa, courtesy of this helpful answer. [Update: Since Python no longer comes with macOS, the Python script has been replaced with an ObjC Bridge AppleScript.]
+It allows setting/removing/extracting custom icons for/from files or folders, including on APFS volumes on macOS 10.13 (High Sierra). [Update: Still works as of macOS 13, Ventura.]
+You can install it as follows:
+
+*
+
+*If you have Homebrew installed: brew install fileicon
+
+
+*If you have Node.js installed, from the npm registry, with
+[sudo] npm install -g fileicon
+
+
+*Otherwise:
+
+*
+
+*Download the CLI as fileicon (this link will stay current).
+
+*Make it executable with chmod +x fileicon.
+
+*
+
+*Move it or symlink it to a folder in your $PATH, such as /usr/local/bin (requires sudo).
+
+
+
+
+
+Here's the usage information; for complete information, refer to the manual:
+$ fileicon -h
+
+Set a custom icon for a file or folder:
+
+    fileicon set      <fileOrFolder> <imageFile>
+
+ Remove a custom icon from a file or folder:
+
+    fileicon rm       <fileOrFolder>
+
+ Get a file or folder's custom icon:
+
+    fileicon get [-f] <fileOrFolder> [<iconOutputFile>]
+
+ Test if a file or folder has a custom icon:
+
+    fileicon test     <fileOrFolder>
+
+ -q ...  silence status output
+
+ Standard options: --help, --man, --version, --home
+
+
+A: I have a github project where I create AppleScript "droplets" from [shell/bash, python, perl, ruby, etc.] scripts that take file paths as arguments. I wrote this bash function for changing the icon of an folder (because AppleScript bundles are Folders with a .app extension).
+replace_icon(){
+    droplet="$1"
+    icon="$2"
+    if [[ "$icon" =~ ^https?:// ]]; then
+        curl -sLo /tmp/icon "$icon"
+        icon=/tmp/icon
+    fi
+    rm -rf "$droplet"$'/Icon\r'
+    sips -i "$icon" >/dev/null
+    DeRez -only icns "$icon" > /tmp/icns.rsrc
+    Rez -append /tmp/icns.rsrc -o "$droplet"$'/Icon\r'
+    SetFile -a C "$droplet"
+    SetFile -a V "$droplet"$'/Icon\r'
+}
+
+Once defined, you call the function with 2 arguments:
+replace_icon /path/to/AppleScript.app /path/to/icon.png
+
+or
+replace_icon /path/to/AppleScript.app http://i.imgur.com/LmUvWqB.png
+
+As you can see the second argument can be an image on your system, or a URL.
+NOTE: That crazy looking $'/Icon\r' thing that I do is because the name of the Icon file ends with a literal carriage return \r. See for yourself with:
+find my-applescript.app -maxdepth 1 | less -U
+
+
+A: Assuming that we have icns-file already. Create temp resource file which points to icns-file:
+$ echo "read 'icns' (-16455) \"Icon.icns\";" >> Icon.rsrc
+
+Append the resource file as value of extended attribute "com.apple.ResourceFork" to a file:
+$ Rez -a Icon.rsrc -o FileName.ext
+
+Show the icon of the file:
+$ SetFile -a C FileName.ext
+
+Append resource file as value of extended attribute "com.apple.ResourceFork" to a magic icon file inside current folder:
+$ Rez -a Icon.rsrc -o Icon$'\r'
+
+Show the icon of current folder:
+$ SetFile -a C .
+
+Hide the magic icon file inside current folder (press ⇧⌘. to show/hide hidden files in Finder):
+$ SetFile -a V Icon$'\r'
+
+Additional details
+Icon data is stored as value of extended attribute "com.apple.ResourceFork" (Terminal command "xattr -p com.apple.ResourceFork FileName.ext" prints the value). For a folder there is magic (which is empty and hidden) file Icon$'\r' inside the folder. To extract icon data from extended attribute "com.apple.ResourceFork" into plain text resource file (from which we know correct icns-type identifier "-16455"):
+$ DeRez -only icns FileWithIcon.ext > Icon.rsrc
+$ DeRez -only icns /Folder/With/Icon/Icon$'\r' > Icon.rsrc
+
+Under macOS 10.13 High Sierra command $ sips -i ImageFile.icns/png/jpg generates error "--addIcon is no longer supported". Switch "-i" means "--addIcon" as extended attribute "com.apple.ResourceFork" onto this file itself using the content of this image file.
+
+A: I almost started a bounty on this, because I didn't manage to change the icon of a folder using @mankoff's answer. But I found a solution.
+
+To change folder's icon you don't point Rez -append tmp.rsrc to the folder but a special Icon\r file inside the folder. If you haven't set a custom icon to the folder before, the file probably will not exist, but Rez creates it on–the–fly. Deleting the Icon\r file will remove the custom icon, so to prevent accidents it is good to be hidden.
+These are the modifications to the mankoff's answer:
+# Append a resource to the folder you want to icon-ize.
+Rez -append tmpicns.rsrc -o $'myfolder/Icon\r'
+
+# Use the resource to set the icon.
+SetFile -a C myfolder/
+
+# Hide the Icon\r file from Finder.
+SetFile -a V $'myfolder/Icon\r'
+
+
+A: Another option is to use MacRuby:
+/usr/local/bin/macruby -e 'framework "Cocoa";NSWorkspace.sharedWorkspace.setIcon(NSImage.alloc.initWithContentsOfFile("/tmp/a.png"),forFile:"/tmp/file",options:0)'
+You can download an installer for MacRuby from http://macruby.org.
+
+A: Strangely enough the best solution seems to be not to use Apple's own tools but the Python code because it has various advantages not being limited by:
+
+
+*
+
+*output file resolution
+(it works till 1024x1024)
+
+*input file format
+(tried with ICNS and PNG)
+
+*permissions to install
+(define it as a function)
+
+
+Update
+Now (on macOS Sierra) @koiyu’s answer seems to work, so you could use this two-liner to copy the icon from a source folder to your destination folder:
+#!/bin/sh
+
+DeRez -only icns $1/Icon$'\r' > icon.rsrc; Rez -a icon.rsrc -o $2/Icon$'\r'
+SetFile -a C $2; SetFile -a V $2/Icon$'\r'; rm icon.rsrc
+
+
+A: In the recent macOS version (10.14), sips -i icon.png will get a --addIcon is no longer supported error.
+It also needs Developer Tools installed. This uses the graphic in Icon.png and applies it to file.ext, just like user588's answer:
+# Covert Icon.png to tmpicons.icns:
+sips -s format icns Icon.png --out tmpicns.icns
+
+# Create temporary resource file which points to tmpicons.icns:
+echo "read 'icns' (-16455) \"tmpicns.icns\";" >> tmpicns.rsrc
+
+# append this resource to the file you want to icon-ize.
+Rez -a tmpicns.rsrc -o file.ext
+
+# Use the resource to set the icon.
+SetFile -a C file.ext
+
+# Clean up
+rm tmpicons.icns && rm tmpicns.rsrc
+
+
+A: Much like the Python solution using PyObjC, it turns out it can be done with just AppleScript (which isn't deprecated in 10.15 Catalina, unlike Python and other scripting languages).
+I found an example of how to do this on GitHub here:
+
+set-finder-icon
+#!/usr/bin/env osascript
+
+use framework "AppKit"
+
+--------------------------------------------------------------------------------
+# PROPERTY DECLARATIONS:
+property this : a reference to current application
+property NSWorkspace : a reference to NSWorkspace of this
+property NSImage : a reference to NSImage of this
+
+--------------------------------------------------------------------------------
+# IMPLEMENTATION:
+on run argv
+  set icon to item 1 of argv
+  set target to item 2 of argv
+
+  setIcon to icon for target
+end run
+--------------------------------------------------------------------------------
+# HANDLERS:
+to setIcon to iconPath for filePath
+  set sharedWorkspace to NSWorkspace's sharedWorkspace()
+  set newImage to NSImage's alloc()
+  set icon to newImage's initWithContentsOfFile:iconPath
+
+  set success to sharedWorkspace's setIcon:icon forFile:filePath options:0
+end setIcon
+
+
+AppleScript isn't easy to read, but apparently it's possible to access the Objective-C code to do this through the AppKit framework.
+
+A: In addition to Ruby, here's a Python version:
+#!/usr/bin/env python
+import Cocoa
+import sys
+
+Cocoa.NSWorkspace.sharedWorkspace().setIcon_forFile_options_(Cocoa.NSImage.alloc().initWithContentsOfFile_(sys.argv[1].decode('utf-8')), sys.argv[2].decode('utf-8'), 0) or sys.exit("Unable to set file icon")
+
+./set-image.py image.png myfile
+Python that pre-installed in Mac OS already has PyObjC so you don't have to install any packages.
+
+A: There is some kind of a bug (that happen in folders inside de iCloud sync) with the change of icons of "folders" nor files, at last in Catalina: When the Icon change, the UI does not refresh the folder with the new icon when it have an older one. So the second time you set an icon it not refresh all the times. Even if you do it manually with cmd+i and pasting a previously copied image as icon, the iCloud goes crazy with this.
+By looking to a workaround, found this little fix (no ideal but works): - this is in JXA Javascript for automation
+function makeIcon(theFolder, theFile) {
+    var img = $.NSImage.alloc.initByReferencingFile( theFile );
+    var updateUUID = newUUID()+".txt";
+    terminal("echo -n > "+ sanityzeForBash(theFolder+"/Icon\r") );
+    terminal("rm "+ sanityzeForBash(theFolder+"/Icon\r") ); 
+    writeTextFile(theFolder+"/"+updateUUID, "_"); 
+    $.NSWorkspace.sharedWorkspace.setIconForFileOptions(img, theFolder, 0);
+    delay(1);
+    terminal("rm "+ sanityzeForBash(theFolder+"/"+updateUUID) );
+}
+
+function writeTextFile(fileName, text) {
+    var file = app.openForAccess(Path(fileName), { writePermission: true })
+    app.setEof(file, { to: 0 });
+    app.write( getProperties(text) +"\n\r", { to: file, startingAt: app.getEof(file) })
+    app.closeAccess(file)
+    return true;
+}
+
+function sanityzeForBash(s) {
+    return "'"+ s.replace("'","\\'") +"'";
+}
+
+function newUUID(){
+    return ObjC.unwrap($.NSUUID.UUID.UUIDString);
+}
+
+function terminal(c) {
+    var app = Application.currentApplication();
+    app.includeStandardAdditions = true;
+    return app.doShellScript(c);
+}
+
+The idea of the "trick" is to create a file inside the folder before to change de icon to force the iCloud to sync, then wait 1s to delete the file.

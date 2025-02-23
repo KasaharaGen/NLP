@@ -1,0 +1,19 @@
+Q: What is the location of background image set from Safari? Safari allows you to set any image as desktop background right from the browser.
+
+Desktop & Screen Saver preference pane will then display it as Safari Desktop Picture.  
+
+No filename, no location, and if I change it, seems like the picture is lost.
+I find it frustrating because, although I frequently change wallpapers, I'd like to keep each of them.
+I could as well download the file manually but isn't this what Use As Desktop Picture exists for?
+So, the question is:  
+
+Where is this image actually stored on my hard drive?
+  How do I retrieve it?
+
+
+A: Open ~/Library/Safari/.
+It is there, called Safari Desktop Picture.jpg (or whatever the extension is).
+
+If you're on Lion, to get to Library folder you may open Finder, select Go from the top menu and  hold ⌥ Option. The normally hidden Library menu will reveal itself in the folder list. Open it, and proceed to Safari subfolder.
+If you're not on Lion or just prefer the quick way, open Finder, press ⇧ Shift + ⌘ Cmd + G to open directory prompt and paste ~/Library/Safari/:
+

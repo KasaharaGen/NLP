@@ -1,0 +1,13 @@
+Q: Is there a way to force US keyboard layout in Safari address bar? I keep typing in Russian keyboard layout into Safari address bar by accident.
+This drives me mad because I usually end up loading domain-for-sale pages.
+
+Is there an extension or program to switch keyboard layout to US on ⌘+L before letting me enter the URL?
+
+A: If you are using exactly two keyboard layouts, you can toggle between them with Command-Space if it is activated in the Language & Text System Preference. With that enabled, perhaps you could write a macro or Applescript to invoke that command along with Command-L.
+
+
+
+A: Turns out, there is a program called Punto Switcher that does exactly that.
+
+It puts a global hook on keyboard events and triggers automatic input switch (which is configurable) as soon as it detects nonsense being typed. Rather than relying on application types and input fields, it uses a dictionary (e.g. пщщпдуюсщь is recognized as mistyped google.com).
+It also has a neat feature of “transcoding” mistyped words into another layout by pressing ⌥.

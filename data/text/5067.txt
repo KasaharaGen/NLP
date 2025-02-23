@@ -1,0 +1,17 @@
+Q: How can I change a filetype’s “Kind” value in the Finder? There are several filetypes that get a generic “Kind” description (if viewed in Finder’s List View) based on the program used to open them.  
+I’d like to add descriptions for some file extensions so that they are not of the Kind “[editor] document”.  
+Is this possible?
+If so, how?
+
+A: /path/to/default/app/Contents/Info.plist → CFBundleDocumentTypes → CFBundleTypeName:
+<key>CFBundleTypeExtensions</key>
+<array>
+    <string>adb</string>
+    <string>ads</string>
+</array>
+<key>CFBundleTypeIconFile</key>
+<string>ADA</string>
+<key>CFBundleTypeName</key>
+<string>ADA source</string>
+
+Modifying files inside application bundles invalidates the code signature and changes aren't necessarily respected by updates.

@@ -1,0 +1,42 @@
+Q: Is there a jailbreak for iOS 4.2 I want to jail break my 3Gs running 4.2.1.
+Possible?
+
+A: There is a howto in redmondpie.com for jailbreaking the iPhone 3GS with iOS 4.2.1, but it appears there is no unlock yet.
+http://www.redmondpie.com/jailbreak-ios-4.2.1-iphone-4-3gs-3g-ipad-ipod-touch-with-redsn0w-0.9.6b4-guide/
+
+A: YES! I have it currently on my iPhone 4. It's untethered for last-gen devices, but for the iPhone 4 it's a tethered jailbreak, which means that you'll have to connect it to your computer and use the program (redsn0w) to turn on the phone every time the phone gets turned off or looses power. 
+If you don't turn off your phone a lot, then it's not big issue, though. And because you have a 3GS, you'll be untethered anyway.
+The jailbreak is at http://blog.iphone-dev.org which is the iPhone Dev Team, the MOST reputable source for iPhone jailbreaking. These are the actual people who do the work (or compile it from Geohot). DO NOT trust any info from places like BigBoss, RedmondPie, UltraPWN, or anyone else.
+
+A: It is possible and it includes unlock. All you need is a simple tutorial, Redsn0w and the correspondent firmware. Unless of course you prefer to go the "official" way. I did it with iPhone 3G and the first tutorial.
+The 3Gs got is the only device that marks the bootrom change. Basically all "i devices" are only able to get a (bad) tethered jailbreak if they're launched after a given point. Here's a long guide with steps on how to check your bootrom to see if you're lucky or not. I'll summarize it for both mac and PC:
+
+
+*
+
+*Put your iPhone in DFU mode (not recovery mode):
+
+
+*
+
+*Connect your iPhone to your computer.
+
+*Turn iPhone off.
+
+*Start iTunes.
+
+*Hold Power and Home buttons together for 10 seconds or so.
+
+*Release Power button but keep holding the Home button until your computer recognizes a new USB device.
+
+*iTunes will now recognize your iPhone.
+
+
+
+Note: Your iPhone screen at this time should be blank (black in color), if not, then you are most likely in Recovery Mode, not DFU mode.
+
+
+*Locate the value [iBoot-359.3] or something alike under System Profiler (mac) or Device Manager (win). Keywords are: USB and Apple Mobile Device (DFU Mode).
+
+*If the value after iBoot is 359.3 or lower, that's the old bootrom. Yippie!
+If it's 359.3.2 or higher, tough luck you're stuck with new bootrom and lame tethered jailbreak.

@@ -1,0 +1,32 @@
+Q: Is data transmitted over 3G secure? When data is transferred from my iPhone via 3G, is it encrypted, or is it relatively simple for a hacker to read the data that's transferred to AT&T's cell tower? What about after it reaches the tower?
+
+A: If you are operating over https, it doesn't matter through what type of connection you are communicating over. All data is going to be encrypted from your browser to the server program. The only way to brake this is to the eavesdrop mediate the communication between you and the your final destination. To solve this, identity certificate were created. This certifies that you are talking to your final destination and not through some mediator. So as long as identity certificate match, you are safe. If the identity certificate does not match the browser will show you a security warning, saying that the certificate does not match, generally they will leave an option for you to go on with the communication, just in case in the operation you are doing you don't care about security.
+
+A: Not in the least. Even HTTPS is secure only from non government or ISP level actors.  Check EFF.org for more, but I warn you, it's damned depressing.
+EDIT: The past is a country that is very hard to visit:
+Bruce Schneier's analysis on SSL:
+http://www.schneier.com/blog/archives/2010/09/uae_man-in-the-.html
+Mozilla's discussion:
+https://groups.google.com/forum/#!topic/mozilla.dev.security.policy/OBrPLsoMAR8
+The open letter in august detailing the problem from the EFF:
+https://www.eff.org/deeplinks/2010/08/open-letter-verizon
+It's not that they decrypt it, you see.  Encryption we are all on equal footing until the quantum key or lock.  But people who don't code are not stupid.  SSL you can guarantee security to the server, but the certs themselves come from a chain of trust.
+The phrase "I got that government gig!  Homeland Security!  Mary Anne's new boyfriend... F**k You!" , or similar must have been said at some point. 
+Amazon was not the only place after Wikileaks to have a group of sedans pull up. The FBI is screaming right now for backdoors in fact, or rather, to legitimize the backdoors they must have.  Since government, or industrial actors are not 'actors' but 'people' it is not FUD to question it. 
+An example of FUD, would be to highlight say, the complexity of the mathematics and try to use that to prove an answer wrong, and restore faith in a system that worked in the past, while ignoring the forced trust in humans, and the successful exploit in the wild.
+Make sense?
+
+A: A man-in-the-middle attack or snooping from someone sitting in the same coffee shop is far less likely over 3G.  The equipment to do such is far less commonly available, and the expertise required is higher.
+Neither is guaranteed to be secure from say, a government intelligence organization or other large sophisticated operation, as the 3G encryption is not of that grade.  But HTTPS and SSH should protect you from the average snoop over either.
+
+A: 3G can be secure or insecure, it's really down to the particular implementation.  If you are worried about your data while tethering or using a 3G iPad/iPhone then look at it this way, it's more secure than using free/unsecured WiFi hotspots/networks.
+Really the answer to your question is that 3G is pretty secure, but it has its flaws.
+3G is encrypted, the most common encryption algorithms have been cracked, with the right equipment somebody could intercept your information wirelessly.  However, they would need some knowledge, some money and some motivation to do it.  Then in addition to that, they would need your device to send unencrypted data (non https) so it could be deciphered.  All in all it's pretty unlikely but certainly possible that your information could be intercepted.  However, this is a risk for anyone transmitting data anywhere and is not isolated to 3G/WiFi or other mobile device communication methods.
+Try a google search on 3G security and you'll find plenty of information on the flaws and security holes and how they might be exploited. 
+Just as an example, here are a couple of presentations:
+3G Security Overview 
+blackhat.com powerpoint
+
+A: A man in the middle attack can also be performed using sslstrip which can easily strip the ssl from https, making it an http connection, intercept all the data and use a fake certificate to re-enable the ssl before sending it out to the destination. In simple words that's the idea.  
+The user will never know what even happened to him/her. This was showcased in Blackhat in 2009 if I'm not mistaken. If Moxie Marlinspike was able to this in 2009, imagine what other pro hackers are capable of doing these days. He was one of the few revealing this for good purposes. A lot of them won't publish the vulnerabilities that they have at their disposal.   
+Don't want to scare you but if you think ssl is secure think twice. It's really up to the browsers to maintain the security of the users. Your faith is really in their hand. A lot of vulnerabilities exist for many years just like the heartbleed before they do something about it.  

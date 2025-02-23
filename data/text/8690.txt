@@ -1,0 +1,10 @@
+Q: Sudo with Sidekick Sidekick is a helpful little tool which adjusts the system settings based on geographical location.
+I added an action which will execute a sudo command-line command. The problem is that the Terminal pops up and asks me for the password. Is there a way to allow Sidekick to execute sudo without asking for a password?
+
+A: You can disable password prompt when calling sudo in combination with certain commands by editing the sudoers file. This is done by opening a terminal and running sudo visudo. You have to add the follwing lines
+Cmnd_Alias SIDEKICK_CMDS = /full/path/to/the/command1,  /full/path/to/the/command2
+
+yourUsername ALL=(ALL) NOPASSWD: SIDEKICK_CMDS
+
+Be careful with this, as it may lead to security risks.  It enables anyone logged in  with your account ( so not just sidekick) to run the  commands in the list without a password prompt. 
+For a full description of the sudoers options check the manpage : man sudoers

@@ -1,0 +1,15 @@
+Q: Repository of .qtz s in system files? Apparently there is a place within the OS's system files that have lots of .qtz s that you can use for your desktop background. 
+Could someone tell me the location of the files?
+
+A: Open Terminal and run locate qtz to get the list for your system. You may need to install Xcode to get the full set, with the added benefit of being able to run "/Developer/Applications/Quartz Composer.app" to develop your own.
+
+A: You might be looking for:
+/System/Library/Graphics/Quartz Composer Patches/
+
+..which are the examples that show in Quartz Composer's Library at launch, on 10.6.8 anyway.
+
+A: You're probably looking for ./System/Library/Compositions, which is where the Quartz files are located for iTunes and Photo Booth (and a couple other system things I believe).
+As for setting it as your desktop, I'm not sure about that. Simply dragging one to the image well in the Desktop & Screen Saver pane doesn't do anything, but if you know of a way to make it work I'd love to find out.
+
+A: Although I do not know where you can find the QuartzFiles, here is an application that will allow you to set them to your backgrounds if and when you find them:
+http://wallsaver.en.softonic.com/mac

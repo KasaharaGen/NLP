@@ -1,0 +1,54 @@
+Q: How can I automatically have my Trash emptied when disk space gets below a certain point? Sometimes my hard drive gets low on space, and various things don't work properly until I empty the Trash and free up some space. I know there are applications that empty the Trash after a set interval—but what I want is an app or script (or other means) to empty the Trash whenever there's e.g. less than 2GB of free space on a given hard drive.
+
+A: I use a third party preference pane Compost that deletes from trash when the disk fills up or if the file has been in trash for a given time. 
+The original download stopped working for me but I have just found this on the author's site instead of the distributer. Note the author's comment
+
+Compost is in a bit of a state of flux right now. The distributor has moved on to a different market and we wish them well in their endeavors. Additionally, the changes necessary to fully support Snow Leopard have been going through an extensive beta period as a result of the degree and complexity of changes required. Please stay tuned for more information.
+
+So it might not work even from this download
+When I updated this I had just installed it on Yosemite and it installed (but not enough time to see if it deleted anything) I have now updated to El Capitan and the installer fails.
+
+A: You could also edit the crontab with EDITOR=nano crontab -e and add a line like
+0 * * * * osascript -e 'tell app "Finder" to empty trash if free space of startup disk < 2.0E+9'
+
+Hazel supports keeping the trash under a certain size or keeping items only for a period like two weeks.
+
+A: I use CleanMyMac, though there are lots of others that do a similar job. CleanMyMac also cleans cache, etc. Hazel is also good for cleaning out folders that fill up with rubbish quite frequently.
+
+A: That's an interesting question.
+I wrote a little shell script that will empty the trash if the available disk space falls before a threshold defined in the script (default is 10 GB but you can change that by editing the script).
+Install script
+
+
+*
+
+*Download this:
+http://share.luo.ma/ase/12167/etilds.zsh
+
+*Install it to /usr/local/bin/etilds.zsh
+
+*Then do chmod 755 /usr/local/bin/etilds.zsh
+Use launchd for automatic trash emptying
+If you want this to run automatically, I recommend launchd. To do that 
+
+
+*
+
+*Download this http://share.luo.ma/ase/12167/com.tjluoma.etilds.plist
+
+*Move it to ~/Library/LaunchAgents/
+
+*Tell it to run via launchctl load ~/Library/LaunchAgents/com.tjluoma.etilds.plist
+It will run every 5 minutes (300 seconds) by default. You can edit that too.
+To uninstall:
+delete /usr/local/bin/etilds.zsh and ~/Library/LaunchAgents/com.tjluoma.etilds.plist and reboot.
+Notes and Disclaimer
+
+
+*
+
+*No guarantees or warranty but it works for me. Use at your own risk.
+
+*You have to edit etilds.zsh. Read it and you'll understand what to do.
+
+*"etilds" stands for "Empty Trash If Low Disk Space" because a) I couldn't come up with a better name and b) it seemed a sufficiently unix-y acronym.

@@ -1,0 +1,50 @@
+Q: Converting WAV to MP3 using LAME and Automator I'd like to convert many WAV files to MP3 files using LAME and Automator. I need a script that I could right click a folder and convert all the WAV files inside the folder to MP3 files. I've been able to find a script to convert single file but I don't know how to modify it so I could convert many files with a single click. 
+I've been using script which I found here for single files. Here is a similar question but instead of using "Run Applescript" it uses "Run Shell Script". I've tried to replace LAME parameters between "do" and "done" but haven't succeeded to convert anything.
+So, how could I convert folder full of WAV files to MP3 files? For me it doesn't matter is it done by using Applescript or Shell Script in Automator if both ways are possible.
+
+A: Automator 'hangs' when attempting to use LAME encoder unfortunately. It's also not efficient or advisable to try and use a multi-threaded process as an Automator Service. For tasks such as this it's best to either run a simple script or use an alternate method.
+The script below will encode a 20Mb .wav to .mp3 in 3 seconds! (at the highest quality settings)
+file="$1"
+
+find . -name '*.wav' -maxdepth 1 -exec /usr/local/bin/lame -V 0 -q 0 '{}' \;
+
+for file in *.mp3
+do
+  mv "$file" "${file/wav./}"
+done
+
+
+To install, download, then open terminal:
+sudo install encode-mp3 /usr/local/bin
+To use, navigate into a desired conversion folder and type:
+encode-mp3
+
+This will encode your .wav files to .mp3
+Convert .wav to .mp3 | LAME Encoder Shell Script
+[md5: 72d4e24f14ea9139136900f2c4281a7f]
+
+
+[original]
+I just wrote a one-liner that will do this for you in Terminal, just
+  cd to the directory of files you want to convert and enter:
+find ./ -name "*.wav" -execdir lame -V 3 -q 0 {} \;
+
+
+
+A: You can use the following in Automator's "Run Shell Script" action (make sure to change "Pass input" to "as arguments"):
+find "$1" -name "*.wav" -execdir /usr/local/bin/lame -V 0 -q 0 {} \;
+
+This will find all .wav files in the selected folder, including sub-folders (and skip over any non-wav files). If you don't want it to look into sub-folders, you can change it to this:
+find "$1" -name "*.wav" -maxdepth 1 -execdir /usr/local/bin/lame -V 0 -q 0 {} \;
+
+Of course, you would change -V 0 -q 0 to whatever lame options you prefer.
+If you want to be notified when it's done, you can add a say command, use a "Show Growl Notification" action (if you have Growl installed), or use a beep command in a "Run AppleScript" action.
+Below is a screenshot of what my workflow looks like with the extra say command and the Growl notification. Also notice I changed the "Service receives selected" option at the top to "folders" (it will be "text" by default). 
+
+
+A: The thread is a bit updated, but for those who may find it useful,
+I used Automator setup described here, and was able to avoid getting it stuck with -S option of lame, so my "Run Shell Script" command looks like: 
+    find "$1" -name "*.wav" -maxdepth 1 -execdir /usr/bin/lame -b 160 -q 0 -S {} \;
+
+(besides, my lame exec is in another place)
+The -S option turns off Lames progress report

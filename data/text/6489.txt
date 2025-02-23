@@ -1,0 +1,22 @@
+Q: Can you virtualize PowerPC versions of Mac OS X on Intel Macs? Ignoring licensing/legal issues, is there any virtualisation software that will virtualise an older, PowerPC-only version of Mac OS X (e.g. Panther 10.3.9) on an Intel Mac?
+If I understand correctly (and I very possibly don’t), such software would have to emulate a PowerPC processor, so it doesn’t seem likely.
+Are there emulators or virtualization that can run apps or even enough of the OS to be useful to run PowerPC apps?
+
+A: The PowerPC and Intel Macs are totally different architectures, so you are correct, you could only really emulate a PowerPC install on an intel machine, versus virtualize Windows/Mac OS/Linux on a intel machine. 
+There are some PowerPC emulators, but the one I know of for OS X would be PearPC. I have used PearPC a very long time ago, and don't know how well these work on newer machines. 
+Up until Lion however, at least PowerPC software was emulated using Rosetta. This was dropped in Lion though. 
+If you really do need a PowerPC machine, for dedicated work, I would personally buy a used older machine from ebay, which would be rather inexpensive depending on what kind of power you need.
+Note: Removed iEmulator because its made more for emulating windows or linux on a intel OR PPC mac.
+
+A: Sheepshaver is another emulator for PPC chips. The default big-endian behavior and run-time switching make a true emulator both slow and tricky to implement.
+
+A: The QEMU emulator and virtualization tool is flexible enough for this task. 
+I and others have experience getting MacOS 9.2.2, OS X 10.0 - 10.4.11 working using QEMU.  You have to be careful however as different versions of QEMU may or may not work.  As an example, I have found that 9.2.2 will NOT install using QEMU 4.1.0 whereas it seems to do fine using 2.5.~.  Anyway, I have found this to be the greatest emulation platform because it also provides for large screen resolutions (I have all of my platforms running at 1920x1440X32).
+
+A: PearPC is a powerpc emulator that can emulate the powerpc versions of Mac OS X, however, it only runs on windows. You can run PearPC on OS X by downloading Wineskin.
+The full tutorial is here: http://www.emaculation.com/forum/viewtopic.php?f=25&t=8306
+Also, if you are interested in run Mac OS X 10.2 Jaguar instead of Mac OS X 10.3 Panther, it is here: https://www.youtube.com/watch?v=8vseh2Jshj4
+Hope this helped!
+
+A: It's worth mentioning that after Rosetta was removed from MacOS in Lion, there were attempts to 're-install' it in Lion. However, the technical obstacles were far too great to make this viable.
+https://www.insanelymac.com/forum/topic/262890-installing-rosetta-on-lion/

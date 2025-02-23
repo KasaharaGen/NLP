@@ -1,0 +1,134 @@
+Q: How can I save tabs in iTerm 2 so they restore the next time the app is run? Can I save tabs on exit in my iTerm 2, so I don't have to open same directories again after restart?
+Like Chrome does, for example.
+I couldn't find such option in settings. Maybe "Arrangements" is what I want, but it seems that it requires me to explicitly save tabs.
+
+A: This is possible with iterm2: https://www.iterm2.com/documentation-restoration.html
+
+You can toggle this feature with Prefs>Advanced>Enable session
+  restoration, but you must restart iTerm2 after changing this setting.
+
+I also had to uncheck "close windows when quitting an app" in my General system preferences: https://support.apple.com/en-us/HT204005.
+
+A: *
+
+*In iTerm go to Preferences -> General and under Startup set Use System Window Restoration Setting.
+
+
+*Go to macOS System Preferences -> General and make sure that Close windows when quitting an app is unchecked.
+
+
+A: If someone like me is having trouble enabling 'Session Restoration' in iTerm 2.9 beta (or iTerm3 beta how they call it) do next:
+
+
+*
+
+*Open preferences
+
+*General tab
+
+*Startup
+
+*Change to 'Use System window restoration setting'. Restart.
+
+
+
+Probably for tech geeks it's obvious that one should select this option for this feature to work but for me it was not and I have never seen this mentioned anywhere. 
+
+A: In iTerm2 v2.1.4 there's a setting under Profiles: Reuse previous session's directory. It may have been there in the earlier versions, but I haven't looked.
+See screenshot:
+
+
+A: No, as of today I couldn't find any way to set a layout/tabs with paths and recover it (as Sublime Text does for example) in iTerm (2.9).
+Personally, I'm astonished on how a basic feature (I think much more relevant than tabs colours, for example) is still missing on such a mature project.
+
+A: Try iTermocil
+
+iTermocil allows you to setup pre-configured layouts of windows and panes in iTerm2, having each open in a specified directory and execute specified commands.
+
+
+
+A: Coming in quite late, but you should first create some profiles and then use Command - Option/Alt - Shift H (H is for horizontal split; or swap in V for vertical split). It will show you a list of your profiles and you can then add those to your split. Once you build the setup you like just like Sairam did above. 
+Here's a vid explaining: iterm2 Profiles and Window Arrangements.
+
+A: It's still not exactly what you want, but since you can check the $ITERM_SESSION_ID environment variable to see which panel you are in, by combining this with a saved window arrangement, you can have each of your panel to start with different initial path, or just anything you would like to run by default.
+For example, my saved windows arrangment is two tabs with two panels in the first tab. So I will have $ITERM_SESSION_ID=w0t0p0 for the first panel in the first tab, $ITERM_SESSION_ID=w0t0p1 for the 2nd panel, and $ITERM_SESSION_ID=w0t1p0 for the single panel in the 2nd tab. 'w' stands for window, 't' for tab, and 'p' for panel. I check these variables in my .zshrc, and run Vim in the w0t0p0, iPython in the w0t1p0, respectively.
+
+A: You can Save and Restore Window Arrangement with ⇧ ⌘ S and ⇧ ⌘ R options under the Window screen in iTerm2
+You can start the default Arrangement Option to enable are at Preferences -> General -> Startup  -> Open default window arrangement . 
+You can add arrangements with the ⇧ ⌘ S and manage them under Preferences -> Arrangements tab .
+
+
+A: Here's what I do, running OSX 10.10.4:
+Install iTerm nightly (the latest release). Brew is the easiest:
+brew tap caskroom/versions && brew cask install iterm2-nightly
+You can run this side-by-side with other versions; I use Spotlight and look at the versions to see which one I'm opening. By default it will be set to enable session restore which will restore tabs and directories. However, you may have to adjust your Apple system preferences in System Prefs>General where Close windows when quitting an app. See this Gitlab issue for a screenshot if that confuses you.
+
+A: Disabling the System Preferences -> General -> "Close windows when quitting an app" checkbox did the job for me.
+
+A: Use AppleScripts!
+Here is a script from an old project of mine:
+#!/usr/bin/osascript
+tell application "iTerm2"
+  tell current window
+    create tab with default profile
+  end tell
+
+  tell current session of current tab of current window
+    write text "cd ~/Documents/dev/roarr/roarr-api"
+    write text "source .development.env.sh"
+    write text "npm run dev | roarr"
+    split vertically with default profile
+  end tell
+
+  tell second session of current tab of current window
+    write text "cd ~/Documents/dev/roarr/roarr-api"
+  end tell
+
+  tell current window
+    create tab with default profile
+  end tell
+
+  tell current session of current tab of current window
+    write text "cd ~/Documents/dev/roarr/roarr-web-app"
+    write text "source .development.env.sh"
+    write text "npm run dev | roarr"
+    split vertically with default profile
+  end tell
+
+  tell second session of current tab of current window
+    write text "cd ~/Documents/dev/roarr/roarr-web-app"
+  end tell
+
+  tell current window
+    create tab with default profile
+  end tell
+
+  tell current session of current tab of current window
+    write text "cd ~/Documents/dev/roarr/roarr-cli"
+    write text "source .development.env.sh"
+    write text "npm run dev | roarr"
+    split vertically with default profile
+  end tell
+
+  tell second session of current tab of current window
+    write text "cd ~/Documents/dev/roarr/roarr-cli"
+    write text "source .development.env.sh"
+    write text "ts-node --transpile-only .bin/demo.ts | ts-node --transpile-only src/bin/index.ts --output-format json"
+  end tell
+
+  tell current window
+    create tab with default profile
+  end tell
+
+  tell current session of current tab of current window
+     write text "docker run --rm -p 8123:8123 --name some-clickhouse-server --ulimit nofile=262144:262144 yandex/clickhouse-server"
+  end tell
+end tell
+
+It is mostly self-explanatory, the gist of which is that it is a sequence of commands that we are telling iTerm2 to perform.
+These commands are documented in iTerm2.
+While this does not answer the original question of how to "save" the current session, it provides a framework of how to quickly setup your workstation, which is likely what the intent is behind the original question.
+
+A: I found the solution in iTerm2's official website, check it out here  https://www.iterm2.com/documentation-restoration.html.
+After setting iTerm2 restores last session just like Chrome. However the process(e.g. npm start) can not be restored.
+Works perfectly under iTerm2 build 3.0.14 and macOS Sierra 10.12.6 (16G29). Hope it helps.

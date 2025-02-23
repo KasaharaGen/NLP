@@ -1,0 +1,183 @@
+Q: Is there a quick way to lock my Mac? On Windows you can hit the keys Windows+L to lock your computer if you step away.
+I don't want to have to remember if sleep currently asks for a password, if there is a time out where my screen isn't locked during a short period. Even with Lion supporting resume of many apps, I don't want to log out. 
+I do want to be sure data is secure when stepping out for lunch or a smoke break.
+
+A: Your Mac can ask your password after it wakes up if you set it to do so in the Preferences panel (Security). From there on, you can use ⌥+⌘+⏏ to put your Mac to sleep. So all you have to do is hit that and walk away.
+
+A: If you enable screen locking within the screen saver pref pane you can put the computer to sleep and lock at the same time by pressing ⌘+⌥+F12
+
+A: ⇧+⌘+⌥+Q will perform a "quick logout."
+Another option is to enable a password when waking from sleep or screen saver and adding a hot corner for one or the other. Then locking is as simple as tossing a mouse in a corner.
+
+A: To lock your screen using a apple keyboard try this 
+Or do this by going to "System Preferences" then "Security" under "General"
+
+A: If you want to be able to remote control your Mac (with Synergy or something similar) even when it's locked, I'd recommend you to show the Keychain Status in the Menu Bar. You do that as follows:
+
+
+*
+
+*Launch the application Keychain Access
+
+*Press ⌘, to open up the Preferences window
+
+*Tick the Show Status in Menu Bar check box
+
+*Click the newly appeared lock icon in the menu bar
+
+*Click Lock Screen to lock the screen
+
+
+This will lock the screen with a login window, but still make the Mac possible to remote control. If you don't need to remote control the Mac, MacLoc is a simple and effective solution.
+
+A: On macOS High Sierra, there is a standard key sequence and Apple menu item to lock your screen. 
+
+
+*
+
+*control-command-q or ^+⌘+Q
+The Lock Screen 2 app is a great little tool to make locking and unlocking much more adaptable. It is for sale on the app store priced below $5 lately. 
+The promo video is quite entertaining even though it doesn't promote the ease of assigning a custom key command to engage a screen lock.
+
+A: Here is a good tutorial which will help you to create a short cut keys to lock your mac machine
+http://www.macyourself.com/2013/01/27/how-to-lock-your-mac-screen-with-a-keyboard-shortcut/
+Lock Screen Service
+1. Launch Automator from your Applications folder.
+2. Select Service as the document type.
+3. Select Utilities from the list on the left, then double-click Run Shell Script in the next column.
+
+4. On the top-right side of the screen, adjust the drop-down menus so the statement reads: Service receives [no input] in [any application]
+5. Copy the following command into the large text box that appears:
+/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend
+
+6. Go to File > Save and name your service Lock Screen. Once saved, you can now quit Automator.
+Lock Screen Keyboard Shortcut
+1. Launch System Preferences and go to the Keyboard pane.
+2. Next, select the Keyboard Shortcuts tab. From the list on the left, select Application Shortcuts. Click on the plus (+) button below to add your new shortcut.
+3. In the dialog box we’ll want to leave All Applications selected in the first menu. Enter Lock Screen as the Menu Title. Please note this has to be exactly the same name you entered when saving the service in Automator. Finally, enter your keyboard shortcut. Let’s go with Command+Option+Shift+L.
+
+4. Click Add and you’re all done!
+Now when you press your keyboard shortcut (Command+Option+Shift+L), the Mac login screen will immediately be displayed. You’re still technically logged in and processes such as large downloads will continue in the background. But you can leave your Mac unattended without worry – no one will be able to access your account until you enter your password. When you do, everything on your desktop will be there just as you left it!
+
+A: 
+Go to settings -> Mission control and then over to HotCorners on the bottom left corner.
+
+There are 4 corner setting appearing there. Choose anyone of them according to your feasibility as put to sleep. Just by dragging the mouse to that corner will put it to sleep and lock your system. I guess thats the best easy shortcut i have discovered.
+
+A: If you're using Alfred, just invoke Alfred and start typing "lock". I don't remember if it's activated by default, but if not, you can activate and change the keywords in the Alfred preferences.
+
+
+A: Via the Expose system preferences panel you can set a "hot corner" of your monitor that activates your screen saver. Say you set the Bottom Left corner, as soon as you move your mouse there the screen saver will invoke. If you've set a password on it, bingo, done.
+Yet another option is to enable Fast User Switching in the Login Options pane of the Accounts preferences panel. This puts a Users menu in the top right hand corner, from which you can quickly choose "Login Window...". This kicks you to the login screen, requiring a password to move away from, and also does not end your session/quit any running apps.
+
+A: Deskshade does exactly what you are asking. It locks the screen displaying only a huge padlock sign so intruders know the screen is locked which prevents unnecessary attempts to use the machine whiles you are away. 
+http://macrabbit.com/
+
+A: SizzlingKeys is a little Preference Pane that mostly lets you configure iTunes keyboard shortcuts, but one of the "Extras" included lets you specify a shortcut to actually lock the computer and take you to the Fast User Switching screen, not just start the screensaver. I keep Lock configured as ⌃+⌘+L but you can specify whatever you want.
+SizzlingKeys has a paid upgrade, but the Lock shortcut is configurable using the free version.
+
+A: Another program that can allow you to quickly lock your screen is Padlock. Note that the aforelinked  Macworld review of Padlock also gives a comprehensive review of other solutions (many of which were discussed above) for locking your Mac.
+
+A: FTW!  A keyboard short cut to launch screen saver which you can configure with a password lock.  All free.  Follow the link for better explanation and screens.  I have been using quicksilver to launch the screensaver which works nicely as well.
+http://leafraker.com/2007/09/14/start-the-screen-saver-with-quicksilver/
+
+The only thing left to do is to define a keyboard trigger. I’m using
+  “Shift/Control/Command-L” as my trigger.
+This key combination may sound a bit awkward at first, but I’m using
+  “Shift/Control/Command” for all my Quicksilver trigger. The nice thing
+  about this combination is that it rarely cause conflicts with other
+  keyboard shortcuts, and once you are used to this combination it’s
+  really not this bad. So in this case I combined it with the letter
+  “L”, for “Lock”.
+
+
+A: There is finally a native way to lock your screen, starting with macOS High Sierra (10.13).
+This can be done by clicking the Apple menu at the top left of the screen, and then pressing "Lock Screen." The shortcut associated with this action is ^⌘Q. Arguably, this is not as convenient as the ❖L (Windows + L) shortcut that exists on Windows.
+However, one can achieve a similar behavior on the Mac natively. Go to System Preferences > Keyboard > Shortcuts > App Shortcuts, click on All Applications, press the + (plus) button at the bottom, type in "Lock Screen" (without quotes) for the menu title, and for the shortcut assign your own shortcut (such as ⌘L). Now you can use ⌘L à la Windows (or your own shortcut) to lock the screen.
+Note that using ⌘L as your lock screen shortcut will render it ineffective for other tasks such as focusing on the URL bar in Safari.
+
+A: Logging out to the fast user switching screen
+
+
+*
+
+*Run /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend.
+
+*Enable the fast user switching menu from the Users & Groups preference pane and then select Login Window… from the menu.
+
+*Use the lock action in Alfred.
+
+
+Locking the screen
+
+
+*
+
+*Check "Require password immediately after sleep or screen saver begins" in the Security & Privacy preference pane. You can then lock the computer manually by pressing control-shift-eject to turn off displays or option-command-eject to go to sleep. A power key can be substituted for eject in 10.8 and later. In 10.9 and later, you can also put displays to sleep by running pmset displaysleepnow.
+
+*Enable the Keychain menu extra from the preferences of Keychain Access and then select Lock Screen... from the menu.
+
+
+A: You guys should check out QuickLock to lock your Mac with. It locks with any desired keyboard shortcut, it's beautiful, and it's completely and totally customizable. 
+Best of all it's free.
+Check it out here: http://www.quicklockapp.com
+
+A: On macOS High Sierra, there is a standard key sequence and Apple menu item to lock your screen. 
+
+
+*
+
+*Control-Command-Q or ^+⌘+Q
+
+
+For older OS, ⇧+⌃+⏏ puts the display (only the display, not the whole computer) to sleep and will then prompt you for a password if you have enabled Require password [amount of time] after sleep or screen saver begins under System Preferences > Security.
+If your Mac does not have an ⏏ (eject) key, you can use ⇧+⌃+⌽ (power).
+
+A: Lock Me Now - a Free app. Found it great for myself after searching and trying various options.
+Nothing redundant, just all-you-need-out-of-the-box:
+
+
+*
+
+*Lock your screen
+
+*Set a global shortcut
+
+*Unlock with just a password
+
+
+P.S: I'm not affiliated with this product.
+
+A: With the track pad, you can configure gestures for locking your mac. I do it with a four finger swipe left. To confiugre this, you need a (free) tool like the BetterTouchTool.
+
+A: Use a keyboard shortcut and use Automator to make a screen lock service. This will allow you to set any keyboard command you would like to lock or start a screen saver on your mac. As referenced below is a nice article on how to do the process.
+Handy screen locking tips for Mac
+
+If mousing to part of the screen isn’t your thing, you can use the keyboard to lock the screen, but it takes Automator (or a third-party application, but Automator is the better bet if you’re using OS X 10.6). Launch Automator and create a new service.
+Tell the new service that it receives “no input” (rather than the default of “text”). The default is also for “any application”, make sure to keep this set. Next, drag the Start Screen Saver action from the Utilities action group to the workflow. Finally, save the service and give it a name, such as Start Screensaver. Go back to Keyboard Shortcuts in the Keyboard section of System Preferences and look in the Services group. Scroll down to the General section and you will see the newly created Start Screensaver service is enabled. Click in the whitespace to the far right of this entry and a new entry box will appear. Type the keyboard shortcut, such as CTRL-OPT-L.
+Exit System Preferences.
+
+You will now be able to hit CTRL-OPT-L and activate the screen saver in order to lock the screen. If you wish to return to the login window instead (you are still logged in, but the computer is locked) rather than activate the screensaver, change the Automator service to Run Shell Script instead of Start Screen Saver and have it run the following command:
+/System/Library/CoreServices/Menu\ Extras/user.menu/Contents/Resources/CGSession -suspend
+
+
+
+A: From my answer in Super User.
+Using Keychain Access's Lock Screen menubar.
+Activate it here, in Keychain Access.app's Preferences:
+
+Then lock.
+
+
+A: I've used Salute for years - works beautifully.
+A nod to Windows' three finger salute - ⌘+⌃+⌫ gives you quick access to screensaver (set a password on the and your done) - terminal or activity monitor. It's no longer actively developed but doesn't need to be - worked great on Leopard through Mavericks.
+
+A: You have some app on the App Store who provide you a lot of way to lock your Mac.
+Like this one : https://itunes.apple.com/fr/app/lock-me-now/id464265594?l=en&mt=12
+Or this : http://www.knocktounlock.com [Lock and unlock your Mac with your iPhone bluetooth]
+
+A: Just hit these 3 buttons at the same time and hold shortly until you're locked:
+Control-Shift-Power (⏏ or ⌽)
+Works in the latest macOS Sierra.
+
+A: Beginning with OS X Mavericks, all you need to do is press the power button of your MacBook to put it to sleep. This has the advantage of preventing you from having to close the lid to get the same effect. This will put your MacBook to sleep, however.

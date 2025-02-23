@@ -1,0 +1,17 @@
+Q: Do apps on jailbroken iOS devices have uncontrolled access to all my data? I'm thinking about jailbreaking my iOS device but one thing worries me. Apple's restrictive developer API has one big advantage: apps can't tinker with my data outside the app unless I allow them to.
+Can apps on jailbroken iOS devices access my e-mails, iTunes account password (through keylogging) and other sensitive information without my consent?
+
+A: Yes. Any jailbreak-only app could potentially do everything you describe because they can acquire root access and run outside of iOS's sandbox.
+
+A: The author of Cydia ("saurik") recently answered some similar questions on Reddit - here's one comment:
+
+...you should also ask the following modified question: how does Apple reassure people that the apps in the App Store are safe, and are not doing things like uploading their address books to third parties, or tracking their location?
+The answer is "they can't": apps are allowed to use the address book and your location, and without reading through the source code (itself an error prone form of analysis) you don't know what the app actually /does/, so you can't make any claims about whether it does these specific things you consider evil or not.
+At the end of the day, you really need to just not install software from vendors that you don't trust (and to be 100% clear: I mean the person who actually wrote the software, not the person who sold it to you), and anyone who tries to provide you assurances otherwise is just selling you the proverbial snakeoil.
+
+And from a second comment:
+
+You are correct, however, that applications in Cydia are not checked to see if they are malicious, but neither are applications submitted to the App Store: neither we nor Apple are looking at your source code. There is nothing that keeps a normal App Store application from reading your address book, tracking your location, and uploading all of this to a server; in fact, nothing keeps these same "approved by Apple" applications from using local-to-root kernel exploits in order to bypass the sandbox and take /all/ of your data, including installing a rootkit on your phone.
+
+
+A: No, they could not, assuming you choose an appropriately difficult root password. If an app 'silently' attempted to gain root access and provided other capability in order to be accepted into the official App Store it would have a better chance to gain root. A crucial factor in an answer to this sort of question is proper choice of passwords. If there are exploits that do not require root password, then ignore the negative answer.

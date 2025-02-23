@@ -1,0 +1,95 @@
+Q: How do I disable the volume control overlay? When changing the volume on a Mac, you get a big ugly gray bezel showing the change in volume. This is super annoying when (say) watching a movie. Is there any way to disable this?
+
+
+A: If you just want a minimal HUD I've written one that works with mySIMBL. It just draws a bar in the top center of your screen. It may get more functionality in the future.
+
+https://github.com/w0lfschild/mySIMBL
+https://github.com/w0lfschild/cleanHUD
+
+A: Hold up, don't modify important system files!
+Mac OS has a nice way to start/stop services without doing permanent damage.
+To turn off bezels for this user until next login:
+launchctl unload -F /System/Library/LaunchAgents/com.apple.BezelUI.plist
+To undo, change unload to load, or just log out and back in.
+For macOS 10.12 Sierra: Disable System Integrity protection, then:
+launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist
+Don't forget to enable System Integrity protection when you're done.
+
+To turn off bezels indefinitely for this user:
+launchctl unload -wF /System/Library/LaunchAgents/com.apple.BezelUI.plist
+For macOS 10.12 Sierra: Disable System Integrity protection, then:
+launchctl unload -wF /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist
+You can now enable System Integrity protection again -- your settings will persist.
+To undo, change unload to load.
+
+To turn off bezels indefinitely for all users:
+sudo defaults write /System/Library/LaunchAgents/com.apple.BezelUI Disabled -bool YES 
+For macOS 10.11 Sierra: Disable System Integrity protection before doing the above.
+To undo, change YES to NO, or:
+sudo defaults delete /System/Library/LaunchAgents/com.apple.BezelUI Disabled
+For macOS 10.12 Sierra: Disable System Integrity protection, then:
+sudo defaults write /System/Library/LaunchAgents/com.apple.OSDUIHelper Disabled -bool YES
+You can now enable System Integrity protection again -- your settings will persist.
+To undo, change YES to NO, or:
+sudo defaults delete /System/Library/LaunchAgents/com.apple.OSDUIHelper Disabled
+Users can override this global setting using the two methods above.
+
+More info: launchctl is the command-line interface to launchd, the program that manages services and jobs on Mac OS.
+
+
+*
+
+*To reverse any of the above actions, just change unload to load.
+
+*-w means write preference to disk so that it will be used for subsequent logins
+
+*-F means force un/load regardless of the global Disabled key
+
+
+You can read more about it in man launchctl.
+
+A: Simple solution:
+/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/Bezel‌ UI/
+
+'Show Package Contents' on 'BezelServices.loginPlugin' to access through Finder
+Rename “BezelUIServer” to something else 
+(I just put a space at the front of it) - this will disable the volume overlay.
+
+A: In automator, create a new service that takes no input.
+Give it a single action: Run AppleScript
+Enter the following AppleScript:
+set x to get output volume of (get volume settings)
+if x >  10 then 
+    set volume output volume (x-10)
+else
+    set volume output volume 0
+end if
+
+Save the service with the name "Volume down", and bind the service to F11.
+Create another new service that takes no input.
+Give it a single action: Run AppleScript
+Enter the following AppleScript:
+set x to get output volume of (get volume settings)
+if x < 90 then 
+    set volume output volume (x+10)
+else
+    set volume output volume 100
+end if
+
+Save the service with the name "Volume up" and bind the service to F12.
+Goodbye volume overlay.
+
+A: There's no built-in method for doing so, but Googling brings up suggestions such as overriding the image used for it so that it's less obtrusive.
+
+A: Don't use the volume keys. If you change the volume with the menu bar control the overlay does not display. 
+Note you only need to activate the menu item, and then the cursor keys can be used to manipulate it
+
+A: I found the AppleScript solution didn't work for me, I wasn't able to bind the scripts to my volume up and down buttons (on my remote or keyboard). Due possibly to the much newer OS X.
+Playing around however, I've found a solution which disables ALL Bezel services (anything that comes up in the grey translucent square; volume, screen brightness, keyboard brightness, etc.).
+Working off patrix' information concerning where the relevant files are located, I renamed "BezelUIServer" to "mBezelUIServer" (although any rename is adequate, this one is easily reversed).
+Find the file here: /System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/Bezel‌​UI/
+Hope this can help you or any future googler's. 
+
+A: For anyone who's interested, this worked like a charm for me on Yosemite:
+sudo /bin/chmod -x /System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/BezelUI/BezelUIServer
+

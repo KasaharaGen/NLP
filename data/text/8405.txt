@@ -1,0 +1,33 @@
+Q: Mac Mini suddently terribly slow My Mac Mini crashed. I restarted and after a long time the screen remained gray.
+I then started in single user mode, did a disk check (fsck reported no problems) and rebooted again.
+The Mac is now booting since an hour. I can log in via ssh and every command takes ages.
+
+
+*
+
+*CPU usage is almost 0%
+
+*Memory is also OK (more than 3GB free)
+
+*Load is perfect ( less than 0.2 )
+
+*/var/log/kernel and secure do not show anything strange
+
+*fan is around 2000 rpm
+
+*temperatures: HD 53, CPU 66, .. everything else around 60 or lower
+
+*disk is not full (> 30 GB free)
+
+
+What am I missing? Where should I look for the cause of this sudden slowness?
+After 1h 15' I managed to get the finder. Apps are starting (slowly) and system seems OK but for the fact that every action takes almost one minute to have any visible effect. (Command line via SSH is a little bit more responsive but not much)
+
+A: Take it to the Apple store nearest and talk to one of the Geniuses.  They will most likely boot your make in safe mode which displays a bunch of system messages on the screen.  They will help you for free.
+
+A: If the issues are this widespread, there may be an issue with your hard drive. Make sure that you have a backup of any important data that you can't afford to lose.
+You can try to boot from your OS X installation disc or recovery partition and run a check on your hard drive using the Disk Utility.
+
+A: Sounds like you have defective sectors (or bad blocks) on your hard-drive.  If you happen to have a copy of TechTool Pro/Deluxe you can run a surface scan of the drive to verify the integrity of the blocks.  
+If you don't have a copy of TechTool Pro, I'd recommend taking your Mac mini to an Apple Authorised Service Provider (AASP) or to the "Genius" bar at Apple.  I'd suggest an AASP because their prices are generally cheaper than Apple.
+Good Luck!

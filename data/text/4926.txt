@@ -1,0 +1,28 @@
+Q: How to uninstall an uninstalled app from the App Store? I tried to install Xcode from the App Store. While it was being downloaded, a network problem occurred so the installation didn't complete. However, in the App Store, it appears marked as installed (so now I can't install it).
+I don't see any uninstall option. Is there any way to uninstall it from the backend or something like that?
+
+A: In the special case of Xcode, the App Store downloads an installer app that you use to install Xcode. Look in /Applications for "Install Xcode.app" and delete that. 
+When you get Xcode installed properly, if you delete the installer, the App Store won't think it's installed and won't display updates. 
+
+A: Just throwing out some random suggestions:
+
+
+*
+
+*First of all, remember to empty your trash.
+
+*Check ~/Music/iTunes and see if you can find it there. Try moving anything related to Xcode to the trash (and empty).
+
+*See if you have /Library/Developer. Maybe you can find any uninstaller there.
+
+
+A: This is the first time I ever heard of installing Xcode with iTunes, but try the Xcode commandline uninstaller: sudo Xcode directory/Library/uninstall-devtools --mode=all. If the uninstaller isn't there, (because you say it's incomplete), just delete the folder (usually at /Developer) or reinstall by downloading the .dmg that can be found at http://developer.apple.com/.
+
+A: The app store is marking this as installed because there's part of a .dmg or some other file type somewhere hiding. If you go to the 'Purchased' tab in the App store you should get the option to re-install once you remove this file.
+The App Store downloads its files to a temp directory before moving the .app file to your Applications Folder. The directory is 
+/Users/<USERNAME>/Library/Application Support/AppStore/
+
+Go to that directory and look for anything that says Xcode and get rid of it. Then redownload and install from the App Store's Purchased tab.
+
+A: Had the same problem with "Pickr.app." and found a solution. My problem was that it didn't show up in Launchpad, but the Mac App Store said 'installed'.
+Go to /Applicatons/or ~/Applications and manually delete your app, in my case "Pickr.app", then reinstall.

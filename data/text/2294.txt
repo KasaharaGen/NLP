@@ -1,0 +1,27 @@
+Q: Active monitoring and scheduled scanning in ClamXav? I want to use an antivirus app on my Mac, and I heard that ClamXav is a good one to use. However, I'm not sure how to use it.
+All previous anti-virus scanners that I have used have two main features:
+
+
+*
+
+*Active monitoring
+
+*Scheduled scanning
+
+
+The first feature constantly monitors your system and when it detects a new virus file being created, it will let you know so that you can remove the virus before it does any damage.
+The second feature will periodically (e.g. every week) scan your entire hard-drive to make sure that no viruses have made their way onto your hard-drive.
+Is there any way to enable these two features in ClamXav?
+
+A: From a cursory read of ClamXav's online documentation, it appears that both of those features are available. 
+
+
+*
+
+*For Active monitoring, ClamXav allows you to specify any number of folders to watch (e.g. your Downloads folder) as well as having a way to scan incoming email and inserted disks. 
+
+*For Scheduling scanning, there is a preference pane which allows you to both schedule virus definition updates and perform periodic scans.
+I would recommend reading their online documentation.
+
+A: Sophos AV has been very active in educating the Mac Community that Mac Viruses DO exist. If you are concerned about this fact, then they have a free software solution.
+It scans automatically in the background, and can be launched as-needed as well.

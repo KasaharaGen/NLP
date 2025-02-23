@@ -1,0 +1,24 @@
+Q: Can Lion OSX Search in App's Contents How can I configure Lion to search for files in the Contents of an .app?
+
+A: Easy Solution
+For a free GUI solution, you could use EasyFind. To search inside applications, you just need to check "Package Contents" in the sidebar.
+For a quicker search, you can limit the search to just the Applications folder by using the menu under the search field (on the far right).
+Command Line - Find
+In Terminal, you can use the find command:
+find /Applications/foo.app -type f -name "bar"
+
+Replace foo.app with the name of your app, and replace "bar" with the name of the file you want to search for. 
+If you want to search all apps in /Applications, leave out the /foo.app part of the command.
+If you want to include folders, remove -type f, if you want to search only for folders, change -type f to -type d. You can also use the * wildcard in your filename to get partially matching results.
+
+A: I wouldn't think so, but I'll be happy to hear otherwise. It's quite easy from the command line, though:
+find /Applications/<YOUR APP>.app -type f | xargs strings | grep <YOUR SEARCH TERM>
+
+You can also search through the whole Applications folder with
+find /Applications -type f | xargs strings | grep <YOUR SEARCH TERM>
+
+This will take quite a while, as it actually searches through the files instead of using a cached index, like Spotlight does.
+
+A: Find Any File
+is a third-party utility that can do this. It costs US $4.00 and can be downloaded from the developer or purchased in the Mac App Store. It is a good alternative to using the command-line tools that come with Lion. It can also be run as "root" to access even more files than what Mac OS X usually lets the user see.
+

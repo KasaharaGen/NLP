@@ -1,0 +1,25 @@
+Q: Safari keywords? I'm looking to imitate the functionality of Firefox's keywords in Safari. That is, I want to be able to type wp Apple in the address bar, and Safari should go to the Wikipedia article on Apple. I found a Sourceforge project, SafariKeywords, which does just this, but it was last updated in 2004 and doesn't work on Intel-based Macs.
+Does the latest version of Safari have this functionality built in and I just didn't find it, or is there something like SafariKeywords I can use, or is this just a feature I'll have to live without?
+
+A: I understand this is an older thread, but for the next person who comes along, I recommend taking a look at Safari Keyword Search. It is a Safari extension that adds exactly what you are looking for.
+
+A: I don't know if this is what you're looking, but this feature exists on Alfred. It's also on the Mac App Store. And did I mention it's free?
+
+It's basically a spotlight replacement with a few twists. With it, you can set custom searches for any site you want:
+
+The main advantage is that you can search from anywhere you want, you don't have to be on Safari.
+
+A: Alfred, or another app launcher is a great option.
+However, if you want to do this without hopping to another application, you can use a text expansion utility. That way, you type wp and it converts to http://en.wikipedia.org/w/index.php?title=. Then, you just have to type in your query and hit enter. This can be done with 10.6's built-in text replacement tool.
+Go to the Language and Text System Preferences pane. Choose the Text tab. Click the plus button to create your new substitution rule.
+
+A: SafariStand is a SIMBL plugin has this feature. They call it QuickSearch.
+For your Wikipedia example (which I also use) you would add this search:
+http://en.wikipedia.org/wiki/Special:Search/@key
+
+A: Omnikey, an extension for Safari does exactly this.
+
+A: I ended up installing Alfred as was suggested, and I've come to like it! But I completely understand those of you who don't want to install a Spotlight alternative. I found a Safari plugin called Keywurl which I think is exactly what I was looking for. I have not given it a try but the description fits the bill perfectly.
+Also, if you give Keywurl a try with the latest Safari 5, you may have problems which this blog post has addressed.
+
+A: There is also an ad-blocking proxy called GlimmerBlocker that I have used to do this. However, while this gives you "two plugins in one", GlimmerBlocker occasionally has problems with new versions of Safari on Snow Leopard.

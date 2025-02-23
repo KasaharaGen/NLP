@@ -1,0 +1,10 @@
+Q: Any idea what happened to /Library/Receipts in Mac OS X Lion? Does anyone know why all the .bom files in /Library/Receipts moved to /var/db/receipts? 
+
+A: first, /var/db on unix is the location for stuff like that.
+second, it's much easier to type as it is in lower case.
+so, not so unreasonable decision by apple's engineers.
+
+A: Receipts are in /var/db, but in my opinion it´s a bad decision because if someone backup /system to keep all applications data now receipts are not there any more.
+It seems more and more difficult to keep a useful backup of all application files.
+
+A: /var is hidden and thus harder to get to. Apple has hidden ~/Library from the common user for the same reason, makes it harder to foul thing up.

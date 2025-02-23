@@ -1,0 +1,30 @@
+Q: Is there an equivalent to ⌘ + D in the new save dialogs? In Snow Leopard and prior, when clsoing a window with unsaved changes, the system would suggest to either save, cancel or discard the changes from keyboard shortcuts. You could:
+
+
+*
+
+*save return
+
+*cancel ⌘+.
+
+*discard the changes ⌘+D.
+
+
+The Lion save dialog that gets summoned instead of the "Would you like to save?" dialog works differently:
+⌘+. and return still work1, but ⌘+D has no effect.
+Is there a new keyboard shortcut to discard?
+1. I'm not in front of my Mac right now; IIRC they work, but maybe I'm wrong.
+
+A: In Terminal.app, you can change this back to the old behaviour using
+defaults write NSGlobalDomain NSSavePanelStandardDesktopShortcutOnly -bool YES
+
+To revert to the default behaviour, set
+defaults write NSGlobalDomain NSSavePanelStandardDesktopShortcutOnly -bool NO
+
+
+A: ⌘+⌫
+Pressing Command-Delete (or perhaps more commonly known as backspace) also does the same trick. 
+That's all there is to it!
+
+A: It depends on the application. For example, in Powerpoint 2011 ⌘D still works, ⌘⌫ does nothing in the dialog.
+I guess it's personal preference, I like to use Space (or Tab until Don't Save is in focus, Space) for this action.

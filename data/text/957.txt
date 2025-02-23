@@ -1,0 +1,7 @@
+Q: Can I use my Mac to re-create an inverted audio noise cancellation effect? I would like to use my Mac as an audio cancelling device, like headphones that reproduce the outside noise in inverted form, so it cancels out (typically found in airports). With a normal pair of headphones, my Mac could record the ambient noise and send it to my headphones to achieve noise reduction. 
+Is there a program able to do this?
+
+A: Audacity can do this as far as I know. There is a White Noise generator, and under the Effects menu there is a "Noise Removal" option. 
+I don't know if you can do it in realtime, but you could make a short recording of the ambient noise, run the Noise Removal, figure out what got removed (subtract before and after), and then play that part but inverted. Maybe.... 
+
+A: This is not possible because the inverted noise would be picked by the computer mic and "attenuated" again and again causing a very noisy feedback, like an electric guitar near the speaker. Noise canceling headphones have mic separated from speakers.

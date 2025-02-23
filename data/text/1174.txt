@@ -1,0 +1,19 @@
+Q: How do I find out the system temporary directory? I'm testing an app that uses the System temp Directory. Inside of the app, there is some call to a Cocoa function to query this. Is there a way for me to query for this directory name outside of having to write a Cocoa app of my own? Possibly a command that I can issue in Terminal?
+
+A: OS X has Python pre-installed, though not necessarily a fresh Python; but this is not cutting-edge stuff.
+So:
+Open a terminal
+cat > hack.py
+import tempfile
+print tempfile.gettempdir()
+^D
+python hack.py
+
+Credit to nosklo
+
+A: env
+
+Just type this command into Terminal.  With zero arguments it'll print the names and values of variables in the environment.
+Alternative with a bit more typing:
+echo $TMPDIR
+

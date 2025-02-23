@@ -1,0 +1,25 @@
+Q: How to see what files were changed in TimeMachine? I tried TimeTracker, tms and timedog but none of them works with OS X 10.6
+Any suggestions?
+
+A: Since Time Machine uses hardlinks to store unmodified files (and directories), this would mean that changed files in the latest backup will have a link count of 1 since they are unique. Use this together with find to generate a listing: 
+find /path/to/your/latest/backup -type f -links 1 -print 
+
+
+A: You can use the built in tmutil and GNU gsort:
+brew install coreutils
+
+To compare between two specific backups:
+cd "/Volumes/TimeMachine/Backups.backupdb/My Mac"
+sudo tmutil compare Date1 Date2 | gsort -h -k2
+
+For just the difference between the current backup and the previous backup:
+sudo tmutil listbackups | tail -n 2 | awk '{ print "\""$0"\""}' | xargs tmutil compare | gsort -h -k2
+
+
+A: Lion has come out with the tmutil command and the man page shows that it will crawl a specific backup and report very detailed information on your specific backups. The verbs compare, uniquesize, and calculatedrift look most useful if you don't mind the terminal.
+I still use BackupLoupe on Lion (as well as on older OS) and have high praise and thanks to the team that built it every time I need to use it. I should probably send them more money, too. It's that good.
+
+It makes it very easy to see what files are taking the most space between backups and also is indispensable for knowing when a specific file has been changed by tracking each time it is saved as a new version going back in time. It works on a local database so you are not crawling the filesystem each and every query - just once each time to collect the deltas for each backup.
+
+
+A: The problem with that find command seems to be that HFS allows hard links on directories as well as regular files.  As a result, files that have not been backed up for a while will show up with one link but one of their parent directories may have many links.

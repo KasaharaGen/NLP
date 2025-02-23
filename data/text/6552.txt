@@ -1,0 +1,20 @@
+Q: Can a Macbook Pro or Macbook Air run Windows 7 perfectly -- fully 100% with all software and drivers? I heard that some people buy a Mac and use Bootcamp to set up a dual boot so that it can run OS X and Windows 7 and some people buy it to only run Windows 7 just because Mac computer is high quality.  But when a Macbook Pro or Macbook Air (or iMac / Mac Mini) runs Windows 7, can it run everything well?  For example, can the USB Flash drive all be used well?  Can all USB devices be used on it as if it is just a PC?   Can the Mini Display Port / Thunderbolt converter to HDMI work nicely?  What about the hardware drivers -- for the built in webcam, microphone, DVD writer -- can all devices on a Mac be used with Windows 7's drivers with no problem?
+I think some people run Windows 7 as a virtual machine on the Mac, but there might be issue if you need to access some hardware, or forward some port through the Firewall, and there are also some programs that specifically detects that it is a virtual PC and not run on it.  Probably those program can run if it is Windows 7 on a Mac.
+
+A: Since it's an intel chipset on the logic boards and Apple is on the hook officially to provide driver support for Windows 7 - the only possible drawback might be the keyboard layout and Thunderbolt. It's quite new, so I don't have any real great feeling for how well that works under Windows 7.
+Even in Mac OS X - thunderbolt doesn't have any direct networking support - just video, storage and target mode at present. Intel and Apple are working together on Thunderbolt and the active cables mean that even if PC decide to implement an optical interface rather than copper - you might not be left out if you need a PC Thunderbolt accessory 6 or 9 months down the road. My crystal ball works so poorly for Apple - I'd hate to try to guess what PC vendors are going to do even if they aren't as notoriously secretive as Apple.
+I would have no hesitation to run Windows 7 in emulation - the virtualization is so robust now - you can choose to have unfiltered net access, share an IP, virtualize a router. You can always fall back to BootCamp if needed, but I wouldn't worry about that unless you have specific credible advice from someone that knows your exact workload and style of how much control you need. With minimal learning, you should have VMware or Parallels doing exactly what you desire.
+
+A: As bmike mentioned the MacBook Pro is rated highly when used to run Windows on Bootcamp.
+
+
+*
+
+*USB flash drives will work fine
+
+*USB devices will work as if you were using a PC
+
+*I'm not 100% confident  on the Mini Display Port to HDMI as it seems support has been flaky for Mac OSX for the last few updates
+
+
+As far as the built in hardware Bootcamp includes windows drivers for these, however the trackpad will not register more than two finger presses so you can forget about 3+ finger multi-touch gestures. Also there are no Windows drivers for Thunderbolt. Other than that I don't think you should be afraid of missing out on any functionality by running Windows on a MacBook Pro.

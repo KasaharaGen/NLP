@@ -1,0 +1,25 @@
+Q: Is there a way to share a wi-fi connection over wi-fi? The problem is that here is a router (at a cottage), which only allows 2 connections. but we need wi-fi for 8 devices. so the plan is to create another wi-fi spot to share our connection. is there a tool or tutorial for that?
+
+A: In order for a Mac to create a local Wi-Fi network, it needs to have a wired Internet source. So what you need to do is:
+
+
+*
+
+*Connect an Ethernet cable from the router (the wired source) to a Mac.
+
+*On that Mac, choose System Preferences > Sharing.
+
+*Select Internet Sharing.
+
+*Choose Ethernet from the “Share your connection from” pop-up menu.
+
+*Select AirPort in the “To computers using” list, then click AirPort Options and give your network a name and password.
+
+*Connect the other computers to the new Wi-Fi network you just created.
+
+
+If needed, there are more details on this Apple help page: Sharing your Internet connection.
+
+A: You could do it with the built-in Sharing feature (System Preferences->Sharing), but it would require two wifi cards in the device acting as the bridge. More broadly, to my knowledge, it isn't possible to share a connection in the way you are proposing with a single wifi card (though you could extend the signal, it would still be limited to the same number of connections as that is bring managed by the original access point).
+
+A: Yes you can use Internet sharing with a single WiFi connection. Just enable it from the System Preferences. (The previous poster is wrong. I did this at my Mom's house to allow iPad and iPhone use and it worked fine.)

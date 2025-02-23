@@ -1,0 +1,7 @@
+Q: Active Directory account locks for no apparent reason I've been troubleshooting this problem for two years and it keeps coming back.  Our Mac users authenticate to our Active Directory server which is running Windows Server 2008 Standard.  One of the Mac users in particular has had a recurring problem where she can't log on and causes her AD account to lock before the maximum log-in attempts has been reached.  The problem started again this week and yesterday I reconfigured her networking and Active Directory settings.  This morning I logged on to her computer using her ID and password and had no problems.  When she tried it twenty minutes later, her account was locked.
+All Macs have Snow Leopard 10.6.7 and they all have the same network and AD settings, but this particular Mac continues to have a problem.
+Any suggestions will be greatly appreciated.
+Kent  
+
+A: Bear in mind that interactive user logons are not the only thing that count as failed logons when it comes to Active Directory account locks. Services that are set to run as a network user and network resources with saved logins can rack up the failed logon count and lock the account.
+Hobs' comment to your question is the direction you should head. Check the Security log on the domain controller that the computer authenticates against and you should get the information that you need as far as the source of the failed logons. The fact that it works on other computers only reinforces this. Something is definitely failing, it's just a matter of finding what. 

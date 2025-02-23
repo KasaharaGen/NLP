@@ -1,0 +1,23 @@
+Q: Problem of installation xcode4 and then xcode3 I install Xcode4 first in the default path /Developer then I install Xcode3 in /XCode3 It seems that the installation was not completed because I can't see Xcode.app in /XCode3/Application. What should I do?
+Update!
+I noticed that while I'm installing Xcode3 in the window "Install Xcode and iOS SDK" in path of Custom Install the check box of Xcode Toolset under Essentials is disable with unchecked status. What should I do?
+
+A: I think the way to have Xcode 3 and 3 is to install Xcode 3 first - it will be in /Developer. Then Xcode 4 install will move Xcode 3 to /Developer-old  and install Xcode 4 in /Developer. So in your case delete /Developer and start again.
+
+A: Since your question infer that you're aiming to have both Xcode 3 and Xcode 4 installed on the same Mac, your approach (described in your first paragraph) is correct that you need both to be installed in different paths.
+In my company, to achieve your goal, the engineers 
+
+
+*
+
+*first ensure the development Mac is clean (i.e. no residual libraries, receipts, etc) by executing sudo <Xcode>/Library/uninstall-devtools --mode=all
+
+*after rebooting (to ensure any libraries in memory are released and their files can be deleted by emptying the Trash), empty Trash.
+
+*install Xcode 3 in a path other than the default /Developer path.
+
+*Install Xcode 4 in a path other than the path (specified in step 3) though majority of the engineers simply install at the default /Developer path.
+
+
+The reason why we install Xcode 4 after installing Xcode 3 is to ensure the latest supporting development binaries & tools are installed. FYI, these binaries & tools are not in your specified /Developer folder but in default paths throughout the Mac startup  partition. 
+From your description in paragraph 2, one possibility is you have "nested" installation of Xcode, one on top of the other. You'll have to remove the files installed or partially installed (by Xcode installer) to return your Mac to a clean environment before running the Xcode installer again.

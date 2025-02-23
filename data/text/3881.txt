@@ -1,0 +1,8 @@
+Q: Is there any way to change the output filename for qlmanage? Is there any way to specify the output filename and directory that qlmanage uses?
+We are using qlmanage to convert word documents to HTML, and it writes Preview.html to its temp directory.  You can specify the output directory with -o, so right now we create a new directory for each file we write, which works fine, but... not optimal.  
+No mention of such a facility in the command line options, but i thought i'd ask in case there is some undocumented trick.
+thanks,
+ian.
+
+A: You can use textutil to convert Word documents to HTML and specify the output filename; it uses a different converter, though, which may not be acceptable for your uses.
+With regard to qlmanage, you're abusing Quick Look here already.  The output is a directory, not a file, which is only designed for Quick Look to consume.  That Preview.html is a fixed filename is by design; otherwise the Quick Look displayer wouldn't know where to start.  That you're able to extract the HTML output yourself is a nice side effect, nothing more.

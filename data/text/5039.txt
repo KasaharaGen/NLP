@@ -1,0 +1,57 @@
+Q: Jailbroken iPad stuck at boot screen and looping I have a jailbroken iPad 1 with iOS 4.2.1 
+
+
+*
+
+*I replaced hosts file under /etc/ and resprang    
+
+*the iPad stuck at blank screen   
+
+*I restarted by pressing both power and home key  
+
+*Now the iPad is stucking and looping at apple logo booting screen
+
+
+Currently,    
+
+
+*
+
+*I can access the file system using iPhoneBrowser 1.9.3 and     
+
+*iTunes 10.2.1 recognizes the iPad. 
+
+*WIFI interface seems to be up but SSH is not up
+
+
+Now, I have replaced the modified hosts with original file.     
+Still the screen never reached the lock screen.    I doubt it is file system error and in this circumstances how can I check my iPad for file system error? Is there a way?
+update 1
+
+
+*
+
+*still stuck (have left it run out of battery)    
+
+*WiFi is not up.    
+
+*SpringBoard Crash log state that   
+Reason:          Watchdog timeout: 5 crashes, 732.836304s since last successful ping   
+Thermal Level:   -1    
+Thermal Sensors: failed to load sensor values
+
+update 2
+
+
+*
+
+*upgrade to 4.3.3
+
+*restore with back-up data
+
+*all are working fine now
+
+
+A: The obvious answer is to re-install the OS and then ssh in to run fsck.
+Have you looked into a program like PhoneView that will let you mount iOS device as an external drive and use Disk Utility (if you have a Mac) or fsck? The FAQ for PhoneView has a windows software recommendation that does about the same things if you prefer that OS on the desktop.
+(edit: I don't know of any free alternatives that mount the file system) 

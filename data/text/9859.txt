@@ -1,0 +1,16 @@
+Q: Add custom options to Apache Vhost config In Snow Leopard Server I was able to add lines to the Apache vhost files in /etc/apache2/sites in order to add custom configuration options.
+In Lion Server those changes are overwritten as soon as the Web service is restarted. Is there any way to add such configuration options in a way they'll be preserved?
+
+A: Yes. In Lion, you do this by:
+
+
+*
+
+*Creating a .conf file that contains your custom Apache configuration directives
+
+*Creating a .plist file in /etc/apache2/webapps that references your configuration file — see the manage for webapp.plist
+
+*Running webappctl to load your configuration file into one or more of your websites (virtual hosts) — see the manage for webappctl
+
+
+A bit more about this can be seen at http://support.apple.com/kb/HT4813

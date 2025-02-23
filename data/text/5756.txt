@@ -1,0 +1,13 @@
+Q: Email stuck in outbox but can't access it I have Office 2011 installed on Mac OS 10.6 and I tried to send an email to multiple recipients and got this error: The message could not be sent because it has unresolved recipients. And now, every time it does Send/Receive I get this error: A message could not be sent
+The problem is that the message got stuck in Outbox but I can't access it, can't delete it, nothing. Any idea how I could get rid of it?
+
+
+A: Open the AppleScript Editor found in /Applications/Utilities. 
+Paste in the following three lines:
+tell application "Microsoft Outlook"
+  delete every message of outbox
+end tell
+
+Click the Run button at the top and this should delete every message in your Outbox.
+
+A: Solved it by deleting the account (it was an IMAP account) and exporting the emails (File -> Export -> .olm) and adding back the account.

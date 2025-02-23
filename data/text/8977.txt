@@ -1,0 +1,3 @@
+Q: Does OS X store my complete install history? I'm running 10.6.8 and wondering where my Mac stores my install history -- I'm thinking everything from Ruby gems to full blown web apps. Does such a general file exist?
+
+A: Look in /var/log for install.log and install.log.[something].bz2.  install.log contains the most current logs; the other files are archives of successively older log files, made whenever each one reached a maximum size.

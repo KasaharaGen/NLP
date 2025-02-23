@@ -1,0 +1,9 @@
+Q: How do I tell what processes are driving I/O loads? Something is driving a lot of Disk I/O on my system lately. I can see in ActivityMonitor that there are huge volumes of reads and writes every second. But none of the "normal" suspects are active when this is happening. (i.e. it's not time machine.) and I have plenty of free memory (800MB to 1.3GB out of 6GB total) so it shouldn't be paging. I don't see any apps in top that are blocked on I/O when this starts. (once it's going then I see things start to pile up... but everything I see in there appears to be victim.)
+What tools can I use to get a sense for what process is causing the disk io?
+I think it started with 10.6.6. :( I don't recall ever hitting this with 10.6.5.
+
+A: Try sudo iosnoop; it shows I/O as it happens, including the process ID and process name doing the I/O, as well as data size, file path, etc.  There are options to restrict it to only show a certain device, mount point, process, etc.
+
+A: On *nix systems lsof is used for checking to see what app has what file open. It's a good starting point for digging around.
+Type man lsof at the commend line to see if its description sounds useful.
+Also, open the "console" app, or tail -f some of the /var/log files that show a lot of activity, and see if something is broken or complaining. 

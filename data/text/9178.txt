@@ -1,0 +1,19 @@
+Q: Destroyed user account on OS X with dscl; how to restore? I was trying to create a new user on my OS X Lion machine, and somehow managed to destroy my own user's account. Here are the steps I took; hopefully someone here can recognize what I did, and maybe identify some way around this.
+First, I ran these commands:
+sudo dscl localhost -create /Local/Default/Users/elasticsearch
+sudo dscl localhost -create /Local/Default/Users/elasticsearch /bin/bash # mistake!
+sudo dscl localhost -create /Local/Default/Users/elasticsearch UserShell /bin/bash
+sudo dscl localhost -create /Local/Default/Users/elasticsearch RealName "Elastic Search"
+sudo dscl localhost -create /Local/Default/Users/elasticsearch UniqueID 503 # MY uniqueID
+sudo dscl localhost -create /Local/Default/Users/elasticsearch PrimaryGroupID 1000
+sudo dscl localhost -create /Local/Default/Users/elasticsearch NFSHomeDirectory /Local/Users/elasticsearch
+
+The big mistake I made here was using "503", which was my user's UniqueID. Immediately my shell username changed to "elasticsearch". I fiddled around, tried to change the current user with sudo su -u sritchie, but this didn't work.
+On restart, only the "Elastic Search" user was available. I logged into the Lion Recovery partition and reset the root password.
+After logging in as root and checking on the terminal, I made the remarkable discovery that my home folder was totally empty. I deleted the elasticsearch user, but it made no difference. I don't see anything in Deleted Users either.
+The odd thing is that when I log in now as myself (sritchie) I can see desktop icons with previews. I can even open a few text files from the Downloads folder if I use the dock alias to Downloads.
+Could this data be hiding somewhere? Any help would be REALLY appreciated!
+Thanks,
+Sam
+
+A: I hope you took a backup of your machine before the sudo command that deleted your account was run. If you have a (Time Machine) backup, you should be able to restore your deleted account & files to a point in time before the deletion occurred. Otherwise, you're probably out of luck.

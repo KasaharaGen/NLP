@@ -1,0 +1,49 @@
+Q: In OS X 10.6 how do you mount an AFP share at boot or before user login? Is there a way to mount an AFP share at boot so it is accessible to the system without a user logged in?
+I would like to run scripts via SSH or as a daemon on boot that check files on my AFP share. Unfortunately, the shares don't mount until a user logs in.
+
+A: Not sure that you can.  I would think for security reasons a user has to be logged in, so that a set of credentials can be used.  There's probably some scripts that are run pre-login though, so I suppose if you specify your credentials in there it would be fine.
+
+A: Indeed you can script it all from terminal.
+You will want to learn a little about launchd - that will specify when the mount will happen. At $5 the Lingon app from the App Store is great if you don't want to learn launchd configuration files.
+Next, you'll need a command to make the AFP mount.
+Last, you might learn security command to store or retrieve a password from the keychain if you don't want to store your afp password in the script.
+Each of these should be easy to learn more with a few internet searches.
+
+A: I would look into AutoFS. You can have AFP mounted on demand (see page 14 of the linked PDF).
+
+A: Here you go.  A bit outdated, but you can see how to do what you want from here. 
+http://www.real-world-systems.com/docs/launchctl.1.html 
+
+A: I recently had to support a client who needed to make sure an AFP network volume was always mounted so FileMakerPro server v5.5 could backup to that network drive. As you might imagine backups are really important for a 16 year old G5 XServe that is a mission-critical system, and yet still doesn't have the budget for new software & 40 new Macs all at once. So they are stuck at Mac OSX 10.6 Snow Leopard, and the server has been surprisingly OK running Mac OSX Leopard for about 20 years.
+In this case, just mounting a drive at startup is not enough. Any network burp, even just power cycling a network switch could break that AFP connection.
+No one ever looks in on this server, so it needs to try to take care of itself. (Alternately CronoSync Agent & ChronoSync can copy those files elsewhere, that was working well too).
+My solution for OSX Tiger 10.4.11 was to use AUTOMATOR to make a 2 line app to mount the network drive (uses saved login from OSX Keychain) and run it daily via Cronnix, which is a GUI for Crontab. I expect this would also work in Mac OSX Leopard, Snow Leopard and maybe others.
+The Automator workflow is;
+
+*
+
+*Get Specified Finder Items
+
+*
+
+*give it an alias of the network drive to mount.
+
+
+
+*Open Finder Items
+
+Save this both as a workflow and Save As again as an app. You can easily edit the workflow, and the App is slightly easier to run automatically. In this example below, the 2 line app is kept in the ~/Documents folder .
+The Crontab command to run this is;
+/usr/bin/open "/Users/<username>/Documents/<app_name.app>"
+
+See attached screenshots. Hope this helps. :-)
+I also blogged it here:
+https://www.nathanson.org/davesays/2021/how-to-mount-afp-network-drive-in-mac-osx-tiger-snow-leopard/
+
+
+
+A: Yes, this can be done, and it's actually necessary when you want the share point available to something like servers which are started and run without a user logged in.
+I did this years ago for something, and just again needed to do it, but my notes were inadequate. After a lot of fiddling, I've written enough details out so that I'll never have to do that again (I hope).
+You combine launchd and a script, but there's some details that many other posts fail to mention. I captured them (at least for my setup).
+All the nitty gritty details are here:
+http://www.gregwillits.ws/articles/using_launchd_to_mount_afp_share_point_upon_startup

@@ -1,0 +1,162 @@
+Q: Web Sharing Apache Localhost - Access permissions I want to install phpMyAdmin on the native Apache webserver that is bundled with Mac OS X 10.6. I turned on Web Sharing in System Preferences. Yet, me fear is that my computer is granting access to everyone on the web.
+
+
+*
+
+*Where are the user access restrictions for the Web Sharing / Apache webserver within Mac?
+
+*How to I restrict access for all computers except my own so that I can run applications on the localhost webserver (like phpMyAdmin).
+
+A: As has been pointed out already, unless you are specifically forwarding http traffic from your router to your machine, your locally hosted stuff will only be available to you and the other computers on your local network.
+To answer your question on restricting access to your webserver to just your machine. You can do this a couple of ways.
+Remember, anytime you change apache configurations, you need to restart apache for those changes to take effect.
+Method 1
+If you want to limit everything on your local webserver to just your local machine, edit the file "/etc/apache2/httpd.conf". At approx line 195 you'll find a configuration block that looks similar to:
+<Directory "/Library/WebServer/Documents">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.2/mod/core.html#options
+    # for more information.
+    #
+    Options Indexes FollowSymLinks MultiViews
+
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   Options FileInfo AuthConfig Limit
+    #
+    AllowOverride None
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    Order allow,deny
+    Allow from all
+
+</Directory>
+
+You are going to want to comment out the bottom two lines of that block and add in new rules
+Deny from all
+
+and
+Allow from 127.0.0.1
+
+that block should now look like:
+<Directory "/Library/WebServer/Documents">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.2/mod/core.html#options
+    # for more information.
+    #
+    Options Indexes FollowSymLinks MultiViews
+
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   Options FileInfo AuthConfig Limit
+    #
+    AllowOverride None
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    #Order allow,deny
+    #Allow from all
+    Deny from all
+    Allow from 127.0.0.1
+
+</Directory>
+
+Method 2
+You can also use .htaccess files to limit who has access to a directory. In order for .htaccess files to work you first need to enable them. Open the same file I referenced in method 1 (/etc/apache2/httpd.conf) and go to the same configuration block I mentioned before (at approx line 195). You'll need to change (at approx line 215):
+AllowOverride None
+
+to
+AllowOverride All
+
+Once you have done that you can create a file called .htaccess in any folder on your web server with the following information:
+Deny from all
+Allow from 127.0.0.1
+
+That will prevent anyone besides your local machine from accessing the contents of that folder or any of it's subfolders.
+Conclusion
+Method 1 has the benefit of not having to worry about accidentally deleting .htaccess files or worrying about multiple configurations. Method 2 makes it very simple to only restrict access to certain directories of your webserver.
+Also note that the .htaccess file must include that period at the beginning of the file name (it's .htaccess not htaccess) and that when you want to view your local webserver you have to do so by going to http://localhost (you can't use [your computer name].local).
+
+A: Rather than running the bundled Apache installation, which gives you limited or obscure configuration options, I suggest that you instead install the free MAMP (Macintosh, Apache, Mysql and PHP) package. It's better and more useful as a development environment, because it is designed as as a PHP development environment for Mac, and will save you much time and configuration problems. It's easy to install and (if needed) remove. MAMP's Apache portion is also more secure than the built-in Apache, in part because you can easily run it only when needed, and because by default it runs on port 8888, rather than the standard Web server port 80. The ports can be configured in the MAMP settings.
+From the MAMP FAQ (version numbers quoted in the FAQ may be slightly out of date, superseded by newer versions):
+
+Why should I use MAMP? Isn't everything already installed in OS X?
+At the moment, when using OS X, only Apache 1.3.x with PHP 4.3.2 is
+  pre-installed. PHP has to be activated by changing the configuration
+  files. The Apache/PHP versions provided by Apple are not always
+  up-to-date, and the Apache-PHP combination is quite slow. In addition,
+  MySQL has to be installed manually. With one click, and in just a few
+  minutes MAMP will install Apache 2, current PHP 4, current PHP 5 and
+  MySQL. Using the included eAccelerator, PHP-scripts are executed up to
+  ten times faster compared to Apple's pre-installed Apache/PHP. When
+  you use the MAMP programme, you can easily start and stop the server.
+  Thus, the server does not have to be running in the background all the
+  time, wasting precious resources. To "uninstall" MAMP, you only have
+  to delete the MAMP directory and everything returns to the original
+  state (MAMP does not alter anything on the "normal" OS X).
+
+
+A: You may also want to consider using https://serverfault.com/questions/211382/proper-way-to-disable-apache-listening-on-localhost
+In short: change Listen 80 into Listen 127.0.0.1:80 in /private/etc/apache2/httpd.conf
+I found that to be the easiest way.
+Cheers!
+
+A: First of all, your webserver isn't shared with everyone on the web as long as your router doesn't forward your IP to your computer. This is a setting that isn't enabled by default so you probably are not sharing anything.
+Also, you can secure your phpMyAdmin install with a password, just as it is done on many online installs (see config.php for options).
+Additionally, if you do open up your webserver to the internet, you can limit access to phpMyAdmin by using .htaccess deny / allow settings.
+
+A: The by default installed version of httpd on MacOS Catalina has now a bit different syntax for allowing and denying access to Directories. 
+In my /etc/apache2/httpd.conf I have the following lines:
+DocumentRoot "/Library/WebServer/Documents"
+<Directory "/Library/WebServer/Documents">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.4/mod/core.html#options
+    # for more information.
+    #
+    Options FollowSymLinks Multiviews
+    MultiviewsMatch Any
+
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   AllowOverride FileInfo AuthConfig Limit
+    #
+    AllowOverride None
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    Require all granted
+</Directory>
+
+According to the httpd docs I had to comment out the Require all granted and to add Require ip  127.0.0.1 instead, to disable access from the local (or any other) network. And it works indeed. I can't now access the web server on my Macbook from my smartphone anymore. 
+https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html#require
+But keep in mind, you have to place that rule inside any additional Directory you might add to the configs.

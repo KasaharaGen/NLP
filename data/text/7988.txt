@@ -1,0 +1,29 @@
+Q: mdns works different on snow leopard and lion I have a few linux machines on my local network. Using avahi, they expose their name over mdns. This enables me to access them by doing ping green.local or other commands (but by using the hostname).
+To simplify using them, I added local to the search path for my network settings. That is... System Preferences > Network > Ethernet > Advanced > DNS > Search Domains.
+When I was running snow leopard, this enabled me to do either: ping green.local or ping green.
+However, now that I'm running lion, I get the following result:
+[9:12pm][wlynch@orange ~] ping green
+ping: cannot resolve green: Unknown host
+
+[9:12pm][wlynch@orange ~] ping green.local.
+PING green.local (192.168.1.147): 56 data bytes
+64 bytes from 192.168.1.147: icmp_seq=0 ttl=64 time=0.106 ms
+64 bytes from 192.168.1.147: icmp_seq=1 ttl=64 time=0.165 ms
+64 bytes from 192.168.1.147: icmp_seq=2 ttl=64 time=0.141 ms
+^C
+--- green.local ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.106/0.137/0.165/0.024 ms
+
+[9:12pm][wlynch@orange ~] ping green
+PING green.local (192.168.1.147): 56 data bytes
+64 bytes from 192.168.1.147: icmp_seq=0 ttl=64 time=0.117 ms
+64 bytes from 192.168.1.147: icmp_seq=1 ttl=64 time=0.147 ms
+^C
+--- green.local ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.117/0.132/0.147/0.015 ms
+
+To summarize, I'm not able to access the server as the name green until I've accessed it as green.local. Once I've done that, it works for some amount of time (I've never figured out exactly how long, something less than a day).
+As an aside, I've looked at my network traffic when I do hostname lookups of green and green.local. When I request green, I do not see a mdns request. I do however see one when I do a lookup of green.local.
+Is there any way to revert to how snow leopard functioned in this regard?

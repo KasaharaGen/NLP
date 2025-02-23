@@ -1,0 +1,8 @@
+Q: What does it mean when a %CPU exceeds (# of cores) x 100%? Several responses to a question I asked earlier suggested I try Opera kiosk mode, so I decided to download it and give it a try. Once the download had completed and the disk image was being verified, Safari hung for over a minute and there were periods where Safari used a very high %CPU:
+
+In Mac OS X 10.5, I was accustomed to seeing Safari freeze, but it never used up more than 200% CPU (2 cores x 100%). Is this a bug in Activity Monitor? Or does this mean that %CPU is now more akin to system load?
+
+A: The % CPU is relative to 1 core, so 726% is using almost 8 cores. Core is loosely defined, so 1 Hyper-Threaded, "virtual" core looks like 2 cores to Activity Monitor.
+What type of system do you have? If it is just 2 cores (which is seems to be) then nik's answer sounds correct.
+A late model 8-core system can look like 16 cores to Activity Monitor:
+

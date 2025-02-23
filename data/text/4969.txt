@@ -1,0 +1,78 @@
+Q: Make a script/app run on logout We all know that Mac OS X has the very useful Login Items functionality which lets you, among other things, set up apps/scripts to run when you log in.
+I'm looking for a way to setup a list of scripts/apps that run when I log out. A "Logout Items" list, if you will.
+Basically, I want to write a few little cleanup scripts for myself that will run automatically when I log out or shut down.
+So, I'm looking for a way to have a script (or, ideally, list of them) automatically triggered when I log out. The log out would wait for the scripts to finish (just like how the logout waits for you to click Save if an app requests it).
+Is there a way to automatically trigger (a) script(s) when I log out of Mac OS X?
+
+A: Logout hooks were deprecated in 10.4, but they still work as of 10.9.
+sudo defaults write com.apple.loginwindow LogoutHook ~/.logouthook
+echo $'#!/bin/bash\nsay a' > ~/.logouthook
+chmod +x ~/.logouthook
+
+The value of the LogoutHook key can only be a path to an executable and not a shell command. The logout hook is run as root.
+The defaults command modifies /var/root/Library/Preferences/com.apple.loginwindow.plist. Adding a LogoutHook key to /Library/Preferences/com.apple.loginwindow.plist doesn't work.
+If a logout hook takes long enough to run, a gray screen is shown until the logout hook terminates. There doesn't seem to be any time limit after which logout hooks are forced to terminate.
+I haven't figured out any way to run programs on logout reliably with launchd. When I tried trapping signals like EXIT, the code in the trap was only run when I logged out to the login window and not when I shut down or restarted.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>test</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>bash</string>
+    <string>-c</string>
+    <string>trap 'echo a>/Users/username/Desktop/a;say a' EXIT;while :;do sleep 10;done</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+
+
+A: Actually there is a non-deprecated way to do it:
+
+*
+
+*Open the "Script Editor" app
+
+*Paste
+
+    do shell script "PUT YOUR START SCRIPT PATH HERE"
+    
+    on quit
+        do shell script "PUT YOUR STOP SCRIPT PATH HERE"
+        continue quit
+    end quit
+
+
+
+*File > Save, Select Application and Stay open after run handler and Save
+
+*System Preferences > Users & Groups > Login Items tab > + button
+
+*Add the application and mark it as Hidden
+
+To hide it from the Dock:
+
+*
+
+*Right-click the application and select Show package content
+
+*Open Info.plist and add
+
+<key>NSUIElement</key>
+<string>1</string>
+
+
+A: Script Timer is a good choice for this. It can run at logout, login, and much more. I'd go with this for a simple and easy to use solution. It has a simple GUI:
+
+There are two things you need to note about Script Timer. One, it is not free. It costs $12, but I personally think it's worth it. Two, it isn't fully compatible with Lion, but they have promised a free update as soon as they've made it compatible.
+
+A: You could also create a Mac application from your script using something like Platypus and then add it to Login Items like any other application.
+
+A: Power Manager can run a script when a user logs out. This is a commercial product and it supports the latest macOS.
+
+Earlier versions required using the event editor, but a Schedule Assistant task is now included for running scripts at log in and out.
+I wrote Power Manager, so feel free to ask technical questions about its implementation. In the case of log out triggered events, Power Manager does not poll for changes in user state but instead is notified of user changes by macOS. This approach is more efficient that having a script looping/polling.

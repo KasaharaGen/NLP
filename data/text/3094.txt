@@ -1,0 +1,16 @@
+Q: Applescript (or other Quicksilver accessible thing) for hibernating a snow leopard mac? Anyone have a quick way, accessible from Quicksilver, to force your mac to hibernate?
+
+A: You can use Deep Sleep. It's a Dashboard widget that will put your mac into hibernation mode.
+Edit: from the website
+
+Deep Sleep can also be used as a command line utility
+
+From there, you can check out if QuickSilver can launch command line programs.
+You can also package it in a .app -for example using Automator- and launch it with QuickSilver.
+~~
+Careful, be aware there's 2 sleep mode.
+The normal one you can trigger using ⌥+⌘+Eject
+And the hibernate (or Safe Sleep) mode.
+You can read about the differences between them here.
+
+A: Install SleepNow and then run that from QuickSilver.

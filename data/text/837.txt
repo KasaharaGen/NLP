@@ -1,0 +1,29 @@
+Q: Safari is using too much RAM. How can I reduce its memory footprint? I'm finding Safari (Latest - v5.0.2) to be even more of a memory hog than usual.  (Currently using 465mb of RAM with only this tab open, but having been running for a while)  
+Closing it and reopening it lowers it's memory footprint, but it always creeps back up over time.
+Aside from disabling extensions, any tips to help troubleshoot/reduce it's memory usage?  I've been using ClickToFlash which helps by requiring any Flash entity to be manually enabled on each page view.
+
+A: This is just a fact of life using Safari. Spend some time browsing Flickr and it's memory usage will go way over a Gig. Gmail is another killer.
+I think Safari most be doing aggressive in memory caching to speed things up.
+
+A: There's nothing wrong with turning off flash, but the main advantage is lower processor usage, not just memory consumption (though it's great to see turning it off has lowered Safari's footprint). 
+I don't think you need to worry about what Safari is doing with memory for a couple of reasons:
+Safari 5 is a 64bit application, where as Firefox and Google Chrome are only 32bit (at least the mac public releases). This is relevant because 64bit applications appear to use more memory while they're running (The Growl team explains this better than I could, here). 
+If you've got free memory, which the OS (and Safari) can release quickly, safely and easily (speaking as a Programmer), why not use it to cache your web content - that's what it's there for. Trust your OS - it's clever, if another application needs the memory it'll just release the not-needed-right-now-bits-and-bobs. 
+Safari also has an unfair advantage- it's made by the same company that built your computer. I'm not saying Safari is infallible, or even that it's the best browser, just that you shouldn't over-think the statistics; memory is there to be used and if it's not negatively affecting your computing experience then don't stress.  
+
+A: using Safari 5.0.5, I have flash turned off and in running sunspider 0.91 I'm seeing real mem growth to over 1.73GB on a 4GB mac mini (2010), and CPU over 100%.  It runs so slow it doesn't complete in over 10 minutes.
+Running the same in Firefox 5.0 (also 64bit) I'm getting 500mb of real memory 90% CPU, and it completes in less than 30 seconds (and is reporting 300ms as a score... spiffy!).
+So my answer is... stop using safari on snow leopard and move to firefox 5.0.
+
+A: So it appears that Flash is still the main culprit - if you enable any flash in ClickToFlash it stays resident in memory.
+Following Gruber's advice on Daring Fireball, I've disabled Flash entirely on all browsers except Chrome and this seems to have helped immensely
+
+A: You can disable cache in developer toolbar (right click-> inspect element), "network" tab, on the right side of the opened pane. When you hover the element it says "Disable/Ignore cached ressource while loading resource".
+Once it is red, velvet cache are deactivated and memory consumption is far lower after that. 
+You also have to empty the cache by activating developer mode, open menu "developer" -> "empty cache" and you will see a huge drop in RAM consumed by Safari.
+There is also another major factor of performance drop : Virtual Memory (swap file). If a process start using it heavily (WindowServer), you will see a huge drop in computer performance because read/write access to disk is monopolized by these processes, leaving little room to other processes for disk access operations. 
+I suspect Catalina to be buggy in that regard as I saw a huge drop in performance after updating due to excessive Virtual Memory usage, reaching as high as 250Mo/s of writing access and 200MB/s of reading access for a SSD.
+You can try to disable Virtual Memory, if (and only if) you have enough RAM (>=16GB) with this command :
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+If you run into issues after that, like sudden self-awareness making your mac unresponsive or excessive RAM usage, enable Virtual Memory again with :
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist

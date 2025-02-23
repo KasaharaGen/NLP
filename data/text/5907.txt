@@ -1,0 +1,48 @@
+Q: Is it possible to automate FTP in Terminal? I want to add an FTP command to my crontab to automatically download a file. How do I do this?
+
+A: The easier way to do this is with wget. For example:
+Ian-Cs-MacBook-Pro:ianc ian$ wget ftp://gnjilux.cc.fer.hr/welcome.msg
+--2011-08-02 19:48:00--  ftp://gnjilux.cc.fer.hr/welcome.msg
+           => `welcome.msg'
+Resolving gnjilux.cc.fer.hr... 161.53.74.67
+Connecting to gnjilux.cc.fer.hr|161.53.74.67|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD not needed.
+==> SIZE welcome.msg ... 1462
+==> PASV ... done.    ==> RETR welcome.msg ... done.
+Length: 1462 (1.4K) (unauthoritative)
+
+100% [======================================================================================================================================================================================================================================>] 1,462       --.-K/s   in 0s      
+
+2011-08-02 19:48:03 (63.4 MB/s) - `welcome.msg' saved [1462]
+
+wget supports options to supply a user name (--user=user) and password (--password=password) if anonymous FTP access isn't available. And a --quiet mode so it's cron-friendly and doesn't fill up your local inbox without messages for successful downloads.
+
+A: The BASH script below will work
+#!/bin/bash
+
+remotefile="/path/to/ftp/server/file.png"
+hostname="ftp.server.net"
+username="ftpuser"
+password="ftppass"
+ftp -in $hostname<<EOF
+quote USER $username
+quote PASS $password
+
+binary
+get $remotefile $HOME/temp/file.png
+quit
+EOF
+
+
+A: You may use curl which is available under Mac OSX already and can (for non-anonymous ftp) use logins stored in .netrc (so the password doesn't show up in a ps listing)
+Plain vanilla anonymous ftp
+curl ftp://your.server.name/path/to/file.tar.gz > ~you/Downloads/file.tar.gz
+
+Using .netrc
+curl --netrc ftp://your.server.name/path/to/file.tar.gz > ~you/Downloads/file.tar.gz
+
+Specify user/password directly (visible in ps afterwards)
+curl --user "user:password" ftp://your.server.name/path/to/file.tar.gz > ~you/Downloads/file.tar.gz
+

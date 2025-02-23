@@ -1,0 +1,15 @@
+Q: Can You Stop the Migration Assistant Midway Through? Can the Migration Assistant be stopped midway through? I began the wireless transfer from a Mac Mini to a new MacBook Air last night. It still says it's going to take 40 hours. Unfortunately, I can't wait that long, and the process is taking up both of my computers. 
+In case of catastrophic failure what recourse do I have, as the MacBook Air doesn't have a system restore disk?
+
+A: Pressing Command + Q on both machines will exit the migration assistant.
+I have a feeling that it copies all files to temporary location before installing them/creating user accounts. So you should be fine. Depending on how far in you might have problems.
+
+A: The obvious answer is the migration is not supposed to be stopped, but you might disable the network or otherwise halt the machine that is sending the data.
+It should be fine since it's just sending data.
+The receiving mac might handle the interruption well or not. Something was working on the mac to start the migration assistant - so you should be able to get back to that state fairly easily.
+There are specific steps to clean up based on what part of the transfer was in progress.
+Safest is to go back to a sane backup and attempt migration again with a faster connection or more time.
+Post what happens here or as a follow on question - it's pretty easy to clean up the user accounts if they are the part that got interrupted (instead of apps, system settings, or random non-user files being transferred)
+Half a user is usually what you end up with and that's not good in general.
+
+A: I would just stop the process , format the disk, reinstall lion , and migrade using some other method.(Format and Reinstall should take like 40 mins since Lion is downloaded). If you don't have a TM backup disk and need to do it over wifi you can connect the machines to the router using ethernet cable that should probably speed up the process quite much. 

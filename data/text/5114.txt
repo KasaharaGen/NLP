@@ -1,0 +1,6 @@
+Q: Why is Java virtual memory reservation so high?  Bug? On my Mac Os 10.5.8 Server, Java is reserving 16,777,216TB (about a third more then the sum of all human knowledge -eek!) of virtual memory. I know it's not really reserving this (it would be pretty amazing if it was!); is it something to worry about (i.e. a bug / glitch), and if not, what does it mean?
+
+
+A: 16 Mebi TebiBytes (16 ExbiBytes) is 2^64 Bytes.  Your machine must be using 64-bit addressing, and your JVM (Java Virtual Machine) probably wrote something to address 0xffffffffffffffff within its own virtual address space (possibly by accidentally writing to the address that's one less than 0x0000000000000000), causing the Mac OS X kernel's virtual memory subsystem to consider that process to be using that process's entire virtual address space.
+Don't worry, virtual memory is sparse. That is, it doesn't allocate memory pages (or swap space on disk) for every mapped address, just for the memory pages your process has actually written to. But I guess that's obvious already unless you happen to have a 16+ ExbiByte RAID mounted at / or at /var/vm/ where your virtual memory swapfiles are located. :-)
+Seeing a process cause its entire virtual 64-bit address space to become mapped is an oddity, but shouldn't cause any problems.

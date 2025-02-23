@@ -1,0 +1,67 @@
+Q: Use internal speakers with others plugged into headphones jack I have a set of surround speakers, connected to my iMac through the headphone jack. I use a switch to control what goes to the speaker set (iMac, iPod, or MacBook/aux). So that I don't have to be constantly unplugging and replugging, I leave the audio cable in the iMac's audio port. This means that when I'm listening to something from another source, I can't hear anything from the iMac unless I unplug the cable.
+Is there a way to force sound to come out of the internal speakers, even if there's something in the audio out port?
+
+A: There is a way to do this but it is difficult and probably not for every user. What happened is Apple does have a "hardware" switch built in, which sends a signal to disable/enable the internal speaker. Because Windows or other OS simply doesn't have such function built in, it will just be a weird signal that does nothing.
+Option 1
+I cannot disable this signal, it probably requires some highly skilled kext modifier, but I found a way to reset the internal speaker after it gets disabled. It will not stick after a reboot, so you have to do it every time after the booting.
+
+
+*
+
+*Backup your AppleHDA.kext in /System/Library/Extensions/
+
+*Show package content of this file, go to Contents/Plugins then remove AppleHDAHALPlugIn.bundle.
+
+*Reload the kext by running
+sudo kextunload /System/Library/Extensions/AppleHDA.kext
+sudo kextload /System/Library/Extensions/AppleHDA.kext
+ps aux | grep 'coreaudio[d]' | awk '{print $2}' | xargs sudo kill
+
+
+*Recover the backup file AppleHDA.kext (or your computer won't boot next time you reboot).
+Note, if you unplug the headphone, it will still show in your audio device panel. Tested working on a retina iMac. Not working on a retina Macbook (no audio afterward).
+
+Option 2
+I have a better way to do this (this method no longer works for 10.12.x+).
+
+
+*
+
+*Download the following files:
+https://mega.co.nz/#!js4gmZbI!xNFCxGT5zPYCS8RLtxk4xZQxNk0oP2sH8RjXbBqgmE0
+https://mega.co.nz/#!ulw13BzD!Y1k564bTSxZrePpPL-si5h65XULwnYeEMwH-l0lSLfI
+
+*Open up the first download, and drag the second download into it. It will take 10 minutes to install. Then restart your system.
+You will not have line out and internal speakers both in your sound panel at all time, even when your headphone is not plugged in.
+Tested on macOS 10.11, iMac Retina and not working on MacBook Pro Retina.
+
+A: Pretty sure it can't be done with the built-in headphone jack. What you could try is getting a USB soundcard (one example, but there are lots out there for $20 or so) to plug your headphones into. That should give you two options in the sound preferences.
+PS, if you option-click the speaker icon in the menu bar, you get a quicker way to swap inputs/outputs than going to the sound preference pane every time.
+
+A: Just found a solution that works or me - I use an HDTV as an additional monitor, and with headphones plugged in there I can route the audio to the external monitor. I can now switch between iMac speakers and headphones without unplugging the headphones.
+
+A: I have been trying to get this to work. After moving from my Mac Pro which has speakers and headphones plugged in and I simple switched between them (and even internal speakers) to a new iMac where I have to keep unplugging the headphones to get sound through the iMac speakers. What I'm about to order is a simple USB Sound Card dongle. Small thing that gives an audio jack via a usb, this should then allow me to alt+click the volume icon and switch between built in and headphones as it will see them as separate outputs.
+
+A: There's no supported way to override the switch that deactivates the internal speakers when a headphone jack is detected on 2011 through 2015 era hardware. The answer on modifying kernel extensions is amazing though if you like experimenting.
+The switch that detects whether a 3.5mm headphone jack or mini-toslink is inserted removes the internal speaker from the sound control panel. (Probably at a low enough level that the OS itself cannot over-ride this control.)
+Since there isn't a widely known firmware hack, OS hack or hidden preference to disable this detection, you will need to add a USB to headphone device to avoid losing your internal speaker option while a headphone is plugged in.
+
+*
+
+*Griffin iMic
+As long as you don't plug into the Apple port, you can switch amongst the internal and all other output sources using the normal tools (or whatever third party software option you prefer)
+
+A: I use Boot Camp to run Windows 7 on my iMac 27" mid-2011.  When in the Windows mode I have the choice of internal speakers or headphone jack in my audio output, even although I the headphones permanently plugged into the headphone jack.  So Windows have it solved  how come Mac can't - after all it's all the same hardware!
+
+A: You can upgrade to a more recent Mac model. Later Macs that come with the Apple T2 chip treat the headphone jack and the internal speakers as separate devices. For a list of Macs with T2 chip, see the support article “Mac models with the Apple T2 Security Chip.”
+Macs with M1 chip can also use the 3.5mm headphone jack and built-in speakers simultaneously.
+
+
+A: You can change the audio (output and input) directly on the Sounds Preference panel.   There's an output tab that includes a selector for selecting the output.
+
+If you want something a bit more convenient I used a free program called Audio Switcher from Spike Software.  It sits in the task tray and offers quick access to the same settings you see in the Sound Preferences pane.
+
+A: A faster way to do what @rwr suggested is to option click on the audio icon in the menu bar and select Internal Speakers under Output.
+
+
+A: The switch that is used is hardware based, so no way to override it except with an audio USB device, or: bluetooth speakers!

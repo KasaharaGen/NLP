@@ -1,0 +1,46 @@
+Q: How to properly ground a MacBook Pro I have a MacBook Pro 4.1. In the past - from time to time - you could feel a bit of electricity close to the aluminium case when working in AC mode, but now things are getting worse. I can feel the electricity all the time, especially close to the opening button and to the corners. Talking with other MBP users, I have been told that the whole MBP 1.4 series has got this problem and that it is due to the presence of the aluminium case. Is it a known issue? Is there any workaround to properly ground the laptop?
+
+A: I ended up with the solution in this link. You just need to connect 3 ping adapter's earth and the earth pin of the charger.
+
+
+A: Here's a simple fix to this design flaw. Whoever thought of ending the ground circuit at the pin on the transformer, where it connects to the plastic channel on the UK plug adapter needs to be sent on a long holiday. I finally got my Trackpad working (while the charger's plugged into the computer), by ensuring continuity between the transformer's earth pin and the one on the UK wall plug.
+
+
+A: Actually, this problem gets really bad, when you connect a 3.5mm plug from your headphones to your MBP, you can hear the buzz from the electricity, I must unplug the MBP from the electrical outlet to avoid that buzzing sound (which is realy high and loud), I must find a way to ground the laptop, I have found that if I touch it it reduces the amount of buzzing sound, so I will connect a cable from the body to some sort of metal to see if that helps, until i found a longer solution. 
+
+A: tl;dr
+Use the extension cord! It is grounded.
+Apple's grounding madness
+You need your device to be grounded. The charger can be grounded because the metal pin that holds the adapter is (subtly) also the ground:
+
+You need the plug to be grounded too. Obviously a 2 pin/prong plug is not grounded, you'll need one with 3 of them, but even in this case you have to check if the adapter's socket/shoe has metal in it (AKA is connected to the ground), because you can't take that granted at Apple! Just check out this picture from this article:
+
+This is a 3 prong UK plug that has a grounding prong, but they haven't connected it! Fortunately at the extension cord there is a connection. You have to carry that extra 1.8 meter of cable tho...
+So at Apple, the rule of thumb is that if it is an extension cord, then the socket is connected to the ground pin so it is probably grounded, if it is the small adapter, then there is no connection in the socket so no grounding for you:
+
+The left picture from this answer shows the difference. The metal is more visible in the magnified picture on the right.
+Hacky solution
+Technically you could hack the not grounded 3 prong UK (Type G) adapter (that I mentioned before) to connect the ground prong to the grounding pin as shown in this tutorial. Of course, unless you want to use it with a Type G socket instead of the many other types, you will need to use another (grounded!) adapter to convert it to your desired (grounded!) wall socket.
+
+A: Your specific mac only grounds itself through the magsafe connector if you are using a grounded plug. In the US, standard power means the "duck head" two prong connector is ungrounded. (Or unearthed to some) Use a three conductor plug to ground the device and check your MagSafe pins to be sure they extend fully and mate correctly with the Mac.
+The adapter article from Apple has some good tips and a nice picture.
+
+You shouldn't be able to feel any tingle due to you being better grounded than the mac if your outlet is properly grounded.
+You'll have to check with an electrician or take your mac to another outlet that is known to be properly grounded if you are already grounding it through the wall if you still feel the tingle with a grounded cord.
+This sort of ground current drives me nuts (even though it's normally totally safe). I have on occasion intentionally grounded one of the plastic feet with foil when I am waiting for the electrician to fix an outlet or I am working in a location where I can't get a proper ground.
+
+A: Well I have just experienced this tingle on my Macbook Pro with the magsafe 85w power supply and the 3 pin plug lead with a UK 3 pin plug.  
+I could not believe that Apple would not earth the machine via the magsafe adapter, so I detached the power lead from the 85w power supply block and took a look how they earth it.  The power supply block has a 2 pin connection for live and neutral and the earth connects via the 10mm dia stainless steel stud that the plug lead [or the plug with no lead] slips over to lock it onto the block.  Then I saw the problem! On the end of the 10mm stud, the manufacturer had put a 12mm disk of protective plastic [the peal-off film type that you often find on say a new phone screen]. So in their efforts to keep the stud looking shiny and polished, they insulated it from electrical connection, that is they insulated the EARTH STUD !!  Just peal it off, plug it back together and [unsurprisingly] there is no more tingle from the alloy case.  
+
+A: I accidentally solved this problem by connecting my macbook pro to an external monitor(using USB type to VGA adapter and connected monitor via VGA cable). Since the monitor is using 3 pin power connector for power supply, so indirectly my macbook also got earthed. I tested this using electrical tester pen screwdriver and it shows zero current on macbook body if the setup is connected. Also, i don't feel the current anymore even if I touch the macbook bare foot.
+
+A: Use the extension cable that comes with the magsafe as that has an earth connection to the 10mm stud which is not present on the non extended plug block
+
+A: To add to this: if you buy 3rd party power supplies to replace genuine they often do not have an earth* (the stub which the cable slides onto is plastic, but the Americans barely use earth on the American model of this laptop, and seem to survive.
+*AKA 'ground' 
+
+A: The same problem is now evident with the new MacBook Air.  I called Apple and they admit there is a lack of earthing/grounding when the UK 3 pin plug connector is in use. Apple quote a UL and IEC approval which says that no earthing is required where the amperage induced is negligible.  While I'm not suggesting that the levels of current are harmful they are intensely irritating requiring me to stop working, lick my finger and touch the metal case.  This WAS NOT the case on my old Air book. 
+
+A: There is no protective plastic On the end of the 10mm stud with any of the 2013 models. So what you are saying, Paul Churchill, is incorrect. The problem with electrical current flowing through all the MacBooks can not be fixed. Only Apple can fix it, but they don't want to fix it.
+Of course it is unhealthy & unnatural when an external electrical current flows through your body, no matter how small. It messes up your whole electrical system in your body. All nerve signals, all organ and all functions in general in your body function through the bodies own electrical current system.
+I have noticed it too, and will return all my Apple products that conduct electrical current. So please watch out if you care about your health and don't want to get seriously sick in the long run.

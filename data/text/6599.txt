@@ -1,0 +1,25 @@
+Q: Lion Terminal remembers sudo password after quitting I've been using Lion since its release, and I noticed today, for the first time, that Terminal did not prompt me for a password when I typed in a sudo command, if I close and reopen Terminal within the five-minute window, but wait longer than five minutes after reopening the application to enter another sudo command.
+Is it being cached somewhere as a result of Lion's new "remember the state of the application" feature? Can I turn off this setting? It seems rather insecure.
+I've also tried using the Command + Option + Q combination, as well as exiting Terminal before quitting the application, to no avail (also within the five minute timeout window).
+For the record, I don't recall seeing this behaviour before I updated to 10.7.1, but I may be wrong.
+Can anyone else replicate this for me and confirm my suspicion, before I log a bug with Apple?
+
+EDIT: Apparently my question isn't clear. I want to know if this is normal, or a bug:
+
+
+*
+
+*Issue sudo command. I am prompted for a password.
+
+*Close Terminal before sudo timeout takes effect (within five minutes).
+
+*Open Terminal again, and wait more than five minutes before issuing sudo again.
+
+*Issue sudo command. I am not prompted for a password.
+
+A: This is normal, and an inherent consequence of the way sudo handles its 5-minute don't-need-to-reauthenticate window.  When you authenticate to sudo, it records your account as having authenticated.  Because the authentication is tied to your account (not a Terminal session or something like that), it's still valid if you quit & reopen Terminal, log out & back in, or even switch to a different session type (e.g. console login vs. SSH session vs. cron job running as your user ID, etc). I'm not certain offhand if it survives a reboot -- if not, it's because there's a step in the system startup process that wipes the timestamp files.
+BTW, you can clear your own timestamp file with sudo -K.
+
+A: By default, sudo retains authentication state for 5 minutes (this is not new to Lion). This default timeout can be controlled with the timestamp_timeout setting in /etc/sudoers (use visudo to edit). See man 5 sudoers for more.
+It can also be reset individually by removing the timestamp directory for the user, e.g. sudo rmdir /var/db/sudo/username
+This is not related to the application state feature introduced in Lion (controllable via System Preferences -> General -> Restore windows when quitting and re-opening apps).

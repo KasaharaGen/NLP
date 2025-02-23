@@ -1,0 +1,14 @@
+Q: Use multiple speakers to play 2 ch audio My macbook pro has 2 built in speakers and a line-out for audio.
+Additionally, I have it connected to my cinema display wich also has 2 speakers.
+I want to know how to combine them to use all of them to play my musics so it does't just come from a single output.
+
+A: Audio MIDI Setup to the rescue!
+Open Audio MIDI Setup which is located in Applications > Utilities.
+Click the + icon in the bottom-left hand side and choose Create Multi-Output Device.
+
+When the multi-output device is selected, click the Built-In Output, and the Cinema Display's output audio devices.
+After this is done, open System Preferences and click the Sound category. Under the Output tab, choose the Multi-Output device.
+Any applications that were open when you started this process may have to be restarted in order to pick up the change in default sound devices. Some do, some don't.
+I do believe that should do it.
+
+A: I'm not sure but you can try JackAudio. It's powerful multi-sources input/output mixer.

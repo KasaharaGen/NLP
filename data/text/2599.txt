@@ -1,0 +1,10 @@
+Q: How do I get the latest drivers for boot camp and windows 7 I have read the setup guide, but what is either not clear or I just missed, is how the updated drivers that I download via the apple update get to my windows partition.  All I read is that I have to have the original Mac OSX DVD and that I get the drivers from that.
+I know that my Mac is up to date and I have both my windows 7 ultimate and OSX 10.6 DVD in hand and USB keyboard and mouse.  The partitioning is proceeding as advertised.  But I am skeptical of what should happen next. 
+How do get the latest apple drivers.
+(mac mini 4gb from 02/2010)
+
+A: Ralph - drivers are on the OS X DVD.  So once the OS is installed, boot into it and if you need drivers, you can point your OS to the OS X DVD.  Win 7 however, does a lot better with drivers than XP - I would think it will auto-update as needed.  You will have fewer problems than it seems you're currently expecting;  don't sweat it.  :-)
+
+A: Snow Leopard was released to retail before Windows 7. It didn't come with Windows 7 support on the DVD.
+Apple don't give very detailed descriptions of their updates, but I'm guessing they are recommending 3.1 before attempting to install Windows 7 because of something other than drivers. Perhaps something to do with the partitioning or the boot loader side of things. One difference I'm aware of is that Windows 7 creates two partitions by default where previous versions only created one.
+To answer the original question, once you are in Windows you insert the Snow Leopard DVD and Windows will launch the setup.exe from the DVD. This will install the drivers and Apple Software Update, and create a Scheduled Task in Windows to launch Apple Software Update once a week to check for updated drivers.

@@ -1,0 +1,102 @@
+Q: Time Machine: "Enter Time Machine" menu command does not do anything I have Time Machine running on an external hard drive and it reports happily that it is doing backups and I have no reason to doubt it.
+But when I try to look at the backups by clicking "Enter Time Machine" nothing at all happens. No noises from the disk as far as I can tell. Nothing. And when I locate the "Time Machine" app in the Applications folder and run that, again, nothing happens...
+Do you have any idea what is up or what I need to do?
+
+A: By the way, I solved this:
+THe external drive contained an existing backup to the same computer called *.sparsebundle. Those are only made when a drive is being accessed by Time Machine over the network. It was there from before I moved it to attach directly through USB.
+TM was able to access that sparse bundle without errors and update the backups there which is why my backups were running correctly.
+However for whatever reason, when I try to enter TM to see the backups it did "nothing". No messages, windows, or errors of any kind, including in the system logs.
+The solution was to delete that sparse bundle and do a new backup with the drive directly connected via USB. This created a folder called *.backudb as expected, and now I can do backups there and I can see the backups by entering time machine (taking me to the time travel window.)
+Ouch. I say the fact that this happened without any error message is a time machine bug although probably not many people hit it. At least give an error, but better, just work with the .sparsebundle, why not?
+Remark: you can still access the backup data by opening the backup via the Finder. This doesn't give you the fancy star spangled background, but you can at least access your files.
+
+A: I had a similar issue where Timemachine backups were getting done successfully on my networkdrive, but "Enter Time Machine" was not working.
+After several backups deleted, what finally worked was to install all pending Software Updates and it worked!!
+
+A: A better workaround than pitosalas's answer of creating new backups is to use a symlink in the existing sparsebundle.
+
+
+*
+
+*Connect the USB Drive
+
+*Mount the Time Machine Sparsebundle by
+clicking on it or using diskutil
+
+*cd /Volumes/USBDrive/
+
+*ln -s ../TimeMachineSparseBundleDrive/Backups.backupdb
+Voila! It requires you to manually mount the sparsebundle disk each time before using GUI Time Machine, but it works.
+
+A: I had this very same problem, but it transpired to be an access permissions issue.
+Situation:
+Timemachine backups to a ReadyNAS Duo connected to the router.
+System backing up without any problems.
+Only one user account (admin).
+Clicked on 'Enter Time Machine' or the Time Machine App logo to view the backups content and nothing happened (exactly the same as initial problem stated above).
+I could see the a HardDisk image on the desktop called "Time Machine Backups" - contained only one folder "backups.backupdb" (nothing referring to 'sparsebundle'). Inside the backup folder was a single folder with the namce of the (only) user account.
+This had a 'no entry' symbol.
+Solution:
+RH click on folder with no entry symbol. Get Info. Sharing and Permissions (at the bottom). Click padlock to edit. Plus symbol - add the User account. Change privilege to 'Read & Write'.
+DONE.
+After this, 'Enter Time Machine' opened the TM visualiser as normal. Panic over.
+
+A: I just had the same issue in 10.11 El Capitan: "Enter Time Machine" did nothing, and nothing relevant showed in Console.app.
+I relaunched Finder (Apple menu > Force Quit > scroll to Finder and choose Relaunch) and the issue was then resolved.
+This surprised me, given that the relevant app is /Applications/Time Machine.app, not Finder.  But it seems likely that Finder is actually responsible for the Time Machine display of the historic files: if I "Enter Time Machine", then check with ps or Activity Monitor via remote log in, I see no Time Machine process.  So perhaps /Applications/Time Machine.app simply tells Finder to start the display, then exits.
+
+A: I was having the exact same problem in Capitan as well.  My screen would try and go to time machine but would give up and revert to the original screen.  Found a hint on another forum and apparently, it could be related to a dual screen.  When I unplugged my Thunderbolt display and tried it from my laptop alone, it worked fine.  Hope that helps some of the people!
+
+A: AJ Slater's answer did it for me.  Mine is a kind of strange setup of an NTFS external drive with a sparsebundle image.  In this case I had to open the sparsebundle image and link to the .backupdb directory like this:
+cd /Volumens/NTFS_EXT_DISK
+ln -s /Volumes/TM-backup-of-javiers-MacBook-Air/Backups.backupdb .
+
+The TM-backup-of-javiers-MacBook-Air is the sparsebundle that is on the root directory of my NTFS drive and that I had to previously mount in order to do the linking.
+After that I entered the precious star field of TimeMachine.
+
+A: Just for the completeness seck , I would like to add this answer here. 
+I had a 500GB 2nd generation TC and i recently upgraded to 4th Gen 2TB TC . 
+Coincidentally i gave exactly same name to new capsule along with its new Hard drive as that of the older one. Then( i mistakenly ) added their passwords to my keychain.. VIOLA.. 
+I had intermittently been able to either back up and get into time machine mode. Some times it used to get stuck in the while trying to find a backup drive.
+I fixed it with : 
+
+
+*
+
+*first removing all the entries form my keychain.
+
+*Re-selecting the backup drive from time machine preferences. 
+
+*Re-adding the "remote Drive mouting" from my Preferences->Users & Groups -> Login Items
+
+
+A: I found that simply turning off Time Machine in System Preferences and then turning it back on again worked.  :-)
+
+A: I tried the easiest thing first to solve this problem successfully, following one post above and proceeding as follows:
+
+
+*
+
+*Open Apple Preferences.
+
+*Open Time Machine.
+
+*Enter pass code to be able to uncheck "backup automatically" and "show Time Machine in menu bar"
+
+*Reboot machine.
+
+*Go back to the Apple Preference and recheck the items previously unchecked.
+
+
+At this point, the Time Machine icon on the bottom toolbar began to work for entering Time Machine to access backups. 
+
+A: I saw a comment saying that multiple monitors prevented TimeMachine from launching.  I was using VNC to remote into the computer, and it was apparently preventing it.  Which is odd, but I swear I've used Apple Remote Desktop in the past with TimeMachine.  Anyhow, I went to the computer locally, and TimeMachine worked fine.
+
+A: Nothing here worked for me, but I tried killing timed, and suddenly "Enter Time Machine" from the menu worked.
+I actually did it using Alfred and an extension, but you can do it using Terminal.app or iTerm2.app, and typing
+pkill timed
+
+
+A: You should enable local storage by Time Machine. Just run the following command in Terminal:
+sudo tmutil enablelocal
+

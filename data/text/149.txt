@@ -1,0 +1,72 @@
+Q: How Can I Search A Specific Type of File in Mac? Is there any way to search a specific type of file using Spotlight? I remember there was a special command or something that I had to put in front of the search phrase but I cannot remember it now. 
+For example, if I want to search only PDFs for a particular phrase in Spotlight, what would I do?
+
+A: Search by Kind One of the most useful ways to narrow down a search is by using the kind: keyword. This allows you to restrict your list of results to a certain file format. For instance, if you type time machine kind:pdf, Spotlight will pull up only PDF files containing the words "time" and "machine". You can also limit your search to e-mail messages, music files, System Preferences, applications, and more.
+While the original Spotlight recognized only a limited number of file types, the Leopard version can look for files created by specific applications, as well as certain file formats. Searching for kind:mp3 or kind:tiff will find files in one of those formats, and searching for kind:pages or kind:powerpoint will show only documents created in one of those programs. For a list of useful keywords, see “My Kind of Keyword.” But remember, for the keywords to work, you must have the appropriate categories enabled in Spotlight’s preferences.
+you can get more info here or here.
+
+
+A: It's already been answered, but here's my 2 cents. 
+Via Bash through the terminal
+find ~ -type f -name '*pdf'
+or
+find ~ -iname '*pdf'
+(or, if you want to ignore error messages, find ~ -type f -name '*pdf' 2>/dev/null)
+or you can use this to search for a string in a file:
+find ~ -iname '*txt' | xargs grep 'string you want'
+This may not return anything on a pdf, but it will work on most other file types (text, php, py, html, etc).
+
+A: mdimport -A 
+
+will give you every possible attribute available on your system
+kMDItemKind is the attribute for files, but perhaps the above will suggest a better attribute to search on. 
+Then 
+mdfind "kMDItemKind == 'whatever'"
+
+The syntax might make you shout out in disgust.  I can personally attest that it ruins zsh completion.  Still, Spotlight ( that's what this is ) indexes your stuff all the time anyway, and it's fast.  Might as well use it.  YMMV
+
+A: To the best of my knowledge it's not possible via spotlight (tested on Mojave and Monterey). You can only use finder:
+
+*
+
+*Start a search with Command+F.
+
+*Click on the '+' icon on the far side of the taskbar
+
+*Select the type from the 'kind' pull-down menu. Select 'other' and then find 'File extension'
+
+Enter your desired file extension and hit enter.
+
+A: *
+
+*Open a Find Window (cmd-f) or do a spotlight search and select "show all"
+
+*Hit the little "+" icon (to the right of the 'save' button)
+
+*Select File Type as a search criteria and select the correct one.
+
+*Rerun the search.
+
+
+(Disclaimer, I'm not on a Mac right now :( so my exact instructions might be a little off).
+
+A: The question "How to use Regex with spotlight" is marked as a duplicate of this for some reason, so I thought I would share how to do wildcard searching.
+You can do wildcard searching in the Finder using a Kind of "Raw Query" with the kMDItemDisplayName attribute:
+
+Raw Queries are essentially what you use with the mdfind command. I have more details on Raw Queries and using them in the GUI at https://superuser.com/a/491119/66255.
+
+A: You can do it with Spotlight too.
+
+
+*
+
+*Press Command + Space bar.
+
+*Type period (.) followed by the extension of the file. E.g. for PDF files, type '.pdf'.
+
+*Select the 'Show all in Finder...' in the drop-down results.
+This helps you even find the file types that are not listed in the Finder menu.
+
+A: We can narrow down the search by using kind:.
+So, if you want to search only PDFs, you can type kind:pdf.
+And sometimes, we don't need to type entire kind, two or three letters may be enough. For example, we can type kind:pd, it will also show PDFs.

@@ -1,0 +1,26 @@
+Q: External HD doesn't mount when USB plugged in (Lion) I have an external USB hard drive I use for backing up my MacBook (running the latest Lion).  FWIW, it's a Western Digital internal 3.5" SATA drive in an Antec HD enclosure.  Anyway, of course every so often I have to unplug it so that I can take my MacBook places, so I eject the drive as usual and everything's cool.
+But when I plug the drive back in, it doesn't mount.  If I plug it in and then power-cycle the drive itself, then it mounts just fine, but due to how my office is laid out, this is inconvenient.  And, too, I shouldn't have to power-cycle the drive, right?  I should be able just to plug it in and have the MacBook recognize it, no?
+So: what's going on and how can I fix it?
+Thanks in advance for any and all help.
+
+A: There is a workaround, sometimes the drive will detect but not mount. If you open Disk Utility it should be listed on the sidebar and you can manually mount it from there.
+This doesn't resolve the underlying issue of why OS X hasn't automounted, but if you check in the system logs when you plug it in you might get a clue towards that.
+
+A: The requirement to power the drive enclosure off, then (quickly) on, suggests to me that: 
+
+
+*
+
+*the drive does not spin up in good time
+
+*maybe the extra power required, for a timely spin up, is insufficient or too short. 
+
+
+If it were a LaCie drive, I would say try a new power supply. 
+
+Also, adapted from my answer about a random connection issue: 
+If the file system is dirty at time of connection of the disk, then the operating system will run fsck_hfs until (hopefully) repairs seem to succeed. During this period the volume will be not mounted, and the OS presents no alert. 
+(An alert appears only if, for example, repairs are unsuccessful.)
+For a file system that includes backups written by Time Machine: if repairs are necessary, fsck_hfs may take an extraordinarily long time. 
+With Console you can browse
+/var/log/fsck_hfs.log

@@ -1,0 +1,33 @@
+Q: Unable to mount an NFS share I'm trying to access my (Synology) NAS share through NFS and always get the same issue.  
+First, I activated NFS support in my NAS:
+
+Then I set the permissions on the NAS:
+
+My MBP has the IP 192.168.1.109.
+From there it seems OK. a showmount -e 192.168.1.2 shows the list:
+
+Exports list on 192.168.1.2:
+/volume1/video                      192.168.1.109
+/volume1/homes                      192.168.1.109
+
+But unfortunately, my mount always fails:
+
+GroundControl:/ ludo$ sudo mount -t nfs -o rw 192.168.1.2:/volume1/homes /Volumes/home
+mount_nfs: can't mount /volume1/homes from 192.168.1.2 onto /Volumes/home: Operation not permitted
+
+The /Volume/home directory is created upfront.
+Trying with a non-existing share on the NAS, for example /volume1/qwerty gives a Permission denied error, which is OK.
+But what is this Operation not permitted error?
+Trying through DiskUtils>NFS Mounts gives the same result.
+What did I miss?
+
+A: Or just use the "resvport" option with the mount command.
+mount -o resvport nasbox.local.com:/try /mnt
+
+
+A: Finally found the solution in an old forum thread.  
+
+My solution was to mount with "-P" to force the use of a reserved port number, as described in mount_nfs(8) page. 
+
+The solution is then to use the -P option to the mount command.
+Now works like a charm (but doesn't fix my initial issue!)

@@ -1,0 +1,13 @@
+Q: How to diagnose an unknown apache setup? I've been using mamp for a while now and everything has been working great. Then today I go to start it up and mamp alert tells me that apache is already running on that port and to pick another one. So without starting mamp, I type in local host in the web browser - my usual way to get to the sites that I'm developing - and a page pops up and it reads IT WORKS!, which tells me that I have an index.php file somewhere on my computer that echos It works!. But mamp is not running and I can't find this stupid it works file anywhere. Is there any way to diagnose this and perhaps kill this apache server so that I can start mamp back up without switching my ports?
+
+A: You can use lsof to find out which processes are listening on which ports.
+For example:
+lsof -Pnl +M -i4 | grep ":80"
+
+(assuming the process is running on port 80)
+You can then use ps to figure out the name of the process for that processID:
+ps -p <pid>
+
+
+A: If mamp is the only server you're running locally, you might want to try opening activity monitor, look for all running myslqld processes and quit them, then restart Mamp
+or, as asked, through the terminal: killall -9 mysqld

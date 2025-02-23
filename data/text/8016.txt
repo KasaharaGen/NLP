@@ -1,0 +1,75 @@
+Q: Why is the text-to-speech hotkey not working? For some reason, my text to speech isn't working. I don't know why it stopped working. It works when I manually click it, but when using the default hotkey alt+esc, it doesn't do anything.
+I have no idea what happened. How can I fix this? I tried changing hotkeys, but the problem persists.
+
+A: I have found a solution that worked for me without restarting (although restarting worked before when this happened)
+My problem was that both the Hot Key or the contextual menu Right-Click -> Speech -> Start Speaking did not work within any application like Chrome and Text Edit
+When I went to System Preferences -> Accessibility -> Speech -> Play the button toggled to Stop as if playing but I heard no audio.
+My Solution: I switched my default voice from Heather Infovox iVox HQ to Samantha then pressed the Play button. 
+I got audio. 
+Then I switched back to Heather and both Hot Key and contextual menu Right-Click -> Speech -> Start Speaking worked without quitting any apps or restarting my computer.
+
+A: I found that these steps worked for me and prevented a reboot.
+
+
+*
+
+*Go into System Preferences and open Sound
+
+*Select the Output tab.
+
+*Switch to a different output than you are currently using.
+
+*Switch back to Internal Speakers, Headphones, or whatever you typically use.
+
+*Return to Accessibility, Speech and test using the Play button.
+
+
+These steps worked for me and I'm assuming it might have to do with an application I have installed called Loopback that allows me to record internal audio.  Hope this helps someone else out there that might be experiencing the same issue.
+
+A: Sometimes you just need to reboot your machine. Mine sometimes just stops working. A reboot takes care of it.
+
+A: I had a problem using speech with the Preview app. Turns out something went screwy after adding annotations to the specific document I was looking at and all I had to do was revert it.
+
+A: I have also experience this problem. 
+I have found today that shutting Google Chrome and restarting it cures the problem.
+Update. This happened again & restarting google chrome did not fix it.
+I ended up closing all my open programs & finder windows & restarting finder then it worked again.  I will update this again next time it fails & try to identify the specific action that fixes it or causes it. 
+I have a hunch it may be connected with System Preferences, finder windows or Monitor.
+
+A: Thanks geekinit! I used your idea but in less steps.
+
+
+*
+
+*Hold option and click the speaker(sound/Volume) icon on the top menu bar
+
+*Change to different output device
+
+*Use same technique to switch back to internal speakers or headphones (etc...) 
+
+
+This fixed the problem for me without having to go into system preferences.
+
+A: Maybe try deleting
+~/Library/Preferences/com.apple.symbolichotkeys.plist
+
+Make a copy of it first in case it goes bad. Also, just be careful because it will remove your shortcuts.
+
+A: For me, the fix was: 
+
+
+*
+
+*go to System Preferences -> Accessibility -> Speech
+
+*change System Voice to something other than what is currently used, such as Samantha. Test it by clicking Play. 
+
+*for me, if I select some text and press the keyboard shortcut (option+esc), it works now. 
+
+*switch back to the voice you want, such as Alex. It still works with the keyboard shortcut. 
+
+
+So by toggling the voice, it reset something which made the bug goes away. 
+
+A: For me, Console showed this error when I tried alt + esc: NSSpeechSynthesizer: [NSSpeechSynthesizer _setObject:forProperty:usingDataSize:] - Error -50
+So to fix, I went to Activity Monitor, searched for speech, and Force Quit matching processes: corespeechd, com.apple.speech.speechsynthesisd, and Speech Synthesis Server. The subsequent restart of one or more of those did the trick.

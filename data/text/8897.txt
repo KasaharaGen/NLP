@@ -1,0 +1,30 @@
+Q: How do I use arguments together with bash aliases Today, I learned the very handy trick:
+
+man [some command] -t | open -f -a Preview
+
+I'd like to create an alias in my .bash_profile file as a shortcut. In order for this to work, I need to pass an argument into the aliased command. A little poking around and I came up with this:
+
+alias manp="man $1 -t | open -f -a Preview"
+
+This almost works, but if I type in, say "manp ls", it seems to be expecting the ls manpage to be in whatever my current directory is.
+
+A: You can't pass arguments to aliases. Aliases are just text substitutions without further logic. 
+But you can use shell functions to achieve the same result:
+function pman() {
+    if [ -x /usr/bin/open ]; then
+        man -t "$1" | open -f -a Preview
+    else
+        man "$1"
+    fi
+}
+
+The if-then-else part is there just to make sure it also works on non-OSX systems.
+To define a function, just include the definition from above into your ~/.bash_profile. Usage is identical to aliases or any other command: pman ls.
+As @stuffe pointed out in a comment keeping aliases/functions in a separate file has its advantages (especially it allows you to re-read your aliases/functions into the current shell without executing any setup stuff from .bashrc or .bash_profile). To do this, create a separate file called .alias, .functions or similar and add
+test -e ~/.alias && . ~/.alias
+
+to .bashrc or .bash_profile.
+
+A: I like @patrix's solution, but I just wanted to give another example, cut from my OSX's .bash_profile file, which in this case is setting TextWrangler to open a file that I pass as a parameter:
+function tw() { /usr/bin/open -a /Applications/TextWrangler.app "$1" ;}
+I wanted to be able to more easily edit my .bash_profile :-)

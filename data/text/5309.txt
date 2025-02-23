@@ -1,0 +1,58 @@
+Q: How can I resize a partition with Disk Utility? I have 2 partitions, I reduced the size of one and want to expand the other to fill the now available space. 
+How do I expand the Lion Partition into the empty grey space beneath Macintosh HD partition?
+
+
+A: I had the same problem too.  I had upgraded Snow Leopard to Lion, but then found out some of my apps would not run in Lion.  So i created another partition and installed Snow Leopard on it so I could dual boot between Lion and Snow Leopard.  The problem was that I didn't leave enough room on my Lion partition to work with some video editing I was doing.  So I tried to enlarge my Lion partition and reduce my Snow Leopar partition but had no success.
+I thought that if I deleted my Snow Leopard partition that I would be able to resize my Lion partition to use the entire drive.  That didn't work.
+So I tried to boot from the Lion Recovery Partition, but when I tried to apply the changes of resizing my Lion partition it would fail withe a message that it couldn't unmount the drive.
+But here is what I did that FINALLY worked (and this was while booted into my normal Lion partition):
+- Enter the following command into Terminal
+defaults write com.apple.DiskUtility DUDebugMenuEnabled 1
+
+- Open Disk Utility
+
+- Now there is a DEBUG menu at the top.  Go DEBUG and select SHOW EVERY PARTITION
+
+- Now you will see the RECOVERY HD partition under your LION partition.
+
+- Select the RECOVERY HD partition and click MOUNT at the top
+
+- Now you can expand your LION partition
+
+My guess is that since Disk Utility couldn't see the hidden recovery partition and since that partition is physically AFTER the Lion partition it could not resize.  But by mounting the hidden Recover Partition, then Disk Utility was able to move the Recovery Partition and expand the Lion partition.
+Now I just need to create a partian to reinstall snow leopard into ( I will make it smaller this time so I have more room on my Lion partition).
+Hope this helps.
+And here's a link to the article I used to find out how to show the hidden partion:
+Here
+
+A: You can't change where each partition starts (i.e. where the top of it is in the partition diagram), only where it ends.  But in your case, since you have a free block as large as the partition you want to change, you can work around it (warning, this is untested under Lion, so make sure you have a good backup first):
+
+
+*
+
+*Create a new volume in the blank space between your two existing partitions. Give it a distinctive name (you won't want to mix it up with either of your current partitions).
+
+*Boot from the Lion restore partition (boot with the option key held down, and select Recovery HD from the icon list and then click on the arrow under it).
+
+*Run Disk Utility.
+
+*Select one of the volumes in the sidebar, then the Restore tab on the right.
+
+*Drag Lion Partition into the Source field, and the new blank partition into the Destination field. Do not get them backwards!
+
+*Click Restore, and wait for it to clone the partition's contents.
+
+*Quit Disk Utility, then choose Startup Disk from the Apple menu.
+
+*Select the new partition (it may be difficult to tell it from the original, as they're now both named "Lion Partition").
+
+*Reboot, and verify that everything is working right before proceeding.
+
+*Run Disk Utility, delete the original Lion Partition and expand the new one into the newly freed space.
+
+
+A: Tried this out and it worked... almost.  Only glitch is that the Lion Recovery Partition (Hidden) which gets copied to the new Lion partition is still on the original Lion Partition.  As a result, Disk Utility will not delete the old Lion partition and you can't merge it with the new one.  I found a solution on OSXdaily.
+http://osxdaily.com/2011/06/30/deleting-the-mac-os-x-10-7-lion-recovery-hd-partition/
+You have to use diskutil from the terminal window to remove the old Recovery partition.  Then you can go back into the GUI for disk utility and merge the old with the new to recapture the space.
+
+A: If any of you happen to have had a Bootcamp partition and some unpartitioned space, you can use the Bootcamp assistant to delete the Windows partition and it will automatically expand your OSX partition to fill up all of the space on your drive, effectively getting rid of the unpartitioned space. I tried simply expanding my OSX partition as described above but with no luck. 

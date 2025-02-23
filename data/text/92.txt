@@ -1,0 +1,48 @@
+Q: Prevent iTunes from resetting my music library location My iTunes library is located on an network drive, or rather, the music is, and my library file is located on my MacBook.
+
+
+*
+
+*Library file: /Users/glenn/Music/iTunes/iTunes Library
+
+*Music: /Volumes/MyVolume/Music
+But every now and then when I use the laptop somewhere outside my WiFi network, and then come back, fire up iTunes and play a song  I get a library full of those pesky little exclamation point icons next to my songs. This is because iTunes have guessed that "Oh, he's not at home, let's reset the music files location to /Users/glenn/Music/iTunes." And there are no music there.
+How can I prevent iTunes from doing this "smart" guess, and just leave the setting alone?
+PS. And MyVolume is auto-mounted on my laptop. But of course, if iTunes is running when opening up the lid of the MacBook, it takes some time for it to mount, and iTunes won't find the path to the music at first.
+
+A: You can make "iTunes Music" an alias to your music folder on your network drive. That should keep iTunes' smartness at bay.
+
+A: Finally figured out how to get around this myself. My solution is to have two separate libraries, one local and one on my drive. I created a LaunchAgent (see https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html) that runs a script when the mount path to the disk changes (via WatchPaths). The script checks whether the directory /Volumes/drivename exists, and if it does it sets runs a command to tell iTunes to change to the Library on the drive.
+if [ -e "$mountPath" ]
+then
+   defaults write com.apple.iTunes 'alis:1:iTunes Library Location' -data "drive hex path data"
+else
+   defaults write com.apple.iTunes 'alis:1:iTunes Library Location' -data "local hex path data"
+fi
+
+Otherwise it runs the same command with the path to the local library.
+Mac OS does some weird kind of encoding for the hex data path, so I would recommend holding down the option key while starting iTunes, selecting each library, and examine the plist for the path data (note that when you use the defaults command you have to remove the brackets and spaces from the hex data).
+This way, if your drive isn't mounted, iTunes will load a local library and won't mess up your main one. This can be handy for traveling, etc when you just want to use the local library to play stuff on iCloud.
+
+A: Apparently this is a never-ending issue, because by this date I’m running OS 10.13.6 on a 2012 Mac Mini, and I needed Winger’s Answer to figure out a solution for me: not up to coding in the system files. But I DID realize (as he suggested) that if I removed iTunes from the ‘Login Items’ automatic startup list in the Users system Prefs pane, and let the Mac connect to the network drive first (which is an ethernet connected TimeCapsule, which I’m using also for it’s storage volume as extra space, and IS in the Login Items pane), that when iTunes is opened it finds its library right where it left it! Happy iTunes, happy me!
+
+A: What works for me is a combination of the above ... add the shared folder location to:
+system preferences -> users & groups -> login items (in the login name you're using)
+This establishes the network connection automatically upon restart which appears to be the root cause of this.
+Then untick the "reopen windows when logging back in" option when restarting. When the mac next restarts and you log in, the shared folder will automatically be opened (it opens in finder, but you can close it).
+When you open apple music, it remembers what it was set to and you no longer need to reset the location and rescan your files each time.
+I worked this one out because when apple music is opened before the network drive, the music file location reverts back to the default location. But if you close apple music, open the network drive where your music is stored, then re-open apple music it magically reverts back to what you had it set to.
+But if you re-enable the "reopen windows when logging back in" option, it seems that apple music gets launched before the shared folder - so you're back where you started. Although if you typically have a lot of windows open, you could just close and re-open apple music after restarting which should work.
+
+A: Just a thought for your laptop, why don't you share your iTunes library and stream it to your laptop instead of mounting the network drive?
+I'm in the process of setting this up now, I just moved my iTunes library and media files to my Network Attached Storage, which can share with all machines on my home network.
+I was having the same library reset issue as you, so I'll try using an alias in Windows 7 to get around this (thanks @zneak). Nothing scarier than telling iTunes where my 10,000+ song library is and have it show nothing :(
+
+A: I would guess that when the iTunes media directory /Volumes/MyVolume/Music is found to not exist, it resets to the default value of /Users/glenn/Music/iTunes. That is to say, I don't think it matters if the files are there or not (so network mounting is not so much the issue), but that the directory is there and can be browsed.
+So a solution would be to have an empty directory as your iTunes media library directory (which can just be the default), and mount the network share into that directory. This would involve using smbmount rather than the standard Finder-based /Volumes/... mounting. Of course... smbmount doesn't come with OS X, so this solution will require some effort on your part to get smbmount.
+You might be able to achieve the same with symbolic links, though I'm not sure whether iTunes can handle its media library directory being a broken symlink; it might just delete the symlink by forcibly creating the /Users/glenn/Music/iTunes directory on top of it...?
+
+A: The "music location" path only matters if you set itunes to "import media into your local library" and with "automatic library management" activated. With both options disabled, its not of importance. You set the options in the same tab where you set the "music location" path.
+Remember: If you use links or aliases to non existing places (when youre not at your network) you might get into trouble with itunes trying to write stuff there - it might even reset because of this.
+If you add files from a network, with local management off, the network path will be stored inside your library file, no matter what is set as music location. If you are not on your network you will always see the exclamation mark as the files aren't accessible, it makes totally sense. Exclamation mark goes away as soon your network is at reach again.
+I have everything stored on my network, nothing locally and do not have any trouble.

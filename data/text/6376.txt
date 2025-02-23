@@ -1,0 +1,11 @@
+Q: Mapping Home and End of Apple keyboard in VMWare fusion I have mapped the Home and End keys of my apple keyboard to work PC style: Go to the beginning of the line and end respectively. (Using DoubleCommand if that is important, I am aware of other ways of doing this, and open to alternatives if that would solve my problem)
+I use Windows 7 using VMware fusion (primarily for C# development on Visual Studio). When I have this set up (Home = Beginning of line...), I am unable to use this on Windows, when I have not set this up, it works "as expected" on Widows (to beginning of line) but on the Mac, I have the default mac behavior.
+I tried remapping the keys using Vmware preferences, but the Home key is recognized as "Left" for some reason:
+This is what happens when I press the Home key:
+
+Currently I change this setting every time I switch between windows running Windows apps and those running mac apps, but I am finding it more and more frustrating. 
+Is there a way to somehow have both? Meaning some kind of setting that makes Home to go to the beginning of the line on both Windows and Mac apps?
+
+A: KeyMap4MacBook can actually do this. As I told in the question, the problem is Windows and Mac OSX interpret Home and End differently. So what I needed was an app that allowed me to have different mappings for different apps (Windows is in VM Ware or Parallels, which are apps)
+KeyMap4MacBook allows to have different key mappings for the Mac and different ones for VMs / Remote Desktops:
+

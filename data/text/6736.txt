@@ -1,0 +1,99 @@
+Q: Sharing a Bluetooth Keyboard and Mouse sequentially between two Macs I work out of my house where I have two computers: a mid-2010 Macbook Pro (for my day job) and a mid-2010 iMac (personal). During the workday, my iMac acts as a second display for my Macbook Pro via Mini Displayport.
+Currently, I use a USB keyboard and mouse for my work computer and a Bluetooth keyboard and Magic Mouse + Magic Trackpad for use with my personal computer. I'd like to get rid of the wired keyboard and mouse and just use the Bluetooth stuff for both machines (but never simultaneously). 
+Is it possible to easily share the single set of input devices without having to repeatedly break and reestablish the pairing of the input device to the correct computer? I'm not opposed to buying some type of additional hardware to accomplish this, provided it's not prohibitively costly or cumbersome to use or configure.
+It's not clear to me how I would tell the MacBook Pro to leave the devices alone so the iMac can have them for the evening. I want to avoid de-pairing and re-pairing the devices each time I want to shift them back or forth.
+Basically is there software or hardware that works as a Bluetooth KVM switch?
+
+A: As long as both computers are on the same network you may want to consider a software solution like teleport for the keyboard and mouse.
+You'll still need some kind of switch for the display.
+
+A: I just purchased a Logitech K811 Bluetooth keyboard which has the ability to switch between devices.  Add a Logitech T630 Touch Mouse and you are set.
+
+A: I, too, was looking for an answer to this very question. Here is the solution that I came up with:
+
+
+*
+
+*Go to System Preferences -> Bluetooth
+
+*Click 'Advanced'
+
+*Make sure that 'Allow Bluetooth devices to wake this computer' is
+unchecked
+
+*Click 'OK'
+
+
+Now, when I want to switch from my main computer to my MacBook Pro, I put the main computer to sleep and wake up the second one. The bluetooth keyboard and mouse both switch over to the laptop and away I go. When I want to return to the main computer, I put the laptop to sleep and wake the Mac Mini using its power button.
+
+A: I've wrestled with this issue myself - the solution that works for me is to use one of the non-Bluetooth wireless keyboards that has its own USB dongle.  That way, the wireless connection is between the Bluetooth dongle and the keyboard, which is pre-paired at the factory.  As far as the KVM is concerned, it is just a plain USB keyboard.
+
+A: http://www.share-mouse.com/
+FREEWARE and PAID versions
+or 
+Synergy - https://github.com/symless/synergy-core#synergy-core
+FREE and PAID versions
+works on Mac and PC and can share between them both.
+I've been using this solution so I can use my Apple Wireless Keyboard and Magic Mouse on my Mac and PC at the same time.  To switch you just drag your mouse to the edge of the screen and it shows up on the other computer as if it were one big desktop. 
+
+A: I don't have a problem doing the above at all. 
+I have 2 MBPs. One is the latest Retina and the other is a Mid 2011. I have the same Apple Bluetooth Keyboard and Magic Trackpad paired to both and use them both without ever removing the pairing. 
+I simply turn Bluetooth off on the device I'm not using them on, so my solution assumes you have no other need for Bluetooth simultaneously. Both the keyboard and trackpad happily pair with multiple devices. It all works great and I don't need to power cycle the keyboard and Bluetooth . Simply toggling Bluetooth on the MBPs in a proper order works well. Turn off Bluetooth on the current computer you are using them with then turn on Bluetooth on the other. They will connect after a few seconds and you are ready to rock!
+
+A: The trouble is with the devices, the Apple mouse and the keyboard in your case. They don't pair with more than one BlueTooth host at a time. You need a BlueTooth host that's "central" to both Macs if you want to use them.
+You can find KVM switches that have BlueTooth host receivers in them. For example, the Zonet KVM3322W (dead link) worked over USB and provided BlueTooth receiver capabilities. I cannot attest to how well that would work. Presumably you'd pair the keyboard and mouse with the BlueTooth receiver in the KVM instead of in either Mac and then using the keyboard shortcuts, switch between control of the Macs who are connected to the KVM via USB. How the Macs would respond to the BlueTooth receiver in the KVM coming and going as you switched between them is unclear to me. Could be they handle it just fine.
+The other option is to seek out BlueTooth accessories that allow themselves to be paired with more than one host. And then switch between those hosts from hardware keys on them. For example, this keyboard+trackpad combo from IOGear supports switching between 6 BlueTooth hosts. So you'd pair it with both Macs and the use the keyboard switches to decide which one you were talking to at any point in time. That, to me, seems like the more reliable approach. Of course: now you're stuck using IOGear's keyboard instead of the Apple peripherals.
+
+A: My recommendation is to not switch.
+The problem with any switching solution, hardware or software is there is a lag between 5 and 10 seconds.  So if your intending on switching back and forth quickly between platforms you may not be satisfied with the time requirement to switch back and forth.  
+I have a IO gear hardware switch for the past 3 years and it takes about 5 seconds each time to switch back and forth with the mouse and keyboard.  So I have a wired keyboard for when I need to switch back and forth quickly for pits and pieces of what I'm working on.  
+
+A: There's VirtualKVM software solution by Duane Fields, which perfectly suites your needs. There're two main problems with Target Display Mode:
+
+
+*
+
+*you've to manually press Cmd+F2 each time
+
+*you should don't forget to disable Bluetooth just before, otherwise keyboard and mouse will not be paired with the MacBook
+
+
+VirtualKVM solves this problems. Here's your steps:
+
+
+*
+
+*Download the app to the both iMac and MacBook, install and run it.
+
+*Simply connect the MacBook to the iMac with a Thunderbolt cable.
+
+
+*
+
+*The app presses Cmd+F2 for you.
+
+*It disables Bluetooth on the iMac and enables on the MacBook.
+
+
+*Now you can pair keyboard and mouse with the MacBook, if you didn't do it before. If you did, they're connected automatically.
+
+
+So that's it. Now you can use the iMac as a display with keyboard and mouse connected to the MacBook. When you've done, just disconnect the cable and the app will return everything as it was (disable/enable Bluetooth, press Cmd+F2). Please note, that the app will disable Bluetooth on the MacBook, otherwise keyboard and mouse can't be connected back to the iMac. If you need Bluetooth enabled on the both devices, you've to switch it on manually.
+Configuration of the app is quite simple, you can see everything on the pictures below. Host Mode is for an iMac, Client Mode is for a MacBook. The app chooses the mode automatically.
+ 
+I personally use this software everyday and it saves me a lot of time and nerves. With this app I don't have to do a routine work and it makes me happy. I wish you the same.
+
+A: I'm able to do a quick switchover by momentarily connecting the mouse (or keyboard) to the new computer via a lightning cable.  Just connect the device like you're going to charge it, disconnect the cable, and the device connects to the computer.
+
+A: You can use the GKMB01 Bluetooth Desktop Dock from IOGEAR to do this job if you are not physically moving the keyboard away from the area.  The GKMB01 connects between one computer and your USB keyboard/mouse, then switches the keyboard and mouse function between the hard wired computer and two additional Bluetooth devices such as your iMac with a quick double tap of the OPT key.
+http://www.iogear.com/product/GKMB01/
+Disclaimer: I am posting on behalf of IOGEAR since they do have a direct solution available.
+
+A: I have built a little open source project which allows to connect you wired and wireless HID keyboards and mice to Raspberry Pi Zero W (~$10/£10) which then presents itself as a bluetooth keyboard+mouse device to you machines and channels input to an active host. you can switch an active host with a key combination. supports key remapping. Python implementation, easy to customise.
+Bluetooth HID Hub (https://github.com/ruundii/bthidhub).
+
+A: I have the same issue, using a new MacBook with an old (mid 2010) iMac as a screen, mirrored.
+I couldn't get VirtualKVM to work. Followed the instructions above, installed fine, used up to date version, but when I plugged in the thunderbolt cable and it mirrored automatically, the iMac never gave up the keyboard and mouse Bluetooth connection.
+You can't turn Bluetooth off on the iMac, because it wants the keyboard and mouse connected to maintain control, but you can delete the keyboard and mouse from the list of Bluetooth devices. Just remember to delete the keyboard first so you still have mouse control to delete the mouse.
+Not the most sophisticated solution, but it works.
+Then connect thunderbolt, then pair the mouse and keyboard on the MacBook, this worked fine for me.

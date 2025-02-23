@@ -1,0 +1,162 @@
+Q: Uncheck "Reopen windows when logging back in" by default The shutdown/restart dialog has a check-box Reopen windows when logging back in which is checked by default. I need to change its behavior to be unchecked by default. Is this possible? If yes, how can I do that?
+
+
+A: Edit: since 10.7.4, the "Reopen windows when logging back in" checkbox has stayed unchecked if you uncheck it once, so the hacks below are not needed anymore.
+One option is to set the LoginwindowLaunchesRelaunchApps key to false in ~/Library/Preferences/com.apple.loginwindow.plist:
+defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+
+You could also save this property list as ~/Library/LaunchAgents/logout_saves_state.plist:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN
+http://www.apple.com/DTDs/PropertyList-1.0.dtd>
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>logout_saves_state</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>defaults</string>
+        <string>write</string>
+        <string>com.apple.loginwindow</string>
+        <string>TALLogoutSavesState</string>
+        <string>-bool</string>
+        <string>false</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+
+Then load the property list by running launchctl load ~/Library/LaunchAgents/logout_saves_state.plist or by logging out and back in once.
+TALLogoutSavesState sometimes got reset to true when I logged out and back in, so just running defaults write com.apple.loginwindow TALLogoutSavesState -bool false once wouldn't have worked.
+Neither of these options actually makes the checkbox appear unchecked, but they have the same effect.
+
+A: This bug has been fixed with the Lion update 10.7.4:
+
+The OS X Lion v10.7.4 Update includes fixes that:
+Resolve an issue in which the "Reopen windows when logging back in"
+setting is always enabled.
+
+
+(click here for more information)
+
+A: For Mojave, none of the options above worked for me, however, someone else mentioned the following, and it's sufficient for me:
+Close all windows, except terminal, and run:
+chflags uimmutable $HOME/Library/Preferences/ByHost/com.apple.loginwindow.*
+
+Terminal and Finder will now be the only apps which will open on reboot.
+
+A: No, it is always set to "on." However there does exist a script you can run, that disables the feature. The box will still be checked, but the feature will no longer function:
+Paste the following into a single line within the Terminal:
+curl http://goo.gl/Z4EFC -L -s -o ~/fixlogin.sh && chmod +x ~/fixlogin.sh && sudo ~/fixlogin.sh ; rm ~/fixlogin.sh
+
+That command downloads a script, places it in the appropriate location, makes it executable, and then removes the temporary file. If you are wondering, the contents of the downloaded bash script are the following:
+#!/bin/bash
+echo "#!/bin/bash" > /tmp/loginfix.sh
+echo "rm /Users/*/Library/Preferences/ByHost/com.apple.loginwindow.*" >> /tmp/loginfix.sh
+mv /tmp/loginfix.sh /usr/bin/loginfix.sh
+chmod +x /usr/bin/loginfix.sh
+defaults write com.apple.loginwindow LoginHook /usr/bin/loginfix.sh
+
+If you ever want to revert back to the default behavior of this OS X Lion feature, just type the following defaults write command:
+sudo defaults delete com.apple.loginwindow LoginHook
+
+And you’ll be back to be able to select window restore based on that checkbox’s choice.
+Source: http://osxdaily.com/
+
+A: This has changed in Mac OS X Update Version 10.7.4.
+
+Resolve an issue where the "Reopen windows when logging back in" setting is always enabled.
+
+
+Here is the new option, as you can see (although it isn't proof in itself as it's easy to uncheck and then screen grab, but please trust me - I was pretty stoked when I checked out this update as this bug was really annoying me!)
+
+
+A: For the record, we’re talking about this:
+
+The problem is that OS X doesn’t remember if you uncheck the checkbox on the last shutdown — it will always keep the checkbox checked by default on subsequent shutdowns.
+I found two different solutions for this problem, that seem to do the trick, although they aren’t ideal.
+Open Terminal.app and enter the following commands:
+defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+
+This effectively disables the “reopen windows when logging back in” option, although the checkbox will still appear to be checked. You can just ignore it.
+I’m afraid there’s no better solution, at least not at the moment.
+
+It’s possible to disable Resume on a per-app basis, too.
+There’s also a system setting that allows you to disable it for all apps, system-wide. Go to System Preferences → General:
+
+Alternatively, you can run this command in Terminal.app:
+# Disable Resume system-wide
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
+(Taken from my .osx file.)
+
+A: Unchecking "Reopen windows when logging back in" did not resolve the problem for me. Apps were still reopening after restart from Apple Script, or with shutdown command in Terminal.
+Permanently prevent macOS High Sierra from reopening apps after a restart
+Works in macOS El Capitan, Yosemite, Sierra, High Sierra.
+Solution: deny OS X access to the file it uses to store your session state.
+It prevents reopening apps even after reboot/shutdown from Terminal, from AppleScript, and system crash.
+GUI method
+
+
+*
+
+*Open Finder
+
+*Cmd+Shift+G (Go to folder)
+
+*Copypaste ~/Library/Preferences/ByHost/ and confirm
+
+*Find the file starting with com.apple.loginwindow
+
+*Doubleclick (opens in TextEdit)
+
+*Remove all content and save the empty file. An additional confirmation dialog may appear.
+
+*Right click, Get Info
+
+*Lock the file (check the Locked checkbox)
+
+
+GUI method (undo)
+If you wish to undo this change later and re-enable the feature, simply delete this file and the OS will recreate it.
+
+
+*
+
+*Open Finder
+
+*Cmd+Shift+G (Go to folder)
+
+*Copypaste ~/Library/Preferences/ByHost/ and confirm
+
+*Locate the file starting with com.apple.loginwindow
+
+*Simply delete it
+
+
+CLI method
+
+
+*
+
+*Open Terminal.app
+
+*Make the file owned by root (otherwise the OS will just replace it)
+sudo chown root ~/Library/Preferences/ByHost/com.apple.loginwindow*
+
+
+*Remove all permissions, so it can't be read or written to
+sudo chmod 000 ~/Library/Preferences/ByHost/com.apple.loginwindow*
+
+CLI method (undo)
+
+
+*
+
+*Re-enable "reopen all apps" after login
+sudo rm -f ~/Library/Preferences/ByHost/com.apple.loginwindow*
+
+ 
+

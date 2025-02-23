@@ -1,0 +1,8 @@
+Q: How can I list my Applications by date installed? How can I list my Applications by date installed? Some applications are installed from a zip file or a .dmg image, and I know that the first one, at least, preserves the Date Modified from when it was put in the zip file or compiled or whatnot.
+The result is that some applications I just installed have a Date Modified of months or years in the past. So, I could go to the /Applications folder and sort by Date Modified but that's not too helpful.
+How can I list Applications by date installed in OS X?
+
+A: Since applications are just copied to the drive anywhere (/Applications is simply a nice place for multi-user systems but apps run anywhere they land as long as it's readable) there is no mandatory place to record the installation.
+Have you considered using Time Machine to construct a history?
+I use BackupLoupe which will index all of your backups, so you can search and know the first backup that has that App. It's not a true installation time, but it's close within a week at worst if your backup runs at least that often.
+You'll have to add some software that explicitly inventories your mac periodically to assemble such a list. Most of these apps are geared to remote management and not cost effective for one or a handful of macs.

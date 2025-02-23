@@ -1,0 +1,23 @@
+Q: "View In Mac App Store" button in Firefox Does anyone know if it's possible to get the "View In Mac App Store" button on web based pages (e.g. http://itunes.apple.com/us/app/jellyfissh/id416399476 ) to open the mac app store when using Firefox? It only seems to work in safari atm.
+My specs:
+Running Firefox 4 on OSX 10.6.7 on Macbook Pro
+
+A: It looks like Apple updated the code to detect which client you are when connecting to the app store.
+I checked and they have script that called a function its.detect.Itunes which detects what browser and operating system you are on, and if it isnt Safari, the link does not return an app store link.
+Interestingly it does seem to have handlers for chrome and firefox, but either they made a mistake or they are purposefully making it so you cannot use Firefox to one click browse the mac app store.
+I checked if switching firefox's user agent worked, and while it did load the page momentarily, and the function clearly had a anchor link instead of a direct href, it immediately redirects to a blankly loading page forever. 
+At this point it looks like it is probably safari or bust.
+
+A: I just got this working by overriding the useragent string.
+(tl;dr: There is a firefox plugin called User Agent Overrider which does what is detailed below. My reasons for not using the plugin is, that I find the below easy enough to do manually and don't do it often enough to warrant the need for a whole plugin in my already overladen-with-plugins Newmoon.)
+Steps (More detailed steps, as I found later, are available here):
+
+
+*
+
+*Check whether the 'View In Mac App Store' link works in Safari. If so, in Safari copy your useragent string by visting http://whatsmyuseragent.com/
+
+*Now back in firefox, open about:config in a new tab and right click to create a new string with preference name as general.useragent.override.apple.com and with the value as the useragent string you copied earlier (which in my case was Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/6.2.7 Safari/537.85.16)  (Look at 'A' in the following snapshot)     
+
+*When you are done, it should look like 'B' in the above snapshot 
+No need to restart the browser, refresh the page (for example: this) and try clicking on the 'View In Mac App Store'.

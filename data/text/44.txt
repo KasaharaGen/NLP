@@ -1,0 +1,41 @@
+Q: Opening a new Terminal window when it's running on another desktop I open a lot of terminal windows. I also make use good use of tabs & multiple desktops.
+Normally I launch Terminal.app with Spotlight. But if Terminal is already running on another desktop, it changes to that desktop and opens it there. I hate that. I want it to open on the current desktop.
+So for now, I've been doing this:
+
+Is there a better way?
+
+A: By Golly, I think I've found it this time.
+Fire up Utilities/AppleScript Editor. Copy/paste the lines below. Save it and add it to your Dock. Whenever you click it you'll get a new window on your current desktop. You need to have "Enable support for assistive devices" activated in System Preferences - Universal Access. 
+tell application "Terminal" to activate
+tell application "System Events"
+    tell process "Terminal"
+        click menu item "New Window" of menu "Shell" of menu bar 1
+    end tell
+end tell
+
+Source: adapted from this hint regarding Safari.
+
+A: I looked far and wide and found no better way myself. I usually have less than 5 Terminal windows open, and I usually don't want to switch desktops for Terminal, so in System Preferences - Expose - Spaces I assigned Terminal to be in Every Space so as to follow me around. You might hate that though.
+
+A: You can create a new service using automator (from the applications folder). At the top of the automator window, enter: Service receives 'no input' in 'any application'. Then, in the workflow, add 'Run applescript'. Make the applescript contain the following:
+on run {input, parameters}
+
+    tell application "Terminal"
+        do script " "
+        activate
+    end tell
+
+    return input
+end run
+
+(You can add any command you like into the do script line between the " " (e.g. something useful to run when terminal first opens like "uptime" if you like, or just leave it blank).
+Save the service as 'Open Terminal' or whatever name you like. It should now appear in your services menu.
+Then if you want to add a keyboard shortcut, you just need to go to System Preferences -> Keyboard -> Keyboard Shortcuts tab, select services in the left hand menu, and find your new service (its probably near the bottom). Just click in the space to the right of your service name, and assign it whatever keyboard shortcut you like, and hey presto! it should all work
+
+A: You can tell the system to stop switching spaces "automagically" based on what App comes to the foreground:
+# don't switch spaces
+defaults write com.apple.Dock workspaces-auto-swoosh -bool NO
+killall Dock
+
+This is an important setting if you view each Space as its own workspace, and might have a Terminal window and a web browser window open in each space. If you want to switch spaces, you need to do so consciously and manually.
+This is equivalent to System Prefs > Spaces, and then unchecking the "switch space when switching app" checkbox at the bottom.

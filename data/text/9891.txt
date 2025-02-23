@@ -1,0 +1,132 @@
+Q: How can I associate URL files with a specific browser in Snow Leopard? Until Snow Leopard URL files (.webloc files that you get when you drag a URL onto the desktop) opened with OmniWeb on my computer and some URLs were configured to open with Safari.
+After upgrading to Snow Leopard all URL files open with "Finder" which then proceeds to open the standard browser (OmniWeb) for them. I tried changing the association, but Snow Leopard insists that these files be opened with OmniWeb via Finder.
+Any ideas what I can do to fix this? I want all webloc files to open in OmniWeb except for specific ones which should open in Safari. I had it configured that way but at some point Mac OS X decided that the Safari ones should open with Finder (which then opens them with OmniWeb) and it just ignores it when I try to change that configuration per file
+
+A: As far as I know, there is no way to associate .webloc files with a specific application. Your best bet would probably be to use some AppleScript.
+I made a little script that lets you generate tiny little AppleScript applications that open in the browser that you select upon creation (OmniWeb, Safari, or Chrome).
+You can download the script here, or compile it yourself from the code below.
+set theURL to text returned of (display dialog "What URL would you like to bookmark?" with title "Enter URL" default answer "http://")
+set theApp to (choose from list {"OmniWeb", "Safari", "Chrome"} with prompt "Which application would you like to associate with the bookmark?" with title "Select Application") as string
+set theName to text returned of (display dialog "What would you like to name the bookmark?" with title "Enter Name" default answer "")
+set theFolder to choose folder with prompt "Where would you like to save the bookmark?"
+
+if theApp is "OmniWeb" then
+    set theScript to "tell application \"OmniWeb\"
+    activate
+    try
+        set theTab to make new tab at end of front browser with properties {address:\"" & theURL & "\"}
+        set active tab of front browser to theTab
+    on error
+        make new browser with properties {address:\"" & theURL & "\"}
+    end try
+end tell"
+else if theApp is "Safari" then
+    set theScript to "tell application \"Safari\"
+    activate
+    try
+        set theTab to make new tab at end of tabs of front window
+        set the URL of theTab to \"" & theURL & "\"
+    on error
+        make new document
+        set theTab to tab 1 of front window
+        set the URL of theTab to \"" & theURL & "\"
+    end try
+    set current tab of front window to theTab
+end tell"
+else if theApp is "Chrome" then
+    set theScript to "tell application \"Google Chrome\"
+    activate
+    if (count of windows) = 0 then
+        make new window
+        set URL of tab 0 of front window to \"" & theURL & "\"
+    else
+        set URL of (make new tab at end of tabs of front window) to \"" & theURL & "\"
+    end if
+end tell"
+end if
+
+tell application "AppleScript Editor"
+    set theDoc to make new document with data theScript
+    save theDoc as "application" in ((theFolder as string) & theName & ".app")
+end tell
+
+Running that will prompt you for the URL, the browser you want it to open with, and the location to save the 'bookmark'.
+You can put this in your Applications or Scripts folder for easy access and invoke it whenever you want to save a URL.
+
+A: You need to make an Automator Script with these elements: (and save as an App)
+
+
+*
+
+*RunShellScript -> open -a Firefox.app
+
+*Pause (2 Seconds)
+
+*RunShellScript -> open -a Firefox.app http://www.apple.com
+
+A: As of macOS 10.12 Sierra, .webloc and .url files both open in the default browser.  They can be opened in another browser using the "Open With" menu, but the default cannot be changed either per-file or per-extension.
+The solution I found is to create an AppleScript application:
+
+
+*
+
+*Open the Script Editor application (the successor to the AppleScript app)
+
+*Paste in this code:
+tell application "Safari" to open location "https://apple.stackexchange.com/"
+(Change the URL to the one you need)
+
+*File | Save As with File Format set to "Script"
+
+
+*
+
+*This is a binary applescript file which will reopen in the Script Editor
+
+*It can be edited and run from within the editor, but cannot be run from finder
+
+
+*File | Export with File Format set to "Application"
+
+
+*
+
+*This is an application bundle which will execute
+
+*It can be run from finder, but cannot be opened in the editor
+
+
+
+This approach works for making a "link" in finder that will open in Safari, but does have some problems:
+
+
+*
+
+*It's not portable (I also saved a .url file)
+
+*It's 2 (or 3) files where I'd rather have 1
+
+*Reopening the script (from step 3) in the editor also launches Safari (without opening the URL)
+
+
+In my case - opening an old corporate Java applet that really just uses the browser as a launcher - it also leaves Safari open to a useless empty page.
+I'm sure this could also be done with a shell script, which might at least bring it down to just 1 (or 2) files.
+
+A: You may want to read this article at Macworld:
+http://www.macworld.com/article/142937/2009/09/snowfiles.html
+But the meat of the fix from the Workaround section is:
+
+Control-click on the file in question, then hold down the Option key, then select Always Open With, and choose the desired application from the (potentially huge) list of alternatives. You’ll have to do this every time you create a new file; there’s no way to set the creating application as the default opening application.
+
+I'm, unfortunately, on Windows at work, so I can't confirm this fix. But it sounds like it's the way to go.
+
+A: The solution you're looking for is not a simple one. One idea that came up to mind I have posted in: bind application to file of particular names(rather than suffix). I am not a professional Apple developer, nor am I familiar with the intricate details of the OS. But as a casual programmer, I think that would be possible solution.
+The above if you want to keep on using .webloc of course. What I would do though is the following:
+
+
+*
+
+*Change the extension of those particular bookmark files that you want to open with a particular application to .url.
+
+*Associate those with the desired browser.
+

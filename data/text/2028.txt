@@ -1,0 +1,9 @@
+Q: Boot Camp not burning Windows support DVD So, I'm trying to get Boot Camp to work so I can put a partition of Windows 7 on my MacBook. I'm getting to the point where it's downloaded the supporting software and I have to burn it to a DVD. I have blank DVD in the SuperDrive but regardless of how many times I hit 'Burn' nothing happens. Am I doing something wrong?
+Also, I'm a complete noob with OS X, so please be very explanatory.
+Thanks in advance!
+
+A: Okay, so I think I figured it out. Apparently it's a problem with Boot Camp 3.0.4 that came with the 1.6.6 update. I found a link to the discussion on Apple's forums and I'll post it as soon as I can use the MacBook again (it's installing Windows right now and I'm typing this on an iPad...).
+UPDATE
+Here's the link to the Apple forum discussion.
+
+A: Is the DVD mounted for writing in the Finder? If it is, the Boot Camp utility can't get a handle on the burn rights (as the Finder has them). Eject the disk, go to the Disk preferences in System Preferences, and make sure the option for blank discs is "ask me every time", then shove the disc back in. It should ask you which app to open; choose "other application...", and an open window will appear. Hold down the Command key and drag the Boot Camp utility icon from the Dock to the open window. (The icon should stay in the dock and appear under the mouse while you drag.) The open window will now have the Boot Camp utility app selected, so press the open button and affirm the "what app to open" dialog. (Note: I'm not on a Mac right now, so any verbiage is approximate.) Then re-try the burn. 

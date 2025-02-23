@@ -1,0 +1,62 @@
+Q: Video broadcasting application for OS X I need tips on a good application that you can stream "live" video and publish that on a website.
+The source is raw video from a video mixer and i will have my os x machine in the middle and then out to one of my webservers.
+
+A: Would UStream be what you are looking for?  
+Ustream is a free service (with a paid upgrade) for streaming from any platform to any platform. Users can view the video stream online or via a native app (iOS and Android). I highly recommend Ustream, as it works great and (best of all) is free. You can broadcast from the web interface:
+
+Or from Ustream Producer (free), which is a native app that runs on both OS X and Windows:
+
+Ustream Producer has many features including:
+
+
+*
+
+*Screencasting
+
+*Single camera broadcasting
+
+*Save broadcast to watch later
+
+*Importing movies, stills and music
+There are two paid upgrades for Ustream Producer, Ustream Producer Pro ($199), or Ustream Producer Studio ($549).
+Ustream Producer Pro includes all the features of the free Ustream Producer, but also adds:
+
+
+*
+
+*HD broadcasting
+
+*Multiple camera angles
+
+*HDV camera support
+
+*Titles, Layers, and Picture-in-pictures
+Ustream Producer Studio adds:
+
+
+*
+
+*Chroma Keying (green or blue screen support)
+
+*Audio Sync Delay
+
+*IP camera support
+I highly recommend Ustream, as we use it for church and it works great!
+
+A: VLC has a bunch of streaming options (and a lot of documentation on their website)
+
+A: Apple has a video broadcast solution here
+
+.. With QuickTime Broadcaster, anyone can produce a live broadcast
+  event and anyone with an Internet connection can “virtually” attend.
+  The combination of QuickTime Broadcaster, QuickTime Streaming Server,
+  and QuickTime provides an end-to-end MPEG-4-based Internet
+  broadcasting system, allowing you to reach not only the large and
+  growing QuickTime Player base, but also any ISO-compliant MPEG-4
+  player.
+
+
+A: Try Flash Media Encoder.
+I'm not sure what you're using on the website for streaming server, I've been using Red5, the OSS version of Flash Media Server, for browser side webcam video capture. It can also do live streaming and video conferencing but I haven't tried.
+I would recommend QTSS but far more browsers have Flash installed then they do quicktime.
+Video streaming isn't the easiest thing in the world to get right so I wish you good luck.

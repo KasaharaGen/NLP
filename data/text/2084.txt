@@ -1,0 +1,40 @@
+Q: Howto Setup External Drive as a Networked Drive I've got an external 1.5TB drive I'd like to connect to my iMac and use as a networked drive so other computers can connect to it's IP and read/write to the Drive.  What would be the best way to do this?
+Specifics I'm looking for:
+
+
+*
+
+*What format? (I'm thinking NTSF)
+
+*What software?  (FUSE or something
+else?) 
+
+*How would you set it up using
+that software for a quick and easy
+install?
+
+
+A: My suggestion would be to format the drive to the default Mac OS X filesystem, HFS+ journaled. Then share the drive over SMB:
+
+
+*
+
+*Open System Preferences
+
+*Go into Sharing
+
+*Check the box beside "File Sharing"
+
+*Under "Shared Folders", click the + icon and select the drive you want to share
+
+*Click the "Options..." button
+
+*Check the box beside "Share files and folders using SMB (Windows)"
+
+*Check the box beside the user accounts you want to have access to the drive
+
+*Click Done
+
+
+Once this is done, all you have to do is to configure Samba on your Linux machine to connect to the shared drive.
+You could also share over AFP instead and use netatalk on your Linux machine, but I've found that Samba is better supported.

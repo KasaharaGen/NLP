@@ -1,0 +1,38 @@
+Q: Can't add or change custom images of address book entries Sometimes I'm not able to change any of the custom images associated with contacts in the address book. If I quit and restart several times, it eventually works again. 
+What would cause this sort of thing to happen? I'm running on Snow Leopard.
+
+A: Type in terminal:
+chmod -R 777 /private/var/mobile/Library/AddressBook
+chown -R mobile /private/var/mobile/Library/AddressBook
+It worked for me
+from: http://www.hackint0sh.org/f126/33674.htm
+
+A: Not all address books support custom images.  If the default address book is set to something other than iCloud (ie. Exchange), the contact may not support custom images when created from another application like Messages.
+To see which account/group a contact card belongs to:
+ - Find the contact card using the search dialog.
+ - Highlight the contact card by clicking it in the list.
+ - Press the Alt key.
+ - All groups that the card belongs to will be highlighted (in blue).
+If you have a card that was created in an account other than iCloud, you can enable the ability to add custom images by also adding that card to iCloud.  To add a card from another account to iCloud:
+ - Find the contact card you wish to move using the search dialog.
+ - Drag the card to the "All iCloud" group under the iCloud account.
+ - Select the contact and press edit.
+ - You should now be able to add an image to the contact.
+To change the default address book in which contact cards are created:
+ - Open Contacts and select Contacts->Preferences->General from the
+   menu.
+ - Change the "Default Account" pulldown to "iCloud".
+
+A: I had similar issue now with Mavericks.   Looked like it was just an issue with the one contact.   Think I originally created it from mail item that I received.   Deleted the contact and created a new one from with contacts seemed to do trick.   Something in the create from Mail seemed to lock the picture.   No time to investigate just posting my solution in case it helps someone.
+
+A: I have that issue - pictures on Address Book (10.8.x) won't sync with my Exchange server.  The ones that WILL let me change the photos, it turns out, are the contact cards stored in iCloud.  That seems to handle everything just fine.
+
+A: Easy solution: Select the bad contact in the list, copy it, paste it (while it is still selected). For me, that replaced the bad contact with one in which the photo can be edited.
+
+A: Having the same experience on El Capitan, some contacts I can edit the picture, other's I can't the copy and paste routine from Dave worked great. To add a bit more detail.This appears to happen when the contact is stored on an account that doesn't support pictures, eg some exchange accounts.
+Open the Contacts application on your mac, search or click on the contact you can't edit, then copy and paste without deselecting the contact. Easiest way I found was Ctrl-C then Ctrl-V 
+This recreates the contact in icloud but only shows as one contact. The picture can then me added to the icloud version of the card.
+
+A: To change the picture 
+Open text edit, do command-shift 4 and place the cross hairs over the center of the white page, drag till you have an avatar-sized box and release.
+Go to your desktop or wherever your screen shots are saved, rename and save the file somewhere useful, then go to system prefs/accounts and change the image to the "white" picture.

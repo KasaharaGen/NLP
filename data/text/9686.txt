@@ -1,0 +1,26 @@
+Q: How do I change my TimeMachine volume in a script I have a TM volume on my desk at work and I also have one at home. That way, I have a better shot of my data surviving a disaster. Right noow I have to manually change the TM volume based on where I am.
+I'd like to use some location aware software (like Marco Polo) and have it just switch the volume. I tried using Applescript and Automator to make the switch but I haven't been able to be consistently successful. 
+I'm looking for a more terminal/shellscript based way to switch the TM volume.
+Any ideas?
+
+A: Time Machine supports multiple backup volumes on Mountain Lion.
+
+Backup to multiple locations
+Time Machine allows you to choose multiple backup locations and seamlessly switch between them. Now you can have a backup of your data at work and at home.
+
+
+A: What I'd do is the following. You need to create a copy of /Library/Preferences/com.apple.TimeMachine.plist. Put it somewhere (example: ~/somewhere/com.apple.TimeMachine.plist.diskA). Then change from System Preferences the disk to which you want to back up. Create another copy and put it to ~/somewhere/com.apple.com.TimeMachine.plist.diskB). Then do something like this
+ln -s ~/somewhere/com.apple.com.TimeMachine.plist.disk ~/somewhere/com.apple.com.TimeMachine.plist.diskB
+sudo rm /Library/Preferences/com.apple.TimeMachine.plist
+sudo ln -s ~/somewhere/com.apple.com.TimeMachine.plist.disk /Library/Preferences/com.apple.TimeMachine.plist
+
+Then the script when using disk A would be
+rm ~/somewhere/com.apple.com.TimeMachine.plist.disk 
+ln -s ~/somewhere/com.apple.com.TimeMachine.plist.diskA ~/somewhere/com.apple.com.TimeMachine.plist.disk 
+
+and when using disk B would be
+    rm ~/somewhere/com.apple.com.TimeMachine.plist.disk 
+    ln -s ~/somewhere/com.apple.com.TimeMachine.plist.diskB
+~/somewhere/com.apple.com.TimeMachine.plist.disk 
+This way you don't have to use sudo with MarcoPolo (BTW you should really use ControlPlane which picks up where MarcoPolo left).
+EDIT: REMEMBER to have your original file back'd up when you do this.

@@ -1,0 +1,53 @@
+Q: How to resolve error: "Couldn't modify partition map because file system verification failed"? I upgraded to Lion and decided I no longer want 100 GB of my drive devoted to Boot Camp, I never boot into Windows, I just use it as a VM anyways. So I deleted the boot camp partition using disk utility and then attempted to expand the main partition to fill this now unallocated space. I also deleted the boot camp from inside VMWare Fusion. When I go to expand it, I get the error in the title of this question.
+After searching this forum and Google, I found a lot of people with similar problems but none receiving this exact error with any resolution. I do not want to do a clean install if at all possible. I have enabled debug mode in Disk Utility and tried other stuff, but to no avail. 
+I've tried editing it in normal and in debug mode while running Lion, and I've tried in recovery mode.
+Here are screenshots of the error and whatnot. Any ideas?
+
+
+UPDATE: I verified my disk and got these errors. Attempting to repair but worried that my Snow Leopard disk will overwrite the Lion recovery partition....
+
+
+A: OK, this isn't too bad. Reboot while holding Command ⌘-S to enter single user mode. When it gives you a prompt, type
+fsck -fy
+
+then press return. it will repair your disk. When it's done, type 
+reboot
+
+and try partitioning again.
+
+A: The solution ended up being to create a Lion install disk, boot from the disk, run disk utility repair on the drive and volume, then resize the partition. Easier than I thought it would be.
+
+A: This solution worked for me after receiving the same error:
+
+
+*
+
+*Shut down.
+
+*Start up holding down Command ⌘ + S. (This will boot you into Single User Mode.)
+
+*At the prompt, type in the command fsck -fy.
+
+*When that finishes, type reboot.
+
+*Try resizing again in Disk Utility.
+
+
+A: I had this issue and couldn't resolve it this way because I had a 4gb swap drive (ubuntu linux) that needed to be turned off before disk utility could remove it.
+Steps:
+
+
+*
+
+*boot to to Ubuntu Live CD (I used an EFI boot via usb)
+
+*open gparted via terminal $ sudo gparted
+
+*look for a partition with a key symbol on it's same line
+
+*right click the key symbol and select "swap off"
+
+*reboot back to mac then follow steps above
+
+
+Cheers

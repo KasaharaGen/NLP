@@ -1,0 +1,12 @@
+Q: Apple Mail reply arrow not working reliably I'm running Lion, connecting to an Exchange 2010 server. Sent messages are stored locally.  
+Once I've replied to a messages in my Inbox, the "replied" arrow appears to the left of the message, as normal.  But when I click on the arrow to see the actual reply it fails roughly 50% of the time. By "fails" I mean that nothing comes up when I click.  A message I sent minutes earlier/later can work just fine.
+The reply WAS sent using Apple Mail (not my iPhone) and it IS in my sent mail folder.  I have re-built my Spotlight index. 
+
+A: As far as I know, the issue is that Microsoft doesn't provide the Active Sync API to anything other than mobile devices. This is why using Exchange on Mac is a bit buggy.
+I would recommend using Microsoft's own Outlook Web App (OWA) for your Exchange emails. Or installing the actual Outlook program for your computer. Those are what I use. :)
+Those are probably your two best options if you need your email to be 100% reliable on your Mac.
+
+A: I've experienced the same thing, but only with my company's Exchange server. My other IMAP servers (Gmail, MobileMe a private IMAP) all work fine, 100% of the time.
+I'm pretty sure this is a server side Exchange bug.
+
+A: I've seen the same behavior with IMAP accounts in Mail under Lion. I think it's a general bug, and not limited to Exchange (I say this because I have no Exchange accounts).

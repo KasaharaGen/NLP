@@ -1,0 +1,85 @@
+Q: Sending push notification to iPhone via AppleScript Is there any combination of iPhone and/or Mac apps that I can use to send a push notification to my iPhone?
+For example, let's say I want to create a service (invoked via (Application Name) > Services) which sends the highlighted text on my Mac to my iPhone as a push notification message.
+
+A: I think a combination of Growl (OS X notifier) and Prowl (an iPhone app that forwards Push Notifcations from Growl) with your AppleScript interacting with Growl directly would be the way to go for this.
+
+A: The free app Boxcar allows you to forward Growl notifications to your iPhone. You can also use their API to send custom push notifications from any app or script. I use it with Growl (never used their API, though) and it works great.
+
+A: *
+
+*Register at Prowl
+
+*Install the Prowl iOS app on your iPhone
+
+*Use this script in OSX ('sendClipboardAsPush.sh') to send your clipboard to your iPhone as push notification:
+
+
+
+#!/bin/sh
+set -x
+# Posts growl notifications to iOS device using prowl & curl
+
+# Fill in with your own Prowl API key here and remove 123456789
+APIKEY=123456789
+# Make up a cache filename in /tmp/ based on our PID
+CACHE=/tmp/$$.cache.txt
+
+# clipboard -> temp file CACHE
+pbpaste > $CACHE
+
+# Post notification to Prowl using curl
+curl --globoff https://api.prowlapp.com/publicapi/add \
+  -F apikey=$APIKEY \
+  -F application=RSS \
+  -F event="" \
+  -F description="`cat $CACHE`"
+
+rm $CACHE
+
+
+You can find your Prowl API key here.
+
+A: I would just like to point out that I recently wrote a script, and have it posted at http://macscripter.net/viewtopic.php?id=41045
+
+A: Yes, agreed, thank you for note:
+The original intent was to link to that thread, since this was the first hit in google, and I had a solution 
+I have recently written an applescript to send boxcar notifications. It would be accessed via a Terminal command:
+osascript /path/to/script boxcar_username "Title of Notification" "Body of Notification" "URL/to/54x54icon"
+This in turn maps to:
+on run {BoxcarUSER, boxcartitle, boxcarmessage, BoxcarICONURL}
+The BoxcarUSER variable is the only required one, the rest will use defaults.
+If you have your own provider, you can open the script in script editor and change the property at the top of the script(I currently have it setuo with a provider I created, so feel free to change that)
+Other defaults could be changed within the  set { in the run{} handler.
+Some of the error catching is rough, as if you do not have an internet connection, cURL will fail with a non zero status (I think, no real expert there) so the script can't catch the error message.
+Some ideas I have thought about.
+Since you can map the icon that shows in boxcar, you could use different 57x57 icons to show the user different things that are happening. So maybe you could push out a red icon for stop, green for go, etc.
+If someone could design a better icon, that would be great =p
+
+A: Depends on what you're looking for, but you could use Find my iPhone. It's free, native and easy to install and it features a "Display Message" that's pushed into the phone.
+
+A: There is a web service http://pushme.to/ and ios app that could be implemented that would solve your problem although it doesn't appear to be in the app store at the moment pending some bug fixes i believe.
+There are other apps that use an api to push messages to an ios device via a wordpress site oddly. http://ipush.me/
+you should be able to create a native app using a website (you could create) that effectively is a form to send the details (name/message) to this service.
+
+A: If someone else stumbles upon this, just wanted to update and recommend https://boxcar.io/ as a solution.
+Right now I'm using it to send a notification to myself when my Macbook
+s battery is running low. For this I just created a PHP script and added it to my crontab.
+Basic script is:
+<?php
+$notify_when_below = 10;
+$battery_charge = trim(exec("pmset -g batt | grep -o ...% | grep -o ..."));
+if((int)$battery_charge < $notify_when_below){
+    curl_setopt_array(
+    $chpush = curl_init(),
+    array(
+        CURLOPT_URL => "https://new.boxcar.io/api/notifications",
+        CURLOPT_POSTFIELDS => array(
+        "user_credentials" => 'YOUR_DEVICE_ACCESS_TOKEN',
+        "notification[title]" => 'Low battery alert!',
+        "notification[long_message]" => '<b>Macbook battery level is at '.(int)$battery_charge.'%!</b>',
+        "notification[sound]" => "detonator-charge",
+    )));
+    $ret = curl_exec($chpush);
+    curl_close($chpush);
+}
+

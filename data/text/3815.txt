@@ -1,0 +1,20 @@
+Q: How can I enable SSH without using the gui or apple script on snow leopard? A while back here How can I enable Internet sharing without using the GUI or AppleScript? I asked if any one knows how to enable Internet sharing without using GUI or apple script, I still have that problem but I thought this one should be easier, I want to be able to SSH into my machine but sure enough I can't go to the "sharing" pane in the Preferences (It crashes). How can I start sshd? 
+
+A: You can enable SSH from the Terminal with:
+sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
+
+(note that you need to run this as an admin, and it'll ask for your admin password, which won't echo as you type.)
+
+A: Here's the command to start VNC sharing -- not SSH, but perhaps it will help you (be sure to replace the password with your own!):
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -clientopts -setvnclegacy -vnclegacy yes -clientopts -setvncpw -vncpw PutYourOwnPasswordHere -restart -agent -privs -all
+
+Then you should be able to log in using a VNC client with the password you specified.
+Here's the command to stop sharing:
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -configure -access -off
+
+Note that the Sharing pane will NOT show that sharing is active when you turn it on this way via the command line!
+Source: http://technotes.twosmallcoins.com/?p=279
+
+A: sudo systemsetup -setremotelogin on
+sudo systemsetup -setremotelogin off
+

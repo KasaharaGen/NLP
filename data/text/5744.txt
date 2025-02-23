@@ -1,0 +1,47 @@
+Q: Is it possible to get the keyboard viewer to show a full keyboard when a bluetooth keyboard is connected? From time to time I want to simulate having a full keyboard even though my Mac uses the smaller Apple bluetooth keyboard. It is most important for the system events to get the actual key pressed as much as possible and not just find another shortcut that maps to the same action once it hits the OS.
+I had hoped to use (or better trick) the supplied keyboard viewer, but the OS "cleverly" shows me the layout I have instead of the layout I want.
+
+Can anyone help me trick my software into showing the larger keyboard like this without having one physically plugged in? It's nice to have fast access to the keys including/under F13-F15 and the key pad enter only key from time to time without plugging in more hardware. It's also nice to make tutorials that show the full key layout.
+
+
+A: Apple has a pretty good record on accessibility features, one of which is the onscreen keyboard. I would be surprised if there is not a way to do enable the extended onscreen keyboard, but I'm still researching where this precise bit of how-to knowledge.
+In the meantime, here is Apple's official page for accessibility features related to Physical and Motor Skills (which is the category for the Onscreen Keyboard): http://www.apple.com/accessibility/macosx/physical.html
+It shows the extended version in their screenshot.
+This is overkill (both in features and price), but I felt the need to add the application called "the best on-screen keyboard, not just for the Macintosh, but for any platform."
+I'm too new to have lots of links. but look at atri.misericordia.edu for a review of KeyStrokes.
+Here: have a layout editor, so if you can't see the keys you need in Keyboard Viewer, you can switch them in to replace some keys you don't really care about:
+http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&item_id=ukelele
+still doing research, will be adding what I find
+
+A: I found that if you have an Apple Extended Keyboard, that keyboard is automatically used in the display of the keyboard viewer. I have it plugged into my MacBook, which is usually on a stand. When I switch between keyboards, the built-in keyboard viewer automatically uses the right layout.
+So the short (though perhaps expensive) solution to this is to simply plug in an Apple Extended Keyboard if you want to see the whole keyboard in the viewer as well.
+Here's a 2 second screencast of the live swapping in action, as I switch between the built-in keyboard and the external one.
+
+This also works with non-Apple extended-format keyboards (tested with Microsoft-brand extended keyboard).
+
+A: Virtual Keyboard from http://www.corallosoftware.it/index.html looks good. It's shareware with a 14 day trial and can be downloaded here as well.
+
+A: I have a full size bluetooth keyboard and when I open the keyboard viewer I see the full keyboard that you are looking for.
+The keyboard viewer was probably intended to help people find special characters that aren't displayed on the keys of the keyboard they have in front of them. This is especially helpful when trying to type in a foreign language when using a US keyboard, for example.
+Unfortunately my Rocketfish keyboard doesn't connect as faithfully and simply as my Apple bluetooth keyboard. :(
+
+A: I have the smaller Apple bluetooth keyboard also and if I press "shift" on it then the onscreen keyboard viewer shows the numbers key pad.
+
+A: There's always been an option to choose what type of bluetooth keyboard you have.  When you connect a USB keyboard, the OS asks you to press the key next to shift and based on the key code it receives it autoselects the board.  if you click a random key like a number the computer wont be able to auto select.  
+IN that case if the detection fails,  you are given choices and must pick yourself which keyboard layout you want. Choose the largest to cover the most possibilities as it has no idea what you have.  Some aftermarket keyboards still register as smaller ones because it spoofs the USB id and pretends to be a genuine part.  
+TL:DR go to preferences and set up bluetooth keyboard type.  Here's the ey if auto selection fails, don't follow the instructions and just press random keys.  This interrupts auto selection and you can pick what kind of board you know you have over what the USB hardware selects.
+
+A: If anyone is still interested in an answer all these many years later, if your keyboard happens to have keys not currently implemented in the basic keyboard, clicking them will tell the OS that it has incorrectly selected the keyboard to display, and swap the onscreen keyboard to the extended layout automatically.
+This even occurs for keys Apple does not even implement (like the "Tools" key on my Samsung Bluetooth keyboard, that has no equivalent on the Mac, displays nothing on the onscreen keyboard, but still causes the onscreen keyboard layout to swap to the extended layout when clicked.
+(There is no way to switch it back, however, other than closing the keyboard viewer then reopening it.)
+
+A: As far as I know I don't believe this is possible. However some bright spark may be able to find some plist hack to do precisely what you are looking for. As a less bright spark I can perhaps offer a partial workaround for the function you are attempting to achieve.
+cmd + up arrow takes you to the beginning of a document.
+cmd + down arrow takes you to the end of a document.
+cmd/ctrl + left arrow takes you to the beginning of a line.
+cmd/ctrl + right arrow takes you to the end of a line.
+fn + backspace is "delete"
+fn + up arrow is "page up"
+fn + down arrow is "page down"
+I'm not familiar with the wired keyboard but from pictures those seem to be the buttons you were asking about. Learn those and it'll be faster than the onscreen one anyway!
+I've never had cause to use it but the specific "enter only" key may be a type of special character. If that is the case then it seems to me you may be able to assign it a keyboard shortcut using an AppleScript in Automator, which can be saved as a Service and assigned a shortcut from the keyboard menu. If anyone has a more efficient way of assigning a keyboard shortcut to an awkward character (unicode or otherwise) I'd be interested to hear it (as a linguist!).

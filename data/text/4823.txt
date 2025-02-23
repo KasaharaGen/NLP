@@ -1,0 +1,22 @@
+Q: How to fix apps "waiting.." forever after sync? I've got roughly 5 apps on my iPhone. 
+Then I went to iTunes and downloaded 15+ apps. After that, I synced them to the phone and it says "Sync Complete", but the apps on my phone are showing "Waiting..".
+I've waited for over a day and the apps are still showing "Waiting..".
+What may be the problem here, and how can it be fixed?
+
+A: The springboard controls the layout of apps on iOS and is confused.
+Generally, it's not a deep corruption of the database (which you fix by restoring the phone, setting up as new and installing things again from scratch) so here are some things to try:
+
+
+*
+
+*Turn on airplane mode in Settings app (tells the download process to chill)
+
+*Restart the device (more chilling - starts fresh, frees up RAM)
+
+*Connect to iTunes
+
+
+Then you should be able to deselect the problem app (removing all traces of the attempted download) and then finally put that app on the device. The airplane mode is the most important thing since the device will try to fix itself and lock iTunes out until it realizes it can't. Once you have gotten the stuck app resolved, turn off Airplane mode to resume calls, data and WiFi service. If it doesn't resolve, you may have to erase the phone and restore it from a backup or anew.
+
+A: same issue for times...
+i just reset all setting and erased all data and restored and it fixed

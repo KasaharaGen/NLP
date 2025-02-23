@@ -1,0 +1,6 @@
+Q: How to automate execution locate.updatedb by using a bash script I am looking for a bash set of commands that will enable me to schedule the execution of /usr/libexec/locate.updatedb once every day.
+Please respond only with a set of command line commands, because I want to include this in a "setup" script (in order to be able to reuse it when I go to another machine).
+
+A: After additional (re)search I found an easy solution:
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
+This is also persistent, so it will run updatedb daily.

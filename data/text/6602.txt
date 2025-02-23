@@ -1,0 +1,12 @@
+Q: Problem with "Open With" menu I ran this command in Terminal, which supposedly clears all duplicate applications from the "Open With…" menu and now many of my files are just showing up as blank images (.zip files, .dmg files, .rar, etc.) and they don't open with the correct application. I did log  out and log back in after doing this. Help!!
+/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain user
+
+A: Logout and then Login.
+It's common for this to happen. If the problem doesn't fix itself upon logging back in it's just a matter of Rebuilding the Launch Services.
+Try it this way:
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister
+  -kill -r -domain local -domain system -domain user
+
+Alternatively, you can use the commercial utility MacPilot:
+

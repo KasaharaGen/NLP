@@ -1,0 +1,6 @@
+Q: GUI for managing automounting of fileshares? I have a bunch of MP3 files on an SMB share. They play great if I use Finder's Connect to Server to mount the disk first, iTunes thinks they have names like /Volumes/musicshare/foo.mp3. But if I reboot and launch iTunes first the files are as if they don't exist until I manually remount the volume in Finder.
+How do I arrange for my network share to automatically mount after a reboot? Searching for answers turns up a lot of information about hand-editing autofs configuration files. I'm new to MacOS but an old Unix hand and am OK editing files in /etc. But it feels like the wrong way; does MacOS have a user friendly way of automounting network shares?
+
+A: Mount the share that you want and then open "System Preferences - Users and groups - Login items"
+Click the + symbol to add a new login item and then select the network share from the window that opens. The volume should open on every login. 
+Check the box next to it to hide the item. This should keep the Finder window from appearing.

@@ -1,0 +1,31 @@
+Q: Global keyboard shortcut conflicts I just installed a menubar application and would like to assign a global keyboard shortcut to one of its operations. Is there any easy way to determine if the key combination I want to use conflicts with an existing one? Do I need to look at each category in the Keyboard Preference pane?
+I am running OS X 10.6.7.
+
+A: Integral to the operating system
+In Mountain Lion, the Keyboard pane of System Preferences is not well suited to viewing all keyboard shortcuts. You can view a few at a time, but critically: 
+
+
+*
+
+*there's no overview.
+
+
+Side note: there should be feedback to Apple. 
+Third party apps
+The accepted answer to View All Assigned Keyboard Shortcuts draws attention to KeyCue. 
+KeyCue
+Whilst KeyCue does not show all keyboard shortcuts, it can present a reasonably good overview of system (and some other) shortcuts alongside application shortcuts. 
+With Safari 6.1 on my Mac, for example: 
+
+Whether KeyCue can be as effective with apps that use X11 (Inkscape, for example), and with your menu bar app: I don't know. 
+Planning to avoid conflicts
+With a good enough overview, you can plan properly – for not just one new shortcut, but for a range of shortcuts in the months and years ahead. Avoid conflicts before they occur. 
+Observing conflicts
+If a conflict does occur: Loïc Wolff's answer should be good for some but not all types. 
+(A shortcut set in your unnamed menu bar app might be in conflict with something, but not appear as a conflict in System Preferences … and so on.)
+
+A: You can check on the Keyboard shortcuts Preferences panes if the shortcut is alreaady attributed.
+If it is, there will be a yellow sign with an exclamation mark to notify you that it's taken.
+It might not take in consideration global shortcuts from other apps. But at least, you'll have native ones.
+
+A: While there are various sites including Apple that list the default combinations, I'm not sure of any way of listing your own (including any changes you might have made). I'd say the handiest way is to try the combination you want and see if it does anything. If not, you should be good to go. If it does something, you'll need to change one or the other.

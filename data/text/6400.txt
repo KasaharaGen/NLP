@@ -1,0 +1,8 @@
+Q: Screencapture with zooming In Snow Leopard when I used a screencapture program (⇧⌃⌘4) on the screen area that was zoomed in (by using ⌃ + mouse wheel) the resulting screen shot has the same zoom factor. Super useful when I wanted to take some small, detailed screen shot.
+In 10.7 screencapture ignores the zoom factor and resulting screen shot is in 1:1 scale.
+Is there some defaults setting, or anything else, that could bring back the SnowLeopard behavior?
+
+A: The answer appears to be "No". I have also tested this with the commercial screen-capture utility SnagIt, and it behaves the same way, which is different in Lion from the way it behaved in Snow Leopard.
+My suggested work-around is to use Automator's built-in "Scale Images" action to create a workflow to scale your screen shots to the size you want.
+
+[Commercial programs such as GraphicConverter and Pixelmator can scale screen captures, and they also provide additional Automator actions with additional capabilities. You can see some of these in the example above--I own both GraphicConverter and Pixelmator, so these additional options are visible under Automator on my system.]

@@ -1,0 +1,78 @@
+Q: Printing to a Cups Server without using the local CUPS doesn't work since OS X Lion With our new 21,5"-iMac, we bought the first Mac system for our Windows/Linux-oriented office. Hence we don’t have a lot of experience in using Mac OS X.
+I started to set up everything and it ran quite well so far until I reached the configuration of our network printers.
+In our company we use a Linux system running a CUPS-server. This server holds the configuration of all queues. All changes regarding settings or even additional printers are made there.
+As we do not want to make changes on every client system if new printers join the infrastructure, we forward all print jobs to the remote CUPS print server.
+This saves a lot of time instead of configuring printers via IPP or equivalent.
+To make this work on Mac OS X, I found a link with the information I needed:
+http://hints.macworld.com/article.php?story=2004011920201534
+The .cupsrc-file (hidden file) in the home directory containing the line
+ServerName <myserver>
+
+will instruct the local CUPS system to receive remote print queues from our print server.
+After saving the file, the GUI configuration tool for printers in Mac OS X (System Preferences… -> Print & Fax) shows all remote queues running on the central CUPS server.
+But after I upgraded to Mac OS X 1.7 “Lion”, the GUI doesn’t show the queues anymore.
+I have no idea what to do and even Apple Support (registered owner of CUPS system) couldn’t help me out with that. They only pointed to the CUPS configuration file (/etc/cups/cupsd.conf), but I do not know the right setting there for printing to remote queues. Also, the web interface running on localhost:631 couldn’t help me… Any ideas?
+
+A: The release notes for CUPS 1.5 mention that
+
+CUPS no longer supports the old ~/.cupsrc or ~/.lpoptions files from
+  CUPS 1.1.x. The ~/.cups/client.conf and ~/.cups/lpoptions files that
+  were introduced in CUPS 1.2 must now be used.
+
+Have you tried putting the line
+ServerName print-server
+
+into ~/.cups/client.conf?
+
+A: Set up /etc/cups/client.conf correctly for your environment so that the cups printers display in the print config dialog.
+To get the queues to display in the applications as a choice, make each printer the default printer once.  Distribute the resulting com.apple.print.favorites.plist to users with mcx or copy to ~/Library/Preferences 
+It uses the PPDs on the server.  No client config necessary!
+
+A: This is an old question, but I just face the same problem without finding any quick solution.
+CUPS documentation indicates that the use of ServerName "does not work on OS X 10.7 or later because sandboxed applications do not always have direct network access." :'(
+One possible workaround is to use the terminal and send the jobs to the server using the lp/lpstat command. You must specify the server with the option -h. Remark that this won't work for graphical applications.
+To list the printers:
+$ lpstat -h <SERVER ADDRESS> -a
+
+To print a PDF file:
+$ lp -h <SERVER ADDRESS> -d <PRINTER QUEUE> <PDF TO PRINT>
+
+You can put everithing into two scripts: lptb and lptbstat.
+lptb: 
+#!/bin/sh
+
+LP_COMMAND=$(which lp)
+CUPS_SERVER="<SERVER ADDRESS>"
+PRINTER="${PRINTER:-<DEFAULT PRINT>}"
+
+CUPS_GSSSERVICENAME=ipp ${LP_COMMAND} -h "${CUPS_SERVER}" -d "${PRINTER}" "$@"
+
+lptbstat:
+#!/bin/sh
+
+LP_COMMAND=$(which lpstat)
+CUPS_SERVER="<YOUR SERVER>"
+
+${LP_COMMAND} -h "${CUPS_SERVER}" "$@"
+
+To show the list of queues you do:
+$ lptbstat -a
+
+Print a PDF:
+$ lptb <PDF>
+
+Print a PDF using a specific queue:
+$ PRINT="<MY GREAT PRINTER>" lptb <PDF>
+
+
+A: I know this is old but I if I setup a printer on my cups(ubuntu) server, I can now print successfully from a Mac.  This works on Catalina and Big Sur.
+
+On windows the printer address is http://192.168.1.10:631/printers/HP4250
+
+On Mac I had to put
+Address: 192.168.1.10:631
+Choose: IPP (Internet printing protocol)
+Queue: /printers/HP4250
+
+I use the generic postscript driver, but that might be different for your setup.
+Hope this helps someone else as I wasted more than an hour trying to find a working solution.

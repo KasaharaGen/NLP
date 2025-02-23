@@ -1,0 +1,9 @@
+Q: Is reassigning or disabling short-key possible? The finder has the Command-H assigned to 'hide finder'. Can I reassign the key to something else? Or can I disable the Command-H short key to hide finder only through menu?
+
+A: Yes you can.
+Open System Preferences, Keyboard. Click the Keyboard Shortcuts tab at the top. In the left pane, select Application Shortcuts. In the right pane, select Finder.app. Click the + at the bottom of this pane. For Menu Title, type the exact wording / spelling of the menu item in question: in this case Hide Finder. For Keyboard Shortcut, pick another keystroke combination to hide the finder (I use function key F1). Voila. Now go to Finder and look at the Finder menu; beside Hide Finder should be F1 (or whatever you chose).
+
+A: You can also assign a shortcut to something like the NUL control character by editing the property list directly.
+defaults write com.apple.finder NSUserKeyEquivalents '{"Hide Finder"="\0";}'
+
+If a shortcut was assigned to nil, it would be shown as N in System Preferences and pressing L would trigger it in some applications like Audacity.

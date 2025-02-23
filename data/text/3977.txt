@@ -1,0 +1,11 @@
+Q: Find gateway address and netmask? I come from the land of windows, where the ipconfig command shows four important pieces of information: IP address, netmask, gateway address, and MAC address.
+However, on a Mac, ifconfig only shows IP address and MAC address.
+Where can I find the gateway address (e.g. 192.168.1.1) and the netmask (e.g. 255.255.255.0)?
+
+A: On most Unix-like systems, including OSX, that information comes from netstat -r (r for "route").
+
+A: With ifconfig on OS X you can find netmask :
+inet 192.168.1.2 netmask 0xffffff00 broadcast 192.168.1.255
+
+netmask 0xffffff00 means 255.255.255.0
+And for finding gateway address use arp -a or as geekosaur said use netstat -nr | grep '^default'.

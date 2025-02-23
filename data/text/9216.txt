@@ -1,0 +1,15 @@
+Q: Mount root of SMB Server I have a Windows server that I want to backup all the Shares through a script automatically to my MacBook Pro running OSX 10.6.8. There is no common folder all the shares are in, they are just mounted as \\SERVER\Share_Name. I want to be able to have a script that cycles through all the shares on a server (even if the folder names are unknown at the time the script is created), and create a backup on a local folder on my Mac. Or, if there's an easier way than a script, or drag-and-drop (that doesn't seem to always copy all the files)
+
+A: There's no root in Samba protocol. To list shares on your server you can use smbutil(1):
+$ smbutil view //Administrator@10.211.55.8/ | awk '$2=="Disk"{print $1}'
+ADMIN$    
+C$        
+
+and then use output with mount_smbfs(8):
+smbutil view //Administrator@10.211.55.8/ | awk '$2=="Disk"{print $1}' | while read sharename; do 
+  mkdir ${BASE}/${sharename}; 
+  mount_smbfs //Administrator@10.211.55.8/${sharename} ${BASE}/${sharename};
+done
+
+Please, read man pages to check other options I haven't used here.
+The best utility to make backup I know is rsync(1). You can found it from MacPorts. It'll be interest if you know better.

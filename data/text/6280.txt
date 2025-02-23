@@ -1,0 +1,17 @@
+Q: Why doesn't Lion recognize my drive as a supported permanent storage volume? Whenever I save a Pages (or other) document I'm greeted with this warning. 
+
+I really like the version feature and this warning basically says that it is disabled. Any ideas why my hard drive isn't supported? The machine is a mid 2010 13" MacBook Pro with a 1TB internal drive. The drive is formatted as HFS+ Journaled.
+
+A: I ended up wiping the drive and just installing Lion from scratch. That seems to have fixed the issue.
+
+A: The problem is that while the drive was originally formatted as HFS+, it was most likely NOT set up with the GUID Partition Table, which is required by Intel Macs if you want the disk to be a boot volume. Yours was probably originally set up with the older APT (Apple Partition Table) which was the standard for PowerPC Macs.
+An Intel Mac can read and write files to an APT - HFS+ hard drive, but it cannot boot from one.
+When you reformatted the drive with Disk Utility, it used GUID by default.
+I know that Disk Utility can change one to the other, but I'm not sure if it can do so without reformatting the disk first. So your reformat did the job, but now you know exactly why.
+
+A: There is some information at the bottom of this post that details problems with versioning. My first recommendation would be to repair permissions, and if that doesn't work, try the following commands (make a backup first because I'm making this up on the fly):
+mkdir /.DocumentRevisions-V100
+chown root:wheel /.DocumentRevisions-100
+chmod 111 /.DocumentRevisions-100
+
+What those commands do is to make the directory that Lion is supposed to create to store its versions, change the owner and group, and then change the permissions as per the post linked above.

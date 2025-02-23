@@ -1,0 +1,28 @@
+Q: iPhone iOS 5 showing incorrect time zone Recently (and only while at work) my phone has started to claim that its 8 hours ahead of the correct local time (e.g. it is currently  a little after 1230 and the iPhone is showing a little after 2030). 
+If I disable automatic time setting (Settings > General > Date and Time > Set Automatically) and manually confirm my location, all is well and the iPhone shows 1230. (Location services are switched on.)  
+
+Of course, this isn't sustainable because I'd like my phone's time to be kept in sync. 
+From researching a little it seems as though this is a carrier related problem, can anyone confirm that? 
+Update: After discussing the issue with my carrier's helpdesk they confirmed a problem with one of their cells which they subsequently fixed and which caused my timing issue to go away. 
+Moral of the story: it's not always something that you can fix by yourself! 
+
+A: You should see the Location you are in under the set automaticly button. As below. It is greyed out, as this is taken from your current location, so you must have location service enabled.
+
+
+A: I just had this problem and resolved it.  My iPhone thought it was in New York when it was in Abu Dhabi.
+Go to Settings > Location Services > System Services
+System Services is the last item on the Location Services page.  Scroll all the way down and tap it.
+Inside System Services, there will be options for: Cell Network Search, Compass Calibration, Diagnostics & Usage, Location-Based iAds, Setting Time Zone, and Traffic.
+On my iPhone, Setting Time Zone was switched off.  I turned it on and voila! I now have the correct time zone.
+I may have turned off location services when I was trying to troubleshoot battery life under iOS 5 and forgotten to turn it back on.
+I hope this is helpful.
+
+A: Try to reset Settings > General > Reset > Reset Location Warnings.
+
+A: I had that issue too; it went back to normal after a sync with a PC.
+
+A: I've had this problem too. The settings seemed to change when i entered my WiFi network at home. I resolved this simply by entering Settings -> General -> Date and time -> (uncheck)Set Automatically.
+I then entered my timezone, and boom, problem solved!
+Hope it helped :)
+
+A: I found that calendars had time zone support on, which means all times are shown at that time zone, instead of the time zone of the current location. To turn it off, go to Settings>Mail,Contacts,Calendars>Time Zone Support>Off

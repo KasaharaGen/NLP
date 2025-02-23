@@ -1,0 +1,21 @@
+Q: How do I use the "right-to-left override" in Safari for Mac? I'd like to use the "right-to-left override" (unicode character 202E) in Safari. How do I make it work?
+
+A: Open up the Web Inspector with Command+Shift+I and type in this:
+copy('\u202e');
+
+If this won't throw an error, the right-to-left override is copied to your clipboard. You can try it even in the console, just press Command+V and then type some text.
+This works cross-platform (just be sure to use Ctrl in Windows), in all WebKit browsers, but only inside the console.
+
+Update: I've just installed Safari 5 on Win7 x64, and it seems that the character is copied to the clipboard, but Safari can't handle it. The HTML entity that Dori suggested will work in any HTML document. There, it will work in questions and answers, but not in chat and comments.
+
+A: If all you want is to make it work in Safari:
+This is left to right, &#8238;but this is right to left,<br />
+and then this is back to left to right again.
+
+results in:
+
+This is left to right, ‮but this is right to left,
+      and then this is back to left to right again.
+
+The important bit is the &#8238;—everything after that will be reversed.
+Note: this assumes that the web page is using UTF-8 (and if it isn't, it should be).

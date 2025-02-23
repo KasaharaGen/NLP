@@ -1,0 +1,8 @@
+Q: Is there a way to lock a folder's icon without making its contents Read Only? I have a network share that is used by a large group of kids. They love changing the icon of this folder, which causes a lot of debate. I know that there is a hidden file that specifies the icon; can I lock this file so the icon of the folder can't be changed anymore?
+
+A: You're exactly right. Here's how to lock the file that controls the icon:
+Show hidden files.
+Navigate to your folder.
+There will be a file called Icon inside it.
+Go to the Get Info window for that file and check the Locked checkbox.
+Try to change the icon. You can't. Ta-da.

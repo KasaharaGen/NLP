@@ -1,0 +1,25 @@
+Q: Set keyboard shortcuts for launching programs 
+Possible Duplicate:
+Can I create a shortcut to open a specific application on OS X? 
+
+On all my other machines, I can type CtrlAltW to launch a web browser, CtrlAltE for an email client, etc.  I have looked but haven't been able to find how to set this up on my mac.  Can this be configured on a mac? Preferably without external software.
+
+A: This can be achieved by using an Automator service and assigning it a shortcut in the Keyboard System Preference pane:
+
+
+*
+
+*Launch Automator and select “Service” as the type of new workflow to create.
+
+*Set the workflow to take “no input” in “all applications”.
+
+*Drag a “Run program“ action from the “Utilities” category into the workflow, set it to the app you want to start via a keyboard shortcut.
+
+*Save the service under a memorable name.
+
+*Go to Keyboard Preferences → Shortcuts (in System Preferences, or chooses “Configure Services” from the “Services” submenu in the Apple menu).
+
+*Select the “Services” category, locate your newly created service and assign it a shortcut (make sure it is checked to be active).
+
+
+Voilà – you have a global keyboard shortcut to start your application. Rinse and repeat as needed. Note Automator services are pretty laggy when first started during a session, but reasonably responsive after that.

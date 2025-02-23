@@ -1,0 +1,43 @@
+Q: How to stop syncing apps with iTunes without wiping them from my iPhone? Is there a way I can stop syncing apps with iTunes without first obliterating the apps from the iPhone and re-downloading them?
+Now that iOS 5 and iCloud are released, I want to stop storing all my apps on my computer, and instead just let them be downloaded directly to each of my devices. Music, podcasts, etc. should still sync with my computer.
+However, when I deselect "Sync Apps" in iTunes, I get the message:
+
+Are you sure you do not want to sync apps? All existing apps and their data on the iPhone "myPhone 4" will be removed.
+
+It seems like an awful waste of time and bandwidth to force the phone to redownload all my apps just to tell iTunes to stop syncing them.
+
+A: What worked for me was to setup my device for wifi sync first. Make sure under the edit menu and preferences / devices (this is important) that you have it set to prevent automatic sync. Right click on the device in the left pane of itunes and reset all warnings. Have the cable disconnected but the device still visible via wifi. Uncheck sync apps, then ok the warning about removing the apps from the device. Then click "summary" and uncheck sync over wifi then apply in the lower right.
+Now reconnect via cable turn wifi sync back on and sync your device via wifi or cable doesn't matter which. Now disconnect the cable, goto apps in iTunes and delete all apps. Ok the warning about removing the apps from the device. Goto summary and uncheck sync via wifi and click apply in the lower right. Then you can reconnect with your usb cable and turn on sync via wifi again.
+At this point a popup will tell you that there are apps that you need to transfer to iTunes or they will be removed from your device. Check don't show this again and then click don't transfer. Now you can go into edit and preferences under General and uncheck apps altogether if you want the iTunes apps folder to go away as well.
+I did this with both my iPhone and iPad2 and I still have my apps on them.
+Good Luck.
+
+A: From testing, it seems you can't break that link without having to re-download. Since the change requires you to synchronize the phone, you will need to re-download the files from the phone once you've un-ticked the box, since the synchronize does remove the applications completely.
+Unfortunately the answer to your question is right now there isn't a default way, but I suspect it will become possible in future iTunes versions.
+I have looked for possible hacks to do this and have yet to find one that doesn't require jail breaking to copy the files back.
+
+A: Or you could try this info from the help section of iTunes:
+You've set up automatic syncing, iTunes syncs your device by default whenever you connect your iPod, iPhone, or iPad to your computer. If you don’t want iTunes to sync your device without being prompted, you can change this setting.
+You can prevent unprompted syncing for any specific iPod, iPhone, or iPad; or for all iPod, iPhone, or iPad devices you connect to your computer.
+To prevent unprompted syncing for all iPod, iPhone, and iPad devices: To sync your iPod, iPhone, or iPad when unprompted syncing is disabled, connect your iPod, iPhone, or iPad to your computer, and then choose File > Sync “Device Name” in iTunes, or click your device (below Devices) and then click Sync.
+For more information, see the iPod, iPhone, or iPad User Guide or the Apple Support website.
+
+A: *
+
+*Uncheck the "Sync Apps" checkbox
+
+*Answer yes to all the warnings about apps that will be deleted from your phone
+
+*Once synching actually starts, quickly press the "x" button in the iTunes status window to stop the synching. Pulling the cable should also work but I haven't tried it.
+
+
+Since the synching process was stopped, no apps were deleted, but the unchecked checkbox is still stored -> all apps left, but no longer synching apps to computer.
+
+A: iTunes 10.6 asks you whether to Keep or Delete apps on your iDevice when you uncheck "Sync Apps"
+Once you uncheck the box and apply, if you decide in the future to Sync Apps it appears that it may overwrite everything, so YMMV
+
+A: In the latest version of iTunes (answer current as of 12.0.1), just click this button.
+
+
+This is a facetious answer. Actually it cannot be done, as evidenced by numerous forums on Apple with no solution to this common pain point: https://discussions.apple.com/thread/3784727
+Apple uses this pain point to force users to upgrade to newer phones and laptops with more storage and/or give up privacy by enabling "cloud" features.

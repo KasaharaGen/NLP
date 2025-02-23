@@ -1,0 +1,24 @@
+Q: What's the most robust way to backup an iTunes library? I have an iTunes library on my WinXP PC.  This library includes tons of music, some podcasts, and a few T.V. shows.  What's the best way to back up the whole iTunes library?
+Specifically:
+
+
+*
+
+*All music, album art, podcasts and videos preserved and recoverable
+
+*All album art preserved and recoverable
+
+*All playlists preserved and recoverable
+
+*All settings, such as compilations and volume adjustments, preserved and recoverable
+
+*Catalog can be restored on Win and Mac iTunes installations
+
+
+It would be awesome if there were a way to do incremental backups instead of having to do the whole process every few months.  
+
+A: You simply need to backup the entire iTunes folder and optionally the alternate folder(s) where the media is stored.
+To ensure your media is consolidated so you don't have to track more than two folders for backup, be sure to allow iTunes to consolidate and organize your music.
+
+The files stored are readable by both mac and windows so you can place them on the new machine, perhaps re-link the directory structure since a Mac won't know what to do with C:\My Documents\Music\Itunes\whatever but everything including the counts, downloaded apps, artwork and playlists will all transfer. You may need to find the folder where iTunes stores iOS device backups as that may be in a different location but that's easy to recreate by plugging your device into the new iTunes and finishing one backup.
+It's still a good idea to export the library as XML to cover you for times when the iTunes database gets corrupt but this will work across all versions of iTunes in the past.

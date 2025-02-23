@@ -1,0 +1,26 @@
+Q: Celtx unexpectedly quits I am using Celtx for script-writing/movie production. Just earlier today, I used it with no problems at all. Now, when I open it, it bounces 2-3 times, then quits. If I open a Celtx file, the file will open and load, then quit. I can't do anything with Celtx at all. Please help me!
+
+A: Presuming that you are using the latest version of Celtx, I think that it's most likely that one of the Celtx preference files have become corrupted. You'll find them in two locations:
+Preference file:
+/Users/username/Library/Preferences/ca.greyfirst.celtx.plist
+
+Preference folder:
+/Users/username/Library/Application Support/Celtx
+
+I'd do the following to troubleshoot:
+
+
+*
+
+*Quit Celtx. Not a problem, since you can't open it anyway. 
+
+*Move the above listed files/folders to your Desktop.
+
+*Try to launch Celtx. If things work, great. Celtx will recreate the preferences. You will need to reset any user preferences you made.
+
+*If things don't work, I'd Trash the application, redownload it, and reinstall.
+
+*After reinstalling, restart your computer before you try to open the app again, just in case anything's being cached
+
+
+Oh, and best of luck with your script!

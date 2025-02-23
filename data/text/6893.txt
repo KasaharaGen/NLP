@@ -1,0 +1,8 @@
+Q: Reinstalling Lion on brand new Mac Mini without internet I have just purchased a brand new Mac Mini which came with Mac OS X Lion. I then (maybe not so cleverly) tried to restore a previous hard drive image to the hard drive. Unsurprisingly enough, the computer wouldn't start. So I decided that I would go with a fresh install of Lion.
+However, when I booted from the Recovery Partition, it told me it would take 5 hours+ to download "Additional Components" needed to install Lion.
+I'm assuming that it meant it was downloading the entire 4Gb Lion operating system! Is there not a copy of this on the "Recovery" partition? Is there anyway to install Lion without having to download the entire thing?
+
+A: The "Internet Recovery" function only contains a small system, just enough to boot up, let you do diagnostics, browse the web, and download the install packages. It doesn't contain the full install of OS X.
+A full installer can be created from the Mac App store download, but the newest minis and Airs use a special build, so that won't work for them. Even if it did, you'd still have to download it at least once.
+At the moment I'm afraid your best hope may be to take it to an Apple store and explain your dilemma. They'll be able to get things installed, either by downloading it on their (hopefully faster) connection, or installing from a local copy/image.
+Once you do have your system set up again, you may want to invest in a backup hard drive and use a tool like SuperDuper or Carbon Copy Cloner to make a bootable backup that you can use as a restore drive.

@@ -1,0 +1,12 @@
+Q: How can I Transfer Dashboard Information from one computer to another? How is it possible to transfer all my information from dashboard(in stickies) to my new macbook pro? Is there an easy file just to transfer or do I have to copy and paste them to an email? Also I have 10.6 running on my macbook and 10.7 on my new macbook pro if this makes a difference in how you can transfer them. 
+
+A: All of the preferences/info from Apple supplied Dashboard widgets resides in ~/Library/Preferences. Do a search for anything beginning with widget-com.apple.widget - those are all your widgets. 
+For stickies specifically, copy widget-com.apple.widget.stickies.plist to the ~/Library/Preferences folder in your new machine, and you'll be all set.
+
+A: While it is true that ~/Library/Preferences/widget-com.apple.widget.stickies.plist contains the data associated with each widget, the file ~/Library/Preferences/com.apple.dashboard.plist contains information that causes the individual sticky widgets to be displayed.
+If you hope to transfer stickies from one machine to another, both of these files will need to be copied. Note that this will clobber all the widgets on the target machine, not just Stickies. If this is not the desired behavior, some judicious plist editing could merge in just the entries for Stickies.
+
+A: Why not just use the User Migration Assistant? It will transfer everything over from your account on the old machine.
+One bit of advice: If your account name on the old machine is the same as your account name on the new machine, it may not transfer. I'd recommend creating and logging on to a temporary administrator account (in System Preferences -> Accounts), rename your account on the new machine if necessary, and run the user migration assistant from the temporary admin account.
+
+A: How many stickies do you have? Why not just copy the text out of the stickies and email it to yourself? Then check your email on the new machine and copy the text back into a new set of stickies.

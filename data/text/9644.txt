@@ -1,0 +1,47 @@
+Q: How can I use an existing Time Machine backup with my new computer? I've just replaced my existing MacBook Pro with a new MacBook Air.  I've got 18 months of Time Machine backups from the old computer.  I'd like to configure my new computer to use the old computer's Time Machine backups, so the new computer picks up where the old one left off.  Is this possible?  If so, how?
+I didn't restore the new computer from a Time Machine backup because my old computer used more disk space than my new computer.  There was a lot of cruft as well, so I decided to start from scratch on the new one.  I'm slowly pulling off individual files and settings from a clone of the old computer's hard drive.
+
+A: I found the following solution here:
+sudo tmutil associatedisk -a "/Volumes/Macintosh HD" "/Volumes/Time Machine Disk/Backups.backupdb/John Doe's MacBook/Latest/Macintosh HD"
+
+
+A: By now, there seems to be a dedicated tmutil command:
+sudo tmutil inheritbackup <path to previous time machine backups on mounted volume>
+
+Example:
+sudo tmutil inheritbackup /Volumes/Seagate\ Backup\ Plus\ Drive/Backups.backupdb/MacBook
+
+
+A: *
+
+*Make sure the name of the new computer's hard drive is the same as the old computer's hard drive.  Click once on the hard drive and hit enter to rename.
+
+*Make sure the new computer's name is the same as the old computer's name.  Open System Preferences, then Sharing.  Enter the name in the Computer Name field.  (This step may not be necessary, but it's what I did.)
+
+*Plug-in the existing Time Machine drive. Open the Time Machine preferences and turn Time Machine on.  Click Select Disk… and choose the Time Machine drive.  After a few seconds, the backup will start.  It will probably take awhile because OS X recognizes that you're backing up an entirely new disk, so backs up the entire disk.  It might have to delete a few of your oldest backups, depending on how much space is left on the Time Machine drive.
+After the first backup, you can safely change the name of the new computer and its hard drive.
+Update: Using this technique, you won't be able to browse any backups from your previous computer with the Time Machine interface (although they are removed when Time Machine needs to free up space for new backups).  The old backups are still visible and accessible from the Finder.
+
+A: There is also an extensive guide to troubleshooting Time Machine over on Apple OSX and Time Machine Tips (archive.org link because the original has gone away...) especically the following:
+
+
+*
+
+*B5. Would you like to inherit (or re-use) the backup . . . ?
+
+*B6. "Reconnecting" to your backups (for when the easy way fails)
+
+
+A: I restored everything to a new machine and has this problem. I found a new folder on my backup disc indicating that Time Machine had tried to back up the new computer. I deleted it, and when I asked for a backup I was given the option of "inheriting" the old backups. When I accepted this option, everything was fine.
+
+A: I am far from having knowledge about this stuff, but it seems to me one of the Apple Support people had me disconnect the power from the Airport Extreme and restart it.
+I just "cloned" my lap top pro from old to a new lap top and got grief from Time Machine. I shut everything down, and the next thing I see "Would you like to inherit from Airport", so I clicked "Inherit".
+Woola, I looked up at the screen and it's working.
+
+A: If you want to back up to the same Time Machine disk that your old computer did, you can do that by plugging the external disk in and selecting it for Time Machine. If you don't restore from that backup, however, Time Machine will house both backups on the same volume, but you won't be able to pull files off of the drive from the other computer through the Time Machine interface. You can get to the other computer's backups by accessing the drive through /Volumes in the Finder.
+
+A: Don't know if back then the Migration Assistant was less customizable...
+I just did something similar and had the impression with the Migration Assistant I had quite some freedom what to take over or not to a new machine. I migrated from a MacBook Pro to a new iMac with the wish to keep both - my MacBook Pro and the new iMac - running in parallel and also with individual backups.
+As told I used the Migration Assistant and could then deselect all kind of stuff, also applications. Of course I didn't have the issue of lack of storage on the iMac as you with your move to a MacBook Air, but i would assume, you can deselect almost all data and application and keep only very little in the migration in order to keep some settings like the Time Machine without the need to migrate all. 
+Once my migration was done, Time Machine started to do its process and told me, that there is already a Backup and whether I want to inherit the history of that Backup. For someone not wanting to fiddle around with renaming and commands probably the easiest way. 
+The only issue I had then, was that the backup got stuck in the preparing process, but re-moving and adding - and confirming again the question to inherit the history of the existing backup - fixed the issue.

@@ -1,0 +1,15 @@
+Q: How to skip system hotkeys when using terminal emacs? I like to run GNU emacs in a Terminal window under Mac OS X 10.6.4.
+Unfortunately, whenever I hit a hot key for emacs I often "trip" on an OS X system hot key.
+For instance, when I hit ⌃ + space in emacs, I end up opening Spotlight.
+Is there a way to "skip" system level hot keys when I use emacs under Terminal.app?
+I hate to have to manually deactivate all system hot keys and re-enable them whenever I use emacs.
+
+A: Found a way here that solved most of my own problem:
+https://stackoverflow.com/questions/604808/option-or-command-key-as-meta-key-for-lispbox-on-macintosh
+
+A: On my machine, I replaced the Control modifier key for the Spotlight commands with Command. This is simple, since it changes it for all applications, and doesn't usually conflict with anything else.
+
+System Preferences > Keyboard > Keyboard Shortcuts > Spotlight
+
+Alternatively, you could add an additional modifier, e.g., ⌃-⌥-space. Or even change it altogether. I've used ⌃-⌘-F in the past, for example; though that's now the default key for Full Screen on Lion.
+The default Spotlight keys are the main conflict with Terminal. I don't think there are other default shortcut keys that are a problem (because they either don't use Control, or if they do they usually use other modifiers or keys that don't conflict with how Terminal handles keyboard input).

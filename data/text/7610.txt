@@ -1,0 +1,36 @@
+Q: Mouse pointer intermittently jumps to corner of screen I recently got two new Macs, an iMac (with magic trackpad) and a MacbookAir (both the most recent models - mid 2011 and both with Lion). They are both suffering from the same issue so I don't think it's hardware based.
+Basically approximately every 10 or 15 minutes I'll be trying to move the mouse pointer or click and suddenly the pointer will jump to the corner of the screen (normally the bottom left but sometimes the top right). It might do it three or four times in a row and then not for half an hour.
+I wondered if it was some sort of gesture I was accidentally performing (maybe more than one finger is touching the trackpad as I click?) but I don't seem to be able to reproduce it on purpose. It doesn't seem to be tied to one particular app but happens whatever I'm using.
+The only mentions of a similar problem I could find online talked about hot corners and I've made sure all hot corners are disabled in system preferences. 
+Has anyone else run into this? It's driving me absolutely crazy (because when I click in the bottom corner the active app loses focus and I lose my flow!).
+Edit: to add further information which may help.
+I started to suspect that it might be something to do with applications that I have running all of the time. So I started trying to change things (as much as I can while still being able to work). The first potential culprit was Terminal running in fullscreen mode. So I took it out of fullscreen mode. And for a while it seemed to fix the problem. But unfortunately it is still happening but it appears to be less frequent!
+I don't have anything else running fullscreen and I also don't have Dashboard running in a space (the problem still happened when it was).
+Other apps that I am prettymuch always running:
+
+
+*
+
+*Alfred (launcher)
+
+*PhpStorm (IDE)
+
+*Firefox
+
+
+Does that help at all?
+Edit: Another update.
+At the suggestion of @mspasov I checked the logs in Console.app just after it happened. Unfortunately there doesn't appear to be anything that shows up in the logs at the point when the jump happens. I warnings like this:
+osascript: Error loading /Library/ScriptingAdditions/Adobe Unit Types.osax/Contents/MacOS/Adobe Unit Types:  dlopen(/Library/ScriptingAdditions/Adobe Unit Types.osax/Contents/MacOS/Adobe Unit Types, 262): no suitable image found.  Did find:
+    /Library/ScriptingAdditions/Adobe Unit Types.osax/Contents/MacOS/Adobe Unit Types: no matching architecture in universal wrapper
+
+But that is happening frequently and happens lots of times when the jump doesn't.
+Trying to think of software which could be causing the problem it suddenly occurred to me that Growl is also constantly running on both machines which display the problem. However, disabling Growl hasn't stopped the problem from happening...
+
+A: The mouse problem you are suffering from has to do with OS X polling rates. It has been a known issue for quite some time now. You can read about the issue and a general rundown of some of the mice affected.
+Note that contrary to what the author states, the problem still very much exists in OS X Lion. Refer to this post for your specific problem, which identifies CPU cycles as a possible culprit.
+As a designer, I found this insufferable. I purchased and tested (even Apple's Magic Mouse) numerous mice only to have them returned to the store. Each mouse worked flawlessly under Windows 7 I might add. I ended up buying a Razor DeathAdder (Black Edition) with ample DPI and polling rate (even though I don't game). It still jumps every know and again when the CPU is busy (I'm running a more than capable Mac mini 2.3 GHz i5 with 8 GB of RAM and an OCZ Vertex2 SSD) but the jumps are so extremely infrequent that they are now a rarity rather than the norm. I should note that this problem occurs using the native OS mouse drivers, the Razor factory driver, or SteerMouse.
+Sadly, there is truly no solution, just workarounds (mine was to buy a mouse with industry leading polling rates and DPI.
+The simply truth is there is a flaw in OS X and how it handles mice that needs to be fixed. And Lion has not corrected the issue.
+
+A: If your preferences are corrupt, you could delete anything in ~/Library/Preferences/com.apple.driver.AppleBluetoothMultitouch* and log out and then in again to start with new MultiTouch settings to see if that fixes things.

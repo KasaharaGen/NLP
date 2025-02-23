@@ -1,0 +1,7 @@
+Q: In OS X, I want to change to a non-standard keyboard shortcut for switching spaces In System Preferences > Expose and Spaces > Spaces Tab > to switch between spaces, there is a drop down list that allows you to select a modifier key and the arrows. The arrows are so far away from the rest of the keyboard! I want to bind to the vim keys (h, j, k, l) for (left, down, up, and right). On my Ubuntu machine, I push the equivalent of command-option-j to go down a space. Does anyone know how to change to a non-standard keyboard shortcut on OS X?
+(I ran across a post that details how to change the modifiers, but still uses the arrow keys. This is not what I'm trying to do. Custom keyboard shortcuts to change active Spaces desktop)
+
+A: Go to System Preferences -> Keyboard -> Keyboard Shortcuts. Then, on the left side, select Exposé & Spaces. On the right side you will see the current keyboard shortcuts for Exposé and Spaces. If you double click on the shortcut command (literally double click ^1 for instance) you will be able to change this to whatever you want. Just do the key-combo you want to use.
+So, once you double-click on the shortcut, it'll show it as editable. Then, press the keys you want the short cut to be, all at once, for instance press Apple and J at the same time, and it'll change the shortcut.
+
+A: I think matthepavkov has your answer, but also check out KeyRemap4MacBook for it's vi modes. 

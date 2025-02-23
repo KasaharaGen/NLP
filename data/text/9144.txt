@@ -1,0 +1,27 @@
+Q: Gnu-info page exists, but is visible from neither emacs nor terminal After installing gnuplot on Lion using 'brew gnuplot', the gnuplot info page appears at /usr/local/Cellar/gnuplot/4.4.3/share/info/gnuplot.info
+But in the info index page (M-x info) in emacs, I see no gnuplot entry.
+How can one point the "info system" (for emacs especially) to the newly installed gnuplot info page? If I missed something during brewing that would have connected the gnuplot info to the master info page, please point it out. If there is a direct way of reading the gnuplot page (again, through emacs) without going through the master index, please also mention it.
+
+A: Is the info file symlinked in /usr/local/share/info? If not, a simple
+ln -s /usr/local/Cellar/gnuplot/4.4.3/share/info/gnuplot.info /usr/local/share/info/
+
+should solve the problem.
+If not, look at the value of Info-directory-list in Emacs (C-h v). If "/usr/local/share/info" isn't included there, you can add it with
+(push "/usr/local/share/info" Info-directory-list)
+
+in the *scratch* buffer (and in .emacs of course).
+
+A: I'll take them in reverse order. :-)
+
+
+*
+
+*Inside emacs, when invoking info from a non-numeric prefix argument (e.g. C-u) it will prompt you for a file.
+
+*I don't know about home brew, but I don't see anything in the formula that is specific to gnuplot.  (In fact OMM I don't see the info file at all.  I have the man page, but not the info page.  I wonder if I made some decision that I don't remember.)
+
+*You can set the emacs variables Info-directory-list or Info-additional-directory-list.
+
+*You can set the INFOPATH environment variable.  This will work for emacs and the command line reader.
+
+*Symlink like patrix suggests.  This is probably the best option and should likely be added to the home brew recipe if it's not already.

@@ -1,0 +1,30 @@
+Q: Can I simply manually delete individual Time Machine backups from the Finder or command line? I have moved from a Mac running Snow Leopard to a new Lion machine. Since there was a lot of cruft on the old machine, I set up the new one from scratch, only copying the data over I need. I still want to retain the Time Machine backup of my old machine for a while in case I missed something. That backup spans many months though and is huge. I really just need the latest backup from it, not its whole history.
+Is it safe to simply open the Time Machine sparsebundle in Finder or on the CLI and remove the oldest folders? Or should I be using some Time Machine interface or tool to do so? I don't want to do it via the Starfield view, since it'll take me ages to click back and forth and delete each backup individually.
+
+A: Time Machine has supported deleting snapshots from Finder since 10.7:
+
+Like tmutil delete, it only works with the directories for complete snapshots though.
+I don't know why it's not allowed normally, but you can delete individual files with something like sudo /System/Library/Extensions/TMSafetyNet.kext/Helpers/bypass rm -rf /Volumes/Time\ Machine/Backups.backupdb/Macintosh/2012-10-04-033043/HD/tmp.
+Hard links don't stop working when the original files are removed:
+$ echo x > 1; ln 1 2; rm 1; cat 2
+x
+
+There's another similar question at Super User.
+
+A: You are OK to go ahead and delete the older backups using the Finder. 
+Just beware that any files that only exist in these backup periods will be gone. Deleting backups on command doesn't preserve files or merge/combine backups like the normal Time Machine pruning does in an effort to keep as many files available on the backup as possible.
+
+
+A: tl;dr - It's safe to delete in whatever way you choose.
+The only conceivable problem would be if Time Machine was trying to prune a backup at the same time you were deleting, so maybe turn off Time Machine for the duration of your clean up if you're not using the built in delete button.
+
+
+You can use tmutil delete in Lion to safely delete backups. The benefit of this is the deletion happens more silently in the background. The downside is the UI isn't speedy for deleting more than one snapshot at a time. In practice, you have to be there to attend multiple deletions.
+Don't worry about the internals of how files are linked or stored - yes most of the files in most of the backups are hard links, but to clean these up, you have to delete things folder by folder. The system will handle decrementing the link count so there's no better or worse way to go here.
+It is also safe to simply remove them via Finder or any other method - just be patient as each backup contains a full set of directory entries for each file. My (worst) record is 4 days to delete through finder a batch of unwanted backups.
+Good advice might be to start small if you can't leave your mac on overnight.
+You won't lose any data unless you are deleting the last copy of a version of some file. You don't get any warnings, it will get deleted - this is the same whether you use Time Machine itself, or Finder or rm in some terminal script.
+
+As a brief aside - Why do you want to do this? Time Machine automatically prunes old backups when you're getting low on space. I've found it very comforting to just clone my Time Machine drive to a cheap USB external drive and put it on the shelf. (or make this the drive on the shelf and use it as an excuse to get a new drive) Perhaps it's the perfect pack-rat-keep-everything verses if-you-don't-need-it-now's-the-time-to-delete-it test for Mac users.
+
+A: I would recommend against using Finder to delete backups, however it is certainly possible from inside Time Machine itself. When you're in Time Machine, navigate the window to the Computer setting, in the sidebar it should be the name of your computer. When that is the active window, the "Gear" icon on the toolbar changes its functionality. Go "back in time" to the date that you don't want any more and click on the Gear icon. Select "Delete Backup" from the menu and enter your administrator password if prompted and let Time Machine do its thing. This allows Time Machine to update its database and keep the links it makes intact.

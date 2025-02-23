@@ -1,0 +1,24 @@
+Q: iTunes is not recognising my iPhone after upgrading to Lion I've just upgraded my Mac to Lion, and now my iPhone is not being recognised in iTunes.
+I've tried...
+
+
+*
+
+*Updating iTunes (to 10.5) 
+
+*Checking for all updates
+
+*Restarting both the Mac and iPhone
+
+*Extracting iTunesHelper.app from the iTunes bundle and installing it into the Login Items list, and confirmed it's running in the Activity Monitor.
+
+
+For the past 3 years I've been happy with the "It just works" idea, but not today. :(
+What other options are there?
+
+A: Start by checking in the system profiler under USB to see if the Mac see's that the iPhone is connected.
+.
+
+Then remove the following to the Trash and RESTART the computer
+/System/Library/Extensions and Locate the file AppleMobileDevice.kext
+

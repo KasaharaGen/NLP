@@ -1,0 +1,121 @@
+Q: How do I open the context menu from a Mac keyboard? In Windows, one can hit Shift+F10 to access the "Context Menu." But a similar keyboard action doesn't seem possible on Mac. One potential application...
+When I make a spelling error in a document, Lion gives me the option to correct the error by right-clicking (or ctrl-clicking, two-finger tapping, etc) on the misspelled word and bringing up the context menu.
+
+How can I open this menu from the keyboard? And is it possible to access the Context Menu from a Mac keyboard?
+
+A: I always have the same question but I didn't find the answer yet.
+In Windows, when we use the keyboard short-cuts we mostly use the Menu key in Windows keyboard:
+
+When this Menu key is pressed, Windows will assume that you right-clicked the highlighted/active element > then it will show you the context menu even if the mouse pointer is not pointing to the highlighted element.
+So this feature seems to be missing in Mac OS. And whatever suggested solutions, even Enable Mouse Key it always require you to point/move your mouse pointer to element first, which is meaningless. If I need to use the keyboard short-cut to open the context menu on the highlighted item, why do I need again to move the mouse pointer to it also. Somehow this is not a short-cut!!
+
+A: ALMOST SOLVED
+I got this solution to work in some Applications (like Finder, TextEdit, Firefox, ...) but not others (like Outlook, Chrome, ... )
+A 'context click' can be mapped to a key/key-combo using all native Mac OS X features (thanks to its NeXT/OPENSTEP heritage).  However, the solution is pretty technical "under the cover" stuff, and it may take some trial-and-error to get it to work.
+Read about Key Bindings here, and follow (some) of the instructions to create your own  ~/Library/KeyBindings/DefaultKeyBinding.dict file.
+Key Bindings map keys (or key-combinations) to "Responders" inside the Text System.
+I found the Responder for rightMouseDown here, and found the "magic string" for my desired target key (F13) from this url:  osxnotes.net/keybindings.html
+My ~/Library/KeyBindings/DefaultKeyBinding.dict looks like this
+{
+    /* Context Menu */
+    "^\Uf710" = "rightMouseDown:";  /* Ctrl-F13 */
+    "^;" = "rightMouseDown:";       /* Ctrl-; */
+}
+
+Now I should be able to hit either Ctrl-F13  or Ctrl-; to get the context menu.
+NOTE: You will have to quit & relaunch an Application to have it pick-up changes.  (Worked for TextEdit in 10.10)  Otherwise, log-out & log-back in.
+
+A: Close to what you've asked, is to enable spelling auto-correction via:
+
+and then stay with your cursor at the end of a mispelled word, so you'll get an iOS style correction-suggestion:
+
+then with down-arrow and left/right-arrows you can choose the correct word.
+
+A: I use Alfred with RightClick workflow.
+I mapped Option+CMD+Enter to trigger a right click in the frontmost application.
+RightClick used to work only in Finder but it was improved to work in most applications.
+NOTE: As of Aug 4 2021 changes  they reverted back to only support Finder
+
+A: Solution update for more recent OS versions (e.g. Monterey 12.6)
+Note: it is the position of the pointer and not that of the cursor that determines where the contextual menu pops up.
+Head to:
+
+*
+
+*System Preferences ➤ Accessibility
+
+*Scroll down on the left menu to Motor ➤ Pointer Control
+
+*At the top choose Alternative Control Methods tab
+
+*Check Enable alternative pointer actions
+
+*Click on the Options... button at its right side
+
+
+The default option for the Right Click action is fn+F12, but this can be changed by double clicking on that F12 option. Instead of keyboard shortcuts, facial expressions can also be used as an option (e.g. Stick Tongue Out) by clicking the + button.
+
+ Credit goes to user Giuseppe's comment and nohillside♦ for suggesting the edition
+
+Original solution
+The context menu can primarily be opened by a right mouse click only. But in the Universal Access settings in the System Preferences we can control mouse keys by using the keyboard number pad. When activated, a right mouse click then can be achieved by Ctrl+5 on a keyboard with a numpad or Fn+Ctrl+i on a laptop. This will allow you to trigger a right-click, but at the spot the mouse cursor is hovering, not where your text cursor is.
+Go to System Preference → Universal Access → Mouse → Enable Mouse Keys (ON):
+
+Found on: https://stackoverflow.com/a/11238186/1919382
+
+A: You can use Better Touch tool to set up any tap/swipe/click/key combination to the right click.
+
+A: If you have "correct spelling automatically" checked and it doesn't seem to be working, it might be because you're trying it in an unsupported application. E.g., I can use the feature in TextEdit and Pages but not, e.g., FireFox or SublimeText 2 (two of my most used apps). 
+Tho I've spent way too much time looking, I haven't found any way of getting the suggested spellings from the context menu with the keys alone.  The best option I've found so far is to use my thumb on the track pad to position the mouse and then hold ctl and tap (again with the thumb). It takes a bit longer because of the need for positioning, but at least I can keep my fingers on the home row. 
+I find it awkward to reach the ctl button, so I've used KeyRemap4MacBook (which is generally awesome and free) to customize the layout to make caps lock be ctl.  KeyRemap will also let you assign ctl + click to button combinations, so you don't have to tap/click.
+
+A: Try press [fn]+[SHIFT]+[F10]
+To me it seems that most windows on mac F-keys can be called this way.
+Cheers!
+
+A: Cmd+Shift+: Opens “Spelling & Grammar” on Chrome for me with El Capitan. It’s a clunky bodge but I can now spell check.
+
+A: I feel your pain.....Best work around I've found is on cnet.  Haven't tried it yet but I plan to.  Unlike a true contextual menu, this does require you look to the top-left for the commands you seek, but may still suffice to bring you the functionality you are looking for.
+http://www.cnet.com/news/access-menus-via-the-keyboard-in-os-x/
+
+A: To bring up the spell check use cmd + :. 
+
+A: For spellchek(and more) I'm use popClip
++ alfred workflow Ppay 
+
+A: On my setup (external PC-style keyboard, Karabiner Elements, and single application I care about), I remapped a PC Menu key (Karabiner sees it as "application") to Keypad Numlock. 
+The application (CLion) has hotkey remapping ability and supports context menu for focused controls, so I mapped the key in the application.
+
+A: For Word 365 on Mojave, Shift+F10 does the trick. If you have a Touch Bar on your MacBook Pro, you would need to press the Fn key to bring up the function keys.
+
+A: Here is my solution on Github. This is a little AppleScript that I wrote making a control-click that you can assign to key of your choice using a shortcut utility app of your choice.
+
+A: You could use Hammerspoon to achieve this.
+
+*
+
+*You need to install http://www.hammerspoon.org according to instructions on their site. This is a great utility for automating your mac.
+
+*Add this script to hammerspoon config (which is located at ~/.hammerspoon/init.lua).
+
+
+hs.hotkey.bind({"shift"}, "F10", function()   local point =
+hs.mouse.getAbsolutePosition()   local clickState =
+hs.eventtap.event.properties.mouseEventClickState
+hs.eventtap.event.newMouseEvent(hs.eventtap.event.types["rightMouseDown"],
+point):setProperty(clickState, 1):post()
+hs.eventtap.event.newMouseEvent(hs.eventtap.event.types["rightMouseUp"],
+point):setProperty(clickState, 1):post() end)
+
+
+
+*Reload the config in hammerspoon menu: File -> Reload config.
+
+If you press shift + F10 you'll get a right click, just to be Windows congruent, but you can change the keybinding to anything you'd like. Just make sure you keep any modifiers: cmd, shift, ctrl, alt in the squiggly brackets {}
+Say you wanted it to be control + alt + spacebar, then the binding would look like this:
+
+hs.hotkey.bind({"ctrl", "alt"}, "space", ..
+
+
+A: shift+F10 can be used in many Microsoft apps.
+also, if you are using remote desktop of Windows on Virtual Machine this shortcut is very handy.

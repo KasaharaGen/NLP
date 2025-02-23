@@ -1,0 +1,23 @@
+Q: Magic trackpad pairing issues with Lion The Question
+How can I unpair the trackpad as a mouse and pair it using trackpad option instead?  
+Background 
+I made the mistake of pairing the Magic trackpad via System->Bluetooth->Bluetooth Setup Assistant.  By doing this the only thing I can use the trackpad for is pointing an left clicking.  I now see that it can be paired via the System->Trackpad->Set Up Bluetooth Trackpad... option.
+What I have tried 
+Inside Bluetooth settings: Disconnected the device, then using the - button removed it.  Then powered down the trackpad and restarted the pairing process by holding the power button.  
+While the green led is flashing, I go to the Trackpad set up and find the device.  However it keeps failing when connecting to the trackpad.  I did notice that it fails immediately  after seeing the "Connected" message displayed on my screen.  At this point I can use the trackpad as a pointing device, but am unable to connect to it using the trackpad set up.  
+System Settings
+OS X Lion
+Using USB Overdrive (for a wired logitech mouse)
+UPDATE
+Following the advice of a comment, I used the XCode's Bluetooth Manger and reset every possible device.  The issue still persists.  
+To find the Bluetooth Manger (assuming you have XCode installed and using Finder): Browse to MacHD/Developer/Applications/Utilities/Bluetooth 
+
+A: Turns out it was USB Overdrive.  Running 3.1 still causes issues with Lion.
+When Overdrive is installed it only sees the trackpad as a mouse.  I uninstalled USB Overdrive and Lion detected it after reboot with no trouble at all.
+This link was quite helpful as well.
+
+A: Did you unpair by going to System Preferences... ->   Trackpad -> Set Up Bluetooth Trackpad...
+Then select the trackpad and choose Unpair
+This is different to just removing it from the list of Bluetooth devices.
+You will then be able to pair it again properly.
+

@@ -1,0 +1,30 @@
+Q: Application Exposé with fullscreen window? Application Exposé (sometimes known as Application Windows) is a wonderful feature. One that I have wished for very hard! However, it seems it isn't available when an using an application window in fullscreen. Is there a way to enable it there too?
+
+A: It isn't available in full screen because a full screen app has its own space therefore there can't be any app "behind" it i.e. no need for Application Expose' 
+
+A: 
+Application Exposé (sometimes known as Application Windows) is a wonderful feature. One that I have wished for very hard!
+
+It's always been there! 
+They basically changed the behaviour from Snow Leopard. Previously, it would show windows, even from other Spaces. Now it shows all the windows of the selected app on that space, and in fullscreen mode there is only one window per space. (It also shows recent documents along with minimized windows at the bottom)
+
+A: Actually, the lack of Exposé - App Windows from fullscreen apps is a big problem that can lead to a buggy situation while using Google Chrome. 
+I often use fullscreen mode while using Chrome. While doing so, a certain web app, that I use regularly for work, opens a smaller browser window. Due to the nature of the web app, this smaller browser window can't be opened as a tab and and can't go fullscreen so, instead, it just opens as a smaller second window in the same fullscreen space. For clarity, I'll call the fullscreen window, Window1 and the smaller window, Window2. 
+While working with this web app, I need to switch back and forth between Window1 and Window2. When I click on Window1, just as expected, it completely covers Window2. The problem is, there is no simple way to switch back to Window2 since Window1 is fullscreen and completely covers it. In fact, Window2 isn't even visible in Mission Control since Mission Control only displays fullscreen apps as one window, even when smaller windows are present in the same fullscreen app space. 
+There are only two ways I know of to switch back to Window2 in this scenario: 
+
+
+*
+
+*Get Window1 out of fullscreen mode and then use Exposé (Mission Control or App Windows) to switch back to Window2. 
+
+*Just as the previous post states, first move to a desktop space. Then activate Exposé - App Windows and press the tab key until Chrome is the active program again. 
+Both ways are less than ideal. Being able to use Exposé - App Windows from fullscreen apps would easily resolve this problem. But even if Mission Control did show both windows, I still believe using Exposé - App Windows would be much easier to switch between the two. I usually have anywhere from 5 to 10 Applications running at the same time and many of the apps have more than one window. With so many windows open, using Mission Control is just plain overkill when all I want to do is switch between windows in the same application.
+Example
+Here is a link to a dd-wrt demo page where this problem can be easily demonstrated. Make sure you are using Chrome and are in fullscreen mode then click on the more link at the very top-right of the right column to open up a smaller window. Next, click back on the main window. Now try getting back to the smaller window.
+
+A: No, there is no way (right now) to be able to use app exposé in full screen mode. However, I don't think that this is because full screen takes up a whole space, because in Pages, I can have a full screen document open, while I'm working on my window document. I use app exposé and notice that I can see my full screen document, as well as my window document. So it does not have anything to do with full screen taking up a whole space. It seems like a bug. So hopefully Apple fixes this bug, if it is a bug.
+
+A: Actually even in Full Screen mode there can be more than one window. I manage to get up to 3: the main windows, the preferences and the info window. It is as well a little annoying not to be able to easily switch to preferences just hitting the hot corner.
+And yes, they are displayable. Not directly from a full screen application desktop, tho. To see all of them just get into Application Windows mode from any non full screen desktop and press "tab". That will switch the view to the next active application and when a full screen windows is reached it will show on reduced size, together with its little sisters.
+Otherwise always in Application Windows press "command (apple)-tab". You'll get the active application strip. There you can select the full screen application you care about staying in Application Windows mode.

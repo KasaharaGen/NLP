@@ -1,0 +1,10 @@
+Q: How do I install the 3.0 iPhone simulator on Xcode 4? I want to install the 3.0 iPhone simulator on my Xcode 4.0.2 installation. Is there a way to do this?
+I want to test my app against 3.0 to make sure it runs correctly (due to some changes in UIScrollView mainly), but I don't have access to any device with 3.0. I know that the simulator != the device, but testing against the 3.0 simulator is better than nothing.
+
+A: Xcode, the iOS SDK and the Simulator come bundled together in one installer because they share libraries and other stuff in the Developer folder.  Mismatched combinations probably won't work.  Even if you somehow manage to install the 3.0 Simulator with your current Xcode+SDK installation, it would probably crash.
+So you need to find a complete installer for an old iPhone OS 3.0 SDK with Xcode 3.x, and install with that on a Mac that to get a working iPhone OS 3.0 Simulator.  You may or may not be able to get an SDK/Xcode combination that old that runs on OS X 10.6 Snow Leopard, so you may need to find an older Mac that can boot into OS X 10.5 Leopard as well.
+Added:
+Anyway, a developer should only be supporting 3.0 devices by actually having one around on which to test their app, before setting the Deployment Target that low when submitting an app for live customers use.  Customers are not supposed to be some test dummies for random developers.  
+Just test apps on the oldest, lowest OS version, device you can find (beg, borrow, buy used and dented, drive across town), and use that as your Deployment Target.  If you can't find a device that old, neither can the vast majority of the customers for your app.
+
+A: Install the old version of Xcode, do a clean, set it to the old iOS build target (say iOS 4.2) and build it. I am using 3.2.5 and managed to actually find a few limitations in iOS 4.2 that 5.0 was happy with. You can download old Xcode and Simulator versions here: http://iphonesdkdev.blogspot.com/2010/04/old-versions-of-iphone-sdk.html. But, you need to have install the old Xcode + SDK to use the old iOS in the simulator.

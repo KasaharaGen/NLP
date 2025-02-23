@@ -1,0 +1,12 @@
+Q: Why are USB devices drawing power, but not being recognized by the OS? I have an issue with the USB ports on my Macbook Pro. When I plug a device in, the device draws the power, but nothing else happen. This is what I know about this problem:
+1- USB Prober can see the connected devices and identify them
+2- VMFusion it's able to connect the device into the guest OS but nothing happens
+3- If I reboot in windows all works good (no HW fault)
+4- I tried to reboot in safe mode, login, reboot
+5- I tried to reset SMC, nothing.  
+Later on I realized that apparently this issue it's related only to the composite devices, a simple USB disk work. An iPhone, iPod or Broadband Modem will not work.
+Any idea ?
+
+A: Well - if the port works, and you can plug in multiple other devices into the port it sure looks like the problem lies in the composite device and not the mac.
+The only way to know if that type of device is broken or is just not compatible (and the mac is shutting it off immediately on detection to protect itself) is to take that device to another mac of the similar hardware and test.
+Experience would say just that device is broken - but you'll have to test to know for sure.

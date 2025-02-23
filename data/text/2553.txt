@@ -1,0 +1,16 @@
+Q: Free OS X utility to scrape web sites? I want to scrape all the pages and subpages of a web site (by scrape, I mean save all the online content to local HTML files).
+What is the best utility to crawl all the pages? Ideally, I would like to specify how many layers deep to scrape.
+
+A: You have two options:
+You can use the wget command-line utility like so:
+wget -rl 10
+
+Replace the 10 with the number of levels you would like to recurse down into.
+Or, you can use SiteSucker. A GUI application that recursively downloads websites. You can also specify how far down to recurse with SiteSucker.
+
+A: DeepVacuum
+GUI for wget, $15.
+
+cocoawget
+(free)
+

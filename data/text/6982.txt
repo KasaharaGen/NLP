@@ -1,0 +1,40 @@
+Q: Copying formatted text from a web page to an Applescript input dialog I have an Applescript which - simplified - looks like this:
+...
+display dialog "foo" default answer ""
+...
+
+One of the users of this script runs Lion. Whenever he tries to copy/paste a string to the input dialog, that won't work if the origin of the copy has got some formatting (e.g. the string is copied from a web page).
+Everything works fine under Snow Leopard.
+Any hint on why this happens?
+
+A: I tried to reproduce the problem with
+on run
+    set dialogResult to display dialog "foo" default answer ""
+    set newText to text returned of dialogResult
+    display dialog "Text entered: " & newText
+end run
+
+but at least at first sight it appears to be working ok. Which specific issue did you run into ("won't work" is a bit broad)?
+
+Update
+The problem has been fixed in OS X 10.8, just got a mail from devbugs@apple.com:
+
+14-Sep-2012 07:40 PM Apple Developer Bug Reporting Team :
+We believe this issue has been addressed in OS X 10.8 (Mountain Lion) GM Seed (Build 12A269).  This pre-release version is available now on the Mac App Store to Mac Developer Program eligible members.  Please verify with this release and update your bug report with the results.
+
+
+A: I've found the same thing -- if I copy/paste from TextEdit in Rich Text mode, I cannot paste into the input field. If I change the mode to plain text, it works fine.
+Here's an Applescript I found that worked for me. It works by converting the clipboard to plain text:
+try
+  set the clipboard to string of (the clipboard as record)
+on error errMsg
+  display dialog errMsg
+end try
+
+You need to make it an executable script and then bind it to a keyboard shortcut. After that, whenever you copy some formatted text, execute the keyboard shortcut and you can then paste the text without problems.
+
+A: set variable_name to (the clipboard as text)
+
+
+A: This is a bit of a kludge, but I would imagine it works:
+Copy the text and paste it into something such as Notational Velocity, BBEdit, TextEdit or some other text processor that supports text without formatting. If you have NV set to plain text, simply re-copy it and you're set. In BBEdit and TextEdit there are commands to remove formatting.

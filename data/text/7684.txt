@@ -1,0 +1,6 @@
+Q: Disk utility on Mac and free space dispatching I have a physical hard drive that is split into 3 partitions. The second partition is running out of space and I want to give it some free space that I have on the third partition. While, this is simple to achieve on Windows, I just can't get there with my Mac.
+The problem is that I can create a new partition from the free space but not transfer space from my third to my second partition. This is a common task and I can't believe Disk Utility can't do that so I ask you what I should do in order to achieve this?
+
+A: I would say that this is not a common task: it's actually quite complex.
+The issue is that partitions are filled up from beginning to end, so the free space in your third partition is at the end of it, so it's not adjacent to your second partition.
+What you need to do is to move the data from the third partition to another hard drive (or back up your entire disk to another, which would be preferred). Once that's done, delete the third partition in Disk Utility. Expand the second partition into this free space (leaving enough room for the third partition) and re-add the third partition. Finally, copy the files back to the third partition from the copy made in the first step.

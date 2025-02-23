@@ -1,0 +1,22 @@
+Q: How to turn off spindle of internal HDD on MacBook from command line? I'm going put SSD drive instead of DVD and move OS-X to SSD.
+Big capacity HDD I'm gonig leave to have some place for large multimedia data and archives.
+So I whant keep HHD in spindle off mode most time and mount it just on demand, what should I do to prevent HDD to be mounted and powered while system boot (after restart) and how to manage spindle with the command line?
+Thank you!
+
+A: to disable the drive from mounting during boot :
+Find the uuid of the drive (in terminal):
+diskutil info /Volumes/[name]
+
+Then create a new file called /etc/fstab and in it put
+UUID=34DFD44D-489C-1C22-01D8-DFDF288C102F none hfs rw,noauto 0 0
+
+just replace the UUID above with the actual UUID of the drive.
+Use the following command to view a list of drives/partitions
+diskutil list
+
+And then issue the mount command to mount the drive
+sudo mount /dev/disk1s1 /Volumes/DriveName
+
+Obviously change the disk id and mount folder to suit your system.
+
+A: sudo diskutil eject /dev/disk1 will turn off spindle

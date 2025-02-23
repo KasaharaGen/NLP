@@ -1,0 +1,22 @@
+Q: Why won't Netflix play videos on my iPad? Go to watch any video instantly.  Click on play video.  It'll say that it's preparing to load.  Then it switches to the video screen for half a second, then back to the preparing to load screen, then dumps me back to the browsing for instant videos screen.  So the video never played at all.
+Any idea on how to fix this?
+
+A: I managed to resolve this by changing my DNS server to Google's 8.8.8.8.  Not ideal, but it worked.  Still, any ideas why this is happening?
+
+A: This happened to me when I upgraded my router to dd-wrt firmware.  If you did this, then you have two choices.
+
+
+*
+
+*Change your ipod (ipad) DNS settings to Google as suggested above with 8.8.8.8 or 
+
+*Disable dnsmasq for both DHCP and DNS.  This could cause you to be vulnerable to a rebind attack.  http://en.wikipedia.org/wiki/DNS_rebinding
+Here is a post on the dd-wrt forum 
+http://www.dd-wrt.com/phpBB2/viewtopic.php?p=481907
+Good luck
+
+A: Development versions of DD-WRT now include an option to disable the dns-rebind protection in DNSMasq. This solves the problem. OpenWRT has the same problem as DD-WRT, since it uses the same DNSMasq package.
+In OpenWRT, you can edit the /etc/ppp/options.pptpd file and remove the stop-dns-rebind line, or just comment it out with a #.
+Note that while you will still be vulnerable to a dns-rebind attack, so are almost every home and small-office router on the planet, so you will be in good company! :)
+
+A: I haven't seen this issue myself, but perhaps the iPad app is behaving strangely under 4.2.1 in regards to multi-tasking? Try "killing" the app in the recently used apps menu, and see if that fixes it.

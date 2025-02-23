@@ -1,0 +1,84 @@
+Q: How can I avoid my MacBook Pro giving me minor shocks? The aluminum Macbook Pro gives a mild shock when connected to a wall socket and charging. It only happens when I'm, for example, not wearing shoes or slippers and my feet are resting on the ground (i.e. by body is acting as a conductor).
+I contacted apple and I was told to perform the following steps:
+
+*
+
+*Shutdown
+
+
+*hold ⇧+ctrl+⌥+power for 10 seconds
+
+
+*wait 30 seconds then hold ⇧+ctrl+⌥+R+power (Let the Mac reboot three times with that apple tone, then let go. The Mac reboots again.)
+This did not fix the problem and I was not told what these steps were supposed to do. They have asked me to purchase a three pin version of the adapter and see if that fixes my
+problem.
+My last MacBook Pro was giving pretty severe jolts towards end of life. Hence a bit concerned.
+Question
+
+*
+
+*Has anyone here experienced such a problem?
+
+
+*Is anyone aware of what the above sequence of steps supposed to do?
+
+
+*Also, will this damage the Macbook in some way?
+
+A: This tingling can be felt on our aluminum 13" Macbook from 2008 and a 15" from 2011 if the Apple extension cord is not used on the power adapter.
+The V shaped slide part of the extension cord connector should have metal contacts under the edge of the V. These contact the metal button / mushroom shaped pin in the adapter, which is electrical ground. Make sure your three prong extension cord actually has the ground connection from the wall plug to the power adapter.  This page might help you find the ground pin on your plug: http://en.wikipedia.org/wiki/AC_power_plugs_and_sockets
+I believe the ability to feel the tingling is more related to the condition of the skin contacting the laptop than to humidity in the room.  Dry and thicker skin might have different results, for example.
+Even if the extension cord has a ground wire then the outlet you are using could be wired incorrectly.  Maybe try grounded outlets in a different or newer house or office.  
+This isn't just an issue with Apple gear - metal bodied IBM Thinkpads do it if the rubber coating isn't too thick.  And I've had it happen on metal faced Pioneer audio gear.  It isn't static, it is often felt only when the hand is very lightly touching the metal and often only when the hand is moving - as if brushing off a crumb.  Unplug the power connector from your Mac and the problem will likely disappear while on battery power.  The prolonged tingling nature of the effect leads me to believe it is a stray current.  This is not likely due to a wiring problem in the device but might be a mild inductive or capacitive interaction between the power adapter / circuit and the device housing.
+The fact that the laptop housing is metal and should be grounded when connected to power suggests that it is designed correctly to safely route true static discharges from your fingers to ground without damaging your Mac. I've damaged plenty of PC gear by working on carpet in winter via painful static shocks to the monitor or keyboard / USB ports.  But I've never damaged Apple gear this way.
+So the solutions seem to be: Make sure you are using extension cords with an embedded ground wire and plugs.  Make sure the wall outlet is grounded correctly and any surge protector is undamaged.  If this can't be achieved, use an external keyboard when connected to power.  A silicon keyboard cover will completely cover the Apple wired keyboard, if needed.  And powering the Macbook from an Apple Cinema display might be worth a try.  
+
+A: The solution for me was to use the adapter with a three pin extension cord.
+Then your notebook is grounded, and no more charges stay on the cover that shock you. :-).
+About steps 1-3
+In steps 1 and 2, you reset the System Management Controller (SMC Reset) on a Mac that has a battery, which you should not remove on your own. The SMC manages hardware conditions related to temperatures and power consumption. You may also be interested in the question: When should I reset the SMC on a Mac?.
+I'm not aware of the shortcut you performed in step 3.
+
+A: I recently moved to India and I had the same problem. But after using the 3 pin cord for the power adaptor the problem got fixed. I got both 2 pin and 3 pin connectors from Apple when I bought my mac. I was wondering why do they provide both and now the puzzle got solved! :P
+Cheers!
+
+A: The second step (ShiftCTRLOptionPower) is intended to reset your MBP's System Management Controller (SMC), as shown in this About.com video (more details about the SMC are contained in this Apple Support KB - look for specifics in the Portable computers that have a battery you should not remove on your own expandable section). This Wikipedia article indicates that this step is used to reset the Power Management Unit.
+I don't have any specifics regarding the third step (ShiftCTRLOptionRPower), but I suspect that the R stands for reboot, as indicated by the behavior you experienced.
+
+A: Something similar happened to me too.
+However, it also happens when I'm using it on battery as well.
+Hands felt tingling/numbing sensations and eventually burning sensation. Got blisters the next day.
+Had the unit returned and received a replacement. Replacement still gives me the tingling/numbing sensation after 30 minutes, but I have not received electric shocks on it yet (been using it straight out of the box for about 2 hours).
+Did some research and there was an article that seems promising:
+http://www.emfwise.com/how-to-ground-appliances.php.
+We can purchase a cable that will "ground" the appliance to reduce the sensation.
+Just wanted to share to warn people not to ignore the sensation and it might have health consequences (my fingers actually developed a slight tremor). Get the affected unit checked out/replaced and not to suffer like I did.
+
+A: I had the same issue. I do not know how SMC reset might help, but the 3 pin adapter makes sense. I thought of a work-around without having to invest in another adapter. 
+The issue with static discharge is that when you walk/rub on carpet or wool, electrons move from the carpet/wool to your body. This is similar to rubbing your hair with a plastic scale and holding it over shredded pieces of paper which get lifted due to the electrostatic force against gravity. Anyway, after accumulating electrons on our body, if we touch a metallic object, the electrons from our body move to the object. The small current during the movement of electrons give us the shock/pain felt by neurons. 
+Essentially, to reduce the current, we have to safely discharge electrons from from a larger surface area of our body which decreases the sensation of pain felt by neurons. To do this, use a metallic paper clip or safety pin (should be metallic) and bend them such that one end is broad and other end is narrow or pointing. Every time before touching your computer/mac, hold the broad end and bring the narrow or pointing end towards the computer body and you can see small spark between the two. If you keenly notice, you will feel a very negligible shock, but it is so small that it is painless compared to if you touch bare hand. 
+Hope this workaround helps you.
+
+A: I have been getting tingling shocks from my Mac for a while, but only when I use the shorter cable i.e the converter is the plug itself. 
+The problem stops when I use the extension cable. Must be design fault, with the shorter plug adapters not earthing properly. 
+
+A: Is it minor shock or static shock? Do you live in a hot & dry place? Do you have dry skin?
+Sorry if my questions sound weird, but you might have a medical issue. I too had the same issue with my MBP. I was blaming the electrical wiring. Thats when I realized about static shock. In my case, it was my dry skin coupled with the hot & dry climate. I started focusing on hydrating my self well and I stopping having the issue. Later just to ensure that hydrating actually helped, I reversed to less water and the shocks started again.
+I know its a weird solution but it worked and I did not bother thinking about it more until I read your question.
+
+A: 
+Has anyone here experienced such a problem?
+
+Yes, still a problem with 2018 models.
+
+Is anyone aware of what the above sequence of steps supposed to do?
+
+Right now I live in a hotel. For me, the solution was to put my shoes on when working with Macbook.
+
+A: Buy a three pronged pin from any service center. In the adapter the earthing line is available,  it's sort of a hidden metallic strip inside the connector. It seemed to solve the problem for me.
+
+A: I just got a new mac and was sitting at home bare-footed when suddenly I feel a pain in my arm. Took me a second to realize I was being shocked! I read somewhere that if you lift your bare footed legs off the ground it fixes the issue. It worked for me.
+
+A: This just started happening to me on my 2017 MBP and I am using a three pronged cord. Turns out there is something wrong with one of the outlets in my house. Moving it to a different circuit fixed the issue. I will update when I figure out what is wrong with the outlet.
+
+A: I think it's just dry weather. Try getting a humidifier.

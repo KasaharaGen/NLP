@@ -1,0 +1,73 @@
+Q: The error "Keychain "login" cannot be found to store ..." When I start up my MacBookPro/osx/snow leopard , I get this error with yahoo messenger..
+What is this keychain thing? Is this some Mac thing?
+Any links to explain this concept and how to resolve it?
+Thanks,
+
+A: For old versions of MacOS (prior to El Capitan) to fix this:
+
+*
+
+*Run Keychain Access (found in /Applications/Utilities)
+
+*click "Keychain Access" in the menu bar at the top and select "Keychain First Aid".
+
+*Run the repair and then run verify.
+
+That should fix it!
+
+A: Here's a trick I tried with my MacBook Pro that seems to work:
+
+
+*
+
+*Turn on hidden files in Finder. Macworld has a good tutorial, just look for "view hidden files on mac." If you already have it turned on, skip to step 2.
+
+*Open Keychain Access. You'll likely see a keychain called "login" that's in BOLD and had a blank square for an icon, probably corrupted.
+
+*Click "File" >> "Add Keychain..."
+
+*Use the following file path to choose an archived keychain: 
+Macintosh HD (or whatever the name for your HD is) >> Users >> Admin (will have house icon next to it) >> Library >> Keychains >> login.keychain-randomcharacters.db <-- this file will look like your average temp file. 
+Here's what my file path looked like: 
+
+Use the List View and sort by "Date Modified" to find an archived keychain from just before the problem appeared. I found one from the day before the crash.
+
+*Click on the file, add it to the keychain. Close every program properly, Reboot the computer through the OS; don't hardboot if you can avoid it.
+
+*If everything checks out, delete the old "login" keychain that's blank/weird. You're good to go. Hope it helps!
+For the record, here's the specs I was working with 
+
+A: Keychain is where Mac OS X saves stored passwords and other secure information. Without more information, I cannot debug your problem further, but it sounds as if Yahoo! Messenger expects to find a saved password for your account with them in your keychain, and is not finding it. The program Keychain Access, found in /Applications/Utilities, can help you view (and edit) keychain entries.
+
+A: I just had the same issue in the brand new Mac I got today.
+To solve it we just opened the Keychain Access tool and deleted the login keychain (it did not had an icon, signal for something strange happening).
+Then I rebooted the Mac and... voilà, rebooting solved it! Upon reboot it recreated a new working one.
+I suppose the first one had been created by some corporate setup tool as root and my user, despite being an admin, could not access / write to it.
+
+A: Just had this this morning. "login" showed as "locked" in Keychain Access and cannot be unlocked, lots of messages from various apps. iCloud strangely had Keychain de-activated on my Mac even though it was activated before.
+I read about Safe Mode boot as a potential solution and tried but that did not help in my case.
+I copied the Keychain Folder in Library to have a backup, I checked on my iPhone which had all the PWs.
+So I reset the Keychain on my Mac, turned off Keychain sync on the iPhone as well (Mac was already off) and then turned it back on the iPhone again first and then on the Mac (asks for authorization from the phone), that synced the Keychain back to my Mac (there was an Apple article about syncing which contained that advice, i.e. turn the device with the PWs back on first).
+
+A: I had this problem today on macOS Sierra.  After experimenting, it looks like somehow my login keychain had been locked.  I fixed it by selecting the Keys entry under category in the left hand pane.  I was prompted for my password to unlock the login keychain.  I then had to reboot.
+The symptom I saw was that the login keychain had a locked icon beside it rather than an unlocked one.  I suspect you can simply unlock the keychain.
+
+A: In my case, I had created a temporary keychain marked as default, after which other Apps started complaining with error "Cannot be found to store.."
+Resolved by:
+Keychain Access > on the left side Keychains panel > right click "login" > Make as default.
+
+A: Had the same issue with my MacOS Monterey. I opened the application Keychain Access
+Then on the menu bar Keychain Access > Preferences
+Finally I clicked on reset Default Keychains, confirmed with password and voilà
+
+A: When attempting to follow Dave's suggestion on Monterey, I'm having all sorts of very bizzare things happen:
+• Upon login, "keychain not found," ask to reset it. Enter password (which is accepted) but the keychain is not reset.
+Now, using "Keychain Access ... Preferences ...":
+• "Enter the login password for (the owner...) to allow this."  The correct(!) password is refused. (I logged-in again just to make sure.)
+• Password is accepted but, "file not found" message appears.
+• An apparently-different authentication sequence occurs but "authorization not obtained."
+In every case the keychain is not created nor reset.  I have =NO= idea what might be going wrong.  Especially when sometimes different things happen at different times.  Anyone else out there experienced this? And, what did you do?
+It's just a keychain. It's supposed to be simple ... and how can the (erroneous) sequence of events be different sometimes?!  I didn't think computers did that.  And "login" does appear in both lists.
+P.S.: The "Lock/unlock" choices for "Login," whether under "Default keychains" or "System keychains," are grayed out.
+This user is not an Administrator. (My everyday users never are.)
+I see no "repair keychain" option anywhere in the utility.

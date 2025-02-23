@@ -1,0 +1,53 @@
+Q: How can I convert JPG into PDF easily? Is there any way to batch convert .jpg files into single .pdf files?
+
+A: Never forget your little fellow Automator, sitting in a hard drive near you :)
+Launch Automator, create a new workflow. Now you need to add two actions:
+
+
+*
+
+*In the "Files & Folders" select Ask for Finder Items and drag it. 
+
+*In the PDFs Category, find "New PDF from Images" and also drag it.
+Your workflow should look like this:
+
+Now read the options for each Action and customize accordingly. Investigate similar actions (especially in the Files & Folders category) and perhaps the Photos if you want to transform your images from JPG to something else. In fact, go ahead and look all over automator, there are a lot of interesting things there. :)
+When you're satisfied with your Workflow, click "Run" on the top right corner. Watch the magic happens and depending upon the number of items and your CPU power, you might go grab a coffee/tea.
+
+A: I'm more at ease with commandline tools myself. ImageMagick is great for this. You can install IM through Homebrew:
+brew install imagemagick
+
+After that you can simply do this in a Terminal:
+convert *.jpg output.pdf
+
+and if the resulting PDF is a bit too big you can try:
+convert -quality 60 *.jpg output.pdf
+
+Of course ImageMagick also works on other Unix systems, and even on cygwin.
+
+A: Do not install anything else. macOS already has what you need. Just use "sips"
+In my example a file is called "file.jpg" and I want to convert it to "file.pdf". Accordingly, I enter this command here.
+sips --setProperty format pdf file.jpg --out file.pdf
+
+Now I want to convert all files with the extension ".jpg" to ".pdf". So what do i do I'm making a "for" loop that allows me to easily convert all files from ".jpg" to ".pdf". You can also change the "for" loop to convert png to jpg, for example. No problem at all, just replace formats.
+for i in *.jpg; do sips --setProperty format pdf "${i}" --out "${i%.*}.pdf"; done
+
+
+There is a hidden program in the image capture. This program enables you to convert images to PDF. Since the results are not nearly as good as I described with "sips" it is still there and it is good to know.
+It doesn't really have a graphical user interface, but it can still be started via GUI. But I'll show it with the terminal
+The program I'm talking about is
+/System/Library/Image\ Capture/Automatic\ Tasks/MakePDF.app
+
+Change to the directory with the terminal where the executable file is located.
+cd /System/Library/Image\ Capture/Automatic\ Tasks/MakePDF.app/Contents/MacOS
+
+Now we have to start it with our file that we have as a PDF
+./MakePDF /Path/to/image
+
+Note:
+I recommend that you select "Adjust to 8x10" on the shelf. This setting remains persistent. You don't have to keep changing it.
+
+A: I don't know if this works with .jpg files but the easiest way I know to convert text is to select print in the file menu, then in the lower left of the print menu select save as PDF.
+
+A: Preview has "Export as PDF" It's simple to use, and has always worked for me:
+

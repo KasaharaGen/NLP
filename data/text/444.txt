@@ -1,0 +1,54 @@
+Q: How can I disable multitasking in iOS4? I upgraded my iPhone 3GS to iOS4 and although I love most of the new feaures, multitasking keeps me checking for open apps.
+Is there a way to disable multitasking support in iOS4 or a "kill all apps" app/switch?
+
+A: One way to control multitasking on iOS4 is to jailbreak your device, install Backgrounder, and install Remove Recents.
+
+
+*
+
+*Using Backgrounder you can prevent apps from multitasking until you allow them.
+
+*Using Remove Recents will clear out all the "recently used" apps so that only the apps that are actually multitasking are shown.
+
+
+Completely disabling multitasking is also possible. Here's how to disable Multitasking, Homescreen Wallpaper, or both on a 3GS. A jailbroken device is required.
+Edit the file N88AP.plist in the directory /System/Library/CoreServices/SpringBoard.app on your iPhone. Look for the following key-value pairs and set them to false as shown. Reboot when complete.
+<key>homescreen-wallpaper</key>
+<false/>
+
+<key>multitasking</key>
+<false/>
+
+I figured this out by reading this article about enabling Homescreen Wallpaper on a 3G, although I did the opposite.
+http://pixelatedgeek.com/2010/06/ios4-jailbreak-and-multitasking-now-available-for-iphone-3g/
+Note:
+You will need a way to edit plist files. Either use a special plist editor, or use a tool to convert to XML. To do the conversion on your phone, install Ericia Utilities (from Cydia) and issue the following commands to convert the file to XML and back.
+plutil -convert xml1 N88AP.plist
+plutil -convert binary1 N88AP.plist
+
+
+A: I believe it's an option when you jailbreak using redsn0w. It's an option. Here's a tutorial. 
+
+A: You may be worrying more than you need to be.  Apps can only use multitasking for certain functions:
+
+
+*
+
+*Playing audio
+
+*Tracking your location
+
+*VOIP
+
+*Local notifications and alerts
+
+*Complete a lengthy operation
+
+
+In all cases, rather than the app remaining running, the system keeps it suspended and awakens it at appropriate times, such as when it needs to fetch more audio.  If the app uses too much CPU while it's in the background, it gets terminated.  If the foreground app needs more memory, then the background apps will get terminated as necessary.
+The apps in the multitasking menu aren't necessarily consuming any resources or battery life, it's more like a "most recently used" list.  Apps will still be listed there whether or not they are actually running.  You can help prove this to yourself by turning the phone off and on; the recent list will still be populated even though obviously all the apps are terminated.
+
+A: There is no close all option as far as I'm aware, but you can close them one by one:
+"Double-tap the home button to bring up the multitasking bar, which pops up from the bottom of the home screen. Then, you simply scroll through the icons, find the one you wish to close, press and hold the icon, and then click the red circle with a dash--Apple's visual representation of a delete symbol." - Via PCWorld.com
+
+A: There is a close all button if you install sbsettings, it's called  Remove Background. It's a button which closes all the apps and clears the "Recently Used" dock.

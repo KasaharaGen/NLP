@@ -1,0 +1,26 @@
+Q: Access Lion SMB shares from Linux I have this fantastic new Lion server that I've gotten all setup with my user accounts, files, etc. File sharing is up and running, everything. Except for one problem: the users running Linux (we use both Linux and OS X clients) cannot authenticate and access the SMB shares.
+All of the users' accounts are setup as network accounts (i.e. in Open Directory not the local user database)
+Interestingly enough, if the user account is setup as a local account (not Open Directory) the user can authenticate just fine. And we can't switch away from Open Directory because we use the LDAP authentication for some of our other tools.
+Does anyone have any ideas on what to do to get this working? I've been pulling my hair out trying.
+
+A: Samba no more, for Lion Server mount.cifs needs extra options, "nounix,sec=ntlmssp"
+
+  [root@50centos ~]# 
+  [root@50centos ~]# yum install samba-client samba-common cifs-utils
+ ...
+  [root@50centos ~]# mkdir /mnt/lion_smb
+  [root@50centos ~]# mount -t cifs -o MikeCochran,trustno1,nounix,sec=ntlmssp //198.252.206.140/smb_share /mnt/lion_smb/
+
+          =^..^=       `·.¸¸ ><((((º>.·´¯`·><((((º>   
+
+MikeCochran@stack:~$ 
+MikeCochran@stack:~$ sudo apt-get install cifs-utils
+  ...
+MikeCochran@stack:~$ mkdir /mnt/lion_smb
+MikeCochran@stack:~$ mount.cifs //198.252.206.140/smb_share /mnt/lion_smb/ -o user=MikeCochran,password=trustno1,nounix,sec=ntlmssp
+MikeCochran@stack:~$ 
+MikeCochran@stack:~$ mkdir /mnt/lion_smb_dup
+MikeCochran@stack:~$ mount -t cifs //198.252.206.140/smb_share /mnt/lion_smb-dup -o username=MikeCochran,password=trustno1,nounix,sec=ntlmssp
+
+
+apologies for the delay!!

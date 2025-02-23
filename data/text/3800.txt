@@ -1,0 +1,14 @@
+Q: Can't change Google Chrome icon For every other application package I've looked at, there's a Paste option available in Edit menu after selecting the icon in "Get Info" dialog. For Google Chrome, there isn't.
+
+Why is that (i.e. is Chrome blocking the change somehow)? How can I get around this and change the icon? I'm sure there are apps for handling this, is there a way to do it without one?
+
+A: Right click on the package, "show package content", then go in the "ressources" folder and change the icon there. The icon file is the .icns file.
+
+A: *
+
+*"Show Package Contents", Contents, Resources
+
+*Replace app.icns with a new icon set
+
+*Go to a Terminal and do touch /Applications/Google\ Chrome.app/ and killall Dock
+Voilà

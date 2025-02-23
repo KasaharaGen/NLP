@@ -1,0 +1,9 @@
+Q: How do I change containers from Matroska to MP4 without modifying the stream data? I want to take some Matroska (.mkv) movies I have (h.264/AAC with subtitle & chapter tracks) and change the container to the more iOS friendly MP4 container, but without re-encoding all of the media streams. What tool is suitable for doing this?
+
+Other info: I'm using 10.5 PPC.
+
+A: MP4Tools works for this. It does pass-thru of h.264 and audio streams, or you can convert as you see fit. It's free, but $5 to remove the nag screen that pops up any time you open a file, and to get batch operations. I haven't tested it with chapters and subs, but I think it can deal with them fine. 
+One word of caution: if you have files with AC3 audio that you want to leave in as a 2nd channel, it has an option to do pass-thru of that, and add a stereo AAC track, but it doesn't re-order them, which can cause issues with QuickTime X/iPad/AppleTV.
+MP4Tools doesn't work for anything below 10.6, so MKVtools is a good alternative for 10.5. Same developer and basic functionality, it should work for your purposes fine.
+The other option is doing it manually using command line tools, mkvtoolnix to extract the streams from the mkv, and MP4Box to repackage in an MP4. If you need to convert audio to AAC, ffmpeg is the a good starting point, but there are other options. Unless you need a degree of control that MP4Tools doesn't provide, I'd say stay away from the command line stuff. It's useful, but more hassle than it's worth if MP4Tools does what you need.
+Another good tool is Subler, which is a nice tagging program. Unfortunately lacking a batch mode, but it's otherwise very good - much faster at writing the tags than other programs I've tried. And as long as the files have season & episode numbers, the tag auto-lookup works great.

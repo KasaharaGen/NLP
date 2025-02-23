@@ -1,0 +1,14 @@
+Q: Control iMac and LED Cinema Display Brightness Simultaneously I have a iMac 27'' and a LED Cinema Display 27'' connected to it. And I've noticed that to be able to control brightness I need to open the Display.prefPanel  and modify the brightness of the displays individualy.
+Is there a way to do this simultaneously? Maybe with a third party app? If not, is there a way to assign a keyboard shortcut to the second display brightness?
+
+A: I just started using Dimmer Than Dim, a free app in the App Store. I only have one display (iMac), however.
+
+A: F.lux is worth a look, it changes the colour temperature and brightness of your monitor(s) based on the time of day.
+
+A: Shades can do this.
+(I am pretty sure it can, I only have one monitor attached at the moment, so I can't verify.)
+
+A: Lunar has Sync Mode which automatically detects changes in brightness on your iMac screen (even those made by the light sensor) and syncs them automatically to the LED Cinema display.
+It doesn't use a software overlay. In fact, Apple vendored displays get special treatment as Lunar uses an implementation hidden inside macOS Display Services to control them natively.
+Note that you have to connect the USB port of the LED Cinema to the iMac to enable the DisplayServices method of changing brightness to work.
+Disclaimer: I'm the developer of Lunar

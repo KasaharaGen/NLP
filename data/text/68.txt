@@ -1,0 +1,27 @@
+Q: Mac ports installation of gcc46 failing due to architecture problems When trying to install gcc46 on OS X 10.6.4 using port (MacPorts 1.9.1) i get the following errors:
+artemis:foo$ sudo port install gcc46
+Error: Cannot install gcc46 for the arch(s) 'x86_64' because
+Error: its dependency gmp is only installed for the arch 'i386'
+Error: and the configured universal_archs 'ppc i386' are not sufficient.
+Error: Unable to execute port: architecture mismatch
+
+MacPorts was freshly installed on the 10.6 system.
+Any suggestions on how to resolve this or how to install gcc46 for i386?
+(Previously asked and as of now unanswered on SuperUser.)
+
+A: For some reason the universal_archs configurations was wrong. An answer on SuperUser now worked:
+
+
+*
+
+*in /opt/local/etc/macports/ copy macports.conf.default to macports.conf
+
+*make sure universal_archs in it is set to x86_64 i386
+
+*now go for clean installs, e.g. by following the migration instructions
+
+A: Try installing first gmp only with the universal variant :
+
+sudo port install gmp +universal
+
+Then reinstall gcc46.

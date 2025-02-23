@@ -1,0 +1,34 @@
+Q: Is there a PDF viewer with a vertical split screen feature? I have a very wide PDF and I would like to find a PDF viewer which would allow me to split the screen vertically so I can keep the left side the same while scrolling the right side back and forth.
+I found the application http://skim-app.sourceforge.net/, but it only allows one to split the screen horizontally.
+Is anyone aware of such a PDF viewer on the Mac?
+
+A: You can take a snapshot in Skim (File -> Take Snapshot), then using the wonderful ShiftIt move the snapshot and the main view of the pdf to the opposite sides of the screen (vertically) with just a few keystrokes. Or horizontally. Or to all four corners if you want.
+
+A: A quick look suggests that this feature does not exist in any PDF reader.
+One responder on this forum [ http://is.gd/i0R12 ] believes that there are no such readers.
+Most of the links in this Google search [ http://is.gd/i0QQy ] are requesting such a feature be implemented in some reader, any reader.
+
+A: PDFpen 11 seems to support vertical split view of the same pdf.
+https://smilesoftware.com/pdfpen/entry/new-pdfpen-11-split-view-font-bar-and-for-pro-users-enhancements-to-interactive-form-creation-and-editing
+
+
+A: Here is a decent workaround streamlined from the hints in the comments to this question. In this example I use the PDF viewer Skim, but it should work the same with any other app.
+
+Open Apple's Script Editor that is in the Applications/Utilities folder, and copy the following code. 
+on run
+    do shell script "open -n /Applications/Skim.app"
+    tell application "Skim" to activate
+end run
+
+on open theFiles
+    repeat with theFile in theFiles
+        do shell script "open -na /Applications/Skim.app " & quote & (POSIX path of theFile) & quote
+    end repeat
+    tell application "Skim" to activate
+end open
+
+Save it as an application. Now every time you drag a PDF into the icon, a new instance of Skim will open. I like to use OSX's native split-full-screen view.
+
+I found this script online a long time ago and I don't remember where. If anyone knows I'd be happy to give credit.
+
+A: PDFexpert seems to be able to do just that.

@@ -1,0 +1,5 @@
+Q: How can I make preferences boxes open in correct display with SecondBar? I've just started using SecondBar to provide a menubar for applications that I display in an external monitor. It's a big help, except for one thing: dialog boxes (like Apple Menu -> System Preferences, or Firefox's add-ins) open in the main display.
+Is there any way to make dialog boxes open in whichever display the menubar was clicked from? So that if I use the main Mac menu bar for apps in my main display, the dialog opens in the main display, and if I use the SecondBar menu in my external display the dialog opens in the external display?
+
+A: I'm not familiar with how SecondBar works, but it looks like it's just a hack that duplicates the menubar on an external monitor. There's no operating system support for a second menubar so no support for determining which menubar was clicked and which monitor to open the dialog in.
+Perhaps the developer of SecondBar could somehow intercept the command and redirect the dialog, but I really doubt this low-level jiggery-pokery is possible.

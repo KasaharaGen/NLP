@@ -1,0 +1,15 @@
+Q: How can I get the Alt key to work in an X11 application? I'm using an editor that requires X11 and for the most part it works well. I have many commands that use the Alt key and I like to navigate the menus this way as well, but the Alt key doesn't work through X11. 
+I found this article on configuring the Alt key for X11 applications, but it didn't work for me. Any other ideas?
+
+A: I think you want to check "Enable key equivalents under X11" in the Input tab of the X11 Preferences.
+
+A: The distilled instructions in this article worked for me.
+in ~/.Xmodmap:
+clear Mod1
+keycode 66 = Alt_L
+keycode 69 = Alt_R
+add Mod1 = Alt_L
+add Mod1 = Alt_R
+
+and activate with xmodmap ~/.Xmodmap. The codes 66 and 69 can be verified with xev.
+I did not change any other input settings. Note the op's article used Meta_R instead of Alt_R. I tested with an ssh-xforwarded app (eclipse). 

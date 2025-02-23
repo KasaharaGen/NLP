@@ -1,0 +1,49 @@
+Q: Page down in terminal How can I "page down" in the terminal?
+
+A: In order to send a page up/down keystroke to the application, as opposed to scrolling Terminal's window, hold down the shift key while pressing your page up/down keys (or fn-arrows as appropriate for your keyboard).
+
+A: There are two answers to this question.
+The first is globally useable. I'll assume you're on a narrow/laptop keyboard. In those instances, Fn+Down ▼ acts as Page Down, and just to expand that thought out entirely:
+
+
+*
+
+*Fn+Up ▲ = Page Up
+
+*Fn+Left ◀ = Home
+
+*Fn+Right ▶ = End
+This will not work properly in some applications. Those that come to mind are things like vim, less, screen, and other "full screen/ncurses menued" programs. The above keystrokes scroll the terminal window, but if the terminal window has not been paged, then scrolling won't accomplish anything.
+The second half of the answer is one that I can't answer without more detail.
+Example:  
+
+
+*
+
+*In less, the spacebar or ctrl ^+f will page down one screen full.  
+
+*In vim, ctrl ^+f will page down one screen full.  
+
+*In screen, you will probably never have to Page Down, but if you scrolled back in copy mode, ctrl ^+f works there too.
+If I haven't answered your question, you will need to elaborate on it, heavily.
+
+A: In addition to VxJasonxV’s answer (which is correct), if you want to modify your terminal behavior so using up or down does a pageup/pagedown in vim (and others), you can go to:
+Terminal -> Preferences -> Click on the Settings Toolbar, then the Keyboard Tab.
+Add a new keys like this: (showing one example below)
+
+
+*
+
+*Page Up: \033[5~
+
+*Page Down: \033[6~
+
+*Home: \033[4~
+
+*End: \033[1~
+
+
+Here’s an example with the “Cursor up”: 
+
+Now you can press Up/Down and it will do the pageup/down. I suggest you add a modifier (like Control). Sadly, you can’t use the “Fn” key as a modifier. 
+Note: By default, Control + Cursor Left is delete until the end of the line and control+cursor right is insert (in vim at least), so you can use another modifier if you don’t want to change those.

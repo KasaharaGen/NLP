@@ -1,0 +1,77 @@
+Q: "-bash: ls: command not found" I installed the most recent update to OS X Lion (10.7). After I did that, my terminal won't recognize normal commands. I typed ls and got:
+-bash: ls: command not found
+
+I figured I'd try to add usr/bin to my path, but I can't find .bash_profile to edit it since typing edit .bash_profile won't work. I can't set the Finder to show all files since my terminal won't recognize the commands necessary to do that. 
+what do I need to do?
+
+A: Since two commands are missing something “stomped” your path.
+Before doing anything big, kicking off a backup might be prudent.
+The default path for bash shell  on Mac OS X 10.7 (Lion) is something like this:
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+
+If you reset the path by typing the above into a shell window, and then typing export PATH it should manually let you test a local fix contained to that window only.
+This breakage is almost always something you need to fix in your dot files. For bash, edit and fix .bash_profile and/or .bashrc by undoing a recent change it just setting the $PATH you need again. The usual error is assigning a new path and not referring to the previous value of the variable on the right hand side of the =
+If you are totally out of luck, commenting out most of the lines from your dot files and then getting a good path before reworking the customizations is a good plan.
+
+A: It sounds to me as if /etc/profile wasn't run at shell startup. It's the global startup file responsible for initializing PATH. Check whether /etc/profile exists and is readable and executable with the following command:
+. /etc/profile
+
+If it isn't there, you'll need to restore it from a backup or another machine with Lion installed, or install Lion again. If it exists but isn't executable, try using Disk Utility to Repair Disk Permissions.
+If it does exist and is executable (and it contains some code), either it may not be getting run when it's supposed to or your startup script may somehow be overriding it. As a workaround, try putting . /etc/profile at the start of your ~/.bash_profile to ensure it is run. If you still encounter the problem, add echo $PATH after running it to see if PATH was initialized properly. If it was, something in your script is changing it.
+Here's the default contents of /etc/profile:
+# System-wide .profile for sh(1)
+
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+
+if [ "${BASH-no}" != "no" ]; then
+    [ -r /etc/bashrc ] && . /etc/bashrc
+fi
+
+path_helper constructs the default PATH. You could try running
+unset PATH; /usr/libexec/path_helper -s
+
+to see what it produces.
+In any case, if the problem isn't in your startup script(s), please contact Apple support http://www.apple.com/support/contact/ or report a bug at https://bugreport.apple.com/ to let Apple know there's a problem.
+
+A: To check that it is indeed a problem with your path, what's the result of /bin/ls ? 
+If it works, than you should restore your path to /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin, you can use for example VI whose path is (on my mac) /usr/bin/vi.
+
+A: I thought of sharing the mistake that led me to this error - at least in my case,
+When I added a new PATH in ~/.bash_profile, I forgot to add :$PATH at the end of the path that I just added. 
+I used the temporary fix ( the following command in the terminal) that masters here have already pointed out to get back to bash_profile since I could not use vi commands to open it in the first place. 
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+
+Once I got in, I rectified my mistake. 
+(Negative data matters!)
+
+A: This should fix the problem completely and permanently.
+first, export environment paths by using below command in the terminal.
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/b‌​in
+
+now you have the commands you want. (eg. try ls. You'll see the command is working). But this is only for the current session. If you close the terminal and open a new one, you will have the previous issue. To make this change permanent, use below command,
+go to home directory
+cd ~
+
+open .bash_profile file in nano / vim (I'm using nano here)
+nano .bash_profile
+
+This will open up nano editor. In a new line, paste the following;
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:$PATH
+
+press 'control'+'o' to save (WriteOut) and 'control'+'x' to exit nano. 
+All done ! Now try the commands. 
+
+A: This is likely not your problem at a fresh begin, but I had added PATH=xyz/ in my .env file and wondered why I could not use ls right after running source .env. Clearly because I overwrote my PATH variable, and it was back as soon as I reopened my shell. ;)
+
+A: you can export the path as follows:
+export PATH=$PATH:/bin:/usr/local/bin
+
+A: Looks like your PATH variable is corrupt. Check if by any chance you are modifying the PATH variable within your script or simply check the PATH by saying echo $PATH and you can make sure if nothing is corrupt.
+
+A: I was trying to set my maven path to envoronment variables when this happened. So I just moved my .profile and .bash_profile file to trash and tried again and it worked.
+
+A: Resetting your terminal will work. It will reset your basic configurations.
+Reset your terminal. From top navigation go to Shell >> Reset.
+

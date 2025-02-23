@@ -1,0 +1,21 @@
+Q: What port does iPhone native Facebook app use? The network at my place is using a proxy. So I have set up the proxy in iPhone. I can connect to the internet and access Facebook using the Safari browser without any problem. However when I access Facebook using the native app, it gives me a connection error. Why is this so? Does the native app use different ports instead of getting JSON objects through HTTP port? I am quite new to this, so bear with me.
+
+A: First, this is a really good question. Wow. I've been trying for days to figure out how to attack this one.
+I set up "Charles Web Debugging Proxy" on my Mac and set up my iPhone to hit it.
+First, it hits http://api.facebook.com/restserver.php, which spits this back:
+<chat_connect_response xmlns="http://api.facebook.com/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://api.facebook.com/1.0/ http://api.facebook.com/1.0/facebook.xsd"> 
+<host>9.channel</host> 
+<port>80</port> 
+<channel>p_123456789</channel> 
+<seq>0</seq> 
+
+
+Meanwhile, it also connects to iphone.facebook.com which gives some XML. Then it connects to 0.9_channel.facebook.com:80 and sends some requests which return JSON.
+It looks like everything is done over port 80. Are you sure theres no other problem on your end?
+
+A: Issue is with Apple not support proxy setting in ios5 for HTTPs traffic. 
+https://discussions.apple.com/thread/3457661?start=0&tstart=0
+
+A: I have wingate proxy server enabled and configured on my iphone, I get some traffic come through for facebook (which is allowed through), however my facebook app on my iphone just sits at 'updating' and does not load. There must be something missing?
+
+A: facebook use port 443 to communicate between iphone

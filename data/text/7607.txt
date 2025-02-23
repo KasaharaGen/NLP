@@ -1,0 +1,26 @@
+Q: Badge count for number of items in a folder on the Dock? After clearing hundreds of items out of my Downloads folder, I'm eager not to repeat the process. Anyone know of a plugin/app/hack that will let me badge a folder in the Dock with the current number of items in that folder? 
+Such a badge would make it very apparent when I need to access/clear stuff out.
+
+A: Unfortunately, I don't think that's possible, since badges are rendered using code that needs to be included in the app: Finder would need to integrate the code to tell its badge to change.
+Consequently, third party apps, in theory, could get the file count of your Downloads folder, and they could code a badge to display it, but they wouldn't be able to access the Finder's dock tile objects: each app can only access their own, and app icons can't only be placed on the area of the dock reserved to folders and document aliases.
+I couldn't find any utility that could solve this issue. I'm sorry. It's a great idea though, and I would totally love it if someone proved me wrong and posted an app capable of doing this, for I too have a pretty messy downloads folder. 
+The only way I found to get easily the item count is the status bar. Perhaps though, you could do a workflow in Automator or Apple Script Editor. I know Automator can make folder actions, which are run every time a file is added to a folder. It would just be a matter of keeping a count, I guess. 
+
+Sources: A bit of research on desktop badges in Apple's developer documentation. The examples there all show the desktop tile object needs to be accessed directly within code.
+Hope it helps! And good luck.
+
+A: Docktopus will do exactly what you're asking.
+From the website:
+
+Docktopus lets you to place informational badges on your Mac OS X Dock
+  icons (similar to how Apple's Mail displays unread messages). With
+  these badges Docktopus gives you instant access to useful information
+  and powerful commands right from your Dock icons.
+
+
+
+
+
+A: Yes you can do this.
+Here is a question about setting custom icons for folders: How can I change a file or folder icon using the Terminal
+You'll want to write a program (shell, AppleScript, Automator, whatever) that checks the number of files in the Trash (either continuously, frequently, or whenever something is added), and then adjusts the icon as you desire.

@@ -1,0 +1,13 @@
+Q: How do I clean up the simple finder for a parental controlled account? We gave our son a parental controlled account on the iMac (Snow Leopard) and while we were able to limit the apps, we don't even want him to see the restricted apps.  Plus, he is using the "Simple Finder".
+For example, Aperture is restricted but he sees the Aperture icon in his "Applications" folder.  When he opens it, it tells him that the program is denied.  But I prefer out of sight, out of mind.
+Any tips appreciated.
+Thank you.
+
+A: As you've confessed your developing skills, I'll just limit myself to tell you that, as far as I know, it's not possible to hide applications from a user that has Parental Controlled accounts, even with simple Finder. I believe Apple considered that it was too much trouble. 
+What I'd do is move your son's applications to his /User/son/Applications and restrict access to /Applications for him. 
+You may be wondering: "but wouldn't that mean I'd have to duplicate apps I also want to use?". And you'd be right.
+:)
+
+A: Parental controls are basically a control-permission layer...and don't modify the underlying OS, which is what you're asking for in hiding/relocating Applications for your son. Seeing an app is benign. If you insist on making it work, you have to remove the applications in question from the main Applications folder and install them in a user-specific location (ie. ~/Applications/ -> Home folder vs /Applications/ -> Macintosh HD).
+
+A: Ah, there is a very simple answer to this question: System Preferences > Users & Groups > "Enable Parental Controls". In the Parental Controls section, check only the applications you want to allow your child to use. (They need to be logged out of their account to do this.)

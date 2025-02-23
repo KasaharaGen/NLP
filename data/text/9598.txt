@@ -1,0 +1,42 @@
+Q: How can I type the "@" symbol via remote desktop with a Swedish keyboard? I am running Remote Desktop to connect from my iMac with Snow Leopard to a Windows box at work that runs Windows 7 Professional. The connection is done over ssh.
+When logged in to the window box I can use Alt + Tab to switch between programs, I can also see that when using emacs pressing Alt registers as Meta (which is what I have set it up as). However if I want to type a @ which on my Swedish keyboard is Alt + 2 nothing happens. The same is true for { and [ and so on.
+
+A: Does  ⌘ + alt + 2 work? This is a combination for @ in bootcamp.
+For the other keys: 
+
+
+*
+
+*⌘ + alt + 7  to get {
+
+*⌘ + alt + 0  to get }
+
+*⌘ + alt + 8  to get [
+
+*⌘ + alt + 9  to get ]
+
+
+A: Ctrl+Alt+2 did the trick for me (on Swiss German keyboard).
+
+A: On my keyboard alt-G also did not work, however, alt-E works for the EURO sign. After some trying I found the alt-Q is the solution for the at (@) sign on the remote desktop (which is a Windows system).
+
+A: Perhaps you could set up another keystroke to produce @ via system preferences/language & text/text/symbol and text substitution.
+
+A: Perhaps not an answer, but on a UK keyboard @ and " swap places from Mac to Windows
+ Shift ⇧   2   is @ on Mac, " on Win
+ Shift ⇧   '  is " on Mac, @ on Win
+
+A: You could use the character palette.
+System Preferences > Keyboard > Keyboard tab
+Check "Show Keyboard & Character Viewers in menu bar"
+(If necessary, press Input Sources... and enable Keyboard & Character Viewer)
+Then open the Character Viewer from the menu bar, locate the character you need, and double-click it to insert it.
+
+A: I use Cord and Danish keyboard and I get the ampersand (&) using
+Right-alt + right-cmd + 2.
+
+A: alt gr (the alt symbol on the right hand side) plus semicolon worked for me
+
+A: Shift + ± worked for me when I typed all the characters on the keyboard using Shift key
+
+A: alt + 0 worked for me. (under mac its produce ø, under vm win7 its produce @)

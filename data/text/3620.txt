@@ -1,0 +1,18 @@
+Q: Backing up entire drive (10.4.11) to FAT32 external for complete wipe I'm quite inexperienced with OS X, despite being a fairly competent Windows techie, so I definitely need some help with this ancient family computer.
+It's an old Mac Mini, has a lot of photos, music, etc., but it's gotten so unbelievably slow over the years that my gut is telling me a complete wipe would be the smartest solution.
+Processor 1.66GHz Intel Core Duo
+Memory 512 MB 667 MHz DDR2 SDRAM
+
+I have a terabyte-sized FAT32 partition on this USB external hard drive, and what I want to do is back up the entire disk so I can wipe the drive and install (preferably) a more recent edition of OS X.
+Disk space isn't an issue; all I need is that files can be plucked from the backup later as necessary without restoring the entire thing.
+The last time I tried to make a backup with just the command line it managed to start recursively copying the backup into itself, so I really am hopeless doing this alone.
+Can anyone help me out?
+
+A: FAT32 isn't up to faithfully preserving Mac permissions, links and metadata. If you cannot repartition the drive as GUID/HFS+ it would be best to make a Disk Image on the FAT and back up to that image.
+If your drive was 120G and had at least 10G free space you should be fine with settings like this to create the image. The sparse image is nice since it only fills as files are copied but it can expand to the size specified if needed.
+
+Then you could then use Disk Utility to "restore" the data from Macintosh HD to the mounted image file. The HFS+ data would all be properly encoded and stored in one big file on the FAT drive. I don't know file size limitations on FAT anymore so that would be the one flaw in this plan if you needed an image larger than could be stored on the drive as formatted.
+
+
+A: Is it possible to reformat your USB drive? If so, I would repartition it as a GUID drive and then format it as a HFS+ drive.
+From there you can use a cloning program like Carbon Copy Cloner to clone your Mac mini drive to the USB drive. This will allow you to a bootable clone of your existing Mac mini.

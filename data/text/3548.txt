@@ -1,0 +1,44 @@
+Q: Scan lot of documents and output them in PDF I have a lot of documents I would like to scan to produce PDFs. Some of them are single-page, others are multi-pages.  
+As of today, I'm using Image Capture for this purpose but I don't find it to be handy to treat a lot of documents.
+The main issue is that I will for example scan 10 pages, being one 3 pages document, one 4 pages document and three 1 page document.
+I currently have to scan all pages which will end up as images or pdf on my desktop and I then have to combine them to produce multi-pages PDFs.  
+Is there a tool which will help me achieve all of this more quickly and easily? 
+
+A: Two answers:
+1) By far the easiest/best document scanner for Macs is the Fujitsu ScanSnap series. You just insert a stack of papers, press a button, and out pops a PDF. It scans both sides of each page in a single pass.
+2) To convert a scanned PDF to something searchable, by far the most reliable OCR program available (for any platform, Mac included) is the AABYY FineReader package. It is miles ahead of any other package- especially Adobe Acrobat's built-in OCR which is barely usable. This comes bundled, at no additional cost, with the ScanSnap, or you can buy it separately.
+I've used one of these for several years... have scanned all of my old bills, receipts, documents, etc. so whenever I need to find something I just use spotlight and can find it in seconds.
+
+A: I have a scanner from Brother too. The software that came alongwith it indeed supports only the most basic functions (i.e., scan and store page(s) as PDF on your machine).
+To split, merge, delete, encrypt and more, I use the command-line utility called pdftk (http://fredericiana.com/2010/03/01/pdftk-1-41-for-mac-os-x-10-6/).
+It's free and can handle many complex manipulations charmingly. Look here for examples: http://www.pdflabs.com/docs/pdftk-cli-examples/.
+
+A: Are you looking for software-only solutions or are you also open to hardware options?
+After experimenting with a few, I find Fujitsu's ScanSnap series to be ideal for this sort of thing. Its form factor makes it easy to load in sets of documents up to A4, and easily turn on/off duplex/double-sided scanning. Its output to Evernote also helps in my workflow. It also comes with some software for PC and Mac that will let you do what you described, and also adds text recognition as well to it.
+
+A: Hamrick VueScan is excellent for this. I do this kind of scanning a lot, and this is the tool that I choose.
+
+A: In my personal experience, Scansnap plus Devonthink is the best and also expensive.
+
+A: I use GraphicConverter for scanning to pdf. You can combine the individual pages using pdftk, as suggested by @Rahul, or you can use an Automator script as explained in this question.
+
+A: Canon has a Software called "Canoscan". It is not the nicest looking peace of Desktop Software, but it has all you need:
+
+
+*
+
+*Scan PDFs
+
+*Append another scan to the current PDF
+
+*Start a new PDF
+
+
+A: The easiest way I have found to scan lots of documents is to fax them to myself using Maxemail.com's fax to PDF service.  
+Put the documents in the fax machine--as many pages as it will handle, press redial, ad a few minutes later you get an email with your documents in PDF format. 
+They are, of course, black and white image files and they have fax headers on them, but the image quality is very good and it is much faster than putting documents one at a time on a scanner. 
+
+A: I always use the excellent PDFsam software for these kind of tasks: if you want an Open Source solution, I personally think that it's the best you can get for such tasks. 
+Look for the Alternate Mix feature, which you can use to "emulate" front-back scanning with a single-side home scanner such as the one I have: you can also read this post for a guide explaining how to use it.
+
+A: I have used every version of PaperPort that has ever been released and find that I'm dead in the water without it. In addition to using it as my scan software, I can convert files, edit JPEGS and PDFs, enhance documents, cut or copy and paste, stack and unstack PDFs, add annotations such as text and highlights, email, etc. Umfortunately, Nuance does not have a version for Macs.

@@ -1,0 +1,42 @@
+Q: How to Repair 15" Mac Book Pro Core 2 Duo 2.16 Ghz That Won't Power On? I'm attempting to revive a non-working 15" Core 2 Duo Mac Book Pro purchased early 2007. The laptop suddenly powered off (or so I was told). Attempting to power on gives only a few signs of life.
+
+
+*
+
+*Magsafe lite works when power cord plugged in
+
+*Hard drive spins up when power button pressed
+
+*No chime, no back light, no power button light, no fans
+
+*Holding the power button for 5 seconds will spin-down the hard drive
+
+*After drive spinds down, hitting power will turn it back on.
+
+
+Please give me your best suggestions on getting this system booting again.
+In attempts to fix, I've reseated the RAM and most internal connections. I'm willing to replace any internal components if economically viable.
+Update: a reset of the system mgmt controler brought the fans back online
+
+A: In the absence of “chime” there are three things to blame: RAM, GPU or Board/CPU. 
+I know because I had the same problem throughout the years with different Macs (and even Powerbooks). Try removing some RAM and putting some other modules, also remove the battery as suggested by Philip in the comments. 
+Using an external display may help identify screen problems too.
+And finally an Apple Store, even if it’s out of warranty, will diagnose the box (sometimes for free, it depends) sometimes for a small fee. Bear in mind they will always go for the brute force route: “you have to replace X,Y,Z”, 1000 u$s. Thanks for Coming, Bye. ;) 
+
+A: In order of desperation:
+
+
+*
+
+*Press Cmd+Alt+power for 3 seconds to start it. If you get a chime you're back in business.
+
+*Reset the pram: Turn on the computer and immediately press Cmd+Alt+P+R. Keep it pressed until you hear two chimes. 
+
+*Reset the System Management Controller: Unplug power, remove battery, press start button for 5 seconds. Put the power back on, press the power button. You should have a chime or a series of loud beeps.
+If nothing works, you have  a motherboard issue. Loud beeps indicate a number of issues depending on the number of beeps. A chime and nothing displayed is most likely a display issue.
+Reminder: The Altkey, also called option key, is the one with the mark ⎇ and the label Alt. The command key has the mark ⌘ and is labeled cmd.
+
+A: The thing can't get through post and not giving audible signals?
+I would say RAM is on the lowest end but remove it and check if it starts beeping and flashing sleep LED?
+If no then it is usually water damage or more usually X1600/GF8600 GPU problem.
+No sense to go to Apple Service Provider with that. You might try local repair shop though if quote on finding a short on LB or reballing/replacing GPU be moderate.

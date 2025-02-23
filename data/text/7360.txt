@@ -1,0 +1,9 @@
+Q: How do I remove the ".local" suffix from my computer's hostname? I used to have a Mac hostname as simply "macpro" under Snow Leopard. After doing a clean installation of Lion, then a migration to restore my files, it's now called "Georges-Mac-Pro".
+What is the current recommended way to change the hostname (preferably to something that does not include ".local")? From some googling, it appears that $ hostname macpro won't stick permanently.
+
+A: Just put macpro back in the sharing field.
+The .local is there to catch fully qualified domain names and help with bonjour - you can't avoid that, but it won't show up anywhere but that pane.
+
+
+A: The submenu Sharing under System Settings is the preferred way to change the hostname of your machine.
+The .local domain simply means that the IP address will be resolved by the Bonjour ZeroConf service instead of DNS.

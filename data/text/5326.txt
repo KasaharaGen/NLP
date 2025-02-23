@@ -1,0 +1,213 @@
+Q: How can I install Mac OS X Lion in VirtualBox, or any other type of virtual machine? I purchased bought a license of Lion and heard that it supports virtual machine install. 
+I want to install Lion into my VirtualBoxVM on Lion on an iMac. How can I do this?
+
+A: 10.7 (Build 11A511) guest in VirtualBox 4.1 greater
+Whilst end user forums are currently limited to Mac OS X Server, not updated for Lion, there is discussion of Lion (not always Lion Server) in that context.
+With the most recent VirtualBox it is unnecessary to convert disk images; .dmg files are recognised.
+Depending on your approach, you might see:
+
+This version of Mac OS X is not supported on this platform!
+
+— (example) — I saw that at least once.
+Suggestion A: await media from Apple
+I recommend this most strongly.
+Await Apple's provision of Lion on a USB thumb drive. It may be something greater than 11A511 and if so, that greatness may be more suitable for use in virtual machines without the need to hack (see caution below).
+Suggestion B: attempt upgrade from Snow Leopard within the virtual machine
+In the virtual machine: install Snow Leopard then (honouring Apple's license for Snow Leopard as far as possible in this situation) use that installation for nothing other than an immediate upgrade to Lion. Attention please to agreements at Apple — Legal.
+Suggestion C: hobby hacking with BaseSystem.dmg
+
+*
+
+*mount the hidden Apple_Boot Recovery HD
+
+
+*use ditto or cp to set aside from that volume a copy of the following file:
+/Volumes/Recovery HD/com.apple.recovery.boot/BaseSystem.dmg
+
+
+*unmount Recovery HD
+
+
+*use chflags with the nohidden keyword to remove the hidden flag from the copy that you set aside
+
+
+*if you can boot the virtual machine from that .dmg then use Mac OS X Utilities to  reinstall using the electronic software distribution downloaded from Apple
+
+
+*if at step (5) you fail, discuss in Ask Different Chat.
+Suggestion D: hobby hacking with InstallESD.dmg
+At least one Apple Exchange user reports some success with a home-produced DVD burnt from an InstallESD.dmg
+This may be most tempting and most likely to yield immediate success, of sorts, but in my estimation: hacking with this particular .dmg (ignoring Apple's .app for 11A511 as a whole) carries the greatest long-term risks.
+Caution!
+By using any .dmg out of context, as suggested above, you may be risking the integrity of your installation in ways that we can not predict. Please consider the following extract from Ask Different Chat:
+
+*
+
+*home-produced bootable media for Lion: known risks and unknowns around 10.7 (Build 11A511)
+With that caution in mind, my strongest recommendation is (A) to wait for Apple to provide USB flash media (scheduled for August 2011) with the assumption that it will be both (i) greater than 11A511 and (ii) more suitable for virtual machines and other environments that lacked broad support from Apple on the day of Lion's release.
+(Bear in mind: day one was almost totally oriented to download-based upgrades from Snow Leopard.)
+
+A: 10.7.x or 10.8 (Build 12A269) in VirtualBox
+A preferred alternative to my earlier answer, a simpler approach to installing then imaging what's required to run 10.8 in a VirtualBoxVM. 
+Assume that a similar approach will be equally good for 10.7. 
+Intention
+A template, a reasonably small virtual disk image that can be copied for use in any VirtualBoxVM. 
+Requirements
+VirtualBox 4.1.18 or greater.
+A spare drive. For a virtual machine with 2 GB memory, a 16 GB device will suffice.
+Create a template
+
+
+*
+
+*Use Disk Utility to partition the spare drive, one partition
+
+*name the partition Mountain Lion template
+
+*install a bootloader to your template 
+
+*install Mountain Lion to the template
+
+*when the Welcome screen displays regions, shut down
+
+*use Startup Manager to start from something other than the template
+
+*use the Startup Disk pane of System Preferences to select a system for everyday use
+
+*optionally, install other things to the device that includes the template
+
+*ideally, optimise the template (I used iDefrag)
+
+*use Disk Utility to erase free space
+
+*unmount the template 
+
+*get the size, in bytes, of the device
+
+*create a virtual disk image of the device
+
+*drag the image to the Virtual Media Manager of VirtualBox.
+
+
+First use of a copy of the template
+
+
+*
+
+*Use the Virtual Media Manager to copy the image
+
+*add the copy to a virtual machine
+
+*configure the machine to not use EFI
+
+*start the machine
+
+*give the startup volume a distinctive name.
+
+
+Hints
+For a virtual machine configured in the way outlined above: 
+
+
+*
+
+*do not enable FileVault 2 – without EfiLoginUI it will be impossible to start from the protected volume
+
+*do not choose About This Mac from the Apple menu – instead, use System Information 
+
+*OS X may not restart without a little intervention – see below.
+
+
+
+Whenever you start the virtual machine
+For verbosity, use boot option -v. An example, with Chimera: 
+
+Whenever you attempt to restart the virtual machine
+Verbosity will allow you to see when things are done, after which a MACH Reboot is attempted: 
+
+If OS X does not proceed beyond that point, use the Machine menu of the VirtualBoxVM: 
+
+
+*
+
+*Reset.
+
+
+
+Bootloaders
+For a first test, I chose Chimera 1.10.0. 
+MultiBeast 5.0 for Mountain Lion can install Chimera 1.11.1. 
+Getting the size of a device
+Use diskutil. 
+In this example I want the size of disk4:
+sh-3.2$ diskutil list disk4
+/dev/disk4
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *15.9 GB    disk4
+   1:                        EFI                         209.7 MB   disk4s1
+   2:                  Apple_HFS Mountain Lion template  14.4 GB    disk4s2
+   3:                 Apple_Boot Recovery HD             650.0 MB   disk4s3
+   4:                 Apple_Boot Coriolis Recovery HD    650.0 MB   disk4s4
+sh-3.2$ diskutil info disk4 | grep Total
+   Total Size:               15.9 GB (15879634944 Bytes) (exactly 31014912 512-Byte-Blocks)
+
+The second command – diskutil info disk4 | grep Total – gave me the total.
+Creating a virtual disk image of a device
+Use VBoxManage convertfromraw. 
+For the example above: 
+sudo cat /dev/disk4 | VBoxManage convertfromraw stdin ~/Documents/Mountain\ Lion\ template.vdi 15879634944
+
+As zeros were written when free space was erased, the resulting image should be far smaller than the size of the device – probably less than 8 GB. 
+Additional credit: the accepted answer to a Super User question, VirtualBox: booting cloned disk. 
+Why image the entire device?
+Assume that a future version of VirtualBox will be able to use Apple_Boot slices.
+Serial number and hardware UUID
+I don't know what's normal for VirtualBox. 
+A screenshot of my test result (machine type Mac OS X, machine version Mac OS X (64 bit), Chimera 1.11.1): 
+
+It's possible to change such things, but methods of changing are beyond the scope of this question. 
+
+A longer approach
+Revision 7 of this answer outlined a longer and more complicated approach to installing and running 10.7 in a VirtualBoxVM. That approach, originally for 10.7, may be equally good for 10.8.
+
+A: VMWare Fusion 4 is supposed to support it but I don't know if it's out yet?
+
+A: See this article: http://osxdaily.com/2011/06/08/create-burn-bootable-mac-os-x-lion-install-disc/
+Use the .dmg as your source disk.  You may have to convert it first to an .iso: if that's the case, use Disk Utility to convert it to a "CD/DVD Master" image (.cdo) and simply rename it to .iso.
+
+A: I found a solution for running Mac OS X in VirtualBox on Mac hardware at http://ntk.me/2012/09/07/os-x-on-os-x/. I've not tried the 10.9 setup yet, but I have successfully installed and run Mac OS X 10.8 (Mountain Lion) in VirtualBox 4.3. I found I had to go searching for and download a copy of NullCPUPowerManagement.kext in order to get the installer to finish booting, but that was the only extra thing the script needed. I also had to run the installer a couple of times, but that could have been only due to running out of disk space partway through the first install.
+
+A: NVRAM for Lion in a virtual machine
+I don't use VMware, and I don't know which version was in use by the person who posted the following article, but it seems to contain interesting information about NVRAM. 
+Installing Mac OS X Lion in VMware — obviouslogic : solutions (undated, bookmarked by me on 2nd July)
+Could help people to think about how to get an installation of Lion started, without upgrade from Snow Leopard, in virtual machines hosted by things other than VMWare Fusion. 
+
+A: With VMWare Fusion 4 there is a very elegant approach to installing Lion into a VM. Its essentially using the Lion Installer image from the Mac App Store. It boils down to drag and drop of the Lion installer to get started. No disk image conversion, no spare partitions needed as indicated in Installing Mac OS X 10.7 (Lion) as a virtual machine in Fusion 4 Additionally there are VMWare Tools available for OS X once you get OS X Lion installed too.
+
+To install Mac OS X 10.7 (Lion) in a virtual machine using the Lion installer download:
+  
+  
+*
+  
+*In Fusion, from the menu bar, go to File > New.
+  
+*Choose Continue without disc.
+  
+*Drag and drop the Install Mac OS X Lion application onto the Use operating system installation disc or image drop-down menu. (The inner window frame highlights in blue, indicating that you can drop the file there). 
+The drop-down menu changes to Install Mac OS X Lion. 
+  
+*Click Continue.
+  
+*Ensure Operating System is set to Apple Mac OS X and Version is set to OS X 10.7 64-bit then click Continue.
+  
+*If you wish to adjust any of the settings, click Customize Settings to specify non-default values for memory (RAM), CPU, hard disk size, etc.
+  
+*Click Finish. 
+The installation starts. 
+  
+*When prompted, select Reinstall Mac OS X and click Continue.
+  
+*Click Continue.
+  
+*Agree to the license agreement and follow the prompts to begin the installation. The Lion installer download additional needed components, then reboots.
+

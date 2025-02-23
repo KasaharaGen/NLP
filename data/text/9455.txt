@@ -1,0 +1,20 @@
+Q: What can be done to troubleshoot OS X Wi-Fi self-assigning ip address of 169.xxxxxxxxx when other clients connect? This is incredibly frustrating; I have a new airport extreme and its been working fine for about a month but now it has stopped working. my two MacBooks and dell Inspiron tower cannot connect to the Internet. The weird thing is that my iPhone can. On the MacBooks, the network settings say 'wifi has the self assigned ip address 169.xxx.xxx.xxx and will not be able to connect to the Internet.' why can my iPhone connect but not the computers?
+
+A: Two avenues can solve this problem:
+
+
+*
+
+*Find and disable whatever firewall is intercepting the DHCP return traffic since your Mac needs to see what IP address the route is assigning it. When it doesn't get a response, eventually the DHCP request times out and your OS self-assignes an IP in 169 land.
+
+*Inspect the network traffic or the router logs to see if and why the Mac DHCP broadcast packet is being ignored. The router could be out of IP addresses, not allowing that MAC address or just an odd network condition is preventing the router from seeing the OS X request for a DHCP address.
+
+
+A: In my case the problem was that the router/DHCP server, wouldn't provide me with a DHCP offer, (I still don't know why, since I don't have access to the router). don't only solution I found was to change the MAC address (media access control address) on my Mac, following these steps:
+sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
+sudo ifconfig en0 ether 60:3b:c9:8e:ae:ba
+networksetup -detectnewhardware
+
+you can replace the Address with something random but paire using: 
+openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/./0/2; s/.$//'
+

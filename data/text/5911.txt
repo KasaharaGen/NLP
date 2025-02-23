@@ -1,0 +1,12 @@
+Q: How do you hide users from Login and Fast User Switching under OS X 10.7 Lion? Historically, it was possible to hide users from the login screen.  In pre-10.5 times, one simply changed a userid to < 500 and:
+
+sudo defaults write /Library/Preferences/com.apple.loginwindow Hide500Users -bool YES
+
+Since ~10.5, the sequence is:
+
+sudo defaults write /Library/Preferences/com.apple.loginwindow HiddenUserList -array-add 
+sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool false
+
+However, I am unable to get my admin account to hide from the window in 10.7 using FileVault 2.  Has anyone else had a similar experience and does anyone know how to make this work properly?
+
+A: This change didn't get implemented/respected/carried forward in Lion 10.7 initial release build. It's an open bug with no ETA on a fix or resolution.

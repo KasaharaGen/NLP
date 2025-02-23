@@ -1,0 +1,15 @@
+Q: Changing default app to open a certain extension, but keeping the previous icon? I use TextWrangler to open code files, such as .php, .ccs, .js, etc.  
+But it assigns the same icon to every file. How can I get the original icons back to each extension while TextWrangler is still the default app to open them?
+
+A: The behavior you want is what happens when using Xcode as the default application.
+The behavior you want is not possible with TextWrangler for the following reason: 
+Textwrangler does not distinguish the icons for *.php *.ccs... like Xcode. Therefore it does not store different icons for different filetypes (PHP.icns, CCS.icns...). 
+Instead TextWrangler only stores one icon for all filetypes: TextWranglerTextDoc.icns
+This icon is located at:
+
+
+*
+
+*right-click on TextWrangler -> show package contents
+
+*navigate to .../Contents/Resources/TextWranglerTextDoc.icns

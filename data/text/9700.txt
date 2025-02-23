@@ -1,0 +1,23 @@
+Q: How should I debug AFP issues? I'm having some problems connecting to a Time Capsule's shared drive from a Macbook Air running OS X 10.7.2 Lion.  I can connect to the share without problem from a Macbook Pro running OS X 10.6 Snow Leopard.  I do not have any other fileservers to attempt connecting against for comparison.
+Disabling both the Macbook Air's inbound firewall and its outbound application firewall, Little Snitch, yields no improvement (no other firewall, such as ipfw, is in use).  However, it is possible that some other (perhaps overly paranoid) security configuration is interfering with AFP.
+The Time Capsule appears in Finder's sidebar, but reads "Connection Failed" when selected.  Clicking "Connect As..." immediately brings up the following message:
+
+There was a problem connecting to the server "Time-Capsule".
+Check the server name or IP address, and then try again.  If you continue to have problems, contact your system administrator.
+
+Neither Little Snitch's network monitor nor tcpdump show any network activity during the above interactions.
+The same message appears (again, without network activity) after specifying "afp://1.2.3.4/share" (where 1.2.3.4 is the correct IP address of the Time Capsule and "share" is the correct name of the AFP share) in Finder's "Connect to Server..." dialog.
+In syslog, the following entries appear:
+
+Dec  5 22:41:17 MacbookAir Finder[123]: SharePointBrowser::handleOpenCallBack returned 22
+
+From the command line:
+$ mount_afp afp://username:password@1.2.3.4/share /Volumes/mount_point
+mount_afp: AFPMountURL returned error 22, errno is 22
+
+I suspect that this is the error which resulted in the syslog entries from Finder, but I am unable to debug further.
+I would welcome your thoughts and suggestions on how I might proceed!
+
+A: It turns out that, as I suspected, a paranoid security configuration was preventing AFP from working.
+In particular, the machine had been "hardened" per Apple's security configuration guide in which chapter 9 describes how to disable AFP by unloading the com.apple.afpfs_afpLoad dæmon (I had thought it was only required to serve files, not also to connect to an AFP server as a client).  Reenabling the dæmon resolved the issue.
+I am nevertheless curious what tools are recommended for tracing file sharing problems in the future.

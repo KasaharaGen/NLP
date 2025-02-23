@@ -1,0 +1,11 @@
+Q: Will the OEM version of Windows 7 install okay on a Macbook Pro We are considering getting a Macbook Pro but are quite heavily tied to windows application so want to install Windows 7 on it.
+Can you install the OEM version of Windows 7 on a Macbook Pro using boot camp or do you need a full licence?
+I'm fairly sure there should be no difference, I've installed OEM version of Windows an quite a few machines before I was wondering if there was anything that would stop it working on a Macbook.
+Also are there any limitations on which SKU of Windows 7 will run on a Macbook Pro (Home Premium, Ultimate, etc.)
+
+A: The OEM version has only three differences compared to the retail versions:
+1) Retail versions come with both 32-bit and 64-bit installations.  OEM versions are one or the other, so you will want to make sure you're ordering the right version - for a new MBP, 64-bit unless you have a compelling reason to go with 32-bit.
+2) OEM versions are tied to the hardware they are installed on and cannot be moved, ever.  This MAY be an issue if you are planning on using virtualization software against your bootcamp installation, since the VM "hardware" looks different from the real hardware.
+3) OEM versions do not come with telephone support from MS.
+There is NO difference in the actual executable code, and so it would work just fine on an MBP.  As for the SKUs, again, it would make no difference.  The higher-end SKUs add additional features, not additional hardware support.
+I do have a few questions for you.  Which Windows application(s) are you tied to?    What are the specs of the hardware you are ordering?  Depending on your answers, it MAY make more sense to consider virtualization so that you can run that one or two Windows applications "on top" of MacOS and have access to both sets of applications at the same time.

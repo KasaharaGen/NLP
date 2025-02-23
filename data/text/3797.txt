@@ -1,0 +1,21 @@
+Q: Syncing Linux server data with data on my Mac I have a Linux server that stores some files, and I want to sync them with my Mac.
+I can mount the directory of the server, so after mounting it's just  directory to directory sync. There are thousands of files, so the sync tool should be smart enough to sync only the changed files. 
+Is there any Mac software out there that does this automatically (or at a scheduled time)? The expected action is as follows:
+
+
+*
+
+*Mount the directory in a server.
+
+*Sync intelligently.
+
+*Unmount. 
+
+
+A: You can combine the GUI-based arRsync tool for OS X with the use of /net to automount the share to achieve what you desire.
+The remote share will be automatically mounted as long as you access as /net/hostname/exportname. So use that path in arRsync and when you fire the sync it'll automount and then scan and sync just the deltas.
+There's good old command line rsync available if you prefer. It ships with OS X. Here is the manual page for it.
+
+A: Dropbox might also be of use. It provides automatic syncing of folders and does that in the "smart" way that you described.
+It has clients of windows, linux and osx.
+https://www.dropbox.com/

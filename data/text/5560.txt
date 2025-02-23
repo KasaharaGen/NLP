@@ -1,0 +1,38 @@
+Q: Can I choose the name of a folder in Launchpad? When I drag two items into a folder, the system seems to choose the folder name for me.
+Am I missing any way to choose a name or am I presently stuck with what the system chooses for me?
+
+I know I am supposed to click once on the folder to open the drawer, and then click on the name (developer in this case), but those clicks don't work and I can't seem to edit the names of any of the folders in Launchpad.
+
+A: Posted as an answer so I can have all the formatting benefits, instead of directly responding to your comment on @mwidmann's answer;
+TUAW recently posted a writeup on how to "fix" your Launchpad database when problems begin to occur;
+
+Removing the database files from the user's Dock application support
+  folder and restarting the Dock allows Mission Control and the
+  Launchpad to re-build the database from scratch, updating the
+  presentation with all the new applications.
+Here are HaiTeq's steps, with a few modifications on my part for
+  safety. Admittedly, if you are not comfortable at the command line,
+  this is not the hack for you.
+  
+  
+*
+  
+*Launch Terminal: /Applications/Utilities/Terminal.app
+  
+*Navigate to the Application Support folder in question: cd ~/Library/Application\ Support/Dock
+  
+*Open the folder (open .) and drag all the .db files to the trash.
+  
+*Restart Dock: sudo killall Dock, and authenticate when the dialog prompts you for your username/password.
+
+Source
+
+A: You can simply double click on the name of the group which will then be turned into a text box where you can enter any name you like.
+
+
+A: No - you can't choose the name, but you should be able to edit it.
+OK - it appears that on many macs, the Dock preventing editing of folders in Launchpad. 
+The killall Dock command in terminal will send a message to the Dock so that it restarts itself. This fixes Launchpad for editing without having to reboot or log out and back in.
+The big red quit button works the same as killall Dock if you find Dock in the Activity Monitor.
+
+I'm assuming this is a bug, but wanted to document it in case others have the same issue or if it will just happen from time to time. It's more broken than fixed on my mac and I find myself needing to kill the Dock routinely before I can edit things after switching users.

@@ -1,0 +1,122 @@
+Q: Download Manager for Mac OS X What is a good Download Manager for Mac?
+Are there free ones available?
+
+A: I highly recommended you use iGetter it was better than other one.
+
+
+*
+
+*iGetter
+but also can use
+
+
+*
+
+*Download Accelerator Plus (DAP)
+
+*Folx (free) but can pay money and upgrade it to pro
+
+
+Also if you can use terminal and install package I recommended you use AXEL I myself use this one. after install it you can use this like below in terminal
+axel -n 100 -s 5242880 "your download link"
+
+the -n 100 show the number of your connection to the server 
+and the -s 5242880 use for limiting the speed,-s 5242880 in above example will try to keep the average speed around 5242880 (5120 Kilobyte per/sec).
+
+A: Aria2 bundled with WebUI is the best you can get on OS X. All you have to do is run Aria from Terminal and open WebUI in Browser. 
+Features
+
+
+*
+
+*Multi-Connection Download. aria2 can download a file from multiple sources/protocols and tries to utilize your maximum download bandwidth. Really speeds up your download experience.
+
+*Lightweight. aria2 doesn’t require much memory and CPU time. When disk cache is off, the physical memory usage is typically 4MiB (normal HTTP/FTP downloads) to 9MiB (BitTorrent downloads). CPU usage in BitTorrent with download speed of 2.8MiB/sec is around 6%.
+
+*Fully Featured BitTorrent Client. All features you want in BitTorrent client are available: DHT, PEX, Encryption, Magnet URI, Web-Seeding, Selective Downloads, Local Peer Discovery and UDP tracker.
+
+*Metalink Enabled. aria2 supports The Metalink Download Description Format (aka Metalink v4), Metalink version 3 and Metalink/HTTP. Metalink offers the file verification, HTTP/FTP/BitTorrent integration and the various configurations for language, location, OS, etc.
+
+*Remote Control. aria2 supports RPC interface to control the aria2 process. The supported interfaces are JSON-RPC (over HTTP and WebSocket) and XML-RPC.
+
+A: I use JDownloader a lot. It is extremely useful if you're downloading content from the cloud (to name the popular one: Rapidshare, Hotfile, Megaupload). 
+And it's free.
+
+A: Let's not forget DownThemAll for Firefox. Yes, it's a plug-in for Firefox, but since Firefox also runs on the Mac, this makes it a valid answer. It's free too.
+
+A: Fat Pipe - (free) has plugins for Chrome, Safari, and Firefox
+
+note: I am extremely biased (i wrote fat pipe);
+I used to use Speed Download but they recently stopped supporting their app and i was getting a bunch of errors.
+Fat Pipe actually supports up to 50 connections per download and automatically determines connection count based on file size.
+
+A: There are several choices :
+
+
+*
+
+*Folx : 
+
+
+
+Folx is a free download manager for Mac OS X with a true Mac-style
+  interface. It offers convenient downloads managing, flexible settings,
+  etc. Folx has a unique system of sorting and keeping the downloaded
+  content.
+
+
+
+
+*
+
+*iGetter: 
+
+
+
+iGetter is a full featured download manager and accelerator. With
+  iGetter you can get the most out of your Internet connection be it
+  dial-up, wireless, cable, DSL, T1 and other high end broadband
+  connections. iGetter can greatly improve the speed of your downloads
+  using segmented (accelerated) downloading.
+
+
+
+
+*
+
+*Leech (paid one) : clean UI.
+
+
+
+Every modern browser has its own download functionality, so why should
+  you use a separate application for handling downloads in the first
+  place? Because Leech works better than any built-in download manager.
+
+
+
+
+*
+
+*jDownloader 2
+
+JDownloader is a free, open-source download management tool with a
+  huge community of developers that makes downloading as easy and fast
+  as it should be. Users can start, stop or pause downloads, set
+  bandwith limitations, auto-extract archives and much more. It's an
+  easy-to-extend framework that can save hours of your valuable time
+  every day!
+
+
+ - Fat Pipe: (free)
+
+Most servers and internet service providers limit the speed a single
+  connection can have. We can bypass these limits by splitting a
+  download task up into many smaller chunks. This guarantees that you
+  will fully saturate your internet connection.
+
+http://fatpipeapp.com/media/demo.mp4
+
+A: As much as this saddens me but I would also recommend jDownloader. On the other hand for some simple and not so simple cases you could opt for wget or curl. You could be evan braver and create a batch script using one of those UNIX commands and be done with it.
+
+A: I think download managers are uneeded, at least, anymore. This question was asked 4 years ago, I know, but Download Managers are useless in today's world.
+Need a download manager still? Your browser. Done!

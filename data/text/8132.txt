@@ -1,0 +1,21 @@
+Q: "Install Xcode.app" won't uninstall from my Mac I downloaded the new Xcode 4.2 update yesterday and installed it.  The installer shows up in Launchpad as an app, see screenshot below.  
+ 
+When I hold the mouse button and click the 'X' to delete, it asks me to confirm deletion which I do, then it just stays there.  
+ 
+
+I looked in Console.app and got the message below:  
+
+14/10/2011 22:52:20.654 Dock: LaunchPad: Uninstall failed Error
+  Domain=com.apple.uninstalld.request Code=2 "ErrorMissingBundle"
+  UserInfo=0x7fa5ba2e65d0 {Missing bundle string=/Applications/Install
+  Xcode.app} file://localhost/Applications/Install%20Xcode.app/
+
+How do I remove this app?  
+
+A: Is there an "Install Xcode" app in /Applications (Specifically /Applications/Install Xcode.app) ?
+It looks like the application was removed, and launchpad just has not noticed this fact yet.
+
+A: I fixed it in the end.  I found this program http://chaosspace.de/launchpad-control/ which allows you to add/remove LaunchPad icons.  I removed the icon, re-added it and then deleted it which also deleted the application /Applications/Install Xcode.app
+User cksum then suggested this might have corrupted my database and I think he is right, however, it looks like Lion recovered it.  As he suggested, I browsed the Dock database file with an SQLite viewer and there don't appear to be any problem entries, but in finder I have the following files:  
+ 
+So it looks like Lion identified the corrupt database and my existing one doesn't contain any problematic entries so I think it's fixed.

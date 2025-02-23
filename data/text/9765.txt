@@ -1,0 +1,45 @@
+Q: Finder too optimistic about free space? Below is a storage overview from "About this Mac" on Lion, running on a Macbook Air. 
+It says: backups 71.07 GB. No data is in the "Other" area, which seems a bit weird, because I have at least 20 GB worth of data from a Virtual Machine image and several other data files:
+
+I decided to turn local backups off with sudo tmutil disablelocal
+Then the overview changed to the following:
+
+This would make more sense to me, given my "other" data. 
+Next, I decided to turn local backups on again with sudo tmutil enablelocal.
+The overview now changed into the following:
+
+Part of my "other" storage moved back into "backups" it seems. What the hell is going on? Is this due to the usage of hard links in Time Machine? 
+Note that Finder tells me that I have 136.69 GB free because it thinks it is clever by not counting Backup space claimed by Time Machine, while in fact this space could just be shared space with the original files: 
+I'm confused. Please explain what is going on here.
+EDIT: note that when I completely turn off Time Machine (through the GUI), the folder /Volumes/Mobile Backups disappears and in the "About this mac" window, around 70 GB is in the "Other" area. When I turn on Time Machine again, this number decreases and gets added to backups.  
+
+A: Several things are happening here:
+
+
+*
+
+*It sure looks like there are bugs in the space determination with mobile backups.
+
+*It's hard to tell in Finder since your user may not have permissions to read / calculate file sizes in many.
+
+*Your spotlight database is suspect and might need rebuilding (where much of the data that System Information uses to make those nice colored bar graphs)
+
+
+I would try three things to see if you can get a better view of your data.
+
+
+*
+
+*Turn off local time machine
+
+*Set all local drives to be private in Spotlight
+
+*Boot into recovery mode and verify the boot volume / repair / back up if needed
+
+*Remove the volumes from Spotlight privacy and wait for the reindexing process to finish
+
+
+You also might want to look into a tool like WhatSize which can measure folder and file sizes as the administrator (root user). Also, using df and diskutil list in the terminal will help you get a lower level look at actual file system data size summaries. 
+
+A: My Macbook was returning 3 petabytes of free space… I do like optimistic thinking, but…
+Zapping the Spotlight index with Cocktail did the trick.

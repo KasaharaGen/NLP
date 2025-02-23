@@ -1,0 +1,87 @@
+Q: Make Mac OS X "Option-Arrow" work like Windows "Ctrl-Arrow" I rely on the "Ctrl-→" command on Windows to navigate my way through text documents. 
+This useful key-combo will quickly bring me to the beginning of the next word. For example, the following sequence illustrates what would happen to the cursor location after successive presses of Ctrl-→ (the "^" will represent the cursor):
+^The quick brown fox jumped over the lazy dog
+The ^quick brown fox jumped over the lazy dog
+The quick ^brown fox jumped over the lazy dog
+The quick brown ^fox jumped over the lazy dog
+The quick brown fox ^jumped over the lazy dog
+...
+
+And, if I start pressing the ← instead, it will move the cursor to the exact same spots in the document, just going the other direction (which is ideal because the position of the cursor is predictable, which leads to me being faster at making my edits): 
+The quick brown fox ^jumped over the lazy dog
+The quick brown ^fox jumped over the lazy dog
+The quick ^brown fox jumped over the lazy dog
+The ^quick brown fox jumped over the lazy dog
+^The quick brown fox jumped over the lazy dog
+...
+
+Mac OS X has a similar keyboard shortcut (Option-→ - I mapped "Ctrl" to "Option" specifically so I could get this same functionality in the way I've become accustomed to). 
+However, "Option-Arrow" brings me to the end of the current word when using the right arrow key, as illustrated here:
+^The quick brown fox jumped over the lazy dog
+The^ quick brown fox jumped over the lazy dog
+The quick^ brown fox jumped over the lazy dog
+The quick brown^ fox jumped over the lazy dog
+The quick brown fox^ jumped over the lazy dog
+...
+
+And, what's worse, going the other direction doesn't bring you back to the same spot as moving forward, it brings you to the start of the last word: 
+The quick brown fox^ jumped over the lazy dog
+The quick brown ^fox jumped over the lazy dog
+The quick ^brown fox jumped over the lazy dog
+The ^quick brown fox jumped over the lazy dog
+^The quick brown fox jumped over the lazy dog
+...
+
+This is extremely frustrating for me, as I need to switch between Windows and Mac often, and very rarely do I want to go to the end of the current word (why would I want that, unless I'm holding "Shift" as well?). I always want to skip to the beginning of the next word. 
+I'm willing to go to some lengths to make the Mac version work the same way (purchase software, write a custom Applescript command tied to these keyboard shortcuts), so I'm looking for suggestions. 
+Are there any existing tools that will change this for me? 
+How would you suggest "fixing" it?
+Thanks
+EDIT
+I was able to make a "Service" in Automator, and used the following AppleScript: 
+on run {input, parameters}
+
+    tell application "System Events" to key code 124 using {option down}
+    tell application "System Events" to key code 124
+
+end run
+
+Then I tied this Service to the "Command-→" keystroke using the "Keyboard" settings in System Preferences.
+However, for this to work I have to take my finger off the Command key.. which makes it sorta pointless. It's also slow, and don't seem to work in the application I most need it to work in (Xcode).
+
+A: Things you might try. I have not tested these to see if they will perform the function you need.
+There's a free, open-source utility for remapping key commands for Mac OS X called DoubleCommand. It's a kernel extension so it works at a very low level.
+Another free program that the DoubleCommand people recommend that you check out is KeyRemap4MacBook. You need to use one or the other; they'll conflict if they are both installed on your Mac. 
+
+A: Here's how you can get ⌃ Control+arrow keys to work like you describe. Copy the following property list into ~/Library/KeyBindings/DefaultKeyBinding.dict (you can create the directory if it doesn't already exist):
+{
+    "^\UF703" = ("moveWordForward:", "moveWordForward:", "moveWordBackward:");
+    "^$\UF703" = ("moveWordForwardAndModifySelection:", "moveWordForwardAndModifySelection:", "moveWordBackwardAndModifySelection:");
+}
+
+This will set up ⌃ Control+arrow to navigate to the beginning of the next word (by using OS X's normal navigation three times: to the end of the current word, end of the next word, then back to the beginning of the next word). I also included a version that works with ⇧ Shift so you can select text as you go.
+Caveat: this will only work in Cocoa apps, but I think the normal ⌥ Option+arrow navigation does too. Also, make sure to relaunch your apps!
+
+A: After years of the annoying OSX default mappings I switched my Command and Control keys and wanted the Control + Arrow keys to provide move-word-forward, move-word-backward functionality instead of BOL / EOL.
+The accepted answer worked for me except with ^ changed to @ since I now use Control instead of Command. 
+I also mapped the lesser used BOL / EOL functions to the Option + Arrow key combinations.
+{
+    "@\UF702" = ("moveWordBackward:");
+    "@$\UF702" = ("moveWordBackwardAndModifySelection:");
+    "~\UF702" = ("moveToBeginningOfLine:");
+    "~$\UF702" = ("moveToBeginningOfLineAndModifySelection:");
+    "@\UF703" = ("moveWordForward:", "moveWordForward:", "moveWordBackward:");
+    "@$\UF703" = ("moveWordForwardAndModifySelection:", "moveWordForwardAndModifySelection:", "moveWordBackwardAndModifySelection:");    
+    "~\UF703" = ("moveToEndOfLine:");
+    "~$\UF703" = ("moveToEndOfLineAndModifySelection:");
+}
+
+
+A: I've tried that earlier but that didn't work out for me unfortunately. Maybe I'm doing it incorrectly? I navigated to my Library folder, made a folder named "KeyBindings", and created a textEdit file named "DefaultKeyBinding" with the copied and pasted content. I also tried naming the file "DefaultKeyBinding.dict" as well.
+I'm on an M1 Macbook Air running BigSur.
+
+A: please enhance the accepted answer with the hint to disable the keybinding used for switching spaces!
+The DefaultKeyBinding.dict does nothing if you haven´t disabled the option in "Settings -> Keyboard -> Mission Controll -> Move left/right a space".
+Checkout this for it:
+https://superuser.com/questions/657724/how-to-remap-ctrlarrow-keys-to-move-word-to-word-for-mac
+@omwASAP does this maybe also help you?

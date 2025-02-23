@@ -1,0 +1,20 @@
+Q: How can I match the text color and background color in Terminal? I use emacs/org-mode which uses color for hiding some of the headlines as is shown here.
+
+This works well with Aquamcas, but when I run emacs in text mode, I still see the stars in the headline as I didn't make the background color exactly the same as the color of the font.
+How can I match the text color and background color in Terminal?
+
+A: Open a terminal window and type some of the text whose color you want to set the background the same as.  Then open Terminal preferences.
+Click the Window tab and then the Background Color.  This brings up a color picker window.  Click the magnifying glass in the upper left and move it over the text you want to match the color with.  When you click on the text this will set the color you want.  You could also set it directly in the RGB slider panel shown in the 2nd image which matches the text color from your image in the question.
+
+
+A: You might have not enough colors in the terminal. Try
+export TERM=xterm-256color
+
+in your ~/.bashrc
+Also, are you running 
+/usr/bin/emacs 
+
+or 
+/Applications/Aquamacs.app/Contents/MacOS/Emacs -nw 
+
+The two behave differently (in /usr/bin/emacs you may have Emacs 22)

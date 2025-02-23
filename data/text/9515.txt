@@ -1,0 +1,100 @@
+Q: How do you run a script after a network interface comes up? Is there a way to run a script every time a network interface finishes coming up? Or, is there an equivilent answer to this Debian question on OSX?
+
+A: A launchd agent watching /etc/resolv.conf, and two network related .plist files under /Library/Preferences/SystemConfiguration/ seems to work for me (in Mac OS X 10.8.4):
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" \
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>ifup.ddns</string>
+
+  <key>LowPriorityIO</key>
+  <true/>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/Shared/bin/ddns-update.sh</string>
+  </array>
+
+  <key>WatchPaths</key>
+  <array>
+    <string>/etc/resolv.conf</string>
+    <string>/Library/Preferences/SystemConfiguration/NetworkInterfaces.plist</string>
+    <string>/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist</string>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+
+I had previously only used /etc/resolv.conf, but there were cases where that wasn't enough.
+
+A: I haven't tried this solution my self - yet, but found this thread: https://superuser.com/questions/201478/run-script-in-os-x-10-6-on-network-connection-like-etc-network-if-up-d/261004#261004
+
+You should consider using crankd, which precisely allows you to run scripts in response to many system events such as network changes, filesystem activity, application launching, etc.
+As I couldn't find any sensible documentation, I also wrote a small blog post on getting started using crankd.
+
+
+A: I've ended up with with this script:
+#!/bin/bash
+
+COUNTER=0
+while [ $COUNTER -lt 10 ]; do
+    let COUNTER=COUNTER+1
+
+    # assign to test at each iteration otherwise the output won't be changed
+    test=$(ifconfig -a inet 2>/dev/null | sed -n -e '/127.0.0.1/d' -e '/0.0.0.0/d' -e '/inet/p' | wc -l)
+
+    if [ "${test}" -gt 0 ]; then
+        # do the job here
+       
+        # exit the loop
+        let COUNTER=COUNTER+10
+        break
+    fi
+
+    # give a little time for a network to get up
+    sleep 2
+done
+
+It checks a network 10 times and the network has 2*10 seconds to get up.
+
+A: The following works on Mac OS X 10.11.3 (El Capitan)
+
+*
+
+*Create a file: networkchange.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" \
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>networkchange</string>
+  <key>LowPriorityIO</key>
+  <true/>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/Shared/bin/networkchange.sh</string>
+  </array>
+  <key>WatchPaths</key>
+  <array>
+    <string>/etc/resolv.conf</string>
+    <string>/var/run/resolv.conf</string>
+    <string>/private/var/run/resolv.conf</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+
+
+
+*Then, register by running the following commands in Terminal:
+
+launchctl load networkchange.plist
+launchctl start networkchange
+
+Note that the script is run by the user registering the plist.

@@ -1,0 +1,9 @@
+Q: Can I continue to use a Mac while Carbon Copy Cloner is cloning its HDD? Carbon Copy Cloner is taking 2.5-3 hrs to work its mojo these days. I suspect this has something to do with the switch to Lion (the same process took 20 mins on SL.) 
+In any case, is it advisable to continue to use the Mac while CCC is backing up the drive? It's a one HDD iMac.
+
+A: The Carbon Copy Cloner FAQ states:
+
+Yes and no, it really depends. Performance will be affected during the clone (especially the first one) as CCC reads the entire source volume and writes to the destination volume. If your work is "disk bound" -- that is your applications are reading or writing to either the source or destination, then you'll notice a performance hit. If you're just reading email or writing a Pages document, then you probably won't notice the performance hit.
+Affecting the accuracy of the backup task is something else that should be considered. Typically it's OK to work from the source volume while you're copying it, with the understanding that if CCC copied a file, then you open it, make changes, save it, then CCC completes the backup task, the modified version of your document is not backed up (this time around). Typically that's no big deal, the modifications will get backed up the next time the backup task runs. More importantly, though, if you're working with large files (mounted disk image, Entourage email database, VMWare/Parallels container) during the backup operation, it is possible that those large files could be modified while CCC is backing up that file. This won't affect the source file, but there's a good chance that the backup version of that file will be corrupt. For this reason it is a good idea to stop using applications that may be modifying large files.
+
+TL;DR: there is performance hit depending on the intensity of file I/O you produce; files you work on will not be backed up; large files may get corrupted.

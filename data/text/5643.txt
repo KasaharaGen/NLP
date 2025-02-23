@@ -1,0 +1,19 @@
+Q: Magic Mouse battery level broken in Lion? After upgrading to Lion my Magic Mouse's level indicator seems to be broken.
+For the whole week it was reporting solid 100% on a pair of used batteries that were about 65% before upgrading. I swapped the batteries naively hoping it'll change anything and it actually did. It's now solid 95%!
+Screens from both system preferences and Bluetooth icon in the menu bar:
+
+
+What's interesting, iStat Pro dashboard widget seems to be reporting a correct level:
+
+Has anyone noticed such a problem? Or maybe even found a solution to it?
+
+A: You are not the only one. Mine says the same - 100%. This is a bug. The terminal command for querying the battery percentage (probably what iStat Pro uses) reports: "BatteryPercent" = 82
+For bluetooth mouse:
+ioreg -n "BNBMouseDevice" | grep -i "batterypercent"
+
+For Apple bluetooth keyboard:
+ioreg -n "AppleBluetoothHIDKeyboard" | grep -i "batterypercent"
+
+I've posted this in the Apple Bug reporter. Hopefully it will be fixed in an future Lion update.
+Here is another thread discussing the same issue.
+https://discussions.apple.com/thread/3211868

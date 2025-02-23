@@ -1,0 +1,45 @@
+Q: How to monitor USB power consumption? I'm looking for a way to monitor the power being drawn from the USB ports on my Mac.
+System Profiler doesn't appear to display this and I haven't been able to find any applications or tools to do the job either.
+Can anyone suggest anything (preferably software based)?
+
+A: USB power consumption information should be available in System Profiler.  See the screenshot below:
+
+
+A: There is an application that is part of the Developer Tools on your Mac called USB Prober. It should provide you with the details that you need. 
+It can be found by signing up (free) for a Mac Developer Account and downloading the latest Xcode tools at http://developer.apple.com/technologies/tools/.
+After installation the application you are looking for is found in /Developer/Applications/Utilities.
+Hope that helps.
+
+A: iStat Menus keeps track of pretty much all sensors in a Mac. On my Macbook Pro there is the "Other 5V" sensor which apparently includes the USB ports. It is not very detailed / precise but at least I can tell if devices are plugged in or active. Here is my backup USB disk working and sleeping for a few minutes now:
+
+
+A: As determining the current power consumption for a specific USB port on a Mac seems not be possible software-wise, as the solutions https://apple.stackexchange.com/a/13874/11510 and https://apple.stackexchange.com/a/13875/11510 show, you could get an approximation with the following method:
+
+
+*
+
+*Have your system as idle as possible.﹡
+
+*Check your systems power consumption without the device.
+
+*Attach your device.
+
+*Check your systems power consumption with the device.
+
+*The difference is the approximated device power consumption.
+
+
+
+﹡Get your system as idle as possible, with as little power fluctuations as possible:
+
+
+*
+
+*Boot complete, all startup scripts ran
+
+*Backup daemons likely done their thing (i.e software updaters), Spotlight indexing done,…
+
+*Offline
+
+*No foreground app is running, except the monitoring app of your choice, which in itself should also be quite stable if it polls regularly.
+

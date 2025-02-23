@@ -1,0 +1,45 @@
+Q: Any quizPack format spec? I'm a Windows software developer interested in reading the .quizPack file format. It is designed for Apple iQuiz software, and contains text quizzes for iPod. The text file format, unpacked from quizPack, "trivia.txt" is fully documented here. But how to unpack these files?
+I cannot find any specification of this format on Apple website or elsewhere. 
+Here is a downloadable example of quizPack file.
+This format can be created, for example, by iQuizMaker software. iTunes can read these files and export them to iPod as "unpacked" quizzes.
+
+A: Okay, I dug into this and found that you have a couple of misconceptions, but it now all makes a little sense.
+The page How to Install an iQuiz Package? says:
+Shared iPod Quiz (iQuiz) games on iquizshare.com come in three formats:
+
+  
+*
+  
+*Flat file format (e.g. history_albert.txt).
+  
+*Zipped package, which contains readme, trivia.txt, and maybe some customized artworks in .tga format.
+  
+*QuizPack format, which is created using Aspyr Media iquizmaker software.
+  
+
+That third format? It's created by Aspyr software and read by Aspyr software—and nothing else. It's not an Apple format at all.
+If you have a .quizpack file and you want to read what's in it, here are the steps:
+
+
+*
+
+*Go to iquizmaker.com and download the free iQuiz Maker software (available for both Mac and Windows).
+
+*Install iQuiz Maker.
+
+*Launch iQuiz Maker, choose File > Import, and then open your .quizpack file.
+Doing this creates the file (and any necessary folders) ~/Music/iTunes/iPod Games/iQuiz 1.0/<quiz name>/trivia.txt (Mac) or ~\My Documents\My Music\iTunes\iPod Games\iQuiz 1.0\<quiz name>\trivia.txt (Windows). 
+
+*Quit iQuiz Maker, as you've got what you want.
+You can't do these steps in reverse to turn a trivia.txt file into a .quizpack file, but given that the .quizpack file is fairly useless, there's no reason you'd ever need to.
+
+Old version:
+Can you give an example of what kind of file you have, and what you mean by "unpack"?
+The article you linked to says that:
+
+The text-based data files you create are not compiled or put into any unreadable form. 
+
+and
+
+Tip: If you're curious and you've enabled disk access, you'll find your games in /Volumes/(name-of-your-iPod)/iPod_Control/GameData_RO. One of the folders in that directory—possibly 11002—contains the iQuiz game. In that folder, look under UserTrivia/Packs to discover your user-installed game sets.
+

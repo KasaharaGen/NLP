@@ -1,0 +1,64 @@
+Q: How to always show menubar with fullscreen apps? Does anyone know if it is possible to keep the menubar in Mac OS Lion visible for fullscreen apps instead of hidden until hovered over with a mouse or trackpad? 
+I imagine there's some Terminal command I can enter to adjust this preference.
+
+A: You can adjust this on a per-app basis by editing the plist. My memory is rusty but here are instructions, if I remember correctly.
+
+
+*
+
+*Show package contents for the app you want
+
+*Edit the file Contents/info.plist
+
+*Search for "LSUIPresentationMode" (you may want to use a plist editor). It will look like this if you use a regular text editor:
+<key>LSUIPresentationMode</key>
+<integer>4</integer>
+
+If the property does not exist, then you can create it - it must be inserted in the correct alphabetical order.
+
+*Change the value of the integer accordingly:
+
+
+*
+
+*LSUI PresentationMode 0 - Does not hide Dock or Menu Bar.
+
+*LSUIPresentationMode 1 - Hides Dock. Dock will appear if mouse moved to where it is located. Menu Bar will remain.
+
+*LSUIPresentationMode 2 - Removes Dock. Menu Bar will remain.
+
+*LSUIPresentationMode 3 - Removes Menu Bar and Dock.
+
+*LSUIPresentationMode 4 - Hides Menu Bar and Dock. Menu Bar or Dock will appear if mouse moved to where Menu Bar or Dock is located.
+
+
+
+For more information on LSUIPresentationMode usage, see the developer documentation: 
+http://developer.apple.com/library/mac/#documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-113616-TPXREF134
+
+A: The thing is, for many apps, the menu bar will cover the app, and not "push" it down like it's done will Mail, for example.
+So it's not really doable.
+Besides, if you can show the dock and the menu bar, it's no longer full screen, is it?
+The whole point of the full screen mode is to avoid distraction, such as bouncing icons in the dock and mail count going up in the menu bar, don't you think?
+
+A: How to auto-hide the menubar in OS X El Capitan
+
+
+*
+
+*Go to System Preferences.
+
+*Go to General.
+
+*Click the checkbox next to "Automatically hide and show the menubar."
+
+*Close the Settings menu.
+
+A: just hide or resize your dock and you should be fine
+
+A: I think I figured it out. I first maximized the app (I was using Safari). Then, if you move your mouse to the top of the screen, the menu bar will appear, and you will see a little icon on the top right hand side (it's the "opposite" if you will of the maximize button). It looks like two little arrows pointing at each other. Click this. The app will fix itself to where the dock and menu bar are visible. 
+
+A: I found a way to reveal the dock when in fullscreen mode, however i didn't find a way to permanently show the menu bar, sorry.
+http://hints.macworld.com/article.php?story=20110723181230680
+
+A: easy! just go to your dock (i cant do this for the menu bar btw) and go to the black line between the trash bin and an app,right click and click "Turn Hiding Off" and tada! its done hope this helps!

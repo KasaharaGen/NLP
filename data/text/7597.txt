@@ -1,0 +1,35 @@
+Q: Cannot trash a file? I want to delete a file because it's of no use to me yet I seem unable to do so. I've gone through these steps so far:
+
+
+*
+
+*Put file in trash, empty trash. -> Mac keeps on telling me: 12 items to remove..
+
+*rm -rf /.Trash/* -> process seems to go on indefinitely
+
+*sudo rm -R path/to/file -> same as above
+
+
+I'm desperate.. what should I do?
+
+A: If you've put the file in your own Trash, you got the path wrong in step 2:
+rm -rf ~/.Trash/*
+
+or (because there might be something wrong with the file permissions)
+sudo rm -rf ~/.Trash/*
+
+
+A: If the file is on a partition other than the startup volume, it will not be in ~/.Trash/, rather it will be in /Volumes/volumeName/.Trashes/userID/, where volumeName is the name of the partition and userID is your user's numerical user ID (probably 501 if you only have one user).
+To be certain you have the correct path to the file, I would recommend using Terminal's drag and drop feature. This also helps to avoid accidentally deleting files with the potentially dangerous sudo rm -Rf command.
+Without pressing return at the end, type sudo rm -Rf with a trailing space at the end, 
+sudo rm -Rf <--leave a space after -Rf, do not press return yet
+
+then drag the file you want to delete from the Finder into the Terminal window. Then press return.
+If it still won't delete, you should probably verify the disk with Disk Utility.
+
+A: Did you try this :
+sudo rm -Rf ~/.Trash/*
+
+Then, type your admin password to confirm
+
+A: Well, this isn't as convenient as deleting the files without logging out, but this is virtually guaranteed to work (it's never failed for me): Use Finder to move it to the Trash. Then reboot, then empty the Trash.

@@ -1,0 +1,95 @@
+Q: Is there any way to upload screenshots directly to FTP or image hosting and give me the url? Is there any application for screenshots that could upload directly to FTP or any image hosting site and just give me the URL?
+I come from the Windows world, where I got used to FastStone Capture, where you basically press print screen, click on FTP and it copies the URL into clipaboard so you can immediately paste it for example on IM.
+
+A: If you use Dropbox (and you should), I recommend GrabBox. When you take a regular screenshot (command-shift-3, command-shift-4, etc.) it automatically uploads it to your public folder, grabs the public URL, optionally shortens it, and copies it to the clipboard.
+
+A: i think tinygrab (http://tinygrab.com/features.php) can do it
+you can also roll your own if you want.  
+Here is a link to the code below for working with imgur:
+#!/bin/sh
+# version 0.3
+# 2010-02-12
+# description: bash alternative to grabup using imgur.com
+# todo: add error code checking/reporting
+#       report upload speed & time via growl
+#       copy to clipboard on 'click on notification'
+
+apikey="7d9157e3bb2823aadb62a40e30e10dcc"
+growlecho (){ echo $@ | /usr/local/bin/growlnotify -t QuickGrab -a /Applications/Utilities/Grab.app; }
+
+# work in temporary directory
+tempdir=`mktemp -dt quickgrab`
+cd $tempdir
+
+# start screencapture in interactive mode unless...
+if [[ "$1" == "-m" ]]
+then
+    screencapture -m tmpfile.png
+else
+    screencapture -i tmpfile.png
+fi
+
+# check if tmpfile.png exists before continuing
+if [ -f tmpfile.png ]
+then
+    # upload via imgur.com api & output to response.log
+    curl -F "image=@tmpfile.png" -F "key=$apikey" http://imgur.com/api/upload.xml > response.log
+    LOGFILE=./response.log
+
+    # if no errors (return 1), copy url
+    A1=`xpath $LOGFILE "/rsp/@stat='ok'"`
+    if [[ "$A1" == "1" ]]
+    then
+        # copy url to clipboard & growl success
+        echo `xpath $LOGFILE "//original_image/text()"` | pbcopy
+        growlecho `xpath $LOGFILE "//original_image/text()"`
+    else
+        # growl failure
+        growlecho "$A1"
+    fi
+fi
+
+# delete temporary directory
+rm -r $tempdir
+
+
+A: Two of the best apps for this are CloudApp and Skitch.
+Cloud app has an option to automatically upload screenshots (image courtesy of Softpedia). It is very drag and drop friendly and pastes the URL to your clipboard for convenience.
+Skitch is a little more heavy on the screen snapping controls. It's like grab on steroids. You can quickly hide private information, point out items, and edit the snap before uploading.
+The free version of both are well worth it. Both have paid upgrades that are low cost, but you don't need to pay to use either. I have also heard really good things about Droplr so you might check it out as well.
+
+Both CloudApp and Skitch are available on the App Store. The two are better together - skitch is better for grabbing a great screen shot, and droplr for upload and sharing it.
+
+A: Dropshare is another paid option that has come along - in the vein of TinyGrab and LittleSnaper (which Realmac has replaced with Ember) mentioned already.
+Both the OS X and iOS version can:
+
+
+*
+
+*Upload to S3, Rackspace or your own server (via SCP over SSH)
+
+*Global hotkeys for uploading clipboard, screenshot/recording or note (MarkDown supported)
+
+*Create optional, custom landing pages for your files
+
+*Sync connections/preferences via Dropshare's own sync service
+
+*Shorten URLs using services or custom shorteners
+
+*Delete previously shared files directly via the app
+
+
+Three-day trial of the OS X version's available at their site.
+
+I've been pleased using it for the past few months.
+
+A: I wrote a small python script to do that.
+It will not just auto upload screenshots to imgur but also copy screenshot url to clipboard and open up browser with link instantly.
+Check it out:
+Video Demo:
+Link
+
+A: LittleSnapper is designed to work with FTP and copy the URL after upload. Upload is a separate step from snapping, so you will have to set a key command or automate that for the exact functionality you ask.
+There is a free trial version from the RealMac website - so you can see if it's what you want before buying a license.
+
+

@@ -1,0 +1,34 @@
+Q: Completely removing old version of MS Office I have been migrating my account from Mac to Mac for years now. Every time a new Office version is out, I'd install it (X, 2004, 2008, and now 2011) and remove the old one after some time.
+Every time, I removed the older version by trashing its folder in /Applications. Now, I get worried that I left tons of support files and stuff in various Library folders. The reason I realized that is that, this morning, Office offered me to update “Open XML File Format Converter”, which I think is now a remnant of the past (and is not part of Office 2011 any more).
+So, how can I remove old Office support files and directories, without hurting my current install of Office 2011? Where should I look?
+
+A: In general, when removing Office (or any application that comes with an uninstaller), it's advisable to use the uninstaller for the application, instead of just dragging things into the Trash. The best way to get a clean system would be to remove the old version completely, then install the new version. However, this is not an option for you any more, due to already having trashed (some of) the old files.
+The files installed with every Office version are recorded in /var/db/receipts, in files starting with com.microsoft.office.*. There's a lot of those files, as Office comes in parts (Excel, Word, Proofing Tools, etc.) and also one for each update installed. The versions numbers in there are the "raw" office versions:
+
+
+*
+
+*14: Office for Mac 2011
+
+*12: Office 2008 for Mac
+
+*11: Office 2004 for Mac
+
+*10: Office v. X
+
+
+However it's not as simple as removing all files referenced by older packages, as some of them will be shared between them and doing so may leave your current Office install in a damaged state. Therefore the cleanest way to really remove all Office junk would be to:
+
+
+*
+
+*Uninstall what you can, using the uninstaller supplied (Microsoft Office Setup Assistant)
+
+*Remove the package receipts and the files they reference (but carefully, as many of them will reference system directories that should not be deleted unless empty). DesInstaller does this, but it hasn't been updated in a long time and I'm not sure if it still works on Lion.
+
+*Remove any leftovers, using either a cleaning tool such as CleanMyMac or the already mentioned AppCleaner, which work by looking for identifiers such as the com.apple.microsoft.office described earlier, or simply using mdfind or locate on the command line.
+
+*Reinstall Office for Mac 2011 - and before doing the next upgrade, use the uninstaller.
+
+
+A: have you installed "Hazel". Its a remarkable application which will do as you require plus much more.

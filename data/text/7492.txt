@@ -1,0 +1,126 @@
+Q: What's a good graphical SFTP utility for OS X? I need a small graphical utility, using which I can ssh to a server and see all the files and copy and paste (drag and drop) into my local machine.
+I am running Snow Leopard.
+
+A: ExpanDrive
+
+ExpanDrive acts just like a USB drive plugged into your computer. Open, edit, and save files to remote computers from within your favorite programs—even when they are on a server half a world away. ExpanDrive enhances every single application on your computer by transparently connecting it to remote data.
+
+A: Transmit
+
+Panic's Transmit tops my list. An extremely well built and executed FTP Client that fully supports sFTP. Priced at $34.
+
+Transmit is an excellent FTP (file transfer protocol), SFTP, S3
+  (Amazon.com file hosting) and iDisk/WebDAV client that allows you to
+  upload, download, and delete files over the internet. With the most
+  Mac-like interface available, Transmit makes FTP as simple, fun, and
+  easy as it can possibly be.
+
+Forklift
+
+Forklift 2 is another terrific client that is just as solid and just as well built. Priced at $29.95.
+
+ForkLift will connect to any remote server FTP, SFTP, Amazon S3,
+  WebDAV, the SMB, NIS and AFP shares on your local network, or your
+  Bluetooth mobile phone- pretty much anything you can plug into or hook
+  up to a Mac. ForkLift also carries a complete toolbox for managing
+  your files, including Folder Synchronization, Batch Renaming, Archive
+  handling, Application deleter, editing files over remote connections
+  and many more. All these power features are packaged into a
+  Finder-like, dual-pane interface that delivers superior workflow while
+  remaining absolutely familiar to use, along with QuickLook, Spotlight
+  search and all.
+
+Cyberduck
+
+Lastly, Cyberduck rounds out the list. It is not as well polished, but it sturdy and does the job. It is free.
+
+Cyberduck is a robust FTP/FTP-TLS/SFTP browser for the Mac whose lack
+  of visual clutter and cleverly intuitive features make it easy to use.
+  Support for external editors and system technologies such as
+  Spotlight, Bonjour, Keychain and AppleScript are built-in.
+
+There are others to be sure, but these are the one's I've used and personally recommend. Additionally, you may want to hit up places like MacUpdate, VersionTracker, or iUseThis for these types of questions. You will find much more diversity and get a better understanding of the programs available to you.
+
+A: FileZilla
+
+I have tried Cyberduck and Flow in the past but Filezilla offers a side-by-side interface which is quite useful. The only limitation with this tool is that it's not really MacOSX-aware, e.g. it shows all hidden files 
+
+A: Most other answers gave an objective analysis, but I'll share my experience.
+Top clients:
+
+
+*
+
+*Flow: really nice interface.
+
+*Transmit: very fast, can mount as Finder volume.
+
+*Cyberduck: the best for the inexistent buck.
+
+
+A: Cyberduck (Free)
+A great free FTP client. This is my go-to application. Anytime I need FTP access, I use Cyberduck. It's not quite as lightweight as Fugu, but it adds a lot more functionality than Fugu. I also really like the Growl integration with Cyberduck.
+
+Fugu (Free)
+Awesome little FTP client. As I noted above, this is a lightweight FTP client. It is great for simple FTP transfers and browsing. I do like the dual panel navigation.
+
+EDIT: I forgot to add these.
+Filezilla (Free)
+I haven't actually used Filezilla extensively, but from what I've seen of it, I really like it. I downloaded it and played with it for a bit and I really like the tabbed connections. I also like the ability to jump to a path easily.
+
+RBrowser (Free, $29 Upgrade)
+A free FTP/FTP-SSL client. I don't usually use RBrowser because a $29 upgrade is necessary to unlock other protocols (Local, FTP/SSL/TLS, SFTP-SSH). I do like the Site Manager. It's a handy little thing to have.
+
+
+I searched and came up with some other free FTP clients:
+FireFTP (Free) - Firefox extension
+The one downside I see is that this is for Firefox. The website doesn't make it clear how it works with Firefox, so I assume it is an extension.
+Macfusion (Free)
+This one relies on Google's MacFUSE. Since I don't know anything about MacFUSE, I don't know if this is good or bad.
+Transmit ($34) By Panic
+I have never used Transmit before, but I have used Coda and I definitely would recommend anything from Panic. The only reason I haven't used this because of the $34 price tag.
+
+ForkLift2 ($30)
+Never used it, just found it when searching.
+Fetch ($24 per user)
+An amazing program with a long, long, long mac heritage. It's way up there with Transmit by Panic and Interarchy as a file transfer program loved by long time Mac power users.
+Flow ($30)
+Never used it, but looks good from the screenshots. I really like the fact that it looks like Finder. I may have to give this one a try.
+
+OneButton FTP (Free)
+Just searching around and found yet another one...It looks pretty nice, except it's no longer supported. However, you can still download it.
+
+
+A: Add to others
+Unfortunately RBrowser in not compatible with BigSur onwards
+RBrowser
+This provides more of an interface like Finder than the others (stricyly much more like the original NeXT version) Apart form standard ssh/ftp it will syncronise directories etc.
+
+
+A: A more recent option is to use the newer implementation of Fuse for OSX in combination with SSHFS. This is a better solution because most of the applications mentioned are either outdated or payed (and expensive). 
+Fuse for OSX allows you to use new file systems in user space and SSHFS configures the system to allow you to connect to SSH drives automatically, as if they were drives supported by OSX. 
+
+A: Yummy FTP (commercial) : http://www.yummysoftware.com/
+Can't believe the one that blows most of the above out of the water hasn't yet been mentioned.
+
+A: If you need graphical utility with support for SSH you may try CRAX. This software has a built-in SSH client and after connection to the SSH server it's possible to invoke file operations like copy, move, and delete.
+
+
+A: It's worth considering some of the Web-based alternatives, like Monsta FTP (Disclaimer: I'm involved with this).
+They save you having to install software on every device; instead you do it all through your Web-browser, with the same features as any desktop client.
+
+A: If you are working with large files, then maybe consider Truck.app.
+It employs rsync for file transfers, which is generally faster than FTP.
+
+Disclosure: I am the developer of Truck.
+
+A: I tried Cyberduck and Transmit. None of them has functionality of preserving modification date. SCP on terminal does that.
+
+A: If you have set up ssh public key authentication, you can use
+SSHFS-Mountlet 
+which is a graphical front end to sshfs. It provides a menu bar icon under which you can mount or unmount your connection you have set up before. Sshfs has already been suggested by Fernando in a previous answer. Handling of the remote files happens using the macOS Finder.
+I was unhappy with the GUI clients for sshfs, so I wrote my own (GPL'ed).
+
+A: CaptainFTP is the best choice
+Easy to download from itunes:
+http://itunes.apple.com/nl/app/captain-ftp/id416544161?mt=12

@@ -1,0 +1,21 @@
+Q: Is there a GUI front-end to Apache for Mac OS X (Lion)? I am using the default Apache and PHP installs that are present in OS X Lion. But I would like to make some settings (like adding Virtual Hosts to Apache) using a GUI interface. Is there such a thing?
+I know of OS X Server of course, and also I think MAMP Pro has this. But I would like to keep using the stock servers and not install another version if I don't have to.
+
+A: There's no built-in GUI, but there are third party ones. One that I know of for managing virtual hosts is called VirtualHostX: http://clickontyler.com/virtualhostx/
+
+A: No, there is no GUI for the built-in apache. This is how I just set mine up so I can add my own VirtualHosts more easily:
+sudo -s
+mkdir /etc/apache2/vhosts
+chgrp admin /etc/apache2/vhosts
+chmod g+w /etc/apache2/vhosts
+cat << EOF >> /etc/apache2/extra/httpd-vhosts.conf
+#
+# Load user-defined vhosts
+#
+Include /private/etc/apache2/vhosts/*.conf
+EOF
+
+This adds a vhosts directory under /etc/apache2/vhosts. You just need to turn on vhosts in the master /etc/apache2/httpd.conf file, and then it will look for all .conf files in that vhosts directory. I made it so as an admin user I have privileges to save in there.
+It's a little tidier than trying to put everything in one file like the example vhosts in the config file.
+
+A: There's another GUI for built-in apache: WebMon for Mountain Lion. But this one is not as simple as VirtualHostX.

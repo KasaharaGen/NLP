@@ -1,0 +1,55 @@
+Q: How do I run a GUI app via SSH? I'm used to working on Unix/Linux and recently moved to Mac. In used to be able to do this:
+derick@linux1:~$ ssh -X linux2
+derick@linux2's password:
+derick@linux2:~$ xclock
+
+I've install X11 from maxports and I can do the same from my mac. If I try the reverse by ssh-ing into my mac from linux I can only run certain apps:
+
+*
+
+*/usr/X11/bin/xclock works fine
+
+
+*Something like /Applications/Preview.app/Contents/MacOS/Preview opens the GUI on the mac.
+It seems that this is not possible on a mac? If not, how do I run an application remotely (on a mac) with a local (linux) display? Do I need some third-party app?
+Update:
+To be more precise: I have synergy and use Mac for coding. On my linux PC I would like to see another application's display (GUI) from Mac. Thus, 'live screen sharing' apps like VNC will not work.
+For example I'm working on my mac in app A (say Word) and want to see the output of Excel (running on mac) on my linux PC next to me. (Simulating a dual screen via the network). It worked nicely on linux, hoping for a solution for mac.
+
+A: As Sylvian mentioned, you can't run your Mac apps and display them on Linux. The best you can do is VNC. You'll see the whole screen, not just one app.
+Enable a VNC password in Screen Sharing Preferences:
+
+You can then use any VNC client application on Linux.
+
+A: The Mac OS X native application do not use the X protocol for the rendering, but the Mac specific protocol. So you cannot use ssh X protocol forwarding as you could with a Linux workstation.
+As you discovered, the reverse is not true, you can install an X server on Mac OS X and have the Linux program appear on your Mac.
+What you can do is use either Mac own desktop sharing facility or install a VNC server. Then from your Linux box, you connect to your Mac through VNC instead of ssh.
+
+A: So if I am not mistaken the the problem you have with VNC currently is that it is sharing the current Mac user's screen with apps open that you don't want to see on your other computer? Lion introduces the ability to screen share users that are logged in the background. Quoting the text from the link:
+
+  
+*
+  
+*Enable Screen Sharing and set a VNC password. 
+  
+*Take note of your computer’s IP address. 
+  
+*Fire up a VNC client on another machine.
+  
+*Connect to your computer’s IP address along with the password you set
+  earlier. 
+  
+*You will see the Mac OS X login screen that appears when you
+  first start the computer. If you log into the currently active user
+  you will be controlling the computer’s screen. If you select a
+  different user, you will be logged into that user’s desktop in the
+  background. It will not affect what what is seen on the physical
+  computer screen.
+  
+
+You will likely just need to create another user for sharing.
+
+A: You're a little out of luck, but ScreenRecycler is going to get you as close as possible. Runs over VNC but convinces OS X the VNC connection is actually a separate monitor, it should allow you to get close to what you need. I've used it, it's pretty good, there's a free trial then it's quite cheap. I stopped using it purely because I was on a crappy network and there was too much latency unless I was directly networking the two.
+
+A: Getting a bit creative, but you can also run a java app using VNC that either has a http server, or in my case uses a loop to look for a file and create that file using SSH.
+Here is my java app.

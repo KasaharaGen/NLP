@@ -1,0 +1,8 @@
+Q: Why can't I access Server.app in Lion Server? I can't access Server.app in my mac mini server, i don't know why.
+The username and password are correct.
+How can I solve this problem?
+
+A: I found a problem, the servermgrd was not running, I was search in Active Monitor and no found it.  
+To resolve just run:  
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.servermgrd.plist
+

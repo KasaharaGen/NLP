@@ -1,0 +1,47 @@
+Q: Finder Sidebar ordering in Lion In OS X 10.6, the sidebar had the sections ordered:
+
+
+*
+
+*Devices
+
+*Shared
+
+*Favorites
+
+
+This worked very well for me, since I use the devices section most often. However, in Lion, apple has arbitrarily reordered the sidebar to have "Favorites" on top.
+Is there any way to change this back? I don't know why it was changed at all. 
+While you can move items around withinsections, you cannot drag the sections themselves.
+Also, is there any way to restore the old icons? Previously, I could use color-cues for fast navigation (Ex: Downloads is green, Desktop is purple, HomeDir is white). Now, I have to stop and actually read the labels every time I use the sidebar
+
+
+A: Unfortunately you can not reorder sections in Lion as of 10.7.2. You can only reorder items within the sections. You can also remove items by holding Command and dragging the icon off the Finder window.
+I'll create a Apple bug report about this because I think it would be nice to rearrange the sections too!
+Update: It looks like you can hack a plist to enable this reordering functionality but do so at your own risk. This will also likely be overridden in a future OS X update.
+
+A: Jason O’Grady has posted instructions on how to re-order Lion’s Finder sidebar as well as how to restore the color icons. (Quoted here in case that article disappears.)
+
+Convert the following plist to XML using terminal:
+plutil -convert xml1 ~/Library/Preferences/com.apple.sidebarlists.plist
+Edit the plist:
+open ~/Library/Preferences/com.apple.sidebarlists.plist
+Find in the hierarchy Favorites >> VolumeList and then look for:
+<key>Name</key>
+
+<string>Computer</string>
+
+Look immediately below that for the visibility key and change the
+  string from NeverVisible to AlwaysVisible:
+<key>Visibility</key>
+
+<string>AlwaysVisible</string>
+
+Close and save
+Convert the plist back to binary:
+plutil -convert binary1 ~/Library/Preferences/com.apple.sidebarlists.plist
+Relaunch the Finder:
+killall Finder
+Hold Command and drag the items in the Sidebar to get your computer on
+  top, where it should be.
+

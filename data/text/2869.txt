@@ -1,0 +1,22 @@
+Q: Disable Safari plugin without (re)moving the file I've been Flash-free in Safari (5.0.3, my primary browser) for a while now, using Chrome with its bundled Flash Player whenever I have to.
+I'm also developing a little bit in Flash for school, and have ended up using the Flash Debug Player, since it's really convenient to use trace for debugging.
+I tried just putting the Debug Player inside my Google Chrome.app, similar to how the existing Flash Player is located, but Chrome refused to detect this, so I had to put it in /Library/Internet Plug-ins, and now Safari detects it too.
+Is there any way I can get Safari to ignore this plugin, or something that makes sure Chrome can find it, and not Safari?
+
+A: Maybe just use the clicktoflash extension (also available from Safari Extensions Gallery)?
+
+A: You have to rename the Flash debug plugin, in order to be available to Chrome.
+
+
+*
+
+*Go to 'Chrome.app/Contents/Versions/10.0.../Internet Plug-ins' 
+
+*delete the 'Flash Player Plugin for Chrome.plugin'
+
+*put there your debug 'Flash Player.plugin'
+
+*rename it to 'Flash Player Plugin for Chrome.plugin'
+
+*restart Chrome
+

@@ -1,0 +1,65 @@
+Q: Clear thumbnails for renamed files I ran a batch of images through an AppleScript Finder script that replaced text substrings in the filenames and did so once more to change the extensions to something other than .jpeg. As expected, some of the images, lost their thumbnails, but others didn't and when I CMD+i to view info for these, they still show up as JPEG image files to be opened in Preview.app, even though they are now .info files.
+Any subsequent attempts to rename them or change their extension fails to remove their thumbnail or JPEG association.
+Why is this? And how can clear the thumbnails?
+
+A: 
+Any subsequent attempts to rename them
+  or change their extension fails to
+  remove their thumbnail or JPEG
+  association.
+Why is this? And how can clear the
+  thumbnails?
+
+These image files might have the thumbnails saved as resource-fork-based custom icon resources.
+Images saved from apps like Photoshop, Graphic Converter, etc. will sometimes generate a thumbnail that becomes part of the file. For example, here's a look at an image file in an app that shows the different fork sizes:
+
+While the data fork is less than 4 KB, the resource fork is 44 KB.
+Inside the resource fork is all kinds of stuff, like:
+
+and then the custom icon resource:
+
+While image apps can do this, you can also give a file or folder a custom icon by opening a Get Info window for different files, and copy and paste the icon from one file to another.
+[EDIT] NOTE: See the AppleScript that I mention below, which will do everything you need. I'll leave the following step by step instructions FWIW.
+So, you may be able to clear the custom icons by using the following method:
+1) Open up the Finder's Inspector window by pressing Command-Option-i (the Inspector is basically a dynamic Get Info window).
+2) In a Finder window, select the files that still have their thumbnail icon.
+3) In the Inspector panel, click on the icon of the documents, as shown in the image below:
+
+(The icon will have a blue outline when selected).
+4) Press the delete key to delete the custom icons.
+————————————
+Regarding the following comment you posted above:
+
+"I was merely renaming the extensions
+  so the thumbnails would not show. Now
+  they are all of the form "123.info",
+  but some still show thumbnails and
+  even open as if they were still .jpeg
+  files."
+
+What's most likely happening here is that the files were saved in an application that set a file type of 'JPEG'. In Mac OS X, Launch Services uses a combination of the file's filename extension (if any) along with its file type (if any) to determine what type of content the file represents. "info" isn't a normal filename extension that's built-in to the OS, so if there's no application on your Mac that claims that filename extension, then the Finder (Launch Services, really) will regard the file as a JPEG image.
+I created a combination AppleScript that will both clear any file type and creator code information, as well as delete the resource fork. (Contrary to common belief, file type and creator codes aren't stored in the resource fork, but in the disk directory information (FSCatalogInfo), so deleting only the resource fork isn't sufficient. Also, when a file has a custom icon, there is also a flag that is set in the FSCatalogInfo to that effect. This flag needs to be cleared in addition to deleting the resource fork).
+ClearCustomIconFileTypeAndCreatorCode.zip 
+Drop a selection of files onto it to have the custom icon, file type, and creator codes cleared.
+The contents of the script are as follows:
+on open droppedItems
+    repeat with i from 1 to count of droppedItems
+        set droppedItem to item i of droppedItems as alias
+        set droppedItemInfo to info for droppedItem
+        if (folder of droppedItemInfo) is false then
+            do shell script "/usr/bin/xattr -d com.apple.FinderInfo " & quoted form of POSIX path of droppedItem
+            do shell script "/usr/bin/xattr -d com.apple.ResourceFork " & quoted form of POSIX path of droppedItem
+        end if
+    end repeat
+end open
+
+
+A: In the general unix world, files don't need extensions to function. This is why binaries are extension-less. Instead, extensions are used for clarification/organization purposes, which is more intended for the user than anything else.
+If you change a filename or an extensions, you haven't changed anything about the file. If OSX already has the thumbnails cached for the file, it already knows it's a JPEG file, and renaming them may not change anything about it.
+I don't know the entire answer to your question, because I couldn't explain why some files are JPEG image files and some aren't. I suspect it has something do with files that have their extension versus files that don't.
+Two things to pay attention to:
+(1) You can globally enable all extensions via Finder Preferences.
+
+(2) Pay attention to the "Hide Extension" property in the File Info Dialog:
+
+If you're interested in more details on this subject, you can read up on the .DS_Store files page, if you've ever seen them before, and the Extended File Attributes page on Wikipedia.

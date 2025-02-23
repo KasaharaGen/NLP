@@ -1,0 +1,50 @@
+Q: Regarding groff - where is the config file and will this work? I've been reading Terminal Tips and Tricks For Mac OS X when I came across this.
+bman () {
+    gunzip < `man -w $@` | groff -Thtml -man | bcat
+}
+
+Apparently I should be able to view man pages with some HTML mark-up if I save this function somewhere.
+The problem is that I don't know which config file it should go into. Are there any other things I should be aware of when using the code above?
+
+A: For the first part of your question, "What file should the command go in?": put the command in ~/.bash_profile using your favorite editor. For example, you can do this using nano by opening Terminal and typing
+nano .bash_profile
+
+Type in the command and then press ctrl+X to exit. Say yes, you want to save the file.
+For the second part, "Is there anything else I should know?": You are also going to need to install bcat, a program which allows you to send text to a browser via the command line. You can do this by running
+sudo gem install bcat
+
+in the terminal and entering your password.
+Now you can view man pages in your browser by typing bman. For example:
+bman ls
+
+
+A: Looks like a bash function to me!
+I don't recall what a default instance of OS X looks like, but I suggest putting this in your ~/.bash_profile file.
+~ denotes your home directory. You username in the Finder, which ultimately amounts to /Users/yourusername
+Since the filename begins with a dot, it is a hidden file. Which means there are a couple ways to edit it.
+Either;
+
+
+*
+
+*You have to enable hidden files, and edit it with your favorite text editor. (Note also you might have to create it if it doesn't exist.)
+
+
+You could use Secrets.app, or;
+Per a MacWorld article;
+
+Open Terminal, type this command, and press Enter:  
+
+defaults write com.apple.Finder AppleShowAllFiles YES
+
+
+To make the command take effect, you need to restart the Finder. One way to do this is to hold down the Option key, then click and hold on the Finder icon in the Dock. When the contextual menu appears, select Relaunch and the Finder will restart.`
+
+
+
+*
+
+*You can use a command line editor to do the same.
+
+
+Open/create the .bash_profile file, and add that function to it. Restart the terminal, use it!

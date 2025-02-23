@@ -1,0 +1,12 @@
+Q: Tap to click only on Magic Trackpad Is there a way to configure the Magic Trackpad with tap-to-click without having tap-to-click on the built-in trackpad of a MacBook Air?
+
+A: Have you already taken a look at MagicPrefs (free)? It lets you assign custom actions to various gestures and touches, maybe this will let you realise what you want. Since I don´t have a Magic Trackpad near me, I can´t verify this though.
+
+A: Yes it is possible to have tap to click on the external magic trackpad only. First disconnect the magic trackpad and ensure tap to click is disabled in system preferences. Then run
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+When you reconnect the magic trackpad, it should have tap to click enabled without the internal trackpad having tap to click.
+For reference, to enable tap to click on the internal trackpad you can do
+defaults read com.apple.AppleMultitouchTrackpad Clicking
+
+But this will require a reboot. Disclaimer that this was only tested on 10.9.5 (with magic trackpad v1)

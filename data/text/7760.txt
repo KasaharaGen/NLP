@@ -1,0 +1,20 @@
+Q: Image dimensions infos on Lion Finder Columns view Since updating to Lion, none of my image show their dimensions in Finder column view. I tried highlighting a file for a while or opening it with Preview, as suggested by this anser without success. Here is a screenshot to visualize my problem :
+
+How can I see any file dimensions in Finder, like I did with Snow Leopard ?
+
+A: It looks like this has to do with Spotlight. Finder's knowledge of additional file information is integrated with Spotlight, disabling it, or adding locations to the privacy  list will prevent Finder from reporting file information. This includes image dimensions.
+
+If Finder is not reporting "More Info," make sure that directory is not blacklisted by Spotlight. In the screenshot above, anything found in the "Private" folder will show a "--" under the More Info section. This is by design.
+
+A: Mac OS 10.7.2
+Spotlight - No Privacy entries
+Display View = List
+Initial loading of 100 images
+Tabbing/selecting each image by mouse or cursor
+Dimensions are not immediately displayed
+Re-selection by mouse or tabbing may display the dimensions, but if you move off the image to another one and come back it's not there.
+Basically very inconsistent and slow behavior.
+If you Get Info on File it will not immediately display, but will ultimately.
+
+A: I've been having this same issue with a brand new MacBook Pro + Lion.
+Has nothing to do with the location of the image files, it happens this way with ALL of them in column view. However, if I switch to Icon View, hit Cmd-J and select "Show Item Info", the dimensions will display perfectly. When I switch back to column view, the dimensions are blank again.

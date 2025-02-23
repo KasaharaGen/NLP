@@ -1,0 +1,18 @@
+Q: Favicons not showing in Safari 5.1.1 on OSX Lion? Since upgrading to Safari 5.1.1 none of the websites I am visiting is displaying Favicons. I had a look in ~/Library/Safari/Icons to try and reset these but noticed that the file/folder doesn't exist, so the problem is not related to the caching.
+This was working fine in a clean install of Lion before upgrading to 10.7.2. Even installing Glims and setting the icons to display in the tab headers did not fix the problem.
+Is anyone aware of a fix for this, or whether this is a known bug?
+
+A: After doing some research it turns out I am not the only one with this problem, and Safari has changed the location for it's favicon database. 
+From this Apple Forum discussion:
+
+  
+*
+  
+*Quit Safari. 
+  
+*Go to ~/Library/Safari. 
+  Move the WebpageIcons.db file from the Safari folder to the Trash.
+  
+*Relaunch Safari.
+  
+

@@ -1,0 +1,20 @@
+Q: Web Sharing Can't Start It worked before, and I'm not sure when it stopped working, but I'm unable to start Web Sharing at the moment.  Attempting to start it from the Sharing screen results in "Web Sharing Starting..." immediately followed by "Web Sharing: Off".  I've tried reverting to the httpd.conf in /etc/apache2/original, but the result is the same.
+What else could I try?
+
+A: First, take the time to check your httpd.conf with:
+sudo apachectl configtest
+
+If it's all ok, then try to restart Apach once or twice (look at the log):
+sudo apachectl start (or restart)
+
+It worked for me. If it still doesn't start try finding another default httpd.conf
+
+A: In /usr/lib there is a file libpq.5.3.dylib
+while apache looks for libpq.5.dylib.
+After I copied the file and named it libpq.5.dylib it worked.
+
+A: There are a couple of solutions in the Apple Support Forums. I remember having the same problems and I think the module was the problem.
+
+A: Run this Terminal command to symlink the different versions of libpq:
+sudo ln -s /usr/lib/libpq.5.3.dylib /usr/lib/libpq.5.dylib
+

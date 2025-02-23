@@ -1,0 +1,27 @@
+Q: Can I connect to a specific access point by BSSID? Is there any way to get Mac OS X to connect to a specific access point by BSSID? I have a network with the same SSID for multiple access points, and I would sometimes like to specify which specific access point to connect to. Is this something Mac OS X can do natively, or is there a third party tool that can do this?
+
+A: What OS X version do you have?
+In older versions this is possible:
+
+/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -A'NETWORKNAME' BSSID='00:11:22:33:44:55' password='PASSWORD'
+
+But on OS X 10.6 it doesn't work anymore.
+I've searched high and low for a solution for this, but haven't found anything yet. The only solution is going closer to your base station. So that the n -signal is stronger.
+
+A: An updated version of the airport-bssid tool mentioned in the answer by @Lil'Monster works on OS X El Capitan (10.11). A description of the tool is as follows:
+
+Connect to a specific wifi network, based off BSSID (mac address of
+Access Point).
+usage: ./Build/Release/airport-bssid <ifname> [<bssid>] [<password>]
+Connect to specific wireless network on  interface, provided
+by the access point with  and password .
+If  and  are excluded, a scan of wireless networks
+from  interface is performed and a list of wireless networks
+are returned with ssid, bssid, channel, and signal strength details.
+
+
+A: You can use that tool:
+airport-bssid on github
+
+A: Short answer - you can not. All hail Apple!
+Long answer - https://blog.actorsfit.com/a?ID=01800-0b706cf1-c87d-4514-b3e6-0bcc10d08eb5

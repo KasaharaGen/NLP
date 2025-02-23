@@ -1,0 +1,25 @@
+Q: I can't get gcc to compile DevIL library I'm writing an OpenGL application in C++ using Xcode 4 on Lion. To load textures, and keep the application platform independent, I plan on using DevIL.
+To install DevIL on my mac I ran ./configure and noticed gcc was no longer on the $PATH. I created a symlink from /Developer/usr/bin/gcc-4.2 to /usr/bin. Then I re-ran ./configure, it now finds gcc but fails with this:
+checking for gcc... gcc
+checking for C compiler default output file name... 
+configure: error: C compiler cannot create executables
+
+I'm not sure what this means:
+
+
+*
+
+*Shouldn't I have symlinked gcc? 
+
+*Do I need another gcc?
+
+*Is the problem DevIL related?
+
+
+Thanks in advance
+
+A: As for your first question: The cleaner alternative to symlinking would be to add /Developer/usr/bin to your $PATH, so the other utilities needed for compilation can be found. That's easy to do:
+export PATH=$PATH:/Developer/usr/bin
+
+You could put that into ~/.profile so the path get set each time you open a terminal window.
+And I'm certainly not a GCC/LLVM expert, but to me it seems like DevIL's configure script does expect a different version of gcc, one which doesn't expect an argument to the -V switch. My best bet would be to ask around on the DevIL developer's mailing list, as there probably are people who have been confronted with the same problem.

@@ -1,0 +1,9 @@
+Q: Can't remove U.S. from the languages and input methods menu I wonder if I can remove the U.S. language of the languages list.
+Because I use a shortcut to cycle through input methods, and don't want to land on U.S. as ArgenPinYin is already a modified U.S. international keyboard layout, so I don't need the plain U.S.
+Is there a way?
+
+
+A: It appears that OS X requires a keyboard layout that it recognizes as producing latin characters to be selected as one of the choices in the menu, and it does not recognize ArgenPinYin as one of them. I can deselect the US layout if I select German or Portuguese, for instance, but not if I select Greek or Pinyin - Simplified.
+So yes, U.S. can be removed as a language, but some other keyboard layout that OS X recognizes as a Latin layout must first be selected.
+
+A: OS X might recognize a custom layout as equivalent to one of the Roman system layouts if you could somehow include it in the AppleKeyboardLayouts.bundle in system/library/keyboard layouts, but I have never seen any way to modify that.

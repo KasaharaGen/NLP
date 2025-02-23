@@ -1,0 +1,16 @@
+Q: What control character do I send to the terminal to make it delete a full word at a time? I recently discovered that sending \033[5D and \033[5C sends the character to move a full word at a time, making mac os x terminal almost as awesome as the default ubuntu and debian terminals. 
+So then, the one thing I'm missing is: the control key to bind option-delete and option-backspace to deletion of full words. 
+
+A: ctrl+W will delete the previous word.
+
+A: *
+
+*Select "Preferences..." from the Menu "Terminal"
+
+*go into "Settings" and select your default window configuration, go into the tab "Keyboard"
+
+*Have a look at all keybindings, (eg. forward delete is bound to \033[3~ ) and note you can change them by double clicking (thats easier to use than bind in your ~/.bash_profile). 
+
+
+If you choose to use ⌥ as meta-key, ⌥+backspace will work immediately, though this setup might break special characters you can only input by pressing ⌥ together with them (depending on your keyboard layout). If you don´t use that, you can delete by pressing esc and than backspace.
+For forward-deleting a whole word, use either ⌥+D or  esc and than D.

@@ -1,0 +1,64 @@
+Q: How to mute the microphone on Key-Down and unmute it on Key-Up? What I would like to have is:
+
+
+*
+
+*By default the microphone should be muted
+
+*When CapsLock is Down the microphone should unmute
+
+*When CapsLock is Up the microphone should mute
+(Basically convert my Skype to act like a Walkie-talkie with a push-to-talk functionality)
+I found the AppleScript that can change the volume input of the microphone, so the first step was easy, but I didn't find any way to even assign the CapsLock to a script. Note that my CapsLock key is turned off and I would't like to sTART experiencing something like tHIS.
+If the CapsLock is very special I wouldn't mind using another key, but I want to achieve the same functionality.
+Edit:
+Probably it is not really possible to do it without using any application, so if there is an app that can do that, it would also work for me.
+
+A: First, the AppleScript that inspects the key state and handles the mic enabling and muting:
+if (modKeyDowntest()) then
+  tell application "System Events" to set volume input volume 100
+  repeat while modKeyDowntest()
+  end repeat
+  tell application "System Events" to set volume input volume 0
+end if
+
+on modKeyDowntest()
+  set modKeyDown to do shell script "~/opt/checkModifierKeys shift"
+  set modKeyDown to modKeyDown as integer
+  set modKeyDown to modKeyDown as boolean
+end modKeyDowntest
+
+Note, that
+
+
+*
+
+*the script depends on the checkModifierKeys command line app (and it's path).
+
+*inspects the state of shift instead of caps lock (other possibilities are cmd, option, control and caps lock - caps lock, however, means the status of caps lock, not the key state!)
+
+
+In the second step we bind the script to a key shortcut. There are many applications that can do this (some listed in an answer in SuperUser) or as an Automator service. (C&P from Lri's answer...)
+
+One more option is to save the script as an Automator service:
+  
+  
+*
+  
+*Open Automator and choose the Service template.
+  
+*Utilities — Run Shell Script / Run AppleScript.
+  
+*Service receives [no input] in [any application].
+  
+*Add the script to the text area and save.
+  
+*Assign a shortcut in System Preferences — Keyboard — Keyboard Shortcuts — Services.
+  
+
+So, I assigned opt+shift+M to the script above and it enables the mic, keeping it unmuted as long as I hold shift. The mic is muted again when I release shift.
+
+A: I have not used it, but Skii plugin for Skype, seems to provide what you're looking for:
+
+Skii is a very easy to use and simple plug-in that uses the Skype API to simplify the Push-to-Talk function. The app gives the user the possibility to control the Skype Push-To-Talk function with just one button! a small utility that will definetly improve your Skype user experience but also your overall workflow.
+

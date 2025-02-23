@@ -1,0 +1,151 @@
+Q: Changing modifier keys from the command line As a heavy Emacs user, I like to remap my Caps Lock key to function as the Ctrl key.  There is a convenient dialog in the Keyboard Preference Pane to do that.   But the problem is that this setting gets lost after someone logs into another account that hasn't this preference set. 
+So is there any way of doing the same as the preference pane dialog from the command line? 
+
+A: Changing preferences and running, defaults -currentHost read -g shows you what changes are being written. I was going to write up a short bash script to automate it, but it looks like I was beaten to the punch:
+#!/bin/bash                                                                      
+
+mappingplist=com.apple.keyboard.modifiermapping
+
+if [ $1 == "emacs" ]; then
+    echo "Switching to emacs modifiers"
+    defaults -currentHost write -g $mappingplist '(                              
+                {                                                                
+            HIDKeyboardModifierMappingDst = 4;                                   
+            HIDKeyboardModifierMappingSrc = 2; },                                
+                {                                                                
+            HIDKeyboardModifierMappingDst = 12;                                  
+            HIDKeyboardModifierMappingSrc = 10;                                  
+        },                                                                       
+                {                                                                
+            HIDKeyboardModifierMappingDst = 2;                                   
+            HIDKeyboardModifierMappingSrc = 4;                                   
+        },                                                                       
+                {                                                                
+            HIDKeyboardModifierMappingDst = 10;                                  
+            HIDKeyboardModifierMappingSrc = 12;                                  
+        })'
+
+
+else
+    echo "Switching to default modifiers"
+    defaults -currentHost delete -g $mappingplist
+fi
+
+
+The script takes one argument, if the
+  argument is emacs, then it swaps
+  command and control, if the argument
+  is anything else it restores the
+  defaults.
+http://forums.macrumors.com/showthread.php?t=949280
+
+
+A: You can use KeyRemap4MacBook with the PCKeyBoardHack. It also allows you to use Emacs keys in any Mac app, including the ones not using Cocoa such as MS apps.  
+
+A: From "Updating modifier key mappings through defaults command tool":
+defaults -currentHost write -g com.apple.keyboard.modifiermapping.1133-50475-0 -array '<dict><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer><key>HIDKeyboardModifierMappingDst</key><integer>2</integer></dict>
+Change 1133 and 50475 to the vendor and product IDs shown by ioreg -n IOHIDKeyboard -r. src 0 and dst -1 would disable caps lock.
+defaults -currentHost write -g modifies:
+~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+You have to log out and back in to apply changes. If the values are strings (like in the answer by @pithyless), the changes are shown in System Preferences but they don't have any effect.
+Values of keys:
+-1 none
+0 caps lock
+1 left shift
+2 left control
+3 left option
+4 left command
+5 keypad 0
+6 help
+9 right shift
+10 right control
+11 right option
+12 right command
+
+
+A: I wanted to swap Right Command with Right Option keys only.
+When I setup global Command and Option swap in System Preferences... > Keyboard > Modifier Keys..., there is following config in the system (which works as expected):
+$ defaults -currentHost read -g com.apple.keyboard.modifiermapping.1452-591-0
+(
+        {
+        HIDKeyboardModifierMappingDst = 30064771299;
+        HIDKeyboardModifierMappingSrc = 30064771298;
+    },
+        {
+        HIDKeyboardModifierMappingDst = 30064771303;
+        HIDKeyboardModifierMappingSrc = 30064771302;
+    },
+        {
+        HIDKeyboardModifierMappingDst = 30064771298;
+        HIDKeyboardModifierMappingSrc = 30064771299;
+    },
+        {
+        HIDKeyboardModifierMappingDst = 30064771302;
+        HIDKeyboardModifierMappingSrc = 30064771303;
+    }
+)
+
+But when I modify it, to swap only Right side as below - it doesn't work:
+$ defaults -currentHost write -g com.apple.keyboard.modifiermapping.1452-591-0 '(
+        {
+        HIDKeyboardModifierMappingDst = 30064771303;
+        HIDKeyboardModifierMappingSrc = 30064771302;
+    },
+        {
+        HIDKeyboardModifierMappingDst = 30064771302;
+        HIDKeyboardModifierMappingSrc = 30064771303;
+    }
+)'
+
+It's because values are written as strings not integers. You can see that using:
+$ plutil -convert xml1 -o - ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>com.apple.keyboard.modifiermapping.1452-591-0</key>
+    <array>
+        <dict>
+            <key>HIDKeyboardModifierMappingDst</key>
+            <string>30064771303</string>
+            <key>HIDKeyboardModifierMappingSrc</key>
+            <string>30064771302</string>
+        </dict>
+        <dict>
+            <key>HIDKeyboardModifierMappingDst</key>
+            <string>30064771302</string>
+            <key>HIDKeyboardModifierMappingSrc</key>
+            <string>30064771303</string>
+        </dict>
+    </array>
+</dict>
+</plist>
+
+So the right way to update the setting is using XML format:
+$ defaults -currentHost write -g com.apple.keyboard.modifiermapping.1452-591-0 -array \
+'<dict>
+    <key>HIDKeyboardModifierMappingDst</key>
+    <integer>30064771303</integer>
+    <key>HIDKeyboardModifierMappingSrc</key>
+    <integer>30064771302</integer>
+</dict>' \
+'<dict>
+    <key>HIDKeyboardModifierMappingDst</key>
+    <integer>30064771302</integer>
+    <key>HIDKeyboardModifierMappingSrc</key>
+    <integer>30064771303</integer>
+</dict>'
+
+At the end, you have to log off and log in again.
+
+A: Combining a few answers together I came up with this script that seems to work (mapping Caps-lock to Control).
+$ keyboard_id = "$(ioreg -n IOHIDKeyboard -r | grep -e VendorID\" -e ProductID | tr -d \"\|[:blank:] | cut -d\= -f2 | tr '\n' -)"
+$ defaults -currentHost write -g "com.apple.keyboard.modifiermapping.${keyboard_id}0" '(
+{
+  HIDKeyboardModifierMappingDst = 2;
+  HIDKeyboardModifierMappingSrc = 0;
+})'
+
+Only problem that it doesn't seem to take any effect... :(
+I'll update if it I get it to work.

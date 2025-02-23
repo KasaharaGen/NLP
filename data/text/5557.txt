@@ -1,0 +1,7 @@
+Q: Lion orphaned installer After upgrading to Lion, and verifying/repairing my disk, I noticed a 3.5 GB file in /lost+found. Ran file on it and it reported it as an xar archive, so I ran xar -t on it to discover it is the Lion installer I downloaded from the App Store.
+Just wondering if anyone else sees this and if it's safe to delete the file?
+
+A: I had the same situation. I figure since the OS is installed and working fine, and /lost+found isn’t where it would look for anything anyway, it’s safe to delete that file. Fair warning, that’s an answer based on reasoning, not any official information.
+For background on lost+found, I’d suggest reading "What is the purpose of the lost+found folder?" on Unix & Linux SE, rather than the TechRadar article linked in another answer on this question. The TechRadar article wanders, slowly, through several tangentially related topics, whereas the SE answer cuts straight to the point, has technical detail, and has a high vote count from the community.
+
+A: Just realized you said /lost+found, not trash. I found this article regarding lost and found folder. Maybe you had a system issue in the past, and some files were saved there to help recover. Check out the article. Very interesting. 

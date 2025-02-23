@@ -1,0 +1,11 @@
+Q: Apple site on Safari not working properly Here is an interesting issue: on the Mac and iPod sections of Apple's site there are the products subsections (Mac, Applications, Accessories, Server, on the Mac page and Products, iTunes and more, on the iPod page). Now, when you click on, say, the Applications link, the images above should slide out and be replaced with the images of Apple's apps. Except from Safari on my machine it doesn't.
+Also, the Web Inspector shows two JavaScript errors that. This happens only in Safari.
+Any body else observed this?
+Any idea why?
+Mac OS X 10.6.8
+MacBook Pro 8,2
+Safari 5.0.2
+
+
+A: Figured out. Ghostery was blocking an Omniture tracking script: http://images.apple.com/metrics/scripts/s_code_h.js
+Thanks for the tip, bmike.

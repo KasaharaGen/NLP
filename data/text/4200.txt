@@ -1,0 +1,24 @@
+Q: Is there a fast way to change proxy setting? On my laptop I usually have a ssh connection open and use the remote machine as a proxy server just so that all my network traffic is over ssh. I know that it's hopeless and we're all doomed, but it makes me feel a little better.
+Problem is sometimes I need to set and unset it for some reason and then I have to dig through millions of dialogs to get to here...
+
+...so that I can uncheck that option.
+Is there a faster way to do that or a way I can set up a script to turn "SOCKS Proxy" on and off? Probably something with Applescript, right?
+Is there a way to do this without learning Applescript?
+
+A: Set up two locations - one with proxy one - one off - you are an Apple menu item away from the switch.
+
+Just select network, then edit the locations.
+
+
+A: If you use Alfred, you can try a variant of this extension:
+e=$(networksetup -getsocksfirewallproxy wi-fi | grep "No")
+
+if [ -n "$e" ]; then
+  echo "Turning on proxy"
+  networksetup -setsocksfirewallproxystate wi-fi on
+else
+  echo "Turning off proxy"
+  networksetup -setsocksfirewallproxystate wi-fi off
+fi
+
+For more information, look up the networksetup command line function. (Note that you may need to change wi-fi above to something else -- ethernet for wired connections, or airport if you're on Snow Leopard.)

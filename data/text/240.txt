@@ -1,0 +1,75 @@
+Q: Why am I having this problem importing photos from iPhone to iPhoto? I'm getting the error
+Error downloading image.
+iPhoto cannot import your photos because there was a problem downloading an image.
+
+when I "Import All..." from my iPhone. Trying to import individual images I get
+The following file cannot be imported. (The file is in an unrecognized format.)
+IMG_0301.JPG
+
+In the past I've been able to do this, so I don't know why I'm getting grief now. Anyone have any suggestions?
+To help describe the problem I've created a screencast: http://screenr.com/CLr
+
+A: I seem to have resolved the issue by connecting my iPhone 4 directly into my MacBook as opposed to using a USB hub which I connect everything to.
+edit: I also found this to be the case after a long term problem with importing photos/films from my iPhone 5; it was intermittent and buggy, but I was using a simple USB extension cord from behind my computer and eventually removing; because of this, this answer solved the entire issue.
+
+A: May be you can try using http://ecamm.com/mac/phoneview/ Phone view to get the image copied over to your Mac, and check if the file is corrupted.
+
+A: Surprising enough, after spending two hours crunching Google to find an answer, and restarting my phone (Home + Power key), the only solution was to restart my Mac. It solved everything magically (both Picasa and all other softwares)
+
+A: It's hard to tell which of two things is the real issue:
+
+
+*
+
+*The Phone has some corrupt pictures.
+
+*The databases on your Mac used to track which pictures are imported are corrupt / iPhoto is corrupt.
+
+
+You can rule out #2 by taking the phone to another mac (or at least make another user on the same mac to try an import from a clean slate).
+As has been mentioned before - if the pictures are corrupt on the iOS device, you will have to spring for PhoneView and perhaps a tool like Data Rescue to see if the photos are salvageable. Often JPEG headers and such are bad and the image data is fine or patchable with little or no visual evidence of the corruption.
+Also - it could be a combination of both #1 and #2 which is why some work under PhoneView and others don't. Lastly - you could try restoring that backup onto another iOS device and importing the photos from there. It would rule out a problem with the phone which is highly less likely than the other two items listed above.
+
+A: One item not yet mentioned is that your hard drive could be full. I was getting this error until I made some space.
+
+A: +1 for Phoneview for being a great app, but I understand not wanting to buy an app. 
+As an alternative, you should look at this fee app, it seems like it will do what you need. 
+http://www.macroplant.com/iphoneexplorer/
+Your best bet is probably going to be to get all the photos off of the iPhone you want/need by dragging them to your desktop/folder. Then import them into iPhoto. 
+Then do a backup of your phone in iTunes. I'd wipe the iPhone and re-install iOS via iTunes. Then once the operating system has been installed, iTunes will ask if you want to restore your backup. 
+If there is an issue with your photos/data then this may not help. However, if there is an issue with the underlying iOS then this may fix things for you. 
+
+A: I have read in Apple's Support Forums that the Image Capture app (which is included on OSX, in the Utilities folder) will import these "corrupted" photos okay while iPhoto will not.
+Like others, I'm still waiting a permanent solution (even an acknowledgement) from Apple.
+
+A: *
+
+*Close iPhoto make sure their isn't a white light appearing under the icon. 
+
+*Go to your pictures folder and drag the iPhoto library icon onto your desktop. 
+
+*Open up iPhoto and click on create new library. 
+
+*Once it opens, move it so you can see the iPhoto library icon on your desktop. 
+
+*Right-click on the iPhoto icon and click on 'Show Package Contents.' 
+
+*Drag the files Library.iPhoto and Library6.iPhoto onto iPhoto. 
+
+
+It should be working after that.
+
+A: I've found iPhoto can be picky when it comes to things like color formats. For example, iPhoto returned the same error when I tried importing an image that was in Grayscale. I had to convert it to RGB first before iPhoto would import it. I've read elsewhere that iPhoto can also be picky about layers.
+
+A: Update! update! update!
+Make sure both your iPhone and Mac are on the latest versions of OS X (10.6.8) and iOS (4.3.3). Also, (if it's possible) upgrade to iLife '11.
+If that doesn't fix your problem, try backing up (through iTunes) and restoring your iPhone. Also, try using photo syncing (through iTunes) instead of manually copying over the photos.
+
+A: There's a problem importing photos from the iPhone (4S) to iPhoto; some photos are getting corrupted during the import process. It appears to be well-documented here.
+
+A: Hmmm... I tried some of the suggested solutions here and ultimately I decided to simply free up my hard drive a litte bit. So, I deleted some old photos and movies and voilà --- no more error message. :)
+
+A: Do you really need IMG_0301.JPG ?
+If not you could try clicking 'Delete' instead of 'Keep' to empty the library and hopefully get rid of IMG_0301.JPG and then sync the photos back to the phone if required. 
+
+A: Try Disk Utility to check/repair permissions on the volume holding the iTunes library.

@@ -1,0 +1,14 @@
+Q: MacBook Pro Memory This relates to my previous question regarding my MacBook Pro. Why is my MacBook Pro quitting and/or failing to start up?
+I need to replace one of my 2G DIMMs and in shopping around at Crucial and OWC I notice that they also carry matched sets. 
+So, is there any reason that I should spend the extra $ and replace both DIMMs as opposed to just the bad one?
+
+A: From my experience with PC's (not mac's), it's not absolutely necessary that you match your RAM.  However, it's also a bit of a crapshoot because different RAM modules have different timings and voltage requirements, so:
+
+
+*
+
+*if you use modules with different timings, you'll have to run both modules at the lowest speed or risk instability in the module with the lower speed timings.
+
+*if the modules have different power requirements, you run into the same issue as above.  If you run at the lower of the voltages, the higher voltage module may be unstable.  If you run at the higher voltage, the lower voltage module may be unstable or even fail.
+Hopefully someone else can comment on how this applies in an Apple computer since there is no way that I know of to modify voltage and RAM timings.  Note however, that even in a PC, two completely different RAM modules usually work without incident if you match voltages and use the lower of the two modules timings.  Even different voltages will usually work.
+I would look for a module that carries the same specifications as your original RAM, at least as far as timing (latency) and voltage are concerned.  If you can find one then I wouldn't be very concerned about using it with your existing RAM stick.  The chances of it being incompatible or causing instability would be very low in my opinion.

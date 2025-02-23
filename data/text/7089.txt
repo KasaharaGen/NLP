@@ -1,0 +1,142 @@
+Q: Spotlight reports "Indexing and searching disabled" in Lion Lion keeps "losing track" of Spotlight information. Directories and Applications disappear, full text searches stop working, etc. I seem to need to re-index it once a week or so. 
+However, now it appears to not work at all.
+Running 
+sudo mdutil -i on /
+
+from the Terminal I get a message
+"Indexing and searching disabled."
+
+I have tried trashing preference files, deleting the whole V100 folder, repairing permssions, etc but Spotlight still thinks indexing is turned off on my entire Volume (Yes have added/deleted whole disk from Spotlight's privacy preferences").
+In the console I have quite a few errors that look like this
+mds: (Error) Server: Disabled store registered for scope "/Applications"
+
+However, I do not know how to tell it to re-enable that scope as mdutil gives an error when I try to turn on indexing and gives an error when I try to delete the index 
+EDIT: I reinstalled Lion. It did not fix the problem(s) :(
+
+A: sudo mdutil -i off /
+sudo rm -rf /.Spotlight*
+sudo rm -rf /.metadata_never_index
+sudo mdutil -i on /
+sudo mdutil -E /
+
+A combination of the above worked for me.  Step 3 was the big one.  Got rid of the "Indexing and searching disabled." message.  Then steps 4 and 5 worked as expected.
+
+
+*
+
+*turn indexing off
+
+*delete Spotlight folder
+
+*delete metadata file
+
+*turn indexing on
+
+*rebuild
+
+
+A: I had the exact same problem, with all solutions above failing identically. Then I reexamined the directory listing for / and found a hidden file .metadata_never_index in the root directory. I removed this file and was able to turn spotlight on again with 
+mdutil -i on /.
+mds is now reindexing the hard disk, all looks good for now.
+
+A: After all of the initial troubleshooting steps: 
+
+
+*
+
+*Rebuild the index 
+
+*Attempt in another user account
+
+*Dump prefs/cache and start over
+
+
+I found the issue lied in what was enabled/disabled. In terminal, I ran "mdutil -sa" and got:
+/:
+    Indexing enabled. 
+/Groups:
+    Indexing disabled. 
+/Shared Items/Public:
+    Indexing disabled.
+/Users:
+    Indexing disabled. 
+/Users/sarah/Documents:
+    Indexing enabled. 
+
+I noticed "/Users: Indexing disabled." That's the problem there. The fix: "sudo mdutil -i on /Users". After that, it re-indexed /Users, which took significantly longer than it had before, and before it was finished, it was searching my Mail!
+
+A: This can also be caused by getting stuck in safe mode.  To fix that, you need to reset the  NVRAM by holding down the Command ⌘, Option ⌥, P, and R keys immediately after rebooting (before the gray screen appears).
+
+A: sudo mdutil -i off /
+sudo rm -rf /.Spotlight*
+sudo mdutil -i on /
+sudo mdutil -E /
+
+1 - turn indexing off
+2 - delete Spotlight folder
+3 - turn indexing on
+4 - rebuild
+Does this help?
+Also it seems you could use these commands:
+sudo mdutil -a -i off
+sudo mdutil -a -i on
+
+
+A: The other solutions didn't work for me, however the following was the culprit in my case.
+Make sure your root/main hard drive isn't in the "privacy" settings for spotlight. For some reason I had the whole hard drive under the "Prevent spotlight from indexing the following locations" list.
+You can access this section from System Preferences -> Spotlight -> Privacy
+
+A: I noticed this issue after my iMac installed the software update 10.7.4 to my machine. Most of the suggested command-lines would produce 'Indexing and searching disabled'. sudo mdutil -pEsav gave me 'datastore publishing not implemented.'
+Below is the solution that worked:
+
+
+*
+
+*edit /etc/hostconfig
+
+*add the line  SPOTLIGHT=-YES- at the bottom (this line was missing)
+
+*reboot
+
+
+(after reboot make some soup while your machine prepares the index)
+
+A: Only the combination of -E and -i on worked for me:
+sudo mdutil -E -i on /Volumes/blah
+
+
+A: This worked for me: Re-enable Spotlight Indexing
+
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+
+
+
+A: I've tried for days about every solution out there for Big Sur, and the combination of these steps seemed to solve it for me. Trust me I didn't want do disable system integrity either but it's the only thing that worked:
+
+*
+
+*Disable system integrity (restart -> hold cmd + r -> select utilities terminal -> csrutil disable -> restart again)
+
+*run
+
+sudo rm /System/Volumes/Data/.metadata_never_index
+
+
+
+*run
+
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+
+
+
+*run
+
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+
+
+
+*Reenable system integrity csrutil enable following steps in step #1
+
+Specifically the problem I had was I could not search applications. As you can see in the image, I can now see the application and it will successfully open it.
+Also, notice the index loading indicator:
+

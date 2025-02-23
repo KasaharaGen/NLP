@@ -1,0 +1,41 @@
+Q: How can I list all user accounts in the terminal? How can I list all local user accounts in Terminal (whether logged in or not?) The commands users or who does not provide this information. OS X version is 10.6.8.
+I have seen this suggested command - dscacheutil -q group
+But it only lists domain user groups and non-local accounts.
+
+A: dscacheutil returns more than just local users, for example any users I've queried Directory Services for also show.
+I have found this more useful:
+dscl . list /Users | grep -v "^_"
+
+Although it also returns the likes of daemon, nobody and root.
+
+A: How about
+dscacheutil -q user | grep -A 3 -B 2 -e uid:\ 5'[0-9][0-9]'
+
+
+A: Try this one. I used it to find lost hidden account.
+dscl . list /Users | grep -v '^_'
+
+
+A: JMTCW to recreate a command line friendly /etc/passwd equivalent (though not quite in the same order):
+dscacheutil -q user |
+    paste -d " "  - - - - - - - - |
+    sed 's/^name: //;s/ [^[:space:]]*: /:/g'
+
+Or if you prefer a space separated output (but parsing GECOS field will be a little more complicated:
+dscacheutil -q user |
+    cut -d: -f2 |\
+    paste -d " "  - - - - - - - -
+
+
+A: If no user home directories were moved then ls /users will do.
+Except it will also list directories like 'Shared'.
+
+A: User accounts since 10.6 are being managed by OpenDirectory. The backend files related to users for OpenDirectory are here:
+/var/db/dslocal/nodes/Default/users
+
+Executing ls in this directory will enumerate all local users registered on the system. Executing plutil -p <file>.plist will allow you to read some properties for specified user account (i.e. current home directory path).
+This is rather undocumented so I accept downvotes. However, this method can be used to inspect a system which is not running, and for which the user has only an offline disk image.
+
+A: You can also type:
+who which tells you who's logged on, and where they're coming from. Useful if you're looking for someone who's actually physically in the same building as you, or in some other particular location.
+w which tells you who's logged in, and what they're doing. Especially useful: the 'idle' part. This allows you to see whether they're actually sitting there typing away at their keyboards right at the moment.

@@ -1,0 +1,33 @@
+Q: Can I customize ANSI colors in Terminal without extra tools like SIMBL? I noticed that colors in the Snow Leopard Terminal.app aren't that great (using the Pro theme, but the other themes are worse).
+There seems to be no easy way to customize the colors, and googling only showed weird workarounds involving SIMBL and forcing the terminal to 32-Bit.
+Is that still the case, or is there a way to change the colors in Snow Leopard's Terminal.app? My shell is zsh, not bash if that makes a difference.
+Clarification: I'm referring to the ANSI Colors like Green, Red, Blue etc. By default, the Terminal looks like this:
+
+These colors aren't that great, I want them look like this:
+
+I have found a 64-Bit compatible SIMBL/TerminalColours plugin, but if I can avoid having to use SIMBL, that would be my goal. I know that there are alternative terminals like iTerm, but I want Terminal.app.
+
+A: As of Mac OS X Lion 10.7, the sixteen ANSI colors are customizable in Terminal preferences.
+
+Terminal > Preferences > Settings > [profile] > Text > ANSI Colors
+
+
+When you point at one of the color controls it displays the ANSI color name and number for reference.
+When you edit an ANSI color there's a button in the color panel for resetting the individual ANSI color back to its default:
+
+A couple of tips about the Settings preference panel:
+
+
+*
+
+*As with most of the Settings, you can select more than one profile at a time (e.g., Shift- or Command-Click, or choose Edit > Select All) and change the colors for all of them at the same time.
+
+*The Settings preference panel supports Undo (and Redo), so you can try out a change (or several changes) and revert changes you don't like.
+
+A: Terminal.app has these colors hard-coded into it. Internal methods like +[NSColor(Terminal) vtRedColor] use hard-coded floating-point constants to set the colors.
+As you noted, there are SIMBL plugins that can patch this but you've already noted their current limitations. SIMBL has been updated to support 64-bit applications, so you should contact the authors of the plugins to request that they rebuild them to support 64-bit. There's also another SIMBL plugin to consider.
+The only other option for Terminal.app is to write a feature request at http://bugreport.apple.com and hope that somebody at Apple is enticed to add color customization to Terminal.app for Lion.
+
+A: ANSI escape codes might do what you want. They're not as popular now as they were when everyone worked at a terminal over a modem, but they're still work in Terminal and iTerm and such ilk. I wouldn't be surprised to find that Terminal is using them behind the scenes to control its colors.
+You might want to look at IBM's Prompt magic page. ANSI codes should allow you to customize the colors if you start with the Basic terminal profile.
+Wikipedia has additional info at ANSI escape code.

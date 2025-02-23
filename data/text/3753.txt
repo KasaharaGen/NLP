@@ -1,0 +1,8 @@
+Q: MacBook VPN connection disconnects after two minutes My MacBook Pro's VPN disconnects two minutes after it connects. I change the account and I had no luck with it, Any ideas?
+
+A: Under the built-in client, this is solved by:
+setting the following on the VPN custom connection:
+a) "lifetime time 24 hours;" or more
+b) dpd_delay 0;
+c) proposal_check claim;
+This can be done by creating a file, e.g. /etc/racoon/fix.1.1.conf and adding the lines above in there.  Also ensure that the line "include /etc/racoon/*.conf" is not commented out in /etc/racoon/racoon.conf.

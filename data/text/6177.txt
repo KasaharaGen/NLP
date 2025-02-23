@@ -1,0 +1,36 @@
+Q: Desktop icon for drobo changes I have a Drobo which is attached to my MacBook Pro via USB. When I boot into OSX Lion (and Snow Leopard before it) I would get a Drobo icon on the desktop. The icon looks like a shiny rendered picture of a Drobo with the funky blue and green lights.
+After a little while the icon changes to a generic USB drive icon with a time machine logo on it. Is there any way to make it stay as a drobo icon, despite being a Time Machine backup volume?
+
+A: There is an easy fix, but it's not so elegant. You can change the default icon used for time machine disks to the icon used for your drobo disk. This can be done by swapping out the system's time machine volume icon located in:
+/System/Library/CoreServices/SystemIcons.bundle/Contents/Resources
+
+Note: this will only be an elegant solution if the Drobo is the only time machine disk you use for that machine. Be sure to back up the original Time Machine icon just incase you want it back in the future.
+
+A: The following solution worked for me:
+
+
+*
+
+*create a new folder on your desktop (any name is fine)
+
+*disable time machine (not necessary, but buys you time if you walk away from computer during net step)
+
+*reboot your computer
+
+*at bootup, drobo icon is not yet changed to time machine icon
+
+*right click drobo, click get info
+
+*right click on small drobo icon at top of get info panel and press Cmd+C to copy
+
+*right click on created folder, click on small folder icon at top of get info panel and press Cmd+V to paste. you should now have drobo icon representing that folder
+
+*restart time machine and run backup. this will turn your drobo icon to time machine icon
+
+*copy icon from created folder back to drobo in same manner as above.
+
+*the icon should now "stick"
+
+
+You can delete the temporary folder, or better yet stick it somewhere in case you need to use it again later.
+Hope this works for you as it has for me!

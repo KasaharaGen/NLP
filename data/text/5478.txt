@@ -1,0 +1,41 @@
+Q: Does changing a daemon's plist file extension prevent it from being loaded? I particularly want to disable:
+/private/etc/mach_init.d/dashboardadvisoryd.plist.disabled, but in general for any daemon.
+Does changing its plist extension prevent it from loading?
+In the past I moved them to a different folder, but this is more convenient.
+
+A: launchctl list and sudo launchctl bstree will show you the jobs. You'll need to read up on the mach_init part as well as be aware that launchd gets more and more of the pie as you go from Tiger/Leopard/Snow Leopard/Lion - your in general question is basically "walk me through launched" - The command mdfind dashboardadvisory will search in the areas hidden by default in spotlight as system files.
+@bmike
+PS: post it as an answer if you want, so I mark it correct.
+
+A: You can also disable a given LaunchAgent or LaunchDaemon with launchctl without renaming the file.
+sudo launchctl unload -w /Library/LaunchDaemons/com.whatever.you.want.to.disable.plist
+
+If you omit the -w, it'll only disable the task for the current boot. This is handy for testing if disabling a launchd task will fubar your system - if you run into trouble all you'll need to do to fix things is reboot, and things will be back to normal. Otherwise you'll have to boot into single user mode and manually edit the plist to re-enable the launchd task.
+
+A: The answer is yes. OS X looks only for plist files when loading LaunchAgents or LaunchDaemons, regardless of whether you use the old style "Mach" way (which as bmike has pointed out has long been deprecated) or the current, modern method.
+The contents of the plist file are as follows (this shows the AELWriter service):
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>Label</key>
+        <string>com.apple.aelwriter</string>
+        <key>MachServices</key>
+        <dict>
+                <key>com.apple.aelwriter</key>
+                <true/>
+        </dict>
+        <key>ProgramArguments</key>
+        <array>
+                <string>/usr/sbin/AELWriter</string>
+        </array>
+        <key>RunAtLoad</key>
+        <false/>
+        <key>UserName</key>
+        <string>root</string>
+        <key>ThrottleInterval</key>
+        <integer>2</integer>
+</dict>
+</plist>
+
+You can see that what actually launches the service is a string under the key ProgramArguments. Changing that value would also "disable" the service from running, as would removing the plist, renaming the file extension, or deleting the file outright.

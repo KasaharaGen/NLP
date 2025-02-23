@@ -1,0 +1,18 @@
+Q: Which one is faster? iMac 27 with Quad Core i5 2.7GHz or a Macbook Pro 15 with Quad Core i7 2GHz? They are about the same price ($100 difference, iMac $1699, Macbook Pro $1799), and
+iMac: Quad Core i5 2.7GHz
+Macbook Pro: Quad Core i7 2.0GHz
+How can you tell which processor is faster?
+(the iMac shows 4 processors in the Activity Monitor, while the Macbook Pro shows 8 processors)
+
+A: They are the same, or the i5 would be infinitesimally faster, which would translate into no real world difference (certainly none above perceptual thresholds).
+This article compared the i5 750 (2.66 GHz clockspeed) vs. the i7 860 (2.8 GHz clockspeed). Data shows the i7 inched ahead by an average of a 3% performance improvement on the whole. Make note that this is a lopsided comparison in favour of the i7 (if only marginally). The Macs you list would favour the heavier clockspeed on the i5. The i7 has hyperthreading (hence seeing the 8 cores) but that doesn't do enough to give it a substantial lead.
+The article also shows the i5 outperforming the i7 in power consumption, which should be a deciding factor when buying a notebook.
+But at the end of the day, you are comparing a notebook with a desktop, so it's a little lopsided. The iMac has a much better video card and a larger screen with a higher resolution. There is much more to a system than the CPU. On a whole, the iMac is a faster (better) machine, but not portable.
+
+A: Faster is not objective category since it always should be asked faster for what?
+Geekbench in 64bit mode gives ~ 8600 for Intel Core i5-2500S 2.7 GHz (4 cores) and ~9500 for Intel Core i7-2635QM 2.0 GHz (4 cores)
+by this numbers alone we should say Macbook Pro is faster, right?
+But Geekbench only take processor, cache and RAM speed into account.
+What does it mean is for example encoding video in well threaded application (let's use Handbrake's h.264 engine as an example) MBP will finish around 10% faster if we abstract from i/o speed (hdd or odd)
+But in a case of not so well threaded application (Adobe Photoshop for ex.) iMac's faster clock will probably gives better results.
+And since iMac's HDD is a bit faster than MBP's one this will also add to a difference.

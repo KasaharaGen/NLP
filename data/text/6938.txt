@@ -1,0 +1,28 @@
+Q: Which process is periodically writing to the disk? Even when I am not doing anything on my Mac, I see a lot of Disk IO: "Data Written per Sec" in Activity Monitor showns continuous writes:
+
+Is this normal? Why would some process continuously write? I understand there can be some housekeeping activities going on, the "Sleep image" being updated, but does this happen this frequently? (I have not set up Time Machine)
+Edit: I have quite some free memory:
+
+
+A: In addition to iotop and iosnoop you may use fs_usage.
+sudo fs_usage -w -f filesys -e grep  | grep -i ' write '
+
+
+A: You can get a better idea what's causing the activity with some of OS X's command-line tools:
+sudo iotop -- display of what processes are doing the most I/O, updated every 5 secs.
+sudo iosnoop -- shows I/O as it happens, including the process ID and process name doing the I/O, as well as data size, file path, etc
+In both cases, you'll need to authenticate as an admin to run them, and use Control-C to exit.  They may not tell you precisely why the activity's happening, but they'll at least tell you what processes and files are involved, which usually narrows it down considerably.
+
+A: A few things: (Written in bullet points to make it concise)
+
+
+*
+
+*The OS itself writes.
+
+*Open applications write.
+
+*Browsers write as well, in the case of cookies, and when your RAM is maxed out.
+
+
+A: I believe you should be able to use lsof to check what processes are writing to the disk. Here's the man page for it.

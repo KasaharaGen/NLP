@@ -1,0 +1,18 @@
+Q: set up Caps Lock as a shortcut for changing the input language I want to set up Casp Lock as a shortcut for changing the input language. There are some solutions like this. But it requires installing some software and doing tricks. Is there a way to do it in a neat way, say through terminal command?
+
+A: Yes, you can use Caps Lock to change input language without third-party software.
+All you need is a custom-made keyboard layout (usually made with Ukelele ) that has two alternative sets of characters bound to Caps lock=on and Caps lock=on and Shift=on states.
+Pros: zero-lag, no weird key remapping hacks needed
+Cons: buit-in input source indicator becomes useless, looking at the Caps LED is not very convenient for touch-typists.
+To mitigate the "cons" I use lightweight third-party app called Capster that changes the icon in the menubar depending on the Caps lock state.
+I also use small Applescript to disable Caps lock delay.
+I'm using this method for many years and never looked back.
+This is my bundle for Russian language (with additional Ukrainian characters bound to alt+key)
+https://github.com/falcn/Caps-layout
+
+A: Unfortunately no, unless someone posts a (possible veery long) command that modifies the keyboard drivers in the same way PCKeyboardHack and KeyRemap4MacBook do, but in general, using these is the way to go.
+
+A: In case people who get here from search engines don't read the linked post, you can change caps lock to something like F19 with PCKeyboardHack:
+
+And then change the shortcut for selecting the next input source to F19:
+

@@ -1,0 +1,50 @@
+Q: Mac Pro suffering from kernel panics almost daily After running flawlessly for 2 years, my 6 Gig Mac Pro has started to suffer a kernel panic about once a day. Nothing really has changed as far as I know. Two details, probably irrelevant, I installed Lion about a month+ ago. And I have had an Android tablet attached via USB and enabled for remote debugging.
+I ran a memory diagnostic (rember) and it didn't find any problems.
+This is what I find in the Kernel log just before the crash:
+Sep 22 15:27:59 monster kernel[0]: (default pager): [KERNEL]: ps_select_segment - send HI_WAT_ALERT
+Sep 22 15:28:00 monster kernel[0]: macx_swapon SUCCESS
+Sep 22 15:28:32 monster kernel[0]: (default pager): [KERNEL]: ps_select_segment - send HI_WAT_ALERT
+Sep 22 15:28:34 monster kernel[0]: macx_swapon SUCCESS
+
+I've seen a variety of messages mentioning these errors but nothing conclusive.
+If there's a hardware problem, is there a definitive diagnostic that I can run to prove or disprove it?
+Any tips or troubleshooting guide will be appreciated! Thanks,
+Pito
+
+A: In my mind there are a couple of likely issues.  If the machine is crashing with a kernel panic I would suspect the hard drive is on it's way out.  If the machine is simply restarting without warning then I would suspect the memory.  
+To see if it is the memory it might be as simple as removing each stick of ram and blowing any dust off with compressed air and putting it back in.  If this doesn't resolve it, I would get a new drive and clone the system using a tool like Carbon Copy Cloner or SuperDuper!  Boot from the new drive and see if the issues go away.  
+If neither work then you could try reinstalling OS X, I doubt that's the issue.  You more than likely have a failing video card or logic board if the above suggestions don't work. 
+
+A: The entries in logs means that your OSX is out of physical memory and it started to use swap space. This could cause by some specific process (such as Apache, PHP, etc.). Make sure that you enough swap space (top) and you'll find the right process which causing that issue.
+What you can do:
+
+
+*
+
+*monitor for changes in Activity Monitor (sorted by memory usage or CPU)
+
+*check your Console app for crash logs and backtraces with more specific information which you can Google it (e.g. buggy kernel modules)
+
+*monitor your dmesg and system.log file (sudo tail -f /var/log/system.log) for more errors before the crash
+
+*monitor for new processes via sudo newproc.d
+
+*Run Mac in recovery mode (keep holding ⌘ cmd + R on startup), then try to Repair Disk and Repair Disk Permissions using Disk Utility.
+
+*check for kernel modules which can be buggy, see: How to unload kernel modules 
+
+*if you've Magic SysRq key on your Mac, try to use it when system goes freeze
+
+*test your RAM (e.g. using Rember app)
+
+*test your OSX for common system issues (e.g. using OnyX app)
+
+*monitor temperature of your CPU, there are few apps (if this is the case, buy a cooling pad)
+
+
+Please see the similar issue:
+Mountain Lion Screen Freeze
+
+A: It turned out to be bad memory. I removed and replaced the memory as suggested above (and increased my total memory in the process because new ram is so cheap) and my machine has been working with no problems since. Thanks all!
+
+A: Overheating?  How long since you vacuumed out the dust from in there?  It tends to accumulate inside my Mac Pro.

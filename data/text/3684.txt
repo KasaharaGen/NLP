@@ -1,0 +1,104 @@
+Q: How to check whether my Intel-based Mac is 32-bit or 64-bit I want to install new software that has these two versions, and I need to know which one to install.
+How can I tell the 32 or 64 bit capabilities of my Mac?
+
+A: The arch command with no arguments will display the machine's architecture type.
+The results (from the arch(1) manpage):
+i386    32-bit intel
+ppc     32-bit powerpc
+ppc64   64-bit powerpc
+x86_64  64-bit intel
+
+
+A: Go to the Apple Menu and select "About this Mac". If you have a Core Duo processor, you have a 32-bit CPU. Otherwise (Core 2 Duo, Xeon, i3, i5, i7, anything else), you have a 64-bit CPU.
+Mac OS X is fairly bitness-agnostic, so either should work. If still in doubt, use the 32-bit version.
+
+A: This knowledge base article from Apple should provide you with the correct answer as it depends on how old your MacBook Pro is.
+Basically if you have anything newer than an 2008 MacBook you have a 64 bit processor and OS…
+Here is the cheat table
+
+
+A: Just run Activity monitor and find the process named kernel_task . Then look at the column Kind. If it says Intel, then you are currently running 32bit mode. If it says Intel (64-bit), then as the text says, you are running 64 bit mode.
+Note: You must show All processes, from te dropdown next to the search box (filter). 
+Then you can check @Nate Bird's answer on what processor you have and the supported modes for it.
+
+A: To tell if you are running the 32-bit or 64-bit kernel (which matters for some device drivers), launch System Profiler and click on the Software heading in the Contents section.
+The line 64-bit Kernel and Extensions will say Yes if you are running the 64-bit kernel and No if you are running the 32-bit kernel.
+Note: Mac OS X 10.6 Snow Leopard is the last release that a 32-bit Intel Mac can run, Mac OS X 10.7 Lion and up are, by default, 64-bit. Additionally, System Profiler was renamed to System Information in OS X 10.7. 
+
+A: Another option is to use sysctl in a shell:
+$ sysctl hw.cpu64bit_capable
+
+It’ll show 1 if the CPU is capable of running 64-bit programs and 0 otherwise.
+
+A: OS X doesn't have an overall 32/64-bit mode; it simply runs each program in the "best" available mode, based on what the CPU's capable of and what the program supports.  Many OS X programs come in universal binary format, meaning that they have multiple versions (some combination of PowerPC 32-bit, PowerPC 64-bit, Intel 32-bit, and Intel 64-bit) included in the same file.
+Eclipse apparently doesn't come this way, so you have to decide which version to download.  I'm not familiar enough with it to know if it has to run in the same mode as what you're trying to debug; if so, run your program, and look for it in Activity Monitor to see what mode it's running in. If Eclipse doesn't have to be in the same mode (or the Java code just runs inside Eclipse), then you can use either one (unless you're on a 32-bit-only CPU, i.e. Core Solo or Core Duo).
+
+A: In a terminal window type uname -m. If you get x86_64 then you have 64bit OSx running.
+The full output looks something like this:
+Darwin Macbook-Air.local 11.4.2 Darwin Kernel Version 11.4.2: Thu Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64 i386 MacBookAir4,2 Darwin
+
+
+A: Run this on the command line:
+getconf LONG_BIT
+
+
+A: As you may have seen from all the answers - macs are different than other Operating Systems (OS) in that the 32 bit and 64 bit dividing line is all blurry. You can have 32 bit code run on a 64 bit CPU.
+A nice overview of this subject is at Apple's 64-bit Transition Guide Keep in mind, this transition was started before Tiger was released on April 29, 2005 and is effectively complete.
+
+What Is 64-Bit Computing?
+For the purposes of this document, 64-bit computing is defined as
+support for a 64-bit address space—that is, support for concurrent use
+of more than 4 GB of memory by a single executable program—no more, no
+less.
+Beginning with version 10.4, Mac OS X supports command-line 64-bit
+executables on G5-based Macintosh computers and 64-bit-capable Intel
+Macintosh computers.
+Beginning with version 10.5, Mac OS X supports full-featured 64-bit
+applications on G5-based and 64-bit-capable Intel Macintosh computers.
+Beginning with Snow Leopard, Mac OS X uses a 64-bit kernel on some
+Intel computers.
+
+Also - CPU that are "64-bit" still have parts that are only 32 bits wide. Similarly, CPU that are "32-bit" also have parts that are 128 bits (or more) wide. This is why most people focus on the address space for a specific program rather than whether the hardware is "64-bit" or how much of it is "64-bit"
+
+A: Run in Terminal:
+sysctl hw.cpu64bit_capable
+
+If it gives 1, it means your computer has 64-bit architecture.
+Or use arch command which could return either i386 (32-bit Intel) or x86_64 (64-bit Intel).
+
+A: Run uname -a in the shell to show details about the kernel.
+You can see RELEASE_X86_64 x86_64 for 64 bit version
+
+A: Open Terminal.app and run the command below:
+uname -m | if grep -q 64; then echo "64-bit CPU (`uname -m`)"; else echo "32-bit CPU (`uname -m`)"; fi
+
+A: On the command line you could run ...
+(
+printf '\n\n'
+echo 'System Software Overview:'
+system_profiler SPSoftwareDataType | sed -n '/64-bit/s/[[:space:]]*\(.*\)/\1/p'
+ioreg -l -p IODeviceTree | sed -n '/firmware\-abi/s/.*"\([^"]*\)".*"\([^"]*\)".*/\1: \2/p'
+printf '\n\n'
+echo 'Java:'
+#man java_home | cat
+#/usr/libexec/java_home -h  
+#/usr/libexec/java_home -V
+#/usr/libexec/java_home -X
+/usr/libexec/java_home -d 32
+/usr/libexec/java_home -d 64
+printf '\n\n'
+)
+
+# sample output:
+#
+# System Software Overview:
+# 64-bit Kernel and Extensions: No 
+# firmware-abi: EFI64
+#
+# Java:
+# /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+# /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+
+As already stated by Gordon Davisson, fat binaries may include both 32-bit and 64-bit executables of a program (see also Multiple Architecture, Single Build).
+file /mach_kernel /usr/lib/libSystem.dylib
+

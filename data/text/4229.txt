@@ -1,0 +1,9 @@
+Q: File named zero I've got a lot of files named 0 all over the place on my filesystem. They contain some digits (mostly also zeroes) inside.
+I'am wondering what they are and where they came from? I'm running OS X Lion Developer Preview 3, but I'm not sure if that's the case.
+
+A: You might try running the command
+sudo dtrace -qn 'syscall::open:entry /arg1&O_CREAT/ {printf("%5d %s file:%s\n",pid,execname,copyinstr(arg0));}' | grep '[:/]0$'
+
+in a terminal window. The dtrace output will list the process ID, process name, and filename argument for any open() call with the O_CREAT flag set, meaning it will create the file if it does not already exist. Drop the final grep bit if you want to see all potentially file creating open() calls, but then the output might possibly overwhelm you. Hit ctrl-C when you're done with it.
+If something keeps creating files named 0, the culprit ought to show up in the output.
+(Edit: Fixed the grep invocation.)

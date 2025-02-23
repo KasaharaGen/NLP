@@ -1,0 +1,27 @@
+Q: How do I set an icon for a directory via the CLI? 
+Possible Duplicate:
+Changing a file or folder icon using the Terminal 
+
+This is a continuation of this thread from Super User. The question is how to set an icon on a directory. At first I was trying cp -R, which did copy the directory with the icon, but it also copied every file and subdirectory in the folder. Then Keith Thompson suggested that one of the invisible files inside a directory might be responsible for the icon (because cp -R would preserve those/bring them with the copy) so I tried copying the 'Icon?' invisible file from a folder with the desired icon to new directory (newly created with mkdir) but that didn't work. He said to ask here, because this is more geared towards Mac- and UNIX-based questions. In that last post, he also suggested the .DS_STORE file  (which I've seen, but I think stores which files to display) but I may try copying that into a new folder too...
+
+
+*
+
+*Empty directory is created
+
+*No invisible files
+
+*Regular files are put into the folder, '.DS_STORE' appears.
+
+*Icon is set manually on the folder, the 'Icon?' file appears.
+
+
+Does anyone know how to set an icon on a directory through the shell?
+
+A: You can create a shell script and name it something like mkdir_WithIconFrom
+#!/bin/sh
+mkdir $1
+cp $2/Icon\r $1
+SetFile -a C $1
+
+This will create a directory at the first path you specify on the command line with the icon from the existing directory whose path you specify second on the command line, assuming the target directory has a custom icon.

@@ -1,0 +1,38 @@
+Q: Why is /tmp a symlink to /private/tmp? Why is /tmp a symlink to /private/tmp on Mac OS X? In other words, why isn't /tmp just a regular directory, like on Linux or BSD? I understand how it works and I don't mind it, I'm just interested in the (historical?) reasoning behind it.
+
+A: I have always wondered the same thing. I can't find any documentation to support it, but typically this pattern is used to make it easier to store files on another volume (e.g. hard drive). This allows the drive to be mounted (e.g. attached) into the file system in one place. For example when the drive is mounted at /private and then the folders /etc, /tmp, and /var are then all located on that other drive. 
+What I can't say is why this would be beneficial. It is worth noting, however, that these three folders contain "data" files such as configuration, temporary, log, transient and database files rather than executable code contained in the /bin, /sbin and /usr folders.
+
+A: As I understand it, it's a holdover from NextStep (which OS X is based on), and NextStep did it to support NetBooting.  The idea was that you could boot from a network-hosted volume (probably read-only, and certainly shared with other computers), and early in the boot process mount a local (writable) volume on /private; as g mentioned, this allowed runtime-modification of /var and /tmp, as well as per-computer settings in /etc.
+This isn't needed anymore, as Apple's current NetBoot system uses a shadow disk image to store changes anywhere on the boot volume.  But some programs/docs/etc now assume the files live under /private, so it'd be too much trouble to switch them back...
+Update: since I wrote this, Apple has stopped supporting NetBoot, so the original purpose of /private is even more obsolete. However, in macOS Catalina (version 10.15), they've added a new volume split. In this case it's for security rather than to support NetBoot, but it works in a fairly similar way.
+Catalina's system volume is mounted read-only, with a read-write volume mounted at /System/Library/Data (analogous to the old system that mounted a RW volume at /private), and "firmlinks" making parts of the RW volume appear at their usual locations in the filesystem (again, analogous to the symbolic links that make parts of /private appear at their usual locations). For example, /Users is now a firmlink to /System/Library/Data/Users. The Eclectic Light Company has a good summary.
+Catalina also still has the symbolic links to /private; thus, when you access /etc on Catalina, it follows the symlink to /private/etc, and then the firmlink to /System/Library/Data/private/etc
+
+A: Not sure about the historical reason, but OS X always “reorganized” the typical Unix structure. /tmp is not the only thing that goes to /private, it also has /etc and /var. 
+Maybe someone with more OS X background can come up with something more reasonable.
+
+A: /tmp is a symbolic lynk to /private/etc so as to maintain clearly separated 2 filesystems:
+
+
+*
+
+*/    which can be mounted as read-only, to protect it against
+any accidental or unwanted modification, and to protect it of being filled with always increasing files (logs and temporary files),
+
+*/private    which can be mounted as read-write, and which hold any directory containing modifiable files.
+If you look at / you will notice 3 directories which are similar
+symbolic links for this same reason:
+cd /
+ls -al | grep '> private'
+
+This separation of access between read-write and read-only filesystems
+isn't used actually (in MacOS X), but everything is in place to achieve
+this security separation.
+Some admins are enforcing this security separation by defining a specific /private
+filesystem with the appropriate size and appropriate mounting options
+(most notably nosuid).
+
+A: Frequently in Unix, identical ways of the same thing are because of historical differences between System V Unix and BSD Unix. Modern Unixes have to support both to be compatible.
+For instance, lpr and lp for printing: lpr is from BSD and lp is from System V.
+Whether this is the case here, I don't know. 

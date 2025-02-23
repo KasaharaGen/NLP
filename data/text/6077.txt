@@ -1,0 +1,106 @@
+Q: How do I find my IP Address from the command line? I know you can do ifconfig | grep inet, but that shows you several IPv4 addresses. How do I get the specific one for SSHing et al?
+
+A: To get the IP address of your computer facing the Internet, here is a
+working receipe:
+if=`netstat -nr | awk '{ if ($1 ~/default/) { print $6} }'`
+ifconfig ${if} | awk '{ if ($1 ~/inet/) { print $2} }'
+
+It should work even when you have multiple interfaces active,
+even when you have interfaces you don't know which one is actually the
+default gateway.
+
+A: Use ipconfig getifaddr en1 for wireless, or ipconfig getifaddr en0 for ethernet.
+ipconfig getifaddr en0 is default for the Wi-Fi network adapter.
+Alternatively you can also do:
+dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com
+
+Output, e.g.:
+172.79.136.120
+
+
+A: I've got this set up in an .aliases dotfile for frequent ip lookup:
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+
+
+A: You can do the following:
+Type ifconfig or ifconfig -a. This command shows you the list of interfaces along with their IP and MAC addresses (the latter one only if applicable). You can also type ifconfig en0 or ifconfig en1 for the configuration of a particular interface only (as someone said in their answers, en0 is typically the wired Ethernet while en1 is the WiFi interface). 
+As an alternative, netstat -i will list all interfaces and will show you the IP addresses you have assigned to each of them. 
+Typically, when you have SSH daemon running on a box, it will listen on all available interfaces, ie. you can use any IP address that's configured on your machine to connect to that machine via SSH (this, obviously, subject to Firewall rules). If you're after what the OS calls a Primary interface and primary IP address, you can use the scutil command like this: 
+MacBook:~ scutil
+> show State:/Network/Global/IPv4
+<dictionary> {
+  PrimaryInterface : en0
+  PrimaryService : C0550F84-5C07-484F-8D62-C8B90DC977D8
+  Router : 10.103.4.1
+}
+> show State:/Network/Interface/en0/IPv4
+<dictionary> {
+  Addresses : <array> {
+    0 : 10.103.4.234
+  }
+  BroadcastAddresses : <array> {
+    0 : 10.103.4.255
+  }
+  SubnetMasks : <array> {
+    0 : 255.255.255.0
+  }
+}
+
+Please note, that the above, even though is a command-line command, is also interactive (so you run scutil and then enter its own commands into it). The first show command tells you the name of the primary interface for the OS (i.e. this will be the one on top of the list in your System Preferences / Network Preferences window), as well as the IP address of your default router. The second show command takes State:/Network/Interface/<ifname>/IPv4 argument (in this case, en0) and gives you the IP addresses assigned to it. You're looking for the address in the Addresses array, the other two entries are broadcast addresses and the netmasks. 
+Hope that helps, but if anything is not clear, let me know. 
+
+A: To find your Mac's current internal IP address, run:
+ifconfig -l | xargs -n1 ipconfig getifaddr
+
+This is basically equivalent to ipconfig getifaddr en0, but more reliable! en0 is not always the current network interface!
+Thank you to @epylinkn in the comments of another answer for this hint. I'm posting it here so it's more visible; I initially missed it myself.
+
+A: The following works for me on 10.8 and on 10.10 Yosemite.
+ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' 
+
+If you find the above gives you more than one answer, save the following to a script, and run it instead
+ip_address.sh
+#!/usr/bin/env bash
+
+dumpIpForInterface()
+{
+  IT=$(ifconfig "$1") 
+  if [[ "$IT" != *"status: active"* ]]; then
+    return
+  fi
+  if [[ "$IT" != *" broadcast "* ]]; then
+    return
+  fi
+  echo "$IT" | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}'
+}
+
+main()
+{
+  # snagged from here: https://superuser.com/a/627581/38941
+  DEFAULT_ROUTE=$(route -n get 0.0.0.0 2>/dev/null | awk '/interface: / {print $2}')
+  if [ -n "$DEFAULT_ROUTE" ]; then
+    dumpIpForInterface "$DEFAULT_ROUTE"
+  else
+    for i in $(ifconfig -s | awk '{print $1}' | awk '{if(NR>1)print}')
+    do 
+      if [[ $i != *"vboxnet"* ]]; then
+        dumpIpForInterface "$i"
+      fi
+    done
+  fi
+}
+
+main
+
+
+A: Just type curl ifconfig.me in the terminal.
+
+A: Just for the record, you can make a bash script with the following content which gives you your external IP address 
+#!/bin/bash    
+wget -qO - http://ipecho.net/plain; echo
+
+
+A: This answer work on both mac and linux:
+ifconfig | grep -E "([0-9]{1,3}\.){3}[0-9]{1,3}" | grep -v 127.0.0.1 | head -1 | awk '{ print $2 }'
+

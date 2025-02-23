@@ -1,0 +1,22 @@
+Q: Mac OS X keeps to ask me if I want to allow iTunes to accept connections Every time I open iTunes, Mac OS X keeps to ask me if I want to allow it to accept connections, even if in the Firewall settings iTunes has been set to accept any connections.
+I am not using a beta version of iTunes.
+How can I avoid this issue?
+
+A: That's unusual because applications created by Apple should be automatically permitted access through the firewall.  Have you modified iTunes (added plugins for example) in any way?  You can check if iTunes' digital signature is valid with the following Terminal command:  
+codesign -vvv /Applications/iTunes.app/ 
+You should get two lines back looking like those in the image below  
+ 
+If these don't match with what I have or even if they do, a reinstall of iTunes or removal of any plugins should fix it.  
+Use the following steps:  
+
+
+*
+
+*Uninstall iTunes.  
+
+*Empty Trash.  
+
+*Restart the Mac.  
+
+*Reinstall iTunes
+

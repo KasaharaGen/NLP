@@ -1,0 +1,12 @@
+Q: Logitech K750 keyboard: § and < have switched places I have Logitech K750 (solar thingy) attached to Lion. For some weird reason § and < keys have traded places. I have checked keyboard settings and everything is correct. I downloaded KeyRemap4MacBook but I can't find how to actually change mappings with that program.
+Can anybody tell me how to get my < in the right place, it's really starting to annoy me when doing HTML and CSS...
+
+A: It sounds like a keyboard type glitch, the machine thinks it is ANSI instead of ISO or vice versa.  See if this helps:
+Sometimes a machine will forget which type keyboard is attached, with the result that certain keys get transposed from what the user expects. The fix for this is run the Keyboard Setup Assistant again. Sometimes there is a button for "Change Keyboard Type" visible in System Preferences/Keyboard. If not, you can try trashing the file
+sudo mv /Library/Preferences/com.apple.keyboardtype.plist /Library/Preferences/com.apple.keyboardtype.plist.orig
+
+Another possibility may be to open Terminal and type:
+sudo open /System/Library/CoreServices/KeyboardSetupAssistant.app/Contents/MacOS/KeyboardSetupAssistant
+
+
+A: Have you done the keyboard recognition in System Preferences, Keyboard, Change Keyboard Type? To what type of keyboard have you set it? US?

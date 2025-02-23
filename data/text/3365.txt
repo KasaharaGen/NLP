@@ -1,0 +1,41 @@
+Q: Chrome: Keyboard shortcut to go to Address Bar? I just recently switched from Windows and *nix to OS X, and I miss being able to hit F6 to go straight to my Address Bar. What's the OS X equivalent?
+
+A: Catch and remap your keystroke in the browser.
+Using Google Chrome 75.0.3770.100 64 bit on a MacOS Mojave 10.14.4.
+Chrome should tell you what your shortcut is under File -> Open Location...:
+
+Clearly the shortcut is command-L
+But you want to change that keystroke to be Command-e, like old times.
+
+
+*
+
+*Open System Preferences -> keyboard
+
+*Go to Shortcuts tab -> App Shortcuts
+
+*Click the plus to add a new Application specific key remapping.
+
+*Choose Google Chrome.
+
+*Use the string: Open Location... case sensitive, include space and dots.
+
+*Use the hotkey detector and type command-e.
+
+*Click add and close to save.  Restart Chrome.  Press your new key.
+
+*The File -> Open Location... command should be executed.
+
+
+Visual:
+
+This remap appears to occur somewhere between how the Application negotiates the keymaps between itself and the operating system.  
+
+A: To switch quickly to the Address Bar use:
+
+
+*
+
+*Mac/OS X:     ⌘+L
+
+*Win/Linux:     Ctrl+L

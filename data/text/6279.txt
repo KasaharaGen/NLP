@@ -1,0 +1,33 @@
+Q: What's your strategy for archiving emails in Mail.app? Do you archive your Sent & Trashed emails too? I'm using Mail.app + IMAP email accounts for my email. I want to be able to archive all my email and make them searchable. 
+Currently I copy the previous month's email from my IMAP folders to local folders called 2010, 2011, etc. However I don't copy my Sent email, so I'm wondering what's the best way to archive them as well. Any suggestions? Please share!
+I'd like a method that doesn't involve Gmail if possible, as I'm not a big fan of the company and the service.
+
+A: I use Mail app's "smart mailboxes" instead of copying and moving the actual messages in Mail. 
+For example, to archive July 2011:
+
+
+*
+
+*create a new smart mailbox, 
+
+*name it "Mail Archive July 2011" or whatever, 
+
+*set the find criteria to "Date Received is in the date range 1 Jul 2011 to 31 Jul 2011",
+
+*you will probably want to check the "Include messages from Sent"
+
+*Hit okay and in a moment you have a folder contain all of July's email
+
+*Right-click the smart mailbox and choose the "Archive" option and save.
+
+
+After this you have the option of keeping the smart folder or deleting it. Spotlight (in OS 10.6.8) searches the .mbox archives Mail produces, so your archive remains searchable. 
+
+A: I've recommended MailSteward to several clients. It maintains a separate SQLite (or MySQL in the "pro" version) database of archived messages. It handles de-duping too. Messages are searchable, attachments are stored and you can reply to archived messages. (Reply will open in Mail.)
+
+A: Basically, I always BCC to myself, so never archive the Sent folder.
+
+A: Since you're in OS X Lion, the best way to "Archive" a message is perhaps using the integrated (new) way to Archive: ⌘Y 
+
+
+A: There are many options, but I recommend the module archiving emails OpenKM. Because allows us to use the repository as a document management system to store messages massively. The mail file is an automated process for the preservation and protection of all emails.

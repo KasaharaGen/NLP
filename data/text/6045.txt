@@ -1,0 +1,33 @@
+Q: Prevent Apple Double Format Files on Remote Share/Disk I have a web application on a local Linux Apache server that scans a folder for new files and then processes them.
+I have an SMB share to this folder and I use Path Finder to copy files over from my Mac (10.6).
+The problem is that when I copy files over a whole lot of "._filename" resource fork files get created on the share and then the web application gets confused when it encounters them. I could fix the web application to be a bit smarter and ignore them, but this is also annoying when archiving and copying to external drives.
+I have managed to turn off .DS_Store files and I did see a similar question with an answer, but it seemed to be dealing with NTFS Streams and a nsmb.conf file.
+
+A: There is an application called BlueHarvest that fully automates the clean up of these files.
+http://www.zeroonetwenty.com/blueharvest4/
+Alternatively, you can use terminal:
+cp -X /sourcedirectory/ /volumes/destinationsmbshare/
+
+A: Adapted from https://apple.stackexchange.com/a/57832/8546
+
+Finder
+Finder does much to ensure integrity of data, and to make its results compatible with a broad range of Apple operating systems. For some types of copy/move routines, ._ (dot underscore) files are required. 
+File system
+If you prevent creation of ._ files at the file system level, you make that file system partially incompatible with at least: 
+
+
+*
+
+*Apple Finder
+
+*Microsoft Office Excel, PowerPoint and Word 2011.
+
+
+(For any use case that involves Office 2011 saving to a file system, you must allow ._ on that file system … and so on.)
+
+For more detail please see my answer to an older question, Why are dot underscore ._ files created, and how can I avoid them?: 
+
+
+*
+
+*Purposes of .DS_Store and ._ files

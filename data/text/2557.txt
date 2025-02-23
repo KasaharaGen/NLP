@@ -1,0 +1,23 @@
+Q: Why are my Macbook's internal speakers not available? My Macbook (the unibody aluminum version) has lost its internal speakers. When I open System Preferences -> Sound -> Output, all I see is "Digital Out". If I plug in a pair of headphones, this switches to "Headphones". I don't see "Internal Speakers" at all any more. Headphones seem to work fine.
+In System Profiler -> Audio -> Available Devices, I do see "Speaker: Connection: Internal". 
+I just clean-installed Snow Leopard, so it appears to be a hardware problem.
+Is there anything I can do to fix this, short of taking it back to Apple? It's out of warranty.
+
+A: Samething here, I plugged in my headphones and jiggled them a little bit while inside and then pulled them out halfway.  Once I did that I could see the volume slider appear and the volume could be adjusted up and down.  I pulled them out all the way and they volume went grey again.  Pushed the headphones back in and then pulled them out and now everything is fine.
+
+A: I had this problem and solved it by plugging in (and then unplugging) my iPod headphones. 
+
+A: If you look in your headphones jack, is there a red light on?
+If yes, then you have Digital Out on, and this messes with the speaker configuration.
+There is a thread here, which has some possible fixes.
+Update
+There is switch inside the jack that is stuck.  Plug the speaker jack in and out several times while watching the Sound-output system preference panel.  The internal speaker option will come on if the switch is unstuck. 
+Taking a toothpick and fiddling around inside the jack has solved the problem for some, you should try this. (Don't break the toothpick inside :) )
+From: http://forums.macrumors.com/showthread.php?t=239287
+
+The problem is actually caused by a little switch inside the jack that gets stuck. When you stick in an audio cable, it pushes the switch down. If it's an analog cable, the end is made of metal. If it's optical, the end is made of plastic. If the switch is pressed down, the computer checks to see if the plug inside is metal or plastic based on conductivity. When it gets stuck and nothing is in there, it thinks an optical cable is plugged in since the switch is down but nothing conductive is in there. That's why it works with headphones or external analog speakers.
+
+
+A: I had the same issue but with most likely a different cause to the other answers. None of the above helped me. I also couldn't get sound through HDMI and I didn't even have a Big Sur boot chime from the UEFI.
+I fixed the issue by resetting the SMC (shut down, hold power button for 10 seconds, release, press power button again to boot up).
+Hope this helps someone at some point.

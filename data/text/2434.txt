@@ -1,0 +1,25 @@
+Q: iMovie: Crop and letterbox (ignore aspect ratio) I have a project in iMovie and I want to crop part of one of the included clips to a rectangle that isn't 16x9 or 4x3 or any standard aspect ratio. As far as I can see, iMovie will only let me crop in the shape of the current ratio.
+How can I get iMovie to let me crop part of a clip to a nonstandard aspect ratio and letterbox the result?
+
+A: There is not any reference to custom aspect ratio on iMovie's manual, neither any setting in the project's or crop tool's properties.
+If custom aspect ratios would supported from iMovie, I believe that Apple would make them easy to find.. 
+After all, iMovie is a consumer product, and they have excluded such "advanced" features in order to get more customers to the Final Cut Suite.
+The only solution to your problem, would be to crop your footage prior importing to iMovie. 
+You may use free apps such as MPEG Streamclip or VideoMonkey (which is the open-source version of VisualHub).
+Although I haven't used any of them for cropping, they do support custom aspect ratios! 
+I hope this helps!
+
+A: I came across this page because I had a similar situation and think I have found a solution that worked for me will work for others in the same situation. I was doing a screen capture video and my screen res is 1440x900 (imac). In the video I was making I was doing a tutorial on photoshop and when I opened it up in imovie it only offered 16:9, 4:3, and 3:2. All those aspect ratios would not work for me as it would crop certain tools out of the frame and the viewer would not know what I was clicking on. I chose 16:9 and once I placed the video in the project field I clicked on the small settings box at the beginning of the clip and chose "Cropping and Rotation". Over in the viewing window to the left I chose "Fit" and it changed the aspect ratio to 1440x900 eliminating the unwanted crop. Hope this is helpful to someone.
+
+A: Yes!  I figured out how to do this. 
+The trick is that you must crop the clip BEFORE you drag it into the timeline.  If you try to crop after the clip is dragged into the timeline at the bottom, you can only used a pre-formatted rectangle size.
+Hope this helps somebody!
+
+A: Leaving this for future reference: now you can crop a video from the imported media section before adding it to the movie. 
+iMovie will add black bars automatically to fit the video, which you can control using the cropping tool on the clip after adding it to the movie.
+
+A: Actually, you set the aspect ratio, or more accurately the video resolution which determines the aspect ratio, when you export your finalized movie.   For instance, I created a video for my Kickstarter.com project (you can see it here: http://kck.st/h0aufg) and I was switching between aspect ratios on export between 4:3 and 16:9.  What you see in iMovie is just the source footage.  It's the export that matters.  You just have to play with the advanced settings for the exported type.
+
+A: The newest iMovie 10.1.9 has a fix.  Select the clip.  Above the viewing window click the crop icon.  Select "Fit".  Your clip will revert to the original format.
+
+A: You can crop to any size you like (custom aspect ratio) if you select the video in the 'browser' (the My Media section on the top left panel of iMovie) before importing it to the project (the wide panel at the bottom of iMovie). From there you can zoom in using the chosen aspect ratio

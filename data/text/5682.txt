@@ -1,0 +1,23 @@
+Q: Reinstall Purchased Mac App from AppStore After fresh install the Mac OS X Lion, when I tried to download again my purchased mac apps with App Store, I found that they are checked as installed. 
+How can I reinstall my paid apps?
+
+
+A: In essence, unmount the volumes with those apps and the App Store will let you download things.
+
+I noticed after the upgrade to lion when my TM volume was connected some apps in the app store appeared to be already installed. So try to disconnect or shut off your external HDD and restart the app store so you can reinstall your apps. After that you can re-activate your TM volume. This isn't normal, since spotlight shouldn't look inside the backup volume and see an app installed, but it happened once so it could happen to you as well.
+
+A: The problem is there because Spotlights finds Apps on other Partitions and flag them as installed. There are two ways to get that solved. First you delete the lsregister by launching Terminal and pasting this command:
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+If that won't help, then unmount the Volume where the Apps are installed, Time Machine Volumes also count from previous/other OS installations. 
+First you need to find out the GUID of the partition:
+Launch Disk Utility, click the Partition and then the Info button in left upper corner. Your GUID should look be something like AC55A321-C9A5-3EF1-AE76-079470489A4B. Copy it into clipboard, lunch Terminal and type:
+sudo vifs 
+Thats vi editor specially for your /etc/fstab file where filesystems mount points are defined in Bsd/Linux os's. VI is a bit different in editing so don't get scared. You navigate through text with H J K L keys. Get down a few lines, hit the i key (stands for Insert) press Enter to get a new line 
+and type GUID= then paste your GUID in there. After the GUID type:  
+none hfs rw, noauto
+The line should look like this:
+UUID=AC55A321-C9A5-3EF1-AE76-079470489A4B none hfs rw,noauto
+none stands for no Volume Mountpoint. hfs stands for Hierarchical Files System in short and it's Apples own filesystem. rw stands for read/write access. noauto stands for no auto
+   mount. When your line looks like the one above hit the esc then type : and wq! this will write the changes and and quit the editor. Should you make any mistakes, just press esc to get out of editing mode and hut u to undo things.
+Reboot the OS, check App Store and voilà, you can reinstall your Apps.
+After that reedit the /etc/fstab with vifs and delete the line you added by navigating the cursor to that line and punching the d key twice.

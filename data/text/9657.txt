@@ -1,0 +1,39 @@
+Q: Why does Time Machine only backup after a reboot? I have a Mini running Lion Server that has a USB hard drive attached to it for backups. I also have a MBP running Lion that I've set to use that same drive as a remote backup destination over the network.
+The remote backups have never failed; however, the local backups from Server to its USB disk only work right after a reboot. When the machine tries to run its next scheduled backup it fails with
+
+Time Machine Error
+Unabled to complete backup. An error occurred while creating the backup folder.  
+Latest successful backup: 12/2/11 at 11:50 PM
+
+at which point I usually reboot the machine and manually run a backup, which succeeds.
+Things I've tried
+
+
+*
+
+*I've tried googling that error message, but "An error occurred" isn't much to go on.
+
+*I've tried repairing the drive in Disk Utility, but it didn't find any errors.
+
+
+Other Notes
+When I first plugged in this USB disk I told Time Machine to erase it and set it up. It has a GUID Partition Table, one 1TB partition formatted to Case-sensitive, Journaled Mac OS Extended.
+What can I do to have my backups run without needing intervention?
+
+A: Things to check:
+
+
+*
+
+*Software Update (read the description to see if it fixes the issue
+for your OS X 10.7 server)
+
+*Check if OS X 10.7 Server requires its Time Machine to be formatted
+using Case-sensitive, Journaled Mac OS X Extended. Anecdotally,
+I've always formatted my Time Machine backup as  Mac OS X
+(Journaled) and Time Machines works fine.
+
+*Check the Permissions. Check that your OS X 10.7 Server user id has access to the USB partition.
+
+
+A: Turns out the problem was a bad disk. At first it wasn't obvious, but after a few days it started making the infamous clicking sound. After I replaced the disk, the backups started working both locally and remotely.

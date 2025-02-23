@@ -1,0 +1,74 @@
+Q: Copy and Cut sometimes don't work 
+My system is kept fully up to date and I still see this problem intermittently, although not as often as I used to; I would say that this has not been fully fixed. If there are any workarounds other than rebooting, this would be a good place to collect them. This has previously been closed and re-opened due to demand.
+
+Cutting and copying do not always seem to change the content of the clipboard, whether triggered from a keyboard shortcut, a menu option, or even drag and drop. At the least this results in sometimes praying the wrong information, at worst it results in cut randomly acting like a delete key. The behavior as I have observed started out as staying to randomly occur and then consistently happen until the system is rebooted, for all programs including finder and the terminal.now it seems to stay randomly and then intermittently but at a high frequency occur, again regardless of program.
+Searching on google produces no useful results for this issue.
+
+Copied from Drag & drop and cut & paste not working [closed] so that others may find this question in search
+
+Possible Duplicate:
+Can anyone explain this clipboard behaviour? 
+
+
+This is weird. I'm on OSX Lion, and sometimes both drag & drop and cut
+  & paste stop working, at the same time. They stop working in any
+  program, not just the Finder. And it's not just the shortcut: if I try
+  to right click and select "Copy" it doesn't work either. 
+This has happened three times so far. A reboot fixes it, but it's
+  annoying at best. Any solution?
+
+
+Does anyone know of any way to fix this, or otherwise how to report this to Apple?
+@bmike I have removed other questions, I had this issue on a series of Macs, both iMacs and unibody MBPs, under OSX 10.7 and 10.8. I no longer use OSX so can't really contribute any more to this question.
+
+A: Apple appears to have introduced a bug into this particular point in their frameworks, I do also experience this bug often after having relaunched certain applications.  The reason copy/paste and drag and drop stop working at the same time is because they are both a function of the NSPasteboard API.
+If you go to the finder under Edit>Show Clipboard, and the contents is none even after having copied something then the component of the OS responsible for handeling pasteboard events has crashed.  This is beyond your control, a work arround may exist by manually reloading the required component using launched, however the simplest solution is to save what you're doing reboot.
+
+A: Based on this post, the following worked for me.
+Check if the pboard daemon is running:
+launchctl list | grep com.apple.pboard
+
+If the pboard daemon is running, then stop and start it.  If it's not running, start it:
+launchctl stop com.apple.pboard
+launchctl start com.apple.pboard
+
+Then, you may need to restart the application(s) where cut-and-paste is not working.  
+
+A: Al, several things.
+
+
+*
+
+*what version of Lion are you using:
+
+
+Apple Menu > About this mac.
+
+
+*
+
+*Have you checked for software updates?
+
+
+System Preferences > Software Update.
+
+
+*
+
+*Have you repaired permissions?
+
+
+Finder > Applications > Utilities > Disk Utility.
+(These are basic troubleshooting steps for any mac issue by the way).
+Then, when you think something hasn't been captured by the copy command, could you open TextEdit (Applications > TextEdit), and paste to there... 
+Finally, if something is funky, it often helps to create a test user account (System Preferences > Users and Groups), and see if the behavior repeats there. Let us know. Hope this helps get you started with things..
+Oh one more thought, without reading everything again, I presume you've tried this with both the keyboard and the mouse.. Could it be that one of them is a bit sketchy? For example, open up TextEdit, and try typing the c key over and over, and then the p key..
+
+A: *
+
+*Sometimes you're not allowed to copy and paste from certain places (websites, Java, Flash content, etc.)
+
+*It is flashing because you're holding the Cmd+C down too long.  Press it once.
+
+
+If this is still a problem, you should try a third party application for a clipboard utility from a site like MacUpdate.

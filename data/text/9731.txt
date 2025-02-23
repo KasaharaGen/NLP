@@ -1,0 +1,35 @@
+Q: Is there macOS software to convert PostScript type 1 font to ttf? Is there any software out there that can convert PostScript type 1 font to ttf?
+
+*
+
+*let's set aside the legality of owning a font face unless a tool has that as a feature to flag and assist in licensing details
+
+*solutions that substitute and/or convert in place are fine - better if one tool does both.
+
+
+A: Yes. You can try FontForge.
+
+An outline font editor that lets you create [or edit] your own
+postscript, truetype,  [... ] fonts. Also lets you convert one
+format to another.
+
+It may be a bit intimidating to install and use at first, but it’s very powerful and should be able to do the job. One way to install FontForge: use Homebrew (brew install fontforge)
+
+A: I would suggest converting PostScript Type 1 fonts to OTF, rather than TTF, as OTF fonts are 'just' wrappers for the same PostScript data, sorted by Unicode. TrueType uses a different method for representing curves, so the result will be a 'translation' of sorts.
+FontForge is still the go-to free font editor. There are other utilities, usually paid-for, which are specifically designed to do the job, such as TransType from FontLab.
+There is also the Adobe Font Development Kit for OpenType, which is a free python library, though you'll have spend time and effort instead of money.
+https://pypi.org/project/afdko/
+There are online font converters, though I would hesitate before using them, as I suspect that while they may provide a reasonable enough conversion, some of them may be repurposing those font files for their own use.
+Type 1 fonts are now described by Apple as 'legacy' (which should be a sufficient red flag). Adobe is also phasing out support for their use in its products.
+
+A: This is a bash script that I use on Mac and requires FontForge. You can adapt it to convert to ttf or otf fonts. Of course, you have to take into account the issue of font licenses and that valuable information from the font is lost in the conversion.
+#!/bin/bash
+
+function ffconvert {
+   /Applications/FontForge.app/Contents/Resources/opt/local/bin/fontforge -lang=ff -c 'Open($1); Generate($2)' "$1" "$2"
+}
+
+for f in *.pfb ; do
+   ffconvert "$f" "${f%.pfb}.ttf"
+done
+

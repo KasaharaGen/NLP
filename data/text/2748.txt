@@ -1,0 +1,25 @@
+Q: How to add e.g. Chrome permanently to Guest account's dock? When I log in as "Guest", the dock looks like this: 
+
+Any changes made to the dock are lost upon logout, when the guest user's home directory gets deleted. 
+How can I change the default dock settings for guest account so that it will automatically include a custom application of my choice, such as Google Chrome?
+
+A: The easiest way would be the following:
+
+
+*
+
+*Download, install and update the free Server Admin Tools from Apple.
+
+*If you´re currently logged into the Guest User Account, log out. Open /Applications/Server/Workgroup Manager and connect to Address: localhost with the username and password of your admin user
+
+*Ignore the warning message about working on a local configuration, then go into the menu "View" and select "Show System Records".
+
+*On the left hand side, select the Guest-User and in the window titlebar click on "Preferences"
+
+*Click Dock on the right side. Select "Manage Always" at the top of the window and then add and remove the Dock items you want in your customized Dock. Uncheck the checkbox  "Merge With User's Dock" at the bottom of the window. Click on "Apply Now" and log in as the Guest User to see it in effect.
+
+
+A: You can do this with Workgroup Manager, which is part of the Server Admin Tools. Despite the name, you can install the tools on any Mac.
+Download Links: Snow Leopard | Leopard
+Run Workgroup Manager when you're logged in as an admin user and select the Guest account in the list, then Preferences. Set the dock to "Manage Always." You should then be able to add/remove the items you want.
+Workgroup Manager lets you customize any non-admin account, not just the guest account.

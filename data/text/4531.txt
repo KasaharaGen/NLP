@@ -1,0 +1,49 @@
+Q: How can I backup my system to a remote server (AFP, Samba, or NFS share)? Here's the goal: I have a backup server with a ZFS filesystem with built in compression and snapshots. All our machines backup there nightly with rsync, and then a ZFS snapshot is taken, so we have backups of how eveach machine looked at the end of every day.
+The problem is that with Mac OS X, the resource forks are not copied since the remote machine does not support resource forks. What I would like to do is rsync to a .DMG file which resides on the backup server. This way, I'd have an exact, bootable image of how my system looked each night.
+As a bonus, the backup server is also a NetBoot server, so this would actually allow me to boot from how my mac was at any point in history.
+I created an image of my Mac's drive and copied it to the backup server. Now, when I open it on my mac and run rsync, it runs for a period (sometimes more than an hour, sometimes less) and then gives me a ton of I/O errors. The image is stored on a RAID array, I am sure there are no I/O errors.
+I think the connection with the Samba share may be getting overwhelmed... I've tried with AFP also, and I get the same result... What could be causing this and how can I resolve it? Or, any other ideas on how I can update the remote DMG file?
+
+A: Setup a new volume on your Nexenta/OS box for your backup and set it to share out as an iSCSI LUN. Then use one of several iSCSI initiators for MacOS X to attach the backup volume on your back. On your mac, format the volume as HFS+. Now you can use CCC or rsync, etc. to do your backups.
+
+A: Have you looked into using Carbon Copy Cloner? I use this to a manual bit-for-bit backup of my SSD to a network drive once a month or so and it works flawlessly. I know it does incremental backups, and I've had no trouble dumping my drive over gigabit ethernet.
+
+A: Not the exact answer to your question, but you can rsync resource forks too. Here are really nice articles about:
+
+
+*
+
+*http://www.afp548.com/article.php?story=20050219192044818
+
+*http://www.kremalicious.com/2008/06/ubuntu-as-mac-file-server-and-time-machine-volume/
+
+*http://quesera.com/reynhout/misc/rsync+hfsmode/
+ps: do you use solaris or freebsd?
+So, what im tried now:
+I have a remote OS (not mac) and mouned it via fuse/sshfs (over the slow ADSL).
+sshfs user@example.com:/path/to/dir /Users/me/Mount/myfs -oauto_cache,reconnect,volname=MyFs
+
+On my macbook entered this:
+/usr/bin/rsync -avE /Users/me/tmp/bk /Users/me/Mount/myfs/tmp/test
+
+(the /tmp/test already exists on the remote computer)
+and got this:
+building file list ... done
+bk/
+._bk
+bk/.DS_Store
+bk/._.DS_Store
+bk/Icon\#015
+bk/._Icon\#015
+bk/test.rtfd/
+bk/test.rtfd/.LSOverride
+bk/test.rtfd/TXT.rtf
+
+sent 311127 bytes  received 186 bytes  15186.00 bytes/sec
+total size is 6874  speedup is 0.02
+
+As you can see, resource forks are converted into dot_underscore files and copied into remote location. (for example, the custom icon for the directory bk too).
+Therefore i don't understand, why you can't rsync into remote zfs?
+
+A: I don't know why, but the connection to the server was being broken during the file copy and I am assuming it was because the high amount of data being transferred at such high speed was more than the backup server could handle; it would become unresponsive for a short period and the Mac would forcibly disconnect the DMG, and the backup would fail.
+I found a solution: before backing up, in System Preferences, I lowered my Ethernet NIC's speed from 1000Mbps to 100Mbps. Then, the backup seemed to work flawlessly, because the data rate was constrained and the backup server didn't get overwhelmed.

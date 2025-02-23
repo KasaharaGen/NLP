@@ -1,0 +1,49 @@
+Q: How can I see bandwidth usage on a Mac? I am having internet problems and the ISP technicians suggested that something is using my bandwidth. 
+Is there a software to monitor which processes use how much bandwidth?
+
+A: Perhaps Little Snitch might fit your needs.  It's a paid app though, so you can try it out using it's trial version.
+
+A: First, most ISPs can tell you how much bandwidth you're using.  It sounds like you had a technician that either didn't know much or was just trying to shoo you away.
+Second, the only way to steal bandwidth is if you have a wireless network that isn't properly secured.  This means you'll need to monitor bandwidth from your wireless router, not your laptop/desktop.
+If you do have a wireless router, I would just change the SSID and secure it with a new (hard to guess) password.  That will immediately cut-off anyone that could be leaching off your network.  It's very simple to do compared to trying to monitor your bandwidth usage.
+
+A: If you're looking for a way to monitor your Internet usage as a whole, including all devices connected to it, you might want to check out PeakHour (Mac Appstore). 
+It uses SNMP or UPnP to talk to routers and computers that can given you a real-time and historical view of bandwidth consumption and activity. This lets you monitor usage of your Internet connection as a whole, not just the computer you're on - useful if you have a few devices on your network.
+Knowing your exact network activity or activity over time can be very helpful for diagnosing ISP issues. You can also monitor individual devices (if they support SNMP) which can be good for tracking down excessive usage.
+peakhourapp.com
+
+Heads up: I'm the developer. 
+
+A: If you already have little snitch, here's a tip which you can quickly check how much you've [recently] used. I have limited data on tethering, which I use when there is no wifi available. It is useful to keep an eye on whats going on in short periods.
+OSX Server app also has network monitoring tools. It comes free with the apple developer program.
+
+
+A: Built-in Activity Monitor (Applications → Utilities) shows you network usage. Also you can see open network ports for each running process.
+
+
+A: You can try nettop(1) in the Terminal. It is pre-installed, and refreshes every few seconds to provide a dashboard of all open network connections with their usage. Better than lsof since it shows the usage data too.
+$ nettop
+
+Then hit 'd' and look for odd-looking entries or entries with consistently large traffic in the 'bytes in' or 'bytes out' column. The 'd' instructs nettop to only show differences in each screen refresh.
+Practical usage notes:
+If you don't recognize the process name, Google it.
+If you don't want the process around, get the pid (the number next to the process name in nettop), and kill it with kill -9 <pid>. If that doesn't solve it, find out if you can uninstall the process.
+If you're interested in what the process is transmitting over the network, use the client port number for that particular connection (e.g. '53133' from 10.0.0.1:53133->74.125.68.100:80) to run a tcpdump(1) to see the data in the packets being exchanged: sudo tcpdump -nnvvXSs 1514 port 53133
+If you're interested in the destination the process is talking to, but the destination IP address doesn't have a reverse DNS hostname (like in the previous example), then try visiting that IP address in a web browser as https://IP, click the broken lock icon in the address bar, and view the certificate details to find out which domain is served there (*.google.com in this case). This won't work if SSL port 443 isn't open on the destination.
+
+A: OsTrack (Mac App Store) tracks how much memory, cpu, and bandwidth each process is using. It may not be accurate to a very specific degree, but it works, has a nice UI, and is free so I suggest you give it a try.
+
+A: This page list four options:
+http://mac.appstorm.net/roundups/internet-roundup/4-ways-to-monitor-bandwidth-usage-on-your-mac/
+The best two seem to be Surplus Meter (free) and Net Monitor($10)
+There may also be linux tools available but I am not familar with them.
+
+A: I would check what apps use the network or which are listening for connection with lsof -Pi command.
+
+A: I believe that Rubbernet is exactly what you are looking for. 
+The only downside is that Rubbernet cannot distinguish between LAN traffic and WAN traffic. It sounds like you are looking at one computer, so that shouldn't be an issue.
+There is a demo available on their website, or you can buy it from the Mac App Store for US$25, which seems to be a pretty good deal since they want € 29.99 (about US$42) for a single user copy or € 49.99 (almost $69) for a "family pack" if you buy through their website.
+(Hat tip to Macworld.com for bringing it to my attention a few months ago.)
+If you want something cheaper, NetUse Traffic Monitor might suit you too.
+
+A: Bandwidth+ is a free network usage tracker for Macbooks. It tracks upload & download data and shows monthly data usage as well. It is available on the App Store.

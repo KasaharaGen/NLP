@@ -1,0 +1,24 @@
+Q: Connect to an UPnP Server as guest I can connect to my UPnP file server (the server is my ASUS router actually) via Connect to Server (⌘+K) diagram in Finder (By the way this server don't show up in Network folder). I don't have write access on this server for huge files. I used to have write access for any size of files when it was connected as Guest. 
+Now I'm trying to connect to server as a Guest by disconnecting or ejecting the server and reconnecting using Connect to Server but it doesn't show me anything and just connect to server as my Mac user name.
+Here is Finder connected to server as my Mac user name:
+
+Here is connect to server diagram:
+
+Here is the error I'm getting when I try to write big file in server:
+I'm getting this error only on big file size. Small files copying fine. This file for example was more than 8GB.
+
+How can I connect to this server as Guest? I know if I connect as a guest again, it will solve my problem because it used to have no problem before.
+Environment Info:
+
+
+
+*
+
+*OSX: 10.7 (Lion)
+
+*Router: ASUS (RT-N56U) 
+
+*Mac: MacBook Air
+
+
+A: Is there an entry for the server in Keychain Access? If so, try deleting it. That could prevent you from automatically logging in as your user name.

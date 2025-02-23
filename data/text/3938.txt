@@ -1,0 +1,69 @@
+Q: Airtunes is giving me dropouts I got an Airport Express to use to wirelessly extend my existing Airport Extreme (which is plugged into my cable modem). I'm also using the Airport Express to send music to the stereo. Unfortunately I'm getting audio dropouts. 
+How do I track these down? Could I save the Express some work by running an ethernet cable between the two units? Are there any other settings that specifically affect Airtunes? 
+
+A: I had this problem several months ago and was able to solve it by disabling the built-in iTunes equalizer.  Just uncheck the "On" box.
+Not guaranteed to work for you since there are so many factors that could be affecting it, but it worked for me.  Hope it helps!
+
+
+EDIT:  A couple more notes...  I have a pre-N Airport Express (circa 2008) wirelessly "attached" to a Time Capsule base station (essentially an Airport Extreme with a HDD built-in).  Before, when I was having this problem, I had my Express extending my wireless network.  During the course of correcting this problem, I changed it to simply join my network and NOT extend it.  I'm not sure if this contributed to the solution, but I just wanted to mention it in case it turns out to be significant.
+
+A: The real problem is the protocol between the Mac/iTunes and AirTunes. For some reason known only to Apple there is very little buffering in the AirTunes and any interruptions at all will cause the input buffer on the AirTunes to be emptied. The answer is to minimise interruption to the flow of data to the AirTunes device:
+
+
+*
+
+*Avoid WiFi anywhere in the setup.
+
+*Connect iTunes Mac to your router/hub as well as the AirTunes both via Ethernet cable.
+
+*Only have  iTunes on your mac running, close Chrome, Word, etc.
+
+*By all means COMPLAIN TO APPLE, this product is a disgrace
+I have 3 different generation airtunes running on various networks and ALL exhibit this problem. I have tried every "fix" documented on the various forums. I am an IT professional.
+Out of desperation, I also tried using an Apple TV connected to a DAC via optical cable. Guess what? Same problem!
+
+A: Running Apple Maintenance seems to have taken care of the problem, at least for the time being. From the info text for v.3.8:
+
+About Maintenance
+A simple Automator Action fused with AppleScript aimed at keeping your Mac running healthy. 
+Features include: 
+  
+  
+*
+  
+*List item
+  
+*Repair Permissions 
+  
+*Verify Preferences 
+  
+*Update Prebindings 
+  
+*Periodic Clean-up 
+  
+*Clean Cache 
+  
+*Update Locate, Whatis, LaunchServices Databases 
+  
+*Rebuild Spotlight Index 
+  
+*Force Empty Trash Tiger users please use Maintenance 3.7 which is
+  bundled with 3.8
+  
+  
+  What’s New in this Version
+  
+  
+*
+  
+*New Action: Rebuild Spotlight Index 
+  
+*New Action: Force Empty Trash
+  
+
+If the dropouts return and running the program doesn't take care of the problem, will de-select this as the answer.  
+
+A: I bit of a work-around. But Airfoil is the best $25 I've spent, when it comes to streaming audio with the Airport express.  And you're not limited to just airtunes.  it's amazing.  try it. I've never had any problems in more than three years of use. 
+
+A: It looks like you have solved your networking issue, but to answer the question clearly - AirPlay will work over any network connection.
+Wired connections are far less susceptible to interference, packet loss and pauses - so if you can't get a reliable wireless network, running a physical cable is a sure fire way to ensure you have a solid network and airplay video / audio has enough bandwidth and low delay to play seamlessly.

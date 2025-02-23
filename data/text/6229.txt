@@ -1,0 +1,37 @@
+Q: How to set permissions on network interfaces? At each reboot, the permissions on the network devices /dev/bpf* are changed.
+As a developer, I want write acccess on these files. 
+This can easily be fixed with a chmod.
+What is the most elegant solution to fix this issue permanently?
+
+A: Wireshark ships a StartupItem that does just that; however, the StartupItems API is deprecated:
+ The SystemStarter utility is deprecated.  System services should instead
+ be described by a launchd.plist(5).  See launchd(8) for more details.
+ The launchd utility is available on Mac OS X 10.4 and later.
+
+ In earlier versions of Mac OS X, the SystemStarter utility is used to
+ start, stop, and restart the system services which are described in the
+ /Library/StartupItems/ and /System/Library/StartupItems/ paths.
+
+So, since you're asking for "the most elegant solution", that would be a launch daemon.
+I haven't tried the following code, but it should be roughly correct.
+Create a file /Library/LaunchDaemons/com.stackexchange.apple.bpf-helper.plist:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.stackexchange.apple.bpf-helper</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Library/PrivilegedHelperTools/com.stackexchange.apple.bpf-helper.sh</string>
+    </array>
+</dict>
+</plist>
+
+And a file /Library/PrivilegedHelperTools/com.stackexchange.apple.bpf-helper.sh:
+#!/bin/sh
+chgrp admin /dev/bpf*
+chmod g+rw /dev/bpf*
+
+Both should be owned by root:wheel. The first should be 644; the second 755 (600 and 700, respectively, will probably do as well).
+You can use launchctl load -w /Library/LaunchDaemons/com.stackexchange.apple.bpf-helper.plist to try it without a reboot.

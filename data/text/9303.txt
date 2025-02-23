@@ -1,0 +1,31 @@
+Q: How can I recover iPhone data lost after iOS upgrade? I've had my iPhone 4  for about 3 months and when I connected it to my computer today I was prompted to update the iOS, so I did. But somehow I didn't realise that it meant I was going to need some kind of password once the update had been downloaded etc... having failed to remember it after a few attempts I simply left iTunes to get some troubleshooting advice. When I got back it seems that the password prompt had disappeared and my phone seems to be back to its original settings.
+How can I restore the data that was on the phone?
+
+A: Right click your iPhone in your iTunes' sidebar, then select "Restore from Backup". iTunes should ask you now what backup you want to restore from, just select the latest one (should be preselected) and it should start restoring all you data.
+
+A: If the iPhone backup was made using iTunes on OS X, here's something that you can try to find the password to to the device backup:
+
+*
+
+*Launch the Keychain Access app (an OS X system utility)
+
+
+*Look for "iPhone Backup" in the name column.
+
+
+*If you see that phrase, double-click on that entry to see something like this window/dialog box:
+
+
+
+*Click on the Show password checkbox a
+
+
+*Enter the requested password (likely to be either your OS X account password or the admin password).
+
+
+*If successful, the password will be displayed in plain text
+
+
+*Use this password to attempt the restore again.
+Unfortunately, if you're using Windows this tip won't be applicable.
+Note: This technique will only work if you've elected to save the password in the Keychain

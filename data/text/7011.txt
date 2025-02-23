@@ -1,0 +1,16 @@
+Q: Keyboard shortcut for Downloads folder? I use ⌘ + D whenever I go the the Desktop folder. Is it possible to add a shortcut for the Downloads folder?
+
+A: ⌥+⌘+L opens the Downloads folder. 
+
+A: *
+
+*Create a new service in Automator.
+
+*Set the dropdowns to Service receives to no input, in any application, or limit it to just the Finder if you like.
+
+*Add the "Run Shell Script" item, and set the content to open ~/Downloads
+
+*Save the Service, name it whatever you like.
+
+*In the keyboard shortcuts preference pane, select "Services" from the source list. Find the service you created at the bottom of the list on the right, and give it whatever shortcut you'd like.
+

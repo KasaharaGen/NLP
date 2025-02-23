@@ -1,0 +1,22 @@
+Q: Alternative backup solution for a mac? I know that we can easily use time machine. However, i wonder if there exist any other way to backup the data on my macbook? Since I do a lot of modification to the system and sometimes make it has kernel panic, I would need the backup program to be able to restore everything from a bootable cd (the backup file can be on the hard disk).
+So, if your solution offers a bootable backup, that's great, but I'm more interested in equivalent functionality of Time Machine where multiple snapshots are available.
+
+A: Carbon Copy Cloner is a nice application. It is free.
+
+A: I would do this in the reverse way.  Use Carbon Copy Cloner or SuperDuper to make a bootable clone of your working disk, to an external hard disk.  It doesn't need all of your data on it, just the system. Use this copy to do your experimentation with.  If something goes wrong, just make another clone of your system disk.  This keeps the main system disk always in working condition.
+
+A: A combination of SuperDuper for complete bootable backups, and something like Crashplan for offline backup is a good bet.
+
+
+*
+
+*Use SuperDuper to make one or more bootable 'known good' back up disks (these can be on separate partitions of a USB drive for example). This gives you a complete backup of your entire system that you can restore quickly.
+
+*Use Crashplan to back up data files offsite, and to other computers if you have them. This means that even if your computers and disks are damaged or stolen, you still have an offline copy of your data. 
+(Note, a true offline copy will take much longer to restore but it is really a backup of last resort, i.e. when all else fails)
+
+A: To create bootable backups which contain everything including system files, you may want to look at Carbon Copy Cloner or SuperDuper.
+
+A: The KISS Principle would suggest restoring your system from the OS X DVD that came with your Mac.
+For personal files, I think the best backup option is cloud storage, like Dropbox (2GB free, $10/mo for 50GB, $20/mo for 100GB).  It instantly syncs files between all your Internet-connected computers, and you can access them from your mobile device(s), too.  No extra charge for data in/out, so it's a good solution for restoring all personal files from scratch after reinstalling the OS.
+Common sense also advises against storing important personal files on a computer that you're making significant system-level changes to, especially if you've "broken" your computer in that way before.

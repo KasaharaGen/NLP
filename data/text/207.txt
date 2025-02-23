@@ -1,0 +1,45 @@
+Q: Do Macs need to be defragmented? I don't see any application to defragment my Mac (running OS X).
+Is defragmenting not necessary for Mac OS X?  If so, why not?
+
+A: It's not necessary. For more details than you could possibly want, read Fragmentation in HFS Plus Volumes by Amit Singh (author of  Mac OS X Internals: A Systems Approach).
+
+A: There's no such thing which you should (have to) use. If Apple felt it was needed, it would have been built-in.
+Mac differs entirely from Windows for example.
+Please check: http://osxdaily.com/2014/01/13/defrag-mac-hard-drive-necessary-or-not/
+
+A: HFS, the filesystem Mac OS X uses (technically HFS+) has a number of built-in measures that reduce fragmentation of the drive. First, it uses extent-based allocation, which is just a fancy way of saying that it writes multiple contiguous blocks of data a time (and therefore inherently has less fragmentation of data). Second, it uses delayed allocation, meaning that disks writes are "queued" and written to the drive as a group (again, inherently less fragmentation). On top of that, Mac OS X does on the fly defragmentation of files.
+The long and short is that fragmentation isn't really an issue for Macs, which is why you don't see a program to defragment drives in Mac OS X.
+As a side note, there are commercial programs that will defragment drives in OS X, but this is essentially snake-oil. There might be some small level of fragmentation on your drive, and these apps will surely take care of that. But, it's 100% unnecessary, and you're unlikely to see any benefit.  
+
+A: Most people will tell you Macs don't suffer from disk fragmentation, citing technical arguments most people don't understand.
+It's somewhat true: since there's nothing you can do about it without spending $20 on something that might not improve the performance of your computer at all, you could instead focus on other maintenance tasks and just buy a shiny new mac (or reinstall) when the old one gets too slow.
+But: An important prerequisite for not caring about disk fragmentation is always keeping some free space on your disk (I couldn't find any recommendation not pulled out of thin air, but 20% is often mentioned).
+And to keep the facts straight:
+
+*
+
+*There are features in Mac OS X designed to prevent some of fragmentation.
+
+*Apple believes these features are enough to spare the majority of their users from caring about fragmentation issues, but also says you ''might'' benefit from defragmenting in some cases (e.g. "If your disks are almost full, and you often modify or create large files")
+
+*There's no built-in or free and popular defragmenter utility for Mac OS X (although there are commercial ones)
+
+*Some people do have issues caused by fragmentation (1, 2)
+
+*There's no easy way to tell if your specific problem is caused by fragmentation.
+
+BTW (@Dori's answer), the cited Fragmentation in HFS Plus Volumes explicitly says this:
+
+Note that I do not intend to make any claims regarding the fragmentation-resistance of HFS+. I have sampled too few a volume to generalize my "results".
+
+P.S. I know that web browsers (the field I'm interested in) are at least sometimes are affected by fragmentation (ex.: mozilla, chrome). I myself had an issue similar to the one described in mozillla's issue tracker.
+
+A: Generally speaking, you do not need to defrag HFS+. While it is possible to fragment it, the implementation in the OS X kernel includes a number of features that tend to limit fragmentation, including deferred block allocation and hot banding. Unless you do something really odd (constantly keep the drive over 99% full while doing lots of reads and deletes) it is very hard to significantly fragment the drive.
+The only time it is generally worthwhile to defrag an OS X drive is when you are trying to do an LVM operation (like shrink a partition for bootcamp), and the builtin tools fail. The reason is that those failures are largely caused by some core structure of the volume (Like the extents or catalog file) existing in blocks outside the target layout. Technically those are files, but because they are used to store volume metadata the builtin file move code has trouble moving them on a live (mounted) partition, but defrag utilities that work on the disk offline can just move them to the beginning of the partition, which allows the volume resizer to work.
+So, while defrag utils are generally not worthwhile, they aren't snake oil, just very specialized tools.
+
+A: No, it doesn't. Mac OS X does it itself for files over 20MB, and for SSDs it doesn't matter at all.
+
+A: osx obviously needs defragmenters when you need to shrink the partitions where it is installed, or when you use hfs+ somewhere else
+an excellent example is when you, after only using osx for years and start to use a dual-boot there, like installing a second operating system like gnu/linux (exactly like i did this week), and it is known gnu/linux (like ubuntu) are getting mroe and more popular day by day, specially among osx users - in this context, and it is not as rare, it is totally counterproductive and nonsense having to backup all the information, reformat the partition after resizing it, reinstall osx back again when you just needed to defrag it before resizing it
+so everyone, please don’t say no one need defrag tools on osx, or for hfs+ - saying such thing is just ludicrous, as i explained... 

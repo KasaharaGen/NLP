@@ -1,0 +1,32 @@
+Q: Can I keep my iTunes library on an external drive? My main computer is a MacBook Pro that's running out of space, mostly due to my iTunes library, especially the TV shows.
+I have a few questions all related to solving this problem.
+First the most basic: where is the iTunes library directory? What is its filesystem location?
+If I move my library from the laptop and to an external USB-connected drive, will my music and TV shows still play?
+And here's the tricky part: I'd like to keep some of my music on the local drive so I can actually listen to it when I'm out and don't have the external drive with me. Is there a way to do that?
+I don't need to preserve ratings or play counts.
+Any help would be greatly appreciated. Thanks!
+
+A: Where is the iTunes library directory? What is its filesystem location?
+Go to iTunes > Preferences.... Choose the Advanced tab. There you will find the path to your iTunes folder.
+If I move my library from the laptop and to an external USB-connected drive, will my music and TV shows still play?
+Yes, if iTunes knows where to find them. See following question.
+I'd like to keep some of my music on the local drive so I can actually listen to it when I'm out and don't have the external drive with me. Is there a way to do that?
+Under the Advanced tab in the preferences, make sure Keep iTunes Media folder organized is checked. Choose Change... next to iTunes Media folder location to choose a new location on your external drive. Then click OK.
+Now go to File > Library > Organize Library, select Consolidate files and click OK. iTunes will now copy your files to your external hard drive. The files on your internal drive will be retained.
+Go to your original iTunes Media folder on your internal drive and drag it to the Trash. Do not empty the trash before making sure that you can quit and relaunch iTunes and play songs without any trouble.
+Now move any music files you want to be on your internal drive to a folder on your internal drive. When you move these files, iTunes will not be able to find them, as iTunes will look for them in the folder on your external drive. This will result in dead listings with exclamation marks if you try to play them. See this answer to remove dead listings: Verify that entries in iTunes are actually on disk.
+Now go to iTunes > Preferences... and to the Advanced tab again. Uncheck Copy files to iTunes Media folder when adding to library. Choose File > Add to library... and select the media files that you moved to your internal drive.
+Cheers.
+For the record, it is also possible to have more than one iTunes library and choose which one to load when starting iTunes. The above solution allows you to have one library with files at different locations.
+
+A: Where is the iTunes library directory?
+Default location:
+
+/Users/username/Music/iTunes
+
+You can also find it out by Right click on any song in your music library and selecting the "Get Info" option.
+Yes. You can copy it to an external HDD and define the new location in iTunes preferences.
+
+Preferences > Advanced > iTunes Media folder location
+
+AFAIK it is not possible to have multiple libraries.

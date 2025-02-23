@@ -1,0 +1,20 @@
+Q: Can't switch theme in MacVim I recently installed MacVim along with Janus. When I'm inside macVim I can change my color scheme with :color freya but if i restart MacVim the them is reverted back to ir_black. I've added freya to my .vimrc.local, but it doesn't help.
+Also added the following: set term=xterm-256color 
+I'm using Lion and I've got a bunch of themes in ~/.vim/colors
+
+A: Are you sourcing your .vimrc.local by hand? That is not a standard file. MacVIM will read your ~/.vimrc and ~/.gvimrc. I'd suggest you keep your syntax settings in .gvimrc for MacVIM unless you want to use them in your terminal as well.
+If you want to keep a generic .gvimrc that is shared by multiple systems and set your color only for this machine in .gvimrc.local you can put the following at the end of your ~/.gvimrc
+" Allow for local machine-specific modifications
+if filereadable($HOME . "/.gvimrc.local")
+  source ~/.gvimrc.local
+endif 
+
+
+A: GUI-based instances of Vim source .vimrc and then .gvimrc, so anything in the latter can potentially override anything in the former.
+The Janus .vimrc does a color desert and
+its .gvimrc does a color ir_black.
+Since .vimrc.local is sourced by Janus’s .vimrc as a final step, its settings can be (in this case, are being) overridden by Janus’s .gvimrc.
+To override the color ir_black from Janus’s .gvimrc, you need to put your color freya in your .gvimrc.local (which Janus’s .gvimrc sources as a final step—if it exists and is readable).
+
+A: MacVim is a graphical version of Vim, so it can have a graphical config file (.gvimrc) as well as the regular .vimrc.
+Have you tried putting your color setting in .gvimrc, or seen whether it has a conflicting setting?

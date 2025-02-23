@@ -1,0 +1,8 @@
+Q: Change OSX Folder Icons (Working on OSX Lion) I have a certain PNG I'd like to replace a folder icon with. 
+I noticed that when i Command-I this .png file, it will preview on the bottom, but not on the top left part (generic ".png" text appears instead).
+I also noticed that only images that DO appear on the top left side of the "Get Info" window can be successfully Command-C'ed + Command-V'ed into my target folders' "Get Info" top left area - so that the image is replaced.
+My question: is there some kind of standard for images that makes or breaks their compatibility with changing a folder's icon? 
+
+A: Any image can be used to create an icon for a folder. The problem is that you're trying to copy the image from the Finder's preview. Not all images are saved with a preview like that, so you can't always use that as a source.
+Fortunately, there's a good way around that. When you copy that icon, all you're copying is the image data. You can also do that by opening any image in Preview, selecting all (cmd+a), and copying. Go to your folder's Get Info window, select that icon at the top right, and paste.
+I tested, and this works on Lion.

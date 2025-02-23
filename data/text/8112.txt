@@ -1,0 +1,12 @@
+Q: How can I configure autofs with indirect map using sshfs? How can I configure autofs with an indirect map using sshfs?
+What I've done so far:
+
+
+*
+
+*added /servers auto_sshfs to /etc/auto_master
+
+*created /etc/auto_sshfs with * -fstype=sshfs &:/
+
+*Ran sudo automount -vc
+I'm assuming that either I have fstype flag incorrect, in the wrong place or I some how need to let autofs know of sshfs. 

@@ -1,0 +1,7 @@
+Q: Is it possible to install both Xcode 3 and 4 side-by-side, alternate use either one or the other  I've got a handle on how to install Xcode 3 and 4 on the same machine (running OS X < 10.7), so I'm looking more how to manage this environment.
+Rather: is it possible to enter some shell command to "point" to the Xcode version you would like to use for a certain task?
+For example, some packages in Homebrew seem to have issues with Xcode 4 compilers (multiple -arch flags not supported any longer etc.). So, when I want to brew install something, I would like to use the old Xcode 3 gcc suite. But when doing actual Cocoa development, I  would rather like to use Xcode 4.
+RVM also does a nice job of managing work in multiple environments. I think, newer Linux distributions offer a tool called update-alternatives to achieve such a goal. Just to give you more of an idea of what I am talking about.
+Similar to running both simultaneously except I'm looking to use them sequentially.
+
+A: I believe you can only have one version of the command-line tools installed at the same time, and I believe it says this during the installation process, so you won't really be able to switch between them.

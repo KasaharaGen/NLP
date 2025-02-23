@@ -1,0 +1,9 @@
+Q: How can I stop spaces from switching automatically? I will often use Spaces on Mac OS X 10.5 to switch to another space when a program is busy / unresponsive. Very often, without warning or apparent reason, Spaces will switch back to the first space without my requesting it to do so. Why does it do this and how can i stop it? How can I make spaces only switch in response to my requests?
+
+A: Stop Spaces from switching spaces due to an app coming to the foreground:
+defaults write com.apple.Dock workspaces-auto-swoosh -bool NO && killall Dock
+
+Or via the GUI: System Prefs > Spaces and then uncheck the checkbox at the bottom: "When switching to an application, switch to a space with open windows for the application"
+Stop (slow down) Spaces from switching spaces if your mouse presses against the edge of the desktop:
+defaults write com.apple.dock workspaces-edge-delay -float 60 && killall Dock
+

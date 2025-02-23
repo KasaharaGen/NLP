@@ -1,0 +1,14 @@
+Q: Weird chrome icon on my macbook pro? I am using MacBook pro. I have this weird chrome icon:
+
+I dont know if its the official chrome icon, but it looks damaged or spoiled to me. If you are also using chrome on your macbook, does your icon looks like mine too?
+
+A: I would suggest reinstalling Google Chrome rather than going to the trouble of manually replacing the icon. Download it here.
+Oh, and to restore all your bookmarks, history, etc., go to Prefs>Personal Stuff>Sync. Login with your Google Account and ta da! All your bookmarks and data are synced. Then, when you reinstall Chrome, login again, and all your data will be restored.
+
+A: Definitely not normal. Given that it appears normally in your dock, it suggests that maybe one of the larger size icons (there are typically several different sized icon files in the .app bundle) is corrupt. You could either reinstall Chrome (which should keep your preferences intact, but it's best to back them up just in case), or you can redownload it, but not reinstall, and manually replace the icon files.
+To manually replace the icon files, you'd want to open up the app bundle (right/command-click > Show Package Contents) for both your installed version and the one from the downloaded .dmg and copy the applicable .icns file from the downloaded version to your installed version. That file should be in the Resources folder of the package contents. Looking at my Chrome install suggests you probably want app.icns, but double check, QuickLook should show you what's what.
+
+A: I would bet that the problem lies in Lion somewhere.  Your Dock icon and the Chrome icon in your app folder look fine.  It is only in Launchpad that you have the problem.
+Try this:  Delete the icon in Launchpad, because that is where the error is.  That will probably delete Google Chrome.
+Restart or logout then back in.  If necessary, re-install Chrome.  Now add it to Launchpad if it is not already there.
+Please post the result of whatever you try and what succeeded.

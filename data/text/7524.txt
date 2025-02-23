@@ -1,0 +1,34 @@
+Q: Need to create a common workspace between two macs connected wirelessly in a network I need to create a common development workspace between two macs connected in a wi-fi network. Sort of like a shared folder. But the problem using a shared folder is that there are a lot of ownership issues and stuff. The ownership can be for both or an individual mac. Any ideas ?
+
+A: It might be worth your time to learn how to handle the "ownership issues and stuff".
+I do not have a definitive answer, but it is possible to attach an external hard drive to a Mac and to instruct the OS of that Mac to ignore all file permissions/privileges on that external hard drive. If those files and folders on that external hard drive are then shared over the network, (I do not know for certain) it may be possible that another user on another Mac across the network might also access those files without regard to the permissions assigned to them by default.
+Try this:
+In the Finder, mount the external drive and choose File: Get Info. In the Info window, at the bottom, click on the Lock button, authenticate, and check the box next to "Ignore ownership on this volume".
+
+While we are examining this, here is how to give your coworker full privileges to access a shared folder or volume that is on your Mac or attached to it.
+Under System Preferences: Sharing, enable File Sharing and add that specific volume to the Shared Folders list using the plus button under Shared Folders: For good measure, manually add your co-worker's name and password under Users: and give them Read & Write privileges.
+
+
+
+Finally, there is a freeware graphical utility that you can use to change all file permissions on a file or folder without needing to use the command line or the Finder's Get Info windows. It is called BatChmod. However, using it can have unintended consequences if you do not have a good understanding of how Mac permissions work. Use this utility carefully and avoid using it on the contents of entire folders if you are uncertain as to what you are doing.
+
+
+A: How close are the computers? depending on the environment it might also be useful to see if synergy can help improve your works station. 
+http://synergy-foss.org/
+Also Dropbox is good or cloudApp for quick uploads and syncs of data. If your computers are on the same wifi you can just setup Shared folders and access limited by accounts. At work I have two iMacs that share files via all these options. System Preferences > Sharing > File Sharing . Then just add the folders you want to share and set the users that will have access and what these users can do with the folders.
+
+A: This is kind of taking the long way around, but if the data is not sensitive you could use a Dropbox shared folder.
+
+A: This is exactly the scenario that version control systems, like GIT, are designed to handle. Even after you overcome the file permission/ownership issues, you still have the problem of managing changes.
+Direct from the GIT Reference Manual:
+
+Many people’s version-control method of choice is to copy files into
+  another directory (perhaps a time-stamped directory, if they’re
+  clever). This approach is very common because it is so simple, but it
+  is also incredibly error prone. It is easy to forget which directory
+  you’re in and accidentally write to the wrong file or copy over files
+  you don’t mean to.
+
+Sound familiar?
+Your best bet is spend a small amount of time to download and learn GIT which will not only solve the current problem of "checking in/out files" but probably a number of issues you are running into and don't know yet.
+They even have a 15 minute online primer - Learn GIT in your browser - so you can be up and running pretty quickly.

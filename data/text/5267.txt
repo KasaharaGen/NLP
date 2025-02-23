@@ -1,0 +1,47 @@
+Q: How do I add a new route to the PATH variable? Although this question is being answered many times, I could not find any help from previous posts, so here it is again.
+I have tried to add a new route to PATH variable with no success. 
+I have added the following command: 
+export PATH=$PATH:/usr/local/zend/share/ZendFramework/bin
+
+to this files one at a time: ~/.profile, ~/.bash_profile, ~/.bashrc
+After starting a new Terminal session I type
+env
+
+but the PATH variable never show the changes.
+EDIT:
+Seems that none of this files are being read when opening terminal, other routes where in this files and they are not being added either. On starting terminal I get this message "-bash: : command not found". If I execute
+source ~/.profile
+
+I get the route added to the PATH but it does not keep for the next Terminal session. How can I test what is happening on Terminal startup?
+This are the contents of the files:
+~/.profile
+export PATH=/applications/MAMP/bin/php5.3/bin/:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export MANPATH=/opt/local/share/man:$MANPATH
+export PATH=/usr/local/zend/share/ZendFramework/bin:$PATH
+
+~/.bashrc
+export PATH=$PATH:/usr/local/zend/bin
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/zend/lib
+
+~/.bash_profile is empty
+None of the routes in any of them are displayed after typing
+env
+
+in Terminal.
+
+A: well first off you only really need it in  ~/.bash_profile if you have one.
+Second opening a new terminal session without quitting terminal app will not source the  ~/.bash_profile file.
+You can just type "source  ~/.bash_profile" in the terminal and it should pick up your new settings.
+Or quit terminal.app and restart it.
+
+A: Try changing the export to:
+export PATH=/usr/local/zend/share/ZendFramework/bin:$PATH
+
+in your ~/.profile
+
+A: The problem is in how you are testing the changes.
+Run the following command in Terminal to test your changes.
+source ~/.profile
+Once it looks correct, start a new window and re-verify the settings.
+Every time you run the source command it will add the same path to your $PATH variable.

@@ -1,0 +1,7 @@
+Q: How can I retrieve files cached in the RAM? there are some applications that don't write cache files on the disk, instead they write into the RAM directly and thus you can't back it up, analyse it or do anything with it.
+How can I retrieve (that is, save on the disk) the files they are caching in the RAM ?
+I'll take any method: utility, script, Terminal command…
+P.S. not sure if I should ask here or at superuser
+EDIT: posted on superuser
+
+A: Run sysdiagnose on the process ID and look over the leaks and allmemory commands to get a feel for the syntax. You will need to know a lot about the data structures for this to be feasible. With that, you can drop the program into the debugger and dump the required data structures to screen. 

@@ -1,0 +1,52 @@
+Q: Is bash in OSX case-insensitive? Are bash commands on OSX case insensitive? I type "which TR" and it shows /usr/bin/TR, though there is no such binary there. Same thing for other binaries, when capitalized. Or is Terminal.app maybe doing this translation? How do I turn this off?
+
+A: I managed to fix this with one line by following http://blog.nickburwell.com/blog/2008/11/mac-os-x-terminal-case-insensitive-auto
+echo "set completion-ignore-case On" >> ~/.inputrc
+
+
+A: Take a look at your filesystem, as there are both case sensitive and case insensitive variations on HFS.  The default is case insensitive, in which case it's not so much a case of BASH, but the underlying filesystem.  You can test this by formatting a spare USB stick with the case sensitive option, and copying files over ato repeat your test, etc.
+
+A: It's your file system thing.
+I'm using APFS, it's also case insensitive but case-preserving. This post provides a good explanation about H(ierarchical)FS and APFS.
+#include <sys/stat.h>
+#include <iostream>
+        
+int main(int argc, char **argv) {
+    struct stat sb;
+    int ret = stat(argv[0], &sb);
+    std::cout << ret << std::endl;
+}
+
+output of this program using stat:
+$ ./a.out ./test_dir/cat.png
+0
+$ ./a.out ./test_dir/caT.png
+0
+
+a simple bash test
+$ cp cat.png caT.png
+cp: caT.png and cat.png are identical (not copied).
+
+As for bash, I believe it's also case insensitive on Mac OS if you are using the default HFS or APFS since command executable is also a file and when you type a command name, the name is used search through search PATH to find that file to be executed.
+$ echo x X
+x X
+$ eChO x X
+x X
+
+
+
+A: This is actually a feature of the filesystem of your disk, not bash or Terminal.app.
+HFS+ (the Mac filesystem) is usually configured to be case insensitive but case preserving. This means that the file system will consider foo and FoO to be the same, but when you create a new file it will remember which letters where capitalized and which were not.
+When you format a disk with HFS+ you can chose whether the file system should case sensitive or not. If you chose to format with UFS (Unix FileSystem) it is always case sensitive, AFAIK.
+To check whether a disk is case sensitive, run:
+ diskutil info <device>
+
+For example:
+ diskutil info disk0s2
+
+Look for the Name: line. If it reads something like Mac OS Extended (Case-sensitive, Journaled) it means that it is case-sensitive. If it just reads Mac OS Extended (without the Case-sensitive) then it is only case preserving but not case sensitive.
+
+A: Bash is definitely case sensitive. 
+I just typed whoami into terminal and the caps lock button was on.
+I got a completely different response from WHOAMI.
+I can see there is a WHOAMI command with which but I can't find it with ls.

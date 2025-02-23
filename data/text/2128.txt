@@ -1,0 +1,17 @@
+Q: What port does Skype for iPhone use? I want to set up Skype to have priority on my router whem I'm skyping from my iPhone, but I can't figure out which port the app uses.
+Any ideas?
+
+A: It seems that it's port 80 and port 443.  See this article on blocking of Skype 3G traffic
+www.bluecoat.com/doc/486
+
+A: Skype and firewalls
+
+Ideally, outgoing TCP connections to
+  all ports (1.65535) should be opened.
+  This option results in Skype working
+  most reliably. This is only necessary
+  for your Skype connection to be able
+  to connect to the Skype network and
+  will not make your network any less
+  secure.
+

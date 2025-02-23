@@ -1,0 +1,104 @@
+Q: Looking for a good SSH apps for iPhone I have been using a free SSH app on my phone for a little while but stopped because using VIM mostly broke it. Now after some updates I seems to have a limited number of key strokes before it expires. So now seems like a good time to shop around.
+There are the requirements:
+
+
+*
+
+*Can emulate color
+
+*Can run VIM, though being able to run EMACS would be cool too.
+
+*It does not have to be free.
+
+*it must run on a non jail broken phone.
+
+
+What is everyone else using? What do you suggest?
+
+A: I like iSSH. It's been around a long time and is a high quality emulator. It's usable on an iPhone screen and quite nice on an iPad screen. It even has a workaround for using the Control key on an external Bluetooth keyboard. I also tried Prompt right when it was released and found it not as solid, although it's had a lot of improvements since then.
+
+A: Being the fanboy that I am, I completely admit that I am absolutely in love with Prompt (by Panic). It's already come a long way since it's initial release, and here's a few wonderful features;
+
+
+*
+
+*It's not cluttered. They provided an app that offers what you need out of an SSH client and added a few bonuses that make it so much more worthwhile.
+
+*Command, and parameter, auto-completion. (Oh my god this is amazing.)
+
+*Public/Private key authentication support. Well documented, and also quite improved in recent versions with regard to how to load the actual key.
+
+*Leveraging the amount of free space in the meta key bar, you can assign 4 "favorite special character keys", so pick the ones you use most often so you rarely have to hit the 123 keyboard key, or worse, the #+= key. I currently have /\.- chosen.
+Prompt is $8 (universal app!) on the iTunes App Store.
+
+A: Try Server Auditor. It's the best terminal for using Emacs from your iPhone. It allows to do C-x C-s without pain. It's also available on Google Play.
+
+A: I've been using Panic's Prompt.  It does color, SSH keys (including PEMs, if you've got a need to work with EC2), runs Vim and Emacs just fine, and most definitely works beautifully on a non-jailbroken phone.  The soft keyboard also provides convenient access to escape, tab, and other keys that you need frequently when you're working with a terminal.  Properly configured, Prompt also provides superb auto-complete that actually makes using a terminal on an iPhone palatable.  Alternatively, Prompt works great with a Bluetooth keyboard--a combination that has proved excellent when I'm on the road and something goes wrong with a server.
+Plus, Prompt is a universal app, so if you've got an iPad, you can use the bigger screen when you've got it, and still rely on the iPhone's size when you don't.
+My only complaint is that Prompt can be a bit slow.  I'm not sure how much of that is Prompt's fault, and how much of that is my cell phone's network not being quite up-to-snuff.  But the slowness hasn't honestly 
+
+A: Panic's Prompt is noticeably much slower than iSSH. If that doesn't bother you, it's a nice, simple SSH terminal app.
+
+A: Theres a new one called RapidSSH that is pretty good 
+
+
+*
+
+*Supports SSH Agent and Agent Forwarding
+
+*Really easy and comprehensive key management
+
+*Supports multi-session and has good cut and paste slide out
+
+*Integrates with Dropbox so you can get big lumps of text into, and log files out of the app really easily.
+
+
+Also has loads of other features which I dont really use, but as OP requested- it runs vIM, does ANSI colour, emacs is not that good, isn't free but very cheap and runs on non-jailbroken phones fine.
+
+A: try xCute - a new and existing SSH app for iPad / iPhone
+Quotation from xCute web page:
+
+Sending commands to a server can be as simple as sending a text
+  message to a friend. 
+   Remote SSH asynchronous execution.  
+
+   Results displayed back. 
+
+   Persistent host details.   
+
+   User defined sets for keyword colouring output.   
+
+   Scripts for one touch execution.   
+
+   iCloud on demand synchronisation.   
+
+   Global or on a per user/server secure connections.
+
+
+The application is available in English, Spanish and French
+Extremely easy to use, just type a command or chose from your own list of scripts, and hit send.
+Changing server is also extremely easy.
+I like the colouring output, one can distinguish easily between commands and output, and can selectively colour words in the output which help my presentations which I can email with all that formatting.
+
+A: My experience with iSSH is that it has quite a lot of ui bugs. Input disappearing behind the keyboard and such. Also the ui is not really ios standard.. It has got me searching for alternatives a few times. (Why I'm here)
+Other than that, good client. Also does VNC quite good.
+
+A: Why not try ssh term pro? It best in many case than above apps 
+
+A: vSSH - advanced ssh and telnet client for iPhone and iPad. In addition to standard iOS ssh client functions (background work, port forwarding, key forwarding, unicode and pseudographics support, sessions logging) has the following unique features:
+
+
+*
+
+*Touch screen gestures (configurable, simulates arrow Pg Up/Down and other key combination)
+
+*Extended keyboard (configurable, F1-F20, Ctrl, Alt, Ins, Pg Up/Down and other keys)
+
+*Full-featured external (bluetooth) keyboard support (including modifier keys)
+
+*iCloud sync between all iOS devices as well as OS X app version
+
+*Macros support (you shell scripts as menu items for quick access)
+
+
+Free lite (with Ad) version is available.

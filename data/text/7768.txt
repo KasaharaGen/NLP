@@ -1,0 +1,16 @@
+Q: Is there any way to hook up a U3011 30" (2560x1600) monitor to my MBP? My MBP (GeForce GT 330M) seems to recognize my Dell U3011, but I've run into the following:
+
+
+*
+
+*Mini-DP to VGA adapter to monitor: Supports up to the VGA max of 2048x1280 just fine.
+
+*Mini-DP to DP adapter to monitor: Flickering to the point where it's dark 98% of the time.
+
+*Mini-DP to monitor using M-M Mini-DP to DP cable: Supports up to 1600x1200 fine, but silently fails (nothing shows up on the monitor above that).
+
+
+I've borrowed a co-worker's $100 Apple dual-link DVI adapter and that works fine, but I'd like not to spring for one and just have the DisplayPort work like it should. Is there anything I can do? The Mac doesn't seem to complain; it just fails.
+
+A: I have a Dell U3011 running at 2560x1600 (native resolution) connected via a mini-dp to dp cable. This is working correctly on both my MBP mid 2009 with a NVIDIA GeForce 9400m and a  MB Air mid 2011 with an Intel HD 3000. Both computers can detect that they are connected to a Dell U3011 and allow me to choose the native resolution.
+I am using a mini-display port to display port cable purchased at monoprice with product id 6007. The specs state that it is display port version 1.1 (8.64 Gbps) capable. Maybe the mini-dp to dp cable you are testing with does not have enough throughput?

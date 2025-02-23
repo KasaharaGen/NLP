@@ -1,0 +1,15 @@
+Q: Link formatting in Automator's New Mail Message I would like to send an email with automator and have a link that shows a couple words (for e.g. name of the site) instead of the whole URL like you can do with the add link inside of Mac OS.  I have tried just writing the link as HTML as shown below but that didn't work.  Is this possible?
+<a href="http://foo.com">foo</a>
+
+
+A: This is not possible.
+Mail's AppleScript API also does not allow for proper RTF mail. The following fails to create a proper mail body with links and everything, something clearly there in /Developer/Applications/Utilities/Clipboard Viewer (part of Xcode 4):
+tell application "Mail"
+    set theRTF to the clipboard rule «class rtf »
+    set msg to make new outgoing message with properties {subject:"Test", content:theRTF}
+    make new recipient at end of to recipients of msg with properties {address:"danielbeck@example.org"}
+    send msg
+end tell
+
+
+You can try to use GUI scripting to copy&paste rich text using the clip board and the actual Copy/Paste menu items.

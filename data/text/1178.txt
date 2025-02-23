@@ -1,0 +1,102 @@
+Q: What tools are there for measuring Macbook wireless strength? I often have trouble connecting to wifi with my MacBook Pro. To help identify the problem, I was wondering if there were any tools for measuring wireless signal strength.
+
+A: You can get quite a bit of info from the command line, with the (well-hidden) airport utility.  With the -I flag it'll tell you about the current network:
+$ /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I
+     agrCtlRSSI: -43
+     agrExtRSSI: 0
+    agrCtlNoise: -96
+    agrExtNoise: 0
+          state: running
+        op mode: station 
+     lastTxRate: 130
+        maxRate: 130
+lastAssocStatus: 0
+    802.11 auth: open
+      link auth: wpa2-psk
+          BSSID: 0:24:1:0a:42:93
+           SSID: My Wireless
+            MCS: 15
+        channel: 5
+
+...and -s will show more info about other visible networks:
+$ /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s
+                            SSID BSSID             RSSI CHANNEL HT CC SECURITY (auth/unicast/group)
+                     My Wireless 00:24:01:fa:42:93 -44  5       Y  -- WPA(PSK/TKIP,AES/TKIP) WPA2(PSK/TKIP,AES/TKIP) 
+                          hobbit 00:15:05:19:8a:03 -86  7       N  -- WEP 
+                     My Wireless 00:24:01:ef:91:ab -75  3       Y  -- WPA(PSK/AES,TKIP/TKIP) WPA2(PSK/AES,TKIP/TKIP)
+
+It doesn't have a man page, but if you run it without any options it'll list its options.
+
+A: System Profiler will list available Wireless Networks as well as the following information
+NetworkName:
+  PHY Mode: 802.11n
+  BSSID:    c0:3f:e:df:1b:be
+  Channel:  6
+  Network Type: Infrastructure
+  Security: WEP
+
+
+A: If you find that your connection problems occur in the same location, you could use a tool like NetSpot that would let you visually see areas of low signal. NetSpot is free and available within the App Store.
+See below for an example of how a map of your apartment's wifi signal could look.
+
+(source: netspotapp.com)
+Macworld reviewed Netspot and published a brief tutorial last year about how it could be used.
+
+A: Another, out-of-the-box way (at least on Mountain Lion):
+
+
+*
+
+*Click on the Apple (top left)
+
+*About this Mac
+
+*More Info
+
+*System Report
+
+*WiFi
+
+
+This will show you all the info you want for all the networks in range, without needing to install additional software.
+
+A: I typically use WiFi Explorer. Its newer than iStumbler and provides the following features:
+
+
+*
+
+*Easy-to-use, intuitive user interface.
+
+*Graphical visualization of the wifi environment.
+
+*Works with 802.11a, b, g and n wireless networks.
+
+*Supports 2.4 GHz and 5 GHz frequency bands as well as 20 and 40 MHz
+channels.
+
+*Signal quality estimations based on signal-to-noise ratio (SNR).
+
+*Accurate conversion from dBm to percentage (%) for easier analysis
+and optimization.
+
+*Export metrics and network details to CSV file format.
+
+*Full screen mode (10.7 or above).
+
+*Comprehensive help.
+
+*Runs in Snow Leopard, Lion and Mountain Lion.
+
+
+It's available in the Mac App store. It's priced at .99 cents. Developers are responsive to questions.
+
+
+A: If you're just looking for a quick signal strength number, option-click on the AirPort icon in the menu bar. Under the connected network you will see several pieces of information:
+
+RSSI is your signal strengh in dB. Higher (closer to 0) is better.
+If you're looking for noise or the signal strength for multiple access points, I suggest checking out iStumbler:
+
+
+A: 
+Is this useful ?
+I am actually in a relatively small village, not in New York, or LA :)

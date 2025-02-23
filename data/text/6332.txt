@@ -1,0 +1,146 @@
+Q: Ukelele generated custom keyboard layouts not working in Lion? I created a custom keyboard layout with Ukelele (http://scripts.sil.org/ukelele) in Snow Leopard (idea is to generate scandinavian letters with Alt-key, otherwise have a pretty much standard U.S. layout).  After the upgrade, the old installed (to ~/Library/Keyboard Layouts) layout wasn't working.
+Ukelele seems to work OK in Lion, but whether I put the generated keylayout in a bundle or single file, or save it "/Library/Keyboard Layouts" or "~/Library/Keyboard Layouts" doesn't seem to matter.
+Help?
+EDIT:
+@Sergio, I cannot choose the layout in Input Sources.
+One keylayout file I tried: http://semeai.org/~sjl/us-scands.keylayout
+BTW Off-topic: I don't know if I'm going blind or something, but I can't seem to locate the Library directory in Finder.  I need to copy stuff to and fro from my home directory.
+UPDATE:
+I've been trying to get this work on my machine for a few hours now and I just thought to try out with a random layout from the 'net; http://colemak.com/Mac was the first to hit the radar.  I did the same thing as with my layout, saved it under Library, and it shows under Input Sources.  My layout still doesn't.  I'll try to create a layout from scratch, see if that helps.  BTW, apparently "New from current input source" in Ukelele is broken in Lion.
+UPDATE 2011/08/15:
+@Tom:
+Copied your keylayout (it naturally ended up in my Junk folder):
+midgard (01:55) >ls -l ~/Library/Keyboard\ Layouts/MongolianQWERTY.keylayout
+-rw-r--r--@ 1 sjl  staff  44536 Mar 13  2008 /Users/sjl/Library/Keyboard Layouts/MongolianQWERTY.keylayout
+
+Logged out, logged in, isn't showing in Input sources (I'm looking very closely between "Maori" and "Myanmar - QWERTY").
+I've also uninstalled bunch of software and plugins giving suspicious messages to system.log, but hasn't helped.
+UPDATE 2011/08/16:
+I created a test account, and lo, the layout works perfectly for it.  Also the bug in preferences doesn't show for that account.  When trying this on my own account, there are no errors in Console logs with the suggested keywords (I can't seem to locate console.log file, though).
+UPDATE 2011/08/16 later: 
+Nuking Library/Caches (and relogging) didn't help.
+UPDATE 2011/08/17:
+I did
+% find Library -name "*.plist" -exec mv {} {}.renamed \;
+
+and restarted, but it didn't help.  I restored the situation with
+% for file in `find Library -name "*.plist.renamed"`; \
+  do mv "$file" "${file//.renamed/}"; done
+
+addendum: I also went through all the .plist files with plutil -s as described in http://www.askdavetaylor.com/can_i_check_my_plist_files_in_mac_os_x_for_problems.html.  There was some brokennes, but in very unrelated applications.
+UPDATE 2011/09/10:
+I went the extra mile and moved my whole Library away using another account, login in with my own account and observing stuff still not working.  I have copied the layout to /Library/Keyboard Layouts, from where it works for a test account, but not for my own.  Also, if I delete all the custom keylayout files, from everywhere, the Character Viewer and the Keyboard Viewer appaer as selectable to the Input Sources menu and also show under the International menu in the menubar.  As soon as I copy a keyboard layout to Library (home or system), the viewers disappear from both the menu and the Input Sources.
+Any ideas how I could get more information from the system? I tried Command-V on boot for verbose boot but that didn't give any extra information for this issue.
+SOLUTION FOR POSTERITY:
+Adapted from http://support.apple.com/kb/TS1896?viewlocale=en_US for Lion:
+sudo rm /System/Library/Caches/com.apple.IntlDataCache*
+sudo find /var/ -name "*IntlDataCache*" -exec rm {} \;
+
+Restart.
+
+A: The layout you gave the link to works fine for me.  Are you sure that your copy of the file ends only in .keylayout and not .keylayout.xml or something else?  You have done logout/login after installing it, right?
+
+A: Your layout worked for me after:
+
+
+*
+
+*Downloaded the file you provided. (⌘ is my bash prompt)
+~/Downloads  
+⌘  wget http://semeai.org/~sjl/us-scands.keylayout
+--2011-08-13 23:44:27--  http://semeai.org/~sjl/us-scands.keylayout
+Resolving semeai.org... 217.30.177.5
+Connecting to semeai.org|217.30.177.5|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 48265 (47K) [text/plain]
+Saving to: `us-scands.keylayout'
+
+100%[======================================>] 48,265      32.1K/s   in 1.5s    
+
+2011-08-13 23:44:29 (32.1 KB/s) - `us-scands.keylayout' saved [48265/48265]
+
+~/Downloads  
+⌘  ls
+us-scands.keylayout
+
+~/Downloads  
+⌘  md5 us-scands.keylayout 
+MD5 (us-scands.keylayout) = 9197c43c426151cd03f524a766107b49
+
+
+*Dropping it in the ~/Library/Keyboard Layouts folder 
+~/Downloads  
+⌘  mv us-scands.keylayout ~/Library/Keyboard\ Layouts/
+
+At this point, it was already listed in Input sources:
+
+*Selecting it in the input sources list on the 'Input Sources' tab on the
+'Language & Text preference pane' in System Preferences 
+
+
+
+*Loggin out and logging in again.
+
+*Selecting it as the current layout on the input menu.
+
+
+Are you sure you are not missing any of those steps?
+My specs:
+
+
+*
+
+*15" MacBook Pro, early 2011 (thunderbolt). 
+
+*Mac OS X 10.7 upgraded from Snow Leopard (clean Snow Leopard installation before upgrading to Lion). 
+
+*Spanish International built-in Keyboard. I have never used an external keyboard on this Mac.
+
+
+According to System Profiler:
+        Apple Internal Keyboard / Trackpad:
+
+          Product ID: 0x0246
+          Vendor ID: 0x05ac  (Apple Inc.)
+          Version: 1.08
+          Speed: Up to 12 Mb/sec
+          Manufacturer: Apple Inc.
+          Location ID: 0xfa120000 / 5
+
+
+A: According to Apple's Technical Note TN2056:
+
+After installation, an XML keyboard will become available in the Input Menu pane of International Preferences if no errors were encountered in compiling it. If there is an error in the file, an error message will be written to console.log, prefixed by "uchr XML compiler." If the error is an XML syntax error, the line in the file where the error occurred is given. Usually, only the first error encountered is diagnosed, and parsing is aborted.
+
+Have you tried opening Console (in Applications/Utilities) and see if there is message containing 'uchr XML compiler' after installing the keyboard layout or after logging in?
+
+A: Try this fix which Apple published when the keyboard viewer and character viewer used to disappear in 10.5:
+http://support.apple.com/kb/TS1896?viewlocale=en_US
+
+A: My problem was that my new custom keyboard layout would work in many apps - Spotlight, Sublime Text, the Terminal etc. - but not in many built-in apps such as TextEdit or Mail. The final point in the original question finally solved this issue for me:
+sudo rm /System/Library/Caches/com.apple.IntlDataCache*
+sudo find /var/ -name "*IntlDataCache*" -exec rm {} \;
+
+
+A: If you can't switch to a custom keyboard layout that works fine on a different computer, it may be related to the quarantine attributes applied to the files copied to the new system.
+To check if that's the case:
+$ find ~/Library/Keyboard\ Layoutse -type f -exec xattr -l {} \;
+com.apple.quarantine: 0082;61e7e8e7;Screen\x20Sharing;
+com.apple.quarantine: 0082;61e7e8e7;Screen\x20Sharing;
+com.apple.quarantine: 0082;61e7e8e7;Screen\x20Sharing;
+com.apple.quarantine: 0082;61e7e8e7;Screen\x20Sharing;
+com.apple.quarantine: 0082;61e7e8e7;Screen\x20Sharing;
+
+To remove them:
+$ find . -type f -exec xattr -d com.apple.quarantine {} \;
+
+
+A: I love ukelele.
+in lion last macbook pro, did not work as usual.
+the extension .keylayout seems not to work.
+it worked finally with the bundle, which you get in ukelele by saving bundle.
+it then has to be copied in the library/keyboardlayout with option key, otherwise it will be an alias.
+hope this helps
+
+A: Use older stable Ukelele version 1.8.4. Not even restart is necessary.
+I have Mac 10.10.5 (Yosemite). Ukelele current version did not work even after I tried all possible suggestions from various forums. Finally I uninstalled current version of Ukelele and installed older stable version 1.8.4. Things worked like magic. No restart is necessary. You just save the new layout within Library/Keyboard Layouts. Then open keyboard preferences input sources. Add by clicking +. You should see the new layout in "Others".

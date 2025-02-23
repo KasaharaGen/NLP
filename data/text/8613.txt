@@ -1,0 +1,43 @@
+Q: How can I discover which files were deleted by `rm -rf`? I had a little problem when running a script: this script reads a config file on $HOME, and it had ~/Downloads inside it.
+Instead of saving a file inside ~/Downloads when I executed the script, since I executed it inside ~/Library, it created ~/Library/~/Downloads.
+Inside ~/Library, I did rm -rf ~. After 1-2s I realized my mistake and stopped using ˆ-C - it was deleting my $HOME.
+I know some files were deleted, but don't know which ones. Some hidden files (bash_functions, bash_aliases) were deleted and I had a backup, but some files on $HOME aren't backed up.
+I did a quick verification on my files (seeing the modified dates of the folder on $HOME), it seemed okay, but I know I can't trust my eyes using this approac.
+I know that if I change a file inside a Folder, Mac will change the "modified" flag for that folder, but only if a direct child of that folder was changed. Example:
+~/Downloads
+    - file.txt
+    /Mp3
+        - music.mp3
+
+So, if you change file.txt, ~/Downloads will have it's modified flag changed, but if you change music.mp3, ~/Downloads will not have it's modified flag changed.
+So here lies the problem: I don't know how rm -rf starts deleting my files. Is is sequentially? Is it in an arbitrary order? Could it be it started deleting ~/Pictures/Wedding and suddenly went do ~/Videos? I don't know. I believe it doesn't delete sequentially, so now I can have a really deep directory without important files after my rm -rfmistake.
+Is there some place on the mac where all deleted files with rm -rf are kept (just the filenames)? I didn't find anything like that, so I did
+find ~ -type d -mtime -1 > modified_folders.txt
+
+on my terminal since I did the mistaken rm -rf today. The result of the find command, the changed folders (if you delete a file, Mac changes modified flag of it's direct folder parent) seems to not have a "deep arbitrary" structure like ~/Pictures/Personal/Birthday/2010/Cake... can I then assume rm -rf didn't touch the wrong files and I were able to stop the armageddon just by stopping rm -rf ~ after 1-2s (so it deleted just some of the hidden files on $HOME)?
+(I have already restarted my machine, it's working fine. I'm on Snow Leopard, so tmutil isn't a solution I think...)
+(I already know some solutions to recover like TestDisk exist, but I'm trying to use it as a last approach (if I'm wrong in my assumptions about the find snippet).
+
+A: There is no way to know for certain exactly which files were deleted. There's no list stored, no trash can, this is unix (well BSD) and you don't get any nice second chances with rm -rf
+As you have seen though, you can infer what might have been deleted first by observing the rm command's behaviour.
+I created a folder with a few subfolders, including some with a period at the beginning of the name and threw a few files into each.
+The order is always alphabetical with the hidden, period prefixed directories getting deleted first.
+If you compare a backup with your directory structure, once you have moved through alphabetically and started to find files in the backup that are still on your main drive, I think you can rest assured that you haven't missed any other files.
+
+A: rm deletes the inode structure / directory entries without making a log. You would be saved if you have file auditing turned on, but that's not a default thing on Mac OS X.
+To my take of the situation described, you have the following options:
+
+
+*
+
+*engage an undelete software to attempt to find fragments of files or data that resembles file entries / inodes and filter those results for potential files modified in the time range of the rm.
+
+*compare the current directory structure with a recent backup (tmutil compare would be an ideal Lion tool, but you can use BackupLoupe or others if your backup is TimeMachine)
+
+
+A: 
+Is there some place on the mac where all deleted files with rm -rf are kept (just the filenames)?
+
+As others have already pointed out: no such place exists unless you happened to have your filesystem set up with auditing and snapshotting.
+However, you can use Time Machine to figure out what has changed. You were taking a regular Time Machine backup of your drive that held your home directory, right?
+If so: open up Time Machine for your home directory and go back in time to just before you ran the rm. You should be able to see files that have changed or are missing. And even restore them. It's not a great view in to the system, but it'll do in a pinch.

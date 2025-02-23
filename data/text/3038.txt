@@ -1,0 +1,31 @@
+Q: Mount & unmount volume notifications For the last month or so, I have been receiving notification windows in the upper right-hand corner whenever a volume is mounted or unmounted (i.e. portable hard drive, Time Machine, etc.) How do I turn these notifications off?
+
+A: If Growl is installed and you want to turn off just the notifications for volume mounts and dismounts (as opposed to getting rid of Growl altogether):
+
+
+*
+
+*System Preferences, Growl panel
+
+*Applications tab
+
+*Select HardwareGrowler from the list
+
+*Configure
+
+*Notifications tab
+
+*In the dropdown, for each notification (e.g. Volume Mounted) you want to disable:
+
+*Select it and untick the 'Enabled' box.
+
+
+(Edit:) Or, as fnurl points out, remove HG entirely.
+I find it useful enough to keep, but tweaked to my liking.  It alerts me if my WiFi starts bouncing, f/ex.  YMMV, as always.
+
+A: Check to see if you have Growl installed - it will be in System Preferences. Sometimes applications install it without your permission - even though the growl team explicitly don't allow it. Its safe though, I use and love the product.  
+
+A: I use HardwareGrowler to get these messages.
+Perhaps HardwareGrowler is launching at startup? If you do not want this, go to
+System Preferences → Accounts → Your Account → Login items
+and find HardwareGrowler and remove it from the list.

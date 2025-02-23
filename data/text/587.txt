@@ -1,0 +1,30 @@
+Q: Is there a way to downgrade a 2nd gen iPod touch from iOS 4 back to 3.1.3? Is there a way to downgrade an iPod touch (2nd gen) from iOS 4 back to 3.1.3?
+
+A: There are two ways. 
+The first way was if you backed up your SHSH blobs with Cydia. (you would know if you did this) During a software update, iTunes verifies the software with an Apple server to make sure it's a valid, Apple-approved release. With major upgrades now 3.x, 4.x, Apple has stopped signing older versions, so if you try to restore normally to an older SW version, the verification process will fail. 
+The tutorial above will register your specific device on Cydia's server, then force iTunes to verify there instead of Apple's servers. Unfortunately, if you didn't back up before you upgraded, this will not work.
+The other option requires some terminal work and downloading iRecovery, but it's not so bad. Here's a tutorial for it.
+
+A: On a second gen iPod Touch, just download the firmware (or find it if it is still on your system, but iTunes has a habit of deleting it), put your device into DFU mode, and shift-click restore on iTunes. A guide for DFU mode is available at iClarified
+Warning: You will lose all your data.
+
+A: Use Whited00r. It's super easy:
+
+
+*
+
+*gives you iOS 3.1.3
+
+*certain elements are skinned ala iOS 6
+
+*it's fast/quick
+
+*no SHSH blob requirements or any of that
+
+*download the zip containing an IPSW
+
+*option-click on Restore iPod in iTunes, select downloaded file
+
+*enjoy
+
+*tweak to get rid of additional items

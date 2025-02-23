@@ -1,0 +1,10 @@
+Q: Can I reduce how Mobile Safari refreshes web pages when multi-tasking or browsing in multiple tabs? Whenever i visit a page using the web browser, then i simply jump to other applications, when i come back to the page again, the web browser will reload the url.
+Is there anyway to make it such that if i come back to the page again, simply show me whatever was shown previously, without any reloads whatsoever.
+I've noticed this problem to occur when i was switching tabs in the web browser as well. let's say I have 3 tabs, then i was at tab 1. then later i jump to tab 3, I do not wish to issue a page refresh.
+How do we stop iphone from automatically performing all these annoying page reloads?
+
+A: What you're experiencing is the iPhone flushing pages from RAM to free up memory. There's no way to prevent this from happening, but some things that can alleviate it are keeping less pages open, and being mindful of the current number of apps that you're using that are taking up memory. As iOS needs memory for the current app, it'll kill off less recently used apps/pages.
+
+A: It is theoretically possible to change the virtual memory if you jailbreak the iOS, but even if you could, it might not be a good idea.
+What you can control is everything else. If you prevent the system from needing RAM by closing all of the other apps in the muti-tasking bar before starting safari, the chance that those web renders will get paged out of RAM is less.
+Do be aware, that the newer hardware has larger RAM - so the iPad 2 in practice keeps all 9 web pages in RAM much more regularly than the iPad will. If this is important, you will want to get devices with more RAM (test them in the store before buying) or severely control the apps that you do run.

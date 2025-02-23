@@ -1,0 +1,17 @@
+Q: How can I get Time Machine to back up the contents of a FileVault while logged in? Disclaimer: this question and answer are targeted to the Snow Leopard implementation of FileVault where the user home folder is only encrypted in a bundle. Lion's implementation of FileVault doesn't limit Time Machine thusly.
+I'm currently using Time Machine to back up my MacBook. However, I had to disable FileVault in order to be able to back up when I'm logged in (which is all the time). Recently, this decision has been nagging at me, and I've been looking for ways to re-enable FileVault or some other similar encryption while still retaining my ability to routinely back up via Time Machine or other similar backup scheme.
+I found a note on Wikipedia that it's possible to back up with FileVault if the destination is Mac OS X Server:
+
+With Mac OS X Server as a Time Machine destination:
+
+*
+
+*backups of FileVault home directories occur whilst users are logged in.
+
+
+Unfortunately, this tidbit is not externally sourced and I've been unable to find any other place where this is mentioned. Is this true? Does anyone have experience with it?
+If not, what other solutions are there, either for 'tricking' Time Machine to back up the contents of a FileVault, other Time Machine-compatible encryption systems, or FileVault-compatible backup systems? If it matters, I don't need to have the backup itself encrypted, just the MacBook.
+
+A: It is possible to backup your FileVaulted home directory with Time Machine while logged in. The files will be stored unencrypted in the Time Machine volume, just like other files. I've written a blog post explaining the whole process here.
+
+A: I've independently confirmed that you CAN actively Time Machine a FileVaulted OS X home directory to an OS X Server share configured for TM backup usage. Strangely, OS X gives you an error message saying it WON'T work when you turn on TM, but then it does. The workstation is running OS X 10.6.7, the server is running OS X Server 10.6.7. I haven't tested with any other versions of the OS.

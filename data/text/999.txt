@@ -1,0 +1,158 @@
+Q: "say" in different language? Are there voices in different languages installed in Mac OS X? E.g. spanish, french or slovak? (latest iPod Nano built-in voiceover has beautiful slovak voice, I'd like to try it on Mac OS X too)
+
+A: For Mac OS X 10.7, Swedish works pretty well by just downloading the Swedish voices using Preferences->System Voice->Customize and setting either as System Voice. It neatly nails even pretty peculiar Swedish words and spellings.
+No guarantee for other languages.
+
+A: As far as I know the only way to get a Mac to speak in another language is to get voice resources in your target language. A web site for French blind people recommends iVox.
+Sorry, no Slovak there I can see.
+
+A: Lion has many more voices, including Czech (Zuzana) and Slovak voice (Laura)!
+
+A: You can use the following command in the Terminal to get a list of all the available voices:
+say -v \?
+
+On my system the output looks like this with the voice name followed by the language abbreviation (I removed the comments):
+Agnes en_US
+Albert    en_US
+Alex  en_US
+Alice it_IT
+Alva  sv_SE
+Amelie    fr_CA
+Anna  de_DE
+Bad   News
+Bahh  en_US
+Bells en_US
+Boing en_US
+Bruce en_US
+Bubbles   en_US
+Carmit    he_IL
+Cellos    en_US
+Damayanti id_ID
+Daniel    en_GB
+Deranged  en_US
+Diego es_AR
+Ellen nl_BE
+Fiona en-scotland
+Fred  en_US
+Good  News
+Hysterical    en_US
+Ioana ro_RO
+Joana pt_PT
+Junior    en_US
+Kanya th_TH
+Karen en_AU
+Kathy en_US
+Kyoko ja_JP
+Laura sk_SK
+Lekha hi_IN
+Luciana   pt_BR
+Maged ar_SA
+Mariska   hu_HU
+Mei-Jia   zh_TW
+Melina    el_GR
+Milena    ru_RU
+Moira en_IE
+Monica    es_ES
+Nora  nb_NO
+Paulina   es_MX
+Pipe  Organ
+Princess  en_US
+Ralph en_US
+Samantha  en_US
+Sara  da_DK
+Satu  fi_FI
+Sin-ji    zh_HK
+Tessa en_ZA
+Thomas    fr_FR
+Ting-Ting zh_CN
+Trinoids  en_US
+Veena en_IN
+Vicki en_US
+Victoria  en_US
+Whisper   en_US
+Xander    nl_NL
+Yelda tr_TR
+Yuna  ko_KR
+Zarvox    en_US
+Zosia pl_PL
+Zuzana    cs_CZ
+
+This is an example on how to use say with a german voice, as suggested by scottishwildcat in the comments:
+say -v Anna 'Guten Tag!'
+
+In case you want to hear the example list, you can copy this for loop into your terminal, which will result in all installed voices speaking a text example:
+say -v \? | while read LINE
+ do
+  SPEAKER=$(echo $LINE | egrep -o "^[a-zA-Z\-]*[ ]?[A-Z][a-z]+")
+  TEXT=$(echo $LINE | egrep -o "#.*" | tr "#" " ")
+  echo $SPEAKER
+  echo -ne "This is voice $SPEAKER speaking the example text: \n" $TEXT | say -v $SPEAKER
+ done
+
+
+A: The voices included in Mac OS X 10.6 are optimized for english only. Even if you set your system language to anything different, it won’t work, because it will try to read with english pronunciation, causing funny wordings. Try saying “Hola” for spanish and you’ll see how it says: “hooola” as an english speaking person would read it. 
+
+A: It might be a bit hard to find the international for OS X Lion, this shows how...
+http://www.litebeam.net/litebeam/read4me/voices.html
+http://www.youtube.com/watch?feature=player_embedded&v=RUI5d5L_wr8
+
+A: Yes, with macOS Big Sur 11.3.1, several languages are pre-installed to be used with the say command in the terminal.
+You can check for the available voices in System Preferences > Accessibility. In the left pane, select Spoken content. From the System Voice drop-down menu, you can see the list of already installed voices. You can change here the default voice. Select Customise to add more voices and more languages. You can pre-hear these voices by clicking on the voice name and then clicking the Play button. Once you select new voices, click on OK and they will be downloaded. It might take a few minutes.
+You can use the following command in the Terminal to get a list of all the available voices:
+say -v'?'
+
+On my computer, this command outputs:
+Alex                en_US    # Most people recognize me by my voice.
+Alice               it_IT    # Salve, mi chiamo Alice e sono una voce italiana.
+Alva                sv_SE    # Hej, jag heter Alva. Jag är en svensk röst.
+Amelie              fr_CA    # Bonjour, je m’appelle Amelie. Je suis une voix canadienne.
+Anna                de_DE    # Hallo, ich heiße Anna und ich bin eine deutsche Stimme.
+Audrey              fr_FR    # Bonjour, je m’appelle Audrey. Je suis une voix française.
+Aurelie             fr_FR    # Bonjour, je m’appelle Aurelie. Je suis une voix française.
+Carmit              he_IL    # שלום. קוראים לי כרמית, ואני קול בשפה העברית.
+Damayanti           id_ID    # Halo, nama saya Damayanti. Saya berbahasa Indonesia.
+Daniel              en_GB    # Hello, my name is Daniel. I am a British-English voice.
+Diego               es_AR    # Hola, me llamo Diego y soy una voz española.
+Ellen               nl_BE    # Hallo, mijn naam is Ellen. Ik ben een Belgische stem.
+Fiona               en-scotland # Hello, my name is Fiona. I am a Scottish-English voice.
+Fred                en_US    # I sure like being inside this fancy computer
+Ioana               ro_RO    # Bună, mă cheamă Ioana . Sunt o voce românească.
+Joana               pt_PT    # Olá, chamo-me Joana e dou voz ao português falado em Portugal.
+Jorge               es_ES    # Hola, me llamo Jorge y soy una voz española.
+Juan                es_MX    # Hola, me llamo Juan y soy una voz mexicana.
+Kanya               th_TH    # สวัสดีค่ะ ดิฉันชื่อKanya
+Karen               en_AU    # Hello, my name is Karen. I am an Australian-English voice.
+Kate                en_GB    # Hello, my name is Kate. I am a British-English voice.
+Kyoko               ja_JP    # こんにちは、私の名前はKyokoです。日本語の音声をお届けします。
+Laura               sk_SK    # Ahoj. Volám sa Laura . Som hlas v slovenskom jazyku.
+Lekha               hi_IN    # नमस्कार, मेरा नाम लेखा है. मैं हिन्दी में बोलने वाली आवाज़ हूँ.
+Luca                it_IT    # Salve, mi chiamo Luca e sono una voce italiana.
+Luciana             pt_BR    # Olá, o meu nome é Luciana e a minha voz corresponde ao português que é falado no Brasil
+Maged               ar_SA    # مرحبًا اسمي Maged. أنا عربي من السعودية.
+Mariska             hu_HU    # Üdvözlöm! Mariska vagyok. Én vagyok a magyar hang.
+Mei-Jia             zh_TW    # 您好，我叫美佳。我說國語。
+Melina              el_GR    # Γεια σας, ονομάζομαι Melina. Είμαι μια ελληνική φωνή.
+Milena              ru_RU    # Здравствуйте, меня зовут Milena. Я – русский голос системы.
+Moira               en_IE    # Hello, my name is Moira. I am an Irish-English voice.
+Monica              es_ES    # Hola, me llamo Monica y soy una voz española.
+Nora                nb_NO    # Hei, jeg heter Nora. Jeg er en norsk stemme.
+Paulina             es_MX    # Hola, me llamo Paulina y soy una voz mexicana.
+Rishi               en_IN    # Hello, my name is Rishi. I am an Indian-English voice.
+Samantha            en_US    # Hello, my name is Samantha. I am an American-English voice.
+Sara                da_DK    # Hej, jeg hedder Sara. Jeg er en dansk stemme.
+Satu                fi_FI    # Hei, minun nimeni on Satu. Olen suomalainen ääni.
+Serena              en_GB    # Hello, my name is Serena. I am a British-English voice.
+Sin-ji              zh_HK    # 您好，我叫 Sin-ji。我講廣東話。
+Tessa               en_ZA    # Hello, my name is Tessa. I am a South African-English voice.
+Thomas              fr_FR    # Bonjour, je m’appelle Thomas. Je suis une voix française.
+Ting-Ting           zh_CN    # 您好，我叫Ting-Ting。我讲中文普通话。
+Veena               en_IN    # Hello, my name is Veena. I am an Indian-English voice.
+Victoria            en_US    # Isn't it nice to have a computer that will talk to you?
+Xander              nl_NL    # Hallo, mijn naam is Xander. Ik ben een Nederlandse stem.
+Yelda               tr_TR    # Merhaba, benim adım Yelda. Ben Türkçe bir sesim.
+Yuna                ko_KR    # 안녕하세요. 제 이름은 Yuna입니다. 저는 한국어 음성입니다.
+Yuri                ru_RU    # Здравствуйте, меня зовут Yuri. Я – русский голос системы.
+Zosia               pl_PL    # Witaj. Mam na imię Zosia, jestem głosem kobiecym dla języka polskiego.
+Zuzana              cs_CZ    # Dobrý den, jmenuji se Zuzana. Jsem český hlas.
+
+(partially taken from https://maithegeek.medium.com/having-fun-in-macos-with-say-command-d4a0d3319668)

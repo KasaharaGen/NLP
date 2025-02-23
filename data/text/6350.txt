@@ -1,0 +1,14 @@
+Q: How do I show a certificate's detail in OS X Mail (Lion) I run my own mail servers and have them set up to support SSL connections over IMAP/SMTP. They are GoDaddy SSL certificates and are recognized by Mail and IOS since the root authority (godaddy) is trusted. 
+However, I suspected that I am coming up on my expiration for the SSL certificate on one of my mail servers, so I want to look at the certificate's expiry date - I can't find where to do this in Mail and I can't find a certificate for my server in key chain. I suspect it's not there since there is nothing to add - the root certificate (godaddy) is there, so there is no reason to add my child certificate. 
+How do I look at SSL certificate attributes in OS X? Where can I find my certificate? In Thunderbird you just click on server > security and hit certificates.  
+
+A: This is not in Mail, I know of no way to do that, but this does not require any new software.  In Terminal:
+echo ^d|openssl s_client -connect host:port 2>/dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' |  openssl x509 -noout -subject -dates
+
+
+A: I'm not aware of any way to force Mail to enter the error dialog, so you'll have to get the certificate from the mail server using another tool. (mail is getting it each time it works, just not dumping it to a file or an assistant for you to peek at)
+Lion uses the Keychain Access app (from /Applications/Utilities/ ) to manage certificates and view validation chains, root certificates, check validity, etc... The command line equivalent that does the work behind the pretty GUI is security.
+There is some basic documentation covering evaluating ssl certificates but they assume you already understand the mechanics of Public Key Cryptography.
+Here is what the Certificate Assistant looks like when evaluating Apple's Code Signing Certificate that shipped with Lion.
+
+

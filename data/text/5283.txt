@@ -1,0 +1,94 @@
+Q: What should I do when "An error has occurred" when downloading Lion? I'm trying to download the new Mac OS. When click install, the icon pops onto the dock and says Waiting...
+After about 5 minutes, it disappears and in the purchased category of the Mac App Store, next to install it says:
+
+An error has occurred
+
+Why is this happening?
+Edit: 
+Originally I could not even get the download bar in the purchased section until I reconfigured my router slightly(I'm using a BT Business Hub). I am now able to get the download bar. However, I still get "Waiting..." on the icon and after about 3 minutes, I receive the same error message:
+
+An error has occurred
+
+I still believe that it is a router problem and not the app stores' servers. Has another been able to fix this yet?
+Here is a screenshot when I click the install button:
+
+And here is a screenshot after about 2 minutes:
+
+
+A: I have sorted the issue. I just had to use a different router. The BT Business hub that I previously been using had a problem on it which prevented anything above 2GB do loose connection. This would explain other problems as well.
+
+A: I had a similar event.  I was able to solve the problem by:
+
+
+*
+
+*Signing out the app store
+
+*Closing app store
+
+*Clearing cookies in safari (evidently app store uses safari's cookies)
+
+*Reopen app store
+
+*Sign-in to the App Store
+
+*Press Option and click Purchases
+
+*Click Resume on OS X Mountain Lion under Other Purchases
+
+
+Maybe this will help?
+
+A: Because a lot of Mac users are probably doing the same download now. It's probably overloaded. After all 4 GB is a good bit bigger than an iTunes song or an iOS app.
+
+A: Make sure you have downloaded all the latest system updates - there is one which will prepare the mac app store for lion. I had the same problem and it seems to be working now!
+
+A: Run Console to check the recent logs for more details (look for com.apple.installd).
+In example, I had something like:
+com.apple.launchd[1]: (com.apple.installd[69518]) Job appears to have crashed: Abort trap: 6
+ReportCrash[69520]: Saved crash report for installd[69518] version 332 to /Library/Logs/DiagnosticReports/installd_2014*.crash
+
+If you see the crash in your logs, then check the backtrace under System Diagnostic Reports, so there is something like:
+Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[NSKeyedUnarchiver initForReadingWithData:]: incomprehensible archive
+
+The reason for that could be that some of the downloaded files are corrupted.
+So to solve that, you have to remove these files and try again.
+
+Simple solution
+
+
+*
+
+*Quit your App Store
+
+*Run Finder.
+
+*Go to (CMD+Shift+G): /private/var/folders.
+
+*Trash all the folders from that folder (e.g. vp, zz).
+
+*Run App Store and re-try.
+
+
+In case something bad happens, restore these removed files from your Trash.
+
+Advanced solution
+From Terminal check if you've temporary files here:
+ls -la /private/var/folders/*/*/*/com.apple.appstore
+
+And then try to remove them (you may backup them first just in case):
+rm -frv /private/var/folders/*/*/*/com.apple.appstore
+
+And re-try again.
+
+Related:
+
+
+*
+
+*https://discussions.apple.com/thread/4483444
+
+*https://discussions.apple.com/thread/4234582
+
+A: I had the same problem. I solved my problem by going to /private/tmp (similar to kenord's answer) and trashing all the launch* directories. 
+In retrospect, I think maybe I only needed to remove a launchd-xxxx.yyyyyy folder, which had a red mark on the folder icon.

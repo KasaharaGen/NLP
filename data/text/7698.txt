@@ -1,0 +1,25 @@
+Q: How to create a spotlight search for all files inside a folder? In Lion, you have All My Files to search everything in your home folder. However, when you activate finder's spotlight, via command + F you can start searching only by first typing something.
+How can I search for everything in one particular folder (say, external HDD) without specifying a search token?
+
+A: After some more research, it reminds me that finder's spotlight had boolean UI since OS X 10.5. You can filter for "not a folder"  for All My Files experience, or with a little bit more filter  for "all files".
+It feels a bit hack-y though.
+
+A: You can create a saved search similar to "All My Files" but only searching a specific folder:
+
+
+*
+
+*Open the folder you want to search
+
+*Enter -kind:folder into the search field
+
+*At the top of the window make sure to choose to search only the folder you're in. It will select "This Mac" by default, unless you've changed your Finder preferences.
+
+*Click "Save" (directly under the search field) to save your search and add it to the sidebar.
+
+*(Optional) Change the window to icon view, then change View Options (Cmd+J) to arrange by Kind and sort by Date Last Opened.
+
+A: Under Finder Preferences, in the Advanced view, there's a dropdown list where you can chose which folder to search for by default.
+Just set it to "Current Folder", then, you'll only have to navigate to the folder you want to search, and type what you want in the Finder search box.
+
+It's a Snow Leopard screenshot, but it should also work on Lion.

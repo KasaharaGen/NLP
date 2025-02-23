@@ -1,0 +1,143 @@
+Q: How to use terminal to copy a file to the clipboard? I got a file on desktop, file name is ded.html. To copy the file, I click the file and press cmd+c.
+Now how would I do the same thing using terminal ?
+
+A: To copy a file to a destination, use the cp command.
+cp /path/to/file /path/to/destination
+
+See man cp for more information.
+
+A: If I'm understanding the question right, what you're after is pbcopy and pbpaste.
+Open a terminal and run:
+cat ~/Desktop/ded.html | pbcopy
+
+The file is now in your clipboard.
+To put it somewhere else (i.e. paste it) run:
+pbpaste > ~/Documents/ded.html
+
+Now you should have a copy of ded.html sitting in ~/Documents.
+
+A: Lri’s answer is headed in the right direction, but it has a couple of flaws: there is no need to use Finder (the clipboard is part of the StandardAdditions OSAX), and giving a run handler is a much more reliable way to pass arguments from the command line (since 10.4). Making both of these changes greatly simplifies the “escaping” that needs to be done to enter the program in a shell.
+Here is my version (wrapped in a shell function—you could put this in (e.g.) your .bashrc to make it available in your shells):
+file-to-clipboard() {
+    osascript \
+        -e 'on run args' \
+        -e 'set the clipboard to POSIX file (first item of args)' \
+        -e end \
+        "$@"
+}
+
+file-to-clipboard ~/Desktop/ded.html
+
+A file that has been put on the clipboard with this script can then be pasted in Finder to copy the file to another folder.
+osascript can also be used as a hash-bang interpreter (since 10.5). Put this in a file (e.g. file-to-clipboard)
+#!/usr/bin/osascript
+on run args
+  set the clipboard to POSIX file (first item of args)
+end
+
+Make the file executable (chmod +x /path/to/where/ever/you/put/file-to-clipboard). Then run it like so:
+/path/to/where/ever/you/put/file-to-clipboard ~/Desktop/ded.html
+
+If it is stored in a directory in the PATH, then you can omit the path to the “script” file.
+
+A: Here's a simple Shell/Bash script. Just paste it in your .bashrc file (or the like):
+file-to-clipboard() {
+    if [ -z "$1" ]; then
+        echo "file path/name:"
+        read FILE
+    else
+        FILE="$1"
+    fi
+    pbcopy < "$FILE"
+}
+
+
+A: Thanks to @Lri and @Chris Johnsen. Another option for you:
+#!/usr/bin/osascript
+on run args
+  set abs_path to do shell script "/usr/local/bin/greadlink -f -- " & (first item of args)
+  set the clipboard to POSIX file abs_path
+end
+
+You can put this into a script, and place that script in any folder in your PATH. This combined the idea of using osascript in hashbang and using readlink for relative path. This would achieve the same as @Lri's bash function, but has the advantage of not adding anything to your bashrc. You might need to install readline. You can do so with homebrew
+brew install readlink
+
+
+A: There is no way to achieve what you are trying to do using the command line. While Apple offers the pbcopy and pbpaste tools to allow basic copying of text, you cannot use these tools to copy a file in the sense you're looking for.
+Without going in to too much technical detail, when you 'copy' a file in the Finder using ⌘C, you're not actually copying the file itself, just making a reference to the file on the clipboard and marking it as a file reference. When an application receives this reference when you paste, it has the responsibility of sorting things out, figuring out what you pasted, and ultimately, working with the file as it sees fit. In essence, when you copy a file in the Finder, it saves the path to the file in a certain way to a certain clipboard, and when you paste, it receives that file path and knows to create a new file using the contents of the old one (copy a file to the clipboard, delete it, try to paste it somewhere else, and see what happens, for instance).
+In this sense of copying and pasting, the tools available at hand are not enough to do what you need. As boehj suggested, you can try to copy the contents of the old file into a new one, but this will only work well for text files. Any binary files you get will be corrupted (try doing this with an image – it becomes corrupted).
+The traditional command line will fail you in this way, but you can take a look if you'd like into doing this in AppleScript, then invoking that through the command line with osascript.
+
+A: Executing pbcopy < filename command in the Terminal copies the contents of the file named filename.
+
+A: The function below only works with a single file and not with multiple files. It requires GNU readlink which you can install by running brew install findutils.
+copy(){ osascript -e{'on run{a}','set the clipboard to posix file a',end} "$(greadlink -f -- "$1")";}
+
+Edit: I removed the tell app "Finder" block.
+Edit 2: Reverted back to a version which supports relative paths.
+
+A: With support of relative file:
+clip_img() {
+    osascript -e 'on run argv' \
+        -e 'set currentDir to do shell script "pwd"' \
+        -e 'set the clipboard to (read POSIX file (POSIX path of (currentDir as text & (first item of argv) )) as JPEG picture)' \
+        -e 'end run' "/$1"
+    # osascript -e 'clipboard info'
+}
+
+run clip_img path-to-file to copy image to clipboard, and path-to-file could be relative. The file could be jpeg or png files.
+
+A: I'm only 11 years late but I think I have an alternative, albeit, hacky solution. Here's my script:
+#!/usr/bin/env bash
+
+fzf -m -e | xargs -n1 open -R
+
+osascript -e 'tell application "System Events" to keystroke "c" using command down'
+
+osascript -e 'tell application "System Events" to keystroke "w" using command down'
+
+open -a "Slack.app"
+
+osascript -e 'tell application "System Events" to keystroke "v" using command down'
+
+osascript -e 'tell application "System Events" to key code 76'
+
+exit 0
+
+A few disclaimers:
+
+*
+
+*This assumes a macOS environment.
+
+*In the script, I'm using a command line tool called fzf which is not needed. It just makes searching for things easier. You can get it from brew install fzf if you're interested.
+
+*My use case was to find a way to search, find and send gifs quickly in Slack. So I named it 'fzygif'.
+
+
+(The following description references the line numbers in the image above:)
+
+*
+
+*Line no. 3 - fzf -m -e is to allow for multiple files to be selected as well as to search using the exact term used. The result is then piped into xargs -n1 open -R which then applies the open command to each search result, one at a time.
+
+
+*Line no. 5 - Next I use the osascript -e command to simulate Cmd+C which is the Apple keyboard shortcut for Copy.
+
+
+*Line no. 7 - Next I use the osascript -e command to simulate Cmd+W which is the Apple keyboard shortcut for Close Window (just doing a little housekeeping along the way; this could be omitted).
+
+
+*Line no. 9 -  Next I open Slack (the intended target for my recently copied gif; open whatever app tickles you).
+
+
+*Line no. 11 - Next I use the osascript -e command to simulate Cmd+V which is the Apple keyboard shortcut for Paste.
+
+
+*Line no. 13 - Lastly, I use the osascript -e command to simulate "key code 76" which is the Apple key code for Enter. This is to automatically send the gif in Slack after it's pasted (this too could be omitted).
+Since a gif is worth a thousand words? Here it is in action:
+
+Happy hacking!
+
+A: You can use cat 'originfile' > 'destinationfile' on unix environments;
+copy originfile destinationfile on windows.

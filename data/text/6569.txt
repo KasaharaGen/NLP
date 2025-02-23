@@ -1,0 +1,56 @@
+Q: Can I remove the "Log Out" item from the Apple menu? Is it possible to remove "Log Out" from the Apple Menu? I know there used to be a tool that let you customize the Apple Menu (can't remember the name) but I doubt it's still working on Lion. 
+Preferably I'd like a Terminal command or something.
+
+A: I've been looking at removing the Sleep and Shut Down options from the Apple Menu on our lab Macs. My focus was OS X 10.7.3. 
+I found that just removing the objects, as Daniel Lawson has suggested, also caused the Apple menu to crash when I clicked it.
+After closer examination, I noticed that there were references to the Shut Down and Sleep objects elsewhere in the objects.xib file. After I removed both the objects and the references, the Apple menu behaved as expected, and did not show the Shut Down and Sleep options.
+Here are my changes to the 10.7.3 objects.xib file:
+File: 
+/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Resources/English.lproj/StandardMenus.nib/objects.xib
+
+Changes:
+# diff objects.xib ../StandardMenus.nib.ORIG/objects.xib 
+185a186,189
+>         <object class="IBCarbonMenuItem" id="236">
+>           <string name="title">Sleep</string>
+>           <ostype name="command">slep</ostype>
+>         </object>
+196a201,212
+>         <object class="IBCarbonMenuItem" id="238">
+>           <string name="title">Shut Down…</string>
+>           <boolean name="dynamic">TRUE</boolean>
+>           <boolean name="notPreviousAlternate">TRUE</boolean>
+>           <ostype name="command">rsdn</ostype>
+>         </object>
+>         <object class="IBCarbonMenuItem" id="285">
+>           <string name="title">Shut Down</string>
+>           <boolean name="dynamic">TRUE</boolean>
+>           <int name="keyEquivalentModifier">1572864</int>
+>           <ostype name="command">shut</ostype>
+>         </object>
+242a259
+>     <reference idRef="236"/>
+358a376
+>     <reference idRef="285"/>
+401a420
+>     <reference idRef="238"/>
+
+
+A: This appears to work, but make a good backup before proceeding; you're messing with system files!
+Using TextWrangler, open the file 
+/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Resources/English.lproj/StandardMenus.nib/objects.xib
+You'll need to use an account with administrate privileges, and you'll be prompted for your password. Find the lines that read
+<object class="IBCarbonMenuItem" id="286">
+  <string name="title">Log Out %@</string>
+  <string name="keyEquivalent">Q</string>
+  <boolean name="dynamic">TRUE</boolean>
+  <int name="keyEquivalentModifier">1703936</int>
+  <ostype name="command">rlgo</ostype>
+</object>
+
+and delete them. Save the file. Reboot.
+Goodbye logout command.
+
+A: According to this website, the apple menu entries are kept here:
+/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Resources/English.lproj/StandardMenus.nib
+Otherwise you could try this app which apparently does the same thing but with a GUI

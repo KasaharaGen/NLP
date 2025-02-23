@@ -1,0 +1,22 @@
+Q: How can I browse the directories of an external drive even when it is not attached? I am new to this. Is there any script that analyzes and creates an XML files the entire file structure of any external hard drive that  is connected to the computer,including all the fill names in all the folders.And i want to store the xml document to the computer even after removing the hard drive. Can anyone help me by giving an idea or a tutorial or link which will me?
+Thank you
+
+A: Based on the clarifications in the comments, you can do the following:
+Create an index file
+find /Volumes/YOUR-EXTERNAL-DRIVE -print > ~/YOUR-EXTERNAL-DRIVE-index.txt
+
+This will list all files/folders on the external drive and store the result in your home folder. 
+Search for a file
+grep THE-NAME-YOU-ARE-LOOKING-FOR ~/YOUR-EXTERNAL-DRIVE-index.txt
+
+Partial names will work as well (and the external drive must not be attached for the search). 
+
+A: There is at least two apps out there which provide the required functionality as well:
+Archive 7
+
+Archive catalogs the content of your removable media and devices such as CDs, DVDs, Flash Memory Drives, HDs, etc. so you can quickly find the information you are looking for even when those devices are no longer connected to your Mac.
+
+NeoFinder
+
+NeoFinder (formerly known as CDFinder) rapidly catalogs your entire disk and media library, and backup archive. NeoFinder keeps track of your documents, photos, songs, movies, and folders wherever they are stored.
+

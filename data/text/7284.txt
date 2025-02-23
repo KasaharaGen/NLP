@@ -1,0 +1,101 @@
+Q: Lots of inactive memory after watching HD/DVD movies I'm the owner of mid 2010 iMac (core i7) with 16GB memory installed.Normally, Mac OS X (SL and Lion) never uses swap (that is page ins/outs = 0), there are always 3-8GB of free memory. But after watching a few DVD/h264 movies, there are only 50-100*MB* of free memory and swap is used actively. Looks like video files are mapped into system memory, since the amount of inactive memory ~= size of files. The only workaround is to use purge utility.
+I'm looking for a solution which is better than running purge every time I looked a movie.
+uptime:
+4:08  up 3 days,  7:35, 5 users, load averages: 0,71 0,76 0,71
+
+vm_stat:
+Mach Virtual Memory Statistics: (page size of 4096 bytes)
+Pages free:                         738409.
+Pages active:                      1715722.
+Pages inactive:                     536891.
+Pages speculative:                  857329.
+Pages wired down:                   344323.
+"Translation faults":           1067897384.
+Pages copy-on-write:               6068992.
+Pages zero filled:               591232281.
+Pages reactivated:                 1906255.
+Pageins:                           5019598.
+Pageouts:                           861857.
+Object cache: 16 hits of 1354202 lookups (0% hit rate)
+
+
+A: What you're seeing is normal, and desired behavior.
+OS X, like Linux and BSD, has a disk cache. This means anything read from or written to disk is kept in memory. The "Inactive" memory includes this disk cache.
+This answer on AskDifferent explains it, as does this post on macosxhints.com:
+
+However, X's underpinnings (ie the UN*X kernel) provide both these
+  features without any inputs being needed by the user. It's called the
+  file system buffer cache. The one most significant difference is that
+  the size of this buffer cache is dynamic. It starts of with some small
+  size and can grow and shrink as the i/o demands and Apps memory
+  requirements vary over time. 
+It's called a 'buffer cache' because it buffers the i/o data on its
+  way to/from the disk. When an App writes data it first will be
+  deposited into the Apps file buffer memory region and will
+  subsequently be requested via library routines to have the kernel (the
+  OS) copy it from the App's buffer to disk. The kernel will oblige and
+  will copy it first to its buffer -- the file system buffer cache. If
+  the kernel requires more room in its buffer cache it will obtain it
+  from the free memory. When this happens the free memory value, in say
+  the Terminal's top command, will immediately show a reduction of free
+  memory. At some later point the kernel will copy this data (referred
+  to has dirty buffers) to the appropriate disk location. I believe the
+  frequency of this being done is 30 secs -- called sync-ing to disk.
+
+Note that having memory paged out to disk is not always a bad thing. If memory pages are completely inactive, paging them out to disk can improve performance, because they are wasting RAM which could otherwise be used for disk cache. Once they are paged out and you stop watching movies, when needed they will be paged back in, automatically replacing the buffers and disk cache. You don't need to run purge each time. Just let OS X manage the disk cache as it was designed to do.
+For more information on this, consult the wikipedia article on paging, and the article on the Page cache.
+
+TL;DR information:
+Here's an article describing how swap works under Linux. WHile not 100% applicable to OS X, the concept is the same. I'll quote the relevant part:
+
+When an application needs memory and all the RAM is fully occupied,
+  the kernel has two ways to free some memory at its disposal: it can
+  either reduce the disk cache in the RAM by eliminating the oldest data
+  or it may swap some less used portions (pages) of programs out to the
+  swap partition on disk. It is not easy to predict which method would
+  be more efficient. The kernel makes a choice by roughly guessing the
+  effectiveness of the two methods at a given instant, based on the
+  recent history of activity
+
+Since you're watching a DVD or a movie, the most recently active pages of memory are the disk cache, so OS X decides to keep that in RAM and swap out pages of memory which have been inactive from before you started accessing the video files. Once you stop accessing video files and access the programs using the memory pages which were swapped out, the reverse is true: OS X will discard the disk cache containing the video data and replace it with the memory pages which it swapped out. Then your swap usage will decrease.
+Here's a bit more information, specific to FreeBSD (which is similar to Mac OS X):
+
+FreeBSD will use 'all of memory' for the disk cache. What this means 
+  is that the 'free' bucket typically contains only a few pages in it. 
+  If the system runs out, it can free up more pages from the cache
+  bucket.
+System activity works like this: When a program actively references  a
+  page in a file on the disk (etc...) the page is brought into the 
+  buffer cache via a physical I/O operation. It typically goes into  the
+  'active' bucket. If a program stops referencing the page, the  page
+  slowly migrates down into the inactive or cache buckets (depending  on
+  whether it is dirty or not). Dirty pages are slowly 'cleaned' by 
+  writing them to their backing store and moved from inactive to cache, 
+  and cache pages are freed as necessary to maintain a minimum number of
+  truely free pages in the free bucket. These pages can still be 
+  'cleaned' by allocating swap as their backing store, allowing them  to
+  migrate through the buckets and eventually be reused.
+[...]
+The VM buffer cache caches everything the underlying storage so, for 
+  example, it will not only cache the data blocks associated with a file
+  but it will cache the inode blocks and bitmap blocks as well. Most 
+  filesystem operations thus go very fast even for tripple-indirect
+  block  lookups and such
+[...]
+FreeBSD has arguably some of the best swap code in existance. I
+  personally  like it better then Linux's. Linux is lighter on swap, but
+  doesn't  balance system memory resource utilization well under varying
+  load  conditions. FreeBSD does.
+FreeBSD notes the uselessness of existing pages in memory, and decides
+  that it might be advantageous to free memory (enabled by pushing pages
+  to swap), so that it can be used for more active purposes (such as
+  file  buffering, or more program space.) It is a terrible waste to
+  keep unused  pages around, for the notion of saving (cheap) disk
+  space. Since low  level SWAP I/O can be faster, with less CPU overhead
+  than file I/O, it  is likely desireable to push such unused pages out
+  so that they can be  freed for use by higher overhead mechanisms.
+  (note 1)
+
+(Emphasis mine, check that bolded part for specifically what you're asking about, that is, "Why is swap being used when I have inactive memory?)
+
+A: For what I know (and have noticed) you don't have to worry about this "inactive" memory. The system will reallocate it on demand. It happens when the system have huge file transfer to process. This kind of operation use as much memory as possible to speed up the process. When the transfer is finished, the memory state remains as "inactive", but you could as well considered as free...

@@ -1,0 +1,20 @@
+Q: What's the best solution to sync contacts from Mac to Android Phone? I'd like to sync my contacts from the Mac addressbook to an Android phone, but I'd rather not use Google (or any cloud) where I have no control over my data.
+So far I found SyncMate and Missing Sync. Both cost $40 and promise to do sync more data that I will ever get on my Android phone.
+SyncMate offers a free edition that can sync the contacts to the phone, but it's slow (more than 3 minutes to sync 250 contacts), has no progress bar and won't update the contacts on the Mac if I added a number on the phone (and I have set the sync to bidirectional!).
+The Missing Sync doesn't seem to offer a free or trial edition, so can't tell how well it works.
+Has anybody compared contact syncing with these two products? And are there other options?
+
+A: I finally found a solution that I'm happy with:
+
+
+*
+
+*On my NAS appliance, I installed OwnCloud, which supports contact synchronisation with the CardDAV protocol. OS X support CardDAV out of the box.
+
+*On the Android device I installed CardDAV-Sync and Contact Editor Pro (see the OwnCloud doc). Both together cost about $5, but there are free versions that also work well with fewer features. Still much less than $40 for Missinc Sync or SyncMate.
+Thus I get the advantages of a cloud solution (immediate updates, two-way sync) and get to keep my contacts private. 
+
+A: What about importing your contacts from the Mac as a vcard file on your phone? I do not have an Android handset myself, but it seems like there exists such import/export functionality.
+
+A: there is an great little app SmoothSync for Cloud Contacts
+has worked really well for me :)

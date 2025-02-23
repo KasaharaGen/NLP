@@ -1,0 +1,28 @@
+Q: How do I enable "Network Trash" on a file server? I have a Synology SAN/file server. One of the reasons I bought my Synology was that the reviews said it supported "Network Trash" for the Mac, so I can drag files to the trash and then drag them out without having the annoying message that files are deleted immediately. I can't find instructions on how to set this up.
+Can somebody tell me how to set this up?
+Is it specific to the Synology, or can any remote file server be made to do trash properly?
+
+A: The Synology NAS supports a Network Recycle bin, but only for SMB volumes. Therefore if you want to make use of it from your Mac, you need to access the share via SMB and not AFP. This can be enabled from the Control Panel under Win/Mac/NFS.
+
+The Synology by itself fully supports Time Machine, and can act as a Time Capsule. Most of the documentation on the Internet mention the Network Trash and Time Capsule option in the same place, but as an Windows/Mac comparison type description. The manual for DSM does not mention Network Trash for Mac either, only for Samba.
+I am not entirely sure where you read that the Synology supports this feature for OSX, since I couldn't find any reference to it in the way you described.
+OSX, unlike the previous OS 9, does not support a Network Trash of any kind, and I am not aware of any plans to bring this feature to OSX. Therefore it also can't be activated from the OS layer. 
+I suspect the naming was changed from Network Trash to CIFS Recycle Bin in the new DSM by Synology because of the confusion it has caused.
+
+A: I haven't used the software you are quoting specifically, but there is a report of a user having a similar problem on their forums, and what he did to resolve it:
+
+Look for the tickbox in the web management UI under File Sharing --- Win/Mac OS - http://forum.synology.com/enu/viewtopic.php?f=111&t=20444
+
+The actual option turns on CIFS, and it looks like they are doing this with the SMB protocol only, not natively with AFP.
+
+A: Here's a workaround that might be a solution for some people.
+Make a new folder titled something like 'Network Trash' - either on the network (if others may need to access the trashed files), or somewhere in your Mac's user folder (probably better in most cases).
+Set up a Workflow in Automator to Move Finder Items to this Network Trash folder.
+
+In System Preferences > Keyboard > Services set up a shortcut for this Workflow.
+
+You will still have to periodically move the contents of Network Trash to the "real" Trash (not so bad for people who don't empty frequently). Or if you want to geek it up a level you could create another Automator Workflow that will do a Run Shell Script action to recursively delete the contents of Network Trash.
+You can even borrow the Trash icon for your Network Trash folder by copy-pasting between Get Info windows, and drag it to the Dock to make a shortcut next to your system Trash. (Dark Theme doesn't carry over, and the icon won't update when empty, but close enough)
+
+This way it works by both drag-drop and a keyboard shortcut, and feels almost the same as the Trash we know and love.
+One limitation is that files of the same name cannot be copied over, so occasionally you may need to append something to the file name before trashing.

@@ -1,0 +1,20 @@
+Q: Did my girlfriend delete her USB disk? My girlfriend says she dragged the USB disk from the sidebar in finder into trash and  I have since emptied the trash.
+Is this plausible? How do I show/display a USB drive using the command line or finder?
+
+A: Following up @mankoff's answer, I understand she dragged the USB from the Finder's sidebar, which means she actually removed the Volume's icon from the bar, causing the puff's effect. In order to restore the icon, you can't just simply unplug-replug the removed volume, you have to:
+
+
+*
+
+*Connect the USB Drive again.
+
+*Open Finder's Preferences and check/uncheck the corresponding's option (that will refresh the sidebar and the drive will reappear)
+
+*Profit…
+Here's an easier way to see it:
+
+That'll refresh the sidebar and devices will reappear. 
+
+A: Dragging a drive into the trash just means "eject", not "delete contents". Since USB can't be physically ejected, it just unmounts it. Emptying the trash has no effect in this case.
+Unplug it, wait a few seconds, plug it back in, and it should show up.
+If you don't want to unlpug and plug it back in, see hdiutil attach for CLI solutions, or /Applications/Utilities/Disk Utility.app for GUI.

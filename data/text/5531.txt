@@ -1,0 +1,28 @@
+Q: How does the new "local snapshots" feature of Time Machine in Lion work? Apple's advertising for Lion highlights a new "local snapshots" feature of Time Machine:
+
+OS X Lion lets you take the Time Machine experience with you when you’re away from your Time Capsule or backup drive. Time Machine keeps a spare copy of the files you create, modify, or delete right on your Mac. Now if you accidentally delete a file while on the road, you can recover it from a local copy.
+
+I'm wondering how this integrates with the regular Time Machine backups. Are the "local snapshots" copied to the external Time Machine drive the next time you connect it? And are they then deleted from the internal drive? What if you're doing dual backups with two separate external drives? ...
+
+A: I haven't found any documentation for this feature yet, so I don't have any specific answers for your questions about interactions with external Time Machine drives.
+However, I did do some playing around with the feature while using my laptop on battery.  The first thing I noticed is that local snapshots were not enabled by default – for me, at least. I know that because "entering" Time Machine while my backup drive was detached resulted in the usual error message — until I executed the following from a command line:
+sudo tmutil enablelocal
+
+After I did this, a hidden volume called MobileBackups was created (in /Volumes) and I was able to "enter" Time Machine. (Perhaps local snapshots weren't enabled on my machine because I have less than 10% free disk space?)
+Unfortunately, the feature seems a little half-baked. I tried the following, with pretty unsatisfactory results:
+
+
+*
+
+*Created a new folder, ~/Documents/Test.
+
+*Forced a new snapshot by running tmutil snapshot.
+
+*Verified that a new snapshot was created by looking in /Volumes/MobileBackups/Backups.backupdb/hostname/Latests/drivename/Users/myname/Documents.
+
+*Deleted the Test folder.
+
+*Entered Time Machine and browsed the backups/snapshots. The Test folder was not there in any of the backups.
+
+
+Update: I installed Lion on a second Mac, and without any explicit action on my part, this Mac has a MobileBackups volume. And restoring deleted files from a local snapshot works on this Mac.

@@ -1,0 +1,32 @@
+Q: How can I move my local e-mail folders in Mail.app from my old Mac to my new Mac? Including all e-mail messages contained in these local folders ofcourse.
+
+A: Under ~/Library/Mail/ you should have a folder named after you mail account. Inside it, there are .ewsmbox files that contain all your e-mail folders.
+Try to move those from your old to your new Mac.
+
+A: *
+
+*Click the "Finder" icon on the dock to launch a new Finder
+
+*Navigate to your account's Library folder in Mac OS X's Finder. Under Places, click your username (the one with the house icon) and then click "Library." You can also do this by selecting "Go" from the Finder's top menu and then "Go to Folder." Type in "~/Library" (without the quotes), and it will open up the Library folder.
+
+*Find the "Mail" folder.
+
+*Copy the entire "Mail" folder onto a storage device (USB thumb drive or blank CD-R) or transfer it over the network to the same place (User:Library) on the other Macintosh computer.
+
+*Go to the Preferences folder in the Library and locate the "com.apple.mail.plist" file. You can navigate there using the Finder window or select "Go" from the top menu of the Finder, click on "Go to Folder" and type in "~/Library/Preferences/" (without the quotes) in the prompt.
+
+*Copy the "com.apple.mail.plist" file onto your USB thumb drive or CD-R or copy it directly to the User:Library:Preferences folder on the other computer over the network. "User" is your user account name.c
+
+*Plug in the USB thumb drive or insert the CD-R into the optical drive on the other Macintosh computer if you haven't transferred the files over the network.
+
+*Move the "com.apple.mail.plist" file to the User:Library:Preferences folder of the other Mac. "User" is your user account name.
+
+*Move the Mail folder to the User:Library folder on the other Mac.
+
+*Launch Mail.app. Now your settings and email should be the same as those  on the old Mac. If not, make sure both  the Mail folder and the  "com.apple.mail.plist" file are in the  correct places.
+
+
+A: In Yosemite, open the local mail app, go to file>import mailboxes, then in the import pane that comes up, navigate to the user folder where the email app from the other computer is(stashed on a thumb drive or if you can connect directly to the other computer). Then after a bit, you should see a list of mailboxes that can be imported, and uncheck any you don't want.
+click continue...
+
+A: Alternatively you could import them in the mail.app on your new mac using the "Mail" -> "Archive" -> "Import mailboxes" -> "Apple Mail" menu option and then choosing the ~/Library/Mail folder on your old mac (or a copy of that folder on an USB thumb drive, CD-R etc). 

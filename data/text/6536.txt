@@ -1,0 +1,38 @@
+Q: How to stop the iPhone from vibrating for just the alarm? How do I set the vibrate to not fire for alarms but still fire for calls, texts, emails, reminders, etc?
+I have looked at third party alarms but they all seem quite fallible, many do not work when you press the home button. Those that do use push notifications to get around this but this feature obeys the silent switch on the phone which means you have to remember to switch the sound on each night. And I have had two of them just randomly not work on me.
+Is there a way of turning the vibrate off for just the alarm?
+I'm willing to jailbreak for this.
+
+A: I know it`s been a while.
+@SomewhereThere's answer is good for any version before IOS9.
+Since IOS 9
+You may disable vibration from the alarm menu per alarm independently.
+
+In the alarm settings. When you add a new alarm time, you can select sounds > vibration and set it to ”none”. You can also edit existing alarm schedules to disable vibration individually.
+
+Credits
+
+A: In iOS 6 vibrate settings, set "vibrate on ring" to "on" and "vibrate on silent" to "off".
+Then, when on silent your alarm will ring without vibrating, and when not on silent everything will vibrate and ring normally.
+
+A: NoVibratedWakeup is a Cydia tweak that turns off the vibration when the alarm sounds.
+
+A: I have seen many answers that did not work here. So here is my clear explanation of what I had to do, using iOS 7.1.2 on an iPhone, to get it so that the horrible buzzing vibrate does not happen when you set the clock alarm clock.    It is not a dream solution, because the method does ALSO influence the vibration behavior for OTHER sounds on your phone.
+
+
+*
+
+*In settings > sounds, down inside the section Reminder Alerts I have vibration set to none. (this may not actually be necessary for the above goal. just how I have it set.)
+
+*In settings > sounds, down inside the section Calendar Alerts I have vibration set to none. (this may not actually be necessary for the above goal. just how I have it set.)
+
+*The main thing:  In settings > sounds, at the very top, I had to turn both Vibrate on Ring and Vibrate on Silent OFF.       (The reason I turned that Vibrate on Silent to be off is because I have my settings > Do Not Disturb > Scheduled set to make my phone go into Do Not Disturb mode between 10pm and 7am. So for this "no vibrate on alarm" goal, I have to have Vibrate on Silent off, or the phone would say, oh, he's in silent mode because of do not disturb... I should do Vibrate!  ... You may wonder why my alarm would be set for a time inside my do not disturb period.  That's because the only time I use my alarm is when I am getting up at weird ungodly hours for flights, etc. I don't use my alarm for normal waking before work.)
+Under these circumstances, your alarm clock will not make the horrible buzz before ringing.
+But again, this is not a happy solution, because it will also have an effect on your phone's RINGER (your ringer will now never vibrate). So, if you never hear your phone when it's ringing in your pocket, the function of the vibrate to remedy that situation is disabled by this method.
+
+A: I believe PlayAwake may be of help to you, it's a Jailbreak app that allows you to set a custom song as an alarm. It lets you choose whether you want vibrate on and off, too! (Only downside is the price, and the fact you have to use your own music in order to have it not vibrate!
+
+A: I have done it as following:
+Vibrate on ring - off.
+Vibrate on silent - on.
+Then set mode to ring for alarm sounds and set DND time for silencing all other things. It works for me. iOS 8.1.2

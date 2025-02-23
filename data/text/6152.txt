@@ -1,0 +1,60 @@
+Q: How bad is it for a Mac to forcefully restart it when it freezes? I have a 2011 27" iMac running OS X Lion. There is a known bug when iMac, after waking up from sleep mode, freezes while playing video (Flash in my case). It does not respond to any key combination and mouse clicks. I can still move mouse pointer and hear iTunes playing. It does not happen if iMac has been rebooted and was not put into sleep mode after that. So when it freezes, I have to turn it off and on again with the power button. The question is, does it affect hard drive, power supply or anything else that I need to worry about?
+
+A: Holding the power button and letting the System Management Controller SMC perform an immediate halt is no worse than letting the software initiate the halt.
+I suppose you could come up with a scenario with the mac in free fall or something relating to the head not being parked, but modern hardware is designed to handle power losses from the wall outlet with great grace and here the SMC is still controlling a soft landing.
+The power implications are the same even though the applications and operating system don't get their normal opportunity to save work, close files and get ready for the next time they start.
+Your files and data could be at risk from this (think erase and install OS and restore backup files as worst software case), but the hardware doesn't care of the open files or some pending changes are not flushed from caches before the lights go out.
+
+A: Observation
+Somewhere between these two extremes: 
+
+
+*
+
+*the pointer alone moving (the primary symptom)
+
+*a forced shut down or forced restart (last resorts, with some risk)
+
+
+– there may be actions that are less likely to put at risk the data; less likely to put at risk the consistency of the HFS Plus file system. 
+Essentially
+There's on-screen movement, so: 
+
+
+*
+
+*probably no need to kill (or force quit) the WindowServer process
+
+*hopefully no need to force a shut down or restart of the computer. 
+
+
+First and second steps, and beyond
+For three seconds, press and hold four keys: 
+
+
+*
+
+*Command-Shift-Option-Esc
+If the screen was not locked, then that action will Force Quit the front-most application. (The Force Quit Applications window is not required.)
+If – after releasing the keys – the first force quit has no visible effect, then proceed with a second round: 
+
+
+*
+
+*the four keys, three seconds
+
+
+… and so on. 
+With luck a forced quit will effectively clear, from screen, the app that appeared to prevent use of the Mac. 
+Reference
+OS X keyboard shortcuts (2012-11-02) – this document may change after OS X 10.9 is released. 
+
+Test environment
+Mountain Lion here, I don't have Lion handy to test with a normally locked screen. 
+Obscure side note
+Avoid the four-key combination if your Mac is a client of a kernel core dump server.  It might cause a USB Programmer Key debug call, a time-consuming system dump routine. 
+
+A: Power cycling puts extra strain on spinning metal hard drives, and you could probably argue that the onrush current puts extra strain on the power supply. While technically true, it's not the hardware that I would be concerned about.
+The software is what would concern me; if you don't shut down cleanly, files may only be partially written or be open and in some inconsistent state, which amounts to data loss and could lead to further flakiness down the line depending on what gets corrupted. Having file system journaling helps with these issues somewhat, so I suggest double-checking that in Disk Utility: select your hard drive on the left, look at the "Format:" string on the bottom, it should say "Mac OS Extended (journaled)".
+Have you considered sidestepping the problem by uninstalling Flash, browsing with Safari as a rule, and only starting Chrome (with built-in Flash) long enough to deal with Flash-only content? Not the most convenient, but it might work for you.
+Also, I wonder if the kernel actually halts, or if it's just the GUI that freezes up? You might be able to use another computer or iDevice to log in through SSH and do a clean reboot depending on how "deeply" frozen the Mac is.

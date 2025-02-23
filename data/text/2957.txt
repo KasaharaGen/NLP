@@ -1,0 +1,25 @@
+Q: How to start OS X applications from the command line with optional arguments? I am looking for an easy way to start different GUI OS X applications from the command line and with different parameters.
+If possible I would like to add them to the system PATH in order to call them easier.
+Note:  I tried open -a "Google Chrome" --args --disable-plugins and it started Chrome but without disabling the plugins.
+
+A: Normally you can find the actual executable in the Contents/MacOS folder of the Application bundle. For Chrome try it like so:
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-plugins
+
+
+A: Generally, you do something like this:
+exec "/Applications/MyApp.app/Contents/MacOS/MyAppExecutableFile" [arguments]
+
+Running the exec commmand is important, it will end the terminal session and load the command you want. This way you won't kill your program by quitting Terminal or closing the window.
+Be sure to also note what the standard flags are set when you double-click the application in the Finder (I've seen about 4 or 5 standard ones) and pass them too for consistent behavior.
+As for what you want to do, check the documentation for the application in question.
+I don't know if that is the right flag for Chrome, so I can't comment there.
+
+A: This DOESN'T enable you to send an argument to the application, but I found my way to this thread trying to find a way to open an application from the command line so will at least share how to do that in case anyone else ends up in the same position.
+It might work to make an alias in ~/.bash_profile. 
+For example:
+alias affinity="open -a Affinity\ Designer.app"
+
+(No path necessary. Hmm.)
+Works for something like:
+$ affinity path/to/file.png
+

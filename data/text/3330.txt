@@ -1,0 +1,39 @@
+Q: Unable to connect to Exchange on iPhone An iPhone has previously been connecting to Exchange email without any problems.  Two days ago it stopped, generating an error: 
+
+Cannot get mail.  The connection to the server failed.
+
+
+
+*
+
+*I confirmed the password was correct.
+
+*I confirmed that webmail was working.
+
+*I confirmed the phone was connected to the carrier, Telstra.
+
+*I deleted and recreated the account, but this issue remained.
+
+*I created my own account on the iphone, and received the same error.
+
+
+Settings > General > About says:
+
+
+*
+
+*Version: 4.2.1 (8C148)
+
+*Model: MB489X
+
+*Firmware: 05.15.04
+
+
+Any ideas how to resolve this?
+
+A: Faced same issue and found it is with Exchange server's user account settings. Initially Active Directory's authentication is successful but unable to retrieve emails. Issue sorted when went into exchange user account and Inherit AD permissions for my user account. Ola!
+
+A: I gave the phone back, only to have the user report 15 minutes later that is was now working.  He had turned it off, and back; it prompted him for a password which he entered and he was able to connect and retrieve email.
+I don't know if any other iPhones were having similar issues at the time, which would of indicated a potential server issue.
+
+A: Several of my colleagues that use iphone 6 got this problem before, and this problem only solved by restart the iphone.

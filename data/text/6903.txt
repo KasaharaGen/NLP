@@ -1,0 +1,12 @@
+Q: Is it possible to send mail using Command + Enter in Mail? I can't think of any reason why Command ⌘ + Enter ↩ would not send a mail draft, instead of the current shortcut, which is Command ⌘ + Shift ⇧ + D Is there a way to change this?
+
+A: You can look at this answer and apply accordingly to your case.
+TL;DR version:
+
+
+A: I tried to use the System Preferences, Keyboard Shortcuts tab to define Command+Return to send a mail.  But the effect was that Command+Shift+Return sends mail.
+
+A: I found a solution in Mathias's dotfiles. In a Terminal window, type:
+defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
+
+Then restart Mail.app

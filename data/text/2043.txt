@@ -1,0 +1,13 @@
+Q: What process is accessing the hard drive? I can hear the hard drive chugging away when it should be idle. Some process is writing/reading from it in semi-random bursts, let's say once every second. Very annoying and wasteful.
+I tried activity monitor, but that did not give me enough information and lsof is overwhelming.
+Where should I start digging to find out what process is (ab)using the hard drive? 
+This is on 10.6.6.
+
+A: I like using fs_usage to see whats going on. A lot of information is going to go by quick, but you usually can see which app is doing stuff. For example, when idle, ill see safari going pretty crazy at times, plus spotlight, etc.
+
+A: Other thing you can try is the iotop tool.
+Example usage would be
+sudo iotop     # requires root privileges
+
+And more info can be found here
+It give summary over the fs_usage which was mentioned by jmlumpkin.

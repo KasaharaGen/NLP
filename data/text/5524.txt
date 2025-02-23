@@ -1,0 +1,60 @@
+Q: Mounting shares with Login Items at login, Finder windows popup I have some shares that are mounted during login. I used Users & Groups' "Login Items" panel to do this. When I login, all of the shares pop up in their own Finder windows.
+How can I keep the Finder windows from popping up at login? I've already tried checking the Hide checkbox.
+
+A: Here are two very simple solutions made possible by automation tools baked right in Mac OS X, AppleScript and Automator.
+AppleScript
+You can use AppleScript to make a a very simple app that will mount your shares without opening any new Finder windows.
+
+
+*
+
+*Open AppleScript Editor and put in this script:  
+tell application "Finder"
+    mount volume "afp://Share.local/folder" as user name "username"
+end tell
+
+
+*Adapt it to your need (configure your shares).
+
+*Save it as an application.
+
+*Add it to your login items in the "Accounts" preference pane.
+
+
+It may ask your password the first time, but you can save it in Keychain and won't bother you anymore.
+Of course, you can mount multiple disk by adding some additional mount volume lines.
+Automator
+If you prefer a visual interface, you can use Automator as well.
+
+
+*
+
+*Open Automator and choose "Application".
+
+*Add action "Get Specified Servers" (in the "Files & folders" section).
+
+*Add your shares in the list.
+
+*Add action "Connect to Servers" (in the same section).
+
+*Save the application.
+
+*Add it to your login items in the "Accounts" preference pane.
+
+
+Here's a screenshot of the process:
+
+
+A: Have you tried instead configuring your mounts using Directory Utility. I just posted a quick how to get there here.
+How can I stop OS X from automatically connecting to an NFS server on startup?
+I authenticated as root, created a new empty record, dragged the share I wanted to mount silently to replace the dummy text of the new record and quit.
+It figured out it was an afp share using mobile me to locate a remote mac. I certainly haven't tested this at all well in Lion - but this is the place I like to set up mounts rather than just popping them in the login items.
+
+You might have to dig into the server documentation as setting up a directory (local or LDAP) can be a little tweaky and exact sequence and details count heavily whether it will work reliably.
+
+A: I'm about 60% sure this is the case: Finder remembers if a volume's window was open when it was ejected. Close the window then eject it, it shouldn't open automatically the next time it's mounted. I know this works for a handful of disk images I mount at login. 
+Unfortunately that hide checkbox doesn't work for anything but apps. I believe that's why the instructional text specifically says "to hide an application". 
+
+A: In Lion, any open windows will be reopened when you next login. When you restart or shutdown, you have the option to deselect the "reopen windows when logging back in" check box. This makes Lion restart with a "relatively" clean slate.
+Try deselecting that check box, and see if your problem is resolved?
+

@@ -1,0 +1,11 @@
+Q: Per application VPN settings I use a VPN tunnel to connect to a remote network on Snow Leopard. I set it up with the system settings for VPN and it works fine. Unfortunately, the VPN tunnel is used for all connections. Some ports (like the one I use for IMAP) are not open in the remote network.
+Can I use VPN for some applications (like Firefox and Terminal) and my regular connection for others? Is there a third party app to fine tune the VPN settings?
+Cheers
+
+A: In general, the network settings are global, and apply to the whole machine, including all applications.
+VPNs will work great to access machines on a known network (eg: 192.168.1.x = home, 
+10.1.1.x = work via VPN)
+What kind of VPN is it? It's possible that the VPN has grabbed the default route, meaning that all network traffic that isn't on your local network will go via the VPN.
+You can run netstat -nr in Terminal to see your routing table.
+You can use sudo route change default 10.1.1.1 to change the default route to your local network's router (eg 10.1.1.1 for me) so that it will route external connections. Connections to your VPN network should still go through the VPN.
+Hopefully this helps!

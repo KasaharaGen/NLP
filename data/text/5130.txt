@@ -1,0 +1,31 @@
+Q: Is there a way to restore contacts from data.syncdb? My friend's iPhone was stolen. I want to get her contacts back from iTunes. She didn't sync her contacts with Outlook or anything else. I found in her computer an data.syncdb file in 
+
+C:\Users\\AppData\Roaming\Apple Computer\SyncServices\Local\TFSM\com.apple.Contacts
+
+It's size is 64kb.
+Is there a way to restore contacts from this file?
+
+A: Does your friend have another iPhone? This would be astronomically easier if she did. I also think that you're looking in the wrong place - here's what I would suggest (assuming that she's got an iPhone, and thank you to some Googling for help with the following instructions):
+
+
+*
+
+*Close iTunes.
+
+*Go to C:\Documents and Settings\[your name]\Application Data\Apple
+Computer\SyncServices\Local\clientdata.
+
+*In that directory, you will find a set of directories with ridiculously long gibberishy names.
+
+*List those directories using 'Details', so you can see the modification dates on them, and make note of which of those is the most recent.
+
+*Copy the data.syncdb file that contains the contact info you want from whatever directory it's in to the most recent of the gibberish-named directories.
+
+*Open iTunes.
+
+*Click on Restore.
+
+*iTunes will restore your phone's data from that most-recent directory, and will pull the contacts data from whatever data.syncdb file is in that directory.
+
+
+That said, if she doesn't have an iPhone, it'll be a lot harder to do this unless they migrated over to the Address Book or Mail or something. Do you have any iDevice lying around that you could plug in, and restore using the iPhone's original backup? That would fix that problem.

@@ -1,0 +1,29 @@
+Q: How do I edit PDF Annotation Text Properties after creation? When I have a form that I don't want to print out and write on, I can simply use Preview.app's PDF Annotations feature in order to fill in the necessary fields, and print out the final result.
+I have now done this and completely filled out a PDF file, but I'm making a few last minute changes and have run into a problem. The first couple of fields have an annotated text size that is nearly double that of the rest of the fields, and I wish to shrink them to be closer, if not exactly the same size.
+But I am unable to do so;
+If I click on the text field, as if to resize or move it, then open the Text Properties field and begin changing properties, they do not take effect. If I select text within the text field and again attempt to change properties, they still do not take effect.
+Shy of deleting the field and re-typing it with the text properties adjusted prior to doing so, why am I unable to edit text color, size, etc.?
+
+A: It does work in Lion, the way you tried it.  
+In Snow-Leopard you have to select the text itself to change the font(size) by first clicking/selecting the text-field to get the selection rectangle (for re-sizing or moving - as you described) and then click a second time on your text to select all the characters. Now your text should be selected (visible by the highlighting) and you will be able to change the font-size in the Text Properties field.
+
+
+Edit 2012-01-04:  
+I could reproduce the problem described and also found a simple solution. If you open your pdf and re-arrange pages or rotate them and then try to change the formating of existing text fields it (sometimes) fails.  
+The solution/fix is to click the window (menu-)bar of the "Fonts" window, then click on your text field again and finally chose the new font variant → and it will be applied :D
+
+
+A: To investigate the state of your annotations you could try this Automator workflow:  
+
+
+*
+
+*Ask for Finder Items
+
+*Get Selected Finder Items
+
+*Extract PDF Annotations
+
+
+Maybe this gives you a hint why some of the annotations are locked for editing.
+

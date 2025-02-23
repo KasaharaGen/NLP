@@ -1,0 +1,43 @@
+Q: Replace Finder with Forklift Is possible to have Forklift open folders, paths, etc instead of Finder?
+
+A: Discussion here on replacing Finder with nautilus.
+You can add a Quit menu item to Finder and quit it like so:
+defaults write com.apple.Finder QuitMenuItem 1; killall Finder
+
+Now, run ForkLift.
+You could try (WARNING: DANGEROUS) to rename ForkLift2.app as Finder.app and replace Finder.app, but I think this would probably just cause problems, possibly severe ones.
+What do you mean by "open folders, paths, etc."? Almost all Finder interactions on my computer are initiated by me. Just use ForkLift instead. The only time something else uses Finder is if I double-click on a DMG, then it opens in Finder. If you have this, or other specific use cases that you would like to have interact with ForkLift, please clarify or post additional specific questions.
+
+A: Add these to your ~/Library/Preferences/com.apple.LaunchServices.plist
+{   LSHandlerContentType = "public.folder";
+    LSHandlerRoleAll = "com.binarynights.ForkLift-3";
+}
+
+Then reboot.
+BTW, this answer to Set ForkLift as default file viewer may also work.
+
+A: The official site now suggests:
+defaults write -g NSFileViewer -string com.binarynights.ForkLift-3;
+defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add '{LSHandlerContentType="public.folder";LSHandlerRoleAll="com.binarynights.ForkLift-3";}'
+
+While for the SetApp version:
+defaults write -g NSFileViewer -string com.binarynights.forklift-setapp;
+defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add '{LSHandlerContentType="public.folder";LSHandlerRoleAll="com.binarynights.forklift-setapp";}'
+
+
+A: You can change default file manager like this, but ForkLift or Transmit not work as expected, only Path Finder are
+#!/usr/bin/python2.6
+
+from LaunchServices import LSSetDefaultRoleHandlerForContentType, kLSRolesViewer, LSSetDefaultHandlerForURLScheme
+from CoreFoundation import CFPreferencesCopyApplicationList, kCFPreferencesCurrentUser, kCFPreferencesAnyHost, CFPreferencesSetAppValue, CFPreferencesAppSynchronize
+
+applicationBundleIdentifier = "com.cocoatech.PathFinder" #"com.panic.Transmit" #"com.binarynights.forklift2"
+
+LSSetDefaultRoleHandlerForContentType("public.folder", kLSRolesViewer, applicationBundleIdentifier)
+LSSetDefaultHandlerForURLScheme("file:///", applicationBundleIdentifier)
+
+applicationIDs = CFPreferencesCopyApplicationList(kCFPreferencesCurrentUser, kCFPreferencesAnyHost)
+for app_id in applicationIDs:
+    CFPreferencesSetAppValue("NSFileViewer", applicationBundleIdentifier, app_id);
+    CFPreferencesAppSynchronize(app_id);
+

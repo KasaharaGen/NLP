@@ -1,0 +1,44 @@
+Q: Is there an OS X 'tail' tool that can monitor remote log files? I am looking for a visual tail tool that can monitor several local or remote log files.
+Optional features that interest me: color highlight based on log error level, coloring for special words, filtering of messages and/or notifications on new activity.  
+
+A: You may try to use a combination of multitail and ssh.
+
+
+*
+
+*https://serverfault.com/questions/53976/use-local-tools-to-monitor-remote-logs
+
+*https://superuser.com/questions/320575/mac-os-x-logfile-viewer
+
+A: I found a tool that can do this GeekTool, it even has a version that works on Lion (see the forum).
+It can be used to do just simple tails, without filtering or other stuff, so maybe someone has a better alternative.
+
+A: Survlog (Mac App Store, $)
+
+Survlog is a convenient way to watch remote log files. Simple setup, and allows for ssh keys and sudo passwords. Store log file information for easy access and reusability.
+
+Hasn't seen any updates since 2015.
+
+A: PostRemoteLog (free)
+PostRemoteLog has Growl notifications support and it is free.
+
+A: While I haven't used it myself yet, I recently discovered Log.io.  It appears to meet all your criteria.
+
+A: Only for the sake of completeness it shall be said, that there is a tool for Mac OS X with highlighting on keywords and some other features.
+It's called Logtastic
+I know, this is an old post, but maybe someone finds this useful?! :)
+
+A: Might I suggest the LogTail macOS app - it checks all the requirements you mentioned (except the notifications part). It has SSH based remote log viewing functionality and can tail the remote log file (configurable polling interval). You can setup multiple SSH servers and browse them to select the log file to view.
+It supports filtering and/or highlighting search patterns, searching the remote log file incrementally, and lets you adjust the foreground, background colors and font.
+Also, it doesn't load the entire remote log file at once but intelligently fetches content based on your scrolling actions, so it is quite efficient.
+The app site has more information. Hope it helps! 
+PS: I'm the app developer :)
+
+A: OS X has a Tail utility built right in.  
+Open a Terminal window, and the format would be 
+tail -f filename.log
+The -f option would make sure to keep displaying new entries to the file as it's written to.
+Of course, this is the basic Unix tail utility, so there aren't coloring options and the like...  however you can open multiple terminal windows / tabs to monitor different log files as needed.
+
+A: I was looking for something similar a few months back and discovered and excellent Linux appliance distribution called Security Onion:  https://security-onion-solutions.github.io/security-onion/ 
+I pretty much ignore the IDS and packet capturing (for now) and just use it for log analysis.  It was pretty simple to set up virtual box and then load the Security Onion image.  Other than being a little RAM hungry it's a great way to get some pretty sophisticated log analysis from several really good open source packages that are already integrated in a read-to-use solution.  Now that I have logging pretty much taken care of, I might start playing with some of the IDS features built into it - but that takes even more RAM...

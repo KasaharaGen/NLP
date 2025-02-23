@@ -1,0 +1,23 @@
+Q: How to make emacs style ASCII-art table in Mail? Is there a app available to do this?
+ +-----------------+--------------------------------+-----------------+
+ |     Command     |          Description           |   Key Binding   |
+ +-----------------+--------------------------------+-----------------+
+ |  forward-char   |Move point right N characters   |       C-f       |
+ |                 |(left if N is negative).        |                 |
+ |                 |                                |                 |
+ |                 |On reaching end of buffer, stop |                 |
+ |                 |and signal error.               |                 |
+ +-----------------+--------------------------------+-----------------+
+ |  backward-char  |Move point left N characters    |       C-b       |
+ |                 |(right if N is negative).       |                 |
+ |                 |                                |                 |
+ |                 |On attempt to pass beginning or |                 |
+ |                 |end of buffer, stop and signal  |                 |
+ |                 |error.                          |                 |
+ +-----------------+--------------------------------+-----------------+
+
+
+A: As suggested by patrix you could do that in Emacs. To automate it, you should use QuickCursor (available in the Mac App Store), and a special build of Emacs, which you can do by checking out the latest source code from ftp://alpha.gnu.org/gnu/emacs/pretest and then using the patches available from ftp://ftp.math.s.chiba-u.ac.jp/emacs
+Instruction on how to build are available in the archive containing the patch file. Once you've done that, editing between Emacs and Mail (or whatever else), should be extremely easy.
+
+A: How about creating a table in HTML and attaching it? I just emailed one to myself (with Mail), and I had to click on the attachment to view it in a web browser (Safari). But this is easier to maintain as the formatting is done for you.

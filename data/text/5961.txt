@@ -1,0 +1,19 @@
+Q: How to reload autofs on Lion without restarting? I'm trying to get my host machine running Lion to automount an NFS export on my CentOS VM.
+I was able to get this working on a system running Mac OS 10.5 by modifying /etc/auto_master and then restarting the autofs service per the instructions in http://alanlam.blogspot.com/2008/06/restart-autofs-in-leopard-without.html:
+
+
+sudo service com.apple.autofsd stop
+sudo service com.apple.autofsd start
+
+
+However, in Lion, the service command appears to be missing.
+How do I reload the autofs service in OS X Lion without restarting?
+
+A: You can use launchctl instead of service:
+sudo launchctl stop com.apple.autofsd
+
+You should not need to restart autofsdt manually; launchd will notice that it has stopped, and immediately start another instance.
+
+A: this works for me:
+sudo automount -vc
+

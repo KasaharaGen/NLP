@@ -1,0 +1,24 @@
+Q: Is it possible to use the character map as a standalone app? I always loved the opportunity to create a standalone version of the Color picker instead of having to look for it between the apps menus. 
+Is it possible to use the character map as a standalone app?
+
+Thank you 
+
+A: sudo defaults write Contents/Info LSUIElement -bool false would make it have a menu bar and show up in Dock. However as of 10.7.4 there seems to be no way to open the main window after opening the application.
+If you want it to be shown in normal Spotlight results, you could make an alias somewhere like /Applications/Utilities/.
+
+A: In this http://hints.macworld.com/article.php?story=20051022020253863 Article, you find the AppleScripts to do what you want. However, the paths seem to have changed at least under Lion. So, to show the Character Palette under 10.7 (possibly older as well), use this AppleScript:
+tell application "Finder"
+    open item "System:Library:Input Methods:CharacterPalette.app" of the
+    startup disk
+end tell
+
+As a bonus, the Keyboard Viewer is displayed with this script:
+tell application "Finder"
+    open item "System:Library:Input Methods:KeyboardViewer.app" of the
+    startup disk
+end tell
+
+To create a "Standalone Application" from them, just paste them into the AppleScript Editor, choose File->Save As... and select Application as the type.
+
+A: You can do this without scripting or Terminal or digging around in system folders:
+In System Preferences > Keyboard, check the box that says "Show Keyboard & Character Viewers in menu bar". A new icon will appear right next to the date/clock in the menu bar. It drops down to allow easy access to the character palette at any time. Double-clicking a character will insert it into the previously foreground app.

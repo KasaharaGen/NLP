@@ -1,0 +1,9 @@
+Q: How to get rid of Xorg from Macports? I have installed some packages from macports, and nearly all of them required to install Xorg. How can I remove the Xorg packages? Is there a way to reinstall all my Xorg dependant package without Xorg support?
+
+A: Many ports have a +nox11 variant, which you can add as a default variant in the variants.conf file that's pointed to in your macports.conf file.  However, in my experience, there are some X11-dependent ports that don't have the +nox11 variant. I believe I've also seen situations in which non-X11-dependet port A depends on port B, and port B is so deeply X11-dependent that it wouldn't even make sense for it to have a +nox11 variant. Overall, in my experience, it's practically impossible to keep Xorg from getting installed. :-(
+
+A: There is no need to worry about xorg-* related ports. They provide the client libs for applications using X11 only. You can continue to use the X server shipped with OS X (or XQuartz).
+See also the corresponding entry in the MacPorts FAQ.
+
+A: To disable X11 variants by default, edit /opt/local/etc/macports/variants.conf and add this line: -x11 +no_x11 +quartz.
+If you install a port that requires X11 and doesn't offer a variant without, you'll have to live with it. But this will at least make it harder to accidentally install the X11 libraries when you don't want to.

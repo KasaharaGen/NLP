@@ -1,0 +1,35 @@
+Q: What's the fastest connection speed / shortest elapsed time using Migration Assistant? When using Migration Assistant to move users, files, and folders from an old Mac to a new one, you have a few different choices, depending on the Macs involved. Presuming that both Macs have appropriate ports, which ports should be used in a real-world situation? Please do not provide quotations of theoretical port speeds; I'm looking for real-world experiences as to what will get the job done faster.
+Port choices:
+
+
+*
+
+*FireWire 400 in target disk mode
+
+*FireWire 400 to 800 in target disk mode
+
+*FireWire 800 in target disk mode
+
+*100 Megabit Ethernet to Gigabit Ethernet in the OS
+
+*Gigabit Ethernet to Gigabit Ethernet in the OS
+
+*Thunderbolt cable in target disk mode
+
+
+A: While the prevailing thinking that gigabit is faster than FW800 is true in the most rudimentary theory it doesn't hold up in practice. When migrating over Ethernet the source machine has the OS loaded, and is communicating over a chatty protocol designed for the wild unknown that is an open network. 
+Firewire transfers with migration assistant are performed with the source machine in "target disk" mode... no OS is loaded, and it's essentially functioning as an external hard drive. 
+In my experience FW800 in target disk mode provides superior performance. 
+
+A: I just transferred a 25GB user from a MacBook Pro 5,3 running 10.7.5 to a MacBook Pro 9,2 via Gigabit Ethernet (direct cable connection with self assigned IP addresses). It took 23 minutes although the time-remaining indicator going from 5 to 8 then dropping to zero for most of that time.
+I then transferred that same user from the MacBook Pro 9,2 in target disk mode to a MacBook Air 4,2 running 10.7.5 via a Thunderbolt and it took only 5 minutes with the time-remaining indicator dropping monotonically from 3 to 0.
+I conclude that Thunderbolt is much faster than Gigabit Ethernet.
+
+A: Gigabit ethernet to gigabit ethernet. Next would be FireWire 800 to FireWire 800. Thunderbolt target disk mode is testing to be equivalent to FireWire 800 in target disk mode. 
+It looks like the OS can keep a gigabit link fuller than target disk mode is able, even when the target mode link has vastly higher bandwidth available. 
+
+A: Last time I updated my computer I tried over FireWire 400.  It said 23 hours, I cancelled it after four. I plugged in ethernet and the whole process took 23 minutes. Ethernet - Ethernet is faster than FireWire 400. 
+
+A: Kinda depends on the drives involved. My migrations (I do these for all my family for every new Mac) go fastest through Thunderbolt when both ends are using Flash Storage, but have seemed to go faster by Gigabit Ethernet when its a Hard Drive to Flash Storage, and if it's Hard Drive to Hard Drive, I can't tell the difference between Gigabit Ethernet and Firewire 800.
+Target disk mode is my go to for Mac to Mac migrations, the time I remember clocking it, I transferred 120gb from my MacBook Air 2011 to 2013 about 5 minutes faster when I did it Target Disk mode than when I redid it OS to OS.
+Why I had to redo it, well, we don't talk about that ;) but it was a good opportunity to benchmark :)

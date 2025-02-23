@@ -1,0 +1,30 @@
+Q: Can I disable window resizing from the top edge of the window in Lion? I often move windows around on the desktop by clicking and dragging them by the title bar.  As of Lion, you can resize the window from the top, so if you put the cursor in the top portion of the title bar, the icon turns into resize arrows, when I actually want to move the window, not resize it.
+Is there a way to turn this new feature off or customize it so resizing from the top is disabled?
+
+A: Lion has (at least for now) the following preference keys:
+AppleEdgeResizing (boolean)
+AppleEdgeResizeBorderSize
+AppleEdgeResizeCornerSize
+AppleEdgeResizeCornerSizeNW
+AppleEdgeResizeCornerSizeNE
+AppleEdgeResizeCornerSizeSW
+AppleEdgeResizeCornerSizeSE
+AppleEdgeResizeExteriorSize
+
+
+These can be accessed either with either the following commands:
+defaults read DOMAIN KEY
+defaults write DOMAIN KEY VALUE
+defaults delete DOMAIN KEY
+
+Where DOMAIN can be either -globalDomain to affect all apps, or a specific app's identifier e.g.: com.apple.TextEdit
+Or edit ~/Library/Preferences/.GlobalPreferences.plist or other .plist file thereabouts, in Xcode or some other Property List editor.
+Apps need to be restarted before they'll recognize any changes.
+
+A: Based on mjmt's excellent info, here's how to globally disable resizing (tested in 10.7.4):
+defaults write -globalDomain AppleEdgeResizing NO
+
+Log out and log back into your account (or quit every single app) to see changes take effect.
+
+A: Not currently configurable or able to be turned off by any out of the box control or setting.
+It's meant to be always on and you'll likely need a third party solution (or a hidden default setting like the other answers have provided) to change the logic behind the resizing.

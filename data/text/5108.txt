@@ -1,0 +1,16 @@
+Q: Identify connected external disks programmatically I want to write a shell script that ejects all currently-connected external drives (either USB or Firewire drives). I can use the disktuil eject <disk-path> to eject a specified drive. But I still can't figure how to find out what are the external drives. For instance, /Volumes shows internal drives, external drives, and mounted images. Is there a way to identify only external drives programmatically? 
+
+A: Have you considered using diskutil info /dev/disk[n|s{n}] | grep Ejectable which allows you to identify whether the device (or device slice) is ejectable. 
+This would need to be expanded upon in a script using awk to work through each disk device that is currently attached to determine whether it can be ejected and then eject it.
+
+A: In a terminal window (bash shell)
+diskutil info /Volumes/name-of-volume
+will return a list of properties of the volume, including 
+Protocol:                 FireWire
+...
+   Ejectable:                Yes
+   Whole:                    No
+   Internal:                 No
+so, I suppose you could start with that.   I'm not clear on what 
+the "Internal" property implies, it might be better to look at
+"Protocol" if your concern is with Firewire or USB external devices.

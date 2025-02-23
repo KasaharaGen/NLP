@@ -1,0 +1,12 @@
+Q: Would an SSD make developing in Eclipse (much) faster? I'm developing a lot of Java software with Eclipse. My MacBook running Snow Leopard 10.6.8 with 4GB RAM and Core 2 Duo is very slow.
+Would it help to use an SSD and upgrade RAM to 6 or 8 GB? I've read that SSD will make my MacBook much faster, but will it have an effect on Java development?
+
+A: TL;DR: Yes on both accounts.
+Start with RAM. Max it out at 8 GBs. My compile times dropped in half going from 4 GB to 8 GB -- swapping is a performance killer and the primary cause of the beach ball on OS X. More memory, less swapping. Happier development.
+Then go SDD. In my case I went to an SDD in my DVD drive slot. I never used the thing so didn't think it was worth keeping around. Compile times for larger Java projects on the SDD vs the HD are consistently 3x faster on the SDD.
+There's a caveat to all of this: SDDs are unreliable. When they fail, they fail hard. That's why I opted to keep my Main drive on a spinning platter drive. Also remember: Time Machine doesn't back up anything by your Main drive. So that means nothing on my SDD is backed up by Time Machine. Why am I okay with this? Two words: revision control. I only do things on my SDD that are backed by revision control. In my case git. And I push my changes upstream fairly frequently. If the drive fails, I'd lose an hour or two of work and that's not so bad. Everything else is safe on my remote repository in the cloud.
+
+A: Upgrading to an SSD will make everything faster. Like, everything. Ok, so it won't make everything faster, but everything will feel quite speedy. Additional RAM will help as well, but you'll notice just an unbelievable difference in day to day usability and responsiveness.
+Now, with that said, SSDs are still quite expensive. If you have an older computer, it might be better to spend the money on a new machine (such as an Air with an SSD) instead a significant amount just for the new drive. This depends on the size you want to get. 
+
+A: I upgraded my MacBook (see hardware specs here) and used the manuals from www.ifixit.com. The MacBook runs now very smooth and extremly fast :-)

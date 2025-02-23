@@ -1,0 +1,8 @@
+Q: mysql.sock gets deleted on restart I have set up PHP and MySQL, however MySQL wants the mysql.sock file in /var/mysql, which is fair enough. I change the directory to /var/mysql however every time I restart my computer mysql.sock gets deleted and I can't work.
+Has anyone got any ideas on how I can fix this problem? 
+
+A: It is not ridiculous at all. I'd assume that, seeing you're coming from a Windows environment, you simply don't understand Unix sockets.
+An Unix socket file is created when mysqld is started up, and mysql.sock is that file. It is a faster alternative to TCP/IP for use on a local system.
+So yeah, it is actually totally normal that the file is deleted when you restart your computer: once the server is off, there's no reason for the communication line (socket) to still be open.
+Your problem is not about the file missing, but about the server not starting up automatically on restart. You probably didn't have this problem “on Windows at work” not because of Windows, but because of work, where your workstation was set up to start MySQL server on boot.
+Simply check the “Automatically Start MySQL Server on Startup” checkbox in the MySQL prefpane (in System Preferences) if you used the standard installer, or see the “MySQL does not start on startup” question in case of a problem on Lion or another installation method.

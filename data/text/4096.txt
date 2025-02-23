@@ -1,0 +1,21 @@
+Q: most Mac-compatible linux distribution I want to install Ubuntu on my iMac. But I don't want to use Unity. I want to use Gnome 3. I can install it over Ubuntu (as I do on my laptop) but I know that Fedora and OpenSuse use Gnome 3 natively.
+Also, I use Ubuntu on my laptop because of drivers. It was a pain in my ass to install all working properly on Fedora and CentOS. So finally I've installed Ubuntu and it works fine for years.
+So now I understand, that here is another bunch of drivers on my iMac and maybe here won't be any problems with Fedora.
+Ok. Actually, the question is what is the best distribution (best, I mean most compatible with drivers wireless devices: Mouse, Keyboard etc) to use on iMac. As a second OS and as OS in my VirtualBox.
+
+A: I look at this issue the other way (which may not help you at all as you mention video driver issues and you want full linux access to the GPU).
+My take is "Which virtualization environment works best with the linux distributions I want to use?"
+For me the answer is VMware Fusion, then VirtualBox and lastly Parallels. And I really haven't heard any significant issues with all three of these in the last several months.
+The reason is that my time is so much more precious than whatever marginal increase in speed I would have gotten installing linux natively. If and when I need huge performance I deploy to co-located linux service where you can easily pick your optimal price / performance / service level.
+
+A: you want to install (Ubuntu 14.04 GNOME)
+follow the guide if you have any questions:
+https://www.youtube.com/watch?v=7osgsM20Nkc&index=3&list=PLIHlPrg8Od33icJstJBy_4MvPCdL5OkYl
+afterwards just old the Option key at the  sound of the chime on a reboot and select the USB!
+make sure to install GRUB to your Linux root partition /
+also install REFIND so you can select the second os at boot.
+IF YOU HAVE A DRIVER ISSUE (booting to blank screen) install in (nomodeset)
+once installed you might have to type (nomodeset)) into your grub menu but pressing e and adding nomodeset after quietsplash
+once that is done you should be able to install drivers no problem.
+you might have to blacklist some from loading at boot but I would segest reasercing installing linux on your specific Apple as your did not give us any information on that.
+Also Ubuntu works with wireless devices but you have to write a script to pair them at boot automatically.

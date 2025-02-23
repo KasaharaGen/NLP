@@ -1,0 +1,14 @@
+Q: Best document / book for Mac hardware? I'm reading 'Mac OS X Internals' but it was published in 2007. It has an extensive section on Mac hardware (table of contents for Chapter 3) and I want to read it all ... except it's for PowerPC not Intel architecture and I would probably be wasting my time.
+
+*
+
+*How much of the chapter is still relevant?
+
+*What's the best place to gain the equivalent knowledge about the Intel architecture? I basically want an Intel equivalent of that chapter.
+
+I don't want to actually do any hardware tinkering, I just want a solid understanding of the hardware as a programmer.
+
+A: I'm sorry that you've had such a difficult time asking this question on Stack Exchange. I haven't been able to find a better/more up-to-date book, but most of Mac OS X is CPU architecture-independent anyway, and the book you're reading does contain an appendix that discusses Mac OS X on x86 hardware and the corresponding similarities and differences between PowerPC hardware:
+
+Appendix A, "Mac OS X on x86-Based Macintosh Computers," highlights the key differences between the x86-based and PowerPC-based versions of Mac OS X. Besides this appendix, the book covers the details of several key x86-specific topics, such as EFI, GUID-based partitioning, and Universal Binaries. Most of Mac OS X is architecture-independent, and consequently, the majority of the book is architecture-independent.
+

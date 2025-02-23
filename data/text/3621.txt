@@ -1,0 +1,15 @@
+Q: can't partition hard drive I tried to make a partition on my macbook for windows. I was unable to do so, because, apparently, the hard-drive has been damaged. Since I do not have osx installation cd, I tried to recover using 1) disk utility and 2) from command line (exiting the desktop, at boot).
+In both cases I failed. In particular, doing that by command line seemed to be fine (the output message was something like "disk recovered"). But then, again, when partitioning I always get the error message that the disk is corrupted.
+Do you know how could  I possibly solve this problem without osx cd?
+
+A: One suggestion is to grab this recovery CD. If you like you can use a USB stick instead but I find the CD to be easiest.
+Of course, you'll need a functioning computer and CD burner to make this happen so perhaps this isn't possible for you.
+If it is possible, burn the .iso, insert the CD, and when booting up, press 'C' immediately after the startup tone plays.
+You'll be presented with some options. Just click Enter for these until you find yourself in a live Linux environment that looks like this. You'll be able to use the graphical tool GParted to see what's going on with your partitions. GParted is a very powerful utility. In an (almost) worst case scenario you'll at least be able to recover your data from the HDD.
+
+A: Well, since your disk is damaged, you'll probably want to get a new one to replace it, yes?
+When you order your new drive, get a USB (3.0, if supported) adapter to go with it.  Then, when they arrive, mount your new drive via the USB adapter and install a bootable OS X system on it.  Make sure to partition it as a 'GUID partition table'.  Also, leave yourself enough room for your extra partition(s) at this time.
+Once you can boot from it, you could backup your existing HDD to it, then swap the new one into your macbook.
+Alternatively, you could just get the new drive bootable and then install it, using the USB adapter with your old drive to retrieve your data.
+Also, you should be able to get a copy of the OS X installation program from the App store.
+You might also try to press and hold the  key during boot -- immediately after the boot tone and before the grey screen.  This should present you with a choice of bootable images.  One of them should be a recovery partition that was created when the OS was initially installed.  That might allow you to attempt to repair your HDD.  This is also the mechanism you'll use to boot from your new external disk when you install OS X to it.

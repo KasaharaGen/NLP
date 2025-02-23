@@ -1,0 +1,46 @@
+Q: Enable home directory sites in Lion server? I had a Leopard server with a few hundred users (students), and each of them was able to maintain their own web content in their Sites folders in their home directories -- and they could access them (from either inside or outside the network) by going to http://ourdomain.com/~studentname.
+Just migrated to a Lion server, and everything is working perfectly, except now visiting any of those home directory sites nets us a 404. I can't find anything in the GUI apps that looks like it could help with this... am I missing something?
+I've already tried re-creating the whole OD structure, but that hasn't helped.
+
+A: Found it: The UserDir module in Apache2 defaults to public_html. So ~studentname was being directed to /Users/studentname/public_html. Which doesn't exist in any of the users' folders.
+What does exist is /Users/studentname/Sites, so I just added this line to the httpd.conf:
+UserDir Sites
+
+...and it's working perfectly now. Awesome!
+Many thanks to @bmike for pointing me in the right direction.
+
+A: Can we assume you've gone over the following with a fine tooth comb - comparing the prior version to the new Lion versions?
+Web configuration data is concentrated in the following files and directories: 
+
+
+*
+
+*/etc/apache2/httpd.conf
+
+*/etc/apache2/httpd_mailman.conf
+
+*/etc/apache2/httpd_squirrelmail.conf 
+
+*/etc/apache2/magic
+
+*/Library/WebServer/ Web content
+
+
+Additional web content is usually in:
+
+
+*
+
+*/Library/WebServer/Documents/
+
+*/Library/WebServer/CGI-Executables/
+
+*Any other location where it resides (like the user home folders you are mentioning)
+
+
+A: Mountain Lion removes personal web sharing as an option as it exposed user IDs. (~username)
+Instead of turning it on for ALL users of a system, it is done on a per user basis.
+Try the following as root (and substitute your username in place of username)
+cd /etc/apache2/users
+sed -e "s/Guest/username/g" Guest.conf > username.conf
+

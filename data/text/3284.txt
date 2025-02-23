@@ -1,0 +1,29 @@
+Q: How can I select files in Midnight Commander on a MacBook Pro? I find really annoying to use Midnight Commander under OS X when using the non-extended keyboard (laptop).
+I found no way of simulating an INSERT key press (select file) and I would like to find a solution that does not require me to reconfigure MC, specially because I cannot do this with each machine I'm connecting to from my MacBook.
+I will give extra bonus ;) for and extended solution what will solve the problem not only for the INSERT (select file) but also for switch selection and add/substract selection (NumMultiply,NumMinus,NumPlus). 
+Remember that Numlock area *, + and - are not the same as the ones from the standard keyboard. 
+
+A: Ctrl+T is standard hotkey for file selection — http://linux.die.net/man/1/mc.
+As for switch/add/substract, just type Shift+8 for *, Shift+= for + and - for minus.
+All this works in MC out of the box.
+
+A: For those like me who were drawn here by a Google search based on the title of the question (not relating to Midnight Commander), I still haven't found a great solution.  However, for Word processors (a common usage of needing to find the "insert" key to toggle Insert/Overwrite mode), you should be able to click the text that says "INSRT" or "OVER"/"OVWT" in the status bar on the bottom of the Word Processor to change modes, as detailed here for Open Office.  Not awesome, but at least functional.
+If neither Midnight Commander nor a Word Processor drew you here, then...good luck in your quest!
+
+A: Holding shift ⇧ while pressing ↑ or ↓  will also select the file.
+Shift ⇧ + ↓ is easier for me to reach and skip over files I don't want to select compared to Control ⌃ + t.
+
+A: As @slackair has suggested to use a convenient combination
+
+Holding shift ⇧ while pressing ↑ or ↓ will also select the file.
+
+However, this does not work out of the box in Mac Terminal, but you can setup a key to action mapping in your profile keyboard settings as following:
+Shift ⇧ + ↑ to \033[1;2A
+Shift ⇧ + ↓ to \033[1;2B
+
+
+
+A: Control+T will select files:
+http://austringer.net/wp/index.php/2008/06/07/mac-os-x-and-midnight-commander-the-missing-insert-key/
+
+A: For those who want to select all files: first press Shift++ - Midnight Commander will prompt for a selection options (* by default), then just hit Enter - works fine in Terminal.app

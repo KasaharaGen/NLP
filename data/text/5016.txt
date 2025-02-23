@@ -1,0 +1,9 @@
+Q: Multiple Displays and Screen Sharing My iMac has two non-matching displays. When I connect from my iPad using iTeleport, only one of the displays is visible. Is there some way to configure Screen Sharing so that both displays will be available?
+
+A: This is probably not a problem with Screen Sharing, but a problem with iTeleport. Using screen sharing's default setup, I can see both of my iMac's displays from another computer:
+
+And, it appears that iTeleport also supports multiple displays (see their FAQs).
+I suggest that you check the connections to the extra display, and see if there are any settings for iTeleport.
+You can also look at the Screen Sharing preferences by opening /System/Library/CoreServices/Screen Sharing.app and going to Screen Sharing-> Preferences. However, it doesn't appear that that allows you to change which display(s) are used.
+
+A: The root cause of the problem was that Vine Server was running instead of VNC.  Removing Vine Server from the startup list made both monitors visible again on the clients.

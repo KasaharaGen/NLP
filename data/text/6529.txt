@@ -1,0 +1,16 @@
+Q: How much will adding an extra hard drive to my MacBook Pro affect battery performance? I have a current MacBook Pro 15" i7 2.2Ghz with a 500GB 7200RPM (default) hard drive.
+I am thinking of replacing both the current hard drive and the superdrive with two Seagate Momentus Hybrid 500 GB drives and placing them in RAID0 for optimal performance.
+Now, I don't think performance will be a problem, but how about battery life? Are there any examples of users who already have done similar things and noticed the effect on battery life?
+
+A: Having a second hard drive will certainly decrease battery life by a noticeable amount. Behind the CPU and LCD, the hard drive is the largest drain on battery.
+A word of caution: RAID 0 is almost never a good idea, unless you'll be doing backups constantly and don't mind being totally down if a drive fails. You'll get better performance from an SSD and you'll be able to keep your optical drive.
+
+A: Go with an SSD. The lack of moving parts will increase battery life.
+On my previous (late 2011) non-Retina MBP, I replaced the optical drive with a 512GB SSD, (The optical drive is basically useless 90% of the time - may as well use the space for SOMETHING.), and moved the operating system installations (OSX and Win7) to the SSD. This significantly improved battery life as well as overall performance.
+If you don't want to pony up the cash for two large SSDs, put one SSD in along with a higher RPM spin drive. 
+Also, check out the Corsair 16GB RAM upgrade available from Newegg, among other places. Takes about 10 minutes to install, doesn't void your warranty, and also really helps overall performance.
+
+A: i wonder how well a hybrid will work in a raid0.
+could there be some logic that would make the ssd portion of this hybrid useless when used as a raw raid0 drive?
+i'm not sure about their logic of caching from spinning drive to the ssd portion.  but if it's by file name or structure, the raid-0'ness of it might defeat that.
+just a thought

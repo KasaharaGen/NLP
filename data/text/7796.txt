@@ -1,0 +1,13 @@
+Q: activating screen sharing remotely There is a computer I don't have immediate access to that I cannot screenshare with it. I have an account on the computer and have screenshared before with it. 
+I believe some setting has been changed to deactivate screensharing. 
+Is there a way to activate screensharing through ssh?
+My computer is OS 10.6.8. I'm not sure what the other one is but probably the same.
+
+A: To enable remote management (including screensharing), issue the following command over ssh:  
+Note: This command sets your vnc password to 'mypasswd' as set by the -vncpw flag in the command, you should change this.
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -clientopts -setvnclegacy -vnclegacy yes -clientopts -setvncpw -vncpw mypasswd -restart -agent -privs -all
+
+
+To disable the remote management, issue the following command over ssh:
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -configure -access -off
+

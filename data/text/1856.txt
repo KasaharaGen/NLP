@@ -1,0 +1,85 @@
+Q: macbook pro absurdly small battery life My Macbook Pro lasts me about 1.5 to 2 hours max on a single charge. This feels ridiculously low.
+What can I do to increase the battery life on Macbook Pro?
+Battery Information:
+
+  Model Information:
+  Manufacturer: SMP
+  Pack Lot Code:    0000
+  PCB Lot Code: 0000
+  Firmware Version: 0201
+  Hardware Revision:    000a
+  Cell Revision:    0157
+  Charge Information:
+  Charge remaining (mAh):   6079
+  Fully charged:    No
+  Charging: Yes
+  Full charge capacity (mAh):   6930
+  Health Information:
+  Cycle count:  3
+  Condition:    Normal
+  Battery Installed:    Yes
+  Amperage (mA):    2139
+  Voltage (mV): 12492
+
+
+A: Make sure there are no processes hogging your CPU (this eats battery).
+Open Activity Monitor from /Applications/Utilities.
+Set the Show menu at the top right to All Processes
+Click the %CPU column head so the triangle faces down.
+Which processes are at the top? How much are they using?
+This may reveal what's going on.
+Also, you can check the health of your battery to make sure it's not a hardware problem.
+Download the free coconutBattery app and see what it has to say about your batter's capacity.
+
+A: Use the laptop plugged in as much as possible.  Any time you drain the battery at all, and then charge it, the drain + charge is counted towards 'a cycle', where 'a cycle' means the battery has drained, and been charged, 100%.
+So if you drain it half way and charge it fully, twice, that counts as 'a cycle'.  These batteries will last a certain number of cycles.  There are utilities out there that will check your cycle count, I often use one called "Pow!".
+Other than that;  run as few applications as possible.  Turn off any sensors (ambient light sensor, keyboard backlighting, etc).  Run the laptop with as dim a setting on the screen as possible.
+Also, try to know what's running in the background.  If you've got processes you don't need doing stuff, that will drain your battery faster.
+
+A: I've just gone through two brand new MacBook Pro Retina 15's, "fresh" from Apple Store, both of which were giving me only 3-4 hours on a fresh charge.
+After resetting NVRAM and SMC, I now get 5-6 or more hours.
+If you buy a new MacBook -- and are getting less than 5 hours per charge -- try resetting your NVRAM and SMC.
+How to Reset NVRAM:
+
+
+*
+
+*Shut down the computer.
+
+*Locate the following keys on your keyboard:  COMMAND  , OPTION, the letter  P, and the letter R.  
+
+*Turn on the computer
+
+*Press and hold the COMMAND - OPTION - P and R keys before the gray screen appears and before you hear any chimes.
+
+*Hold the keys down until the computer restarts and you hear the startup sound for the second time.
+
+*Release the keys.  
+
+
+Reset SMC:
+
+
+*
+
+*Shut down the computer.
+
+*Plug in the MagSafe power adapter to a power source, connecting it to the Mac if its not already connected.
+
+*On the built-in keyboard, press the (left side) Shift-Control-Option keys and the power button at the same time.  The OPTION key is also known as ALT.
+
+*Count to 5 then release all the keys and the power button at the same time.
+
+*Press the power button to turn on the computer.
+
+*Note: The LED on the MagSafe power adapter may change states or temporarily turn off when you reset the SMC.  
+
+
+References:
+
+
+*
+
+*SMC: http://support.apple.com/kb/HT3964
+
+*NVRAM: http://support.apple.com/kb/ht1379

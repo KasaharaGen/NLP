@@ -1,0 +1,31 @@
+Q: Two full screen apps in OSX Lion when using multiple monitors Is it possible to run two full screen apps at the same time in OSX Lion when using multiple monitors?
+
+A: [update]
+This has worked for me and others; it may take a couple attempts to get down.
+
+
+*
+
+*Open an app (Safari, for example) and enter full-screen mode.
+
+*Next, you will need to start another app without using the mouse (i.e. via Spotlight w/keyboard shortcut) Command + Space
+
+*When the Spotlight search box pops up start typing the name of the other app you would like to launch full-screen.
+
+*After you have it highlighted press Enter to launch the app and immediately start a gesture (using your mouse or trackpad) to switch spaces.
+
+*As you see your current space start sliding pause/stop your swipe halfway.
+
+*If you succeeded you should have a space that not really there (but is).
+
+*Moving to where the animation has jumped or stopped you should be able to see both spaces.
+
+*Your second app should have opened in the original full-screen
+app's space and can be moved into the remaining unused space on
+the second display.
+
+Since solution/work-around is possible through an apparent glitch in the gui, one of the apps doesn't show in
+  mission control or in the app switcher when you press command-tab.
+Also, if you weren't able to achieve this via my instructions try these also.
+
+It's currently not possible. The OS X Lion full screen API supports two monitors, and applications using the API can use additional monitors. However, it's not possible to run a full screen app on the main monitor and another app on the second monitor.

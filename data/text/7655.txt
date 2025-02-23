@@ -1,0 +1,18 @@
+Q: BeamSync setting has ruined OSX Lion I am running OSX Lion on a Macbook Pro. Some website suggested I put in a command in the terminal to 'increase my graphics performance' by turning off BeamSync. The command was:
+sudo defaults write /Library/Preferences/com.apple.windowserver Compositor -dict deferredUpdates 0
+
+The performance of this Mac is now utterly pathetic. Animations do not run properly and some of them are missing completely. Its like the GFX card has been disabled.
+I tried running the command again with a 1, but it did not help. Does the deferredUpdates setting get cached somewhere, or enable something else thats causing the issue?
+
+A: When I attempt to read that value, I get told it doesn't exist:
+
+$ defaults read /Library/Preferences/com.apple.windowserver Compositor -dict deferredUpdates
+  2011-09-28 11:44:23.535 defaults[4532:707]
+  The domain/default pair of (com.apple.windowserver, Compositor) does not exist
+
+IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT
+You are about to make a serious modification. You should have backed up the relevant plist file before making any changes. But now, you should absolutely do so just in case you make a change that causes serious system instability.
+MAKE A BACKUP OF /Library/Preferences/com.apple.windowserver RIGHT THIS MOMENT!!!!!!
+Please don't do this until you have taken necessary safe-guards and understand what my command is actually doing. I suspect you may be able to restore the default by issuing:
+defaults delete /Library/Preferences/com.apple.windowserver Compositor
+I suggest this because I notice that in that plist file (/Library/Preferences/com.apple.windowserver), I have no reference to 'Compositor' whatsoever.

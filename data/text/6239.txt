@@ -1,0 +1,84 @@
+Q: Mail.app - keyboard shortcuts to move mail and jump to folder I'm coming to Mail.app with a background using both Outlook (on the PC) and GMail. In every mail client I've used, there are easy keyboard shortcuts to do these:
+
+
+*
+
+*jump to any folder I want, just by typing a substring of it in an easy to launch dialogue
+
+*move currently selected message(s) with a similar dialogue
+
+
+In Gmail, for example, which has labels, I can easily move and archive something ("l" to label it, then "e" to archive it), and I can easily jump to any label ("g" then "l"). In Outlook I hit ctrl-Y and then type a folder to jump; Ctrl-Shift-V to move things.
+I'm happy with Lion so far, but do I really have to spend all this time dragging messages around to folders with the trackpad and clicking folders when I want to look in them? I've never been slower with a mail client.
+I'm aware from some Googling that I can assign dedicated keyboard shortcuts to every single folder on a case-by-case basis (for moving not jumping), but that seems like a lot of effort, hard to organize (I want to type the folder I want, not memorize 30 different keyboard shortcuts) and not very flexible.
+Am I missing an undocumented feature here?
+
+A: MailActOn is an extension that provides fast filing of email messages in Mail.app. It is a paid extension though, but I find the $24.95 price tag reasonable for the productivity gains. 
+
+A: A combination of some judicious AppleScript and a good utility to trigger scripts with a keystroke will do the trick, if all else fails.
+
+A: To do this, you need to display the Favorites Bar, which you can enable by going to Mail » View » Show Favorites Bar.
+You can add any folder to this bar, which you can then easily switch to with Command1, Command2, etc.
+CtrlCommand1 moves the currently selected email(s) to the respective folder.
+
+A: Try MsgFiler ($9.99) from the AppStore.
+
+A: I just recently was forced to switch to Apple Mail and I encountered the same issues, namely lacking a simple keyboard method to move mail from one folder to another without lifting my hands off the keyboard. I found the answer by using Keyboard Maestro (although any keyboard macro program will work) to create a "select or show a menu item" action that selects the the menu item "Message/Move To." This works very well and is simple to implement. Once the menu item is actuated, you just start typing the folder name you want until the folder you want is highlighted and then you press return/enter to move the originally selected mail items or items.
+
+If you have nested folders, you will need to open them up in Mail (i.e., click the triangles to the left of the parent folders) otherwise the command won't reveal the nested folders (unless you actually click on them, which I don't want to do). In practice, having this long list of folders open in mail is irrelevant because you're not going to have to drag and drop any folders into the list with your mouse, you do it from the keyboard.  
+
+A: Here is a shortcut that you can use easily as described by Philip Mat, No needs of any app, it is built in Mail using the help shortcut.
+http://philipm.at/2011/mail_quickly_file.html
+
+  
+*
+  
+*Press Cmd-? or Cmd-Shift-/ to access the Help > Search menu.
+  
+*Type in the name of your folder.
+  
+*Press arrow down once for Move To or twice for Copy To and hit return.
+  
+
+
+A: My understanding is that keyboard shortcuts for moving messages to specific folders relate to those which already are on the bookmark bar or which you have added to it.
+The keyboard sequence is Command-Control-BookmarkNumber (the number arrived at by counting from left to right on the bookmark bar).
+
+A: Using Shift-command-? opens a drop down box.  Then you type the first few letters of the folder name and return and the email is transferred.  Ba Da Boom!
+
+A: As @Vincent mentioned built-in keyboard shortcuts exist:
+To move or copy an item to a mailbox folder:
+
+*
+
+*Press Cmd-? or Cmd-Shift-/ to access the Help > Search menu.
+
+*Type in the name of your folder.
+
+*Press arrow down once for Move To or twice for Copy To and hit return.
+
+What @Vincent didn't mention was how to jump to a folder.
+To jump to a folder or highlight matching folders:
+
+*
+
+*Press Cmd-Option-F to access Mailbox Search (Edit > Finder > Mailbox Search)
+
+*Type in the name of the folder (at least 4 characters for mailboxes that are more 4 or more characters long; otherwise they don't show as matches)
+
+*Press Cmd-down arrow to jump down category matches found quickly (e.g., People, Messages, Mailboxes, Attachments)
+
+*Press down/up arrow (if necessary) to select an item within a category
+
+*Press return to perform the action
+
+
+A: I've been a power Gmail user for years, and I like the new version of Mail.app a lot.  
+However, I've since found Sparrow, which is now my favorite email client on Mac.  It has a similar (and easier) set of shortcuts like Gmail (although you can elect to use Gmail's).
+For $10 US, the app is one that I'm recommending to a lot of friends.  It's also integrated with Shortmail, which I'm enjoying.
+Good luck,
+Tom
+
+A: Vincents answer is helpful and was unknown to me. I also was looking for an answer and found this to be helpful for me:
+Add a move-to button to the mail-app tool bar by right clicking in the toolbar area and selecting "customize toolbar".
+easy :)

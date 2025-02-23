@@ -1,0 +1,58 @@
+Q: How to run Applescript on Disk mount I want to run an Applescript when I mount a specific disk. It isn't if the script is located on the disk or not, it should just run when OS X mounts the disk.
+I tried to accomplish this with folder actions, but it looks like it isn't possible to do it this way.
+Clarification:
+
+
+*
+
+*I get home with my Macbook
+
+*I plug my USB Hub into the device
+
+*External disks are mounted in OS X
+
+*My Applescript gets run, does some stuff on those disks 
+
+
+I want to automate step 4.
+
+A: You don't mention under which context you are mounting the disk, but what about going the other way and mounting the disk with the Applescript? 
+I mention context because when mounting a disk with Applescript is the big caveat that if it is a network volume, and the network is password-protected, then the user name and password would have to be stored as plain text in the script for a seamless execution.
+UPDATE: A bit of searching found a similar question elsewhere. Essentially, a script can be made to do this by applying the script as a Folder Action to /Volumes: 
+on adding folder items to this_folder after receiving these_items
+    repeat with aItem in these_items
+        tell application "Finder"
+            if (local volume of aItem) and (name of aItem is "[Name of Hard Drive]") then
+                -- do something with the drive
+                -- eject aItem
+            end if
+        end tell
+    end repeat
+end adding folder items to
+
+
+A: Use a Finder FolderAction that monitors /Volumes. When a new folder appears, that means a new disk has been attached. Now your FolderAction can run an Automator action, AppleScript, or shell script to do your thing.
+
+A: The likely most robust solution is to create a launchd job with the StartOnMount property set to -boolean YES:
+
+StartOnMount <boolean>
+  This optional key causes the job to be started every time a filesystem is mounted.
+
+This is how Time Machine does it (see /System/Library/LaunchDaemons/com.apple.backupd-attach.plist).
+
+A: MarcoPolo can do actions based on disk attachment.
+
+A: A solution would be to create an Automator application chaining the 3 following actions :
+
+
+*
+
+*Get Specified Finder Items 
+
+*Mount Disk Image
+
+*Run AppleScript
+
+
+A: Depending on your needs, this can be applied to specific folder/mount points and is great to use when mounting a USB flash drive for example...
+http://www.jbmurphy.com/2011/07/15/os-x-running-a-script-when-a-usb-drive-is-inserted/

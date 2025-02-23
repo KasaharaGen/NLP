@@ -1,0 +1,32 @@
+Q: Mac driver for Lenovo L2230x Monitor At work, I'm connecting my MacBook Air 11" to a Lenovo L2230x Monitor (aka L2230xwA) to extend my display.
+Given that the MacBook Air has no Ethernet connector, today I thought I might put the monitor's USB Port Replicator feature to good use. Long story short, this monitor embeds a USB 2.0 Hub that connects to your laptop through a USB-A to USB-B cable and exposes:
+
+
+*
+
+*3 downstream USB ports
+
+*1 Ethernet 10M/100Mbps port
+
+*Multimedia ports: audio line-out + microphone-in jack
+
+
+The 3 USB ports work out of the box, but no luck with the Ethernet port!
+In the user's manual (pdf), the steps are simple:
+
+  
+*
+  
+*Install the USB Port Replicator driver for L2230x Wide [...] 
+  
+*Connect a standard 10 Mbps / 100 Mbps Ethernet connector to the Ethernet  connector on the monitor, and wait until the device is fully configured by the Windows operating system.
+  
+
+So I looked for a driver, but on the Lenovo support page I could only find the USB driver for Windows 7, Windows Vista and Windows XP.
+Where could I find a driver to be able to use the Ethernet port?
+Or did anyone find a workaround to make use of it on a Mac?
+
+A: I guess you're chances are very small getting the monitor's Ethernet port working on OS X.
+Probably you would need a modified kext - best place to ask would be the hackintosh sites - but you would have to be cautious with every OS X update as that could change the kext and leave you without working ethernet port...  
+You could however use one of the USB ports on the monitor to connect the Apple USB Ethernet Adapter for ~30$ and you're save.  
+You'd lose one USB port and 30 bucks, but I'd say it's better than the hacked solution over long time and you have an Ethernet adapter you can take with you, rather than carrying the monitor around ;)

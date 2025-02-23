@@ -1,0 +1,15 @@
+Q: Time Machine: should I partition a 500GB disk? I was considering using Time Machine and I was wondering if creating a 50 GB partition on a disk of 500 GB for it make sense.
+
+A: Technically you could do this, although 50 GB is far too small for most any use these days. 
+The point of concern I think should be raised here is that you look to be hosting both files and backups on the same drive. When (not if—when) the hard drive fails, you will lose both. You would be much better off in the long run keeping the files and backups on separate drives.
+UPDATE (based on comments): The rule of thumb that I've seen for deciding on a drive size to house a Time Machine back up is at least a 2:1 ratio of the drive to be backed up (so a 500GB would mean a 1 TB TM-hosting drive), and I don't see why that general rule couldn't be followed here. 
+Look at the data volume of the folders you intended to back up, double that, and that's the size partition you go with. If Time Machine requires a minimum that's below what you calculated, just double the size of that for your partition and off you go. 
+Either way, I don't think you're going to find a hard number here.
+
+A: You're interested in using the 50GB partition for Time Machine? Keep in mind that Time Machine keeps multiple copies of changed files - it's not just a single back up of your drive. Your backup drive should be at least a couple times larger than the stuff you're backing up, so Time Machine can keep a decent backlog of changes beyond just the most recent.
+That said, Time Machine will fill the disk with backlog changes until it can no longer fit them, so as long as you have enough space for a "most recent" backup, Time Machine will be happy.
+
+A: TimeMachine already places backups inside a folder on the hard disk, so it will not create a mess on that drive.
+The only reason you should create a partition is if you would not like TimeMachine to use up as much disk space as it needs. Every time a file changes it will create a new copy of it in the backup, and only pruning old versions once the disk is full. If you create a small partition it will restrict the backup to that size.
+
+A: OK, my question is simple and related; should I absolutely partition a 2T external drive where I want to keep time machine backup for a 250GB macbook and 50 GB of photos (mostly jpeg). & videos?  If it's highly recommended to do so, why?  Thanks!  (and I read the dated reply on losing the data, but that's a risk of any external disk, whether one or more).

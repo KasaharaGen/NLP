@@ -1,0 +1,20 @@
+Q: How do I "copy image address" in iOS? On desktops, when web browsing you typically right click on an image and choose an item from a contextual menu to display/copy the image URL. In iOS, when you tap and hold down an image, an action sheet displays asking if you want to save the image, copy to the clipboard, etc. But what if you just want the URL?
+If safari doesn't offer this functionality, is there a 3rd party browser that does? Specifically, one that works on the iPad.
+
+A: Neither iOS Safari nor Opera Mini support this option. However, you can install the 'view source' iOS bookmarklet, as explained here:
+
+
+*
+
+*http://fettig.net/weblog/2007/07/02/view-source-for-safari-on-iphone/
+And use it to look for the image link within the source you are visiting.
+This may be cumbersome using older iOS versions, but it is much easier on iOS 4.2, using the 'Find text on webpages' feature which allows you to search for text using Safari's Search field (right of the navigation bar) to look for image extensons like .jpg, .png and .gif.
+
+A: Tap, and hold the image; then choose "copy," open a new browser window, and paste into the address bar.
+
+A: Tap and hold, and the 2nd option will be to open it in a new page.  Tap that, and you'll get a new window.  Tap the URL bar, and Copy.
+
+A: [Note: this has only been tested on iOS 5.1.1 on iPad]
+For a simple image, you can tap-and-hold it and select 'Copy'. This will copy the URL of the image which you can paste wherever you need it.
+However, when the image is being used as a link to another URL, this method copies the linked URL only.
+A method that always works is to use the Show Images Bookmarklet (from here - a useful resource any time you want a bookmarklet on iOS).

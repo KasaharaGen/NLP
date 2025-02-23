@@ -1,0 +1,122 @@
+Q: SQLite frontend for OS X? I am looking for a preferably free SQLite frontend to use under OS X. 
+Something similar to MySQL Workbench will do. Put separate suggestions in separate answers. 
+
+A: You may like my app SQLPro for SQLite (App Store).
+Some of the neat features it includes are:
+
+
+*
+
+*Syntax highlighting & Autocomplete (sometimes called intellisense).
+
+*Customizable themes allowing the query editor to be completely customized.
+
+*The ability to run multiple queries at one time (and a customizable run query shortcut).
+
+*Primary key detection in the query results. When primary keys are detected you can update results & delete rows directly from the grid.
+
+*Errors in queries will be underlined.
+
+
+
+There is a full schema designer. SQLPro for SQLite allows you to add/update/delete:
+
+
+*
+
+*Tables
+
+*Indexes
+
+*Foreign Keys and
+
+*Triggers
+
+
+
+
+In addition:
+
+
+*
+
+*Tables can be imported & exported from/as CSV, XML or JSON.
+
+*A query history browser so that you may see queries run in the past.
+
+*Favourite queries can be stored and reused.
+
+*The results grid can be searched (either via the Cmd - F keyboard shortcut or by right clicking the results grid and choosing find).
+
+
+There is a seven day trial available via the website. If you purchase via our webstore, use the promo code STACK25 to save 25%.
+Disclaimer: I'm the developer.
+
+A: Base ($32.99 USD / £19.99)
+Native OSX app for interacting with SQLite databases. Base isn't free, but I've found it to be useful. You can buy it through the Mac App Store.
+
+A: SQLite Manager Firefox Add-on
+Not native OS X app, but it will do the work!
+
+A: You can try Valentina Studio http://www.valentina-db.com/en/valentina-studio-overview 14 Feb 2013 in the 5.0 version added support of SQLite, as well as, MySQL, PostgreSQL. It is FREE. Works on Mac, Win and Linux. Includes not only db management but powerfull reports that work again on 3 OS.
+
+A: DB Browser for SQLite
+
+DB Browser for SQLite is a light GUI
+  editor for SQLite databases, built on
+  top of Qt. The main goal of the
+  project is to allow non-technical
+  users to create, modify and edit
+  SQLite databases using a set of
+  wizards and a spreadsheet-like
+  interface.
+
+
+A: It's a far cry from the other graphical tools mentioned here, but I've found that I prefer interacting with my SQLite databases with the built-in command line tool, sqlite3:
+$ sqlite3 test.db
+SQLite version 3.6.12
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite> create table test (a, b);
+sqlite> insert into test values (2, 3);
+sqlite> insert into test values (4, 3);
+sqlite> insert into test values (4, 5);
+sqlite> select * from test where a<b;
+2|3
+4|5
+sqlite> .schema
+CREATE TABLE test (a, b);
+
+The best part is that it's built into Mac OS X and is completely, 100% free. (No seriously, the code is in the public domain)
+
+A: There are also the Navicat brand of SQL editors, including Navicat for SQLite, which are available in the Mac App Store (http://itunes.apple.com/us/app/navicat-for-sqlite/id424161923?mt=12).
+I've not used their SQLite tool, but have used their MySQL product, and found it to work well for most tasks.
+
+A: Navicat SQLite ($49/$99)
+Navicat for SQLite is a powerful Database administration and development tool for SQLite. It works with SQLite version 2 and 3 and supports most of the SQLite features including Trigger, Index, View, and so on.
+It's a good product but IMHO expensive.
+
+A: DataGrip ($8.90 / month or $89.00 per year)
+Jetbrain's client for several databases including Sqlite.
+
+Meet DataGrip, our new database IDE that is tailored to suit the specific needs > of professional SQL developers.
+
+It handles driver downloads, code completion, and all database things.
+
+A: SQLiteFlow ($2.99)
+SQLiteFlow is a very great GUI tool for SQLite on macOS. It's intuitive, stable and reliable.
+It has features that most SQLite editors or managers that suppose to have. Including:
+
+
+*
+
+*A data viewer which allows you view, edit, add or search table's data directly through UI without any code. And it also allows you copy the data in data viewer to CSV.
+
+*A query editor which support code auto completion, syntax highlighting, format query, copy query to almost any language's quoted string after some configuration.
+
+*An alter table GUI tool which can help you maintenance your database structure without any pain to write alter table query, instead it can generate the query for you after you tell SQLiteFlow in UI that what need to be changed.
+
+*Attach opened databases directly through UI is a useful feature if you deal with attaching database thing in your daily work, very convenient, save your time from writing ATTACH DATABASE commands.
+
+*Handle database file name or directory changes automatically. This is a feature that once you found it exists, you can't leave it!
+For me, as a iOS developer, SQLiteFlow help me deal with SQLite database in iOS simulator seamlessly without need to handle the fact that a same file (SQLite database) 's path in iOS simulator is changeable.

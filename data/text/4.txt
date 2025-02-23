@@ -1,0 +1,20 @@
+Q: How can I make focus follow the mouse cursor? I will often click on a button expecting it to be clicked but instead all that happens is the application it is in becomes active, and I have to click again to actually click the button.  It would be nice if this second click wasn't needed, which leads me to my question:
+
+How can I make it so that when I move the mouse cursor over an inactive window, it becomes active?
+
+
+A: This is freely possible for the Terminal and X11 :
+
+defaults write com.apple.Terminal FocusFollowsMouse -string YES
+defaults write com.apple.x11 wm_ffm true
+
+Or, OS-wise, with a utility that seems to fit your needs, called MondoMouse.
+
+A: I originally wanted to do this with my first Mac a couple years ago as well, since that's how my Linux and Windows environments behave.  But I think the driving force preventing this from becoming a reality is in how OS X handles application menus.
+What if you want to go to the menu at the top of the screen for an application you're using, but in the process briefly hover over another application?  That would become infuriating quickly.
+In short, I don't think its doable for that and potentially other reasons.
+
+A: Best little utility I stumbled upon is Zooom/2. Strange name, hence hard to find. You can choose delay (Rather cumbersome, OS X and global menu is not designed to allow that). I set it to focus window under cursor instantly when Option key is pressed. Great value, no dock or tray icons, it just works.
+
+A: Amethyst (https://github.com/ianyh/Amethyst) is excellent. 
+Follow the README.md instructions to download, and then enable "Focus Follows Mouse" in the Misc. section of the Settings view.

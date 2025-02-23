@@ -1,0 +1,17 @@
+Q: How can I rebind keys in OS X? Is there a native way to rebind keys in OS X without requiring a 3rd party tool?
+I'm interested in rebinding my whole keyboard layout, not specific shortcut keys. It's not a standard layout either, so I can't just change it from Qwerty to Azerty, for example. I need to be able to choose exactly which keys are at each location.
+I noticed that Mac OS X has the directories KeyBindings and Keyboard Layouts under the ~/Library/ folder. Are these related to what I want to do? If so, how would I use them?
+
+A: You mean besides the "System Preferences > Keyboard > Keyboard Shortcuts" settings? (Click on the ? button in the bottom-right for more info.)
+The Mac has dictionary (.dict) files for configuring parts of apps, system services. There are .dict files for the keyboard layout that can be edited by the property editor app, which is part of Apple's XCode development environment. Be very careful to understand that messing with them without knowing what you are doing can, and most likely will, break stuff.
+/System/Library/Frameworks/AppKit.framework/Versions/C/Resources/StandardKeyBinding.dict is an example. If you have TextMate, /Applications/TextMate.app/Contents/Resources/KeyBindings.dict is another. TextMate's site has a little write-up about how it uses the key bindings.
+Also, look to the right at the "Related" section. There are some similar questions that might give you more ideas, such as "Best key remapper tool?".
+That should be enough to get you started.
+
+Apple's Technical Note TN2056 "Installable Keyboard Layouts" is something you should probably read, then search for more info from that point. You're messing with stuff that can make your machine hard to work with if it isn't done right, so arm yourself with enough information to know what you are doing. Apple's Technical documentation is the top-level for their developer documentation. Their support forum would be another good resource.
+
+A: 
+I noticed that Mac OS X has the directories KeyBindings and Keyboard Layouts under the ~/Library/ folder. Are these related to what I want to do? If so, how would I use them?
+
+This article might answer your last two questions:
+http://xahlee.info/kbd/osx_keybinding.html

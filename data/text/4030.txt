@@ -1,0 +1,26 @@
+Q: How do I modify Word 2011 for Mac so I can see tracked changes inline and notes simultaneously? Background: 
+In Word 2011 for the Mac, it's possible to view tracked changes inline -- that is, see the changes made on the screen within the text itself, as opposed seeing them in a balloon off to the side. (Such a balloon would read "Text deleted - "on the screen".) 
+However, there's currently no way of doing this while simultaneously viewing comments. 
+You can view comments as well as changes simultaneously, but the only way to do this is in balloons off to the side, so you have balloons reading "This text is confusing because [reason]" and also ones saying "text deleted - [foo]". This is extremely confusing. 
+To clarify, here are some threads on the MS forums about this: 
+
+
+*
+
+*tracking changes and comments
+
+*Track Changes Office 2011
+My question: 
+It's pretty clear there's no workaround that will allow authors and editors to view changes inline, while simultaneously seeing notes with their pointers to the text being referred to. (Seeing notes within the reviewing pane while in draft view doesn't work, since you can't easily tell which notes relate to what text.) Is it possible to use VBA to change this behavior in Word on the Mac? Or would this simply break in future revisions?
+This is an important missing feature in Word for the Mac. (You can do this in Word for Windows.) Reading through the above threads, this has been the case for the last two major versions Word for the Mac. 
+I'll consider add-ons, scripting, pretty much anything that won't destabilize my system. (If the answer is that this is impossible, well, I won't be happy, but at least I'll know.)
+(I'm running a MacBook Pro with OSX 10.6.7 if that helps. Currently running Word 2011, v.14.0.1.) 
+
+A: You can get pretty close to what you want by turning off balloons. 
+In the "Track Changes" section of Word's preferences, uncheck the button that says "Use balloons to display changes." 
+
+Now additions and deletions are shown inline, and comments are shown as highlights with a reference.
+
+You can view the comments by hovering over the highlight.
+
+Or, you can display the "Review Pane" and view the comments (with additions and deletions interspersed) over there. Less distracting than balloons, though.

@@ -1,0 +1,129 @@
+Q: What's a good SSH tunneling client for OS X? I've been using SSH Tunnel manager to easily set up and stop port tunneling over SSH to various servers at my company. That saved me the pain of opening up a new terminal window which will hang out there just for the sake of having a tunnel open.
+This worked great (well , sort of) but SSH Tunnel Manager is a PowerPC application. With Lion, it is not supported any more.
+What is a good replacement?
+
+A: Why not just use an SSH Tunnel via OSX's built in Terminal?...
+Launch an SSH tunnel
+To initiate your SSH tunnel, simply open Mac OSX Terminal.app and connect to your remote server via SSH with the following flags:
+ssh -D 8080 -C -N username@example.com
+
+This will launch our SSH tunnel on port 8080 and route all traffic (securely) through the server at example.com.
+Browse the Web 
+Now, let’s start browsing the web using with your new SSH Tunnel (Chrome):
+
+
+*
+
+*Open Google Chrome
+
+*Select ‘Chrome’ up the top left
+
+*Select ‘Preferences’
+
+*Select ‘Show advanced settings…’
+
+*Select ‘Change proxy settings…’
+
+*Select ‘SOCKS Proxy’
+
+*Enter ’127.0.0.1′
+
+*Enter port ’8080′
+
+*Save changes by selecting ‘OK’
+
+
+A: I found Coccinellida, it works on Lion but it's new and a bit buggy : /
+
+A: On the terminal:
+$ ssh -N -L SOURCE-PORT:127.0.0.1:DESTINATION-PORT USER@SERVER-IP
+
+If you use ssh with a private key just type:
+$ ssh -N -L SOURCE-PORT:127.0.0.1:DESTINATION-PORT -i KEYFILE USER@SERVER-IP
+
+e.g.
+$ ssh -N -L 8888:127.0.0.1:80 -i Documents/default.pem root@123.123.123.123 
+
+After that, you can browse using the tunnel.
+e.g.
+on the browser: 
+http://127.0.0.1:8888
+
+A: I strongly recommend using sshuttle. It's very handy.
+
+A: You could also check out Meerkat.
+
+A: SSHTunnel is a free, cocoa-based UI for SSH tunnel management. Works on 10.5 and up. It hasn't been updated in a while but the code that's there is reasonably stable. It's worked well for me in the past.
+
+
+A: Try Secure Pipes: http://www.opoet.com It's free software and I'm looking to get more people using it.
+
+A: I am using iSSH in Lion, which is a front-end application to the command line application “ssh”. It provides a quick and easy way to start an SSH connection to a remote computer.
+
+A: SSH Tunnel Manager is still alive and supported.
+Sorry about the delay though, it is not compatible with El Capitan.
+http://projects.tynsoe.org/stm/
+
+A: I have an open-source and secure solution with XBar.
+Install XBar:
+
+*
+
+*https://xbarapp.com
+Install this ssh-tunnelling plugin:
+
+*
+
+*https://github.com/matryer/xbar-plugins/blob/main/Network/ssh-tunnel.1s.sh
+You do need to edit the configuration for one time, but it's not that complicated:
+Configure your ssh-tunnel config in your ~/.ssh/config (I use something like below):
+ Host *
+   AddKeysToAgent yes
+   UseKeychain yes
+   IdentityFile ~/.ssh/id_rsa
+   IdentitiesOnly yes
+ Host some_name
+   Hostname host_ip_or_url_etc
+   Port 22
+   User your_username
+   LocalForward 5999 127.0.0.1:5900
+
+Don't forget to auto-start the ssh-agent:
+$ ssh-add -K ~/.ssh/id_rsa
+
+
+A: Core Tunnel baked by Codinn is a tunnel manager that intuitive and easy to use:
+
+
+*
+
+*Support local, remote and dynamic port forwarding
+
+*Compatible with OpenSSH
+
+*Integrated with macOS Keychain
+
+*Automatic reconnect
+
+*Advanced config editor
+
+*Status icon in menu bar
+
+*Custom tags
+
+*Importing and exporting
+
+
+
+
+
+
+A: SSH Tunnel Manager is now in the Mac App Store!  So, you can run it on Lion.
+
+A: iSSH can not remember my password.
+Coccinellida can save password. But it freezed my Mountain Lion sometimes ...
+Shimo is good, but it IS commercial.
+
+A: TunnelerX is simple and easy to use, focused on SSH SOCKS proxy. It doesn't exactly cover the requirement to manage several servers, as you can only add one server, although, it's usually enough for people looking to use an external box as proxy. It works fine under Mountain Lion.
+
+A: SSH Proxy on Mac App Store. It's simple, and it has the option to switch between Use Proxy for All Sites and Direct Internet Connection while SSH Tunneling is still connected. That way I don't have to clear the socks proxy from the browser whenever I need direct internet access.

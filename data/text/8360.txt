@@ -1,0 +1,7 @@
+Q: defaults write display detect I have a mac mini connected to a TV that is on during the day and switched off at night.  This displays a web page with stats during the day.  When the TV is turned off the resolution readjusts to I am guessing "defaults" then when the TV is reconnected it readjusts.  During this process the safari window shrinks and whenever I turn the tv back on I have to readjust the browser window.
+This is mac os x snow leopard server.
+Is there any way to:
+Disable screen resolution detection and always keep the res at the one i want
+Always have safari go full screen (no full screen option in safari snow leopard as far as I 
+
+A: This is kind of a wild guess / work around but its something to try. Set up VNC aka screen sharing on your mac mini. Log in from another mac /computer , while the TV is off, and set the resolution while no display is attached. If you set that resultion to one that is the same as your attached TV, then when your TV powers on there should be no screen re-size after effects. This would effectively set the default no display resolution if such a thing exists.

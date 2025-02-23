@@ -1,0 +1,19 @@
+Q: Why can't I send my files to the Trash? When I try to delete some items, whether from the keyboard (Command+Delete) or by dragging to the Trash on the dock, I get a message informing me that I can only permanently delete the item. 
+Why is that? How can I change that? (Is it a permissions issue?)
+
+A: The Finder can't create or manage trashbins over network shares, and will tell you that.
+
+A: Check out this link. It provides a number of options for you to try.
+http://www.thexlab.com/faqs/trash.html
+
+A variety of issues can result in
+  making it difficult or impossible to
+  either move files to, or empty, the
+  Trash in Mac® OS X. This FAQ, derived
+  from our book Troubleshooting Mac OS
+  X, covers the following Trash-related
+  topics:
+[snip]
+
+
+A: If you suspect it's a permissions issue (and permissions can be the cause of a great many problems in OSX), open Disk Utility (/Applications/Utilities/Disk Utility.app) and select 'Repair Permissions' from the First Aid tab.  It will output permissions problems if finds and fixes.  

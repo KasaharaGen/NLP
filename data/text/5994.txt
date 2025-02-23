@@ -1,0 +1,4 @@
+Q: TimeMachine and an External HFS + NTFS HDD Can I partition my external HDD into 2 HFS + NTFS? and use HFS+ partition for TimeMachine backup. I already lost my info once in this way, this is why I have to ask now, before doing some stupid things again. The NTFS partition is for Ubuntu and Windows machine from my office, at home I am using 10.6.8
+
+A: Time Machine needs a mountable HFS+ partition; it couldn't care less how large that partition is relative to the overall size of the drive.
+But I agree with Gio's comment; drives are cheap, so I'd suggest getting multiple drives.  

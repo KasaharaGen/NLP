@@ -1,0 +1,9 @@
+Q: Why does Xcode 4.1 Installer ask me to quit iTunes if iTunes isn't running? Xcode 4.1 Installer downloaded from the App Store, I have no applications running except the installer and the Finder. The dialog that pops up says that iTunes needs to be quit in order for installation of Xcode to continue.
+How do I make Xcode installer realize that iTunes isn't running?
+
+A: This is a widely-reported bug in some App Store installers. It sees the iTunesHelper process and displays this error, even though that process is not controlled by the user.
+You can open Activity Monitor (in /Applications/Utilities), find the process and kill it with the Quit Process button in the top-left corner.
+
+You can also instead open Terminal (also in /Applications/Utilities), enter the following line and press enter to kill it.
+killall iTunesHelper
+

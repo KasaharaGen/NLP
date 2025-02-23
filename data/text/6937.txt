@@ -1,0 +1,78 @@
+Q: How can I save SSH Bookmarks in Terminal? I've recently become infatuated with TotalTerminal and am tempted to switch from iTerm back to Terminal just so I can use it, except that I rely heavily on a half dozen SSH bookmarks in iTerm.
+Is there a way, or extension, to save SSH bookmarks in OSX's Terminal? (or a way to use iTerm like TotalTerminal's quick visor
+
+A: I'm not sure how SSH bookmarks work in iTerm but you can create an alias in your shell to accomplish the same thing:
+
+aliases allow a string to be substituted for a word when it is used as the first word of a simple command
+
+To set an alias in the Terminal use the following syntax:
+$ alias myserver="ssh user@example.com"
+Now just run myserver in the Terminal when you want to connect to your server.
+To make the alias permanent you have to add the alias to your login script and reload your login script for the changes to take effect. If your using the default shell, bash:
+$ source ~/.bash_profile
+More about aliases: http://ss64.com/bash/alias.html
+
+A: Simply open the terminal app and then type Command + Shift + K from within the app. This will open a window that let's you save connections. (At least in OSX 10.9 Mavericks)
+
+A: I'm not sure what SSH bookmarks are, but you might find the SSH config file useful. I would advocate it over the alias approach.
+This option will work in all terminal emulators, and all shells (e.g. zsh instead of bash), and even other apps that use SSH (e.g. rsync, scp, git). Also, if you synchronise your dotfiles (e.g. via a github repository), your bookmarks/alias can be shared across machines.
+You can store host specific settings (and aliases) in:
+~/.ssh/config
+
+Instead of doing:
+ssh admin@mywebsite.com
+
+You could type:
+ssh mw
+
+If you added the following to your SSH config:
+Host mw
+Hostname mywebsite.com
+User admin
+
+You could also setup passwordless SSH and add the location of your identify file here. A bit more secure than storing passwords, and quicker than typing it out.
+For more info about SSH config do:
+man ssh_config
+
+
+A: There are a few different ways to create ssh command bookmarks.
+Settings Profiles with Custom Commands
+You can create new settings profiles, each with a different ssh command. Profiles serve as both appearance "themes" and as "bookmarks" for commands and remote connections.
+Go to:
+
+Terminal > Preferences > Settings
+
+Then either create a new profile or duplicate an existing one (there's a Duplicate command in the action menu at the bottom of the profiles list) and then customize the command:
+
+Terminal > Preferences > Profiles > [profile] > Shell > Run Command
+
+Enter the desired ssh command there.
+Profiles appear in the Shell > New Window and New Tab submenus. Choose one to create a new terminal and run the associated command.
+Running Multiple Commands at a Time with Window Groups
+If you want to automatically create several terminals at a time (which will also run their profile commands), you can create a set of terminal windows/tabs using each profile, then save them as a window group with:
+
+Window > Save Windows as Group…
+
+When you open the window group it will restore all the windows/tabs and run the commands associated with each profile. You can even tell Terminal to open a particular window group each time Terminal starts in:
+
+Terminal > Preferences > Startup
+
+Improvements in Mac OS X Lion 10.7
+In Mac OS X Lion 10.7 this gets simpler: you can tell Terminal to remember the commands for individual windows without creating a custom profile for each one.
+If you use the Shell > New Command or New Remote Connection commands to create terminals, the command is recorded with the window/tab. If you save them in a window group, it will automatically restore (re-run) "safe" commands, and there's a checkbox to tell it to restore all commands. "Safe" commands include anything run from the New Remote Connection dialog, any shell listed in /etc/shells, plus emacs, vi/vim, pico, nano, screen, tmux and top.
+Command Files
+You can save shell commands (or, indeed, entire shell scripts) in a file with the filename extension ".command", and if you open one of these files Terminal will open a new terminal window and tell the shell to execute the commands in the file.
+Some people use these as ssh bookmarks. To make it convenient to run them, you can put them in the Dock, or a collection of them in a folder in the Dock.
+After creating a ".command" file, make it executable with chmod +x /path/to/file.command.
+Function-Key Mappings
+You can assign arbitrary strings to the function keys in
+
+Terminal > Preferences > Profiles > [profile] > Keyboard
+
+You can use this to conveniently enter information like host names, or entire ssh commands including a linefeed, so typing a single key will start the connection. You can also begin the string with a Control-C to discard the current command-line input if necessary, making it safer to type the key without intermingling new text with old.
+In combination with modifier keys, this offers dozens of custom function keys you can use for arbitrary snippets or commands.
+
+A: I've been looking for a way to bookmark SSH commands and eventually I developed a Mac app for our team, called TaskTips (https://task.tips/). Basically it can save you time by indexing your SSH commands, and autocomplete when you search SSH tasks, executing tasks automatically.
+If it is also helpful for someone else, I would be really happy about it.
+
+A: You can duplicate profiles, give them any name you want and save the login.

@@ -1,0 +1,56 @@
+Q: Can Python/Ruby/Perl/etc (or even bash) replace AppleScript? I'm not inviting people to hate on AppleScript in general; I'm just wondering if what makes AppleScript useful can instead be used by other general-purpose scripting languages. I.e., Lion & Mac Apps probably give AppleScript hooks & APIs—could any language use those? Or is AppleScript in its own special category?
+Context: I'm learning about Unix and how it underlies OS X, and trying to become aware about opportunities and strategies for automation & abstraction. Aaaand I already feel like my brain is leaking, so if I have to add more to my plate I try to do so sparingly.
+
+A: In terms of general purpose Unix scripting, many languages like bash, perl, python, or ruby are more capable than AppleScript. But AppleScript has a special role in MacOS with great native support for Mac specific things, particularly related to the GUI.
+There are bindings between other scripting language and MacOS events. For instance, see the MacPython OSA Modules°°° or Apple's Ruby and Python for Mac OS X°°°. In general I'd consider these efforts second class citizens; they may work and be a good choice but it will be a bit of an awkward fit.
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+°°° EDIT:
+Both languages are not supported on latest MacOS systems. These links return:
+
+Retired Document – Important: The current version of Ruby (2.0) is not
+  supported as a Cocoa scripting language in OS X v10.9. The remainder
+  of the content in this document has not been reviewed for accuracy.
+  Apple recommends Objective-C for the development of Cocoa apps. [My highlighting.]
+
+Documents are finished with this line: 
+
+Copyright © 2013 Apple Inc. All Rights Reserved. […] Updated: 2013-09-18
+
+
+A: My answer would be: yes
+Applescript is a horrible anachronism from System 7 and in all my years of Mac use and development I could never bring myself to write a single line of it.
+OSA is a framework supported by Apple which allows you do access anything normally done over Applescript. Whether it's first or second class, only Apple knows. Java was touted by Apple as a first class citizen for Cocoa until Apple killed it. Python and Ruby are different though because they are modern languages while Applescript is an ancient mess and Apple knows it.
+Speaking specifically from a Ruby background, you have a few options:
+
+
+*
+
+*rb-appscript - rather outdated
+
+*RubyOSA
+
+*ScriptingBridge for Cocoa. Also a good tutorial on it with MacRuby at Ars Technica.
+
+
+I've used these quite extensively in the past years and they do the job very nicely. Similar equivalents should exist for Python.
+
+A: AppleScript is in its own special category, as it is developed by Apple and has its own built-in mechanisms for interacting with the Apple Events system in OS X. I'm not aware of any such built-in support in the other scripting languages you mentioned.
+In order to add that support into your scripts, you could use an event bridge such as appscript to allow you to leverage AppleScript hooks in apps from Ruby or Python. I've never used it myself, so your mileage may vary.
+
+A: The design philosophies of AppleScript and command-line scripting languages are two very different things. They both aim at getting things done, but go about it in very different ways.
+AppleScript is meant to help you automate common high level GUI based tasks, so you don't have to click this and type that over and over again.
+Command-line scripts usually offer more flexibility and power than AppleScript (unless you really know your AS that is!) letting you dig deep into the guts of Mac OS X's unix-like APIs.
+To summarize:
+
+
+*
+
+*AppleScript: Automate your GUI-based software.
+
+*Command-line scripts: Do most other tasks.
+
+*No, they can't replace AppleScript because AS is closer to the GUI for many tasks (it's a breeze to automate mounting a remote volume in AppleScript, I would not want to try it in bash or perl).
+
+
+A: javascript is officially supported since OSX 10.10. It is described by apple as "javascript for automation", shortened as "JXA".
+Just to clarify things, you can accomplish in javascript everything that is related to gui and automation, like applescript and more. Furthermore, there is at least a little ongoing commit activity to the github wiki for https://github.com/JXA-Cookbook/JXA-Cookbook/wiki/Getting-the-Application-Instance.

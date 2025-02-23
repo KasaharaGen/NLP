@@ -1,0 +1,11 @@
+Q: Login screen freezes after the Lion 10.7.1 update After updating to 10.7.1 (the first Lion update) & restarting the system, it's not logging me in. As I give my password and press return it stays on the same login screen. I could move the mouse but there is no rotating wheel, just the same login screen. I tried starting Mac in safe mode but same thing.
+Resolution
+It was because of Login Hook script which was stopping the login action. Booted in Single User mode and moved the script away from the expected location. Thanks to bmike for the tips.
+
+A: If you have another mac at home, I recommend using the OS X Recovery Disk Assistant to clone the recovery partition. Then just insert the USB into the non-functional Mac and boot from the USB, as this will allow reinstallation of the OS.
+Tip: only use these steps if the built-in recovery partition is not accessible. After taking these steps I would strongly recommend that you upgrade your OS (preferably to Mavericks) if you don't want this to happen again.
+
+A: I'd rather @kaychaks answer this since they took my hint and ran with it to find the culprit, but we have a question that isn't really answered - so here is the answer from the comments above...
+You should be able to get further if you make a new admin user and log in to check if this is an account problem or a system problem.
+How can I fix permission issue when I cannot start Mac OS X?
+Also, if you boot in single user mode you might be able to sniff around or just delete un-needed items to address the issue.

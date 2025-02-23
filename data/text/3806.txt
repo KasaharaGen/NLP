@@ -1,0 +1,35 @@
+Q: All pages in Google Chrome are rendered with a very thin, bad looking serif font In every later release of Google Chrome (including the just released version 11), all pages are rendered with a very thin, jaggy serif font.
+This is how it looks in Chrome 11:
+
+And here is Safari 5.0.5:
+
+The picture might be too small to really show how bad the serif font is, but on-screen it's horrible.
+There's no difference if I try to edit the font settings in Chrome. It's always the same font. I've also — of course — tried to remove and re-install Chrome, multiple times. Have tried to remove everything Chrome-related from $HOME/Library (Application Support, Caches etc). No change in behavior.
+Here is an example of my font settings, but as I said, the font is always the same — on all pages — regardless of what I set in the font settings. I can set it to Helvetica and it's still a jaggy, horrible, small serif:
+
+So, what do I do? Suggestions?
+
+A: Before you go blocking fonts and so on, first check this page:
+http://www.google.com/webfonts
+How you get rendered the fonts? On my chrome - without any problems, the chrome CAN render different fonts.
+You can try these commands from the Terminal.app
+sudo atsutil databases -remove
+sudo atsutil server -shutdown
+sudo atsutil server -ping
+
+the above will remove your font cache. Work only in snow leopard!
+
+A: Chrome is ignoring the website font rules and displaying everything in Times New Roman.
+Other people have encountered this same issue.  You can see the discussion in the Chrome Help forums here:
+
+*
+
+*http://www.google.com/support/forum/p/Chrome/thread?tid=4f199e721223e57e
+Here is the suggested fix:
+
+I use FontExplorerX Pro. I setup a rule for font requests to deny any request from Chrome.
+Then I downloaded Onyx and ran the script to clean all font caches. Restarted and now things are normal.
+
+If this works for you, please mark JTWilcox's answer as helpful in the Chrome forums.
+
+A: Just increase minimum font size in prefs

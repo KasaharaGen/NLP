@@ -1,0 +1,51 @@
+Q: Enabling Time Machine for a USB HDD with NTFS When I've plugged in my USB HDD (WD Passort Elite) for the first time, the system had asked me whether I want to use this HDD as time machine drive. I've chosen smth like 'decide later' and continued my work. When later I tried to setup time machine preferences I couldn't find the way to set my USB HDD as time machine drive. When I press 'Select drive for backup' i see empty list, nevertheless my drive is plugged in and works well.
+Btw, it is ntfs-formatted, could it be a problem?
+Thanks in advance
+
+A: You can backup to an NTFS-formatted volume.
+I backed up my Mac (Yosemite) with Time Machine as per Graham's answer here (https://apple.stackexchange.com/a/57082/134740), but I had to use a .sparseimage, as a .sparsebundle image failed to be created on the NTFS volume – for details on the differences between the two, see: https://support.apple.com/kb/PH22247.
+In terms of restoring that image for recovery purposes, I tested it by restarting and holding the keys Cmd+R to boot into Mac OSX Recovery (https://support.apple.com/en-ie/HT201314) and Time Machine could not find the disk.
+I had to start Disk Utility, mount the image manually, then go back to Time Machine and it could see the volume and all the available backups in it.
+I didn't actually go ahead and start the restore but I assume if it can see the backups, it should be able to restore them : )
+
+A: You can't backup to an NTFS formatted disk as stated below:
+
+Note: Every available disk that can be used to store backups is listed. If you’ve partitioned a disk, the available partitions are listed. Time Machine can’t back up to an external disk that's connected to an AirPort Extreme, or to an iPod, iDisk, or a disk formatted for Microsoft Windows (NTFS or FAT format).  If you select an NTFS or FAT-formatted disk, Time Machine prompts you to reformat the disk. Choose a different disk or reformat the disk in Mac OS Extended (Journaled) format. Because reformatting erases any files on the disk, only do this if you no longer need the files or if you have copies of them on a different disk.
+
+This quote is from the apple support page for Time Machine 
+You could always reformat the disk in Mac OS Extended (Journaled) format which would allow you to use it.
+
+A: Copied to A Super User answer to Equivalent for Time Machine that writes to NTFS disks:
+
+Backup to NTFS
+If you wish to use Time Machine in Lion or greater with an NTFS volume – and if you have a  write-enabled driver for NTFS: 
+
+
+*
+
+*with tmutil you can configure Time Machine to back up to a sparse bundle disk image, the .sparsebundle stored on NTFS. 
+
+
+In some situations you may find that Time Machine simply offers to use an NTFS volume. This may occur if, say, a write-enabled driver for NTFS is installed before a physical disk with NTFS is introduced to OS X. 
+Restore from NTFS
+OS X can read NTFS, and so should be able to restore from a .sparsebundle in this environment. 
+Whether Recovery OS is similarly prepared to read from NTFS and restore, I don't know. 
+
+A: As others said, you cannot use it directly.
+The only way I found is:
+
+
+*
+
+*Create a virtual disk in VMDK format
+
+*Mount it using some freeware tool
+
+*Create a sparsebundle in the VMDK
+
+*Configure TimeMachine to use that VMDK
+
+
+Note that the intermediate VMDK is needed to prevent OSX from unmounting the sparsebundle (expect that behaviour if you mount a sparsebundle directly from an USB disk).
+
+A: If you have some data on the disk and don't want to format whole disk and disk itself is quite big make a certain partition on the NTFS disk. Do it on PC with Windows XP/7 using Partition Magic or Partition Menager then format this partition in Mac OS Disc Utilities with Mac OS Extended (Journaled) format. Next open Time Machine and choose disk. You should see both NTFS and Extended (Journaled) portions. Choose Extended (Journaled) one and backup your Mac.

@@ -1,0 +1,32 @@
+Q: Cutting and pasting files OS X doesn't allow me to cut files. Are there any applications to enable this?
+
+A: It is possible to cut-paste files/folders in OSX 10.7 Lion's Finder (so, since 2011), but the OSX way is slightly different from the Windows way.
+
+
+*
+
+*⌘-C (copy first)
+
+*⌘-⌥-V (now move to it's destination)
+
+
+So, the steps are very similar to copy-paste, but holding ⌥ (option key) moves the file/folder instead of copies it.
+You can also have a look in the edit menu after copying a file - press ⌥ while looking to see the difference: "paste" changes to "move item here".
+
+A: Path Finder supports cutting & pasting files, though I can't think of a case where I'd want to cut & paste that drag & drop wouldn't work.
+
+A: If you can pay some you can use Moveaddict:
+
+And also I found "this solution" but I didn't test it myself.
+
+A: You can't cut files, but you can:
+
+
+*
+
+*Copy the existing file ⌘C
+
+*Delete the existing file ⌘⌫
+
+*Paste in the new location ⌘V
+Given that anything you can do with keystrokes can be done by AppleScript, all you would have to do is combine the first two to give you the equivalent of Cut (although you might want to have the script pause a bit between the two…).

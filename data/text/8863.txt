@@ -1,0 +1,14 @@
+Q: Excessive "Opening application for the first time" dialogs I often get the dialog box warning me that I'm opening an application for the first time.  But, it isn't the first time.  Some of these are applications that I use daily.  
+I seem to be getting more of these after an OS upgrade, almost as if some database got reset.  Can I do something to get these warnings to be generated properly?
+
+A: This warning pops up every time an application wants to register a URI handler (a something:// protocol). Normally, your approval is saved by LaunchServices, but that database can become corrupted. Try resetting it by doing a
+/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -all local,system,user
+
+in Terminal. The warnings should pop up once for each application again after that, then be gone for good. If they keep coming, something is resetting the database on its own (a clue would be that the default browser / mail app / RSS app / FTP app you set keep resetting to the Apple provided ones).
+
+A: I had the same problem (only with SourceTree, after an update), and seeing @kopischke's answer reminded me of another Ask Different thread, on another LaunchServices database problem:
+Why does my Mac's list of "Open with" applications start listing the apps twice and sometimes three times?
+The LaunchServices reset command provided there is slightly different from the one @kopischke provided:
+/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user
+
+I tried that, and it solved my "Opening application for the first time" problem. But it did not require me to re-okay every other application as well (only a few; I didn't see an obvious pattern in which). So it may be worth trying this before trying the earlier suggestion.

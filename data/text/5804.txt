@@ -1,0 +1,15 @@
+Q: NFS, AFP, SMB... Advantages and drawbacks on a Mac OS system Struggling to fix several issues since I switched to Lion (see here and there), I came across several ways of connecting network shares to my MBP: NFS, AFP, SMB, CIFS (maybe others).
+What are the differences between all these protocols and what is the one giving the more advantages to a MacOS system?
+
+A: I tend to see AFP and SMB/CIFS as end user methods, NFS can easily be used on OS X as an autofs system for automatically mounting everything from one or more file server.
+Generally AFP and SMB/CIFS you need to use Finder, but NFS you can simply jump to /net and start visiting any host.
+AFP is going to support Apple's resource forks and attributes natively, SMB/CIFS will by default dump these attributes into a new folder .DS_Store everywhere.
+The document Mac OS X Server File Services Administration has a useful chapter titled "Understanding File Services" which also introduces the differences.
+
+A: I'm writing this comment in 2016, Apple defaults now to SMB, however MacOs performance remains abysmal in SMB. On Gigabit ethernet, it's generally 40% slower (50 to 75 MB/s in SMB vs 80 to 120 MB/s in AFP or NFS). With 10GigEthernet, it's even worse: SMB tops at 250 MB/s, while AFP reaches happily 1 GB/s and maxes out the link.
+I'm making comparisons using high-end linux storage servers from various client machines. A comparable Windows or Linux client maxes out 1 GgigE link on SMB (100-120 MB/s), and reaches 800 MB/s or more with 10 GigE. It's really MacOS SMB client implementation that sucks rocks.
+
+A: Essentially, NFS is the Unix way of doing network shares, AFP is the Apple way, and SMB/CIFS (they're basically the same thing) is the Microsoft way. AFP will generally work best with a MacOS system (except that most third-party implementations are currently struggling to catch up with a change made in Lion where an older and less secure authentication method was dropped) because it's better integrated with OS X authentication and with Time Machine.
+
+A: The link (Mac OS X Server File Services Administration) returns a damaged file when trying to open. Tracked it down to this:
+http://manuals.info.apple.com/en_US/FileServerAdmin_v10.6.pdf

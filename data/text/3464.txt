@@ -1,0 +1,40 @@
+Q: MySQL 5.5.11 "the installation failed" after removing old installation on Snow Leopard I had an old instalation of MySQL but it wasn't working very well, so I Googled how to completley remove it and found this:
+http://tomkeur.net/39/how-to-remove-mysql-completely-mac-os-x-leopard.html
+and then did:
+sudo rm /usr/local/mysql
+sudo rm -rf /usr/local/mysql*
+sudo rm -rf /Library/StartupItems/MySQLCOM
+sudo rm -rf /Library/PreferencePanes/My*
+sudo rm -rf /Library/Receipts/mysql*
+sudo rm -rf /Library/Receipts/MySQL*
+
+And now I'm getting this on a new install:
+
+I also ran these commands:
+sudo rm /var/db/dslocal/nodes/Default/groups/_mysql.plist
+sudo rm /var/db/dslocal/nodes/Default/users/_mysql.plist
+sudo rm /var/db/receipts/com.mysql.mysql.bom
+sudo rm /var/db/receipts/com.mysql.mysql..plist
+
+Installer error Log Says:
+Apr 13 00:18:31 nizzlesmymac installd[3203]:
+PackageKit: Install Failed:
+PKG: post-flight scripts for "com.mysql.mysql"
+Error Domain=PKInstallErrorDomain
+Code=112
+UserInfo=0x101e45ac0 "An error occurred while running scripts from the package ‚`mysql-5.5.11-osx10.6-x86_64.pkg`."
+{
+NSFilePath = "./postflight";
+NSLocalizedDescription = "An error occurred while running scripts from the package "mysql-5.5.11-osx10.6-x86_64.pkg".";
+NSURL = "file://localhost/Volumes/mysql-5.5.11-osx10.6-x86_64/mysql-5.5.11-osx10.6-x86_64.pkg";
+PKInstallPackageIdentifier = "com.mysql.mysql";
+}
+
+This is the full installer error log: http://pastie.org/1791314
+
+A: You may try to remove manually everything again, and to create the mysql user by yourself using this guide.
+Then try to perform the installation again.
+
+A: This was the right answer on this question i posted on StackOverflow:
+https://stackoverflow.com/questions/5645038/mysql-the-installation-failed-on-snow-leopard/5651195#5651195
+same as @nuc

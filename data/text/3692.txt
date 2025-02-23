@@ -1,0 +1,36 @@
+Q: Automatically press a key every 60 seconds Is it possible via Automator, an app, applescript, etc. to automatically press a key (i.e. "g") every 60 seconds? 
+
+A: You can do this in AppleScript, iff you've enabled access for assistive devices:
+tell application "System Events" to keystroke "," using command down
+
+This will (obviously) invoke cmd-,.
+If, for some reason, you can't enable access for assistive devices, then it's pretty easy to do this in code (by creating a CGEventRef and then posting it to the system, essentially).  If you'd like help with that, then head over to stackoverflow.com, where that question has been asked a few times.
+As for getting this to happen every 60 seconds, you could turn it into a launch agent and let launchd do it for you:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.stackexchange.apple.12692</string>
+    <key>Program</key>
+    <string>/usr/bin/osascript</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>osascript</string>
+        <string>-e</string>
+        <string>tell application "System Events" to keystroke "," using command down</string>
+    </array>
+    <key>ServiceDescription</key>
+    <string>Auto Keypress</string>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Second</key>
+        <integer>0</integer>
+    </dict>
+</dict>
+</plist>
+
+Toss that in ~/Library/LaunchAgents and you should be good to go (once you load the plist and/or log out and log back in).
+
+A: Use the "Watch Me Do" to enter "G," then use the pause action to pause for 60 sec, then the loop action and select "Loop Automatically."

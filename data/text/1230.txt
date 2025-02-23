@@ -1,0 +1,36 @@
+Q: Easiest way to deploy a slideshow/video onto multiple iPads and have it play by clicking on 1 icon Looking to set up approximately 10 iPads for a presentation where each one has a single icon on the main screen that then immediately loads a slideshow/video.
+Challenges/thoughts:
+
+
+*
+
+*Would prefer the video to be saved locally to the iPad so we aren't dependent on the video loading from a shared Internet connection.
+
+*Preference is that they click an icon and the video autoloads full screen, would prefer not to have load/select a specific video file and hit play
+
+*Ideally want there to be a custom icon on the desktop for this video : this, I assume may require a safari bookmark saved to the home screen (which requires the video to be hosted...)
+
+*What is required to initialize 10 iPads at once?  Each will need to be synced to iTunes I assume?  Will they then need to be reset to work in the future with each individuals computer/iTunes?
+
+*If the video is stored locally, I was thinking I would use oPlayer or VLC so that the file doesn't have to be synced via iTunes - it can just be stored within the iPad filesystem
+
+A: For reference, the iOS SDK (in case you decide to create a small application that plays the quicktime video), can only read stuff that is:
+
+
+*
+
+*Inside the Application’s bundle
+
+*the “temp” application’s user’s document directory (not shared between apps)
+
+*Use the APIs to read the user video/audio library. 
+
+
+Number 1 and 2 would require that you create an iOS app that includes the video as a resource (which will -depending upon the video’s size-, make it a huge app)
+Also creating an APP and deploying it, requires an Enterprise Licensing from Apple (so you can deploy to your company iP/ads/ods/hones). So I don’t think thats a good (and cheap) idea.
+Using option number three you could go with VLC or something but they would have to pick the video from a library. 
+what would I do?
+I’d set up a wi-fi network, with a local webserver that hosts the page. Then create a webclip on the iPads. All hardcoded. The WebClip could point to a real webpage, but a DNS “forging” inside your closed network could point it locally while they are there. This way, when they leave, if they take the iPads with them, the link will continue to work when they regain internet, as the DNS will be correct and point to the “external” website. 
+If the network is “closed” you can set it up in advance. A good 11n router should handle that.
+No syncing, no weird app, no need to tamper each individual’s ipods…
+Any catches?

@@ -1,0 +1,67 @@
+Q: Can I direct audio from a single app to a particular output? For example, I would like for iTunes to play thru my iMac's speakers, but iChat's notifications thru my headphones.
+
+A: For iTunes specifically, you can install shairport-sync via macports.
+If you run it as 
+shairport-sync -- -n 'your desired output device'
+
+This will appear as a fake airplay audio server that you can connect to in iTunes (it's name will match your computer's hostname by default), which will output to whatever audio device you set it to.
+If you connect iTunes to the airplay server, iTunes is able to play to a different device then the rest of your computer.
+
+A: After some research I found the following apps
+Stated with the current price:
+
+*
+
+*19 USD https://staticz.com/soundcontrol/
+
+*47 USD https://www.rogueamoeba.com/soundsource/
+Features that both apps have
+
+*
+
+*Set different app output to different sound levels and to different output devices
+
+*Add sound effects / equalizer per app output
+
+*Support Mac volume keys (the uppermost key row) for all kind of output devices (which does sometimes not work with the native solution)
+
+*Menu bar access
+
+Additional features per app
+Sound Control
+
+*
+
+*TouchBar support
+
+SoundSource
+
+*
+
+*Recording
+
+*Recording levels in the menu bar
+
+*Even more sophisticated UI modes (floating window, etc)
+
+
+A: The easiest way to do this depends on the application supporting it;
+Some applications have a sound output (and input) picker that allows you to choose the output device, like the official Last.fm app.
+
+(My apologies for the poor example considering I only have one output source.)
+If an application is written to support it, you can simply change the device as shown above. Otherwise you'll have to rely on premium (paid) apps, such as one of Ambrosia SW's "Wiretap" series of apps. Though those are pricy, $69 for WireTap Studio and $129 for WireTap Anywhere.
+
+A: I think this free app should do the trick. https://www.rogueamoeba.com/loopback/
+
+A: If the software you're using doesn't support specifying an an audio output, you'll have to rely on a third-party utility. Someone else already mentioned Ambrosia's WireTap products, but there is one other I'm aware of: Audio Hijack by Rogue Amoeba. At $32, it beats the pants off WireTap for price.
+Update for 2020  …
+Audio Hijack is current, but now $70.
+A simpler yet still effective solution targeted towards this very use-case by the same company is now SoundSource & is about half the price.
+[Prices [& tax] vary by territory]
+There's also a piece of software called SoundSiphon by Static Z Software that provides the same functionality as Soundflower, plus single-application audio capture. Priced at $29.
+*Update for 2020 …
+Soundflower no longer includes Soundflowerbed, which was the component allowing this type of routing.
+Unfortunately, there are no free utilities for this. Not even Soundflower can capture audio from individual pieces of software. I think Rogue Amoeba's relies on the same underlying magic that allows them to hijack audio from individual pieces of software for their AirPlay utility AirFoil (which allows you to route any application's audio to any AirPlay device, as well as any device running their AirFoil Speakers app).
+
+A: I tried this to stream each app output to different sound channel
+https://rogueamoeba.com/audiohijack/

@@ -1,0 +1,34 @@
+Q: Any way to make Cmd-D "delete next word" rather than "split-pane" in Terminal I am so used to using ⌘D to "delete-next-word" in emacs and xterm, that I automatically hit it in Terminal all the time, which rather annoyingly (to me, at least) causes the pane to split instead. I've tried to google solutions, but all I get are hits telling me what a neat feature this is.
+I could just use XTerm under X11, but Terminal plays more nicely with some of my favorite Mac utilities (notably Divvy). I've tried iTerm2, but at best I can get it to ignore ⌘D, not actually erase the word.
+Any ideas?
+
+A: Switch to iTerm2. It's free and sooo much nicer than plain old terminal. Also it has a lot more options for customization, like keyboard shortcuts.
+Also I love that you can use cmd and 1-9 to switch between tabs. Try it and you will never go back to regular terminal :)
+How to set up delete next word in iTerm 2
+
+
+*
+
+*Install iTerm2
+
+*Launch and then go to preference pane.
+
+*Choose the "Keys" tab
+
+
+*Click on the plus button to add a new keyboard shortcut
+
+*In the first box type CMD+D
+
+*In the second box choose "Send Escape Sequence"
+
+*In the third box type the letter d
+
+Voila! Now in iTerm2 cmd+d will delete the word in front of the cursor.
+See also https://stackoverflow.com/questions/81272/is-there-any-way-in-the-os-x-terminal-to-move-the-cursor-word-by-word/8250989#8250989
+
+A: I don't know how to bind ⌘D to M-d, but this would remove the shortcut of the Split Pane menu bar item:
+defaults write com.apple.Terminal NSUserKeyEquivalents -dict-add "Split Pane" nul
+
+
+A: You can get 'meta-' in terminal using either 'escape' as a prefix, or using opt/alt as a shift key.  I've not been able to find a way to use the command key, and none of my searches have turned up anything (with the exception of installing a key mapper); just the same complaint.

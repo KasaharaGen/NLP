@@ -1,0 +1,8 @@
+Q: How do I select a file or directory inside a package? When an application pops up the Mac OS X standard file or directory chooser dialog it won't allow me to open packages so that I can select something within.  Is there a way to do this without creating a symbolic link to the target?
+For a specific example: I've installed Komodo Edit & the Python SDK for Google App Engine.  In Komodo's Language > Python preferences I can add Python import directories to help with syntax checking or debugging.  The GAE libraries are in /Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine but I can't navigate there using the directory chooser.
+(I'm not asking how to browse the contents of a package from the Finder or command line.)
+
+A: From the dialog, use Command+Shift+G. This will open a small 'Go to folder' dialog where you can type (or paste) the path that you want including paths within packages.
+
+A: You can use the Finder to navigate inside the bundle, and then drag and drop the file to the 'Open file' dialog/sheet.
+See a more visual explanation here.

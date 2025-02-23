@@ -1,0 +1,22 @@
+Q: Graphical Ping Plotter, similar to Perfgraph? On Windows, I use a program called Perfgraph, which, among other things, showed a visual graph of ping latency to various hosts in my Task bar. Here's an example:
+
+The ping metric is the graph on the far right.
+Does anyone know if something like this is available for OS X? I use it to ping my router and my DNS name server so that I always have a graphical indicator on my connection quality, and if there are problems I know if the source is inside or outside my router.
+So far, the only "alternative" is the CLI ping command, which just doesn't present the information in as easily digestible format as Perfgraph.
+I don't need all the other functions of Perfgraph, I just want that ping plotter!
+Thanks all!
+
+A: I have a nice CLI solution - it's called mtr. It's installable via homebrew or ports.
+Here is a screenshot:
+
+
+A: Nagios does install with ports on MacOS X.
+Have a look at these performance graphs.
+
+I must quote here the final message of Nagions installer:
+
+But Nagios is a complex program so you should read the documentation online at
+  http://www.nagios.org or locally at /opt/share/nagios/docs/index.html to fully understand Nagios.
+
+
+A: Some time ago I wrote small app called Lagometer which shows ping to selected host (you can set it in preferences) as a graph in menubar. It works only with one host, but should work for you.

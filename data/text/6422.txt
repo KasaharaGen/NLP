@@ -1,0 +1,5 @@
+Q: Is it possible for two users to mount the same Shared disk on Time Capsule? (On one Mac.) The situation is this; 1 shared Mac Mini with user switching.  If I leave the Shared disk mounted and the other user logs in, they get prompted for Administrator credentials (which disconnects me.)  We both need to be able mount and use the share without disrupting processes running under each user. 
+
+A: I just tried the same thing, without any problems... Do you use user accounts to authenticate the users on the time capsule ? If yes, you should probably configure it to use the airport network. With this, both users will connect with the same "account", and should be able to use the same share concurrently (that works for me)
+Here is a screen cap of the setting (sorry, it's in french) :
+

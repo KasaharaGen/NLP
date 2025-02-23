@@ -1,0 +1,9 @@
+Q: Migrating to new iMac, what does Migration Assistant actually migrate? I've got a new iMac (Santa must have thought I was a good boy this year) and I want to move data from my 3 year old MacBook (Intel, running Snow Leopard). I realise I have a few options for this, but migration assistant is currently looking better than either starting from fresh or Carbon Copy Cloner etc.
+What I would like to know is if migration assistant will bring across everything from a 3 year old system, including all the remnants of applications I have installed and deleted etc. If it does has anyone got any hints to stop it doing this?
+
+A: I've migrated between many macs over the years, and I've always found that the best way to do it, is manually. Normally I use a firewire cable (but you can also use WiFi, USB, external hard drive, dvd/cd, etc) to hook up the two computers, then just drag over files from one computer to the other.
+Mostly everything the average user has on their mac will be found in their user folder (home folder). You can just drag/copy this entire folder over, or you can be more selective about which folders in your home folder you move (for instance, you may not want the Library folder). Then, anything outside of your home folder (Applications, for one) you can drag/copy over if you want.
+
+A: You should not use CCC between Macs. Every Mac has a set of drivers configured for the current hardware during installation. When you use CCC to clone to another Mac, you are getting the setup, which is not optimized for that Mac.
+Use Migration Assistant. I had to migrate several Macs in the past, restoring from the Time Machine or copying from older Macs. Migration Assistant never failed. I have lots of apps and some of them are copy-protected and have own drivers (I am a developer). Migration Assistant took care of almost all of them. I only had to confirm Adobe CS3 serial once.
+Go for Migration Assistant: a couple of clicks, wait and you are done.

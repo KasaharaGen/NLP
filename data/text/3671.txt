@@ -1,0 +1,11 @@
+Q: Replacing all white spaces with commas in a 46MB text file How long should replacing all white spaces with commas take in my 46MB text file using a simple text editor such as textmate on my Mac?
+
+A: This should be even faster than the sed solution:
+tr ' ' , < orig.txt > modified.txt
+
+
+A: TextMate can sometimes be very slow with big files like this.
+I recommend using a command line utility like sed.
+sed 's/ /,/g' orig.txt > modified.txt
+
+will do what you need extremely quickly.  Obviously replace the filenames with your actual filenames.

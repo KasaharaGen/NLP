@@ -1,0 +1,42 @@
+Q: How can I reinstall Mac OS X (Lion) without erasing data? My Lion installation ruined. Everything doesn't work. Even my Mac doesn't sleep. I want to reinstall whole OS, but I have no spare backup drive. So I want to reinstall OS without erasing or repartitioning to keep my data on disk.
+I know it's not clear enough, but it should be a lot better than my current installation. So I want to try anything if it keep my data without backup.
+Is this possible? How can I do this?
+Or is there any way to repair current installation?
+
+A: Reboot your Mac. When you hear the boot chime, hold the COMMAND + R keys. You will enter the Lion Recovery environment. From there, simply choose to reinstall Lion. It will simply remove the current system and replace it with a fresh copy. None of your data will be deleted or moved. The only thing that will be replaced will be the core system files. There is no longer any need to make backups, migrate your data, or mess with partitioning.
+If you'd like to read more about the Lion Recovery function, go here: http://support.apple.com/kb/HT4718
+
+A: I'm in the same boat. Kernel panics malloc errors everywhere PAH!
+Anyway: 
+Download Lion. The install eats the file you need so don't install it right away. Only took me 2x +XCODE to figure that out. 
+Now, if you installed it you can do the brutal cmd-R on boot to get to the recovery partition.  That's nice, you can now install Lion via your hopefully working network, as well as wiping the badness from your drive.  
+This sucks, since you probably did not save the download. 
+Really, you want to get a copy of Lion on a USB key.
+
+
+*
+
+*Applications > Install Lion > show package contents > find and mount the InstallESD file.
+
+*Break out one of your many 16 gig USB keys and erase it.  You're going to restore the InstallESD image onto the USB Key.
+
+*Check with diskutil, the gui in Lion is sexy, but underneath is a sea of malloc(3)-y kernel panics. It needs to be bootable.
+
+*It' won't boot.  Thats OK, use the Recovery Partition ( cmd R on boot ) and set the USB key as your startup disk.
+
+*Reboot.  Try not to think about how you swore this time you'd wait until .1.
+You should be back in what looks like the same place, except it should be from your USB key, which can install lion onto the wiped hard drive. 
+I shall attempt this last part right now, all I want is the oblivion of the zeroes ... perhaps my tinkering with snow leopard was the problem. BAH.
+Very useful debugging stuff.  Why is it "secret?"  Why indeed?
+https://developer.apple.com/library/mac/#technotes/tn2124/_index.html
+ man sysdiagnose
+
+Super cool tool. I'll use it instead of watching the 14 gigs... ok enough. It is a cool tool though.
+Oddly, 
+man -k diag
+
+shows you the equally nifty mddiagnose for spotlight and tmdiagnose for time machine, 
+Yet not sysdiagnose. 
+Good luck.
+EDIT:  This actually did work quite well for me, the usb key even booted my lappy, and I only forgot to save Xcode, which is going on the key right now.
+I'm seeing far less kernel panics, which is promising. Hope it works out for you.

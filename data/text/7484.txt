@@ -1,0 +1,47 @@
+Q: How to clean ._AppleDouble files from unix packages? Introduction
+Here's my problem. On occasion, I create the odd deb package using dpkg-deb (e.g., dpkg-deb --build "folder" file.deb). The problem is that any file with an extended attribute, carries along an ._AppleDouble file to the package. So when the user installs the bit of software, their system is littered with ._AppleDouble files.
+For example, 
+-rw-r--r--@  1 cksum  staff      18305  9 Sep 22:42 ScreenShot.png
+
+would carry with it a ._ScreenShot.png file.
+Current Method of Coping
+Currently, I'm using the incredibly agonizing xattr command to list the extended attribute and then strip them. For example, the above would be carrying the following as shown by xattr,
+com.apple.FinderInfo
+com.apple.metadata:kMDItemIsScreenCapture
+com.apple.metadata:kMDItemScreenCaptureType
+
+In this case, I would have to strip the resources one at a time, again using xattr,
+xattr -d com.apple.FinderInfo ScreenShot.png
+xattr -d com.apple.metadata:kMDItemIsScreenCapture ScreenShot.png
+xattr -d com.apple.metadata:kMDItemScreenCaptureType ScreenShot.png
+
+This is quite arduous when you sometimes have dozens of files and has become far too much of a pain.
+I'm aware of the utility BlueHarvest, but I'm not keen on paying for something I won't use all that much. Additionally, I've trialed the software and have noticed that unfortunately, it sometimes fails to remove them all. Lastly, it is more suited for the management of disks used by different operating systems than it is for local folders.
+Ideal Solution
+An ideal solution would be to continue using xattr (as it is the most reliable) but having the process automated. It is important that I remove the ._AppleDouble files before I package them. This, however, is not the only solution and I am certainly open to all manner of ideas. But I am hoping that I can accomplish my goal without the need to install additional programs or rely on daemons.
+
+A: There are many ways you can do this; Here are a couple that I've used:
+dot_clean /path/folder
+
+merges dot-underscore files with their parent files.
+http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man1/dot_clean.1.html
+If you want to specifically target the .AppleDouble files you can use:
+find / -name ".AppleDouble" -depth -exec rm -Rf {} \;
+
+which will simply find them and delete them.
+There are ways you can also setup the process ahead of time for SMB shares, etc. when creating dpkgs. This may or may not apply to you, so I just wanted to mention it also.
+http://support.apple.com/kb/HT4017
+
+A: I need to learn proper xattr usage.
+Apparently, xattr has a "clear" (-c) command that can be applied using a wildcard (*), as follows,
+xattr -cr *
+
+This results in a recursive removal of all ._AppleDouble files from the current folder on down (the -r flag does recursive, while the -c flag clears them), thus making the process a trivial one line command.
+This does not however clear out the .DS_Store files. For that, you can employ the good old "find" command:
+find . -type f -name .DS_Store -delete
+
+This will find and delete any .DS_Store files from the current directory on down (recursively).
+Lastly, we can bring it all together in the form of an alias that is called upon by simply typing "xat" (put the following in your .bash_profile):
+alias xat='find . -type f -name .DS_Store -delete && xattr -cr *'
+
+Now just run "xat" on any directory and it'll strip those pesky resource forks and remove those irritating .DS_Store files from anything inside of it.

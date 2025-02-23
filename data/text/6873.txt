@@ -1,0 +1,55 @@
+Q: Is there a way to automatically sync iTunes to my music folder (which is on a different hd)? I'd like iTunes to automatically add any music that I add to my music folder to its library. I don't want to have my music on the same hard-drive as Itunes, though, so I can't just copy it into any of the Itunes music folders. Is there a way to do this? 
+
+A: No, iTunes will not "listen" for music in a given folder (like the popular BT program Transmission, which will load torrent files once they've been downloaded to a given directory).
+You have to manually add music by dragging it in the iTunes window or going through the file menu (CMD + O).
+However, you could achieve what you are after perhaps with some voodoo in Apple Script. Or simply sort the contents of your music folder by "date added" (provided you are using Lion) and manually add the songs as they arrive.
+But then if you are going through all this trouble of manually managing files, you may wish to ask yourself, "why"? It might be less of a burden to just let iTunes do its thing (like it was mentioned before, you can tell iTunes to copy the music anywhere you like, on any drive connected to your system, even on a network) than micro-manage a bunch of files.
+
+A: Whatever you do don't use the Automatically Add to iTunes folder.
+This will destroy any system you have for arranging and naming your files.  I had all my files in one folder named "Artist - Album - Song Name" now they are all Artist Folder/Album Folder/"Track Number  Song Name".  I wanted to use the automatically add folder not the organize files feature, but apparently you cannot add files without organizing them.
+
+A: I think the easiest way would to be manually manage your iTunes library yourself.  Under Advanced in iTunes preferences, uncheck "Copy files to iTunes Media folder when adding to library".
+This will add reference to the tracks to iTunes without copying them to the iTunes library.
+
+A: This apple support file will guide through the steps required to transfer your media file to an external disk or any other location. There is also a link in the article you should follow if you are running itunes on windows
+To populate iTunes with media on an external disk etc. just alt + drag your media folder into the iTunes window. This will make a reference to your files
+
+A: One way is to add all the files to an playlist automatically. You just need to run the following apple script (probably change the values in the first two lines)
+Create a new script file in AppleScript Editor:
+
+set music_folder to "/Users/username/Music/SyncedMusic"
+set music_list to "SyncedMusic"
+
+tell application "Finder"
+    set music_folder to (POSIX file music_folder) as string
+    get music_folder
+end tell
+tell application "iTunes"
+    activate
+    delete (every user playlist whose name is music_list)
+    set newPlaylist to (make new user playlist with properties {name:music_list})
+    set view of browser window 1 to newPlaylist
+    set newPlaylistName to name of newPlaylist
+    add music_folder to playlist newPlaylistName
+end tell
+
+
+A: If you don't mind Itunes managing your music, there is a way.
+
+
+*
+
+*Open preferences -> Advanced
+
+*Copy your Itunes media folder location.
+
+*Open that folder in Finder.
+
+*There should be a folder named Automatically Add to Itunes.
+
+*Any file or folder you put there will automatically be visible in your library.
+
+
+Hope it helps.
+
+A: Buy iTunes songs then open windows media and open I tunes folder , you want to burn the songs to a disc then rip the disk back on the computer  this really sucks but you can't copy iTunes music any other way

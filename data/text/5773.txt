@@ -1,0 +1,56 @@
+Q: Open Finder window from current Terminal location? If I am in a specific path in a Terminal window, how can I open that same window in a new Finder window? 
+Note: This is the opposite of opening a Terminal from Finder.
+
+A: open .
+
+As a nice addition, add an alias in .bash_profile or .bash_aliases if you have one.
+alias finder='open'
+
+Then you can use finder . which I think is more intuitive.
+
+A: If you have autojump installed, you don't even have to type the full path to the directory. You can simply type jo partialdirectoryname, and autojump will open a new Finder window in the specified directory.
+I love this method, because you don't have to remember the entire directory name. Autojump keeps a list of most commonly used locations, and automatically knows which directory you're referring to, even if you only give it part of the name.
+
+A: Typing open . in Terminal will open the current working directory in a Finder window.
+
+But there is also an alternative version
+open `pwd`
+
+
+A: Typing open . in Terminal will open the current working directory in a Finder window.
+
+A: Stretch goal!
+To expand on the answer above (because the more appropriate related question is marked as a dupe and can't receive new answers)...
+I've added a function to my ~/.bash_profile to handle revealing a file or directory:
+# Reveal a file or directory in Finder
+reveal() {
+  # grab the first arg or default to pwd
+  local basedir=${1:-${PWD}}
+
+  if [[ -f "$basedir" ]]; then
+    # ..we passed a file, so use its containing directory
+    basedir=$(dirname "$basedir")
+  fi
+  # basedir is a directory in now, so open will activate Finder.
+  # The argument is quoted to accommodate spaces in the filename.
+  open "$basedir"
+}
+
+…one liner:
+reveal() { local dir=${1:-${PWD}}; [[ -f "$dir" ]] && dir=$(dirname "$dir") || true; open "$dir"; }
+
+To install the function:
+
+*
+
+*paste/save it into ~/.bash_profile
+
+*source ~/.bash_profile or open a new terminal/tab
+
+The context for my use is that I'll be browsing around using ls with tab completion, then when I find what I'm looking for, I can reveal (or cd or subl) the most recent arg, like:
+ls dir/subdir<tab tab>
+subsubdir  anotherdir
+ls dir/subdir/anotherdir
+reveal !$
+
+Thanks to @nohillside, @Ed Randall, and Community for improvements!

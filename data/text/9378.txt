@@ -1,0 +1,22 @@
+Q: How do you list items with and without labels from the terminal? Is there a command that can tell the label status (labels as applied in the info menu in the finder cmd+i) of an item from the command-line in OS X? Essentially, I just want to list all the items with or without labels in the current directory, but I can't find any way to pull them appart.
+This will help in creating a timed script that runs in the background. Then I can apply a label in finder and expect an action automatically apply to that file without having to make special conditions or keep a curated file with a list.
+
+A: Using ls, you can show the extended metadata of files:
+$ ls -l@
+-rw-r--r--@ 1 andrew  staff  1292910 Aug  9 11:36 labelled_file.jpg
+    com.apple.metadata:kMDLabel_hlsi7t7nerhynemqvydgeb26de       50 
+
+However, the quickest way to get labelled and unlabelled files is with an attribute search using mdfind:
+$ mdfind -onlyin . -literal 'kMDItemFSLabel > 0'  # labels have value 50
+/cwd/labelled_file.jpg
+
+$ mdfind -onlyin . -literal 'kMDItemFSLabel == 0'
+/cwd/all.jpg
+/cwd/other.jpg
+/cwd/files.jpg
+
+
+A: You can use
+xattr -p com.apple.FinderInfo filename
+
+but you will need some work to process the output. See this answer on superuser for an example with a bash script and one with Python.

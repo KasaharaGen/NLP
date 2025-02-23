@@ -1,0 +1,47 @@
+Q: Can websites be locked down on the iPad? In our network, we use NetMotion to lock down laptops in the field so they can only access what we allow them to access (no ESPN, news, Google) in the truck. As we look at iPad 3Gs (and similar competitors), we want to be sure we keep the same tight control on what websites they visit (and have internal access to network resources at the same time). Is this possible? 
+VPN isn't really effective unless there is a way for it to be forced on at all times.
+
+A: apple.com, ipad for business:
+http://www.apple.com/ipad/business/resources/
+From disabling Safari completely (allowSafari=false) to functional options:
+
+
+*
+
+*Enable autofill: When this option is off, Safari doesn’t remember what users enter in web forms.
+
+*Force Fraud warning: When this option is off, Safari doesn’t attempt
+to prevent the user from visiting websites identified as being
+fraudulent or compromised.
+
+*Enable JavaScript: When this option is
+off, Safari ignores all javascript on websites.
+
+*Block pop-ups: When
+this option is off, Safari’s pop-up blocking feature is disabled.
+
+*Accept cookies: Sets Safari’s cookie policy. Choose to accept all
+cookies, accept no cookies, or reject cookies from sites not directly
+accessed.
+
+
+Thereby you can limit the iPad to only apps (and webapps) installed by you.
+
+A: Yes - the first step will be to require by policy that users do not remove the profiles you have installed on the iPads. 
+Second you will get the iPhone configuration utility and establish a profile that forces restrictions on the iPad. 
+Without diving too deeply, you have several options:
+
+
+*
+
+*require a web proxy that handles the filtering of allowed web sites
+
+*turn off safari and provide single purpose apps that connect only to the sites you wish. 
+
+
+There are drawbacks and maintainability issues with either choice, but you do have control over iOS and web browsing. 
+If the native tools are not to your liking, there are also many mobile device management (MDM) solutions like JAMF, Mobile Iron or even Profile Manager from Lion Server.
+
+A: Kiosk Pro Lite and SureFox Kiosk Browser are a couple browser apps for iPad that you can choose. 
+These apps allow you to configure what website users are allowed to access.
+It will run iOS secure browser in kiosk mode so that your employees can only access whitelisted or allowed websites.

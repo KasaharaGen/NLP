@@ -1,0 +1,53 @@
+Q: How do you prevent a process from automatically restarting? (specifically, sophos antivirus) I am required by my VPN software to have Sophos anti-virus installed and running.  However, when I'm NOT on VPN, I don't want it running at all - I want it dead.
+However, killing the tasks is ineffective:
+ps -ax | grep -i soph
+40972 ??         0:07.34 /Library/Sophos Anti-Virus/SophosAutoUpdate.app/Contents/MacOS/SophosAutoUpdate -d
+41069 ??        28:08.48 /Library/Sophos Anti-Virus/InterCheck.app/Contents/MacOS/InterCheck -d
+41078 ??         0:02.42 /Library/Sophos Anti-Virus/SophosAntiVirus.app/Contents/MacOS/SophosAntiVirus -d
+$ sudo kill 40972 41069 41078 41084
+$ ps -ax | grep -i soph
+44344 ??         0:00.03 /Library/Sophos Anti-Virus/SophosAutoUpdate.app/Contents/MacOS/SophosAutoUpdate -d
+44345 ??         0:00.02 /Library/Sophos Anti-Virus/SophosAntiVirus.app/Contents/MacOS/SophosAntiVirus -d
+44347 ??         0:03.03 /Library/Sophos Anti-Virus/InterCheck.app/Contents/MacOS/InterCheck -d
+
+It just automatically restarts.  What do I need to do to prevent that?
+
+A: I'd comment on Agos' post, but I'm too new to do that. So:
+As far as I remember they should have a launch agent in /Library/LaunchAgents. I'd just ask you to do a ls /Library/LaunchAgents, ls /Library/LaunchDaemons and ls /System/Library/LaunchDaemons. Something will show up.
+Also you could open /Applications and check Uninstall Sophos.app with Show Package Contents then check out the uninstall script.
+
+A: man launchctl
+
+
+launchctl list |grep -i 'sophos'
+
+to unload a daemon permanently, but not uninstall it
+launchctl unload -w /full/path/to/file.plist
+
+
+A: This means that there is another monitor process which relaunches it.  
+You can check out who is the parent process: select the process in activity monitor and use the Info button, or via terminal with ps -ax -O ppid if I recall correctly.
+
+
+*
+
+*It might be another process by Sophos but with a stealth name, or maybe even your VPN software. In that case you can just kill'em all.
+
+*The other possibility is that the process is being kept alive by the launch daemon launchd. In this case you will find an entry (a plist XML file) for your antivirus in either ~/Library/LaunchAgents, /Library/LaunchAgents (likely) or /System/Library/LaunchAgents (I dearly hope not).  
+If the second is the case, you can either:
+
+
+*
+
+*Edit the file, and change the KeepAlive parameter, either removing or changing it (you can do nifty things, see the docs for more).
+
+*Just ask launchd to do the stopping for you. Unfortunately you can't just tell to launchtl stop since the process would just respawn. You'll have to use  sudo launchctl unload /path/to/the/plist file 
+
+A: To find out which launchd job is spawning things back, tail -f /var/log/system.log and sudo kill -9 <pid> the process you are interested in.
+Suddenly, launchd will tell you exactly which job is responsible:
+com.apple.launchd[1] (com.sophos.managementagent[83911]): Exited: Killed: 9
+
+You can also try increasing the log level to precisely determine what's happening: launchctl log level debug
+Bear in mind that some jobs will be run as root, so sudo launchctl list might show you some extra jobs running on your machine.
+
+A: You can also control which Launch Agent and Daemons run and when with the useful app Lingon, available through the Mac App store and online.

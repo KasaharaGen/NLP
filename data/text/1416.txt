@@ -1,0 +1,38 @@
+Q: How do I enter Dutch names in Address Book? Dutch surnames are kind of weird, in that a lot of them start with small words such as 
+de/'t/het ("the"), van ("of"), van 't, van der ("of the"), etc. This makes them a pain to enter in most address books, since you really want to ignore that part of the name when sorting, but not when displaying. This means you get "Piet Vries" instead of "Piet de Vries".
+While Address Book has the "middle name" field, which can be abused for this, it really isn't meant for it, causing some applications (iCal, for example) to ignore the field, showing an incomplete name.
+iTunes solves this problem for artist and album names, giving you a "sort album" or "sort artist" field to enter a string to sort on (so "The Beatles" are sorted as if they're called "Beatles"). I haven't been able to find a similar field in Address book.
+So, what is the correct way to make Address Book deal with this?
+
+A: My preference is to list their name as something like "Heirseele, van" because when searching by last name you'll still find them using "van" if you decided to. Putting the preposition in another field is a little hackey (and incorrect from a data-integrity point of view) for me.
+For the benefit of others: in Dutch, all those prefixes are part of the name. You refer to someone in Dutch as "Meneer van Heirseele" not as "Meneer Heirseele". Those names haven't joined the prepositions like French names have (e.g., Dupré).
+Just my two cents…
+
+A: The better-world answer is that Address Book should allow users to enter Dutch surnames with the tussenvoegsels ..
+First name: Rembrandt
+Last name: van Rijn
+
+First name: Huig
+Last name: de Groot
+
+... and then allow users to specify what collation method to use.  That way someone using one collation can exchange contact information with someone using a different collation, and the names will show up where both expect them.  
+The term for the bundle of preferences which includes grouping and ordering of names, thousands and decimal point indicators, sort order for non-ASCII vowels, etc., is "locale."  It's not just the Dutch: Gaelic names treat Mac, Mc and M' as identical.  
+The Address Book needs work on "locale."
+
+A: If you don't mind misusing a field, you can use the "Phonetic Last Name" field to change the sort order.
+
+A: I would enter the surname prefixes ("de" etc) into the firstname field. 
+Benefits:
+
+
+*
+
+*That way, sorting would work correctly regardless whether you prefer sorting by first or last name, 
+
+*the full name is always displayed correctly because it simply combines first + last name,
+
+*you don't have to fill in additional fields.
+
+
+A: They've got prefix and suffix fields, so would it really be that hard to have a mid-fix or whatever the correct english term is field?
+Google suggests infix or interfix, BTW.

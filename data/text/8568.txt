@@ -1,0 +1,28 @@
+Q: Can I backup my Time Machine drive to the cloud and restore it to any other drive? I currently backup my Mac to a local Time Machine drive.
+I'd like to start periodically backing up that drive to the cloud, using an as of yet unchosen solution.
+Once it's backed up to the cloud, can I restore that Time Machine data to any other drive to restore my Mac?
+Thanks
+
+A: Given the rather tricky use of hard-linked directories, access control settings and other special filesystem features I doubt that you will find a cloud storage which supports all this.
+Options you may want to consider:
+
+
+*
+
+*copy the whole Time Machine drive into the cloud as an image (requires a lot of bandwidth at least for the initial copy)
+
+*use rsync to periodically copy your data to a remote (cloud) system
+
+
+PS: Rsync is a Unix tool included in macOS used to synchronize directories between disks or servers which supports incremental updates and a lot of other nice things. See man rsync for details.
+
+A: *
+
+*I think Dolly Drive will 'act as' as time machine drive in the cloud. I haven't seen any other services to offer that...
+
+*IDrive is able to back-up your time machine drive itself
+
+
+A: I wrote a guide on backing up OS X to a cloud server with Time Machine, so you don't need to rely on 3rd party software or scripting on your Mac.
+It relies on OS X's inbuilt VPN features to secure the connection between your Mac and your server, and most of the work (20-30 mins) is in setting up the server side of things.
+I'm using it successfully on a poor 1Mbps upstream home connection.

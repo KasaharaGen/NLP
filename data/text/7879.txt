@@ -1,0 +1,16 @@
+Q: Does FileVault 2 interfere with TRIM when using an SSD? Let's assume I have an SSD that supports TRIM-supported drive, and I create a single encrypted partition that fills the entire disk (minus the obligatory GUID and recovery partitions). Is FileVault 2 smart enough to TRIM deleted bits, or does the full disk encryption prevent this from happening? Even if it does TRIM deleted bits, will the encryption of the full partition (presumably marking every bit in that partition as used) slow down the drive because there's nowhere clean left for it to write to, resulting in write amplification?
+
+A: I guess I wasn't that convinced, so I tested this empirically. 
+Setup: MacBookPro6,2, Mac OS X 10.8.2, FileVault2 enabled, Crucial C300 256GB (firmware 0007)
+
+With TRIM disabled, I nearly filled the disk (5 GB left) over the course of everyday usage. Deleting ~50 GB of files, I then tried to create a 50 GB disk image. Results were pretty pathetic - an initial peak at 180 MBps quickly dropping down to average writes of about 15 MBps, the disk clearly stuttering (showing periods of zero writes where presumably the disk was trying to catch up). The file was deleted, and afterwards I enabled TRIM. Again, I tried to create the disk image, and again I got the same results. Finally, after deleting the disk image, I created a disk image for the third time - with freshly TRIM'd bits. Average performance was 200 MBps and was sustained.
+So no, FileVault2 does not interfere with TRIM. (And no, garbage collection is not sufficient, Crucial.)
+
+A: TRIM support is not dependent on the encryption system you use. If your system supports TRIM and TRIM is activated then no matter how you store your data the low level IO operations will be handled by the system and will be not even know the difference between encrypted and unencrypted data.
+So FileVault changes nothing at that level.
+
+A: Core Storage (aka using FileVault 2) operates above the level of TRIM storage handling so you won't negate the benefits of TRIM by enabling encryption.
+TRIM speeds up reuse of deleted blocks on the storage. When the OS marks a block free, the SSD doesn't care if that block contained zeroes, ones or encrypted data. FileVault 2 doesn't change how many blocks get freed - just the pattern of what was left behind. 
+Before TRIM, the cleanup process suffers from write amplification - after trim commands are sent, that effect is minimized. 
+
+A: I use FileVault 2 with TRIM enabled. It works without problems, but be aware that trimming out blocks make them zeroed out when read. This makes an attacker able to check how many blocks are written on the drive. This could lead to improved attacks.

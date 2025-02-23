@@ -1,0 +1,19 @@
+Q: Using the Seagate FreeAgent Desk for Mac on PCs Is there any way  I can use the Seagate free agent Desk  Hard Disk for Mac on a PC?
+Notes: When this disk is plugged into a PC(running Linux, say) the disk is recognized as a separate drive, but we can't do anything more than browse the top level directory. I debugged this problem with the help of an expert at USB devices about a year ago , using a USB debugger. My vague memory is that one of the USB commands is misinterpreted by a non-Mac OS, and thus we can't read from/write to the disk.
+
+A: If it's formated FAT-32 with MBR based partition scheme, pretty much every OS out there should be able to read it without any trouble or 3rd party drivers.
+The only downside is FAT-32 does not support files over ~4.2GB. If that's a problem, I would suggest NTFS. This requires a additional driver (NTFS3G) to write files (NTFS works read-only on OS X only), but is supported on pretty much every platform out there as well (Windows, Linux, Android, Mac OS X, FreeBSD, NetBSD, OpenSolaris, QNX, Haiku, and more...).
+The GUID partition scheme is much more recent then MBR based partition maps, so it is not as widely supported. Everything should support MBR. If you're Ok with just Win Vista/7, OS X, and any recent Linux Distro, the GUID partition scheme should also work.
+
+It's worth noting that the issue with listing files you mention in the question is very strange. It sounds to me like a corrupt volume on the drive (E.g. a bad drive, or someone yanked the power in the midst of a write, and something got corrupted). I have had many external drives (15+), and never had any issues with the underlying USB system that weren't fixed by just disconnecting/reconnecting the cable.
+The USB Mass-Storage device class protocol is extremely well understood, documented and tested, and having a device implement it improperly (Particularly from a company as large as Seagate) at this point is vanishingly unlikely.
+
+A: This is for the GoFlex Mac but it will probably work on the FreeAgent drive.
+
+HFS4Win.EXE Windows Software to allow
+  a GoFlex for Mac, GoFlex Desk for Mac,
+  or GoFlex Pro to mount as a drive
+  letter in Windows without having to
+  reformat.
+
+http://www.seagate.com/ww/v/index.jsp?locale=en-US&name=goflex-mac-downloads&vgnextoid=8ce597a0090ec210VgnVCM1000001a48090aRCRD

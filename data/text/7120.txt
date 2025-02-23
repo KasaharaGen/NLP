@@ -1,0 +1,71 @@
+Q: What scriptable OCR Software exists on OSX for a paperless office I'm planning to get a paperless office and for that, I a need good scriptable piece of OCR for OS X?
+I've read a blogpost by Marco Arment about a few programs. Are there any workable ones there that allow me to script things?
+
+A: OCRKit has both AppleScript support and a CLI. From their help page:
+
+AppleScript
+You can also script OCRKit to integrate it into your specific workflow.
+  For example process incoming files, via shared folder, from MFP copy
+   machine, etc. and simply tell OCRKit to open and thus process is via
+  AppleScript:
+tell application "OCRKit"
+   -- the wonders of AppleScript POSIX path handling, ...
+   open "Users:admin:Desktop:orderform.pdf"
+   open POSIX path of "/Users/Admin/Desktop/orderform.pdf"
+end tell 
+
+Command line
+Since OCRKit version 2.5 direct command line scripting is supported.
+  This greatly simplifies the use of OCRKit in batch processing, allows
+  to set more options and is also more robust and cross-platform than
+  AppleSCript.
+OCRKit.app/Contents/MacOS/OCRKit \ 
+    --lang en | de | fr | es | ... \
+    --format pdf | html | rtf | text \
+    --no-progress \
+    --output out-file in-file
+
+Since OCRKit version 16.9 additional command line options are supported:
+-r, --recursive directory
+
+Scan directory recursively for new files. Skips files from OCRKit, with text layer or vector graphics.
+
+--pattern "regex"
+
+Pattern used to match filenames during recursive scans. Defaults to %.pdf$, recommendation for TIFF is %.tiff?$
+
+--log file
+
+Write log file information and statistics during recursive scan to file.
+
+--password secret
+
+Use secret password to decrypt PDF files during batch processing.
+
+--test-run [ fast ]
+
+Only run test batch processing in test mode to test PDF files or to
+    obtain page count to estimate total processing time. "fast" will only 
+    check the first page of each file, instead of going thru all pages for 
+    image and vector analyzation.
+
+--tag name
+
+Use extended attribute name to tag the processing state of files
+    during batch processing. macos:OCRKit (%s) will use native macOS
+    Finder tags instead, or simply macos:OCRKit not including the state 
+    attribute. The order of the state attribute are: started, analyzed, 
+    processed, and can also be encrypted.
+
+
+
+A: Readiris for Mac. I have it, but I haven't used it in a long time, so I don't exactly remember how good it was. I think that it didn't do the first few documents very well, but it learns.
+Oh, and I'm not sure about scriptability. I'll check it.
+It looks like Readiris has a scripting dictionary, and it's pretty good, too.
+
+A: ABBYY FineReader Pro for Mac does OCR well and is scriptable. From their blurb page:
+
+Process Batches of Documents and Automate Conversion Tasks
+Achieve new levels of productivity and enjoy greater flexibility when converting documents with support for Automator actions and AppleScript commands.
+
+It supports both Applescript and Automator. I hadn't tried to automate it previously but after looking into it, I have some plans to do some basic stuff. This is really why I'm belatedly 'answering' this question.

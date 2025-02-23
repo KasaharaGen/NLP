@@ -1,0 +1,11 @@
+Q: Cannot open Java Preferences I don't know what the problem is. I recently went to Lion (Developer Preview) and restored a fresh new copy of 10.6. I later updated everything and then tried to open Java. It keeps giving me this error.
+Cannot open Java Preferences 10.6
+No compatible version of Java 1.5+ is available
+
+I've tried reinstalling the update, but it doesn't do anything.
+
+A: :P, solved it. I just plugged my 10.6 restore disk in and ran the setup. I then updated the software, and voila, I fixed it.
+
+A: Launch the preference panel with this terminal command:
+javaws -viewer
+

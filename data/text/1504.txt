@@ -1,0 +1,22 @@
+Q: How can I remove pending downloads in iTunes? I have an update for the Dexter game on iPhone which is 400MB in size. Since I don't play this game anymore, I deleted the app. But iTunes still wants me to download the update and tells me I have "1 iTunes Download available".
+I tried deleting it (pause then right-click-*delete*), but the download keeps coming back.
+Is there a way to permanently remove those available downloads?
+
+A: Is there a Downloads item in the Store area of the column on the left side of iTunes? If so then you can click on it, click on the stalled download, and delete it.
+Edited to add
+There are a couple of places you might check after quitting iTunes. The first is 
+/Users/yourUserName/Music/iTunes/Mobile Applications/Downloads/
+
+Make sure it's empty, and if not, remove what's in there (set it aside so you can put it back if it confuses iTunes later).
+The other place is:
+/Users/yourUserName/Music/iTunes/Mobile Applications/
+
+and look for the file Dexter.ipa (or DexteGame.ipa or whatever the game is called). Delete this file -- it's the actual now-outdated game that iTunes is trying to update.
+Otherwise iTunes has the need to download it stored in its database and doesn't care about files. 
+I take it that agreeing to the download doesn't help?
+
+A: Go to the file,
+Slide slowly to the left on the download icon until you see a Delete button in a red box.
+Try it few times if it doesn't work.
+
+A: I had the same issue w/ two apps that I did not want to download. I finally downloaded both apps and then deleted them. 

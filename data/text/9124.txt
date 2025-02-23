@@ -1,0 +1,8 @@
+Q: Where does iTunes store the Podcast subscription info and preferences? I'm having iTunes 10.5 problems (crashes on Podcast refresh) and I've been unable to export the subscriptions (the .opml file generated is empty).
+Are there text-readable iTunes podcast preferences somewhere, so I can copy the RSS URLs to another podcast client?
+
+A: They're in the iTunes .plist-file on a Mac.
+Since you don't specify platform, I can't offer that much. In Windows, they're almost certainly stored in a similar preference file. In Mac OS X, they're not conveniently readable.
+If you just want to back up your subscription info, locating and backing up the iTunes preferences will do it. If you need to scrape/publish the subscription info, that's beyond my capabilities. Hope this at least gives you a jumping-off point.
+
+A: Under the Library section of iTunes click on Podcasts. Right-click or control-click on one of your subscriptions. Now click on Copy Podcast URL. This will copy the RSS feed of that podcast subscription to the clipboard so you can paste it into a different podcast client.

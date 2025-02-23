@@ -1,0 +1,38 @@
+Q: Is there a way to provide a sort order to an mdfind query? In trying to get a list of all music files from a particular album using mdfind I see that the files aren't necessarily returned in any order.  I'd prefer album/track order if possible, but can't find a way to provide the sort order on the command line.  The current invocation is something like:
+mdfind -onlyin "$MUSICROOT" -literal "$MDQUERY"
+
+where:
+$MUSICROOT is ~/Music/iTunes
+$MDQUERY is "kMDItemContentTypeTree == 'public.audio' && kMDItemAlbum == '*$1*'c"
+
+Ideally I'd want to add something like the following to the query:
+ORDER BY kMDItemAlbum, kMDItemAudioTrackNumber
+
+
+A: I used the following shell function to provide the sort:
+function sort_file()
+{
+    TMPFILE=`mktemp /tmp/sortable.XXXXXX` || exit 1
+    export MDLS="mdls -raw -name kMDItemAlbum -name kMDItemAudioTrackNumber"
+    export TR="tr \"\0\" \"\;\""
+    awk '{system( "$MDLS \"" $0 "\" | $TR" ); print "\;"$0; }' $1 > $TMPFILE
+    sort -t\; -k 2n -k 1f $TMPFILE | awk -F";" '{ print $3; }' > $1
+}
+
+META NOTE: I would have put this in a comment in the above answer, but couldn't get it to format correctly.
+
+A: At the risk of stating the obvious, 'sort'.
+e.g. mdfind -onlyin "$MUSICROOT" -literal "$MDQUERY" | sort
+will sort the output alphabetically, giving you Artist, Title, Track.
+(it won't do the cool iTunes trick of ignoring 'The').
+The sort command has lots of options, including sorting on particular fields if you want more control.
+Edit:  The below shell script function will provide the desired sort in the specific case mentioned:
+function sort_file()
+{
+    TMPFILE=`mktemp /tmp/sortable.XXXXXX` || exit 1
+    export MDLS="mdls -raw -name kMDItemAlbum -name kMDItemAudioTrackNumber"
+    export TR="tr \"\0\" \"\;\""
+    awk '{system( "$MDLS \"" $0 "\" | $TR" ); print "\;"$0; }' $1 > $TMPFILE
+    sort -t\; -k 2n -k 1f $TMPFILE | awk -F";" '{ print $3; }' > $1
+}
+

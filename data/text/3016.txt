@@ -1,0 +1,25 @@
+Q: What is the function of /home in Snow Leopard? I would like to mirror the directory structure that I have on my linux machine at work. There, my home directory resides in /home/emiller rather than /Users/emiller as it does on Snow Leopard.
+I was intending to create /home/emiller and use it as a sshfs mount point for my files on the linux machine - thus permitting to me run all my scripts without having to change any paths.
+However, when I try to mkdir /home/emiller, I get:
+mkdir: /home/emiller: Operation not supported
+Why is this? What is the function of /home? It appears empty of all files. 
+~emiller
+
+A: It's got an NFS automounter map mounted on it, so NFS home directories will be automatically available there.  Quoting man auto_master:
+
+The auto_master file contains a list of the directories that are to be
+  automounted.  Associated with each directory is the name of a map that
+  lists the locations of the filesystems to be automounted there.  The
+  default map looks like this:
+#
+# Automounter master map
+#
++auto_master            # Use directory service
+/net                    -hosts          -nobrowse,hidefromfinder,nosuid
+/home                   auto_home       -nobrowse,hidefromfinder
+/Network/Servers        -fstab
+/-                      -static
+
+
+The default auto_home on SL expects to get the home directory-to-machine mapping from NIS or LDAP, but you can add entries manually.
+You can remove the auto_home line from /etc/auto_master and sudo killall automountd (which should cause launchd to rerun it with the new map) or reboot.  Alternately, add your sshfs mount to /etc/auto_home (and again restart automountd or reboot).

@@ -1,0 +1,49 @@
+Q: "Set time zone automatically using current location" is not working. Why? Although I keep my system time & date in check using time.asia.apple.com, I can't "Set time zone automatically using current location". I get the error message, "Unable to determine current location at this time" every time I try this.
+
+Does anyone know why this is happening?
+Thanks.
+
+A: Apple uses one or more databases (I don't know how many) to map your ISP internet connection to a location in the world.
+If you use the network utility to traceroute to that time server, you will see all the routers between you and that apple server. This software does the same thing and reports the hops - if Apple knows where any of the routers close to your mac are located, it will update the location. What it's telling you is it can't pin down where you are based on this information only.
+If you can try connecting to a different network or a public network it might be more likely to know where you are. Many business internet connections pool the public internet access and the database is told to ignore that since the traffic isn't coming to apple close to your physical location.
+Are you on a home network? Can you call your ISP to see if they allow or prevent location of their customers? It's a problem with the people supplying you with internet and not anything on your computer, so you can't do anything directly to correct it other than change your ISP or figure out how to get it mapped.
+
+A: Had the same issue after traveling, and as @bmike mentioned, Apple uses your router to map your location.
+In my case, the network location profile had some sort of an issue, and to fix it, all I had to do was create a new profile and restart.
+Steps:
+
+
+*
+
+*Go to System Preferences.
+
+*Select Network.
+
+*Click on the Location: Automatic dropdown.
+
+
+
+*Click on Edit Locations....
+
+
+
+
+
+*Click the + sign in the bottom left corner.
+
+*Add a new profile, and call it Home (or something else).
+
+*Select the new profile you created.
+
+*Click Done.
+
+*Click Apply.
+
+*Restart the device.
+This will be as if you just registered a new device on the router, and the device will be able to grab the location again.
+If that doesn't work, try changing the network, and redoing the whole thing again.
+
+A: Judging by the screenshot this appears to merely be a cosmetic issue. There is a location pin, a time zone and also a closest city.
+Unless you are not at that location, of course.
+
+A: I had a similar issue in mac os Catalina when I traveled to different time zone, it doesn't able to recognize the new timezone. later I opened the maps app, clicked on "show your current location" it was able to recognize my location, after that when I opened Date&Time, the error message disappeared, it was able to recognize the timezone.  

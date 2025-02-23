@@ -1,0 +1,47 @@
+Q: How can I rebind Caps lock to delete/backspace? I tried using DoubleCommand, but it doesn't let you hold down caps lock, and pressing it causes caps lock light to be enabled/disabled. Ideally I want caps lock to never be enabled and for the key to behave exactly as though it were the delete key.
+Another problem that DoubleCommand has is that every second press just toggles the light, and doesn't delete a character.
+
+A: You may want to try Karabiner-Elements (formerly Seil).
+I use it to bind Caps Lock to Right-Ctrl (not plain Ctrl), so that I can bind Caps Lock to Meta in Emacs (while Ctrl remains Ctrl, and other keys are kept to the usual behavior).
+
+A: If you're on macOS Sierra or later, and don't mind using the command line, you can do it with a technique I saw on Hang Lu Su's blog:
+$ hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x70000002A}]}'
+
+In her linked post she gets into other things as well, like making sure this binding survives restarts or mapping any key. Here are the Apple docs explaining the technique used as well as the codes to use for any key.
+I realize the question and its original answers are older than macOS Sierra, but perhaps this can be useful for people stumbling across it more recently.
+
+A: Seil is now obsolete and has been replaced by Karabiner-Elements.
+https://karabiner-elements.pqrs.org
+
+A: ControllerMate gets normal auto-repeat, no delay nor light toggle given Apple ➤ System Preferences… ➤ Keyboard ➤ Keyboard ➤ Modifier Keys… ➤ Caps Lock Key ➤ No Action.
+Control, Meta (Alt) and Control-Meta took extra logic:
+
+       Peace
+            —Devon
+P.S. Emacs² & Lisp³ grew up with Rubout left of letter A — see the Knight TV keyboard⁴ and Space Cadet keyboard⁵ layouts with Control-Meta-Super-Hyper-Shift-Greek-Top modifier keys.
+P.P.S. Password input may require the hardware delete key.
+P.P.P.S. If you manage to get
+caps lock functionality
+on a both-shifts key chord
+do let me know.
+P.P.P.P.S. The Mgt forbids me to post these https://en.wikipedia.org/wiki/ links:
+[2] Emacs
+[3] Lisp_(programming_language)
+[4] Knight_keyboard
+[5] Space-cadet_keyboard
+
+A: This is trivial with Karabiner-Elements:
+
+*
+
+*Go to Karabiner Elements Preferences
+
+*Simple Modifications tab
+
+*Add Item
+
+*From: caps_lock To: delete_or_backspace
+That's it - the change should apply instantly.
+
+You may also want to remap Backspace temporarily to nothing, to make sure you get the new muscle memory and not the old habitual key.  In that case, do the same as above but remap From: delete_or_backspace, To: vk_none (disable this key).
+

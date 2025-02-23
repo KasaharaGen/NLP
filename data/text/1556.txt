@@ -1,0 +1,35 @@
+Q: How to create a bootable USB drive for Disk Utility? Disk Utility says my boot drive need repair.  Unfortunately my DVD drive is toast, so I can't boot from the install DVD and make the repair.  Is there a way I can create a bootable USB drive and perform the repair that way.  I have an 8Gb USB drive.
+
+A: In order to create a bootable drive, you need the install DVD (or a copy of it) mounted. Sorry…
+Do you have a friend with a Mac? If so, you could take the thumb drive & install DVD there and create a boot drive for yourself.
+
+A: This may not be the solution you want, but you could boot into single-user mode to run a diagnostic on your boot drive.
+To do this you hold down Command+s when turning the computer on. You'll be dropped into a terminal.
+Use the fsck utility (filesystem check) to examine the boot drive for repairs:
+/sbin/fsck -fy
+
+This forces the utility to check the filesystem and automatically repair errors it detects.
+If it the resulting messages reads that the volume appears to be OK, then you've done all you can do from this method. If it reads that the filesystem was modified, run it again. Repeat running the command until you receive the message that the volume is OK, then reboot normally. You can do that just by typing
+reboot
+
+I have had to do this a few times with my own boot drive, and it did fix the problem.
+
+
+*
+
+*Mac OS X: How to start up in single-user or verbose mode
+
+A: This might be a bit risky, but you could try using Carbon Copy Cloner to clone just the bootable portions of your failing drive to the USB drive. The newest version of CCC can tell you specifically what to copy, but basically you'll want the /System folder and a bunch of other Unix directories, and portions of /Library.
+This CCC FAQ entry describes what specifically needs to be done to make a bootable clone, but basically you'll want to use CCC to copy:
+/Library
+/System
+/bin
+/etc
+/mach_kernel
+/private
+/sbin
+/tmp
+/usr
+/var
+
+Be warned: if your boot drive is physically failing, cloning it like this might very well push it over the edge and kill it. Back up any important documents first. This is a somewhat risky method!

@@ -1,0 +1,56 @@
+Q: What's the correctly way to make Postfix run permanently on Lion (not server) I can start Postfix temporarily with: 
+$ sudo launchctl
+launchd% start org.postfix.master
+
+However, Console.app shows that it only runs for a short time:
+26/11/11 2:00:55.710 PM postfix/master: master exit time has arrived
+
+I think the file  /System/Library/LaunchDaemons/org.postfix.master.plist needs to be updated to make Postfix run permanently, but I haven't found the answer yet. 
+What's the correct way of getting Postfix starting at boot time and running permanently?
+Update
+In order to edit the file as recommended by the selected answer, I first converted it to XML.  
+plutil  -convert xml1 /System/Library/LaunchDaemons/org.postfix.master.plist
+
+Then just edited it with Vim: 
+sudo vim /System/Library/LaunchDaemons/org.postfix.master.plist
+
+I had issues trying to get Xcode to edit the file. 
+
+A: The following changes worked for me:
+
+
+*
+
+*Remove the following two elements from /System/Library/LaunchDaemons/org.postfix.master.plist:
+
+<string>-e</string>
+<string>60</string>
+
+
+This will stop it exiting after 60 seconds.
+
+*Add the following element as a child of the <dict>...</dict> element in the same plist file:
+
+<key>KeepAlive</key>
+<true/>
+
+
+
+*Reload the file:
+
+sudo launchctl unload /System/Library/LaunchDaemons/org.postfix.master.plist 
+sudo launchctl load /System/Library/LaunchDaemons/org.postfix.master.plist
+
+
+postfix should now be running as a daemon.
+The above works on Mountain Lion, Mavericks, Yosemite and El Capitan. For systems that have System Integrity Protection (El Capitan and later) there are two options:
+
+
+*
+
+*Copying /System/Library/LaunchDaemons/org.postfix.master.plist to /Library/LaunchDaemons/org.postfix.custom.plist, changing org.postfix.master to org.postfix.custom and then unloading and loading as above.
+
+*Disabling SIP (using csrutil), making the edits and then re-enabling SIP.
+
+
+Note: With High Sierra and Mojave, the configuration file is com.apple.postfix.master.plist instead of org.postfix.custom.plist.

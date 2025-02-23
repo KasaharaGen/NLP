@@ -1,0 +1,19 @@
+Q: Snow Leopard cannot find my LaCie Network Space 2 when it's connected through USB. I have a LaCie Network Space 2 (and I wish I had bought a WD instead) which is connected to my iMac with USB. I have used it before through LAN, but I've moved my Mac to another room and now I connected it with USB as that transfers faster. The problem is that the disk doesn't show up in the Finder, not even in Disk Utilities. I've been fighting with this for a few hours now, but I couldn't find anything :(
+Windows, however can find it.
+What can be wrong?
+
+I'm using Snow Leopard.
+
+A: Same thing happened to me couple of times. I powered the HDD on/off couple of times and then restarted the Mac before it reappeared again on Finder.  
+
+A: Plug it while its off & then turn it on, it works for me every time
+
+A: Is it connected via FTP or AFP? I have found that Macs will oftentimes have a problem connecting via FTP. Try sharing it over AFP.
+
+A: You should try using 'Hardware Growler', which is available as a Free-Addon to the free 'Growl 1.2.2'. It will show all Device Connections at Startup of the Device and you can check if the Device is sending a Signal to you Mac.
+I had a similar case with an external Drive once and with the help of Hardware-Growler noticed that the external Drive was continously sending connecting and disconnecting Signals to my Mac and was not showing up in the Finder. I could isolate my Problem to a faulty AC-Adapter, but i doubt that's the case here. 
+Are you connecting the LaCie directly to you Mac or is there a USB-Hub in between? 
+
+A: Try using Disk Utility to repair disk permissions on your computer, while the external drive is plugged in.
+Then try resetting your PRAM.
+Then try connecting to the drive using something other than USB (eg, firewire).

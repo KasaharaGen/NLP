@@ -1,0 +1,103 @@
+Q: Lost password on Mac OS Extended (Journaled, Encrypted) Drive. Want to reformat it I am using a Seagate Free Agent Desk external drive as my Time Machine on a modern iMac running Lion. I made the mistake of encrypting the drive, and I do not remember the password. I dont mind losing the data on the disk, and I just want to reformat it if possible in order to use it as a non encrypted drive. Any ideas on how to do this?
+
+A: The encrypted volume's password is not required for erasing the disk, only to mount the encrypted volume on the disk. It's unclear whether you're being asked for the password only when connecting the disk, or when you attempt to erase it.
+In Lion, you can use Disk Utility to erase an encrypted volume, but not in Mountain Lion. However, you can erase the encrypted volume with the diskutil cs delete command (see Terminal section below) in both versions.
+
+Disk Utility (Lion only)
+The following steps should work in Lion:
+
+*
+
+*Connect the disk to your Mac.
+
+
+*When prompted to "Enter the password for the disk 'your disk'," click "Cancel". You don't need to mount the encrypted volume to erase the disk.
+
+
+
+*Open Disk Utility and locate your external disk on the left side. Its name will likely start with its capacity and include "Seagate" or "Free Agent" in the name. You should see your encrypted volume directly under the disk. The volume will be indented and grayed out. 
+
+
+*Select the disk on the left side, not the volume. 
+
+
+*Click the "Erase" tab, found between the "First Aid" and "Partition" tabs. If you don't see the "Partition" tab, and all the buttons under the "Erase" tab are grayed out, double-check that you've selected the disk on the left side, and not the disk's volume.
+
+
+*Choose a format and enter a name, then click "Erase".
+If this doesn't work, let us know which step is not working and how.
+
+Terminal (Lion & Mountain Lion)
+
+*
+
+*With the encrypted disk connected, launch Terminal and enter the following command
+
+diskutil cs list
+
+You should see output describing the encrypted disk, starting with info about the Logical Volume Group:
+CoreStorage logical volume groups (1 found)
+|
++-- Logical Volume Group 109FC023-5F18-438A-AF3D-14FF60334A0C
+    =========================================================
+    Name:         Le Disque
+    Size:         68375502848 B (68.4 GB)
+    Free Space:   0 B (0 B)
+    |
+…
+
+If you have more than one encrypted disk, locate the Logical Volume Group with the name of the disk you want to erase.
+
+
+*Copy the UUID which follows the words "Logical Volume Group". In this example this is the UUID for the disk named "Le Disque":
+109FC023-5F18-438A-AF3D-14FF60334A0C
+
+
+
+*Warning The next command will erase the disk specified by the UUID you enter. Make sure you've copied the correct Logical Volume Group UUID for the disk you want to erase, especially if you have more than one encrypted disk connected.
+Enter the following command to erase the encrypted disk, replacing copiedUUID with the UUID you copied:
+diskutil cs delete copiedUUID
+
+
+
+*When complete, the disk will be partitioned with one volume mounted, called "Untitled". You can then start using it or repartition or encrypt it in Disk Utility as needed.
+
+A: As joelseph said in his answer, you should be able to erase an encrypted volume in Disk Utility even without entering the password. However, I do not have a 10.8 system to test this with, and Ian C. said that 10.8 changed this.
+If Disk Utility does prevent joelseph's answer from working, wiping out the partition table using the terminal is a viable workaround:
+
+
+*
+
+*Locate the drive in Disk Utility and click the Info button
+
+*Find the Disk Identifier line and note what it says. It will say disk# where # is a number.
+
+*Open the Terminal (in the Utilities folder) and enter the command:
+sudo dd if=/dev/zero of=/dev/disk# bs=1024k count=1
+
+Where # is the disk number from step #2. Double check this command! Then, triple check the command. Make sure the /dev/disk# matches the disk# from step #2.
+This command will overwrite the first megabyte of the disk with zeros, permanently destroying any information on the diks. Be sure you want to continue
+
+*Press return and you will be prompted for your user password. Enter the password to begin erasing the partition table.
+
+*After the process finishes (you will see a message 1+0 records in 1+0 records out 1048576 bytes transferred...) return to Disk Utility. You should now be able to format the drive.
+
+
+This was confirmed to work in chat. Again, be very careful with the command. If you use the wrong disk you may erase valuble data.
+
+You should never run terminal commands without understanding what they do. Here is a detailed explanation:
+dd stands for Data Duplicate. It is a standard system command. See the Wikipedia Article and Manual page
+if= specifies the input file to duplicate from. /dev/zero is a special file (actually, a character device) which produces nothing but zeros (NULL characters)
+of= specifies the output file to duplicate to. /dev/disk2 or whatever is the external hard disk to overwrite.
+bs=1024k specifies the block size, meaning write blocks of 1,024 kilobytes (1 megabyte). Writing blocks of 1 MB is simply faster than smaller blocks, that's why I close this size.
+count=1 specifies how many blocks to write. 1 block of 1 megabyte is sufficient to overwrite the partition table, meaning Disk Utility will no longer know this is a password protected disk and will allow you to format it.
+
+A: Lion's Disk Utility should be able to do this. My encrypted FreeAgent is at home.
+Have you tried both erasing/reformatting the volume, and repartitioning the disk itself? Repartitioning should work.
+
+A: I encountered the same issue. My best option would be to use another formatting utility from another operating system.
+Starting the format from Windows wont care that mac has encryption on it.
+After the partition is destroyed mac should be able to format it again.
+Alternatively some Systems have disk utilities in the Bios. And you can use the manufacturers Low Level format utilities to erase the drive back to 0's. But Other than that. I think apple limits the format of encrypted mac drives. Likely to protect you from removing something that someone else encrypted. "Perhaps there is a Special key you have to hold to enable the format" If not, Perhaps there should be.
+
+A: You should be able to reformat this external drive with Disk Utility without any problems.

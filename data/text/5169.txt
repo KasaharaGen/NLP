@@ -1,0 +1,12 @@
+Q: Can I disable the Lion animation when switching to/from fullscreen apps? In Lion there is an animation when switching to and from full screen applications. Full screen apps are great, especially on a 11" screen, but this animation is getting very annoying. Is there a way to turn off these animations?
+
+A: There is, at least, a way to speed them up with a SIMBL bundle: http://www.yllier.net/SUFSA.html
+
+A: No..for now there is no way to turn it off. I also want to turn to the annoying animations when a new window appears.
+
+A: You can disable the system-wide animation for opening new windows in Lion.
+http://www.tuaw.com/2011/07/26/hackinations-5-really-good-lion-tweaks/
+Turn off zooming windows 
+Open Terminal and type the following:
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
+Reboot.

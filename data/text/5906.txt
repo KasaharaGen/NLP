@@ -1,0 +1,24 @@
+Q: Prevent OS X from changing Spaces after quitting an App? After quitting an application, the previous app that I was interacting with is automatically selected. If I was working in Terminal, switched to Chrome, and then decided to quit Chrome, Terminal becomes the active context. Unfortunately, if Terminal happened to be in a different space at the time, OS X swaps to that space for me.
+This effect is pretty jarring every time it happens, and it really gets in the way if, say, Chrome was merely restarting. In that case not only do I get sent to a completely different space, but Chrome then opens itself up in that space where I don't want it.
+The only question I could find similar to my problem was:
+How can I stop spaces from switching automatically?
+It suggests to go under System Preferences -> (Spaces / Mission Control), and uncheck When switching to an application, switch to a space with open windows for the application.
+While this technically solves my problem, I'm now unable to swap to an open application by simply clicking its icon in the Dock. I can live with this if I have to, but I'd rather have a real solution that doesn't require me to sacrifice quick app-switching. 
+Ideally I'd like it to switch context to the most-recently used application that's currently open in the existing space. If none exist, default to the Finder.
+
+A: As far as I know, there's no way to do exactly what you want, but you can come pretty close.  It's true that if you uncheck the "When switching..." checkbox, you don't go to the app when you click on the icon in the dock, but you do go to the app when you double click it (or just generally click it a second time when the application is active but nothing is visible).  
+I've been using it this way for years - I'd almost forgotten there was any other behavior.
+
+A: This works on 10.6.8. Just used it myself. Enjoy!
+
+For Leopard 10.5.0–10.5.2, the solution was to access a hidden
+  preference for Spaces by issuing the following command in a Terminal
+  or xterm (X11) window: 
+defaults write com.apple.dock workspaces-auto-swoosh -bool NO
+then restarting the Dock using the following command: 
+killall Dock
+
+Source
+
+A: You can force apps to open in certain spaces from System Preferences, which would solve the problem of Chrome opening in a space it shouldn't.
+The drawback is that I don't think it will stop the transition from one space to another, and then back again.

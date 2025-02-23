@@ -1,0 +1,102 @@
+Q: How do I fix failed aliases? I had two external hard disks: External and Backup. External had many aliases which pointed to other files on the same disk. Backup was used to backup External.
+External failed, and I now use Backup, which I have since renamed to External. Unfortunately, all those aliases now point to /Volumes/Backup/… and thus no longer work.
+I don't want to have to fix them or recreate them one at a time.
+Is there a way to fix all the aliases so that they point to /Volumes/External/… instead of /Volumes/Backup/…?
+
+A: Here's my stab at solving this problem with Applescript. The following applescript will take selected aliases in the Finder and try and relink them to the new path replacing Backup with External in the POSIX path.
+Hopefully it's straightforward. You could probably make it recursive to search for aliases in selected folders, but that's more work than I care to do -- and then there's the problem of dealing with aliases to folders. Things could get messy. ;-)
+Hope it helps.
+tell application "Finder"
+    set these_items to the selection
+end tell
+
+repeat with i from 1 to the count of these_items
+    set this_item to (item i of these_items) as alias
+    set this_info to info for this_item
+
+    if class of this_item is alias then
+        tell application "Finder"
+            set original_file to original item of this_item
+            set this_alias_file_name to displayed name of this_item
+            set container_folder to container of this_item
+
+            set the_path to the POSIX path of (original_file as alias)
+            set new_path to my replaceText("/Backup/", "/External/", the_path)
+
+            move this_item to trash
+            try
+                make new alias file at container_folder to (POSIX file new_path) with properties {name:this_alias_file_name}
+            on error errMsg number errorNumber
+                if errorNumber is -10000 then -- new original file not found, try relinking to old
+                    try
+                        make new alias file at container_folder to (POSIX file the_path) with properties {name:this_alias_file_name}
+                    on error errMsg number errorNumber
+                        if errorNumber is -10000 then -- old original not found. link's dead Jim
+                            display dialog "The original file for alias " & this_alias_file_name & " was not found."
+                        else
+                            display dialog "An unknown error occurred:  " & errorNumber as text
+                        end if
+                    end try
+                else
+                    display dialog "An unknown error occurred:  " & errorNumber as text
+                end if
+            end try
+        end tell
+    end if
+end repeat
+
+on replaceText(find, replace, subject)
+    set prevTIDs to text item delimiters of AppleScript
+    set text item delimiters of AppleScript to find
+    set subject to text items of subject
+
+    set text item delimiters of AppleScript to replace
+    set subject to "" & subject
+    set text item delimiters of AppleScript to prevTIDs
+
+    return subject
+end replaceText
+
+
+A: Name the disk back to Backup?  Seriously, I think that would be the quickest way to solve the problem.  Or you could write a shell script that recursively finds all aliase's pointing the "Backup" volume and recreate them to point to the new name...
+edit
+Check out http://sveinbjorn.org/osxutils_docs, mkalias in particular.
+
+A: I recently had to solve the same problem, and wrote this ruby code to fix all aliases recursively.
+I'll paste it here:
+#!/usr/bin/ruby
+
+# these are the folders containing all your images
+if ARGV.size == 2
+  dir_base     = ARGV[0]
+  alias_folder = ARGV[1]
+else
+  puts "usage $0 dir_with_all_files sub_dir_containing_broken_aliases"
+  puts "  or pass -d to use defaults:  ~/img  background"
+  if ARGV[0] && ARGV[0] == '-d'
+    dir_base     = File.expand_path '~/img'
+    alias_folder = 'background'
+  end
+end
+
+# list of all alias file paths, dirs excluded
+alist = Dir.glob("#{dir_base}/#{alias_folder}/**/*").
+            select{|w| w.scan('.').any? }
+
+# a list of all file paths, alias fodler contents excluded
+flist = Dir.glob("#{dir_base}/**/*").
+            reject{|w| w.scan("#{dir_base}/#{alias_folder}").any? }
+
+# forcably create new aliases by overwriting old files
+alist.each do |f| 
+  flist.each do |w| 
+    `ln -fs #{w.gsub(' ','\ ')} #{f.gsub(' ','\ ')}` if w.split('/').last == f.split('/').last
+    puts "linked #{w.gsub(' ','\ ')}  to  #{f.gsub(' ','\ ')}"
+  end
+end
+
+
+A: His problem is not with the name "Backup". Same happens to me with "Compare Files" contextual menu (I think that's the issue) and certainly with files opened from DreamWeaver. 
+There has been some change / fix in Apple OS because DW tries to open the same file in Chrome without "Volume" before the partition name, and the same file opened in Chrome reveals "Volume" which works.
+So either Adobe or Apple made a change or made a fix on the way they point/call a partition other than the startup disk in that same drive.
+So in the OP case, the name of the drive IS backup. The problem is the aliases have "Volume" added to it. I think at some point the startup disk was meant to NOT include "Volumes" and later they fixed it for the Finder and other obvious places but they didn't get to the aliases yet.

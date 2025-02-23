@@ -1,0 +1,11 @@
+Q: Is it possible to force the next boot to be a recovery mode boot with a bluetooth keyboard? I wanted to test the new recovery mode in Lion and can't find a way to enter that mode using a bluetooth keyboard.
+There are steps how to get a single user mode or safe boot using sudo nvram boot-args
+I was wondering if anyone has uncovered how to get into recovery mode without having a hard wired USB keyboard. As described in the comments - this iMac is older than the ones that make bluetooth available at boot time which is why I'm looking to write something before the reboot progresses to a point where bluetooth is not available to override the default boot selection list.
+
+A: This model seems to respect the option key only - so that will get me to the startup manager and I can select the Recovery HD. 
+I have not had luck getting command R to work but it's clearly meant to work as well - perhaps that's for newer macs with better bluetooth hardware (or my mac is just cranky and not working as designed)
+
+A: At least, on macbook pros (10.9 -> 10.14.6) you can run the command
+sudo nvram recovery-boot-mode=unused
+
+And the macbook pro will boot into recovery when you restart, the flag will be removed from nvram so you boot normal the next time after it.

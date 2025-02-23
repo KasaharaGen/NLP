@@ -1,0 +1,47 @@
+Q: Mac OSX email message report How can i get a message report that tells me that an email i sent has been received and opened?
+
+A: You can enable a Read Request Receipt in Apple Mail, so if the receiver client support it, you'll get a "Read Receipt" back.
+It is possible to add these headers to to outgoing mails:
+
+
+*
+
+*"Disposition-Notification-To" (Read Request Receipt)
+
+*Bcc
+
+*"Reply-To"
+To make Apple Mail request a read receipt for every message you send:
+
+
+*
+
+*Open Terminal.
+
+*Type "defaults read com.apple.mail UserHeaders".
+
+*Press Enter.
+
+*If that command returns "The domain/default pair of (com.apple.mail, UserHeaders) does not exist":
+
+
+*
+
+*Type
+
+
+defaults write com.apple.mail UserHeaders '{"Disposition-Notification-To" = "Name <email@address>"; }'
+replacing Name with your name and email@address with your email address.
+
+
+*
+
+*The complete line could read defaults write com.apple.mail UserHeaders '{"Disposition-Notification-To" = "FirstName LastName <sender@example.com>"; }'
+And to add one of the other headers you just add it to the line - then the line could read like this:
+defaults write com.apple.mail UserHeaders '{"Reply-To" = "ReplyFirstName ReplyLastName <reply@example.com>"; Bcc = "BccFirstName BccLastName <bcc@example.com>"; "Disposition-Notification-To" = "FirstName LastName <sender@example.com>"; }'
+
+A: You can't as the receivers client has to send back information and most clients do not do that, ie they can read the email without marking anything In the RFCs covering mail there is nothing that must be done to provide this functionality. You can probably tell that the mail has reached the recipient's mailbox but that is it.
+
+A: The one way you can "sort of" get a return receipt like you're asking for is IF the system Mac Mail is connecting to has the capability.
+For example, you can get request receipts with MS-Exchange. If you setup Apple Mail to communicate with exchange – you probably also have access to a web-version for your email system, which will probably let you setup read receipts for the messages you send from the web client.
+But no, if you're just using Apple Mail with a typical POP, IMAP or Mobile-Me setup you're not going to have access to a read receipt feature.

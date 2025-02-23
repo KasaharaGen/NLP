@@ -1,0 +1,61 @@
+Q: How can I open a .pkg file manually? Some applications come in .pkg files, and ask for you administrator password, even if all they do is copy the binary to /Applications.
+I like to have my applications in ~/Applications, and I do not like to give administrative permissions to anything that is not from the mothership.
+Is there a way that I can manually open the .pkg file and pull out the application? There is PackageMaker in the Developer Tools, but that does not seem to do it (it did produce some output that makes me think that there really are no scripts or other pieces in the installer, just the application).
+
+A: If you right click it, and click Show Package Contents you'll get a few files in a Contents folder. (Note: if you do not see Show Package Contents you will need to open Terminal.app and run pkgutil --expand mystubbornpackage.pkg path/to/expand) 
+One is a BOM file (bill of materials) which gets turned into a receipt that you can use to uninstall the app.  This file contains a manifest of everything the package will install and where to; to read this file, use the lsbom command.
+Most packages (I'm using Office 2008 here) also have an Archive.pax.gz file, this contains everything that Installer will move into the various folders as instructed in the BOM file.  Most apps seem to have the .app in this archive, although dragging that to /Applications might leave it without frameworks it needs to run; so you'll have to figure out which other files it needs and where it needs them to get it to work.
+Additionally, all packages can log messages, if you hit Cmd-L (or choose the Installer Log option from the Window menu, you can view them as they're generated.  This might give you an idea what extra things it's installing, at the very least it's some more information if you're untrusting of the package.
+
+A: If you don't trust the installer enough to give administrative permissions to install, then why do you trust the binary in /Applications?
+Pacifist will let you look in package files. This doesn't necessarily just let you "pull out the binary".
+
+A: pkgutil --expand was failing for me with the following error:
+Error encountered while creating .. Error 17: File exists
+But I managed to extract the files with xar instead:
+xar -xvf foo.pkg
+
+A: Alternatively you can try, 
+sudo installer -pkg ~/Downloads/packagename.pkg -target ~/Applications/
+
+OR
+installer -pkg ~/Downloads/packagename.pkg -target ~/Applications/
+
+
+A: In addition to what Matthew Hall said, you can also hit Cmd-I in the Installer app to see what files the installer will install and where.
+
+A: *
+
+*After you succeed in opening the package, look for the Archive.pax.gz file that was mentioned earlier.
+
+*Create a new empty folder on your desktop naming it whatever you wish. I usually name them "xxxx" or "zzzz" etc. to make typing easier later.
+
+*Option-drag a copy of the Archive.pax.gz file into that new folder "xxxx" on your desktop.
+If the file is inside of read-only media you can just drag it to your "xxxx" folder without the Option key to create a copy.
+
+*Now open Terminal.app and at the command line navigate to your new "xxxx" directory and list the directory's contents to confirm that your Archive.pax.gz file is there:
+cd ~/Desktop/xxxx
+ls -al
+
+
+*Now there are two simple commands to enter:
+gunzip -v Archive.pax.gz
+
+Gzip will tell you that it has replaced "Archive.pax.gz" with "Archive.pax") Now list the directory's contents again to confirm this.
+pax -r -f Archive.pax
+
+(You must separate -r and -f, as -rf will not work)
+
+*Finally, list the directory's contents again with ls -al. In addition to your Archive.pax file you will now see a directory hierarchy probably containing one or more directories.
+The files in that directory hierarchy will illustrate to you where the OS X installer would install files on your system as if your "xxxx" directory was the root directory "/".
+
+*You may then manually copy those files to their destinations if you wish.
+
+A: UnArchiver did the trick.
+Install UnArchiver, open UnArchiver; while it is open - double click on that pesky MAMP_MAMP_3.5.pkg
+Follow the steps to install MAMP.
+
+A: The best tool for inspecting package files is Suspicious Package. It also allows you to copy files out of the package.
+Not only will it provide all the information you need in the app it also install a Quick Look plug in so just selecting the package file and hitting the space bar opens up a window with the most essential information.
+
+A: The Unarchiver can do this; it will do the same as pkgutil --expand but using drag-and-drop. It's a better replacement for Apple's Archive Utility.app anyways.

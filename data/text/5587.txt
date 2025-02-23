@@ -1,0 +1,47 @@
+Q: How can I show the "Dimension" column in Finder? I clearly remember seeing Dimensions column in Finder to show image dimensions (width x height) but I can't find it now. 
+Does anyone know how to show this column?
+
+A: The best answer is here: https://superuser.com/a/473697/267407
+and it's totally bizarre!
+
+
+*
+
+*Rename the parent folder "Pictures"
+
+*Enable the Dimensions or Resolution column as usual
+
+*Rename the parent folder back to its original name and the column setting should stay
+
+
+A: In Mountain Lion, the folder of photos must be named Pictures.  Only then will you be able to sort by Dimension or Resolution in list view or cover flow view.
+Hope this helps.
+
+A: First, go into the folder and press  ⌘ Command+J. "Show View Options" should appear:
+
+Alternatively, you can right click and select "Show View Options".
+After opening the view options, select "Show Item Info:
+
+After you have selected that option, you should be able to see the image dimensions below the file. 
+If you would like this to be the user-wide default, select "Use as Defaults".
+
+A: I sometimes see Dimensions, Duration, Title, and Codecs available as columns in the Mac OS X Finder's folder list view. I've only noticed it in folders containing videos, but I haven't tracked which types. Other folders containing the same video types don't necessarily offer those columns. When the columns are available, they appear in the list's column header contextual menu, but not in the window's View Options.
+How do I go about posting my screenshot of this? I don't have 10 reputation pokes or likes or smiles or whatevers.
+
+A: When in icon view, you can use "Show item info" under view options just as user6124 described.
+
+Yes, but this is not the 'column' view. Thanks, but I knew this already. – Nimbuz (comment)
+
+Column view, however, prefers to show as much of the current file tree path as possible at the price of extra info. You can enable the preview column from view options to show a preview of the selected image along with some basic information (including pixel dimensions) in the rightmost column.
+The preview column only shows the info for the selected file (just one).
+In list and cover flow views you can add more info columns to the list by right–clicking the list's titlebar and choose the extra data you want to see:
+
+NOTE: The list of extra columns is relative to the folder's location. In order to get the dimensions available, the folder in question has to reside somewhere under ~/Pictures/. (Under ~/Music/ you could choose e.g. artist or album and under ~/Movies/ you could choose length or codecs and so on…)
+
+A: User10355, I know this post is old, but if someone comes across it, they may read your comment and give up without trying. Nobody's memory was playing tricks. For the "Pictures" folder only, the 9 columns listed in the "View Options" panel are not the only columns available in List View! Right-click any column header and a dropdown menu appears showing the full range of options. For the Pictures folder, this includes the 9 columns offered in View Options, plus two more: dimensions and resolution. My screenshot is from El Capitan, but it sounds as if this feature was available as far back as Mountain Lion.
+
+
+A: Your memory is playing tricks on you. This is the Finder from Snow Leopard (which I don't think changed from Leopard).
+
+And here is Tiger's list view column options:
+

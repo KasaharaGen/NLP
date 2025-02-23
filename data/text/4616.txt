@@ -1,0 +1,37 @@
+Q: How to enable ssh login for _www user? In order to deploy files the the apache server running on OS X host I want to ssh/scp to it using the _www user.
+I do not want to use root because I want to be sure that I always put the files with correct permissions.
+The problem is that I am not able to login with _www. I did change the password for the account but ssh login still fails after asking me the password two times.
+
+A: The _www user is designed to never have a shell and many of the user attributes needed for ssh to run are missing. Once you log in as any other admin user, you can easily sudo over to user _www to get file permissions correct.
+mac:~ me$ dscl . -read /Users/_www
+AppleMetaNodeLocation: /Local/Default
+GeneratedUID: FFFFEEEE-DDDD-CCCC-BBBB-AAAA00000046
+NFSHomeDirectory: /Library/WebServer
+Password: *
+PrimaryGroupID: 70
+RealName:
+ World Wide Web Server
+RecordName: _www www
+RecordType: dsRecTypeStandard:Users
+UniqueID: 70
+UserShell: /usr/bin/false
+
+mac:~ me$ sudo -u _www -s
+Password:
+bash-3.2$ id
+uid=70(_www) gid=70(_www) groups=70(_www),61(localaccounts),12(everyone)
+
+You can compare with a real user to see the missing attributes. If you want to hack, you could try making the NFSHomeDirectory writable and editing the shell - but that would leave all sorts of user files in /Library/Webserver - and your custom mods might get wiped out each update or cause unintended effects down the road.
+Any reasons why you don't just create a apache admin user with a UID less than 500 so that it won't show in the log in screen as a normal user?
+(or simply use a normal user to ssh in before using sudo to become _www)?
+It's a lot less work and more secure. _www is intentionally placed in a sandboxbox to reduce the chance that web browsing does bad things to a running mac.
+
+A: As mentioned, you couldn't ssh directly as _www because the password may not be set, and the shell may be set to /usr/bin/false. 
+Alternatively, you can ssh in as a regular user, and if your user has admin privileges you could do this:
+(me@local)$ ssh me@myserver
+(me@myserver)$ sudo -u _www -s
+Password: (type it in)
+(_www@myserver)$ whoami
+_www
+
+I've just done this on both Mac OS X Snow Leopard and Lion. It's great for checking that permissions are setup correctly.

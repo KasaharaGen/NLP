@@ -1,0 +1,18 @@
+Q: refresh Preview from command line I have a workflow (LaTeX editing in Emacs) which produces PDFs that I then examine in Preview. Preview is smart enough to re-load the PDF when it changes, but it only does so when I click on the application and bring it to the foreground.
+Is there a way to tell Preview to re-load the document (and stay in the background) using the command line?
+Edit: To follow up, I'm perfectly happy to do a little AppleScript hacking or whatever (I've never used AppleScript, but it can't be too hard).
+
+A: No simple solution that I can think of.
+
+
+*
+
+*You can switch to using Skim, or another PDF previewer that supports the behavior you seek.
+
+*You can "open file.pdf" to refresh and bring Preview to the foreground, and then another command to bring your editor or terminal in front of it (open file.pdf; open -a Terminal.app).
+
+
+A: If you want to use Applescript to bring Preview to the front, then all you need is this line:
+tell application "Preview" to activate
+
+You could also use the osascript command in the command line to run that script as well. There are specific things to look out for (escaping quotes and handling multiple lines). Examples on its exact use abound and it has its own man page.

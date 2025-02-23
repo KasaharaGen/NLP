@@ -1,0 +1,26 @@
+Q: Where is my crontab file? I want to edit my crontab file to schedule a script. Where do I find it?
+
+A: It should be noted that if you aren't accustomed to using vim (the default crontab editor) then you can specify your editor as follows:
+VISUAL=nano crontab -e
+
+
+A: The OS X way is to use launchctl to run jobs at a time.
+For ease of use there are GUIs called Launch Control and Lingon.
+
+A: In Mac OS X Lion the user crontabs are stored in /var/at/tabs. In the past they were located in /var/cron/tabs.
+You should use crontab -e to interact with these in general, but knowing the location is useful for when you want to restore them from a backup of your disk, or something similar.
+Updated 2022-01:
+
+*
+
+*/var is a link to /private/var/.
+
+*/usr/lib/cron is a link to /var/at.
+
+The real primary directory is /private/var/at with the crontab files being stored in /private/var/at/tabs
+
+A: If you don't want to use launchd, you can edit your crontab as you would do on any unix systems :
+
+crontab -e
+
+Or, you can use a GUI software like CronniX.

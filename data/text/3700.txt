@@ -1,0 +1,20 @@
+Q: Snow Fresh Install on Core Duo Have an older MacBook Pro Core Duo (not Core 2 Duo), 2Ghz (32Bit), 2GB RAM, 250GB HD, ATI Radeon x1600 with 256MB RAM.
+Did clean install of Snow.
+During install created new partition to remove previous install.
+So far experience with 10.6 has not been great.  During update could not install combo update unless downloaded and then installed.  During xcode install (3.2.6 with ios 4.3) also crashed.  Uninstalled and Reinstalled just in case, but both times first install crashed @ 98% and installed fine on second try.
+Did all tests and repairs with it only complaining about symlink files.
+Worried that although Snow does install, dev work on this setup will be painful.  Should I just go back to 10.5?
+
+A: Did Installer give you a specific error or was it an actual all out crash (with crash report)? You can find out more by checking the log window in Installer. It's hard to tell but if you've had issues installing items, there's something broken with your Snow Leopard installation. What format is your drive (HFS or UFS, Journaled or not, Case-sensitive or not)
+If you haven't already, try the following:
+
+
+*
+
+*Repair Disk Permissions (gasp an actual valid use for it)
+
+*Check your Disk using Disk Utility as well
+
+*Check out /var/log/install.log (you can use Console.app) to see what kind of errors
+
+*If Installer was actually crashing, check out the crash log (you can find it using Console.app - it may be under ~/Library/Logs/CrashReporter or /Library/Logs/CrashReporter). There's another question here that explains How to read a crash report

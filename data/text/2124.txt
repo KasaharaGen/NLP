@@ -1,0 +1,10 @@
+Q: Unable to install Boot Camp on iMac For some reasons I could not install Boot Camp on my iMac.  I tried to defrag, reinstalled OS X, repair hard drive but nothing seems to be working. I kept getting error "The disk cannot be partitioned because some files cannot be moved".
+I have VMware Fusion but it seems to be very slow to what I want to do on my computer. So my only option is Boot Camp (unless there are other software like Boot Camp out there).
+Any suggestion I should do?
+
+A: Personally, I got around this issue by doing a complete reformat and reinstall of everything. I installed OS X first from disc, then created the Boot Camp partition, then installed Windows. 
+It definitely isn't the prettiest solution, but a solution nonetheless. I would advise at least waiting to see if anyone has an idea for how to move those "unmovable" files before diving head first into this. 
+
+A: Sounds like boot camp might be running into a space issue.  Boot Camp might have trouble moving your VMWare files.  Can you move them elsewhere (off your iMac) and retry?  The issue may not be due to overall disk capacity but rather that Boot Camp is trying to use a portion of the disk which is occupied by something it doesn't want to move.  As far as I know, the partition you allocate needs to be placed in contiguous space.  Even running a defragmenting program doesn't guarantee you won't have fragmentation.  You could try reducing the size of the partition you're allocating to Windows incrementally until you get success to see if that's the issue.
+EDIT
+@Jon Are you running an Intel-based or PowerPC-based Mac?  Boot camp won't work on PPC-based macs and just by the sounds of an error you were getting on your other question I'm thinking maybe you have a PPC Mac.

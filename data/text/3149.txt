@@ -1,0 +1,7 @@
+Q: How can I avoid Time Machine starts to back up files right after the Mac is restarted? Sometimes I have to restart my Mac Mini because an application blocks it.
+When I restart it, Time Machine starts to back up files right after 10 seconds I restarted the Mac, and it makes it slowly (I have 4 applications/tools that are opened at login).
+Is there a way to avoid Time Machine starts to back up files, if not after X minutes I restarted the Mac (X could be a value between 10-30 minutes)?
+
+A: I've found two TimeMachine schedulers softwares: TimeMachineEditor and TimeMachineScheduler.  
+Both are useful to set the backup interval of Time Machine but none of them enable user to define a time limit (after mac startup) before which Time Machine can't be launched. 
+However, TimeMachineScheduler has an interesting option to skip backup during a user defined time slot. That may be a decent workaround if you're able to define the time slot -during which you may be "doing something urgent"- that requires Time Machine to be off.

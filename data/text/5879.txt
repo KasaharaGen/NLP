@@ -1,0 +1,6 @@
+Q: How to speed up screen refresh on MacPro + Bootcamp? I'm a .Net developer running Windows 7 Ultimate (x64) on a 2010 MacPro (2.27Ghz/6GB RAM) using Bootcamp. Until about a month ago its been, imo, the ultimate dev workstation. However recently I've noticed that Visual Studio 2010 takes a very long time to redraw its windows. This is most noticeable when switching to it after its been in the foreground.
+I don't get this problem with other Windows apps and am baffled because the machine has more than enough grunt to handle a few MDI'd windows yet grinds for up to five minutes sometimes when reactivating the VS environment - the screen update seems to slow everything down. My colleagues are using identical hardware and software but running Windows under Parallels on their Macs does not lead to this behaviour.
+I'm getting desperate (and I've asked this same question at StackOverflow.com) - does anyone know why this might be happening and whether there's a fix ...?
+
+A: I asked the same question at Stackoverflow and got an answer which appears to have fixed my issues. Hardware acceleration (paradoxically) is what was slowing down my VS.
+HTH somebody.

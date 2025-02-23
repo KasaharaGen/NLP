@@ -1,0 +1,36 @@
+Q: How can I disable animation when switching desktops in Lion? I would very much like to disable the sliding animation that occurs when switching desktops via ctrl+→/← or ctrl+[number] in Lion.   This was previously accomplished in previous versions with this command:
+defaults write com.apple.dock workspaces-swoosh-animation-off -bool YES && killall Dock
+
+This new animation is even more slow than in Snow Leopard - nearly 1 second to switch - a real productivity killer.
+Any help greatly appreciated!
+
+A: I've just noticed that doing ctrl+[number] is noticeably faster than ctrl+→/← . 
+It's still animated but it does complete the animation in about half the time.  I'm not sure if that helps but I'll throw that out there.
+
+A: TotalSpaces has an option to disable the animation for changing spaces:
+
+TotalSpaces is still in beta and a bit glitchy though. There's a small delay before changing spaces, and the whole screen seems to move a few pixels horizontally during the transition. Edit: both of those have now been fixed.
+
+A: I posted a bug on Radar#28495374 and here is the response from Apple:
+
+Fixed in 10.12.  Go to Accessibility and Turn on Reduce Motion…
+Please let us know whether the issue is resolved for you by updating your bug report.
+
+
+
+A: I noticed that it is possible to control the speed of the space-change animation when you use the Swipe gesture in OS X Lion.  You can make the spaces change as fast, if not faster, than they did in Snow Leopard by doing a quick three-finger or four-finger swipe to the left or the right.  Of course, it's definitely something to get accostomed to if you've always used ⌘+→/←.
+This did get me thinking.  Since it seems that changing spaces via arrow keys, number keys, and gestures all perform the same type of animation, there is likely a single system command that all three of these actions map to.  Additionally, since they all perform the animation at a different speed, there must be a parameter that controls the animation speed.  I'm not an OS X developer, so hopefully someone else with a better knowledge of the underlying functionality of OS X would be able to determine what system commands are actually running when the user performs a certain action.
+
+A: I dug deep into the app using GDB but the results were disappointing. I don't think there is a way to do this currently. Here's what I learned:
+First you can change the speed of switching into Mission Control (still called Expose in the prefs). To do that just enter this command:
+defaults write com.apple.dock expose-animation-duration -int 0; killall Dock
+
+And to go back to defaults run this command:
+defaults delete com.apple.dock expose-animation-duration; killall Dock
+
+Secondly there's a reference in the binary to fps-spaceswitch (frames per second spaceswitch). I messed with this for a while and also tried variations on this such as spaceswitch-animation-duration without luck.
+Unfortunately (at least as of 10.7.1) there does not appear to be a way to change any settings related to this animation.
+I filled a bug for this with Apple. The Radar number is 10073864. I would encourage you to also file the report at https://bugreport.apple.com/. Note in your description that it is a duplicate of the above bug report number to help the support staff categorize and prioritize this bug.
+
+A: Rather than using Spaces, I have found that switching among non-fullscreen apps using the Alfred app is 'instant'. I create a key binding using shift+ctrl plus a letter for each app (e.g. e for Excel, w for Word, etc.). I have been doing this for years and the experience is truly instant.
+If you put the apps in fullscreen mode, you still get the animation, so you still need to do Accessibility->Reduce Motion. In that case the app switching with Alfred is faster than using ctrl->arrow, but not as instant as it is if you avoid fullscreen.

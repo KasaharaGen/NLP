@@ -1,0 +1,31 @@
+Q: Cannot compile C code after installing xcode When I installed Xcode on Snow Leopard, gcc was not in my path. I manually added /Developer/bin to get gcc. However, I wrote a simple C program to include stdlib.h and stdio.h and print a string, but I get linker errors. 
+I think this is because I don't have my include path configured. Can anyone tell me why this was not done automatically and how I can get my C compiler set up?
+
+A: I think there was a bug in Xcode 4.1 where the command line tools were not installed. I just ran the 4.1.1 delta installer from the App Store and things work just fine.
+Last login: Tue Sep 20 14:47:44 on ttys001
+mac:~ mike$ which gcc
+/usr/bin/gcc
+mac:~ mike$ ls -l /usr/bin/gcc
+lrwxr-xr-x  1 root  wheel  12 Sep 19 16:04 /usr/bin/gcc -> llvm-gcc-4.2
+mac:~ mike$ echo $PATH
+/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+mac:~ mike$ mkdir /tmp/test
+mac:~ mike$ cat > /tmp/test/hello.c << EOF
+/* Hello World program */
+
+#include<stdio.h>
+
+main()
+{
+    printf("Hello World");
+
+}
+EOF
+mac:~ mike$ cd /tmp/test
+mac:test mike$ gcc hello.c -o hello
+mac:test mike$ ./hello 
+Hello Worldmac:test mike$ 
+
+This should work out of the box with the latest Xcode. Have you made sure you are using the latest gcc / Xcode and not having previous path or binaries installed?
+
+A: Without knowing the build errors, you either are missing a tool or have header issues. In the case of the latter, here is how llvm-gcc issues in geos were overcome: http://trac.osgeo.org/geos/ticket/463.

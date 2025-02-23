@@ -1,0 +1,10 @@
+Q: Why won't disk utility let me remove a partition from my external hard drive? I have an external 1.5 TB hard drive split evenly with a partition for backup and a partition that was used for Time Machine on my previous computer (OS X Lion).
+Now I'm using this hard drive with a new computer (OS X Lion), and I don't want the Time Machine partition anymore. I should also point out that I've never configured Time Machine on my new computer.
+I'm trying to remove the Time Machine partition, but the minus (-) option isn't available. Does anyone know why or how I could get the (+/-) options un-grayed?
+
+
+A: Disk Utility isn't willing/able to resize partitions on MBR disks. 
+It a way, it's telling you now (poorly) that you can only rename or erase the partitions. It's happy to create this scheme, just won't touch it keeping any data intact. 
+You will need another tool to make changes to that particular flavor of partition scheme unless you are willing to let Disk Utility repartition and erase all the data. 
+I don't see a recent article (or have a drive to test on hand), but it sure was a limitation on Leopard.
+Mac OS X 10.5: About resizing disk partitions

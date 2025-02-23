@@ -1,0 +1,44 @@
+Q: How can I get iTunes to automatically refresh the media library? Most of the media players that have a "media library" functionality usually self-refresh the library when files are added or removed. As I share the media library with other media players (I use iTunes only to copy music on the iPod), I would like iTunes to automatically refresh when I add, remove, or rearrange audio tracks in the file system. How can I get iTunes to do this?
+
+A: What you call a “design” flaw, is not such thing. It’s a design decision made by the iTunes team. Although iTunes lets you “manually manage your library”, it’s never intended to let you move things around in the filesystem, add, remove or modify files. 
+The premise for iTunes happiness is that you always add the items to the library and modify things from within iTunes. You have the choice to let iTunes “organize” the library (which will copy the media to the iTunes library folder and organize it there as he wants) or you can leave it wherever you originally had it, but iTunes doesn’t “read” or “monitor" the filesystem for changes. It knows things changed when the library.xml is changed, and the only application that does that is iTunes itself. 
+Is this the best way?
+Yes and no, it has advantages, but a lot of people miss the “Winamp-like” ease of use and it’s understandable. On the other hand, it simplifies a lot of things for a lot of people. It has decently worked for quite a few years now.
+But that’s the topic for another discussion. :)
+
+A: In addition to Martin's answer, I would point out that a major reason for this design decision is speed.  If iTunes had to scan the filesystem for changes every time it ran, the program could potentially slow to a crawl.
+There are a number of tricks and third party utilities you can use to get around this behavior.  The wiki for MusicBrainz Picard has some quick tips on refreshing metadata info, like using the "Get Info" menu item to refresh individual track information.  They also detail a small AppleScript that will refresh multiple tracks at once.
+As for adding and removing files, the best way to get around this is to not try to get around it in the first place.  Use the "Add to Library" and "Delete" functions in iTunes itself.  However, if you do decide to remove files without using the iTunes "Delete" function, you can use a script such as "Super Remove Dead Tracks" from Doug's Apple Scripts For iTunes.
+
+A: Itunes Folder Watch is the external app you require for this functionality  http://albumbrowser.klarita.net/itfw.html
+
+A: My answer is use a different music manager. That is what I have done. iTunes use to pickup on new music I added but now you have to put it the "watch folder" and of course then it moves it from there into the library.  That wont work when I use Google Music Manager and have my cloud music sync to my hard drive.  So iTunes is out for me.
+
+A: The only way I have found success is deleting the itunes index and then adding the main directory of music again....sucks but seems to work.
+
+A: (I'm running iTunes in Windows) I had to do it the hard way after running a program to remove duplicates from my computer. I changed the location of my iTunes library in preferences. Then, I selected all songs in iTunes and deleted them (they didn't delete off of my original library location).
+I then changed my library location back to where my music is located.
+Then, I opened Windows explorer and navigated to the folder where all of my music is and selected all the folders except the "Automatically add to iTunes" folder. I dragged all music folders into the "Automatically add to iTunes" folder and moved them there.
+iTunes detected them and then refreshed the library.
+It was a small hassle, but at least my duplicate files are gone now.
+
+A: As others have mentioned, I don't know that you can get iTunes to automatically track changes, but here's one possible work-around.
+I keep my music on an external hard drive, and whenever I add new music to it, I go to File -> Add Folder to Library, and point it to my external HDD.  I also have (under Edit -> Preferences -> Advanced) unchecked the "Keep iTunes Media folder organized" and "Copy files to iTunes...".
+This works for adding files, but unfortunately does not detect removed files.  It also means that you'll only be able to add files to your devices when the HDD is attached.
+I also have "Manually manage music" selected for my ipod, but I don't think that's related to how I store my music.
+
+A: As an addition to the above answer: I put all new music to be added to the iPod in a seperate folder then point iTunes to this folder under "add folder". I then add these files/folders to my HDD library and delete them from the seperate folder. 'Works for me.
+
+A: if using window 7 you can move all music files o itunes . itunes media . music
+then right click music library properties remove the current monitered folder change it to the itunes >itunes media > music 
+you will have to do something simaler with windows media player 
+open window media player orginize>mange librarys>music remove the current monitered folder add tunes >itunes media > music to monitered folders
+To clear the Windows Media Player database, follow these steps:
+a. Exit Windows Media Player.
+b. Click Start, click Run, type %LOCALAPPDATA%\Microsoft\Media Player, and then click OK.
+c. Select all the files in the folder, and then click Delete on the File menu.
+Note: You do not have to delete the folders that are in this folder.
+d. Restart Windows Media Player.
+Note: Windows Media Player automatically rebuilds the database.
+
+A: Sorry if this answer is located elsewhere in the thread. I didn't see it, so figured I would add my two cents worth. The easiest way I found to do this is to just re-add the library folder (without deleting the library because that is time consuming and unnecessary) for example. I keep all my movies on an external drive in a folder marked iPod Movies, and not in my iTunes media folder that is designated in my preferences. So, whenever I add new movies to that external drive, I just re-add the iPod Movies folder "File>Add Folder to Library>". It always adds the new movies I've put in the iPod Movies Folder. It is still a manual process, but it is quick and it adds all movies I've added since the last time I did this, and it is free and doesn't use up memory running in the background (unlike the albumbrowser recommended above). Hope this helps 

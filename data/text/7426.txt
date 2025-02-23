@@ -1,0 +1,15 @@
+Q: MacBook pro unresponsive / slow after startup After starting my macbook it is very slow/ not responding at all to mouse clicks and keystrokes. I do not get the famous beachball but just the normal pointer. On windows that are already open i can scroll content with the mousewheel or two fingers on the pad, but thats all the response. If i have a browser open it will respond to mouse over/hover but not to clicks. 
+I have not been able to find the cause for this, i have started up in safe boot, but after a while that gets the same problem, the disk shows to be ok and i started on single usermode to run fsck which also shows ok.
+I have enough drive space and no processes / tasks eating away resources as far as i can see.
+I run osx 10.6. On a macbook pro with 4gb ram, 500GB hdd, core i7
+Any ideas or help would be very much welcome
+
+A: Try one of these:
+
+
+*
+
+*If your Mac is always slow, check the Activity Monitor.app for resource hogs. Alternatively you could enter top -o cpu in Terminal.app, and check the %CPU column.
+
+*If your Mac is only slow at startup, check your login start items in System Preferences → Users & Groups → Login Items.
+

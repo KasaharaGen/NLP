@@ -1,0 +1,15 @@
+Q: Count the number of open windows Is there a tool to count the number of windows I have open, including on all Spaces?
+I am curious and too lazy to do it manually. :)
+
+A: I guess this AppleScript should do:
+set numberOfWindows to "0"
+
+tell application "System Events"
+    set allProcesses to application processes
+    repeat with i from 1 to number of allProcesses
+        tell process i
+            set numberOfWindows to (numberOfWindows + (count windows))
+        end tell
+    end repeat
+end tell
+

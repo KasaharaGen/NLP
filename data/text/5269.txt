@@ -1,0 +1,770 @@
+Q: What tiny thing in Lion makes you smile or has caught you off guard? I would like to call for a place to list some little things that surprise you about Lion. There are so many articles and lists of all the new features with information overload, I would rather focus this spot of the site on tiny delights with a note why it makes a difference to you.
+Please one topic per answer, this isn't a race to enumerate everything that changed. This isn't the place for massive topics like the implications of FileVault 2 on your entire workflow - just a stroll past some little gems, fun oddities or subtle changes specific to Lion.
+Answers must relate to why or how you use the feature - links to official tips and tutorials are great, but the intent is to collect little gems that affect how the system gets used. Expect answers that are not specific to lion or lack a personal use case to be heavily edited or deleted.
+
+A: external keyboard F1/F2 control brightness
+Pressing F1 or F2 keys on an external keyboard will brighten or dim the display.
+Previously those keys does nothing. This was very un-handy having to reach up to the laptop keyboard to dim its screen.
+
+A: Automator can send a URL to Quick Look rather than a browser.
+With automator, you can now make a website open as a web app.
+You just have to make Automator open a URL as a “Website Popup”.
+Very nice unadvertised feature.
+Andy Ihnatko explains it well - you can make a minimalistic desktop web app with ease.
+
+A: Unsupported hardware notices
+This caught me off guard, but it did not make me smile:
+
+The icon in System Preferences has also been renamed from "Print & Fax" to "Print & Scan".
+
+A: Wi-Fi Diagnostics are pretty and useful
+Option-click the Wi-Fi status menu to reveal options such as Wi-Fi Diagnostics …
+
+It's very good for monitoring and testing wireless networks.
+If you prefer to not show Wi-Fi status in the menu bar, then to find the app: 
+
+
+*
+
+*Finder
+
+*Go
+
+*/System/Library/CoreServices
+
+
+A: Launchpad Background Wallpaper Effects
+Being able to change the Launchpad background effect with Control + Option + Command + B in 10.7.3 and 10.8, or ⌘ + B, is pretty cool. You can make any Desktop Wallpaper black and white, blurred, sharp, color, or any combination of those. It only is capable of using your current desktop's wallpaper however, unless any of you know how to specify a different wallpaper just for Launchpad. It's really a nice customization option!
+
+A: Motion Blur in Mission Control
+While Mission Control is open, press ⌘+M to enable a motion blur effect.
+You can see the effect when application windows gather/disperse to/from Mission Control and, also, when changing desktops (in Mission Control).
+To disable it, press ⌘+M again.
+
+A: Terminal.app now supports 256 colors.
+You can test this yourself by running the “Colortest: xterm 256 color test and visual colors list” script.
+Before (screenshot taken under OS X 10.6 Snow Leopard):
+
+After (screenshot taken under OS X 10.7 Lion):
+
+
+A: tmutil is a command line interface into Time Machine.
+time tmutil startbackup --block is full of win.
+You can now start a backup, time how long it takes, and know how much data was saved, all from the command line!
+You can flush your local backup store to free up disk space as well (or enable local backups if desired):
+ sudo tmutil disablelocal
+ sudo tmutil enablelocal
+
+
+Managing Time Machine from the unix prompt is a bit of a geeky thing, but I wanted to call out this hugely useful tool that is hidden underneath the hood. Being able to analyze the difference between the current mac and the last backup with tmutil compare is also incredibly useful.  Particularly useful in addition to managing the on/off and local/remote status of Time Machine, managing exclusion lists - these few commands seem particularly useful to me (and hence make me smile broadly, perhaps Lion-like):
+
+*
+
+*calculatedrift
+
+*uniquesize
+
+*latestbackup
+
+The man page is great and actually teaches how the backups work and encourage exploration of local storage, inheriting previous backups and much more. Someone deserves beers or better at the next WWDC.
+
+A: Quicklook previews within spotlight search results
+I usually use Launchbar so I don't rely on Spotlight results (top-right) corner of the screen, but when I do, I always hated that I couldn't quicklook or even see the path of the results. Now it's possible if you wait on a result for a second, you'll see quicklook:
+
+Now try ⌘ and ⌘⌥ combinations! With one you can see where in the file is the string located (like in the screen shot), and with the other you can see the file path.
+Also using ⌘ and the arrows will move through the categories.
+Nice details.
+
+A: Quicklook natively supports animated GIFs
+Freaking awesome.
+
+
+A: Native support for Microsoft DFS
+We use Microsoft Distributed File System (DFS) at work and for years mounting Windows shares has always been a headache because of DFS. With Lion, DFS works like a charm, no more 50 individual mounts now its just smb://server/dfsroot
+
+A: Wireless Internet Sharing supports 5Ghz channels (802.11n)
+I use an old Mac Mini in my bedroom as a media center, and have used OS X's built-in Internet Sharing to make it act as a wireless access point and share the ethernet connection.
+Up to Snow Leopard, it only supported sharing on the 2.4Ghz frequency, which in my neighborhood is so congested as to be nearly useless.  But in Lion there are four 5Ghz frequencies available to share on.
+Now if they'd only allow better wireless security than WEP-128, it'd be perfect!
+
+A: Rich Text welcome banners for labs or corporate settings
+I have to manage Macs at work, and it has always been a challenge to have an acceptable use login banner for people to agree to before logging in.  Either editing .plist files, or downloading 3rd-party software was required.  However, now Lion lets you put a text or rich-text file in /Library/Security and it will show up at login.  Apple even puts a little example for you on this webpage
+
+This is a very welcome development!
+
+A: Calculate all sizes in Finder is ridiculously fast now
+I've always avoided using the Calculate all sizes option.
+( ⌘ + J ) It made Finder run so slowly in the past.
+
+It runs now like butter on a hot skillet.
+
+A: QuickLook in Mission Control
+When in Mission Control, you can invoke Quicklook on a certain window that your cursor hovers by pressing space.
+
+
+A: Login sheet for WiFi network TOS negotiation
+Lion will open a little window immediately upon connection to a WiFi network that requires a webpage to 'agree' to any terms of service (TOS)
+This really helps if you have apps that use http in the background like twitter since those programs might "receive" the agreement form and disregard it before we as the users know to open our browser and see the terms. Most routers will give up after sending the first terms causing a broken network connection for many users.
+Also, as a bonus, WiFi is now called WiFi instead of AirPort.
+
+A: It doesn't qualify as a tiny thing, per se, but since it came up in the comments...
+Natural Scrolling
+It took a couple of days to get used to it but now it really does feel natural: moving your fingers across the trackpad the same way you would move your hand if the content was on your desk (or iPad) fits and actually makes sense.
+I know it's not popular with everyone but the only reason the traditional scrolling direction feels normal is because we're used to it; the scroll wheel on a mouse and the old trackpad response was about moving the scroll thumb in a given direction, not the content.
+Even before Lion when I'd been using my iPad for an hour or two and then sat down with the trackpad on my Mac I'd end up using the trackpad wrong for a moment. Why couldn't I push the web page up if I wanted it to move up?
+Me, I'm a fan.
+
+A: Clamshell Mode simplified for external displays
+In Lion, if you want to use an external display with a closed notebook (also known as clamshell mode), you can do the following:
+
+*
+
+*Attach the external display and power adapter to the notebook.
+
+*Close the notebook.
+
+*The external display stays on!
+
+The process is much easier because Lion assumes that closing the notebook doesn't mean "put my Mac to sleep" if you also have an external display attached.
+Lion also assumes that opening your notebook means that you want to use its display, so there's no need to manually force display detection.
+In Snow Leopard, if you wanted to use an external display with a closed notebook, you'd need to do the following:
+
+*
+
+*With the notebook open, attach the external display.
+
+*Close the notebook. Wait as the Mac goes to sleep, and the external display goes dark.
+
+*Wake the notebook from sleep (using an external keyboard or mouse) to activate the external display.
+
+If you then opened the notebook so that you could use its display as well, you'd need to force the Mac to detect displays.
+
+A: Battery, Time and WiFi shown on Login Screen
+The clock, battery charge level/status, and wifi status indicators that are now displayed on the Login Screen; three very useful pieces of information even when you're not yet logged in.
+
+Here's a snippet of the top right portion of an iMac showing WiFi and time (default settings).
+If you enable a hidden preference, clicking the time will show in order:
+
+*
+
+*The mac's sharing name
+
+*The version (10.7) and build (11A511) of OS X that is installed
+
+*The IP address of the mac
+
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo true
+
+A: Mutitouch Page Turning in iCal
+You can move between months in iCal with a 2 finger drag - it has the same page turning animation as iBooks on iPad.
+
+A: Quick Look to Track Shipments from within Mail.app
+I love the ability to track shipments straight from Mail.app without going to a browser...opens it right there in the thread for you with a neat little window (assuming the tracking number doesn't have a crazy format)... :-)
+
+A: Apps like Preview can quit themselves when not needed
+Previously, when you opened something in Preview and you were finished with it, it was left running (in the background).
+Now, when you close whatever you're previewing and switch focus to another app, Preview quits. This behavior of saving the work and/or closing the app when the last document is closed is a standard feature in Lion for many apps to use.
+I'm a bit anal about keeping not required apps running, so was glad that has been introduced in Lion.
+The system will quit apps too if resources are low
+This is covered in detail at Lion is a Quitter from TidBITS, but the system will step in and automatically terminate apps which adds to confusion for people that pay attention or are habituated to the old way where users had to intentionally quit apps for them to disappear from the dock and app switcher tab.
+
+A: Finder merging of folders and files
+I must say that the most smile-worthy thing I have come across is the merge folders / keep both feature. I still cringe a little when I even think about dragging a folder named pictures onto another folder named pictures, but once I learn to trust it, I will be more willing to clean up YEARS of old documents scattered in creaky nested folders named "old" "cleanup" "2002" "Documents from old Mac" and such.
+It is a little thing, but boy is it fun to feel like I have an intelligent tool to automate what I want to have happen - and not just having one folder overwrite the other as past versions of OS X felt was the best choice.
+
+A: Safari offers to set up Mail, Calendars and Chat
+When logging into a Gmail account in Safari for the first time (and if that account hasn't been added to "Mail, Contacts & Calendars" in System Preferences yet), Lion will offer to add that account. Great attention to detail that made me smile.
+
+MobileMe, gmail, yahoo all worked for me so far.
+
+A: I found that iCal allows you to drag an event (so you can open another one).
+Click on any event to get the popup:
+
+Then click on the areas in the green boxes of that popup and drag until it transforms into some sort of "palette".
+The truth is that you can drag from any gray piece, but if the popup has a scroll area (because it's too large) then dragging from the scrollable area may not work. Try creating an event and adding a very large note to see the difference.
+Once you drag it, it will look like this, so you can click another event and do the same, and you can have as many as you can pile :)
+
+Sorry about the blurring on the images, but there were names there ;) 
+
+A: Lion allows you to create user names containing dots.
+The lack of this frustrated standardisation with our corporate networks back in Leopard. Now I have the same user name over Mac, Windows and Unix.
+
+A: OS X Lion comes with Vim 7.3 installed.
+Older OS X versions had Vim 7.2.
+$ vim --version
+VIM - Vi IMproved 7.3 (2010 Aug 15, compiled Jun 24 2011 20:00:09)
+Compiled by root@apple.com
+Normal version without GUI.  Features included (+) or not (-):
+-arabic +autocmd -balloon_eval -browse +builtin_terms +byte_offset +cindent 
+-clientserver -clipboard +cmdline_compl +cmdline_hist +cmdline_info +comments 
+-conceal +cryptv +cscope +cursorbind +cursorshape +dialog_con +diff +digraphs 
+-dnd -ebcdic -emacs_tags +eval +ex_extra +extra_search -farsi +file_in_path 
++find_in_path +float +folding -footer +fork() -gettext -hangul_input +iconv 
++insert_expand +jumplist -keymap -langmap +libcall +linebreak +lispindent 
++listcmds +localmap -lua +menu +mksession +modify_fname +mouse -mouseshape 
+-mouse_dec -mouse_gpm -mouse_jsbterm -mouse_netterm -mouse_sysmouse 
++mouse_xterm +multi_byte +multi_lang -mzscheme +netbeans_intg -osfiletype 
++path_extra -perl +persistent_undo +postscript +printer -profile -python 
+-python3 +quickfix +reltime -rightleft -ruby +scrollbind +signs +smartindent 
+-sniff +startuptime +statusline -sun_workshop +syntax +tag_binary 
++tag_old_static -tag_any_white -tcl +terminfo +termresponse +textobjects +title
+ -toolbar +user_commands +vertsplit +virtualedit +visual +visualextra +viminfo 
++vreplace +wildignore +wildmenu +windows +writebackup -X11 -xfontset -xim -xsmp
+ -xterm_clipboard -xterm_save 
+   system vimrc file: "$VIM/vimrc"
+     user vimrc file: "$HOME/.vimrc"
+      user exrc file: "$HOME/.exrc"
+  fall-back for $VIM: "/usr/share/vim"
+Compilation: gcc -c -I. -D_FORTIFY_SOURCE=0 -Iproto -DHAVE_CONFIG_H -arch i386 -arch x86_64 -g -Os -pipe
+Linking: gcc -arch i386 -arch x86_64 -o vim -lncurses
+
+(That “Compiled by root@apple.com” line looks awesome.)
+
+A: Multitouch gesture to activate the dictionary/thesaurus/Wikipedia
+A three fingered double tap will highlight the tapped word and then bring up a nice sheet with all the results relevant to the selected word.
+
+
+A: Drag flocking with multiple selections
+Drag flocking:
+
+
+
+The nice animations of collapsing all objects to a neat pile while dragging and then smartly re-exposing the individual components as you hover over a potential destination helps you understand better what will happen if you end the drag with a drop at that point.
+
+A: Multi-touch swiping of page history in Safari.
+The animation for swiping back and forth through pages in Safari makes me smile every time. It's also a great example of transforming a slightly clunky (IMO) interaction into a useful and delightful one with a slight interface lift.
+
+The animation is smooth and fluid.
+
+A: Show a message when the screen is locked
+Set this in the Security system preferences panel and the message shows up at the bottom of the lock screen. Great for setting a "please return to..." message.
+
+
+A: Man page viewer / smart data selectors in Terminal app
+I like how right-clicking on any text in Terminal and selecting Open man Page brings up a GUI-fied manpage window.
+It is far easier to read and navigate the manual while still having the original context in plain view.
+
+The apropos and spotlight menu items are useful as well if the man page doesn't hit the article you hoped.
+
+
+A: The Zoom ⊕ button will attempt to maximize
+The Zoom button on the windows behaves more like Maximize on Windows OS rather than the old behavior where it usually made the window smaller (or the alternate saved/previous size). Be sure to experiment with the shift key when using the Lion controls.
+
+A: ⌥⌘L opens the Downloads window in Finder
+In Snow Leopard, this key combination was recognised by Safari.
+In Lion
+
+
+*
+
+*Safari no longer recognises the keys (see comments beneath Safari download controls and animations) ⌥⌘L was restored in Safari 5.1.1.
+
+*⌥⌘L is recognised by Finder.
+Before Lion, I often used the orderly and sizeable downloads window of Safari as a tool for organisation, so the disorderly popover in Lion was a shock to the system. I particularly hate the disorder. Also I often thought to myself … "One day, I'll accidentally click Clear … that button's far too near the scroll bar.". 
+When eventually that accident occurred I cursed, loudly. It was comparable to losing a list of to-dos. 
+I no longer hate the popover in Safari, but I haven't learnt to love Finder (it fails to find most folders that I seek), so I'm in limbo, somewhat disorganised. 
+
+A: I don't know whether this is lion exclusive feature or not:
+three fingers momentum drag
+
+
+*
+
+*select three finger dragging in the trackpad gesture panel.
+
+*place 3 fingers in the trackpad still on the item you want to drag.(I use forefinger middle and ring finger)
+
+*use only one finger( I use forefinger) swipe like nature scrolling,
+you'll see the item move momentum
+
+
+A: Mail now displays custom header
+Under 
+Mail->Preferences->Viewing->Show Header Detail->Custom
+
+
+you can specify custom headers that will be presented to you above the mails:
+
+
+A: Authentication dialogs shake when you enter your password incorrectly
+The "shaking head" animation that has long been used in OS X's login screen to indicate an incorrect password has been added to the authentication dialogs present throughout the OS. I love this! It's so clever and you immediately "get" what it means.
+
+A: Safari opens new tabs relative to the current tab
+Opening new tab in safari does not go to the rightmost tab, but immediately adjacent to the current tab. Multiple tabs spawning from one page stack up with the next one after the prior - but all as a group before other existing tabs.
+
+A: QuickLook in Stacks
+You can now press space over any item in a Stack:
+
+
+A: Safari download controls and animations
+I love the new Safari download controls (menu bar / pop-up dialogue / iPad menu thingy).
+
+It's great to have downloads not be another loose small window cluttering my workspace. Sorting by recency of download is nice as well.
+
+A: Right clicking on dock icon gives a list of recently opened items.
+Particularly handy for apps like TextEdit and Pages!
+Also: If you activate Application Exposé, via ctrl+down arrow, or hot-corner, it shows the recent items as icons.
+If you assign a mouse gesture to App Exposé (via Preferences - Trackpad - More Gestures), you can use it to activate App Exposé for any application in the Dock. Just hover over the app icon with your mouse and do the gesture. The application doesn't need to have the focus.
+
+
+A: The redesigned lock screen
+The lock screen is a small, relatively unimportant thing that made me smile. (Quite literally, when I was asked for a photo at the end of set up.) I like the fact that there's that little window that appears over the Andromeda Galaxy wallpaper. It simply feels more polished than the old black screen.
+
+A: QuickLook runs in the background
+I often use QuickLook as a de facto replacement for QuickTime X because they do essentially the same thing (minus trimming and exporting, of course). Now that I can click away from the Finder and the QuickLook window will continue to play, it makes everything so much simpler for me!
+
+A: Interface buttons are now RoundRects
+The rounded "Aqua" buttons of previous OS X versions have now been replaced with RoundRects in the style of Classic Mac OS.
+The new buttons and the animated pop-in of the dialog boxes etc. is way better than what it used to be.
+
+
+A: OS support for full screen apps!
+I only have a 13" laptop, and when building iPad apps I never see the whole UI of the iPad in XCode - which is a slight nuisance. Now with XCode supporting fullscreen, that issue is less  painful.
+Also, Pages & Safari just look beautiful in full screen.
+With Pages, if you have a second monitor, it will use that for palettes e.g inspectors, fonts and colours. Not all apps appear to support this yet, but it makes full screen much more sensible on multiple monitors. .
+
+A: Mail.app is full of smiles and neat animations
+It's gotten a VERY serious overhaul, and feels integral and integrated into the OS itself. For the first time since I started using my gmail account full-time, I'm not using a browser window to get my mail.
+Tiny, unexpected, smile-producing behavior?
+
+*
+
+*When you hit send, the message you've just composed whooshes up the screen and off into the internet.
+
+*The concertina effect when quoted text expands
+
+*animations when moving from grouped message to another (or grouping happens)
+
+These little animations don't help the mail app do it's job, they help us see and visualize what is happening. Altering the age-old phenomenon of sending email isn't something I expected to enjoy, but I love it.
+
+A: Safari and background tabs
+Safari appears to aggressively manage its memory footprint by unloading unused pages then reloading them as needed, much like Safari in iOS.
+You can see this in action if you open up a large number of tabs and then leave some of them alone and unviewed for a while. When you return to a tab that hasn't been viewed in a long time, Safari will quickly reload it.
+
+A: Mission Control + Spaces
+You can use Mission Control to easily drag and drop apps from one Space to another.
+
+
+
+A: Trackpad scrolling in Stickies Windows
+Scrolling with the trackpad now works in Stickies windows, and scroll bars appear. I wish the scroll bars would honor my preference to always be visible, but at least this is an improvement.
+
+A: Thumbs up: Display icon in the menu bar has been modernised.
+
+Thumbs down: But the grey for Back/Forward button is not dark enough to contrast with the inactive state.
+
+
+A: Finder gives better feedback when Trash has an error
+Specific, actionable feedback.
+
+
+A: Use a date in Mail.app to make a quick iCal event
+I just saw something while reading TidBITs in Mail. When you hover over a date, a dashed outline appears around it. When clicked, it pops up a window like this, which allows you too add an event to iCal with this date and the email subject. It's pretty useful!
+
+
+A: Removed Auto-Column Resizing
+This tiny change annoyed me yesterday after finishing my first Lion upgrade, auto-column sizing has vanished.
+This used to work on any grid/column control, double click the right edge of a column heading and it would size to the widest content of that column.
+This WAS a really handy tool in, well... pretty much everywhere. It's a complete mystery why it's been killed off.
+
+A: Launchpad
+This feature migrated from iOS brings the home screen of iOS to the mac.
+I have a few applications that I do not want sitting in the dock as they aren't used often. But I hated having to go through finder to find them. With Launchpad, I can tap a button which opens up a swiping iOS style menu where I can easily find an app I want to use, and open it with just the one click.
+Splendid.
+
+A: Pinch to Zoom
+Snow Leopard had this feature, but it didn't work in every application. With Lion, this works in pretty much every application. A major one for me is Final Cut Pro. Being able to pinch to zoom makes video editing so much easier.
+
+A: The loupe magnifier in Preview (is smart and context-aware)
+Preview now has a magnifier. Select Tools → Show Magnifier to activate it. Its exact hotkey will depend on the localization being used; if using US-English, the hotkey is `
+Open up an image and the magnifier will be a circle, open up a PDF and the magnifier will be a rectangle.
+
+Definitely something that caught me by surprise.
+What is even more elegant than prior loupes, is the smart loupe will detect content and re-size itself to show you entire objects of interest rather than be bound to a static size.
+Also, you can pinch to increase/decrease the size of the loupe.
+
+A: Mission Control: move all app windows by mouse
+In Mission Control, to move all of an app's windows to another space has changed. You now do this by grabbing the app icon/badge on top of the stack. (Before it was ⌘ Command-drag or Shift-drag)
+
+
+A: You can trash things whilst trash is emptying
+No more refusals! 
+If you move things to trash whilst trash is emptying, the moves simply form a queue. 
+After trash empties: the system attends to your queue — those things appear in trash. 
+
+A: FileVault 2 encrypts all your data on the drive
+(not just the home directory of users opting for FileVault)
+
+Storing the keys in the Recovery HD and requiring an admin to unlock the volume before network and non-white-listed users makes this much more useful to both home users as well as lab settings where many people access one mac.
+
+A: Improved app switcher - pause at the end of the loop
+It's interesting to see how now the ⌘TAB doesn't loop like crazy if you leave those keys pressed; instead it stops at the rightmost item and only if you press it again it will loop (once) until it reached the rightmost item again.
+This avoid crazy looping when you get past the last item if you had a lot of apps open.
+
+A: Finder remove (cut) happens after move is complete
+I love that you can move items in the finder by using ⌘-C to copy and ⌥-⌘-V to move. Kind of like cut and paste (which doesn't work), but it doesn't cut the original until the new one is pasted.
+
+A: Easy access to unicode characters and glyphs (Emoji)
+System-wide pictograms, or, as you might call them, “Emoji” are built into the standard edit menu.
+Choose Edit ▸ Special Characters…, then select Emoji in the sidebar of the character palette. Double click (or drag) an Emoji to insert it into the active text field. Nice!   
+
+Finder => Edit => Special Characters...
+
+Some of the newly available Emoji characters
+
+
+A: No scrollbars!
+I wasn't aware how ugly scrollbars are. I love the iOS-ish approach.
+
+A: Quick Look previews URL contents directly from Mail/iChat
+iChat and Mail have a way to preview webpage links. A small button (black square with a white down-arrow) appears when you hover the mouse over the link in these apps.
+
+Clicking this button opens a Quick Look window in-place with a preview of the linked page.
+
+This powerful feature is very iOS-like. It is particularly useful when you are using Mail in full-screen mode, or your browser is off in another space. 
+Clicking the link itself still opens the page in your default browser as always. The presentation of a link flows from minimal, to expanded to full access in a browser very naturally.
+
+A: Local Time Machine snapshots
+When not connected to your primary backup drive, time machine can make use of the local hard drive for backing up changes.  Yes, I know it doesn't produce any real reliable backup since it's on the startup disk, but it gets merged into the main backup when you connect and preserves the backup history.  It's a nice improvement to TM.
+This feature will police itself and start to clean up local backups when the free space on your local drive reaches 80% full / 20% free space. As the drive fills, the duration of local backups gets shorter and shorter. This really is working well in practice and I have yet to see any slowdowns with this enabled.
+
+A: Hide or filter System Preferences
+The customize menu item is new and let's you visually slim down the main icon view.
+
+If you only use a few of the preferences, you can hide most of them from view and have quick access to them all by clicking and holding on the Show All button until the alphabetical full list is drawn. 
+
+
+A: Multitouch in Safari
+This is hard to describe but Apple made Safari feel like mobile Safari and it's great. When you scroll past the length of a page it bounces like mobile Safari. You can double tap with two fingers to zoom in on a column and ignore the ads or you can use Safari reader to do the same. Also there is a nice animation when you swipe left and right to navigate forward and back. The the end of this video shows the animation.
+http://www.youtube.com/watch?v=0kSoYCp3mrY
+Also there are a lot of multitouch gems in this Apple support article like when in Mission Control swipe down with two fingers to expand a group of windows belonging to one app.
+http://support.apple.com/kb/HT4721
+
+A: Finder menu for video encoding / conversion
+The ability to encode video and create different resolutions and sizes natively within 10.7
+CTRL Click on a video file and select "encode selected video"
+
+
+
+
+A: Use Keyboard to Control Slideshow Screensaver
+In the slideshow screen saver, pressing the space bar or arrow keys pauses and navigates between the pictures in the slideshow.
+In Snow Leopard, I can't count the number of times I saw a picture in the screen saver I loved that I wanted to look at more closely or go back to. When I accidentally found this in Lion, it literally made me smile.
+
+A: Launchpad
+In Launchpad, holding down Option makes your icons dance or "jiggle". This also occurs when you click and hold an icon. I don't see the point other than making the user smile.
+
+Edit: JAG2007's comment points out that apps which you've downloaded from the app store can be deleted from launchpad by using the Option key and selecting X.
+
+A: QuickLook now shows the pages of a PDF in scrollable sidebar:
+
+I just found this one and it is really helpful. I don't really need Preview anymore, as Quicklook suffices for almost all my PDF needs.
+
+A: QuickTime saves audio recordings as M4A.
+QuickTime audio recordings are now saved as M4As, instead of MOVs. This makes is so much easier to use the sound in movies and GarageBand rather than having to use a tool to extract the audio track before using it.
+
+A: Select Multiple Ranges
+
+*
+
+*open finder to a location with some files
+
+*click file in finder
+
+*hold shift
+
+*click another file (selects range)
+
+*hold cmd+shift
+
+*click another file out of selected range
+
+*hold shift
+
+*click another file out of selected range
+
+Now you've selected 2 ranges.
+You can keep selecting individual files and ranges this way all you want. This was working well in windows but never worked on Mac before Lion.
+EDIT:  This is not new to Lion, actually.  I didn't know this either until I started to share this with friends, but they've insisted, and I've just confirmed, that this behavior was also possible in Snow Leopard.
+
+A: Yearless Birthdays
+Want to keep track of your friends/family birthdays?  Addressbook now lets you add just the month and the day so you don't have to guess how old they are or add a generic year like 2000.  These birthdays will then display nicely in iCal to remind you.  Makes life nicer for me! :)
+
+A: Mouse movement no longer wakes a display
+Moving your mouse around can no longer wake the display. It requires a click/tap with your mouse or keyboard key press.
+
+A: Multiple SMB share operations are queued rather than parallel
+I often copy files around from my media machine in the living room to my laptop.  Previously, if you selected a bunch of files, then a few more, then a few more -- the different batches would be done in parallel, slowing each of them down.  Now, in Lion, they're queued such that one batch starts when the previous one is completed.
+
+A: Terminal is more keyboard accessible
+⌥←
+⌥→
+Those are Apple's standard keyboard shortcuts for moving the cursor from word to word. 
+And so on … 
+
+A: PILE OF POO
+
+Credit to bmike for the hint and thanks to calavera for applying humour to controversy — the tag caught my eye (no pun intended) at Can one ask Hackintosh questions on Ask Different?
+
+A: More desciptive security dialogs
+In past versions of OS X, the "SomeApp wants to make changes" dialog was king.
+In Lion, these dialogs are more descriptive. For example, I've seen:
+
+
+*
+
+*"SomeApp wants to install software"
+
+*"SomeApp wants to modify system files" (or something to that effect)
+
+
+(Seen another cool one? Add it to this post!)
+
+A: New services for opening a New Terminal Window/Tab at Folder
+It's disabled by default, but you can enable it in System Preferences -> Keyboard -> Keyboard Shortcuts -> Services
+
+A: Using the FaceTime camera to add signatures to PDFs in Preview. 
+Click the annotations button in the toolbar and use the drop down menu next to the signature icon to grab your signature from a piece of paper you have written it on. Then just click and drag in the document to place it. Haven't really needed it yet, but it's implemented so nicely that I did it just for fun.
+
+
+
+
+A: easy assignment of an app to a Desktop using the Dock
+The option to make a program belong to all spaces is very handy. I only am surprised once when I am taken to a new space as it's easy to change the behavior when you have the program running.
+
+
+A: Smart Zoom on a two-finger double tap
+Once you enable (or verify) the system-wide preference, two-finger double tap to zoom in Safari. It lets you zoom into the content of a web page, just like in Mobile Safari. Coupled with full screen mode, it is really easy to resize the page content to fill the screen.
+
+
+A: Full screen Photo Booth.
+I'm serious.  I have twin four year olds and they love Photo Booth but the old Snow Leopard version only filled a small amount of the screen. The new is far more engaging and fun.
+It works MUCH better in full screen view.
+
+A: Mission Control enables new workflows
+(whilst frustrating some existing workflows)
+My wife was very positively pleased with how Mission Control improves her workflow. MC window grouping, MRU in App Exposé and Spaces management are exactly what she wants.
+I have been very negatively surprised at how much Mission Control is a regression for my workflow. It feels like I'm back to the awkward Tiger/Leopard days. I was really flying at window management with Snow Leopard Exposé and App Exposé, minimized windows in app icons and fixed spaces. I find Mission Control lacking in many areas (see my questions for details).
+Mission Control fails to scale if you have many windows per application as windows get align-stacked with more than three windows per application. Spreading an application windows with the zoom-in gesture ought to help but does not as they don't spread apart enough nor show minimized windows. Besides one can't work around those limitations by going to the full-spread out App Exposé from Mission Control or preventively handle windows by minimizing them and having them show in Mission Control.
+The primary downside is for workflows that expect to go to a space by number or place in the ordering. This is a big interruption for people that don't want Mission Control reordering spaces.
+Luckily this reordering can be disabled and you can assign shortcuts to go to existing spaces too.
+
+
+A: Window/dialog open animations
+These animations are elegant and work well when other transitions are in play.
+Also a tip, holding ⌥ Option while clicking on a space in mission control switches the mission control view to that space rather than switching to that space normally. This allows for multiple window management operations in one use of mission control
+
+A: Finder - make a new folder with a selection of files
+Given the number of times I'd have to do the Cmd-Shift-N/highlight/drag dance, this is by far my favorite:
+
+
+A: Accessing accented characters has been made a lot easier.
+Just hold down the letter and a list of alternatives will show. Awesome.
+
+By pressing the number and continuing to type, the desired letter replaces the e and alows you to keep your fingers on the keyboard. Double Awesome.
+This behavior can be turned off. Turning off this new feature allows the traditional key repeat function to work for all keys as shown in the keyboard system preference window. 
+
+A: TextEdit got a serious facelift
+
+A: Incremental backup with FileVault and TimeMachine
+FileVault no longer cripples Time Machine.
+Your data gets backed up whether you are logged in or not and the speed of the backups is much improved over Snow Leopard.
+You incremental backups of the encrypted bundle took much longer than incremental backups of actual files. Coupled with the delay in backing up changes until a reboot or log out, this delayed the writes and let the backup drive's speed be a bottleneck.
+With the new FileVault, they just work nicely together - incremental, background, unnoticed and up-to-date.
+
+A: More International Localizations for system Text to Speech
+The new text to speech voices included in Lion (or downloadable, post-install) are now no longer US English only - but with many diverse variants of English, and select other foreign languages - e.g. Swedish. 
+This is helpful for learning foreign languages, in combination with the "say" command, for example.
+
+Built-in voices
+  VoiceOver in OS X Lion includes built-in voices that speak 22 languages: Arabic, English, Czech, Danish, Dutch, Finnish, French, German, Hungarian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese (Portugal), Portuguese (Brazilian), Russian, Spanish (Spain), Swedish, Turkish, Cantonese, Mandarin (China), and Mandarin (Taiwan). In addition, other languages are available for downloads including Greek, Hindi, Indonesian, Romanian, Slovak, and Thai, as well as alternative voices with different dialects such as English (UK), English (Australia), English (South Africa), and Spanish (Mexico).
+High-quality voices
+  In addition to the built-in voices in Lion, you can download higher-quality versions of the languages from VoiceOver Utility. Choose Customize from the Voice pop-up menu in the Speech pane.
+
+
+A: Disconnecting an iPhone doesn't wake display anymore.
+With Leopard, I would often put the computer to sleep only to realize I hadn't disconnected my iPhone. Disconnecting my iPhone would wake the computer back up.
+With Lion, unplugging the iPhone does seem to wake the computer up, but the screen stays asleep. And it seems to fall back asleep in a minute or so if left untouched.
+
+A: DJ your mac using Album Artwork screensaver
+Quicklook works from the iTunes "Album Artwork" screensaver!
+This lets you play music by clicking on the albums. You can even do this without unlocking the screen.
+
+A: Mission Control supports unique backgrounds per space
+The ability to have different desktop backgrounds in different spaces. Set the background, add a space, then set a new background in that space. Not sure if it is a bug or a feature, because it doesn't specify that it is for that space only. When you change it, it changes your default, but not backgrounds on existing spaces. 
+
+A: All window edges allow resizing
+How about ability to resize windows from all edges of the window?  
+The reduced clutter of not having a resize nub is nice, but the power comes with these options (which can be combined):
+
+
+*
+
+*shift - maintains aspect ratio while sizing
+
+*option - maintains the center point while sizing
+
+
+A: System Information is more visual and speedy
+System Information in Lion (which used to be System Profiler in Snow Leopard) has gotten a facelift and a tune up. The information is presented in a much more usable and graphical format.
+
+In addition to the facelift, the launch time of the app is optimized to be immediately responsive, delaying any lengthy discovery hardware and software until you ask for that level of detail.
+This makes it much more useful to hop in and copy your serial number without waiting for the app to finish launching an inventory of all software on the mac.
+
+
+A: Stateful Terminal app
+When you quit Terminal.app and re-open it it not only re-opens previously opened tabs (without restarting the commands that were running in it, of course), but it shows you the last 500 rows that were output in the closed terminal window.
+This has two major advantages to me:
+
+*
+
+*I have the same history in the same tab as I had it
+
+*Seeing the old output helps me bring the tab back to the state it was in.
+
+
+A: Autocorrect services from the system
+I am happy to see that one of the most helpful-yet-annoying features of iOS has made it into Lion - Autocorrect. Seeing the little pop-up with the suggestion and then seeing my spelling error automatically corrected made me smile. (I'll have to play with it a bit more to figure out exactly how to see other suggestions and cancel an incorrect one, but this is a great feature in the right context.)
+
+A: Spell check service is aware of a document's language
+The spell checker auto detects what language you're writing it and switches to the correct dictionary!
+
+A: Finder: select items & create a new folder containing them.
+Upon having the thought to organize some documents, the workflow is much accelerated. Simply select the items, activate the service to make a new folder and then rename the new folder.
+This is so much better than the old, interrupt your thought to make a new folder, find it (if you sort by name), rename it, go back and select the files, and drag it to the new folder.
+As a bonus, Undo support (Command-Z) of the "New folder from selection" has a very cool animation like the drag flocking. I spent 10 or 15 minutes just "New folder from selection", command Z, shift command Z.
+
+A: Photo Booth now has an option to disable screen flash
+Before you could suppress the screen flash by holding Shift but I don't recall there being a persistent option. For those of us with glasses who are sick of taking pictures that look like we're witnessing nuclear weapons testing, this is a welcome feature.
+
+A: The three finger drag is confusing
+The three-finger-drag gesture does what it says it will, not what I thought it would.
+What I expected:
+Put three fingers on the trackpad, move them, the window under the cursor moves.
+What happens:
+Put three fingers on the trackpad, move them, the window under the cursor acts as if you have click-and-dragged. If the cursor was on Mail you might drag an email around. If it was on Safari, you drag some text snippet or image about. 
+To actually move a window, you need to move the cursor to the title bar and then drag with three fingers.
+I thought it would be a nice meta-way to move "a thing I am working on" out of the way like shuffling paper on a desk. It's not, and I find it just as clunky as double-tap-drag. Try moving around in Google Street View with it, for instance.
+
+A: Mail defaults to date sort by most recent
+In Mail, when creating new mailboxes/folders, the emails are now sorted by default by date in descending order, i.e. freshest email first. Previously, you had to switch from ascending to descending, so from reverse chronological order to chronological order, for every new folder/mailbox created. A small change that made me smile and is most welcome!
+
+A: Safari being two processes
+When a site has some javascript that hangs the web content process, I can still add new tabs, navigate in other tabs, etc.
+
+A: System Preferences is so much faster when loading a preferences pane. Click on a pane and it loads almost immediately. I'm constantly amazed at this one every time I go into System Preferences.
+
+A: App Exposé shows all windows of an application even windows in other spaces and full screen apps!
+
+A: only These Three New Features
+made me want Lion, and I've mitigated all of them
+so I don't want Lion, nor any subsquent version of Mac OS X,
+and neither should any conscientious and responsible admin
+(Control is an illusion: ignoring request for one feature per answer. Sue me.)
+
+purge
+Generally, OS X has decent memory management. But a minor annoyance that many have noticed is that, when watching in Activity Monitor while using Applications over time, the inactive memory will begin increasing, and while the system will eventually return that memory to free memory, when it does this is arbitrary and not consistent. The result is there are times when Applications need more memory, and while it should be available, instead of the system immediately returning inactive memory to the system, the application will squeeze what ever it is doing in the available memory without doing so.
+The purpose of the purge command is detailed in its man page that I linked above, but a side-effect of running it is that all inactive memory will be returned to free memory. So running purge in the Terminal is a manual way for a user to free up that inactive memory.
+Technically, the command first appeared in 10.6 Snow Leopard, but only if you installed the Developer Tools (xcode_3.2.6_and_ios_sdk_4.3.dmg), which is what I did to avoid the temptation of upgrading unnecessarily.
+
+realistic New Text-To-Speech Voices
+I found them to be quite amazing, especially Emily, Jill, Samantha, and Tom. Samantha, btw, is the same as the voice of Siri. I found upgrading difficult to resist for these alone, until I discovered how to install these new voices in Snow Leopard, which thankfully has entirely quelled this irrational temptation to upgrade.
+
+full-screen Applications
+Pretty much System-wide, Lion introduced the ability to take applications full-screen, hiding the Dock, the Menu Bar, and other applications. But there are only two applications that I really wanted to use full-screen.
+full-screen Safari
+Thankfully, Apple released Safari 5.1 for Snow Leopard, and that was one less temptation to upgrade.
+full-screen Terminal
+This was the one last temptation to upgrade to Lion, and the strongest one. I was envious for a long time of this single and long-time functionality available to users of Windows and its command prompt (cmd.exe). When this feature was revealed in Lion, I nearly fell out of my chair. I was only able to duplicate this functionality in Snow Leopard after discovering iTerm2. But the MacPorts port of iTerm2 was no longer supported in Snow Leopard, and the build would fail immediately. So I edited the Portfile for the iTerm2 port to allow it to build. I'll explain how I did this for other Snow Leopard lovers below:
+
+How to build iTerm2 on Snow Leopard using MacPorts
+MacPorts
+MacPorts is a robust, stable, mature and easy to use package management solution, for OS X. It is modeled after FreeBSD's ports system, which has been adopted as the basis of NetBSD's pkgsrc.
+install Xcode 3.2.6 for Snow Leopard
+MacPorts requires an appropriate version of xcode; xcode_3.2.6_and_ios_sdk_4.3.dmg is the most recent version for Snow Leopard (after registerring for a free developer account, and logging into developer.apple.com, that link will begin your xcode download). Once the download completes, open your Terminal.app and complete the installation:
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ hdiutil attach -quiet -noverify -nobrowse -noautoopen ~/Downloads/xcode_3.2.6_and_ios_sdk_4.3.dmg
+ 1337haX0r@snobox:~$ sudo installer -pkg /Volumes/Xcode\ and\ iOS\ SDK/Xcode\ and\ iOS\ SDK.mpkg -target /
+ Password: 
+ ...
+ 1337haX0r@snobox:~$ hdiutil detach -quiet /Volumes/Xcode\ and\ iOS\ SDK/
+ 1337haX0r@snobox:~$ 
+
+build MacPorts 2.1.1 for Snow Leopard
+Get to know  MacPorts
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ curl -Ok https://distfiles.macports.org/MacPorts/MacPorts-2.1.1.tar.gz
+ 1337haX0r@snobox:~$ tar xzvf MacPorts-2.1.1.tar.gz
+ 1337haX0r@snobox:~$ cd MacPorts-2.1.1
+ 1337haX0r@snobox:~$ ./configure
+ 1337haX0r@snobox:~$ make
+ 1337haX0r@snobox:~$ sudo make install     # *not war!*
+ Password:
+ ...
+ 1337haX0r@snobox:~$ cd ..
+ 1337haX0r@snobox:~$ rm -rf Macports-*
+ 1337haX0r@snobox:~$ sudo /opt/local/bin/port -v selfupdate
+ Password:
+ ...
+ 1337haX0r@snobox:~$ diskutil quiet repairPermissions /
+ 1337haX0r@snobox:~$ 
+
+add MacPorts to your $PATH:
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+ 1337haX0r@snobox:~$ export MANPATH=/opt/local/share/ man:$MANPATH
+ 1337haX0r@snobox:~$ 
+
+edit iTerm2 Portfile
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ cd $(port dir iTerm2)
+ 1337haX0r@snobox:/opt/local/var/macports/sources/rsync.macports.org/release/tarballs/ports/aqua/iTerm2$ sudo cp -p Portfile Portfile.orig
+ Password:
+ 1337haX0r@snobox:/opt/local/var/macports/sources/rsync.macports.org/release/tarballs/ports/aqua/iTerm2$ cd
+ 1337haX0r@snobox:~$ sudo port edit --editor vi iTerm2
+ ...
+ # change original line 36: "if {${os.platform} eq "darwin" && ${os.major} < 11} {"
+ #                 to read: "if {${os.platform} eq "darwin" && ${os.major} < 10} {"
+ 1337haX0r@snobox:~$ # or just download this edited Portfile http://pastebin.com/51VWPySF
+ 1337haX0r@snobox:~$ # and replace the original:
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ curl -O  http://pastebin.com/download.php?i=51VWPySF && mv download.php\?i\=51VWPySF Portfile
+ 1337haX0r@snobox:~$ cd $(port dir iTerm2)
+ 1337haX0r@snobox:/opt/local/var/macports/sources/rsync.macports.org/release/tarballs/ports/aqua/iTerm2$ sudo cp -p Portfile Portfile.orig
+ Password:
+ 1337haX0r@snobox:/opt/local/var/macports/sources/rsync.macports.org/release/tarballs/ports/aqua/iTerm2$ cd
+ 1337haX0r@snobox:~$ sudo mv Portfile /opt/local/var/macports/sources/rsync.macports.org/release/tarballs/ports/aqua/iTerm/Portfile
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ 
+
+build iTerm2
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ sudo port -vsc install iTerm2
+ ...
+ 1337haX0r@snobox:~$ # iTerm2 will appear in /Applications/MacPorts/
+ 1337haX0r@snobox:~$ 
+ 
+
+And you can keep everything updated simply with:
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ sudo port -vsc selfupdate
+ 1337haX0r@snobox:~$ sudo port -vsc upgrade installed
+ 1337haX0r@snobox:~$ 
+ 
+
+If for whatever reason you are unsatisfied and/or need to remove MacPorts:
+to completely uninstall MacPorts
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ sudo port -dfp uninstall --follow-dependencies installed
+ Password:
+ 1337haX0r@snobox:~$ sudo port -dfp uninstall all
+ 1337haX0r@snobox:~$ sudo rm -rf /opt/local  
+ 1337haX0r@snobox:~$ sudo rm -rf /Library/Tcl/macports*
+ 1337haX0r@snobox:~$ 
+ 1337haX0r@snobox:~$ # you can keep the GUI applications you built, or delete them:
+ 1337haX0r@snobox:~$ sudo rm -rf /Applications/MacPorts
+ 1337haX0r@snobox:~$ 
+
+
+and Overcome Your Lion-envy !!

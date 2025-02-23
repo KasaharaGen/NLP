@@ -1,0 +1,27 @@
+Q: How can I force pinch-to-zoom on some websites? As someone with vision issues I typically need to zoom on every single page I load on my iPhone.  
+The "three finger tap" to zoom kinda sucks, so pinch to zoom works great. However since upgrading to iPhone 4S I've noticed a lot of sites don't allow it.
+I know there's a meta tag you can use to disable that feature, but is there an override that you can set to be able to zoom on every page?  I can't zoom in on google results, so I can't really see them. NFL.com doesn't allow pinch to zoom either.
+
+A: You can make a JavaScript bookmarklet to remove the meta tag. 
+First, press the share button (the icon of the arrow coming out of a box) and press Add Bookmark. Call this “Enable Zoom” or similar. 
+The address box is disabled, but don't worry: there's a way to fix this. 
+Tap Save, then press the bookmarks button (the book icon), followed by Edit and the bookmark you just made. Now type this in the address box, making sure to not add any spaces:
+javascript:void(document.head.removeChild(document.querySelector('meta[name=viewport]')))
+
+Finally, save this and go to a page that prevents zooming. Go to bookmarks and press the bookmark to run it. You should now be able to zoom in and out. 
+(Tip for iPad users: Turn on the bookmarks bar in Settings, then move the bookmark to the Bookmarks Bar folder to have it always be visible under the address bar.)
+
+A: Make sure Zoom is enabled in Settings > General > Accessibility. 
+When Zoom is enabled, you can double-tap with three fingers to zoom the entire screen of your iPhone/iPod/iPad. To move around, either hold three fingers on the screen and drag to show different parts in the viewport, or hold one finger along the edge of the screen to pan.
+If you need to zoom in more, double-tap with three fingers and drag up or down. To zoom back out, double-tap again with three fingers.
+But it gets better: instead of having to double-tap with three fingers to zoom the entire screen of your iPhone, iPod Touch or iPad, it turns out that enabling the Zoom setting also makes Safari ignore any meta name="viewport" scaling settings on the page. You can zoom in and out the normal way by using two fingers.
+
+but is there an override that you can set to be able to zoom on every page?
+
+So basically, the Zoom setting is that override. Enjoy!
+Source
+
+A: Ugh, this is so annoying -- it is the height of designer/developer arrogance (in my opinion -- and I'm a developer myself). The other answer's code did not work for me, but after much experimenting I got this to work (iPad 3/iOS 5):
+javascript:document.querySelector('meta[name=viewport]').setAttribute('content','width=device-width,initial-scale=1.0,maximum-scale=10.0,user-scalable=1');
+
+Use the same method as the other answer says to add it (create a bookmark for any page, then edit the bookmark and replace its URL with the above code).

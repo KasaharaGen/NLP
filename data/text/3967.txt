@@ -1,0 +1,8 @@
+Q: Force Quit Connecting Screen Share This has happened to me a couple of times now.  I try to connect to a computer using screen share and for some reason the computer doesn't answer.  I'm not worried about that though.
+The issue I'm having is that the failed screen share can't be cancelled and doesn't seem to appear in the Force Quit dialog.  I've checked the Activity Monitor for all processes with screen in the name, nope.  I've checked processes that are using CPU, nothing that looks like a screen sharing.  Finally I checked little snitch for network activity and the only thing I saw to the machine in question was check_afp...
+Anyway, here's a screen shot that probably doesn't show anything helpful.
+
+Thanks in advance for any advice :-)
+I'm using Mac OS X 10.6.7 on a 2011 MBP.
+
+A: Try force-quitting NetAuthAgent.  It won't show up in the regular Force Quit dialog, so use either Activity Monitor or killall NetAuthAgent in Terminal.

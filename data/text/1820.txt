@@ -1,0 +1,128 @@
+Q: Can I play audio from my iPhone on my Mac? Can I attach my iPhone 3GS to my Mac Pro so that the iPhone's audio plays through the Mac Pro's speakers?
+I can easily attach my Bose headphones so that the music from the iPhone plays through them… that's cool… but I want others to hear the music through my Mac Pro's speaker system.
+
+A: You can play your iPhone's music out your mac via iTunes. You don't even have to be in sync with that iTunes library, just plug it in, navigate to your music, and press play.
+If you're talking about like game audio coming out your mac's speakers... I'd take your speakers and plug them straight into the phone. There's no way I know of to use the mac as an audio route from the phone.
+
+A: The LineIn free app worked great.
+The Rogue Amoeba product LineIn is an excellent free utility for listening to external audio.
+Advantages over QuickTime Player
+LineIn has several advantages:
+
+
+*
+
+*LineIn has lower (nearly none!) audio lag, whereas QuickTime Player has about ~500ms of increased audio latency.
+
+*Does not shift to the wrong speed/pitch issue; this is a problem that sometimes manifests with QuickTime Player.
+
+*Does not replace the top bar with 9:41 AM and 100% Battery.
+
+
+How To
+
+
+*
+
+*After plugging the iPhone on your Mac (via Lightning/USB), enable the audio device in Audio Midi Setup.app:
+
+
+*Launch the LineIn.app, and select iPhone as the input source:
+ 
+
+*Hit Play Thru and you're done!
+Notes
+
+
+*
+
+*Make sure the iPhone is not muted.
+
+*Step one will need to be done again once the iPhone is unplugged and plugged back in.
+
+
+A: Run Airfoil Speakers on your mac..it'll then allow you to airplay just like you would to an apple TV or airport express.  You do have to be on the same wifi network for this to work.
+
+A: Simple, and simply surprising:
+
+*
+
+*First, check that you have enabled the iPhone/iPad as an audio input device in Audio Midi Setup.app:
+
+
+
+
+*Plug in your iPhone to your Mac using your Lightning Cable (doesn't work with 30 pin iPhones, sorry. [Yes I know you said 3GS])
+
+
+*Launch QuickTime Player
+
+
+*Choose File> New Audio Recording
+
+
+*Click the hard-to-see down arrow next to the Record 'button', choose iPhone under 'Microphone'
+
+
+*Play your music, game whatever on your iPhone, sound will come thru your Mac.
+No need to hit record, the sound will play even if you don't record. Just turn up the volume.
+
+Note: for those who want a louder volume, go to the system preferences on your Mac. Then go to the sound settings and you can increase the output volume so it is louder.
+
+A: If your iPhone is running (I think) 4.0 or above, I think most machines should be able to mount the phone and play the music through iTunes. 
+
+A: The solution is to use Miccuss or some other Bluetooth audio receiver to receive the audio via Bluetooth and pass the signal via cable to the Mac's audio input.
+Miccuss works perfectly, the sound is pristine. 
+I am not sure why Apple can't (or won't) enable Mac's to receive audio from Bluetooth devices even when the service seem to be available in the Bluetooth profile (handsfree gateway). MS Windows Bluetooth support handsfree gateway in a hassle free way which gives it a versatility score in this area over Mac.
+
+A: To Play Music
+
+*
+
+*Plug in iPhone to computer via USB
+
+*Open iTunes
+
+*Click iPhone button in iTunes near the the top left
+
+*Under Settings on the left there is  On My Device
+
+*Click Music, you should see all the music on your phone on the right.
+
+*Play that funky music.
+
+
+A: I tried all recommended with no sound output on a macbook pro. What worked for me is to use VLC player on the mac as follows:
+
+
+*
+
+*Enable iPhone in the Audio MIDI Setup (see "Utilities" folder in Finder)
+
+*Open VLC Player:
+File -> “Open Capture Device”
+Click Audio and select iPhone from the dropdown list
+
+
+Start playing on iPhone and listen on your mac! :)
+
+A: Sound from Apps
+There are probably multiple ways to do this. Perhaps some could use the existing iPhone connector. But certainly if you get a male to male headphone adapter, you could take the audio out of the iPhone and into the audio input (mic) on the desktop, then use Audacity or another program to play the sound from the mic input
+Music from iPhone
+In iTunes, select your iPhone on the left column. Select music. Play.
+
+A: I know where this question is coming from. I sometimes like to plug my iPhone into the USB cable so it keeps being charged while I also like to play some type of videos like Periscope on the phone at all time. This leads to a problem that the AUX output from the iPhone will have background hiss noise because the USB port being plugged in.
+So having the phone playing audio via the USB is the only method that can give you high quality audio output.
+But unfortunately there is no commercially available method to create a USB audio receiver on OSX. But, there is an alternative. First, you must enable the iPhone's hotspot via USB. This can be done through purchasing hotspot plan from your wireless carrier or other illegal methods. Second, you must install a wireless audio receiver software like airfoil or airserver on your OSX. Third, you must enable the USB connection on your OSX's system setting under network. The name of such connection can be vary and unpredictable. Take your best guest. Fourth, enabling the audio playback on your iPhone via airplay. If you don't see the airplay, it means the connection isn't established successfully. Repeat the entire process until it does. It might never run successfully because of a number of reasons that can only be explained through a very long essay, of which I would not replicate here and now, and the connection may break after being established.
+Note this method will slow down your OSX sometimes quite dramatically.
+
+A: Turn a MacBook into an AirPlay receiver w/ macOS Monterey
+
+Fortunately, there is now a better way. Installing MacOS Monterey
+(launching today) adds a feature dubbed ‘AirPlay to Mac’ which turns
+any MacBook or iMac into an AirPlay receiver. To activate ‘AirPlay to
+Mac’, simply check the tickbox in the ‘Sharing’ preferences pane: the
+MacBook/iMac will now accept AirPlay audio streams from any iPhone or
+iPad running iOS 15 or iPadOS 15 (or later). ‘AirPlay to Mac’ also
+works with video content.
+

@@ -1,0 +1,19 @@
+Q: What is the macOS equivalent to Window's AppData folder? I was originally looking for my Google Chrome profile because something went wrong and I need to delete it. In the process I realized that I don't know where applications in general are putting this kind of stuff.
+Where is the typical place to go looking?
+
+A: This kind of data is frequently stored in ~/Library/Application Support.
+User-specific settings are frequently stored in ~/Library/Preferences
+Your Chrome profile is located at ~/Library/Application Support/Google/Chrome/Default.
+I recommend going on a little exploration of the ~/Library folder; there's a lot of useful stuff in there.
+
+A: I had this happen and I fixed the problem by relogging in to Google Sync.
+The profile file is stored in:
+~/Library/Application Support/Google/Chrome/Default
+Usually an application will install data in /Library/Preferences/ and/or ~/Library/Preferences/.
+Data can also be placed after any of the following patterns:
+/Library/Preferences/<application name>/
+~/Library/Preferences/<application name>/
+/Library/Application Support/<application name>/
+~/Library/Application Support/<application name>/͏͏͏͏
+/Library/<application name>/
+~/Library/<application name>/ ͏͏͏͏

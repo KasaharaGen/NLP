@@ -1,0 +1,28 @@
+Q: Disable Terminal's title bar directory on Lion i was wondering if there was any way of disabling the folder location on the titlebar of the built-in terminal application on Lion. I mean:
+
+Any ideas ?
+
+A: It's done in /etc/bashrc.  You probably don't want to mess with that file.  You can override what's done there by creating a file called .profile in your home directory that contains the following line:
+unset PROMPT_COMMAND
+This will remove the directory in the title bar after you restart Terminal.
+
+A: I don't think it's possible in the current version of Lion (10.7.0).
+However, you can personalize every other elements of the window name in the preferences of the application in the "window" tab of your window settings" (in the "Settings" pane). There you can choose wether to display the following items in the Terminal's title bar :
+
+
+*
+
+*Name of the active process
+
+*Name of the shell command
+
+*Name of the window setting
+
+*TTY name
+
+*Dimensions
+
+*Command key
+
+
+Let's hope Apple will add "current directory" to the list !

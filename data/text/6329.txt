@@ -1,0 +1,26 @@
+Q: Backing up a Boot Camp partition I see in the Time Machine options that my Boot Camp partition is excluded. I haven't even tried to remove it from the list of exceptions since I have read that Time Machine will not work with NTFS partitions. Assuming Time Machine won't work with said partition, what is the easiest way to back it up? 
+Ideally, the solution would work like Time Machine. The problem I anticipate is that I would need a second disk (formatted as NTFS) to hold the Boot Camp backup--or maybe I could also bi-partition my external hard drive and make an NTFS partition to store the Boot Camp backup? That way I would not need a second physical disk plugged in. 
+What are your thoughts on backing up Boot Camp partitions? Thanks.
+
+A: You should back up your Windows partition while booted into Windows, using Windows-compatible backup software, and you must backup to an external drive that is NTFS-formatted, whether it is over Ethernet, USB, FireWire or whatever else you can work out. Do not try to use a physical hard drive that has one partition formatted for Mac or Time Machine, and another partition formatted for NTFS. Use a completely separate hard drive.
+Don't try to back your BootCamp Windows system up using Mac OS X outside Windows. You might figure out how to back up some files, but you will not be able to create a bootable "bare-metal restore" image, like those people in Windows-land call it.
+Windows Vista and Windows 7 have a good built-in Backup utility that can make a full disk image for a full restore, but only to a hard drive that is NTFS-only. They can also do incremental/differential file backups in a separate procedure. And there are many third-party backup software solutions for Windows, such as Acronis.
+
+Trust me, you will not want to try to do this using an Apple Time Capsule or a drive that has a partition that is formatted for Apple Time Machine. A couple of years ago I actually worked out a procedure for doing this using unsupported features on the Time Capsule, and I regretted it, because it interfered tremendously with my Mac Time Machine files when I needed to do a full restore on my Mac partition on my MacBook Pro.
+
+
+A: Mac OS X cannot write to an NTFS filesystem by default (It's not just a Time Machine limitation), so even if you could back it up, you would lose the extended attributes that it holds when copying the data to a FAT32 filesystem, as well as (more importantly) the ability to restore.
+For doing whole system restore, there is a freeware program called Winclone but it is not under active development, and may be pre Windows 7.
+If you want to backup specific areas, like just your Documents and Settings folder, then you may find that accessing the bootcamp partition through Parallels or VMWare Fusion etc will allow you to make backups using the pseudo network drives that they can create to allow cross OS filesharing.
+
+A: we have been using winclone quite successfully but as the name suggests it does not do incremental backups.
+
+A: Winclone has some issues that are hard to quantify.
+Also, it will not launch under Lion OSX.
+But it WILL make a totally restorable, bootable version of a BootCamp partition.
+
+A: Just format an external drive to ExFat, this can be done in disk utility on Mac OS, windows and mac can both read write to this, you may think this is the same as Fat32 but its NOT, with fat32 you are restricted to  a maximum file size of 4gig per file, ExFat has no restrictions so you files flow freely between windows and mac.
+
+A: CarbonCopyCloner is free, and can make a backup of any disk, including Bootcamp.
+It doesn't work exactly the same as time machine, you will not be able to see every version of every file ever backed up. It's a good choice to create a backup copy of almost any disk.
+Edit: As pointed out by Alrescha, CCC cannot make a bootable copy of a windows partition. But it will still make a backup copy of all your files on the windows partition, so it's not completely useless.

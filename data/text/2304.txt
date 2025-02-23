@@ -1,0 +1,12 @@
+Q: MBP not booting, but HD seems fine My late 2009 unibody MBP won't boot. I have already booted in single user mode, ran fsck -fy until I get no errors. But when typing 'exit' or rebooting in verbose mode I see, after fsck runs:
+Failed to issue COM RESET successfully after 3 attempts. Failing... 
+disk0s2: no such device
+disk0s2: media is not present.
+The HD appears to be working, because when booting in single user mode I can run fsck successfully and can browse the HD, listing directories, inspecting files.
+I just don't know why the OS can read the disk but reports it as 'not present' when booting.
+
+A: That's either a disk on it's way out or something has been corrupted and the OS is having problems mounting the drive.  
+Do you have your system disk?  If so, you could try booting into is by holding the C key while booting and run Disk Utility, then do a permissions repair and a disk repair if you can.  
+What fsck command did you enter?  fsck -f ?  If not then you should try that too.
+If you can get into single-user mode then you can run the following command to repair permissions:
+sudo diskutil repairPermissions /

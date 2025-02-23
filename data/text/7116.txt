@@ -1,0 +1,11 @@
+Q: What breaks if I delete the folders named Public and Sites? The default home folder on Mac OS X has folders named Public and Sites.
+I never use them, so what will possibly break if I delete them?
+
+A: As an alternative to deleting them, you could consider hiding them in the Finder instead. To do this, launch Terminal then enter this command:
+chflags hidden ~/Public ~/Sites
+
+If you ever want to make them visible again, you would use this command:
+chflags nohidden ~/Public ~/Sites
+
+
+A: Nothing unless you use Web Sharing, and it'll just moan at you if you switch that on. 

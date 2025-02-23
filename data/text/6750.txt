@@ -1,0 +1,44 @@
+Q: Terminal doesn't show badge - how to enable? Opposite to another question here I want the badge count to appear.
+I have the "resume" function enabled in my Lion. Is there another setting that's responsible for the badge?
+To clarify I run tail -f /path/to/file in 2 tabs of my terminal and I expect the badge to inform me about the changes.
+
+A: The Terminal dock icon badge indicates the number of bells (Control-G, ASCII BEL) written to terminals in the background. It indicates the number of "unread" bells:
+
+If the tab bar is visible, you'll see a corresponding "bell" icon in the tab of each terminal with "unread" bells:
+
+When you activate one of these terminals, the bell indicator is removed from the tab and the total count displayed in the dock icon badge will decrease. The badge is removed when the count reaches zero. (The tab bar needn't be visible for this behavior. It's only necessary if you want to see the bell indicator to see which terminals have "unread" bells.)
+There is also an "unread text" indicator displayed in tabs, in the form of ellipsis ("…"):
+
+This is displayed when anything is written to a background terminal, and, like the bell indicator, cleared when you activate that terminal window/tab. An "unread text" ellipsis is also displayed on minimized terminal windows in the Dock:
+
+Either of these may suffice for your case, depending on your specific needs.
+As you've surmised, the badge (and the indicators in the tab) are meant to give you a means to monitor what's going on in background terminals without having to activate them to look at the terminal contents, and bells have a high visual priority in the UI so users can use the bell indicators to notice important events.
+You can make use of the bell indicator by arranging to write ASCII BEL (Control-G) characters to the terminal when something of interest to you occurs. You could use tee to direct the tail output to both the terminal and some other program or shell command so you can see the contents as well. You may also be able to use the screen or expect commands, which can watch for specific content to trigger an action.
+This simple example will beep every time a new line is written to system.log:
+tail -F /var/log/system.log | tee >(while read; do printf '\a'; done)
+
+Of course, that can beep a lot, including for the lines initially displayed by tail (by default, ten). This version skips the initial lines and also avoids beeping more often than once every three seconds:
+# Notify the user when there's activity on stdin.
+function activity_notification
+{
+    # Skip the first ten lines (the default for tail)
+    for ((skip = 0; skip < 10; ++skip)) do read; done;
+
+    # Beep when there are new lines.
+    while read; do
+        printf '\a';
+
+        # Throttle: Ignore activity for the next three seconds. If the
+        # data contains a BEL (Control-G), stop waiting.
+        read -d $'\a' -t 3;
+    done
+}
+
+tail -F /var/log/system.log | tee >(activity_notification)
+
+After reading a line and emitting a BEL, it tells read to read all input until either the specified character is read or three seconds elapse. You could set the delimiter to ASCII NUL (read -d '' with an empty string will cause it to use NUL), which is unlikely (impossible?) to show up in the system log file, but I chose to use BEL as the delimiter so that if the file contains BELs they'll produce a beep, too.
+
+A: If using the Terminal itself is not a mandatory thing I'd suggest to use iTerm2.
+There is an option to enable Growl Notifications when new output from other Tabs/Windows are received:
+Also I'm not here to sell iTerm2 but it's just so much more customizable then Terminal is.
+

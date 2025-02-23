@@ -1,0 +1,28 @@
+Q: Customize the Boot Camp Drive Icon in Lion A while ago, I remember having customized the Boot Camp drive icon with a pretty simple hack.
+It was on Mac OS X Tiger.
+And it was that hack.
+Now I'm running Lion. Windows 7 is comfy on his Boot Camp partition, and i'm willing to get some candy finish for my Mac OS' desktop icons.
+The problem is: I can't find any way to do it in Lion. Google has been of no help. The hack above isn't working anymore. (It wasn't working in leopard or snow leopard neither, as far as I remember)
+Magical solution needed, anyone has a clue about it?
+Does OS X Lion discard completely the use of non-writable drive icons?
+
+A: Will Candybar work for you? It allows you to change icons, but I'm not sure about drive icons. Lemme know if it works for you.
+Ok, according to this article, you can:
+
+
+*
+
+*Paste your icon (in the Get Info window) onto a USB thumb drive formatted as FAT32.
+
+*The name of the drive doesn't matter.  
+
+*Launch Windows through Boot Camp, Parallels Desktop, or VMware Fusion.  
+
+*Open the thumb drive in Windows.  
+
+*Select Folder Options… from the Tools menu, and set it to show invisible files.  
+
+*Copy the two files .VolumeIcon.icns and ._[cr]File, where [cr] is a carriage return, to the NTFS drive.  
+
+
+According to the article, that'll work.

@@ -1,0 +1,21 @@
+Q: Autodeleting resource forks on FAT disks I totally hate to see those .dsstore and resource files on my Windows disks.
+Is there a free program that will autodelete those files on specified disks on logout/eject?
+
+A: There are many ways to remove .DS_Store files; it really depends on what your exact needs are for the method you decide to use. To automatically remove them when you login/logout would be quite different from ejecting a disk, since it's a completely different process. You can disallow .DS_store for from being allowed to write to network disks, etc. by opening up Terminal and entering:
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+to manually remove already present .DS_Store files you can use:
+dot_clean /path/folder
+
+which merges any such files with the parent file.
+
+A: Resource forks don't exist as actual forks anymore. They have been stored as extended attributes since 10.4.
+The files that start with ._ are used to store extended attributes, ACLs, and HFS file attributes / Finder flags. They can be deleted with dot_clean or find:
+dot_clean /Volumes/Volume
+find /Volumes/Volume -name ._\* -delete
+
+.DS_Store files can be deleted with find:
+find /Volumes/Volume -name .DS_Store -delete
+
+Another option is to use BlueHarvest:
+

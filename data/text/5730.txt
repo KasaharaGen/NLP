@@ -1,0 +1,10 @@
+Q: Is File Vault 2 whole disk encryption or whole partition encryption? Can I use File Vault to encrypt only some of the partitions on my disk (so that I can still have unencrypted and Windows partitions on the same disk), or does File Vault encrypt the whole disk so that you cannot even get to the partition table without decrypting it?
+And if not, is there any support for reading File Vault disks on Windows, Linux, or, for that matter, Snow Leopard ? 
+
+A: Yes. FileVault2 is volume based so you can have an encrypted Mac OS volume and an unencrypted Windows bootcamp partition for instance. The Recovery partition is also not encrypted.
+FileVault2 requires Lion to decrypt/decode the drive. It doesn't work with Windows Linux, or previous versions of Mac OS X. I recommend John Siracusa's Lion review for more detail. You can also listen to his 5by5 podcast for some additional insights.
+
+A: John Siracusa's detailed Lion review covers the new FileVault disk encryption feature in great detail:
+http://arstechnica.com/apple/reviews/2011/07/mac-os-x-10-7.ars/13#lion-file-system
+To summarise, the new system is "volume" based. This means that not all volumes can be or are encrypted. The Lion recovery partition for example is not encrypted. Non Mac volumes are also not encrypted (FAT, NTFS, ExFAT, etc).
+From John's description it does appear you can have multiple encrypted volumes. Whether or not they can use different passwords is unknown to me. Some use of the diskutil command may be necessary to achieve this if possible.

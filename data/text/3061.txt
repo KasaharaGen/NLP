@@ -1,0 +1,13 @@
+Q: Fastest way to convert .avi files for itunes? I've experimented with Handbrake and VLC and I'd like to know the fastest possible method to convert .avi file into a a file that is readable by itunes so I can stream it to my TV via my Apple TV 2. 
+The mentioned solutions require a couple of hours and I'd like to improve this. I'm working on a macbook air.
+Thanks.
+
+A: You're not going to find a magic bullet that can dramatically speed up your conversion. You really have two options: either reduce the quality of your target file, or throw more iron at it. Upgrading your hardware (including possibly putting more RAM in your machine) would help a lot.
+The bottom line, though, is that the conversion app has to look at the whole file frame by frame and convert it, and that's an O(n) proposition--the time it takes scales linearly with the amount of data to convert, and there just aren't good ways for even a very clever program to shortcut that. Some programs may be fractionally more efficient than others, but in general, the algorithm takes as long as it takes to chew as much data as it has to chew.
+
+A: I usually play around with Video Monkey. 
+
+Video Monkey is a free video encoding application exclusively for Mac. It was created after the demise of the great tool Visual Hub. Video Monkey borrows heavily from the Visual Hub video conversion tool, both conceptually and from the original code dump posted to SourceForge as TranscoderRedux.
+
+
+A: The Elgato Turbo.264 HD is a hardware solution, but it might be worth it if you have a lot of files to convert.

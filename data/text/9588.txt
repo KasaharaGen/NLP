@@ -1,0 +1,27 @@
+Q: Trackpad gestures stop working From time to time, my Magic Trackpad gestures will stop working. I can restart to bring them back, but this is pretty disruptive.
+Is there a process I can kill to bring them back?
+(I've tried turning off the Magic Trackpad; unfortunately, it doesn't fix the problem.)
+
+A: In 10.8, running killall Dock seems to bring back trackpad gestures.
+When a reboot didn't fix this, I went to System Preferences → Trackpad → More Gestures and changed
+
+
+*
+
+*Mission Control to ‘Swipe up with three fingers’, and
+
+*App Exposé to ‘Swipe down with three fingers’.
+
+
+Those gestures now worked with 3 fingers. Then I changed it back to ‘Swipe up/down with four fingers’ on both and they started working again using the four-finger gestures.
+
+A: If resetting the necessary prefs does not help but the Magic Trackpad is still connected, this is a beautiful alternative: BetterTouchTool
+In fact, this is much more fun since it makes the Magic Trackpad so powerful.
+http://www.boastr.de/
+
+
+A: This started happening to me on my early-2013 MacBook Pro since I upgraded to Mavericks.  It happens both and with and without the Magic Trackpad.
+Based on the note at the end of Andrew's answer, I ran killall Dock from a Terminal window and the gestures started working again.
+This blog post has more information about the issue and there is an Alfred extension to fix it too.
+
+A: For me, the problem was that dragging got turned off in Universal Access somehow.  Go to Settings -> Universal Access -> Mouse & Trackpad -> Trackpad Options and turn on Dragging if it's not enabled.

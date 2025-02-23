@@ -1,0 +1,23 @@
+Q: iPad app supporting RemoteApp RDP protocol? Is there an iPad out there than can connect to Terminal Services RemoteApp?
+See TechNet article explaning RemoteApp
+
+A: The full version of Spark View supports RemoteApp. You can try it here:
+http://www.remotespark.com:8080
+You'll have to install the gateway to make your internal network accessible.
+
+A: I have been using iTap RDP for 2 years now to log in to our companies TS Gateway, and it works very well.
+
+A: The only iOS app I'm aware of that advertises TS RemoteApp is WinAdmin Remote Desktop. It's not universal so it runs on the 1x reduced area on the iPad or pixel doubling. Not at all ideal so I hope someone else has a better suggestion (or this developer makes a iPad or universal version of the app).
+You might also contact iTap Mobile - their product might support TS gateway as an in app purchase once you have bought iTap RDP
+
+A: If you need remote access from iPads to Terminal Server, you can try Ericom AccessToGo, a free RDP client for iPad, iPhone and Android devices.
+If you also want to speed up RDP for your iPad user, you can use AccessToGo with Ericom's Blaze server (a commercial, not free product).  That makes AccessToGo the fastest RDP client for mobile devices for working with graphic applications over a remote connection.
+For more information about AccessToGo, visit:
+http://www.ericom.com/mobile.asp?URL_ID=708
+
+A: To Everyone:
+The question is referencing RemoteApp support, not just an RDP connection.
+I use iTap RDP, which works amazingly well for standard RDP access.  It does have an option to launch a program, but this is not RemoteApp.  I believe this feature is supposed to support program launching as done in previous versions of the RDP protocol.
+
+A: You might consider getting a free trial of Splashtop Enterprise... Splashtop's SplashApp real-time transcode RDP 8/7/6 protocol to Splashtop protocol... so this means that ALL RDP features including RemoteApp and RDP8's higher performance capability are fully supported, and, Splashtop apps are available for iPad/iPhone, Android, Blackberry, Linux, MAC, WinRT, Windows Phone, etc... so any device can have full remote access to Win 2008 / 2012 RDS / RemoteApp.   Splashtop optimizes for Intel, NVIDIA, AMD, and other chips so the performance is best-in-class (can even do remote 3D games :) ). http://www.splashtop.com/enterprise/
+best, -mark (CEO Splashtop)

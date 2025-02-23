@@ -1,0 +1,29 @@
+Q: How do I uninstall or downgrade from OS X Lion Server? I've upgraded from Snow Leopard to Lion, then I purchased and installed the Server from App Store.
+Now I'd like to remove the Server features, and revert to standard Lion.  I don't mind reinstalling, I don't want to reformat, or restore from backup.
+What is the most correct and complete process?
+
+A: Since the server component changes files and preferences, you can't easily undo those changes other than by a back up. There is no uninstall - and there are in general no way to undo any patch or upgrade - even between major revisions like 10.6.7 to 10.6.8.
+The only sure way is to restore those settings and files that get changed from a backup or set things up after a totally clean installation.
+Boot into recovery, erase the volume and install Lion (without the server component) and you will have a correct and complete non server Lion. You can migrate data in from external drives, time machine (at any point in time) or make the set up new by hand.
+Lion will not allow a simple re-install to "undo" the server changes as it's not programmed to do all that work in reverse.
+
+A: lsbom  -p F /var/db/receipts/com.apple.pkg.Server*.bom | perl -pi -e 's/\.//'
+
+Gives you the files installed by the Server packages, in double quotes, absolute paths.
+
+A: (Edited version)
+To uninstall OS X Lion Server, it depends on the server state. If the server is not configured, one need only to delete the Server app from the Applications folder, and restart the machine.
+(I have tried this. It works except for one thing. In the AppStore, you will always get a notification when the server app can be updated.)
+If the server has been configured, I can only point you to this apple support document:
+http://support.apple.com/kb/HT4827
+Please note that this article refers only to disabling Server, not removing it.
+
+A: Once you have configured the Server app it will download and install its components which are not deleted with the app.
+Server app is just an interface to these individual control modules similar to command line tools or like preferences items that plug into the server.app
+You can use the above method to look for the files that the server.app downloaded but I doubt if you can straightaway delete them.
+The Server.app once configured will mark your OS X Lion as OS X Lion Server and you will continue to receive server related update alerts even if you delete it.
+
+/System/Library/CoreServices/ServerVersion.plist
+
+This file is created when you configure the server and OS X Lion will look for it while checking for the software updates.
+If you delete this file OS will fallback to "SystemVersion.plist" in the same folder and your machine should be back to non server updates :)

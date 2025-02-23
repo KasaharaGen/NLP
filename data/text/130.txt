@@ -1,0 +1,33 @@
+Q: Is there a safe way to move the /Users folder to a separate volume/drive? I have an SSD on the way and will be moving my HDD to the optical bay slot in my MBP.  I want to boot from the SSD and store my /Users folder on the HDD.  I've seen the way that everyone suggest moving an individual account's home folder to a separate partition.
+However, I want to move the ENTIRE /Users folder.  I don't want to bother with moving individual user accounts, and I want any new accounts I create to reside on the HDD without any additional steps other than creating the user.
+I already have a complete clone of my /Users directory on a separate partition I created for testing this out.  Is there a safe way (i.e. will not cause any problems with application or OS functionality) to direct OS X to utilize the new /Users folder?
+
+A: I've done this, in fact, I'm using a no-optical MBP right now.
+Here is my experience detailed in full.
+Notes: 
+
+
+*
+
+*I put the SSD in the optical bay, since the HDD bay has vibration dampers and the optical bay solution I bought did not have anything close to what comes in the original HDD bay.  The SSD has no vibration, so it's a good fit there.
+
+*I agree with Fishtoaster... see my link above for how I did it.
+
+*I have bootcamp and rEFIt installed, so when I boot, I get option for SSD Mac, HD Mac, or Windows... works pretty nicely. 
+
+
+A: May be able just create a simlink to the /User directory.
+To do this, open up Terminal and enter:
+cd [SeperateDrivePath*]
+ln -s ./Users /Users
+
+You'll want to move your original Users folder out of the way (rename it or move it or whatever).
+*Where [SeperateDrivePath] is the path to your volume just underneath the cloned /Users folder.  Probably something like /Volumes/Some Hard Drive Name/.  In this case, your clones /Users should exist at/Volumes/Some Hard Drive Name/Users.
+
+A: The best way to do this is probably to setup /Users as an automounted partition, with all your home directories in the root of that partition. I am going to assume you have already copied over the home directories properly (with permissions enabled). Now you just need to add the volume to /etc/fstab. Assuming the parition is named Users, you add a line like this:
+LABEL=Users /Users  hfs rw,auto
+
+Instead of using the volume name you could also use the volumes GUID if you know how to find it, which would be slightly more reliable (it would prevent mishaps if you ever inserted another volume with the name Users. That would looks something like:
+UUID=DF000C7E-AE0C-3B15-B730-DFD2EF15CB91   /Users  hfs rw,auto
+
+You can find more information in man 5 fstab. Be warned, that manpage is mostly about the programming interface for fstab, but also goes into the file. Unfortunately it does not go into all the options available, there really appears to be no good documentation for it, but this should give you enough to get what you want done.

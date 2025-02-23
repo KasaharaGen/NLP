@@ -1,0 +1,12 @@
+Q: How do I get vim to work at 256 colors in iTerm? I just got a new iMac, and installed iTerm (0.10).
+On my last laptop 256 color mode worked fine, but I'm having trouble getting this to work on my new Mac.
+I copied over all the settings, set $TERM to xterm-256color, but no dice.
+I changed my .vimrc to the absolute minimum to try this out:
+set t_Co=256
+syntax on
+
+Tried multiple colorschemes, too. 
+
+A: OK, so...
+I just started vim again, and colors where there. Since then I did make a changehowever, I installed XCode. This is the only thing I did change, so there must be something in there that fixes this.
+Thanks for the effort!

@@ -1,0 +1,26 @@
+Q: What is the most advanced JavaScript editor for OS X? I tried Espresso but it lacks so many important features like no auto-parentheses, no auto-aliging.
+What is the most advanced JS editor for OS X?
+(please not Emacs for me).
+
+A: I use the free version of Komodo Edit by ActiveState on Mac and PC. Through its plugin architecture it has extensions that let you edit Javascript files wonderfully, with intellisense, code completion, and so on, and it also lets you write Javascript macros. Very cool. I have a JSBeautify macro that formats the code wonderfully as well.
+Edited to add sample macro I made in Komodo Edit. The following sorts lines in alpha order:
+var appObj = ko.views.manager.currentView.scimoz;
+if (appObj.selText == '') {
+     appObj.selectAll();
+}
+var docText = appObj.selText;
+komodo.editor.beginUndoAction();
+var ary = docText.split('\n');
+ary.sort( function(a,b){
+ var a1 = a.toLowerCase();
+ var b1 = b.toLowerCase();
+ return (a1 > b1) ? 1 : (a1 < b1) ? -1 : 0;
+});
+docText = ary.join('\n');
+appObj.replaceSel(docText);
+ko.commands.doCommand('cmd_cleanLineEndings');
+komodo.editor.endUndoAction();
+
+
+A: TextMate + a JavaScript bundle (or this one) are my recommendation.
+Coming from a Windows + Komodo background I didn't think TextMate could touch the power of Komodo for scripted languages, but it's proven me wrong time and again. It is such a nice editor once you get over the learning curve. It has extensibility in spades. Deep integration with the underlying OS X shell. Nice diff and git/mercurial/svn integration. And the Bundle community is active, smart and free to use.

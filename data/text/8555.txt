@@ -1,0 +1,29 @@
+Q: How can I require a user to change their password? I created a new account on a machine and gave it a default password but I want to ensure the user changes the password when they log into it for the first time. It's just a laptop with nothing special running client version of Mac OS X 10.6.8.
+I'm sure it's possible, I remember seeing a check box where you could require the user to change their password at some point. 
+Could someone refresh my memory on this or tell me how to achieve this goal?
+
+A: Found on Apple Support Communities.
+Go to
+
+
+*
+
+*Workgroup Manager
+
+*Select the User or Users
+
+*Advanced Tab
+
+*Options
+
+
+A: *
+
+*Download and install Server Admin Tools 10.6 or 10.7.2 from Apple.
+
+*Run Workgroup Manager with localhost as a server address and admin credentials.
+
+*Choose desired user, then Advanced tab, Options... button, tick Password must: be changed at next login.
+
+*Press Save, Disconnect.
+

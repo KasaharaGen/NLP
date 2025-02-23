@@ -1,0 +1,25 @@
+Q: How to reduce photos in iPhoto while keeping metadata? I got carried away taking high-res and RAW photos, and now my iPhoto Library is just too big. Most of these photos aren't good enough to take up that much space,  but they're still good enough to keep. How can I reduce the sizes of my photos while maintaining iPhoto metadata (e.g., albums, rating, location) for them?
+Extra props if:
+
+
+*
+
+*I can do it as a batch process.
+
+*I can exclude certain photos from the reduction (e.g., only reduce photos without 5 stars).
+
+*It gracefully handles the relationship between the modified and original photos.
+
+
+A: Short Answer, Automator: 
+ 
+Long Answer: iPhoto cannot create a smart album based upon File Size, so you'll have to either group them by other means or manually create an Album with the offending photos (the big ones). Automator, on the other hand, is perfectly capable of finding iPhoto images by size (and by Rating stars).
+The first thing you have to decide is: Do I want to scale my images down? Do I want to make them JPG instead of whatever format they have? Do I want to do both for maximum effect? That is, you have to decide what's the best optimization for your photos that has a balance between quality/size.
+Each of those have consequences:  if you don't save a copy of the original photo, and the resulting quality is not something you like, there's no turn back (unless you have a TimeMachine or similar backup of course). 
+In any case, Launch Automator, create a new "Workflow" and add the following actions: 
+
+NOTE: I've removed the "Make copy" actions that Automator asks you to place by default when an operation will "affect" files, but leave those to "experiment" so you don't alter
+your original images, at least until you're satisfied with the results.
+I suggest you try with a small set of images before going Coo-Coo with the whole Library. As in create a small album with some of the "big" images and try from there. You don't want to wreck your iPhoto library…
+This should preserve all the metadata and original photo, while making a Batch adjustment. 
+If you have programs like Pixelmator or Acorn, you will have more automator stuff there. The more the merrier. 

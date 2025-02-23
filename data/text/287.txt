@@ -1,0 +1,13 @@
+Q: Force a change to a program's key bindings Is it possible to force a change to a program's keybindings?  E.g., instead of an menu action being invoked by Cmd-J it's Cmd-K?
+The reason I ask is that Cmd-Q in Firefox drives me nuts.  I occasionally hit it instead of Cmd-W (to close a tab) & I have to wait for my entire instance of Firefox to stop & then restart.  I'd love to bind "Quit" to something ridiculous (or remove it all together).
+My hope is this is in a resource file that's easily hacked?
+
+A: No resource file hacking necessary; it's all built in to the GUI. And not only that, but Apple's even documented it:
+
+
+*
+
+*Using global keyboard shortcuts 
+
+*Creating keyboard shortcuts for applications
+(the above assumes you're on OS X 10.6 Snow Leopard, but everyone with a supported system should be by now.)

@@ -1,0 +1,15 @@
+Q: iTunes Match is stuck on the last song in step 2 of the initial process iTunes Match has worked well, so far, except the process seems stuck on the last song. I have more than one song 'waiting', so I can't tell which song this is stuck on:
+ 
+Console shows the (not very)helpful:
+11/19/11 3:37:16.652 PM iTunes: _AMDDeviceDetached (thread 0x11302b000): Device 'AMDevice 0x7fe5afcdad00 {UDID = b40482688c52cdaa90ef21796c4dad05f445c06b, device ID = 29, FullServiceName = 58:55:ca:e3:7a:39@fe80::5a55:caff:fee3:7a39._apple-mobdev._tcp.local.}' detached.
+
+
+A: in iTunes, select your Library -> Music and then right click on the Column Headings and choose iCloud Status. Sort by this new column and the file causing the problem should have a 'Waiting' Status which you can then remove.
+
+A: The progress bar sucks. Just wait for it to finish.
+Mine also went through the songs fairly quickly and then got "stuck" on the last song. But checking network activity showed it is in fact maxing out my internet connection's upstream bandwidth.
+So clearly when it says there's one song remaining it is in-fact uploading data for many songs.
+You can enable the "iCloud Status" column in iTunes (right click on column headers to add it) and see the songs that are "waiting". These are songs that have not yet been matched. For me there were several hundred even though the progress bar said all but 1 had been matched.
+I created this smarty playlist:
+
+To find songs that haven't been uploaded, and the list did gradually get shorter for me. If it seems to freeze up, quitting iTunes will resume where it left off and may help.

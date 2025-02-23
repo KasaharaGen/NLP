@@ -1,0 +1,22 @@
+Q: Improvement to 'grep -h "BSD process name" /Library/Logs/DiagnosticReports/* | sort | uniq -c' To track down the culprit for the frequent crashes of Lion, I ran:
+grep -h "BSD process name" /Library/Logs/DiagnosticReports/* | sort | uniq -c
+
+which produced:
+   1 BSD process name corresponding to current thread: Finder
+   1 BSD process name corresponding to current thread: PluginProcess
+   1 BSD process name corresponding to current thread: PubSubAgent
+   1 BSD process name corresponding to current thread: SystemUIServer
+   2 BSD process name corresponding to current thread: WebProcess
+   1 BSD process name corresponding to current thread: WindowServer
+   1 BSD process name corresponding to current thread: coreaudiod
+   8 BSD process name corresponding to current thread: kernel_task
+   2 BSD process name corresponding to current thread: launchd
+   1 BSD process name corresponding to current thread: mds
+   1 BSD process name corresponding to current thread: mdworker
+
+but this list seems to be far from complete for the number of crashes I had over the past few days -- during startup, shutdown, and in-between (and /Library/Logs/DiagnosticReports contains 17 days worth of crash reports). What can one run in the terminal to produce a more comprehensive list of OS X crashes?
+
+A: Looking through the reports in my own .../DiagnosticReports directory, I see lots of entries that don't have a "BSD process name" section.  In fact, I don't have that line in any of the files in DiagnosticReports.  
+I think you need to grep on a different term, perhaps "^Process:"
+grep -h "^Process:" /Library/Logs/DiagnosticReports/* | sort | uniq -c
+

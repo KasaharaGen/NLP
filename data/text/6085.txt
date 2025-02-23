@@ -1,0 +1,10 @@
+Q: Changing Preview.app's default View state in Lion One thing I dislike about Preview.app in Lion is its defaulting to Continuous Scroll as the view option when a new PDF document opens. My recollection is that previous behaviour was for the last-used view state to be honoured subsequently, and I would prefer if this applied in Lion also (my personal preference being for Single Page), or if the default could be changed.
+Elsewhere, I have seen reference to a Terminal command which was stated as addressing this, but it does not work for me. The command in question is defaults write com.apple.Preview PVPDFDisplayMode 1 (with a suggested variation of defaults write com.apple.Preview PVPDFDisplayMode -int 1), which is supposed to change the default to Single Page. As I say, this does not work for me, and Preview stubbornly continues to default to Continuous Scroll.
+Can anybody help?
+
+A: A preference for changing the default view mode was added in 10.8:
+
+I don't know any way to change the default view mode in 10.7.
+
+A: I can suggest a workaround - there is an excellent PDF viewer called Skim, which does allow you to turn off continuous scroll mode. However, sadly it does not support any Lion features yet (although has its own (good!) fullscreen implementation.
+http://skim-app.sourceforge.net/

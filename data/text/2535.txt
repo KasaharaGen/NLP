@@ -1,0 +1,89 @@
+Q: Why is iTunes duplicating my Voice Memos? I utilize the Voice Memos feature on my iPhone and have noticed a recurring problem of iTunes duplicating my recordings.  Note that the recordings appear duplicated only in iTunes and not on my iPhone.  I haven't figured out how to prevent this but have provided steps below for removing duplicates and synchronizing the proper recordings as I've found the process not very intuitive.  I appreciate any insight into the cause and/or solution for this problem.  I also welcome a simpler cleanup process.  I'd love to be shown that I'm overcomplicating this.
+MacBook Pro
+Mac OS 10.6.6
+iTunes 10.1.2
+iPhone 3GS
+iOS 4.2.1  
+
+*UPDATE*
+It appears something has changed regarding how iTunes synchronizes Voice Memos with an iPhone in 10.2.2 because the tedious method I mapped below no longer works properly. I had to switch to managing music manually and delete all Voice Memos from my phone manually via iTunes. Then, changed back from manual manage and synched. All Voice Memos returned to my phone but not timestamped correctly. Also, iTunes changed the naming convention of all my memos to the inferior method.
+Moral of the story:  record nothing.
+
+*Make necessary backups prior to making any changes and proceed at your own risk.*
+
+
+*
+
+*Connect iPhone to computer
+
+*Open iTunes
+
+*Open Phone Disk (Free)
+
+*Open Finder window and select mounted drive for iPhone
+
+*Navigate to "Recordings" folder and copy entire contents to a folder on your desktop
+
+*Navigate to "Macintosh HD\Users\YourUserName\Music\iTunes\iTunes Music\Voice Memos"  and copy entire contents of "Voice Memos" to a separate folder on your desktop
+
+*Open iTunes and select iPhone from DEVICES category
+
+*Remove tick from "Include voice memos" on the Music page for you iPhone
+
+*Add tick for "Manually manage music and videos" from the Summary page for your iPhone
+
+*Select OK/Apply/Sync when prompted (this will not delete your recordings)
+
+*Expand iPhone under DEVICES in iTunes and select "Voice Memos" playlist
+
+*Delete all contents of "Voice Memos" playlist on iPhone
+
+*Identify duplicate Voice Memos in iTunes (this can be laborious)
+Voice Memos can be accessed from two locations in iTunes.  Your phone will be listed by name as an album in your music library regardless of whether or not your phone is connected.  iTunes also creates a "Voice Memos" playlist.  Deleting duplicates from a playlist will not delete audio files from your computer.
+Control+click any recording assumed to be a duplicate and select "Show in Finder" to review the actual file name.  It may be helpful to choose File -> Display Duplicates.
+I'm not sure why iTunes has two separate naming conventions for voice memos or how/when it chooses one over the other.  Below are examples of these naming conventions:
+20110203 183525.m4a    (preferred naming convention)
+20110203 183525 1.m4a  (duplicate)  
+2_3_11 6_35 PM.m4a     (duplicate/old naming convention)
+
+I prefer the first naming convention listed above as it allows for proper chronology listing from the year all the way down to the second.  The third convention listed above makes locating a file by date/time rather cumbersome.  The first is a much neater and efficient naming convention.
+
+*Delete all duplicate Voice Memos from iTunes and Finder (path provided above in #6)
+
+*After deleting duplicates, repeat step 6 to prevent having to sort duplicates in the case of a problem
+
+*Open Finder window and select mounted drive for iPhone
+
+*Navigate to "Recordings" folder and delete entire contents (first confirm backup folder on desktop is good)
+
+*Confirm Voice Memos app is closed on iPhone
+Double tap the Home button revealing recently opened apps.  If Voice Memos app is listed touch and hold until apps begin to "wiggle."  Tap the red close circle in the top left of the app icon.  Press the Home button again.
+
+*Synchronize iPhone with iTunes
+
+*Open Voice Memos app on iPhone to confirm all memos are deleted
+
+*Close Voice Memos app (see step #16)
+
+*Open iTunes and select iPhone from DEVICES category
+
+*Remove tick from "Manually manage music and videos" from the Summary page for your iPhone
+
+*Add tick for "Include voice memos" on the Music page for you iPhone
+
+*Synchronize iPhone with iTunes
+
+
+Some of these steps may be able to be omitted but after wrestling with this for a while, I decided to be thorough.  Also note that switching the tick back and forth for managing your music synchronization manually will apparently enable synchronizing movies, TV shows, and books.  So, if you don't want those synced, you'll need to uncheck those.
+Again, any help is appreciated.  This is more work than it should be for such a stupid issue.
+
+A: I am not sure if I have resolved the issue, but I managed to delete my duplicates fairly easily by sorting them by date added and selecting all the ones that were created during a certain sync. I then sort by name or duration and pick out those that aren't duplicates. Still tedious but better than brute force
+
+A: This has happened a lot to me, and I have no idea how to get it to stop. It got so frustrating that I ended up switching to DropVox to record voice memos, and I haven't looked back.
+Once I switched to DropVox, I moved all my memos out of iTunes, and I wrote a one-off script to delete exact duplicates. If you decide to use it, be careful - I only developed it enough to meet my needs and I never intended to distribute it.
+(Incidentally, the script will miss some duplicate files - there are cases where the same voice memo has been changed in some way so that the md5 hashes no longer match)
+
+A: Sometimes duplicated content in the library can be caused by the actual iTunes Library file having problems, as it is the database referencing all the files being created and indexed. You can check http://support.apple.com/kb/ht1451 to regenerate it. 
+
+A: Those who are fine with downloading and afterwards deleting all voice memos from the iPhone, they can also use the same method like I got my safari pdf prints from Books to pc, using 3rd party apps that can read the files in the backup, where all voice memos are saved. Those apps will cost you some small amount though. Afterwards, you can delete all voice memos in your data management on the iPhone and do the organisation of your duplicates “at home”, in the “no-iTunes” environment.
+See iphone: move (IN ONE GO!) ALL pdfs generated from Safari page prints (which I frequently pdf-export using iBooks) from iBooks to pc which also works for voice memos

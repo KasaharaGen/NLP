@@ -1,0 +1,25 @@
+Q: How to view man pages in a web browser? Which .conf file do I need to edit in order to view man pages in a web browser? I'd like to use Google Chrome to do this.
+Is this possible?
+
+A: One way to do this is to put the following command in ~/.profile:
+export PAGER="col -b  | open -a /Applications/Safari.app -f"
+
+The PAGER environmental variable controls what program man uses to display man pages. the col command removes all of the backspace-formatting from the man page. The open command saves the output as a temporary text file and opens it with Safari.app.
+Or you can edit the PAGER variable in /private/etc/man.conf. You could also probably edit the NROFF variable and eliminate the need to use col -b. See the man page for man.conf.
+
+A: You can add a function to your ~/.bash_profile:
+function gman () {
+     man "$1" | col -b > "/tmp/$1"
+     open -a "/Applications/Google Chrome.app" "/tmp/$1"
+}
+
+
+A: http://www.bruji.com/bwana/ is exactly what you're looking for.
+
+A: Similar to the solution by graham, but opening the HTML version in the browser:
+function htman {
+    groff -Thtml -mandoc -c $(man --path $1) > /tmp/$1.html
+    open /tmp/$1.html
+}
+
+(Use >! instead of > for zsh to allow overwriting of the file.)

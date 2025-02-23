@@ -1,0 +1,43 @@
+Q: How can I back up a complete IMAP account? I have a huge IMAP email account that contains a lot of subfolders and a lot of messages (dating back to 2005). Is there a simple way to back up these folders and messages so I can delete them from the server?
+I would like to retain the ability to browse and manage these archived messages, reply, or add addresses from these messages to my contacts - all preferably within Apple Mail.
+If Apple Mail can't do it, what other options do I have?
+
+A: In the lefthand sidebox you can just drag mailboxes from the imap location to the On My Mac location.
+Otherwise See Mail's help for Archiving mailboxes
+Archive the  mailbox which puts it on your computer then import the mailbox
+I am not certain if the directories are kept,
+
+A: You can do it with offlineimap. I'm using it for my GMail and Fastmail accounts.
+Install Homebrew (you must also install Xcode). With Homebrew, brew install offline-imap. 
+Create ~/.offlineimaprc config file: 
+[general]
+ui = ttyui
+accounts = fastmail
+maxsyncaccounts = 4
+socktimeout = 60
+
+[Account fastmail]
+localrepository = fastmail-local
+remoterepository = fastmail-remote
+
+[Repository fastmail-local]
+type = Maildir
+localfolders = ~/Mail/Fastmail
+
+[Repository fastmail-remote]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteuser = username
+remotepass = password
+
+expunge = no
+folderfilter = lambda foldername: foldername not in ['INBOX.Trash']
+
+A big advantage of offlineimap is that it creates the folders you have on your IMAP server.
+I'm reading my backup with mutt. 
+
+A: Just to Second, you can drag a folder from your inbox to On My Mac, however expect this process to take a long time if you have a large Mailbox, folder or sub folder, try with one small folder first and have a look at how it progresses the copy, you can do this by clicking on Window>Activity in Mail.
+
+A: If you can or are willing to make the backup under Windows, IMAPSize enjoyed a very favorable reputation, back when I lived on Windows and frequented a couple of email fora.
+
+A: You could create a Google mail account, add it to your mail client and drag the folders across. Then you could use gmail to browse all your mail.

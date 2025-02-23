@@ -1,0 +1,7 @@
+Q: What version of Dovecot comes bundled with Lion Server? I'm currently running a Snow Leopard Server, and trying to get anything useful working with the v1.1 version of Dovecot bundled with it is as pleasant as banging my head against a brick wall.
+Dovecot's extremely sparse documentation has a lot of mentions of horribly-crippling bugs (specifically with public mailboxes and permissions) in 1.1 that were only fixed in 1.2. Which is not helpful for me since Apple has their own frustratingly-special blend of dovecot build (1.1.20apple0.5) for Snow Leopard Servers.
+So, does the new Lion Server have enough Dovecot functionality to make it worth using?
+
+A: Dovecot 239 is how it's listed by Apple as open source that was shipped with Lion 10.7 Build 11A511.
+You can see lots of nice version and source code information at http://www.opensource.apple.com/release/mac-os-x-107/ in case the 239 doesn't match the real version of the package.
+If you want to compare the current with past versions, many versions of OS X are listed at http://www.opensource.apple.com/

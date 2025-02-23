@@ -1,0 +1,11 @@
+Q: Synchronize calendar between Mac, Android mobile and Windows 7 I´m currently using my Mac with Lion. Using Bootcamp I installed Windows 7. I also have an Android phone. Now I´m looking for a calendar software that allows me to synchronize between all three OS. It should not be an online solution.
+
+A: Your best option is probably Google Calendar. It is an "online solution", but you don't have to make use of the webapp at all, just use it as a method to sync.
+For OSX, you can use iCal synced to Google Calendar using CalDAV. It's not perfectly polished, but it works fine. You may need to enable any other calendars via the Delegation tab, under Accounts in the iCal preferences.
+I'm not an Android guy, but I think Google Calendar support should be automatically set up when you activate your device with a Google account.
+For Windows 7, it depends what app you're wanting to use. It looks like they removed the Calendar app from Vista. The simplest option may be this desktop gadget that syncs to Google Calendar. If you're looking to use other software, Google provides a sync option for Outlook, or you can use anything that supports the CalDAV standard.
+
+A: Selecting bootcamp severely narrows your options.
+The prevailing solution for nearly all calendar clients is to use CalDAV/Exchange for sync. Unless you are OK with storing your calendar data on a file server (like TimeCapsule) or FAT external storage that will let a cross-platform client that use one common data store sharing the same file format, you will need to have one if your OS to mount the others native file system to read/write the calendar data.  
+Once you get that working, you can decide how best to sync your mobile device. 
+My guess is nothing self-contained will be workable and you will either host your own CalDAV store locally or co-located (hello lion server!) or you will have to relax your exclusion of online solutions.  

@@ -1,0 +1,53 @@
+Q: What are the secret options of the PDF convert tool from OS X? I recently discovered the /System/Library/Printers/Libraries/convert tool that is able to convert HTML, DOC, ... to PDF. 
+It works great but it has some optional arguments that are not documented: -a 'name=value ...'. I am really interested about them because these are supposed to control more of the 'printing' process.
+/System/Library/Printers/Libraries/convert
+Usage: convert [ options ]
+
+Options:
+
+  -e                   Use every filter from the PPD file
+  -f filename          Set file to be converted (otherwise stdin)
+  -o filename          Set file to be generated (otherwise stdout)
+  -i mime/type         Set input MIME type (otherwise auto-typed)
+  -j mime/type         Set output MIME type (otherwise application/pdf)
+  -P filename.ppd      Set PPD file
+  -a 'name=value ...'  Set option(s)
+  -U username          Set username for job
+  -J title             Set title
+  -c copies            Set number of copies
+  -u                   Remove the PPD file when finished
+  -D                   Remove the input file when finished
+
+
+A: The options for the CUPS system are mainly for specifying borders, margins, how many pages per sheet, etc. They are documented on the CUPS website:
+http://www.cups.org/documentation.php/options.html
+
+A: What you see is a symlink to /usr/sbin/cupsfilter. 
+cupsfilter is documented in its respective man page.
+Its purpose is to allow you to manually run the same filtering chain CUPS would run on behalf of a given print queue would run when consuming a given input document. This way you could inspect + debug the results before/without sending the job to the actual printer.
+Of course you can "abuse" the utility also to convert files to whatever output format you may desire (if supported by CUPS).
+Regarding the -o name=value (running cupsfilter directly uses this syntax): basically it is every option you can specify with print command such as lp or lpr if you print from the shell. 
+A few selected examples:
+-o media=A4                   # define the media size
+-o fit-to-page=true           # request scaling of content to fit media
+-o page-ranges=1-4,7,9-12     # select pages to be extracted
+-o number-up=4                # request multiple logical pages on physical page
+-o number-up-layout=tblr      # set the sorting of logical pages
+                              #   (first top-to-bottom, then left-to-right)
+-o page-border=single-thick   # request page borders to be drawn
+-o outputorder=reverse        # request reverse output border
+
+More info about possible options:
+
+
+*
+
+*All generic options supported by CUPS are documented here:
+http://www.cups.org/documentation.php/doc-2.1/options.html
+
+*All printqueue specific options (as are escrowed in the associated PPD) can be derived from the outputs of this command:
+lpoptions -l -d <name-of-printqueue>
+
+
+*The names of all IPP-defined (Internet Printing Protocol) job options are listed here:
+http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xhtml

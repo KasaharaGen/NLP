@@ -1,0 +1,18 @@
+Q: How can I keep track of twitter usernames in Address Book? I want to add twitter names to my contacts in Address Book. But I cannot find an obvious place to do so.
+The best fit would be as instant messaging username, but twitter is not listed among the services. I there a way to add a service here? Does anyone know where they are stored?
+I could add a new "twitter" label, but I can't stand the "AIM" or "Yahoo" behind it.
+Any ideas are welcome.
+
+A: iOS 5.0 and Mac OS X Lion have native support for Twitter integrated into the Address Book app. On OS X, to add a Twitter field to a contact, select the contact and choose the Card > Add Field > Twitter menu item.
+
+A: You could add an URL to the Twitter home of your contact and label it Twitter.
+
+A: Thanks to the comments on Ipacheco's answer, I ended using a new url labeled "twitter" with a format of "tweetie:@someone" instead of the http:// link to the twitter homepage. This opens up tweetie for Mac and iPhone (now named twitter) whenever you click the link.
+
+A: modify your adressbook template as per this post:
+http://www.flickr.com/photos/vanderwal/3629218638/
+then add a little prefpane called MoreInternet as per this post:
+http://www.macwrite.com/critical-mass/protocol-helpers-and-mac-os-x
+use e.g. twitter: as "protocol" ... so for me you'd add twitter:@trox in a twitter URL field
+configure the prefpane to recognize twitter as a protocol and tell it which app to use (your preferred twitter client -- works only if it has a "creator code", so I wasn't able to use TweetDeck :-o)
+you're all set

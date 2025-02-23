@@ -1,0 +1,26 @@
+Q: How do I install Windows 7 without BootCamp and keep the OS X installation intact? Because I already used BootCamp for creating the partition I used for installing Ubuntu, now I am not able to install Windows 7 by using BootCamp.
+Here is my disk partiton configuration:
+
+
+*
+
+*refit (fat)
+
+*osx (hfs+)
+
+*freespace (here I want to add the NTFS partition)
+
+*linux-swap (raw)
+
+*linux-ubuntu (ext4) 
+
+
+How can I install Windows 7 on the freespace I do have now on the disk? I do not want to destroy osx partition by mistake.
+
+A: You'll probably need to redo this setup and install Windows 7 before Ubuntu. I am pretty sure if you install Windows 7 it will take over the GRUB bootloader. There is an article on lifehacker that gives instructions on how to set this up http://lifehac.kr/ihVY4k
+
+A: I suggest that you use BootCamp for Windows 7, and virtualization for Ubuntu. Since Ubuntu requires so fewer system resources than Windows 7 or Mac OS X, your performance hit should be minimal, if noticeable at all.
+I would first destroy the BootCamp partition using the BootCamp Assistant, then recreate it and install Windows 7. Then install Ubuntu using one of the virtualization programs (VirtualBox, Parallels or VMWare).
+
+A: I think the best and more flexible solution would be to go to virtualization with VirtualBox, Parallels or VmWare. It will leave your OSX system intact. The drawback will be on the performance as you will have both systems running at the same time.
+I personnaly runs a Win7 with VirtualBox and I'm quite happy with it.

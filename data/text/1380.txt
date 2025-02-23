@@ -1,0 +1,12 @@
+Q: Use the power of the graphic card on a MacBook? Is there a way to use the processor of the graphic card on a new MacBook Pro to do some long and repetitive calculations?
+
+A: Have you looked at CUDA (nVidia only) or OpenCL to do just this? Both technologies are made to leverage the GPU.
+
+A: Running computationally expensive tasks on the GPU is something that is coded on the development side.  This is not something an end user can do directly.  If this is something you intend to do from the development side, it should probably be posted on Stack Overflow.
+Wikipedia: GPGPU
+
+A: There are a number of programs written to use the GPU to help users run through various calculations more quickly than with their processor.
+There is an OpenCL directory here of math programs claiming to use the GPU:
+http://opencl.name/top/Science/Math/Software/
+You'll have to sort through which ones run on OS X.
+There are OpenCL tutorials on the net, though, and Xcode is inexpensive.  If you understand rudimentary programming principles you should be able to modify the examples/tutorials to do what you want.  When you get stuck, Stack Overflow is there to help.

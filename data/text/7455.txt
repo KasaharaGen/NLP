@@ -1,0 +1,7 @@
+Q: Can I delete folder Developer-3.2.5? I saw a similar question (Can I delete the /Developer-3.2.6 or /Developer-3.2.5 folders?), but I am unclear if it would break anything. That question assumes the user is not a developer, so I was a little worried and would like to be sure before I do anything. Can I delete this folder? I updated to Xcode 4, but I am unsure if deleting this would remove things that I may need. For example, before Xcode 4 came out, I installed Xcode 3 to compile my C programs (gcc). 
+Right now, there is a Developer and a Developer-3.2.5 folder, so I assume Developer is for Xcode4 stuff.
+
+A: Yes, you can absolutely delete the folder Developer-3.2.5 - it shouldn't effect your workflow in any way UNLESS you want to add an older SDK at a later date.
+If you are interested in seeing more discussion about it, there is also an Apple Support Community thread that essentially says the same thing - that you don't need the folders.
+
+A: It should be safe to delete, if for no other reason than if something does get messed up, you can just reinstall Xcode 4.

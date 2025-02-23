@@ -1,0 +1,18 @@
+Q: Auto open textmate project on startup How do I get textmate to remember what project i had open last and reopen it automatically?
+Right now I have to select it from the menu.
+
+A: By default TextMate should open the last open project or document - but it can be switched on/off - maybe it is off by you ??
+Here is how to switch the feature on/off: http://manual.macromates.com/en/expert_preferences#oakdisablesessionrestore
+
+22.7 OakDisableSessionRestore
+When you launch TextMate it will open the project / document which was open when you last exited. You can however disable this feature by running:
+defaults write com.macromates.textmate OakDisableSessionRestore 1
+
+This means that you should run the above line in a Terminal - with a 0 instead of 1
+
+A: This command allowed me to re-open a project (I'm running Mountain Lion):
+    defaults write com.macromates.textmate NSQuitAlwaysKeepsWindows -bool NO
+
+TextMate needs to be closed when you issue Terminal commands, otherwise they will not work.
+See this page for more information.
+Make sure you created a TextMate project using TextMate. In other words, do not drag a folder into TextMate and assume that all the open-file states to be reloaded.  You must have a .tmproj file into which you drag your files into.

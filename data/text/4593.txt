@@ -1,0 +1,19 @@
+Q: Does it make sense to Quit apps before Sleep? Will quitting (Cmd+Q) large apps before closing the MacBook lid make getting up and running again faster? 
+I have the impression that my MacBook needs more time to recover from sleep if I have large, memory-hungry (LibreOffice, heh) applications open, but that doesn't make much sense from what I believe sleep mode is (e.g., powering down disk and screen but not memory).
+
+A: Yes and no.
+Without knowing the model of MacBook and level of Mac OS X - you may have safe sleep enabled by default. Safe sleep writes the entire contents of RAM to the hard drive, so anything that is still hitting the hard drive for IO might slow things down until the OS has suspended all the active applications in preparation for this write. It is theoretically possible this suspending process could take more time - but in practice I have never seen reports that it is measurable.
+Recovering from sleep is the same since that means that power was not removed and the RAM contents were maintained. I would guess that the number of apps running does affect greatly how long it takes for the mac to become responsive again. Every app will start processing events (keyboard, mouse, periodic checks to save) so there will be a burst of activity to "catch" up to the current time. Newer OS also use launchd to kick off processes that should have been started while the machine was asleep. For example, the daily clean up script runs daily at 3:15 AM - so if the mac was asleep at that time, waking it up at 10am means the 3:15 script gets started as part of the waking from sleep which might slow things down. Add in several other processes on a full mac - and you get the slowness you are observing.
+The no would be if you don't have it asleep over a time when events are started by launchd and if your apps are efficient or don't need to "catch up" - it really depends on your mac and the specific programs running.
+In the end - if you want a more responsive mac when waking it and quitting apps makes that happen - do it! Don't worry of other people have different experiences. The apps you quit are most likely still in virtual memory (which is saved during sleep) so launching them again will be faster than an initial launch which is the entire reason why sleep exists. (unless you have less than 1/4 total RAM listed as inactive RAM in Activity Monitor).
+
+A: IMO That defeats a bit the purpose of the sleep.
+When going to sleep, the mac saves the RAM content to the HD and depending on the HD speed and also the RAM speed it may be slower in your mac.
+Obviously if the RAM content isn't very full it will probably take less time to sleep and wake up but as I said, for me sleeping doesn't make sence if you have to quit the apps beforehand.
+Other thinks can be slowing down your mac, maybe you could do some maintenance (ex: repair permissions).
+
+A: If you don't intend to restart the app when you wake your Mac then yes, your overall time could be shortened.
+If you're just going to launch the app again on wake with the same documents and such then no, you're not saving time overall and are likely losing a bit of time.
+
+A: I think the long and short of this is that it is going to be about the same amount of time to either sleep with the applications running and restarting or sleeping with no applications running and then having to restart each application (I would actually bet that this is more time consuming). Both approaches will take about the same amount of time in non-scientific testing and closing all the applications does sort of defeat the purpose of sleep. Either way this is probably well under a minute...
+If it is taking more time than that, then I too would recommend running maintenance on the macbook.

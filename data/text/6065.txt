@@ -1,0 +1,75 @@
+Q: How to add characters to the press and hold character picker in OS X Lion? In OS X Lion, there is a very useful feature for people like me who need to write in multiple languages, which pops up a small menu of additional characters when you hold down a letter.
+For instance, when I hold down the letter E, I get:
+
+This is great when I'm writing in French for example. However right now I need to write something in Czech; however, the Czech letter ě (looks like the 3rd letter in the popup with the accent flipped) does not appear in the popup.
+Is there a way to tell OS X to include Czech or other additional characters in those popups?
+Note: I do not want to use the Czech keyboard layout; I found switching layouts for each language is somewhat unpractical.
+
+A: The characters included in the popovers are defined in property lists inside the /System/Library/Input\ Methods/PressAndHold.app/ bundle.
+I was able to change à to y by editing /System/Library/Input\ Methods/PressAndHold.app/Contents/Resources/Keyboard-en.plist and logging out and back in.
+(note the escape in "Input Method" if you're copy pasting)
+<key>Roman-Accent-a</key>
+<dict>
+    <key>Direction</key>
+    <string>right</string>
+    <key>Keycaps</key>
+    <string>a y á â ä æ ã å ā</string>
+    <key>Strings</key>
+    <string>a y á â ä æ ã å ā</string>
+</dict>
+
+
+
+A: If you are using macOS Sierra, you need to look elsewhere to change it. Here are my instructions, inspired from Custom Characters in OS X Accent Popup - George Garside:
+
+
+*
+
+*Disable System Integrity Protection as detailed in How to turn off rootless in Mac OS X El Capitan - MacWorld.
+
+*Navigate to /System/Library/Input Methods/PressAndHold.app/Contents/PlugIns/PAH_Extension.appex/Contents/Resources/ in the Finder. To go to it quickly, press ⇧⌘G and paste the string in.
+
+*Find your keyboard plist file. If you are using the English layout, you would be looking at Keyboard-en.plist and if you are using the German layout it would be Keyboard-de.plist. It could have other names as well, depending on your keyboard language.
+
+*Back this file up by pressing ⌘D. Rename the copy you made to something with "backup" in its name.
+
+*Open up the original file (without backup in its name) and edit the characters you want to in. After that, save it.
+
+*Enable System Integrity Protection as detailed in the same page as step 1.
+
+A: Using the info in this thread I answered the same question on MacRumors. 
+I made a custom .plist file specifically for Chinese Pinyin input. So I wanted to link to a plist that is created for Chinese phonetics. You can download it here. 
+
+A: My solution (for Czech):
+
+
+*
+
+*Backup /System/Library/Input Methods/PressAndHold.app/Contents/Resources/Keyboard-en.plist file
+
+*Copy /System/Library/Input Methods/PressAndHold.app/Contents/Resources/Keyboard-cs.plist and rename it to /System/Library/Input Methods/PressAndHold.app/Contents/Resources/Keyboard-en.plist
+
+*Remove useless characters from new /System/Library/Input Methods/PressAndHold.app/Contents/Resources/Keyboard-en.plist
+
+A: I got it to work on OS X 10.11!
+Looks like they changed the location to:
+/System/Library/Input Methods/PressAndHold.app
+—> Right Click + Show Package Contents
+/Contents/PlugIns/PAH_Extension.appex
+—> Right Click + Show Package Contents
+/Contents/Resources/Keyboard-en.plist (or whatever keyboard you use).
+In there you can click the drop-down arrows, then double click next to "Keycaps" and change the keys to your desired keys. 
+
+See, it works!
+
+A: I know this is a little late, but I feel it's an important contribution: you can not only press-and-hold keys to input special characters; you can also input strings of text. For example, I configured my Keyboard-en.plist file so when I hold the "p" key, I can choose between my first name (which is pretty long), last name, and email address (which is also long). I feel this might be useful to some people, so this is what it looks like:
+<key>Roman-Accent-p</key>
+<dict>
+    <key>Direction</key>
+    <string>right</string>
+    <key>Keycaps</key>
+    <string>p firstname lastname email</string>
+    <key>Strings</key>
+    <string>p firstname lastname email</string>
+</dict>
+

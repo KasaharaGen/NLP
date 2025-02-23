@@ -1,0 +1,9 @@
+Q: How to disable composite keys on Mac OS X I've got my mac two months ago and there is a problem that kinda bugs me to death. It is related to input languages and composite characters (those made up from more than one character, for example in Bulgarian Phonetic layout, the characters 'a(cyrillic a) produce ђ ). 
+I'm looking for a way to disable this behavior as I almost never (let's say never had to use them) and it gets in the way when I need to type ' followed by some other character - for example when I try to write python comments and I'm in Bulgarian Phonetic, when i type 3 ''' and then press enter for next line, a fourth ' is added and I have to delete it and press enter again. 
+Any ideas on how to disable this behavior. I couldn't find anything on the interwebs, but I believe it's because I can't formulate my search query right, as I don't even know how this feature is called.
+
+A: According to similar questions in stackoverflow and superuser Ukelele is the tool to edit and eliminate dead keys.
+
+A: Composite keys are bound to the 'Input Source' of your mac. 
+In your 'System Preferences', in 'Language & Text' you will see the option 'Input Source'.
+If you have selected 'U.S. International - PC' for example, you will have the dead key problem. But if you change that to ordinary 'U.S.' you are fine and dead keys won't be a problem any longer.

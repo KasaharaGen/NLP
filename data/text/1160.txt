@@ -1,0 +1,12 @@
+Q: Search for a string in Preview I use Preview's Command-F (find) to search for C# in the pdf document. However, the result is not for 'C#', but just 'C': I get hundreds of meaningless search results.
+How can I get the search result exactly for 'C#' or 'C++' in Preview?
+
+A: I've not found a way to get Preview to search for characters like # or +, but Skim, an alternative PDF viewer (homepage here), is a good replacement/addition to Preview and is able to search more specifically.
+I've tested it and found it was able to find C++ (without needing any quotes/special options) without bringing up all C results.
+It was also able to search specifically for accented characters (like é or ö) — though requires such characters to be accented in the search to find them (i.e. you can't search for blah and expect it to match bläh, nor vice versa). In Preview, either search will return matches for both accented and unaccented characters.
+
+A: Enclose the search string in double quotes, as such: "C++". This will filter the search results from the search for "C" so select Relevance as your sorting criterion from the gray toolbar that appears. All the pages with occurrences of "C++" will then be presented first.
+
+A: You could just open the PDF in Safari. Safari has a more standard approach to searching PDFs -- it looks for exactly what you type. Preview used to behave this way, but somewhere around OS X 10.5, Apple tried to make it smarter, e.g., looking for pages that contain some or all of the words you type, instead of treating your words as a phrase. This new behavior in Preview is much less useful to me, but I don't know any way to turn it off. You can partly get around it by putting quotes around phrases, but I haven't found any way to get Preview to search for symbols, e.g., "C++".
+
+A: Use Google Chrome's built-in pdf renderer. Enter the file:///path/to/file.pdf URL of the file, or bring up the file browser by entering a know directory, like file:///Users/home and navigate to the file location.

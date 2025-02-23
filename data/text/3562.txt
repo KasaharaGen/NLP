@@ -1,0 +1,13 @@
+Q: Why isn't my MacBook running 64 bit mode? 
+Possible Duplicate:
+My mac has 64-bit EFI, but it only boots with 32-bit kernel 
+
+Why isn't my MacBook running 64 bit mode? It's a mid-2010 model, "MacBook 7,1" , with a Core-2 Duo. why would it run in 32-bit mode? Could it be because I've only got 2GB of RAM?
+
+
+A: I don't think these machines booted into 64bit. (the new macbook pros do).
+You can hold down 6 and 4 whilst rebooting for a temporary 64bit boot (if available)
+If that works, you can try this in terminal and then reboot
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.Boot 'Kernel Flags' 'arch=x86_64'
+
+This will make the mac boot in 64bit mode by default.

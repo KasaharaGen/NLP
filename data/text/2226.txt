@@ -1,0 +1,19 @@
+Q: Bash or Zsh, what's the difference, why use one or the other? So, the question pretty much says it all. I'm on Snow Leopard, and I do a lot of web development, particularly in Rails 3 which makes heavy use of the console.
+I've seen some notable bloggers etc. mention Zsh as their preference over Bash, but I don't know what difference it would make.
+Could anyone give me a good comparison of what difference there is and what might make one prefer one option or the other?
+
+A: This is from the Zsh FAQ:
+
+2.5: Similarities with bash
+
+The Bourne-Again Shell, bash, is another enhanced Bourne-like shell; the most obvious 
+difference from zsh is that it does not attempt to emulate the Korn shell. Since both 
+shells are under active development it is probably not sensible to be too specific 
+here. Broadly, bash has paid more attention to standards compliancy (i.e. POSIX) for 
+longer, and has so far avoided the more abstruse interactive features (programmable 
+completion, etc.) that zsh has.
+
+I've used them both, but prefer Bash now days because the machines I work on default to bash consistently. The standards-compliancy comment is important to me because that means consistency between OSes.
+Zsh has nice autocompletion abilities, but I kept finding cases where it didn't know what I wanted. That was several years ago, so it might have improved since then.
+I've found that enabling "vi-mode" (set -o vi) in Bash makes it a much nicer command-line environment than it normally is, so I do that immediately in my .bashrc file.
+When writing shell scripts I don't ever program in either bash or zsh - I program using sh (/bin/sh), because it's the lowest common denominator and the least likely to have compatibility issues. That's just an old habit that has stood me well.

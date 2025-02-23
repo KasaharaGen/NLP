@@ -1,0 +1,16 @@
+Q: Optimal method to test an external hard drive? I've got an HFS+ formatted external drive that is starting to act a bit funny, mainly causing my mac mini (finder) to freeze up on occassion when accessing it.
+Fearing imminent failure, what is the most comprehensive way to determine the health of the physical drive and the file system?
+Verify in Disk Utility indicates the disk is fine, but weird behaviour would indicate otherwise.
+
+A: Apple's Disk Utility doesn't have false positives but it can miss some errors. 
+Although it's not cheap Disk Warrior is magic for these sort of problems, in my experience it's fixed all non-physical-damage errors that I could throw at it. 
+If you're not keen to spend money, and if you've got the hard disk space, copying the contents off, repartitioning your external drive and copying back on on might clear up your problems. Copying the whole disk's contents (starting with what is most valuable to you, in case it dies while you're copying) is probably a good idea anyway, in case your disk is on its death bed. 
+
+A: Yes, Drive Genius allows to check surface for bad sectors even in demo mode:
+
+There is also option to perform an "Extended Scan" which checks disk for read and write ability of a disk (burn-in test for drives).
+It also supports block remapping "Spare bad blocks" option but you should backup your data before doing this.
+There is related question where some more utilities may appear in answers.
+It's hard not to mention MHDD which gives much more information about what's going on with you disc while it scans it (instead of showing nice visualisation):
+
+Here is video from Youtube.

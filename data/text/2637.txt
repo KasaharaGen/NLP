@@ -1,0 +1,5 @@
+Q: TFTP Server on 10.6.6 How do I enable an existing TFTPd within 10.6.6 ?
+
+A: Do you need to run it with any special settings?  By default, it runs chrooted in /private/tftpboot; if you want anything different in the setup, edit /System/Library/LaunchDaemons/tftp.plist as appropriate.  Then, activate it with:
+sudo launchctl load -w /System/Library/LaunchDaemons/tftp.plist
+

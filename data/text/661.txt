@@ -1,0 +1,31 @@
+Q: What is time machine backing up? Is there a way to find out what time machine is backing up?
+My time machine has been running fine, but it suddenly started to back-up 20GB a few days ago when I have not changed that much since last back-up.
+This morning it started to back-up 14Mb, but I have not used it since it's last back up at 00.01 am.
+Thanks,
+Linda
+
+A: There are two tools I know of that do this: (1) BackupLoupe (which is a GUI application) and (2) timedog (command-line Perl script).
+
+A: Mobile Time Machine and Time Machine in Lion: using Terminal to view activities
+At any time
+A command such as this will present a lightweight overview: 
+tail -f /private/var/log/system.log | grep -E 'backup|mtm'
+During a backup
+A command such as this will present detail: 
+sudo fs_usage cmd backupd
+When you have finished
+To interrupt a running command:
+controlc
+tmutil
+From the manual page for tmutil in Mac OS X 10.7 (Build 11A511), the description: 
+
+tmutil provides methods of controlling and interacting with Time Machine, as well as examining and manipulating Time Machine backups. Common abilities include restoring data from backups, editing exclusions, and comparing backups.
+
+Expect Apple to publish that manual page, and others for 10.7, at: 
+
+
+*
+
+*API Reference: Mac OS X Manual Pages
+
+A: TimeTracker is a quick-and-dirty application that displays the contents of your Time Machine backups, and shows what's changed since the previous backup.

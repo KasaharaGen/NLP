@@ -1,0 +1,47 @@
+Q: How to update virtual machine disk space in VMware Fusion? I'm using Windows 7 on VMware Fusion.
+In the hard disk settings of the virtual machine I've set Disk Size to 65GB, I've selected pre-allocate the space and applied.
+However when I run Windows 7 I still the old amount of space (and not the 65G), and on the mac I still can see the same space available. What am I doing wrong?
+
+A: You need to extend the windows disk size from a running windows.
+Here is how you do it: http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1007266
+Now that you have extended the VMware image size, you need to start at #6 in the link.
+EDIT:
+I don't want to write a new answer, and the comment text-box isn't large enough - so here is a more less re-write of the link:
+1) extend the VMware image size.
+2) attach the HD image to an existing virtual disk of the same OS as the resized image (Virtual Machine Libary->[select the VM to use]->Settings->Hard Disks->[click +]->[select the new HD in left menu]->File name->Choose existing disk...->[navigate to the resized image, and select the .vmdk]->[choose "Share this virtual disk....."]->Open->Apply) - if you will go the safe way, you'll choose "Make a separate copy af the virtual disk" instead of the "Share this virtual disk...."
+3) Start the virtual machine that you just attached the new HD to.
+4) Now because you are using Windows 7, you need to go to "Start->Computer Management->Disk Manager" and right-click on the partition you need to extend, and select "Extend Volume".
+5) power off (shutdown VM) - and remove the HD attached in #2 - don't delete it...!
+6) if you in #2 choose to make a copy of the .vmdk, then you need to replace it manually in the VMware image file (package) - right click on the VMware image (.vmwarevm)->Show Package Contents.
+7) Power on the virtual machine from #1, and verify the disk size change. 
+
+A: In the most recent VMWare Fusion (e.g., 6.0.2 or later), at least for a Windows XP VM, this happens automatically. Summarized, the steps are:
+-a) shut down the VM
+-b) go to Settings / Hard Disk, and increase the disk size to the desired value
+-c) wait while VMWare Fusion says something like: "Extending disk..."
+-d) start the VM.  It will run a file system check and auto-extend the volume as the system boots up.
+-e) you may have to restart the VM one more time.
+This is much simpler than the analogous process for, say, an Ubuntu Linux VM, which requires some GPartEd magic.
+
+A: Note: To edit the hard disk size we must remove existing snapshots, so be careful
+First, remove any existing snapshots and edit the Hard disk size and launch the VM
+COMMANDS
+Run below commands as ROOT user
+$ fdisk -l
+
+$ gparted 
+
+=> Select the File System 'linux-swap' and click on 'Swapoff'
+=> Select the File System 'extended' then do right click and select 'resize/move' and drag the right arrow to full-right, then click 'resize/move'
+=> Select the File System 'linux-swap' then do right click and select 'resize/move' and drag the left-and-right symbol to full-right, then click 'resize/move' and click 'OK'
+=> Select the File System 'extended' then do right click and select 'resize/move' and drag the left arrow to full-right and select Align to 'Cylinder' from drop-down menu, then click 'resize/move'
+=> Select the File System 'ext4' then do right click and select 'resize/move' and drag the right arrow to full-right, then click 'Resize'
+=> Then either click on 'check symbol' or go to edit and select 'Apply All Operations' then click 'Apply ' and 'Close' (Ignore warnings)
+$ reboot
+
+$ fdisk -l
+
+References
+https://www.youtube.com/watch?v=NwpzYlfKnrY
+https://www.techrepublic.com/article/extending-partitions-on-linux-vmware-virtual-machines/
+https://communities.vmware.com/t5/Virtual-Machine-Guest-OS-and-VM/Complete-Guide-How-to-Increase-space-on-Linux-vmware/td-p/388872

@@ -1,0 +1,19 @@
+Q: Make Spotlight show files on unmounted volumes Is there a way to make Spotlight show files that reside in different unmounted Volumes?
+I think there is no official way of doing this, and that Apple does not provide a plugin API that allows this kind of behavoiur but, is there any hacky way this could be implemented?
+(Maybe in a similar way to the Spotlight Google Importer:)
+
+
+*
+
+*http://www.apple.com/downloads/macosx/spotlight/googleimporter.html
+
+A: The official way is to store files on Mac OS X server volumes where the spotlight server functionality has been written to provide search of unmounted volumes.
+I am unaware of a free or open source effort to recreate this function but it is certainly doable. If you only want filename search, you could use locate and launchd to extend the local copy of the locate database each time an external drive is mounted. 
+Many replacement tools catalog external volumes but they don't inject data into spotlight and you have to use their app to get at offline index data. Here are two that have been around a long time but also updated for snow leopard. 
+
+
+*
+
+*media catalog 
+
+*disk tracker

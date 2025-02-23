@@ -1,0 +1,3 @@
+Q: Base computation via Spotlight? Is there a combination of math functions I could use in spotlight to accomplish change of base ? I know I can do it on a case by case basis with normal algebra.
+
+A: The algebraic way to do it is logbx=logax/logab. In spotlight, the log(x) function is log10x and the ln(x) function is logex. So taking logbx would be log(x)/log(b). However, rounding is significant enough to have the answer off even if it should be a whole number. For example, I tested log(4)/log(2) and got 1.9999999997 when it should be exactly 2.

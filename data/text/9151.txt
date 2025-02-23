@@ -1,0 +1,49 @@
+Q: Disk Utility says: "Error: This disk doesn't contain an EFI system partition." After a clean install of Lion, followed by partitioning which again was followed by a installation of Ubuntu, I noticed some error messages of Disk Utitity.
+When verifying the volume I get told that there is no EFI partition. But you can clearly see one in Disk Utility (and with diskutil list). The Mac boots fine. I have no problem choosing between booting into Mac or Linux at boot.
+
+
+
+
+A: The default results of diskutil list on a clean Lion installation should be as follows:
+mac:~ me$ diskutil list
+/dev/disk0
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *500.1 GB   disk0
+   1:                        EFI                         209.7 MB   disk0s1
+   2:                  Apple_HFS Macintosh HD            499.2 GB   disk0s2
+   3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+
+My definition of a "clean install of Lion" involves letting Disk Utility from the installer partition the drive as GUID and telling it to use all space as a single partition.
+Furthermore, your disk0s1 / EFI partition shouldn't show as partitioned according to disk utility:
+mac:~ me$ diskutil info disk0s1
+   Device Identifier:        disk0s1
+   Device Node:              /dev/disk0s1
+   Part of Whole:            disk0
+   Device / Media Name:      EFI system partition
+
+   Volume Name:              Not applicable (no file system)
+
+   Mounted:                  Not applicable (no file system)
+
+   File System:              None
+
+   Partition Type:           EFI
+   OS Can Be Installed:      No
+   Media Type:               Generic
+   Protocol:                 SATA
+   SMART Status:             Verified
+
+   Total Size:               209.7 MB (209715200 Bytes) (exactly 409600 512-Byte-Blocks)
+   Volume Free Space:        Not applicable (no file system)
+   Device Block Size:        512 Bytes
+
+   Read-Only Media:          No
+   Read-Only Volume:         Not applicable (no file system)
+   Ejectable:                No
+
+   Whole:                    No
+   Internal:                 Yes
+   Solid State:              No
+
+Since your mac will boot, it may be overkill to erase everything and start over, but your EFI partition is hitting a check that Apple built into the Disk Utility, so do know that future updates could have problems and you might be forced to re-do things at a time less convenient if the difference between your system and an expected / Apple generated EFI actually breaks something Apple changes down the road (or when certain expected conditions arise like a firmware password, etc...). 
+On the flip side - it could be a simple check to alert you of a non-standard EFI and not that your EFI is in some way ever going to break. Can another vendor support your Microsoft EFI? If so, you might be able to leave it as is since it appears you are clearly using tools designed to make proper changes even if Disk Utility isn't able to guarantee the changes are appropriate.

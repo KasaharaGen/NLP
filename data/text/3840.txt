@@ -1,0 +1,34 @@
+Q: Restore OS after Harddrive upgrade I planning to upgrade my 2010 MBP's Hadrdrive from 160GB to 500GB, I have alrerady lot of data on the existing disk, including Bootcamp partition.
+Could anyone suggest how to do I go ahead with restoring the data? I don't want to recreate/reinstall bootcamp after upgrade. 
+
+A: It looks like Carbon Copy Cloner cannot backup non-hfs+ volumes for you, which would be the main piece of software I would recommend for this. However, with the addition of Winclone, it seems you can do it without too much extra work.
+I would first get an enclosure so I can work with both drives at the same time, but you don't actually have to, you just might need another Mac to be the middle man.
+You will have to recreate the bootcamp partition on the new machine using the bootcamp assistant, but Winclone will automatically shove your Windows data back onto the volume, even if the sizes are different (of course, destination needs to be larger or same size as your previous boot camp partition).
+So for the easy part:
+
+
+*
+
+*Download CCC
+
+*Launch Carbon Copy Cloner
+
+*Choose the volume that you want to clone from the Source Disk menu
+
+*Choose a properly-formatted volume from the Target Disk menu
+
+*Set the Cloning method to "Backup everything"
+
+*Click the Clone button
+
+
+This will put your Mac system on the new drive. Only use this method when it is staying in the same type of machine however, otherwise there can be issues. 
+Then, use Winclone to backup your Windows partition, and save it on the drive. The instructions below are lengthy so I didn't paste them that much, but overall its check 3 buttons, it will unmount the partition and save it as a file.
+Next, switch the drive configuration, and boot into your normal system verifying all but the Windows partition is working. You then would need to run bootcamp, create a Windows partition, and follow the Winclone instructions to restore it from the file you created on your old disk.
+
+
+*
+
+*https://www.macworld.com/article/131253/2007/12/winclone.html
+
+*https://gigaom.com/2010/01/12/how-to-image-os-x-and-boot-camp-to-a-new-mac/

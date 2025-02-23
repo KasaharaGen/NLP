@@ -1,0 +1,16 @@
+Q: Is there a QuickLook preview for plain-text files with unknown extensions? A similar question was asked here but the answer refers to something called QL Stephen, which only claims to preview files with no extension.  I need something that will show previews of files with extensions that are unknown to the Finder.  They are all plain-text files.  And, it needs to run on Lion (10.7).
+To clarify: I'm not looking for a default QL for any unknown extension, but rather for one that will preview certain specific extensions (e.g., .sps, .fort) as plain text.
+
+A: You can use QuicklookStephen (https://github.com/whomwah/qlstephen).
+Install via Brew:
+brew install qlstephen
+
+and then reset the Quicklook plugins:
+qlmanage -r && killall Finder
+
+and you should be good to go!
+Tested with both files without extension and files with "unknown" extension (e.g. .nfo)
+
+A: After a quick google, maybe this is what you need?
+http://hints.macworld.com/article.php?story=20071028184428583
+It explains how to declare specific file types as plain text, QuickLook will use these declarations.

@@ -1,0 +1,39 @@
+Q: Log out other user w/o first switching to that user My wife use separate accounts and quick user switching on a MBP running 10.6. Sometimes I want to log her out to free up some RAM, but I'd like to avoid logging in as her, logging out, then logging back in as me.
+I have seen a terminal solution... is there a better way? Thanks!
+
+A: I think the simplest way of doing it is : 
+sudo killall -9 -u wifes_name 
+
+A: Using the Terminal, you can kill her loginwindow process and any programs she has open will be closed... but this will cause her to lose any unsaved work she has! In fact, this is the very reason you need to log in as her to log out: When you log in as her, all her programs again have access to the GUI, so they can prompt you to confirm closure, save changes or take other action before logging out.
+If you're sure that she only has things like a web browser, iTunes, etc open, not Pages, Word, Photoshop, or anything else with documents, then you could try from the terminal:
+kill `ps awwwwux | grep her_short_username | grep loginwindow | grep -v grep | awk "{ print \$2 }"`
+
+On OSX 10.10.4: (slight edit from last comment): 
+export pn=`ps awwwwux | awk '/her_short_username/ && /loginwind[o]w/ { print $2 }'`
+sudo kill -9 $pn
+
+
+A: You can use the Activity Monitor to log another user out by killing their login process:
+
+
+*
+
+*Run Activity Monitor
+
+*In the filter at the top-right, type loginwindow
+
+*Click the row with the user's name in the User column
+
+*Click Quit Process, then Force Quit, and type your password.
+
+
+This is just a nicer(?) GUI version of Josh's answer.
+Before step 2, you can review the other user's running processes to see if they are running any apps that might lose data on logout.
+
+A: This command is simpler than the one suggested and it will have the desire result to kill all the user's processes (I had to run it twice)
+sudo pkill -9 -u user
+If you just want to kill the loginwindow process for that user you can do the following:
+sudo pkill -9 -u user loginwindow
+
+A: In my opinion, the possible loss of data far outweights the possible gain in RAM.
+Moreover, it has been a long time since Unix was able to swap memory to disk when a process was idle.

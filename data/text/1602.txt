@@ -1,0 +1,262 @@
+Q: How can I figure out what's slowly eating my drive space? Every few days I get notices on my MacBook that it's running or run out of hard drive space. Curiously, restarting the computer will enable me to recover gigabytes of space (this past time, it was able to recover about 2.2GB). However, I can't identify anything in my personal activity that consumed that space.
+It's possible that it's a rogue iTunes podcast or a huge software update that my Mac is automatically downloading - would either of these reclaim the space upon a restart?
+One possibility that I can think of is that FileVault has some sort of disk leak, allocating but not freeing files. Does this make sense? Is there a tool that I can run to determine where this space is going? Assuming it is FileVault, should I try to disable it? What's the best way to turn of FileVault on a nearly full computer?
+Warning about answers and new macOS
+For users of Ventura and newer macOS. Apple have increased control of what can be seen by Apps so the apps listed as answers will not work fully without some extra configuration. They will need to be granted Full Disk Access and to see files that cannot be read by the current user will need root privileges - so version from App Store will not provide complete results. See System data storage is huge (This is not part of the question but I can't think of anywhere else to place this as applies to all answers.)
+
+A: It looks like FileVault can cause some issues some issues with free space. Unless you really need the integration that FileVault provides, I would suggest disabling it and using TrueCrypt instead. It is open source and will not crazily eat up free space.
+You can also check out this guide on how to free up hard drive space on OS X or run a disk usage disk utility (such as one Doug Harris suggested).
+Edit: Since originally answering, FileVault has been significantly overhualled in OS X Lion and is much more reliable.
+
+A: WhatSize
+is a disk space visualizer that costs US $13.00. While similar to other programs described above, it also has a mode wherein you can see, measure and even delete files that belong to the System or other users.
+
+
+A: DaisyDisk (Free Trial, $9.99)
+
+DaisyDisk is sort of like WinDirStat for Windows, in that you can see your files as a visual hierarchy and find out which ones are taking up the most space.
+Where Daisy Disk excels is two places:
+
+
+*
+
+*It's programmed to efficiently and using parallel processes rapidly search out all the special cases where Apple has filesystem allocations that are more unique to Core Storage and APFS and local snapshots / containers.
+
+*It also explains all of these special cases and errors very well. When you have allocations with large amounts of missing space, it saves you from learning all the details of purging local snapshots in the command line, knowing when it's time to boot to recovery to run Disk Utility to check the disk itself when the graphs don't add up correctly, etc...
+
+
+Yes is costs money, but hopefully you save sanity and time in the long run since it’s been a solid tool for many years. 
+Credit to Sathya for his answer in Super User.
+
+A: There is a good article from Apple on How to free up storage space on your Mac which mentions built-in disk space consumers discovery tools, available starting with macOS Sierra (10.12).
+The most useful tool is the File Browser which allows you to see which file and folder take how much space. To access it:
+
+*
+
+* > About This Mac, then click Storage (More Info on macOS Ventura 13.0 and newer)
+
+
+*Click Manage... (Storage Settings in macOS Ventura)
+
+
+
+*On next page click Documents (or info button next to it on macOS Ventura)
+
+
+
+
+*Then click File Browser tab and feel free to use it to figure the biggest space consumers.
+
+
+This tool has a single limitation: it only allows you to browse files within your home folder.
+
+A: Disk Inventory X is another excellent disk space visualizer.
+
+FileVault or any other third party software is not necessary at fault here. 
+Mac OS X is simply a complex and modern operating system that uses disk space is dynamic and often unpredictable ways. Not only does the swapfile grows and shrinks but OS X also has a sub system that creates a Dynamic Loader Shared Cache that can grow to enormous sizes without your knowledge. The cache is located at /var/db/dyld/
+Do not ever mess with OS X's caches and swapfiles. The cache gets flushed when booting into SafeMode and gets recreated during normal boots. In short, that's simply disk space overhead to run OS X. You can't really recover or control the cache.
+Someone at macfixitforums.com has kindly compiled a list of usual suspects that snatches disk space in Mac OS  under the posting Where Did My Disk Space Go?
+
+A: Describe me as a minimalist, yet I dropped most of GUI solutions and by experience, I prefer to use the following strategy:
+
+*
+
+*fire up you command-line interface client (terminal, iterm, ...)
+
+*identify the path of the drive that is full: /, /Volumes/data and change to this directory (that is; cd /)
+
+*ask for the size in the hierarchy and sort it: du -k |sort -n
+It is a quite universal law that "small files are many, large files are a few, but these are very large" - such that you may quickly find the culprit.
+
+A: Download and run GrandPerspective for a nice graphical view of what's occupying disk space -- something like this:
+
+Run this before and after the reboot and you should be able to see what the big differences are.
+
+A: I used Disk Inventory as did many others here and found I found multiple files of iphone and ipad backups.  As I drilled down into it, I discovered that I had 4 Gb of backups that were two years old for older devices I now longer used.  This was a nice find on my 128 Gb Hard drive.
+If you've had multiple devices on your mac, check ~library/application support/mobilesync/backup.  Each backup is in its own folder and the out-dated ones will easily stand out. 
+
+A: You don't need any tools if you care to use Apple's included tools.
+Start with System Information and the About this Mac Menu bar item in the Apple Menu.
+
+
+*
+
+*select the Apple Menu
+
+*About this Mac
+
+*More Info
+
+*Storage (top left of the window between Displays and Memory)
+
+
+
+This tool uses the spotlight data, so if it seems off you can reset spotlight and leave the mac running for several hours to regenerate all the data that feeds the storage usage graph. In fact, on recent OS (10.10 and 10.11) many of the times when free space gradually declines and clears at boot is due to spotlight getting stuck and generating database files on an ongoing basis. You can check for that with a command:
+sudo du -sm /.Spotlight-V100; sleep 600; sudo du -sm /.Spotlight-V100
+
+That way you get a snapshot of the size of this directory and another 10 minutes later (or more if you aren't watching to re-enter your password)
+If you need more granular data, use Finder and open a window in list view of the computer:
+
+
+*
+
+*Shift + Command + C
+
+*Command + 2
+
+*Command + J
+
+
+Tick the Calculate all sizes check and then use the triangles to expose folders and keep track of what folders are growing as you use the Mac over a 20 minute period.
+You can also inspect the filesystem raw access with fs_usage in the terminal app, but it's a bit like trying to take a sip from a fire hose. If you can narrow down a process or a folder to search for with grep the filesystem activity becomes more helpful and useful to know what's happening at the lowest levels of filesystem access.
+
+A: It sounds like the space recovered is from your swap (vm) and sleepimage files. Restarting will clear the files in /var/swap/ which can grow considerably if you're running out of RAM or are using a laptop. If you are using a laptop you'll find a file called sleepimage that is the size of the amount of RAM you have installed and it can be safely deleted - that said deleting anything from here is temporary.
+If you need more space than I suggest using applications (as suggested) like Grand Perspective or Disk Inventory X to find large files. You can also remove additional language translations by hand or using an application like Monolingual - for example as an extreme iWeb drops from nearly 1GB to ~150MB after running Monolingual.
+If you want to turn off FileVault you can follow Apple's instructions: by simply unchecking FileVault in the Security Preference Pane in System Preferences.
+
+A: Find the Culprit File. Solution
+Among all the above Answers.. 
+you could simply hit this command on the Terminal to find out the culprit file... 
+This command finds all the individual files whose size is greater than approximately 100MB and then prints them on the terminal. 
+sudo find / -type f -size +100000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+
+In my case there was a tomcat log file which went to whooping 13GB. 
+
+A: One more free and useful Mac disk space utility from The Omni Group, OmniDiskSweeper.
+
+A: Real time visualisation of file system activity
+fseventer
+http://fernlightning.com/doku.php?id=software:fseventer:start
+If you use Lion
+Mobile Time Machine
+Local disk space will be used, intelligently — never so much to cause an alert from the system. If you're curious, you can run two commands in Terminal:  
+man mtmd
+q
+tail -f /private/var/log/system.log | grep -E 'backup|mtm'
+— set that Terminal window aside, leave it in background, work normally for an hour or so. What's logged should reassure you. When satisfied/finished, bring the Terminal window to foreground then interrupt the running command: 
+controlc
+Misconceptions of the Mobile Time Machine file system
+In Mac OS X 10.7 Lion: the Ars Technica review (page 18) (2011-07-20) there's perception of an overlap, a description of something as suboptimal, and talk of copies. 
+The notion of local disk space being used for copies may be understandably alarming — "copying something takes time, places load on the CPU" and other such thoughts. 
+I suspect that Lion's use of NFS for Mobile Time Machine local snapshots will prove to be not comparable to copying, in that sense. Suspect a very intelligent use of space that involves neither copying nor movement of files — the magic done at catalog B-tree and related levels on the HFS+ volume, and at some level in mtmfs. 
+[macbookpro08:~] gjp22% date
+Tue  2 Aug 2011 15:13:04 BST
+[macbookpro08:~] gjp22% uname -a
+Darwin macbookpro08.centrim.freeman-centre.ac.uk 11.0.0 Darwin Kernel Version 11.0.0: Sat Jun 18 12:56:35 PDT 2011; root:xnu-1699.22.73~1/RELEASE_X86_64 x86_64
+[macbookpro08:~] gjp22% sudo fileXray --volume_header /Volumes/MobileBackups
+Could not determine an appropriate HFS+ volume from "/Volumes/MobileBackups". The file system type of /Volumes/MobileBackups is 'mtmfs'.
+
+To sum up: after initial concerns are set aside, most people should find local snapshots to be a good thing, with an impact on performance that is either imperceptible or negligible. 
+FileVault 1 in Snow Leopard or Lion
+In more modern versions of the operating system, use of bands for FileVault 1 should be not problematic. AFAIR space is freed dynamically, without the need to log out. 
+Whether free space was as well managed with FileVault 1 two years ago, when the question was posted, I can't recall. 
+
+A: I've had a very similar issue, and so I decided to compile several methods for solving it. So, following, there are those options and some of them I got from the answers already provided here. I understand this is a little bit offtopic from the question, but it's in tune with the answers. This has many parts and those are all softwares I could try myself somehow.
+It's generally a good idea to pay close attention for using the sudo options below so the software can have access to every file, which will likely include some big hidden ones.
+
+Here's a brief list of apps for checking the disk usage:
+
+*
+
+*GrandPerspective is only graphical, using the Treemap, it can measure files by logical or physical methods before scanning, show/hide package contents and change color scheme on the fly. It also is able to save the scanned data for archiving or comparing multiple windows.
+
+
+*Disk Inventory X also uses the Treemap graphical scheme but along side a list view of folders and files. The grahpics isn't as good as GrandPerspective neither the list as good as OmniDiskSweeper, but it does a good job mixing both. It has a Finder plugin and the most options between the 3 on preferences. It's the most complex, but not all complete.
+
+
+*OmniDiskSweeper is non-graphical and very similar to Finder's column view. You choose the folder or disk to analyse, it will order them by disk usage after taking its time to calculate. You can then just delete (move to trash) anything listed.
+So each one has its advantages and highlights, I'm still not sure if there's one that comes on top. They're all free.
+
+There is also a different approach, of apps for scanning specific expected places and files for space usage in non-optimal ways. They basically gather some known things about the system that can be bloating your disk all in one nice interface so you can see and decide what to delete.
+
+*
+
+*CleanMyMac lists caches, logs, language files, universal binaries, development "junk", extensions and applications. It scans through the files and also uses some knowledge base it has. Great interface, simple to use. CleanMyMac has a free trial which will only clean up to 500 MB.
+
+
+*XSlimmer is very specific. It remove "unnecessary" code from "fat" binaries and Strip out unneeded languages, as it says on the website. Universal Binaries, that is, use a lot of space for storing files to run in several different architectures and languages. So, this strips all of them to shrink to only your computer needs. XSlimmer is currently discontinued.
+
+Another approach is looking for duplicate files. There are many commercial options, some may be better than the listed below, I haven't tried them all. Anyway, I'm listing my choice of apps considering which ones I was able to try.
+
+*
+
+*TidyUp is a very well known app in this subject. You can specify where to scan for what kind of duplicates. It offers basic and advanced modes, several different strategies and criterias.
+
+
+*MrClean is a free tool that just scans for folders for duplicates and trash them. Very simplistic but efficient if you're sure on what you're doing.
+
+
+*Chipmunk scans duplicates and let you choose which ones you want to trash. It offers a node-view of folders and you can select to "delete all files in a folder that have duplicates elsewhere, or vice versa" as well as hand-picking. It may take very long to scan all files, but it does a very decent job after that.
+
+
+*DupeCheck "drop a file on it and it will use your Spotlight index to see if you have a potential duplicate somewhere." That's about this nice open source app. Not a great tool for space cleaning at once, but over time it helps you keep your space clean.
+
+
+*DuplicateFileSearcher from the website: "is a free powerful software utility that will help you to find and delete duplicate files on your computer. It can also be used to calculate MD5 and SHA hashes. The software runs in Windows, Linux, Solaris and MacOS.". Enough said.
+
+Next I'll briefly discuss on a similar approach by quoting relevant parts about two other things that can be done to look for missing disk space, without installing anything new, just using the command line (the Terminal).
+This (long but good) one is from MacFixIt forums (go there for more options and details):
+
+In most cases, there really are files occupying part of the volume, but the files are invisible in normal use of the Finder.
+Using the Finder’s Go to Folder feature (in the Go menu), look at the sizes of the contents of these folders, by pasting in these pathnames:
+/private/var/vm 
+/private/var/log 
+/Volumes 
+
+The /private/var/vm directory contains the swapfiles used by virtual memory. New ones are made as more data is swapped from RAM to the hard drive. The entire process of creating them begins at each reboot or restart; do not attempt to remove them yourself. Check the total size of all the swapfiles, right after you boot, and as the disk fills up. In Panther, the first two swapfiles are 64 MB, then each new one is twice the size of the preceeding one (128 MB, 256 MB, 512 MB, 1 GB) up to a maximum size of 1 GB. In Tiger, the first two swapfiles are 64 MB, the next one is 128 MB, and any additional swapfiles are 256 MB.
+If you do not run the daily, weekly, and monthly maintenance scripts (either by using a utility, or by running the commands sudo periodic daily, sudo periodic weekly, and sudo periodic monthly in Terminal), the logs on the startup volume can become too large. If an error is occurring frequently and is being logged, you can have a very large file at /private/var/log/system.log.
+The files in /Volumes should be aliases to your mounted volumes. Do not remove these aliases, because anything you do to them happens to the contents of the corresponding volumes. If you are not confident that you can explore this folder without mishap, before you begin, properly unmount any volume other than the startup volume, if the missing disk space problem affects only that volume. External FireWire drives can be disconnected after proper unmounting.
+Sometimes, backup programs that cannot find an intended destination (or target) volume for a backup create a folder with the same name as the destination, and put the folder into the /Volumes directory. There are cases in which the entire startup volume has been backed up on itself, in a folder inside /Volumes. If the amount of missing space is about the size of your user folder, such a backup is likely to be the explanation. If you use Carbon Copy Cloner or another backup or cloning utility and have its preferences configured to create a backup on a schedule, and the intended destination volume is not mounted or is sleeping at the scheduled time, the backup is created in the /Volumes directory.
+To check the size of the normally invisible /Volumes directory on the active startup volume, open a new Finder window. Select the startup volume in the list at the left, then choose column view (the one at the right of the three views). From the Finder’s Go menu, choose Go to Folder, and paste in:
+/Volumes 
+
+The /Volumes directory becomes visible in the Finder; find its size by selecting it and typing Command I. My /Volumes directory is reported to be 12K.
+
+This other one is from Mac OS X Hints forums (not much more to see there):
+
+You may want to run a du in terminal to see what is all going on. This could take a few minutes to run.
+An example would be to open up terminal.app then run these commands:
+sudo du -h -d 1 -c /
+
+Input your password when it prompts for it then let it go, it will take a few minutes to run so be paitent.
+
+du stands for Disk Usage. There's also df. I like including the -x to the above command, and sort;
+sudo du -cxhd 1 / | sort -h
+
+
+Adding to the command line option, you could use an automator service for opening any app. With this you will get different (and more complete) results on GUI.
+Or, if you're on a Power PC, using Rosetta or anything before Snow Leopard, you can mix any of the before mentioned apps with Pseudo. It's a little app to open things as admin. Picture it like a GUI for sudo.
+
+
+Finally, there's a complete newbie guide on "The X Lab" that I just won't quote here for it's too long.
+
+A: Try the app disk cartography it's completely free and it shows hidden systems.You can also make it show files greater than 1 Gb etc.
+
+A: In my case it was runaway MySQL / MariaDB instance that for some reason had replication turned on , on my laptop.  Found using: GPL tool - Disk Inventory X http://www.derlien.com/downloads/index.html
+In my case MariaDB - was creating a bunch of bin-log files for replication in /usr/local/var/mysql  50 files at 1GB each ....
+
+A: "Restarting the computer will enable me to recover gigabytes of space" is not curious at all; afaik, it is software flushing its caches. For me as a heavy firefox user (100+ open tabs), rebooting my MacBook frees something in the neighborhood of 1 to 2 GB of disk space (which, subsequently, gets filled with new Firefox cache data).
+AFAIK there's other software with bloated caches; I remember from an earlier version of Mac OS X (Snow Leopard?) that QuickTime updates are somewhere stored in the Library and can be deleted.
+
+A: Using OmniDiskSweeper (as suggested in other answers), the culprit for me was GarageBand. The download of Essential
+Sounds said "2.1 GB", yet the size on disk was 24 GB and likely going to 50 GB (because I paused the download at 1.2 GB for lack of disk space). That explains why my disk space kept growing
+even as I purged more of it.
+
+$ cd /private/var/folders/q8/n9hvxyg92c98xmp5bqsxyrr80000gn/C/com.apple.garageband10/com.apple.MusicApps/audiocontentdownload.apple.com
+$ du -sh lp10_ms3_content_2016/
+ 24G    lp10_ms3_content_2016/
+
+I also found out that Homebrew keeps the download of installed versions:
+
+Note downloads for any installed formulae will still not be deleted. If you
+want to delete those too:
+rm -rf $(brew --cache)
+
+Thanks for the answer. What's the use of keeping already installed formulae
+downloads files around?
+In case something goes wrong and you have to reinstall.
+
+I had the Glasgow Haskell compiler ghc installed for unknown reasons. Removing it freed another 3 GB, 1.5 GB for the cached download and 1.5GB for the binary files (in ~/Library/Caches/Homebrew/downloads and /usr/local/Cellar/ respectively).
+
+A: I use this little app that sits in the status bar and reports the amount of free disk:
+https://apps.apple.com/us/app/free-disk-space-monitor/id1134777725

@@ -1,0 +1,5 @@
+Q: Backing up Time Machine to an external disk also used by other machines - no sparsebundle? I moved to using an external disk (a Drobo) on 1 machine as a Time Machine backup for all of my machines. I've got 2 of the machines backing up perfectly, but the problem is with the machine that the drive is connected to.
+When I start the backup of the directly connected machine, Time Machine creates the folder structure /Backups.backupdb/[computer name]/ instead of just creating another sparsebundle file.
+Should I care? If yes, then how do I make Time Machine create a sparsebundle?
+
+A: The sparsebundle is how Time Machine backs up using the network method. The Backups.backupdb method is how it backs up when the drive is hooked up locally therefore you can't make it create a sparse bundle if its connected locally because that's the way time machine works. If you want it to make a sparse bundle you have to backup through a network. It should not make a difference to you since you'll be accessing it through time machine without having to worry about files etc.

@@ -1,0 +1,7 @@
+Q: How do you disable the zoom effect / window animations in the new OS X Lion? I'd like to disable the Zoom effect that the windows produce when they are being opened. Does anyone know a way to disable them?
+
+A: Open Terminal.app In your /Applications/Utilies folder and run the following command:
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
+
+and press Enter
+Note: Changes might only take place after restarting your mac

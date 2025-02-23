@@ -1,0 +1,14 @@
+Q: MacOS & finder hang to beach ball after a couple of hard resets, won't go away I had to do a couple of hard resets (holding power button until it shuts off) because MacOS became unresponsive.
+Now it's happenning every time, when opening a pdf with preview, or apps that used to work fine, now hang up with the beach ball and never come back, and some times the whole finder hangs.
+It looks like something got corrupted because I made some clean restarts and it keeps happening, other than reinstalling MacOS, is there something that I can do to try and fix this?  
+Specs:
+MacBook with intel core duo, 2GB memory
+MacOS 10.6.7 still using the original factory install (plus updates) from about a year and a half 
+
+A: Run disk utility on your hard-drive.  Inspect the disk for problems, repair if necessary, and re-run a verify to make sure it passes.  It may give you a hint about needing to boot into single-user mode - if that's the case follow the instructions carefully.
+Backup your data.
+
+A: I gotta say, this sure sounds like failing hardware. Namely your Hard Drive. Another tool I would suggest you add to your swiss army knife is S.M.A.R.T Reporter. It runs as a small icon in your menubar, and alerts you (turns red, specifically) if any of the SMART Self-Tests fail.
+S.M.A.R.T is a self-test mechanism that has existed on pretty much every hard drive for years now. It measures things like drive temperature, number of cold starts, spin ups, spin downs, and the number of sectors marked explicitly bad. The S.M.A.R.T article on Wikipedia is a good read if you're interested in more detail.
+I will also continue to emphasize one detail in Harv's answer.
+BACKUP YOUR DATA!

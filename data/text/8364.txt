@@ -1,0 +1,29 @@
+Q: username different in Terminal and System Preferences I am new to Mac.
+Recently I realized something for usernames.
+When I type whoami in Terminal. It returns apple. However in System Preferences>Users and Groups" there is only one user and it says "sinan". (I am suspecting this could be the real name not the username)
+Shouldn't be both the same?
+Can I change the username in the terminal? Would that affect anything on the system (Lion)?
+
+A: In Terminal the whoami displays your Short Name. This Short Name is also found as the name of your Home directory.
+When you go into System Preferences and look at the user on the left it displays your Full Name.
+Mac OS X does not let you easily change your Short Name, but you can change your Full Name from System Preferences.
+Refer to this knowledge base from Apple if you wish to change your Short Name.
+http://support.apple.com/kb/ht1428
+
+A: To change the short name, follow these steps:
+
+
+*
+
+*Open System Preferences. 
+
+*Select Users & Groups. 
+
+*Click the lock to make changes and enter your password. 
+
+*Right click or two-finger click on your user and select Advanced Options. 
+
+*Finally, change Account Name and reboot.
+
+
+This will allow you to change your short name from settings without having to use a separate Admin account

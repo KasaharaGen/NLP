@@ -1,0 +1,16 @@
+Q: Option-Delete deletes word with white space in front So this has been driving me crazy for a while now: when you have a lot of blank space before a word, you go to the beginning of the line and push option-delete, it will delete not only the blank space, but also the next word. All editors in Windows and Linux will only delete the blank space. Is there a setting for this? This is an absolute must-have for me when, for example, trying to format code in XCode. As an example:
+This is line 1 (caret->) |             this should not get deleted
+
+Pushing option-delete, I expect this:
+This is line 1 (caret->) |this should not get deleted
+
+But instead, I get this:
+This is line 1 (caret->) |should not get deleted
+
+This is particularly nasty when you copy-paste code from somewhere, and get something like this:
+UIImageView *imgView = [[UIImageView alloc] initWithFrame:
+                                              CGRectMake(0,0,100,100)];
+
+....and you want to quickly consolidate into one line.  Does anyone have a fix for this?
+
+A: I select the entire space and word as per your example. Then keeping Shift and Option pressed, I use the left arrow to select the empty space. Works like a charm and is only one extra keypress.

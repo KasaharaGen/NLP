@@ -1,0 +1,29 @@
+Q: Why is syslog not logging where I tell it to log? I've configured syslogd like so:
+*.debug /var/log/messages
+
+I want pretty much everything logged in /var/log/messages. 
+When I run
+syslog -s hello
+
+I get the message showing up in /var/log/message.
+I tried restarting syslog using
+launchctl unload /System/Library/LaunchDaemons/com.apple.syslogd.plist
+ps -x | grep [s]yslog
+
+to check that syslog is not running, then
+launchctl load /System/Library/LaunchDaemons/com.apple.syslogd.plist
+
+to restart.
+I checked /etc/syslog.conf to make sure it doesn't change, and it doesn't. Still I get messages logged to /var/log/message.
+Is there another place to set this?
+
+A: I can confirm the following worked on my Mac running 10.6.7:
+I added the following line to /etc/syslog.conf (where <tab> is a tab character):
+*.debug<tab>/var/log/messages
+
+I HUP'd the syslogd process using sudo kill -HUP <syslogd pid>.
+And tested it with logger -p debug test_msg and syslog -s hello.
+syslog created /var/log/messages on the fly as I used the logger and syslog commands.
+The man page for syslog.conf(5) specifies the use of tabs between the fields.  However, I tried using a single space instead and that worked as well.  Based on the man pages for syslog and syslogd, /etc/syslog.conf appears to be the only configuration file you need to worry about.
+
+A: Thanks. After using vi to create the file instead of a python script, I noticed that it was logging as expected. I did a diff of the files and noticed one had a newline while the other did not. Apple must remove the last character of the file expecting it to be a newline, which is why without the newline it logged to /var/log/message instead of /var/log/messages. I have fixed the python script. Your note about the tab made me try the diff on the file, so thanks!

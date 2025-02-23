@@ -1,0 +1,10 @@
+Q: Run bash command with current URL as parameter from Firefox and/or safari I'd like to be able, without much hassle, add a video to my Miro Download-queue.
+From bash I can do this by entering
+open -a Miro.app http://vimeo.com/24398084
+
+Now I'd like to do this from within Firefox, preferrably a one-click approach. Is there a firefox addon I could use? Some automator mechanism I could trigger?
+
+A: You could create an automator service like this:
+
+The service receives no input. It gets the URL of the current page in Safari, and passes it as the argument to open -a Miro.app.
+You could then assign it a keyboard shortcut, et voilà.

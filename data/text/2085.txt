@@ -1,0 +1,51 @@
+Q: What's the difference between one finger dragging and drag lock? If I go into Settings > Trackpad and enable Tap to click, I can enable the settings Dragging and Drag Lock.
+What is the difference between these two settings?
+It appears that they are doing the same exact thing when I try to use them. From my understanding, if I don't have drag lock enabled, I should be able to double tap then drag a window, after I lift up my finger, the dragging should stop. However, that is not the case, I must tap again in order for the dragging to stop.
+
+A: If you enable Drag Lock after you do your desire change you must tap you finger to release dragged item but if you disable it if you do your desire change you only need to put up your finger form trackpad.
+
+A: I believe I figured out the difference:
+Dragging:
+
+
+*
+
+*Double tap and hold to begin dragging.
+
+*Release the mouse.
+
+*Depending on the amount of time that has passed, moving the mouse will do one of the following:
+
+*
+
+*Brief delay: moving the mouse continues the dragging, essentially behaving the exact same way as drag lock. The cycle is then repeated once you release your finger.
+
+*Longer delay: dragging is stopped.
+
+
+
+Dragging & Drag Lock:
+
+
+*
+
+*Double tap and hold to begin dragging.
+
+*Release the mouse.
+
+*Moving the mouse will continue dragging.
+
+*Tap once to stop the dragging.
+
+
+It's that brief delay that was throwing me off. There doesn't seem to be any way to customize the length of this delay. One thing that does help, though, is figuring out exactly how long this delay is. One method for figuring this out is the following:
+
+
+*
+
+*Drag an icon from the dock a tiny bit so that if you were to release it, it wouldn't be deleted.
+
+*Release the mouse.
+
+*Observe how long it takes for the icon to move back to its place. That is the exact amount of minimum time that you should wait when you are finished dragging something.
+

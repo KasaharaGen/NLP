@@ -1,0 +1,23 @@
+Q: Looking for an iPhone SSH app Is there any FREE real SSH apps for iOS 5. There should not be any jailbreaking.
+I wanted something like these:
+
+
+*
+
+*iPhone SSH clients reviewed: iSSH, pTerm, and TouchTerm
+
+*Three SSH terminal apps for iPhone
+I want to use an online shell.
+
+A: Prompt for iOS
+Prompt allows you to remotely SSH into another machine. Without jailbreaking, there is no way to use Terminal to access your file system. However, I've found that if you do jailbreak your phone and want to use Prompt as a Terminal, you can set it to SSH to server 127.0.0.1 and authenticate with the standard iPhone root credentials. 
+Remoter: Remote Desktop (VNC) for iOS
+This app does basically the same thing just a little differently. By default it allows a VNC connection for screen sharing, but it has different add ons that you can purchase that allow SSH, Telnet, and RDP.
+
+A: I use Rove Mobile Admin Client on my iPhone. It's free, there are no annoying in-app ads, and it comes with an SSH client which I use to connect to machines at work while I'm on the road. Works great. It's quite possible to run a remote emacs editor and send all the control characters you need.
+
+A: vSSH for iPhone and iPad. There is a free lite version. Ad is quite annoying, but functionality and usability are fantastic. 
+There is also OS X version and it's possible to share connections between all these apps via iCloud.
+
+A: While I would recommend Prompt, there is an OK SSH client called zaTelnet. It is free, but I think feature limited (as in, a limited number of characters per session, etc). 
+App Store link for zaTelnet. 

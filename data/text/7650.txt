@@ -1,0 +1,44 @@
+Q: Screen Sharing won't allow me to paste into remote system I am connected to a remote system via Screen Sharing.  I have text (plaintext) on my clipboard locally.  I am unable to paste into the remote system.  How can I make this work?  Here are some details:
+
+
+*
+
+*When I open the Edit menu, only "Copy" is available, "Paste", "Send Clipboard" and "Get Clipboard" and so on are grayed out.
+
+*The buttons for "Send Clipboard" and "Get Clipboard" are grayed out.
+
+Some other facts:
+
+
+*
+
+*The clipboard functions work ok with JollyFastVNC and Chicken of the VNC (but I have other problems with these).
+
+*Both local and remote systems are on OSX 10.6.8
+
+*Keyboard and mouse functionality works fine to remote system
+
+*The remote system's local clipboard works fine -- if I CTL-V in a screen on the remote system, I paste what is on the remote system's clipboard (hope that makes sense)
+
+*It doesn't matter what app I'm in on the remote system
+
+
+A: Apple answer: https://support.apple.com/kb/PH14152
+
+Choose Edit >Use Shared Clipboard.
+  Using the shared clipboard, you can:
+Copy text and images from documents on one Mac and paste them into documents on the other.
+Select and drag text and images from one Mac to the other.
+Copy a link from your web browser and paste it into a web browser on the other Mac.
+Copy text from a document on one Mac and drop it on the desktop of the other Mac to create a clipping.
+
+
+A: I just disconnected my screen sharing session and re-connected and the copy/paste started working again. 
+
+A: You can drag and drop what you want to copy over.
+This works on Lion, and I'd imagine it would work on earlier versions of OS X.
+
+A: You could alternatively use the inbuilt VNC viewer to screen share, it has a "Get Remote Clipboard" and "Put to Remote Clipboard" feature that would overcome the issue you're having.
+Instructions
+
+A: On my mac, the copy function is resource dependent. If I have too many items open consuming too much OS/RAM/etc then copy paste will not work. It recovers when I close some things.

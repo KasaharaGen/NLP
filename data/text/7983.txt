@@ -1,0 +1,16 @@
+Q: Is less(1) missing lesskey functionality? less(1), the terminal file pager, seems to be missing lesskey(1) and the ability to rebind the keystrokes in less. The docs claim it's there, but it doesn't work. Am I crazy or is Apple's version of less broken?
+$ less -k ~/.less /etc/fstab
+There is no -k option ("less --help" for help)
+$ less --help | grep lesskey
+  -k [file]  .  --lesskey-file=[file]
+                  Use a lesskey file.
+$ which lesskey less
+/usr/bin/less
+$ less --version | head -2
+less 418
+Copyright (C) 1984-2007 Mark Nudelman
+
+I'm running Lion. It seems odd that Apple would mess with less(1) at all, it's such an old and standard Unix utility. (Less compiles easily from sources on MacOS, so I'm now using my own version.)
+
+A: The Lion build of less indeed comes with the lesskey feature disabled, as can be seen by the customized defines.h it is being built with (line #define USERFILE 0). This doesn't mean it's broken, just that someone decided to customize the build and disable this feature for whatever reason. Sadly they neglected to update the man page, which is why it's still referring to it.
+If you want this feature, building your own less from source is just a matter of ./configure && make install (which puts it into /usr/local), and you might also want to get a more recent version while you're at it.

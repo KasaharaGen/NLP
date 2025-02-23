@@ -1,0 +1,23 @@
+Q: Why do movies sometime lag on my 15" MacBook Pro (2011)? I have a new 15" MacBook Pro with the highest specifications, running Lion version 10.7.2. However, when I watch movies they sometimes lag on my computer: frozen screen (for 3-4 s) with lots of broken cubes and with the audio track still playing).
+What could be possibly wrong with my computer?
+For example, today I watched the Fast Five Blu-ray movie (which is almost 50 GB) with the VLC media player and suddenly it started lagging on some episodes (especially on intense action ones with lots of special effects). Moreover, it lags not only on Blu-ray movies but movie files ripped from standard definition DVDs and other formats as well.
+I play all those movies with the power plugged in from downloaded files, not from optical DVDs. Even Stanford University lectures from iTunesU sometimes lag for me.
+UPDATE: I was in the Genius bar several times, reinstalled Lion by my own and also in the Apple Store.
+After the fresh install I tried to test videos. I watched House, M.D. season 8 episode 2 (395.9 MB) yesterday, and it started lagging all over again.
+I do not really know what to do. Is this a bug in VLC, iTunes, and other media players,  or it is something wrong with my hardware (they actually tested my Mac in the Genius bar with their cable plugged in but did not find any problems)?
+
+A: When formulating a question, it's best to ask it accurately. In this case, the issue has nothing to do with Blu-Ray or DVD files. You aren't playing back from disc media. Instead, you are playing back from very high-bitrate files ripped or copied from the disc media. You are using the free VLC player to view the ripped files.
+Let's analyze: a 50 GB file of Fast Five (130 min running time) would appear to be a copied, uncompressed file, since you can find .mkv or .mp4 files of the movie on torrent sites that run between 6 and 10 GB. So the file you're talking about is a very high-bitrate video file. You don't say, but I'm guessing it's a .m2ts file.
+Two things:
+
+
+*
+
+*The problem could very well be in VLC. Its support for .m2ts files is not optimized (due to licensing issues and other problems, the Blu-Ray format is not publicly well-documented).
+
+*I don't think there is anything wrong with your Mac. You are simply throwing a tremendous amount of data at it, and the software you are using for the video playback can't keep up. 
+Suggestion: obtain a 1080p version of the movie in .mkv or .mp4 format, then attempt to play that back with VLC. If the movie plays well, with acceptable quality and without lag, then you have your answer, and can watch future movies accordingly.
+
+A: While many people use it and like it, I find VLC to be an AWFUL player, and for me it has been buggy and slow on OS X since its first release. I expect that it always will be. It is also ugly.
+Consider Movist as an alternative. I use it on my late-'08 15" MBP on 10.7.2 and can watch 1080p movies (h.264 .mkv files) with no issues. Your vastly superior hardware should have the same results.
+If your file is 50GB, am I to assume that it is an uncompressed Blu-ray rip? If so, look for an encoded version and see if that helps (if simply switching players does not).

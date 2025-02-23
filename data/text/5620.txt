@@ -1,0 +1,76 @@
+Q: Is screen zoom broken in Lion? For years I've zoomed the whole Mac OS X screen with Control ⌃ + two finger scroll on the trackpad.
+It was very useful when giving demos and when wanting to zoom in on a YouTube video.
+Since I installed Lion it was working, then it stopped working, then worked again, now it's not working.
+What am I doing wrong, or is it just broken?
+
+A: I experienced a similar problem in the Developer Previews of Lion.  A restart always fixed it.  
+I've not had any problems since I installed the GM public release build.
+If you are experiencing such problems I suggest sharing feedback, and filing a bug report.
+http://www.apple.com/feedback/
+https://bugreport.apple.com/
+
+A: I had this problem with Leopard and it continues in Lion. The only solution that works for me is to reboot. Changing the settings in system preferences does not work on my machine.
+
+A: Several answers contradict each other, so I wanted to make another answer to pull together some of the ideas that seem (to me) to be the root behavior of zoom failures:
+
+
+*
+
+*The zoom feature that many used reliably in Snow Leopard breaks often in Lion. It generally works perfectly immediately after a reboot. A quick sleep / wake cycle after a reboot isn't the only thing needed to break this, but it appears to fail after longer periods of sleep. 
+
+*When migrating from Snow Leopard to Lion - the migration is breaking the settings for people that had the zoom enabled. By "break" - the panel shows zoom off (or greyed out) even if it was previously on for Snow Leopard. Strangely, the system will zoom when the panel shows zoom off in this case of a migration.
+
+Once zoom is "broken" a reboot will make it work again temporarily - it recovers from the failure, but doesn't prevent it from recurring again. The new zoom in window feature seems to work reliably - the window zooming will work when normal zooming is broken - you can turn that on to nudge the zooming without a reboot.
+All of the above are "facts" that I've seen and reproduced on more than one Mac as well as seen more than one time on each mac that has had the problem.
+
+My speculation is the new window zoom features (which are amazingly cool) is causing the tried and true older zoom function to have problems as the machine runs and some process crashes or some memory gets corrupted. Switching to Zoom in window or rebooting clears up this corruption or restarts whatever process needs serves the zooming temporarily.
+My primary mac seems to fail to zoom somewhere between 8 hours into a boot and almost certainly after a day or two of use. I haven't tested a log out / log in to clear things up (yet) - but it's a near certainty it will be back within 48 hours for me to poke at it some more and see if I can see what is crashing...
+There may be a link between using the default Control ^ key as the zoom modifier - the preference pane for choosing that modifier seems "screwy" to me in that it will substitute values for control when I go to look at the pane. I haven't determined if my preference file is corrupt or the system code is just mis-behaving whether or not the preference file is correct or not.
+
+A: From support.apple.com:
+
+The OS X Lion v10.7.2 Update includes […] fixes that: […]
+
+*
+
+*Resolve an issue that causes screen zoom to stop working.
+
+
+So the answer and the solution is, in short: update to 10.7.2, if possible.
+
+A: You now have to manually enable it.
+
+
+*
+
+*Go to Universal Access in System Preferences
+
+*Turn on Zoom with the radio button.
+
+*Click on Options and tick Use scroll wheel with modifier keys to zoom.
+
+
+A: I adjusted the size of the "zoom in window" to cover the entire screen real estate; works as an adequate substitute for the big fail on screen zoom.
+
+A: My zoom, for some reason, breaks when Lion goes to sleep. To fix it I just go to universal access turn zoom off, and then back on. When its is broken the radio is on but the stuff beside it is greyed out.
+
+A: It is still broken for me in the 10.7.2, it does work very erratically…
+My workarounds are to:
+
+
+*
+
+*Use ⌥⌘+ or ⌥⌘- (instead or ctrl scroll)
+(Press ⌥⌘8 two times to reenable the zoom if the key above are not working)
+
+*Trash ~/Library/Preferences/com.apple.universalaccess , open Universal Access and switch the zoom option to "ON". This seems to be the best workaround to make everything work again (including the ctrl+scroll).
+
+
+A: I have found a solution. In Universal Access > Seeing Tab -- select Zoom in window as usual. Then, select Options > Use scroll wheel with modifier keys to zoom. If you have Enable temporary zoom... and the scroll wheel options selected... if you 'scroll out' on your mouse the zoom window will disappear once zoomed all the way out. Then, when you need it, hold command in scroll in with the wheel.
+
+A: This resolved the problem in my case
+Go to System Preferences -> Energy Saver
+and check off 
+"Automatically reduce brightness before display goes to sleep"
+If that doesn't work, this other solution temporary fixes the problem (so you don't have to reboot):
+System Preferences -> Universal Access and re-check "Zoom in Window"

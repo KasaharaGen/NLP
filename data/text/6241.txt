@@ -1,0 +1,17 @@
+Q: Clearing local storage in safari on iPad I need to clear the local storage for safari on my iPad, what I found by googling says to go to Settings > Safari > Databases  but databases is no where to be found in my safari settings.  The screenshots show it right below accept cookies but it's not there or anywhere else on the page (or sub pages).  Any ideas?
+
+A: When no database exists, the Database Menu isn't shown ;)
+Try log in your google account or other webapp that uses localStorage to see it...
+Or create a HTML file with a script tag containing (on same domain obviously) :
+localStorage.clear();
+
+
+A: I ran into a similar problem myself - I knew that there were databases on my phone, but there was no "Databases" panel under "Settings > Safari". (Which sounds like the exact problem you were having...)
+So, I completely powered off my phone (hold down the sleep button for about 15 seconds, until you see the RED "Slide to power off" button. Give the phone about 30 seconds, then power it back on by holding down the sleep button again for about 10 seconds).
+When the phone started back up, "Databases" was now visible under "Settings > Safari."
+From there, you can "swipe" to delete any databases you don't want.
+Good luck!
+
+A: Its not database.  To clear localStorage you need to select the Clear Cookies and Data option.
+Settings->Safari->Clear Cookies and Data
+PS: All your cookies and session/location storage will be cleared.  Unlike desktop version, you don't have to options to select and clear

@@ -1,0 +1,8 @@
+Q: Mac Pro: Any way to recognize a bootable USB on startup? I have a Mac Pro 2,1 2x6-Core Xeon@2.66 GHz and am trying to boot from several ISO images written to USB sticks. I have tried the dd-based methods as recommended by Ubuntu, with no luck. In every case the stick fails to be recognized at boot time. I have also tried booting from a rEFIt CD (which I can do) but the loader there doesn't identify the USB stick in the front of the machine.
+Is it possible the MacBooks are so different from the Mac Pros that these instructions wouldn't apply? Does anyone have a reproducible method for creation bootable USB sticks on a Mac Pro and then booting from them?
+
+A: I don't know much about booting Linux on a Mac, but you should be able to start up with the option key. It may take awhile to start up, but you should get a screen that allows you to choose what disk to boot from. Hope that helps! 
+EDIT: Check out this Apple Support Doc here.
+
+A: If your volume isn't showing in the Startup Manager but is showing in the startup disk preference pane, then it's likely the image just needs a Folder Mode bless.
+This will modify that filesystem on the USB drive to ensure that other macs see it as ready to go when booting with option pressed to get to the startup manager.

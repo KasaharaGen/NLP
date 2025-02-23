@@ -1,0 +1,8 @@
+Q: Figure out which command is bound to a keyboard shortcut in TextMate I have a shortcut key conflict between TextMate and LaunchBar. I use ⌘+⌥+\ to call up LaunchBar's clipboard history. And it works great everywhere except in TextMate, which has this combination bound to some Bundle action.
+I'd like to unbind this combination in TextMate so I can get to LaunchBar's clipboard history view when I'm in TextMate and pull things off the stack.
+I checked under the Bundles menu for an option that would show me all Bundle commands bound to a particular key combination but couldn't find anything. Short of searching through every single command, or looking at the Bundles -> Select Bundle Item... list, is there any way to figure this out?
+
+A: I figured it out!
+The key was using the Bundles -> Select Bundle Item... (^+⌘+T) dialog box. When the box options, in the search field at the top of the dialog box, click the down arrow on the magnifying glass and change the search type from "Item title" to "Key equivalent".
+Now you can press the ⌘+⌥+\ key combination and the list will filter to show you the commands bound to that combination:
+

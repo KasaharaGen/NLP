@@ -1,0 +1,67 @@
+Q: How to add user to a group on command line? With Linux/Unix, I can use useradd -G developers vivek to add vivek to the developer group. How can I do the same thing with Mac OS X?
+Then, how do I check if vivek is in developers group?
+
+A: Two ways:
+From the terminal
+
+Everything here should be done on the
+  command line 
+  First start dscl like this:
+$ dscl localhost
+Then cd to the Groups node:
+cd /Local/Default/Groups
+You can see all the groups using ls.
+  Once you have found the group you are
+  interested in, you can view all its
+  properties with cat groupname. When
+  you are ready to add a user (username)
+  to the group (groupname), use the
+  following command:
+append groupname GroupMembership
+  username
+If you want to remove a member from a
+  group, use the following command (be
+  careful!):
+delete groupname GroupMembership
+  username
+When you are finished with your
+  changes, exit dscl by typing exit.
+
+And the apple official way:
+
+Choose Apple menu > System
+  Preferences, and then click Accounts.
+  Open Accounts preferences Step 2
+If the preferences pane is locked,
+  click the lock icon and enter an
+  administrator name and password. Step
+  3
+Click the Add (+) button, located
+  below the list of accounts, to create
+  a new account. Step 4
+Select a Group from the New Account
+  pop-up menu. Step 5
+Enter a name for the group, and then
+  click Create Group. Step 6
+Select the checkboxes by the accounts
+  to be members in the group.
+
+
+A: To add a user to a group:
+dseditgroup -o edit -a vivek -t user developers
+
+(Note: you can also do this with dscl as in @hobs' answer, but you really should both add the user's short name to the GroupMembership list, and also add the user's GeneratedUID to the GroupMembers list.  dseditgroup does both with a single operation.)
+To check membership:
+dseditgroup -o checkmember -m vivek developers
+
+Or:
+dsmemberutil checkmembership -U vivek -G developers
+
+To remove a user from a group:
+dseditgroup -o edit -d vivek -t user developers
+
+(Again, you can do this with dscl, but need to remove the user from both GroupMembership and GroupMembers.  dseditgroup does both.)
+
+A: I've used this one-liner:
+sudo dscl localhost -append /Local/Default/Groups/thegroupname GroupMembership theusername
+

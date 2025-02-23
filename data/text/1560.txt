@@ -1,0 +1,159 @@
+Q: What are your "must-have" MacPorts? I hate to be all cliché with yet another "best [something]" question, but I am genuinely interested in what you most often install with MacPorts. When you get a new Mac, which ports do you first install?
+So far, I've installed wget and watch, since I find those to be very useful on Linux machines. I also installed wine and winetricks to run a Windows program or two. And earlier today I started playing with Scala, so I installed the scala28 port.
+Tip: to see your installed ports, use the port installed command.
+
+A: I just compile from source, since all of the important programs build easily on Mac OS X these days. Here's a great article on the advantages of building your own stuff vs. using package managers.
+Having said that, here's my quick list:
+
+
+*
+
+*Mercurial 
+
+*Git
+
+*GNU Privacy
+Guard 1.4.x
+
+*ffmpeg
+
+*MySQL Best directions I've seen for building 32 or 64-bit MySQL on Mac OS X:
+DIYMacServer
+
+A: In no particular order:
+
+
+*
+
+*git - git
+
+*signing-party - GnuPG key signing utils, pulls in GnuPG as well
+
+*ntop - A Unix tool that shows the network usage, similar to what the popular top Unix command does.
+
+*sslscan - sslscan queries SSL services, such as HTTPS, in order to determine the ciphers that are supported
+
+*watch - execute a program periodically, showing output fullscreen
+
+*nmap - Network port scan to see what ports are open
+
+*coreutils GNU coreutils. Includes gnu versions of basic unix commands, including "color ls" (gls) 
+
+*pstree - Process tree listing 
+
+*tcping - tcp
+based network connectivity checker
+(like ping but with TCP for when ICMP
+is blocked) 
+
+*wget - non-interactive
+network downloader. Supports http,
+https and ftp
+
+*apg - Automated Password Generator - toolset for generating random passwords
+
+
+A: First thing I do is update to the latest bash version... then I usually grab some updated versions of utilities:
+
+
+*
+
+*grep
+
+*sudo
+
+*man
+
+*info (although i had to go with the fink version for this, macports is bugged)
+
+*gdiff
+
+
+Then on to my development tools like subversion, git, vim, macvim, python3, etc.  I heart MacPorts :P
+
+A: *
+
+*bash
+
+*bash-completion (very important)
+
+*nmap
+
+*file
+
+
+A: *
+
+*wget : is command-line that allow me to retrieve any file using HTTP, HTTPS and FTP. 
+
+*tree : displays a tree-view of my directories & files, with deep-level option.
+
+
+You can participate with your MacPorts by typing : 
+
+port installed requested
+
+
+A: The Google CL tools are cool and useful (I do a lot with Docs).
+
+A: This is my essential list, in the order that I install them.
+
+
+*
+
+*arping
+
+*watch
+
+*wireshark
+
+*figlet
+
+*git
+
+*gnupg
+
+*ipcalc
+
+*lynx +ssl
+
+*minicom
+
+*mtr
+
+*ncftp
+
+*nmap
+
+*pstree
+
+*pwgen
+
+*p0f
+
+*ssldump
+
+*stunnel
+
+*tcpflow
+
+*unrar
+
+*w3m
+
+*wget
+
+
+A: For PHP web development:
+
+
+*
+
+*coreutils
+
+*kcachegrind
+
+*git
+
+*svn
+

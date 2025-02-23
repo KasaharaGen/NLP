@@ -1,0 +1,7 @@
+Q: How can https:// sites be accessed from an iPod Touch behind a proxy server that requires authentication? On my iPod Touch 4th generation (latest generation as of the original time of this posting), when I'm at work, I can successfully access the Internet by connecting to my office's wi-fi network.  The network requires a set of basic authentication credentials to access the Internet.  When I open the browser on the iPod Touch and attempt to access an http:// site, I am prompted for my credentials; after successfully entering my credentials, I am able to continue and access the site.
+However, I cannot access any https:// sites.  If I attempt to access https://owasp.org/, for example, I never get prompted for credentials; instead, the browser just does nothing -- the spinning "loading..." indicator up at the top of the screen appears, but otherwise nothing happens.  (I can get to this same site fine from my laptop PC connected to the same wi-fi network.)
+The problem appears to be that the iPod Touch software only supports proxy servers that require basic authentication over http, but not https.
+Is there any solution or workaround allowing an iPod Touch to access https sites through a proxy server that requires authentication?
+
+A: Can you authenticate while accessing a http site and then enter a url for an https site?
+As in, does the proxy remember your credentials for subsequent sites visited in a single session?

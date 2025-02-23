@@ -1,0 +1,9 @@
+Q: MySQL won't start on Snow Leopard I'm getting this error while trying to start the mysql server
+$ sudo mysqld_safe --user=mysql
+110425 23:11:33 mysqld_safe Logging to '/usr/local/mysql/data/unknown-e0-f8-47-0c-04-a0.lan.err'.
+110425 23:11:33 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+110425 23:11:35 mysqld_safe mysqld from pid file /usr/local/mysql/data/unknown-e0-f8-47-0c-04-a0.lan.pid ended
+
+any suggestions?
+
+A: Change skip-locking to skip-external-locking in /etc/my.cnf.  This problem can happen if you had a different MySQL installed previously.  I experienced this problem when I moved to MAMP.

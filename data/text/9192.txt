@@ -1,0 +1,64 @@
+Q: Keyboard shortcut to select all text in a cell in Excel Is there a keyboard shortcut key to select all the text in the current cell in Excel, if you are in the process of editing the cell? 
+
+A: The quickest way I've found is the following:
+1) tab/select the cell, 
+2) hit backspace to delete the contents of the cell
+3) type Cntrl+Z to undo delete
+When the undo function puts the text back into the cell, all text within that cell is automatically highlighted.  Then you can just type Cntrl+C to copy text only.  
+I found that I needed to highlight all text in a cell in order to be able to paste it back inside another excel sheet whose cells already had other text that I had to leave intact.  
+Hope this helps! 
+
+A: *
+
+*^-U to edit the cell
+
+*⇧-alt-Home to select all text
+
+*⇧-alt-Left to select one word to the left
+
+*⇧-alt-Right to select one word to the right
+
+*⇧-alt-Down to select from the current location to the end of the line.
+
+
+Note that in later versions of Excel, the “Windows” equivalents, made by substituting the alt for control, also work.
+
+A: The great thing about copying the contents of the cell rather than the cell itself is to grab the contents without any formatting (plain text). It really should have a one-step shortcut, but to my knowledge, it doesn't. Here's my workaround:
+Select cell in question, hit any character to replace contents of the cell. Then hit ⌘Z to undo and boom, contents selected without any formatting!
+A one-step shortcut workaround will require more effort, but can be achieved with the following Keyboard Maestro macro:
+
+
+A: I read this as 2 questions.
+Q. Is there a keyboard shortcut key to select all the text in the current cell in Excel?
+A. command+c for Mac or control+c for Windows while the cell is selected. Choose a new cell and command+v or control+v to paste.
+
+Q. If you are in the process of editing the cell?
+A. It is a two step process, command+a or control+a to select all, then command+c or control+c to copy.
+
+A: When editing a cell, a quick way to select all the contents is to…
+
+
+*
+
+*place the cursor at the beginning of contents and hit ⇧ shift + end
+
+*place the cursor at end of contents and hit ⇧ shift + home.
+
+
+A: Do you want to select all the text, or do you really just want to copy it to the clipboard?  If you want to copy all the text in a cell and don't care if it's selected:
+Click on a cell or navigate to it using the keyboard. Do not double-click or not enter edit mode. Do not try to select anything. If you are already in edit mode for some reason, hit Esc.
+Now just hit CMD-C.
+
+A: I'm using Windows, and I do this:
+
+
+*
+
+*Press F2 to edit the cell. The cursor will be at the end. (Also works by double clicking on the cell with the mouse; press End if the cursor is not at the end.)
+
+*Press Ctrl + Shift + Home. All text from the end to the beginning will be selected.
+Note it doesn't work if you enter the cell by writing on it, you have to edit.
+
+A: There is no direct way.  Please refer the official page for this.
+http://office.microsoft.com/en-001/excel-help/select-cells-and-their-contents-in-a-worksheet-HP005202468.aspx
+Use of native methods (go to end, use SHIFT+Arrow keys)... wondering why ^A is not supported there.  MS S**ks sometimes.

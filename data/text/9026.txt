@@ -1,0 +1,25 @@
+Q: What iPad app will allow me to present .PDFs or .PPTs that include OTF (and other) fonts? I do quite a bit of presenting using the iPad as a presentation tool, but I am a PC user. I have always created my slides in PowerPoint, converted to PDF and presented using GoodReader. I have done this dozens of times for clients and at conferences but I have run into a problem trying to use a number of more "sexy" fonts. "Museo Slab 500", "Lobster Two", "Bebas Neue" being a couple of example fonts… but there are loads more. See FontSquirrel for a comprehensive list.
+Here's the problem: I prepare the slides in PPT, convert to PDF (PDF looks OK on the PC), drop them onto the iPad using DropBox and then open in GoodReader. However GoodReader won't render many of the nice fonts I want to use. Up to now I've just stuck with boring old Calibri, Helvetica, Georgia, etc but this is starting to really hack me off.
+I tried loads of other free/cheap PDF viewers and even a couple of PowerPoint viewers and get the exact same problem even when the PPT is saved with fonts embedded. Before anyone mentions it Slideshark has the same problem not supporting these fonts.
+Now here's the funny thing. I downloaded the latest version of Adobe Reader for iPad and all fonts render perfectly. However Adobe Reader isn't the best presenting tool as you can't display full screen and the file caching isn't the best.
+So, are there any apps for iPad which have the following properties?
+
+
+*
+
+*Allows PDF or PPT files to be viewed full screen and renders ALL fonts in the same way that Adobe Reader for iPad does?
+
+*Caches files nicely so I don't have to wait for the next slide to load (like GoodReader does)
+
+
+I've tried installing the fonts on my colleague's Mac to create the PDF from Keynote and converting the slides using various other PDF creation tools but that leads to other problems (I haven't found a PDF writer which allows the slides to be created to the correct aspect ratio. Using Keynote for iPad doesn't help because I am limited to the iPad fonts only.
+If it helps to explain my problem I have uploaded font test slides to my Slideshare account: http://www.slideshare.net/thesaundi/font-test-10088015
+
+A: It might be that the fonts aren't being embedded into the PDF, that would cause them to not render correctly on a computer that did not have the fonts installed and Adobe Reader may be faking the look of fonts that it doesn't have. Open the PDF in Acrobat on your PC and in the "File" menu select "Properties..." and then click on the "Fonts" tab. Each font listed should have a remark like "Embedded" or "Embedded Subset".
+If that is the case, you may have to change your PDF creation settings (not sure how you are creating the PDFs, so I'm no help there) to make sure that all fonts are embedded.
+
+A: You could try Presentation Link, a great app for interactive presentations on the iPad. It's available in the App Store, let me know if you like a promocode.
+
+A: Well as for the fonts problem, technically a PDF being a container file format the fonts can be embedded in the file, but this is not an automatic thing, it has to be "checked". 
+Usually this is called "font subset", and although you don't need to, it's preferable to set it to it's maximum, usually 100%. If it's set to 0% (or any other similar setting), fonts might not be included in the file.
+But usually a good PDF reader will render the fonts correctly when they are embedded.

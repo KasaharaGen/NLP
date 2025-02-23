@@ -1,0 +1,23 @@
+Q: Using Automator to obtain content from multiple webpages? I'd like to use Apple's Automator to obtain content from multiple webpages. The webpages each contain links, text, and photos. I would then like to place this information in a text document. 
+Detailed steps would be much appreciated!
+Thanks for your help!
+
+A: Automator, as an automation tool, is a bit of a sledgehammer, so the following is a bit clumsy, but works.
+Automator provides two actions for choosing URLs: Get Specified URLs, that allows one to specify a pre-determined list of URLs, and Get Current Webpage from Safari, that specifies the URL of Safari's current webpage. It also provides three nice actions for parsing we webpages: Get Text from Webpage, Get Image URLs from Webpage and Get Link URLs from Webpages, which do what you would expect them to. Finally, Automator provides an action to place text in a document: Set Contents of TextEdit Document. You may also want to use the Get Specified Text action to separate the text, images, and links sections of your new TextEdit Document.
+Here is what your complete Automator workflow might look like:
+Get Specified Text --- Text of Webpage ---
+Set Contents of TextEdit Document using the "by replacing" option.
+Get Current Webpage from Safari
+Get Text from Webpage
+Set Contents of TextEdit Document using the "by appending" option.
+Get Specified Text --- Images URLs of Webpage ---
+Set Contents of TextEdit Document using the "by appending" option.
+Get Current Webpage from Safari
+Get Image URLs from Webpage
+Set Contents of TextEdit Document using the "by appending" option.
+Get Specified Text --- Link URLs of Webpage ---
+Set Contents of TextEdit Document using the "by appending" option.
+Get Current Webpage from Safari
+Get Link URLs from Webpages
+Set Contents of TextEdit Document using the "by appending" option.
+When this workflow finishes, there will be a new untitled TextEdit document open whose contents is text, image URLs and link URLs of Safari's current webpage. You can save it wherever you please.

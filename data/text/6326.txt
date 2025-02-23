@@ -1,0 +1,68 @@
+Q: How do I make an AppleScript with a drop-down menu without Xcode? How do I make an AppleScript that displays a drop-down menu without using Xcode?
+
+A: One option would be to use CocoaDialog**:
+set l to {"aa", "bb", "cc"}
+set choices to ""
+repeat with x in l
+    set choices to choices & quoted form of x & " "
+end repeat
+set dialog to paragraphs of (do shell script "/Applications/CocoaDialog.app/Contents/MacOS/CocoaDialog" & " standard-dropdown --title title --text text --items " & choices)
+if item 1 of dialog is "2" then return -- pressed cancel button
+item ((item 2 of dialog) + 1) of l
+
+
+You could also just use choose from list:
+choose from list {"aa", "bb", "cc"} with title "Title" with prompt "Please choose" default items "bb" with multiple selections allowed
+
+
+
+** The original URL for this Github repo by mstratman has changed.  From research it seems CocoaDialog has transitioned to an org.  Here are the new changes:
+
+
+*
+
+*URL
+
+*Github
+
+*Repo pertaining to the previous answer
+
+
+A: There is no built in concept of a menu in the dialogs-alerts within the AppleScript language. 
+The closest you could do would be to name some dummy files (in a temporary folder) with the appropriate action and have the user choose the file labeled with the action you wanted to perform.
+open folder blah
+  with selected file bah
+    do whatever
+
+A horrendous "solution" to a problem that needs a cocoa menu - whether you make it in Xcode or someone else does - Xcode/IB is the tool that creates a menu. MacRuby is a nice way to script an app that needs a more full featured UI than AppleScript. You don't need Xcode/IB to ruby up an app from pure script.
+You could create a NIB using Interface Builder and script it all using AppleScript, but the nib defines the menu itself - not AppleScript (even if AppleScript can populate or delete the menu items at run time).
+
+A: Additionally, if you just need a list to choose from, you could also do 
+choose from list listYouDefined with prompt "Choose from the list." 
+Google "AppleScript Choose from list".
+
+A: I understand this is an old question but since the best up-voted answer says in the documentation for CocoaDialog 2:
+
+Downloads do not work Downloads for cocoadialog 2 are no longer
+  available. This is mostly in part due to the various changes and lack
+  of permanent storage over the years.
+
+and 3 isn't coming till Spring/Summer 18 I was searching for other alternatives and I found Pashua:
+
+(pic taken from the site)
+Under the documentation this is called a popup:
+Example: Using popup
+p.type = popup
+p.label = Example popup menu
+p.width = 310
+p.option = Popup menu item #1
+p.option = Popup menu item #2
+p.option = Popup menu item #3
+p.default = Popup menu item #2
+
+Screenshot:
+
+Github repo
+After using it I found you can install the Pashua.app in your Application directory or you can embed Pashua in your app.  I'm not the author of this but I needed a base solution for a GUI and this wasn't mentioned. 
+
+A: You don't need Xcode for AppleScript. Just open the AppleScript Editor in Applications/Utilities (Finder shortcut for the Utilities folder: ⌘ Command+Shift+U). There is some sample code for dropdown menus on MacScripter: Dropdown menu.

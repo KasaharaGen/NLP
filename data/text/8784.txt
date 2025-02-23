@@ -1,0 +1,17 @@
+Q: How do I restore the audio balance to default? On my iPod Touch, I was playing around with the audio balance setting (settings -> general -> accessibility)
+How can I reset the balance setting so that it is precisely at the midpoint (i.e. the default)?
+
+
+A: It should automatically snap to midpoint if you manually move it there.
+
+A: An alternative solution:
+
+*
+
+*Try you best to move the silder to center.
+
+*Grab /var/mobile/Library/Preferences/com.apple.Accessibility.plist by either jailbreaking or making backup.
+
+*Find the item named MasterStereoBalance. If not found or it's value equals 0, then it was perfectly at the middle. If not, restart from step 1.
+
+References: https://www.reddit.com/r/jailbreak/comments/5hrmvd/question_help_a_hardofhearing_audiophile/

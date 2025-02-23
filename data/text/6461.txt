@@ -1,0 +1,46 @@
+Q: How can I kill a non-responding app? What are all the ways to kill a buggy GUI app?   
+I can't right-click on its icon in the whatever-its-called bar, or use the top-of-window menu.  The app does not respond to anything, and does nothing but eat more and more memory as times goes on.
+In Linux, there's xkill.  Is there something similar on OSX?   
+
+A: Another way from the Terminal:
+ps auxww | grep -i 'google chrome' | grep -v grep | awk '{ print $2 }' | xargs kill
+
+Or to force kill:
+ps auxww | grep -i 'google chrome' | grep -v grep | awk '{ print $2 }' | xargs kill -9 
+
+This can be helpful if the screen isn't responding or you get Spinning Wheel of Death, but are able to somehow get to the terminal (e.g.: via SSH)
+
+A: You can access the Force Quit dialog box by pressing ⌘+⌥+esc, or using the Apple Menu (top left corner of the screen) and choosing Force Quit.... Select the problem app, and click the Force Quit button.
+
+You can also kill an app using the command line (/Applications/Utilities/Terminal):
+killall 'Google Chrome'
+
+You can also use the Activity Monitor app (/Applications/Utilities). Select an app and click the Quit button:
+
+Then, from the dialog that slides down, click Force Quit.
+
+A: All the ways?  There's always another way   :-)
+Sometimes ⌘+⇥ will get focus away from the app so you can talk to the Dock or Finder.
+⌘+⌥+esc should bring up the Force Quit dialog box.
+If you have/can get to a Terminal window, there's the kill command.
+If you have another machine and have enabled remote login, you can ssh in to your machine and issue a kill even if the GUI won't respond at all (and if kill doesn't work there's always sudo reboot as a last resort).
+
+A: The "kill" command also exists in OS X (check out "man kill"); you can also kill an app using a couple of GUI-based tools:
+
+
+*
+
+*press ⌘+⌥+esc. That brings up a "force quit" menu
+
+*launch the Activity Monitor application. You can also force-quit an app from there.
+
+
+A: ⌘+⌥+esc
+
+A: You also have the option of ⌥-right-clicking the icon in the dock, which (after a few seconds, likely) will pop up and have a 'Force Quit' option, which you can use to kill an app.
+
+A: the command line way, paste the following in your terminal ( example with Chrome ) : 
+ while read -r p; do
+     kill -9 $p
+ done < <(ps -x | grep "Google Chrome.app" | perl -pi -e 's/^\s*(\d+)\s+.*/$1/g;print')
+

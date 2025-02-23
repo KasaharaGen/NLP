@@ -1,0 +1,34 @@
+Q: Photo Stream access on pre-Lion Macs I have a machine not running Lion because of software Lion does not support. This machine is currently my primary household media hub, and it would be very helpful if it could take advantage of Photo Stream.
+http://www.apple.com/icloud/features/photo-stream.html indicates that Photo Stream supports both Macs and PCs. If there is a PC client, could pre-Lion Macs take advantage of it under emulation to access Photo Stream data?
+
+A: Yes - your example of running a supported OS in virtualization would let you use the officially developed and supported Apple client software to tap into the photo stream. Once you have the software running, it should be fairly painless to get the files to disk and then available for viewing on Snow Leopard.
+It's technically possible to virtualize Lion as well while running Snow Leopard as the core OS, so you can choose if you want to use it or Windows OS to get your iCloud sync on.
+
+A: You've already provided half of the solution - but realize that it is definitely a hack-y, ugly work-around.
+
+
+*
+
+*Set up VM (Parallels Desktop, VMWare Fusion) with a "shared" folder in the Mac filesystem.
+
+*Download iCloud Control Panel to Windows VM and configure it to save Photo Stream to desktop
+
+*Create a Folder Action with the "Import Files into iPhoto" action, optionally choosing to delete them afterward.
+
+
+A: No, pre-Lion Macs unfortunately can't have access to Photo Stream.
+Evidence: it is an iCloud feature, and iCloud setup specifies:
+
+Make sure your Mac is running the latest version of OS X Lion.
+  If you don’t have Lion installed, you can purchase it from the Mac App Store.
+
+It might, IMHO, appear under one of these two scenarios:
+
+
+*
+
+*Apple brings iCloud to Snow Leopard in an OS update.
+Unlikely, it is indeed a commercial argument for updating, and if they had thought it was strategic for them to increase the userbase, they could have done it earlier already.
+
+*PhotoStream is made accessible through the excellent iCloud webapp.
+More likely, but still not so much in absolute terms. They know we'd have syncing tools for all OSs the day after it is released, and they'd lose the commercial advantage given above. Maybe when they know almost all potential upgraders have already upgraded…

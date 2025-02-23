@@ -1,0 +1,20 @@
+Q: Should I be concerned about graphics switching for battery life? I have a 15-inch MBP, Mid-2010, 2.66GHz i7, with Intel integrated graphics and a discrete NVIDIA GeForce GT 330M. Since I installed Lion, it seems my battery life has gone down to just 2 or 3 hours. After reading various things on the internet, I found out about the gfxCardStatus app which I used and noticed my machine is using the discrete graphics card. It appears the following apps are requiring discrete graphics:
+
+
+*
+
+*the Google Talk plugin (because I keep gmail.com open, even though I'm not signed in to chat)
+
+*Twitter for Mac
+
+*both Droplr and CloudApp
+
+
+Should I be concerned about these? Will it affect my battery life if my machine switches to discrete graphics even though these apps may not actively be using it?
+
+And, as a follow-up: is resetting the SMC (another thing I read people have been trying) a good thing to try to improve my battery life?
+
+A: Absolutely ! http://codekrieger.com/gfxCardStatus allows you to lock your graphics card to use only the Intel integrated graphics. It makes a big difference when you need to squeeze every last hour out your battery.
+The other thing that helps if you have a ton of startup items for everyday use is to hold down shift when you log in, so there are not extraneous processed running in the background.
+And also keep the screen brightness at the minimum acceptable level.
+This way I can get 9 hours out of my 17 macbook.

@@ -1,0 +1,26 @@
+Q: Mac renames itself automatically - host name is incorrect in terminal I've got a handleful of macs (all with unique names) and on occasion it prompt a notice about saying another computer on the network as this name and adds a (2) or (3) to my mac.  
+How can I set the host name from the command line?
+
+A: Yes you can :
+sudo scutil --set HostName "YourHostName"
+sudo scutil --set LocalHostName "YourLocalHostName"
+
+to change the computer name : 
+sudo scutil --set ComputerName "YourComputerName"
+
+To check if everything is okay : sudo scutil --get HostName
+
+A: There is a couple ways to go about solving this problem.
+The immediate change is to to open up Terminal, and issue the command
+
+sudo scutil --set HostName {your machine name here}
+
+The next thing to do is to 
+
+sudo pico /etc/hostconfig 
+
+Add the following line, followed by Ctrl+O, and then Ctrl+X
+
+HOSTNAME={your machine name here}
+
+Finally reboot

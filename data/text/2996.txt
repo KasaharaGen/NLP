@@ -1,0 +1,69 @@
+Q: Can I add my own commands/scripts to the mail.app toolbar? Is there a way (or an add-on) that lets me customize the Mail.app toolbar beyond "View -> Customize Toolbar"? At a minimum, I want to add buttons that do "Move to <somefolder>".
+
+A: I think you can use Mail Act-on for this, it provides Shortcuts for doing stuff with various mails. Not a Visual Shortcut, but a Keyboard one.
+
+Move messages by keystroke only Mail
+  Act-On’s interface includes the
+  ability to move or copy messages to
+  any folders by keystroke, even if you
+  don’t have an Act-On rule for a
+  particular mailbox.
+
+http://www.indev.ca/MailActOn.html
+Hope it helps, 
+Karl
+
+A: Read CocoaDev: HowToAddButtonsToAppleMail.  It references a page of links to articles/examples on writing Mail.app plugins.  You will also need to do some programming of Mail.app, e.g. using AppleScript - which you can learn more about here.
+Here is a year-and-a-half old blog post by a guy who managed to get some useful control over Mail.app from AppleScript.  You might use it as a model. He built his with a third-party module but you might find a way to write your own, if necessary.
+The scripting of Mail.app might be stable.  However, from what I have read - the rules for how to construct a Mail.app plugin may be in flux from one major version of Mac OS X to the next.
+That could be enough to discourage you from writing what you want for wide distribution but it might not be much of a handicap for personal use.
+
+A: *
+
+*Open Automator 
+
+*File -> New -> Service -> Choose
+
+*Service receive no input in Mail.app
+
+*From library select Utilities -> Run AppleScript
+
+*Insert the code provided below and save under name Move to trash [Gmail] 
+
+*Edit the script and change your account name. Name of the account could be found at Mail -> Preferences... -> Accounts
+
+*Open Mail.app and select Mail -> Services -> Service Preferences...
+
+*Assign a shortcut to the service Move to trash [Gmail]
+
+*Restart Mail.app
+
+*(Optional) You should be able to see the assigned shortcut in the menu 
+
+*Open inbox, select messages to be moved to trash and press the keyboard shortcut*. Messages will be moved to [Gmail]/Trash
+
+
+*Note: For the first time the script works quite long, but all the following times it should proceed much faster.
+AppleScript:
+on run {input, parameters}
+    tell application "Mail"
+        set s to selection
+        repeat with i from 1 to the count of s
+            set msg to item i of s
+            set box to mailbox of msg
+            if name of box is not "[Gmail]/Trash" then
+                move msg to mailbox "[Gmail]/Trash" of account "<Your account name here>"
+            end if
+        end repeat
+    end tell
+end run
+
+This approach does not allow to add a button to the toolbar, but it's very close to what you are looking for.
+Useful links:
+
+
+*
+
+*https://support.google.com/mail/answer/78892?hl=en
+
+*http://support.apple.com/kb/PH11788

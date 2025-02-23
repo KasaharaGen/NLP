@@ -1,0 +1,25 @@
+Q: How can I make an AppleScript activate upon logging in? Is it possible to force an AppleScript to activate when I log in?
+
+A: ~/Library/LaunchAgents/login_test.plist:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN
+http://www.apple.com/DTDs/PropertyList-1.0.dtd>
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>login_test</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>osascript</string>
+        <string>/Users/username/Desktop/test.scpt</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+
+
+A: If you save the Apple Script as an application, then go to  System Preferences -> Users -> Login Items, you can add the application there, and it will run on login.
+
+
+A: You can also use Script Timer for this. It is $12, but it is a very useful little utility.

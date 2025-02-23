@@ -1,0 +1,9 @@
+Q: Is there a way to turn off BeamSync of the mouse cursor in Mac OS X? The mouse cursor in Mac OS X has a lag to it that drives me crazy. I love everything else about the OS though so I'd like to solve this.
+In an earlier attempt to get rid the lag, I used a couple of programs that changed the acceleration curve of the cursor movement. They sort of worked, but were really just masking the problem a bit. I then tried disabling BeamSync using Quartz Debug. It disabled BeamSync on every EXCEPT the mouse cursor. I know this because when I would drag a window around, the window move move ahead of the cursor. The window edges would tear, indicating they were in fact not waiting for the vertical sync. The fact that the mouse cursor lagged behind the dragged window means the cursor is still waiting for the vertical sync.
+Does anyone know how to disable BeamSyncing of the mouse cursor?
+
+A: This blog post helps confirm the problem: http://d43.me/blog/1205/the-cause-for-all-your-mac-os-x-mouse-annoyances/
+The experimental tool to fix the lag issue is here (also linked from the blog post)
+http://smoothmouse.com/
+
+A: It seems to me your question is actually how to make OS X mouse acceleration more like on PC. Good thing there is a question for this at superuser.com! Good luck.

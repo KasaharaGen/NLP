@@ -1,0 +1,48 @@
+Q: What video cards are compatible with Mac Pro (Original)  1,1? Anyone know which video cards are available/supported/will work on the Mac Pro (Original)  from December 2006 also known as MacPro1,1 in the system profiler?
+
+A: "Available", "supported", and "will work" are three very different things.
+The officially compatible video cards for the original (1,1) Mac Pro are:
+
+
+*
+
+*NVIDIA GeForce 7300 GT
+
+*ATI Radeon X1900 XT
+
+*NVIDIA Quadro FX 4500 (and family)
+
+*NVIDIA GeForce 8800 GT
+
+
+These are the only cards that are supported in an original Mac Pro. Unfortunately, most are not particularly available any more. Apple no longer sells any of these cards, except the Quadro FX family (which is super-expensive and not consumer-oriented). I believe most, if not all, of the above officially supported cards are all Apple-specific variants. There are various non-Apple versions of the above, which may or may not work in a Mac Pro, depending on firmware compatibility (sometimes it is possible to program a Mac-compatible version of the firmware into a non-Apple card's non-volatile flash, thus enabling the use of a non-Apple version in the Mac Pro). But the bottom line is that it is not really possible to purchase these cards anymore (except for the super-expensive Quadro FX and maybe a small quantity of the others that can be found used on Amazon or eBay).
+That said, there is at least one other card that is currently (as of Summer 2011) available that will work in an original Mac Pro. Although it is not listed as being officially compatible (and therefore not officially supported), there are numerous accounts in the Apple online store from customers who have reported that the ATI Radeon HD 5770 works just fine out-of-the-box in their original Mac Pros. I too purchased one from a local Apple Store and installed it in my original Mac Pro (running OS X 10.6.7), so I can state for a fact that this card does work just fine, and it doesn't require any hacking (no drivers to install, no firmware to be flashed) -- it just works right out of the box. It also performs quite a bit better than the older officially compatible cards. It also works just fine in Windows under Boot Camp (after downloading and installing the Boot Camp drivers from the ATI/AMD website).
+The only caveat (and it is a very minor one) is that the installation instructions that accompany the card deviate somewhat from what is actually required in the original Mac Pro, due to minor variations between the internals of the older Mac Pros and the newer ones. For instance, the instructions mention sliding a PCI cage (to move a retention bracket), but the bracket is not present, and the cage doesn't move in the original Mac Pro (each PCI slot has it's own small retention "clip" instead). Also, the power connector on the motherboard is in a different location in the original Mac Pro.
+If you do some research, you will find various other reports of users having success with other cards (especially various ATI Radeon variants). Oftentimes, it involves updating the firmware (flashing). However, the Radeon HD 5770 is the only currently available card I am aware of that will work out of the box.
+
+A: I can confirm, out of the Box AMD, Asus EAH 6850 DC/2DIS/1GD5, work
+on Mac Pro 1.1 OS Lion 10.7.5.
+I do have Apple ATI 5770 that dose all my video editing on FCPx.
+But looking for more GPU power.
+I should Note that a Evga GTX570 will also work, i do have some problems
+with open gL. Its because the Card is 2.5 GB ram and Mac OS turn off open gl 
+on ram above 2 GB.There is a fix and its in the works.
+The Only thing i would like to have from Nvidia card is the Cuda Core,
+for Blackmagic Davinci Resolve.
+
+A: It's been confirmed that the following PC graphics cards work "out-of-the-box": Radeon 5770, 5850, 5870, 6850 and 6870. Le yay!
+
+A: I can confirm, mac pro 1.1, asus eah 6870 with lion 10.7.5.
+no any problem. working fast. I installed fresh copy on yesterday :)
+
+A: My Mac Pro 1,1 OSX Lion 10.7.5 runs NVIDIA Quadro 4000 for Mac. Working normally excepts:
+
+
+*
+
+*No Apple boot logo
+
+*NO CUDA core will be enabled.
+
+
+This machine is a dinosaur. still EFI32bit. But it's worth to do the job. 

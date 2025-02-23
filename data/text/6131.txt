@@ -1,0 +1,159 @@
+Q: Which command-line packages do you need? I generally have one of Fink, MacPorts, Homebrew installed. Most often for a single, small, and trivial package. I've found that all my day-to-day software exists in OS X versions.
+So, which non-OS X unix software do you find is required, interesting, or otherwise always on your computer.
+I'm looking to broaden my horizons. I have enough unix/linux experience to not be afraid, I just haven't found a good use-case yet.
+For added clarity, I'm not looking for anything already installed with OS X. So, please, no ssh, vi, etc, unless you explain the reason you need a different version.
+
+A: I frequently reinstall MacPorts (e.g., when there's a new major version of Xcode) so I keep a file with a list of my essential ports for easy reinstalling.
+Here's my list of essential software that doesn't come with OS X.
+
+
+*
+
+*arping
+
+*dnstracer
+
+*watch
+
+*wireshark
+
+*figlet
+
+*gnupg
+
+*ipcalc
+
+*lynx +ssl
+
+*minicom
+
+*mtr
+
+*ncftp
+
+*nmap
+
+*pstree
+
+*pwgen
+
+*p0f
+
+*sipcalc
+
+*ssldump
+
+*stunnel
+
+*tcpflow
+
+*unrar
+
+*w3m
+
+*wget
+
+*wordplay
+
+*fortune
+
+*cowsay
+
+*ack
+
+A: These are all brew tools:
+coreutils
+exif
+exiftags
+exiftool
+findutils
+gawk
+gnu-sed
+ssed
+
+Those are for greater scripting compatibility or just better features (gsed supports things like '\t' and other things you'd expect)
+growlnotify
+
+Use Growl from the command line
+lynx
+wget
+
+lynx is useful if for nothing other than lynx -listonly in scripting.
+wget is also handy for just throwing a URL and downloading it.
+msmtp
+
+easily send email from command line. I wrote more about it here.
+multimarkdown
+
+multimarkdown tools for obvious reasons
+youtube-dl
+
+Download youtube videos just by throwing the URL at it.
+
+A: git and Mercurial command line. I know there are GUI out there, and I use those, too, but for some things, the command line is the fastest way to get things done.
+ssh (to log into other computers that are not running OSX, so I am not sure that counts) and rsync (to get data in and out from them)
+command line scp. Again, there is Cyberduck, but sometimes the command line is fastest.
+Arguably, all of the above is programmer stuff.
+Back in the day, I used OpenOffice via X, but now we have OpenOffice as a (more or less) Mac app, and even Quick Look can show you Excel and Word files.
+
+A: vim or its mac counterpart macvim. I can't stress enough that anybody who has even remotely to do something on the terminal should take the time to look at a couple of tutorial videos on youtube and print out the awesome Graphical vi-vim Cheat Sheet.
+Other than that I use the usual suspects like wget, tail, wc, ssh, scp or grep. For subversion I much more like the graphical ui built into NetBeans.
+
+A: *
+
+*wget (download files from inet)
+
+*nmap (scan ip)
+
+*unrar (It's more up to date that the GUI)
+
+*imagemagick (way faster to do thumbs than photoshop)
+
+*mencoder (to do some trasnformations between media formats, I use it regularly to extract audio from DVD's)
+
+
+developer stuff:
+git, postgresql, mongod
+
+A: Can't live without using Emacs in console mode via Terminal.
+
+A: I use iperf to measure my network bandwidth whenever I make a change to any computer or network gear.
+
+A: *
+
+*bash-completion
+
+*git
+
+*emacs (OSX's installed version is 4 years old)
+
+*inkscape
+
+*nmap
+
+*iperf
+
+
+A: MAMP 2.0.1.
+Pre-packaged 
+
+
+*
+
+*Apache 2.2.17
+
+*PHP 5.3.6 
+
+*phpMyAdmin 3.3.9.2 
+
+*XCache 1.3.1 
+
+*SQLite Manager 1.2.4 
+
+*MySQL 5.5.9 
+
+*SQLite Library 2.8.17
+
+
+You can control everything through the MAMP web-browser interface, with almost no need for the command-line.
+I use it to host a local WordPress installation for testing and development.

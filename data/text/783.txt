@@ -1,0 +1,126 @@
+Q: Best app to switch between all open windows After 4 years of being a Mac user, there is only one thing that I still miss from the Windows world, and that is being able to switch with a single keystroke between all open windows in the computer.
+What is the best app or utility, free or not, for accomplishing that?
+I've used Witch, but I never was completely satisfied with it. It's a bit slow and the switcher UI is not very pretty.
+Do you know any alternative?
+
+EDIT (2016): This question keeps getting views and upvotes after 6 years. When I asked this question in 2010 I was still transitioning from being a Windows user. Eventually, I got used to Mac OS X UI and nowadays I don't use any third party utility for managing app windows, just Mission Control and the native keyboard shortcuts. So, although this question is no longer relevant for me I hope it is useful to new Mac users making the switch (Including this comment).
+
+A: I know it isn't a single keystroke but I like using the "App exposé" feature to navigate between the windows of the focused application :
+
+
+*
+
+*ctrl + down arrow (or three fingers down move)
+
+*then left arrow or right arrow to navigate between windows (or click on the window you chose)
+
+
+A: I've been using AltTab, an open source application, with success.
+
+AltTab brings the power of Windows’s “alt-tab” window switcher to macOS.
+
+Alt-Tab is open source software that can be built & installed locally, or can be installed directly from its website or through Homebrew:
+brew cask install alt-tab
+
+
+A: I'm guessing you're already aware, but for those searching the web there's always Ctrl+F4. No visual feedback, but it does switch between all windows for all apps (that are not hidden) with one command. Of course it's instant and so it doesn't reorder the list like ⌘+Tab does. I also got tired of Witch, but I decided that most of the time ⌘+` is all I need.
+
+A: Senebier seems to be a good alternative to witch and it's free.
+http://www.bicoid.com/app/senebier/index.html
+
+A: https://contexts.co/
+Contexts for mac is a competitor to Witch. As a long-time non-mac user looking for more intuitive window switching , I really like this app. It allows for switching between all the windows you have open, using your keyboard or your mouse.
+There's also an optional side panel, which is somewhat a replacement for the Mac Dock. It can be configured to hide applications that don't have a window, and displays multiple icons for multiple windows. As such, irrelevant background applications are hidden and multi-window apps can be managed more easily. 
+If need be you can still use Apple's Native App-switcher (cmd+tab) to close/switch-to background/windowless applications without using the native dock.
+
+A: *
+
+*Quicksilver (or spotlight). You summon the App you are interested on, say Safari. 
+
+*Using Mission Control's Show application windows (you can assign a shortcut to this using the keyboard icon on the system preferences) 
+
+*Once all the application windows are being shown, you can type (there's no text field, you will just have to start typing) the title of the window you care. After a couple of keystrokes, your window will be selected. 
+
+
+At the beginning you'll be slow but as time goes by, you'll become pretty fast. 
+
+A: It's interesting - no one has mentioned Karabiner.  it has ton of options for different things, the one I like called "Tab mode", where you can switch between apps by holding Tab key and using either arrows or HJKL keys (especially favored by Vim users). Tab+I to cycle through open windows of the current app. 
+I love Karabiner, it's the app that made me really, really hate Windows (occasionally I have to do things in Windows). However even with awesome AutoHotkey app I couldn't find a way to use keyboard there as Karabiner lets me on a Mac.
+I encourage you to try Karabiner and explore vast amount of different options, trust me - it will change the way you use your keyboard.
+
+A: An app I developed, Optimal Layout (14$), gives you keyboard commands to quickly switch and re-organize windows. 
+
+A: For those who don't know it, Ctrl+F4, Ctl+`, ... can be remapped in:
+SystemPreferences=>Keyboard=>Keyboard Shortcuts=>Keyboard & Text Input
+
+
+A: Command + Tab, combined with Command + `. Works great. 
+Let me explain:
+
+
+*
+
+*Command + Tab : Switch between different applications.
+
+*Command + ` : Cycle between all open windows of the application you're focused on. (For example, if you have four Finder windows open, you can press Command + ` to move between the four windows.)
+
+
+If this and other keyboard shortcuts seems to be broken, you probably have another keyboard-layout then US, The shortcuts actually aren't to the ` key but rather the key that would have ` on a US keyboard, to find what key this is on your layout, open the "keyboard viewer" and switch your layout to US, take notice on where the ` key is located, swich back to your normal layout and you can now use this button to switch windows. 
+On a swedish keyboard ` is the button next to 1 (§) on the small/laptop keyboard, and the key next to z (<) on the full size keyboard.
+
+A: Hyperswitch is free and works well. It also looks nice.
+Update: ...but unfortunately as of May 2021 the app is not being updated anymore and has no native Apple Silicon (M1) support.
+
+http://bahoom.com/hyperswitch
+
+A: Here's a list of all the options from this page:
+["italicized & quoted notes are sourced from linked url"]
+
+*
+
+*Mission Control and native keyboard shortcuts: ⌘+tab or ⌘+` (backtick)
+
+*AltTab ["macOS 10.12 to 12"] [$0 (free), open source]
+
+*Witch ["v4.3.8 requires macOS 10.10 Yosemite or newer"] [$14]
+
+*Hyperswitch ["Mountain Lion, Mavericks & Yosemite"; works on Sierra & High Sierra] [$0 Free] [window preview]
+
+*Contexts ["v3.7.1 Works on Mojave & Catalina"] [$9 after Free trial]
+
+*Optimal Layout [Snow Leopard or later] [$0 (free) but not currently actively developed]
+
+*Karabiner - ["macOS 11.0 Big Sur,
+macOS 10.15 Catalina"]
+
+*Senebier ["10.4 or later", last update in 2012]
+
+*Hammerspoon with hs.window.switcher [free and open source]
+
+*Command-Tab Plus ["macOS 10.12 or later and is fully macOs Monterey ready", 13.75 €]
+
+
+A: As mentioned in the question, Witch ($14) is one of the first window switchers and, IMHO, still one of the best.
+I suspect @Sergio (questioner) main concerns have now been addressed in Witch. I think its actually one of the better looking ones, with lots of options for tweaking appearance (including themes). It also feels very fast to me.
+All that said, I am not currently using Witch because it doesn't support searching the window names. For that I was using Optimal Layout and am now trying out Contexts (which seems very promising).
+
+A: Been searching for a mac window swapper that INCLUDES MINIMIZED WINDOWS for ages. Little did I know, the function was already built into Quicksilver, sitting under my nose this whole time. It's an action called "show all windows," which I've set as a trigger ( ⌘` for proximity to ⌘⇥).
+Quicksilver comes to the rescue once more (as usual).
+
+A: See also this question, where I posted the same answer.
+I am surprised / shocked that nobody mentioned hammerspoon. Aside, it can do much more than just window switching!
+From its webpage:
+
+This is a tool for powerful automation of OS X. At its core, Hammerspoon is just a bridge between the operating system and a Lua scripting engine. What gives Hammerspoon its power is a set of extensions that expose specific pieces of system functionality, to the user.
+
+Using hs.window.switcher one just adds (as mentioned in the docs) to the init.lua
+switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{})
+hs.hotkey.bind('alt','tab','Next window',function()switcher_space:next()end)
+hs.hotkey.bind('alt-shift','tab','Prev window',function()switcher_space:previous()end)
+
+and one can happily switch between windows in the current space using alt+tab and alt+shift+tab.
+EDIT:
+In case it is rather slow, try turning of thumbnails and set the animation duration to 0.
+switcher_space.ui.showThumbnails = false
+hs.window.animationDuration = 0
+

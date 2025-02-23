@@ -1,0 +1,40 @@
+Q: Do I need a clean install of Lion if I want to defragment my disk? My 2009 MacBook Pro has been running very slow and glitchy under Snow Leopard. I've come to the conclusion that working with large files and repeatedly filling the hard disk to 95% capacity has likely resulted in fragmentation.
+With this specific problem in mind, what is the simplest recommended upgrade path for Lion? I've created a bootable clone of my disk with CCC (plus a time machine backup on another drive).
+Currently leaning towards wiping the disk, running iDefrag, restoring from the clone then installing Lion. Is there a simpler or otherwise better route?
+
+A: Mac OS X defragments small files on the go, and has a hot file optimization zone where medium sized and frequently accessed files get ordered on the fast part of a hard drive.
+If a tool does a block copy of the drive - fragmentation of files and directories gets moved to the copy destination. When you create a CCC clone, you are not copying the fragmentation state of each file--each file gets written as a single extent on disk. Likewise when you restore from the clone. So if you just wiped and restored from the clone, you'd be starting clean right there.
+The apple Disk Utility can be told to do a file level copy or a block level copy - so for a one time copy - it's about as capable as CCC and SuperDuper.
+If you're at 95%, it seems to me that a bigger problem is that the operating system can't allocate as much virtual memory as it would want, which would result in a lot of disk thrashing as it constantly clears out the limited VM space it has, which would be consistent with the problems you are reporting. Solution: bigger or emptier hard drive.
+
+A: You can free up a ton of hard drive space on your existing system by several methods.
+
+Do not try any of these unless you have the means to make a complete backup of your system first, so you can restore any files that you delete that you decide you must restore later.
+
+1) Run MonoLingual to remove Mac OS X language and help files for languages that you do not speak. This can free up as much as 1GB on some systems. Be careful.
+2) Delete the contents of /Library/Printers/. This can free up another 2 to 3GB in some cases. When you next reboot and need to print something, Snow Leopard or Lion will prompt you to download the drivers for just the models of printers you actually use.
+3) iDVD, iMovie, iPhoto, and GarageBand have huge support files, many GB in size, full of themes and sound libraries and other things you can temporarily do without. If you have your original DVD installer for iLife, you can re-install those later. Manually remove these support files, which are found in places including 
+
+
+*
+
+*/Library/Audio/Apple Loops/
+
+*/Library/Application Support/GarageBand/
+
+*/Library/Application Support/iDVD/
+
+*/Library/Application Support/iPhoto/
+Total savings, another 3 to 5GB.
+4) Use the free OmniDiskSweeper program to examine your hard drive and find all the large directories of files to look for other things to delete. Be very careful and make sure you have a backup of anything you are eliminating. 
+5) Empty your Trash. Some users put many GB in the Trash and never empty it. That's disk space you should free up. 
+6) Be aware of other user accounts on your hard drive other than your own. Under those accounts there may be huge cache files that need clearing, Trash that needs emptying, or large documents or directories of files you can archive and then delete.
+
+A: If you've got a bootable external drive, I would recommend Drive Genius. You can defragment, repair, rebuild, clone, etc. I've used it for years (along with Disk Warrior) and love it.
+
+A: Given a glitchy OS - I try to avoid any efforts to clean / prune / optimize as that can really cause you grief if the system is already unstable.
+The price of a USB hard drive has to be compared to how much your time and potential loss of files will be. If you can borrow or obtain a USB drive - you get a much better path and chance of Lion success.
+Use Disk Utility to Restore the boot drive to the external drive. That article has you restoring to a disk image. This is nice, but you can't boot from it to test the copy. You might instead just erase the external drive first, and then do the copy to the drive as a whole. By not checking the "erase disk" option, the disk utility will copy the files one by one - which will undo any directory as well as file fragmentation. The external drive will be perfectly set up and you can even boot from that drive to be sure it copied everything and is a good copy.
+Then you can set aside that drive and erase the Snow Leopard - do a clean install on the internal drive, upgrade to Lion and only connect the backup when it asks if you want to migrate in from an external backup.
+Best of luck - there are other ways to go - but I want something cheap, and sure and would rather you spent the money on a good new drive than software that defragments your drive in place. You can always defragment by using disk utility once you understand that the fragmentation is part the directory structure itself and part where the large files land. 
+The system since 10.5 defragments small files on the fly and will relocate the most used files to a fast portion of a spinning hard drive, so it's really hard to get in a bind until you get past 90% full on a drive.

@@ -1,0 +1,78 @@
+Q: How can I automount afp volumes at startup? I bought a NAS to store my media files and I'd like to automount the volumes on startup. Currently I'm opening those volumes as a Login Item under System Preferences > Accounts.
+This works, but it unfortunately also pops up each volume in a new Finder window on boot up. Checking the hide on the items only hides the processes, not the resulting Finder window from those processes. A solution that avoids those Finder popups would be great.
+I'd like to avoid any 3rd party apps to accomplish this too.
+
+A: I found this script from http://hints.macworld.com/article.php?story=20050215082247458, but I'll reproduce it below.
+
+
+*
+
+*Open up Script Editor and paste in: 
+
+
+
+    set sfiles to "afp://user:pass@host/volume"  
+    tell application "Finder"  
+        mount volume sfiles   
+    end tell
+
+
+
+*
+
+*Replace sfiles with the appropriate details of your AFP volume.
+
+*Add appropriate other lines for the other servers you have, both above and inside the tell
+
+*Save this script somewhere safe and add it to the login item pane (instead of the Volumes you have there now)
+
+
+A: TL;DR
+Use AppleScript, but do not specify the user name or password.
+
+Background
+In my case, none of the suggestions that I found online worked perfectly.
+I had several AFP volumes that I wanted to mount automatically. Following the advice given here and elsewhere, the obvious solution seemed to be an AppleScript file with something along these lines:
+tell application "Finder"
+    try
+        mount volume "afp://user@server/a"
+        mount volume "afp://user@server/b"
+        mount volume "afp://user@server/c"
+    end try
+end tell
+
+Now, this almost works. From the perspective of Finder, it looks as if all volumes are correctly mounted. However, if you use the terminal, you can see the problem. The following has happened:
+
+
+*
+
+*The volumes are mounted on directories /Volumes/a, /Volumes/b-1, and /Volumes/c-1.
+
+*There are empty directories /Volumes/b and /Volumes/c.
+Whether you care about it depends on your intended use, but I needed a solution in which the file system paths are more predictable.
+After spending a lot of time playing with all variants of this, it seems that the crucial thing is the following: If you specify the user name and you have already mounted some volumes from the same AFP server, things go wrong.
+Hence the following solution.
+
+Solution
+
+
+*
+
+*Make sure that everything works correctly when you use Finder: you can mount volumes by clicking on the share, and you do not need to enter any passwords. If Finder asks for a user name and password, tell it to remember the password.
+
+*Create an AppleScript application as follows. Open AppleScript Editor. Write a piece of code like this:
+tell application "Finder"
+    try
+        mount volume "afp://server/a"
+        mount volume "afp://server/b"
+        mount volume "afp://server/c"
+    end try
+end tell
+
+Here "server" is the host name of the server (if Finder displays the server name "x", you can try to use the host name "x.local"). Replace "a", "b", and "c" with the names of the volumes that you want to mount. Make sure you do not try to specify any user names or passwords. Compile and save it, using the file format "Application" (you will get the file name extension ".app" automatically).
+
+*Test it by running the application that you just created. Most likely it asks for the user name and password; enter them and again tell it to remember the password.
+
+*Unmount (using Finder), and try it again. It should just work, without asking anything. The paths should be correct (no -1 suffixes).
+
+*Add the application to your login items (System Preferences; Users & Groups).

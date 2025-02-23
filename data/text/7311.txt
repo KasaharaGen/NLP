@@ -1,0 +1,39 @@
+Q: How to safely charge your apple device at a charging station? Recently there has been alot of news about how free charging stations could be reading data from devices that are plugged into them. The obvious solution to this issue is to place an adaptor between the charging station and the device that is only wired to transmit power.
+I would sugest that the ideal design of would be a USB micro female to Apple dock male connector. This could be small enough to be carried around in a wallet and as USB micro is the current device charging standard compatability would be good.
+This would also have an impact for non Apple devices where a USB micro passthrough addaptor could be used.
+Does anyone know of any such device on the market?
+This article is the inspiration behind my question.
+
+A: I know of no device that is sold to act as a write block that also allow full 1A charging, but Apple's patent covering potential upcoming changes to the dock connector might help you if you wanted a DIY hardware solution for the older 30 pin USB connectors. 
+In the mean time, you have several ways to secure the data without needing a custom piece of hardware.
+
+
+*
+
+*Lock your iOS device with a passcode before connecting it. This ensures the data is encrypted. 
+
+*You could go a step further and be ready to power off the device as soon as it's connected - shortening the window for the OS to be available to the charging station. The devices will still charge and shouldn't wake up unless it detects a disconnect/reconnect of the USB cord.
+
+*Be careful to not establish trust with unknown chargers and computers by tapping when prompted by iOS 7.
+
+
+Furthermore, if you upgrade to iOS 7, anytime you connect to a computer which could potentially read your data, you are alerted to this fact rather than having the device share all data because it's not locked with a passcode.
+
+This new "trust this computer" functionality prevents any access to your device's storage without a positive user step to allow that access.
+
+The device won't talk data to the "charging station" until the passcode is entered on the touchscreen. (Or the astronomically unlikely but theoretically possible chance that the charging station provides the one and only unique to you secure certificate generated and stored on your primary iTunes computer.)
+The charging station can't try entering passwords one by one - so it's not like you are at more risk by charging an hour versus 2 minutes. 
+
+A: If you use something akin to a Zoom Energy Bar you should be able to connect the mini USB at the charging station to charge the energy bar, then connect your device to the USB port. It should maintain the charge on the energy bar battery and charge the device(s) on the other end.
+Added benefit of having a portable battery with you to charge various and sundry devices.
+I have one of those energy bars, but I have to admit that I've never tried what I am proposing here.
+
+A: I recommend powering down the device before you connect it to any unknown docking stations or power chargers. The data is not accessible when the power is off and it will also recharge faster.
+
+A: You could take a spare cable and remove the data pin from the plug that connects to the iDevice, so only power is transmitted.
+
+A: I think this device  fits the requirements. It has a switch to go between "Charge only" and "Sync and charge".
+
+A: I just wanted to chime in with a completely alternative answer. The data locking cable is really neat, but if you're really concerned, don't use a charging station.
+Get a battery case, Or a battery pack. Or both.
+Naturally, be sure to be on top of recharging them when you're in a safe place.

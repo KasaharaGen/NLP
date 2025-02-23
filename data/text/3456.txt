@@ -1,0 +1,26 @@
+Q: Strange keyboard shortcut icons in Mac OS 10.6.7 Running on Mac OS 10.6.7.  Don't know of any changes that could of happened to make the keyboard shortcuts different.  Tried Googling and found nothing helpful. Anyone know why this happens and how to fix it?
+
+
+A: Those look like the placeholder glyphs from the LastResort font. Check your fonts folders and their permissions. Is that the case in every menu all over the system, in every app?
+
+A: The why this happened will be hard to guess without some sleuthing and more info. The "what happened" is easier - the font that Finder needs didn't load or has become corrupt/missing.
+Assuming you haven't added any fonts recently or use special font software some general next steps would be:
+
+
+*
+
+*make a back up of the system or
+critical files (in case the
+FileSystem or Hard Drive is corrupt
+or failing) 
+
+*reboot in safe mode -
+shift key held down at
+boot to rebuild and check things in
+general 
+
+*reboot normally - then fire up Font Book and check
+your fonts for problems
+
+
+A: One thing to try would've been to clear the font caches: atsutil databases -remove. (ATS = Apple Type Services.)

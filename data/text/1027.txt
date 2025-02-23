@@ -1,0 +1,40 @@
+Q: Can I use multiple gmail-based accounts with the same username (but different domains) with Mail.app & IMAP? A recent mail file corruption has led me to finally putting Eudora to bed.  Since my personal email has been backed by gmail for a few years, and my work email is a Google apps email account, I figured I'd take advantage of server-based storage to not worry about fixing Eudora mail files, but just use IMAP to sync up with the servers in Apple mail and be done with it.
+Well, my personal account and my company account are both the same user name, i.e. username123@gmail.com, and username123@company.com.  (Not real.)  And it seems like this is causing a collision in Mail.app.  On editing the initial mail config setup, I get an error:  "Invalid Directory:  The account path /Users/.../Library/Mail/IMAP-username123@imap.gmail.com is already being used by the account Company Mail".  
+I was concerned by this, but it did seem to be busily downloading mail into the "All Mail" folder for the new account, so I let it run.  But, yeah, it seems broken.  What should be individual inbox folders for each account show all the same sets of messages.  That's no good.
+A funny thing is that I've had these same two accounts on my iPhone, with IMAP, and it keeps them straight!
+So, am I doomed to not being able to use Apple Mail in this scenario?
+Update: Today, the two inboxes look separate, after a restart of Mail overnight.  However, I still get the same error when I try to change the personal account to send through an alternate server, so I think there is still a problem here.
+
+A: Follow these steps:
+
+
+*
+
+*Open Mail and delete each of the conflicting accounts. Close Mail.
+
+*Go to ~/Library/Mail/ and make sure any IMAP-username123@imap.gmail.com folder has been deleted. If there is any such folder left, delete it now.
+
+*Open Mail and create one of the accounts and let Mail load your messages. Close Mail.
+
+*Go to ~/Library/Mail/ and verify that a folder called IMAP-username123@imap.gmail.com has been created.
+
+*Open ~/Library/Preferences/com.apple.mail.plist. If you have installed Xcode, this file will open with Property List Editor. Otherwise you can download a free trial of PlistEdit Pro to open this file. Using a plain text editor with .plist files is more difficult.
+
+*With the .plist file open, click the disclosure triangle for MailAccounts. Here you will find Item 0, Item 1, etc.
+
+*If you click the disclosure triangle for each of the Item headings, you will find that one of them has the value username123@gmail.com or username123@company.com for the AccountName key, depending on which account you created in step 3.
+
+*Change the value for AccountPath for this Item so that the path will not collide with that of the next account you are to create.
+
+*Save and close the .plist file.
+
+*Open Mail and let it reload your messages. Close Mail.
+
+*Go to ~/Library/Mail/ and verify that a folder with the path value you provided in step 8 has been created. Delete the old folder called IMAP-username123@imap.gmail.com.
+
+*Open Mail and create the remaining account normally and let Mail load your messages.
+
+
+A: You could try setting one up as POP but leave the messages on the server, and the other as IMAP.
+
+A: I have seven Gmail accounts set up on Apple Mail via IMAP, running OS X Mountain Lion. I had no problems setting up any of them except one. Long story short, the fix was easy. I turned off the 2-step security verification in the Google account settings. That was it!

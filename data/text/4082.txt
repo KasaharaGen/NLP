@@ -1,0 +1,22 @@
+Q: How to move a folder containing aliases to another machine without breaking the aliases? I've got a large folder of music with lots of aliases to tunes that are spread throughout subfolders of the main tunes folder. For example I might keep the original files sorted by artist, and then have a folder for a genre with a bunch of aliases to tunes (or folders of tunes) for that genre, like a playlist.
+Now that I've got a new laptop how can I transfer the whole folder without breaking the aliases?
+I tried using the symbolic link options of rsync but that doesn't seem to work with OS X aliases.
+BTW I'm not interested in replacing the aliases with a copy of the original, I really want to keep the aliases :)
+Is this something Time Machine can help with?
+Thanks!
+
+A: Aliases are not the same as symlinks.
+Symlinks just point to a path (relative or absolute).
+Aliases first track the file's unique ID and then the path.
+Since there are two pieces of information stored in an alias - they are more robust and will follow a file that's moved based on the unique ID. The downside is that the unique ID is based on the file system so copying the file elsewhere mints a new ID so the alias doesn’t map to the new location by design and implementation (currently at least).
+Finder (or the very powerful ditto) are your best bets for moving aliases intact. Worst case you could use disk utility to make an image of a folder that contains everything needed as a subfolder and then move that to preserve the relative locations of the files and isolate the effects of a short name change (/Users/whatever) in case you wish to change that. Once the original mac is disconnected from the new mac - the aliases will reconnect as desired to location of the files on the new mac.
+
+A: I believe aliases will be handled correctly if copied through the finder, even to external media.  If you are doing it through rsync you will probably have issues.
+References:
+
+
+*
+
+*Forum Posting
+
+*Script to possibly convert Aliases to Symlinks

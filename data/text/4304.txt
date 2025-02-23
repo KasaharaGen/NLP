@@ -1,0 +1,24 @@
+Q: how can I convert the values of a table into percentage values rather than absolute values? In Numbers, how can I convert the values of a table into percentage values rather than absolute values ? 
+The percentage are computed per column. The sum of the cells in a column is 100%.
+i.e. http://d.pr/NNwn
+thanks
+
+A: If I'm not mistaken you could do that more or less easily: 
+Say for example column comedy. 
+The total is 534 (sum). 
+
+
+*
+
+*132 (1st row) is the 24.71% (132 x 100 / 534). 
+
+*3 (2nd Row) is the 0.56%… 
+
+*1 is the 0.18% 
+
+*398 is the 74.53%.
+
+
+The sum of 24.71+0.56+0.18+74.53 == 100% (minus rounding, add more decimals for more precision).
+So if you add a final ROW with the SUM  (below technology for example) you can cause each cell to perform a Cell * 100 / TOTAL_OF_COLUMN and get your %.
+What am I missing?

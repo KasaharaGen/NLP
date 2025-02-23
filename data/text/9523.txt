@@ -1,0 +1,21 @@
+Q: How to register an AppleScript as a potential default web browser? I've written an AppleScript that I want to set as the default browser.
+I've added a CFBundleDocumentTypes section to the p-list (copied from Safari) and rebuilt the launch services database, but that didn't work.
+The script doesn't show up in the Safari default browser list. If I choose it manually in that preferences dialog, it's ignored, and Safari becomes the default browser.
+
+A: Have you tried adding the CFBundleURLTypes and the sub-key LSIsAppleDefaultForScheme?
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleURLName</key>
+        <string>Web site URL</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>http</string>
+            <string>https</string>
+        </array>
+        <key>LSIsAppleDefaultForScheme</key>
+        <true/>
+    </dict>
+</array>
+
+Not sure that it will help, but I have noticed these keys in the info.plist of all the apps that I have checked that show up in that browser list.

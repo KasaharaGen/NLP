@@ -1,0 +1,21 @@
+Q: Xcode 4.1 installation not customizable? Missing Installation Type Step? Any ideas on how to get around installing that huge iOS SDK in Xcode 4.1?
+This Q&A suggests to deselect iOS SDK during installation, but the Xcode 4.1 (App Store-Version) Installer seems to have no "Installation Type" Step anymore.
+
+A: You can control or right click to show package contents and run only select portions of Xcode 4.1.
+The program Pacifist will let you look into the packages to see what each contains.
+The installer has changed to remove the options - it's all or nothing. If space is tight on your boot drive, you will have to either install to another volume and move parts back or temporarily free up enough space to install and clean out what you don't want to keep.
+
+A: As it turms out Apple released a commandline tools package recently, which seems to be exactly what I need: Apple Developer Downloads
+
+A: You can try the following:
+
+
+*
+
+*Right-click on Install XCode.app and choose "Show Package Contents"
+
+*Browse to Contents->Resources and run Xcode.mpkg
+
+*Customize your install, leave out the iOS SDK, save 5 GB of disk space
+
+*Profit?

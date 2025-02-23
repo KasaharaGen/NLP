@@ -1,0 +1,19 @@
+Q: Connect to Server as guest from command line I have a SAMBA share I mount on my Mac from time to time. I do this in Finder with Go > Connect to Server..., typing smb://192.168.1.1 into the Server Address field and pressing Connect. On the authentication dialog I choose to Connect Guest, and finally my remote share is mounted in /Volumes/<share_name>. This is great.
+Can I achieve all of the above with a single command in Terminal? I tried some variations of the advice provided here, but there are two things missing:
+
+
+*
+
+*how do I instruct mount to connect as guest?
+
+*how do I create the /Volumes/<share_name> directory on the fly, (so it doesn't have to exist before hand)?
+
+
+Thanks!
+
+A: In order to mount as "guest", you need to use another command: mount_smbfs
+mount_smbfs -N //guest@server/share /some/existing/path
+
+The "-N" is "don't ask for password" (type man mount_smbfs for more info).
+As for the second part of how to create it on the fly (the path), I believe that it's not possible. The mount command doesn't create it on the fly and even the man pages mention the "correct" way is to mkdir first then mount. 
+See the man page for mount_smbfs.

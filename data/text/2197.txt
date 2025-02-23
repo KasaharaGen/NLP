@@ -1,0 +1,64 @@
+Q: Raise/lower/move/resize windows with mouse + modifier keys I'm a longtime FVWM user over on the Linux side and have developed some keyboard + mouse shortcuts that I find very helpful in managing windows. Specifically:
+
+
+*
+
+*left click + command + shift = send to back if frontmost, otherwise raise to front
+
+*right click + command + shift = maximize window vertically (horizontal size unchanged)
+
+*left+right chord + command + shift = grab window and move it
+
+*left+right chord + command + control + shift = resize (drag pointer to side or corner and move that to resize)
+
+
+For all of these, "click" means click anywhere in the window.
+Is there Mac software that will let me set this up? I'm on 10.6.
+Edit
+To clarify, the move/resize operations should begin on mouse-down and end on mouse-up.
+
+A: Easy Move+Resize is a great little tool that does exactly what it says on the tin.
+
+Usage
+Easy Move+Resize is based on behavior found in many X11/Linux window managers  
+– Cmd + Ctrl + Left Mouse anywhere inside a window, then drag to move
+  – Cmd + Ctrl + Right Mouse anywhere inside a window, then drag to resize
+
+This thing was a breath of fresh air after spending too much time trying to figure out how to get the latest version of BetterTouchTool to do what I wanted. It's also not dependent on SIMBL, which is nice.
+My only complaint is that the key bindings are not configurable. I'd prefer to use ⌘ Cmd+⌥ Opt+⌃ Ctrl+Left Click for resizing, since clicking and dragging with two fingers on a trackpad is a bit awkward. But hey, it's open source, and as always, there's an issue for that.
+
+A: Not entirely what you are looking for, but you can drag and resize the window without bring it to the foreground. Command-drag on the menu bar (or an empty space on the toolbar) to move the window and command-drag on the resize handle to resize it. 
+Command-clicking on window elements may allow you to use them while the window stays in the back, but that works inconsistently, iirc. 
+
+A: You want Zooom/2. Free trial available. It works by holding down a modifier key and simply move your mouse around (no click required!) and then what ever window your cursor is above will resize or move around depending on what key you press, which is customizable. It does more things as well.
+I use JiTouch personally, but that requires a trackpad and to be honest, this specific feature on JiTouch takes a little practice to invoke the gesture required, which is unfortunately not customizable.
+
+A: It's interesting that most OS X users don't easily recognize lower as being the specific feature that's being sought.  If I have a window blocking most of the screen:
+
+
+*
+
+*I don't want to disturb its position, so move is useless.
+
+*it's blocking several windows I want to see, so switching to the all-window view and picking one doesn't help much
+
+*I still want to see part of the window, so minimizing it isn't helpful.
+
+
+I want to lower it to be behind the other windows.  In Unix/Linux, I can just keep typing at the parts of it I can see while leaving it in the back.  I just leave the interesting parts of windows visible and interact with all of them without destroying how they're arranged.  So easy.
+OS X allegedly doesn't even support writing code for  pushing a window to the back.  Nor typing and mousing at partially hidden windows without using modifiers.  Nor is it even remotely decent at leaving my windows where I left them through sleep, being moved, etc.  If i kill a window, OS X raises a random number of other windows of the same type, forcing effort to restore order (there may be a setting for this, I'm looking).  If i open a window from a window on one screen, the new window will appear on a screen chosen apparently at random instead of on the one the initiator window was on (also might have a strong, not sure).
+Overall, OS X window management is abysmal compared to the *mix world -  highly frustrating after working with the real thing 
+
+A: I think echoing the question is helpful. I havent found a way to lower a window yet and like the original poster states various other things arent a good substitute. The desired behavior is something like option or command + (left, center, or right) mouse anywhere on the window (or instead on the title bar) and the window moves to the lowest (most behind) in the window stacking order, thereby exposing the next window. Pressing again pushes the next one to the back and so on- and with multiple (many) presses you rotate through the entire collection of windows on the screen- its exceptionally fast- say all 10 or 20 windows in in just a few seconds.. Unix window managers let you bind it (lower window is what its called) to most any key and mouse combination. Command left mouse would be a likely choice for many who use it (something you press all the time- thousands of times a day).
+I have found that it appears it can be done in code NSWindowLevel (cocoa routines) but I have found no mention of it in any (macos) utility yet. Next I need to look into the different window managers. Switching window managers on a unix box is definitely doable- but some assemby is definitely required. I'm a bit uneasy about jamming in a new window manager here to see what happens. But perhaps its fine.
+
+A: You can run FVWM as your window manager for X11 apps and have this behavior.
+For OS X apps, you can move and resize them without the mouse, using just the keyboard, using 3rd party apps (link, link).
+I'm not aware of any other techniques to raise or lower.
+
+A: I have not used JiTouch but it claims to have a "move/resize" mode that is based on just the trackpad. If you have a desktop this will work with the external trackpad.
+
+A: Based on this video, you want to use BetterTouchTool.
+
+A: I suggest you to try Afloat.
+In 10.9 it is working with finder if it is reloaded after afloat.

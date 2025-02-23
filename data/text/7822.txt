@@ -1,0 +1,10 @@
+Q: How can AirDrop be disabled? I want to disable AirDrop so that my users do not have access to it but I have not been able to find a place to disable this feature.
+The closest thing i have found is this thread but I don't know where to disable it.
+Could someone explain to me how to do this?
+
+A: System-wide
+sudo defaults write /Library/Preferences/com.apple.NetworkBrowser DisableAirDrop -bool YES
+
+User-specific (via preferences)
+defaults write ~/Library/Preferences/com.apple.NetworkBrowser DisableAirDrop -bool YES
+

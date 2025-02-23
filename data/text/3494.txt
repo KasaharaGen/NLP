@@ -1,0 +1,9 @@
+Q: How do you set the TCP congestion control algorithm on OS X? I would like to set the TCP congestion control algorithm to Westwood+. Is this possible in OS X?
+
+A: According to http://www.macgeekery.com/gspot/2006-03/mac_os_x_network_tuning_guide you can actually modify the algorthims used by Mac OS X by using  the sysctl command, but you cannot use anything but the New Reno algorithm:
+
+net.inet.tcp.newreno implements the New Reno modification to the TCP Fast Recovery Protocol (RFC 2582). New Reno is the name given to an enhancement to TCP partial acknowledgments that is used in the absence of a stack that supports SACKs. Keep in mind that while this shouldn’t cause problems in the normal case, it’s only really useful over a congested link like, say, checking mail while streaming NPR or similar. Even then, it’s not a magic bullet. No harm in turning it on, but understand what it is and isn’t, first. It’s off by default.
+
+The command is
+sysctl -w net.inet.tcp.newreno=1
+which you could reverse with sysctl -w net.inet.tcp.newreno=0 if you had issues with it.

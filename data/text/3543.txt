@@ -1,0 +1,25 @@
+Q: Is there an easy way to get web page shortcuts on the desktop to use the favicon from the site? All of the web shortcuts on my desktop look the same.  Any reason they can't be using the site icon (favicon) the same way the browsers do?  Is there a way to do it in OSX 10.6?
+
+A: As the favicon is something that is accessible via the web, it is not an impossible request. But I cant seem to find anyway to change an icon without gui work, which means I guess you might be able to do it with Applescript if we are talking an entirely automated solution.
+The way I had my web location show my favicon as its icon was:
+
+
+*
+
+*Drag bookmark to Desktop for site I want.
+
+*Select the bookmark and press Cmd + I.
+
+*With the site still open, delete everything but the root TLD and add /favicon.ico (example http://support.apple.com/ts1275 becomes http://apple.com/favicon.ico) and go to that url.
+
+*Right click and copy image in Safari, and then paste on the image of the webloc.
+
+*Profit!
+
+
+Honestly, I think the other websites description of using their images or material from the site is a lot better idea, but this is how you can actually use the favicon.
+
+A: There's not a one-step way of doing this unfortunately.  I agree that it would be a great feature.  However favicons are 16 pixels and most desktop icons are larger than that, so they'd need to scale up and most favicons wouldn't be able to and look horrible.
+That said, the link below is to an article describing a multistep way of doing it, if you want to go to the effort (perhaps if you wanted semi-permanent desktop web shortcuts).
+http://jafdip.com/index.php/2010/04/28/creating-web-shortcuts-on-the-mac-os-x-desktop/
+Hope this helps.

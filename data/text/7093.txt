@@ -1,0 +1,14 @@
+Q: Startup items no longer load in Lion When I first upgraded to Lion, my startup items loaded as normal. Now however, no startup items load (even though they all appear in the startup items preference pane as normal). I thought maybe it had something to do with Lion's behavior of saving the system state on restart, but that's not it.
+Anyway to debug the startup process and see if it is getting stuck somewhere or aborting somewhere?
+
+A: Looking in the console log is the first place to look for launchd errors to debug the process. 
+I use Lingon to look into the actual launchd configuration files - it automates finding the files and editing the plist files. 
+You can look in your (now hidden) ~/Library/LaunchAgents  directory to make sure the items are enabled. 
+Lastly ( or perhaps firstly ) try deleting all the items from the account pane, reboot and add them back to see if that helps. 
+
+A: Something changed between the point where it worked and then did not work.  Unless you can remember what that was and undo that change, you have to resort to some other method of recovery.
+There is a software glitch somewhere.  It could be a corrupt preference (.plist).  Try booting in Safe mode.  That does a Repair Disk during the startup process, so it takes longer than usual.  Safe boot will then present a login screen when completed.  Select Restart to reboot normally, which gets all of the functions back that Safe boot disables.  See if that cures your problem.
+Another possible cure is to reset PRAM (see your Help menu in Finder).  You have to be very quick to get this to work.  It resets a lot of things, including software switches.  I have used it successfully when a Safe boot did not fix a problem.
+
+A: The actual problem on this one was that my keyboard had shorted out and it thought the "shift" key was stuck down. Because of this, it was bypassing any user-defined startup items on startup. Now that I got my keyboard replaced, the startup items show up again. So a bit of an odd answer to this one, but good suggestions in the other answers as well for someone that might be experiencing this. 
+Thanks for Lingon suggestion, nice program!

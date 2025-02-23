@@ -1,0 +1,46 @@
+Q: Mixing h.264 and AIC video files breaks iMovie thumbnails I have a set of six XviD .avi files. One of them is larger than the others. I converted them all to h.264 .m4v files with Handbrake, then tried to import them into iMovie directly.
+Five of the files it copied over perfectly. The large one, however, it insists on transcoding to a .mov file using the Apple Intermediate Codec (which is more highly preferred for editing than h.264).
+THE PROBLEM: When both types of files — h.264 and AIC — appear in an iMovie Event, the thumbnails in the Event Browser do not show up; all video files are displayed as blank gray filmstrips. 
+
+The thumbnails themselves are not corrupted; they are generated correctly. Deleting the thumbnails and the cache and having iMovie rebuild them does not help. They are simply not being displayed.
+Even if I ask iMovie to go ahead and transcode the five smaller files, it refuses to; it copies them over as-is.
+Even if I ask iMovie to NOT transcode the larger file, it refuses not to; it always transcodes it anyway.
+I've seen recommendations to use several different "iMovie converter" apps, but they all seem like scammy crapware.
+So what I need is one of the following four things, ordered from most to least preferable:
+
+
+*
+
+*A way to make iMovie display video thumbnails when mixing h.264 and AIC video in the same event
+
+*A way to make iMovie directly import the larger .m4v h.264 file that it currently insists on transcoding
+
+*A way to make iMovie transcode h.264 video even when it can import it directly
+
+*A good, decent, usable, reliable, non-scammy third-party app that I can use to transcode (as many different kinds as possible of) video files into something iMovie prefers to use directly.
+
+
+A: Answer for point 4:
+
+
+*
+
+*QuickTime Pro with Perian
+
+*MPEG Streamclip
+
+*DivX official converter
+
+A: Use Automator to make an application that transcodes file you feed into it.
+1: Make a new Automator application.
+
+2: Add the Encode Media action and choose the appropriate settings for your clips.
+
+3: Save the app somewhere.
+
+4: Then, drag the clips into the application you created.
+
+The encoded versions, ready to throw into iMovie, should show up in the same directory as the original clips.
+
+A: At long last, I found a conversion app that seems to not make iMovie throw up all over itself. It's called iVI (Mac App Store link). It's not the prettiest Mac app ever written, but it's not as bad as a lot of apps in this category, and it works wonderfully. 
+iMovie still insists on transcoding some of the files it generates, but thumbnails now render almost flawlessly; occasionally one video in the project will be gray, but it's consistently, unglitchily gray. I'm calling this good enough to declare victory.

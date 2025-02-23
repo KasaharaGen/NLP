@@ -1,0 +1,16 @@
+Q: How can I stop F8 key from bringing up Mission Control? My problem is fairly simple: Currently both F8 and F9 bring up Mission Control. If I use the System Preferences, it shows that the "Mission Control" keyboard shortcut is F9. If I disable this, then indeed F9 no longer works, however, F8 does still work.
+Where could it be configured that it should use F8, since the System Preferences does not show it anywhere.
+I know that this does not happen for everyone, but it is maddening for me, since I really want F9 to be used for Mission Control, and for F8 to be returned to eclipse…
+Update
+This occurred after an update from Snow Leopard to Lion.
+
+A: I ended up with this problem, too, after upgrading from Snow Leopard to Lion. I really needed my F8 key working as a standard function key for my job. I also really didn't want to delete my entire symbolichotkeys plist, though, so I did some digging.
+If anyone else is having this issue still, you can edit your com.apple.symbolichotkeys.plist (located in Library/Preferences) with a basic text editor. Once you're in there just do a search for the number 75. Keys 75 and 76 (76 is the slow animation for when you hold down shift) are the ones for F8 activating mission control. You can just delete those two entries and your F8 key will become just another normal F-Key again. F9 will still work for mission control and you won't lose any other hotkey settings either.
+As usual, always make a backup of these files when you're messing with them.
+Good luck to anyone else with the issue, and thanks to those here who'd already provided some input and answers.
+
+A: There are two places where mission control's keyboard shortcuts are established: in the mission control prefpane and in the keyboard prefpane. make sure that both of these are set to the desired F9 key and you should be fine. Curious though, doesn't the F3 bring up mission control when not in function key mode?
+
+A: Deleting com.apple.symbolichotkeys.plist from preferences solved the problem for me! Eclipse is back to normal.
+
+A: com.apple.symbolichotkeys.plist file is located on user's Library/Preferences folder. To get there open Finder window, click on "Go" on menu and press "option" or "alt" key and you will see the Library folder there. Select that Library and navigate to Preferences folder.

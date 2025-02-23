@@ -1,0 +1,14 @@
+Q: Where are the default (system) wallpaper folders located on OS X? 
+Possible Duplicate:
+Where are Apple's default desktop images stored? 
+
+Does anybody know where the folders containing the default (i.e. system) wallpapers are located on OS X Lion? (it may not have changed from previous versions of OS X, so please also tell me if you know where they are on a previous version of OS X). Thanks!
+[EDIT:] Indeed, a dupe. What threw me off was that I was looking for "Wallpaper", not "Desktop Pictures". Maybe add a tag synonym [wallpaper] for [desktop], to aid searching people who make the same mistake. 
+
+A: Its on:
+/Library/Desktop Pictures/
+Notice though this is the system library, not the user library, so its right on the root of the drive and not inside your user folder.
+Its hidden by default. Go to terminal and type open /Library to open it.
+Hope it helps!
+
+Edit: On Finder, you can hit CMDShiftG and paste the path to go to the folder. (thanks Sjoerd)

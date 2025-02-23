@@ -1,0 +1,15 @@
+Q: Stop email pop ups on iPhone When I switch my iPhone (3G) on and put it immediately into the email app (or if it was left in the email app), I get annoying pop ups like:
+
+Cellular Data is Turned Off
+Turn on cellular data or use Wi-Fi to access data.
+Settings OK
+
+A few seconds later the Wi-Fi connection is restored and I can get email. But this is very annoying: I have to click away the pop up (and sometimes multiple pop ups because I read multiple email accounts).
+Is there any way to prevent this pop up? (It's only valid for a few moments...)
+
+A: No. The popups occur because to receice mail, you will require an Internet connection (be it cellular or wifi). Without a connection, Mail cannot pull any emails from the server (hence the notice).
+The popups are hardcoded into to the app and there is currently no option to supress them. 
+So you have two choices: a) you can wait for your phone to negotiate a connection with your carrier or wireless network and then open Mail, or b) click through the prompts as you currently do. I'd choose the former (a) because even if you don't wait (perhaps want to read old mail), you'll not only have to bypass the prompt asking you to enable a connection, but also the prompts that tell you a connection to the mail server could not be established. 
+As much as it's likely not the solution you were hoping for, it does make some sense as Mail is generally of little use without an Internet connection (except for those rare moments when you need to reference an old email).
+A Popup Blocker does exist in the halls of Cydia (requires jailbreak), but fails to mention if it handles those specific Mail warnings (it might be located under the Data Network errors listing).
+

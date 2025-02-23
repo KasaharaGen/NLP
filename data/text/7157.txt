@@ -1,0 +1,15 @@
+Q: Problems with Apple's Security Update 2011-005 (Lion)? 
+Possible Duplicate:
+Why folders keep shifting their positions? 
+
+Today I downloaded Apple Security Update 2011-005 for Lion (http://support.apple.com/kb/DL1447). However, I got some issues here. After the update I noticed that some of the folders on my Desktop was rearranged. Moreover, my Mac started slowing down.
+Does anybody else have same problems? 
+
+A: The update replaces 3 files, all pertaining to your system's keychain. They are as follows:
+/System/Library/Keychains/EVRoots.plist
+/System/Library/Keychains/SystemRootCertificates.keychain
+/System/Library/Keychains/SystemTrustSettings.plist
+
+It is impossible that the update has caused your problems. Look elsewhere.
+
+A: The arrangement of icons on the desktop and in folders is controlled by the (usually hideen) file .DS_Store. If you deleted this file or it became corrupted, your icons may have shifted around. It should not affect the speed of your computer though.

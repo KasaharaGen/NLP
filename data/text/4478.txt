@@ -1,0 +1,11 @@
+Q: Minimal Xcode installation without iOS SDK I am in the progress of switching my MBP to run off an SSD, so I’ve been looking of ways to save harddisk space. Xcode with the iOS SDK weighs around 10GB, and since I don’t really use the iOS SDK for anything this seems like a good opportunity to save space.
+Problem is that Apple seems to have removed all Xcode downloads that do not include the SDK. I have tried looking around the site and link-hacking, but nowwhere have I been able to find a minimal Xcode.
+I don’t really care if it's Xcode4 or not, I just need it for Homebrew to work. Is it possible to find this somewhere?
+(If not, is it safe to simply delete /Developer/Platforms/iPhoneSimulator.platform and /Developer/Platforms/iPhoneOS.platform)?
+
+A: When you run the Install Xcode and iOS SDK installer, during the "Installation Type" step, you can uncheck the iOS SDK box, and leave the Xcode Toolset checked. This will skip the 8.35 GB iOS SDK install.
+
+A: In early 2012, Apple started packaging "Command Line Tools for Xcode". It's a much more manageable 140 MB.
+
+A: You can buy just Xcode 4 from the Mac App Store for $4.99. I believe it is just Xcode, it is a 4.25 GB download.
+Hope this helps

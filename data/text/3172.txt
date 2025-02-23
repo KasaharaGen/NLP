@@ -1,0 +1,15 @@
+Q: Where are the Mac OS X alert sound files located? Is there any way I can access the files that are used for the alert sounds found in system preferences? For example, in OS X 10.6.6, there are different sounds for Funk, Glass, Hero, etc. Where are these files located?
+
+A: They are stored as .aiff files in /System/Library/Sounds/.
+
+A: Any files located in the following locations will available to choose as alert sounds:
+/System/Library/Sounds/
+/Library/Sounds/
+/Users/< username >/Library/Sounds/
+
+(Note: By default the latter 2 folders may not exist, but if created and populated with files, you'll be able to choose them in the Sounds preference pane).
+
+A: Here is the path to the volume.aiff if you want to change that too
+
+/System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources
+

@@ -1,0 +1,9 @@
+Q: OS X: Is there a way to change the default behavior of copy/move overwrite? Problem: Many of my friends are moving to OS X and are frustrated that, unlike Windows and *NIX systems, copying/moving a folder (with sub-folders) deletes the destination folder if a folder of the same name already exists at the destination.
+Question: Is there a way to hack the system (or install a plugin?) so that it by default copy/move operations merge the source and destinations instead of outright wiping out the destination and everything inside (with no option for recovery)?
+
+A: EDIT: Based on your clarification, you're looking to merge two directories. See this question for more information. There's no built-in way to do that using the OS X Finder.
+As an alternative, you could try using standard unix tools like rsync, which are available via the command line. But this is not a very "Mac like" solution.
+
+I'm not sure what you're asking, because when you copy a folder from one place to the other, nothing is deleted at all. I assume you're talking about copying a folder from one location to another where a folder of the same name already exists at the destination? If so, The Mac OS X Finder will show you a warning, it won't delete anything without your permission.
+
+If that's not what you're asking, please edit your question to clarify, and comment on this answer asking me to update my answer. Thanks!

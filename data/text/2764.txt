@@ -1,0 +1,45 @@
+Q: How can I open a text file with TextWrangler from the Terminal (command line)? Often when I work in the Terminal (the command line) I need to edit some text files. I prefer to edit text files using TextWrangler.
+How can I open a text file with TextWrangler from the Terminal?
+I tried with /Applications/TextWrangler.app/ my_text_file.txt but it doesn't work since TextWrangler.app/ is a directory.
+
+A: As a one-time thing,
+open -a /Applications/TextWrangler.app myfile.txt
+open -b com.barebones.textwrangler myfile.txt # same thing by ID
+
+You can also create an alias for opening TextWrangler, that you would put on the .bash_profile file, which is an hidden file by default that is usually in your home directory. 
+This is the command that you could insert:
+# Type 'tw' on the terminal to open TextWrangler
+alias tw='open -a /Applications/TextWrangler.app'
+
+To make TextWrangler the default:
+
+
+*
+
+*"Get Info" on a text file in the Finder.
+
+*Change the "Open with:" program to TextWrangler, in the fifth information pane.
+
+*Click the "Change All..." button at the bottom of the pane.
+
+
+A: If you have the TextWrangler command line tools installed, you can just type
+edit my_text_file.txt
+
+in the terminal and it should open. 
+If this doesn't work you have to install the TextWrangler command line tools. 
+If you installed the MacApp store version, download the installer from this page:  http://www.barebones.com/support/textwrangler/cmd-line-tools.html
+If you downloaded from the BareBones Software site, there should be an "install command line tools" command in either the Application (TextWrangler) menu or the help menu. I think it's in the Text Wrangler menu. 
+
+A: If you have the TextWrangler command line tools installed you can use 'edit' to open files in TextWrangler from the command line. You should have been prompted at the initial install to install the tools, or you can go to the preferences and the "Tools" section and click the installer button. It also gives you twdiff, a TextWrangler-based diff tool. You can 'man edit' if the tools are installed to see all the switches available.
+
+A: IMO, using open is the correct approach. However it requires a bit of typing, so you may want to consider creating a shell alias for it. This approach is also good if you don't want to change your default editors.
+$ alias tw='open -a /Applications/TextWrangler.app'
+$ tw myfile.txt
+
+To have the alias available in every shell you open, just add the line to .bashrc in your home directory. If you don't have a .bashrc yet, just create it yourself and add the line. Then open a new terminal tab to try it out.
+
+A: Another way to edit the text file:
+/Applications/TextWrangler.app/Contents/MacOS/TextWrangler my_text_file.txt
+
+Not all applications contain a binary in the MacOS directory the same name as their .app though, so replicating this for another program might be different.

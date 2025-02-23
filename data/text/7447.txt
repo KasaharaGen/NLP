@@ -1,0 +1,4 @@
+Q: How can I add static route? How can I add a static route "forever", that means without retyping add route in Terminal each time I'm using VPN? I found this solution for 10.6, but what if there is a nicer one for 10.7?
+
+A: I would use Lingon to script this as a system startup - you can always use launchd to load or unload the job from the command line (or delete the route).
+You don't need Lingon, it just makes it so much more friendly to assemble a plist that launchd likes to run.

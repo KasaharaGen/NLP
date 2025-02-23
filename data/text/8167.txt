@@ -1,0 +1,121 @@
+Q: Can I set the volume on my iPhone lower than the slider goes? I have an iPhone 4S and some V-Moda in-ear headphones. The headphones have great volume and isolation, which is good when I'm listening to something quiet. But it's a problem on my iPhone.
+When I play music on my iPhone with the headphones, it is very loud. As in, painfully loud when I put the volume slider in the middle. To  lower the volume, I (of course) dragged the volume slider to the left. The problem is that even when I get all the way to the left, it is still very loud. If I move it any further, the volume abruptly mutes.
+
+I've tried changing settings, and I've found that enabling Sound Check helps some louder songs. Unfortunately, Sound Check doesn't apply to apps like Spotify, which I use more than the Music app.
+
+So, how can I reduce the volume on my iPhone beyond the slider?
+Notes: The volume is fine with the stock Apple headphones. Reducing the volume of the music itself (modifying the files) isn't an option because I need to reduce the volume of streaming audio and files I don't have access to (Spotify).
+
+A: I’m on iOS 12.1.2, iPhone X
+Can’t find Volume Limit in the Settings. 
+I have 3 Bluetooth sound bars, different models, and all three are way too loud on lowest volume (1). Going lower brings it to (0) and mutes them. Controlling the sound from the sound bars changes the iPhone volume, to same effect.
+But I found a way to control the volume in fine increments between the 0 and 1 range. 
+On the iPhone Control Center, “3D” press (long press?) the volume control, which opens a bigger version of it, almost full screen. Now you have very fine control between the former steps. It,s like 100 volume substeps between “0/mute” and “1/loud”. 
+The “1” i reference is relative as there are no marks on that slider, and pressing the up/down volume buttons moves it to different levels actually, I.e going from 0 one up is not the same as going one down from 2. 
+In any event, using the touch screen you can finely adjust the volume on the big slider all the way down to barely audible. It’s clunky, still chances to blow your hearing, but it works.
+
+A: There's a plist you can edit to raise or reduce the amplification of the volume on a jailbroken device, however your question has the iphone-4s tag, so I'm assuming you're using a 4S, which means it won't be possible until a jailbreak is released for it. 
+iJailbreak has a tutorial of how to do this, but this should be easier:
+
+
+*
+
+*Download iFile from Cydia. 
+
+*Open iFile and keep pressing the back arrow until the title bar says /.
+
+*Navigate to /System/Library/PrivateFrameworks/Celestial.framework (MobileToolbox.framework on iOS 5)
+
+*Tap ReigonalVolumeLimits.plist, followed by Property List Viewer.
+
+*Set every value on the right to one of the following:
+
+
+*
+
+*0,83 (default)
+
+*25 (125% of the original volume)
+
+*0,43 (43% of the original volume)
+
+
+(Don't use 1, as it is known to use more battery life.)
+
+*Save your changes to the file.
+
+*Either respring or reboot your device and the volume level will change.
+
+
+You might not hear a difference through the phone's speaker, but you should when you use an external audio output.
+If you don't want to jailbreak, you can also try playing music while changing the equalizer settings to one you like. I'm not sure if this has an effect on apps other than the stock ones, though.
+
+A: I found a few solutions to this using the Shortcuts app.
+The simple approach:
+
+*
+
+*Create a new shortcut
+
+*For Action, choose "Media" --> "Set Volume" (red loudspeaker icon)
+
+*Setting the volume to 5% seems to make a big difference.  Songs are a lot quieter but still audible.  You can only do increments of 1%, however (no decimal values).
+
+A more customizable approach:
+
+*
+
+*Create a new shortcut
+
+*Add "Get Numbers from Input"
+
+*Add "Set variable" which takes the number input and assigns it to a variable
+
+*Add "Set Volume".  Long-press on where it says "50%" and change it to use your variable.
+
+*When you run it, you'll be prompted for the volume level.  Use a decimal value, like .05 (which is equivalent to 5%).  Entering anything 1.0 or higher will set the volume to 100%.
+
+FYI you can also create a shortcut that gets the current volume (from Get Device Details) and speaks it.  It will be a percentage expressed as a decimal (6% is .06).
+
+A: I had the same issue. I went into settings, music, EQ and adjusted the Loudness setting. It is now softer / not as loud sounding. 
+
+A: Ok, so I finally have an answer of sorts! It's a hack, but... basically, you can create a custom EQ that simply lowers all frequencies by the same amount, which is the same as lowering the volume. 
+Step 1: Make your customer EQ in iTunes: Open up iTunes. Select Window > EQ. Then reduce the preamp volume (on the left hand side) to super low. If you want even more reduction, take each little slider, and reduce it real low, but make sure each one is reduced the exact same amount, or else you'll slightly alter the tone of the songs.
+Step 2: Get that custom EQ onto your iPod!: Follow these instructions exactly from a different forum question: http://www.head-fi.org/t/399487/ipod-custom-eq-yes-it-can-be-done
+Then when you want to reduce the volume of every song, just go (on your iPod) to Settings > EQ, and select your EQ setting! Boom!
+
+A: There's no easy way to do this by standard means of iOS (current fresh iOS v.9.3.1), without "jailbreaking" and intruding to the inner-workings of iOS.
+Headsets with wire
+If are using headsets with wire, then we can blame higher/lower impedance difference in the headphones. High-impedance headsets would require higher signal levels to produce the same output level of low-impedance headphones.
+The easiest solution you can do, would be to buy a volume attenuator, which would have a little dial on adapter itself for adjusting the level.
+Bluetooth headset, wireless
+But if you gotten Bluetooth headset, wireless, it works differently. Headset controls the volume level in "electronic-way", so it totally dependent on implementation of headsets and is dependent from manufacturer to manufacturer. The minimum volume would vary seriously depending on the model of BT-headset.
+I might propose to go the same way, to buy external Bluetooth adapter, which will get analogue signal, convert it to digital over BT, and will have different settings for the volume range. I understand, that this approach is not easy to use and has its drawbacks, so I'd not recommend to go this way, unless you are really annoyed. 
+
+Theoretically, you may play a bit with EQ settings in your iPhone (Settings -> Music -> Playback section), this might soften a bit the sound, but it barely affects the minimum volume level, it will just create the different perception, a bit milder sound.
+I'm not sure, if there are existing Apps for adjusting EQ + master volume control, I think no-one is using them on iPhone/iPod.
+
+A: I tried Volume master app ($0.99)
+It says it increases the volume by 0.01dB - 0dB, 0.01dB, 0.02dB, etc while the default iPhone volume control goes from 0dB, 0.06dB, etc. I am not sure 0.01dB is low enough or it works with any app.
+It feels a bit comfortable with 0.01dB even though I cannot tell the difference a lot between 0.06dB and 0.01dB. 
+
+A: I have active speakers without volume controls and stream via bluetooth.  The only way I have found to reduce the minimum volume is to get the Denon Audio app (free), then purchase the in app equaliser (£1.49), set the eq to flat and reduce all frequencies.  This can be saved as a custom setting.
+I've tried the volume app and other EQs - they don't work. 
+
+A: If you set the volume to the lowest, then set the volume limit to the lowest possible, you will find the volume bar will be at maximum again. Just drag it all the way down and the volume will be much lower. HTH!
+
+A: I tip a 4 pole jack volume splitter control, das does really the job without changing anything the volume control of the iPhone. If you do good the iPhone also limited at aproximately 80dB. They have 4 pole so iPhone remote can still used. You can verry low sound volume with these.
+Ofcourse you can use 3 pole volume control, but then you can not using the Apple remote.
+Google on
+Lindy 3.5mm Stereo Headphone Splitter Cable with Volume Control
+or
+Headphone Audio Jack Splitter With Separate Volume Controls
+or 
+Dausen Smart Headphone Splitter
+or
+Green Connection White Headphone Splitter with Separate Volume Controls
+or
+Monoprice 107116 Headphone Splitter with Separate Volume Controls
+
+A: There's a very simple solution for your problem.
+Go to 'settings' > 'Music' > Volume Limit. There you can limit the maximum volume. How lower the maximum volume, how smaller the increased or decreased volume difference when you click on the volume rocker.

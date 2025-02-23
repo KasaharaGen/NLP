@@ -1,0 +1,27 @@
+Q: How Do You View Several PNG Images In Preview With Continuous Scroll? I have several PNG images I want to view as a single document in Preview, Lion OSX. 
+Usually I just select several images and open them in Preview, but when I do that, I can't set the view to "Continuous Scroll."
+The default behavior for PNG images in Preview seems to be to zoom out after you flip a page, meaning I have to resize every page scroll down. That gets tedious.
+Is there a way to put these PNG images together in one, single Preview document so I can select "Continuous Scroll" as an option and don't have to resize each page?
+
+A: Ok, here's what you need to do:  
+
+
+*
+
+*Open up the first PNG image in Preview. Make sure the side bar is showing.
+
+
+*Open the second image in Preview, and from the sidebar, drag the thumbnail image from the second window to the first window's sidebar.
+
+
+*Now, you'll notice that the title bar says "2 documents, 2 total pages." Continue dragging images into the first image until all the images are combined into one PNG. Make sure you save it. :-)  
+
+A: You can drag PNG files as pages into a single PDF file. If you pick one of your PNGs in Preview and export it as a PDF, you can then drag the proxy icons of the others into the left-hand page preview bar and they will be (nondestructively -- the originals are preserved) added to that file. I don't know if that will make your previewing easier or not, but it's an option.
+
+A: Ok, well this is way too obscure of an answer because a) it involves Terminal and b) it involves installing 3rd party software in Terminal.
+If you install ImageMagick from the official site and then go into Terminal:
+
+montage "$F1" "$F2" -tile 1x2 -geometry "${TARGET_WIDTH}x${TARGET_HEIGHT}+1+1" out.png
+
+where F1 and F2 are files, and "TARGET_WIDTH" is the widest of the files.
+The file "out.png" should be a combination of F1 and F2… you should be able to add more "F3" and other files.

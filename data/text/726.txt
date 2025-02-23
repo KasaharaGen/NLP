@@ -1,0 +1,52 @@
+Q: How to copy SMS messages from a Nokia phone (or Nokia PC Suite backup) to iPhone? What if I have a Nokia PC Suite backuped file which contains all the SMS and want to copy them to the new iPhone?
+
+A: Please check iNoki at: http://www.nokisoft.com/inoki. It's an iPhone app which can extract and import data in .NBU file created by Nokia PC Suite. All phonebook, sms, calendar, photo, audio, videos can be imported.
+AppStore link: http://itunes.apple.com/us/app/inoki/id438619967?ls=1&mt=8
+SMS is viewable in iNoki instead of native SMS app - for apple has no official API to insert into native SMS db.
+
+A: I can provide half an answer. I'm not sure how to get the SMS out of the Nokia backup, but you won't be able to copy them to the new iPhone directly. You'll need to write a script to translate them to the iPhone format. I provide instructions below how to reverse engineer the iPhone SMS DB.
+The iPhone SMS DB is sqlite3. If your iPhone is jailbroken, you can get and view the DB on the phone itself (install terminal) or on your desktop:
+# get it local
+scp iphone:/var/mobile/Library/SMS/sms.db ./
+# dump to ASCII
+sqlite3 sms.db .dump > sms.db.sql
+# edit it
+emacs sms.db.sql
+# Re-db
+cat sms.db.sql | sqlite3 sms2.db;
+# Put it back on the iPhone
+scp sms2.db  iphone:/var/mobile/Library/SMS/sms.db
+
+If your phone is not jailbroken, you can operate on the backup up SMS DB, replace the backup locally and then restore the iPhone. The backup is located in:
+~/Library/Application Support/MobileSync/Backup/<long_hex_string>/
+
+And, in my case, and according to various web sources, is named:
+3d0d7e5fb2ce288813306e4d4636395e047a3d28
+
+Although comments below indicate that may not always be the name of the file. Run the sqlite3 command above to dump this to ASCII to understand the format, then replicate this format with whatever tools you want from your Nokia DB.
+
+
+
+*
+
+*Here are some instructions on how to migrate your SMS in the reverse direction for Android: http://android.riteshsahu.com/tips/import-sms-iphone-android
+
+*An iPhone database extractor: http://insend.de/
+
+A: The program inoki has marketing material that shows it might work for your problem:
+
+
+*
+
+*You can copy the .NBU files to iNoki's folder using iTunes file sharing. You can also invoke iNoki to open the .NBU file from Email or in your Dropbox.
+
+*
+*
+
+*you could find details at http://www.nokisoft.com/inoki/
+Declaration : I do not guarantee success for this process as I am not the owner and I do not have relations to this website.
+I'm only answering thi question because I have had a hard time looking for the solution to this myself. The free version probably won't work other than to see if it can get a few records as there is alsoo a paid version that costs USD19.99 through the APPSTORE ishttp://itunes.apple.com/us/app/inoki-lite/id461608906?mt=8
+
+A: Though its difficult method, I just want you to know it exists in the worst case. You can also do it manually by exporting the messages from C:\Users[USERNAME]\AppData\Local\Nokia\Nokia Suite (the name of the db might be like sms_db.sqlite). There are many tools to read SQLite db like MesaSQLite for Mac and a firefox plugin for Firefox browser.
+Then using the same tool import it into the iPhone SMS DB. 
+I have already written how to deal with iPhone SMS DB here

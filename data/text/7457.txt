@@ -1,0 +1,10 @@
+Q: Password protect removal of apps on iOS I have had instances of people deleting my applications (purposedly or unpurposedly) and it's a real annoyance to get them back, plus you lose all of your data. 
+Is there a way to password protect the removal of applications, maybe through the use of a Cydia tweak?
+
+A: No need for a jailbreak. Simply go into Settings>General>Restrictions and don't allow "Deleting Apps". Restrictions are protected using a password just like your lock passcode (although it can be a different code if you would like).
+
+A: If you have the current or a recent version of iOS such as iOS 13 or 12, you can prevent accidental app deletions by disabling all app deletions via Settings -> Screentime-> Content & Privacy Restrictions -> iTunes & App Store Purchases > Deleting Apps > Don't Allow. If you want this option to be password protected, set a password via Settings -> Screentime-> Content&Privacy Restrictions -> Use Screen Time Passcode. 
+
+A: Erase and supervise the device in Apple Configurator, then enroll it in Jamf Now - first three devices are free forever.  Other MDMs are similar, but Jamf is the easiest and most developed.
+With a supervised device, you can then enable various security settings, including disabling the ability to delete apps, among many others.  You could also use Jamf to distribute and remove free apps, or set up an Apple Business Manager account (requires a DUNS number) and manage free and paid content from the App Store and Books Store.
+In this way, app management is password protected - but at the login to Jamf, not onboard the device.

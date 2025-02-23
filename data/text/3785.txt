@@ -1,0 +1,19 @@
+Q: What certificates and/or files are needed to bypass iOS's passcode lock? Some forensic tools like Lantern 2.0 allow the use of a passcode bypass file to get around the passcode lock on iOS 4.2 and later. This means that if someone has your device they can get around the normal restriction to not sync until the device is unlocked.
+I'm wondering which file or files iTunes creates and stores to convince a locked iOS device to sync over USB. Even better would be an analysis of the specific keychain items are needed to bypass the passcode lock for iOS.
+
+A: The complete description of the feature on the Lantern site is "Pass code bypass with certificate file from syncing computer" so I don't think "until the device is unlocked" is the accurate way to phrase it. It seems that Lantern re-uses the pre-existing credentials set up between the computer and the phone.
+edit: And in re-reading your question it seems you may be aware of this. A quick perusal of the iOS developer documentation doesn't yield anything to me but you can likely determine this for yourself if you have a mac you sync your phone to.
+from a terminal window run the command sudo fs_usage -wf filesys | grep -i itunes and you should be able to see what files iTunes consults when you connect your passcode-locked phone.
+
+A: After several hours of looking and using fs_usage to trace files, I have come to the conclusion that the certificates are indeed stored in the keychain. (which in hindsight is a DUH moment).
+Here are the files iTunes reads on launch and during a sync on my mac.
+18:38:16.776  stat64                                 /Library/Keychains/System.keychain                                                      0.000010   iTunes              
+18:38:16.776  open              F=5        (R_____)  /Users/me/Library/Keychains/login.keychain                                            0.000007   iTunes              
+18:38:16.801  open              F=5        (R_____)  /Library/Keychains/System.keychain                                                      0.000016   iTunes              
+18:38:26.013  open              F=48       (R_____)  /System/Library/Keychains/SystemRootCertificates.keychain                               0.000024   iTunes              
+I have been unable to uncover which specific keys or chain of keys are needed. They keychain in my home folder appears to not be needed since other user accounts on my mac see content of my locked iPhone even before iTunes launches. Whetherusbmuxd or another low level daemon is reading a system level certificate or the API to access iOS data relies on a common library for access in bypassing the passcode lock on iOS 4 is unclear. 
+It is clear that the iOS passcode won't protect from someone that can access the files on your hard drive (and has the detailed knowledge that isn't yet clear which certificate or file has the keys stored)
+FileVault won't protect you since the certificate appears to be stored outside the user folder.
+
+A: I believe you're talking about the escrow keybag, stored at  %ALLUSERSPROFILE%\Apple\Lockdown - this is the cert bag required for iTunes to connect and sync with previously paired iOS devicees without the user re-entering credentials. If you sync your iPhone to your Mac, and then copy the contents of the above folder to another Mac, you can access the device on the 2nd Mac without reentering creds.
+If you're interested in a real deep dive of the technical details behind this, take a look at this presentation - http://conference.hackinthebox.org/hitbsecconf2011ams/materials/D2T2%20-%20Jean-Baptiste%20Be%CC%81drune%20&%20Jean%20Sigwald%20-%20iPhone%20Data%20Protection%20in%20Depth.pdf

@@ -1,0 +1,6 @@
+Q: Can Lion's Mail.app unsubscribe from Gmail IMAP folders? I want to try out the new Mail.app but I can't seem to find a way to unsubscribe from certain IMAP folders using my Gmail account. If I right-click on any folder and select "Get Account Info", and click on the Subscription List tab, the list refreshes but no folders appear.
+I do not want to use Gmail's server-side label hiding/message count limiting because I want other machines to be able to download all of my email for backup purposes.
+Is there an alternative way to limit the folders that Mail.app downloads, or to limit the number of messages per folder that are downloaded (as is possible on iOS)?
+Did folder subscriptions work in Snow Leopard, or is this just a long-standing incompatibility between Gmail and Mail.app?
+
+A: One of the ways to do this is in the gmail settings. Now that Advanced IMAP controls graduated from labs, there's nothing extra to install. Go into the web interface for Gmail and go into settings. Go into the Labels tab and you should have a listing of all your labels with some options. On the far right side is a tick box that says "Show in IMAP" If this is off then Mail shouldn't be able to get at that folder.

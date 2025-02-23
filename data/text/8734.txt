@@ -1,0 +1,9 @@
+Q: Is there a name for the common ground between Lion and iOS 5? While working on the wording for another question, I wanted to refer to the parts of the Apple environment which are, by design, the same in Lion and in iOS 5.  
+For example, it is reasonable to expect that the available relationship types will be the same for iOS 5 Contacts and Lion Address Book.  It is surprising that Siri understands son, but that iOS 5 Contacts knows only child; this is attributable to Siri's beta status.
+For items that sync in iCloud, Lion and iOS 5 probably use a single canonical structure specification or separate structure specifications which are kept conformant by engineering discipline.
+What is the name of the set to which these item's structures belong?  Would one write "the iCloud address book entry format", "the Mac address book entry format", "the Winesap1 address book entry format", or what?
+
+1speculative
+
+A: I happen to be writing a book on iCloud now, and I've had to deal with some of these issues. It's instructive to note that although the respective applications on Lion, iOS 5, and the iCloud Web site are Address Book, Contacts, and Contacts, respectively. They all are containers for one thing, which they use the same terminology: Contacts. 
+I do not plan to use the terms you suggest above; rather, I am saying things like "entering contacts in Address Book," "entering contacts in Contacts," "changing contacts on the iCloud Web site." It's the context that matters, since the set of data is the same, and enforced by syncing.

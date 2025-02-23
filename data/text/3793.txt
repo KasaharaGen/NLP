@@ -1,0 +1,35 @@
+Q: opening an app in a shell script with sudo I'm trying to open an app that listens to port 25 within a shell script.  In order to listen to port 25, I need to run the app with sudo.  So I tried the following:
+sudo open appThatNeedsPort25
+
+It asks me for my password and opens the app.  Problem is the app is NOT being run as root, so it is unable to listen to port 25...
+What do I do to open an app from a shell script so that it can listen to port 25?
+
+A: You do it like this
+sudo /Applications/TextEdit.app/Contents/MacOS/TextEdit /etc/hosts
+Alternatively
+#   sudoapp: Runs .app with root privileges
+#   --------------------------------------------------------------------
+    sudoapp () {
+        sudo "$1/Contents/MacOS/$(defaults read "$1/Contents/Info.plist" CFBundleExecutable)" $2
+    }
+
+$  sudoapp /Applications/TextEdit.app /etc/hosts
+
+A: Just try sudo appthatneedsport25, no need to use open when dealing with bash or shell scripts. If it is an interpreted script (python ruby etc) and it isnt set to executable, you can always do sudo python scriptname.
+
+A: use sudo open -a appThatNeedsPort25
+
+A: As an (slightly insecure) alternative to sudo add your ssh key to your root user then you can do 'ssh root@localhost appThatNeedsPort25'.
+The first time you do this it may prompt you for your ssh key passphrase but after that it's cached until you reboot.
+As a further optimisation add this to your ~/.ssh/config file:
+Host root
+    Hostname 127.0.0.1
+    User root
+
+Then you can just type 'ssh root appThatNeedsPort25' instead.
+I've been doing this 'ssh root' trick for years and it's saved me countless minutes of re-typing my password. :-)
+
+A: sudo -b makes the application run in the background.
+sudo -b appThatNeedsPort25
+
+Unlike with sudo appThatNeedsPort25 &, sudo itself will run in the foreground, so you'll have no issues with its password prompt. Note that sudo also has a -A option to make it ask for a password through a GUI instead of in the terminal, you can use this when sudo isn't running from a terminal.

@@ -1,0 +1,24 @@
+Q: 4G iPod Touch internet speed incredibly slow with B/G WiFi router but fast with N I have a B/G protocol modem/router and when I connect my iPod Touch (4G) to it, the internet access is incredibly slow (0,19 MB/s DOWN // 0,05 MB/s UP). So I've tried to create a new wifi (N) connection through the share menu on my iMac and connecting to it the iPod Touch has the normal speed one would expect.
+I've also tried to restore wifi settings and restore from DFU my iPod but nothing changes.
+Any idea on how to make my iPod Touch fast with my B/G modem?
+Thanks
+
+A: It is quite normal to see a real difference between 802.11b, g and n wireless networks.
+The maximum network speed you can reach on this 3 different standards are:
+IEEE     |        max speed        | ratio relative
+standard |  radio     |  practical | to 802.11b
+---------|------------|------------|---------------
+802.11b  |  11 Mbit/s |   5 Mbit/s |   1
+802.11g  |  54 Mbit/s |  25 Mbit/s |   5
+802.11n  | 270 Mbit/s | 120 Mbit/s |  24
+
+On the other hand, 802.11b, g and n use different radio channels.
+You may consider these channels as different roads with different speed
+limits and different amounts of traffic. Some of these channels may be
+free when others may be congested.
+Your problem isn't a problem, but rather the radiowave reality.
+If you want to see it and even bring it under control,
+I advise you to use iStumbler. This is an invaluable tool for wireless network tuning.
+
+A: Could it be that your router's wireless channel or it's neighboring channels are occupied by many other wireless networks?
+This is one reason a Wireless connection can experience huge slow down's. This would not be the case on an N-network as it operates in another frequency.

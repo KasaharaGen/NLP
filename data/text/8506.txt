@@ -1,0 +1,8 @@
+Q: How to delete a word accidentally added to the Pages dictionary? I told Pages to learn the spelling of a character name I was writing about, without noticing there was a misspelling in the name. 
+Is there anyway to delete or correct the spelling of the name from the Dictionary now that I added it by mistake?
+
+A: Right click on the misspelled word and select “Unlearn Spelling”.
+As Pages uses OS X’ global spelling services,  you can use this method anywhere text input is spell checked by it (more or less any text area, with the notable exceptions of MS Office, OpenOffice / LibreOffice, Firefox and a few other apps ported from the non OS X world). 
+If a misspelled word is not underlined in red and the “Unlearn Spelling” option is missing from the context menu, it may be that you originally used “Ignore Spellin” rather than “Learn Spelling”. In that case, try opening a new document and pasting in the misspelled word – the red underline will appear in the new document if you ignored the spelling in the original document.
+
+A: The spelling dictionaries are stored as plain text files in ~/Library/Spelling/. They can be edited directly, but the changes aren't always applied until AppleSpell.service is reopened.

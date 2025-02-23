@@ -1,0 +1,104 @@
+Q: How do I disable this message: "the disk was not ejected properly"? Is there any way to disable the "the disk was not ejected properly" message?
+I use a KVM and need to switch between two systems and have a memory stick that is in the KVM. The problem is that it's very annoying to get the message every time I switch from one computer to the other. I know, I can unmount it (and probably should), but I switch all the time, so it's a inconvenience to unmount, and there is nothing sensitive on the memory stick.
+
+A: Certainly not an elegant answer but, you can disable UserNotificationCenter.app found in /system/library/coreservices - replace it with another app or file with the same name. It will stop any warnings popping up (including that your drive is full) so watch out for that, but in my experience it does what you are looking for.
+I actually did this to my mac a long time ago, and forgot about it until you asked you question. Credit to Macpadawon at http://macosx.com/forums/mac-os-x-system-mac-software/297194-disable-device-removal-message.html for the answer - same place I found my answer a couple of years back.
+
+A: Works with macOS Big Sur
+This AppleScript dismisses all notifications about the disk not being ejected properly.
+tell application "System Events"
+    tell process "Notification Center"
+        set group_index to 1
+        repeat
+            try
+                set the_window to group group_index of UI element 1 of scroll area 1 of window "Notification Center"
+                set notification to value of static text of the_window
+                set notification_title to item 1 of notification
+                if notification_title = "DISK NOT EJECTED PROPERLY" then
+                    set the_actions to actions of the_window
+                    repeat with the_action in the_actions
+                        if description of the_action is "Close" then
+                            tell the_window
+                                perform the_action
+                            end tell
+                        end if
+                    end repeat
+                    # Wait for the notification to disappear so that the indexes of the remaining notifications are updated accordingly.
+                    delay 0.25
+                    # Do not increment `group_index` because all remaining notifications have their index decremented by 1 since this notification was dismissed. We do not need to worry about the notifications before the one just dismissed because we already know that they are not notifications about disk ejection.
+                else
+                    # This is not a disk ejection notification, so skip it and look at the next notification.
+                    set group_index to group_index + 1
+                end if
+            on error error_message
+                # There are no more notifications to process.
+                exit repeat
+            end try
+        end repeat
+    end tell
+end tell
+
+
+You can run this AppleScript every 10 seconds with the launchd PLIST below. Be sure to modify it to work with your own setup. Then place the PLIST in ~/Library/LaunchAgents and run launchctl load ~/Library/LaunchAgents/file.plist (replacing file.plist with the name of the file) in Terminal.
+What's really cool about launchd is that if a job does not run because the computer is asleep (e.g., when your laptop is closed), launchd will run the job as soon as the computer wakes up again (and if the job was supposed to run multiple times while the computer was asleep, the multiple runs will be coalesced into one run upon wakeup). This is really useful when unplugging a closed laptop from a home dock with a hard drive attached and then using the laptop on-the-go.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.YourName.DismissNotifications</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>osascript</string>
+      <string>/path/to/script</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartInterval</key>
+    <integer>10</integer>
+  </dict>
+</plist>
+
+
+A: This can be done by changing the type of this system notification from alert to banner. Sadly, it can't be done using the GUI but can be done with a script. gist
+The crux of the script is to clear the alert bit & ~0b00010000 and set the banner and modified bits | 0b01001000 of _SYSTEM_CENTER_:com.apple.DiskArbitration.DiskArbitrationAgent in file ~/Library/Preferences/com.apple.ncprefs.plist
+After this modification, the notifications will still appear but will disappear after a few seconds of their own accord.
+Taken from: adafruit blog and tested successfully on macOS 12.6 Monterey.
+
+A: updated new better method
+As mentioned by Russel in comments:
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.DiskArbitration.diskarbitrationd.plist DADisableEjectNotification -bool YES && sudo pkill diskarbitrationd
+
+
+A: This applescript will close them for you. Paste it into Script Editor and then Save as an application. Then grant access to that application in (System Preferences > Security & Privacy > Accessibility)
+Then you can use an application like ControlPlane https://www.controlplaneapp.com/ to run the application on wake thus closing them all automatically!
+** Note: You will need to grant Accessibility access to ControlPlane as well.
+tell application "System Events"
+tell process "NotificationCenter"
+    set numwins to (count windows)
+    repeat with i from numwins to 1 by -1
+        tell window i
+            set temp to value of static text 1
+        end tell
+        if temp contains "Disk Not Ejected Properly" then
+            click button "Close" of window i
+        end if
+    end repeat
+end tell
+end tell
+
+
+A: UPDATE!
+OMG! QuantumG is a genius! Here is a hack (and I mean a real life hack) for disabling just this annoying message and leaving the rest of the notification system intact...
+http://quantumg.blogspot.com/2015/04/disabling-os-x-device-removal-warnings.html
+Warning: This is a pro-tip and not for the faint of heart! It requires hacking your Mac OSX system files and could result in you breaking your Mac.
+Edited for clarity. 
+The issue with flash drives or other USB drives is this; whenever you write data to a drive... ANY drive on your system, the data is first written to a buffer in memory. Later, when the computer gets around to it, it will flush the buffers to the device (hard drive, SSD, or any USB device). That may be instantaneous (at least to us mere mortals) or it may take a few seconds. The possible delay means that if you yank a USB device before the buffers have flushed you may end up with a corrupted drive, or a set of corrupted files on the drive.
+If you only read from a device, then there is NO NEED to flush the write buffers before you yank to your heart's content because they are empty and don't need to be flushed to the device. 
+So... The annoying MAC OS X warning is most probably NOT relevant. It is only important to do so if you have recently written to the device, and haven't given it enough time to flush the buffers (a few seconds, max). It is NEVER necessary to wait for the buffers to flush if you are only reading from the USB device.
+Therefore Apple NEEDS to provide a way to disable individual messages for power users. Don't treat everyone as a n00b who can't be relied on to know how their computer works.
+And to those who complain that I'm wrong, and there is a way to disable the messages by disabling the ENTIRE NOTIFICATION SUBSYSTEM are just plain wrong. Disabling the entire notification subsystem isn't an acceptable solution, just as removing the battery from your cell phone is NOT an acceptable solution to receiving too many telemarketing calls. The notification subsystem is important and shouldn't be disabled just because the OP finds one of the many myriad of messages to be annoying.
+This is a problem that can only be adequately solved by Apple providing a way for users to opt out of specific messages.
+
+A: your answer is here. Just replace a file with the one mentioned at the end of this article and jobs done. Nothing has changed in Sierra or High Sierra.
+Disabling OS-X Device Removal Warnings In Yosemite

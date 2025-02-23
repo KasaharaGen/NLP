@@ -1,0 +1,12 @@
+Q: How can I disable Mac OS Lion asking if I really want to open a downloaded file? I already tried this:
+cd ~/Downloads
+find . -print0 | xargs -0 xattr -d com.apple.quarantine
+
+But it doesn't seem to work under Mac OS X 10.7 (aka. Lion) anymore:
+xattr: ./cabin/Cabin-Bold.otf: No such xattr: com.apple.quarantine
+
+
+A: I haven't tested this under Lion but 
+defaults write com.apple.LaunchServices LSQuarantine -bool NO
+
+and then restarting should totally disable this functionality.

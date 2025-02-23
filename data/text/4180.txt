@@ -1,0 +1,14 @@
+Q: How do I uninstall imagemagick from Mac OS X? I have ImageMagick installed on my Mac. I manually installed it and the dependencies.
+However, it is causing some problems with brew doctor, so I would like to just uninstall it. After uninstalling it, I will:
+brew install imagemagick
+
+I am not sure how to uninstall it, so any help getting me started in the right direction would be great!
+
+I have decided to abandon this for now. I will be leaving it as is, and using homebrew to install it when I upgrade to Lion. Thanks.
+
+A: Please try brew remove imagemagick
+Sorry my bad ;)
+If you manually installed it, goto the root directory where you downloaded the sourcecode and try sudo make uninstall. If you already deleted the install files, redownload the source file and untar it. Then you can cd to the source dir. and use sudo make uninstall to uninstall.
+
+A: Homebrew can show you which files in /usr/local aren't under it's control: brew list --unbrewed
+This list should be a good start for cleaning up, or if you just want to focus on stuff that may interfere with homebrew: brew list --unbrewed | egrep '^(lib|include)'

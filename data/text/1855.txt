@@ -1,0 +1,55 @@
+Q: How can I rotate a video? I just recorded a video on my phone, but when I play it on my Mac it's in the wrong orientation. 
+How can I rotate the video by 90 degrees so that I can upload it to youtube?
+Free solutions are preferred.
+
+I just found out how to do it using YouTube's Video Editor which has rotate left/right buttons. 
+But this is not an answer how to rotate on Mac.
+
+A: Use QuickTime to Rotate Videos
+You don't need to use any 3rd party tools to do this. It's built right in to QuickTime Player.
+Any file that can be opened in QuickTime can be rotated by choosing Edit > Rotate Left (or Right) or by typing Command-Shift-L / R.
+If you alter a movie file in this way and attempt to close the file (Command-W) you will be prompted to save your changes. Save them to a new file and you will have a newly rotated video.
+Share your Video on YouTube with QuickTime
+QuickTime also has a built-in way to share your video on YouTube. With the video open (and correctly rotated now) select Share > YouTube...
+
+A: Using ffmpeg you have a few techniques:
+For newer versions of ffmpeg use:
+ffmpeg -i in.avi -vf "transpose=1" out.avi
+
+For older versions of ffmpeg:
+ffmpeg -vfilters "rotate=90" -i input.mp4 output.mp4
+
+
+Using mencoder:
+mencoder -oac copy -ovc lavc -vf rotate=1 original.mp4 -o 90_CW_rotated.mp4 
+mencoder -oac copy -ovc lavc -vf rotate=2 original.mp4 -o 90_CCW_rotated.mp4
+
+Sources: ffmpeg, mencoder
+
+A: You can use MPEG Stream Clip: http://www.squared5.com/svideo/mpeg-streamclip-mac.html
+Simply open the file and choose to export it from the file menu in a format of your choosing, selecting the appropriate rotation in the selection box.
+You can find out the current format of the video by choosing File > Show Stream Info as to match the export to the input settings if required.
+
+A: If you are willing to trust a web-based solution you can do the following:
+
+
+*
+
+*Go to video.online-convert.com.
+
+*From left menu, choose what is your desired file format (select avi or mp4 if you don’t know much about this)
+
+*Choose your file, it can be of any size and format
+
+*Without changing or entering any settings, just choose to which angle you want to rotate your video
+
+*Press “Convert button” and wait for the file to upload and convert.
+
+*Converted file will be automatically downloaded
+
+
+Source
+
+A: Use the ⌘ Cmd+Shift+L, R, etc. when you open the video in Quicktime.  That should do the trick.
+
+A: Just open QT and it automatically rotates it. Then simply export it.

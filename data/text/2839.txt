@@ -1,0 +1,44 @@
+Q: How can one create a shortcut for pasting unformatted text in Microsoft Word 2008 for Mac? iWork provides the keyboard shortcut Cmd-Option-Shift-V to paste text without it's original formatting. How can I get this or a similar shortcut key for Microsoft Word 2008 for Mac?
+
+A: I found the answer in this blog post
+Create the AppleScript:
+try
+  set theClip to Unicode text of (the clipboard as record)
+  tell application "Microsoft Word" to tell selection to type text text theClip
+end try
+
+
+Save in
+  /Users/YourUserName/Documents/Microsoft
+  User Data/Word Script Menu Items as
+  Paste unformatted\mosV.scpt (the
+  backslashed bit at the end of the
+  filename provides the shortcut).
+  Restart Word and you can now paste
+  without importing extraneous styles
+  with Apple-Alt-Shift-V.
+
+
+A: There's a "PasteDestinatationFormatting" command.
+Go to Tools > Customize Keyboard, then select "All Commands" in the left pane.
+In Word 2011, the default keys are command-option-shift-v.
+
+A: Answer to the same problem but for Microsoft Word 2011: how to assign pasting as unformatted text to Cmd+V.
+
+A: I don't know about Word 2008 but for Word for Mac v16.16.7 (whatever edition that is), I was able to use a version of the Tools > Customize Keyboard solution. Once there, select Edit on the left and PasteTextOnly on the right. Then, add whatever keyboard shortcut you want, e.g., command+V. I have not extensively road tested this but it seems to work. 
+
+A: This blog post describes a method by redefining Cmd-V to a custom macro:
+
+
+*
+
+*Unbind Cmd-V from standard “Paste”.
+
+*Record a macro for Cmd-V.
+
+*Fix the source code of the new macro (by replacing wdPasteDefault with wdFormatPlainText).
+
+
+If you want to keep standard "Paste" functionality it might be better to use another key combination though.
+
+A: If you assign a short cut key to "Paste Special..." it's just another quick DOWN and RETURN to paste without formatting.

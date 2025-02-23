@@ -1,0 +1,8 @@
+Q: How to delete protected folder? I'm using external NTFS HDD via Tuxera-NTFS.Suddenly some of my folders turn to be protected (I don't now how it has happen):
+
+I'm trying to delete such folders but still without any luck. 
+I've tried to uncheck 'Protected' checkbox in folder properties pane, I've tried rebooting, I'm always logged as admin but still can't delete those folders.
+Any ideas?
+UPDATE 'rm -rf' says 'Operation not permitted' 
+
+A: Have you tried the hints in the article, posted in this answer? Otherwise, as NTFS-support is experimental on OSX, I'd delete then from a Windows machine.

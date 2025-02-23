@@ -1,0 +1,19 @@
+Q: How can I average numbers using Soulver? I have a license for the excellent app, Soulver. I'd like to use it to find the average of some integers. I'd like to do something like:
+avg(199, 262, 219, 268, 285, 293)
+
+However, that doesn't work:
+
+Any suggestions on how to do this with Soulver?
+
+A: Soulver doesn't let you do this with an operation, but there are a few ways to do it. First of all, there's the old fashioned way:
+
+Add your numbers up (in parentheses) and then divide by the number of numbers.
+There's also a more automated but less convenient way. Soulver can calculate the average of the results (blue column) that are currently in your document:
+
+But, if you want to use that average later, you'll have to do a bit more.
+Select Average, then click on Copy Selected Statistic.
+Add a new line to your Soulver document: avg = and then paste in the average. You now have an average that you can rever to via avg:
+
+
+A: Soulver can only calculate the average of the results in the right column. To display you have to click on the "Total:" in the bottom line of the window:
+

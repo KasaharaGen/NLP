@@ -1,0 +1,61 @@
+Q: What's the best iPhone SIP apps work internationally and allow recording? 
+*
+
+*So far, Siphon is the best SIP app I've tried.
+
+*MobileVOIP and TruPhone are very nice too (and don't need jailbreaking). 
+
+*Other apps offer at least some SIP features such as Nimbuzz, Fring, Viber and even Skype. 
+
+*Apple's FaceTime audio clearly is an option for some
+
+
+While I have all of these, I hardly use any of them, for a variety of reasons.
+I'm looking for a more ideal third party app that should:
+
+
+*
+
+*Integrate with both Address Book and the iPhone's native recent calls
+
+*Replace phone.app and load rapidly to place phone calls
+
+*Have international number support  
+
+*Allow call recording
+As a plus, 
+- Support Skype, Google (talk, voice, etc) and integrate with other options if possible
+
+A: I've used Acrobits SoftPhone (link goes to their site, iTunes link below) for some time, thought admittedly very sparsely and only for the simplest of use cases, so, much of this is taken from their site.
+Use the OS' Address Book: Yep, it maintains it's own "quick list" (favorites) however.
+and global Recent Calls list: Nope, maintains it's own (pretty sure this one is impossible anyways, "private APIs" and all that).
+Load as fast as Phone.app: I call this subjective, because Phone.app is always running, which gives it an inherit speedup compared to anything else. Acro's SoftPhone does support the VoIP backgrounding, and even push, so you can "Swipe To Answer", but it still takes at least a couple seconds to do. (At least that's how it feels, comparatively speaking.)
+International Number Support: I think this is not so much a client feature as much as it is a feature of your server you SIP register to. This one is unknown to me as I've never attempted to call an international (outside the US) number.
+Allow Recording: Yes. Upon tapping the record button, a voice announcement is played, and then conversation is recorded and able to be replayed from the app.
+Skype: Nope
+Google Voice: Yep, but to what extent, I am unsure. Per their website:
+
+GoogleVoice users:  Though we have integrated GoogleVoice, Acrobits Softphone's main use is as a SIP client.  You can setup Acrobits Softphone to initiate GoogleVoice calls through other types of numbers, but to get the full functionality of Acrobits Softphone, you need to have GoogleVoice linked to a SIP Account.
+
+Rest: If it's SIP, it should work.
+Bonus: It supports ZRTP. Zimmerman's encrypted RTP protocol for SIP calls. Free for incoming calls, in-app purchase for initiating calls using it.
+iTunes Link: Acrobits Softphone.
+
+A: After some problems getting DTMF to work I tried WeePhone with some success.
+
+A: I just tried several free softphones and I liked Zoiper the best, but since our Asterisk server is configured with very peculiar prefix rules I cannot use it. It supports native address book integration, call recording, various audio and video codes... pretty cool, if only it would allow custom rewriting rules :(
+As strong second best I decided to use Join softphone. It does integrate with addressbook and allows complex rewrite rules. It promises that it does call recordings, but I could not get it to work properly. What really puts me off with Join is rather confusing UI with too many colors and drop shadows. It really does not work well on mobile screen. Maybe desktop but not small screen such as mobile. But it was only feature full free solution I've found.
+
+A: I use Smartgroshen app, simple, good quality of voice and sync with your phone contacts. Get 0.5 euro at start.
+
+A: General problems when using Softphone app are:
+1. Complex network conditions in mobile networks (i.e. NAT). Not all VoIP servers can properly work with NAT.
+2. Limited bandwidth. Is is impossible to use high nitrate codecs in 3G networks. But many operators does not support modern codecs like Opus.
+3. Problems with incoming calls. To receive calls phone must be connected to the server. It drains battery.
+This is not ad, but try our solution:
+www.sipmobile.org
+We resolved this issues. You can use our Softphone in mobile 3G networks with good voice quality. If you have LTE or WiFi, video calls are available. Softphone for iOS can be switched off and receive calls with push notifications (of course only in our domain).
+
+A: Prefer Sipgo. It's probably the app with the lowest bandwidth usage. No useless extras, just sip calls.
+
+A: I confirm Smartgroschen is good app for cheap international calls, voip calls with good quality voice calls.

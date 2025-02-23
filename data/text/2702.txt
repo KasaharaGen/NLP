@@ -1,0 +1,79 @@
+Q: Why are my browsers only downloading some files but not others? My 12 month-old MacBook Pro just suddenly seems to not want to download certain files. 
+This sounds like a silly noob PEBKAC but it's not! For the past few weeks, most files that I click on in my browser which are not viewable in the browser (DMG, ZIP, etc) do not prompt me to save them. Instead of the Open with/Save File dialog appearing I just see a blank page and get the spinning wheel in that browser's tab. The status bar at the bottom reports "Transferring data from " but the download never completes, no matter how long I wait.
+I've done some initial troubleshooting. Here's what I've ascertained:
+
+
+*
+
+*I can use my web browser to view HTML pages, PNG images, JPG images, Flash sites, and even sites that load Java applets.
+
+*The issue is not specific to a file type (extension). I can download some ZIP files, but not others (see below).
+
+*The issue is not due to any ISP level filtering. My wife's computer, on the same network (older version of OS X) does not have this problem.
+
+*The issue is not related to the size of the file. See examples below.
+
+*From doing some digging on the mozillazine knowledgebase, I thought perhaps that my problem was a corrupt localstore.rdf file. I deleted this, both manually and using the "Safe mode" option, but it didn't seem to make any difference.
+
+*I've also tried resetting options related to browser.download in about:config, but this hasn't made any difference either.
+
+*It was at this stage that I tried other browsers, and came to the conclusion that it was something at the OS level. Yes, this problem occurs in ALL browsers that I have installed (Firefox 3.6, Opera, Safari and Chrome).
+
+*The issue happens regardless whether I'm connected to my home wi-fi network or a different wi-fi network (e.g. at work).
+
+*I currently have my firewall disabled in System Preferences.
+
+*(edit) After posting this question, I installed a download manager called Folx. Entering the URL of a file directly into this app seems to download any file just fine. However I'm stunned why the default browsers are behaving like this, and would prefer the lightweight browser default to a heavy, feature-rich third party download manager.
+
+
+Here's an example of a file that I can download just fine. The Open with/Save file dialog appears, and I can specify a location to save the file. The file saves without problem.
+
+
+*
+
+*This freeware font:
+www.fontspace.com/livin-hell/carnivalee-freakshow
+(click the Download button — I didn't link to
+the zip file directly because the
+site checks the referer to discourage
+hotlinking)
+
+
+And here are some files that display "Transferring data from somesite.com..." and a spinning wheel but never actually save any file to my local machine:
+
+
+*
+
+*This freeware DMG file: mac.eltima.com/download/downloader_mac.dmg
+
+*This 512KB test.zip file on Dropbox: dl.dropbox.com/u/477850/StackOverflow/test.zip
+
+*This freeware font: www.1001freefonts.com/font/BaroqueScript.zip
+
+
+Now I'm stuck. Any ideas from the community are very welcome! Also apologies for removing hyperlinks that were added for me by a mod — I couldn't update the post without removing them :(
+
+A: Have you tried to ⌥-click a link to a download?
+This usually guaranteed to download the file.
+
+A: The two thoughts that come to mind for me are:
+Proxy settings
+Maybe you're set up to use a proxy server for some reason?  Most browsers automatically use the OS proxy settings.
+Go to System Preferences -> Network -> Advanced (make sure Airport is selected) -> Proxies
+Custom DNS Provider
+Are you using OpenDNS, Google DNS, or something other than your ISPs default DNS server?  If so, you might want to try switching back temporarily to see if that fixes the problem.
+Go to System Preferences -> Network -> Advanced (make sure Airport is selected) -> DNS
+
+A: Are these downloads from a particular site (or sites)? 
+This could very possibly be a misconfiguration on the web server you're downloading the files from. If it's sending an incorrect or unrecognized MIME type, your browser wouldn't know how to handle the file. I've seen cases where the browser happily downloads files from one site and throws up completely on the same kind of file from a different type.
+When that happens, I usually find that Right-click > Save as gets the job done.
+
+A: Are you running low on hard disk space? Does the download fail immediately or does it get all the way to the end and then fail? Even if you don't see a Save/Open dialog and you click on a link, you can use the "Show Downloads" window of whichever browser you are in to see what it is currently downloading and the progress that's been made.
+I was just wondering if you were really low on space (a few gb or less of free space), then some applications (and the OS) tend to act funny. The OS uses quite a lot of disk space for swap files. Perhaps if you are in this low-space zone, the browsers are trying to download the file for you but then bailing at the end because of a (possibly) erroneous low-space message from the OS.
+Note: This is pretty much a hail-mary pass with little expectation that this will be the solution, but I wanted to put it out there in case it helped you.
+One other thing to try is to create a brand new user on your Macbook and then log into that user and try to download some of these same files and see if it behaves correctly. If so, then you definitely have a configuration issue and I would focus on trying to either "clean" or "reset" your account to a more pristine state (one change a time) so you can isolate what the problem might be. At the very least, try running Disk Utility to fix any invalid permissions or disk errors that you might have.
+Good luck!
+
+A: Have you tried downloading from another user account on the same Mac?  That'd at least isolate it to a user vs system issue.  If it's only a problem in your user account, try pulling out ~/Library/Preferences/com.apple.LaunchServices.plist, then log out and back in and see if it changes (I'm guessing that it could possibly be a messed up handler for some protocol/mime type/whatever, and those are Launch Services' responsibility).
+
+A: This is a known issue with OS X, but luckily there is a easy fix. Logout of your system, then logon with command held down to launch the System Preferences (advanced). Click CLEAR next to Browers - Download Policy.

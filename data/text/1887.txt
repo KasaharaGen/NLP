@@ -1,0 +1,32 @@
+Q: Is it possible to find the serial number of stolen devices using a Mac that they've been connected to? For a number of devices that were stolen, can I find their serial number on a Mac that I still have and which the devices have been connected to at some point? In other words, are there any applications (or the OS) which might have kept a record of any of these devices' serial number(s)? I'm specifically thinking about:
+
+
+*
+
+*iPod
+
+*Cinema Display
+
+*Time Capsule
+
+*another Mac
+
+*a camera
+
+
+Would the connections have shown up in a log file somewhere with their serial number included? At least for an iPod, I wouldn't be surprised if its serial number gets recorded by iTunes somewhere. And iPhoto just might record a camera's as well.
+
+A: How to get serial numbers for displays:
+Go to /Library/Preferences/com.apple.windowserver.plist. Open this with TextWrangler or a similar utility. Look for a DisplaySerialNumber key with an integer value that isn't 0. With any luck, this should be the s/n of your display.
+If you haven't used this display for a while, the records of it may be gone.
+Also, it appears that this isn't guaranteed. Double-check if possible.
+
+How to get the serial numbers for iPods:
+Open /Library/Preferences/com.apple.ipod.plist.
+ Look under the Devices dictionary. Any iPod you've connected will have all its info there, including the s/n (under Serial Number).
+Good luck.
+
+A:  $ grep -i serial /Library/Preferences/*.plist
+
+Shows TimeMachine and BlueTooth in addition to the two files mentioned by @Nathan.
+Also, the iPod plist in ~/Library/Preferences contains serial numbers.

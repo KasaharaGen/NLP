@@ -1,0 +1,17 @@
+Q: Multiple users on one machine and Dropbox If UserA logs in to an OS X machine (at the GUI) and starts Dropbox, UserB logs in via ssh and adds a file to their Dropbox, will Dropbox work for UserB? Or does UserB need to log in via the GUI also, and then "switch" (not log out) to UserA?
+
+A: DropBox does not support not-logged-in users. The solution seems to be the following:
+Log in and start Dropbox from the command line:
+alias dropbox='/Applications/Dropbox.app/Contents/MacOS/Dropbox &'
+dropbox # start it.
+
+ps aux | grep -i dropbox # shows multiple instances running
+
+The above technique seems to work. Error messages are sent when the second Dropbox launches:
+already someone listening at socket
+
+RegisterApplication(), FAILED TO establish the default connection to the WindowServer, _CGSDefaultConnection() is NULL.
+
+But everything appears to work.
+
+A: The Dropbox app runs as the logged-in user, and uses user-specific preferences to determine which Dropbox it's associated with and where the local Dropbox folder is located, so I'd assume that means that it only works for the logged-in user. There's only one way to find out for sure though - try it and see! :)

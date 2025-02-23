@@ -1,0 +1,111 @@
+Q: Screen turns off at lid opening When I close the lid, the computer behaves correctly:
+
+
+*
+
+*Screen turns off  
+
+*Does not go to sleep (front light stays on and does not flash)  
+
+*Still can hear fans
+
+
+It behaves this way because I share my wired network connexion via Wifi (System Preferences > Sharing > Internet Sharing).
+When Internet Sharing is disabled, the computer goes to sleep and at lid opening, I don't have the problem described below.
+When I open the lid:  
+
+
+*
+
+*The screen turns on...  
+
+*...and turns off about 2 seconds later
+
+
+I can see my desktop background and the login screen for 2s, and after that the screen becomes black (actually it really turns off, that's not backlighted black).
+The little trick I found is to reduce the luminosity thanks to the F1 key, and then increase it again to come back to maximum luminosity thanks to the F2 key.
+It's not really handicapping since I found this little trick, but it's a little bit annoying to have to do that every time I open my Macbook :(
+
+Computer specs :
+  - Macbook Pro 15" bought 2 months ago
+  - It came with OS X Lion already installed
+  - I choose the screen resolution option (don't know if it matters)
+
+
+UPDATE : Doesn't seem to be a problem any more in Mountain Lion.
+
+A: There is a similar discussion on discussions.apple.com from which I picked the hint to run
+pmset -g assertions
+
+to list a summary of power assertions. Assertions may prevent system sleep or display sleep.
+In my case I had a print job in queue that was preventing sleep.
+
+A: I stumbled onto this link when trying to find out why my 15" MBP (late 2011) macbook pro with Lion (10.7.3) would not keep the display on after opening the lid and plugged in.
+Steps to reproduce:
+
+
+*
+
+*Plug in your laptop.
+
+*Close the lid.
+
+*Open the lid.
+
+*Type your password.
+
+
+Expected result:
+The laptop wakes, the display shows the login screen and remains on.
+Actual result:
+The laptop wakes (the keyboard is lit), the display shows the login screen for approximately 3 seconds and then goes dark.
+Workaround:
+Unplug the laptop, and successfully login then plug the laptop back in.
+Fix:
+As another poster stated, it's the network attempting to access resources which shouldn't be available when the lid is closed then when waking the laptop it is technically already awake.  I did not have internet sharing enabled, however, the only difference between adapter and battery options in my settings was "Wake for Network Access".
+
+
+*
+
+*Open your System Preferences.
+
+*Click Energy Saver from the Hardware section.
+
+*Click Power Adapter.
+
+*Un-check the box for "Wake for Network Access".
+
+
+This resolution assumes that Internet Sharing is not enabled in System Preferences -> Internet & Wireless -> Sharing
+
+A: Try Resetting the PRAM. That's always the first thing to try for strange behavior like you're experiencing it. 
+
+A: What you describe actually doesn't make sense.  If you enable wake on lan then the machine will go to sleep but will respond to a wake on lan packet.  The machine will also boot if completely off with the same event. 
+How long are you waiting for the machine to sleep?  Chances are you're not waiting long enough because you might not be aware of how sleep works on a Mac laptop.  If you tell a Mac laptop to sleep it first writes out a hibernate image to disk and then goes to sleep.  If for whatever reason that battery dies before you wake the computer it will resume from the hibernate image, if the battery does not die then it wakes from ram. 
+What you're describing sounds like you are closing the lid and then opening it before the machine actually enters sleep state.  As far as I know, short of using some software, there is no way to prevent the machine from entering sleep when you close the lid if there isn't a keyboard/mouse/monitor attached.
+
+A: I have a MacBook Air 2010 and I have those problems too (no more screen backlight after sleep and sleep going wrong with possible over heating).
+A friend of I told me his MacBook Pro does that too since Lion.
+I presumed that is a Lion induce problem, ether the system itself and me maybe 10.7.2 will fix this, or due to an app which could work badly with the new app state saving thing.
+Do you use Chrome, Adium or SparrowMail ?
+I suspect one of those that could be it, but since the problems don't show off all the time I don't feel like spending hours to fix this.
+
+A: I've noticed that no one here is actually looking at the problem correctly. I have the same problem when I leave on internet sharing but I assume it is only a small bug. The internet sharing keeps the computer awake with the lid closed and the hardware has conflicts with it because it should sleep with the lid closed. So you get some mismatched commands from the computer causing the problem upon opening the lid. I haven't tried it but resetting the power assertions looks like the only good answer on the page. The rest of them won't fix the problem
+
+A: If plugged in, my 15" MBP late 2011, would not sleep when the lid was closed and if I opened the lid the screen would come on for about 1-2 seconds and then the back-light would turn off. After disabling org.cups.cupsd every thing was back to normal ! :)
+From this link.
+Cups
+I noticed that a process called ‘cups’ was making TONS of requests on my local network. CUPS is “the standards-based, open source printing system developed by Apple Inc. for Mac OS X and other UNIX-like operating systems.” (via discussions.apple.com)
+To see the list of services running on your machine:
+sudo launchctl list
+
+You should see org.cups.cupsd in there. 
+To disable it:
+sudo launchctl unload -w /System/Library/LaunchDaemons/org.cups.cupsd.plist
+
+To re-enable it:
+sudo launchctl load -w /System/Library/LaunchDaemons/org.cups.cupsd.plist
+
+You can run sudo launchctl list again to see if org.cups.cupsd is there or not.
+
+A: Unchecking the box Wake for network access in System Preferences > Energy Saver got rid of the backlight shutting down after 2-3 of reopened lid for me. This also allows me to immediately open the lid back up without fault. Seems like a software default setting that doesn't mesh with the impedance of power thresholds of some transistor(Swithch[i.e., SW]).

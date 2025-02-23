@@ -1,0 +1,25 @@
+Q: Using TextMate, how can I wrap everything in PHP tags? A question about TextMate. For example, I just typed var_dump($codes);, and I forgot to write <?php ?>. So, now I want to highlight the area that I want to wrap the php tags around. How can I do this?
+
+A: Simply add a new command called for ex 'Wrap in ' in your php bundle editor (Bundles->Bundle Editors->Show Bundle Editor) 
+In the Activation choose: Key Equivalent and hit: CMD+SHIFT+W (or whatever you'd like that's not already taken).
+Leave the scope selector to source.php
+In the snippet window write:
+<?php  $TM_SELECTED_TEXT ?>
+
+Now select anything and hit CMD+SHIFT+W and you're done
+Sorry I couldn't upload an image to show you I've just signed up.
+EDIT I now have enough reputation to upload the image:
+
+
+A: You could select the line your PHP command is on and do a Search and Replace operation with a regular expression. Search for
+^(.*)$
+
+and replace it with
+<?php $1 ?>
+
+as seen in the screen shot. The regular expression will match everything on the line and wrap the PHP tag around it.
+
+
+A: The HTML bundle has a command to wrap in <?= ?>:
+
+You could assign a keyboard shortcut to this from the Bundle Editor, and if you're so inclined you could even add a new command for <?php ?>.

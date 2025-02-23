@@ -1,0 +1,13 @@
+Q: Making changes to a Smart Group's distribution list persistent Is there a way to make changes to a Smart Group's distribution list persistent?
+Problem Description
+In Address Book, I right-click on a Smart Group and select "Edit Distribution List".
+
+I then select a work address for a contact that has multiple email addresses. 
+
+If I close the the "Edit Distribution List" menu and then go back into it, my change from home/other to work for that particular user did not persist.
+The problem is that when I send an email using a smart group, I cannot ensure that everyone will receive the email to their work email address.
+Any thoughts?
+
+A: Distribution lists are not persisted for smart groups. On Lion, if you search Address Book help for "distribution list", you will see a page called "Select addresses for group members". Below step 2 is this piece of bad news: "You can't choose smart groups."
+Some versions of OS X show smart groups in the Edit Distribution List window, but as of Lion, this is simply the user interface being misleading.
+Speaking of Lion, users who use iCloud for contacts will see the Edit Distribution List menu item disabled, because this feature is not yet available with iCloud.

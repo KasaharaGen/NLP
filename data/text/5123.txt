@@ -1,0 +1,9 @@
+Q: How to monitor which apps are "calling home'? I want to monitor one app on my phone to see what webservice it is accessing when it first launches.  I remember seeing an article on TUAW a while ago that detailed using Charles snooper, or something like that to set up a network to detect that.  However, I can't find it.  Anyone know where it went?  
+
+A: For a fully featured application to monitor other applications' network usage (all traffic, not just http), try Little Snitch.
+EDIT
+Apologies, missed the whole key "app on my phone" bit. There is no way for one process to inspect or intercept data from any other app, since all apps are sandboxed. The only way to get close to accomplishing this is through a jailbreak.
+Otherwise, you would have to enable logging on your router, and the specifics on how to do this or how easy it is depends on your firewall/modem/router. Little Snitch may still be able to help you here if you have your Mac act as the wireless access point.
+
+A: Is this what you're looking for? 
+http://www.tuaw.com/2011/02/21/how-to-inspect-ioss-http-traffic-without-spending-a-dime/

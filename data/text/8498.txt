@@ -1,0 +1,37 @@
+Q: My MacBook's external monitor is magnified When I initially got my MacBook, I connected my external monitor and it worked fine. Last night I disconnected it and when I connected them back together, the resolution on the external monitor was changed. The overall display is now magnified (for example as I'm writing this I have to scroll down to see this). 
+I tried to change the resolution settings in Preferences but this didn't help to change it back. So how can I set the resolution of the external monitor back to a sane state?
+
+A: In System Preferences, select Displays. On each running display (i.e. both on the external monitor and the MacBook itself, should it be open) a list of supported resolutions will be displayed. Click "Detect Displays" on the dialog shown on the external monitor. This should make the system recognize the kind of display and the supported resolutions. You should then be able to change between these without problem.
+
+A: Maybe you accidentally magnified your screen using Universal Access's screen Zoom, it can survive display detects with out zooming back out. And it can be accidentially triggered via holding down the ⌘ key or some customizable key and then scrolling up or down with your mouse or track pad. 
+
+
+*
+
+*Look in System Preferences under the "Univeral Access" section.  
+
+*Once there click on the "Seeing" tab. Is "Zoom:" on? If yes then continue. 
+
+*Press ⌘ + ⌥ + - to zoom out.
+
+A: I just had this problem on High Sierra 10.13.4 on my 2015 Retina Macbook. Solution was to reset the SMC (as per idownloadblog):
+
+
+*
+
+*Power off computer
+
+*Press and hold altogether left Shift Ctrl Alt and the power button for a couple of seconds.
+
+*Wait nervously for what feels like ages.
+
+*Press the power button. Probably nothing happens.
+
+*Wait even longer and avoid biting fingernails
+
+*Press the power button.
+
+*Hear startup chime with great relief.
+
+*When computer comes back up the display may still be zoomed, but if you go to the display preferences you should now be able to find a resolution that works (previously, for me, the correct display resolution was not available for the external display).
+

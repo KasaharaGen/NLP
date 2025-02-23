@@ -1,0 +1,44 @@
+Q: Why can't I resize my existing partition? I just finished downloading my copy of Lion and wanted to install it on a new second partition. I freed up just over 50 GBs from my hard drive and am now stuck trying to shrink my existing partition. I'm using the Disk Utility, but am continually getting:
+
+Partition failed
+Partition failed with the error:
+The partition cannot be resized. Try
+  reducing the amount of change in the
+  size of the partition.
+
+I've tried just resizing by 1 gigabyte and it still fails. Any free tools to fix this? Thanks.
+
+A: You've probably got fragmentation of your free space. For some reason, Disk Utility can't figure this out on its own; it just fails.
+I found a stunningly simple way to resolve this: create a new disk image with Disk Utility that's a little bit smaller than the remaining space on your drive.
+It took several minutes on my SSD, presumably while OS X moved things around. I imagine it would take significantly longer on a hard drive.
+When it's done, delete the disk image you just created. You should now be able to resize your partition!
+
+A: The GUI for Disk Utility has always had problems with resizing volumes.
+You could try diskutil from the command line, if you trust your skills enough.
+I'd start the Terminal and write diskutil list to see all devices connected.
+To resize a volume from the list you'd write something like this (Let's assume that disk2s2 is 100GB):
+diskutil resizeVolume disk2s2 50g HFS+ Lion 0b 
+This should create a secod partition with 50gb size, HFS+ format(mac format) and the name Lion
+
+A: When I ran into this problem, I used iDefrag to defragment the volume, and that let me shrink it.  Unfortunately it's not free.
+It has since occurred to me that it might work better to dismount the partition before shrinking.  If you want to try this, you'll need to boot from something else, like your O S X install DVD.
+
+A: I don't mean to open up an age old thread, but simply running fsck -fy from single user mode fixed it for me.
+From the man page:
+-f     Force fsck to check `clean' filesystems when preening.
+-y     Assume a yes response to all questions asked by fsck; this should
+       be used with great caution as this is a free license to continue
+       after essentially unlimited trouble has been encountered.
+
+
+A: This is what worked for me, and avoided backing up and restoring the volume.
+While you are resizing your partition, do tail -f /var/log/kernel.log or run the Console application and select kernel.log.
+This will tell you why the resize is failing.
+Unfortunately, it will only give you the inode number for the file or directory that is preventing the resize.
+To find the file name corresponding to this inode, you can use the find command from the terminal:
+$ cd /Volumes/<volume you are trying to resize>
+$ find -x . -inum <the inode number from kernel.log>
+
+Once you find the file, copy it to a different volume, if you want to save it, and then delete it on the volume you are resizing.
+Then rerun the resize operation and it should succeed. If it doesn't, repeat the above procedure until you are successful.
+Ref:  https://discussions.apple.com/thread/2742302

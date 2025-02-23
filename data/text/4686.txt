@@ -1,0 +1,37 @@
+Q: Default volume too high for headphones Is there a way to change the default volume setting for headphones/line out, i.e. the one you get after plugging a jack in for the first time since you've turned your Mac on and started OSX?
+I'm using a 2008 unibody (aluminum) Macbook, running Snow Leopard. And several times I've run the risk of hurting my ears because of that default value (half of the scale).
+
+A: Take a look at breakaway. You can write a quick applescript to change the volume back and forth when when the headphone is connected/disconnected, and much more
+
+A: I had the same problem.  Setting the volume as low as it could go was still too loud.
+Here's a solution that worked for me:
+
+*
+
+*Download Loopback
+
+*Set it up so that you have the following:
+
+*Sources: Pass-Thru
+
+*Output Channels: Channels 1&2
+
+*Monitors: [Select your headphone device]
+
+Now all audio is routed to a virtual device, which outputs to your headphones.  This gives you an additional volume slider for more fine grained control, which will allow you to set your headphones to be much quieter than you could normally with the default OSX volume options.
+
+A: Open "AppleScript Editor"
+Add this line:
+
+set volume 1.5
+
+Then File > Save As
+In the file format box choose "Application" and check the "Run Only" box. Name the file and save it somewhere you can find it.
+Then if you drag that app into your dock, you can right click it, select Options > Open at Login.
+This will set the volume to around 3 boxes of the scale on startup. However it will not detect if you have headphones plugged in or not. It will just always set the volume lower.
+
+A: Check these values each time before you plug in your headphones.
+
+Check the box for "Show volume in menu bar." Each time before you plug in any headphones, go to your Menu bar and manually lower the volume.
+
+Trying to solve this problem with AppleScript and the like is severly over-engineering a solution.

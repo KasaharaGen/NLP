@@ -1,0 +1,21 @@
+Q: Dock Folder Stack - I want ascending order Before I upgraded to OS X Lion, when I click a stack, it would show the very top. Now, it shows the very bottom of the menu meaning you would see the "Open in Finder" option after you click it. Now, I sorted my download folder by "Date Added" and its very annoying that I am seeing the oldest files first rather than the newest ones. I would have to scroll all the way to the top to access the new files. How can I have the newer files be shown first aka ascending order?
+
+A: In my Downloads stack I don't have this problem. The ordering is correct, i.e. latest download appears at the bottom.
+The settings which achieve this are:
+Sort by: Date Added
+Display as: Stack
+View content as: Fan
+I hope these settings work for you too.
+
+A: My downloads folder is a stack with latest downloads appearing at the top without me having to move the slider. When I 'right' click the downloads folder icon in the dock, a contextual menu appears.
+
+A: I had mine set to List as well and noticed the problem right away after upgrade (my Downloads folder is huge). 
+I think this is a bug. The grid view has the correct initial position (at the top of the reverse chronological ordering)
+I suspect we'll need to switch to grid view until a patch comes along. :(
+
+A: Try this in the Terminal:
+defaults write com.apple.dock use-new-list-stack -bool YES
+
+This gives you another type of List view that always starts at the top of the list with the latest files. You can scroll down for earlier files.
+
+A: I see this when I have the "list" setting.  A work around is to press control-commnd-up arrow and this will bring you to the top of the list.

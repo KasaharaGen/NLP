@@ -1,0 +1,33 @@
+Q: How to restore the AddressBook database from backup How do I transfer my address book files in the abcdp format to my new MacBook Pro with Mac OS X Lion?  
+The files are from a 2008 MacBook running Mac OS X 10.6; the hard drive crashed, and the computer won't start up at all. Luckily, I had everything backed up with Mozy. I restored the files on the new MacBook, but I cannot read the abcdp format. I've tried a few other solutions such as copying the abcdp files into the metadata folder with no luck.
+
+A: First, the database file is ~/Library/Application Support/AddressBook/*.abcddb (with abcddb meaning Address Book CoreData database). The files in ~/Library/Application Support/AddressBook/Metadata have extensions like .abcdp (Address Book CoreData person) and .abcdg (Address Book CoreData group). The metadata files can serve as a backup if the .abcddb goes bad or missing. So if you want to restore those abcdp files, you need to:
+
+
+*
+
+*Back up your Address Book data
+
+*Quit all applications
+
+*Move, rename, or delete the .abcddb file mentioned above
+
+*Put the abcdp files into the Metadata subdirectory listed above
+
+*Launch Address Book.app
+
+*Select and drag the contacts out to save them in one or more vCard files
+
+*Restore your Address Book backup created in step 1
+
+*Import the vCard(s) created in step 6
+
+
+If you need any help or clarification on this technique, please leave a comment. I hope this works for you!
+
+A: Assuming that you mean an abcddb (not abcddp) file, what you have is the SQL Lite database file AddressBook is storing all contacts in. Quitting AddressBook, copying that file to
+~/Library/Application Support/AddressBook/AddressBook-v22.abcddb
+
+(where ~ is your home directory – note the Libraryfolder is hidden by default in Lion; click “Go To” while holding Alt in Finder or do a open $HOME/Library in Terminal to reveal it) and restarting AddressBook should be your ticket to a successful restore. 
+
+A: If you have not only .abcdp files but the whole Library/Application Support/AddressBook backed up, just copy directory somewhere, add .abbu extension and open it (.abbu should be associated with Contacts.app). One downside is that it does not propose to merge contacts but to replace them.

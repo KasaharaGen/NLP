@@ -1,0 +1,31 @@
+Q: How can I quickly change DNS server I often like to use a non-network specific DNS server (like Google's public DNS 8.8.8.8).  However, many public wi-fi locations won't load their "terms of service, click here" page during the authorization process.  I suppose it is because my Macbook needs to look-up their web page, but is sending DNS requests to Google, which are blocked because I'm not yet authorized.
+The quick fix is to delete the DNS server from the Network preference pane (Network / Advanced / DNS / Select / delete / clickety / click /GAAA) ...
+... and then add it back after I'm authorized.
+So, what I'm looking for is an easy way to specify my DNS server.  I'd love to run some service or app that would clear the DNS server list (ideally without needing me to select anything).  And then run it again to put my DNS server specifications back.
+Can this be accomplished with some Applescripting?  Or a terminal command (that I could then wrap with Automator)?
+
+A: Launchbar will allow you to select from your pre-defined locations - I have two that only differ by setting DNS.
+
+So I have Control-Space as my hotkey so this sequence of keys to toggle OpenDNS instead of the DHCP supplied DNS:
+^+Space, L, O, C, Return, ▼, Return
+
+The down arrow key will cycle between all your locations if you have more than two. As I put in my comments above - FastScripts lets you assign one shortcut key sequence to whatever script you like from the other answers - it runs in the context of the running app and is free if you need less than 10 shortcut keys defined in the app.
+
+A: Once you have setup different Network Loacations as per Adam Rice's solution, you can quickly switch between the locations using top menubar option "Apple > Location". 
+
+
+A: To get the settings:
+networksetup -getdnsservers Airport
+
+To change them:
+networksetup -setdnsservers Airport xx.xx.xx.xx
+
+These settings are non-persistent, so you could clear your manual settings, let the public wi-fi DNS do its thing, then use the -setdnsservers to set it to what you want until next time.
+
+A: You can have multiple network configurations and switch between them on your Mac. Open the Network prefpane, and you'll see that there's a popup menu at the top (probably says "default" or something). Let's say you get this set up the way you like it for home use. Pull down that menu to Edit Location…, double-click on the name, and give it an obvious name like "Home."
+Then create another location in that window (hit the + button) and name it Coffee Shop. Finish up in that window and select Coffee Shop from the menu to make it your current menu. Change the settings to be whatever you want.
+To change the DNS settings you use in each of these cases, you'll need to click on the Advanced button at the bottom, then the DNS tab.
+Once you've got these two locations set up, you can switch between them in the Network prefpane in the future; I think there are independent applications that make it easier to switch between them (or even do it automatically based on what networks they detect) but I've never played around with them.
+
+A: You can use DNS Switcher application.
+

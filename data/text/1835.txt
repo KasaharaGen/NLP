@@ -1,0 +1,94 @@
+Q: How can I transfer large files from Linux to iPad over a cable or wifi? I am looking for a way to transfer large files to the iPad without using iTunes or pushing to and pulling from a remote server.
+I run an Ubuntu laptop as my only OS at the moment and want to be able to transfer movies to my iPad.  I currently transfer most of my files by way of the dropbox app which works well for small files but is quite slow for larger files and eats up my bandwidth.  Ideally I'd like to be able to transfer over a cable or through WiFi.
+Thanks for any tips.
+
+A: Since iOS 13, you are able to access SMB shares with the Files app. Just set up your share in the Linux system (I recommend usershares), create the user on samba (while samba allows you to have the same Linux user, it requires that you use samba specific utilities to set up the password) and use "Connect to Server" within Files on your iOS device.
+
+A: Look at the iOS app GoodReader.  GoodReader is a $5 app that allows you to transfer files from Windows, Mac OS X & Linux via WiFi to your iPad, iPhone, or iPod Touch. You can then open the files in other apps based on the filetype.
+
+A: Simply install VLC app from the app store and use its wifi transfer feature (in the sidebar of vlc app) to transfer videos(in all formats recognizable by vlc) into your vlc library.... 
+UPDATE: This method not only works for audio/video formats but pretty much all file formats. Ofcourse, VLC won't show these files but one could access them using any decent File manager app such as Document.
+
+A: Yes! You can transfer files to / from the iPad from Ubuntu via USB.
+
+
+*
+
+*You can always transfer files via SSH / a Samba share / etc.
+
+*However that would be over Wifi, which is nowhere near as fast as USB connectivity.
+
+*Via USB you can only access /var/root/Media on the ipad. Useful to put movies onto it - you will need to find a way to make these visible within iPad - I think you need to create some playlist?  
+
+
+*
+
+*I use FileBrowser on the iPad and since my iPad is jailbroken, I ssh in and mv the transferred files from /var/root/Media to /var/mobile/Applications/[app-ID]/.data/Movies/. It is then visible within FileBrowser and Movies can be played there. 
+
+
+
+Steps
+Install additional PPA repository
+sudo add-apt-repository ppa:pmcenery/ppa
+sudo apt-get update
+
+Install libimobiledevice-utils
+sudo apt-get install libimobiledevice-utils
+
+Plug in the iPad / iPod / iPhone. It is visible as a removable drive!
+
+A: For me on Ubuntu 18 all I had to do was install libimobiledevice-utils with 
+sudo apt-get install libimobiledevice-utils
+
+and then reconnected the iPad, I can now browse my dam file and grab em just like normal folders thats just wonderful!!!
+
+A: Not sure if this will work for everybody, but I can get movies (mp4, didn't try any other format) onto the ipad through the 'Documents' app from the app store. When I connect the iPad to my comp with usb it brings up a folder called "Documents on YOUR NAME's iPad". In this I can open the Document app's folder and just drag and drop. The files appear in the app then....magic! 
+
+A: *
+
+*Install Zip & RAR File Extractor in your iPad
+
+*Create a zip folder in your Linux machine of the files which you want to transfer.
+
+*Open the Zip extractor app on your iPad, then go to Wi-Fi Transfer. It will show a web address. Write that address into your Linux web browser. There is an option of "Upload files", just click and upload the zip file and then transfer.
+
+*Open iPad files, go to "On My iPad" and then go to the "Zip Extractor folder". You can see that the file has been transferred. Touch on that zip file, and you will see the file has been extracted.
+
+
+A: FileBrowser is very good for transferring files.
+
+A: I used to transfer by uploading to dropbox and downloading files on the dropbox app on my ipad. 
+There is another way which doesn't need internet which is using the app called "wireless drive". With this basically you connect your ipad with your laptop by creating wifi hotspot and transfer the files. But my ipad is unable to connect the wifi created by my new laptop. (wifi connection problem for unknown reason) ..... what do I do? I dont have internet right now.
+You do following (after installing the app):
+
+
+*
+
+*just connect ipad to laptop using usb cable.
+
+*You see "documents on the ipad" as a usb drive (as the external-pen drive)
+
+*open the documents on the ipad > you see different apps you have on the ipad
+
+*You will see "wireless drive" in the list, open it by double-clicking.
+
+*You will see folder "documents", open it.
+
+*You will see folder is empty, if it's used for the first time.
+Just simply copy whatever you want to copy to your ipad in this folder and that's it!! 
+
+
+Now, just open the "wireless drive" app on your ipad, and you see the files you have transferred. Tap on any of the document, you will be asked which app to be used to open/run the file, select appropriate app and you can use the file on your ipad.
+
+A: Download Folder Lock for your iPad and enjoy its WiFi File Transfer feature.
+https://itunes.apple.com/us/app/apple-store/id372925917?pt=329691&ct=fa&mt=8
+
+A: Install Phone Drive Free from the app store. You don't need to jailbreak your idevice.
+Phone Drive Free will tell you the device address. Enter this into your web browser. The browser will give you an interface to drag n drop your files. 
+
+A: I just connected my iPad 2021 to Ubuntu 22.04 and I got access to Clips, GarageBand and several other folders. As soon as I copied files to GarageBand I could see them on the iPad.
+
+A: Install Apache on your Linux machine:
+sudo apt install apache2
+
+And copy your files to /var/www/html. Remove /var/www/html/index.html so you can browse the directory. Then just point the web browser on your iPad to your Linux machine.

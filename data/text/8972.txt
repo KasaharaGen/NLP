@@ -1,0 +1,95 @@
+Q: OS X computer name not matching what shows on terminal My computer name in System Preferences > Sharing is set to "archos", but is showing as "iphone" on Terminal. It just started doing this after I loaded Xcode for doing iPhone development:
+Last login: Mon Nov  7 14:46:55 on ttys001
+iphone:~ travis$ echo $HOSTNAME
+archos.local
+iphone:~ travis$ 
+
+Any ideas what could be causing this?
+
+A: In addition to Jeffrey J. Hoover's tip (above),
+I would add these last two steps: 
+
+
+*
+
+*Flush the DNS cache by typing:
+dscacheutil -flushcache
+
+*Restart your Mac.
+
+
+A: There are some helpful comments below this answer that you might want to read first.
+Go to System Preferences -> Sharing and update your Computer Name.
+Then in Terminal, you can view settings via:
+sudo scutil --get ComputerName
+sudo scutil --get LocalHostName
+sudo scutil --get HostName
+
+You can also change the values using the scutil command:
+sudo scutil --set ComputerName "newname"
+sudo scutil --set LocalHostName "newname"
+sudo scutil --set HostName "newname"
+
+
+A: I agree that Jeffrey Hoover's tip was the correct answer. Flushing the DNS cache and restarting the Mac is a nice step too. This is variant of Jeff Hoover's reply:
+sudo -i
+Password:
+
+for n in HostName ComputerName LocalHostName; do
+    scutil --set $n new_hostname
+done
+
+exit
+
+
+A: System Preferences -> Sharing -> Computer Name --> set it to whatever
+And then restart your computer. No console commands were necessary. Works for OS X 10.10.2
+
+A: I had the problem that only the shell itself (zsh in my case) failed to show the correct computer name. Simply restarting the shell solved it:
+exec /bin/zsh
+
+
+A: Use this
+sudo systemsetup -setcomputername $name
+
+
+A: As mentioned in a separate answer, another option is to override the default PS1 prompt, like executing the following line (or adding it to your ~/.bash_profile file):
+ $ PS1="$(scutil --get ComputerName):\W \u\\$ "
+
+refs:
+https://superuser.com/a/414903/39364
+http://www.cnet.com/news/keep-your-command-prompt-host-name-static-in-os-x-and-other-unix-systems/
+
+A: In addition to the previous answer, remember that you can use a static address in your router. You have to enter the static IP and the MAC address of your network card, then you set a name for it. The hostname will be automagically updated to the specified name. That's it.
+
+A: There are two potential reasons for the shell ($HOSTNAME variable, '\h' in $PS1) and the hostname utility to report a hostname that differs from the one shown in System Preferences > Sharing:
+
+
+*
+
+*sudo scutil --set HostName newName was used to persistently change the hostname - unfortunately, this value is independent of the LocalHostName value set by System Preferences behind the scenes - even though man hostname suggests this method, DO NOT USE IT for that reason; run sudo scutil --set HostName '' to remove it, at which point LocalHostName should again be reported; for background, see this post by @Lauri Ranta.
+
+*[Update: The following is no longer true as of OSX 10.10] If your /etc/hosts file has an entry that matches your machine's IP address, that entry's name will be reported.
+Only if neither of the above is true will the shell and hostname reflect the value set via System Preferences.
+
+If you want to change your hostname from the shell, run both of the following:
+
+
+*
+
+*sudo scutil --set LocalHostName <newName>
+
+*sudo scutil --set ComputerName <newFriendlyName>
+where <newFriendlyName> can be a friendlier version (spaces, punctuation) of <newName> (alphanumerics and dashes only).
+
+A: It's perfectly normal for this to occur; when you login Terminal remotely bash does a reverse DNS lookup. It will only be the same if the hostname is not specified on the network you're connecting from and there is no reply from the DHCP server, or the reverse lookup against the remote DNS server fails to resolve.
+You can easily over-ride the default setting by using this command in Terminal:
+sudo scutil --set HostName archos
+
+You can check it by using:
+nslookup nn.nn.nn.nn
+
+( or )
+host nn.nn.nn.nn
+
+(where nn signifies your Mac's ip address)

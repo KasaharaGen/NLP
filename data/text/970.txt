@@ -1,0 +1,14 @@
+Q: Sleeping screen (Cinema Display) keeps waking up. How can I make it sleep until mouse is moved? I have my Mac Pro (Cyrus) configured not to fall asleep completely but to let the screen sleep when not used for half an hour. I also use the keyboard shortcut for forcing the display to sleep.
+However, sometimes, for a few weeks the screen just refuses to sleep and the login alert box appears immediately after the sleep is supposed to start as if somebody violently moved the mouse or pressed a key. After a few weeks the behaviour changes again and sleeping works, for another few weeks. It's periodic.
+How can I force the screen to sleep without waking up all the time?
+
+A: I have discovered that 100% of the times that this happened to me, it was because I either had:
+
+
+*
+
+*A USB (or Firewire) peripheral connected that was pooling the bus and for some mysterious reason caused your behavior. 
+
+*I accidentally moved the mouse (or the table where both mouse/key lie); small vibrations caused the mouse to register movement and that was enough to wake the box.
+I don’t know if this is your case, but whenever you’re in the “it wakes up!” cycle, try to disconnect everything and use the keyboard shortcut with surgeon precision and softness and see if it changes.
+Additionally you might want con check the Console Output of the logs to see if there’s an error going on while your invoke your sleep screen shortcut.

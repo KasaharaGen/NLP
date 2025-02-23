@@ -1,0 +1,30 @@
+Q: Do I need to re-index my Volume? I recently installed a brand new HD in my macbook pro.
+I did this by cloning the original drive.
+Everything (almost) is working fine, but I did give the Volume a different name, it used to be Macintosh HD and now it's Hybrid HD (not sure if this matters).
+Ever since using the new drive (two weeks now) spolight doesn't seem to be working properly. It just doesn't find things that are there. Although something's indexed because it does return results (usually mail.app stuff).
+Anyone know the reason for this, or how I can fix it?
+cheers
+
+A: Open terminal and type:
+sudo mdutil -E /
+
+
+
+*
+
+*You will be asked for your password, provide it, as this command
+requires administrator privileges to run.
+
+*After confirming your Spotlight index will be re-built and your files
+should appear in the search. ( Depending on the size of your HDD it
+can take a while )
+
+
+To turn Spotlight on/off use:
+sudo mdutil -i on /
+sudo mdutil -i off /
+
+To fine tune your Spotlight settings open System Preferences > Spotlight
+
+Exclude certain folders from getting indexed:
+

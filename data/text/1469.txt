@@ -1,0 +1,10 @@
+Q: Items in desktop folder to appear on desktop Somehow recently I managed to mess up my Desktop folder so the contents are no longer displayed on the actual desktop.  Anybody have any ideas how to get this back?  It's not a problem normally since I normally use spotlight, but it'd be nice to have.
+Thanks
+
+A: If you don't want to reinstall PathFinder, you can type this command in Terminal.app
+defaults write com.apple.finder CreateDesktop -bool true
+
+This will get them back. You might have to log in and out.
+
+A: There is an option in path finder to hide finder's desktop and replace it with a version provided by path finder.
+You might want to try reinstalling it and checking its preferences, particularly the general preferences section.

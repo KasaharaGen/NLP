@@ -1,0 +1,12 @@
+Q: Is launchd still being actively developed? Launchd is an interesting piece of software. It seems like it is working ok, but one would think the brand new way of replacing init would have a few more iterations.
+Is launchd still under active development? The last svn checkin was 2009, the mailing list is not that vibrant, unless i'm looking at the wrong one... and all the tutorials online are from 2006 or so.
+What am I missing?
+
+A: If the last time Apple publicly posted sources to launchd was when Snow Leopard shipped, it may be that there were no critical bugs in launchd that were worth fixing in Snow Leopard software updates, so none of the post-Snow-Leopard updates to the Darwin sources would contain any launchd changes.
+When Lion ships, you can expect to see a huge new drop of Darwin sources based on Lion.  You may find that a lot has been going on behind the scenes over the last 2 years. Or not. But given that Apple has said Lion will ship sometime this month, your question might be 2 weeks premature.
+
+A: Not publicly. 
+For some reason, no one is working on the only current proposal to have launchd parse local times like sunset and phases of the moon. 
+
+A: launchd continues to be actively developed by Apple.
+For OS X 10.10, Yosemite, launchd was completely rewritten. Sadly, the project is no longer open source.

@@ -1,0 +1,17 @@
+Q: How to get a mac to wait longer for external disk to wake up upon resuming from sleep? My Mac has an external disk attached, and I often get "disk not ejected properly" warnings after resuming the computer from sleep. These warnings appear only when the disk has spun down during the sleep, and it seems that they are related to how long OS X is willing to wait for a device to become present before declaring it disconnected after resuming from sleep.
+It would be nice to not get the annoying pop-up upon resuming from sleep, and the messages about journal replay in kernel.log look slightly alarming, even though it is unlikely that anything wouldn't have gotten written to disk while the computer was idle before going to sleep. Can this wait time be increased somehow?
+
+A: There are various google results for ejecting volumes on sleep, which should solve this problem.
+First, write yourself a shell script to eject the volume.  You could avoid setuid bits by using apple script.
+#!/usr/bin/osascript
+tell application "Finder" to eject (disks where name = "VOLUME")
+
+Next, install the SleepWatcher tool and configure ~/.sleep or /etc/rc.sleep appropriately.
+There are similar directions for remounting the disk on wake in that Mac OS X Hints entry, but maybe you don't need that.
+
+A: You can try autoeject or jettyson. They should both serve your purpose.
+
+A: Have you tried this:
+sudo defaults write /Library/Preferences/SystemConfiguration/autodiskmount AutomountDisksWithoutUserLogin -bool true
+
+This should stop the disk demounting when you log out, whether or not it also works for sleep I don't know (and cannot test right now).

@@ -1,0 +1,14 @@
+Q: Keyboard shortcuts for dynamic menu items (Keynote) I often find myself creating Keynote presentations with lots of extra slides.  I then go through and skip a bunch for a particular class.
+To make this slide choice easier, I added a keyboard shortcut for the "Skip Slide" and "Don't Skip Slide" menu commands.  Unfortunately, they don't work consistently.  In fact, it only seems that one at a time will work, which I think is a function of the fact that the menu item changes based on whether the selected slide is set to be skipped or not.
+If a slide is selected that is hidden, the "Slide" menu will show "Don't Hide Slide."  If I look at the menu by clicking "Slide," then the "Don't Hide Slide" keyboard shortcut will work.  But, then if I select a slide is that is not hidden, the "Hide Slide" keyboard shortcut won't work.  I can get it to work by opening the "Slide" menu (where I can verify that it shows "Hide Slide" and my keyboard shortcut).  But, after that, the "Don't Hide Slide" keyboard shortcut stops working.  
+My question then: How do I get to use a keyboard shortcut for a menu item that is not in the menu at a particular time?
+
+A: This doesn't solve the general case problem of how to assign a keyboard shortcut for any dynamic menu item, but it does solve the specific problem of having a keyboard shortcut to hide or display slides in Keynote.
+We can work around the shortcut problem because Keynote is AppleScriptable.
+Create a new service in Automator.
+The service takes no input in Keynote.app.
+The service has a single action: Do AppleScript. The script (in all its one-line beauty) is:
+tell application "Keynote" to tell current slide of the front slideshow to set skipped to not skipped
+
+Save the service as "ToggleSkipped".
+Use the Keyboard Shortcuts tab within the Keyboard pane of System Preferences to bind the service to an unused keystroke.

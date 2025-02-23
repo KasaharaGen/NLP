@@ -1,0 +1,9 @@
+Q: Time Machine backs up a huge quantity of data on every run I have a MacBook Pro with Snow Leopard and a Time Capsule. In the last few days every backup took over 100GB of data. I don't know if there is some issue with permissions or something similar, but to be sure I removed all the old backups and reformatted the Time Capsule disk. I've also run filesystem checks and permission checks on my MBP disk using the installation disk.
+Then I've restarted backup from scratch, the first backup took 160GB and for a few days following backups has worked fine (with a decent quantity of data for each run).
+Now after some days I started my MBP and the backup is still in progress, when it was started it says that it needs to backup about 40GB of data (which obviously is not true) and while running the limit is increasing constantly, currently is at 95GB and it continue to grow.
+I suspect that there could be some hardware issue with Time Capsule, but not sure.
+Any hint to solve this issue?
+
+A: Take a look at BackupLoupe:
+http://www.soma-zone.com/BackupLoupe/
+The blurb on the website describes what it can do far more eloquently than I can, but to summarise it's commercial software that you can evaluate for free and then pay for if you with to use it. Once you have determined which backup intervals or which files are taking up more space than you wish, you can delete files across all backups or delete snapshots as needed to maintain storage space per your requirements and preference.

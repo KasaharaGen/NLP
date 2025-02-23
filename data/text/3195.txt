@@ -1,0 +1,77 @@
+Q: Stop iTunes from automatically stopping podcast downloads I subscribed to about 30 interesting podcasts which I would like to listen to one day when I have time... maybe never, but I hope I will soon.
+I just noticed that iTunes has not been downloading some of them for months with the following error:
+
+I found a script for OSX and a few workarounds, but as far as I am concerned, this is annoying and I should not have to work around it.
+My workaround consists of going to podcasts, doing a select all and marking them all as watched. However, this totally ruins the whole management aspect as I do not know what I have not listened to.
+This is most annoying as some have dropped off the RSS feeds so I have to manually find them... (trying to see at the moment if I can put them inside the right podcast section and not just as a mp3).
+How can I tell iTunes that it does not know what I want and just to do what it is told!?
+
+A: You cannot get iTunes to stop doing this, sadly, and I don't think you can exactly re-implement the Doug's Applescripts solution for expired playlists for Windows - it relies on manually updating each podcast rather than calling update all. And the iTunes COM object does not seem to expose a way to update individual podcasts, only the entire list.
+And I am 99% certain that Matthew is incorrect and that refreshing all is not sufficient to bypass the recently listened count. The wperry link will mark the podcast as listened to, which is the same issue as your workaround that you find unacceptable. 
+I do think, however, that you can workaround this issue by right-clicking and choosing refresh. While that's unnecessary to actually get new episodes when you have periodic updates set, it will reset the clock, as it were, and prevent it from stopping when you don't listen for a while. Whether this is actually any better than just dealing with it as it comes up, however, I don't know.
+
+A: Agreed, annoying. Here's someone's VBScript to tickle iTunes (after accumulating five unplayed podcasts) so it will download more:
+http://wperry1.dyndns.org:81/personal/projects/CodeLib/detail.asp?id=48
+
+A: If you select the Podcasts tab and click the "Refresh" button in the lower-right corner it will update everything that's not already expired and will, effectively, reset the expiration counter.
+To update an expired podcast, right-click on its name (not one episode but the group name) and choose "Update Podcast" and it will grab the latest one and reset the counter.
+As you note, though, it's an irritating problem. The goal, I'm sure, is to protect the bandwidth of the various podcasters: if there are thousands (or more!) of people downloading them and never listening to them, the podcaster still has to pay for serving the files for no reason.
+My solution -- which is only an option if you listen on an iPhone, iPod Touch, or iPad -- is to use the app InstaCast which not only keeps podcasts current on your device but also allows you to download or stream any you don't have, even over a 3G connection with big files. My iTunes frustration has been significantly reduced as a result.
+
+A: I don't think there is a way to turn that message off. There is a few things that I am trying out to see if the message won't show up again. 
+
+
+*
+
+*Click Settings…
+
+*
+
+*set it to Check for new episodes every day.
+
+*Settings for: Podcast Defaults.
+
+*When New episodes are available: Download All.
+
+*Episodes To Keep: All Episodes.
+
+
+*Click the Refresh button (next to the settings button).
+
+*Click on ANY podcast, and select all — ⌘ cmd / ctrl + A
+
+*With all the podcasts selected
+
+*
+
+*right click & choose Update podcast.
+
+
+*Select all again
+
+*
+
+*and in the same right click menu, select Do not Auto Delete.
+
+
+*Select all again
+
+*
+
+*and in the same right click menu, click Mark As Played/Watched.
+
+
+*Expand every podcast
+
+*
+
+*make sure you select Get All, if they have not been downloaded.
+
+
+*Quit iTunes, and relaunch it.
+
+
+Do all of this every day. I am concerned that iTunes won't save the library file and other settings if I don't relaunch iTunes every day.
+So pretty much whenever there is a blue dot or whatever indicating you have unwatched/unlistened podcasts, simply select "Mark as played" and hopefully it will keep updating the podcasts by itself. If you are still concerned, move the podcast files in another place… perhaps to an external hard drive. This way if you are too busy to watch podcasts for a while, but still would like to watch them later, you will know for sure that they are safe and iTunes has not eaten them!
+
+A: I think is as simple as changing the podcast setting to store all podcast forever, and download when new ones are available. I have the options for each podcast set to that, and this has never happened.

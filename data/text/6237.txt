@@ -1,0 +1,75 @@
+Q: How to set already-paired bluetooth devices again into discovery mode? How can I set a Magic Trackpad (or, any other bluetooth device, I guess) into discovery mode, if it has already been paired to another mac?
+Anything I find on google just mocks me.
+
+A: For the Magic Keyboard 2 (squarish, slider switch instead of power button)
+Hold Command+W while powering on.
+Thanks to TomOSeven!
+Note that this sometimes helps but is definitely not foolproof. If there’s a device nearby that still thinks it’s paired to the keyboard, that device can still grab the keyboard pairing whether you hold down ⌘+W or not. For a mac, plugging in the keyboard with the USB cable should automatically setup pairing, but sadly that doesn’t work with an iPad.
+If anyone finds a more reliable method, please comment.
+For the original Magic Trackpad / Magic Keyboard (rounded with power button)
+Follow these instructions:
+
+*
+
+*Turn off the trackpad by holding down the power button until the light goes out.
+
+*Turn on the trackpad by pressing the power button, and keep the power button pressed until it is paired. The light on the mouse will start blinking, it will show up in Bluetooth Preferences, and you will be able to pair it almost immediately so long as you  do not let go of the power button from the moment of turning it on until after the trackpad is paired.
+
+A: Regarding the Magic Mouse you can kick it into discovery mode by holding down the mouse button, switch the mouse on, keep on holding the mouse button until the green light starts blinking!
+
+A: (I took the Magic Trackpad for example, but it applies to Apple Bluetooth keyboard and Magic Mouse as well)
+When you start a Magic Trackpad, it announces itself over bluetooth :
+
+
+*
+
+*If a Mac "hear" it and is paired with it, they connect each other and you can't use the Magic Trackpad with another Mac.
+
+*If no previously paired Mac are near the Magic Trackpad, it will be available to a new pairing.
+
+
+So, one Magic Trackpad can be paired to multiple computers. When you start it, the first computer to connect to it gets it (first arrived, first served).
+If you have two Macs next to each other (A & B), your Magic Trackpad paired to A and you want to pair it with B, you have four choices :
+
+
+*
+
+*Unpair your Magic Trackpad from A
+
+*Disable bluetooth on A (this can be painful if you only have bluetooth input devices for A)
+
+*Take A or B far (±10 meters) from the other. Stop your Magic Trackpad and start it again near B.
+
+*Shutdown A
+Once done, you can start a new pairing procedure on B.
+I hope it answers your question.
+
+(you can also stop and start again your Magic Trackpad while detecting new bluetooth devices on B and hope B will find it faster than A, but you'll probably need to make that several times before getting it to work)
+
+A: MAGIC MOUSE 2 HAS A DISCOVERY MODE
+Here's how you do it:
+
+
+*
+
+*turn the mouse off
+
+*press the click button and hold it pressed
+
+*turn on the mouse
+
+*go to mouse utility on the mac and search for a mouse. you will find it
+
+*connect to the mouse
+
+*release the click button
+
+
+A: The other answers apply to the original Magic Mouse. However, the Magic Mouse 2 (with the Lightning port for charging) does not have a green light or pairing mode. To pair an already-paired Magic Mouse 2, you will need to plug the mouse into the Lighting-to-USB cable and connect directly to the Mac.
+(TIL that the connection must be DIRECTLY to the Mac and not via a hub such as a Thunderbolt Display.)
+
+A: I don't think the magic trackpad (or the magic mouse) have a "discovery mode." Just make sure the bluetooth on the Mac it was previously paired to is off, then go about connecting it to the new Mac as normal.
+Apple's support page on this
+
+A: I just did this.  You put your trackpad or keyboard into discovery mode by holding the power key until the green light is blinking.  The mac mini recognizes the trackpad almost immediately, and then walks you through the process of connecting your keyboard.  Keyboard does not need to be in discovery mode, only needs to be powered on.
+Took 2 min, very simple.  Don't waste any money or space on a USB keyboard!

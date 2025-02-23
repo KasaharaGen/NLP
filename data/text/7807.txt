@@ -1,0 +1,39 @@
+Q: is there a way to create an AFP link to point to any user's home directory? I would like to send a link via email to a file that everyone has in their Dropbox. The file exists on everyone's machine in the same relative location, however everyone has a different User Name.
+On my machine, the file is accessible at afp://Users/scott/Dropbox/shared/example.pdf
+Unfortunately, afp://~/Dropbox/shared/example.pdf does not work.
+I am running Lion (10.7.1), most others are as well, a few are running Snow Leopard (10.6.x)
+
+A: Well simplest way would be ~/Dropbox/shared/example.pdf (~ denotes user folder) but that will not probably work right from email.
+You have to put it in Finder's 'Go to Folder...' dialog window which you can invoke with cmd+shift+G shortcut.
+
+A: Create an applescript as a simple .app:
+Open Applescript Editor, Paste in: 
+tell application "Finder"
+activate
+
+
+-------------------------------------
+-- CHANGE This setting TO the PATH 
+-- (no leading slash)
+-- Don't include home folder. That's done below. 
+-- -- If the full path is "HardDrive/Username/Desktop/Folder1/fine.txt": 
+-- -- set filepath to "Desktop/Folder1/fine.txt"
+
+set filepath to "Desktop/filename.pdf"
+
+-------------------------------------
+
+set myPath to (path to home folder) as string
+
+set filepath to POSIX path of myPath & filepath
+try
+    set command to "open " & quoted form of filepath
+    do shell script command
+end try 
+
+end tell
+
+You can then Save as..., and Select APPLICATION as the file type. 
+Anytime this new app is launched, it will open the folder/file specified, relative to their home directory.  
+
+A: You could try file://~/Dropbox/shared/example.pdf or file://$HOME/Dropbox/shared/example.pdf.

@@ -1,0 +1,8 @@
+Q: Showing a Delayed Webcam Image I have a Logitech USB webcam, and need to display the image from it on a second monitor, delayed roughly 15 seconds ish. How would I do this?
+
+A: I'd try VLC in Terminal:
+/Applications/VLC.app/Contents/MacOS/VLC qtcapture://
+
+Ask on their forums. If there isn't an option to delay the direct display, you can always "stream" it to another VLC process and let it buffer for 15 seconds.
+
+A: In code? Read the webcam data stream into a buffer, then add a timer for 15 seconds then at the end of the timer read the buffer out to a video renderer. 

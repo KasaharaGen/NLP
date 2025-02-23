@@ -1,0 +1,61 @@
+Q: Automator simulation of the mouse and keyboard My problem: "watch me do" in automator only recognizes for cocoa buttons and doesn't work for apps like games with interfaces drawn my rendering engines.
+Desired solution: an Automator action(s) that simulate mouse movements and clicks to coordinates on screen. "Automator Virtual Input" is a great app but doesn't is far outdated (doesn't work in lion)
+And considering the amount of scripts i need to create, applescript isn't a time effective solution
+
+A: You can automate a mouse click using Applescript.
+tell application "System Events"
+    tell application process "Application_Name"
+        key code 53
+        delay 1
+        click (click at {1800, 1200})
+    end tell
+end tell
+
+
+If you want to click within a browser window you can use Applescript with the help of Javascript
+tell application "safari"
+    activate
+    do JavaScript "document.getElementById('element').click();"
+end tell
+
+
+Purely via terminal, you can create a textfile with the name click.m or whatever name you like, save it with the following code
+#import <Foundation/Foundation.h>
+#import <ApplicationServices/ApplicationServices.h>
+
+int main(int argc, char *argv[]) {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSUserDefaults *args = [NSUserDefaults standardUserDefaults];
+
+    int x = [args integerForKey:@"x"];
+    int y = [args integerForKey:@"y"];
+
+    CGPoint pt;
+    pt.x = x;
+    pt.y = y;
+
+    CGPostMouseEvent( pt, 1, 1, 1 );
+    CGPostMouseEvent( pt, 1, 1, 0 );
+
+    [pool release];
+    return 0;
+}
+
+then compile it:
+gcc -o click click.m -framework ApplicationServices -framework Foundation
+
+and move it to the appropriate system folder
+sudo mv click /usr/bin
+sudo chmod +x /usr/bin/click
+
+and now you can run a simple terminal command to manipulate the mouse
+click -x [coord] -y [coord]
+
+
+Other scripts you could use include MouseTools or xdotool; both of which are open-source.
+
+A: I think that you're trying to push Automator past the practical limits of the tool. Instead, a macro program such as Keyboard Maestro or iKey are better choices, albeit not free.
+
+A: QuicKeys 4 provides the functionality your looking for.  They offer a free trial version as well as a paid version.  The free version has all the same features as the paid version, only it nags you that it is a trial.
+QuicKeys, however, has not been updated in several years & has issues since Mountain Lion.
+Some parts work, others fail; so I'd recommend a thorough test.

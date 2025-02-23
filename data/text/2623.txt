@@ -1,0 +1,21 @@
+Q: Parallels Desktop is using my home directory for a VMs home directory I have installed Windows Vista on a Parallels Desktop virtual machine on my MacBook Air.
+But it seem that my Windows Vista home directory is stored in my Mac OS X home directory.
+E.g. at my Mac OS X home directory /Users/jonas/ I also have my Vista folders:
+Documents/
+Applications/
+Desktop/
+Downloads/
+
+I don't want to mix the environments like this. I want my Windows Vista files isolated to the virtual machine.
+How can I keep my Windows Vista files to only exist within the virtual machine?
+
+A: I am assuming you did an Express installation. There is a few places in Parallels where the settings can or need to be changed.
+The first place is under Configure -> Options -> Sharing.
+
+This controls where and how Parallels can see the folders, and where and if they get mounted. Shared Profile is most likely enabled which is why you are getting the current result.
+Another place to check sharing options would be under Configure -> Options -> Applications.
+
+This controls which applications are shared between the Mac and Windows Virtual Machine and how they interact with each.
+Lastly to completely disable sharing between the VM and Mac look under Configure -> Options -> Security
+
+This will completely isolate the Mac from the VM, and nothing can be shared between the two.

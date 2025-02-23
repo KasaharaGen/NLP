@@ -1,0 +1,44 @@
+Q: How do I make a custom ringtone for my iPhone using iTunes 10 only? I'd like to use a snippet of a song I have purchased as a ringtone for my iPhone. Is this possible using only iTunes?
+I have found a few guides on the web, but I can't seem to complete this task following these guides. I might be misunderstanding something, or the guides are out-of-date, or incomplete.
+I am looking for a solution that will be useful for an extended period of time, for others who see this question. There are similar older questions, but I'm interested in iTunes version 10 on the Mac.
+
+A: As far as I'm concerned (this has worked for my iPhone, and is covered in this guide as well), it works like this:
+
+
+*
+
+*In Import Settings, choose the AAC Encoder.
+
+*Go to the library and right-click the song you want to use. Select Info, and then the Options tab.
+
+*Here, set a time period using the Start and Stop markers. This period shouldn't exceed 40 seconds.
+
+
+Now, let's convert it to the appropriate format.
+
+
+*
+
+*Click OK, and right-click the song again. Select "Create AAC Version".
+
+*Locate the newly created AAC file ("Show in Finder" works on a Mac). It should reside in the same folder as the original, or in your iTunes library. Its extension will be .m4a.
+
+*Rename the extension from m4a to m4r.
+
+
+Clean up and re-import:
+
+
+*
+
+*Remove the AAC file from your iTunes library (do not move it to the Recycling Bin/Trash though)
+
+*Re-import the m4r file by dragging it into iTunes
+
+*Drag the newly imported file to your iPhone
+
+
+A: Personally, I use the same method as @slhck. However, if you had any trouble following his instructions, here is a handy-dandy webpage for you to use that comes with helpful pictures! 
+
+A: Use GarageBand. Set a loop region (on the menu, Control -> Loop Region) under 40 seconds.
+When you're done editing click Share -> Send ringtone to iTunes.

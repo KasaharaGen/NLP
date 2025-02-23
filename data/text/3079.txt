@@ -1,0 +1,21 @@
+Q: How can I get an (iMovie-created) movie in the Videos app into iOS iMovie to edit it? I can't find any way to get a video in the Apple Videos app into iMovie on the ipad to edit it.  
+In my specific use case, I have a trailer I made in iMovie on my mac that I can see and watch in the videos app, but neither that nor any of the other videos there appear under "video" as a source for imovie.   (The only thing that does is a movie I took in the app itself.)
+I already confirmed that location services are on and enabled for iMovie on the ipad.   Am I missing something?
+As a rough workaround, is there any way to export from videos (without syncing)?  I'd be able to crudely solve my problem if I could get the video into dropbox.  
+
+A: iMovie only supports the H.264 format, and will only load videos from two places:
+
+
+*
+
+*Camera Roll
+
+*Synced iPhoto Library via iTunes (Photos Tab → Sync Photos from iPhoto → Include Videos)
+
+
+As you've noticed, videos in your iTunes → Movies folder will only sync to the Videos app, and will not appear in iMovie.
+The process is not at all convenient, but here's a video detailing how to convert a video to the right format on a Mac, and then get it into iMovie on an iPad: https://www.youtube.com/watch?v=oF8-sDmD_1Y.  He uses an app called StreamClip Video Converter to convert to H.264.  You might be able to get away with exporting that format from iMovie on your Mac instead.  iMovie is picky about the format though.  If you have trouble, try to reproduce the settings in the video exactly.
+
+A: In addition to Rick's solution, there is another platform independent, broadband dependent method you can use. There might be a minor loss in quality, but its well above acceptable.
+Simply upload you videos to YouTube, and re-download them using the 'Download as MP4' option. YouTube re-encodes your videos to a format which work perfectly in iMovie. You might also want to rename your videos in the 'IMG_XXXX' format (XXXX = 4 digit number), since that's the naming scheme used in the Photos App.
+I prefer this method since MPEGStreamClip is buggy on Windows and other free programs usually cause greater loss in quality than the YouTube transcodes.

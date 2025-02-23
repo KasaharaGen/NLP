@@ -1,0 +1,49 @@
+Q: How do I force iTunes Match to re-evaluate certain tracks I have a little over 9000 songs. Between yesterday and this morning, iTunes Match is finally done evaluating and uploading songs, and it seems to have made a few mistakes.
+If I show the iCloud Status column in my song list, in a number of albums I'll see "Matched" for most of the tracks, but "Uploaded" for one or more track. If I look up that song/album/artist on the iTunes Store, Apple has those songs. I've even looked at the track info to see if they might have been encoded differently, but on the few I've spot checked they have the same encoding as the other songs in the album that were matched.
+I've been able to force iTunes Match to re-evaluate songs that showed "Error" before (no errors now), but I can't seem to figure out how to force it to re-evaluate these songs that were non-matches even though they're in the store. How do we do this? Do I turn off iTunes Match and start over again? I've been reluctant to do so considering how long it took yesterday.
+
+A: The least destructive approach I've found is to:
+
+
+*
+
+*On an iOS device, force- or long-press on the song in question in the Music app, and select Delete from Library.
+
+*On the Mac, wait for the iCloud Status to change to Removed.
+
+*On the Mac, right click the track and choose Add to iCloud Music Library.
+
+
+Doing it this way ensures that the song is never removed from your iTunes database, just from the iCloud Music Library.
+Unfortunately, I haven't found a way to force the removal from iCloud Music Library within iTunes, without also deleting song from the local iTunes database. Maybe it would be possible with a second iTunes library that doesn't have the songs locally…
+I originally scanned my library when iTunes Match was first released, and re-adding the Uploaded tracks now is yielding about a 30% Matching rate, with 70% just becoming Uploaded again.
+This approach is working for me as of iTunes 12.9.5.5 (on macOS 10.14.6) and iOS 13.2.3.
+
+A: When you view your library from the web interface of Apple Music, you can directly remove items from your iCloud Music library, without affecting the files on your local database.
+
+After deleting the items, make sure to "Update Cloud Library", and check they are "Removed"
+
+
+A: You may not be able to get complete matches, but here's what I have been doing in the cases where one or two tracks don't match.
+
+
+*
+
+*Select the item(s) to attempt to re-match.
+
+*Right-click on them, and select "Create AAC Version"
+
+*When this is complete, hit alt-backspace, and choose to remove both the original and the iCloud version. Also choose to delete the items from disk.
+
+*Go to the "Store" -> "Update iTunes Match" menu item.
+
+
+Note that this will keep the play counts, etc on your tracks. It may not succeed on every track, and sometimes repeating the process picks up another track.
+Occasionally, I'll get a "Removed" icon there after doing this: just right-click and choose "Add to iCloud" on these.
+
+A: Try deleting the "uploaded" ones from the service & run Match again to see if it does better the second time around.
+
+A: Worth a try: change the tracks "Kind" to something else than music and then change back?
+(not able to test myself unfortunately)
+
+A: Select and right click one track or multiple tracks and select "Check Selection".  Worked like a charm for the albums I had uploaded by CD.

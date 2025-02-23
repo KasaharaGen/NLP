@@ -1,0 +1,30 @@
+Q: So, my iPhone 4 just decided to restore itself Well, I left it plugged in via USB and charging.  iTunes was open.  Nothing unusual.  Until an hour or so later, out of the corner of my eye, I noticed a zooming shiny apple animation, picked it up and was prompted to "Set up my iPhone".  Ugh.  I haven't backed it up for 10 days or so and there's stuff on there I really want to keep.  So I went through the setup, enabling location, selecting my router, and then trying to activate the phone, all the while hoping once completed everything would be just as I'd left it, right as rain.  But I can't get past the activation stage.  And when I opt to activate through iTunes, iTunes complains that the iPhone's software is too old.  At this point I should mention I'm a registered developer, and my iPhone was running iOS 5 beta 3.
+When plugged into iTunes it displays 8.7 GB of space taken, all marked as "Other", and it's still on build version 9A5259f, i.e. beta 3.  So I'm reasonably optimistic my precious data's still on there.  But I can't use it to see.  And when I try to back it up now, nothing happens.
+I'm guessing this could be because beta 3's expired?  Maybe?  I didn't get around to updating it because for some reason over the air updates wouldn't work.  Any advice on what my next move should be would be very greatly appreciated!
+
+A: After 14 hours of research and experimentation I recovered everything.  Here's how:
+
+I used iPhone Explorer to back up all of my photos.
+I jailbroke with redsn0w.
+Explored the filesystem with iPhone Explorer, and tried to copy the
+  whole root filesystem (which, for some unknown reason, silently missed
+  quite a few files, but oh well).
+Saw that both sms.db and all my application data were still intact. 
+  Danced with joy.
+Removed the ReleaseType -> Beta key in
+  /System/Library/CoreServices/SystemVersion.plist
+Restarted it, set it up as a "new" iPhone, and all my sms, apps, etc
+  were still there.  Hurrah.
+Set my PC's date to a week ago.
+I then backed up in iTunes, and restored to the latest beta.
+Photos, notes, sms were back on there, apps were all deleted but app
+  data remains, so it's just a matter of re-downloading the apps.
+
+I love a happy ending :)
+
+A: I had a similar problem with beta 5. Updating to beta 6 brought all my stuff back. 
+
+A: My next move would be to get a free trial of PhoneView and see what is still recoverable. If no Mac OS X machines are handy, the PhoneView FAQ has a windows recommendation for that OS.
+Even when iTunes/Xcode feels the device needs a restore - the phone log, contacts, and all sorts of data may very well still be recoverable.
+You don't have to pay for the software until you're sure you can get some of the data off. I believe it's a 10 item limit - but do check it out.
+I've had non beta iOS devices up and crash like this - just par for the course with flash memory and software. Sometimes it just takes a big digger.

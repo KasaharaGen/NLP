@@ -1,0 +1,155 @@
+Q: What are the disadvantages of jailbreaking iPhone 4 even if it's legal? What are the disadvantages of jailbreaking the iPhone 4 even if it's legal? I'm interested in disadvantages in any and all terms, but especially about the warranty, future updates of iOS, and bricking?
+Will I have to jailbreak after each iOS update?
+
+A: Normally you have to jailbreak after each update. Apple is willing to close the open doors.
+Disadvantages: Normally your iPhone is safe. With a jailbreak it COULD get a security leak, by granting root access with a default password. Without changing that password, someone can get root access with this default password.
+
+A: As with what @New said, your phone will have to be re-jailbroken after every software update. This also means that you have to either be willing to give up your jailbroken applications until a jailbreak comes out for each new version, or wait to upgrade to the new version until there is a jailbreak available.
+Another (in my opinion, very annoying) issue with jailbreaking is that your jailbroken applications and settings will be lost after every update. Even if there's a jailbreak available for the version you're installing, your phone is initially updated by iTunes to the normal non-jailbroken software, then you jailbreak it again. In the meantime, all of your applications that you've installed through means other than the App Store have been removed. There are products like PkgBackup to back up your jailbroken applications and settings, but the restoration is far from perfect; scanning through the list of hundreds of .plist files to figure out which ones you want to restore is not a simple, quick, or obvious task.
+I do jailbreak my phone, but I don't particularly care for having to live with these issues.
+
+A: I personally have a slight beef with the term "voiding the warranty" as a knee jerk reaction to jailbreaking.
+The warranty very specifically covers the hardware and not the software one bit. 
+The software isn't covered at all in the warranty. The device is legally not fit for any purpose, may not work, may not work as intended and may not be suitable for a whole range of lawyerly things.
+Consumers don't own the software - just a temporary and limited license to use it under very specific circumstances. Modifying the software does break that license and although companies can take action, they usually encourage you to revert the changes or allow them to wipe the device and attempt to set it up correctly before spending any more time troubleshooting a software issue. It's rare to get hauled to court over breaking one or even ten license agreements but you're further out on a limb than if you don't jailbreak in the first place.
+So the technical and social disadvantages of a jailbreak include:
+
+
+*
+
+*Reduced software support from Apple in case you need help
+
+*Potentially circumventing security measures and opening your device up to compromise - you need to understand how to mitigate your jailbreak and the source of the code you run since it could be a trojan and do things you don't want
+
+*Potentially less stable or totally failing software - especially any time the device is updated or requires activation after a restore.
+
+*Inability to run some apps from the app store
+
+*Inability to get more functionality from in app purchases
+
+*Inability to rely on Apple's notification services
+
+*Potential to have hardware claims denied
+
+*Automated backup solutions through iTunes are harder and may require you to learn how to back up your phone with other tools
+
+
+In the case where software could impact the normal operation of the hardware, you are at the mercy of the company if you bring them a phone that's been modified in a way that you were asked to not modify. Specifically, a jailbreak could fail and cause the boot portion of the phone to become corrupted. If you break a lock that you yourself have been trying to pick. The company could easily take the stance that your picking broke their otherwise fine mechanism. They might also cover the repair if they truly feel your actions were irrelevant to the specific warranty claim you are making.
+As to future updates undoing the jailbreak - that has been the case for many updates. It's folly to predict what may happen in the future since things could get more restrictive, less restrictive or stay the same where you do have to unlock again and again as you update.
+
+A: Disadvantages:
+
+
+*
+
+*Potential reduced stability of the iDevice
+
+*
+
+*More-than-usual application crashes
+
+*Unusual application behavior
+
+*Buggy connections (like WiFi), especially on beta releases of jailbreaks. (In other words: wait until the people who write the jailbreak say it is ready for regular use. Otherwise, expect occasional pain.)
+
+
+*Potential failure of application features
+
+*
+
+*Most notably of late was the issue that iBooks would lock users out of DRM'd material if they were jailbroken. It could determine this by attempting to run unsigned code, which if it ran, would let iBooks know the device was jailbroken. A hack was released later to resolve the issue, but there is always the chance another application will also implement such features.
+
+
+*Inability to receive Apple support
+
+*
+
+*Apple doesn't want to support any jailbroken device (nor should they be required to do so). If you run into something critical, restore/upgrade to an unjailbroken state first, at which point Apple should be able to help. (Although chances are very good the particular problem will also have gone away.)
+
+
+*Increased Memory Load
+
+*
+
+*On the iPhone 4 it isn't as obvious, but it is (IMO) very obvious on the iPad 1 -- when you add services that must always be running (e.g., SBSettings, etc.) you increase the memory load on the device. Apps that were previously very close to running out of memory may do so when they least expect it, leading to unexpected crashes. This isn't particularly the fault of the jailbreak itself -- but typically one doesn't jailbreak and then not install other jailbreak-specific apps.
+
+
+*Increased Likelihood of Strange Behaviour after iOS upgrades
+
+*
+
+*Example: I had a 5-row keyboard installed on my iPhone 4. After I upgraded to 4.3.2, I ran into an immediate problem: whenever I needed my keyboard, most of it didn't appear, and most of it didn't work. Apparently parts of the 5-row keyboard configuration had stayed around after the upgrade, and the only fix was to go into General -> Keyboards and switch to the English keyboard. (At the time there was no untethered jailbreak for 4.3.2, or I would have continued the jailbreak, which likely would also have restored keyboard functionality.)
+
+
+*Increased Security Concerns
+
+*
+
+*Jailbreaking can oft mean adding software that hasn't been through Apple's vetting process, which may make it easier to get malware or other software that does "bad things". 
+
+*If you add SSH functionality, be sure to change the root and mobile passwords; otherwise you'll get hacked in no time flat.
+
+*On the other hand, you can also sometimes get increased security. IIRC, there was a Cydia app that was used to add security to the device (essentially something Apple should have done, but hadn't to that point).
+
+
+
+Personally, the pros of jailbreaking far outweigh the possible cons. I've had far more strange behavior than typical for an iDevice, yes, but I also expect it and know how to deal with it. Some features are such that I really expect that Apple should have implemented them to begin with, and sometimes Apple does occasionally remove one or two particular jailbreaking reasons. But until they satisfy my (very) long list of jailbreaking features, I'll keep on doing it.
+
+A: Disadvantages:
+
+
+*
+
+*Voids warranty (even though its legal) - an issue if you potentially want Apple to repair the phone.
+
+*Upgrades to iOS tend to eliminate current jailbreak methods, requiring you to perform another jailbreak.
+
+*No curated AppStore. Cydia is the main distribution method and there is no control over what is posted. Potential to install software that is malicious or could at the very least does not perform as expected.
+
+*Cannot back up jailbreak apps and data to iTunes, although workarounds exist.
+
+
+A: When you jailbreak an I OS device using a tool such as the jailbreak me site or some tool, you don’t really know what’s happening to your device; When you jailbreak your device and enable SSH, its more accessible from the outside than it once was and your phone could become less stable
+
+A: Jailbreaking is a software modification of the iOS kernel. It does not affect the hardware and therefore - as the flash ROM of any iDevice is untouched and can be always accessed using DFU mode (google it - you should almost ALWAYS use this mode when restoring an iDevice) - it is impossible to access this using ANY software mechanism, essentially meaning it is impossible to "brick" the device.
+Anyone who tells you otherwise does not realise this fact. Please do not be misled.
+I have always jailbroken my iPhones and have replaced my devices numerous times under warranty (I'm fussy and Apple are famous for their "no questions asked" customer satisfaction/replacement policy) and so as long as you do a DFU mode restore before taking it in, there is NO WAY they can tell you EVER jailbroke it. This is also a fact.
+Have fun and remember - it's your phone. Do with it as you will :)
+
+A: One thing about voiding warranty.. YES if you take it into an Apple store they wont touch it if they see its jailbroken.. so if you DO have some kind of hardware issue, then restore it first before taking it into the store. 
+After the Genius's have done their magic, u can then take it home and jailbreak again.
+The only issue I have with a straight jailbreak (as opposed to jailbreak + unlock) is that when there is an iOS update u cant update your phone until there is a new jailbreak for that version of iOS... not a big deal!
+
+A: I jailbreaked my Iphone4 by Evasi0n and installed Siri by Cydia,It was installed correctly but after I enabled Siri it was rebooting again and again but only the apple logo was appearing and the screen did not appear and I was not satisfied with the Jailbreak and I connected my Iphone4 to my mac and it recognized the Iphone4 and I restored it via Itunes and it became ready to use again
+
+A: JAILBREAKING= a "thousand Pros"
+not JAILBREAKING= not realizing that "thousand pros" ;)
+p.s
+It is IMPOSSIBLE to brick an iphone..pls google DFU mode
+
+A: This should answer your questions:
+
+
+Advantages - http://www.onlinemobilesupport.com/the-advantages-of-jailbreaking-your-iphone/ 
+
+
+*
+
+*Tethering
+
+*Ultimate Customizations
+
+*Download Useful Apps from Cydia
+
+
+Disadvantages - http://www.onlinemobilesupport.com/disadvantages-jailbreaking-iphone/
+
+
+*
+
+*A Chance of Bricking your iPhone
+
+*Temporary Void of Warranty
+
+*SSH Hacking
+

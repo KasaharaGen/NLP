@@ -1,0 +1,9 @@
+Q: How to boot my mac mini up when my iPod Touch is near? What I'm trying to achieve is if I'm near my mac mini (10 meters) I want to press a button (or something else) on my ipod touch and than my mac mini should boot up.
+How could I make that?
+There's a wifi network in which my ipod is. My mac is in there also but my mac is off.
+Any ideas?
+
+A: On your Mac mini enter Energy Saver in System Preferences and enable the Wake for network access.  Then find an app in the App Store that does Wake on Lan, this is one such app - http://itunes.apple.com/us/app/inet-wol-wake-on-lan/id318696675?mt=8 that I found during a search.  There might be others that fit your needs better.
+
+A: What you want is called Lights Out Management (LOM), or IPMI. I don't know if LOM is supported by the Mac Mini. It was in Xserves, so it might be available if you have a newer Mac Mini and/or the server model. It may also require running OS X Server. I believe this is in the Power Management pane of System Preferences (although I'm not sure...anybody with access to Server care to comment?).
+If you can get that set up there is an iOS app called IPMI touch ($4.99) which can power on IPMI enabled nodes.

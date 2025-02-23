@@ -1,0 +1,24 @@
+Q: Text Editing Newbie Question I have just started playing around with text editing using Text Wrangler. I have real estate sales data cut and pasted from a web site on which I have searched and deleted unwanted data and cleaned up the tabs and spaces nicely. However each data record is still split over 2 lines. One line starts with a letter (persons name) and the next starts with an address (a digit). This pattern repeats all the way down the document. How do I say "if line break is followed on next line with a starting digit, replace line break with a tab"
+I assume that would put each record on one line ?
+
+A: I'm assuming you want it like:
+Visitor82   123 E. Text Street ...
+
+To do this in Text Wrangler:
+
+*
+
+*Search > Find
+
+
+*Tick the 'Grep' option
+
+
+*In the Find Box type:
+(?(?!\r\d)then)\r
+
+
+*In the Replace Box type (or whatever delimiter you would like):
+\x20
+~ Enjoy!
+

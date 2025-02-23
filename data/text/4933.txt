@@ -1,0 +1,49 @@
+Q: How can I find color codes on Mac? I used to find color codes which I want to use for texts or background colors on htmls with color edit tool of MS paint which pre-installed on Windows.
+But now I use Mac instead of Windows.
+How can I find color codes with Mac?
+Is an software like MS paint pre-installed on Mac?
+
+A: The Digital Color Meter in /Applications/Utilities/ is the best choice.
+
+Color panel - picker 
+This picker is almost everywhere   if you look carefully.
+Look closely at font controls and you will likely see wording like Format -> Font -> Show Colors, or Format -> Show colors. (The shortcut is usually ⇧⌘C). You will get the small color panel shown above, where you can click the "magnifying lens" and you can grab the color from anywhere in the screen. for example: TextEdit, Pages, Mail etc... This is a clipboard to save colors, but doesn't report hex values, CIE values or the ITU-R  Y'PbPr/Y'CbCr values for the chosen color.
+Everywhere when you can show the font panel (usually ⌘T), you can click the "Text color" icon in the font panel and you will get again the "Color panel" (with picker).
+You can for example when entering text into textbox here, right click for bring up contextual menu, and go to "Font -> Show colors" directly from the Safari... This works in every application where you can change fonts.
+In every application where you can change the color for anything with color field, you can click the border of "color field" and you will get the color panel again. For example Terminal.app -> Preferences -> Settings (color fields for text and Cursor colors)
+You can download a some cool color-helper dasboard widgets, like: colourmod or ColorTheory.
+You can download a plugin into color panel for hexadecimal color values.
+If you find yourself needing the DCM often, you might look at 
+using Automator.app to create a global "Service" that launches the Digital Color Meter.app. Now you are a few clicks away and can additionally bind this new service to a global hotkey in the System Preferences. The result: running DCM from anywhere, anytime, on a custom key command.
+
+Here are several more things - but lastly: you can also run Windows in VirualBox and use the MsPaint method.  /joking/ - be cool. :) :)
+
+Edit: added another screenshot with color profiles
+
+
+A: I prefer RCWebColorPicker extiesion, check it here: http://www.rubicode.com/Software/RCWebColorPicker/
+
+
+A: There is a utility (in Applications/Utilities) called Digital Color Meter, which shows the color code of whatever you're hovering at the moment. It's a bit more lightweight than Preview. There are also shortcuts for copying the color value as a string (⇧+⌘+C) or image (⌥+⌘+C).
+
+A: This has now gone out of business first renamed to Hues then out of business http://giantcomet.com/hues/
+I quite like the completely-free app Spot Color. It uses the Mac's built-in color pickers and allows you to grab the color and then use the various sliders and color models to modify it, as you asked about in your followup comment.
+
+Since it uses the Mac's color pickers it means you can also use any of the various additional color pickers out on the web, such as:
+Hex Color Picker
+
+and Developer Color Picker
+
+
+A: Just Color Picker
+It is a free app in the app store.
+https://itunes.apple.com/pl/app/just-color-picker/id886547068?l=pl&mt=12
+It does the job for web developers! Just press "Alt + X" to freeze the value under your mouse. By default, it picks the value as hex decimal code, like #F7F8F9 for instance.
+Very simple and straight to the point. Love it.
+
+A: Try Just Color Picker from annystudio.com http://annystudio.com/software/colorpicker/
+Great app! I have it on both Windows and Mac - works like a charm..
+
+A: There is an App called Preview pre-installed where you can get the colors from.
+
+A: Here is an HTML document with the named colors...

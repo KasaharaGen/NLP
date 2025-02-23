@@ -1,0 +1,24 @@
+Q: Transfer contacts and SMS from Samsung SGH-X830 to iPhone? I need to transfer contacts and SMS history from a Samsung SGH-X830 to an iPhone 3G. Preferably, I would like to preserve date/time for SMS messages. How can I achieve this?
+
+A: Contacts
+Move to SIM card, move SIM to iPhone, move from SIM.
+SMS
+?
+
+A: As far as I know, the SMS history is stored on the carriers servers, not your phone. So if you stay with the same carrier, you might be able to migrate them when you get the new phone.
+
+A: SMS
+The iPhone SMS DB is sqlite3. If your iPhone is jailbroken, you can get and view the DB on the phone itself (install terminal) or on your desktop:
+# get it local
+scp iphone:/var/mobile/Library/SMS/sms.db ./
+# dump to ASCII
+sqlite3 sms.db .dump > sms.db.sql
+# edit it
+emacs sms.db.sql
+# Re-db
+cat sms.db.sql | sqlite3 sms2.db;
+# Put it back on the iPhone
+scp sms2.db  iphone:/var/mobile/Library/SMS/sms.db
+
+I don't have an Android and cannot tell you how to get the SMS DB off of Android, but you ought to be able to do something similar. You'll need to reverse engineer the formats of the two, write a converter, and convert your Android SMS DB to your iPhone SMS DB.
+Here are some instructions on how to migrate your SMS in the reverse direction: http://android.riteshsahu.com/tips/import-sms-iphone-android

@@ -1,0 +1,18 @@
+Q: Prettify OS X console by coloring output? OS X terminal is not using colors for highlighting output from different commands, for example ls. 
+When compared with other systems like Ubuntu, this is a big loss of accessibility/productivity.
+What solutions do I have to improve this experience? For the moment I found only this guide for colored ls output under OS X but I am looking for a more complete solution.
+
+A: You can easily change the ls output color by installing "TerminalColors" plugin. I am a big fan of "Solarize" theme which looks terrific on my Mac.
+
+A: *
+
+*you should change the Terminal.app preferences->advanced into xterm-color.
+
+*enter the following into your ~/.profile
+
+
+for enable colored ls:
+export CLICOLOR=1;
+export LSCOLORS=exfxcxdxbxegedabagacad;
+
+and from now, you will get colored ls output.

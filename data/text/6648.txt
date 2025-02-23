@@ -1,0 +1,17 @@
+Q: How should I troubleshoot Wi-fi timeout issues? I am having some Wi-fi issues at home and am looking for some advice on how to troubleshoot it. 
+The setup. 
+Comcast Modem connected to Airport Extreme Basestation which has a NAS drive and MacMini hardwired to, and my Macbook Pro which connects via Wi-fi. 
+The problem. 
+My internet will work for a couple minutes to 10 minutes and then I start getting lots of timeout errors. 
+Things I have tried. 
+My laptop's Wi-fi works perfectly all day at the office. 
+Hardwiring my laptop into the Comcast Modem internet works fine. 
+Unplugging the Basestation from the modem local network works fine, (swapped some filed around between machines) 
+Anyone have any ideas what is going on? Or what else I should be checking?
+
+A: You don't say what OS you are using but I would suggest looking at the LAN to see if there is any WiFi channel or address conflict with your en1 connection (Mac mini airport or NAS?); also check that the AP has a channel that does not conflict with a nearby neighbor and is at least 2 channels away from its nearest competitor (if AP is 6, any neighbors should be 8 or 4). After that, try deleting your connection on the laptop and adding the AP and network info including the DNS. 
+You might also check that your LAN AP is the first in line in preferred networks and that there is no other Bluetooth, FireWire, etc. network enabled.
+
+A: Is the problem that your internet connection drops out (but you're still connected properly to the Airport) - or that your connection to the Airport drops out?
+In the former case: speak with your ISP.  Could be a modem issue or a much likelier option, a DNS problem.
+In the latter: How far away are you?  Measure the signal strength with a tool like iStumbler.  How many walls does the signal have to pass through?  Export the Airport settings, wipe the device and restore the settings.

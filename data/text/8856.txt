@@ -1,0 +1,28 @@
+Q: Extreme MacBook Pro Slowdown/Freeze My MacBook Pro (2007) on Lion has a strange behaviour.
+
+
+*
+
+*Sometimes Chrome browser stops working. When I then launch Safari, it can not load any web page.
+
+*When I try to download a large file, it can be unresponsive.
+
+*Sometimes working with PDF files (even small files) has the same result 
+
+*Sometimes I can not view files in my folders because Finder loads them very slow (it's showing spinner indicator).
+I haven't found another way to resolve these situations besides restarting the laptop every time they happen.
+What can be the issue? At first I thought about my HDD but my S.M.A.R.T. Status is Verified. Any additional ideas are highly appreciated!
+Update :  Activity Monitor shows 
+
+A: Try to retrace your steps. What have you installed on you Mac since the freezes started? Some suspicious software/freeware from the internet, maybe some illegal software... If you can think of something like this, try to uninstall/delete the software.  
+Try to detect which process is running (Activity monitor) when the freezes happened. If you detect the mall function service or software, try to figure out if the software is installed correctly.   
+Worst case scenario, you can back up your data (not software!!) via TimeMachine or just an external hard drive, and completely reïnstall you OS. It quite radical (and unnecessary if you ask me if you can figure out the bad software/process described in the above paragraphs). In this way, you have a completely new OS and you can restore your documents and reïnstall your software (be aware on what you install).
+My advice, figure out your bad piece of software/process and fix it. So you can keep your documents without reïnstalling the whole Mac...
+
+A: 
+@Michiel Got in his words first, albeit less step-by-step. If you find
+  the information helpful, please vote his answer before mine.
+
+If you're experiencing issues across the system, and they don't correlate to one specific application, the first thing to do is replicate the problem, and observe the processes in your Activity Monitor. If you've never viewed this window, the default view by the Filter search will say My Processes. You'll want to set this to All Processes. If you sort by % CPU and don't see anything consuming a large amount of resources in the system, the causes may not pinpoint to one source.
+Ultimately an issue that may have been present in the OS before you upgraded to Lion may have been exacerbated by the upgrade. I've seen it with plenty of customers.
+Should you fail to find any connection through Activity Monitor, you're best to reinstall Lion. By default it will Archive your data in the process, so you don't lose anything, but it's wise to back up just in case. Holding Command + R when starting up will get you to the Recovery Partition.

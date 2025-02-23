@@ -1,0 +1,15 @@
+Q: iPad Refusing to Sync after 4.2 Beta Expired I didn't quite get around to updating to the GM version of 4.2 in the iOS developer channel on my iPad and unfortunately the beta I had installed has now expired.
+iTunes says that the software on the iPad has expired, but any attempt to synchronise with the device throws an iTunes error along the lines of "no session could be created with the iPad".
+Looking at the device logs, I see this:
+Mon Dec  6 11:01:36 * lockdownd[16] <Error>: 2ff66000 spawn_service_agent: Service com.apple.mobile.installation_proxy is currently prohibited from running
+
+Mon Dec  6 11:01:36 * lockdownd[16] <Error>: 2ff66000 spawn_and_handle_checkin: Could not spawn the com.apple.mobile.installation_proxy service agent:ServiceProhibited 
+
+Mon Dec  6 11:01:36 * lockdownd[16] <Error>: 2ffe8000 spawn_service_agent: Service com.apple.mobilebackup2 is currently prohibited from running
+
+Mon Dec  6 11:01:36 * lockdownd[16] <Error>: 2ffe8000 spawn_and_handle_checkin: Could not spawn the com.apple.mobilebackup2 service agent:ServiceProhibited 
+
+Any ideas on how to get up-to-date without taking the iPad to Apple?
+
+A: Huh, figures I'd find the solution right after I finally ask someone...
+Booting the iPad in restore mode allowed iTunes to begin a restore & update process and now my iPad is happily updating to the proper, non-beta release.

@@ -1,0 +1,73 @@
+Q: How to fix gray files in Finder? Is there any way to force Finder to refresh its in-use information for gray (inaccessible) files?
+Details:  
+I move infrequently used files from my Mac (OS X 10.6) to a Windows Server 2008 file server.  I have recently found a large number of files which OS X's Finder shows as gray (like it would if the file was in the process of being copied).  The files in question are all valid and complete: no corruption or missing data; in fact, I can access the files from Terminal or from a Windows computer without problem, but Finder still thinks they should be considered inaccessible.
+I can "fix" the problem by copying the original file to a new name, deleting the original file, waiting a minutes or so, and then renaming the new file to the original name (if I don't wait long enough, the new file will become gray when it is renamed to the original name).
+Basically, it seems as if the Finder has failed to clear some "in-use" or "incomplete" flag [conjecture].
+So, back to the original question: how can this be fixed?  Ideally, I would like to be able to scan the network drives and find and fix all the gray files via Terminal or Recursive operation, so I can fix them all without wasting a lot of time.
+
+A: This solved it for me!  http://macadmins.psu.edu/news/2011/06/grayed_out_finder_folder 
+
+So, what happened? It appears that the folder's creation date was set
+  to a random date in 1943.  While we are unsure of how it happened, we
+  did figure out how to fix it. 
+We used a few binaries that came with the Developer Tools, GetFileInfo
+  and SetFile. GetFileInfo showed us the creation date of the folder. We
+  overlooked it at first, but with closer examination it caught our eye.
+$ GetFileInfo Test/ directory: "/Users/user/Desktop/Test" attributes:
+  avbstclinmedz created: 06/13/1943 06:13:00 modified: 06/13/2011
+  15:07:33
+We then could change the creation date using the SetFile tool.
+$ SetFile -d 06/13/2011 Test/
+After seting the date back to a reasonable time, we can see that it
+  has truly changed.
+$ GetFileInfo Test/ directory: "/Users/userid/Desktop/Test"
+  attributes: avbstclinmedz created: 06/13/2011 06:13:00 modified:
+  06/13/2011 15:07:33
+The folder then showed properly in the Finder and was again usable. We
+  also found that if you created an alias of the folder, you could see
+  the data and move it out. Once it was moved out into another folder,
+  the old folder could be deleted.
+
+
+A: I solved this by using the duplicate command on the grayed out folder. The new folder will be accessible and the files can be moved to another folder. After moving the files, delete both folders (gray and copy), now both empty
+
+A: Use ls -la to check if the file has extended properties. That will look similar to:
+-rwxr-xr-x@ 1 user1  staff  439734882 Aug 16 21:34 myfile.zip
+Look at the @  at the end. That stands for extended properties.
+To view the extended properties, you'll need to use xattr -l filename command. 
+In many cases, the greyed out files have com.apple.FinderInfo attribute, that looks like:
+com.apple.FinderInfo:
+00000000  62 72 6F 6B 4D 41 43 53 00 00 00 00 00 00 00 00  |brokMACS........|
+00000010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000020
+
+To remove that attribute, run xattr -d com.apple.FinderInfo filename, and the file will get back to normal.
+If you need to remove that attribute from all files recursively, you can run: 
+xattr -dr com.apple.FinderInfo .
+Don't miss the dot . at the end that means the current directory.
+Original post: https://tangentlin.wordpress.com/2013/10/18/greyed-out-files-in-mac-osx/
+
+A: Try deleting your caches (~/Library/Caches) and restarting.  My experience has been that this usually fixes odd icon-related issues.
+
+A: You can try to rsync the files again by using rsync tool:
+$ rsync -aut /source/* /destination
+
+or (if there are too many files):
+$ find /source/ -name \* -type f -exec rsync -at {} /destination/ ";"
+
+Here are the arguments for BSD rsync:
+-a, --archive               archive mode; equals -rlptgoD (no -H,-A,-X)
+-u, --update                skip files that are newer on the receiver
+-t, --times                 preserve modification times
+
+If you're using GNU rsync, consider adding:
+-N, --crtimes               preserve create times (newness)
+
+Note: You can install GNU rsync by brew install rsync.
+If this won't help, also try without -u.
+
+A: Eureka!  I figured out what is causing the problem.
+The files are being copied to a Windows Server 2008 network share with DFS replication (to another server).  Somehow, Finder is caching the "busy" status of the file; and this sometimes occurs while the file is being replicated.
+The work-around is to use terminal to duplicate the file, delete the original, WAIT!!!, and then rename the duplicate to the original name.  (If you don't wait, the duplicate my become grey when it renamed.)
+That is the "what"; I'm still hoping someone can explain where the information is cached.
+If anyone can figure out where the information is cached and how to identify which files are affected in a script, I will accept their answer; otherwise, I'll mark this as this answer and write the problem off to OS/X & Windows interoperability weirdness.

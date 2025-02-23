@@ -1,0 +1,7 @@
+Q: Snow leopard server: use a NAS volume as share point I have a mounted nas volume (/Volumes/Volume_1) and i would like to create a share point on this, so that it can be accessed via FTP or whatever.
+Yet, when in server admin > file sharing, I cannot see this volume.
+Is there anything I can do to see my NAS volume?
+PS: that's a shame, I wanted to tag my post snow-leopard-server... because I thought it made sense... but it's not possible until I earn these 150 reputations :)
+
+A: Mac OS X Server does allow the resharing of AFP mounts but not SMB/CIFS mounts. You can however get around it by using a symlink (ln -s /Volumes/Volume_1 /SOME/PATH) and share /SOME/PATH. While both options allow it to work it's not recommended (permissions, resource fork handling, max file size, etc. may cause hard to debug issues).
+Alternatively on the command line you can use sharing (eg. sudo sharing -a path -s shareflags)

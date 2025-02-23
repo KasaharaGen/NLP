@@ -1,0 +1,19 @@
+Q: Play custom audio alert for certain incoming mail I would like my Mac to play a sound when certain email arrives. For example if the subject contains "xyz", play "mycustomsound.mp3".
+Any easy way to do this?
+
+A: Assuming your using Mail.app, add a mail rule.
+Go to Mail -> Preferences -> Rules. Add a rule based on your criteria (Subject Contains | Is Equal To | Starts with "xyz").
+Under "Perform the following action" select "Play sound". You can choose a preset sound or select "Add/Remove" to set your own custom sound.
+
+A: You can change ALL your Mail sound alerts by doing this:
+Right Click the Mail.app - choose 'Show Package Contents'
+Navigate to 'Resources'. There are 4 .aiff files:
+Mail Fetch Error.aiff
+Mail Sent.aiff
+New Mail.aiff (That's the one you can change via the Mail, Preferences, General interface)
+No Mail.aiff
+Trash whichever one you want to change: you'll need your Administrator password
+Find, create, whatever sound file (It must be the same format, ie: .aiff)
+Rename it to the one above that you trashed
+Transfer it to the Resources window
+Confirm your admin password.

@@ -1,0 +1,35 @@
+Q: Mac App Store has become dog slow after 10.6.7 update on latest MacBook Pro Ever since rolling out the 10.6.7 update on my latest MacBook Pro (15", i7), I have found that Mac App Store has become awfully slow. Starting it alone takes anywhere from two to four minutes for the application to become functional and start responding. During that time, the application seems to get lost into the 'not responding state', with the spinning beach ball showing up. 
+I looked into the output of Console.app, hoping to find any clues as to what's going on. I found a series of entries to the effect of:
+5/6/11 1:55:58 PM   [0x0-0x95c95c].com.apple.appstore[16533]    Fri May  6 13:55:58 mbp App Store[16533] <Error>: CGBitmapContextGetBitsPerComponent: invalid context 0x100610e10
+5/6/11 1:55:58 PM   [0x0-0x95c95c].com.apple.appstore[16533]    This isn't a bitmap context. Forcing destination format to ARGB_8 for CGContext.
+
+What is strange is that I have a late-2009 white MacBook model which is booting the same version of OS X: 10.6.7. Mac App Store loads quickly on that machine. However, in the output of Console.app on that machine, I also see similar errors. I am wondering whether these errors have anything to do with the sluggish behaviour of Mac App Store application on my MacBook Pro (clearly, it works fine from the sluggish point of view on my slower, older white MacBook). 
+If you require any specific, particular information, I'd be more than happy to provide it. I'm looking for any insights, clues as to what is going on, and what I can possibly do to fix it. 
+Many thanks.
+
+A: Did you by any change change the Certificate settings in Keychain Access?
+If so, that's the source of your problem. Go back to Keychain Access > Preferences > Certificates and turn Certificate Revocation List: off.
+The Mac App Store should be snappy again after that.
+
+A: The App store is basically an XML parser that uses webkit to process html5/css/javascript. Focus on your network and differences between macs that work well and those that are slow. It's likely having problems getting the content from Apple's servers.
+The usual suspects are overcomplicated or corrupt network preferences, DNS servers that are slow or misconfigured, other runaway processes or interface problems. Do check wired or wireless connection that is different than the one you usually use in case you have a hardware issue - but you should see equal issues in iTunes app store / safari as well.
+The only obscure thing is if your installed product database was somehow corrupt and the MAS is churning trying to figure out what is already installed either locally or for your account on their server end of things.
+You may have to sample the app or profile the network to poke deeper. If you are up to poking deeper, Daniel Jalkut stumbled upon a debug menu for the MAS app. He notes that "nobody knows for sure what these options do, and you might do serious damage to your Mac or your App Store account by playing with them" so I would urge caution. Looking or logging the XML or clearing cookies should be harmless.
+Have you asked Apple for support? I consider anything that prevents iTunes or MAS from working a billing issue since I want them to be able to bill me for my next purchase! 
+Lastly, have you verified the date is correct on the troublesome mac?
+
+A: If you use Googles DNS servers, then you will find that they direct to servers which may not be as geographically close to you as if you were using your own ISPs dns servers.  This is a known issue and affects load times of both the App Store and downloads from iTunes.
+To determine if this is in fact the case:
+
+
+*
+
+*Open the Mac App Store whilst using googles dns server and time how long it takes.
+
+*Change your dns servers to your isp ones and flush your dns cache in terminal using the following command dscacheutil -flushcache
+
+*open the Mac App Store and time how long it takes.  Should be significantly quicker.
+
+A: I've had exactly this problem about 10 minutes ago, on 10.6. Even the console.app logs were the same! I applied the combined upgrade, as I had an older version of 10.6, and yet the problem appeared.
+My first idea was to upgrade not only OS X, but also Safari and apply all the other updates that Software Update suggested (except iTunes). Then the computer restarted and App Store started working properly, installing applications without freezing up.
+So if somebody comes around with this problem, I recommend to try installing all the updates first. Let me know if that helped you also!

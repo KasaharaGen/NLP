@@ -1,0 +1,6 @@
+Q: Spotlight menu shows results, but Finder window doesn't When I type anything into the Spotlight menu in the top right corner, I get the normal list of top results. But if I then click "Show All", or if I just go to the Finder and initiate a search there, it returns no results. The status bar says "Searching This Mac…" and I get the spinner in the corner, but it never goes away and never shows any results.
+I have had Spotlight reindex my entire hard drive twice, and it doesn't help. Rebooting doesn't help either.
+Help?
+
+A: It turns out that the problem was that I had the Finder window list set to sort by the Kind column. Spotlight apparently does not like that arrangement, and refuses to display results. I had to sort by Name, close the window, and reopen it. Now Spotlight works perfectly.
+This problem was originally with Snow Leopard, and persisted on Lion 10.7.0, but seems to have been fixed at some point before Mountain Lion 10.8.4.

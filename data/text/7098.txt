@@ -1,0 +1,25 @@
+Q: Osascript error I was messing around with some external libraries, and for some reason when I enter any Osascript command, I now get this error (before it did work):  
+2011-09-07 19:13:43.306 osascript[1083:707] Error loading /Library/ScriptingAdditions/Adobe Unit Types.osax/Contents/MacOS/Adobe Unit Types:  dlopen(/Library/ScriptingAdditions/Adobe Unit Types.osax/Contents/MacOS/Adobe Unit Types, 262): no suitable image found.  Did find:
+    /Library/ScriptingAdditions/Adobe Unit Types.osax/Contents/MacOS/Adobe Unit Types: no matching architecture in universal wrapper
+osascript: OpenScripting.framework - scripting addition "/Library/ScriptingAdditions/Adobe Unit Types.osax" declares no loadable handlers.
+4:5: syntax error: Expected “given”, “in”, “of”, expression, “with”, “without”, other parameter name, etc. but found unknown token. (-2741)
+
+Help please?
+
+A: The dlopen error means it can't load the Adobe Unit Types scripting addition, because it only has a 32-bit binary, but the process loading it is 64-bit. This may or may not be a problem for your script, depending on whether your script uses the handlers provided by the addition.
+Normally, all available additions are loaded at once, whether you're using them or not, so we can't tell whether this is an issue without seeing your script.
+The syntax error may or may not be related to the inability to load the addition. Even if you resolve the addition-loading issue, the syntax error may remain. Have you tried compiling the script in AppleScript Editor to see where the syntax error occurs and to verify whether it's a valid script?
+To isolate the problem you can try any of the following:
+
+
+*
+
+*Uninstall the scripting addition. The path to its location is in the error message. Just move it to another location, like the Desktop.
+
+*Run osascript in 32-bit mode. To do so, invoke it via the arch command, which lets you select which architecture a program uses: arch -i386 osascript …. Similarly, you can run AppleScript Editor in 32-bit mode using Finder's Info window—select the application in Finder, open an Info window and select "Open in 32-bit mode". 
+
+
+UPDATE: If running in 32-bit mode fixes the problem, then as joelsef suggested the solution is to upgrade the Adobe Unit Types scripting addition. The latest version has a 64-bit executable.
+
+A: You could try updating Adobe Unit Types.osax file to the 64-bit version, if it's not already updated to version 2.1.0. You can find the download link at this Adobe KB article.
+The KB article talks about Photoshop specifically, but using the updated Adobe Unit Types resolved some obscure error I was getting that had nothing to do with scripting Photoshop.

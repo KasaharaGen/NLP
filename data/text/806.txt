@@ -1,0 +1,40 @@
+Q: How can I map a middle click to control click? Just started to use a Mac for my new job and not being able to use the middle button to open links in a new tab is killing me. I know I can press control and do a regular click but it's not the same. I know the Mac knows I'm trying to do something because it beeps at me when I press the middle button on my mouse. Is there any hope?  
+Note I tried the trick about setting expose dashboard to - but it didn't work.
+
+A: Try holding the Command button instead. A Command click is a middle click. Control clicks give you a right click.
+What kind of Mac? If you're using a Magic Mouse you can use a program like MagicPrefs to turn a three finger click into a Command click. If you're using the Magic Trackpad or the built-in trackpad on a MacBook/MacBook Pro there is a program called MiddleClick I've used that adds a three finger tap/click ability to map to the Command click.
+
+A: Karabiner can be used to map mouse buttons. I haven't tested the following but it should be something like:
+    {
+      "description": "MouseButton3 to Ctrl+MouseButton1",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button3",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button1"
+              "modifiers": [
+                "control"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+If you want to limit this mapping to the browser, something like the following in the manipulators block should do it:
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.google\\.Chrome$"]
+            }
+          ],
+

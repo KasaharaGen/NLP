@@ -1,0 +1,14 @@
+Q: Mac won't boot: Way to mount drive and delete one file? My macbook is currently a brick. I added a /etc/launchctl.conf file that must be malformed. The OS now crashes even when attempting to start in safe mode:
+"launchd System bootstrapper has crashed: Seg fault"
+I tried booting from a 10.6 boot CD but it just spun and spun. I have been able to boot an Ubuntu Live CD and mount the mac partition, but the hfsplus partition is always mounted read-only.
+There must be an Apple utility I can use to get to a live terminal and delete this single file that is preventing my laptop from booting? If I can get the OSX install CD to boot will there be a utility that can help me?
+
+A: You can boot into single user mode by holding Command + s at startup.
+Single user mode starts you directly at the console, bypassing core Mac OS X startup processes. You should be able to remove or alter the offending file from there.
+
+A: Don't forget there's always Target Disk Mode, too. Start the Mac and hold down T until a Firewire icon appears - you now have the world's most expensive external hard drive. :) Plug into another Mac (or a Windows PC, maybe?) and you can access the hard drive on the machine in Target Disk Mode.
+(Note that this doesn't work on Macs without Firewire. Mac Book Air users, you're bang out of luck.)
+
+A: Start in single-user mode (like that other guy said). It'll say "If you wish to make modifications to files:" and give you two lines of commands. Type the second one, or type the first one for a File System Check, then press Enter. Then, if you want to delete a file (let's call it "brokenfile"), type (without quotes): "rm brokenfile", then press Enter.
+
+A: I used a Microsoft install disk erased my hard drive and started over. Problem solved for me. I already had what I needed backed up on an external harddrive. 

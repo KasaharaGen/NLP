@@ -1,0 +1,41 @@
+Q: Is there a way to evaluate OS X without purchasing Macintosh hardware? I'd like to play with OS X to see what makes it tick under the covers for the purpose of IT support - at CWRU here we have a lot of Mac-using professors. However, I can't justify spending twice as much on hardware as I would purchasing from any other vendor. Therefore, I'd like to avoid getting Apple hardware. I know you do get something for that money (nobody else does anything like Apple's aluminum unibody), but I don't need that for what I'm doing.
+(Even the cheapest MacBook Pro is $1,199.00 -- compare to Lenovo, which itself is one of the most expensive PC makers, $809.00 for the same specs. [Okay, the Lenovo has a bit smaller hard disk, but it has a faster CPU and discrete graphics, so it's kind of a wash.])
+Is there any (supported) way to do that or am I forced to purchase Mac hardware?
+
+A: If you live near an Apple Store, you can always take an afternoon or evening to "evaluate OS X" and the machines in the store.  The employees seem to be very gracious and happy to let you evaluate for quite a while.
+What do you want to "Evaluate"?  Whether it runs the programs you need it to run?  Whether it runs quickly? How long the battery lasts?  How much they weigh? 
+Also - you can speak with the sales team - I've never had any problem returning a Mac that I bought to an Apple store and getting a refund if it's not what I needed. When there is uncertainty of the fit of the product, I've long had them say they will waive a restocking fee and I believe there is no return fee chain wide at present.
+
+A: The OP is asking for a "supported" way and I guess that means "Apple approved", but I still want to point out that it is very possible and actually quite easy to run OSX on commodity hardware. There's a whole community out there dedicated to making it as easy as possible. My workstation (Intel core i7, Nvidia graphics) has been running the latest version of OSX for two years now, with no problems.
+The installation procedure that once was more of a hack is now down to booting from a USB stick and installing from an original (bought) OSX DVD.
+The relevant term to put into Google is "OSx86".
+
+A: You can get a refurbished Mac starting at $599 for a Mac Mini. You can usually find even lower prices for older Macs on eBay or Craigslist.
+
+A: You can't run Mac OS X on non-Apple hardware. It's not allowed by the EULA for OS X and it is technologically enforced by having key parts of the OS in the copyrighted hardware ROM installed in the Apple hardware.  Furthermore, all versions of OS X prior to Leopard and non-server versions of Leopard and Snow Leopard had architectural issues that prevented virtualization even if you wanted to hack something like VirtualBox or VMware to virtualize them in violation of the EULA and copyrights. 
+Incidentally, while you can virtualize OS X Leopard and Snow Leopard Server as well as both versions of OS X Lion, the license still limits this to Apple Hardware. 
+VirtualBox supports virtualizing OS X Snow Leopard Server. You can find instructions for doing this here.  VMware Fusion supports virtualizing OS X Leopard and Snow Leopard Server as well as OS X Lion client and server versions.  
+
+A: Obviously this is already marked as answered, but you can always hire a Mac or find a very cheap second hand one to buy. 
+... For example I have an old 15" MacBookPro that I'd hire out for $20 a day plus deposit, I'm in Sydney, Australia though so that's probably not a great deal of use to you.
+But try a want ad on the bulletin board at CWRU, or wherever works best in your locality.
+
+A: The author of the question appears to work for a huge academic institution.
+Big institutions are usually compelled to obey legal terms and conditions in ways individuals are not.  For that reason I would strongly recommend he bite the bullet and buy a real Mac.  A Hacintosh could put him in big trouble with his supervisors/administrators.
+You can buy used Macs, incidentally, but they are not generally that good a deal - they hold their value too well.
+The cute 11" MacBook Air is $999 and the cool factor's off the charts - I might suggest that as a good thought.  And you'll save a few bucks with the academic price.
+
+A: You can run a version of PureDarwin that corresponds to MacOS 10.5 under an emulator under Linux or Windows. This is the core Unix operating system, and does not include the Mac OS UI or tools.
+If you are in IT Support at a site that uses Macs, you should have one. It's just not feasible to support them competently without access to testing things out.
+I'm not sure what the purchasing policies are there. Are they personally owned computers that people are using? If they are university-supplied, surely there's a closet somewhere with old machines that you could grab one from.
+
+A: You can rent a hosted Mac for a single day commercially and be official and licensed. The three commercial offers below can supply M1 as well as Intel systems for rent.
+
+*
+
+*https://macminicolo.net/
+
+*https://aws.amazon.com/ec2/instance-types/mac/
+
+*https://www.macstadium.com/
+Leasing and counting on a high resale value also can be attractive if you believe you need more than a few days to perform your evaluation.

@@ -1,0 +1,27 @@
+Q: X11 application from 'administrator' account Call me paranoid but my everyday account has no privileges.
+I have a 'administrator' account who is in wheel. When I want to perform administrative tasks, I open a terminal and do
+su - administrator
+sudo ...
+
+This works fine in most situations, except with X11 applications.
+sudo xeyes
+
+fails with
+
+Can't open display:
+
+What I've tried:
+
+
+*
+
+*start X11 with the everyday user
+
+*do xhost +localhost with everyday user
+
+*do export DISPLAY=:0 with administrator
+
+
+How can I run a X11 application with the administrator account when my desktop runs with the everyday user?
+
+A: Perhaps ssh -X to localhost?

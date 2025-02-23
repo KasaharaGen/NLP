@@ -1,0 +1,7 @@
+Q: Why is removing hard-linked files so slow in Lion? $ ln src/* dir
+$ rm dir/*
+
+If src/ contains a few hundred files, the rm operation takes many minutes. If I open the directory in Finder, I can see the files vanishing one by one. This operation used to be virtually instantaneous in Snow Leopard, but is excruciatingly slow in Lion. If I copy the files instead of hard-linking them, removing them is still instantaneous.
+Can anybody tell me what has changed to warrant this slowness?
+
+A: I think I figured it out. It seems to be Mobile Time Machine that's causing the slowdown. Apparently it's dutifully taking a backup of the files while they're being deleted. If the files are "original", it can simply move them to the Time Machine vault, but if they're links it has to copy them instead, which takes much longer.

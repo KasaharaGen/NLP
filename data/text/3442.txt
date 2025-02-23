@@ -1,0 +1,52 @@
+Q: How can I enable Internet sharing without using the GUI or AppleScript? for some rather strange reason my sharing preferences tab crashes (it's a long story and there seems to be no good solution for it, it's looking for a ui object that no longer exists).
+Anyway, I want to enable internet sharing to share my macbook's internet connection with my iPad but I can't find a way to do it without the gui or apple script (which basically calls the gui). 
+The problem is I need to both (1) set up and (2) run the internet sharing daemon. Running the daemon is easy but I can't configure it.
+So far I am thinking I need to 1- enable routing 2- run natd 3- make sure firewall is properly configured 4- make a peer to peer wireless network on wifi.
+Another option is to use sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.InternetSharing.plist the problem is I need at least a valid Snow Leopard .plist file for this to work.
+Another solution I tried is to use a virtual machine (I use an Ubuntu VM in Parallels) to do the connection sharing. It works but it's too much work.
+(In case you are wondering, when I click on shring in the preferences tab it crashes and in console I get an error like "unknown Class 'AppleSharing_NatManager' using 'NSObject' instead")
+Any comments?
+
+A: The plist that others have mentioned (/System/Library/LaunchDaemons/com.apple.InternetSharing.plist) never seems to change regardless of the state of Internet Sharing -- at least under Snow Leopard.
+I think the answer lies somewhere in /usr/libexec/InternetSharing and /etc/boopd.plist.
+First, try running:
+sudo /usr/libexec/InternetSharing -d
+You will probably see messages like the following:
+InternetSharing[40307]: InternetSharing starting
+/etc/bootpd.plist is empty/missing
+InternetSharing[40307]: no primary service specified, exiting
+It turns out that /etc/bootpd.plist is created when Internet Sharing is started from the Sharing pref pane, and it is deleted when Internet Sharing is turned off.
+If you are feeling adventurous, you could try manually creating the plist file.  I enabled Internet Sharing with Ethernet shared to AirPort and copied the text of the resulting /etc/bootpd.plist file to a pastebin here: http://pastebin.com/gQVzARfa
+This plist doesn't contain all the necessary settings (e.g. SSID for the wireless shared connection), so I'm guessing it won't work on its own.  I'm still looking for the other settings and will update this answer if I find them.  (It's possible some are passed in as parameters to /usr/libexec/InternetSharing, but I can't find any documentation on that.)
+Once you have created the plist file, try running sudo /usr/libexec/InternetSharing -d again.  We may be able to work through this one error at a time.  At this point it's really an academic exercise, as it would be far easier to reinstall your OS to fix your pref pane issue.  ;]
+If by some miracle it does start, I believe /usr/libexec/InternetSharing -q will stop sharing.
+Messing with your system files is always somewhat risky, so make sure you have a recent backup of your important files (I recommend Dropbox).
+
+A: To fix the UUID issue you could look the machine’s UUID with system_profiler | grep 'Hardware UUID' and updated the file.
+This is what I did when I had to grab a copy of /Library/Preferences/SystemConfiguration/com.apple.nat.plist from another Mac when I notice my machine didn’t have it.
+Despite all this I’m still stuck at trying to share my internet connection from ethernet to Airport.
+Running sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.InternetSharing.plist turns the Internet Sharing preferences gui on but with incorrect settings (sharing from Aiport to ethernet - I need the reverse).
+Despite the launchctl load request the error logs still show the same as the output for sudo /usr/libexec/InternetSharing -d
+Oct 14 01:54:39 boatdelight-lm InternetSharing[52015]: InternetSharing starting
+Oct 14 01:54:39 boatdelight-lm InternetSharing[52015]: no primary service specified, exiting
+
+I’ve tried this with and without manually creating the /etc/bootpd.plist file.
+
+A: man networksetup 
+
+or
+man systemsetup 
+
+might do it.
+
+A: Thanks to @Austin and others, I finally solved the problem! I thought damn it, this is a Unix box, i should be able to find out what's going on! I found another Snow Leopard machine at work which never had Internet Sharing turned on and in a terminal I ran:
+touch now && sudo find -x / -newer now
+and I got a short list of files that always show up (spotlight indexes, log files in /private/log and if you are using FileVault a bunch of encrypted sparse bundles)
+then I enabled Internet sharing and this time I ran:
+    sudo find -x / -newer now 
+obviously without the "touch now". 
+It turns out that other than a bunch of log files and other junk there are a hand full of files that are modified. 
+I copied them all over to my machine and modified the interface names and few other hostname and ip addresses and stuff like that. 
+The problem happend with    /Library/Preferences/SystemConfiguration/com.apple.nat.plist    there is a primary service key there which is set to a UUID and it is different on every machine that I tested (2 machines actually) and it does not work from if you just copy it from one machin to next.
+* IF YOU ARE IN A HURRY JUST READ THIS PART *
+From the start I avoided reinstalling my OS because I had so many Installations and configurations that I didn't want to loose. It turned out that if you use the original DVD that comes with your machine and reinstall your OS ALL YOUR APPLICATIONS, HOME DIRECTORY, custom modifications, mac ports and fink installations, preferences, network mounts, network locations, developer tools, ALL ARE PRESERVED. BUT IT REINSTALLS THE CORE SYSTEM COMPONENTS that fixes my preferences sharing pane!

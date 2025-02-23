@@ -1,0 +1,22 @@
+Q: How to fix MacBook, not reconnecting to wireless network on wakeup? MacBook Air 11" - Mid 2011  
+My MacBook is not reconnecting to the wireless network on wakeup.  
+Is there a setting or something that I'm missing?  
+
+A: Every time MacBook Air (2010) waked-up from sleep it would ask to choose network to re-connect and then took about 20 sec to actually connect. same if I turn wifi off and then on again.
+solution that worked for me was: system preferences -> network -> SET SERVICE ORDER.." (in sub-menu next to "+"/"-" (create/remove service) at the bottom of  services list on the left).
+DRAG WIFI TO THE TOP in Service order list -> "OK" -> "APPLY"
+After that I am back to no "choose network to connect" pup-up's and wifi connects in 3 seconds. Hope that helps.
+
+A: Are you running the latest version of Lion?
+If so there is a "known" issue with this - my older Macbook will wake from sleep and connect to the wifi.  A few seconds later the connection will be dropped until I reselct the network.
+I've tried various resets and plist deletions with no joy, and know several other people with the same issues.
+I'm hoping for a fix when the next update comes around.
+
+A: SOLVED! 
+Solution:  
+The network i was trying to connect to, was set not to distribute it's ID, so i typed it in or saved it somehow at some point. The fatal error is, the SECURITY TYPE does not match with the wireless router so every time, the computer ask again for the correct type/key combination resulting in, a disconnection from the wireless network :)  
+To fix it, go to Preferences > Network > Advanced and press the plus sign and ADD THE ENTRY MANUAL!!!!!!! and you will be fine.
+Hope it helps, thank you all!
+
+A: I've been having a problem where WiFi will not reconnect on wake from sleep - in my case the Time Machine icon is spinning as if it were running a backup. If you cancel Time Machine's backup job, WiFi will instantly re-establish itself when Time Machine finally stops processing.
+It seems to be some sort of bug related to putting the Mac to sleep while Time Machine is attempting to do... something... to the Time Capsule hard drive.

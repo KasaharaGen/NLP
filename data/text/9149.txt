@@ -1,0 +1,33 @@
+Q: MacBook Pro doesn't detect external display after Lion upgrade Asking on behalf of a friend.
+His 2011 MacBook Pro (no Thunderbolt) was running Snow Leopard and was being connected to a Dell monitor in the standard way.
+He upgraded to Lion and now the MacBook cannot detect the display.
+What can we do to detect the display (my Snow Leopard MacBook still detects the display)?
+
+The MacBook was taken into an Apple retail store with the monitor. It was hooked up and obviously didn't work, It was then plugged into my 2006 MacBook, and it worked.
+The chap in the shop was very confused.
+We then looked at the cables. We used another cable and dvi-mini dvi connector. This changed nothing.
+We have also done a fresh install of Lion.
+So as for now the problem is unsolved.
+As soon as it is fixed I will post the answer.
+
+A: This is from my own experience, I have macbook pro with lion and a dell monitor, I connect via mini displayport to VGA connector, if I connect displayport first to my macbook and then monitor's vga to displayport to VGA, it won't work, I don't know why but maybe some internal implementation detail, just go in this order
+
+
+*
+
+*switch on both devices
+
+*connect monitor's VGA cable to your mini displayport cable,
+
+*connect mini mini displayport  to you macbook.
+
+*wait for a few seconds, it works every time.
+
+
+A: Mine did this because I had Air Display installed (yes, Air Display).  I uninstalled that app and everything works now. 
+
+A: Shut down the MacBook. Start it up with the external monitor connected. It should recognise it. Had same problem on Mountain Lion with a projector I had used many times before. Was supposed to be showing a film to a bunch of kids in the Youth Club and had to give up. My wife discovered the next day that restarting with it connected fixed it.
+
+A: Try a SMC reset first - you might also want to test starting in Safe Boot mode and/or creating a new admin user and logging into that account.
+
+A: I had a problem where my mac was only detecting one of my 2 external monitors after I updated to mountain lion. It just plain was not detecting it. I thought it was only detecting the one that was connected via mini display. Turns our I was using something called Display Link. I don't remember if I downloaded that or if something else did when I first set up my monitors. I noticed that in that file it only had the uninstall in the file. So i went to the website and reinstalled the Display link and that worked! Hope that helps someone!!

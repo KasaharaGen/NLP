@@ -1,0 +1,23 @@
+Q: Getting Applications location in Automator How do I get the directory where the app created in automator resides?
+Example:
+
+
+*
+
+*Create App using automator
+
+*Save to ~/Documents/Automator
+
+*Run automator app, which does something in it's directory
+
+
+A: Add an AppleScript step which contains:
+on run {input, parameters}
+
+    set p to POSIX path of (path to me)
+    return {p}
+
+    return input
+end run
+
+From there, you can use the "p" parameter.

@@ -1,0 +1,28 @@
+Q: View IE (6,7,8,9) on Mac? I am a web developer. I would like to view my web design on IE(6 - latest). Is there a quick way to view it?
+Thanks in advance
+EDIT:
+I already have a Windows OS on my Mac using VirtualBox. However, I dont want to load such heavy program just to preview IE :(
+I need an alternative or faster way to view IE
+
+A: Wine claims to support IE 6, 7, and 8 with varying levels of efficacy.
+It's not a simple solution, but it sure is a hell of a lot lighter-weight then a VM, and it effectively runs the full browser on OSX.
+You need to be at least somewhat familiar with the command line to get anywhere with Wine, though.
+Crossover Mac is basically a MacOS GUI for wine. It has the same capabilities as wine, but the GUI makes installing things much easier. On the other hand, it's not free.
+
+A: You can either install Windows as a virtual machine (eg. VMWare Fusion or Parallels Desktop) or on a Bootcamp partition. Note that this requires a Windows license and media for installing. In Windows you can then install IETester for example.
+There are some online services that will make screenshots for you in said browsers like Adobe Browserlab (https://browserlab.adobe.com/). Though that might not be ideal when wanting to quickly debug some problems.
+There are even services where you connect to a remote VNC instance running a selected Windows configuration like http://www.browsercam.com/. But those generally do not come free to my knowledge. 
+<= browsercam.com will be shut down FEB 1, 2013 <= http://www.browsercam.com/important-message/
+
+A: Buy a cheap used Windows XP Pro box (or rent a Windows VM from some cloud if you want to be more "green") and just leave it running.  Use a Remote Desktop or VNC viewer to view IE on it from your Mac.  No big load on your Mac and little boot up time if you just leave it running.
+
+A: Microsoft actually has virtual machines you can download (Windows XP, Vista, and 7) just for testing IE compatibility: http://www.microsoft.com/download/en/details.aspx?id=11575
+This isn't a 'fast' solution but I think it is the best and supported solution. It is 'heavy' but I don't think there is a way around it. It is just part of the job if you need to support IE.
+
+A: The website http://browsershots.org/ lets you preview a webpage in IE, Safari, Firefox, Chrome and other browsers on Linux, Mac OS X, Windows and BSD.
+
+A: http://browserling.com/ will let you try several browsers live, from the comfort of your browser. You get 10 minute sessions for free or you can buy a subscription.
+It's made out of pure awesome.
+
+A: possibly the best route out of all the options and a great tutorial
+http://osxdaily.com/2011/09/04/internet-explorer-for-mac-ie7-ie8-ie-9-free/

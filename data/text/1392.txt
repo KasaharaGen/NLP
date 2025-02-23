@@ -1,0 +1,8 @@
+Q: How to configure OS X 10.5 to always open .WAV files with QuickTime? I use iTunes to listen to my music, all of which is in .mp3 and .aac files. I periodically want to listen to .wav files, however these are never music. Most often, they're voicemails sent to my by our VoIP system, but also my camera records audio notes in .wav files. I do not want these to open in iTunes, because then they get added to my library, and iTunes doesn't have the best interface for listening to files like this. I'd prefer to open them in QuickTime Player.
+In the Finder, I did "Get Info" on a .wav file and chose "Open With" "QuickTime Player". I then did "Change All..." and clicked "Continue" in the "Are you sure you want to change all similar documents to open with" window.
+
+I've done this numerous times. However the change doesn't stick, presumably because iTunes 9 is re-registering itself for the application of choice to open .wav files. How can I make this change stick under Mac OS X 10.5?
+
+A: You can use RCDefaultApp, it's a freeware System Preference Pane  that works in Snow Leopard, Leopard, Tiger and Panther.
+You must go to "Extension tab" and find .WAV in the list and change the Defallt Application.
+

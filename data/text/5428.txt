@@ -1,0 +1,13 @@
+Q: How to enable Syntax highlighting on Vim in Mac OS Terminal? Is there a way to let Vim on Mac OS highlighten syntax of different languages in Terminal? I would guess for vim it is a .vimrc thing, right? (But I cannot find this file in my home folder).
+
+A: If the file ~/.vimrc is not there, you'll just need to create it. To enable syntax highlighting, add
+syntax on
+
+to it. Also make sure that "Display ANSI colors" is enabled in the Terminal Settings.
+
+A: You most probably want to enable indentation along with syntax highlighting, so add these to lines to ~/.vimrc
+filetype plugin indent on
+syntax on
+
+Steps with screenshots can be found here
+http://osxandiosdaily.com/how-to-enable-vim-syntax-highlighting-on-mac-osx/

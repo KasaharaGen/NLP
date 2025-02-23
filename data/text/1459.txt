@@ -1,0 +1,25 @@
+Q: Do iOS apps crash regularly? Is this normal? I've been having some trouble with one of the third-party apps on my iPod Touch 4gen, and realized that a lot of apps I use (which isn't many) have been spontaneously exiting, recently.  Safari and Youtube both did this a few times today.
+Is this normal?  iOS apps tend to go back to what they were doing, so it's not that big a deal, but perhaps it's indicative of some hardware or software issue.
+I'm using iOS 4.2.1.  I don't remember it being quite this bad on 4.1, but that could well just be my imagination.
+I looked for crash logs on my computer, but there's been no crash logs created in over a week, even for apps which I know have crashed many times since then.  I don't know what that means, if anything.
+Should I be concerned?  Is there anything I can do?  Is there some kind of "is my iPod completely &#@!ed?" diagnostic I should run?  I realize this is kind of a vague question.
+
+A: It could be a low memory issue. iOS is supposed to manage memory automatically, but I've found that it's not always perfect. Try quitting every single app and restart the device (hold the power button down for several seconds, then slide to power off, then power on again) to see if that fixes it.
+
+A: Until recently, iOS apps had no automatic memory management mechanism. Thus, developers had to track memory allocations and release them manually. Most developers were good with this. Apple provides tools to check for various kinds of leaks. This is in contrast to Mac apps, that do have semi-automatic memory management via garbage collection.
+Some iOS developers did not perform enough testing, or could not find the cause of the leaks, and the App Store checks only for content, not app malfunctions, although of course, if an app is DOA, it is rejected.
+With iOS 5, the situation for iOS developers improved. A new memory management system called Automatic Reference Counting (ARC) was introduced. iOS runtime takes care of memory management in app.
+Apple provides a handy tool in Xcode to convert apps to make use of ARC.
+So, developers now can improve their apps so that the only crashing that happens is with virtual race cars!
+
+A: I browsed on internet and found that app crashing is associated process to low memory and that's why to adjust the processing speed, it simply shuts off the process. Then reboot, refresh and blah blah blah....
+I found 2 main causes:
+
+*
+
+*Refreshing rate: I think iOS devices use Dynamic Ram which needs refreshing/rebooting. When we switch on the iOS device. iOS loads and we never shut it off so the OS stays in RAM. Considering this with PC. We boot and OS comes to RAM, we start process and then after using it we shut down. It means every process which was in RAM was sent back to permanent memory with OS as well.
+We generally do not shut off the iPad and that's why the OS has a permanent sector in RAM, As the RAM is dynamic it needs to be refreshed but we do not do. Hence it's virtual memory becomes too low and hanging occurs.
+
+
+*Single tasking device: one process at a time. So earlier devices do hang and applications crash.
+Let me know your comments.

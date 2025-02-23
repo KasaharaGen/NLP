@@ -1,0 +1,38 @@
+Q: iMac external display blurry/fuzzy I've just got my new 2011 iMac (OS X 10.6.8), but connecting my HP LP2475w via a mini DisplayPort to DisplayPort cable leads to a very fuzzy screen. It's the correct resolution and refresh rate (1920x1200, 60Hz), and size-wise, everything looks fine on the monitor. However, everything, especially the text, looks horribly blurry. It's almost as if the iMac is outputting a 1920x1199 image or something, and the display is stretching it slightly. Like what used to happen with old CRT monitors when you set the image 1px too tall/wide.
+Here's an image of what I see 
+
+And here's how it should look
+
+Does anyone know what the issue could be?
+Thanks!
+
+A: [Edited - it looks like the original pictures are gone - some of this may not make the most sense without the original pictures - my apologies]
+Awesome screen shot - that shows the software settings are perfect. You can be sure of that by opening the System Profiler app and looking at the Graphics / Displays data when the external is connected.
+Your screen shot is nearly identical to mine - I am not using LCD font smoothing and the slight difference in color values could easily be color calibration differences. The pixels two above and two below the one selected are one or two darker on my display as compared to your screenshot.
+Here is a magnification of both - mine on the bottom and your picture on the top.
+
+
+Even though it's unlikely - I would make sure it's not a timing issue by the following.
+
+
+*
+
+*disconnect the cable, adapter and power off the monitor
+
+*power on the external monitor
+
+*connect the cables and adapter to the monitor
+
+*plug in the whole works to the mac
+
+
+Sometimes when a mac wakes from sleep, you get snow or other artifacts on rare occasion if the mac detects the monitor capabilities from the adapter and sends signal before the monitor can react (or is still scanning other ports if it's got multiple inputs).
+Now - the real cause is likely cabling / adapter / monitor. You'll have to test that by eliminating / borrowing / replacing them one by one. :-( Either that or some bizarre software driver issue. That also will be a tough one to pin down unless it's a popular monitor and you just updated software.
+Did this display ever work well for you with your mac?
+Does the pixelated font rendering move or os it perfectly static and repeatable each time the menu is drawn?
+I have seen electrical noise cause that - bad shielding or cables/connectors or more likely noise on the ac power from a large motor or wiring issues.
+This is a real stumper since it happening on multiple macs and multiple monitors. 
+
+A: You're not connecting with a VGA cable, are you? Mini Display Port to VGA adapter to VGA-in on the monitor? Because if so, it might very well BE approximating the resolution to an actual X-by-Y that isn't a native multiple of the screen pixels.
+The giveaway about that is regular vertical stripes of fuzziness. Not the only giveaway, but if you have blurry streaks, you need a DVI cable.
+EDIT: Reading your comments on the question, I'm now certain. Using DVI will solve this. 

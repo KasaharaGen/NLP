@@ -1,0 +1,7 @@
+Q: TimeMachine over network without TimeCapsule Are there any good/easy solutions for using TimeMachine over the network? I am currently unplugging the backup drive from the desktop to backup laptops but would like to do this wirelessly instead if possible.
+
+A: You will need to share the backup drive with AFP (setup under Sharing in System Preferences).   
+On your laptop you'll need to go into Terminal and type
+sudo defaults write com.apple.systempreferences TMShowUnsupportedNetworkVolumes 1
+
+This will allow your laptop to see the backup drive as a supported Time Machine compatible network drive.   Select this drive in Time Machine preferences and you should be good to go.

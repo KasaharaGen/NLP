@@ -1,0 +1,25 @@
+Q: how to use automator make this workflow? I have a folder full of video file to upload to a youtube like video service, they don't provide any api, and the upload form is made of flash, that means I can't manipulate anything, so what I think of is the mac automator
+is anyway to do that?
+some point that important:
+
+
+*
+
+*how to choose the next video to upload?
+
+*how to copy and paste the file name into the title
+because other video service is banned in China, so youku.com is my only choose to upload my videos in China
+as you may notice, the upload page is made of flash, so there's no api for it, so the apple scripts may not work in my opinion, all I could think of is using automator 
+
+A: I have found two services to be much easier to automate for uploading videos.
+
+
+*
+
+*Posterous - this site takes uploads as emails and also has an API, but email is the way to go for simplicity.
+
+*Vimeo - Vimeo has several API that are well documented and allow uploads through the API so this might be a better choice if you are more into programming than scripting/light automation.
+
+
+I would go with posterous since you can set it up to autopost to just about any other social site and only have to script the generation of an email per attachment. It can automatically push your videos when they arrive to YouTube, Vimeo, FaceBook, Flickr and many, many other sites.
+Lastly, don't forget that iPhoto works well with Automator and AppleScript and has upload to YouTube functionality built in. It should be doable to automate import the folder into an album/event and automate the clicks to publish to YouTube - but not nearly as easy as using Posterous.

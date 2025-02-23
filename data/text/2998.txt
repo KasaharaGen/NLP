@@ -1,0 +1,30 @@
+Q: Can I force my Mac to make better use of the inactive memory? I use mysql and it takes up to 2.5 GB of my ram. I checked activity monitor and saw that I have 1GB of inactive memory but it never changes even if I have only 10MB active free memory. Is there any way to force the inactive memory to be used?
+
+A: You can think of inactive memory like free memory that's been reserved for a recently closed application, but ready to be consumed by other uses when the 'truly' free memory has been exhausted.  If you have 1 GB of memory (for the sake of making this discussion easier) on a freshly booted system, imagine the OS uses 300 MB and you open an app that uses 200 MB.  You now have a total of 500 MB used, and 500 free.  If you close that app that was using 200 MB, the memory is marked inactive and you'll now have 300 used (OS), 200 inactive, and 500 free.  If you open an app that requires 600 MB, it'll use the free memory then pull from the inactive pool.
+You can free inactive memory by opening Terminal.app and typing (without the $):
+ $ purge
+
+You can, also configure MySQL to use more memory but if you're not having performance problems I'd leave everything alone:
+
+
+*
+
+*http://dev.mysql.com/doc/refman/5.0/en/innodb-configuration.html
+
+*http://dev.mysql.com/doc/refman/5.0/en/memory-use.html
+For more information on inactive memory in OS X:
+
+
+*
+
+*http://support.apple.com/kb/ht1342 (search for "inactive memory")
+
+*http://hints.macworld.com/article.php?story=20010613140025184
+
+*http://developer.apple.com/library/mac/#documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html
+
+A: To expand Aaron's answer:
+Your case could be a problem with MySQL taking too much resources, but Inactive Memory is like Free Memory for the Operating System. The difference between Inactive and Free is that Inactive was recently used, so if you for example open iTunes and it uses 200MB, when you close it, the program gets closed, the memory of iTunes marked as Inactive but it remains like that unless its needed again. But if you happen to re-open iTunes, OS X knows that it's there already and inactive, so it marks it as active again and voilá, that was faster than having to reload it from the slower hard drive. 
+Provide more information about your computer to help find the cause of your "slow" system.
+update: Here's more info about Memory and OS X (from Apple): 
+http://support.apple.com/kb/ht1342

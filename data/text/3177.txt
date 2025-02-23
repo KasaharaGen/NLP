@@ -1,0 +1,22 @@
+Q: finding the remote IP address used by a mounted SMB share Using Finder, I have mounted an SMB share which resides on my NAS . When I use the mount command, the NAS is listed with the name it advertises (nas-smb).
+mbp:~ me$ mount
+/dev/disk0s2 on / (hfs, local, journaled)
+devfs on /dev (devfs, local, nobrowse)
+map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+map auto_home on /home (autofs, automounted, nobrowse)
+//me@nas-smb._smb._tcp.local/myshare on /Volumes/myshare (smbfs, nodev, nosuid, mounted by me)
+
+Edit:
+Is there a way to translate this to the IP address of the NAS or otherwise learn this information?
+Is there any way to find out the IP address of the NAS which is used to mount this share? 
+The tricky part is that my NAS can be reached on two different IP addresses (direct wired 1Gbps and wireless through my router). 
+On different sessions from the transfer speeds alone I have concluded that either of the IP addresses were in use. So I can't definitely tell to which of the two addresses I am connected for the SMB sharing. 
+The host command didn't works only with the wireless interface. I have also tried lsof -i -n but it shows no SMB related connections.
+I hoped that smbutil lookup nas-smb could tell me what I want, but it doesn't. When the speeds show that the wired interface is in use, it still returns the address of the wireless interface.
+Thanks!
+
+A: Since it is advertising its presence on the network with Bonjour, you should be able to simply ping it:
+ping -c 1 nas-smb.local
+
+
+A: I had problem of finding IP of maching which is not even behind NAT. Finder shows the name Bonjour Exporer and ping does not resolve it. Finally smbutil lookup <name> worked for me.

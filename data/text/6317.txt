@@ -1,0 +1,31 @@
+Q: Add a song into a playlist while listening to it? Is there a button to add the song that is being currently played into a playlist on my iPhone?
+So i don't have to search it back and add it manually?
+
+A: No - the playlists only get curated from the playlist tab.
+The iPods with physical buttons have an "add to playlist" functionality that worked this way but there's nothing yet in iOS 4 or less to do a similar thing. The drawback there is everything got added to the "on the go" playlist - not an arbitrary one.
+
+A: After listening to your song, go to the playlist, hit edit and at the top left you'll see a plus sign. Hit that and go to recently played (under playlists). You'll see the song- tap the plus sign on the right of the song and it will add it to the playlist. Make sure you are editing the playlist you want it added to. 
+
+A: All of those suggestions are great! Now if you have a Jailbroken Iphone you can download "SCALE" from Cydia. This will give you the option to add songs that you are currently playing directly to any of your new playlists. This also gives you the share to Facebook or Twitter so even better. 
+
+A: I've done something sort of like this. It doesn't add a track to a playlist—it adds metadata to a track, and you can have a smart playlist where tracks are selected based on that metadata. I then use a macro facility (Quicksilver) to assign a key command to that script.
+I've used the "Grouping" metadata field -- technically, this is supposed to be reserved for movements in classical music, but I couldn't find any tracks that actually use this field, so I felt OK about misusing it. If that bothers you, you could easily change this to use the "Comments" field.
+Here's the script. It's very simple.
+  tell application "iTunes"
+    try
+    -- change "keyword" below. Keep the quotes! 
+    if "keyword" is not in grouping of current track then
+        set x to grouping of current track
+        if x = "" then
+            set grouping of current track to "keyword"
+        else
+            set grouping of current track to x & ", keyword"
+        end if
+    end if
+    end try
+  end tell
+
+Open Applescript Editor, paste the above into a new script, and save it as a script file with whatever name you want to [username]/Library/iTunes/Scripts (if the Scripts folder doesn't already exist, create it). You can invoke it from the Scripts menu in iTunes once you've done that, or use some kind of macro software to create a keyboard command.
+Then create a Smart Playlist in iTunes where the criterion is "grouping contains [keyword]"
+
+A: You can add to any playlist while listening to music!  Go to the playlist you want to add to hit the edit button, then the plus sign.  This will bring up your library on your phone and you can choose whichever songs you want to add to it.  Of course Mac would have that, otherwise it defeats the purpose of the device.  

@@ -1,0 +1,86 @@
+Q: What is the best way to record an audio conversation made in Skype? I will be interviewing someone in a few weeks for a story, and we won't have the opportunity to meet in person. Therefore, the interview will be done on Skype or something along these lines.
+What's the best way to record both me and the person I'll be interviewing?
+
+A: I suggest you use Ecamm Call Recorder. It's a plugin for Skype that will record both sides of the conversation into separate tracks. If you need high quality audio, you could have your interviewee record their own audio locally with QuickTime and send you the audio file. We use a combination of these two to create the Ask Different Podcast - individual QuickTime recordings for quality, and a Skype recording that we use to sync up the conversation.
+
+A: This is a solution involving exclusively  free applications that I found in a great answer here. It involves Soundflower and Audacity. A great video on how - here. It seems that it's superior to the payed solutions, which I found discussed on the net, but which do not provide the same level of customization and complexity (especially, separate tracks and channels).
+I will replicate that solution here with some adjustments according to my system. I have tested this on Mavericks. For more details of the rationale behind this solution, see the links above.
+
+
+*
+
+*First, install Soundflower. Restart probably needed.
+
+
+(From the aforementioned source: 
+Why You Need Soundflower
+...you need a separate set of speakers and an additional mic so that Audacity can listen to the output from the speakers through the second mic. We’re assuming you don’t want to buy any additional hardware, and this is where SoundFlower comes in. Using SoundFlower, you will create a separate audio stream i.e. a virtual sound device that you can route the output audio to, and then have Audacity listen to it as if it were input from a second mic.)
+
+
+*
+
+*Install Audacity. Just copy the entire folder into Applications (or in a different location if you must).
+
+*Open Sound settings and modify like below:
+
+
+
+*
+
+*Go to Applications > Utilities > Audio MIDI Setup and from the Window menu, select ‘Show Audio Window’. What you have to do here is to reroute the audio to an output device (a virtual one) that Audacity can listen to and record from. From the plus sign at the bottom, select ‘Create Multi-Output Device’. Once created, select your output source (we were using our built-in speakers) and Soundflower (2ch).
+
+
+
+
+
+*
+
+*Next, click the plus sign again and select ‘Create Aggregate Device’. Here, select your input device.
+
+
+
+
+
+*
+
+*Go to Skype’s preferences and select this newly created ‘Multi-Output Device’ as the output device for ‘Speakers’. Your audio output from Skype will be routed to it 
+
+
+
+
+
+*
+
+*Start Audacity (relaunch if already running). Go to Preferences and make these changes: change device to 'Aggregate Device' and its channels to 3 or to 4, so that you will have one or (why not) two channels for your mic, and two for the other person’s audio.
+
+
+
+
+
+*
+
+*Start recording the Skype conversation. Use a test call first. (Then, use a real call but only for testing purposes. See if after several minutes distortions occur. If so, you may try a different sample rate in the Aggregate Device settings...)
+
+
+You will get a three-channel audio, that is, your voice and that of the other person will be separate tracks into separate channels. 
+
+It might be a good idea to save your project, thus having the conversation in the original format of Audacity, for future editing, if needed. But in order to save the conversation for use outside Audacity, you have to export it.
+
+By default, Audacity will try to downmix to mono all the tracks (make one track out of them). You might want to keep them separate: that is a big plus if, for example, you record an interview, which needs to be transcribed and therefore needs to be listened in detail. Your voice and that of the other person can be easily heard/edited/exported separately if they happen to superpose.
+So, go to Audacity's preferences and change to use custom mix for export
+
+You will be presented with options regarding the channels settings. You should probably leave them unchanged - see below; (or, if you really need to, you can put different tracks into one channel, or one track in multiple channels, or even increase the number of channels.)
+
+To see that you got the separate channels in the exported audio file, open it in Audacity. In case the voices are superposed and it's difficult to understand what a person says, you may hear the voices separately, if they are on separate channels, by listening to only one channel at once.  For this, select the 'Solo' option for that channel, and then play. 
+That's why it is better to leave each track in a separate channel - as they are by default if you use custom mix for export. (Then, you can also export only that channel or a part of it etc).
+
+
+IMPORTANT!
+The changes made to the Sound settings should be reverted when finishing. (The changes made to Skype are not that important, and the program will behave as before.) 
+If Sound output is set to Soundflower (as in the first image), you may be unable to hear anything when playing music in iTunes, for example, if Soundflower is not running, or if 'Built-in' option is not checked like below: 
+
+So, open Soundflower and set it accordingly if you need to use it, or, if you don't need it anymore, close it and change back the Sound output settings to the original: Internal speakers or Headphones - instead of Soundflower.  
+
+
+A: There are multiple ways to do this.
+You can records video and sound with Screenflow or you can record your audio on your Mac with software like Audacity or Apple's very own QuickTime player by using a jack connecting your audio output with your audio input.

@@ -1,0 +1,65 @@
+Q: Finder says I have 20GB free. Why does Bootcamp say I don't have 10GB free? I'm trying to partition my Macbook Air's SSD for dual-boot with Boot Camp (which I've done several times before)... however, it's not seeing 10GB free, yet I have 20.56GB free as per Finder, and Disk Utility sees 10.9GB unused space.  
+What's going on?  How can I force this to work?  Can I use disk utility and image to an external drive and restore?  Would vastly prefer an easier method of course
+
+A: You may be just reading the wrong figure in Disk Utility, have a look at the quote below from the apple discussion forums
+
+Disk Utility will show two different
+  "free" readings, depending on where
+  you look.
+Sounds odd, but they're for different
+  purposes. The larger figure, which the
+  Finder and other things will use, is
+  the total free space available.
+The second is the amount of free space
+  available for a new partition. It's
+  shown when you select the top line for
+  the drive, click the Partition tab,
+  then select a partition, the
+  "Available" amount may be smaller. 
+This is because partitions, unlike
+  folders, must occupy contiguous space
+  on a disk. The data on your OSX
+  partition is scattered over it, not
+  all nicely packed together. That's
+  normal, as you add, update, and delete
+  files, not every nook and cranny is
+  used again immediately.
+But whether there's 7 GB free or 18,
+  that probably isn't enough to be
+  adding a partition; it's probably too
+  little for OSX to operate well.
+  There's no "hard and fast" rule, but
+  you should always have at least 10 GB
+  or 10% of your OSX drive free; many
+  folks say 15% or more.
+You could back up your drive (on two
+  different HDs, to be safe), reformat
+  it to 2 parttions, then restore the
+  backup. But it's going to be very
+  tight, and you'll likely have
+  performance problems because of it.
+Try to delete anything you don't need,
+  and/or offload stuff you don't use
+  often and delete it.
+
+
+A: Boot camp wants 10GB of continous space, if there is even a little file somewhere cutting that 10gb it shows the error message.
+How I got around this issue:
+
+
+*
+
+*Open up disk utility and shrink your primary partition down by about 12 GB, in effect making 12 GBs of un-partitioned space. (WARNING: this might kill some data at the end of the disk but for me everything seemed to be ok)
+
+*Then I repartitioned the primary partition back to the full amount, in effect creating 12GB of contiguous empty space.
+
+*Run Boot Camp Assistant and no more "10 GB" error message!
+Alternatively I though about looking in to defragging the hard drive.
+
+A: Do you have TRIM enabled ??
+If not you can do it like this: http://osxdaily.com/2011/03/27/enable-trim-ssd-mac-os-x-10-6-7/
+
+A: See solution at http://datafilos.blogspot.cz/2012/04/boot-camp-assistant-error.html that helped me.
+
+A: 10.9 is perilously close to the 10GB required. I suggest you arrange things so you have 12GB reported free by Disk Utility and then try again. However, I'd be more concerned abot the reporting discrepancy.
+The fact you have Finder reporting a different amount of free space than Disk Utility tells me something is screwed up with your data. They should both report the same. I would think it worthwhile to backup your disk, reformat it and copy your data back, file by file. Better safe than sorry.

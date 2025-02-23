@@ -1,0 +1,30 @@
+Q: Can user accounts be managed via the command line? Is there any way to add, remove, or modify user accounts via the command line? I'm not talking about an account for a system process or daemon, I mean is there any way to add a user account, change, user real names, icons, FileVault protection, Admin/normal/limited user status, and basically do everything else that can be done in the System Preferences Users preference pane, but via some command line utility?
+
+A: Solution by @Infamy seems to be for 10.5.
+On OS X 10.6 each line needs to be changed to look like the following:
+sudo dscl localhost -create /Local/Default/Users/addusername
+
+That is, replace / by localhost, prepend /Local/Default to /Users and invoke the entire command with sudo.
+
+A: To create an account in the Users folder
+dscl / -create /Users/addfromcli
+
+Create and set the shell property to bash.
+dscl / -create /Users/addfromcli UserShell /bin/bash
+
+Create and set the user’s full name. (Displayed in some of the panels/login screen)
+dscl / -create /Users/addfromcli RealName "Added From Cli"
+
+Create and set the user’s ID. (this is the unique id, you need to find out what id your last user create was and add one)
+dscl / -create /Users/addfromcli UniqueID 503
+
+Create and set the user’s group ID property. (This can be your default group)
+dscl / -create /Users/addfromcli PrimaryGroupID 1000
+
+Create and set the user home directory.
+dscl / -create /Users/addfromcli NFSHomeDirectory /Local/Users/addfromcli
+
+Set the password. (dont use password as a password)
+dscl / -passwd /Users/addfromcli PASSWORD
+
+Some more details can be found on OS X Daily

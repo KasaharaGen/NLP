@@ -1,0 +1,17 @@
+Q: Macs on wireless network can't see eachother I've got an iMac and Macbook Pro, both running Snow Leopard and both on my home wireless network (running off a Linksys E2000). They both can get online fine, both have file sharing enabled, neither have a firewall enabled, and they both have IPs on the same subnet (192.168.1.144 & 146). Yet neither one can seem to see the other. If I open the network browser in Finder it's empty, attempts to go to the other machines IP directly fail after a long timeout, and even trying to ping the other machine fails. Yet, strangely, I've been able to get services like Synergy working just fine between them. Any ideas as to why these two machines are so inconsistent about talking to eachother?
+
+A: I have almost the same setup except that I have an E3000 but I'm not running Synergy.  My Macs can ping each other and share files.  I have IPV6 turned off.  You may have tried some of my suggestions but let see if any of them will help the cause.
+I have file sharing enabled on both Macs and I can see my other on-net mac in the Finder Sidebar under Shared.  My Sidebar Preference under Shared allows connected servers and Bonjour computers.  With these settings, can either Finder see the other Mac?  It's good to verify this on both machines as a control.  If you can see either machine, you should be able to double-click to log in.
+If not, please turn off Synergy then reboot each mac and see what comes up in Finder.
+Make sure your E2000 basic wireless is set to mixed.
+I did not use Cisco Connect opting to configure my E3000 manually and I'm not running WPS (WiFi Protected Setup).  If you are running WPS, temporarily disable it to rule it out as a potential cause.  On my E3000, I have configured any MAC access lists and access point isolation is disabled.
+Temporarily disable any security option under Wireless Security for both the 2.4G and the 5G settings.  
+Save router settings.
+Reboot each mac and see what comes up in Finder.  This will help us see if this is a Mac, Synergy or Cisco issue.
+
+A: Okay, this is really random and bizarre but after a second power-cycle of my router suddenly everything started talking again, good as new! I'm honestly pretty stumped by what happened here, and annoyed that this didn't resolve itself on the first power-cycle I tried, but all's well that ends well I guess.
+If anything I'm sorry that I didn't come out of this with better advice for people with the same problem down the road. Good luck, future network debuggers, 'cause I don't have any advice for you! :P
+
+A: I had similar issues with a Linksys E2000 router... the Macs on WiFi could ping the router, an iPad, Linux machines and various infrastructure but could not ping each other and could not be pinged from anything else. This was despite OSX Firewall being turned OFF.
+According to Wireless>>Advanced Wireless Settings the AP Isolation option was Disabled. Just for a laugh I Enabled it, Saved Settings, Disabled it again and Saved Settings. Lo and behold the Macs could ping each other and could be pinged by everything else.
+Hope this helps someone else.

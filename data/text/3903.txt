@@ -1,0 +1,72 @@
+Q: Git: command not found during Git installation (Mac OSX 10.6) I am trying to install Git on my Mac (OSX 10.6) following the official Git tutorial.
+I had no problem until I had to set my username and my email.
+Every time I tried I got -bash: git: command not found
+I tried echo 'export PATH=/usr/local/git/bin:$PATH' >> ~/.profile + restarted the Terminal. It still doesn't work.
+What do you think I should do to solve the problem?
+I've never used the OSX GIT installer before and don't really want to.
+Edit 1: the command issue is fixed
+Edit 2: the result of the command /usr/bin/grep PATH .* is
+.bash_history:echo 'export PATH=/usr/local/git/bin:$PATH' >> ~/.profile
+.bash_history:echo $PATH
+.bash_history:echo $PATH
+.bash_history:echo 'export PATH=/usr/local/git/bin:$PATH' >> ~/.profile
+.bash_history:echo $PATH
+.bash_history:echo 'export PATH=/usr/local/git/bin
+.bash_history::$PATH' >> ~/.profile
+.bash_history:echo 'export PATH=/usr/local/git/bin
+.bash_history:echo 'export PATH=/usr/local/git/bin
+.bash_history:echo 'export PATH=/usr/local/git/bin
+.bash_history::$PATH' >> ~/.profile
+.bash_history:echo 'export PATH=/usr/local/git/bin:$PATH' >> ~/.profile
+.bash_history:echo $PATH
+.bash_history:echo 'export PATH=/usr/local/git/bin:$PATH' >> ~/.profile
+.bash_history:echo $PATH
+.bash_history:echo $PATH
+.bash_history:echo $PATH
+.profile:export PATH=/usr/local/git/bin:$PATH
+.profile:export PATH=/usr/local/git/bin:$PATH
+.profile:export PATH=/usr/local/git/bin:$PATH
+.profile:export PATH=/usr/local/git/bin:$PATH
+.profile:export PATH=/usr/local/git/bin:$PATH
+.profile:export PATH=/usr/local/git/bin:$PATH
+
+
+A: Where did you install git to? Different install methods will put it in different places. Double check your install process. On my machine i have it in /usr/bin/
+You need to ensure your PATH contains the directory that the git lives in.
+You can either run locate git to search for it, you'll probably have to build your locate database if you haven't already.
+Of you can just try a few typical places
+/usr/bin/git --version
+
+Once you know where it is installed, can modify your PATH file by editing .profile or .bash_profile to add the appropriate value.
+
+A: This should get you going:
+We need to make sure the Terminal goes through the correct order of folders to discover your newer version of Git.
+$ echo "export PATH=/usr/local/git/bin:/usr/local/bin:/usr/local/sbin:$PATH" >> ~/.bash_profile
+
+Tell the Terminal to look at your bash_profile to get the updated order of folders (your "$PATH")
+$ source ~/.bash_profile
+
+Now let's check your Git version again
+$ git --version
+
+
+A: In the event that my following answer breaks your normal Terminal commands, as it did to me. I found another solution that works better.
+If you used my last post to set the PATH for Git, and you no longer have access to commands such as
+cd ls
+
+The first thing to do is run
+unset PATH
+
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+
+Then run
+touch ~/.bash_profile
+open ~/.bash_profile
+
+And add the following line to your .bash_profile file
+PATH=/usr/local/git/bin:$PATH
+
+Save the file and back in Terminal run
+source ~/.bash_profile
+
+To update the .bash_profile file inside the running Terminal session

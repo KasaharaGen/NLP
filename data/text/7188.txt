@@ -1,0 +1,50 @@
+Q: Quicksilver will not open on my Mac (OS 10.6). Can you help? I installed Quicksilver and due to some problems I have with the "shelf" feature I decided to uninstall it (using appCleaner). 
+When I tried to install it again the application wouldn't install the second time and it gave me this option
+
+"The previous version of Quicksilver was located in "Quicksilver 3".
+  Would you like to move this new version to that location?"
+
+I clicked "OK" and the QS logo came up but disappeared within seconds.
+There is no file on my computer with the word "quicksilver"
+Is there anything you can recommend I do?
+I am new to the Mac (got it only 2 day ago).
+
+A: Here is the excerpt from Quicksilver's User Manual that should deal with your problem (note the "~" denotes your user account home directory):
+The Quicksilver.app is usually in /Applications/ or ~/Applications/. When first used, the following per user files and folders are created:
+
+
+*
+
+*~/Library/Application Support/Quicksilver/
+
+*Actions.plist - list of installed actions
+
+*Catalog.plist - the configured catalog sources
+
+*Mnemonics.plist - learned inputs, defaults and abbreviations
+
+*PlugIns.plist - the list of available plug-ins and how they are configured
+
+*Triggers.plist - the configured triggers
+
+*Caches/ - another cache folder
+
+*Indexes/ - folder of indexed items
+
+*PlugIns/ - installed plug-ins
+
+*Shelves/ - where items on the Shelf and clipboards are stored
+
+*Actions/ - not installed but create this folder to add scripts that implement actions
+
+*Templates/ - not installed but create this folder to use with the Make New... action
+
+*~/Library/Preferences/com.blacktree.Quicksilver.plist - stores various preferences and internal state
+
+*~/Library/Caches/Quicksilver/ - stores various state in binary files
+
+
+To do a complete uninstall use the Uninstall Quicksilver button in the Application preferences, or remove the above files and folders.
+It can also be useful to move or rename these while trouble-shooting a problem. If you are having trouble installing plug-ins check that the owner of ~/Library/Application Support/Quicksilver/ is the current user and not System. If it’s not, change it and restart Quicksilver.
+
+A: Quicksilver is activated by a hotkey. That's why the logo appeared then disappeared. I believe the default shortcut is Option + Space

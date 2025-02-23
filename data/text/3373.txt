@@ -1,0 +1,8 @@
+Q: Copy static cell value in Numbers In numbers I have a table that contains some configuration values, I reference these in formulas but when I copy and paste the cells using the configuration values it breaks as it increments the cell position.
+How can I copy and paste the cells but maintain the reference to the configuration value?
+Thanks
+
+A: You need to use the $ char e.g. like this: =$D$3
+
+A: This works great. You can also simply use this statement: =$cell,cell#
+This will copy the value of the Cell/cellNumber to the highlighted cell of interest. Changing the value in one, will automatically reflect the changes in the other cell.

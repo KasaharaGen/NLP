@@ -1,0 +1,7 @@
+Q: Slow loading/transparent menu bar during startup Sometimes when I startup my Mac, I notice that the menu bar doesn't load fully. It remains completely transparent and doesn't have a title (or any menu options) for the current application. It doesn't even have the Apple logo on the top left side.
+Here's a picture of what it looks like:
+
+Any idea what causes this or how to fix it?
+
+A: This happens to me too sometimes. A guaranteed solution: Restart the menu bar. Here's how:
+Open Terminal (/Applications/Utilities). Type: killall SystemUIServer.killall restarts the following process, and SystemUIServer is the process in charge of the menu bar. Once you press enter, the menu bar will disappear and reappear. It should be working fine.

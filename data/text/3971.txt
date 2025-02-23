@@ -1,0 +1,21 @@
+Q: OS X: Read mbox formatted files in /var/mail (local mail) graphically I have a local development environment that is sending email to the mbox file at /var/mail/myusername.
+I can successfully view those emails with the command line mail program, but I'm looking for a way to read the emails graphically (they contain HTML).
+I've read the article at: http://hints.macworld.com/article.php?story=20040313194905606, but I've also read that this method does not work in Snow Leopard (10.6) because Mail.app no longer uses standard mbox files, but rather has it's own format based on sqlite.
+
+A: An easier approach would be to use the mutt command line client that will natively access /var/mail/[username] without having to take extra steps for conversions and forwarding.
+This is easy with MacPorts or homebrew (you probably want only one of these managers installed)
+sudo port install mutt
+brew install mutt
+
+
+A: You can convert the mbox format to a maildir format and use the hint in the article you mentioned. Or have the emails forwared to another email address.
+Some links that might help:
+
+
+*
+
+*Converting Mbox mailboxes to Maildir format
+
+*Forward emails
+
+A: Either forward your mail to your a GMail account, or install an IMAP server through Homebrew. Dovecot is a reliable, lightweight LDAP server which should work for this purpose.

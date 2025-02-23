@@ -1,0 +1,26 @@
+Q: What are the different types of System Services using Location in iOS 5? With the new iOS 5 comes new way of managing Location Services. This allows you not only manage which applications can use Location, but also which System Services are allowed to use it.
+There is total of 6 items on that list and I'd like to know a little bit more about what they are and how are they used:
+
+
+*
+
+*Cell Network Search - I am not quite sure how GPS can help with that?
+
+*Compass Calibration - I guess I can see how GPS can help with that.
+
+*Diagnostics & Usage - I guess your position is stored in diagnostic & usage reports?
+
+*Location-Based iAds - That goes off without a doubt
+
+*Setting Time Zone - There's already loud about it being overzealous and draining battery. I'm more than fine with it being off as so far my iPhone deals well with time zone adjustment from network time.
+
+*Traffic - This bugs me a lot. It does not affect traffic in Maps.app and seems to be used frequently, too. What for? Any ideas?
+
+
+A: *
+
+*Cell network search: when in presence of two or more network antennae, probably it register which one is better where (so it has to know where), in order to automatically connect to it the next time you''ll be in the same place.
+
+*Diagnostics & Usage: possibly related to the one above, about battery life draining with different antennae
+
+*Traffic: I guess this one is to collect data for a yet to be announced product (see the Apple Q&A regarding this.

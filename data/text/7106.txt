@@ -1,0 +1,29 @@
+Q: How to make Safari remember zoom level per site? Safari's default font size is not large enough for my eyes so I have to press ⌘++ for a while on every website I visit. I could've used CSS to set the default zoom level in Safari but I want different zoom levels for Twitter, Facebook, StackOverflow, etc.
+Is there an extension or other way available to make Safari remember per-site zoom level settings?
+
+A: Yes,
+There is an extension for this called ZoomBySite. Here is a description of the software from it's website:
+
+ZoomBySite is a Safari Extension that will automatically zoom each
+  site to the zoom level of your last visit to the site. A site is
+  defined by a unique domain name (so www.apple.com is considered
+  different from store.apple.com and each could have its own unique zoom
+  level).
+It does this by intercepting the Zoom In and Zoom Out keyboard
+  shortcuts [...]. It zooms the page in or out by
+  the desired amount (see the Preferences section below) and also stores
+  the zoom level for the site. As each page loads, it checks to see if
+  there is a stored zoom level and sets it again for the current
+  viewing. If you change the zoom level of a site, any other tabs or
+  windows that are open to that site will also change their zoom level.
+
+
+A: The Quickstyle Safari Extension has served this purpose well for me.
+In particular it allows changing only the font size or virtually any other very detailed change.
+Click the toolbar icon (or use the keyboard shortcut) and select the element on the page that you'd like to apply changes to (or any element) to bring up the editor pre-filled with a rule that will apply to whatever you selected.
+
+If you want to apply very generally simply rename the rule to body.
+If you'd like to double the font size you would enter:
+font-size: 200% !important;
+
+The site should re-render as soon as you've saved the rule.

@@ -1,0 +1,42 @@
+Q: iPhone 4 Battery Leaked if I Don't Charge to 100% Related question here. 
+I find out that when I charge my iPhone, if I don't charge it to 100% before I pull out the charger, sometimes the battery will leak out very fast. 
+The leak manifested in these ways:
+
+
+*
+
+*From the iPhone setting, I can see that the usage time since last full recharge is the same as the time now minus the time I pull out the charger. This means that the phone is effectively being in used right after I stop charging it, even though there is no one using it. 
+
+*The iPhone battery decreases at the rate of 10% per hour, much more higher than the normal idle decreasing rate.
+
+*If I restart my phone, the battery % will still remain the same. So this means that the battery loss is for real.
+
+*If I restart my phone, the leak stops. The battery now decreases at normal idle rate ( which is about 2-4% in 8 hours time)
+
+
+This problem is intermittent, and I can't reproduce it for sure but it happens from time to time.
+Any idea how to fix this?
+
+A: This sounds like it could be an issue with the your battery's fuel guage. Lithium Ion batteries have a problem with the meter that detects how much charge is left in your device. If you don't full cycle the phone every 30 days, the meter will get worse and worse.
+Full cycling involves:
+
+
+*
+
+*Charge the phone to 100%
+
+*Do not charge your phone again until all the battery is depleted (i.e. until the phone dies on it's own).
+
+
+This is recommended both by Apple:
+
+Be sure to go through at least one charge cycle per month (charging the battery to 100% and then completely running it down).
+
+... and by Battery University:
+
+Batteries with fuel gauge (laptops) should be calibrated by applying a deliberate full discharge once every 30 charges. Running the pack down in the equipment does this. If ignored, the fuel gauge will become increasingly less accurate and in some cases cut off the device prematurely. 
+
+
+A: Sine the problem doesn't persist after booting the phone, it points to one of your apps being the problem.
+I'd imagine something that's using your location all the time or using heavy WiFi connection etc.
+A list of your apps when this problem occurs would be helpfull.

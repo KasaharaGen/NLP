@@ -1,0 +1,36 @@
+Q: How Do You Change The Default Genre Artwork in iTunes? If you look at the album art for "Alternative Rock" and "Electronica," iTunes automatically puts up default album artwork and for specific cases, like "Acoustic Rock," it uses the album art of the music artist.
+How can I change the album artwork to something I want then? 
+For example, I would change the default album artwork for "Alternative Rock" to an image different from "Alternative" music, etc.
+
+
+A: Doing it manually:
+You can also place your genre image in /Applications/iTunes.app/Contents/Resources (shift+cmd+G and paste this path to open it directly) and add your genre in genres.plist file. Use TextEdit or your favourite Editor of that kind (I use TextWrangler).
+Copy and paste an existing list object like this one:
+<dict>
+    <key>matchString</key><string>blues</string>
+    <key>resourceFile</key><string>genre-blues.jpg</string>
+</dict>
+
+Then modify it so it contains your new genre and image like this one:
+<dict>
+    <key>matchString</key><string>Psychedelic Rock</string>
+    <key>resourceFile</key><string>genre-psychedelic.jpg</string>
+</dict>
+
+It's best if you copy the existing .plist file to your desktop, edit it and then put the new version back into the source folder and type in your password since it won't let you save your file directly into the folder (no rights in that folder for applications, only Finder via admin rights)
+I hope this helps. (I know about the detailed version over at O'Reilly, this is basically the same in short)
+
+A: Here are a couple solutions for you:
+A GUI Tool for Changing Genre Art
+iTunes Genre Art Manager
+From the website:
+
+The number of genres recognized by iTunes and receiving an appropriate
+  genre artwork is limited though. Here the iTunes Genre Art Manager
+  comes into play. It allows you to add images to genres for which
+  iTunes does not bring its own art. Also you can modify existing genre
+  artwork to your preference.
+
+
+The Manual Process for Changing Genre Art Images
+Jochen Wolters wrote a detailed article on how to manually change the genre art in iTunes over at O'Reilly. There is also a Flickr group with alternate genre images if you don't want to go to the work of creating your own.

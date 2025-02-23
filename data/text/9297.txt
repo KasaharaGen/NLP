@@ -1,0 +1,39 @@
+Q: What is the best way to consolidate two iPhoto libraries into one library? On the family's iMac my wife and daughter have separate user accounts, each with their own iPhoto library. My wife has asked me to consolidate both libraries into a single library for convenience.
+What is the best way to do this? Can it be done with the existing software and utilities that come with Snow Leopard or is there a 3rd party utility that facilitates the process?
+Thanks in advance.
+
+A: There's a third party application named iPhoto Library Manager which seems to have a good reputation for merging, splitting and generally managing your iPhoto Library:
+
+(source: fatcatsoftware.com)
+
+A: If you have Aperture 3.3, you can merge multiple iPhoto libraries as shown in this Apple KB:
+
+  
+*
+  
+*Open Aperture 3.3 or later.
+  
+*Click the File menu and choose Switch to Library > Other/New. Use the library selector to choose one of the iPhoto libraries you'd like
+  to merge.
+  
+*Choose File > Import > Library
+  
+*Select one of the remaining iPhoto libraries you wish to merge.
+  
+*Repeat steps 3-4 for each additional iPhoto library you wish to merge.
+  
+  
+  The library you started with in step 2 above includes content from all
+  the merged libraries. The other libraries are still present (and
+  useable) on your computer. Once you have confirmed that the unified
+  library is working correctly, you may wish to remove the other
+  libraries from your hard drive. It is a good idea to back up all your
+  libraries before doing so.
+
+
+A: Do you care about albums?  If not its easy to merge all the photos from multiple libraries.  Let me repeat that, following this method will not preserve the albums from one of your libraries.  Ok, lets go.
+Determine which library will be your primary library, this lucky library WILL be able to preserve its albums.  (In your case, probably your wife's library, your daughter will just have to recreate her albums)
+If you have an external drive:  Copy this primary library onto the external HDD, Get Info on the external and enable Ignore Permissions on the drive.  Reference:  http://support.apple.com/kb/HT1198
+If you don't have an external drive: Make copies of both iPhoto libraries in the  /Users/Shared/ folder.  Use chmod or finder to change permissions for all users to read and write to these libraries and apply to contents. i.e.  sudo chmod -R 777 Example_iPhotoLib
+Open your primary library with iPhoto.  Find the secondary library in Finder, right click and chose "Show Package Contents".  Look for a folder called 'Masters', or possibly 'Originals' depending on your version of iPhoto.  Drag this folder onto the open iPhoto window and all photos should start to import, thereby merging and duplicating all photos from the secondary library into your primary library.  
+Clean up by deleting unnecessary or duplicate iPhoto libraries.  Always have a backup.

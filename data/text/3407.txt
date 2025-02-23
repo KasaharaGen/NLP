@@ -1,0 +1,7 @@
+Q: How do I add a user to Print Administrator group but not full administrator? He unplugged the printer and plugged it back in. OS X (10.6) asked for the print administrator password. I would like to add the user to that group but not the full administrators group. How do I do that?
+This is for a stand-alone home Mac. By stand-alone I mean not part of a corporate login or administration.
+
+A: Run this Terminal command (as an administrator), replacing "usersaccountname" with the user's actual account name:
+sudo dseditgroup -o edit -n /Local/Default -a usersaccountname -t user _lpadmin
+
+When it prompts you, enter your password (it won't echo).  That user should now be able to administer printers.

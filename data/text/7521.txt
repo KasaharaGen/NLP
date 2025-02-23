@@ -1,0 +1,10 @@
+Q: After updating oh-my-zsh prompt is weird on startup I have been using the default installation of oh-my-zsh (robbyrussell theme) without issues. I just did a 'git pull' and now on startup I see a weird prompt. As soon as I press any key the prompt becomes normal and I can use the terminal without any issues.
+I assume something in the startup script got damaged or changed when I updated or possibly the prompt config?
+Here is the contents of the theme file:
+PROMPT='%{$fg_bold[red]%}<E2><9E><9C> %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %    {$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}<E2><9C><97>%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+

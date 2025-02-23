@@ -1,0 +1,45 @@
+Q: How do I mount a sparsebundle to a folder rather than an image? I have a encrypted sparsebundle and I want to mount to to a folder in my home directory and not under /Volumes. How can I do that?
+
+A: You might also be interested in http://blog.marc-seeger.de/2011/02/06/encrypted-diskimages-in-osx/ which explains step by step how to set up auto-mount to the specified mount point:
+
+
+*
+
+*run mount to identify the disk device (/dev/diskNsN usually)
+
+*run diskutil info /dev/diskNsn | grep UUID to get the UUID
+
+*use sudo vifs to add a line to /etc/fstab
+UUID=whatever-you-noted-before /path/to/mountpoint hfs rw 1 0
+
+
+*Add your disk image to your login items to have it automatically mounted on /path/to/mountpoint at the next login
+
+A: hdiutil attach /Volumes/ATimeMachine/Pictures/iPhoto\ Library.sparsebundle -mountpoint ~/iPho
+
+If this command is successful you should see something like:
+/dev/disk3              Apple_partition_scheme          
+/dev/disk3s1            Apple_partition_map             
+/dev/disk3s2            Apple_Driver43                  
+/dev/disk3s3            Apple_Driver43                  
+/dev/disk3s4            Apple_Driver_ATA                
+/dev/disk3s5            Apple_Driver_ATA                
+/dev/disk3s6            Apple_FWDriver                  
+/dev/disk3s7            Apple_Driver_IOKit              
+/dev/disk3s8            Apple_Patches                   
+/dev/disk3s9            Apple_HFS                       /Users/me/iPho
+
+where iPhoto Library.sparsebundle is on a DroboFS (NAS) and is a 500G "hard disk" image formatted MacOS HFS journaled
+Running the hdiutil command mounts the image under my home directory. I tired to mount it on top of the original iPhoto Library, but the original was still visible in there after mounting, so I changed the name of the mount point to iPho instead. Then I decided it didn't really matter where the mount point was, it would be fine under /Volumes as long as iPhoto.app knows where it is.
+Option click iPhoto.app to launch it with a prompt to create a new library, and I did that in the mounted disk image. Then import all photos (previously managed with Picasa under a ~/Pictures directory tree) on my hard drive into iPhoto, which copies them into the mounted image, which resides on the NAS where it has some fault tolerance because of the DroboFS. This also frees up half the space on my small 500G SSD drive in the MacBook Air.
+
+A: The hdiutil command-line utility gives you more flexibility, and is extensively documented in man hdiutil. Something like this should do:
+hdiutil attach -mountpoint ~/myMountPoint mySparsebundle.dmg
+
+
+A: Just wanted to point out the -mountroot option:
+hdiutil attach -mountroot ~ path/to/image.sparsebundle
+
+In this case, it would be mounted to ~/image.
+Also note that with the -mountroot option, if ~/image already exists, it would automatically append the mountpoint and instead mount the volume to, for example, ~/image\ 2.
+A word of caution: be sure you do not confuse the -mountroot option with with the -mountpoint option. This would cause the volume to be mounted in place of your home directory!

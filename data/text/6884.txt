@@ -1,0 +1,69 @@
+Q: Source .profile and .bashrc on ssh login without tty How do I make sure ssh sources .profile and .bashrc on login without tty?
+I have a Mac (10.6.8) that I'm using for various UNIX-y tasks like hosting git repositories.  I have remote login enabled via the System Preferences "Sharing" pane.  When I ssh into the machine, bash sources ~/.profile, which I have set up to source my ~/.bashrc file and set up my MacPorts path.  The problem is that when I run ssh without a tty, like this:
+ssh myhost echo \$PATH
+
+Or run a git command that essentially uses ssh in the same way:
+git clone ssh://myhost/~/code/myrepo.git
+
+My ~/.profile file is never sourced, so my $PATH variable is missing /opt/local (where MacPorts has installed git).  I am aware that:
+
+
+*
+
+*I can configure git on my local machine to use /opt/local/bin/git-* on my remote machine
+
+*I wouldn't have this problem if I was forcing a tty with ssh -t
+But I don't want to do either of those.  I want my remote machine to source my ~/.profile file regardless of whether or not I'm logging in w/ a tty.
+How do I make that dream a reality?
+Also: I checked the behavior on a couple Linux machines (Debian and Fedora), and both systems seem to source the ~/.bashrc file on login regardless of whether it is a tty.  I was under the impression that BSD and Linux both use the same OpenSSH and bash implementations, so it seems like the difference in behavior might come from differences in /etc config files?
+
+A: Here's a method to have bash source .bashrc on non-interactive sessions so that you don't have to hard code environment variables in multiple places:
+
+
+*
+
+*Set PermitUserEnvironment to yes in /etc/sshd_config (man sshd)
+
+*Set BASH_ENV to ~/.bashrc in ~/.ssh/environment (man bash)
+
+*Add this line to the top of your ~/.bashrc, which sources /etc/profile for non-interactive sessions:
+
+
+This essentially duplicates the interactive login environment for non-interactive logins, without having to hard code environment values (e.g., $PATH) in multiple places.
+if [[ ! $- == *i* ]]; then
+        . /etc/profile
+fi
+
+Step 3. is needed only if you have the Macports path(s) set in /etc/paths like I do. But if you're setting those paths (e.g., /opt/local/bin) in ~/.bashrc, then I suppose you wouldn't need Step 3. 
+For your situation, you should be able to change ~/.bashrc to ~/.profile. 
+I have ~/.bash_profile source ~/.bashrc, and I do not use ~/.profile. With this configuration (and the above changes), bash environment variables (e.g., $PATH) should look identical for interactive login, interactive non-login, and non-interactive sessions.
+
+A: Bash has special provisions in its source code to source ~/.bashrc when it's invoked by rshd or sshd. It's a compilation option, which given your experience seems not to be turned on under OSX.
+If you're logging in with a key, you can (ab)use the command= option in the ~/.ssh/authorized_keys file.
+A key with a command option is good only for running the specified command; but the command in the authorized_keys file runs with the environment variable SSH_ORIGINAL_COMMAND set to the command the user specified (empty for interactive sessions). So you can use something like this in ~/.ssh/authorized_keys (of course, it won't apply if you don't use this key to authenticate):
+command=". ~/.profile;
+         if [ -n \"$SSH_ORIGINAL_COMMAND\" ]; then
+           eval \"$SSH_ORIGINAL_COMMAND\";
+         else exec \"$SHELL\"; fi" ssh-rsa …
+
+Note that I put line breaks above for legibility, but this actually needs to be all on one line.
+How can I set environment variables for a remote rsync process? may have other helpful suggestions.
+
+A: this was very annoying.
+uncomment this line in config-top.h and rebuild:
+/* Define this if you want bash to try to check whether it's being run by
+sshd and source the .bashrc if so (like the rshd behavior).  This checks
+for the presence of SSH_CLIENT or SSH2_CLIENT in the initial environment,
+which can be fooled under certain not-uncommon circumstances. */
+define SSH_SOURCE_BASHRC
+according the CHANGES in the source this behavior was changed in bash-2.05a-rc1.  but the current man page still claims the previous behavior:
+   Bash attempts to determine when it is being run with its standard input
+   connected  to a a network connection, as if by the remote shell daemon,
+   usually rshd, or the secure shell daemon sshd.  If bash  determines  it
+   is  being  run  in  this  fashion,  it reads and executes commands from
+   ~/.bashrc, if that file exists and is readable.  It will not do this if
+   invoked as sh.  The --norc option may be used to inhibit this behavior,
+   and the --rcfile option may be used to force another file to  be  read,
+   but  rshd  does  not  generally  invoke the shell with those options or
+   allow them to be specified.
+

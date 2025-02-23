@@ -1,0 +1,23 @@
+Q: Writing a Mail.app rule to say "do not download from server" I have a POP based mail account from my ISP.
+What I need is a way to say "If the Subject contains XXX then do not download it from the server".
+This was simple in Windows Mail, but there doesn't appear to be this rule action in mail.app
+Any ideas?
+(I guess something to say, leave it on the server, and delete it from my inbox" might also be appropriate).
+EDIT: Is there really no alternative solution to this? Even with a mail plugin?
+Perhaps I should rephrase:
+I need a way to not leave certain messages on the POP server.
+
+A: Mail.app rules cannot run on mail they do not have.  That is to say- a rule cannot be applied to a message that doesn't exist.  Mail.app must download the email in order to parse it in order to run the rule against it. It’s up to the mail server to limit what it sends to the client in this case.
+Now, that said.  If you're dealing with a POP server situation where Mail.app is configured to not delete anything from the server - it should still delete messages you explicitly delete.
+Get into your Mail.app prefs, accounts.  Select the account in question, and go to the Mailbox Behaviours tab.  Check the 'Move deleted messages to the Trash mailbox' checkbox.  Now when you delete something, it'll go to the trash.  Yipee.  I prefer never to have Mail.app delete something itself so mine is set to "never", but you could set it to automatically empty the trash at whatever interval you like.
+Now - if you set up your rule, whatever emails are downloaded onto your computer and match the rule will be deleted right away.  Or at least moved to the trash and deleted at your next interval.
+I think when you talk about your PC experience you're talking about Outlook + Exchange, which has a unique feature where you can have the rules actually live on the exchange server and are executed there, rather than on your local computer.  Is this supported by Mail.app on a Mac?  No, not that I know of.
+
+A: Your could set up mail to delete messages on the server when you move them from the official inbox. 
+Then make a rule to move all messages except XYZ to a new folder called MyInbox. 
+Use that as your real inbox. It is ugly and you lose all the normal nice things about an inbox. 
+Long term, you need a second account like gmail to cull and forward the messages meant for you if you need your primary inbox to work like one rather than use a folder as your inbox. 
+
+A: A lengthy way to circumvent the problem you have (i.e. messages for different persons in the same inbox, that you want to split up): 
+=> use an other mailbox (e.g. gmail, fastmail, ...) that fetches your mail from the POP3 mailserver, and forwards to an other specific address based on the subject. For example, you create a gmail account for yourself, wich fetches from your current mailbox. Email for your relatives are forwarded to their (newly create) gmail addresses.
+Using gmail or fastmail, you can still pretend to send mail from the old address (i.e. people will not know about your setup), as you can configure alternative 'from:' addresses.

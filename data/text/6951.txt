@@ -1,0 +1,40 @@
+Q: How can I remove unwanted apps, such as Chess or Address Book, from my Mac? There are a lot of applications that I have no use for that take up space on my Mac that I want to delete. 
+When ever I try to delete them it says that it is an essential part of the OS but with Chess.app, I find that reason specious at best.
+
+A: Everyone knows the damage that comes with the use of sudo. However, it will help out for this situation.
+
+
+*
+
+*Open your terminal and go to the Applications directory.
+$ cd /Applications
+
+
+*To view your currently installed apps
+$ ls
+
+
+*Locate the application desired to be deleted
+>>>WITH CAUTION<<<
+$ sudo rm -rf application.name
+
+This will force to recursively remove application.name directory and all sub directories. Again, this operation is permanent and cannot be undone. If you are unsure of the application that you are removing then you probably shouldn't.
+
+A: While experimenting a bit further, I think that I may have solved the problem without using Terminal, which I have no experience with.
+I selected the unwanted application, got information on it, unlocked the Sharing and Permissions, and changed every listed user name to be able to read and write. I then closed the "Get Info" window and selected the application again and control-clicked it and chose the "Move to Trash" command.
+This successfully moved the chosen application to the Trash where I was able to delete it without getting the window saying that the application was necessary to the operating system. I was not able to do this by only changing the permissions for my user account. It was necessary to change all of the user account permissions.
+
+A: Select the application you would like to remove and Get Info on it, either Command + i or from the Menu File>Get Info.
+At the bottom of the resulting window, in the Sharing & Permissions section, change the "everyone" setting to "Read & Write". You will probably have to click the lock in the lower right corner first and authenticate as an administrator.
+Once the setting is change, close the Get Info window.
+You should be able to move the application to the Trash without any trouble.
+
+A: The games don't take up that much space and if you don't bother trying to delete the applications now, you may save yourself the time in working out how to delete these 'unwanted' apps and also saved the time required to fix your installation later. 
+Plus, I wouldn't be surprised if during a later software update Mac OS tries to reinstall some of these applications. Then you may have to delete them all over again.
+
+A: I would recommend NOT deleting any apps native to the OS.  Deleting these apps now may seem harmless, but you  never know when that will bite you down the road.  Software update and other update look for those during the update process, and trying to put such apps back can get complicated.
+Go to the Apple site and try to find with app to download.  The only place you will find them is in the OS installation package.
+You are better off by far doing the Monolingual thing, and using an external drive for data storage, if your data is that large.
+It's false economy to skimp on drive space.  You will pay dearly in the end, somewhere down the road.
+
+A: That warning is there for a reason for that warning, I wouldn't suggest deleting those apps since they don't take up much space anyway... if your really tight on space try an app like Monolingual which can delete unused languages and incompatible binaries (duplicates of programs made to run on older Macs). The 2 combined will save you several gb off your lion hard disk

@@ -1,0 +1,59 @@
+Q: How do I eject the Time Machine backup drive automatically after each backup? How do I set Time Machine to eject my external Time Machine backup drive automatically after each backup?
+
+A: There might be a better way, but one solution might be to Applescript it.  I haven't yet found any way to run an applescript after a backup, but you could:
+
+
+*
+
+*Turn off automatic TM backup
+
+*Set up an applescript to run TM
+
+*
+
+*Some googling turned up this line to force an immediate TM build: do shell script "/System/Library/CoreServices/backupd.bundle/Contents/Resources/backupd-helper >/dev/null 2>&1 &"
+
+
+*Add a line to eject the disk afterwards.
+
+*
+
+*eject disk somedrivename
+If you want this to happen on a regular basis, you could attach it to a cron job.
+
+A: Haven't tried this, but it looks like it might work:
+Jettison (Mac App Store link) 
+Ejects external drives when going to sleep and remounts them waking from sleep.
+
+A: ~/bin/timemachine:
+#!/bin/bash
+
+d="Time Machine"  # (change this to match the name of your backup drive)
+diskutil mount "$d" && tmutil startbackup -b && diskutil eject "$d"
+
+~/Library/LaunchAgents/timemachine_eject.plist:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN http://www.apple.com/DTDs/PropertyList-1.0.dtd>
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>timemachine_eject</string>
+    <key>Program</key>
+    <string>/Users/username/bin/timemachine</string> <!-- Replace "username" with your username. "~/bin/timemachine" doesn't work -->
+    <key>StartInterval</key>
+    <integer>120</integer> <!-- run every two minutes for testing. -->
+        <!-- Change this to a higher number like 43200 (run every 12 hours) once you've confirmed it works. -->
+</dict>
+</plist>
+
+Make the script executable, unload the default plist, and load the new one:
+chmod +x ~/bin/timemachine
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.backupd-auto.plist
+launchctl load ~/Library/LaunchAgents/timemachine_eject.plist
+
+Any time you want to make changes to the plist file, you have to unload and load it:
+launchctl unload ~/Library/LaunchAgents/timemachine_eject.plist
+launchctl load ~/Library/LaunchAgents/timemachine_eject.plist
+
+
+A: No longer available on app store, available here instad: https://www.stclairsoft.com/Jettison/ or via brew cask install jettison. Well worth the $5 after the trial expires. 

@@ -1,0 +1,18 @@
+Q: How can I automatically log out the guest account after a period of inactivity? As part of a kiosk system, I have set up a Guest account on a Mac OS X Snow Leopard computer. This account is cleared every time someone logs off the computer. However, plenty of people don't. Is there any way that I can automatically log out this guest account after a period of inactivity?
+I tried using the security preferences pane, but that just causes the confirm logout dialog to show up.
+I have hacked around the /System/Library/User Templates/ folder, so I can set the screensaver, desktop background, &c. If something like ScriptSaver can solve my problem, I will gladly use it.
+
+A: Maybe you could consider using SleepWatcher instead of the Security.prefPane; it´s a unix utility you could use to force a logout (or anything else via AppleScript) after a certain period of inactivity.
+
+A: You can use a commercial product called Power Manager to log out a user after a period of inactivity.
+Power Manager will warn the user before starting the log out. During log out any open applications will be quit; applications attempting to block log out will be force quit after a short delay.
+
+Disclosure: I work for the company who make Power Manager.
+
+A: Haven't tried this with a aGuest account, but no reason it shouldn't work there.
+In 
+
+System Preferences > Security > General
+
+is a checkbox labeled "Log out after XX minutes of inactivity"
+Here set your desired minute amount and let it do the magic!

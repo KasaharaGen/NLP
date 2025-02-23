@@ -1,0 +1,21 @@
+Q: VNC Vinagre to OS X Lion I've got a Linux Ubuntu 10.10 machine running Vinagre (VNC client) and I can't seem to be able to connect to my spanking new Mac mini on Lion.  All I get on the Vinagre side is a blank screen.
+
+A: Vinagre doesn't seem to work very well when trying to connect to OS X. I have been trying to connect to Snow Leopard now to no avail. It keeps requesting that I supply a username which it shouldn't
+I found that tigerVNC worked fine (it does not ask for a username), its not the most up to date application, but at least it connects. Hope this helps.
+
+A: VNC Vinagre needs an update to cope with the Lion changes.
+You could:
+
+
+*
+
+*use another client that works well with the Lion
+
+*use another VNC server on Lion and not use the system server
+
+
+We're still looking to nail down the changes that Lion made, but it's clear the new VNC server doesn't work well with a handful of existing clients that worked before an upgrade to Lion.
+Are the changes to Lion's screen sharing documented anywhere publicly?
+
+A: Some things that can help VNC clients with Lion.  1) Log out of the destination machine, 2) ensure you have set a separate VNC password in system preferences, and unstick any "enforce protocol 3.3" options on your client.
+Changed to the server side component that allow you to log in with an entirely different session and use a virtual display rather than simply control or view the current display mean that most if not all VNC clients require updates to be fully compatible with the new features in Lion.

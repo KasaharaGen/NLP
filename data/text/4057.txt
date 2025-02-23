@@ -1,0 +1,54 @@
+Q: What happens at the user/OS level when an SSD finally wears out? I have been reading up on SSD technology current as of 2011 and don't know of any first hand reports on what happens when an SSD eventually fails due to over use. I am most interested in the SSD that apple includes as a factory option - but aftermarket information is certainly welcome. 
+If there are no overt signs of aging and wear, might it be possible to measure how much extra storage space remains to cover for failures and wear leveling? (assuming the SSD controller will pool memory and avoid bad/overused blocks before failure)
+I am somewhat familiar with failure modes of hard drive storage but looking for similarities or differences between HDD and SSD. For example, the OS can detect (presumably using fsck and journaling) problems writing new data reliably to a HDD and warns you the drive is now mounted in read only mode. Tools like Drive Genius allow all sorts of testing specific to HDD but I'm unaware of tools that dig into SSD for whatever data may be available.
+Rather than guessing or predicting how long an SSD will last, are there objective measures we can take to document how storage is aging and check in on wear leveling statistics to measure what happens when SSD are close to the end of their useful lives?
+
+A: 
+"Does it just get slower and slower
+  running garbage collection more and
+  more often trying to find a place to
+  store data as the flash storage system
+  degrades?"
+
+^^ This is what I've seen on two occasions (Aftermarkets tho, possibly the same in Apple drives).
+They didn't entirely stop working because I eventually replaced them, since things become like a Windows XP after three years of use and no maintenance.
+Another SSD I remember failing did it probably from day three, when it failed to mount on a few occasions. Then it failed to mount again later the same day until it eventually never mounted again. It was under warranty and I replaced it. 
+The SSDs I still have (non Apple) don't show signs of shrink, probably because the space you lose is not a lot compared to the size of the drive. I'm guessing that would be the case. 
+Although drives tend to live 2-3 years (SSDs), I'd say be prepared for a -possible- change after 1 year.
+
+A: My aftermarket Intel SSD had a bad sector, which was reported by Disk Utility.  From my understanding, the SSD will get slower and eventually have more bad sectors, which will be noticed if you do a Disk Utility scan.
+Warnings because of SMART-data reporting more disk errors than acceptable aren't build into the OS, as far as I know. Disk Utility does show SMART errors, but not in much detail. Tools like SMARTReporter will give you warnings when your SSD is degrading.
+
+A: After 4 years of abusing all manner of Apple selected SSD, I can conclusively say that the drives I have used are more reliable than HDD and have exhibited none of the potential drawbacks or cost associated with HDD failure modes in practice.
+For the first few computers I purchased, I did pay for AppleCare for several reasons.
+
+
+*
+
+*I had decent discounts on it
+
+*I figured I would probably push the SSD harder than the average user and I was happy placing the risk and responsibility on Apple to repair my Mac should I choose to use it too much.
+
+*I wasn't confident that third party SSD repair parts would be viable
+
+
+The last two years, I have not gotten AppleCare and still am very happy with SSD. My macs run the following programs routinely and exercise the storage to the 80% full level:
+
+
+*
+
+*iTunes match and now music constantly adds offline songs and removes them as I fill up the drive
+
+*I use local snapshots for Time Machine which also keeps all manner of file around until I reach a low storage point and backup files get purged programmatically by the OS
+
+*Splunk - ingesting and storing system logs from multiple macs - this tool is high IO
+
+*LAMP/MEAN stack running pretty much constantly
+
+*Xcode - moderate use
+
+*Virtual Machines - moderate use
+
+
+I haven't yet had a failure, so my results are that the SSD are over engineered and other components will fail before the drive. Of course some people will see failures, but that those are both rare and less than the HDD failures people had to deal with in the past.
+My advice would be to not place any extra thought on SSD durability for OS X/Mac hardware and just size your computer for your storage size needs and your speed requirements. If you get AppleCare and 3 years of Apple backing the drive, great. If you don't and then have to pay for a repair or pay for a third party SSD replacement, great too.

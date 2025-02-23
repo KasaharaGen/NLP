@@ -1,0 +1,18 @@
+Q: How do I deactivate the dialog that appears when you hold a number key pressed? 
+Possible Duplicate:
+How to turn off the iOS-style character picker menu 
+
+When I am writing and I hold number pressed, as when you write the number 9999999999, a dialog appears. 
+It ask me wether I want to write 9ª or 9º. I want none of them, I just want to write the number. 
+This is very annoying, how can I deactivate this behaviour altogether?
+
+A: You need re-enable key repeat for this context menu to go away. It'll affect character keys as well as number keys.
+
+
+*
+
+*Open Terminal.app
+
+*Enter the following to turn this context menu feature off and reenable the old key repeat behaviour: defaults write -g ApplePressAndHoldEnabled -bool false
+And you're done. Holding down any key now should repeat that key in the text entry window instead of calling up that context menu to select alternate characters.
+To turn the context menu feature back on enter: defaults write -g ApplePressAndHoldEnabled -bool true instead.

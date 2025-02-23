@@ -1,0 +1,158 @@
+Q: Can I copy by highlighting and paste by middle click on Mac OS X? I was using Linux for the last couple of years and I find it extremely useful to copy text by highlighting it as well as to paste by clicking a middle mouse button.
+I'm using a Mac now and I wonder if I can achieve such behaviour on Mac OS X.
+
+A: Create the following Automator service:
+
+Assign it a keystroke, like ⌘⌥shiftcontrol] (something unlikely to conflict with anything). Then, use BetterTouchTool to assign that keystroke to the middle mouse button.
+The middle shell script comes from this fine answer. The first shell script copies the selection to the clipboard, the middle script clicks the mouse at its current location, and the AppleScript sends a ⌘V to paste the contents of the clipboard
+
+A: I wrote a free little C program that does something similar to Gilligan's answer. Whenever you drag-highlight or double-click text, it copies to the clipboard buffer. Then you can middle-mouse-click in any window to paste it. It is called "macpaste" and on Github (https://github.com/lodestone/macpaste). It works globally for every program I use that has textual data.
+In iTerm2, disable their middle-click in Preferences, otherwise you'll get double pastes.
+
+A: After highlighting text in the Terminal, I can middle-click to paste it back into the Terminal without using the copy/paste keyboard shortcuts. This does not seem to work when the text comes from other applications ie. I can't copy text from TextEdit and then paste into Terminal with a middle-click. I am running Lion and I did not have configure anything to get this default behavior. I'm not sure about other versions of OS X.
+
+A: You can try BetterTouchTool. You can assign custom trackpad, mouse, and keyboard events to trigger specific actions on a global or application-specific basis.
+Here's my configuration to bind a three-finger tap to ⌘V (as this is the global paste shortcut. Alternatively you can select from dozens of other trackpad and mouse gestures to emulate the paste command.
+
+
+A: The macOS terminal can do copy/paste with two separate buffers:
+
+
+*
+
+*The copy/paste buffer which is shared with all other applications. It can be accessed by CommandC/CommandV.
+
+*A separate copy/past buffer which is shared only between (macOS) terminals. It can be filled (copy) by dragging over the text by mouse, double clicking, or ShiftCommand double-clicking for file names (no CommandV). The content of this buffer is pasted by the middle mouse button, by ShiftCommandV, or by Command + two-finger-click.
+
+
+A: I don't think there is a way in general but some programs will accept the middle button as paste 
+e.g.
+
+
+*
+
+*Aquamacs - an OSX configured emacs
+
+*iTerm2 - a replacement for Terminal
+For newer mice/trackballs clicking the scroll wheel acts as a third button
+
+A: I tried the Automator script suggested by Daniel. It did NOT work for me on OS X 10.10.
+I was able to make BetterTouchTool (v 1.15), alone, work for some applications. Like this:
+
+I did Left Mouse twice for several reasons. The first one usually only changes the focus to the new window, but does not position the cursor. Also, clicking in a text box usually selects all of the text, which is then deleted when something is pasted there. I usually want the original text to stay.
+Gilligan
+
+A: Select Text to be copied, then Drag and Drop your selection (White Plus sign in red circle will be displayed with the cursor). This will copy-paste the text.
+You can Drag and Drop inside Terminal or between apps.
+
+A: I would like to add that, if the problem is, as it was with me, that you couldn't get stuff that was highlit in an X-Quartz window onto the clipboard, the secret to that is to highlight, then XQuartz menu-> Edit -> Copy.  That way, it is available for paste in every ordinary Mac OS app.
+
+A: In majority of terminals you can drag and drop the highlighted text or alternatively you can use:
+ Shift + ⌘ + v 
+It will act like in Linux pressing middle-mouse button ( is a copy and paste together)
+
+A: The following Karabiner Complex Modification maps the middle mouse button to ⌘V and shift middle mouse button to ⇧⌘V:
+{
+  "title": "Edit-related mappings",
+  "rules": [
+    {
+      "description": "MouseButton3 to Cmd+v: Paste",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button3",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button1"
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "command"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Shift+MouseButton3 to Shift+Cmd+v: Pasteboard",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button3",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button1"
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "shift",
+                "command"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+The following maps the left mouse button to perform ⌘C after selection:
+    {
+      "description": "MouseButton1 to Cmd+c: Copy",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button1",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to_if_alone": [
+            {
+              "pointing_button": "button1",
+              "halt": true
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "pointing_button": "button1"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "command"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+
+Behavior of using this rule is a bit delayed. With the default Karabiner settings, you'll have to wait a little bit after starting a selection and moving the mouse. Changing some Karabiner settings may help with this but may have other consequences (I've set to_if_alone_timeout_milliseconds to 200 and to_if_held_down_threshold_milliseconds to 200).
+

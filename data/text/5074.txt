@@ -1,0 +1,26 @@
+Q: Mac OS: Some apps (mostly java) are very slow at first loading System: Macbook Pro Duo 2.4Ghz, 4GB, Snow Leopard
+I first encountered this problem when running eclipse. When I first run it after every reboot or waking up, it painfully takes > 7 min to load. The same actually happens the second time or even third time I load it anew on the same session. Next times, however, loads rather fast. 
+When already loaded, eclipse seems to go just fine, but when running (very simple) Java programs, the JVM virtual machine typically loads also slowly.
+Suspecting the problem was with Java, I tested running simply java without any parameter whatsoever (that is, it prints the help) after a reboot, and it takes also minutes. Following runs go well.
+As for other Java programs, the game Minecraft loads relatively fast but then the game goes quite slow.
+So I could think that the problem is with Java but, however, I'm experimenting a similar problem when uncompressing zipped files, using both the Archiver program that comes with Snow Leopard and with TheUnarchiver (they are not Java!). The first time I want to uncompress a file, even if small, it takes ages, then second times for the same file or other files which may be much larger runs very fast.
+And these first painful loads happen every time I reboot or I wake up the laptop!
+Do you see any reason for these problems? Things I've already checked:
+
+
+*
+
+*Give enough cache size to Java (through Java Preferences I give it 1GB in hard disk)
+
+*Deactivate backups
+
+*Checked off secure virtual memory
+
+*Parallel working load is negligible. I have 2GB free at all times. 
+
+
+Thanks a lot.
+
+A: I found the problem. The antivirus Sophos was running constantly (InterCheck process) including for zipped files (that is, jar files too). Being off, everything works fine.
+
+A: Have you tried unzipping the files after a very long delay, even without rebooting (very long like days or weeks)? You'll probably have the same delays. This is normal. Check your disk usage in Activity Monitor while you launch Eclipse, as I suspect the time taken is Eclipse, java, and all associated libraries being read off the disk. The only way to speed that up the first time is to get an SSD.

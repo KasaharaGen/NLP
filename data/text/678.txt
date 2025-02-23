@@ -1,0 +1,39 @@
+Q: Is there any way to set a MacBook Pro to not sleep when you close the lid? The most common use case I have for this is when I'm playing music over AirTunes, but don't want an open laptop laying around.   Or when I'm syncing or downloading something.
+This isn't the same as this question, which related to sleep vs. hibernation; I'm looking for a way to make it stay active with the lid closed.
+
+A: The caffeinate command line utility (built in, at least in Mavericks and Yosemite) does just this. "man caffeinate" for more
+
+A: You can use InsomniaX. It sits in your menu bar, and upon activating it, your laptop won't sleep if you close it.
+
+A: I'd gladly comment on the question, but stackexchange "rep" policies do not allow me to comment. Therefore I drafted this "answer". Please bear with me! This answer aims to prevent you from going into the wrong direction.
+If you open a terminal console and enter pmset -g pslog, you see what happens when you close the lid:
+
+mc-dondon:~ dondon$ pmset -g pslog
+Logging IORegisterForSystemPower sleep/wake messages
+pmset is in logging mode now. Hit ctrl-c to exit.
+16.11.13 01:28:57 MEZ    
+Currently drawing from 'AC Power'
+ -InternalBattery-0 55%; charging; (no estimate)
+
+16.11.13 01:29:02 MEZ    IORegisterForSystemPower: ...Sleeping...
+
+If you google, you'll find a lot of pages which claim that pmset would do the trick. However, with respect to your question, pmset does not do the trick - at least not for me.
+Neither "sudo pmset noidle" nor the often suggested "sudo pmset -a lidwake 0" will prevent the system to go to sleep when the lid is closed.
+
+A: There's also the macosx-nosleep-extension alternative to insomniaX.
+
+A: Without using any third-party software, Apple says you need to have an external keyboard, mouse, or trackpad (USB or bluetooth) to prevent the computer from going to sleep (Lion), or to awaken it from sleep (Snow Leopard and earlier), after the lid is closed.
+It turns out that you can apparently connect any external USB device to wake it back up from sleep. I do this with a MacBook Pro that I use with Synergy so that I can use the keyboard and mouse on my Linux workstation to control my MacBook Pro with an external monitor and the lid closed. I just plug in my USB flash drive after I close the lid to wake the MacBook Pro and then I can start using it in clamshell mode with no external keyboard or mouse connected to the MacBook Pro.
+
+A: Connect an external mouse or keyboard. Close the lid, then hit a key on the keyboard or click the mouse. This wakes the laptop from sleep even if the lid is closed. 
+
+A: I use Nosleep on My macbook pro. It sits in your menu bar and then you can double click it and once it turns blue, the laptop stays active when you put the lid down with the screen and backlight turning off.
+
+A: This is a bit hacky but doesn't require any 3rd party software.
+Opening a screen sharing session will prevent the target Mac from sleeping, even when the lid is closed and it's running on battery power.  I'm referring to the built-in macOS screen sharing feature you can enable in Preferences -> Sharing.  Once enabled, just open the "Screen Sharing" app on another Mac, findable via Spotlight, to connect and force the other computer awake.
+
+As long as the screen sharing session is open the target Mac won't sleep.  I can even use this trick to wake up a sleeping Mac, that's on battery with lid closed, assuming it's still listening on wifi in some lower power mode.
+
+A: This isn't a perfect solution IMO, but it's the closest I've found without installing a third party program.
+You can completely disable sleep using sudo pmset disablesleep 1. However, after doing this you can't even manually issue the Sleep command from the Apple menu. Sleep mode becomes completely disabled.
+To allow sleep once more, use sudo pmset disablesleep 0.

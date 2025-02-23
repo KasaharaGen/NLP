@@ -1,0 +1,63 @@
+Q: Dual boot Linux and Lion on FileVault 2 disk I have Mac OS X Lion installed on FileVault partition. On the same disk I've installed GNU/Linux. When I boot my MacBook I can only boot Lion.
+How to boot Linux?
+In case you need here is more details about my setup.
+MacBook Pro 13" (8,1) - MC724LL/A (2.7 GHz)
+Partition setup:
+/dev/disk0
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *160.0 GB   disk0
+   1:                        EFI                         209.7 MB   disk0s1
+   2:          Apple_CoreStorage                         139.5 GB   disk0s2
+   3:                  Apple_HFS Recovery HD             650.0 MB   disk0s3
+   4:                 Linux Swap                         509.6 MB   disk0s4
+   5:       Microsoft Basic Data                         18.5 GB    disk0s5
+/dev/disk1
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:                  Apple_HFS SSD                    *139.1 GB   disk1
+/dev/disk2
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *1.0 TB     disk2
+   1:                        EFI                         209.7 MB   disk2s1
+   2:          Apple_CoreStorage                         999.9 GB   disk2s2
+   3:                 Apple_Boot Boot OS X               134.2 MB   disk2s3
+/dev/disk3
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:                  Apple_HFS HDD                    *999.7 GB   disk3
+
+Microsoft Basic Data is in fact Linux Ext4 root partition, no idea why on diskutil listing looks like that.
+
+A: Installing rEFInd and following the included instructions does work for me using OS X 10.8 with FileVault2 and Debian GNU/Linux using grub-efi.
+In short: Use a protective MBR and install rEFInd to the efi system partition (esp) (use rEFInd's install.sh --esp). Rename the refind folder on the esp to BOOT and rename the efi file aswell to allow faster loading of rEFInd.
+In Debian mount the esp, create a subdirectory debian in /efi/EFI, load the efivars kernel module and install grub-efi.
+Make sure you read also the general instruction on that page regarding installation.
+
+A: *
+
+*First solution: In order to boot a Linux-Partition, download and install rEFIt: http://refit.sourceforge.net/ 
+You should sync the partition tables afterwards.
+
+*Second solution: Hold ⌥ while booting. Then choose Macintosh HD or Windows (=Linux in your case)
+
+
+A: According to a blog post, I got refit to work with my filevault 2 encrypted macbook:
+
+  
+*
+  
+*Download rEFIt ( version 0.14 at this time ) on the official rEFIt website
+  
+*Open the .dmg file, but don’t run the bundled installer
+  
+*In the following steps, we’re going to mount the hidden EFI partition, copy and activate rEFIt:
+  
+
+    $ sudo mkdir -p /efi
+    $ sudo mount -t msdos /dev/disk0s1 /efi
+    $ cp -r /Volumes/rEFIt/efi/* /efi/EFI
+    $ sudo bless --mount /efi --setBoot --file /efi/efi/refit/refit.efi --labelfile /efi/efi/refit/refit.vollabel
+
+
+Note that the /efi/EFI folder already contains the Apple bootloader. If I where you, I wouldn’t remove it :-p
+Note that rEFIt takes 25 second to show up.
+
+That should allow you to select your linux boot partition

@@ -1,0 +1,199 @@
+Q: What directory comparison tools can I use on OS X? I am looking for a tool that is able to compare directories, not only files. Also it is important to be able to call the tool from the command line.
+It would be great to have a free tool, but feel free to suggest commercial tools that fit the need.
+
+A: I recently purchased a copy of Kaleidoscope (approx $40 US).  It's a clean app.
+vimdiff is also available via the commandline and is portable across most UNIXy domains.
+
+A: The diff tool that comes with Bare Bones Software's Text Wrangler has directory comparison, although it only shows which files are in both directories, and which are only in each of the directories. When you select a file that's in both you can edit by merging changes line by line with the click of a button. It doesn't let you move files though. You have to do this externally (eg via Finder).
+I find it to be one of the better free options.
+
+A: If you are using Visual Studio Code, you can use the Compare Folders extension on the marketplace.
+You open up a folder/project in Visual Studio Code, then select the two folders for compare. Right click and choose the new extension menu item.
+It will bring up a new tab where it has differences in common files, a list of the files that are only in the first folder, and a list of files that are only in the second folder. It will use the built-in diff tool from Visual Studio Code.
+
+A: Diffmerge should meet all your requirements.
+
+A: Changes app ($37.19) used to be my workforce for this. It's as good as Beyond Compare.
+Note: I hope this QA is allowed to exist, though it's against at least SO norms to pitch for products. The need for a usable, intuitive, graphic directory comparison tool for macOS remains acute. Open source candidates have not reached the level of usability that the commercial tools provide.
+
+A: If you know how to run Python, here is a script that I wrote some time ago to efficiently compare two directories.
+Features:
+
+*
+
+*it can compare tree structures and file changes (based on file size & MD5 hashes)
+
+*can turn off file comparison, showing only tree structure changes (very fast!)
+
+*can turn off file content comparison, relying only on file size changes (again, very fast)
+
+*can colorize the output for better readability.
+
+And, naturally, can modify according to your needs, if you know how to program.
+#!/usr/bin/env python3
+
+'''
+A script to recursively compare two directories (including file size and file hash changes)
+Usage: python3 compare_dirs.py DIR1 DIR2
+'''
+
+import os, sys, hashlib
+
+COMPARE_FILES = True            # should file sizes be compared if their names are the same?
+MD5 = True                      # should file hash sums be compared if their names and sizes are the same?
+COLORIZE = False                # colorization for bash (only Linux & Unix)
+
+def md5sum(fn):
+    hasher = hashlib.md5()
+    with open(fn, 'rb') as f:
+        hasher.update(f.read())
+        return hasher.hexdigest()
+
+WHITE, RED, GREEN = 15, 196, 46
+fg = lambda text, color: "\33[38;5;" + str(color) + "m" + text + "\33[0m"
+
+def compare_dirs(d1: "old directory name", d2: "new directory name"):
+    def print_local(a, msg):
+        text = '{} {} {}'.format('DIR ' if a[2] else 'FILE', a[1], msg)
+        if COLORIZE:
+            color = {'added': GREEN, 'removed': RED}.get(msg, WHITE)
+            print(fg(text, color))
+        else:
+            print(text)
+    # Ensure validity
+    for d in [d1,d2]:
+        if not os.path.isdir(d):
+            raise ValueError("not a directory: " + d)
+    # Get relative path
+    l1 = [(fn, os.path.join(d1, fn)) for fn in os.listdir(d1)]
+    l2 = [(fn, os.path.join(d2, fn)) for fn in os.listdir(d2)]
+    # Determine type: directory or file?
+    l1 = sorted([(fn, pth, os.path.isdir(pth)) for fn, pth in l1])
+    l2 = sorted([(fn, pth, os.path.isdir(pth)) for fn, pth in l2])
+    i1 = i2 = 0
+    cnt = 0
+    common_dirs = []
+    while i1<len(l1) and i2<len(l2):
+        if l1[i1][0] == l2[i2][0]:      # same name
+            if l1[i1][2] == l2[i2][2]:  # same type
+                if l1[i1][2]:           
+                    # Pair of directories -> remember the name for recursion
+                    common_dirs.append((l1[i1][1], l2[i2][1]))
+                elif COMPARE_FILES:
+                    # Pair of files -> compare their sizes
+                    size1 = os.stat(l1[i1][1]).st_size
+                    size2 = os.stat(l2[i2][1]).st_size
+                    if size1!=size2:
+                        print_local(l1[i1],'size changed: {:d} -> {:d}'.format(size1, size2))
+                    elif MD5:
+                        # Sizes are the same -> compare MD5 hashes
+                        if md5sum(l1[i1][1])!=md5sum(l2[i2][1]):
+                            print_local(l1[i1],'hash changed')
+            else:
+                print_local(l1[i1],'type changed')
+            i1 += 1
+            i2 += 1
+        elif l1[i1][0]<l2[i2][0]:
+            print_local(l1[i1],'removed')
+            i1 += 1
+        elif l1[i1][0]>l2[i2][0]:
+            print_local(l2[i2],'added')
+            i2 += 1
+        cnt += 1
+    while i1<len(l1):
+        print_local(l1[i1],'removed')
+        i1 += 1
+        cnt += 1
+    while i2<len(l2):
+        print_local(l2[i2],'added')
+        i2 += 1
+        cnt += 1
+    # Compare subfolders recursively
+    for sdir1,sdir2 in common_dirs:
+        cnt += compare_dirs(sdir1, sdir2)
+    return cnt
+
+if __name__=='__main__':
+    print ('Comparing files {}abled'.format('en' if COMPARE_FILES else 'dis'))
+    print ('MD5 checking {}abled'.format('en' if MD5 else 'dis'))
+    print ('Colorization {}abled'.format('en' if COLORIZE else 'dis'))
+    print (compare_dirs(sys.argv[1], sys.argv[2]), 'items compared')
+
+Link to GitHub Gist.
+NOTE: it will not work for the files or subdirectories which were moved to the iCloud.
+
+A: FreeFileSync, an open-source, cross-platform app (Wikipedia page here), seems to do it.
+You can run syncs from the command line or in batch, but it looks like folder comparison results are intended to be viewed in the GUI.
+Does a good job of comparing files across folders, and has settings for integrating with file diff tools.
+
+
+A: For all the googlers... check out Beyond Compare it rules. Costs 30$ or 50$ for Pro version.
+
+A: Another neat tool to achieve this is rsync, as described on Unix & Linux StackExchange.  To compare two folders you can do:
+rsync -avun $SOURCE $TARGET
+
+And if you are concerned about corrupt files / bit rot there is also the -c option to compare file checksums. This takes much more time of course as all files are checked in detail.
+rsync -avnc $SOURCE $TARGET
+
+
+A: FileMerge (free), shipped with Xcode, offers a directory view.
+A command line version is available through the Terminal application opendiff.
+Here's how you can compare two directories with FileMerge:
+
+
+*
+
+*⌘+space, type in "FileMerge" and open it.
+
+*Click the "left" button and choose the folder you would like to move items FROM. (The "old" folder)
+
+*Click the "right" button and choose the folder you would like to move items TO. ("new" folder) and click "Compare" button
+
+*In the right panel, choose to exclude: "identical" and "Changed right". This way you will only see files which are missing in the "new" folder and ignore files your may have added in the "new" folder.
+
+*Move files manually in Finder or let FileMerge do it, by choosing an option in the "Merge" dropdown in the right panel.
+
+
+A: You should try the powerful open-source software meld. The Mac version can be found at Meld for OSX. It supports both directory and file comparison and works great under Mac.
+I was told to improve this answer and explain why meld is good. Generally speaking, Meld is a full feature comparison software mainly used in GNOME. It is better than a lot of software listed here because 
+
+
+*
+
+*it is free and open source. So you do not need to worry about the fee or security
+
+*if not more powerful, it is as sophisticated as a lot of software which asks you a lot of money 
+
+*it is user-friendly and does not involve complex configuration or typing command in the terminal. You should be able to use it immediately once you install it.
+
+
+The part that it is not as good might be that it is developed under GTK. So sometimes it does not feel like nature MAC programs. Besides, the old MAC versions were a little buggy. But the latest one 3.19.2 that I am currently using works great and I have never met an issue.
+
+A: Built-in utility for macOS and Linux
+If you don't mind using the terminal, the diff command can compare directories.
+This utility is also available in most Linux distributions.
+diff -rq directory1/ directory2/
+
+-r indicates recurse through subdirectories, and -q gives brief output (i.e. don't show the actual diffs, just note what files/dirs are different).
+Other useful options are:
+-s report identical files,
+-i ignore case in file contents,
+--ignore-file-name-case ignore case when comparing file names.
+If you want to avoid warnings (mostly usefulness warnings) about differences in the .DS_Store files, then use:
+diff -rq directory1/ directory2/ | grep -v .DS_Store
+
+
+A: I use Folder Sync
+It costs $8.99 on the Mac App Store
+It works really nicely.
+
+A: As it’s now free on MacOS (with paid upgrade for more features), I found that BBedit also does an interestingly usefull directory (and file) comparisons while merging.
+
+A: I have been comparing large folder structures (DVDs) in the past and I had developed a command-line utility to do this.
+I have recently made the utility (CrcCheckCopy) free and cross-platform (MacOS and Windows).
+CrcCheckCopy scans the source folder and creates a file containing the CRC stamps of all files. Then, this file is used to compare the target folder.
+You can get it from here: https://www.starmessagesoftware.com/crccheckcopy
+Your feedback you be much appreciated.
+
+A: Easiest solution: Sync the files using Dropbox or similar, then just use WinMerge on Windows.
+The FileMerge utility that ships with Xcode doesn't compare folders and doesn't do merge/editing.

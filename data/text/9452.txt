@@ -1,0 +1,32 @@
+Q: How to enable USB tethering on your Android phone to Mac OS X Lion I want to tether an unlimited data plan on a Nexus S (with Android 2.3.6) via USB cable to a MacBook Air (with OS X Lion).  Both on Windows and Ubuntu, it works like a charm, so I'm wondering if there's something I can do it OSX to make it work.
+
+
+*
+
+*The articles I read imply that given Apple's restrictions, it's imposible and OSX only supports tethering an iPhone via USB.
+
+*On Android Enthusiasts, I found a a couple of solutions: 
+
+
+*
+
+*one tethering from Froyo and 
+
+*one tethering on a Snow Leopard, 
+
+
+
+but they all rely on third party Android apps. Is there any hack to make OSX work with it out of the box?
+
+A: There is a native RNDIS driver for Mac OS X that allows you to use your Android phone's native USB tethering mode to get Internet access, it is called HoRNDIS:
+http://joshuawise.com/horndis
+It is known to work with Mac OS X versions 10.6.8 (Snow Leopard) through 10.8.2 (Mountain Lion).
+HoRNDIS is also available in source form on GitHub,  it is licensed under the GNU General Purpose License, version 3:
+http://github.com/jwise/HoRNDIS
+
+A: The following app has a very detailed setup guide that you need to follow carefully to make usb tethering work on Android.
+I've tested this with my own Nexus S (2.3.6) and Lion 10.7.2. It works great!
+Also, no root access is needed.
+You really have to give credit to the developers. They went as far as to write drivers for Mac OS to get this work!
+https://market.android.com/details?id=com.mstream.easytether_beta&hl=en
+

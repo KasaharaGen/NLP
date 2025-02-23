@@ -1,0 +1,76 @@
+Q: Adding movie-style sound effects to the Terminal I want to have movie style sound effects in the terminal. You know, when every keystroke and line emits a cool little beep. (Something like this.) I've used KeyClick, but that's only for keyboard typing. I also want effects when characters are read across the screen, etc. 
+I know this is superflous as hell. And I'll probably get annoyed by it within five minutes. But it will be a glorious five minutes. 
+
+A: Fun question :)
+I'm not sure how you would get sound effects for everything but you could do something like this to get sound effects for a few things:
+1) Open open your .profile (or .bashrc or wherever you like to keep your customizations) by opening a terminal window and typing:
+open .profile
+
+2) Add the following few lines to the bottom of the file:
+function top() { afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/accessibility/Sticky\ Keys\ ON.aif; command top;}
+function ls() { command ls; afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/accessibility/Slow\ Keys\,\ Key\ Registered.aif; }
+
+3) Try typing 'ls' for a directory listing or 'top' to see the list of running processes & you'll get to hear the results of these commands.
+By adding these two lines we are declaring two new functions with the same names as existing bash commands. We override the command itself so that we can play a bit of audio and then run the command itself (or vice versa as shown the 'top' example).
+The audio files I am currently using are default audio files (at least on Lion) that are used for accessibility features. I chose these so that you could cut-paste, and see the trick in action but you could use any audio file in place of these.
+Here's a site with a bunch of sci-fi sound effects you could use in place of these ones I'm borrowing from the OS:
+http://fxhome.com/sounds/
+
+A: Not sure about the keystroke bit... but you could have it print the output of a terminal command like in the movies, i.e. each line is printed character by character and plays a little beep for each one. It looks cool initially and then gets really annoying. Would be fun to have a terminal that you could switch this on and off. Obviously pretty limited but could be a fun project to develop.
+from subprocess import PIPE, Popen
+import os
+
+from time import *
+import sys
+from playsound import playsound
+
+def print_immediately(string):
+    sys.stdout.write(string)
+    sys.stdout.flush()
+
+def backspace():
+    print('\r', end='')
+
+def printline(x, silent=False):
+    n = len(x)
+    for i in range(n):
+        print_immediately(x[:(i+1)])
+        if not silent:
+            beep()
+        sleep(0.01)
+        backspace()
+    sys.stdout.write('\n')
+    sys.stdout.flush()
+
+def printlines(x, silent=False):
+    result = str(x.decode("utf-8"))
+    lines = str.split(result, "\n")
+    for line in lines:
+        printline(line, silent=False)
+
+def beep():
+    playsound('/Users/Blah/Projects/console/beep.wav', block=False)
+
+def cmdline(command):
+    process = Popen(
+        args=command,
+        stdout=PIPE,
+        shell=True
+    )
+    return process.communicate()[0]
+
+while True:
+    command = input("user: ")
+    if(command == 'exit'):
+        break
+    else:
+        try:
+            if command.find("cd ") != -1:
+                dir = command.replace("cd ", "")
+                os.chdir(os.path.expanduser(dir))
+                print(dir)
+            else:
+                printlines(cmdline(command))
+        except:
+           print("Error!")
+

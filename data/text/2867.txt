@@ -1,0 +1,15 @@
+Q: Why is there a duplicate entry for my TextMate? I was changing the default program to open .txt files with and I noticed 2 entries for TextMate. Its one of those little things that annoy me. How can I fix it? I didn't see 2 directors of TextMate.app in /Applications.!
+
+
+A: Mac OS X automatically keeps a database of all applications and their corresponding file-types called the LaunchServices database. You can examine where both of your TextMate executables are located by opening Terminal.app from /Applications/Utilities and entering:
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump |  /Applications/TextMate.app/Contents/Resources/mate
+
+This will open a long file full of all Applications that your LaunchService DB "knows" on your Mac in TextMate. Examine this file for the "path:" of your duplicate entires of "TextMate". 
+It´s quite likely that you´ve already removed the second "TextMate" but your LaunchServices still remembers it. I guess you should tell the Datatbase to rebuild by entering:
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user
+
+into the Terminal and then restarting your computer. This may lead to your Mac forgetting some custom "open with.." assignments though.
+
+A: Or, it could mean that you have two different versions of TextMate installed. Try searching for textmate in spotlight and see how many applications it finds. Throw the old one in the trash and you should be good to go.
+I get the same thing with Numbers as I still have the '09 and '10 versions installed... :)
+Piko

@@ -1,0 +1,66 @@
+Q: Why don't my arrow keys work in vim under iTerm? They work just fine if I use Terminal and start a vim session, but under iTerm I have to resort to using H-J-K-L to do left-up-down-right movement.
+In both Terminal and iTerm TERM=xterm-color. My .vimrc is quite lean and there are no key bindings set in there that would causing this problem.
+iTerm v0.10.
+
+A: The following worked for me.
+In iTerm2:
+
+
+*
+
+*Profiles -> Open Profiles...
+
+*Edit Profiles...
+
+*Keys tab
+
+*From Load Preset... drop-down, pick Terminal.app compatibility
+
+
+A: Try the following:
+
+
+*
+
+*From the Bookmarks menu item, select Manage Bookmarks....
+
+*Choose the Default bookmark and click the edit icon.
+
+*Change the Keyboard setting to Global.
+
+
+A: This is how I fixed:
+nnoremap <silent> <ESC>^[A <Nop>
+nnoremap <silent> <ESC>^[B <Nop>
+nnoremap <silent> <ESC>^[D <Nop>
+nnoremap <silent> <ESC>^[C <Nop>
+
+Note: 
+The "^[" characters must not be typed, instead you get them by doing: ⌃-V and pressing the corresponding cursor arrow position (up,down,left,right). 
+Tested with: iTerm2 (Build 1.0.0.20140629)
+
+A: I was able to get this sorted out with iTerm2 Build 3.0.15 and the following excerpt from my .vimrc:
+" Map alternate key combination for Esc.
+noremap <c-[> <Esc>
+" Map arrow keys for nomal mode.
+nnoremap <silent> <Esc><Up>A <Nop>
+nnoremap <silent> <Esc><Down>B <Nop>
+nnoremap <silent> <Esc><Right>C <Nop>
+nnoremap <silent> <Esc><Left>D <Nop>
+
+HTH.
+
+A: The fastest (and probably best) way to solve this is to switch iterm profile keymapping to "Natural editing" preset.
+
+*
+
+*Go to preferences
+
+*Go to profiles
+
+*Go to keys
+
+*Go to keymappings
+
+*From preset dropdown select natural editing preset
+

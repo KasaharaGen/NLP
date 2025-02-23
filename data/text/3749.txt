@@ -1,0 +1,5 @@
+Q: Is there a way to search for locked files in the finder? The title pretty much says it all. Using the File Inspector I can see if a given file is locked or not, but I would like to be able to create a smart folder containing all the files in a given folder that are not locked.
+(I need this as a convenience to quickly find the files I have checked out for editing on another machine which I am accessing through a shared folder)
+
+A: http://developer.apple.com/library/mac/#documentation/Carbon/Reference/MetadataAttributesRef/Reference/CommonAttrs.html Goes over all the attributes spotlight has, and it looks like you could possibly create a smart folder with any of these attributes, unfortunately none of them mention locked file status.
+ls -lO | grep uchg will give you a list of all the files in a folder which are locked or unchangeable, but only in the terminal.

@@ -1,0 +1,43 @@
+Q: What are the storage locations of the various types of Automator workflows The purpose of this question is to create a reference for the various default storage locations where Automator stores the files it creates and saves. 
+I've found a few from searching, but have yet to see a quick reference listing the possible storage locations for all the Automator workflow types. On OS X 10.6.8 with Automator 2.1.1 they are:
+
+
+*
+
+*Workflow
+
+*Application
+
+*Service
+
+*Folder Action
+
+*Print Plugin
+
+*iCal Alarm
+
+*Image Capture Plugin
+
+
+Can anyone provide a list? (If you have lists for other OS/Automator versions, that would be a nice addition to the reference as well.)
+
+A: Tested this on 10.7.1, Automator 2.2.
+
+
+*
+
+*Workflow - for me this defaults to ~/Documents, but these can be saved anywhere you like.
+
+*Application - same as above. When saving a workflow/application for the first time, it even lets you change the type in the save dialog.
+
+*Services - ~/Library/Services
+
+*Folder Action - The actual workflow is saved in ~/Library/Workflows/Applications/Folder Actions. When creating the folder action, it asks for a folder to 'attach' to in the dropdown at the top. The actions will apply to the folder you choose here. 
+
+*Print Plugin - ~/Library/PDF Services
+
+*iCal Alarm - ~/Library/Workflows/Applications/iCal
+
+*Image Capture Plugin - ~/Library/Workflows/Applications/Image Capture
+Easy way to find this out in case you forget - after creating/saving one of the types that doesn't prompt you right away for a save location, right click the proxy icon in the title bar to see the path:
+

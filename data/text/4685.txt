@@ -1,0 +1,101 @@
+Q: Free .CSV text file editor for Mac OS X? I am looking for a free editor to edit comma-delimited text files, or .csv format. 
+
+A: Google Docs
+I just used Google Docs for exactly this purpose but all I needed to do was extract a column of email addresses from a CSV file.
+Note: Google Docs has file size limits, so this is not a silver bullet. A great bullet, but those limitations are critical when applied.  
+
+A: LibreOffice
+LibreOffice does quite a good job now and is compatible even with OS X 10.9
+
+A: Numbers
+Disclaimer: Free on new Macs
+Apple Numbers also opens and saves to CSV.  Just had to add to the list.
+
+Numbers:
+
+Save as CSV after editing:
+
+Note that you can choose text encoding as well when exporting if needed for other systems.
+
+A: DB Browser for SQLite
+Not an obvious candidate but very powerful (and free).
+Steps
+
+
+*
+
+*Create an empty Database
+
+*Import Table form CSV file 
+
+
+
+
+
+*With various import options
+
+
+
+
+
+*Edit, search, plot the data
+
+
+
+
+
+*Export your edits as (new) CSV file
+
+
+
+
+A: NeoOffice
+The latest version of NeoOffice works fine (in that it supports Versions etc) but you need to donate a small amount of money to download it before the end of August 2011.
+
+A: csveditor (Java)
+Very simple (no undo), java program (some may stop reading here ;) - does the job  
+You have to create an empty table upon launch but then you can open any file.  
+Screenshot:
+
+
+A: OpenRefine
+When interacting with large and messy text csv and other structured text files, I now typically go to Google Refine (now called OpenRefine). I've used it for TSV/CSV, JSON, and XML documents. In my experience it crashes rarely, and is pretty good for mangling data (you can apply transformations with scripting languages).
+Its approach is more database-oriented, rather than spreadsheet oriented.
+
+A: Free Microsoft Office Online
+What better product than Excel is there to open and manipulate CSV files?
+
+With this option, you don't need to install anything.  It has the convenience of Google Docs but the guaranteed compatibility of MS Office.
+
+A: Table Tool
+Free and Open Source (MIT License).
+Table Tool opens CSV files. It auto-detects character encoding and record separator (comma/semicolon/tab), and supports basic editing operations (like add row, delete row, add column delete column etc).
+Table Tool can convert files to a different format.
+Table Tool is also available on the Mac App Store.
+
+A: RStudio
+RStudio wraps a really nice IDE-like environment around the popular, open source R language. The R language "is an integrated suite of software facilities for data manipulation, calculation and graphical display."1 It includes facilities for importing and exporting CSV data from its built-in data store so you can work on it with its powerful toolkit and then export it back out to CSV.
+It's free (as in beer and speech) for use with paid options available if you need someone to yell at when things aren't working quite right.
+
+
+A: VS Code
+Free
+Using an extension such as Simple CSV Editor
+From the project:
+
+Simple CSV Editor
+Simple CSV Editor is just simple editor. Nothing much to say about it. It's much more readable thank plain text csv file. IMO very useful if you have a lot of text in your csv - if you you it as dictionary.
+How to run
+Use command palette ( shift + ctrl + p / ctrl + p and then type '>' ) and find Simple CSV Editor. Press enter ;)
+
+
+
+
+A: XTabulator
+XTabulator edits CSV but is not free.
+
+XTabulator is a tabular data file editor for Mac OS X. With XTabulator, you can edit, manipulate, massage, slice, and dice comma-separated (CSV), tab-separated (TAB), or anything-separated files quickly and easily.
+
+
+A: Apache Open Office
+Free. Reads, writes, creates CSV, Excel, Word and an number of other formats.

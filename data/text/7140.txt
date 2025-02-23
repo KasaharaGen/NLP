@@ -1,0 +1,11 @@
+Q: Apple Server - how to exclude a subdomain? A client has an internal Apple Server setup in their office that manages their domain (let's say it is example.com).
+I have setup a subdomain of example.com (test.example.com) on Google Apps as I want to use email addresses under test.example.com for an app that I am building. The reasons for needing GMail aren't important - but I need it.
+The problem arises when someone from their office tries to email bla@test.example.com.
+For some reason the Apple server seems to be saying - "I am setup to manage example.com and hence all subdomains of it. I have looked - but I cannot find a subdomain of test.example.com - so the email is undeliverable".
+How can I get the apple server to ignore test.example.com and all of its email?
+
+A: I'm starting this answer to talk through possibilities and will edit along the way:
+As of Snow Leopard 10.6 apples MTA is Postfix you can find their docs here:
+http://manuals.info.apple.com/en_US/MailServicesAdmin_v10.6.pdf
+http://www.postfix.org/documentation.html
+1) On the OS X server, at a terminal, dig mx test.example.com  What are the results? If it's the apple server, you need to change DNS records to point to gmail.  (possibly on this same os x server, as it may see itself as authoritative for this domain)

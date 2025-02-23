@@ -1,0 +1,10 @@
+Q: Change completion key in TextMate? Is it possible to change the completion key (escape) to command for instance? How?
+
+A: From the same question asked on SO:
+To remap the esc key you have to copy
+/Applications/TextMate.app/Contents/Resources/KeyBindings.dict
+to
+~/Library/Application Support/TextMate/KeyBindings.dict
+and then edit it, preferably using TextMate :) as Property List Editor messes up the codes. 
+Look for nextCompletion and previousCompletion and replace their values with whatever suits your needs best. 
+For example, you could replace \033 (code for esc) to ->|tab.

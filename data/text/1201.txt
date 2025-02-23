@@ -1,0 +1,56 @@
+Q: How to ensure that spotlight indexes my entire drive? Spotlight, is a fantastic tool. Took some years, but now I use the command line tools and it's awesome.  However today, I found that spotlight does not index /System (!)  I'd like spotlight to index everything and that way I can cobble together a nifty IDS solution.  
+How can I index every single thing on my drive?  Querying the last modified time would help a lot in security.
+EDIT:  Simply for reference.  
+ mdutil -pEsa -i (on|off) volume ...
+    Utility to manage Spotlight indexes.
+    -p      Publish metadata.
+    -i (on|off) Turn indexing on or off.
+    -E      Erase and rebuild index.
+    -s      Print indexing status.
+    -a      Apply command to all volumes.
+    -v      Display verbose information.
+NOTE: Run as owner for network homes, otherwise run as root.
+
+EDIT:  Upon further investigation, the tool I wanted was radmind
+
+A: From a great deal of research, and looking around, I have some data on this issue:
+By default, spotlight will not index certain folders:
+
+
+*
+
+*/System   
+
+*/usr
+
+*hidden files or directories.   
+
+*Other user files.
+
+
+To add a file path to spotlight you can run 
+mdimport -r /path  
+
+man mdimport 
+
+has the information on that.  
+Now, since I am aiming for a poor mans IDS out of all this stuff, this desire being driven by the knowledge that Spotlight indexes my drive all  the time, which is what would happen anyway with other host based IDS there were some  considerations and other tools to involve.
+Considerations:
+Spotlight will only show you what your user should see 
+That's what the documentation says. I can  see stuff I installed as root, but I can't see my other user.  However,I can see /usr /usr/libexec and the /System tree.  That'll do.
+Hidden files and folders do not show up in the search 
+This will be good when the RIAA remotely scans your drives for music without proper credentials ( Trust your feelings you know this to be true. ) but is not the greatest news in this case.
+To conclude, there is a lot of stuff to do to use this tool effectively.  The secret is that Apple signs everything digitally. 
+man codesign
+
+will tell you about 
+codesign -v file
+
+which should return nothing if the file is unmodified.  Note that this is not a checksum but a digital certificate from Apple, so only big money will allow this to be faked.
+I of course meant to say that it will be quite secure, and easily detectable if a binary program is changed.  
+Won't stop everything, but it will allow me to periodically bark 
+"Did anything just change?" , run a spotlight search on the "kMDItemKind" attribute , pipe it through codesign -v and see if something did change, or search on modification time or whatever.
+To address the userland statement above, I can check to see I have the same spotlight ( I have copied codesign to my recovery media. ) intact spotlight means that I can trust it to do it's ordinary tasks. Using the mdimport -r /path is indeed a better idea, since that will exit if run as root.  
+Certainly there is a question of security here, but as mentioned above, spotlight indexes a bunch of things, and shows you what you should see.  Your little sister will not be able to find your collection of late 1990 artistic nudes, nor will you be able to find her secrets, but root should be able to see everything.  There is a straightforward system of authorizations in OS X that govern which right a program can have, but since this is virtually unknown to most, they simply type in a password when a box comes up to authenticate something they have downloaded, and it installs as root.  A certain search engines software does exactly this.  Hell, the system is actually more secure than before, I ran the old python importer, and it failed, because it asked for my admin password and tried to run mdimport -r as root!  I had to run it myself.
+(Oh it's very nice with the python files, lovely really) 
+Hope this helps somebody else.

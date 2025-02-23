@@ -1,0 +1,3 @@
+Q: Audio device on iOS 4? I was looking for /dev/dsp or /dev/audio through terminal but I couldn't find either of the two. Is there any audio device on iOS 4 (specifically iPhone 4) for input or output?
+
+A: The only exposed API to use the audio hardware under iOS is the RemoteIO Audio Unit API.  The driver for the audio input/output hardware does not seem to be exposed via a *nix device on Mac OS X, or in its iDevice derivatives.

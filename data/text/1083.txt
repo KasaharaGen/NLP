@@ -1,0 +1,82 @@
+Q: Help Creating a Smart Playlist I am hoping someone can help me with a smart playlist creation question.
+I have two smart playlists (A and B) 
+
+
+*
+
+*Playlist A contains songs that are
+"singles" (meaning I don't have the
+full album) and are not in playlist B
+
+*Playlist B contains songs in my
+Library that are rated 5-stars
+I would like to create playlist C that includes all songs for a specific genre in playlist A and B.
+This sounds simple, but if an artist is in Playlist A and B, I can't get the songs in Playlist B to appear.
+
+A: Before creating a playlist, you have to separate the items into very small pieces, otherwise, you risk contradicting yourself. 
+
+Playlist A contains songs that are
+  "singles" (meaning I don't have the
+  full album) and are not in playlist B
+
+Why are you using “not in playlist B”? I assume you want to have a list of ’singles’ that are 1-4 stars rated. Why not add that to the conditions?
+Now your “A" list should be the same as before, but doesn’t mention B at all.
+Now you happen to have a list “B” that has 5 rated songs (the good ones!).
+And now you want your less than 5 rated singles (A) of “XX Genre”, and your 5 star ones…
+As easy as it sounds, in practice it’s more difficult… because what sounds like “this and that” is not really like that.
+Let me try to replicate. 
+My “A” playlist is (I’ve used Track = 1 but I’m sure your condition to determine singles is different and I’m taking 0,1,2 and 3 stars)
+
+My B playlist is easier:
+
+Now I have a C one… that contains tracks from A that have a “Rock” genre:
+
+We’re getting close!
+Now we need to group B and C into a single D playlist to enjoy the Joy of single Rocks and 5 start songs! 
+Here’s our D list:
+
+And that’s it. Now two things are important:
+
+
+*
+
+*This song must always be in any playlist or you’re doing it wrong.
+
+*If you also want to include the “genre” in the B playlist (is not clear), then modify B playlist to also have a “rock” genre.
+
+
+Ahhh the joy of playlists. :)
+EDIT: You specified two pseudo-contradictory things, but here’s the idea:
+
+Playlist B contains songs in my Library that are rated 5-stars
+
+cannot be intersected with:
+
+all songs for a specific genre in playlist A and B.
+
+In order to achieve that, you’ll have to modify (or create a B2) list that is:
+
+
+*
+
+*Match All of the following rules:
+
+*“Rating is *****”
+
+*Genre is “Rock”
+
+
+You can’t modify a previous list from a new. This is not a relational database. Smart lists only work as far as simple pascal logic goes. True/False/Intersection/Union… 
+If you don’t want to change your B playlist (because you use it for something else), go ahead and create B2 and make it include “all from B” and “Genre is rock” and use that B2 in your final “D” creation, much like we created the “C” list, which is pretty much “A” with Rock Genre. 
+
+A: *
+
+*You state that C should be an intersection of D (genre) and A and B.
+
+*You define A as a subset of NOT B.
+
+
+Assuming you don't have songs twice, once in single form rated <5* and once in album form rated 5*, I think that the two statements above define C as the null set.
+Perhaps C should be D AND (A OR B).
+
+A: Try creating new playlist P0 = songs in A + songs in B, and then P1 = P0 AND (Genre = ...).

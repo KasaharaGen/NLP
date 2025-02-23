@@ -1,0 +1,25 @@
+Q: How to update PHP syntax file for vim? I notice the syntax file for PHP for vim is quite out-dated.
+Does anyone know where is these syntax file located in Mac so I can do the upgrade?
+
+A: Solved myself,
+here are the steps :-
+
+
+*
+
+*locate vim | grep php 
+
+*turn up is this file /usr/share/vim/vim73/syntax/php.vim
+
+*sudo mv /usr/share/vim/vim73/syntax/php.vim /usr/share/vim/vim73/autoload/phpcomplete.vim.orig as backup
+
+*download latest php vim file from http://www.vim.org
+
+*untar the tarball
+
+*copy the php.vim to /usr/share/vim/vim73/syntax/php.vim
+
+
+A: I think the proper solution is to install the updated syntax file locally, in your ~/.vim/syntax directory.
+From your answer, you have installed the syntax file in /usr/share/vim, which is system class directory. This is not recommended since this can be erased on system or application update, and you don't know what your modification might conflict with. Instead, you should put all your vim configuration files under your home directory in ~/.vim.
+(Sorry if it isn't a proper answer to your problem, but it seems I can't add comment to already posted answers)

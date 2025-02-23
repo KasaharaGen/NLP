@@ -1,0 +1,17 @@
+Q: Can't upgrade to 10.7.2 over a previous iCloud beta seed I never got the 10.7.2 update, as you can see here:
+
+But my system thinks it's running 10.7.2:
+
+Running Software Update tells me there are no available updates, but 10.7.2 clearly isn't fully installed because I have no iCloud PrefPane:
+
+I've tried installing both the 10.7.2 client and client combo from Apple's support downloads site, but when I try to run them, I get an error saying it can't be installed:
+
+Is there a way to force Software Update to pull down the update? Or perhaps I could download the one it already installed? I don't think it's actually running 10.7.2, as I also don't have Safari 5.1.1:
+ 
+
+A: While i haven't seen this problem with Lion, it was common with previous versions of OS X. The way to fix it was to download the Combo updater from Apple, and run the update. Apple provides this for Lion at http://support.apple.com/kb/DL1459, so i'd download that first, run it, and see if it fixes your problem. 
+
+A: I was able to resolve it by running the revisioner, thanks in part to @cksum's comment. After running the revisioner, I ran Software Update and it installed the 10.7.2 update.
+Here's what happened:
+I'm an iOS developer. Apple gave WWDC attendees access to the early Lion betas, even if they weren't in the Mac developer program. After beta 6, Apple stopped giving us access to the Lion seeds. So I never had a Lion beta that included a reversioner. The reversioner basically resets the state of the system so the 10.7.2 upgrade package thinks you're running 10.7.1, so it can install over previous seeds.
+I was able to get a copy of the reversioner from a friend in the Mac developer program, and now I'm good to go. 

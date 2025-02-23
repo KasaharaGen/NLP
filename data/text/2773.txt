@@ -1,0 +1,24 @@
+Q: How to delete another machine's time machine backup? I've used my Time Machine drive to back up my main machine, and also a friend's mac. Her machine is now being backed up on another Time Machine drive, and she'd like me to delete her backup.
+I'm familiar with the (perhaps obscure) way to delete a particular time machine backup, or how to delete all backups of a particular file, but I have no idea how to delete another machine's backup.
+If I had access to her machine, I'd plug in the drive and delete the entire backup of her drives using time machine on her computer. Whether or not it is reasonable to have to do this is irrelevant, I guess, because that machine isn't available to me. :)
+Please nobody suggest I drag her backup to the trash. I did that once and the trash never finished emptying.
+Any ideas?
+
+A: (Unearthing this 12 years old question... but I didn't find an answer elsewhere)
+On Ventura you need to pass "-p" to specifiy a path, e.g.:
+sudo tmutil delete -p "/Volumes/Time Machine Backups/Backups.backupdb/Olivier’s MacBook Pro"
+
+It's painfully slow, but it seems to be working
+
+A: You can use the tmutil tool to delete backups one by one.
+sudo tmutil delete -p /Volumes/drive_name/Backups.backupdb/mac_name/YYYY-MM-DD-hhmmss
+
+If you are sure you have selected the correct name, you can delete all backups from that one Mac by not passing in the time and letting it delete the entire folder:
+sudo tmutil delete -p /Volumes/drive_name/Backups.backupdb/mac_name
+
+The sudo command needs your password (and it won't echo to the screen, so just type it and pause to be sure you're dating the correct files before pressing enter).
+Editor note: Older versions of macOS may not accept the -p flag, and it should be omitted. Run man tmutil to see documentation for the tool (q to exit).
+
+A: It should be something along the lines of
+$ sudo rm -rf /Volumes/BackupVolume/Backups.backupdb/machinename
+

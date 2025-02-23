@@ -1,0 +1,8 @@
+Q: Lion and OpenGL support Reading this documentation
+http://developer.apple.com/graphicsimaging/opengl/capabilities/ i get that Lion support only openGL2.1 
+This is a 6 years old version, the current one is the 4.2,
+Please tell me that i'm not in right and that we are at least at the version 3.2 :) this would be a really really really big problem for me :P
+
+A: For more modern video cards (and software renderer) OSX does use 3.2 See Apple's doc on current video cards
+
+A: I think you're out of luck unless you're lucky enough to have one of the few cards mentioned in Mark's answer. Most new Macs, including all iMacs, support only 2.1 according to the apple.com page you referenced. This blog post by a graphics programming expert also notes that Apple has taken no steps to support OpenCL 1.1 (for programming shaders).

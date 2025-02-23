@@ -1,0 +1,8 @@
+Q: FileVault 2 encrypted disks with my home directory on a different drive I have multiple volumes on my mac and I just enabled encryption on the other drives. My home folder is stored on one of those drives. Now I can't login because it can't see my home directory, but if I login with my admin account it unlocks the drives and then I can login.
+How do I add those passwords to my login keychain, so they can find my home directory?
+I could decrypt my home directory, but that kind of defeats the purpose of having it encrypted. And my home directory is too big to fit on my boot disk.
+
+A: When logged in as your admin user, you can use Keychain Access.app and just move (or copy) the keychain item containing the password for the encrypted volume to the System keychain.  This makes the password available at boot time. I've got a similar setup, and it worked like this for me.
+
+A: Make sure you've added your non-admin account to the list of users permitted to unlock the drive. This is accomplished in System Preferences > Security & Privacy > Filevault.
+http://one.utsa.edu/sites/oit/OITConnect/mac/MacKB/Pages/Adding%20Login%20Users%20to%20FileVault.aspx

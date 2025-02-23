@@ -1,0 +1,326 @@
+Q: Remap "Home" and "End" to beginning and end of line Most of my computing time is spent in Linux (with occasional time in Windows). On these platforms the Home and End keys universally jump to the beginning or end of the current line.
+I am gradually getting used to using the one Apple computer in my life, but it is still frustrating than these keys seem to be bound to the beginning and end of the document and there doesn't seem to be any key at all for the line based actions.
+My question:
+
+
+*
+
+*Are there existing keybindings I'm missing for beginning and end of line? (I mostly use a Terminal, Chrome and LibreOffice)
+
+*Is there a way to rebind the functions of these keys to the functions I am familiar with? I am willing to give up the document based versions which seem of little use to me.
+
+
+Also two caveats:
+
+
+*
+
+*I am not the only user on the system. It would be nice if my user settings didn't break other peoples experience. If this isn't possible, I think I probably have the strongest preference!
+
+*I do use multiple languages and switch between keyboard layouts, so any solutions would be expected to work even when toggling between multiple keyboard layouts.
+
+
+A: @Lri's answer is awesome (thank you so much; this was driving me insane), but I ended up modifying it a little.
+(In this answer, I use the non-Apple names for keys, so Command = Super and Option = Alt)
+SuperLeft and SuperRight used to actually be mapped to moveToLeftEndOfLine and moveToRightEndOfLine. Using moveToBeginningOfLine and moveToEndOfLine, like @Lri does, may cause inconsistent behaviour.
+There are whole bunch of other differences between the Apple shortcuts and literally everybody else's shortcuts that I added. For example, ControlLeft and ControlRight are supposed to move between words; not AltLeft and AltLeft. I don't think this is exhaustive, but it's working pretty well for me right now. I assumed the user has already swapped the Control and Super keys to fix cutting, copying, and pasting.
+~/Library/KeyBindings/DefaultKeyBinding.dict:
+{
+    "\UF729"   = moveToLeftEndOfLine:; // home
+    "\UF72B"   = moveToRightEndOfLine:; // end
+    "$\UF729"  = moveToBeginningOfLineAndModifySelection:; // shift-home
+    "$\UF72B"  = moveToEndOfLineAndModifySelection:; // shift-end
+
+    "@\UF700"  = moveUp:;  //super-up
+    "@\UF701"  = moveDown:;  //super-down
+    "@\UF702"  = moveWordLeft:;  //super-left
+    "@\UF703"  = moveWordRight:;  //super-right
+
+    "@$\UF700" = moveUpAndModifySelection:;  // super-shift-up
+    "@$\UF701" = moveDownAndModifySelection:;  // super-shift-down
+    "@$\UF702" = moveWordLeftAndModifySelection:;  // super-shift-left
+    "@$\UF703" = moveWordRightAndModifySelection:;  // super-shift-right
+
+    "@\UF728"  = deleteWordForward:;  // super-delete
+    "@\U7F"    = deleteWordBackward:;  // super-backspace
+}
+
+
+A: I found the following useful for iterm2 and zsh with quotes from here:
+
+Open iTerm > Preference. Go to profiles tab > Keys. Then click on the
+  + button on the bottom of the keys list, press Home (or Fn+left arrow on the apple cordless keyboard), under Action select Send Escape Sequence, and then type [1~
+
+Repeat for End key with [~4 for escape key sequence.
+
+If you're using zsh, also do this:
+1) Place the following in your ~/.zshrc file
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+
+2) Run source ~/.zshrc in any open terminals.
+
+
+A: Imho the best tool to make keyboard changes is indeed Karabiner (old name KeyRemap4MacBook).
+Open source (https://github.com/tekezo/Karabiner) but also available as application (https://pqrs.org/osx/karabiner/index.html.en). 
+I have been searching quite a long time and I have never find anything better. 
+
+A: Thanks to this article, I figured out how to re-bind the Home and End keys to line based actions on a per-user basis that works across keyboard layouts.
+You need to create a dictionary file with the keycodes and new commands to map to, but first make sure the folder where this will be placed exists by opening a Terminal and running:
+$ mkdir -p ~/Library/KeyBindings
+
+Then create or edit the file at ~/Library/KeyBindings/DefaultKeyBinding.dict. If it didn't exist before, add the whole section below. If it does exist, just add the four new rows inside the block.
+{
+    "\UF729"  = "moveToBeginningOfLine:";
+    "\UF72B"  = "moveToEndOfLine:";
+    "$\UF729" = "moveToBeginningOfLineAndModifySelection:";
+    "$\UF72B" = "moveToEndOfLineAndModifySelection:";
+}
+
+In order to activate the settings you will need to logout of your user and login again.
+Note that this covers both the normal action of moving the cursor and the Shift+Home/End combination to select durring cursor movement.
+
+A: *
+
+*Open this file
+
+
+     /Library/KeyBindings/DefaultKeyBinding.dict (apply to all users)
+
+or
+     ~/Library/KeyBindings/DefaultKeyBinding.dict (apply to yourself)
+
+
+
+*Add these lines:
+
+
+    {
+      "\UF729"  = moveToBeginningOfParagraph:; // home
+      "\UF72B"  = moveToEndOfParagraph:; // end
+      "$\UF729" = moveToBeginningOfParagraphAndModifySelection:; // shift-home
+      "$\UF72B" = moveToEndOfParagraphAndModifySelection:; // shift-end
+      "^\UF729" = moveToBeginningOfDocument:; // ctrl-home
+      "^\UF72B" = moveToEndOfDocument:; // ctrl-end
+      "^$\UF729" = moveToBeginningOfDocumentAndModifySelection:; // ctrl-shift-home
+      "^$\UF72B" = moveToEndOfDocumentAndModifySelection:; // ctrl-shift-end
+    }
+
+
+A: The default shortcuts for moving to beginning or end of (wrapped) lines are ⌘← and ⌘→. ⌥↑ and ⌥↓ or ⌃A and ⌃E move to the beginning or end of unwrapped lines (or paragraphs). ⌥← and ⌥→ move backwards/forward by words, and all of these are compatible with holding Shift to select during the corresponding moves.
+You could remap home and end by creating ~/Library/KeyBindings/ and saving a property list like this as DefaultKeyBinding.dict:
+{
+    "\UF729"  = moveToBeginningOfLine:; // home
+    "\UF72B"  = moveToEndOfLine:; // end
+    "$\UF729" = moveToBeginningOfLineAndModifySelection:; // shift-home
+    "$\UF72B" = moveToEndOfLineAndModifySelection:; // shift-end
+}
+
+Most of the keybindings for editing text in OS X are defined in /System/Library/Frameworks/AppKit.framework/Resources/StandardKeyBinding.dict.
+Applying changes requires reopening applications. DefaultKeyBinding.dict is ignored by some old versions of Xcode (works with latest version 6.3.1), Terminal, and many cross-platform applications.
+See Cocoa Text System for more information about the customizable keybindings.
+Terminal's keybindings can be customized in Preferences > Profiles > Settings > Keyboard. \033OH moves to the beginning of a line and \033OF to the end of a line.
+In Eclipse, key bindings should be modified in Preferences > General > Keys. You need to modify default bindings for commands Line Start and Line End (replace ⌘← by ↖ and ⌘→ by ↘). For selection to work, also modify Select Line Start and Select Line End.
+PS: You may need to logout and login again for the ~/Library/KeyBindings/DefaultKeyBinding.dict change to take effect.
+
+A: This from iExplain works for Big Sur.
+{
+    /* Remap Home / End keys */
+
+    /* Home Button*/
+    "\UF729" = "moveToBeginningOfLine:"; 
+
+    /* End Button */
+    "\UF72B" = "moveToEndOfLine:"; 
+
+    /* Shift + Home Button */
+    "$\UF729" = "moveToBeginningOfLineAndModifySelection:"; 
+
+    /* Shift + End Button */
+    "$\UF72B" = "moveToEndOfLineAndModifySelection:"; 
+    
+    /* Ctrl + Home Button */
+    "^\UF729" = "moveToBeginningOfDocument:";
+ 
+    /* Ctrl + End Button */
+    "^\UF72B" = "moveToEndOfDocument:";
+ 
+    /* Shift + Ctrl + Home Button */
+    "$^\UF729" = "moveToBeginningOfDocumentAndModifySelection:";
+
+    /* Shift + Ctrl + End Button*/
+    "$^\UF72B" = "moveToEndOfDocumentAndModifySelection:"; 
+}
+
+
+A: I'm using OS X Sierra, and the ~/Library/KeyBindings/DefaultKeyBinding.dict solution suggested by other users partially worked: some apps like TextEdit now have the desired behavior, but other apps don't. Google Chrome and Slack are two that don't seem to respect the DefaultKeyBinding.dict file.
+To fix the remaining apps, I used BetterTouchTool (legacy) / BetterTouchTool (current) to create app-specific keyboard shortcuts binding Home and End to OS X's native shortcuts Ctrl+A and Ctrl+E. BetterTouchTool is not free, but there's a 45-day trial period.
+To do this:
+
+*
+
+*Install and launch BetterTouchTool
+
+*Go to the Gestures > Keyboard tab
+
+*Under "Select Application", click + and choose the app you want to fix.
+
+*Click "Add New Shortcut", assign the Home key in the "record shortcut" field, and set "Trigger other keyboard shortcut" to Ctrl+A. Repeat for End and Ctrl+E.
+
+*When you're done the panel should look like this:
+
+*Under BetterTouchTool's Advanced Settings, allow it to run on startup.
+
+Note: don't quit the BetterTouchTool app or it will stop intercepting key presses. Just close its window and it should continue working in the background.
+
+A: I'm currently on Lion 10.7.4, and for some strange reason editing the ~/Library/KeyBindings/DefaultKeyBinding.dict didn't work for me.  
+I have found that the KeyRemap4MacBook System Preferences addon (which is now called Karabiner-Elements) works really well, and you can also re-map a variety of keys with it, without having to edit any text files.  E.g. changing the page up / page down keys so the cursor also follows on page up / down.  
+Just download the addon, and in the System Preferences panel, browse to the For PC Users section, and check Use PC Style Home /End.  
+Note, I picked (Change Home to Command+Left) instead of (Change Home to Control+A), as if I picked the first, and if the line was wrapped, home would take me to the beginning of the wrapped line, several lines above, instead of taking me to the beginning of the current line.
+
+
+A: I accomplished this using Karabiner Elements.  
+You need to update the rules section of ~/.config/karabiner/karabiner.json with the JSON array from code below. Doing so remaps the home and end keys to work the way they work on pc/windows.
+{
+  "rules": [
+    {
+      "description": "change home key to command + left_arrow",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "home"
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "change home key to command + left_arrow while presing shift (selection)",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "home",
+            "modifiers": {
+              "mandatory": [
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "change end key to command + right_arrow",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "end"
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "change end key to command + right_arrow while presing shift (selection)",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "end",
+            "modifiers": {
+              "mandatory": [
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
+
+see also: github gist
+
+
+A: I'm using the awesome KeyRemap4MacBook with the custom settings below.
+It fixes Home/End in most applications and doesn't screw up iTerm2.
+From https://gist.github.com/lhotari/6134223181439b9ed0a1 
+<?xml version="1.0"?>
+<!-- ~/Library/Application Support/KeyRemap4MacBook/private.xml -->
+<!-- Custom keyboard mappings for MBP using https://pqrs.org/macosx/keyremap4macbook/ -->
+<root>
+    <item>
+        <name>Lari's PC Style Home/End</name>
+        <appendix>(Change Home to Command+Left)</appendix>
+        <appendix>(Change End to Command+Right)</appendix>
+        <appendix></appendix>
+        <appendix>{{ PC_STYLE_BINDINGS_IGNORE_APPS_DESCRIPTION }}</appendix>
+        <identifier>lari.remap.pclikehomeend</identifier>
+        <block>
+            <only>DREAMWEAVER</only>
+            <autogen>__KeyToKey__ FROMKEYCODE_HOME, KeyCode::HOME, ModifierFlag::SHIFT_L</autogen>
+            <autogen>__KeyToKey__ FROMKEYCODE_END,  KeyCode::END,  ModifierFlag::SHIFT_L</autogen>
+        </block>
+        <block>
+            <only>BLUEFISH,WORD,EXCEL,POWERPOINT</only>
+            <autogen>__KeyToKey__ FROMKEYCODE_HOME, KeyCode::HOME</autogen>
+            <autogen>__KeyToKey__ FROMKEYCODE_END,  KeyCode::END</autogen>
+        </block>
+        <!--
+        <block>
+            <only>EMACS, TERMINAL, X11, ECLIPSE</only>
+            <autogen>__KeyToKey__ FROMKEYCODE_HOME, KeyCode::A, ModifierFlag::CONTROL_L</autogen>
+            <autogen>__KeyToKey__ FROMKEYCODE_END,  KeyCode::E, ModifierFlag::CONTROL_L</autogen>
+        </block>
+         -->
+        <block>
+            <not>{{ PC_STYLE_BINDINGS_IGNORE_APPS }}</not>
+            <autogen>__KeyToKey__ FROMKEYCODE_HOME, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND, KeyCode::CURSOR_UP,    ModifierFlag::COMMAND_L</autogen>
+            <autogen>__KeyToKey__ FROMKEYCODE_HOME, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, KeyCode::CURSOR_UP,    ModifierFlag::COMMAND_L</autogen>
+            <autogen>__KeyToKey__ FROMKEYCODE_END,  MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND, KeyCode::CURSOR_DOWN,  ModifierFlag::COMMAND_L</autogen>
+            <autogen>__KeyToKey__ FROMKEYCODE_END,  MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, KeyCode::CURSOR_DOWN,  ModifierFlag::COMMAND_L</autogen>
+            <autogen>__KeyToKey__ FROMKEYCODE_HOME,             KeyCode::CURSOR_LEFT,  ModifierFlag::COMMAND_L</autogen>
+            <autogen>__KeyToKey__ FROMKEYCODE_END,              KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
+        </block>
+    </item>
+</root>
+
+
+A: The original question is already answered but I have put together the equivalence of missing standard layout keyboard keys (Home, Backspace, Page etc) on a Mac here.
+
+A: You can also remap keyboard keys, as well as customize your mouse and trackpad in all kinds of cool ways, with the free BetterTouchTool, available at http://blog.boastr.net/. An excellent solution for customizing the workings of your input devices!

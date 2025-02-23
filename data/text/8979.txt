@@ -1,0 +1,13 @@
+Q: Is there any way to globally or -- at least persistently -- kill OnSwipe for iPad browsing? So, web browsing on the iPad has its quirks and drawbacks, but the one that stands head and shoulders above all others for me is the abomination that is OnSwipe, and especially its incarnation as a WordPress theme. (Thanks so much WP for flipping that global default switch earlier this year.)
+While it is notionally possible for a visitor to disable this on a case-by-case basis (assuming that the theme's broken assumptions about window geometry even allow you to reach the relevant link), the cookie setting or whatever seems pretty transient, especially when running in a nested browser window in something like the Twitter app, and before you know it the wretched thing pops back, jiggling and gurning and generally making sites unusable.
+WordPress are apparently content with this situation, and OnSwipe themselves just brag about how they're going to supplant apps for everyone. (These people are allowed to vote and drive cars.)
+If this were a desktop problem, there would probably be Safari extensions and Firebug scripts aplenty to solve it, but none of that is possible in iOS as far as I can see. So: is there any way to rid oneself of this curse or do we just have to live with great chunks of the web having been wilfully broken without so much as a by-your-leave?
+
+A: I asked OnSwipe for a solution as a global cookie on assets.onswipe.com could be used to do the trick.
+Sadly they are unwilling to help in any way.
+
+A: If you have a modem or router that supports content filtering, you can add the domain assets.onswipe.com to its ‘block’ list to prevent OnSwipe from loading on any iPad connected via Wi-Fi to that network.
+If you're connected via cellular or someone else's Wi-Fi network, I don't think there's any way to avoid it. :/
+
+A: Not sure if this works because I haven't tried it but it's worth a shot.
+http://chrisltd.com/blog/2013/12/block-onswipe-ipad-iphone/

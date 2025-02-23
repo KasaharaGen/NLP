@@ -1,0 +1,17 @@
+Q: Mail: Smart Mailbox Filters How can I get the smart mailbox to filter email correctly? I have the following set:
+Contains messages that match ANY:
+Subject Contains criteria one
+Entire Message Contains criteria two
+Entire Message Contains criteria three
+The result is no messages found. If I remove the third criteria I get messages. What I thought the ANY would take each criteria and OR them. Instead it appears to be AND ing them.
+Any thoughts on how to implement criteria in an OR?
+
+A: You've got your rule set up correctly - if it's an ANY set of predicates it's as if there is an OR between them. It may be slow (and why nothing is showing up) because an Entire Message Contains has to search every email you have.
+What happens if you have only criteria three and not criteria two - there may be an issue with criteria three that is causing the search to fail. (Check Console)
+You can kludge a smart mailbox with AND and OR rules by using other Smart Mailboxes and the "Message Is In Mailbx" or "Message Is Not In Mailbox" predicate.
+
+A: For the "Entire Message" and "Contains" combination, you can use AND and OR to add multiple keywords. For example, 
+Contains messages that match ALL of the following conditions:
+Data Received is in the date range "01/01/2011" to "31/12/2011"
+Entire Message Contains "invoice OR receipt"
+This will give you all messages in 2011 that contain either "invoice" or "receipt"

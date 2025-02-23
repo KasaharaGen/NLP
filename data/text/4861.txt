@@ -1,0 +1,16 @@
+Q: Extension for Safari to enable Google Translation WITHOUT adding a button? In the safari extensions there is a cool extension to use google translate on the current web page: "Translate".
+However I don't like the fact it is adding a button to the bar. I would like to make it work as in Chrome, where the bar automatically appears when a website is in a foreign language.
+thanks
+
+A: There's an extension called Translate, you can download it here:
+http://sidetree.com/extensions.html
+(second from the bottom)
+
+A: I'm using Franker. Translate only what i want (selected text or whole page), inject translated text into the page, no button (right click menu).
+
+A: You can drag the toolbar button off the menu bar and still get the context menu to translate a page. This is how I use it (I also use Franker for some inline translations)
+
+A: You could also add a custom search like http://translate.google.com/translate?sl=auto&tl=auto&u={query} to Alfred, or assign a shortcut to a script like this:
+tell application "Safari" to URL of document 1
+do shell script "open 'http://translate.google.com/translate?sl=auto&tl=auto&u='$(ruby -rcgi -e 'print CGI.escape ARGV[0]' " & quoted form of result & ")"
+

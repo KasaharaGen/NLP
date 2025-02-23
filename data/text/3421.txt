@@ -1,0 +1,11 @@
+Q: Never create a .DS_Store file again I'm tired of finder creating these .DS_Store metadata and finder view tracking files in all of my directories. How can I disable this in Finder?
+
+A: Your question is kind of like asking "git init" not to create the ".git" directory in your project.   In other words, you're choosing to use a tool, but you want that tool to not store the metadata that it needs to store.
+There is an Apple support document that describes how to disable the creation of .DS_Store files, but it is only relevant to how the finder treats remote file systems.  It will not help you if you seek to have the Finder treat your local filesystem in this manner.
+
+A: In this case, TotalFinder does allow you to disable (well, it really redirects all .ds_store files into /usr/local/.dscache) the creation of .ds_store files, through what they call the "Asepsis Feature"
+
+A: As Fake Name pointed out, Total Finder comes with a kernel extension to redirect .DS_Store files which effectively prevents those pesky files from being created in your directories and without losing the function. What he/she didn't point out is that the kernel extension can be downloaded without Total Finder from github. You have to build it and drop it in your /System/Library/Extensions directory. Then you should restart your computer. It appears to be working for me so far.
+Update: This is now a separate project from TotalFinder called Asepsis. There is now a lot more documentation on how it works and the installation process. The GitHub repo is now located here.
+
+A: If you turn the ability to see invisible files off, you won't see them.

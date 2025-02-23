@@ -1,0 +1,20 @@
+Q: How can virtual memory be greater than the total available space? Why does my MBP sometimes report VM Size: 300+ GB in Activity Monitor under System Memory tab, when my hard disk size is only 250 GB (total) and RAM is 4GB? I know it can't magically get that extra space, but what is it trying to tell me?
+
+A: It's all imaginary since virtual memory doesn’t need to exist until a program stores something specific. In this case, some combination of programs is saying to the OS they might some day use that much space. Don't worry unless:
+
+*
+
+*the swap space grows past your ram size
+
+*active + wired ram is greater than 75% of physical RAM. (3GB in your
+case)
+
+Basically, this idea makes memory handling faster as the system is running. Since programs keep asking for more and more memory, the system lays out un-mapped chunks of virtual RAM with tons of space in between each process' allocation. This makes some very common memory calculations easier and faster and makes it very unlikely that the regions will ever overlap. When virtual memory regions overlap, it's more costly to pause things and re-map the memory under a running program.  All this mental olympics involving virtual memory makes your mac run faster.
+
+A: Shared libraries and frameworks are counted as part of the virtual memory for every application that uses them. 
+If you have 100 processes running on your computer, and a 5 MB library used by all those processes, then that library is counted as 500 MB of virtual memory. 
+You can also add up the numbers in the Virtual Memory column of the process list – a more accurate name for that column is "Virtual Private Memory". It does not include shared data.
+
+100 processes is not as high a number as it sounds (I currently have 75 on my MBP, and I am running much less than usual). 
+Some libraries are used by almost every application on your system, even ones without interfaces. After adding up all of the shared libraries on your system, you have a large amount of data that actually takes very little memory. 
+As bmike mentioned, you should be more worried about the swap space, or active+wired ram. Right now, Activity Monitor tells me that I have 170 GB of virtual memory, but I'm only using 1.5 MB of swap space. 

@@ -1,0 +1,42 @@
+Q: transferring itunes I recently bought a new macbook pro and it just came in (very excited). I want to wirelessly transfer my itunes library on my old mac to my new one.
+
+A: The quickest way to do this is to connect the two computers using Ethernet cable.
+Simply copy all of ~/Music/iTunes (from the older Mac) to ~/Music/iTunes (of the newer Mac).
+Everything will be as it was before. Note that you'll be overwriting some files in the newer Mac's ~/Music/iTunes directory. Don't worry though. That's what you want to do.
+You may also want to open up iTunes first on the newer Mac and do ⌘+, to set up the preferences as you like them. In 'Advanced' you should 'Keep iTunes Media folder organized' and 'Copy files to iTunes Media folder when adding to library'.
+Then shutdown iTunes and do the copy.
+__
+DOING THE COPY
+Connect both Macs with Ethernet cable. In System Preferences > Network you'll see 'Ethernet' on the left-hand side. You will hopefully have a green light indicating that the two Macs are connected properly and good to go. Incidentally you should ensure that the notebook(s) are plugged into mains power here.
+Note that ~ is a shorthand for /Users/[yourusername] so it can be used universally when giving instructions. In your case you need to click on the Finder (old Mac) and navigate to /Users/[yourusername]/Music/iTunes. In this sub-directory there'll be a bunch of files and directories including:
+
+
+*
+
+*Album Artwork
+
+*iTunes Music
+
+*Previous iTunes Libraries
+
+*iTunes Library
+
+*etc.
+
+
+You need to select all of this by doing ⌘+a. Once it's all selected you do ⌘+c to copy the files.
+Open up another Finder window. You can do this in many ways including 'control-clicking' on the Finder icon in the dock. In this second window, navigate to the corresponding directory on your new Mac. You'll see your new Mac on the left-hand side under 'SHARED'.
+You've done ⌘+c in /Users/[yourusername]/Music/iTunes and in the second window you're sitting in /Users/[yourusernameNewMac]/Music/iTunes. Click on that 'iTunes' sub-directory and it will be highlighted blue. Press ⌘+v.
+The process will start. Depending on how large your iTunes library is, and what grade Ethernet cable you have, you could be looking at waiting between 5 minutes to over an hour for it to complete.
+CODA
+Once it's complete, you can ensure that both libraries are identical by doing ⌘+i on both iTunes sub-directories and comparing the number of bytes and items.
+
+A: The easiest method I havent seen mentioned here is iTunes Home Sharing.
+If you are signed in and authorized on both computers, you can literally change a drop down to "All songs not in my library" and automatically let iTunes copy and import the songs for you.
+The link: iTunes: Understanding Home Sharing
+
+A: The easiest is to back it up to an external hard drive and there's a short article on several ways to move a library to a new machine too.
+Once you have consolidated all the files in one folder (which is the most important part) - you could also transfer the files over a network cable or wifi but that might be slower than an external drive. I would quit iTunes just to avoid a file being modified while the copy is progressing - but it likely won't matter.
+The benefit of this over home sharing is your iPods and iOS devices will see the new library as the same as the old library and not want to erase the device.
+
+A: If you have a hub or switch at home, you can set up file sharing between the two and simply copy the files over to the proper folder. On your new Mac you may need to have iTunes rescan for new music, but everything will be set after that.

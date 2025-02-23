@@ -1,0 +1,42 @@
+Q: How does iMessage know that the recipient is an iOS 5 device? When you send a message using the Messages app, iOS seems to magically figure out that the recipient is on iOS 5 and automatically switches over to iMessage (blue messages instead of green SMSs).
+
+Does anybody know (or fancy a guess at) how iOS 5’s iMessage knows the recipient is an iOS 5 device? I’m stumped.
+
+(I asked this question on Twitter a few months ago and wanted an easier way to refer to the answer!)
+
+A: 
+Slight revision It seems that the below has changed slightly, and Apple now checks which numbers/emails have been activated per device for sending messages. Therefore, my mobile number on my iPhone can be registered on my iCloud account, and allow me to receive message sent to my mobile number to be received on my iPad. Therefore you can have the conversation appear on multiple devices at once, and switch between them. iMessage will keep these conversations in sync. I disable this by specifying which accounts to be linked to which device when configuring iMessage.
+
+To expand on alexmuller's answer it uses the Device ID to determine if another device is running iOS 5. This is done during registration, or when iMessage is configured under phone settings. Effectively the Device ID and Apple ID's/Mobile numbers are stored on the Apple Servers.
+It checks the Apple servers to determine if a number or email address is registered as an Apple ID and using iOS 5. It will then send the message via the Apple Servers first. It also uses text fallback, so if the other user is not using an iOS device, or iMessage is unavailable or down, or your data connection is down, it will send the message as a text. Text fallback can however be disabled. This does not affect normal texting.
+On the phone itself iMessages are identified via a blue background, and can show Delivered/Read for each message. SMS to the same person is still shown in a green background.
+It also uses the Device ID to determine which device to reply to. I have my email address and phone number configured on my iPhone and on my iPad only my email address.
+In Example 
+
+
+*
+
+*I send a message to my wife's iPad using her email address from my iPhone, she receives it on the iPad, and the reply is sent back to my iPhone. 
+
+*I send a message via my iPad to her email address, the reply is sent back to my iPad, and not my iPhone. 
+
+*She sends a message to my iPhone using my mobile number from the iPad, it comes to my iPhone and bypasses the iPad completely and the reply goes back to her iPad.
+
+
+It's intelligent enough to know where the message came from and where to reply to.
+
+A: I heard that they use wizards.
+That and they store your number on server at point of activation, however it's very quick so I'm not 100% on that one. Very quick at the moment might just be low load on the system though.
+
+A: The answer I got from @chrismear on Twitter was as follows:
+
+Your mobile number must be sent to Apple's server and stored against your device ID for APN. I guess it happens at activation. "How do they identify FaceTime devices by phone number?" is the same question. Answer at 4.(c) in bold (archived url).
+
+Tweet one, tweet two.
+
+A: I think it simply looks up the number you are sending a message to. If it's a number/email address in Apple's iMessage database, then it uses iMessage servers to pass the message. 
+Other cool tricks to know about iMessage:
+If you have an iPad, and you are using an email address with iMessage on the iPad, go to your iPhone and navigate to:
+Settings -> Messages -> Receive At
+Here you can add other "addresses" that your phone's iMessage will respond to. If you put your email address in here, then anytime someone sends an iMessage to your email address it will appear on both your iPad and your iPhone. If you have iMessage open on one of your devices and you are actively engaged in a conversation, the other device will stop ringing when a new message comes in. Don't you just love Apple's attention to detail?
+In this same screen, there is an option called Caller ID. You can set what your device will use as a return address when you message someone. I went into this menu and put my email address in as my caller ID. As a result.. when someone replies to one of my message, it will always send to my email address instead of my phone number. This way I can read it on both my devices.

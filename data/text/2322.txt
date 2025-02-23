@@ -1,0 +1,63 @@
+Q: What file systems can Snow Leopard read? I just got a MacBook Pro for my parents, and I need to get their files from a Linux desktop machine that most likely has either reiserfs or ext3 file systems.
+I would like to know if Snow Leopard can read these files if I put the HDD in an external HDD case??
+Thanks
+
+A: It might be easier to connect the machines on a network and use rsync, nfs or ftp   to copy data, no extra software would be needed.
+If you want to do this you will need MacFuse which allows OS X to read other file systems. A tutorial for ext3 is on this blog.
+
+A: If you are planning on doing this a lot, there are commecial packages too: 
+http://www.paragon-software.com/home/extfs-mac/
+There is a free alternatives also though through MacFuse/FUSE:
+http://sourceforge.net/projects/fuse-ext2/files/
+
+A: Mac OS X can read (but not necessarily write):
+
+
+*
+
+*HFS+ (Mac OS X default format, in plain, journaled, case-sensitive, or journaled/case-sensitive varieties)
+
+*NTFS (but not write, by default)
+
+*FAT (32 and 64 as seen in Christian Correa's comment)
+
+
+I would expect it can read but I haven't tested it:
+
+
+*
+
+*HFS (the older Mac OS file system [Hierarchical File System])
+
+*UFS (Unix File System; older versions of OS X could format and be installed on UFS partitions)
+
+
+I know for a fact that OS X will not read:
+
+
+*
+
+*ReiserFS
+
+*ext* (any of the various versions of the ext Linux file system)
+
+*just about anything else
+
+
+Check out the Mac OS X column at the incredibly complete Wikipedia article comparing file systems.
+
+A: Disk Utility can format a new hard drive using the following formats: 
+
+
+*
+
+*Mac OS X format
+
+*Mac OS X format (Journaled)
+
+*FAT32 (MS-DOS)
+
+*FAT64, also known as exFAT
+
+
+I believe those would be the same file systems that the operating system can read. 

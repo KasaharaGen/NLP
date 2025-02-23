@@ -1,0 +1,23 @@
+Q: Is it possible to run commands from spotlight? I run commands in terminal a lot and i'm wondering if it is possible to run the commands from spotlight. For example in spotlight  would like to run the command(because i have a lot of network issues): 
+ping google.com
+
+And then spotlight to load terminal and execute the command instead of having to load terminal because it takes so long to load. So is this possible? 
+
+A: Not directly but write the commands you want in a shell script and save the script with a .command extension and chmod it so it is executable. This is clickable from Finder and so should work from spotlight
+
+A: It's not possible through Spotlight itself.
+But it's possible through free applications that can also search files and launch programs, like Spotlight.
+You have the almighty Quicksilver, that can also make coffee and walk the dog. 
+And the new player Alfred, which is quite impressive as well.
+
+A: I use both DTerm and Alfred. DTerm is very nice for the occasional quick command or even a man page as its results window expands to fill the screen and scroll if necessary. A simple ESC dismisses the results.
+http://decimus.net/DTerm/
+
+A: This is possible with Flashlight (http://flashlight.nateparrott.com/). Flashlight is an unofficial api to spotlight and offers a plugin (http://flashlight.nateparrott.com/plugin/terminal) to run terminal commands right inside spotlight.
+
+A: Just a heads up that Alfred app now has both global hotkeys which allows you to launch apps/commands/applescripts with a key combo, as well as Terminal/Shell integration, which lets you run any Terminal command without launching Terminal.
+For example, create a script to auto-shorten a URL using goo.gl then copying it to clipboard (here's how you can do that). Or launch any terminal command (e.g. ping yahoo.com) to pop up a Terminal window.
+It's part of the Powerpack and is in pre-release right now, going to general availability next week :)
+Vero (community gal for @alfredapp)
+
+A: You could use Raycast, it's an interface very similar to Spotlight, but it allows you to create and call (even with parameters) your own shell scripts from the search box. See more details in the docs.

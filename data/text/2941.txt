@@ -1,0 +1,10 @@
+Q: What is the location accuracy of a wifi only iPad? what is the location accuracy of wifi version ipad?
+If someone holds one iPad and walks in a big room, is there a way to detect the location of the iPad?
+
+A: There is no GPS in the WiFI-only iPad. The accuracy of Location Services (the part of iOS that determines where you are) is dependent on a number of factors. iOS does account for this, though:
+
+Applications that can display your location on the screen, including Maps, indicate your current (approximate) location using a blue marker. If your location can’t be determined precisely, a blue circle also appears around the marker. The size of the circle depends on how precisely your location can be determined—the smaller the circle, the greater the precision.
+
+(Source)
+To answer your base question, though, no. There's really no way for the iPad to track fine movements (such as within a room, or even within a building) with great degrees of accuracy without the 3G model, which does include a GPS chip.
+Location Services on the WiFi model is intended just to find your general location, so apps can tell you what is nearby. It isn't meant to tell you exactly where you are.

@@ -1,0 +1,9 @@
+Q: -Bash command not found appearing every time I start terminal every time I start my terminal, it always says "-bash:  .: command not found" twice.  Does anyone know how I can get rid of that?
+
+A: It sounds like you have an errant command in a file like .bashrc or .profile. Try opening those files and looking for a command that doesn't belong. If something look suspect you might want to copy and paste it into Terminal to see if it runs correctly.
+You might also check your prompt if you've customized it to see if you introduced an error there.
+
+A: I would suggest you look into your ~/.bashrc or ~/.bash_profile files with a text editor. You probably mistipped something you have a . or some other character that is being executed at startup.
+
+A: Yes, review the .profile ( /Users/yourusername/.profile ), it sure has something like that .:
+Just remove it from there and it will stop showing up.

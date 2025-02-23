@@ -1,0 +1,18 @@
+Q: Details of the proxy address which is being used by Mac Is it possible to get the proxy address that my system is currently using in order to populate HTTP_PROXY variable from command line ?
+I would like a command so that I could set it in my .bashrc file.
+complete solution for me was to update my .bashrc file with this 
+function http_proxy { 
+    export http_proxy=`networksetup -getwebproxy Wi-Fi  | head -3 | tail -2  | cut -f2 -d' ' | sed 'N;s/\n/:/'|grep -v ':0'`
+}
+alias homen="networksetup -setwebproxy Wi-Fi '' ;http_proxy"
+alias ofcn="networksetup -setwebproxy Wi-Fi proxy.examp.com 8080;http_proxy"
+http_proxy
+
+
+A: Either get ProxyConf, which does exactly this.
+Or retrieve the web proxy with networksetup -getwebproxy Ethernet (replace Ethernet with the one you're using from networksetup -listallnetworkservices), then format the output into HTTP_PROXY format:
+$ networksetup -getwebproxy Ethernet | awk '/Server:/ {host=$2} /Port: / {port=$2} END { printf "http://%s:%s", host, port}'
+http://127.0.0.1:8228
+
+If your network services (Ethernet, Wifi, etc.) vary or you use multiple at the same time, you may need to get a little more elaborate to figure out which one is being used. man networksetup and man ifconfig should have everything you need if you want to go there.
+Formerly there was also scselect, but networksetup incorporates all of it's functionality.

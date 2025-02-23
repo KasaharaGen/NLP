@@ -1,0 +1,44 @@
+Q: "Unable to load the Parallels driver" after upgrade to Lion I have Parallels Desktop 6 (6.0.11994) installed and after an upgrade to Lion, whenever I start Parallels, I get these two messages:
+
+
+Then Parallels Virtual Machines window appears but neither of them can be started.
+How do I fix this?
+
+A: You don't have the Lion compatible version of Parallels installed! The current version is 6.0.12094.
+
+You can download the latest version from Parallel's download page or use Check for Updates... in Parallels Desktop menu.
+
+A: There are several solutions to this problem.  
+The easiest, and permanent solution is to upgrade the Parallels to the latest build.
+The upgrade is free for existing version 6 users.
+The official KB article says:
+
+Parallels Desktop 6 for Mac (build 12094 and higher) is compatible with Lion.
+
+To upgrade, go to the download page or click Check for Updates... in Parallels Desktop menu:
+
+If you don't yet want to upgrade, you can use a workaround below:
+
+
+*
+
+*Launch AppleScript Editor (it's in Utilities folder)
+
+*Create a new file (File > New)
+
+*Copy and paste this into the editor:
+
+do shell script "for x in prl_hypervisor prl_hid_hook prl_usb_connect prl_netbridge prl_vnic; do
+  sudo kextutil -q \"/Library/Parallels/Parallels Service.app/Contents/Kexts/10.6/$x.kext\"
+  done" with administrator privileges
+  do shell script "open -a \"/Applications/Parallels Desktop.app\""
+
+
+*Select File > Save, call it Parallels Desktop Launcher, put it in the Applications folder and set type to Application:
+
+The new launcher will appear in your Applications folder and you will be able to use it to start Parallels. You will need to enter your password once before the start because the script needs administrative privileges.
+
+Note that there are also other problems with Lion incompatibility in versions prior to 6.0.12094 and this only fixes startup. I also had a problem with Parallels virtual machine window being only briefly visible during Spaces transition, as if it were above all windows in the system. Apparently, I had Coherence mode set by default, and there seem to issues with it on the older versions. I fixed the problem by clicking the red Parallels icon in the menu bar and choosing Exit Coherence:
+
+To fix the same issue with Parallels configuration window not appearing, I had to change Assign to from None to All Desktops.
+

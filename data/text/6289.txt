@@ -1,0 +1,7 @@
+Q: Re-connect iTunes library from different drive I just replaced my optical drive with an SSD, which I now boot off of (Lion, fresh install).  I'd like to keep my iTunes folder on the original drive, which is still in the computer as well.  When I used Migration Assistant I had it skip the Music folder.
+I haven't been able to get iTunes 10 to "see" the old library in its current location on the other drive.  I've gone into Preferences-->Advanced-->Change and selected all of the different folders in the old Music folder, but iTunes never sees my music.  Thanks!
+
+A: The easiest is to start with a fresh and empty folder in the new ~/Music directory.
+Fire up iTunes and tell it to use the media folder on the the external drive and quit iTunes after making whatever settings you want about copying files / organization. I would recommend leaving both selected.
+Then move just the artwork folder and the itdb / xml files into place and replace the "empty" files that got created on the local ~/Music/iTunes folder. (basically use Finder to move everything back except the folder containing the media.)
+When you start iTunes it should run a quick check to make sure all the files are working and you can proceed with your app management / music enjoyment. 

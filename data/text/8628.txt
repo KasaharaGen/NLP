@@ -1,0 +1,22 @@
+Q: Disable / Uninstall Mail app in Lion I'm running Sparrow mail client and would love to disable Mail.app, which keeps opening from time to time.
+
+A: You could try selecting the Mail icon in the Applications folder, select Get Info (⌘I), and under permissions, set Everyone to no access. That should prevent the program from launching.
+
+A: From Apple Support, the steps to switch to a different mail reader are:
+
+
+*
+
+*Open Mail (/Applications/Mail)
+
+*From the Mail menu, choose Preferences
+
+*Click the General button
+
+*Choose your desired default email application from the "Default email reader" pop-up menu.
+
+
+This article also provides instructions to change the default mail app by editing the appropriate plist configuration.
+To change the default email application, use Webmailer. This Apple.SE post has several answers that discuss the use of this utility.
+
+A: I think you can uninstall the mail app using [CleanMyMac.  I did this on an older version of OSX without any problems afterwards. 

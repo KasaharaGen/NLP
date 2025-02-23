@@ -1,0 +1,18 @@
+Q: Youtube videos do not resume after pause in Safari One opens a youtube video in Safari. One clicks pause, waits a while, then clicks resume - nothing happens. One has to move the progressbar of the video a bit (the thing that shows at what point the video is in) and then the video starts.
+I have this behavior since I first started usind Mac OS X (have reinstalled 10.5 and 10.6 at least once). I'm not sure, but I think I've seen this behavior with Chrome and with Google Videos.
+Anyone?
+
+A: This sounds like a problem with the Flash player. you can edit the flash player's settings by going to:
+http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager07.html
+In the section "Website Storage Settings", increasing the amount of data youtube.com can store on your computer might help. Completely deleting youtube.com from the list of visited websites might also help (since that might get rid of any corrupt data).
+If that doesn't work you can also try deleting the flash player's cache files manually.
+just delete all the folders out of:
+/Users/[YOUR USER NAME]/Library/Caches/Adobe/Flash Player/AssetCache
+
+The folders should have names that look similar to "5PXNHG84" or "KK4Y5DSK".
+Unfortunately, Flash for OS X (and linux) has never seemed to work as well as it does on windows. So what I just described still may not solve your problem, but it's worth a shot.
+
+A: Yes, I have the same issue with Chrome or Firefox. I think it’s the flash player (which I only have in Chrome/Firefox cuz I don’t have flash installed on my system)
+Chrome has its own flash player integrated (which you can remove, but I use Chrome for sites when I MUST have Flashplayer). 
+When I switched to Safari, I had to use the HTML5 player in YouTube, I found out it happened way less (in exchange of other problems to be honest). But I prefer it that way.
+It’s a matter of the video not being “streamed” to your machine, but rather progressive downloaded. I.e.: the player requests chunks; apparently it doesn’t really work well yet. 

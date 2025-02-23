@@ -1,0 +1,64 @@
+Q: How to quickly jump to another application without using command tab I am trying to do a screencast and I use ⌘+⇥ to move from browser to my IDE . During editing I need to remove all the screenshots of me moving from one app to another since that is distracting.
+I was wondering if there is any utility I can buy or if there is a trick so that I can quickly move from my browser to my IDE. 
+Note that my browser and my IDE are of the same size while doing screencasting so they overlap each other. I just need a trick so that browser comes to the top just like that and when I need IDE to the top I can bring IDE to the top with some key combinations on my keyboard.
+
+A: If you press ⌘+⇥ quickly, you switch to the last app used and the icons don't show up.
+To make sure it works, ⌘+⇥ to your browser. Then to your IDE. Then, quickly press the ⌘+⇥ shortcut. You'll immediately switch to the browser. Do the same again to immediately switch back.
+Hope this does it for you.
+
+A: Just tested this and it works well. 
+You will be able to launch each app with a keyboard shortcut of its own by using nothing more than two simple Automator Services, and the Built in keyboard shortcuts.
+In this example I am using Preview and Safari.
+Create to new Automator Services.
+Open Automator and choose 'Service'
+First Service.
+1,Add a 'Launch Application' action.
+2, set the Actions application to 'Preview'  by using the drop down in the action.
+3,  set Service receives to:  'no input' in 'Safari' 
+(Do this by using the drop downs at the top.)
+4, save the Service As Launch Preview
+
+Second Service.
+Use the menu file ->New.
+And again choose 'Service'
+1,Add a 'Launch Application' action.
+2, set the Actions application to 'Safari'  by using the drop down in the action.
+3,  set Service receives to:  'no input' in 'Preview' 
+(Do this by using the drop downs at the top.)
+4, save the Service As Launch Safari
+
+System Preferences
+Now open System Preferences -> Keyboard.
+Go to the Tab:Keyboard Shortcuts
+1, Select 'Services' in the left hand pane.
+2, In the right hand pane, scroll down to the bottom where 'General' services should be.
+You should see your two new services.
+3, Double click the blank white space in front of the service name. (As far to the right as the pane allows you )
+4,You should now have a text field where you can enter you hotkey for the service.
+5,Once done for both service Make sure they are still both ticked and close System Preferences
+
+Now when you are in one or the other app use the keyboard short cuts to switch apps.
+Example of keys I used in my test: 
+While in Safari: crtl+alt+cmd +p t go to Preview
+While in Preview: crtl+alt+cmd +s t go to Safari
+p.s doing the two services this way will make sure that the hotkeys/keyboard shortcuts, only work when in the said applications. And will not be called when in a third application..
+
+A: There are a number of utilities out there that can launch applications with a key combination. I use Butler, and I used to use DragThing, but there are quite a few out there. These utilities generally allow you to assign a key combination to launching anything. If this is an application and the application is already running, then they'll simply bring that application to the foreground.
+
+A: In BetterTouchTool, you can assign F1, F2 keys to switch between apps, or whichever series of keys you want.  
+For a more sophisticated example of how I use BetterTouchTool:
+I've change F1, F2 to be Google Chrome Tab 1, and Google Chrome Tab 2, respectively.  And F11 and F12 to be Sublime Text Tab1, and Sublime Text Tab2, respectively.  
+You can assign key/key combinations to specific applications made by Script Editor, ie Applescripts.
+Simple applescript to open Google Chrome Tab 1: 
+    tell application "System Events"
+    tell application "Google Chrome" to activate
+    keystroke "1" using {command down}
+    end tell
+
+Save the script as an application, and then link a shortkey in Bettertouchtool to box "Trigger Predefined Action", once the box opens, scroll down to "Controlling Other Applications" and click the arrow for "Open Application/File.." 
+Cheers!
+
+A: If you really don't want to use ⌘+⇥, instead try ctrl+F4 perhaps?
+
+A: You can use ⌘+space to quickly find programs, but for quick switching you may want to check out BetterTouchTool.
+See this page on superuser for more details.

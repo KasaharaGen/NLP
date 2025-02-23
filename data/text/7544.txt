@@ -1,0 +1,46 @@
+Q: Can I open files in TextEdit from the Terminal in Mac OS X? I frequently find that a Terminal command to open a file in TextEdit would be very handy. Does such a command exist on Mac OS X?
+
+A: The open command can be used to open files (in their default apps, unless using the -a flag), URLs (in your default web browser), and directories (in Finder).
+An example would be
+open /Users/Example/Desktop/example.rtf
+
+
+A: Direct, easy answer - add an alias to your ~/.bash_profile like: 
+alias textedit='open -a TextEdit'
+
+Invoke it like: 
+textedit theFiletoEdit.txt
+
+The difference between this and the other answer, is you can easily remember it when you want it. Typing text and Tab to autocomplete it will make it instantly available 
+
+For those with a bit more bash background, who want the reasoning without having to fuss with figuring it out:  
+
+
+*
+
+*The problem is that a trivial symlink (or its ilk, like a shell script redirect) to  /Applications/TextEdit.app/Contents/MacOS/TextEdit causes a new instance of TextEdit to open the file you pass to it. This works, but does not give your expected Mac OS X default behavior.  (if you try it, you'll see) 
+
+*To get the default UI behavior, using the Mac built-in open command, with that '-a TextEdit' flag (that others mentioned) induces the Mac UI to have (any) currently running instance of TextEdit handle the call (with no inapropos 'sudo' needed for general case usage).
+
+A: For those finding this post:
+The solution was to use the command  sudo open -t /path/file.txt 
+And the man pages for the open command also show how to do some other things like show the file in the finder.
+http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man1/open.1.html
+
+A: open -a TextEdit filename should do the trick.
+The -a flag specifies any application you want, so it's applicable to any number of situations, including ones where TextEdit isn't the default editor.
+Other relevant options
+
+*
+
+*-t  opens in the default editor (i.e. if you use BBEdit, TextMate, etc.)
+
+*-e will open the file specifically in TextEdit
+
+
+A: This is not a programming question. But I did a quick google and found this site:
+http://ss64.com/osx/ 
+http://ss64.com/osx/pico.html pico: Simple text editor
+http://ss64.com/vi.html vi: Text Editor
+And this site explains how to use TextEdit from terminal.
+http://www.tech-recipes.com/rx/2754/os_x_edit_file_using_textedit_as_root_superuser/

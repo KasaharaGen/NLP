@@ -1,0 +1,21 @@
+Q: Migration Assistant: target computer freezes mid-transfer (screen black, unresponsive) I am running Migration Assistant (over a network) to transfer an old Mac's setup to a new one. The process starts fine, but every time I try it the target computer freezes mid-transfer (at the moment the source computer has shown '9 hours 34 minutes' remaining for the transfer for hours). The target computer's screen is black, and it does not respond to keyboard or mouse input, but I can tell it's on from the fan whir. It does not respond when I press the power button as it would were it asleep or off. I have to hold this down to force it to shut down. I've restarted the whole process several times - what should I do?
+
+A: Since this has failed more than once, it's likely you'll have to effect some repair or change tactics.
+Here are a few that seem likely - you'll have to choose based on your specific situation:
+
+
+*
+
+*Migrate from a backup copy of the data instead of the old source mac.
+
+*Remove the hard drive from the old mac and try again. This isolates the drive and your files from the mac and the controller board / cable.
+
+*Look over the failed logs (should be in /Library/Logs/SystemMigration.log) - you might see it hanging on the same step. If so - you could try deleting that data (or you could just delete as much of the data as you can afford to not transfer - especially if some of that data is stored elsewhere on a backup drive)
+
+*Run a repair or check tool on the source mac while it's in target mode. Disk Utility is one tool that could be used to verify the status of the files and disk.
+
+
+Do note, that one possible cause of the freezing could be hard drive failure. If that's the cause, you want to get the important files off first and avoid 'fixing' anything. (Imagine a potential house on fire - you may not have time for everything, so prioritize and just get things out now - organize them later.)
+All the other causes are not as dire and you may have time to try things again and again, just wanted to plant the idea that this might be a warning so you could get professional help if there are valuable or irreplaceable files on the freezing computer.
+
+A: Transfering over Ethernet and a local area network is always problematic. Use Target Disk Mode over FireWire to directly connect one Mac to the other, and you will probably have much better results.

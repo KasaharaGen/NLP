@@ -1,0 +1,6 @@
+Q: Is there any free solution to remove unneeded architectures from Universal ppc/intel binaries? I am aware about an application that is able to remove unneeded architectures from Universal binaries - XSlimmer.
+Still, I am looking for a free solution for this because I am not willing to pay for this kind of service.
+
+A: All tools to manipulate architectures in binaries are covers over lipo the command line tool that Apple supplies as part of the Developer tools
+
+A: Monolingual will remove extraneous languages and architectures and is open source.

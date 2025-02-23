@@ -1,0 +1,19 @@
+Q: Where did the "hide the toolbar" thingy go on OS X Lion? On OS X Snow Leopard, there was an option to hide the toolbar in many applications, such as 
+
+but I don't have that option on Lion anymore
+This isn't MacVim specific issue, I don't see it in Adium and many other applications too. Did the button just disappear? Is there any way to show ita again?
+
+A: I don't think there's a way to make the toolbar capsule widget thingy show up again.
+However, if you want to hide the toolbar, you can right-click on the empty toolbar area and choose the "Hide Toolbar" option:
+
+You can also go to the View menu and choose "Hide Toolbar" from there.  It may also have a keyboard shortcut of cmd-opt-t.
+
+A: Right click and "Hide Toolbar" works for most apps. I couldn't get it to work with MacVim but this should:
+Add the following to your .vimrc:
+if has("gui_running")
+    set guioptions=egmrt
+endif
+
+test it out via:
+:set guioptions=egmrt
+

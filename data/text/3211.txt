@@ -1,0 +1,11 @@
+Q: How can I change sound depth and frequency characteristics in GarageBand? How can I change depth (bits) and frequency (kHzs) characteristics when recording session in GarageBand?
+If I can't then what are the default values?
+
+A: You cannot change depth and frequency of the recorded samples, even when changing the input settings in the Audio MIDI Setup.app (this is the way to change playback and recording settings for sound devices).
+
+The default values for Garage Band are 44kHz, 16 bit, stereo. They are kept in AIFF format. You can explore them by right-clicking your garage band project and choosing Show package contents. The recorded files are kept in the Media folder.
+Edit (added Logic 9):
+In Logic 9 you can change the sampling rate (frequency) from the Project Settings window, Audio tab. Explained in the Logic 9 Manual - Setting the Sample rate. To change the bit depth you should go to Preferences -> Audio and check/uncheck 24 bit recording (It's checked by default). It's covered in the Logic 9 Manual - Setting the project bit depth.
+
+A: Using TechTools Pro you can manipulate the default audio frequency.
+

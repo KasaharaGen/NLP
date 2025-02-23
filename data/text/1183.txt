@@ -1,0 +1,16 @@
+Q: How can I disable the 2nd hard drive in my 27" iMac? I have an 2010 27" iMac with an SSD and a regular hard drive. Now that I've been using the machine for some time and have not come close to filling the SSD, I'd like to disable the spinning hard drive completely. Why? It makes a loud humming sound when it runs, and I don't use it for anything. Anything I can do short of taking apart this monster and ripping it out?
+UPDATE: As of 3-Apr-2012 and OS X 10.7.3, the solution below works. Some programs occasionally spin up the drive, but it only hums for about 5 minutes then goes back to sleep.
+
+A: I don't know if it'll work, but try going into the Energy Saver section of System Preferences and select "Put hard disk(s) to sleep whenever possible". Then go into Disk Utility and unmount the hard drive. With no way to access the drive, I would assume Mac OS X would put the drive to sleep.
+This is a temporary solution though, and it won't persist across reboots (Mac OS X automatically mounts all available drives at boot). If you're really not using the drive and don't have any data on there that you want, my suggestion would be to go into Disk Utility, repartition the drive, and for the format select "Free Space". Once done, Mac OS X will be unable to mount the drive and should put it to sleep.
+
+A: The best solution is go to Apple service and ask them to remove the drive. I am also not happy with this issue, and I have a Hitachi 2 TB HDD which has a loud humming at idle. Which HDD model do you have, just curious? I was thinking about installing a quieter HDD, but there are some hardware compatibility problems and iMacs are problematic to open. It's sad Apple does not care about the HDD hum. 
+BTW it's actually easy to use an Apple script or a simple Cocoa app to unmount the drive on startup - which should use a shell script below
+diskutil unmountDrive "drivename"
+
+You can also reduce the time before sleep to 1 min from default 10 mins via Terminal command:
+sudo pmset -a disksleep 1
+
+But that does not solve the problem completely. Also some apps are accessing the drive even when unmounted, Parallels background agent does that for some reason. 
+
+A: I'd also recommend you try to use my util to auto disable your second drive on booting OS with an opportunity to enable it in one command whenever after. Please check it out: https://github.com/igorleanch/2ndrive

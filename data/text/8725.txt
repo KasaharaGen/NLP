@@ -1,0 +1,56 @@
+Q: Many programs notify me that "grep/sed/uname/... not found"; some run, some don't. My system(?) path is damaged, how do I go about a diagnosing it? Some manifestations of this problem: macports won't install, MATLAB won't run, BTT works but incessantly spams me with " not found" popups, and emacs shell does not work.
+My interactive shell PATH is fine, so this is my '/etc/paths' file:
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+/usr/local/bin
+/Users/sambo/bin
+where that last one is my own personal scripts. Could I have damaged it just from appending? Anyways, that's problem and help would be appreciated.
+EDIT: With echo -e ${PATH//:/\\n}, I get
+/Users/sambo/.rvm/gems/ruby-1.9.2-p290/bin
+/Users/sambo/.rvm/gems/ruby-1.9.2-p290@global/bin
+/Users/sambo/.rvm/rubies/ruby-1.9.2-p290/bin
+/Users/sambo/.rvm/bin
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+/usr/local/bin
+/Users/sambo/binsr/sbin
+/sbin
+/usr/X11/bin
+/usr/texbin
+â
+/Users/sambo/sox
+/Users/sambo/bin
+/usr/texbin
+
+
+/Users/sambo/.rvm/gems/ruby-1.9.2-p290/bin:/Users/sambo/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/sambo/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/sambo/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/sambo/binsr/sbin:/sbin:/usr/X11/bin:/usr/texbin:â:/Users/sambo/sox:/Users/sambo/bin:/usr/texbin
+
+
+*
+
+*is it OK for these ruby bins to be upstream of the system bins?
+
+*could that junk cause any trouble?
+
+
+A: Your question is unclear as it seems to ask several things. However the issue re launching from the Dock can be answered.
+The Dock does not call a shell. .profile and other startup scripts are only run when Terminal.app or similar starts a shell or you run a shell script via launchd etc.
+To change the path used for Apps launched from the Dock, Finder or other GUI then you need to change the path your Workspace uses this is in ~/.MacOSX/environment.plist 
+e.g. mine is
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>WAFDIR</key>
+  <string>/Users/mark/src/third_party/git-svn/waf</string>
+
+  <key>PATH</key>
+  <string>/Users/mark/bin:/Users/mark/env/bin:/Users/mark/usr/local/bin:/usr/local/bin:/opt/local/bin:/usr/local/git/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/libexec/binutils:</string>
+</dict>
+</plist>
+
+Also have a look at this question.

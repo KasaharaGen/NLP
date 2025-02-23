@@ -1,0 +1,12 @@
+Q: Exclude from log by pattern matching I want to exclude some firewall notices and certain benign error messages from the system logs.
+They occur every few seconds and make it hard to find real problems, especially when the files get rotated away.
+man syslog.conf does not mention string pattern matching like it does on Linux. Can Apple's daemon do it? Are there other options?
+
+A: The command grep -v allows filtering out a term or regex from the input. You can use a pipe (|) to combine multiple grep -v commands.
+Example: grep -v firewall /var/log/system.log | grep -v imagent | grep -v mdworker
+The first grep command in this example operates on the file contents; the subsequent grep commands operate on the output of the previous grep command.
+grep is located at /usr/bin/grep on my Lion system. For more information on using grep, read the man page with the command man 1 grep or just man grep.
+
+Edit: Command line can be shortened to
+grep -v 'firewall\|imagent\|mdworker' /var/log/system.log
+

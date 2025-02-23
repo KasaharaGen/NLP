@@ -1,0 +1,65 @@
+Q: Alternative to Windows Snipping Tool for Mac OSX Is there something like the Windows Snipping Tool for OSX? 
+For those, who don't know about the tool, it's an easy to use software to take snapshot of any portion of screen, and is really useful in various situations.
+
+A: There is now a blog entry about Taking Screenshots in a Snap.
+
+It's built into Mac OS.
+
+
+*
+
+*⌘+⇧+3 captures the whole screen
+
+*⌘+⇧+4 captures a custom rectangle 
+(click and drag over the screen region you want to capture)
+
+*⌘+⇧+4 then space captures a specific window (move the mouse cursor over the desired window, then click)
+
+
+Press esc to cancel.
+Screenshots are saved onto your Desktop and timestamped.
+Holding control in addition to any of the sequences above causes the image to be copied instead of saved to the desktop.
+By default the image format is png. However, you can change the format by typing in the Terminal:
+defaults write com.apple.screencapture type image_format
+killall SystemUIServer
+
+Where image_format is one of jpg, tiff, pdf, png, bmp or pict (among others). If you omit the second line, you will need to log out and in again for the change to take effect.
+The settings for the shortcuts in the system preferences are located at:
+System Preferences → Keyboard → Keyboard Shortcuts → Screen Shots
+The MacOS X application that enables screenshots is called Grab. It is located at /Applications/Utilities/Grab.app
+
+A: Macworld magazine's senior editor Dan Frakes just posted a very good short video tutorial (with show transcript) about the screenshot features of Mac OS X.  This includes how to use the Grab app from the Utilities folder.   The video is at:
+ http://www.macworld.com/article/164123/2011/12/mac_os_x_screenshot_secrets.html.
+His show description:
+"Mac OS X makes it easy to take screenshots—images of your screen or objects on it. But even veteran Mac users are often unaware of the many options available for getting the perfect screenshot. Here's a quick look at these underused options."
+
+A: If you also need editing capabilities (e.g. like Windows Paint or however it's called these days), Skitch is a good add-on (and it's free).
+
+A: If you don't want to remember the shortcut keys, you can also use the built-in Preview app.
+Just launch Preview, then from the menu, select File, Take Screen Shot, then choose 
+
+
+*
+
+*From Selection - you will get a crosshair to drag
+
+*From Window - you will get to choose which window to grab
+
+*From Entire Screen - it will give a countdown first, so that you can get back to whatever app you want to take a picture of
+
+
+It will then display the screenshot in Preview, and you can save, copy, paste, crop, etc. from there.
+
+A: Easycrop, or start with the insanely great (and free) SnapNDrag, from Yellow Mug — http://www.yellowmug.com/
+
+A: You may like Snip, I used it for a while and I found it fantastic. You can download it from Mac App Store for free
+
+A: Of course, the most convenient way to snapshot on Mac is by pressing keyboard shortcuts, however, this traditional method lacks additional features like making annotations, uploading images online for sharing, etc. For this purposes, you can make use of professional Mac screenshot tools that features the same function as Snipping Tool.
+Grab - A built-in screenshot tool on Mac that enables you to capture anything you see on screen.
+Skitch - Easy tool that allows for capturing, annotating and sharing screenshots / images.
+Jing - An effective screen capturing program that works for recording screen and taking screenshot.
+
+A: Keyboard Maestro can drive Preview to behave exactly like snipping tool
+F13 (in the same place as PrintScreen on Windows)
+Open Preview.app
+Select menu File/Take Screen Shot/From Selection

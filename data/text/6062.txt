@@ -1,0 +1,9 @@
+Q: How to disable Safari's new "feed://" redirection for feeds? I'm sure some people really love that new feature, but I use Google Reader so it's driving me batty. Not to mention that as a tech guy, I might want to actually view an XML feed once in a while (like for instance, Sparkle update feeds).
+So how do I stop Safari from redirecting the normal XML feeds to their "feed://" pseudo-protocol?
+
+A: Apparently, it used to be possible in Tiger/Safari 2.0 to disable this using defaults write com.apple.Safari DebugSyndicationEnabled -bool NO. (source) I cannot get this to work in Lion/Safari 5.1, however.
+Your best bet seems to be to set the default feed reader (Safari → Preferences… → RSS) to something that gives you XML source.
+
+A: Just in case that would be useful, disable RSS feed in Safari 5 :
+Safari top menu --> Preferences --> RSS --> uncheck both boxes next to "automatically update articles in"
+Done.

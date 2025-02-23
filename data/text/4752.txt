@@ -1,0 +1,16 @@
+Q: Lion - automatic file versioning - details Can anybody explain some details about how is implemented the automatic file versioning in the Lion?
+
+
+*
+
+*It is transparent for any file? (for example, for files created in the Terminal.app with shell command like ls >file.txt and ls -l > file.txt mean than the file.txt got versioning?, or
+
+*every application should call some versioning API at the save?
+
+
+A: The only information has released to non-Mac Developer Program members is the following.
+
+If you have a document-based application, Lion offers an efficient, built-in auto save feature that stores changes to the working document instead of creating additional copies on a disk. Versions automatically records a history of changes made to your documents and lets your app display a Time Machine like interface so users can browse through previous versions. ADC
+
+There is more information available for Mac Developer Program subscribers. The information, however, is currently restricted by a non-disclosure agreement . The information will most likely be made available for everyone once the final version of Lion is released. This is how Apple have done it in the past.
+Personally I am a bit disappointed that Apple chose to go with ‘something else’ instead of the native handling of this offered by the ZFS file system. (As rumored as far back as Leopard.)

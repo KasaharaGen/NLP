@@ -1,0 +1,12 @@
+Q: Is there a way to speed up the way Mac responds to my trackpad clicks? I'm new to Mac and Xcode. I realize there's always a significant delay when I click the trackpad and when Mac responds to my action, around 300-500 ms or so, which is very annoying for me. I'm using a new MacBook Pro with plenty of memory and processing power. 
+Is it a "feature" of Mac? How can I turn if off?
+EDIT: OK, I think it has something to do with the "tap to click" feature which I'm currently using. If I press to click, there's no such delay. Anyone has any idea how to fix then?
+
+A: Do you have trackpad dragging enabled?  If so, it has to wait a moment after you tap in case you tap again and turn the action into a drag -- until then, it can't tell if you want to just click, or click-hold-drag.  The only way to eliminate this delay is to turn off trackpad dragging, so there's no ambiguity about what it should do when you tap.
+
+A: *
+
+*Goto System Preferences > Trackpad 
+
+*Change the Tracking Speed, Double-Click speed and scrolling speed as necessary. 
+

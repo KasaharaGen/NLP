@@ -1,0 +1,85 @@
+Q: How can I clean up 'Other' storage on iPhone 3G? My iPhone 3G is currently showing 3.1GB of 'Other' disk space in iTunes, and this amount seems to be growing by about 0.1GB every couple of days.  I can't find any good references for what this space could actually be getting used for.  
+I've heard of doing a restore to clear it up, which works, for about a day, but then the 'Other' space starts to quickly accumulate again.
+I've also done all the Internet history clearing, turning off of indexing and removing of disabled mail accounts, still no success.  I'd love to know how to either clear this stuff up, or see a decent explanation for why my phone is using all this extra space.
+Here's a snapshot of what my disk usage bar in iTunes looks like:
+
+UPDATE: My phone is not jailbroken.  It is stock IOS 4.2.1.
+
+A: If you are jailbroken you could use iFile (not free, but worth the $4) from Cydia to find out how much space is used by which folder on your iPhone.
+In iFile press the blue arrow after each folder and take a look at Size under Attributes. Do this for all the folders and sub-folders until you can zero in on what uses up the space on your device.
+
+A: I had this same exact problem until 2 days ago followed the procedure outlined on this page: http://www.ipodrepublic.com/iphone/fixing-issue-other-files-iphone-memory/2010/03/31/ and it worked well.  Re-created below.  I haven't seen my Other size grow since.
+Step 1: Turn of sync music in iTunes
+When you have synced your iPhone and noticed that “other files” have taken up a lot of storage space on the iPhone, un-tick the “sync music” alternative in iTunes before un-connecting your iPhone.
+Step 2: Install DiskAid software on computer/mac  (Instead of using DiskAid (paid), I used iPhone Explorer (which is free.))
+DiskAid is a neat little software that allows you transfer files to your iPhone, iPod Touch, or iPad, treating it as a USB drive. They offer a free trial of the software so no need to purchase it first time you have to use it at least.
+Make sure your iPhone is connected with the USB when you open up DiskAid. When the program is running, at the bottom left corner it says “DiskAid folder”, click on the drop down list and choose “media folders”.
+Step 3: Go into iTunes Control folder and then the Music folder
+In DiskAid you will see an overview of all the folders and files on your iPhone. Go to the iTunes Control Folder and then the subfolder called Music. Under the Music folder you will likely see a lot of subfolders starting with “f”.
+Step 4: Delete/remove all subfolders in Music
+Delete all the subfolders under the Music folder. They include the files that are hogging your iPhone memory under “other files”.
+Step 5: Open iTunes and sync your iPhone
+With “music sync” still turned off in iTunes, sync your iPhone. This will remove all music files from your iPhone, but keep all other content. Don’t worry about this though, as in the next steps you will sync the music back onto your iPhone.
+Step 6: Unplug iPhone and reboot it
+Once the iPhone has finished syncing, unplug it and perform a reboot. The reboot is done by holding down the “power down” button at the top right at the same times as holding down the control button. Hold both of them until the iPhone has switched off and the Apple logo appears on the screen before releasing both buttons. This action will reboot your iPhone.
+Step 7: Reconnect your iPhone to iTunes and recheck “sync music”
+This will put your music back onto the iPhone, and you should not see any of the “other files” taking up any of the iPhone memory. Once the sync is complete your iPhone should be all sorted again.
+If you still see “other files” taking up memory on your iPhone you have likely done something wrong or left out subfolders in step 4.
+Also, delete the same type of sub-folders in the PWNTunes Itunes Control folder as well if you are jailbroken and have PWNTunes installed.
+
+A: See here for a similar question. Most likely the "Other" is your jailbreak (Cydia or other)... are you jailbroken?
+If not, the other ideas found there are:
+
+
+*
+
+*Delete Contacts
+
+*Delete Notes
+
+*Delete Calendar Events
+
+*Delete Saved E-Mails
+
+*Delete Old Texts
+
+
+A: Apart from bookmarks, calendars, contacts, emails, and notes, I noticed that the "yellow" bar increased after I updated to a newer iOS version.
+In the first case, it's easy to decrease the memory usage by removing the items that are not necessary (starting from email messages); for the last case, I don't really know how to free the memory.
+I don't have much memory taken for other items; it's probable that in your case, the memory is used for email messages, contacts, calendars, or notes.
+
+
+A: Click Reset Warnings on your device's icon in iTunes, then Sync.  This will allow you to see if you have a bunch of apps crashing and leaving crash logs behind.
+
+A: Any app that stores information- Pages, Numbers, Keynote, Dropbox, VLC, Goodreader, etc...- stores those files in "other". If you have opened attachments (documents, PDFs, etc...) in your Mail app, those are also stored in "other" for a short time. Next time you sync your iPhone, check under the "Apps" tab way down at the bottom in the "File Sharing" section. If you have a bunch of apps that have documents in that area and you aren't using the documents, clean them off and see how much smaller your "other" is.
+
+A: I tried some of the solutions here, but nothing worked. So here's what almost worked for me. I have 5.5GB of 'other' that wouldn't go away.
+So i connected my iphone to my ubuntu box (10.10) and was able to browse through the folders. By right-clicking each folder and selecting 'properties', i was able to pin down the offending Safari folder, and the file 'goog-phish-shavar.db' within. I couldn't find much info about this file, but it appears to be a sqlite db of domains, possibly for the purposes of fraud control (anti-phishing).
+I deleted the file, then re-synced, but found the 5.5 GB still there. So I rebooted, still there. Turned off Fraud warnings, resynced, still there. Rebooted, resynced... still freakin' there! plugged back into ubuntu, found and redeleted, rebooted, verified it was really, really gone in ubuntu.. reconnected and what do you know - it's back again! I can't seem to get rid of it. but at least i know what's taking up all the space. I'll post back here if I can figure out how to get rid of it once and for all. 
+
+A: If your phone is not jailbroken, then the only remaining option may be doing a Factory Reset, and set up the phone As a new phone, not from a backup.  My Other data appeared to be backup related.  This is what I had to do after trying just about every other option mentioned. 
+Before you do a Factory Reset, do the following first:
+
+
+*
+
+*Transfer your iTunes purchases. Make sure all your apps, books and music from your phone are on your computer. Also that your computer is Authorized to play those purchases so they can be reloaded.
+
+*Back up your photos. I sync with iPhoto, but if you use Photo Stream, make sure to backup your cloud data.
+
+*Sync your notes, contacts and such to the cloud. When I did the reset, I lost my daughters notes, but her contacts were still in the phone. I think this was because I did not have notes synced with the cloud.
+
+
+Factory Reset
+
+
+*
+
+*After performing these steps, go to the Summary tab and click
+"Restore iPhone"
+
+*Instead of choosing from backup, select "As new phone".
+
+*After the setup completes, you can begin adding back your apps,
+music and photos. 
+

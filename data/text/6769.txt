@@ -1,0 +1,31 @@
+Q: Combining multiple small DMGs into one large "virtual" DMG I created 50 small (1GB) encrypted DMGs using DiskUtility, and want to 
+combine them into a single 50GB "virtual" drive but still have 50 1G 
+images on disk. How? Why: 
+
+
+*
+
+*I want to encrypt my files (even the filenames) before backing 
+them up without using half my disk space just for encrypted files. 
+
+*I use an external backup service that'll backup 1G disk images
+(files), but not 50G files. The smaller the individual disk images, 
+the better. 
+
+*I'm running Mac OS X 10.4.11, so I can't use cryptomfs (plus, I'm 
+not sure if cryptomfs creates several small files or one large 
+file). I have MacFUSE installed, so I tried installing cryptomfs anyway,
+but it failed (both 1.0 DMG and 1.1 pkg file). 
+
+*Since upgrading is neither free nor easy, I'd prefer to avoid it. 
+
+*I've considered other options (eg, a directory of hard links to 
+the files with encrypted names for the hard links and relying on my 
+backup service for content encryption), but they get fairly complex. 
+
+A: If you are on Leopard (OS X 10.5 or above) you can do this by having one encrypted disk image containing all the files.
+The dmg to create in DiskUtility is a sparsebundle. This creates one bundle that mounts as a disk to OSX but actually is a directory and all the files in it are of a much smaller size. In Finder select the sparsesbundle and then Show Package Contents.
+I just created a sparsebundle of capacity 1TB and copyied a 400GB vieo file onto it. The structure of the bindle had many files none of which were above 9MB
+The band size can be controlled see hdiutil. But I have not done or worked out how do do this.
+
+A: Unfortunately I don't think there's anything that will do exactly what you're looking for. I think your best option is to symlink them all to a location of your choosing, and make an Automator or shell script that mounts/unmounts them all in one go.

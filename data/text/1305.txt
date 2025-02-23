@@ -1,0 +1,32 @@
+Q: Is there a way to remove the preview icon of a gif or jpeg file? Is there a way to remove the preview icon of a gif or jpeg file ?
+I made very little image file for the web, but they weight 45 Ko ! I guess this comes from the preview icons
+Edit : I've added a screenshot to show you the informations i've got. Preview.app seems to be the most accurate...
+
+As you can see, i used 3 ways to get the size information : 
+
+
+*
+
+*from the finder, in the folder himself (45 ko)
+
+*from the Get Info dialog box (45 ko)
+
+*from the preview.app, General Info Box (0,5 Ko)
+
+
+A: As mankoff said, the large size is probably a resource fork (with things like previews).  To confirm this, use the Terminal command ls -l@ /Volumes/Database/WebFolder/imgs/confirm.gif -- you'll probably see something like this:
+$ ls -l@ /Volumes/Database/WebFolder/imgs/confirm.gif
+-rw-r--r--@ 1 www  www  539 Nov 18 09:39 /Volumes/Database/WebFolder/imgs/confirm.gif
+        com.apple.FinderInfo     32 
+        com.apple.ResourceFork  40748 
+
+If it doesn't show a 40kb resource fork, report back so we'll all have a better idea what's going on.
+As long as the image is just for web use, a big resource fork isn't really an issue, since the web server will only serve the data fork (which is just 539 bytes long).  If want to compact the file anyway, use the command xattr -d com.apple.ResourceFork /Volumes/Database/WebFolder/imgs/confirm.gif to remove the fork.
+
+A: The Finder preview data isn't stored inside the actual file, so that's not what's causing your size problems.
+ImageOptim is a handy GUI tool for shrinking excess data. Also, if you're making a small image I'd recommend png or gif, jpeg is designed for photos.
+
+A: Try deleting the resource fork. From the command line this could be:
+cp /dev/null file.ext/rsrc
+
+If you want to explore the resource fork more, use the DeRez CLI tool (from Developer Tools) or Rezilla.app (GUI)

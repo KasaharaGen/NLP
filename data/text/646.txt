@@ -1,0 +1,5 @@
+Q: How are images stored on the hard drive of an iPhone? If I were to examine my iPhone's hard drive, in what format would I find the images in the Photos app stored?
+Are they in a big .sqlite database file? Or are they stored as individual files such as .jpg?
+I'm looking for the extension used (e.g. .sqlite, .png, .jgp, etc.).
+
+A: All the images are stored as jpegs in various locations. The camera roll, for example, is stored in /private/var/mobile/Media/ (unless they've moved it).

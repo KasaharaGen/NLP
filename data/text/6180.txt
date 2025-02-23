@@ -1,0 +1,41 @@
+Q: Preferred Location for cgi executables in Lion Server This question relates to use of a Lion Server only for testing and prototyping, so I don't need multiple sites hosting separate domains. All of my projects have directories in the root directory, not in separate "Sites" sub-directories.
+In Lion Server, Apple has dropped the previous directory arrangement of:
+/Library/WebServer/CGI-Executables [aliased as cgi-bin]
+/Library/WebServer/Documents       [aliased as root directory]
+Now, the web server is simply:
+/Library/Server/Web/Data/Sites/Default
+After I installed Lion Server, Apache was still configured with cgi-bin aliased to /Library/WebServer/CGI-Executables and root directory to /Library/WebServer/Documents. I changed the latter in the Web section of Lion's Server.app to /Library/Server/Web/Data/Sites/Default.
+I'd like to ditch /Library/Webserver. I can't find any reference to a preferred/recommended directory for my executables. I'm thinking:
+/Library/Server/Web/Data/Exec   [aliased in Apache config as cgi-bin or whatever]
+I'm used to having all my executables in one place, and they usually share lots of modules in common, so I'm not inclined to put a cgi directory in each project's own directory.
+Suggestions? Current best practices?
+Thanks.
+
+A: OS X being an unix-based system, you may use the standard unix file structure for that. 
+Generally speaking, most unix/linux distros use /var/www/ for web server storage, you could imagine something like /var/www/html for pages and media and /var/www/cgi-bin for cgi executables. 
+There are others locations available (/srv for example), see this list on wikipedia for an explanation on the directory structure (if needed)
+
+A: My preference would be to place system wide common CGI executables in /Library/Server/Web/Data/Exec
+A few concepts came to mind to me thinking about what folder might be best:
+
+
+*
+
+*Avoid storing my CGI among the Apple delivered system CGI.
+
+*Avoid storing my CGI in a folder where Server Admin and Finder have hidden by default.
+Of lesser importance are the actions taken by Apple to no longer ship with or continue to hide some folders from view (I'm happy to break from the vendor lead - but generally need a good reason to do so)
+
+*Don't change from Snow Leopard's location of /Library/WebServer/CGI-Executables (the lazy sysadmin principle - why change anything you don't have to)
+
+*Least effort - if I have to chance something - less change is better.
+
+
+It seems clear that /Library/Server/Web/Data/Sites would contain data that the web server would serve up differentially based on the needs of each site. So if my Orange site had CGI that were only meant for that one site, I might store them in /Library/Server/Web/Data/Sites/Orange/Exec rather than in the "default" location.
+I don't see a good reason to keep /Library/WebServer around since I'll be editing my Apache configuration file to add my sites - and I'm guessing that we'll see it change in a point release and won't have to guess.
+I would dismiss any folder that was hidden by default in Finder and Server Manager - so for me /private would be out. I'm not saying it's wrong for anyone to store things there - especially if saves you work or brainpower by  re-useing code structure from another UNIX OS that doesn't employ Mac OS X's unique /System and /Library directory structure.
+
+A: Answering my own question in case the conclusion wasn't clear. No one has clarified why Apple changed the directory structure for the web server in OS X Lion (& Mountain Lion) Server. However, for me the salient question was whether there was a "best practices" location for web executables - or a "preferred" location as @bmike put it. My conclusion from the several useful comments and from my own testing is that the choice of location is arbitrary, and therefore what counts as best practice is to locate your web executables where they best serve your site, following the criteria and suggestions mentioned by the commenters.
+For me, my own server is just a step on the way to the final location of my stuff on someone else's server or at some ISP. So each build creates two distinct configs: one for my (now Mountain Lion) test server's directory structure and the other for the directory structure where the app will be deployed. Everything else is the same. 
+So I set up a directory structure for my web server that makes it easy to keep track of my projects, and recorded its paths in my build system. That and Apache-style aliasing (i.e. using 'cgi-bin' as an alias for the executables directory) mean I won't really look back now that my own directory structure is in place. I just build the app and it lands in the right place to run on my server. So that's the answer for me.
+In a production server, the best practice would probably incorporate the commenters' suggestions of minimal change, minimal surprise to a later maintainer, and persistence through system upgrades. Thanks all.

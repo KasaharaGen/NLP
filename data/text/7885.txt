@@ -1,0 +1,68 @@
+Q: Why isn't search working in Finder? In Finder, the search bar in the top right corner has ceased to function. Observe:
+
+Obviously, there should be something with the letter "s" in it. But no results appear. It's just blank. Anything I search for, anywhere I search for it, it all fails.
+
+A: Other than your Finder having jaundice, this should be a simple fix. The following command will clear the volumes local store and rebuild it if necessary; Open up Terminal and type:
+# sudo mdutil -E /
+
+
+
+*
+
+*You will be asked for your password, provide it, as this command
+requires administrator privileges to run.
+
+*After confirming your Spotlight index will be re-built and your files
+should appear in the search. ( Depending on the size of your HDD it
+can take a while )
+
+
+
+To check if all volumes have indexing enabled or disabled use:
+# mdutil -s -a
+
+To toggle (enable/disable) indexing on all volumes: 
+# mdutil -a -i
+
+These commands are safe to use when/if you encounter similar issues as described in the question.
+
+Complete options available:
+ -p  Spotlight caches indexes of some network devices locally.  This option requests
+     that a local caches be flushed to the appropriate network device.
+
+ -E  This flag will cause each local store for the volumes indicated to be erased.
+     The stores will be rebuilt if appropriate.
+
+ -i on | off
+     Sets the indexing status for the provided volumes to on or off.  Note that index-
+     ing may be delayed due to low disk space or other conditions.
+
+ -s  Display the indexing status of the listed volumes.
+
+ -a  Apply command to all volumes.
+
+ -v  Print verbose information when available.
+
+
+
+*
+
+*mdutil(1) Mac OS X Manual Page
+
+A: Being as the UI is a better way to go than to jump right away into Terminal, try the following from Apple's support documentation:
+
+
+*
+
+*From the Apple menu, choose System Preferences.
+
+*Click Spotlight.
+
+*Click the Privacy tab.
+
+*Drag a folder or even an entire volume (your hard drive) to the list.
+
+*Remove the item or volume you just added.
+
+
+Failing these steps and the steps advised by the others, try creating a new user and seeing if search works in Finder. If it still does not work, then search is broken system-wide and an Archive & Install will not help. You'll want to back up your data and reinstall the OS. If an Apple Store is close, they can be of assistance here (no charge).

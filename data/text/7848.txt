@@ -1,0 +1,7 @@
+Q: Migrate local user account to network account If I have a user with a local profile on their mac and they want to migrate all the data to a network based account (OS X Lion server), what's the best way to do this?
+
+A: Why wouldn't you use the Migration Assistant to move users?
+It's wicked fast over gigabit ethernet, knows what preference files are needed and can handle special cases better than rsync or other simple file copy methods.
+Once the user is there, you can delete it (preserving the home folder) and then re-create the user with the proper server UID / home folder location or just edit these in the directory service where user data is stored.
+It really depends more on how you want your server set up than just getting the files. Some setups it's easier to move first and fix later - others you should just set up the new account and let users move their files by hand once they have logged into their new accounts.
+I would probably set up the server account for the user and once you have created the Home records in Workgroup Manager you can copy the files from a backup or the old client machine (paying attention to ownership by moving the contents of the home folder directories and resetting permissions to match the server UID/GID) before binding the client machine to the server accounts.

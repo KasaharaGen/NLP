@@ -1,0 +1,19 @@
+Q: Is it possible to change file status (from read only to read and write) for multiple files/folders at once? I moved all my web files/folders from my default MAMP directory to a more manageable location. Now all the files and folders have been changed to read only. 
+I figured out how to change the status per one by one, but that would take a lot of time. Is there a way to change all the files and folders to "read and write" all at once
+
+A: Open terminal and try the following; putting the path of your new directory behind the /:
+chmod -R o+rw /path/to/your/new/directory
+
+-R means recursively change the permissions of all files in the directory, with the arguments ( o+rw ):
+o ( the other users), alternatively u (for user) or g (for group)
+r ( read )
+w ( write )
+
+
+A: Better to just give the permissions you're looking for:
+chmod -R g+w Music
+
+-R -- recursive
+g+w -- give write privileges to the group (which includes osx system-level users)
+Music -- the relative (or /Music for an absolute) path to the new Folder.  
+Obviously, in case you didn't figure it out, you need to run this in Terminal.app

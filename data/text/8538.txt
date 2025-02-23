@@ -1,0 +1,9 @@
+Q: Installing iOS on VMware Workstation I have a Windows PC and VMware Workstation. I am trying to figure out a way to install iOS on it.
+Is there is way to install iOS on VMware Workstation?
+
+A: No.  See relevant Stackoverflow discussion. 
+In short, you need to virtualize the ARM cpu, not an x86 model. Additionally, you'd need to virtualize the swipes and taps and whatnot, which would be quite the tall order.
+Here's one project that's attempting to virtualize iOS on the QEMU platform: IEMU.
+
+A: xpadian
+it is not for vmware,but it is work and it is the best ios 7 emulator.

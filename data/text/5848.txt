@@ -1,0 +1,62 @@
+Q: How can I clone my Lion-pre-installed drive to a new smaller hard drive? I got a new MBP with Lion installed (as detailed here: How can I install an SSD on my new Lion MBP w/out install disks?), and I want to clone the drive (including the Lion install partition) to my new SSD drive? (Note: I don't care about the OS or user files since this is a brand new machine).
+Edit I have a solution, so mainly just created this question to share my result. However, I know others may have different ways to have done this, so please share
+
+A: It didn't take long - there is now an official assistant to roll your own external recovery HD. You need a USB drive with 1Gb of space and a free download.
+The Lion Recovery Disk Assistant and OS X Lion: About Lion Recovery Disk Assistant will walk you through making an external bootable Recovery HD.
+As the cloning software I like won't handle the Recovery HD yet, I've gotten good results by installing Lion onto the smaller hard drive and letting it make the Recovery HD.
+It's easy to migrate the apps and data in post install rather than do it all in one step.
+
+A: Carbon Copy Cloner and no, there is no point in a DVD. Save the installer if you must. Redownload it from the store if you didn't save it, but most users never use the DVD and with recovery partition there no need for having a DVD lying around.
+Beside, are you aware how long mother nature need to decompose a DVD. Add some ecological thinking.
+With no sarcasm: Thank you Apple for dropping the pointless DVD. 
+
+A: Starting with version 3.4.4 Beta 1 it is possible to clone the Recovery Partition with Carbon Copy Cloner, check
+http://help.bombich.com/kb/troubleshooting/will-ccc-clone-the-recovery-hd-partition-on-lion
+for more information.
+
+A: 1) Prepare an external disk with a complete fresh Lion install, including the hidden Recovery HD.
+2) Use SuperDuper or Carbon Copy Cloner to clone only your regular Lion Macintosh HD, full of your data, onto the regular Lion Macintosh HD on the external disk. It's a differential backup--it copies what's different between the two.
+You will then have a volume on your main computer with your Lion partition and the Recovery HD on it, and you will have an external volume with your Lion partition and a Recovery HD on it.
+
+A: If others searching for this question just want to install a fresh copy of OS X on a new drive (like the OP) and your Mac has firmware support for Internet Recovery mode, you don't have to clone the old drive. You can:
+
+*
+
+*Replace the old drive with the new drive.
+
+*Start up and choose a network. The Mac will then display a spinning globe icon and download a disk image for the recovery system from Apple's servers.
+
+*After the Mac has started up from the recovery system, choose Install Mac OS X. It will download and install OS X, or the latest minor version of the major version of OS X your Mac came with.
+
+See the OS X Internet Recovery section in http://support.apple.com/kb/HT4718:
+
+If you happen to encounter a situation in which you cannot start from the Recovery System, such as your hard drive stopped responding or you installed a new hard drive without OS X installed, new Mac models introduced after public availability of OS X Lion or OS X Mountain Lion, automatically use the OS X Internet Recovery feature if the Recovery System (Command-R method above) doesn't work. OS X Internet Recovery lets you start your Mac directly from Apple's Servers. The system runs a quick test of your memory and hard drive to ensure there are no hardware issues.
+OS X Internet Recovery presents a limited interface at first, with only the ability to select your preferred Wi-Fi network and, if needed, enter the WPA passphrase. Next, OS X Internet Recovery will download and start from a Recovery System image. From there, you are offered all the same utilities and functions described above.
+As with the Recovery System, reinstallation of OS X Lion or OS X Mountain Lion from OS X Internet Recovery requires an Internet connection. See "Supported network configurations and protocols" below.
+Some computers that did not ship with OS X Lion or OS X Mountain Lion installed may have a software update available that allows them to use Lion Internet Recovery.
+
+
+A: First, I put both the new and old drive into a PC of mine, and loaded up an Ubuntu LiveCD.  At this point, my old drive is showing up as /dev/sde and new drive is /dev/sdf (WARNING: be sure to update the below commands with your device assignments or you can easily ERASE all your data).  fdisk doesn't work on the drive because it is a GPT partition table(?), and so I use gdisk instead.
+I forgot to mention in my question, the drives are of different sizes (500gb was old, 128gb is new), so I couldn't just clone the entire drive.  Instead, I recreated the partitions with gdisk and copied the MBR over.
+I most likely went about creating the MBR (master boot record) on the new drive completely wrong, but this way worked for me: 
+
+
+*
+
+*dd if=/dev/sde of=/dev/sdf count=39 bs=512 (the reason was the first 39 sectors were not part of a partition)
+
+*Next, I opened gdisk /dev/sdf with which there was a problem: the MBR I copied over brought the old drive's partition table & its sector information (i.e. new drive thought it was 500gb).  So I used the "repair" option in gdisk as it recommended, deleted partitions #2 & #3, and saved the table.
+
+*At this point, if I went back into gdisk, the disk showed a MBR, and no longer had errors.
+
+
+Next, I created the other two partitions, being extra careful to setup the sector size exactly as the old disk had (for the #1 EFI partition and the #3 Recovery HD partition that is). For #2, I just did the math, and created the disk accordingly).
+Finally, I used dd to copy partition #1 ("EFI System Partition") and #3 ("Recovery HD") over from the old drive:
+dd if=/dev/sde1 of=/dev/sdf1
+dd if=/dev/sde3 of=/dev/sdf3
+
+When I put the new drive in my MBP, I held Command+R to get into the Mac OS X Utilities, at which point I erased my main partition (at first, the disk wasn't listed when I went to install Lion -- probably since I just created the partition and didn't format it).  I formatted it to the recommended file system (Journaled  -- I forget how they phrased it).
+OS X Lion is currently installing, and seems to be okay.  I'll post back if I get any oddness.
+Note: gdisk mentioned in its help section that it is probably best to use a Mac disk utility if the GPT drive is being use on a mac, so take my solution with a grain of salt.  (I think fdisk says the same warning about NTFS and FAT, but I've never had a problem with using fdisk/linux to create/format/etc on that end).
+
+A: I would just recommend SuperDuper! The free trial lets you do just that, and it makes it bootable for you. Really great software.

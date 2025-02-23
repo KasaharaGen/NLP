@@ -1,0 +1,5 @@
+Q: Time Machine can't find AFP/SMB shares I have an Ubuntu NAS setup with both SMB and AFP shares, both of which I can access from my Windows machines and Macbook Air. I have also verified that I can copy files to these shares from my MBA.
+But Time Machine on Lion doesn't show any of these shares, only "Set Up Other Time Capsule". What do I need to do for it to show these shares?
+I've tried defaults write com.apple.systempreferences TMShowUnsupportedNetworkVolumes 1 and defaults read com.apple.systempreferences TMShowUnsupportedNetworkVolumes returns 1.
+
+A: You need to use netatalk 2.2, which is the only version that supports Time Machine backups from Lion. 

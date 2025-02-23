@@ -1,0 +1,35 @@
+Q: How can I export my iPhone notes to text files, preserving the modification date? I have hundreds of notes on my iPhone. I want to export these to a different program that can import text files. I'm trying to preserve the modification date (e.g. by storing it in the file's modification date, or by including the date in the file somewhere). If there's any way to preserve the creation date (if it's even stored), that's desired too.
+Is there any way to do this? I have both a Mac and PC.
+
+A: In OS X, they're automatically synced to Mail.app. There is a section on the left side of the screen that says "Notes." If you like, I can post screenshots later (not at my MacBook right now).
+Here's a way to sync them with a Google account. This is pretty cool, and probably the best way to sync between multiple computers/ devices. Check it out. If you don't have a Google account, might be worth it now lol.
+Hope this helps!
+
+A: iTunes can setup notes sync with MS Outlook or OS X Mail(OS X >10.5.8). This can be setup under the info tab for your device in iTunes, and sync will take place when the device is plugged into the computer by the USB cable.
+Once in Outlook, you can save notes as text files. The notes have creation and modifcation date attached. Saving as text will strip some of that information.
+
+A: These days in macOS Catalina, you can use this AppleScript that I cobbled together from a couple of sources as a reliable way to save both a pretty good rich text export of the notes along with hard-coded timestamps of both the original note creation and the last time it was edited.
+This will produce an RTF for each note in your home folder, as long as it's contained in a Notes folder called "Batchgroup". Rename that a folder you want to test or batch process at a time, or remove everything after repeat with aNote in notes in that line to simply do all your notes at once.
+set i to 1
+tell application "Notes"
+    set output to ""
+    repeat with aNote in notes in folder "Batchgroup" #take out the 'in folder' bit to export all notes in all folders at once
+        set noteText to "<!-- ### Start Note ### -->
+"
+        set noteText to (noteText & body of aNote as string) & "
+"
+        set noteText to noteText & ("<p><p>Creation Date: " & creation date of aNote as string) & "</p>
+"
+        set noteText to noteText & ("<p>Modification Date: " & modification date of aNote as string) & "</p>
+"
+        
+        
+        do shell script "printf %s " & quoted form of noteText & " | textutil -inputencoding UTF-8 -format html -convert rtf -stdin -output ~/" & i & ".rtf"
+        set i to i + 1
+    end repeat
+end tell
+
+# https://apple.stackexchange.com/a/94756/163629 - "It doesn't keep images, and it doesn't work with notes that are longer than getconf ARG_MAX. -inputencoding UTF-8 is required for preserving U+100 and characters above it."
+
+There are ways to modify to make file names more useful.
+I note it fails to save hyperlinks so it's not perfect.

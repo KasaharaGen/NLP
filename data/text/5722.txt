@@ -1,0 +1,43 @@
+Q: How do I configure Gmail on an iPad? I just purchased an iPad 2. I was trying configure mail in my new iPad.
+I followed this tutorial for configuring mail on my iPad. But after I enter the required information and click Next, I receive this message :  
+
+Cannot connect Using SSL
+  Do you want to try setting up the account without SSL?
+
+If I click Yes I receive a message :  
+
+The IMAP server "imap.gmail.com" is not responding.
+  Check your network connection and that you entered the correct information in "Incoming Mail Server" field.
+
+Only OK button appears this time. I have checked my network and all the text fields a number of times. Still no success.
+Where did I go wrong?
+
+A: Don't use that guide. In fact, don't use the gmail option either, if you can help it.
+Use google's own advice which suggests setting it up as a Microsoft Exchange server. that will get you syncing with mail, contacts and calendars. But the main benefit is that it gives you true push syncing!
+It's probably a little redundant, but here is a shortened version of the list of instructions.
+
+
+*
+
+*Select Microsoft Exchange account
+
+*In the Email field, enter your full Google Account email address. If you use an @googlemail.com address, you may see an "Unable to verify certificate" warning when you proceed to the next step.
+
+*Leave the Domain field blank.
+
+*Enter your full Google Account email address as the Username.
+
+*Enter your Google Account password as the Password. (If you are a 2-step verification user, please use an application-specific password instead.)
+
+*Tap Next at the top of your screen.
+
+*Choose Cancel if the Unable to Verify Certificate dialog appears.
+
+*When the new Server field appears, enter m.google.com.
+
+
+You can then choose which items to sync, choose whether to keep existing contacts on the iPad etc.
+
+A: I don't know why this tutorial is telling you to use the "Custom" template, I've had no issue with the Gmail one.
+The latest iOS updates make sure that the Gmail specificity are handled correctly (Archiving, etc.)
+Try to set up your mail account using the Gmail template, and update your question if you still have issue. Then we'll know it's something going on between your iPad and Gmail servers and not on your iPad.

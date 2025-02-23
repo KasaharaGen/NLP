@@ -1,0 +1,14 @@
+Q: Really, REALLY strange behaviour when editing text files on a OS X host from a windows client over SMB I am working on some python projects.
+The files are hosted (and run) on my mac-mini, which is running OS X 10.7.2.
+I am editing the files from my windows desktop (It has a bigger screen(s)). 
+If I keep a file open for a while, the file-handle seems to get "lost". Netbeans, the editor I am using, cannot open the text file again, and if I try to save the open file, it fails. I actually have to completely exit and reopen my text-editor.
+Furthermore, and much stranger, if I add text to a file, save the file, delete the text again, and save again, the reduction in file size seems to get lost somewhere, and whatever was past the end of the new file size gets appended to the new file.
+E.g. if I have a python file:
+print ("Hello there, world")
+I save it, and then edit it so:
+print ("Hello world")
+and save it again, what gets written to disk on the Mac is:
+print ("Hello world")world")
+Obviously, if you are doing programming, this is a big issue.
+Furthermore, there is even more weirdness if I use SVN on files on the share.
+Occasionally, after running a SVN operation on files on the share, SVN will fail, and the only way to make it work again is to run sudo chflags -R nouchg . from the directory on the Mac. It will then work for a bit, before locking up again.

@@ -1,0 +1,38 @@
+Q: Is there any way to specify "not" in iTunes search? Whenever I want to listen to songs from a particular band in iTunes, I'll just type the name in the search box, select shuffle, and start playing. For most bands this works very well, but I've run into a few situations where I'm unable to narrow it down to a single band due to the fact that the name of the band I'm looking for is a subset of the name of a different band. A classic example is "The Who" - every time I type "the who" in my search bar I get "The Guess Who" as well.
+I've tried some of the basic tricks like using quotes or minus symbols but nothing seems to work. Is there a way to do this, or do I have to create special playlists for these problem bands?
+
+A: iTunes doesn’t seem to exhibit any sort of smart searching built into the search box. Possibly, the best way to deal with these things is to use an external tool.
+In my case, I have Coversutra (not free), that allows you to press “tab” (can be changed) to select different things:
+
+I know there are free alternatives that can possibly do the same thing. 
+An additional alternative could be using an AppleScript and Automator to “ask” for the values… but that might be too much.
+tell application "iTunes"
+  activate
+  set results to (every file track of playlist "Library" whose name contains “some track" and artist contains “some artist")
+  repeat with t in results
+    play t
+  end repeat
+end tell
+
+Something like that, if you can make automator (or the script) to ask you for the two “some” values, you’re set.
+My opinion: iTunes should support spotlight like search strings!
+UPDATE Ok, you’re right about that one, Coversutra (and others) all use iTunes “syntax” which is… no syntax. 
+Spotlight, however, is a different beast. 
+In trying to replicate your scenario, I’ve found that I have two “artists” that are similar in name: Metallica and Metalium. They both contain “Meta” in their names.
+So when I search for artist “meta” I get both, which is annoying, because I really don’t like Metalium that much…
+So I have two solutions for you:
+a. Use Launchbar (or quicksilver), to quickly find the artist (this is a nice way to do it and what I really use most of the time when I want to find a song or an artist, it works faster than anything else). I use Launchbar. Pressing enter there creates a temporary playlist (called Launchbar) that contains all the tracks in question, but you could have dig a little bit more if you wanted an album or song. Very easy.
+
+b. Use Spotlight: 
+This brings both bands: 
+kind:mp3 author:meta
+
+
+but this excludes the unwanted one:
+kind:mp3 author:meta NOT author:metalium
+
+
+Not the best but… what can we do :)
+
+A: I'm not aware of any way to do that type of boolean searching in iTunes (and neither is this poster),  I use smart playlists to do this (sorry if you're already aware of these, just fyi). 
+

@@ -1,0 +1,67 @@
+Q: How to properly increase a `ulimit -n` limits? I'm trying to download the X-Plane 10 Demo through uTorrent, however I get a "too many open files" error all the time. I can do the alternate download (which takes forever and a day), but I wonder how I can increase the setting in Lion?
+I found conflicting information about it, some say that ulimit -n and sysctl are the tools of choice, while others report that launchctl is correct.
+The reported value for ulimit -n is 256, same for launchctl limit:
+cpu         unlimited      unlimited      
+filesize    unlimited      unlimited      
+data        unlimited      unlimited      
+stack       8388608        67104768       
+core        0              unlimited      
+rss         unlimited      unlimited      
+memlock     unlimited      unlimited      
+maxproc     709            1064           
+maxfiles    256            unlimited      
+
+
+A: Basically ulimit controls resources available to the shell and its processes, where launchctl controls maximum resources to the system and its processes.
+For the current shell, limit of maximum open files can be changed by: ulimit -n 10240.
+Note: You can use extra -S parameter for a soft or -H for the hard limit.
+If shell limit cannot be changed, then you need to use the launchctl command first, e.g.
+sudo launchctl limit maxfiles 10240 unlimited
+
+To change the kernel limits, run: sudo sysctl -w kern.maxfiles=10240.
+Further reading:
+
+
+*
+
+*Which command controls the open file limits?
+
+*How to persistently control maximum system resource consumption on Mac?
+
+*How to add persist shell ulimit settings on Mac?
+
+A: The following should resolve most solutions (and are listed in order of their hierarchy):
+echo 'kern.maxfiles=20480' | sudo tee -a /etc/sysctl.conf
+echo -e 'limit maxfiles 8192 20480\nlimit maxproc 1000 2000' | sudo tee -a /etc/launchd.conf
+echo 'ulimit -n 4096' | sudo tee -a /etc/profile
+
+Notes:
+
+
+*
+
+*You will need to restart for these changes to take effect.
+
+*AFAIK you can no longer set limits to 'unlimited' under OS X
+
+*launchctl maxfiles are bounded by sysctl maxfiles, and
+therefore cannot exceed them
+
+*sysctl seems to inherit kern.maxfilesperproc from launchctl
+maxfiles
+
+*ulimit seems to inherit it's 'open files' value from
+launchctl by default
+
+*you can set a custom ulimit within /etc/profile, or
+~/.profile ; while this isn't required I've provided an example
+
+*Be cautious when setting any of these values to a very high number when compared with their default - the features exist stability/security.  I've taken these example numbers that I believe to be reasonable, written on other websites. 
+
+*When launchctl limits are lower than the sysctl ones, there have been reports that the relevent sysctl ones will be bumped up automatically to meet the requirements.
+
+
+A: You could increase the maximum opened files by running ulimit -n 1024 and launching uTorrent from the command line.  In my case, I would launch Transmission using the command :
+/Applications/Transmission.app/Contents/MacOS/Transmission
+
+You must launch the torrent application from the shell where you invoked ulimit, your changes have no effect otherwise, well isolating the changes is the advantage of ulimit. 

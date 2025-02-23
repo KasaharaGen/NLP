@@ -1,0 +1,5 @@
+Q: Apple Mini DisplayPort to VGA adapter and DDC/CI communication I developed a Cocoa based OS X app to set brightness and contrast of a monitor using DDC/CI communication.
+The app works perfectly using a Mac Pro attached to a BenQ DDC/CI capable monitor. It works with every connection interface: VGA, DVI and HDMI.
+If I attach the same BenQ monitor to a MacBook via Apple Mini DisplayPort to VGA adapter, the app isn't able to send DDC/CI commands to the monitor...it reports that the monitor isn't DDC/CI capable.
+I'm sure it is not an issue related to the app. It detects correctly both of the monitor (the internal and the external one) and I'm sure that I'm sending DDC/CI commands to the external monitor and not to the internal one.
+Does Apple Mini DisplayPort to VGA adapter support DDC/CI?

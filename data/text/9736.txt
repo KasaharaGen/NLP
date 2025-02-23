@@ -1,0 +1,5 @@
+Q: How to disable auto preview for *.doc *.docx in finder? In finder, when I set the view mode as columns(cmd+3), finder will auto preview the file.But when I select doc/docx file the finder will be very slow even I cann't do anything for a while.How can I disable auto preview for doc/docx? Thx
+
+A: Open Finder, press ⌘+G and enter /System/Library/QuickLook/ to go to the QuickLook plugins folder. Click on Office.qlgenerator, press ⌘+I and rename the file to Office.qlgenerator.backup. Now, press ⌘+⌥+esc and relaunch Finder. If ever you want to turn the plugin back on, simply remove the .backup from the file name.
+Essentially, plugins tell QuickLook how to render a preview of a given file type. Without the Office plugin, QuickLook will by default show only the icon and information about the file (i.e. size, date created, etc.)
+Note I'm pretty sure this removes QuickLook's capabilities of previewing OpenOffice files as well. 

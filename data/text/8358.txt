@@ -1,0 +1,18 @@
+Q: What would cause a certificate installed on iOS to be invalid? I recently installed two certificates (for use in signing mail) on several iOS devices. Both certificates derive from the same trust chain and were purchased from the same vendor on the same day. The only difference between them is that they are associated with different e-mail addresses. Both work fine on OS X in Mac Mail. But when they are installed on iOS devices (using iPhone Configuration Utility after exporting to .p12 files from Keychain Access) one works fine while the other is flagged as "not trusted".
+What could account for this difference?
+
+Update: 5.1 does not fix this.
+
+A: Several things could be problematic.
+
+
+*
+
+*the device - you can swap the certs on the devices to test that
+
+*time settings can cause a cert to fail to be authenticated if it uses some sort of OCSP/CRL revocation check
+
+*iOS being more picky than Mac and there being something technically wrong (or just not what iOS wants even if it's technically a valid cert)
+
+*provisioning profiles on one or both device that alters the trust policies or networking in a way that blocks some intermediate cert needed to validate the problem cert.
+

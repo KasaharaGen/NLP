@@ -1,0 +1,16 @@
+Q: Deleting files on sparse bundle disk images doesn't actually free the space I used Disk Utility to create an empty encrypted sparsebundle on a FAT volume A. It contains an HFS volume B. I am running on Snow Leopard.
+The DMG now pretty much fills A, and I'm fine with that. This is not about space on A.
+When I delete files from B, the free space Finder shows for B does not change, and it refuses to copy new files onto B. Emptying the trash doesn't help. Ejecting doesn't help. But verifying (not repairing) B in Disk Utility does, even though no errors are found.
+This is a bit of a chore. How do I get better behaviour?
+
+A: Both sparse disk images and the newer sparse bundle disk images intentionality do not reap/reclaim space until they need to. This is especially so for a sparse bundle - which is designed to reduce the network transfers when the image is stored on a network share. It certainly speeds up normal read/write operations since the system can assume compact won't happen when the files are changing. When you check things in disk utility, it perhaps sees that space could be reclaimed and does that for you. You are correct, that in normal use, it ends up with you using more space than if you simply put things on the normal file system.
+You could convert your storage to a normal sparse image to get more traditional freeing of space when you delete files stored within the disk image.
+Certainly read the first two paragraphs of the man page for hdiutil.
+You can of course kick off a manual compact operation with:
+
+
+*
+
+*hdiutil compact /path/to/sparsebundle.dmg
+
+A: A disk image is like a "virtual" drive i.e. a hard disk in a hard disk even if you delete a file the hard disk capacity remains constant, only the amount of available space changes, that is why your disk image remains the same size even after you delete files

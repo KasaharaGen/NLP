@@ -1,0 +1,9 @@
+Q: How to change the Finder title bar font from the command line? I'm sure the fellow who wrote TinkerTool, which lets me change the Finder title bar font among other things, is a fine fellow and surely TinkerTool is not malware. Nevertheless... I want to change the Finder font without installing software. Is there a way to do it from the command line?
+Thanks.
+
+A: Got it. It's in ~/Library/Preferences/.GlobalPreferences.plist
+Modify the following entry:
+<key>NSTitleBarFontSize</key>
+<integer>11</integer>
+
+with your desired font size. This file actually contains a lot of your system's preferences, from your locale setting, to the antialias threshold, to the scrollbar behavior. The file is a binary plist, so you'll either have to use Xcode or convert it into XML and then back again using this method.

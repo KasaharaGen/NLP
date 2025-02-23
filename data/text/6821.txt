@@ -1,0 +1,37 @@
+Q: Adding contextual menu item to zero out files? I want to be able to easily zero-out (make the filesize 0, not fill the existing filesize with 0s) files from the Finder by selecting files from within Finder and selecting an action from the right click menu. I looked at the available Automator actions, but I could only figure out how to delete and recreate files, which would lose any existing attributes. How can I create a contextual menu item to zero out files?
+
+A: *
+
+*Select Run Shell Script
+
+*Use the default /bin/bash command
+
+*Select Pass input as arguments
+
+*Enter the following into the text input box:
+for file in "$@"; do
+    cat /dev/null > "$file"
+done
+
+Possible improvements:
+
+
+*
+
+*Display admin prompt if the user account doesn't have permissions to modify the selected files.
+
+*If a directory is selected, perform the action on all files in the selected directory.
+
+
+A: Automator is the best way to quickly turn a shell script into a service. Finder services are available as a contextual menu, so I would start there.
+
+Taking a brief bash script like this and turning it into a service is two minor changes in Automator.
+for file 
+do
+  if [ -f "$file" ]
+    then :> "$file"
+  fi
+done
+
+
+Change the Pass input: to as arguments instead of stdin and restrict the service to Finder and files/folders. I saved this service as Truncate Files but you can name it as you prefer. 

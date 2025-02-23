@@ -1,0 +1,8 @@
+Q: Unable to create Guest Account after enabling FileVault After upgrading to Lion, I tried creating a guest account and it worked.
+I enabled FileVault on Lion and went through the process of encryption. After that, when I am trying to create a Guest account, the option itself is disabled. 
+I am unable to create a Guest account on Lion . I wanted to check if this is the usual behavior with FileVault enabled Macs since I could not find any related articles on this .
+
+A: If you hover over the disabled option, a tooltip appears explaining that the guest account can't be activated with FileVault turned on:
+
+This is because the new FileVault uses full-disk encryption that's decrypted by the login password of one of the users. As the guest account, by its nature, does not have a password, that would leave your computer completely unprotected. You can still create an account for guest purposes as a regular account though.
+it has been noted that this hover tip may take some time to display and can be difficult to trigger for some people, but regardless of whether or not you can see the tooltip the answer to the question is the same

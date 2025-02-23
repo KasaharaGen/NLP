@@ -1,0 +1,66 @@
+Q: How to manually trigger background image change? I have set the wallpaper to change every hour and have enabled it to cycle them in a random order. Sometimes the background image changes to an image that was set just few rounds ago and I'd like to rechange it to something else.
+How to trigger the background change manually? So that next random image in the folder is chosen and the crossfade effect is played.
+I'd love to hear a command line solution, and would rather not install third party software (although, if you have something to share, don't let me to hold you back — someone might find it useful).
+
+A: I have found this MacWorld post showing an AppleScript that you can execute to force that.
+
+I have my desktop images set to change every 30 minutes in random order. Sometimes the desktop will display an image that displayed earlier in the day, and I wanted a way to 'advance' the image easily. The following AppleScript will cause the desktop image to change, in whatever order you have set, each time it is run:
+
+And this is the script:
+property theSwitch : 0
+if theSwitch = 0 then
+  tell application "System Events"
+    tell current desktop
+      set change interval to 1801.0
+    end tell
+  end tell
+  set theSwitch to 1
+else
+  tell application "System Events"
+    tell current desktop
+      set change interval to 1800.0
+    end tell
+  end tell
+  set theSwitch to 0
+end if
+
+Please check the link and the comments for more similar or complete alternatives.
+Note: I have not tested this. 
+UPDATE I'm sorry to hear that it didn't work for you, yet it does for me on Snow Leopard with the following script:
+tell application "System Events"
+    tell current desktop
+        set initInterval to get change interval -- get the currrent display interval
+        set change interval to -1 -- force a change to happen right now
+        set change interval to initInterval -- change it back to the original display interval
+    end tell
+end tell
+
+WARNING
+This assumes that you have
+[X] "change picture ever x timesteps"
+[X] Random Order
+The above works for me. I ran it from the AppleScript Editor several times to make sure it was working and it indeed does change the Wallpaper.
+
+A: Apoloiges for replying to an old question.
+Thanks @koiyu for that code, it's confirmed working in Mountain Lion. However, if you're using multiple monitors, it only works on the first monitor. I slightly modified your code to make it work on all monitors.
+tell application "System Events"
+    repeat with thisDesktop in every desktop
+        tell thisDesktop
+            set initInterval to get change interval
+            set change interval to initInterval
+        end tell
+    end repeat
+end tell
+
+Interestingly, if you are using multiple spaces with Mission Control, it will only change the wallpapers on all monitors of your currently focused space. You can switch to another space and run it again to change the wallpapers on that space. Hope this helps!
+
+A: @Martín's answer works flawlessly in Snow Leopard. However, in Lion, every change of the change interval results to a background change, ie. the background gets changed two times when the script is run.
+Worry not, it is easily fixed: just set the change interval as whatever it is currently set to:
+tell application "System Events"
+    tell current desktop
+        set initInterval to get change interval
+        set change interval to initInterval
+     end tell
+end tell
+
+It is a bit tautological, sure, but it works.

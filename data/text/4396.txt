@@ -1,0 +1,19 @@
+Q: Can I schedule a periodic file permissions repair? Can I schedule a periodical file permissions repair? With Automator, maybe?
+
+A: Go to the terminal and execute "crontab -e" to add a new crontab entry. Now there are numberous syntaxical ways you can accomplish what you want (read about it on wikipedia). The easiest one, however, will be to put 
+@monthly diskutil repairPermissions /
+
+in it.
+Note: You'll be using vi for editing. Press "i" to type, then after you've finished press ESC and type in ":wq" to save and quit.
+
+A: You can do this with a combination of iCal, AppleScript, and Shell Scripting.
+First, open AppleScript Editor (/Applications/Utilities). Paste this in:
+tell application "Terminal"
+    do script "diskutil repairPermissions /"
+end tell
+
+Go to File-> Save As. Select a safe but out-of-the way location. Set the File Format menu to Application.
+Then, open iCal. Add a new event (call it something like "Auto-Repair Permissions"). Right-click the even and select Get Info.
+Set the Repeat menu to something like Every Month (depending on how often you want to repair the permissions).
+Under Attachments, click Add File... Navigate to the file you saved from AppleScript Editor.
+Now, iCal will automatically (at the interval you selected under Repeat) open the app you created. That app opens Terminal and runs a command which verifies and repairs your permissions. The Terminal window has a progress meter and a list of the changes its made (along with any errors).

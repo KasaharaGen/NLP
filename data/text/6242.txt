@@ -1,0 +1,43 @@
+Q: Configuring sshd on OS X Lion I'm trying to set up some (rudimentary) ssh security on my workstation behind a router on a home network. It's running Mac OS X Lion (10.7).
+As I understand it, what one would normally do under such circumstances is change the appropriate parts of an /etc/sshd_config file. For example, I might have
+# akil@computerA:/etc/sshd_config
+Port 12345
+Protocol 2
+PermitRootLogin no
+PasswordAuthentication no
+
+And this would, respectively only listen on port 12345, accept authentication method "2" only, disallow root logins, and only allow key logins. I would then restart the ssh daemon and then everything would be great.
+Apparently this worked Snow Leopard (OS X 10.6), but it does not seem to work for Lion. Lion seems to ignore anything in the sshd_config file. 
+For changing the port, you can follow the advice of some blogs and forums posts (1,2) that direct you to change (a) add a new ssh service by editing /System/Library/LaunchDaemons/ssh.plist and (b) defining the port of the new service in /etc/services. 
+This works -- doing ssh akil@computerA.local refuses the connection, but now ssh akil@computerA.local -p 12345 works fine.
+The problem is that I have no idea how to use similar steps to change anything else: how do I disable root logins and/or password authentications?
+1: Changing sshd port on Lion
+2: Changing sshd port on OS X 10.4
+
+A: You cannot change the port sshd listens to by changing it in sshd_config since sshd is not yet running when the connection comes in. sshd is instantly launched by launched when a connection arrives. So you need to change the port in the appropriate launched item, or create another one to have a second port listening for incoming ssh connections.
+You can find the correct file in /System/Library/LaunchDaemons/ssh.plist
+Copy that to /Library/LaunchDaemons/ssh-alternative.plist and change the following part:
+            <key>Listeners</key>
+            <dict>
+                    <key>SockServiceName</key>
+                    <string>ssh-alt</string>
+            </dict>
+
+Notice that the SockServiceName has been changed from ssh to ssh-alt.
+To make it work you need to add a service named ssh-alt to /etc/services
+For example like this (to match your example) add this line:
+ssh-alt         12345/tcp   # ssh-alt
+You can then load your new ssh-alternative config with
+sudo launchctl load -w /Library/LaunchDaemons/ssh-alt.plist
+If you're running ipfw make sure to allow tcp connections to the new port. The Sharing.PrefPanel will only allow you to turn on and of the standard port 22 listening sshd (Unless you change ssh in /etc/services which I do not recommend).
+In addition you can prevent this service to be advertised by Bonjour by removing the corresponding part from the launched item.
+        <key>Bonjour</key>
+        <array>
+            <string>ssh</string>
+            <string>sftp-ssh</string>
+        </array>
+
+If this was already running you need to unload and load the item again.
+
+A: As for the port, I've always found it easier to remap it in my router than in OS X.  That's not always possible, but if your router supports it, it's trivial.
+As for authentication, sshd is reading the configuration file, there's just more than one kind of mechanism being used.  In your case, in addition to setting PasswordAuthentication you need to set ChallengeResponseAuthentication to 'no'.

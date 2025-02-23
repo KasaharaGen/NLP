@@ -1,0 +1,42 @@
+Q: Selling a Macbook Pro - removing personal information from it I have recently upgraded to a 2011 MBP, and I'm finally all set up on it.  It's time to sell my previous MBP.  I've already copied off all of the data I want to keep and deleted the obvious suspects.
+What is the preferred approach to prepping a used Mac to be sold to an unknown third party that does not include a complete wipe and reinstall?
+If possible, I'd like to leave the activated programs on it. (Perhaps, that is a horrible idea and contrary to prepping for resale.)
+Is it enough to create a new user, log in as that user and delete the previous user?
+I apologize for the basic question; I realize the nuclear option is probably the recommendation, but I'm thinking it would help my resell value to leave the activated software in place.
+
+A: After creating new user and deleting the old one, at least wipe free space to remove securely your data. However, a lot of data can be retrieved from remaining (for example temporary) files. So that the only secure option is full wipe. And remember to unpair your hardware from any other devices/network services (Bluetooth, MAC address etc).
+
+A: If you are really concerned with the next owner recovering your files, which can be done even if you emptied the Trash, then you should format the drive:
+Open Disk utility, select the drive, select the erase tab and click on security options, then choose one othe following:  
+ 
+I don't know why the sale doesn't include a wipe and reinstall, but I don't see why it shouldn't as a mac always comes with a licensed OS, you just format the drive and reinstall MacOS and you're done.
+You can't erase the drive you are currently booted to. You have to boot from an external drive with Mac OS X installed, or boot from the Install DVD.
+
+A: You should wipe and reinstall. Reasons:
+
+
+*
+
+*personal info. Anybody can attach your Mac in target disc mode and copy the whole HDD for later analysis. Even if a file is removed by emptying the Trash, or via the "rm" unix command, there is a possibility to recover it (because it deleted only the reference to HDD sectors and not wiped the sectors).
+
+*applications - If you have any applications, you probably want to use them later too. If you sold the MacBook with them, the buyer will use them too - double install usually means disabling your legal activation key.
+
+*with clean reinstall, you delete everything - for example /Library/Application support too, where much applications saving some infos (non personal, but anyway).
+
+*another example - the logfiles in the /var/log directory. Here are tons of informations that can be gained from them (for example mail addresses) and so on...
+
+*erasing the Home directory is simply not enough (see above).
+
+*as @Petruza already said - the only way is to wipe the whole HDD and reinstall the OS X.
+
+A: You can erase your hard drive by putting in your Mac OS X Install DVD, and boot from there. Then when that boots up go to Disk Utility under Utilities just after you choose your language. Here is a support article from Apple on how to erase and reinstall the OS.
+http://support.apple.com/kb/ht1820
+It is illegal to leave software that requires user authentication on a computer you intend to sell. When you purchased that software you agreed with whatever software company that you wouldn't abuse the amount of user licenses purchased. By leaving it on your computer to "increase" the value you are abusing the software company TOS. 
+Plus if you copied those applications to your new computer, and if you sell your old one with the applications still authorized they can "call home" and that serial number can be flagged and all applications that are activated with that serial number can be deactivated. 
+
+A: Another user had a similar question - so do check out the answers there.
+How to install apps to Snow Leopard after a fresh reinstall and still keep the MacBook in a pre-first-boot state?
+In a nutshell - you can make a "test" account to delete the personal information and apps you wish to not transfer. You can then run all updates and leave things just as you wish and restore a first boot experience to the new buyer.
+Do remember to deauthorize iTunes on that machine, unpair bluetooth and networks / forget network passwords. If you wish to be exceptionally thorough, you might delete old log files and crash reports. The console app will let you poke around and see if any cause you concern. I wouldn't just delete the entire directory (as some of these directories have special permissions and the system will fail in hard to realize and fix ways if the directory containing a log file is missing.) Typically the log file itself will get recreated at next boot, but the programs that maintain the files generally assume the directories have been set up properly and they won't make entire directories. Just realize you are mucking around in the bowels of the unix system my modifying or deleting these files and directories may make the mac you sell less stable or cause issues to the new owner who may be ill equipped to solve.
+
+A: When we sell our old macs at work on, I use a data shredder and do a clean install of the OS. Seems to work, not had any complaints so far

@@ -1,0 +1,21 @@
+Q: Restoring mail from backup after hard disk died The hard disk on my iMac (Mac OS X 10.5.8) died, and after getting it replaced I have been trying to restore my files from backup.  The backup I have is just a copy of my user directory.  I copied the following files from backup to their corresponding location in my user directory before starting up Mail:
+
+
+*
+
+*Library/Mail
+
+*Library/Mail Downloads
+
+*Library/Preferences/com.apple.mail.plist
+
+*Library/Preferences/comp.apple.mail.searchhistory.plist
+
+
+Going into Mail, I see my email accounts, and I can look at the lists of email messages... but when I click on the message to see it, there's no message content.
+The strange thing is that when I look in INBOX.mbox/Messages for the mail account, I can see the email message files (.emlx files), and opening any of these files I can verify that the message contents are there.  But Mail won't show the message contents.
+Any ideas on how I can fix this?
+UPDATE: Thanks, everyone, for the feedback. It appears that just before my hard drive died I got some files corrupted, and that was the source of the problem. I tried restoring from a backup taken one day earlier, and that worked perfectly.
+
+A: The email index probably needs to be rebuilt.  Last option on the Mailbox Menu.
+(And just in case, you do still have your backup, right?)  :)

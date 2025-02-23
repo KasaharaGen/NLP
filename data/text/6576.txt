@@ -1,0 +1,38 @@
+Q: MacBook Air with small SSD, BootCamp, Windows 7. Can I use an external hard disk for dual boot? I'd like to setup a dual boot onto my MacBookAir 128GB, with Microsoft Windows 7 Ultimate in BootCamp. However, I'm already close to the 128GB limit (games + CS suite + Eclipse + XCode + a lot of Web development tools). 
+Therefore, it would be ideal for me if I could use the same HDD I will run my Time Machine saves on... when it's finally delivered!
+The question is therefore: is it reasonnable to create a dual partition on that and run Windows 7 from the first one?
+Would MacBook Air tolerate launching Windows 7 from an external disk?
+Is there a risk (save for USB deconnection) that HDD might not be a working solution, as in too much lag? Could (eventually) a Thunderbolt external SSD be an acceptable workaround?
+
+A: The limitations of Lion BootCamp are a bit buried for my tastes. If you start the BootCamp Assistant and print out the Installation Guide - it has all the restrictions listed half way down step 2, page 5. 
+In a nutshell, BootCamp won't work with any external disk - it has to be the first internal drive at the time the installer runs - so you can remove others beforehand if you want say install BootCamp partition on the third drive on a Mac Pro.
+
+A: Since you must boot Windows 7 from the internal SSD, and since you also want to run Mac OS X from the same volume, I recommend that you concentrate on cleaning out your existing Mac OS X system and freeing up as much disk space as possible.
+You should research on how to make the smallest Windows installation possible, so you can create the smallest BootCamp partition possible. From what I can see, you could do with as little as 12GB if you are meticulous. 
+For instance, once Windows is installed, you can permanently disable hyberfil.sys and reduce or limit the size of pagefile.sys, and this will save you many GB.
+I would also look into the differences between the size of the installation in Windows 7 32-bit versus 64-bit, and see if Windows 7 Ultimate takes up a great deal more space than Windows 7 Professional or Windows 7 Home Premium (I suspect it does). You will want to refrain from installing any features of Windows that you decide you don't need, and you will want to make sure that you don't install any Windows applications that you don't absolutely need.
+Here are some links to discussions I found. I cannot vouch for any of these methods.
+Reference One at Tom's Hardware
+Reference Two at Microsoft TechNet
+There is a utility for reducing the size of a Windows installation before you actually install it. It is called vLite. It is not exactly kosher and has its detractors. I have no personal experience with it. To use it, you need a working Windows system to configure a special custom installer DVD that vLite helps you create.
+Reference Three, a discussion of the benefits of vLite and how many GB you can save.
+Regardless, you are going to have to wipe the internal drive on your MacBook Air and try different partitioning schemes, so you must have yet another a large external hard drive for making backups of the system you already have. Use Carbon Copy Cloner or SuperDuper!.
+On the Mac side, there is a lot you can do to reduce the size of your Mac OS X partition by removing components of Lion that you do not need. 
+Make a complete backup disk image first before you start deleting things!
+Similarly, it is possible to permanently delete the Mac OS X sleepimage file, which will save you the same amount of disk space as the amount of RAM that you have. 
+Information about sleepimage file
+SmartSleep utility for controlling the sleepimage file
+Delete the contents of /Library/Printers, which could be several GB, and when you restart your Mac, Lion will prompt you to download only the drivers for the printers you actually use.
+You should completely remove any applications in iLife that you don't use, including all their support files in the /Library/ folder. iDVD, GarageBand and iPhoto have many GB of support files, themes, templates, and audio files, and if you don't use any one of those programs, you can clean out that disk space.
+Utilities such as MonoLingual can remove more than 1GB from your Mac OS X installation by removing all the files for languages (Spanish, French, German, etc.) that you will not use.
+Use OmniDiskSweeper or WhatSize to examine your Mac OS X installation and look for user documents that you feel safe in archiving and removing, or deleting.
+There is an analogous freeware tool for Windows called WinDirStat.
+
+A: Performance is going to be miserable on a USB connected drive so you are going to either have to upgrade your internal SSD or spring for a Thunderbolt drive.  Either option is going to cost $400+.
+If you run your SSD at almost full levels, you are likely to see some slowdowns due to the SSD having to perform more frequent garbage collection.
+I'd read that Boot Camp wants 16GB for a 32-bit install and 20GB for a 64-bit install but my recent (and only) experience was that it would not let me go below 20GB.
+In addition to Wheat's advice, you can move the iPhoto and iTunes libraries to your external drive.  Also, keep in mind that you really are going to need two external drives as storing data files on your Time Machine disk means that the backup and the orginal are on the same drive.
+A MBP with a hard drive is much better fit to your objectives.  You should give some thought to switching machines.
+
+A: Im looking to do the same, and I may have found an alternative solution. Instead of running bootcamp install vmware and run windows off your external hdd.. heres a video tutorial
+http://www.youtube.com/watch?v=sxAHtH-lyJM

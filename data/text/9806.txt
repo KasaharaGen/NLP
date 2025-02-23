@@ -1,0 +1,8 @@
+Q: Can I set up domain filtering on an Airport Extreme? I'm wondering if it is possible to set up domain filtering on an Airport Extreme based home network. Specifically, I'd like to block just rad.msn.com, and I need to do that at the network level.
+
+A: Easiest way I know is to use a service like OpenDNS. You set up the Airport to send all DNS requests to OpenDNS and use their filtering (which can be quite sophisticated) to do the job of blocking or whitelisting web addresses. Of course you need to be able to protect the DNS settings on the Airport, but this is doable.
+I have it set up for general filtering and monitoring on my home network which has more than 5 computers and more than a dozen wireless handhelds all served from an Airport Extreme.
+Check it out at http://www.opendns.com/
+
+A: Airport hardware doesn't have this sort of feature but you could easily accomplish this by running your own DNS on a computer or outsourcing the issue to a provider.
+I believe you could also rely on an inexpensive router that did have this feature (or one where open source software was readily available) to run your DNS and let the AirPort handle the rest of the tasks on the network.

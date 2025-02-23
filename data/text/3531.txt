@@ -1,0 +1,41 @@
+Q: Bad Aspect Ratio in Quicktime on Video from Camcorder I'm trying to use my Samsung HMX-H100N digital camcorder, and I'm having difficulty with the files.
+When recording in 1080i/60, the video is badly interlaced (yes, I know it's an interlaced format, but it's painful to watch and it isn't on the camera), and video recorded in 720p/60 is displayed in a much wider format than the 16:9 it was recorded in.
+If I open these files in VLC media player, they both look fine and play back smoothly. The issue seems to be Quicktime, and, unfortunately, Final Cut.
+Does anyone have any ideas as to what I can do, short of transcoding these files to another intermediate format, to get these files to display properly in QuickTime/Final Cut?
+
+A: You can use ClipWrap ($50) to rewrap your AVCHD videos to a Quicktime/Final Cut compatible format.
+Then, deinterlace your videos using JES Deinterlacer and export them preserving full quality (huge files though).
+So the workflow is the following:
+
+
+*
+
+*Add videos to ClipWrap, select as output the "Rewrap (don't alter video samples)" option and save them to a new location.
+
+*Open JES Deinterlacer and drop all videos to input's "hot-box"
+
+*Select Project properties:
+
+
+*
+
+*For 1080p30 go to Project > Deinterlace > Top Field, Adaptive, Local
+
+*For 720p60 go to Project > Standards conversion > 1280x720 60p
+
+
+*Finally, go to Output > Export > QuickTime Movie
+
+
+*
+
+*Settings > Compression Type > Apple ProRes 422 (LT)
+
+*and export the video!
+
+
+
+So, your videos will be ready to import them to Final Cut.
+I hope that helped!
+Edit:
+If you want to transcode the video files, just for viewing them in Quicktime, then you would have to select H.264 when exporting from JES Deinterlacer, than the Apple ProRes which is suitable for editing.

@@ -1,0 +1,40 @@
+Q: OS X Lion: How to disable RPC? Remote procedure calls are considered to be a security risk. Is there a way for me to disable RPCs on OS X to make my Mac more secure?
+
+A: Here are my recommended settings for locking down your Mac. I'm assuming you're running OS X Lion. If that's not the case, let me know and I'll try to adjust my answer for other versions of OS X.
+Turn your Firewall on: System Preferences -> Security & Privacy Tab Settings -> Firewall tab. Make sure it's on and that you click the lock in the lower left corner to prevent changes without an administrator's password.
+
+Turn off all sharing services: System Preferences -> Sharing Settings -> Make sure all the stuff in that window is unchecked. Make sure the lock in the lower left corner is locked to prevent changes without an administrator's password.
+
+Turn off Bonjour (mDNSResponder): For OS Lion you don't need to completely disable mDNSResponder (which is good because if you disable it completely you lose DNS in Snow Leopard and newer OS X). Instead you can follow these steps to disable just Bonjour features in mDNSResponder (Note: do this carefully as a malfunctioning mDNSResponder service can prevent a Mac from booting. Make sure you have a TimeMachine backup before making changes and that booting to your recovery partition works.):
+
+
+*
+
+*Make a back up copy of the mDNSResponder.plist file as a precaution.
+
+*Open the mDNSResponder.plist file in Terminal using your preferred text editor. Here is a sample command:
+sudo nano “/System/Library/LaunchDaemons/com.apple.mDNSResponder.plist”
+
+
+*Add <string>-NoMulticastAdvertisements</string> to the array in the ProgramArguments section. In other words:
+<key>ProgramArguments</key>
+<array>
+<string>/usr/sbin/mDNSResponder</string>
+<string>-launchd</string>
+</array>
+
+becomes…
+<key>ProgramArguments</key>
+<array>
+<string>/usr/sbin/mDNSResponder</string>
+<string>-launchd</string>
+<string>-NoMulticastAdvertisements</string>
+</array>
+
+
+*Save the file.
+
+*Restart your Mac.
+
+
+You may also want to look at locking down BlueTooth on the system (System Preferences -> BlueTooth Settings). Specifically you may want to uncheck 'Discoverable' so your BlueTooth chipset doesn't advertise itself to other devices nearby. If you're not using any BlueTooth devices consider turning it off altogether.

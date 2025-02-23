@@ -1,0 +1,81 @@
+Q: How do I make Spotlight stop indexing my Backup drive? I have a 2TB external drive I use for Time Machine. At random intervals, it will decide to spin up and my entire UI freezes until it's finished. This is incredibly annoying.
+It appears that this is due to Spotlight indexing. They suggest adding the Backup drive to Spotlight's blacklist, so I did:
+
+Am I stuck having to live with constant beach ball attacks?
+Update: I've already tried mdutil. It doesn't work.
+$ sudo mdutil -E -i off /Volumes/Backup/Backups.backupdb/
+Password:
+/Volumes/Backup/Backups.backupdb:
+    Indexing enabled.
+
+If it's impossible to disable indexing, I would settle for making the backup drive never spin down.
+
+A: Create an empty file on the root of that drive, named .metadata_never_index.  This Mac OS X Hints article says more.
+
+A: Apply it to the volume, not a directory:
+sudo mdutil -i off /Volumes/TimeMachine/
+Substitute TimeMachine with the name of your backup volume, of course.
+For example...
+Johns-iMac:~ john$ sudo mdutil -i off /Volumes/Time15/
+Password:
+/Volumes/Time15:
+2015-10-27 12:37:18.436 mdutil[56686:26121199] mdutil disabling Spotlight: /Volumes/Time15 -> kMDConfigSearchLevelFSSearchOnly
+    Indexing and searching disabled.
+
+Which does leave the subdirectory reporting as "enabled", but (until proven wrong I understand) the setting at the volume level will override.
+
+A: I finally found you cannot disable Spotlight to index Backups.backupdb. 
+Apple Support. OS X El Capitan: Spotlight preferences
+
+If you add a Time Machine backup disk to the privacy list, you will
+  continue to see messages that Spotlight is indexing your backup disk.
+  This indexing is necessary for Time Machine to function properly and
+  can’t be disabled. Spotlight does exclude from searches any items you
+  store on your backup disk that are not part of a Time Machine backup.
+
+
+A: Do it from Terminal via sudo (info courtesy this page):
+sudo mdutil -a -i off
+
+You'll also need to supply your admin password.
+Similarly, to turn back on:
+sudo mdutil -a -i on
+
+Note: Set the items for Spotlight to show at Prefs > Spotlight
+
+A: Time machine requires spotlight indexing activity, but the contents will not pollute search results.  If the goal is to remove redundant search results for a non-Time Machine drive (a CarbonCopyCloner backup for example) then the volume can be simply added to the privacy list under Spotlight preferences.
+(The details of the original question indicate it is about Time Machine, but I include this case for those who find this question by the title.)
+
+A: Here's the man page for mdutil:
+mdutil(1)                 BSD General Commands Manual                
+
+NAME
+     mdutil -- manage the metadata stores used by Spotlight
+
+SYNOPSIS
+     mdutil [-pEsav] [-i on | off] mountPoint ...
+
+DESCRIPTION
+     The mdutil command is useful for managing the metadata stores for mounted volumes.
+
+     The following options are available:
+
+     -p  Spotlight caches indexes of some network devices locally.  This option requests that a local
+         caches be flushed to the appropriate network device.
+
+     -E  This flag will cause each local store for the volumes indicated to be erased.  The stores will
+         be rebuilt if appropriate.
+
+     -i on | off
+         Sets the indexing status for the provided volumes to on or off.  Note that indexing may be
+         delayed due to low disk space or other conditions.
+
+     -s  Display the indexing status of the listed volumes.
+
+     -a  Apply command to all volumes.
+
+     -v  Print verbose information when available.
+
+I would use:
+mdutil -E -i off [the mountpoint for your backup drive]
+

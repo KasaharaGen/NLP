@@ -1,0 +1,26 @@
+Q: Is Automator intended to create distributable stand-alone apps? I have a series of executables which I would like to wrap into a stand-alone .app. A bit like ffmpegx does for the executables contained under its /Resources folder.
+I've noticed that Automator allows you to create a stand-alone application, but it's not clear to me how to:
+
+
+*
+
+*include my executables within the .app package
+
+*specify a relative path when adding a "run shell script" action, so I can execute my executables when the user double clicks the .app
+
+
+Is Automator intended to be used as "application maker" or should I use something else? If Automator is the way to go, how can I solve the two above issues?
+
+A: It's not really designed for this, but I think you can hack it to do what you'd like.
+First, to get the relative path to the .app package, you'll want to add a Run AppleScript action before your shell script. The code for the AppleScript should be something like this:
+on run {input, parameters}
+   set p to POSIX path of (path to me)
+   return {p}
+end run
+
+That will pass the path to your .app bundle to your shell script action as an argument. Just set the Run Shell Script to pass input as arguments and you should be set to use the path in your shell script however you need to:
+
+Once that's done, you can package whatever executables you need in the Contents/Resources folder of the .app bundle. You can get there in the Finder by right/command-clicking the .app and selecting Show Package Contents.
+Important Note: Automator rewrites the .app bundle every time you save it, so you'll have to add the executables again every time after you make a change.
+
+A: Automator really isn't the right tool for this job. Instead, I suggest you look into AppleScriptObjC, which is one of the project types you can create using Xcode. You'll find help with AppleScriptObjC over on Stack Overflow.

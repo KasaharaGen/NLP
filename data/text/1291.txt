@@ -1,0 +1,33 @@
+Q: What does it mean if I have lots of "Inactive" memory at the end of a work day? After a day's of work at my MacBook Pro running Mac OS X 10.6.5, Activity Monitor shows that the majority of my computer's 8 GB of memory is "Inactive", and only a tiny sliver of the pie chart is "Free". This is even when I have closed all applications, with only the Finder running.
+What does that mean? Is the "Inactive" memory taken up by something? Or is it actually still available for applications to use? Thanks.
+
+A: This is most likely not a problem, and in fact is potentially speeding up your computer.
+All (most?) operating systems utilise a Disk Cache, which stores some recently accessed files in memory so that repeated access of those files can be sped up. The disk cache on OS X is variable in size, and will appear as "Inactive Memory" being used.
+If any program needs more memory, OS X will clear some of the disk cache (the least recently used files) to allow space for the program to run/expand.
+I find that if I do a lot of compiling or photo-sorting (i.e. accessing thousands of files in succession) the disk cache will expand and use a lot of Inactive Memory. Provided its just this disk cache, its nothing to worry about.
+If it is a background process or application that is expanding in its memory usage (but its pages are being marked inactive) then you'll be able to tell by checking for any programs with very high "Real Memory" usage in Activity Monitor. If there's nothing obviously large there (i.e. the total is a long way short of 8GB) then it'll be the file cache.
+You should see that there's little if any Swap usage, and if you open a memory-intensive program the amount of inactive memory will decrease without having to swap to disk.
+(I believe there was a bug in 10.4 or 10.5 for a while where it wouldn't always free up this memory very effectively, and would cause swapping despite having a large disk cache, but in my experience this appears solved in 10.6).
+
+A: "Inactive" memory is available for use by other programs -- it's just caching programs or data that you recently used, in case you need them again.  If you launch different programs or need different data, the cached memory will cleared and made available to your new workload as needed.
+That's the theory, at any rate, and I believe it to be sound.  However, I did find this reference to a "purge" utility someone wrote because they didn't think inactive memory was being released quickly enough.
+For official documentation on the subject, read this (and search for "inactive").
+
+A: OS X, like most modern operating systems, uses a virtual memory system for managing memory. Among other purposes, this allows the operating system to treat the computer as having an unlimited pool of memory. To achieve this, the OS will page unused parts of RAM out to a disk store known as the swapfile.
+Of course, RAM is not unlimited, so OS X groups RAM into four categories: wired, active, inactive, and free. Wired memory is required by the operating system, and can never be paged out of memory. Active memory is memory used by currently-running programs. Inactive memory was used recently by programs which have now been terminated (or haven't been unused in a long time). Free memory is, as the name suggests, RAM that is not being used.
+When you launch a program, it gets loaded into active memory. When you quit a program, however, it doesn't get removed from RAM; rather, it gets bumped into inactive memory. This is why it is often faster to re-launch a program -- it is still in RAM (try this with a big program like Firefox).
+Once all your memory is used (free memory is 0), the OS will write out inactive memory to the swapfile to make more room in active memory.
+If a program gets paged out to the swapfile, and you re-launch it, it'll get pulled from the swapfile into active memory.
+So in short, you actually shouldn't care if your free memory is low. In fact, you want it to be low -- free memory is wasted memory (as the OS isn't using it for anything).
+When examining how much memory your computer is using, you actually want to pay attention mostly to Swap used, which tells you the size of the virtual memory swapfile, and Page ins, which tells you how often the OS has to pull memory from the swapfile into active memory.
+
+A: Starting with OS X 10.5 there are evident memory management problems in MAC OS X. 
+I finally managed to reproduce the problematic scenario, so i run the test and recorded the screen, into video.
+MAC OS X Lion performance problem - broken memory management
+I run the tar+bzip command, which is basic unix stuff, on the large amount of picture files, in my Pictures/ folder. Just before start, i run the "purge" command, to delete inactive/cached program data.
+You can see on the video that free memory starts to drop very fast, and inactive is constantly rising. If you take a look at "bsdtar" command, it takes only a fragment of RAM, so the problem is not in this process. You cannot say that it is a program memory leak, because then the problem would not be in inactive ram, rather in active/wired.
+When the free memory dropped below 100mb, i started some apps, like Safari, iPhoto and MS Word, and you can see in the video, that it takes even minutes to start an app, when normally (when there is free RAM), it would take some 3-5 secs to load.
+I run the same scenario and the same commands on my Linux Centos 6 box, no problem there ! Memory usage is some 10-20mb, no problems with cache/buffer.
+The memory management must be very broken in Mac OS X !
+
+A: This discussion makes sense only if the statement that "your computer will run faster when free memory is low" - were true.  Unless my Desktop Mac is wired weird, the minute my free memory (monitored) starts getting low, whatever program I am running at the time starts to bog down to the point where I can't do anything until it moves back up by itself or by my Free Memory intervention.  I have an iMac 2118 (2006 or later) that maxes out at 3 GB RAM so I try to manage it when I can but this is very frustrating. Any thoughts?

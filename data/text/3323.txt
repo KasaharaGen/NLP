@@ -1,0 +1,8 @@
+Q: AppleScript "Open With..." icon I've written an AppleScript app that I use to open certain files with (it sends them to Vim in the Terminal). 
+I'd like to set all my .Tex files to automatically open with this app. The problem is this changes the files icons to the blank file icon.
+Is there a way to change the app's icon? In other apps I use (non-AppleScript apps) I know how to "change" this icon by replacing it in foo.app/contents/resources but in my app there is no icon there yet. 
+Is it possible to add one?
+
+A: See this answer and this answer of mine on SuperUser, where I explain how to create new or edit existing file types, including icons.
+
+A: You can create an icon file named droplet.icns inside the app package inside foo.app/Contents/Resources/.

@@ -1,0 +1,11 @@
+Q: Is there a way to hibernate in mac? 
+Possible Duplicate:
+Is there a way to make my MacBook Pro running Snow Leopard hibernate with a keyboard shortcut? 
+
+I am using mac os x snow leopard. Is there a way to hibernate?
+also any keyboard shortcut?
+
+A: Mac OS X (from 10.4) after going to sleep will write the memory content to disk (safe sleep). After the blinking white led stops the "hibernate operation" will be completed.
+If power is still available your Mac will wake up instantaneously from memory. If power (and the memory content) was lost your Mac will take a little time more to wake up (from hibernation) since the memory content has to be read from disk.
+
+A: Depending on your Mac model and OS X version, you might check out Deep Sleep, a dashboard widget that gives you more control over the sleep/hibernate behavior. This Macworld article goes into more detail about what's going on behind the scenes.

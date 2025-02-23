@@ -1,0 +1,11 @@
+Q: Gmail "On Behalf Of" Feature in Mail.app I use Gmail with Mail.app. As you know Gmail allows replying mails as someone else (by changing From header of the sent e-mail). If you don't know, you can register multiple mails to Gmail (your personal mail, work mail etc.) and you can send mail from them from one account. 
+Let's say you have 3 mails registered in GMail: g@gmail.com, a@a.a and b@b.b. Your account is g@gmail.com in this case. When you use GMail web interface, if you receive a mail redirected from a@a.a, when you press Reply, it sends your mail as a@a.a (or you can choose other accounts to mimic one of your e-mail addresses as sender).
+However when I'm in Mail.app, I'm only able to send mail as g@gmail.com, any ideas to solve this?
+
+A: Under Accounts in Preferences, there's a field there called "Email Address:".  You can put a comma-separated list of addresses in there, like this:
+
+Now your "Compose" window will have a "From" popup menu that lets you choose your sending address:
+
+AFAIK, this works for pretty much any mail account type, as long as your mail provider allows you to muck around with the From: header.
+
+A: Under 'Accounts' in 'Preferences' change the 'Email Address:' to the address you want to use. I don't believe you can switch addresses at send time. You'll have to add a separate account for each email address you want to send from.

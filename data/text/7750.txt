@@ -1,0 +1,48 @@
+Q: HOWTO convert documents to Kindle / mobi format? I have an HTML file (XHTML 1.1 strict, if you want to be technical about it) that I am trying to make into a Kindle format (.mobi) book.
+I've been trying to use calibre and have found the process to be very confusing.
+
+
+*
+
+*Are there other options besides calibre? (If so, what are they?)
+
+*For people who have made Kindle/mobi documents, what have you used as your 'source' materials? Plain text? (X)HTML? Markdown? Word/Pages/Scrivener/etc?
+
+*If you have used calibre, how did you figure out which options you needed to use and which to just leave along? There's a metric buttload of them.
+ps - yes, it would be nice if Kindle would just accept ePub files, wouldn't it?
+
+A: I didn't enjoy Calibre.  But then I realised that it comes with a bunch of command line utilities, and that made things easier for me.
+Imagine you have a bunch of epub files.
+for f in *.epub
+do
+  anytomobi --dest-profile=Kindle "$files"
+done
+
+That's the Linux command line to convert them all to mobi using the calibre tool.  Except I think the command line toold have changed name in the newest release.
+Here's a website, from the Calibre pages, that claims to by a guide to converting HTML to e-book formats, including mobi.
+http://amalthia.mediawood.net/tutorials/ebooks/index.html
+This page seems most important for your question, it has nice screen shots for the settings used.
+http://amalthia.mediawood.net/tutorials/ebooks/steps.html
+
+A: The Send to kindle Mac app is really neat. You just drag and drop any .doc .txt .pdf and it's being sent right away on your device. 
+The most awesome part is that you can select the option to convert the file into .mobi
+It also adds a "Sent to kindle" option in the print dialog, so you can sent anything that can be printed.
+I'm sold! :)
+
+A: 
+
+
+*
+
+*I'd say no - most other options are deficient at the moment. But maybe try Stanza.
+
+*Usually, InDesign / .doc > EPUB >> Calibre > .mobi. I think InDesign might support .mobi natively.
+
+*Not sure how to answer this, but maybe the Lifehacker tutorial can help.
+
+
+A: Here are some options from http://www.labnol.org/software/how-to-convert-files/19523/, or you could try Auto Kindle eBook Converter if you have access to a windows environment.
+
+You may use consider Sigil, a WYSIWYG ebook editor that can convert HTML and text files into EPUBs.
+Amazon offers a free command line utility for Windows, Mac and Linux called KindleGen that you may use to convert any HTML, XML or EPUB book into a Kindle Book (MOBI).
+

@@ -1,0 +1,44 @@
+Q: Rebooting iPhone Doesn't Kill off All the Process I tried to reboot my iphone according to the guidelines here, but after the phone is started, I found that all the apps are still there at the bottom of the screen when I tap on the home button twice.
+Any idea why this is so?
+
+A: 
+all the apps are still there at the bottom of the screen when I tap on the home button twice
+
+I don’t think that means the processes aren’t killed off. As far as I know, the apps listed when you double-tap the home button are those that were most recently running, not necessarily those that are currently running.
+See further two recent blog posts on the subject:
+
+
+*
+
+*http://speirs.org/blog/2012/1/2/misconceptions-about-ios-multitasking.html
+
+*http://daringfireball.net/2012/01/ios_multitasking
+
+A: Very few of those apps actually have running processes, even if you don't reboot. Only if they're finishing a download, streaming audio, tracking your location or handling a VOIP call. Otherwise, they've just saved their session state, and have no running processes associated with them.
+
+A: The only real way to be certain that you have killed apps off is to jailbreak.
+Jailbreaking lets you install a piece of software called SBSettings, which includes a real task manager that lets you force-quit any app, including the Apple apps.  
+
+Jailbreaking is awesome for lots of other reasons too!
+I got this picture off my iPad by starting the Samba daemon I have installed, and just browsing to the image using windows explorer.
+No cable or iTunes needed,
+
+A: As a developer I can assure you that if you reboot the phone, those apps are no longer running in any way. At that point it's literally just a list of apps that you've launched in the past in reverse chronological order.
+Edited to note: I've since verified (as @ughoavgfhw pointed out) that backgrounded apps can in fact have their services restarted after a reboot. You can still kill all non-Apple services using the method I describe below.
+
+If you still don't feel comfortable, you can manually quit the apps any time. Simply double-press the home button to reveal the list of "running" apps -- the multitasking bar -- and tap-and-hold on one of them, the same way you rearrange you apps in Springboard. 
+They'll begin to wiggle, and instead of the black circle with an "x" in it that appears in the upper-left corner of each app icon (used to delete apps off the device entirely) you'll see a red circle with a "-" in it. Tap the red circle and the app will be completely forced from memory, killing an associated processes. After you've quit the first several, even if you haven't restarted your phone you're in the "totally suspended" territory. 
+Press the home button again to stop the wiggling, as normal.
+
+Deleting an App: Black Circle with "x"
+     
+
+Quitting an App: Red Circle with "–"
+     
+
+Empty multitasking bar, all apps have been dumped
+
+A: I noticed the same thing myself a little while ago. This is annoying. Apple claims that the apps are in "stasis" and not eating processes, but I find that hard to believe that is true with EVERY app. Especially ones that are in the background waiting to alert you of something (like Skype telling you that you have an incoming call or a GPS app)
+I really wish that a "hard reset" would clear out all the background apps but the ugly truth is that the operating system just doesn't work that way.
+There is nothing you can do about this until Apple changes how this works with an OS-level update.
+(p.s. When I took my iPhone an Apple store to get it looked at with a problem with the sleep wake switch, the Apple rep told me that he "cleaned out all the background apps" to make things run smoother. Which makes me think that these apps aren't working as exactly as we think that they are)

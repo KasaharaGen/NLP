@@ -1,0 +1,22 @@
+Q: How can I replicate Windows End/Home key? How can I replicate Windows Home/End keys to use to jump to the end of a line or use Shift to highlight to the end or start of a line
+
+A: The shortcuts you're looking for are listed on this very handy article in the Apple KB. Hope it helps.
+
+A: With MacBook Air (the 2012 model at least) the best solution I found was the free KeyRemap4MacBook utility -- it lets you change the keyboard in many ways, and I settled with "fn + cursor left/right" for Home/End and "fn + up/down" for PgUp/PgDown.
+(See also a related question with the same answer.) 
+
+A: These can actually be mapped globally for most applications by creating entries in ~/Library/KeyBindings/DefaultKeyBinding.dict
+But this guy created a handy little packaged script called Keyfixer that sets up the bindings in the way you describe (with some additional Control and Shift modifiers.) I threw it in my Dropbox and run it on any Mac I have to use. Since the preferences are per-user you don't have to worry about screwing up someone else's keys.
+
+A: I used the following a lot.
+⌘CMD+ꜛ: Home
+⌘CMD+↓: End
+⌘CMD+←: Beginning of Line
+⌘CMD+→: End of Line
+These I learned the other day from here - very handy for coding and writing, these are emacs bindings which work on Macs.
+CTRL+A: beginning of line.
+CTRL+E: end of line.
+CTRL+U: delete from cursor to beginning of line.
+CTRL+K: delete from cursor to end of line.
+CTRL+W: erase word to the left.
+CTRL+T: transpose characters around cursor.

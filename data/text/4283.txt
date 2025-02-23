@@ -1,0 +1,8 @@
+Q: Has 10.6.7 broken the built-in Cisco IPSec VPN client? No longer able to connect to my Cisco VPN using 10.6.7. No configuration changes have happened and another machine still on 10.6.6 works correctly.
+If you've experienced this and resolved the issue, please advise.
+
+A: Not sure if it's the same issue, but I've had problems with the 10.7 built-in Cisco IPSec client from within my work network - there are some cryptic references (i.e. tech-speak I don't understand) to what Apple changed at the bottom of this support discussion.
+Switching over to a tethered 3G connection fixed the problem. I mention it here in case someone stumbles across this page & it helps them.
+
+A: Apparently the Cisco client doesn't work in 64bit mode, so you need to reboot and hold down the 3 and 2 keys whilst booting to boot into 32bit mode.   That should make it work.
+Info here.

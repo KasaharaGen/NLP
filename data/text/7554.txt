@@ -1,0 +1,22 @@
+Q: Renaming the startup disks shown during boot I'm dual booting OS X (Lion) and Arch Linux, and when I hold down "option" during the boot process, I am presented with both of my startup disk options (i.e., OS X and Linux); however, they are named "IluvatarHD" and "Windows". Does anybody know of a way to rename the "Windows" option to something more accurate.
+I assume this is on the Mac OS X side as nowhere on my Arch install is the label "Windows"  applied.
+In an ideal world, I would be able to change the disk icon as well...
+NOTE: I've uninstalled refit as it's unnecessary once Arch has been installed and would rather keep using the Apple boot loader.
+Any help would be appreciated!
+
+A: Maybe I'm missing the subtleties here, but it should be as simple as:
+diskutil rename /Volumes/oldvolumename newvolumename
+
+
+A: I'm fairly certain this isn't possible.  The EFI boot loader just assumes that if it isn't an OS X partition then it must be Windows.
+
+A: Try the following command in Terminal if you can mount the devices directly in MacOSX
+sudo bless --folder "volume_path" -label "volume_label"
+
+Otherwise try the following option:
+sudo bless --device "device_path" -label "volume_label"
+
+found it via apples man pages: Bless Man Page.
+Hope it works.
+
+A: This is a quirk of the Mac bootloader. While Mac and newer Windows volumes are booted via the native EFI system, older operating systems (like Windows XP and 32-bit Windows 7) require BIOS support to boot, which is provided in the firmware by the CSM (compatibility support module). Any volumes that are bootable via BIOS are always shown with the label "Windows". 

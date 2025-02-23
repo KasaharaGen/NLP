@@ -1,0 +1,13 @@
+Q: How can I see the system status during boot? I would like to monitor the messages generated when I boot my Mac, similar to what you on a *nix box. Is there key-combo to press/hold that will let me do this?
+
+A: You have to press cmd + v upon startup to see the boot output. Press this right after the chime. 
+If you want to make that permanent, you should probably do something along the lines of: 
+sudo nvram boot-args="-v"
+
+To undo the above:
+sudo nvram boot-args=
+
+in the Terminal. (/Applications/Utilities/Terminal.app)
+note: I haven’t tested the above commands, but I’m sure a google query will help you there if you want to make it permanent.
+
+A: If you want to see the boot messages after the boot occurred, log in and run sudo dmesg in Terminal.app.

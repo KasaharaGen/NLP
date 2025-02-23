@@ -1,0 +1,16 @@
+Q: How to change the default gateway of a Mac OSX machine I am familiar with the route add default gw command in Linux to add a default gateway, but this doesnt work on Mac OS. I cant find any appropriate example in the route manual. Can anyone help me the command.
+
+A: If you are intent on using route the man page for route will show you it's the same as most BSD route commands. You may need ip6config (and man page) as well if you care about IPv6 routing.
+The "mac" way is to set it from the System Preference pane under network and is preferred over using unix commands since it honors location changes and other events such as a reboot.
+
+
+A: $ route delete default
+$ route add default 192.168.0.1
+
+or
+$ route change default -interface $INTF
+$ route change 192.168.0.0/16 -interface $INTF
+
+
+A: Go to System Preference >> Network, and you can "Set Service Order" of the network interfaces and effectively change the default route order in the routing table.
+

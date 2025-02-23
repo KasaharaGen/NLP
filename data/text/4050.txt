@@ -1,0 +1,12 @@
+Q: Opening a new file in TextMate opens the last opened file as well Here is a small annoyance that I have with TextMate. When I want to open a new file in TextMate when it's not running it also opens the last opened file. Now for some cases that's just nice of him to do but in most cases I end-up closing the previous file. Maybe this is a simple setup/preference issue? Any ideas?
+
+A: It's not something you can set in the app preferences.
+If you want to change this behavior, open Terminal.app and type
+defaults write com.macromates.textmate OakDisableSessionRestore 1
+
+This will make Textmate not remember the last session.
+Change the 1 by 0 if you want the default behavior.
+
+A: This behavior is bypassed in Textmate 2 by holding shift when opening Textmate 2.
+Picture is from Preferences
+

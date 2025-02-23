@@ -1,0 +1,20 @@
+Q: How to delete duplicate photos from an iPhoto event? I did a stupid thing with one Event in iPhoto library. I thought of making a copy of this Event, and I did use the menu duplicate.
+Instead of creating another copy of event, it did copies of all the photos inside the existing event. (new to iPhoto usage ;-))
+So the big task I have is to delete the possible duplicates of 350 photos. Is there any tool/ option in iPhoto/ apple script etc.. to accomplish task ?
+
+A: Just because there are duplicates within iPhoto, doesn't mean that iPhoto actually has duplicated the file.  Navigate to ~/Pictures/.  Right-click on iPhoto Library, show package contents.  Find your event within Originals/<year>/<event name>.  Backup the directory.  Remove the event from iPhoto - I don't know if this removes the actual folder or not, that's why I suggested backing it up first.  Re-add it.  Voila.
+Let me know if it has actually duplicated the files.  I know of a great duplicate removal app, but it's not free.
+
+A: 
+mkdir ~/.Trash/iPhoto-Originals
+cd ~/"Pictures/iPhoto Library/Modified/"
+find . -type f -exec mv "../Originals/{}" ~/.Trash/iPhoto-Originals/ \;
+
+
+http://osxmactips.blogspot.com/2009/01/delete-duplicate-iphoto-photos.html
+
+A: I wrote a $7 app called Duplifinder that finds and shows duplicates in your iPhoto Library:
+http://www.haystacksoftware.com/duplifinder/
+You can view the sets of duplicates, double-click to locate a photo in iPhoto, press Delete to delete a photo from iPhoto. Or just push "Move all duplicates to iPhoto Trash" to clean up.
+If you have any questions about it please email me at support@haystacksoftware.com.
+- Stefan

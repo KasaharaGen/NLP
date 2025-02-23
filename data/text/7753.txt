@@ -1,0 +1,11 @@
+Q: Is there a way to access my mac remotely by using browser only? I want to be able to browse/search my files, send email... nothing fancy like watch the movie and so on?
+
+A: Yes you can use logmein https://secure.logmein.com/
+After installing and setting things up you will just need your browser wherever you are.
+
+A: Yes, you need a remote access web-based application such as LogMeIn, Teamviewer or ScreenConnect.  You have to download the app on the host machine and should be able to connect in through the internet.  
+
+A: There are also browser-based VNC clients like noVNC:
+noVNC is an open source VNC client using HTML5 (WebSockets, Canvas). It requires a browser with HTML5 support (this means it works on all major browsers but not on IE 10).
+noVNC follows the standard VNC protocol, but unlike other VNC clients it does require WebSockets support. Many servers include support (e.g. x11vnc/libvncserver, QEMU, and MobileVNC), but for the others you need to use a WebSockets to TCP socket proxy. noVNC has a sister project websockify that provides a simple such proxy.
+See the noVNC GitHub Readme file for more information.

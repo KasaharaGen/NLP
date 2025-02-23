@@ -1,0 +1,27 @@
+Q: Hit a key to "move and resize active window" I'd like to bind a key to an action that "takes the active windows and moves it to screen S, coordinates X,Y resizes it W,H". The S,X,Y,W,H variables can be hard-coded.
+I don't know where to look for, is this doable? Do I need to mess with ActionScript or create an app or what?
+(I'm a programmer but I don't know anything about programming/scripting for OS X)
+Update:
+I found out SizeUp which happily does exactly that:
+
+
+*
+
+*a single keystroke, to resize the active window to a pixel specified layout
+
+
+Now, while I'm happy about that, I'd like to know if there was a program which allowed more than one layout (SizeUp allows only one if I'm not mistaken). It would still have to be single-keystroke and possible to insert pixel precise values.
+
+A: I use a little app called Divvy to do this. You can set up a global hotkey to bring up Divvy. And then within Divvy you can set up hotkeys that will snap the current window to a specific location and a specific size. It's great for quickly doing 2-up Finder windows for copying things back and forth. Or a Finder window on the left and a CyberDuck window on the right for remote copies. One of those apps that, when it's not on a Mac, will make it feel a little bit broken.
+
+A: set a to path to frontmost application as text
+tell application "Finder"
+    set {0, 0, dtw, dth} to bounds of window of desktop
+end tell
+try
+    tell application a to tell window 1
+        set bounds to {0, 22, dtw / 2, dth}
+    end tell
+end try
+The behavior with multiple displays is pretty confusing: Daring Fireball: Getting the Size of Your Display With AppleScript, the Lazy Way.
+You can assign a shortcut for running it with for example FastScripts, Apptivate, Quicksilver or by making a service with Automator.

@@ -1,0 +1,12 @@
+Q: Lion Server not able to set Open Directory user account to store home directory on server I'm setting up a new Mac Mini server for a client that came with Lion Server. The Mac Mini will act as an Open Directory server and will store each Mac user in the office's home directory on it.
+It's easy to set this by using the Server.app tool and choosing a local share for the home directory. However it seems that I can't set it. When I try to choose the share instead of "Local only" it doesn't save the choice.
+How can I get around this? Or alternatively, how can I use the Directory viewer to set this manually? I can see the field that sets the home directory, but I'm not sure of the format required to choose a network share.
+Also cross-posting on Serverfault as I'm not sure which is the best place to post this.
+
+A: I was able to figure this out a while ago, but I realized I only posted the answer to my question on Serverfault. Here's the solution for this:
+I ended up setting up Lion Server at my house, creating an Open Directory user with a remote home directory, and looking in the Directory Utility to see what the actual keys were set as. I was then able to use Directory Utility on the client's computer to set the keys manually and it worked perfectly.
+Here are the keys you need to set assuming the server's hostname is server, and the directory is /Users/test on the server:
+key: HomeDirectory
+val: <home_dir><url>afp://server/Users</url><path>test</path></home_dir>
+key: NFSHomeDirectory
+val: /Network/Servers/server/Users/test

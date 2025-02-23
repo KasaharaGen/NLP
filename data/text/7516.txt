@@ -1,0 +1,11 @@
+Q: Using php5-rar to extract files with an RAR extension Recently, I received a compressed file with an RAR extension from a colleague. Not being able to view it under MacOS, I went on to download the MacPort php5-rar thinking that it would solve my problem.  I soon realized that this was not a utility, but an API for viewing, extracting and creating RAR files programmatically.  Please correct me if I am wrong, since the only documentation I have been able to find on this MacPort thus far is an API reference manual.
+By later browsing this SE, I discovered that there is another utility called iUnarchive, which allows one to extract/view RAR files.  As I am a bit ignorant when it comes to these things, if I were to download and install it, would it interfere with the php5-rar MacPort that I installed earlier?
+Furthermore, as iUnarchive appears to be a tool only for extracting/viewing files, is there an equivalent (free) tool under MacOS that can be used to create RAR files?
+
+A: There does not appear to be any freeware RAR compression software according to this Wikipedia article. However, if you are willing to consider trialware (or "nagware"), you can download the commandline RAR for OS X (also see here).
+
+A: Perl is the only scripting language I know of that occasionally ships user-invocable binaries that are built with the module it came with. You can always roll your own software of some sort that leverages the library, but since it's obvious that you want to take much less time;
+I've been a fan of UnRarX for some time, dating at least back to my use of Leopard. I don't see RAR files very often anymore, but when I do, I've only ever used UnRarX, or StuffIt Expander, the difference being that UnRarX gets in your way a lot less than StuffIt seemed to at the time.
+Note, however, that UnRarX does not do package creation.
+Note that the Mac App Store has plenty of apps that match a simple search for 'rar', the only free ones are The Unarchiver, StuffIt Expander, Tiny Expander, ALZip, and iPackr. (All the proceeding links are Mac App Store links.)
+Installing any of the above apps should have no effect whatsoever on the php5-rar package.

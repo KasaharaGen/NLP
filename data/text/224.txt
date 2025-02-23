@@ -1,0 +1,43 @@
+Q: Can I run multiple instances of Skype on one computer? I am a heavy Skype user - I use it for work and to communicate with friends. Little by little my contact list grew to almost 800 people. It's really difficult to handle my contacts and put them in different lists. Searching for contacts is also not intuitive and easy task - people like to use strange usernames for Skype. 
+I need to divide my contacts and use two instances of Skype - for business and personal use. Do you know a way I can do that and stay online in both accounts at the same time? 
+
+A: multiple copies of Skype can only run under separate user accounts, making for some unfortunate but not critical overhead. create another user account on your Mac, either business or personal. then from the other one, open Terminal and do:
+$ su - [your other username]
+$ /Applications/Skype.app/Contents/MacOS/Skype &
+
+after which you can close the terminal.
+edit: after running this after a bit, i should note that you will run into fun issues like separate clipboards, links opening in separate browsers, and possibly other multi-user issues which i havent run into yet.
+
+A: You can certainly launch multiple instances of the application. I assume there won't be a problem with logging into the remote service twice from one computer, though I haven't tested that part.
+To launch a second instance of any application, regardless of whether it is currently running, open the terminal and type:
+/Path/To/Application.app/Contents/MacOS/Application & 
+
+(more detail here)
+In your case, type this exactly:
+/Applications/Skype.app/Contents/MacOS/Skype &
+
+
+A: This simple application can help you:
+http://holodnyalex.github.com/SkypeLauncher
+It just runs Skype as root.
+
+A: Here's a viable solution. Tested on Mac OS X 10.8.2, seems to work.
+http://community.skype.com/t5/Mac/How-to-create-two-instances-of-Skype-on-the-Desktop/m-p/1626/highlight/true#M38
+http://horizonsplit.wordpress.com/2013/02/18/running-2-and-more-skype-instances-on-mac-os-x-simultaneously/ (just a copy for the sake of redundancy)
+
+A: If you only want to run a second instance of Skype, you can do this on the same OS X account with a little bash script:
+#!/bin/bash
+rm ~/Library/Application\ Support/Skype/Skype.pid
+sleep 1
+open -n "/Applications/Skype.app"
+
+https://gist.github.com/Strayer/4dd565cc4b5db72b9363
+
+A: Is it possible to copy  Skype.app to PersonalSkype.app and then running both ?
+I have tried this with VLC (one version was 32bit and other was 64bit+older version), and they worked fine.
+
+A: Although duplicating your copy of skype will certainly run two copies (or more), both will use the same properties and will share a lot of things, therefore creating possible chaos. 
+If it helps, you can create groups in skype and drag contacts to the groups. I have separated people I know, business and strangers from games or people I don’t know. 
+Skype’s service is really good, but their application is far from good and intuitive. 
+
+A: If you don't want to mess around with "su" and the command line, try Peek-o-Matic, designed for this type of generic situation, but it appears from the developer comments that it is heavily used by Skype users wanting multiple instances just as you do.

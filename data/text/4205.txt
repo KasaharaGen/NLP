@@ -1,0 +1,31 @@
+Q: Prevent shutting down iPhone when passcode lock is on If my iPhone is stolen and the thief shut the phone down, I wouldn't be able to locate it anymore.
+Is it possible to disable the possibility to shut down the phone when a passcode lock is set up?
+
+A: Yes, but you have to be jailbreak and go through Cydia for this.
+The add-on is called iGotYa.
+
+
+*
+
+*enables "Prevent OFF"
+
+*acquires location of a stolen device (sends via email of choice, or via sms)
+
+*takes a picture of the person which holds your device if they enter the wrong passcode
+
+
+A: It's worth noting that I'm fairly sure that a long press (15+ seconds) of the power button initiates a hardware reset, which is completely impossible to block with software. 
+Think about what would happen if you had no hard-reset option, and the software than handles turning off your phone crashed. You would never be able to restart it again, and it would be effectively bricked until the battery wore down, and it shut off due to lack of power.
+Basically, for any complex electronics device, it certainly will crash, so there has to be a way to override any software power controls. Every computer electronics device I have ever seen has had some mode which you can use to reset it, for just this reason.
+
+A: This is currently exactly how the iPhone is designed. I agree with your issue.
+My answer was about to be: "Perhaps if you Jailbroke your iPhone you could install some modification software that would prevent someone from shutting it down when locked". However, there's naturally yet another level of indirection.
+One of the things that you will never be able to prevent, is the device being put into DFU mode. A phone is put into DFU mode by holding down both the Sleep and Home buttons for 10 seconds, then let go of only the Sleep button (continue holding the Home button) until the phone wakes with it's "connect to iTunes" notice.
+DFU mode is one of the few pure hardware modes. After putting a phone into DFU mode, it cannot be used until restored against an instance of iTunes. Which also means that the data will invariably be lost because it will be wiped upon restore of new phone setup.
+A few notes:
+No computer is completely secure when physical access is allowed by an unauthorized user. No amount of BIOS passwords, login passwords, or anything extended authentication will be unable to be overcome. Physical access is total access.
+What I'm saying is that you should spend less of your time attempting to thwart theft, and instead set up a mechanism for safeguarding your data.
+Sync regularly, configure your iPhone to wipe itself after 10 failed pin attempts, set up Find My iPhone so you can issue a Remote Wipe command.
+Note that I'm not saying not to not bother mitigating theft. Getting a K-Lock if you're in a display position, a secure case so it's harder to lift from your pockets (or don't put it in your pants pocket) are all worthwhile steps to take.
+
+A: Perhaps consider Cylay? Requires jailbreak, but can hinder shutdown.

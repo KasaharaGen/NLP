@@ -1,0 +1,48 @@
+Q: How do I resize OS X main partition when I already have other BootCamp partitions? Short story: partition resizing using Disk Utility fails because MediaKit reports no such partition when I try to shrink it. I also tried the same while booting from the DVD, same result.
+Details:
+
+
+*
+
+*reFIT is installed and partition tables are in sync.
+
+
+Current configuration:
+
+
+*
+
+*refit
+
+*hfs+ - with OS X 10.6 on it
+
+*linux swap
+
+*linux ext4 - with Ubuntu on it
+
+
+I can boot both, OS X and Ubuntu, via rEFIt boot menu but I want to shrink the OSX partition in order to add another NTFS partion where I want to install Windows 7 x64.
+What should I do?
+
+
+A: Here is my current solution:
+
+
+*
+
+*boot from OS X DVD - mandatory!
+
+*open terminal
+
+*diskutil list
+
+*umount "/Volumes/Macintosh HD"
+
+*fsck -f /dev/disk0s2
+
+*diskutil resizevolume /dev/disk0s2 100G
+
+A: Easy method: iPartition ($45)
+It gives you the option in the program to create a bootable DVD if you want to make changes to your boot drive.  You could also run it from another Mac with the Mac you want to modify booted into Target Disk Mode.
+Definitely not free, but it will save you a headache.
+

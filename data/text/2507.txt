@@ -1,0 +1,19 @@
+Q: Alias for network drive In the Finder > Connect To Server window I have an IP address I connect to. Is there a way to make a nickname or alias for this server?
+
+A: Try adding the following line to your /etc/hosts file:
+10.0.0.1     alias.local
+
+
+A: You can create aliases directly to network shares the normal way, by right-clicking the mounted share and choosing "Create Alias." If you want to create an alias/bookmark to the server so you can select which share to mount every time, do the following:
+
+
+*
+
+*Open Safari
+
+*Bookmark any page to make a new bookmark
+
+*Edit the bookmark to point to your server and service. For Windows sharing, the URL would start with smb:// followed by your IP address, ex smb://192.168.0.5
+
+*Drag the bookmark out of the Safari bookmarks view onto your desktop
+

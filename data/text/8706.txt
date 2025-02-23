@@ -1,0 +1,20 @@
+Q: How can I configure Lion to use PHP mail() locally? I'm doing web development with PHP on my mac and need to be able to use the mail command locally (on localhost). What do I have to configure to get the PHP mail() command working?
+PS: On Windows I used hmail for this.
+
+I mean how to connect PHP with mail server on my mac, i noticed when i type mail on terminal, it seems mac already come with Mail Server.
+
+A: This works for me at OS X Snow Leopard:
+
+
+*
+
+*When an email is sent using PHP's mail() function, the email is piped through to the smtp_catcher.php script.
+
+*The smtp_catcher.php script saves the email into a local folder as a .emlx file.
+
+*The email is opened through Apple Mail and displayed on the screen (woo!).
+
+
+A: Yeah you will need to install a PHP server on your machine like apache (http://www.apache.org/dyn/closer.cgi) or maybe wamp (windows only)(http://www.wampserver.com/en/).
+Unlike HTML, JAVASCRIPT, CSS etc. PHP is a server side programming language (aka scripting language), meaning it compiles on the server, not the browser, and that you need to run a server to compile it.
+Once you have the server running, make a .PHP file and put it in the 'site' folder, from there it will run :D

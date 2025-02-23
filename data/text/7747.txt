@@ -1,0 +1,44 @@
+Q: How do I use AppleScript to reveal a file in Finder from its POSIX path? I'm trying to create an AppleScript snippet that locates the current random wallpaper and reveals it in Finder. I have the following snippet which finds the current wallpaper's POSIX path as a string:
+set plistFolderPath to path to preferences folder from user domain as string
+set plistPath to plistFolderPath & "com.apple.desktop.plist"
+tell application "System Events"
+    tell property list file plistPath
+        tell contents
+            set thePath to value of property list item "NewChangePath" of property list item "default" of property list item "Background" & "/" & value of property list item "LastName" of property list item "default" of property list item "Background"
+        end tell
+    end tell
+end tell
+
+thePath is now a string in the form:
+
+/Volumes/Archive/Widescreen wallpaper/12345_Name_2560x1440.jpg
+
+(Note spaces)
+I try to reveal this path in FInder, but everything I've tried results in an error:
+tell application "Finder"
+    reveal POSIX file of quoted form of thePath (* Error: "Can't get POSIX file of (blah)" *)
+end tell
+
+How do I reveal a pathname in Finder in AppleScript when all I have is its POSIX path?
+
+A: set p to "/Applications/Utilities/AppleScript Editor.app"
+
+# uses an existing window or makes a new window with your default settings
+tell application "Finder"
+    reopen # makes a new window if there are no open windows
+    activate
+    set target of window 1 to (POSIX file p as text)
+end tell
+
+# makes a new window that doesn't use your default bounds or view settings
+tell application "Finder"
+    reveal POSIX file p as text
+    activate # focuses the window
+end tell
+
+
+A: I think your problem is that quoted form. Try something like this:
+set thePath to POSIX file "/Volumes/Lion HD/Users/ngreenst/Desktop/image.jpg"
+tell application "Finder" to reveal thePath
+
+So, just reveal thePath

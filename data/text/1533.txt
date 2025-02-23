@@ -1,0 +1,41 @@
+Q: How do I get Windows to assign a drive letter to my iPhone? I want to be able to move photos and videos from my iPhone onto my Windows PC, but the iPhone doesn't present itself like a compact camera. Because my existing import process works so well with normal compact cameras (they have drive letters!), I don't want to have to mess around with extra programs.
+When I connect my iPhone, I don't get a new drive letter for it. Instead of e.g. K:\DCIM\800AAAAA I just get the very cryptic address Computer\Torbens iPhone 4\Internal Storage\DCIM\800AAAAA. Windows Explorer can navigate this path, but no programs can access the path.
+How do I get Windows to assign a drive letter to my iPhone?
+I am not interested in programs that can look into my iPhone and allow me to manually copy files from it to my harddisk. (iFunBox, DiskAid, Wifi photo transfer app, WinAmp - as mentioned in this recent question)
+I want a drive letter! When I have that, I can continue to use my existing photo-importing applications that do everything with a single click! (Moving rather than copying, file renaming based on timestamp, etc.) 
+Is there some hack app that will make the iPhone present itself with a drive letter? This would probably not be a Windows application but rather an iPhone jailbreak app, but any solution is welcome.
+I'm running Win7 and a jailbroken iOS 4.1. 
+
+A: I get a drive letter just fine under XP. Under XP a dialog pops up each time I plug it in, asking how it should be handled. By canceling it ends up being handled as a drive.
+My guess is that there's a setting, probably related to cameras and photos, that will change how Windows 7 handles it by default. Unfortunately I've no Win 7 machine handy.
+
+A couple of suggestions from Googling for answers:
+
+*
+
+*Many people have solved the problem by deleting any photos on their iPhone that weren't actually taken with the iPhone. Anything received in email, saved to disk in Safari, etc. After clearing those out the device again appeared as a drive.
+
+
+*Reinstall the iPhone driver in Windows 7 by following instructions from Apple Support.
+
+
+EDITED TO ADD WIN XP, AS REQUESTED
+
+Getting Windows XP to Present Itself as a Drive-Like Camera
+First, the way I have things set up, which may or may not affect how it works for you: I am running all of the XP service packs, updated regularly through Software Update, with no special drivers or applications. My account is an administrator on my PC. iTunes 10.1 is installed, though it is not involved with the camera stuff (it's possible that having iTunes installed does provide some kind of driver, I don't know). My iPhone is a stock iPhone 3GS, non-jailbroken, running iOS 4.2.1. Note that all of this worked identically with iTunes 9 and my phone running iOS 3.0.1.
+Event Handling
+The first time you attach your iPhone to your WinXP PC a dialog much like the following should appear:
+
+Drive List
+If you choose one of the Microsoft Office handlers, the Wizard, or another app like Photoshop, your phone  will not present itself as a camera (more on changing that behavior below). If you click Cancel then the dialog will disappear and the camera will become available.
+
+Windows Explorer Media Directory
+If you then double-click on the iPhone icon all of the images and movies are presented:
+
+You can freely drag photos and videos out of the directory. You can drag stuff in, too.
+Changing the Event Handler
+If at some point you chose an event handler rather than clicking Cancel you can change how XP handles the iPhone. You'll need to get to the phone's Properties, which may require opening the Scanners and Cameras control panel. Click on the dialog's Events tab to see this:
+
+If you change your current setting to Prompt then you'll get that first dialog I showed when you plug in your device. You can also choose Take no action if you want it to always behave like a drive.
+
+A: I've successfully mapped a drive letter to the iPad on Win7 64 machine. Just install the Air Sharing app on the iPad and map using the Bonjour address.

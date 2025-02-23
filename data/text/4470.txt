@@ -1,0 +1,16 @@
+Q: Bootcamp load at startup with VMware I have bootcamp loaded with Windows and would like it to boot and login at startup through VMware Fusion instead of starting manually after OSX 10.6.7 loads. 
+
+
+*
+
+*Any ideas on how this functionality can be turned on or off?
+
+
+
+
+A: If you have setup VMware Fusion to run your Windows in Bootcamp, then you just have to do one of two options.
+Right click on the VM to run when Fusion starts, and then select Open When VMware Fusion Starts. 
+
+or just select the star next to the VM in question.
+
+Then the next you have to do is to add VMware Fusion to your Login Items - System Preferences->Accounts->[THE LOGIN USER]->Login Items

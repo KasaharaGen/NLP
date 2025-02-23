@@ -1,0 +1,14 @@
+Q: Display Issues for Early 2011 Macbook Pro I am currently experiencing an undocumented problem for my 15 inch Macbook Pro (Early 2011 Version), and was hoping to get some help diagnosing what the issue might be. 
+The problem is that whenever I am doing anything that is computationally expensive (i.e. streaming video or using parallel processing in MATLAB), my screen goes haywire and shows up noisy green lines on anything that is supposed to black. Similarly I get noisy light blue lines on anything that is supposed to be white. The problem is hard to describe, so here is a picture of my screen when this happens:
+
+Changing the color profile does not change anything. Taking a screenshot does not change anything. Also, the issue seems to pop up regardless of whether or not I have the onboard graphics card enabled.I am fairly certain that is a hardware issue, but I would appreciate any input in regards to finding out what it may be. I have an appointment coming up at the local Mac store, but I'm almost dreading going in since I do not want to have to send the computer in for repair.
+UPDATE: After running the tests you suggested, I was able to nail down the issue to the GFX card instead of the screen. In order to be sure, I downloaded the gfxCardStatus app from Macupdate and ran a quick experiment to see what happened when I I switch from the ATI Graphics Card to the Integrated Intel Graphics Card. As it turns out, the weird behavior only occurs when the ATI Graphics Card were in use, and switching to the Intel Graphics Card resolved the issue. I'm still headed to the Apple Store tomorrow, but I think this will help expedite the repair process :) 
+
+A: This is almost certainly a hardware problem.  To determine whether it's the screen or the graphics card/motherboard you can plug in an external monitor.  If you get the same problem on the external monitor then it's likely a fault with the graphics card/motherboard, if you don't get the same issue on the external screen then there's a problem with your MacBook's display.  
+Since it's an early 2011 model it should still be in warranty.  I'd bring it to an Apple store and have it checked out for repair or replacement.  On the plus side, you may get a brand new MacBook out of it.
+
+A: It'a an old thread, but right now Apple have repair program for Macbooks 2011-2013 which have video card problems. Details can be found here.
+
+Apple has determined that a small percentage of MacBook Pro systems may exhibit distorted video, no video, or unexpected system restarts. These MacBook Pro systems were sold between February 2011 and December 2013.
+Apple or an Apple Authorized Service Provider will repair affected MacBook Pro systems, free of charge.
+

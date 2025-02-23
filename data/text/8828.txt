@@ -1,0 +1,9 @@
+Q: Cancelled wireless Migration Assistant... best way to start over? I was using the Migration Assistant utility to transfer data from my old MacBook Pro to my new Mac.  I didn't anticipate issues using Wi-Fi, but the transfer of 250 GB of data using wasn't going to end within a day of starting, so I interrupted it and I intend on starting over using a wired network (or target mode disk connection) to speed the transfer.
+However, now it says my HD on the new one has 60 GB occupied and I dont know where this exists. My created account has no documents/apps/etc.  I want to delete this and start fresh if the software won't clean up an aborted transfer reliably.
+What is the best way to start over?
+
+A: If the destination MBP is brand new, save yourself some trouble, restore it from factory and run the Migration Assistant again.
+However you can probably run it again and everything should be ok, it really depends what you have and what has been copied. Check /Library/ and ~/Library (use the Terminal), for example if you had GarageBand or Garage Band Jam Packs, those may have been partially copied. 
+I did that when I brought an MBAir. It was taking so much that I aborted, cloned my other Mac's drive and used a USB drive to do the migration.
+
+A: The Mac will intelligently continue where it left off on the Migration Assistant. You do not need to worry about removing any duplicate files.

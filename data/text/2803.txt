@@ -1,0 +1,16 @@
+Q: Can I tell iTerm 2 to change color when I'm root I would like to tell iTerm2 to have red text whenever I'm root when logged into a server.
+Note:
+I'm not able to change any configuration on the remote server.
+
+A: Not as part of the iTerm 2 configuration. iTerm has no way of knowing you've gone to root in a remote session -- it's not watching what you're doing that closely (and what you're asking it to figure out is actually really complicated to program).
+You can create an iTerm profile that has red text on whatever background colour you want and you always use that profile when you're going to go to root on a machine. It requires no changes to the root environment on the remote machine. But it does require you remember to use that profile for your rooted session.
+Edit: while digging around I found this interesting article that talks about how you can change the background image in iTerm to show the hostname of the host you've ssh'ed in to. Notice how it's all based around the environment in your client's Mac shell -- once you're on the remote machine there's not a lot iTerm can do. The changing of a tab title does appear to be controlled by $PROMPT_COMMAND, as set in the remote session's environment, but there appear to be no documented hooks in iTerm 2 that let you extend what iTerm does when it changes the tab title. Pity.
+I tell ya: mad props if anyone can figure out how to do this. It'd be handy for sure.
+
+A: I really don´t understand why you say you can´t change any configuration, yet you´re able to use the root user…
+But anyway, you could run the following line every time you log in to your remote server, which will color your prompt red (and show it as "root@hostname | /current/directory" , once you´re root´ed with sudo -s: 
+export SUDO_PS1='\[\e[41m\]\u @ \H | \[\e[7m\] $PWD \[\e[0m\] \n > \[\e[0m\] ' 
+
+Assuming the remote server´s sshd configuration has PermitUserEnvironment set to "yes", you could hand the PS1 over when you instantiate the ssh connection, something along the lines of (haven´t tried this, though):
+ssh user@server -t "SUDO_PS1='$SUDO_PS1'; exec bash"
+

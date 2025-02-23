@@ -1,0 +1,34 @@
+Q: Is there an AirDrop client for Microsoft Windows? It would be nice to have an AirDrop client for Microsoft Windows. Does anyone know if such a program exists as a shipping product or an open source work-in-progress?
+I'm aware that there are many other file sync options, but I'm looking for something that works with Apple's implementation from the Windows OS.
+
+A: As other answers have said there's currently nothing for non-Apple OSes which can talk to Apple's AirDrop.
+However there is Snapdrop which offers similar functionality to AirDrop via a cross-platform and open source web app.  It does require the sending and receiving devices to be connected to the same LAN (rather than creating an ad-hoc wireless network like AirDrop) and uses WebRTC (with a fall back to WebSockets) for peer-to-peer communication directly between them.
+More technical details about it can be found on the GitHub page.
+
+A: I install Pidgin on my Windows machines and enable its Bonjour account, which enables file transfers - including with Macs running iChat.
+AirDrop is Lion-only, but iChat file transfer works 10.4+.
+
+A: No, AirDrop for Win does not exist. I think you could use Dropbox with "Enable LAN Sync" option enabled. It will sync your files over local network. If you want to use it at home and in the office, you also might turn on "Selective Sync" to avoid large files transfer over the internet.
+
+A: No, I don't believe you can. Apple advertise AirDrop as: "AirDrop, a remarkably simple way to copy files wirelessly from one Mac to another with no setup;"
+.
+Key part of that sentence being "from one Mac to another" - Second bullet point: http://www.apple.com/uk/pr/library/2011/02/24Apple-Releases-Developer-Preview-of-Mac-OS-X-Lion.html. It's highly unlikely Apple would open this feature up to Windows or Linux because it's a selling point for them in new Macs running Lion.
+
+A: You can try Transfer on LAN. You can transfer files with machines running on Windows, Mac and Linux because it uses Java. It needs no configuration and it's open source.
+
+A: Try Filedrop. It works for both win and mac computers. www.filedropme.com
+
+A: An alternative to SnapDrop is ShareDrop. Like SnapDrop, it runs on your browser. I believe these two websites only work if you're connected to the same WiFi network/router, which is a possibly disadvantage over AirDrop. However, it works cross-platform.
+
+A: I have a Mac and AirDrop is pretty good, but Windows laptops and PCs can just use peer-to-peer Bluetooth instead.
+
+A: There's Bump. its like airdrop, but you have to bump the phone to the keyboard.
+www.bu.mp
+
+A: easy way it use iCloud - it's simple and fast.
+Only need to set it up on a computer and share your screen to you account.
+
+A: If you're a Windows user looking for some of the same functionality as AirDrop, check out Flik. Through it, you can share all sorts of files plus message between friends, like iMessage. Everything happens over wi-fi/internal network.
+Also, if you're on a mixed network with Windows and OS X users, those on Macs can run Flik from within Parallels or VMware Fusion.
+
+A: You might want to try Dropbox. It works with almost all internet-compatible operating systems, even iOS and android. You'll get 2 GB free storage space for free and you can buy additional storage. 

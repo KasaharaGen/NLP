@@ -1,0 +1,102 @@
+Q: Recommended way to back up a Macbook before upgrading its OS? I'm planning on upgrading a friend's Macbook from OS X Leopard to OS X Snow Leopard. I think it's a good idea to backup all the data before upgrading the OS, in case something goes wrong. The problem is that the important data is not clearly stored in a single location — e.g. it may be scattered all throughout the system since my friend doesn't store all his data in one location, so it's very difficult to know which files/folders I should or shouldn't back up.
+Is there any recommended procedure I should follow or a built-in (preferred) or 3rd-party tool I should use to back up the data before an OS upgrade?
+
+A: Hard to answer, not because of technical difficulty - but psychology. ;) So I will take the answer a bit easy...
+A. The simple way
+Make a Time Machine backup (if you do 1st times will get a full backup) so you will be able to restore anything that you created on the Mac. For this, you will need:
+
+
+*
+
+*one external HDD (big enough), connect it
+
+*go to System Preferences
+
+*use this external HDD as Backup disk for the Time Machine
+
+
+B. As A. but with a bootable Time Machine HDD
+For this, you will need:
+
+
+*
+
+*one external HDD (big enough)
+
+*your OS X install DVD
+
+*turn off Time Machine, if you have it on
+
+*connect HDD
+
+*insert install DVD
+
+*start /Applications/Utilities/DiskUtility.app
+
+*select your external HDD
+
+*go to "Restore" Tab
+
+*into "Source field", drag your Install DVD
+
+*into "Destination", drag your external HDD
+
+*triple check (so DON'T ERASE YOUR INTERNAL HDD!)
+
+*press Restore and go to have a lunch
+
+*after the restore, exit Disk Utility
+
+*eject Install DVD
+
+*go to System Preferences and enable Time machine
+
+*select your external HDD as BackupDrive
+
+*Make a full Time Machine backup
+
+
+With the above, you get a BOOTABLE Time Machine HDD. When things go wrong, you can hold down Alt when your Mac is booting and select this HDD for BOOT and restore from it without needing the install DVD (faster restore).
+C. Want even more?
+Make working copies of your HDD. Like above, you will got a BOOTABLE external HDD, but not for install purpose, but for working from it. So, you can boot it and continue work as from your internal HDD.
+For this you can:
+
+
+*
+
+*get a donationware: CarbonCopyCloner, or
+
+*make a normal install into external HDD, boot it, and use the MigrationAssistant.app to migrate data from the internal HDD to freshly installed external HDD
+
+
+Do you know that paranoia is the right state of the system administrator's mind?
+Do B and C - So you will need two external HDD's. It is the best, because you can drop your backup HDD from the table, and after this crash-test, the drive will be probably unusable (broken). :) Anyway, for this solution, you need to not crash-test both drives.
+With this, you will be able to WORK immediately (from the external drive) and restore from the Time Machine (from the second external HDD).
+Know Murphy?
+
+
+*
+
+*Anything that can go wrong, will go wrong. (Hang up Murphy!)
+
+*Your upgrade will fail (but usually it doesn't)
+
+*Your backup will fail too (but usually you don't need it)
+
+*so... take it easy ;)
+
+
+Ps:
+Here are more ways, e.g.: over the network from the command line with rsync command, etc. etc...
+YOU REALLY WANT TO READ
+
+
+*
+
+*This, especially
+
+*http://support.apple.com/kb/HT1553
+
+*http://support.apple.com/kb/HT1427
+
+*http://support.apple.com/kb/HT1177

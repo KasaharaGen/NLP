@@ -1,0 +1,90 @@
+Q: How can I improve/replace View Source in Safari? As a new convert to Safari, I am astonished by how unbearably ugly default page source view is.
+The font is miserably small and unaliased, leave alone color highlighting.
+
+Is there a way to enhance Safari's View Source feature or seamlessly replace it?
+I'm looking for:
+
+
+*
+
+*reasonable default font, customizable is better;
+
+*basic HTML/JS syntax highlighting;
+
+*working on Lion.
+
+
+Please refrain from suggesting viewing source with Web Inspector: it is nice but isn't convenient for quick source browsing.
+
+A: Take a look at this Safari extension:
+
+
+BetterSource Safari 5 Extension
+BetterSource shows the document source in a new tab, with line numbers, and colour syntax highlighting.
+
+
+A: You need to go to System Preferences - General and at the bottom set the minimum font size for antialiasing to 4 pixels. That way you'll get antialiasing for small fonts.
+(I never understood why they have to let you select that - under 8px fonts are just not readable without antialiasing)
+
+A: If you go to Safari's preferences > Advanced and set "Never use font sizes smaller than" to 11, it should fix the anti aliasing problem.
+For color highlighting you can use a SIMBL plugin called Safari Source that will do that for you.
+UPDATE: Actually, in the Safari Source settings page (Safari>Preferences>Safari Source) you can set the font size for the view source page. So set it to anything above 11 and it'll antialias.
+
+A: BetterSource
+
+It's similar to the view source in Chrome in a lot of ways:
+
+
+*
+
+*It has syntax highlighting and line numbers
+
+*It's opened in a tab instead of a window
+
+*Uses the default monospace font specified in preferences instead of Monaco 12
+
+
+Limitations:
+
+
+*
+
+*Line numbers are included in selections
+
+*The source view cannot be opened with a shortcut
+
+*Takes slightly longer to appear than the normal source window
+
+
+
+Setting a default zoom level in a custom style sheet
+The custom style sheet you can specify in the Advanced tab of the preferences also affects the view source window. I don't know how to target it specifically, but this would apply a default zoom level to both it and website content:
+body { zoom: 125%; }
+
+
+view source in TextMate.scpt
+tell application "Safari" to tell document 1
+    repeat 100 times
+        if (do JavaScript "document.readyState") is "complete" then exit repeat
+        delay 0.05
+    end repeat
+    set src to source
+    set u to URL
+end tell
+
+try
+    tell application "TextMate"
+        open POSIX file u
+        activate
+    end tell
+on error
+    set f to do shell script "f=`echo " & quoted form of u & " |
+    sed 's|.*://||;s|/$||;s|:|-|g;s|/|-|g'`; echo \"/tmp/view-source-$f.html\""
+    do shell script "/bin/echo " & quoted form of src & " > " & quoted form of f
+    set f to POSIX file f
+    tell application "TextMate"
+        activate
+        open f
+    end tell
+end try
+

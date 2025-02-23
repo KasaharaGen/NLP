@@ -1,0 +1,87 @@
+Q: Is Snow Leopard Server a good candidate for everyday use as a main OS? Although similar questions have been asked before [1,2] non of them fully address whether OSX 10.6 Sever is a good candidate for everyday use on a top of the line computer. For the really lazy;
+1 - Discusses on the importance of having a high spec computer in order for OSX Server to perform to its best.
+2 - Discusses on the appropriateness of using OSX Sever in a software development environment.
+Getting on to the nitty gritty, my question is more focused towards whether using the aforementioned OS is a good idea for an advanced used (not so much in network related subjects) that desires to do both Software Development, Image/Video editing, and setting up shared services such as; Calendars, Webservices (Wiki's + Websites) and email.
+When I say top of the range, I refer to the recently released iMac configured to the following specs;
+
+
+*
+
+*Quad-Core i7 3.4Ghz (Boost to 3.8Gz)
+
+*8 Gb of DDR3 RAM
+
+*2 Gb ATI Radeon HD 6970M
+
+*2 TB of storage. Partitioned 1:1 between Mac and Windows
+
+
+In terms of internet connectivity I run a 50Mbps fibre-optic downlink with 5mbps uplink. 
+The reason why I believe OSX Server will be an option to consider for me is the fact I plan to work on a startup with a colleague (with no IT Background) but we live in different countries for now, so the ability of;
+
+
+*
+
+*Having an easy to use wiki
+
+*The ability to create VPN for accessing NAS files
+
+*The option of remotely setting up business related software and beta releases on their PC
+
+*Facility for sync and collaboration (Mail, Calendar, and Document access editing)
+
+
+seem to represent an added value between the two. I obviously understand that having the server setup in a computer that will be getting switched off and on will disable the services, but appart form that is there any other advantage or disadvantage I am unaware of?
+If you are familiar with any software that possesses similar functionality to what am looking for, please feel free to put your suggestions forward. 
+
+A: To answer your question, you can work perfectly under Server (given the above machine) in fact, if you disable some of the services, the OS X will be very similar to the regular version. On the other hand, you can always rely on Google docs and calendars, Remote Desktop and even OpenVPN if you really need an internal network. 
+I mean, configuring the above (even on OS X Server) carries a lot of overhead, backup planning and maintenance. 
+Focus on your "startup" and leave the unrelated tasks to others. Will having a server at your place (with all the electricity costs associated) make your start up better? earn money faster? 
+Anyway, that's a topic for "startups". The answer is yes, that computer is more than capable to serve as a server for all those tasks and much more. 
+
+A: No. I love mac server and have used it for years and it's one of the best UNIX servers for small businesses - but for all the details you ask in your question, it's not the right choice for the functionality you mention. The mac you have is plenty powerful but will you really take down your server to boot into windows?
+Server running as your everyday mac won't help you be a better developer.
+Server won't help with image and video editing (and may slow them down)
+Server is overkill for a small company's (less than 5 to 10 people's) needs for calendaring, wiki, web and email - especially one with no IT background.
+A cisco small office VPN router costs less than $150 if you don't want to run the equivalent VPN software for free on the non-server Mac OS.
+Get server and use it because you want to learn by doing, not by making up marginal reasons to justify it. (I don't think you're doing that but wanted to make the point that running server takes time and expertise)
+Server is designed and tuned for multi user performance and not single user workload. Some consumer programs don't run as well in Server (or are not supported on server), but the vast majority will work fine even if you can't call up Microsoft or Apple for support once they hear you are running on a server OS. Servers are designed and tuned to run for a long time and you don't want to be rebooting them to take away the services they provide. You can't optimize for both a client workload and a server workload so there is no free lunch and one or both will suffer if combined.
+If you only want to play and learn the answer is YES - run server on your desktop, but your question includes you providing real services for a running business. Only you can decide which tradeoff is most important for your situation, but there are a few to be aware of before going down this path. 
+Running a cheap server (or even look into vmware to virtualize your server os on a larger iMac or MacPro to isolate the server OS from your desktop OS). In practice, you won't likely be slowed down with a distinct (or virtualized) server on the local network (even slow 100Mb ethernet). Your wiki and VPN will be blazing fast with only a handful of users connecting.
+It's really hard for even a workgroup of 25 people to bog down a current mac mini server. They really don't need fast CPU or disks. Adding low end RAID storage and FireWire 800 allows the mini to scale up. It takes a special video workload or hundreds of users to need Mac Pro Server. You can learn most of what you need on OS X client by starting up the server processes on the client and save yourself the $499 license fee. I would wait since Lion is announced to have server included at no extra cost.
+
+
+*
+
+*most of what you need to learn is free or the cost of a Lion OS.
+
+*if you depend on services - having a client workload detracts from the server workload - better to have a mac mini for the server that you can let run 100% focused on the server workload.
+
+*servers rarely are used to capacity so old hardware is often useful as a server well past their usefulness for an interactive client workload. Pick up a used mac for a song and run server locally or co-located.
+
+*security - are you comfortable gaming and install apps all the time on your server where your corporate information is stored? You might want that locked down and unchanging which restricts normal client flexibility. Your server admin account should be highly secured since servers are online 24/7 and high targets for crackers/hackers.
+
+*maintenance - every change you make on the server could interrupt services which is why businesses isolate and control their server OS to a much larger degree than client OS. It costs time and money to do otherwise.
+
+
+A: Because Mac OS X and Mac OS X Server are (besides a few plists and bundled software) identical operating systems, you certainly could use Mac OS X Server as your everyday operating system, just like you can run Mac OS X as a server; see diymacserver.com.
+But—other than having a few additional applications for administering Mac OS X Server itself, you don’t any extra capabilities.
+I agree with some of the other commenters—use the great web apps that are available for calendaring, project management, collaborative document editing—a wiki.
+Finally, if you need to do development, get XCode if you don’t already have it. Vagrant is great for being able to quickly setup specific environments, like Ruby on Rails with MySQL and Apache running on CentOS, for example.
+
+A: For production uses, AWS is pretty great. They have a lot of very reasonable tools for network security (VPCs and security groups) and really easy high availability (auto scaling, ELB etc.) They also have free classes for startups (two days of training will put you ahead of most of the competition)
+Email and calendar are probably easiest handled with Google Apps for domains. (Also includes drive for file sharing, and sites and docs for shared documentation)
+However, I might still run a Mac server for the corporate environment simply for ease of use and reasonable default security. For example, I spent several days setting up several varieties of VPN on Linux. When I've set this up on MacOS server it took five minutes. Configuring the firewall and disk encryption on Mac are also pretty easy.
+tl;dr 
+
+
+*
+
+*AWS and Linux in production
+
+*Google Apps for domains for email, file
+sharing and documentation
+
+*Mac OS for any remaining local services
+(if any)
+

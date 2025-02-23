@@ -1,0 +1,8 @@
+Q: Airport Extreme sharing 1TB disk I just bought an Airport Extreme thinking it was easy to share a USB disk.
+I'm very disappointed that this is taking so much time and still not working.
+The disk is 1TB NTFS formatted. It works well while connected directly to my MBP but via Airport Extreme I just can't get it work. Both on Mac and on Windows I can't connect, it's not discoverable. Even connecting via smb://10.0.0.1/mydisk won't work.
+Is this due by the NTFS format or I'm just missing something?
+Thank you
+
+A: Airport Extreme does not support NTFS disks.
+You can format your disk as FAT32 or (preferably) HFS+, a.k.a. Mac OS Extended (Journaled), and it should then be accessible to both Mac and PC clients.

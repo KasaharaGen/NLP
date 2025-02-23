@@ -1,0 +1,24 @@
+Q: How to control apache service on OS X (start/stop/restart/graceful restart)? I have Apache installed on OS X and I want to know what command I can use to:
+
+
+*
+
+*start apache
+
+*stop apache
+
+*restart apache
+
+*gracefully restart apache
+
+
+Also I want to know if the commands were successful or not.
+Apache seams to be installed as org.apache.httpd or at least this is what sudo launchctl list|grep apache shows.
+
+A: I use the apachectl command
+sudo apachectl stop
+sudo apachectl start
+sudo apachectl restart
+sudo apachectl -k graceful
+
+Hope this helps

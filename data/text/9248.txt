@@ -1,0 +1,122 @@
+Q: Add Compose key to OS X I want to change one of my keys on my keyboard to a Compose key so I can easily type common accents or characters, e.g.: Compose+e+' -> é.
+Is there a setting I can change or a program I can install to add this feature? For instance, I would like to use Caps Lock as Compose.
+
+A: I wrote a complete article explaining how to set up a real compose key (ie. Right Option + ' + e → é for instance), using a combination of KeyRemap4MacBook and specific Cocoa input rules.
+Step 1: choose a Compose key
+Choose the Compose key so that it is easily accessible but does not prevent you from doing anything you ordinarily do. I use the Right Option key as my Compose key. I already have a Left Option key so the right one is a bit useless to me. And it somehow matches the position of the Compose key on old Sun keyboards.
+That would be Right Option on a Mac keyboard. I recommend that.
+Step 2: remap the Compose key
+The problem is that the Mac OS X keyboard preferences:
+
+*
+
+*do not let you differentiate between Left Option and Right Option keys
+
+*only let you remap modifier keys to another modifier key (or to nothing)
+
+Fortunately, there is KeyRemap4MacBook that lets you do very low level things with your keyboard. Install it.
+We will now remap our compose key to something that the next layer will understand. I chose Shift Control F13 for that. It is very unlikely you will need that key combination.
+In the file ~/Library/Application Support/KeyRemap4MacBook/private.xml put the following:
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Send Shift-Ctrl-F13 for Right Option</name>
+    <identifier>private.send_shift_ctrl_f13_for_ropt</identifier>
+    <autogen>--KeyToKey-- KeyCode::OPTION_R,
+                          KeyCode::F13, ModifierFlag::SHIFT_L
+                                      | ModifierFlag::CONTROL_L
+    </autogen>
+  </item>
+</root>
+
+Finally, from the System Preferences, open the KeyRemap4MacBook settings and click on the ReloadXML button. Then activate the new option.
+Step 3: create compose bindings
+The last step is the creation of the actual bindings. I chose to import the rules from /usr/share/X11/locale/en_US.UTF-8/Compose on my Debian system.
+Bob Kåres wrote a script that lets you convert X11 compose rules into Cocoa key bindings.
+Either convert a Compose file of your own using Bob’s script, or download my DefaultKeyBinding.dict from the article. Save it in ~/Library/KeyBindings/DefaultKeyBinding.dict.
+Be careful: by default Bob’s script uses F13 instead of Shift Ctrl F13 so in DefaultKeyBinding.dict you need to change:
+"\UF710"
+
+into:
+"^$\UF710"
+
+If for some reason you decided to go for another combination, check out this article by Xah Lee to find out the proper syntax.
+
+A: Compose key on dedicated keyboard layout
+I have written U.S. custom, a keyboard layout that implements the compose key.
+On Mac OS X, there are two ways of implementing the compose key: Either with  can be implemented either with the Cocoa text system (as already described in Sam Hocevar's most helpful answer) or with a dedicated keyboard layout. Both methods have their pros and cons:
+
+
+*
+
+*A compose key implementation with the Cocoa text system will work independently of the chosen keyboard layout. The Cocoa text system settings in the DefaultKeyBinding.dict file are, by comparison, easily modified.
+
+*A compose key implementation with a keyboard layout will work all over the OS in any application, not just in Cocoa applications. It can be switched on and off with the UI by selecting another keyboard layout. There is a visual feedback while typing the compose combination (which slightly changes the behaviour).
+
+
+The installation of the keyboard layout is easy:
+
+
+*
+
+*Download and open uscustom.2012-08-28.zip.
+
+*Move the files UScustom.keylayout and UScustom.icns to either of:
+
+
+*
+
+*/Library/Keyboard Layouts/ (for all users)
+
+*~/Library/Keyboard Layouts/ (just for you, no administrator privileges required)
+
+
+*Activate the U.S. custom keyboard layout in the Input Sources tab of the Language & Text Preference Pane, so you can then select it from the input sources menu bar item – its icon shows a U.S. flag with a little C for “custom” or for “compose”: .
+
+
+The compose key of the U.S. custom keyboard layout is mapped to two different keys:
+
+
+*
+
+*There is a compose key at ISO § (that is the surplus key of an ISO keyboard; ISO keyboards are the ones where the return key is shaped like a turned capital letter L).
+
+*There is another compose key at Shift+Control+F13. This is the same mapping as chosen by Sam Hocevar, so if you want to remap the compose key to you right option key, then you can exactly follow the careful explanations described in his answer.
+
+
+Assigning compose to capslock
+If you want to assign compose to the capslock key (as in the original question), you need Takayama Fumihiko’s PCKeyboardHack in addition to KeyRemap4MacBook:
+
+
+*
+
+*Install PCKeyboardHack.
+
+*Open the PCKeyboardHack preference pane.
+
+*Check the Change Caps Lock checkbox.
+
+*Doubleclick on the keycode of Change Caps Lock and enter 10 (ISO §).
+
+
+This works with the U.S. custom keyboard layout compose key. In order to assign the Cocoa text system compose key (as carefully described by Sam Hocevar) to capslock, then you need another step:
+With KeyRemap4MacBook, remap the ISO § to Shift+Control+F13 (or whereever your compose key is). To do so, follow the steps carefully explained by Sam Hocevar, but changing the code that is to be placed in ~/Library/Application Support/KeyRemap4MacBook/private.xml thisly:
+<?xml version="1.0"?>
+<root>
+<item>
+  <name>Send Shift-Ctrl-F13 for ISO Section</name>
+  <identifier>private.send_shift_ctrl_f13_for_iso_section</identifier>
+  <autogen>
+    --KeyToKey--
+    KeyCode::UK_SECTION, ModifierFlag::NONE,
+    KeyCode::F13, ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
+  </autogen>
+</item>
+</root>
+
+
+A: A "dead keys" feature similar to what you want already exists by default. To get the letter é, press Option ⌥+e, then e. 
+After pressing ⌥+e, you'll see a ´ character highlighted (it's yellow on my computer). Press any letter that will take that accent mark (this will vary based on your keyboard language, for EN-US it's é, ú, í, ó, and á) and you'll get the accented version of the letter. There are other accents possible: ⌥+` gives an agrave accent (```), ⌥+e gives an acute accent (´), ⌥+u gives a diaeresis/umlaut (¨), ⌥+i gives a circumflex accent (ˆ), and ⌥+n gives a tilde (˜). Non-US keyboard layouts (in particular Welsh) have more accents and allow more letters for the same accents. The Keyboard Viewer is useful to help figure out what combinations are currently supported on your layout.
+If you are on Lion, as @djacobson mentioned, you can hold down some letters to see a variety of accented options for that letter. 
+
+A: If you want to remap one of your keys, take a look at KeyRemap4MacBook, which is referenced in this SU post. The documentation notes that Caps Lock can be remapped, and custom mappings are also supported.

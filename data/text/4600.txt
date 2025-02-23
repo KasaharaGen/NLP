@@ -1,0 +1,15 @@
+Q: Make Wine app the default opener I have Notepad which I open with "Wine".
+I want to do that when I want to open file .txt, it will be opened by Wine Notepad.
+How can I do that?
+
+A: You will need:
+
+
+*
+
+*make a custom launcher/wrapper for the notepad, e.g. WineNotepad.app
+
+*and in CMD-I you must change the default application for .txt files to the new launcher - and "change all"
+
+
+how to create the custom launcher is here

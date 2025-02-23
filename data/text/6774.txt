@@ -1,0 +1,25 @@
+Q: Are there any advanced options for a removable volume? I'm running Mac OS X 10.6.8. And I'm curious to see if there are any advanced options for ejectable volumes. Such as hiding a partition, password protecting, and so forth.
+Now, I'm not asking for software that does this. I'm asking if OS X offers any of these solutions. Or if OS X doesn't, can things like this be done through Terminal?
+If you have any answers, or know of any online tutorials, please post them here. :)
+
+A: To Disable Automount
+Getting the UUID
+The first thing you will need is the volume's UUID (universal unique identifier) number, which can be found by opening Disk Utility, selecting the volume of interest, and then pressing Command+I or clicking the blue information button in the Disk Utility toolbar. In the window that appears, locate and copy the UUID, which is a string of alphanumeric characters separated by dashes.
+Making changes to fstab
+With the UUID, you can now create an fstab entry for the volume that prevents it from mounting:
+
+*
+
+*Open Terminal.
+
+
+*Edit the fstab file by running the following command (supply your password when prompted):
+ sudo pico /etc/fstab
+
+
+
+*Create a new line at the end of the file that looks like the following (note: replace "NUMBER" with the full UUID string you copied from Disk Utility):
+ UUID=NUMBER none hfs rw,noauto
+
+Save the file by pressing Control+O, followed by Control+X to quit the editor.
+Perform these steps for each volume you wish to prevent automatically mounting, then restart the system, and they should no longer automatically mount. If you need to mount the volumes, then you can open Disk Utility and select them followed by clicking the Mount button in the toolbar, and they should become available in the Finder.

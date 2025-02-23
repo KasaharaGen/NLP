@@ -1,0 +1,25 @@
+Q: I need help uninstalling PostgreSQL on my Mac running 10.7 I got PostgreSQL from here.
+Since I'm on 10.7 OS X, I'm having problems.
+I want to uninstall the software I got from enterprisedb.
+Any tips?
+
+A: http://www.enterprisedb.com/resources-community/pginst-guide
+There is a one-click uninstaller that removes everything except the data director and user account. The default data directory is /Library/PostgreSQL/$VERSION/data, so rm -rf that directory (or wherever you instructed the installer to create it).
+To remove your postgres user (assuming it is named 'postgres'), first list your users to verify that the user 'postgres' and group 'postgres' are what you expect: (just a safe check) before deleting anything.
+
+sudo dscl . -read /Users/postgres
+
+
+sudo dscl . -read /Groups/postgres
+
+Look for the "real name" field, to ensure that it matches the version of the db you are removing. 
+Then remove the user and groups:
+
+sudo dscl . -delete /Users/postgres
+
+
+sudo dscl . -delete /Groups/postgres
+
+Obviously, be careful when using sudo. 
+
+A: The uninstallation instructions are at the bottom of the installation guide linked from that download page.

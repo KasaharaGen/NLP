@@ -1,0 +1,33 @@
+Q: How to remove a nonfunctional folder from the Finder sidebar with Paragon installed? I drag-and-drop 2 folders to the places group in finder's sidebar. Now i want to remove it. However, there was no option for remove it from side bar, although the other things (application, desktop, documents...) have the option to do so when you right-click on them. 
+
+(in short: i want to delete the folder "study" in the above screenshot)
+Actually those folders are on an ntfs partition. This problem happened after i install paragon ntfs driver. It works fine before that.
+Do you have any suggestion to solve this problem?
+
+A: If you're running 10.6.7, dragging to remove from the sidebar changed: Try Cmd-dragging it off. (You've already tried other ways that should have worked and didn't, so I'm not hopeful, but it's worth a try).
+This solution works for dead favorite folders in 10.7.2.
+I have just fixed a similar problem: An OSX shortcut was pointing to a folder on an HP NAS box which had been deleted so right-click menu was only 1 item. I recreated the folder on the NAS box so I could right click on the Mac to choose from now multiple list 'Remove from sidebar'. Also install free NTFS 3G (linked on Apple site) to access native Windows HDD.
+
+A: It's rather simple. Right click on the folder and click "Remove from Sidebar".
+
+EDIT:
+Since you specified that after installing the Paragon NTFS driver the folders became un-removable, i suggest that you disable the driver (from the System Preferences preference pane), restart your Mac, and see if the problem persists. If it still persists, remove Paragon NTFS and/or remove your Finder preferences. I will update my answer if disabling it does not work.
+
+
+A: You should be able to just drag this off the sidebar, similar to how you remove a bookmark from safari or an item from your dock.
+Thanks to the comment from @bmike, this changed in 10.6.7 - http://tidbits.com/article/12183
+
+A: The only solution I'm seeing right now is:
+
+
+*
+
+*uninstall Paragon NTFS
+
+*remove the folder you don't want in your sidebar
+
+*reinstall Paragon
+
+
+I don't know why it's behaving like that, I don't exactly know how the sidebar is handled by Mac OS.
+I could also be a Paragon bug, you could try to report it on their forums so they fix it. 

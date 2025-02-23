@@ -1,0 +1,9 @@
+Q: How do I install QuickTime from a .pkg? I'm on a laptop running OS X 10.3.9 (Panther) and I've downloaded "QuickTime 7.5 for Panther updater" -- and for the life of me I can't figure out how to install it.
+The file mounts as a disk image. When I doubleclick it I see a QuickTime75_Panther.pkg file which opens when I double click. Inside I see a lot more files but nothing that lets me install. Help?
+
+A: .pkg files are so called packages, which can be installed by Installer.app, so try right-clicking the .pkg file and hit Open with -> Installer
+
+A: You can install the .pkg file using the following command on Terminal.app(assuming your .pkg file is in Downloads directory).  
+sudo installer -pkg ~/Downloads/QuickTime75_Panther.pkg /Applications/
+
+The above command will install QT on the Applications directory.

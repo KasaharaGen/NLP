@@ -1,0 +1,17 @@
+Q: How can I find out what is deleting my ~/.Trash folder? Some application or action is deleting my ~/.Trash directory. I obviously don't know when this happens, save for the "Are you sure you want to delete..." dialog box. 
+I can restore the Trash, by restarting the Finder, as per this question, but I would like to figure out what is doing this.
+Is there a way to monitor a directory (i.e., .Trash) and determine when it changes? So when my Trash is deleted, I'll know.
+
+A: *
+
+*Open Terminal.app
+
+*Type in (or better copy-paste ;): curl https://raw.github.com/gist/1043757/9b55d3ae174ea40a1ff3b031fec7f87c5a58aa0d/gistfile1.d > usage.d 
+
+*Execute sudo dtrace -s usage.d
+This will display every file deletion on your system. If you want to only display the deletion of "~/.Trash", add | grep .Trash to the last command.
+
+A: you can do this from the Terminal.app
+sudo fs_usage -f filesys | grep ~/.Trash
+
+will list all processes what accessing Trash - try it - enough click on the Trash icon and you will get tens of line for "Finder".

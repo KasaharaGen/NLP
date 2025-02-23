@@ -1,0 +1,11 @@
+Q: Always prompt for Boot Device on Startup? I have a MacBook where I have to dual boot Windows and OS X. When I hold the Option Key on startup, I get the nice "Select Boot Device" screen.
+Is there a way to permanently enable this, so that I don't have to remember to hold option every time I restart?
+
+A: One way to do this is to install a boot loader such as rEFIt.
+This will present you with a menu similar to the following when you start up your computer:
+
+
+A: On Intel-based Macs, this supposedly works (unverified):
+sudo nvram manufacturing-enter-picker=true
+
+Note that this reportedly is not supported on ARM-based Macs.

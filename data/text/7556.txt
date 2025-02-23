@@ -1,0 +1,39 @@
+Q: How do I unset an IP address set with ifconfig? I recently used ifconfig en1 1.2.3.4 to set the IP address of a network interface (specifically, the wireless card) on a Mac… How can I remove/unset it?
+Using the graphical network configuration tool doesn't seem to change (or even be aware of) this address - when I use it to manually set an address, a second address is added to the device.
+For example, right now ifconfig shows:
+en1: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+    ether 00:23:xx:xx:xx:xx 
+    inet 192.168.141.99 netmask 0xffffff00 broadcast 192.168.141.255
+    inet 192.168.1.112 netmask 0xffffff00 broadcast 192.168.1.255
+    media: autoselect
+    status: active
+
+The first address -  141.99 - is the address I manually set. The second address — 1.112 — is the address assigned by my network's DHCP server.
+
+A: Use delete:
+ifconfig en1 delete 192.168.141.99
+
+
+A: To clear all ip address associated with en1:
+sudo ifconfig en1 0.0.0.0
+
+
+A: I believe a reboot should reset it.
+
+A: Try:
+sudo ifconfig en1 down
+sudo ifconfig en1 up
+
+
+A: Sounds like you are looking to change the device en1 from 'static' to 'dhcp'. To do this perform the following: 
+sudo ipconfig set en1 BOOTP
+sudo ipconfig set en1 DHCP
+
+After making the config changes you will need to bring that interface down and back up:
+sudo ifconfig en1 down
+sudo ifconfig en1 up
+
+
+A: Try :
+ifconfig en* down detach delete 
+

@@ -1,0 +1,37 @@
+Q: How to create a Windows 7 installation USB from OS X? I'm trying to create a Windows 7 installation USB (for use on a PC) from OS X.
+I've tried following these instructions from a similar question on superuser:
+
+
+*
+
+*Insert the USB flash drive and run the command diskutil list to find out the disk name, we'll use /dev/disk1 as an example
+
+*Now unmount the disk using diskutil unmountDisk /dev/disk1
+
+*dd if=/path/to/Win7.iso of=/dev/disk1 bs=8192
+But the instructions don't work. When I insert the created USB drive into my PC and try to boot from it, I get this message:
+
+Reboot and Select proper Boot device or Insert Boot Media in selected Boot device and press a key
+
+What am I missing?
+
+A: Turns out OS X Lion ships with Boot Camp 4.0, the coolest feature of which appears to be the ability to create install USBs.
+
+A: I hope I am not offending you, but this issue may have something to do with your level of understanding of what that terminal command actually does.
+You can't just copy and paste the command :
+dd if=/path/to/Win7.iso of=/dev/disk1 bs=8192
+
+.. and expect that to work.
+You need to change the above command to point to the actual location of your "Win7.iso" file (if that is what it's named).
+eg.
+Say I have a file called "windo7.iso" and it's currently located on my desktop, then the command that you should be using is :
+dd if=~/Desktop/windo7.iso of=/dev/disk1 bs=8192
+
+Hope this helps.
+
+A: I've edited the Info.plist of Boot Camp to be able (https://www.youtube.com/watch?v=rR5KZnRqcxg)
+If you have a DVD-ROM try http://support.apple.com/en-us/HT203909
+
+A: After dd, you should check if your new partitions on the USB device are marked as active. Do so using the fdisk utitlity.
+
+A: Right after turning on your PC press Del to enter Bios Setup and make sure that USB listed first in Boot Priority menu.

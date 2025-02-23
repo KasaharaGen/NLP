@@ -1,0 +1,10 @@
+Q: Where can you find out to whom a given Mac is registered? Is there a place in the OS that we can see to which person the OS is registered to?
+
+
+A: The registration information that you enter when you setup OS X is stored in a hidden plist file in the system. 
+That data is stored the file /var/db/.AppleSetupDone if you run the following command in terminal you should be able to see that information: 
+sudo cat /var/db/.AppleSetupDone
+
+This will show you the information entered. You will need to modify this information with a plist editor. For warranty claims Apple will know who registered the machine for AppleCare. 
+
+A: I don't know whether the registration information is stored locally. If you call Apple, they can certainly tell you under which person the Mac is registered.  

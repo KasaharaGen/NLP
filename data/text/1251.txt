@@ -1,0 +1,7 @@
+Q: Boot MacBook Pro into non OS X operating system from external harddisk I have a MacBook Pro and an external HDD with Ubuntu, I can use this HDD to boot other machines into Ubuntu but no amount of pressing option would make my MacBook Pro think that the drive is bootable.
+Is there a setting or an option that I have missed?
+
+A: The problem is that “other machines” (namely PC computers) use BIOS and Macintosh computers use EFI. Rather than boring you with the details, let’s just say that in order for your “EFI” to find your Ubuntu partition, you have to perform some magic. 
+The instructions for doing that are everywhere, (for example: here). I believe that you need to install rEFIt in order to have an “EFI” compatible bootloader. 
+TL;DR version: A Mac won’t boot directly into another operating system’s boot (GRUB/LILO/WINLOADER/ETC), you need an “EFI” compatible loader (enter rEFIt).
+I hope this points you into the right direction.

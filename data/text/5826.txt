@@ -1,0 +1,53 @@
+Q: Can I watch 3D movies on my Mac? Can I watch 3D movies on my Mac? If not, can I just watch them normally in 2D (not having 2 pictures side by side).
+
+A: With VLC on Mac OSX the menu options are different from Windows.
+VLC v2.1.5 menu options are ...
+Window -> Video Effects
+When the Video Effects pop-up window is displayed, select the Miscellaneous tab and tick the Anaglyph option.
+
+A: According to this Apple document:
+
+
+Autodesk’s FBX for QuickTime enables QuickTime as a 3D viewing solution that supports content from any professional 3D package. With FBX for QuickTime, digital artists can share, view, and interact with 3D content seamlessly, efficiently, and at no cost. Now available for both Mac OS X and Windows.
+
+
+So, I'm guessing that's a yes.
+If you want to take that 3D movie and convert it to 2D, you can most likely use MPEG Streamclip for that.
+
+A: I tried the suggested VLC technique (on MacOS X) for viewing just one "side" of the 3D movie, but can't get it just right. 
+Referring to the first answer --- there's no "Tools" menu to start with --- what is the Mac equivalent?
+Referring to the last answer --- in the "Video ->Aspect Ratio ->" submenu, there are a few fixed aspect ratios, non of which stretches the single side to the desired proportions, and I haven't found a way to add new aspect ratios to the menu.
+Also, I found  that the best way to remove one side is using the "crop" tab in the "Window->Video Effects..." dialog, specifying "1024" on the right crop (leaving the rest sides with 0 cropping).
+Still this is a partial solution for me in that I can't properly enjoy the movies because of the wrong aspect ratio.
+
+A: Yes. A Mac can display side-by-side 3D content such as 3D content from YouTube and other sources. Furthermore, the refresh rates needed for alternating glasses is easily achieved by Macs produced in the last 10 or more years. The same goes for 3D encoding schemes where half of the screen goes to each eye with a prism or mirror to help the process. Lastly, the encoding that uses color shifting is fine with the resolution for Macs so unless your 3D has some odd requirements that you don't list, the answer is yes.
+What you need to see that content in 3D is a 3D display system. I use a pair of Vuzix video eyewear connected to me Mac or, with an alternate Controller (interface box), I can also connect them to my iPhone or iPad and watch 3D content from those as well.
+
+A: Try ATK Player. It presents 3D videos in red-cyan, green-magenta or amber-blue mode. You need a suitable glasses to watch your 3D videos.
+
+A: There are some available color-coded 3D movies available, you need cheap color glasses instead of electric synchronized and extremely costly ones.
+Most common is the famous red-and-blue style.
+Common cinema movies from like Avatar are displayed in a different brown-and-green color spectrum.
+But if you want to watch it 2d, then you just have to download VLC, then open your double movie, then select menu "Video -> Aspect ratio -> *" then here you will select to double the original width.
+Now when your video looks ok, you just hold the control key and scroll the trackpad to zoom your screen into one of the 2 videos.
+Et voilá!
+
+A: In mac VLC. either go to "windows" tab or press command+E. in that go to mice' tab and click on the Anaglyph.. thats it SBS movie will play in normal 3D
+
+A: There are plenty of tutorials on the web on how to watch SBS 3D movies on your mac, such as using VLC player, however how to watch a SBS 3D movie in 2D on a mac is much harder to find. For that you need another player (VLC for mac will not give you a good Aspect Ratio (AR) because there is no option to customize the AR. Windows version does have custom AR). Instead you could download the free media player Sview http://www.sview.ru/en/download/, there are others that can do the same thing this is just one option.
+Once you open the movie in Sview DO NOT ENLARGE TO FULLSCREEN YET.
+Start by setting it up like so:
+Media > Stereoscopic Format > Parallel Pair
+Change Device > Dual Output
+View > Stereo Output > Left View
+View > Display Ratio > 2.21:1
+Now you should see your movie in 2D and in the correct AR. It's time to go fullscreen and enjoy.
+
+A: I found a solution
+Window>Video Effects>Crop> Fill the left side with 1000 px
+Enjoy
+and there is a con... and that is videos will play in 4:3 res if someone can fix that it will be great.
+
+A: hopefully you made it to here. I'm a 3D junkie. First up, no - there is no way to watch standard SBS 3D on mac using VLC, but it is only red and cyan. VLC is safe to download, so no problems there. However, if you have active shutter 3D glasses, it will not work. The best workable alternative is to watch on TV or Projector using a 3D capable blu-ray player. The good news here is there are ways to make 3D movies from 2D movies that make it worth the investment. DVD FAB 12 offers a DVD convertor program that allows you to turn 2D into SBS 3D. It does take a while - like an hour of conversion for 10 minutes of footage. Now you can make your own 3D content. This is the best option because there is very limited 3D content out there. I rip YouTube videos downloaded with 4K Downloader then convert to 3D overnight. This is by far your best option. Try the SONY 3d blu-ray players available from BandHphoto. Pain in the ass, true. But if you love 3D this is totally the way to go.
+
+A: A Mac can display side-by-side 3D content with 3D players, or turn them into 2D files instead.

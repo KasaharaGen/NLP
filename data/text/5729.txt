@@ -1,0 +1,13 @@
+Q: Why is Wine X11 not creating a window on my Mac? I have the wine software on my mac and I have a little problem here:
+I try running my windows executable and I get this error in the console:
+Application tried to create a window, but no driver could be loaded. make sure that your X server is running and that $DISPLAY is set correctly.
+Application tried to create a window, but no driver could be loaded.
+Make sure that your X server is running and that $DISPLAY is set correctly.
+err:ole:apartment_createwindowifneeded CreateWindow failed with error 126
+I have my DISPLAY set to 0.0 and WINEPREFIX set to x.
+Please show me how to fix this with exact code/steps because I am new to this.
+Thanks!
+
+A: You don't have X11 installed on your computer. It is available on the OS X install CD.
+
+A: See this SuperUser question DISPLAY on OSX is not 0.0 . It is set by the startup and you should not set the variable manually.

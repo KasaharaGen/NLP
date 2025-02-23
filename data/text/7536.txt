@@ -1,0 +1,16 @@
+Q: Using Mission Control to switch between Safari and a full-screen Keynote presentation I'm on a MacBook Pro running Lion. During a Keynote presentation that's running in full screen, I'd like to be able to switch to a different desktop with the four-finger-swipe gesture to demonstrate a Web site with Safari. 
+I tried putting Keynote on desktop 1 and Safari on desktop 2, and then starting the slide show.  The slideshow appears full screen as usual. If I swipe over to desktop 2, Safari is there, but the screen blanks for a moment. When I return to desktop 1, the slideshow isn't there. Keynote is running in the Dock, but no slide appears.
+This seems like a pretty common thing to want to do, but I can't figure out how to cleanly swap between the full-screen slide and another app.  We used to Cmd-Tab between Keynote and Safari, but when returning to Keynote, the slide would rebuild instead of being where it had ended up. 
+Any help would be greatly appreciated!
+
+A: Make sure you have "Allow Exposé, Dashboard and others to use the screen" in keynote preferences under Slideshow.
+Then, before you slide over to Safari, press the "F" key to pause the slideshow. This prevents the slideshow from disappearing.
+You can then slide over, or use Mission Control, etc without affecting the slideshow.
+
+There is a bug here, to go back to the slideshow you have to slide back to it or click on the desktop in Mission Control; you can't click the Dock icon or Cmd-Tab back to it.
+(Clicking the dock icon / cmd-tabbing will just hide the dock and menubar but not take you back to the presentation)
+Also: When you get back to the slideshow, the first key press or mouse click unpauses the presentation, so you will have to click / press again to advance to the next slide.
+
+Side note: instead of having keynote and Safari on separate desktops, you can have them both as fullscreen apps. This hides the Dock and Menubar, so when you show the web page, there is more room for it.
+
+A: I am using Keynote 6.5.3 and Cmd-Tab works fine to switch between applications.

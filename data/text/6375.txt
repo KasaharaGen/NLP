@@ -1,0 +1,8 @@
+Q: What are the key differences between fink and macports? I don't want to start a holywar, but as far as I am concerned, I am on track according to the faq.
+I wanted to know the key differences between macports and fink. I am a long time macports user and am looking for some fresh blood (if I may say so). I was looking towards fink. I'd appreciate it if anyone listed out a few differences between these two package management systems.
+
+A: Fink is a binary distribution using tools that originated from Debian (e.g., apt-get, etc.)
+Macports is built around the philosophy used by the FreeBSD ports collection. In this you download tarballs directly from the upstream source, apply patches and compile. It's entirely automated.
+I haven't used Fink in quite a while (since Panther) because it didn't seem very well done to me.
+
+A: Not to hijack, but if you're really looking for a cleaner option, try homebrew. I switched a while back and it's been great.

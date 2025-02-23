@@ -1,0 +1,11 @@
+Q: Is there a built-in text-to-graphic utility for OS X Lion? I believe I've seen one or more utilities, possibly command-line or Applescript, which will take a string and create, for example, an image containing that text with the specified font size, etc.
+I can't find it again. Does anyone have a hint?
+
+A: ImageMagick doesn't come with OS X, but it should though.
+convert -background skyblue -border 10 -bordercolor skyblue -fill 'hsb(10%,50%,50%)' -font /Library/Fonts/Arial\ Narrow.ttf -pointsize 24 label:"some text" output.png
+If you have to specify some more complex styles, using webkit2png might be easier.
+echo "<style>em {padding:5px}</style><em>Test</em>" > test.html
+webkit2png test.html --clipwidth=55 --clipheight=35 --scale 1 -C
+
+
+A: Image Magick will do what you want, I believe. It's not built-in.

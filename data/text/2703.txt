@@ -1,0 +1,18 @@
+Q: How can I force Finder to be opened in a specific size? 
+Possible Duplicate:
+Mac OS X Lion Finder Window Size 
+
+Every time I open Finder it open in a small windows I want it open in a bigger window how can I do this?
+
+A: The way to set up a "default" Finder window is indeed a bit obscure: first you'll open a new Finder window, and then without clicking on any file or folder arrange the window to your needs (resize, position, define view, show/hide sidebar, etc.) and close it again immediately. Every new window should now use this new setup as a default.
+
+A: Before you resize the open window to your desired size, close all other Finder windows. If another Finder window is open, then your adjustments won't stick. Then close the adjusted window and try opening a window by switching using the File > New Finder Window command or by clicking on the Dock > Finder icon.
+Note that it doesn't matter for me whether I select an item within the window before adjusting it. I'm running 10.6.6.
+And if you're opening windows from a CD/DVD, then all bets are off.
+Finally, if I resize the window and then rm .DS_Store, the new window still uses its most recent size/location.
+
+A: OK, I'm not a 100 % sure about that one, but based on my experience, Finder save the window size/look for each folder. Probably in the ._DS_Store file.
+So, it seems Finder has trouble accessing this file, or that the file is corrupt.
+Try to delete the ._DS_Store file in your home folder (or whatever folder is opening when you "Open the Finder") and reopen the window.
+
+A: First off, each directory has a ._DS_Store file. Each one has a "memory" of how that folder was last displayed. Apple does have a tendency to open it at a "default" size. Any reason the "green" button isn't working?

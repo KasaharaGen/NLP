@@ -1,0 +1,56 @@
+Q: Safari can't connect to the server "localhost" Okay, I am a beginner with all this, so don't expect me know much. Let me know if this is the wrong place to ask this. What tags should I have used? THANKS a lot for your time.
+Background
+I have a CGI script saved in /Library/WebServer/CGI-Executables.
+I used to be able to run the script using the URL: http://localhost/cgi-bin/filename, 
+Problem
+But now, Safari can't connect to the server?!  Once or twice it begins to load then stays for a long time and eventually the same error comes up.
+What could the problem be?
+Extra Q's
+I found my apache2 folder in /private/log/apache2 should this be moved?
+Can I somehow run this script on something else without a server? Terminal works, but it is too hard to read.
+
+A: It seems like you are using Mac's built-in server and maybe somewhere along the line, web sharing was disabled.
+Go to your System Preferences and enable Web Sharing.
+To be sure httpd has started do what @Kerri mentioned in the comments
+ps -eaf | grep httpd
+
+which will display all processes that contain httpd as well as the Process ID
+if you only get something like the following
+501 22299 22030   0   0:00.00 ttys001    0:00.00 grep httpd
+
+grep is the only process running referencing httpd
+At this point try stopping and restarting the server manually
+sudo httpd -k stop  
+sudo httpd -k restart
+
+Look also into the Console.app log and filter to see what information you can get from there.
+If it is enabled you should get the following on pointing to localhost within a browser
+
+It works!
+
+So far so good, the server is running.
+Now to navigate to the cgi-bin folder, if you used the scripts before then it should be mapped already in your configuration.
+You could get
+
+Forbidden
+You don't have permission to access
+  /cgi-bin/ on this server.
+
+or an Internal Server Error if you went straight to the script
+and you can chmod 755 the script and that should give you the correct permission to run it.
+You can also check the access and error logs to see what's up
+/var/log/apache2/access_log
+/var/log/apache2/error_log  
+/var is the symbolic link to private/var
+
+A: Run the following to see any other non-obvious errors. I did all the above and have had this Mac (without rebuilding -just upgrading and upgrading etc.) pre2004 - just kept upgrading - so there was quite a history on this mac. There were some skeletons in the closet. I JUST upgraded to Mountain Lion when the lid came off my web server.
+Run this - look for errors on the output line.
+sudo httpd -E /private/var/log/apache2
+I had a module installed (SVN – but that is merely a detail) and it was loaded in the other category at the end of the httpd.conf file.
+Here is the output of the command line – it pointed to the issue:
+
+httpd: Syntax error on line 500 of /private/etc/apache2/httpd.conf: Syntax error on line 1 of /private/etc/apache2/other/svn.conf: Cannot load /usr/libexec/apache2/mod_dav_svn.so into server: dlopen(/usr/libexec/apache2/mod_dav_svn.so, 10): image not found
+
+I renamed the svn.conf file to svn.deletedconffile and apache started right up. I also had to chmod to 755 all my Sites files – not 644 which is suggested on some sites.
+
+A: if you created a username.conf file in mountain lion delete it. After doing so restart apache and all should be well :)

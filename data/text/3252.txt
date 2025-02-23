@@ -1,0 +1,11 @@
+Q: VLC for iPad and iPhone is available, but how to install? VLC for iPad and iPhone is available, but how to install it?  (it is not an App Store app)
+http://www.videolan.org/vlc/download-ios.html
+
+A: VLC was available on the iTunes App Store for some time, and the process for installing it was like any other.
+However, a developer, who has contributed to VLC development in the past (IIRC) got in contact with Apple and asked VLC to be removed due to License Incompatibility.
+VLC is licensed GPLv2, which states among many other things, that the source must be available, and I believe there are other provisions surrounding VLC with regard to Apple's per-device DRM.
+Thus, Apple de-listed VLC from the App Store, and you cannot buy it anymore. Note that those who purchased it before will likely have it forever. (I still do, I still use it!)
+There are two ways to install it/run it today:
+(1) If you have a paid Apple Developer account, you may take the source, import it into XCode, codesign it, build/deploy it onto your own device. (Or for that matter, get someone with a Developer Account to do it for you.)
+(2) Since VLC ships a raw .app file, it can be installed if your iPhone/iPad/iPod is jailbroken. I believe raw .app files can be installed via Installous? (Anyone is free to correct me on this, as I don't use Jailbroken devices anymore.)
+Update: VLC for iOS was subsequently relicensed and re-released on the App Store. It can be downloaded by visiting this link.

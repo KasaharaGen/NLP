@@ -1,0 +1,6 @@
+Q: Is it possible to connect iTunes playlists to folders? Is it possible to connect iTunes playlists to folders so that playlists update automatically when I add new song to a folder?
+
+A: Yes, but you don't do it within iTunes. If you want the song files you drop into a particular folder to automatically be added to an iTunes playlist, you use Automator to create a folder action like this one:
+
+You start Automator, and create a Folder Action. You select the folder you want as the source of files.
+Then, the action is "Import Files into iTunes" at which point you select the playlist to which you want the songs added. Then you save the Folder Action.

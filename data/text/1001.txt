@@ -1,0 +1,16 @@
+Q: A standard way of dealing with a system crash / freeze Is there a best-practice way of dealing with a system crash or a system freeze? I know of the "force-quit" keyboard shortcut. But what if it doesn't work? 
+I just bought a MacBookPro and I am switching from Linux. In Linux there is a possibility to shutdown the X window system, and log in from  a text console, or one can communicate with the kernel directly via magic SysRq-key, and for example, remount a hard disk read-only or reboot the system.
+
+A: If force-quitting doesn't work you have a few options:
+
+
+*
+
+*Sit it out and wait for the Mac to churn through whatever it is stuck on (this doesn't always work, but I've had beachballs go away over time).
+
+*Trying opening Activity Viewer and see if you can kill the process there. Same caveat as above.
+
+*Force-shutdown the Mac by holding the power button for seven seconds. This always works.
+
+
+The relationship between Mac OS X and the Unix underpinnings aren't the same as they are between X window/GNOME and the kernel. It isn't nearly as open, so there is really no messing with the kernel near as I can tell in Mac OS X. I usually go the route I mentioned above and as long as I maintain the system properly and regularly I always seem to get back on my feet without any problems.

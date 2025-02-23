@@ -1,0 +1,10 @@
+Q: Is there any way to get rid of the sound made when a screenshot is created? Obviously other than muting the computer. I just want to create a screenshot without having that "camera sound" come out.
+Is there a way to disable this sound?
+
+A: After launching Grab, open preferences (in the menus, click Grab => Preferences) and uncheck "Enable Sound".
+A screenshot of the preferences here:
+
+
+A: You can turn off user interface sounds, though that will remove the empty trash sound and the like.
+
+I havent tried it, but the file itself resides at /System/Library/Components/CoreAudio.component/Contents/Resources/SystemSounds/system/Grab.aif, you might try moving that temporarily and seeing if you can screenshot still.

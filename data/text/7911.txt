@@ -1,0 +1,84 @@
+Q: How can I manipulate several security settings from terminal? I want to change these behaviors from terminal:
+
+
+*
+
+*Auto-login
+
+*Showing password after screensaver and sleep mode
+
+*Go to sleep mode after x minutes
+
+*Enable screensaver after x minutes 
+
+
+A: 1) Auto-login
+That one is tricky. The default is saved in
+defaults read /Library/Preferences/com.apple.loginwindow autoLoginUser
+But in order to turn it on or off, you need to do it as root.
+Set it:
+sudo defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser ShortName
+Delete it (turn it off):
+sudo defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
+2) Showing password after screensaver and sleep mode
+I've been trying to get that one to work, and I can't
+You will see a lot of hints telling you that the answer is
+defaults write com.apple.screensaver askForPassword 1
+
+or variations like
+defaults -currentHost write com.apple.screensaver askForPassword -int 1
+
+and that should work, because if you turn it off via System Preferences, you will see:
+% defaults read com.apple.screensaver
+{
+    askForPassword = 0;
+    askForPasswordDelay = 0;
+    tokenRemovalAction = 0;
+}
+
+and then if you turn it back on via System Preferences, you will see
+% defaults read com.apple.screensaver
+{
+    askForPassword = 1;
+    askForPasswordDelay = 0;
+    tokenRemovalAction = 0;
+}
+
+BUT if turn it OFF and the quit System Preferences and change the setting using 'defaults write', when I re-launch System Preferences, it does not reflect that change.
+I'd really like to know the answer to that one (preferably without osascript, but if there is no other way, I'll accept it).
+3) Go to sleep mode after x minutes
+Assuming you mean "have the computer go to sleep after x minutes" you want:
+sudo pmset sleep 20
+
+You can also use different settings specifically for when you are on battery (for MacBooks):
+sudo pmset -b sleep 10
+
+If you want to specify never sleeping when plugged in, use
+sudo pmset -c sleep 0
+
+4) Enable screensaver after x minutes
+@Daniel's recommendation worked for me:
+sudo osascript -e 'tell application "System Events" to set delay interval of screen saver preferences to 30'
+
+You can use 'sudo pmset displaysleep X' to have the display sleep instead of using the screensaver.
+
+A: The osascript command and the System Events application are your friends here. Basically, you will be calling AppleScripts from the command line.
+For instance,
+  sudo osascript -e 'tell application "System Events" to set delay interval of screen saver preferences to 30'
+  sudo osascript -e 'tell application "System Events" to set automatic login of security preferences to false'
+  sudo osascript -e 'tell application "System Events" to set require password to wake of security preferences to true'
+
+The first sets the screensaver to 30 seconds after the last action; the second disables autologin. The third requires a password for exiting the screensaver or waking from sleep (the settings for the two are linked). Exploring the System Events dictionary will help you put together the specifics you are looking for.
+
+A: Screensaver Settings
+/Library/Preferences/com.apple.screensaver.plist contains the system-wide settings which apply when a user account does not already have a setting for a given feature in ~/Library/Preferences/ByHost/com.apple.screensaver.MACADDRESS.plist.
+To write to the system-wide file in /Library use
+defaults write Library/Preferences/com.apple.screensaver
+
+To write to the current user's file use
+defaults write com.apple.screensaver
+
+The value for a given setting in the user's file has priority over the value for the same setting in the system-wide file.
+
+A: Enabling auto-login using sudo defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser ShortName no longer works in macOS Sierra.
+Try this instead: https://github.com/xfreebird/kcpassword

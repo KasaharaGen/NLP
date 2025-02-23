@@ -1,0 +1,20 @@
+Q: How to install iPhone apps through OTA without iTunes interaction? I am following this guide on how to install iPhone apps thru OTA without iTunes.
+I have the following questions:
+
+
+*
+
+*I only have a $99 developer program membership, not the enterprise program. The guide says this also works with normal ad-hoc distribution as well. Can I use my ad-hoc provisioning profile itself to do this?
+
+*I am testing with the iPhone 4 Simulator, as I don't have a physical iOS 4 device. But when I click on the "Provisioning profile" link, the simulator throws an error: 
+
+Cannot install profile. Safari could not install a profile due to unknown error.
+
+When I click on the .plist link as mentioned in the guide, it doesn't do anything that looks like this.
+Can I test this installation on the iPhone 4 simulator? What could be the reason for this failing?
+
+A: The Simulator does not use a bundled .ipa file; it uses the constituent application.  Furthermore, the Simulator runs an x86 version of the application with tweaked x86 versions of the iOS frameworks.  In other words, there is no good way to get an .ipa package to run in the Simulator.  The original developer could build for simulator then provide you with the relevant contents of ~/Library/Application\ Support/iPhone\ Simulator/User/Applications/ but that's really your only hope as far as I know.
+
+A: I know of two ways to install apps on iPhone without using iTunes: through a complicated process on a jailbreaken phone or through some 3rd party service.
+
+A: Testflight is Apple's inflight service for distributing betas. Absolutely helpful and valuable service. We are picked this service within minutes.

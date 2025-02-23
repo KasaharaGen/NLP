@@ -1,0 +1,21 @@
+Q: My iPhone 3gs "isn't eligible" when updating to 4.3.4 I get this error message in iTunes when trying to update my iPhone 3GS (non jailbroken) from 4.3.3 to 4.3.4:
+
+Why is this? The iPhone 3GS is listed under “products affected” on the iOS 4.3.4 release notes.
+
+A: Apple have now released iOS 4.3.5, so they may have disabled the authentication for 4.3.4, as they do with all legacy versions of iOS.. Try downloading and installing iOS 4.3.5.
+
+A: Did you try to install the new firmware by clicking on "Check for Update" in iTunes? If so, you might want to try installing it manually. Download the correct firmware from http://www.iclarified.com/entry/index.php?enid=750 and option-click on "Check for Update" and select the file you previously downloaded.
+As noted above, Apple tends to stop signing older versions when updating, so I'd directly try 4.3.5.
+
+A: After a crazy amount of googling… I FOUND THE ANSWER! It all lies in which authentication server your iTunes connects to when restoring or updating your iOS device. If your having the same problem as me, all you have to do is edit the HOSTS file under 
+/private/etc
+
+(you can access this by rightcliking on finder in the dock and clicking "go to folder…" and entering in that folder location)
+From there, copy the HOSTS file to a place where you have access, and open it with text edit. Append this:
+#74.208.10.249 gs.apple.com
+#127.0.0.1 gs.apple.com
+
+and delete all other mentions of "gs.apple.com" and save the file. Copy this file back into the /private/etc folder, and replace the older one. Authenticate as needed. Now if you run the following terminal command:
+ping gs.apple.com
+
+The resulting IP address should be 17.112.176.11. IF something went wrong, it would be 74.208.10.249 or 127.0.0.1. If the ping is going to the right address, restart iTunes and try restoring or updating your iOS device, to discover that the problem is solved!

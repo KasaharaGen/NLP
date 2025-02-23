@@ -1,0 +1,108 @@
+Q: Mail.app in Lion - is there a way to create tasks from email? I'm not sure if I haven't seen that in earlier versions of Mail.app, but I would really love to have the ability to create a task in iCal from an email - and that this task could link to the original email. 
+Maybe there are some third-party solutions that would let this done easily? 
+
+A: It's possible to do that with AppleScript.
+If you're familiar with this technology, you should just browse iCal and Mail respective dictionary. If not, that's the occasion to become familiar ! This is a great place to start.
+Here's a very basic script you could use (tested on Snow Leopard only, but should work fine on Lion as well) :
+tell application "Mail"
+
+    set theSelection to selection
+    set theMessage to first item of theSelection
+    set theSumm to subject of theMessage
+    set theDescription to "From : " & sender of theMessage
+    set theUrl to "message:%3C" & message id of theMessage & "%3E"
+
+end tell
+
+tell application "iCal"
+
+    make todo at end of events of (first item of every calendar) with properties {summary:theSumm, description:theDescription, url:theUrl}
+
+end tell
+
+In order to use it easily in Mail, you should save it in ~/Library/Scripts/Applications/Mail/ (create folders if they don't exist) and activates the Scripts menubar item in preferences of AppleScript Editor. Here's the result when you're in Mail :
+
+You can also use a productivity tool to launch your script. There are plenty of them out there but I personally use Keyboard Maestro & Alfred.
+There's a lot of room for improvement. By example, you could set a default alarm, insert it in a given calendar… In order to improve it yourself, use the AppleScript dictionary : it's the best reference you could find. However, those links may be useful as well, as they provide many examples (some are maybe too old) : Scripting Mail & Scripting iCal.
+
+A: In Snow Leopard, I used the MailTag which is a Mail plugin, with the Mail.app.  In MailTag, you are able to create a task which actually created in the iCal.  However, MailTag released a new version for the Mail.app in Lion and temporarily removed this feature.
+Since I am using the Things to manager the daily tasks, I usually just drag the mail message into the Things icon in the Dock and create an task there.  Things will sync the tasks to iCal.
+
+A: There may be an even simpler solution, at least for my needs, using Automator. This solution takes selected text and uses it as the title of a new Reminder in a pre-set iCal calendar/to-do list.
+I launched Automator and chose "Service" when it asked me what I wanted to create.
+I left the initial settings at default ("Service receives selected [text] in [any application]")
+From the Library pane on the left, I selected Calendar, and from the middle pane selected New To Do Item. I then selected Add to: [Existing calendar] and chose a calendar (my default Reminders calendar, which is on iCloud and syncs with my iPhone). Automator assumes (correctly) that you want to feed any selected text into the new To Do item. For my purposes, it made sense to set a default priority by ticking the checkbox and choosing Medium, but your needs may differ.
+I saved the Service as CreateReminder (Automator automatically appended the extension .workflow). Voila, the service shows up in Mail.app when I select text, right-click on it, and select Services > CreateReminder.
+As a bonus, this lets you create a reminder from selected text in in any application, not just in Mail.app.
+
+A: Theo got it spot on, this is what I did as well:
+
+
+A: I can recommend this third party solution that makes this brain dead easy : Fantastical
+This will do everything you ask.
+
+Fantastical works with your favorite Mac calendar application: iCal,
+  BusyCal, Entourage, or Outlook. You can even use Google Calendar or
+  Yahoo! Calendar
+
+The key thing about FANTASTICAL is how it creates a new iCal task (or event) purely from natural language analysis.
+As an example, an extract from this macrumours Fantastical review :
+
+Using an advanced natural language engine, Fantastical is extremely
+  expressive, allowing users enter event text in their own style. For
+  example, enter a sentence such as "Lunch with John at 123 Main Street
+  on Tuesday" and Fantastical will translate the sentence into an event
+  and add it to their calendar.
+
+An example of how you would create a work flow to gain the ability to add an iCal task or event from an email using Fantastical is :
+( the following assumes you have created a new Automator task to pass clipboard copied text to FANTASTICAL ) :
+
+
+*
+
+*select your email sentence to use for your new task, such as "get this done by friday". 
+
+*copy this selected task via CMD+C
+
+*hit your predefined shortcut key to process the text copied to your clipboard directly into iCal as a new task (or event) using FANTASTICAL's natural language engine
+OR - (if you prefer not to use Automator ) :
+
+
+*
+
+*select your email sentence to use for your new task, such as "get this done by friday". 
+
+*copy this selected task via CMD+C
+
+*hit whatever keyboard shortcut you predefined in FANTASTICAL.
+
+*paste your selected text into the FANTASTICAL entry field, then click OK.
+
+*Boom! your new task (or event) has been added into your iCal calendar via FANTASTICAL's incredible "natural language" engine.
+
+A: I edited an old AppleScript i found online to work with Reminders. It uses the message subject as the title and the message body as the note. The caveat is iCal must be active or the workflow will fail. I have set iCal to minimize when the Service is run. I also added a launch for Reminders at the end. The only thing I can't seem to figure out is adding a link to the email, but other than that it works well.
+on run {input, parameters}
+    tell application "Calendar" to activate
+    tell application "Calendar"
+        set miniaturized of window 1 to true
+        tell application "Mail"
+            set theSelection to selection
+            set theMessage to item 1 of theSelection
+            set theurl to "message://%3c" & theMessage's message id & "%3e"
+            set thedes to theMessage's content
+            set input to theMessage's subject
+        end tell
+    end tell
+
+   tell application "Calendar"
+       tell calendar "Reminders"
+           make new todo at end with properties {url:theurl, summary:input, description:thedes}
+       end tell
+    end tell
+    return input
+end run
+
+Hope this helps someone!
+Kevin
+
+A: You can just drag and drop the email from Mail.app into iCal.

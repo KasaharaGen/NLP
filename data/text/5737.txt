@@ -1,0 +1,13 @@
+Q: How can I re-map Mail's "Sent Messages" folder to an IMAP server's "Sent Mail" folder? I use Mail to connect to a traditional IMAP server (non-Gmail). I've noticed that all the messages I send are placed in Mail's "Sent" folder and that Mail is translating this folder to a server folder called "Sent Messages". The problem is that on the IMAP server, the real folder meant to store sent messages is called "Sent Mail". 
+I occasionally send messages using the server's web interface. Because of this, over time I will have my sent messages spread out over "Sent Messages" and "Sent Mail" in the server. If I want to find a sent message, and because these messages are not consolidated, I now have two places I need to search thru. 
+My iPhone does map its "Sent" folder to the real "Sent Items" folder, so both the messages I send on the web interface and on my iPhone are stored in the right place. How can I get Lion's Mail app to play along? I am not entirely sure if this same problem was already present in Snow Leopard. 
+I cannot seem to find the setting that will allow me to re-map IMAP folder in Mail. I think I recall previous versions of Mail having such an option, although I am not 100% sure that the option even existed. I don't think it matters, but I am using the Lion GM--which should be basically the same as the release version. 
+Update
+I've been suggested to use the "Use This Mailbox For" option. That feature will take a local folder and re-purpose it. So, I could take my LOCAL COPY of Sent Items found in the local IMAP mailbox and say "Use this mailbox for... Sent". I did just that, but what happened is that the local copy of Sent Items disappeared (bug?) and when I send a message on Mail, that message still goes to Mail's default Sent folder--which in turn re-creates the Sent Messages folder in the server containing the message I just sent. 
+It seems that whatever goes into the local "Sent", gets mapped to a server folder called "Sent Messages" (and the IMAP server's web interface confirms a new "Sent Messages" gets created every time, even if I delete it). That is why I still need to re-map the local "Sent" and NOT the local "Sent Items". 
+Update #2
+After I restarted Mail (which I had not done) I found out that Sent is now mapped to the server's Sent Items folder and that was the reason Sent Items disappeared locally. The IMAP server's web interface does no longer show the Sent Messages and all messages sent by Mail are now stored in Sent Items, just like the iPhone does. I have marked the answer by @mwidmann as the correct one. Thanks!
+
+A: Have you tried selecting the folder in the folder list and then using the menu entry "Use This Mailbox For -> Sent" in the Mailbox menu?
+!
+That should do exactly what you want.

@@ -1,0 +1,38 @@
+Q: Growl notifications when a user logs in to Minecraft server? Would love to be able to get a Growl notification when a user logs in to my (locally hosted) Minecraft server.
+I took a peek in the Console but it doesn't seem to record the logins, although my server GUI shows activity on the server including logins.
+It runs within Java, so maybe that's the issue with it not showing up in the Console, although some of my actions do seem to get recorded, but those seem related to the main Minecraft app and not the server.
+Even if I could find the logs, I am at a loss as to how one sets up a Growl notification, although I assume it has to do with growlNotify: http://growl.info/extras.php#growlnotify
+
+A: The minecraft server writes a log file into the directory minecraft_server.jar is installed in. From there you can use something like
+tail -f server.log | 
+  while read m_date m_time m_type m_user m_ip m_action m_rest; do
+    if [[ $m_action == logged ]]; then
+      growlnotify -n Minecraft -m "$m_user logged in at $m_date $m_time" Minecraft;
+    fi
+  done
+
+Starting this automatically together with your Minecraft server is possible but depends on the way you do start it.
+To install this (without going too deep into Unix territory, ask an expert if it fails):
+
+
+*
+
+*open Terminal.app
+
+*change to the directory where minecraft_server.jar is installed by typing cd followed by drag&dropping the folder with the server into the terminal window followed by return
+
+*nano mc2growl
+
+*write #!/bin/bash and press return (twice)
+
+*paste the code from above
+
+*press ^X and say Y at the prompt
+
+*chmod +x mc2growl
+
+*./mc2growl &
+
+A: (Full disclosure: This is my app.)
+I've made an app for Mac and Windows that does this, even for vanilla servers and Minecraft Realms servers!
+http://www.creeprapp.com

@@ -1,0 +1,22 @@
+Q: Where is the date and time preference data saved on Mac? I need to check programmatically whether Set Date and Time automatically is checked or not on a Mac System Preferences.
+I didn't find any .plist file that contained this information, can anybody tell me where I can find this information?
+
+A: I don't know of a purely programmatic way of getting it, but the systemsetup command can do it:
+$ systemsetup -getusingnetworktime
+Network Time: On
+
+
+A: The end result of the "Set Date and Time Automatically" checkbox is that the ntpd daemon gets started by launchd.
+So you could check for the presence of the file /var/run/ntpd.pid or presumably check if ntpd is running as a process. This is all good and fine for the site, but your second part to the question on how to programmatically retrieve this status is basically off-topic here.
+We do allow limited AppleScript, Automator, and shell scripting programming questions.  The full scope of developer questions (especially with new OSX restrictions such as sandboxing) or code level Q&A on how to program are best asked on https://stackoverflow.com/ rather than here.
+
+With that out of the way - here's the back story about why this actually a fairly complicated question. Launchd is responsible for starting and stopping ntpd time keeping daemon when you toggle that switch and rather than load or unload the configuration file for that "job", the tool instead has an internal override plist file that has a true/false status for certain jobs to be disabled even though they should normally run. When you toggle the System Preference checkbox in Date & Time, this file changes Disabled key value at the end of the file to be  or  when automatic timekeeping is off or on (respectively).:
+From /private/var/db/launchd.db/com.apple.launchd/overrides.plist
+    <key>org.ntp.ntpd</key>
+    <dict>
+            <key>Disabled</key>
+            <false/>
+    </dict>
+
+
+A: I found this discussion on the discussions fora of Apple. It describes how to get the time in the menu bar, but with it also how to get to the plist programmaticly. 

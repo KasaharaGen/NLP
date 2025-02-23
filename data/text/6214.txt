@@ -1,0 +1,45 @@
+Q: How do I disable Chrome's two-finger back/forward navigation? In dev builds of Chrome, they've implemented, refined, and released two-finger swipes left/right in order to browse back/forward in the browser history. Unfortunately, you can accidentally trigger it while you're in the middle of a long down/up scroll, which needless to say occurs often.
+I generally like the gesture, and things like Preview, Safari, and other application have implemented it much better, where you cannot blindly navigate back/forward so long as you have begun to scroll up/down.
+How do I selectively disable two-finger back/forward navigation in Chrome?
+
+A: This is available as the #overscroll-history-navigation flag in chrome://flags
+
+Overscroll history navigation
+History navigation in response to horizontal overscroll. – Windows, Linux, Chrome OS
+#overscroll-history-navigation
+
+
+A: The only way I'm currently of is two disable two-finger page swiping system-wide, from the Trackpad section of System Preferences. I wait patiently for Chrome to either fix its implementation, or at least provide an app preference for disabling the feature.
+
+A: I know its over a year later, but I had the same question, and then figured out the answer myself.
+Open terminal and type:
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
+
+Then restart Chrome.
+Now you can have it enabled system wide, and just disabled for chrome. By the way, this works for any app, just replace com.google.Chrome with the bundle identifier of the target app. 
+If your interested in how it works, the AppleEnableSwipeNavigateWithScrolls is the global setting, that can be overwritten for any specified app. 
+Hope this helps someone in the future.
+
+A: Summary:
+It looks like Google Chrome uses Apples default gestures, so by disabling Apples gestures you disable Chromes. However, you probably still love some gestures like I do. For that get BetterTouchTools.
+Disable Google Chromes Gestures
+You can disable chromes gestures by going to System Preference > Mouse OR Trackpad > More Gestures > and uncheck Swipe between pages.
+Keep the Gestures You Want
+I still love gestures so I downloaded BetterTouchTools which allows me to make the gestures I want. I disabled all apples gestures then created my own. You can get very custom with gestures this way. Or if you prefer, leave some of apples gestures on and use BetterTouchTools for the more custom ones.
+
+A: There are two different properties, one is for the Trackpad: AppleEnableSwipeNavigateWithScrolls, the other is for the Mouse/Magic Mouse: AppleEnableMouseSwipeNavigateWithScrolls.
+So you need to execute one or both of these commands:
+defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+
+
+A: I went into the System Prefs and changed the Page change gesture from two fingers to three (OSX Lion). The three finger swipe seems to be more responsive at any rate and I'm usually only using two fingers for everything else.
+System Preferences > Trackpad > More Gestures > Swipe between pages
+
+A: Chrome Canary users should use: 
+defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool FALSE
+
+
+A: I also tried the terminal command on Yosemite, it didn't work for me. 
+And then I tried uncheck "Swipe between pages" in mouse settings, and it worked. 
+

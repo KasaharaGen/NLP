@@ -1,0 +1,43 @@
+Q: Add an up button to the Finder? Is it possible to add a button to the Finder that goes up a directory? I looked at the buttons available under customize and didn't see one, but thought there might be a hack out there.
+
+A: Another option would be to save a script like this as an application in AppleScript Editor and drag it to the toolbar.
+try
+    tell app "Finder" to tell window 1 to set target to container of target
+end try
+
+
+A: I found this app that does what I was looking for. Once extracting it to your Applications folder or wherever you want to keep it, drag it to the Finder next to the Back/Forward buttons. It's a little bit smaller than them in Lion, but the styling fits.
+Click here to download
+Credit to Simon Slangen for creating the app
+
+
+A: When you Command-Click on the folder icon on an item in the title bar of a Finder window, you get a contextual menu showing the folder hierarchy to the root of the drive. You can then use the mouse to select a higher level of the hierarchy and move there in the Finder window. It's convenient and appealing because you see the whole hierarchy.
+
+
+
+A: You can make a simple Automator app to do this and put it's icon in the tool bar. It may be slightly slower than an AppleScript app, but the Automator app won't change the focus of the window when it launches (the current Finder window remains the active window the whole time), so it has a more integrated feel. 
+Still, the quickest way is definitely to use Cmd+Up Arrow.
+In Automator, add a "Run Applescript" action and replace the entire default script with this:
+tell application "Finder"
+    tell application "System Events" to key code 126 using command down
+end tell
+
+This script simply sends Cmd+Up Arrow to the Finder. 
+Save your Automator app, then drag its icon to the Finder's tool bar. You may want to first make a new icon for it to indicate its function.
+
+
+A: The current solution I'm using is XtraFinder which lets you add an up button as well as do many of the things that PathFinder or TotalFinder let you do (like sort folders to the top) but for free.
+
+
+A: Would you be willing to just use a keyboard shortcut instead?
+⌘ Command↑ Up
+Voilà.
+
+A: Choose View > Show Path Bar to show the Path bar at the bottom of Finder windows.
+Then, to go up one level, just double-click on the second-to-last item in the hierarchy. For example, I'd double-click on mdouma46 in the image below to go up one level.
+
+
+A: I made an App for up button.
+http://autometa.ro/apps/up_button.html
+It is free.
+thx.

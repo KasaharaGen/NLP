@@ -1,0 +1,27 @@
+Q: Scroll down in Safari on iPhone/iPad? When using Safari from iPhone/iPad I can scroll back to the top of the page in one touch by touching the upper bar of the device. Is there any similar trick for scrolling to the bottom of the page? Is there any way of scrolling down fast?
+
+A: There is no keypress or gesture to do this unfortunately.
+But here is a quick way to achieve a similar thing.  
+
+
+*
+
+*Create a new bookmark in safari (of any web page)
+
+*Edit this bookmark (press edit in bookmark screen)
+
+*Rename the bookmark to End
+
+*In the address field cut and paste this text 
+javascript:scroll(0,document.getElementsByTagName( 'body')%5B0%5D.scrollHeight);
+
+Once you save this bookmark, you will be able to hit the bookmark button, select End and it will take you to the bottom of the web page.  I know it's not as simple as the current scroll to top feature (this solution requires two taps), but its really the only option at the moment.
+
+A: If you are willing to jailbreak, the application Action Menu has a Scroll feature which can scroll both to the top and bottom.
+
+A: Adding to the answer by @RobZolkos, this more readable script will work in newer versions of iOS. In Rob's Step 4, you can substitute the text:
+javascript:scroll(0,document.body.scrollHeight);
+
+The source claims this works in iOS 8 and newer. It worked for me under iOS 9.
+
+A: If you use an external keyboard, ⌘ cmd ↓ will scroll to the bottom of the page, and ⌥ opt ↓ will scroll one page down.

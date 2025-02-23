@@ -1,0 +1,25 @@
+Q: How can I merge two similar-but-not identical folders? I have a folder (which is filled with many many sub-folders and files) which is on a FireWire drive [source] which I am trying to move to a USB drive [destination].
+I am trying to move all of the files from the Source to the Destination.
+I started doing this via Finder, but it gave me a permissions error about 1/8th of the way through the process and then stopped. 
+When moving files between drives, I believe the Finder first does a 'copy' and then removes the 'source' only when the copy command has completed successfully.
+That means that some files were copied successfully, but I have no idea which ones or how many. So I started copying sub-folders from Source to Destination (smaller sets) and removed them from Source when they successfully copied.
+I ended up not being able to complete that process in one sitting, and I lost my "place" 
+So now I'm left with two incomplete data sets. The Source probably has some files/folders which are already on the Destination, but not everything has been copied.
+Some of the folders may have been partially copied but not all of their subfolders, etc.
+I'm trying to figure out the best way to move the rest of Source to Destination while minimizing duplication. We're talking about a lot of data here (Source is 420.72 GB in 398,127 items, and Destination is 298.84 GB and 390,149 items) so I'm obviously going to have to try to automate this somehow. I'm just not sure how.
+I've thought about gcp [GNU cp] with --update --archive or ditto or rsync or ChronoSync but I'm just not sure what the best option is and what settings I should use for whichever program would be recommended (do I want --archive with gcp? What flags would I use with ditto or rsync?)
+
+A: You can open Terminal and use one of the following (rsync would probably be the one for you if you want something that won't be completely lost if you halt the process):
+The standard UNIX way
+cp -R -v source/. destination
+
+The geeky UNIX way (restartable)
+rsync -vaEW source/ destination
+
+The OSX "easy" way
+ditto -V source destination
+
+Source
+
+A: If you use FileMerge from the Developer Tools on the two directory trees, you will be able to see which individual files have copied as it will do a diff between them and show the differences.
+Otherwise rsync might be a bit more automated as mentioned above by cksum.

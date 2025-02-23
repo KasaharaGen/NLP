@@ -1,0 +1,13 @@
+Q: Is there a keyboard shortcut to cycle between windows in the current space? When I have two applications open side-by-side in the same space, I'd like to be able to swap between them quickly with the keyboard.
+I can use Command+Tab, but often I land on an application in a different space, and it moves me to that space.
+Is there a similar shortcut which limits the list of applications to the current space?
+(I'm using OSX Snow Leopard.)
+
+A: Move focus to active or next window (⌃F4). It cycles through visible windows (not applications) on the current space.
+
+I've assigned it to ⌥⇥ myself, and assigned ⌥T to what ⌥⇥ would do normally: d=~/Library/KeyBindings; mkdir -p $d; echo $'{\n\t"~t" = insertTabIgnoringFieldEditor:;\n}' > $d/DefaultKeyBinding.dict.
+
+A: I don't know of any keyboard shortcuts; but consider the following program.
+http://manytricks.com/witch/
+
+A: If you go to System Preferences, Mission Control and then untick the second box ("When switching to an application, switch to a Space with open windows for that application") that should fix it I think.

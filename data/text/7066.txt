@@ -1,0 +1,10 @@
+Q: Emacs Ctrl-x ctrl-s command not working in Terminal.app I am having issue when connecting to my school's unix remotely via Terminal (SSH) and attempting to edit code in emacs on my Mac. I have a Macbook Pro running Mac OS 10.6. 
+I use the emacs that is installed on their Unix operating system (not emacs installed locally on my Mac). I made sure that Terminal is running vt100 emulation, as that is the setting that I was told to run it at. 
+Everything works fine except for some keyboard behavior issues. When I attempt to save in emacs (Ctrl-x Ctrl-s), it doesn't seem to accept it and and makes the "bump" error noise, as in bad input. However, when I attempt to do this on another Mac (with a full keyboard), the save command works fine. It also works fine when I am running a virtual installation of Ubuntu on my Mac laptop. And when I use a Windows machine, running PuTTY, the save command works fine. So I am thinking it has something to do with my Mac's keyboard (since it is a laptop keyboard, and not the full keyboard)? Or is there a setting that may be wrong?
+Any help would be greatly appreciated.
+
+A: Is it possible that you have a global shortcut associated to the key sequence Ctrl + S ? Such a shortcut would get the sequence before it is sent to the Terminal and it would explain why it doesn't work with Term.app and iTerm2.app.
+You can check for registered shortcuts in System Preferences, Keyboard, Keyboard shortcuts. You can also revert them to the default if you think you never changed them.
+
+A: I just ran into what I think is the same problem when trying to use Ctrl-S under Vim in Terminal.app. I found a related tip indicating that by default, Terminal.app reserves Ctrl-S for old-fashioned XON/XOFF flow control.  Adding this line to my .bash_profile -- or just entering it at the prompt -- freed up Ctrl-S and Ctrl-Q for use with Vim:
+stty -ixon -ixoff

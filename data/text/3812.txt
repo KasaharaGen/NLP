@@ -1,0 +1,26 @@
+Q: Is there a way to trace the reason 'fseventsd' process hogs CPU? I run Mac OSX 10.6 and noticed that a process 'fseventsd' was taking 100% CPU and 1.5G RAM. Doing a google search, I found that this could be tied to Time Machine. 
+However, I do not run Time Machine on this computer.
+Is there a way to trace the source of the resource hog? Does it log to anywhere? A restart 'fixed' the issue, but I'm sure it will come back if I can't figure out why it began in the first place.
+Thanks in advance.
+
+A: fseventd is the filesystem event logging process, you can read a lot about it in the ars technica review of Mac OS X Leopard. You can use programs like fseventer to see the same kind of output it sees.
+From the article:
+
+The FSEvents framework relies on a
+  single, constantly running daemon
+  process called fseventsd that reads
+  from /dev/fsevents and writes the
+  events to log files on disk (stored in
+  a .fseventsd directory at the root of
+  the volume the events are for). That's
+  it. That's the super-high-tech
+  solution: just write the events to a
+  log file. Boring, pragmatic, but quite
+  effective.
+
+You can check that log though I dont know how useful it will be for you. I would not be that surprised to see Time Machine, which deals with many files, and sometimes many many tiny files, to possibly cause some issues with fsevents.
+
+A: Either one program was stuck in a very efficient loop writing changes that caused fseventsd to have a lot of work or it's an infinite loop itself processing an unresolvable data structure on one of the mounted volumes.
+In the prior case - programs like fseventer that read the same stream of data will likely hang as well - you'll now have two processes at 50% utilization trying to process an infinite amount of data. (This is a great data point if you are poking to see what's amiss.) It's analagous to  questions asking why syslogd is taking all the CPU - usually it's some other program gone nuts causing it a lot of work.
+When/if it happens again - start quitting programs and consider logging out. You will know if the offending item is a system level process or a user level process. fs_usage might be useful to see what specific programs are IO heavy.
+fsck from a boot into single user mode is usually required if you have circular hard links or other degenerate file system shenanigans that can cause this sort of spike in activity.

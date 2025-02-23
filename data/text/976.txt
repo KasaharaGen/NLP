@@ -1,0 +1,14 @@
+Q: What does no chime on boot mean? My MacBook Pro is having some issues. It boots. But the graphics card doesn't get detected. You can remote in to it but looking at the Displays dialog in System Preferences, no graphics card is shown:
+
+I took it in to see if it qualified for the free mobo replacement because it does have the qualifying NVidia chipset and the repair shop said they couldn't run the diagnostics tool on it because it wouldn't chime on boot. And therefore wouldn't boot from their external drive to run their diagnostics. I hadn't noticed that it wouldn't chime on boot.
+But what does that mean? What does the chime tell you? Why would the machine not chime?
+
+A: You don't specify how old your MBP is, but some MBPs built a few years ago shipped with graphics cards that fatally crashed after a few years of years. That's what happened to mine and it was a warranty fix because a recall was done.
+My understanding of the chime is that it is hard-coded into the motherboard. If it is not playing with the chime, then you probably have something wrong down to that level. It may be a simple fix, it may not, but only Apple will be able to tell you definitively.
+(Answer edited per comments)
+
+A: As an aside, the volume of the chime is governed by the operating system - the Mac will remember how you had your volume set when you last shut it down. If you made your Mac mute, you won't hear a chime on startup.
+It might be worth plugging in a pair of headphones - it's unlikely that you would have set the volume 'with headphones' to be mute, and as the Mac remembers a level for 'normal' and a level for 'headphones', you might hear a chime.
+Still, any decent Genius Bar staff would have known that you can make the chime go silent this way so I'm guessing it's more serious than this!
+
+A: It usually means the Power On Self-Test failed. Look for an error code as tones, flashing LEDS, or whatever remaining means the particular computer has of communicating.  There's a decent synopsis of the startup sequence here.

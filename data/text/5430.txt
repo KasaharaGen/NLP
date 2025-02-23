@@ -1,0 +1,17 @@
+Q: What are the implications of how versions are stored? I haven't found good data about how the versions feature is implemented.  As I see it there are three ways it could be implemented:
+
+
+*
+
+*The separate versions are all in one file (possibly as resource forks)
+
+*The version information is part of the filesystem
+
+*The version information is kept in a set of files and a library is need to put them together into one file
+
+
+I want to know because I am worried about what will happen when you send a copy of a file to a third party.  Will the third party be able to see the history of the file (bad in some cases, desirable in others)?  What if the third party is using an earlier version of OS X, or a different OS completely?
+
+A: You should read the big Siracusa's Lion review in Ars Technica.
+The gist of it is, no, every time another program tries to access the file (e.g. you're trying to send it in Mail, upload it in safari) what the other program will get is the current version you're looking at. Nothing else.
+See more at this particular section.

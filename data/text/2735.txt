@@ -1,0 +1,19 @@
+Q: On connecting device - iTunes or iPhotos must not open Whenever I connect my iPhone/iPad/iPod to MacMini, It automatically launches iTunes & start syncing every time. I am a developer & I frequently need to connect/disconnect different devices. So, whenever I connect device, I force quit iPhone & iTunes. 
+Can I eliminate the initial launch of iTunes and iPhoto when iOS devices connect over USB?
+
+A: You just have to change the prefs of those 2 apps. For instance, iPhoto you have to choose "No application" in the pop-up menu show hereunder :
+
+And you adjust the settings of iTunes the same way : just check the checkbox "Prevent ...". 
+
+
+A: If you don't want iTunes to launch whenever you connect an iOS device, under your Account preference, in the System Preferences app, go to the Login Items tab and remove iTunesHelper.app.  
+This is the app that monitor iOS device connector to launch iTunes.
+This works when you don't control all the iOS devices that connect as you have to set each to not launch iTunes.
+
+A: You could also un-check the box "Open iTunes when this i-Device is connected".
+You'll find this setting in iTunes, with the device connected and selected in the left hand side info bar. Then at the top, select summary (should default), then de-select that check box under options.
+
+A: If you are using Mac OS X Yosemite, you'll have to do another step. I followed these steps but it did not prevent Yosemite from opening iPhoto. Here is a link to preventing just the iPhoto launch from happening in Yosemite. 
+Disable iPhoto auto launch when connecting an iPhone in Yosemite
+
+A: Perhaps this article should be updated with the new process for Photos? Launch Photos, Go through the setup process, select the import tab, next to the device deselect "Open Photos for this device".

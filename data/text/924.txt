@@ -1,0 +1,28 @@
+Q: Changing the color of the path in Terminal.app I would like the CasebashMac:bfgenv chris$ part of the following line to appear in a different color in my terminal.
+CasebashMac:bfgenv chris$ python
+
+
+A: I set the PS1 variable in my .bashrc to achieve this.
+
+
+*
+
+*Open Terminal
+
+*[editorofchoice] ~/.bashrc
+
+*Add a line with the following: 
+
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+
+*
+
+*Save the .bashrc
+
+*Exit Terminal and re-open. You should now have a green prompt.
+
+
+A: The terminal app does not actually change the colours, this is controlled by the shell that is being run. The default shell is bash and controlling colours is done by altering the prompt. There are many tutorials and other documents on the web to tell you more.
+One guide to customising the prompt is from IBM

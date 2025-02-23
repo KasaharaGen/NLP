@@ -1,0 +1,68 @@
+Q: Why can't I paste a password into a password form on a webpage? On my Snow Leopard Mac, I can't seem to paste into a password field on login pages to Apple sites, (developer.apple.com for example). I thought is was a browser issue but it's happening with Safari, Chrome and Firefox so it must be the System. 
+I assume this is somebody's idea of a security feature, though I fail to see the logic and it's very annoying.
+Any ideas on how to fix, turn off or work-around this?
+
+A: Right-click on the password field and under the menu that appears, select "paste" (it happens to me in Firefox and that is my fix).
+
+A: Use the Web Inspector in WebKit based browsers and remove the onpaste="return false;" attribute and you'll be able to paste your password.
+
+A: This is exactly why I have a keyboard for Safari to disable JavaScript and that feature is one reason why I prefer Safari.
+It is also handy on sites which try to block the 'copy' command or otherwise abuse JavaScript.
+I can enable/disable JavaScript just by pressing ⌘ + J 
+The GUI way
+
+
+*
+
+*Launch Safari
+
+*Go to Preferences
+
+*Go to 'Advanced' preferences
+
+*Click 'Show develop menu in menu bar.
+
+*launch System Preferences
+
+*go to Keyboard preferences 
+
+*select 'Keyboard Shortcuts'
+
+*choose 'Application Shortcuts'
+
+*click the + button
+
+*set Application to 'Safari'
+
+*set the Menu Title to 'Disable JavaScript' (note that Capitalization is important, it must be exactly the way it is shown in Safari)
+
+*set the keyboard shortcut to something like ⌘ + J
+
+
+The Command Line Way
+If 12 steps seems like a lot of hassle, try these two (Note: Safari must not be running when you make these change)
+defaults write com.apple.safari IncludeDevelopMenu 1
+(That is the equivalent of the first 4 GUI actions.)
+defaults write com.apple.safari NSUserKeyEquivalents -dict-add "Disable JavaScript" '@J'
+(This is the equivalent of the last 8 GUI actions.)
+Note that the '@J' on the command line is equivalent to ⌘ + J.  See http://www.mactipper.com/2008/02/add-keyboard-shortcuts-from-command.html for more information on adding keyboard shortcuts via Terminal.app.
+
+A: Like TJ's answer, there's also an extension for Firefox that lets you toggle javascript on and off to disable paste and copy blocking, among others - YesScript
+No advanced configuration, just install it and click the white page icon on your bottom addon bar when you need it (Ctrl + / to toggle the bar) 
+And a Chrome equivalent: Quick Javascript Switcher
+
+A: I came to this thread as the result of Expedia blocking password pasting.  I eventually determined that disabling JavaScript (JS) allowed me to paste into the password field.
+There are now simple apps for your browser that allow you to quickly and easily toggle JS.
+
+
+*
+
+*Chrome has an app called 'Quick Javascript Switcher'.
+
+*Firefox has QuickJava.
+
+*I found this for Safari but I haven't tested it
+
+
+A: I just had this problem with Firefox 33 on Costco's site. I disabled javascript with NoScript and was able to paste (cmd-v) my password and log in. BUT when on the page for a product whose price I wanted to see, it acted like I was not logged in even though I enabled all javascript. When I clicked 'Sign in to Buy Now', it just took me to my account page.
+On to Safari 6.2. I was able, no problem, to right-click-->Paste into the password field (cmd-v did not work). This time I could see the price and the tell-tale 'Sign Out', indicating that I was signed in. Simple solution.

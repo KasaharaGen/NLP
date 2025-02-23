@@ -1,0 +1,10 @@
+Q: How to configure a static IP for a specific access point on OS X? I own a MacBook Pro and always used Ubuntu in the past. In Ubuntu, I was able to configure my IP, DNS, Gateway, for a specific access point. There was a list of all the access points, each one with its own settings.
+The goal I want to achieve is to do port forwarding in my own local network with static IP and still being able to connect with automatic DHCP settings  somewhere else (not my own network).
+But I'm unable to do/find this in Mac OS X. Is it possible (with or without extra applications)?
+
+A: I have found it myself. It's already built in in OS X. In System Preferences, goto Network and at the top of the window, you can see a combobox which says: Location. You have to click it and select Edit Locations.
+
+At this picture I have already created my Home Network.
+Create and configure the Home network. And click Apply afterwards. Close the window.
+From now on you can choose which configuration (or Location) you want to use by opening the Apple-menu () in the Menu Bar. And choose from the Location submenu.
+

@@ -1,0 +1,22 @@
+Q: Why is Spotlight listing some people from address book twice? When searching Spotlight, certain Address Book contacts are listed twice. I have confirmed that I do not have two entries in Address Book for those individuals. 
+The problem is that one of the entries returned by Spotlight will open Address Book but not take me to the selected contact. The other Spotlight entry does work correctly and take me to the selected contact.
+I have tried the following to no avail:
+
+
+*
+
+*Rebuilt Spotlight
+
+*Deleted the following two files:
+
+*
+
+*~/Library/Application Support/AddressBook/AddressBook-v22.abcddb
+
+*~/Library/Application Support/AddressBook/MailRecents-v4.abcdmr
+Any thoughts on the culprit and solution?
+
+A: Do you have a Time Machine drive connected at the time of the search? It might be searching in your Mac and in your /TimeMachine at the same time. 
+UPDATE: Since you mention that you don’t have a TimeMachine (or that it doesn’t affect results), I recommend that you rebuild your spotlight index completely from scratch. You mention that you’ve done that, but not how, so, please try to follow the steps in this question, and after you leave your spotlight reindexing all night undisturbed (best way to guarantee that the index ends up being “ok”), let us know if you’re still getting double results. 
+Might you be having a copy of your address book somewhere else?
+Let us know how it goes with a plain new index.

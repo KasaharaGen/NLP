@@ -1,0 +1,46 @@
+Q: How do I show hidden files in Finder with a keyboard shortcut? What is Ubuntu's CTRL+H equivalent in OSX Lion Finder to toggle display hidden files?
+My all searches point me to use: defaults write com.apple.finder AppleShowAllFiles TRUE which is not exactly the same and its effect is somewhat permanent.
+
+A: defaults write com.apple.finder AppleShowAllFiles FALSE reverse it. And there is no such functionality (online hide/show without restart) built in into Finder.
+That is probaly because anyone who need it will prefer ls -a anyway.)
+BTW If you only need to list hidden files use ls -ld .??*
+
+A: There is a simple keyboard shortcut, at least since Sierra (macOS 10.12). Ensure that Finder is the active app and use this keyboard shortcut: 
+CommandShift. (that's a full stop/period at the end)
+
+A: You could buy TotalFinder. It is a finder replacement that supports this feature (and many other nice features like tabs). TotalFinder features the ⇧⌘. shortcut as seen here:
+
+See more details about this particular feature on their site
+
+A: The keyboard shortcut
+CommandShift.
+does not work with international keyboards in Finder window, although it works in "open file" dialogs.
+At least this is true with French keyboard.
+The shortcut to use then is
+fnCommandShift.
+It works in both "open file" dialogs and in Finder windows, however you can avoid pressing the extra key fn and use CommandShift. in those dialogs.
+
+A: ⇧⌘. shows hidden files in file dialogs and in some third party applications like TotalFinder. Transmit also has a menu item for toggling hidden files, but it's assigned to ⇧⌘B by default.
+There's nothing equivalent to that in Finder though. But you could assign a shortcut to a script like this with FastScripts or by creating an Automator service.
+k="com.apple.finder AppleShowAllFiles"
+[[ "$(defaults read $k)" == 0 ]] && b=true || b=false
+defaults write $k -bool $b
+osascript -e 'quit app "Finder"' && open -a Finder
+
+
+
+A: Wow, the above sounds really complex, why not open a terminal, and
+
+
+*
+
+*type defaults write com.apple.Finder AppleShowAllFiles YES and press return
+
+*Now Ctrl-Opt-Click on the Finder icon and select Relaunch
+
+
+To un-hide run defaults write com.apple.Finder AppleShowAllFiles NO the same way.
+
+A: Here's a tutorial for setting up a contextual menu item to toggle visibility of hidden files.
+http://www.macosxtips.co.uk/index_files/quickly-show-hidden-files.php
+Still not as good as a keyboard shortcut. Filing a duplicate of radar://7096650 at http://bugreport.apple.com is the best way to tell Apple that you want this feature.

@@ -1,0 +1,20 @@
+Q: How do I uninstall Java? I have several Java installations on my machine:
+$ /usr/libexec/java_home -V
+Matching Java Virtual Machines (6):
+    1.6.0_24-b07-334, x86_64: "Java SE 6"   /Library/Java/JavaVirtualMachines/1.6.0_24-b07-334.jdk/Contents/Home
+    1.6.0_24-b07-334, i386:   "Java SE 6"   /Library/Java/JavaVirtualMachines/1.6.0_24-b07-334.jdk/Contents/Home
+    1.6.0_24-b07-334, x86_64: "Java SE 6"   /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+    1.6.0_24-b07-334, i386:   "Java SE 6"   /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+    1.6.0_22-b04-307, x86_64: "Java SE 6"   /Library/Java/JavaVirtualMachines/1.6.0_22-b04-307.jdk/Contents/Home
+    1.6.0_22-b04-307, i386:   "Java SE 6"   /Library/Java/JavaVirtualMachines/1.6.0_22-b04-307.jdk/Contents/Home
+
+I don't need them all. For example I don't need update 22 version. How can I uninstall it cleanly?
+I would also like to get rid of those 'duplicate' JVMs, but I need to have sources around, since I do lot of Java developement, so that may not be possible. Why are there so many of them anyway?
+
+A: After some reading:
+JVM in /System is system-wide installation of Java, which is always installed on Snow Leopard, and is updated through standard Software Update mechanism.  I don't think it would be good idea to remove this JVM, but haven't tried it ... maybe nothing bad will happen (if you don't use Java).
+My JVMs in /Library are from Java Developer Package, which also contain sources and documentation. It seems that it is OK to simply remove them. After I have removed them, java_tool is no longer showing them.
+(After this, I've updated my Java to latest one available from Apple, and also installed latest Java Developer Package, which added new JVM into /Library again. Since I use Java sources and documentation in my IDE, I will let it live).
+
+A: Right now the System and the available Developer Java version is a the same version level, so the Developer version doesn't give you any benefits - for the moment.
+The Developer version is used when distribution Applications with an embedded JDK, and when doing experimental development with new Java releases - and hereby the System wide version won't be touched.

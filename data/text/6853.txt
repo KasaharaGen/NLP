@@ -1,0 +1,11 @@
+Q: Does installing rEFIt void my warranty? I would like to install rEFIt. Will it void my warranty, even though it can be uninstalled?
+
+A: No, rEFIt is software and therefore should not affect the hardware warranty.
+However, if you're concerned about that and want to avoid trouble (there's always the odd thickheaded customer service rep, even at Apple), you can simply wipe your drive and do a clean OS X reinstall before you send your machine in for service (and restore from backup once you get it back). rEFIt does not modify your EFI or anything else, so there'll be no trace left of it if you do so.
+
+A: I have a user with a rMBP that was told by the GeniusBar that his warranty was voided by using rEFIt to install Linux. Trouble is, the system never had Linux on it, only a BootCamp partition which has since been removed. 
+They said removing the "unauthorized software" would reinstate the warranty. 
+Run the following two lines and reboot to remove rEFIt.
+sudo rm -r /efi
+sudo rm -r /Library/StartupItems/rEFItBlesser
+

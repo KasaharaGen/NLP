@@ -1,0 +1,6 @@
+Q: Script that Automatically Does Something Every Day I'm looking for a way to automatically run a shell script or command every time interval. I'm running a server and I want to backup some folders every day. I don't want to use time machine because the backups need to be just the raw data.
+How do I write a daemon/application/script that will do this? The commands I need to run are pretty simple, and theres more than one I need, so it'd be great if there was a semi-generalized way to do this.
+
+A: On Macs running 10.5 or earlier, I'll use crontab. 
+On Macs running 10.6 and newer, I'll use launchd. More details here 
+https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man5/launchd.plist.5.html

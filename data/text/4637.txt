@@ -1,0 +1,21 @@
+Q: Map Right Command Key to Escape? Quite simply, I'd just like to modify the right command key to escape and that's it. Keep the left command key as is.
+The only tool I've been able to find for this is ControllerMate but I'd rather not pay $14 to map one key.
+Can anyone suggest a free alternative?
+
+A: You can download Ukelele. It is an free keyboard layout editor, and you can make a new layout for your keyboard where simple redefine the keys. In the package are sample keyboards and a manual/tutorial too.
+
+A: Ukelele or keylayout files can't be used to change modifier keys to other keys. But you could use a private.xml like this with KeyRemap4MacBook:
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>test</name>
+    <identifier>test</identifier>
+    <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::ESCAPE</autogen>
+  </item>
+</root>
+
+This would only change pressing the right command to escape:
+__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::COMMAND_R, KeyCode::ESCAPE
+
+<only>VI, TERMINAL</only> would apply the settings only when MacVim, Terminal, or iTerm is frontmost.
+See the source for the key code values and predefined settings.

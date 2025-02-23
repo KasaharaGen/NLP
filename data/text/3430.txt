@@ -1,0 +1,36 @@
+Q: MySQL service is grey under Server Admin We just made a fresh install of Mac OSX Server 10.6.7, but the MySQL service doesn't seem to work, which is strange as its a fresh install!
+I open Server Admin, and under Services, the MySQL service has a grey circle.  AFP, FTP and Web are all green.  If I uncheck the MySQL box in Settings, it rechecks itself within a few seconds.  Clicking on the MySQL service on the LHS yeilds:
+**The service has encountered an error.**
+Try to refresh the view (workwork/MySQL). (NIL_RESPONSE_ERR (*** -[NSCFDictionary setObject:forKey:]: attempt to insert nil value (key: startTime))) MySQL
+
+(that popup appears twice, then)
+**The service "MySQL" is unreachable**
+Try to reconnect to workwork (a back-end component may be missing).
+
+I can open Terminal, run mysql, and that opens a mysql prompt.  I've also tried opening MySQL Workbench, "New Server Instance" under Server Administration, pick localhost, take the default values, and get a:
+**Could not connect to MySQL server:**
+Lost connection to MySQL server at 'reading initial communication packet', system error: 61
+You may continue if the server is simply not running.
+
+Again, this is a fresh install, so its very strange.
+
+A: The plist which serverAdmin uses to store the status of the service is missing some keys.
+take a look at /Library/Preferences/com.apple.MySQLService.plist
+it should look like:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>activeDBPath</key>
+    <string>/var/mysql</string>
+    <key>selectedDBPath</key>
+    <string>/var/mysql</string>
+    <key>serviceRunning</key>
+    <true/>
+    <key>serviceStart</key>
+    <date>2011-07-27T14:24:23Z</date>
+</dict>
+</plist>
+
+Probably yours is missing the serviceStart key
+I've had this happen before, though I don't know why.

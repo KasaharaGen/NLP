@@ -1,0 +1,225 @@
+Q: Can I create a shortcut to open a specific application on OS X? I want to create a keyboard shortcut to i.e. open Firefox while I am working in another application. I know I can use ⌘ CMD+T when I am in Firefox to open a new tab. 
+I haven't found a way to create that kind of shortcuts in System Preferences.
+Any ideas?
+
+A: Alfred
+Alfred, in its Power Pack version, can map shortcuts to applications, among many other features.
+
+
+A: If you do not want to use third party apps.
+Then you can use Automator (Services ), and the Built in keyboard shortcuts.
+Here is how in an answer to a  similar question.
+Very simple.
+In Step 3, of creating the service.
+Set it to 'any application' . 
+i.e, set Service receives to: 'no input' in 'any application' (Do this by using the drop downs at the top.)
+
+A: Karabiner-Elements (10.12 and later)
+Karabiner stopped working in 10.12 due to changes in the kernel architecture, and Karabiner was rewritten as Karabiner-Elements which uses a new JSON format for the configuration files.
+You can now add a rule like this to karabiner.json (https://pqrs.org/osx/karabiner/json.html):
+{
+  "from": {
+    "key_code": "t",
+    "modifiers": {
+      "mandatory": [
+        "right_option"
+      ]
+    }
+  },
+  "to": [
+    {
+      "shell_command": "open -aterminal"
+    }
+  ],
+  "type": "basic"
+}
+
+This makes a short press of the right command key open Emacs:
+{
+  "from": {
+    "key_code": "right_command",
+    "modifiers": {
+      "optional": [
+        "any"
+      ]
+    }
+  },
+  "to": [
+    {
+      "key_code": "right_command",
+      "lazy": true
+    }
+  ],
+  "to_if_alone": [
+    {
+      "shell_command": "open -aemacs"
+    }
+  ],
+  "type": "basic"
+}
+
+Karabiner (10.11 and earlier)
+Save a file like this as private.xml:
+<?xml version="1.0"?>
+<root>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_Safari</name>
+    <url>file:///Applications/Safari.app</url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_iTunes</name>
+    <url>file:///Applications/iTunes.app</url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_EMACS</name>
+    <url>file:///Applications/Emacs.app</url>
+  </vkopenurldef>
+  <item>
+    <name>custom</name>
+    <identifier>custom</identifier>
+    <autogen>__KeyToKey__ KeyCode::F11, KeyCode::VK_OPEN_URL_Safari</autogen>
+
+    <!-- change the right option key into an extra modifier key -->
+    <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::VK_MODIFIER_EXTRA1</autogen>
+
+    <autogen>__KeyToKey__ KeyCode::I, ModifierFlag::EXTRA1, KeyCode::VK_OPEN_URL_iTunes</autogen>
+
+    <!-- make a short press of the right command open Emacs -->
+    <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::COMMAND_R, KeyCode::VK_OPEN_URL_EMACS</autogen>
+  </item>
+</root>
+
+Alfred 2
+If you have bought the Powerpack for Alfred 2, you can create a workflow like this:
+
+Hotkeys have a short delay by default, but you can reduce the delay by changing the "Trigger behaviour" option from "Simulate modifier keys released" to "Pass through modifier keys (Fastest)":
+
+Automator services
+Open Automator, select "Service" as the type of the document, change "Service receives" from "text" to "no input", add a "Launch Application" action, and save the service. Then assign a keyboard shortcut for the service from "System Preferences > Keyboard > Shortcuts > Services".
+
+
+I don't recommend this option, because at least on my system, there is at best a delay of around half a second before an application is focused by a keyboard shortcut created using this method, and the delay is often even longer. There has also been a bug since 10.7 where the keyboard shortcuts for Automator services don't always work until you hover over the services menu from the menu bar. (Edit: it's now 8 years after I wrote this answer and the bug still hasn't been fixed.) Also the keyboard shortcuts for services are not available in some applications like Emacs.
+
+A: Get Quicksilver, http://www.blacktree.com/, it will allow you to set keyboard shortcuts to open apps. There are actually more many more apps that do this (Alfred, Keyboard Maestro etc etc.)
+Mac OS X actually has a built-in way of doing that, but it doesn't work for Firefox, because it doesn't support services! http://hints.macworld.com/article.php?story=20090903085255430
+Update Jan 2012: Blacktree no longer updates Quicksilver--the developer went to Google and has released Google Quick Search Box. Quicksilver lives on, but it has a new home at qsapp.com. 
+
+A: As of macOS Monterey, you can set up a global hotkey via the Shortcuts app. This will either launch the app or switch to it if it's already running.
+Use the Open App option and under settings, pick a shortcut from 'Run with'.
+Works together nicely with a hyper key.
+
+
+A: There are plenty of good options here but I wanted to add my personal favorite which I've been using since 10.5 and still works on 10.11.2: Spark 3.
+http://www.shadowlab.org/Software/spark.php
+It's freeware and extremely easy to set up.  Here's the developer's description:
+
+Spark is a powerful, and easy Shortcuts manager. With Spark you can
+  create Hot Keys to launch applications and documents, execute
+  AppleScript, control iTunes, and more... You can also export and
+  import your Hot Keys library, or save it in HTML format to print it.
+  Spark is free, so use it without moderation!
+
+Here's a screenshot of the interface:
+
+
+A: To open the Terminal with a keyboard shortcut without any third-party software:
+
+
+*
+
+*Open Automator (⌘ + Space, then type Automator)
+
+*Go to File -> New
+
+*Select Quick Action (or Service, depending on your Mac version)
+
+*Where it says Workflow receives, select no input:
+
+
+
+
+
+*
+
+*In the Actions column, search for Run AppleScript and drag it to the right column
+
+*Paste this in the script area:
+on run {input, parameters}
+
+    tell application "Terminal"
+        do script ""
+        activate
+    end tell
+
+end run
+
+PS: Remove do script "" if you don't want a new instance of the terminal every time you press the hotkey.
+
+
+*
+
+*Click on File -> Save and name it anything you want
+
+
+
+
+
+*
+
+*Now close Automator and open System Preferences -> Keyboard -> Shortcuts
+
+*In the left column, click on "Services"
+
+*Scroll down to the very bottom, you should see the script you just saved. Click on none to assign a hotkey to it.
+
+
+One important thing to consider, though, is that the hotkey must be unique across all applications. If you assign a common hotkey, such as ⌘ + T, and try to open the terminal while browsing, it will conflict with most browser's hotkey to open a new tab, so it won't work. That's why you should try a shortcut that won't conflict with any app.
+I've chosen ⌘ + ⌥ + F12. Works pretty well.
+Update
+If you're using iTerm2 + Oh My Zsh, just replace Run AppleScript with Launch Application in Automator, and select iTerm.app from the list.
+
+A: I found Apptivate the easiest to use. You just select an application and you assign a global shortcut. That's it.
+
+A: I know Alfred has already been mentioned, but I thought I'd say a little bit about choosing shortcut keys. It was not obvious to me at first what would be a good set of shortcuts that was (a) easy to remember, (b) easy to use, and (c) did not conflict with other system or application shortcut keys.
+I ended up using the "alt" key as the basis, and generally relying on keys that can be triggered by the left hand, and choosing descriptive letters (e.g., x for Excel). this allows you to have the mouse in the right hand and the shortcut keys triggered with the left.
+Another benefit of using Alfred Hotkeys to activate an application is that if an application is hidden, it will be unhidden.
+Here's a screen shot of how I have it configured:
+
+
+A: Thor
+There is a nice clean open source app for this called Thor. It enabled you to assign global shortcuts to applications.
+
+Download the binary from the App Store here https://itunes.apple.com/app/thor/id1120999687?ls=1&mt=12. The project page is here https://github.com/gbammc/Thor.
+
+A: If the Application is Terminal, this already has shortcut keys configured in Preferences:
+
+New Terminal at Folder ^+⇧+T
+New Terminal at Tab Folder ⌥+^+⇧+T
+
+A: Tested on macOS Monterey
+
+*
+
+*Open the shortcuts app
+
+
+*Click on + (new shortcut)
+
+
+*In the right sidebar search and double-click/drag run AppleScript
+
+
+*Paste script
+on run {input, parameters}
+ tell application "Terminal"
+     activate
+     reopen
+ end tell
+end run
+
+The best thing is you can assign the keyboard shortcut within the same app itself.
+
+
+*Navigate to shortcut details in the right sidebar.
+
+*You can find Add keyboard shortcut

@@ -1,0 +1,5 @@
+Q: I can't save my system preferences I can't save my dock and spaces setting. Every time I set them (eg. disable spaces), after I reboot/re-login to the system, the dock and spaces settings will revert back to the previous status. How can I fix this problem?
+
+A: I've solved it. Change the ~/Library/Preferences/com.apple.dock.plist to be unlocked (get info, uncheck the locked label) and it will work fine. I don't remember when I locked it, but whatever.
+
+A: Try using a terminal command, like defaults to change your preferences. For elaboration, you may want to consider telling us exactly what you want.

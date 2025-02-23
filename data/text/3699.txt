@@ -1,0 +1,21 @@
+Q: Snow Leopard killing internet access on home network Something weird that I think I've narrowed down to OS X. Everytime I fire up my MB Pro it kills internet access for all devices (including OS X) for about 5 minutes. Ping and DNS works fine but actually pulling content times out usually.
+Reason I've narrowed it down to my MBP is that it only happens when I open up my laptop to work. My home PC is Win7 and will be chugging along nicely until my laptop comes online then it dies.
+Anyone else have this problem? Did some general 'net searches and found some similar issues with older versions of OS X but not with Snow Leopard.
+My home network is cable via a Motorola modem to a Netgear router. MBP is connecting via WiFi to the network.
+
+A: Hard to say without being able to look at your network settings in your Mac and in your house in general, but I imagine your MB is creating a network conflict with your internet Router and therefore the other machines (and itself) end up sending the packages to the wrong place.
+The first thing that came to my mind was that your MB Pro is not using DHCP and it's using the same IP Address as your Netgear router or Motorola Modem.
+Things to diagnose:
+
+
+*
+
+*Before even turning on your MB Pro, in your Windows machine, check your network settings. Write down your IPAddress, Your Subnet Mask, your Router and DNS Servers if any. Also note if you have DHCP Enabled or you're manually setting your IP.
+
+*With the above settings safely saved (on a piece of paper) turn on your MB Pro and check your network settings for your "Airport" -wifi- network: Go to System Preferences, Network and you will see your Airport. Note the numbers and post them back so we can try to see if the problem is this easy or there's something else involved. 
+
+A: I am having the same problem with torrent client. Whenever I start it, all browsers give time-out error. 
+Warner came and installed a new modem and upped my band from 10 to 20Mbps, but the Internet sagged after that. On both MacBook and MacBookPro. All the usual tv programs I normally watch load slower, the meters show traffic jumps from 100-20K to zero constantly. 
+
+A: You will want to try changing your network adapter settings, under advanced settings/Ethernet. Configure it manually and speed to autoselect.  This fixed the our network issues where our mac was killing our home network.
+Cheers

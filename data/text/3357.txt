@@ -1,0 +1,30 @@
+Q: MacUpdate check running every hour? I have MacUpdate installed (which I got with their Spring Bundle).
+I noticed that it tries to check for updates every hour for some reason. The app itself is not running so it must be some agent or daemon.
+Here's example log entry (with network off):
+06/04/2011 22:33:00 MU App Search[1916] APP KEY 447266 
+06/04/2011 22:33:00 MU App Search[1916] Checking Updates
+06/04/2011 22:33:01 MU App Search[1916] APP KEY 26968 
+06/04/2011 22:33:01 MU App Search[1916] Contacting Updates Server
+06/04/2011 22:33:05 MU App Search[1916] found manual scan, no last notification 2011-04-01 09:17:54 +0200
+06/04/2011 22:33:06 MU App Search[1916] APP KEY 6.282815 
+[...]
+06/04/2011 23:33:00 MU App Search[2036] APP KEY 447266 
+06/04/2011 23:33:00 MU App Search[2036] Checking Updates
+06/04/2011 23:33:01 MU App Search[2036] APP KEY 26968 
+06/04/2011 23:33:01 MU App Search[2036] Contacting Updates Server
+06/04/2011 23:33:03 MU App Search[2036] found manual scan, no last notification 2011-04-01 09:17:54 +0200
+
+I was looking for a setting that could determine the frequency (ideally switch it off completely) but didn't find anything.
+Using Lingon I found one Agent that's suppose to run every day at 0:35 which would be fine, but as you can see from the log, it's seem to be run hourly.
+Any ideas?
+
+UPDATE
+Did some testing and these are my findings...
+After disabling the MacUpdate LaunchAgent it gets re-enabled by MacUpdate Destkop app every time it launches. Same happens if I delete it altogether.
+
+A: You can disable the update mechanism in the preferences. And you can even set the update frequency (weekly, daily, hourly).
+
+Update: this is not enough. It won't notify about new updates, but in the background it runs the updater in every hour. I'm looking forward to have an answer for this question as well.
+
+A: The background scanning is used to both keep your updates cache up-to-date and also to display notifications about new updates that are available. The preferences can control how often the notifications are displayed, and the notifications will not display if you have recently run a manual update check and are viewing the recent list of updates available. 
+The process does run for about 5-10 seconds every hour (as you can see in your logs - it ran in 6 seconds) and is designed to be resource friendly and unnoticeable.

@@ -1,0 +1,47 @@
+Q: Put Lion "Recovery HD" on USB In an attempt to save some space on my ssd, I used SuperDuper to clone Recovery HD to a USB drive. But when I booted up my Mac holding the option key I only got the ssd and Recovery HD as alternatives.
+Does anyone have an idea as to how I can clone Recovery HD to an external drive/memory stick and then remove it from the boot drive?
+
+A: The best answer is one supported by Apple.
+Why not use the new Lion Recovery Disk Assistant to make your USB bootable media.
+The only requirements are listed as:
+
+
+*
+
+*A Mac running OS X Lion with an existing Recovery HD
+
+*An external USB hard drive or thumb drive with at least 1GB of free space
+
+
+Detailed, step by step instructions are updated at http://support.apple.com/kb/HT4848
+
+A: Luckily I've done this as a proof of concept. The key is to use the terminal for it. Apple hides the recovery partition by default in Disk Utility which makes it hard to clone. Fire up your terminal and let's get started.
+Type diskutil list and find the partition name for Recovery_HD, it should be something like disk0s3 
+What we're going to do with this is create a disk image with dd and then we can use disk utility to restore it to the usb drive.
+Type dd if=/dev/disk0sX of=/Users/USERNAMEHERE/Desktop This creates a disk image copy of the recovery partition in a disk image on your desktop. Note, X is the number that you found from diskutil list 
+Let dd run and the once you get your prompt back, you can quit terminal.
+Open up Disk Utility and find the USB drive you want to clone to. Make sure that you have everything off the drive. 
+Click on the 'Restore' Tab. Drag your newly created disk image into the Source box, and do the same with your drive into the destination box.
+click restore and let it run.
+Once it's finished you should be able to boot from this drive, in theory.
+I would like to note that I had an issue using this drive on a computer that had SL installed, which I find to be a bit odd but YMMV
+
+A: Caution
+Whilst Apple makes it very easy to create a disk/volume from an image (.dmg): 
+
+
+*
+
+*if straying from what is recommended by Apple, you should not expect the result to be good for all purposes. 
+
+
+Recommendation
+Wait for Apple to provide Lion on a USB thumb drive (announced on the day of Lion's release, scheduled for August 2011). 
+Background
+Experimental uses of .dmg files relating to Lion (burning to USB flash drive, DVD, external hard disk partition etc.) have been publicised by well-meaning hackers since February 2011, and continue to be promoted (not by Apple) without due caution for Mac OS X 10.7 (Build 11A511). Bootable media produced in this way may be good for some uses but please, proceed with caution: other uses may leave a system unusable.
+Be aware of the known risks, and unknowns, associated with straying from what is recommended by Apple. Consider this recent conversation in Ask Different Chat: 
+
+
+*
+
+*home-produced bootable media for Lion: known risks and unknowns around 10.7 (Build 11A511)

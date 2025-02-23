@@ -1,0 +1,41 @@
+Q: Can I adjust the time delay for when the dock re-appears? I like to hide the dock unless I need it.  There is a slight delay before it will reappear.  Is there a Terminal setting I can change so that the dock will instantly appear when I move my mouse to the bottom of the screen? I like how things work but want to tweak the timing.
+
+A: *
+
+*defaults write com.apple.dock autohide-time-modifier -float 0.6 reduces the delay and makes the animation for showing and hiding the Dock faster.
+
+*defaults write com.apple.Dock autohide-delay -float 0.05 only reduces the delay before the Dock is shown on hover.
+
+*defaults write com.apple.dock autohide-fullscreen-delayed -bool false only removes the additional delay for showing the Dock in full screen.
+
+
+A: You can manually set the time it takes for the dock to appear using the defaults write commands:
+
+
+*
+
+*autohide-delay → custom appearance delay with dock animation
+
+*autohide-time-modifier → custom appearance delay without dock animation
+
+
+First, activate auto-hide in System Preferences → Dock → Autohide or type ⌘+⌥+D
+Then open the Terminal and type:
+defaults write com.apple.Dock autohide-delay -float 0; killall Dock
+
+
+
+*
+
+*0 is the time it takes for the Dock to appear in seconds. You can choose floats and integers e.g. 2, 0.5,...
+
+*killall Dock causes the Dock to restart
+
+*the syntax is the same for autohide-time-modifier
+Restore the default behavior using...
+defaults delete com.apple.Dock autohide-delay; killall Dock
+
+According to MacOSHints this trick was found by reverse engineering from the developer Christian Baumgart of Hyperdock.
+
+A: You can use Cmd-Opt-D to toggle the dock being visible and it seems to happen immediately. Unfortunately, using this moves the windows most applications to make room for the dock. The keyboard shortcut you use can be customized in Apple>System Preferences>Keyboard>Keyboard Shortcuts.
+Depending on what you're using the dock for, you might want to check into other solutions. Personally, I never use the dock and leave it always hidden. For launching applications I use Butler. For seeing what's currently running, Cmd-Tab works for me.

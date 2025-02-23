@@ -1,0 +1,18 @@
+Q: How to default UTF-8 encoding in Text Encoding in Mail.app? I'm using Mail.app.
+Often times I would write on reply emails typed in foreign language (Chinese, Japanese), and the receiver will see garbled text (e.g. a bunch of ??? or squares).
+The way I solve the problem is: before sending each of these reply email, I go to "Message" -> "Text Encoding" -> select "Unicode *UTF-8*". But as soon as the email is sent, text encoding is set back to "Automatic". On my next email, I have to set the text encoding again to UTF-8. 
+This is annoying. Is there a way to set UTF-8 as default text-encoding, and not Automatic?
+
+A: Open Terminal.app and type:
+defaults write com.apple.mail NSPreferredMailCharset "UTF-8"
+
+If it does not work, you can revert by using
+defaults delete com.apple.mail NSPreferredMailCharset
+
+
+A: One way to ensure all your email goes out as UTF-8 is to include a Unicode dingbat or similar character in every message, as part of your signature or otherwise.
+
+A: It's really odd there is no "standard"/"normal" way to set the default encoding to a user's choice.
+By adding a Unicode dingbat character in a signature is more like a trick. The terminal command solution is not working. Even if it's working, it's very odd for a user to set something like this.
+I can't believe Apple lets this happen.
+It's the most annoying thing after I changed to use Mac. I have to choose the encoding every time I send an email. How ridiculous!

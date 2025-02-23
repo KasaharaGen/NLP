@@ -1,0 +1,5 @@
+Q: How to change the font smoothing setting from the command line? I'm trying to avoid installing lots of software willy-nilly, because like so many Mac users I don't have antivirus software. Case in point, I really like TinkerTool but I'd rather change my system wide settings from the command line than use someone's program for that. 
+So, how can I change the system-wide font smoothing setting from the command line?
+Thanks.
+
+A: It's defaults -currentHost write -globalDomain AppleFontSmoothing -int <1-3> as far as I remember

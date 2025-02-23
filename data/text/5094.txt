@@ -1,0 +1,21 @@
+Q: Pages: Can I create text variables like in inDesign? I've found Pages simply great and very useful on making documents for idendity scopes, very lighter and faster than InDesign for medium-small documents.
+The only thing I missing inside it are the text variables.
+Well, this is the name used in InDesign, I'm talking about the creation of text pieces, inserted inside the text areas, this is very useful, if you need redundant informations, like client name and project name.
+Does it exist in Pages?
+
+A: Sure, at least with the new version of Pages this is possible by using tables. You enter the value that you want to repeat into one (single field) table and you add a formula into the other (single field) table by entering = and then clicking into the source table (the first one). The result is a formula similar to this:
+= Table 1::A1
+This way the content of field A1 in table 1 is shown / repeated in table 2.
+However, this does not work inline - only for full lines / paragraphs.
+But if you want the same information (e.g. the document title) to be shown on each page or on several places in the document, this will do the trick.
+
+A: I'm afraid not, which is a shame.
+I think your best bet would be to use a program like TextExpander ($35, trial available).
+You can use that to define 'variables' (called 'snippets' by TE, which means something entirely different in InDesign...) like this:
+You type c1 and it automatically changes to Name Of Client 1 (you'd fill in the actual name).
+You can also automatically fetch things like date last modified by setting up a 'snippet' that runs a shell script or AppleScript.
+Such a snippet could work like this: You type doc1mod and it would run a script you write (I can help you with that part if you want) that will find the date last modified for a document and replace doc1mod with that date.
+This isn't as powerful or convenient as InDesign text variables, but the end result should come close. TextExpander isn't cheap, but I've found it worth the investment.
+
+A: No - mail merge is the closest thing to a variable, and it wants to pull from Address Book or a numbers spreadsheet and generate multiple versions of one master document. Much different than reusing text from elsewhere within the same document.
+Most heavy Pages users I know get Text Expander or plan old find/replace to speed up repetitive common text in a document.

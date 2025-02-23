@@ -1,0 +1,24 @@
+Q: In Safari 5.1, how do I disable Top Sites and the caching of thumbnail images of Web pages? There were methods for doing this in earlier versions of Safari but I don't know of one that works with 5.1.
+The reason I want to do this is that it takes up a great deal of disk space, and I suspect it slows things down on my older, slower Mac running Lion because of all the extra caching going on. I never use the feature anyway.
+Here is the link to an earlier question on Ask Different with regard to Safari 5.0.
+How can I disable "Top Sites" in Safari/Webkit completely?
+I am creating a new question because apparently any methods that would work for Safari 5.0 will not work for 5.1.
+
+A: While not a clean solution and not properly preventing Safari from creating the thumbnails in the first place, this apparently works to keep them from taking up disk space:
+rm ~/Library/Safari/WebpageIcons.db && ln -s /dev/null ~/Library/Safari/WebpageIcons.db
+
+Incidentally, even going to Safari → Reset Safari… and ticking Remove all webpage preview images will apparently leave this hack intact.
+As for Top Sites, there are a few places you can remove it from:
+
+
+*
+
+*Safari → Preferences → General → New windows open with
+
+*Safari → Preferences → General → New tabs open with
+
+*Safari → Preferences → Bookmarks → Bookmarks bar
+I don't believe the menu item can be removed this easily.
+
+A: TinkerTool 4.7, a free utility for system customization, has just added a new feature for Safari 5.1, "Disable storage of preview images for web pages."
+

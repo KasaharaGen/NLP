@@ -1,0 +1,20 @@
+Q: Where does Command-Shift-3 or Command-Shift-4 (for taking screen captures) originate from? I know that on Mac OS X, you can take a screen capture of the entire screen with Command+Shift+3 and you can take a screen capture of just a selection (or a window) with Command+Shift+4. Is there a rationale for this keyboard combination? What is the history of that command? Where does Command+Shift number originate from?
+
+A: 
+What’s an FKEY?
+FKEY’s (Function Keys) are resources containing executable code that are called upon by hitting the keys Command-Shift-# (any number 0-9) at the same time. In the standard System file there are two FKEY’s; with an ID#3 and #4 that are used to dump the current screen or window onto disk or printer.1
+
+
+So far as I can remember/find, screenshot commands were first added to the OS itself in System 6.2
+
+1 Text and image from FKEY that runs other FKEYs!   by John Holder (MacTech magazine, 1988)
+2 Further reading/references: Mel's Macintosh Universe: Macintosh Plus and a forum posting from 2003, How do I take a screen shot (the latter of which features some guy named Chealion).
+
+A: Dori's answer was correct, but I figured I'd add just a little more history. Early Mac Keyboards did not contact Function Keys (F1 through F12 etc). In place of Function Keys, they allowed the user to type Command+Shift+1 through Command+Shift+9.
+Prior to Mac OS X, the system software contained a "Suitcase" called "System". This was the heart of Mac OS classic, and contained the code necessary to boot and run the machine. However this code was not located in the data fork of the file, it was located in the proprietary Mac OS Resource Fork which is set up like a database -- every resource has a type, which is a four byte value, and an ID.
+Prior to Mac OS 9, all application code was in resources of type CODE. In the system suitcase, there was a special resource of type FKEY. These were essentially just CODE resources, with the exception that FKEY resources 0 - 9 would be executed when the corresponding Command+Shift+number key was pressed.
+If I recall correctly, the Command+Shift+1 FKEY ejected the floppy and the Command+Shift+2 FKEY ejected the floppy in the second drive (external or of a two-floppy Mac (e.g. some SE/30s)). But there were software developers out there who made FKEYs. I remember as a kid having all the open FKEY "slots" filled. One let me draw freehand on the screen (my love for freehand circles started early :-) and one put the Mystery Science Theater 3000 characters at the bottom of my screen.
+
+A: Apple Technical Note OS01, dated "Mar 01 1985", describes the mechanism of command-shift-1 through command-shift-4.  Originally, 3 took a screenshot to disk, and 4 sent a screenshot directly to the printer.
+They didn't all use FKEY.  1 and 2 were processed by GetNextEvent, but captured by the system.  3 and 4 used the FKEY defined in the System file.  5 through 9 were available for the user, via FKEY.  0 doesn't seem to have been supported.
+According to Wikipedia's table of release dates, this technote was written just before System 2.0 was released.  They also claim (without reference) that System 2 introduced this shortcut for screenshots.  Perhaps Apple wrote the technote prior to the actual release.

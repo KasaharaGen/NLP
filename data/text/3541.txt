@@ -1,0 +1,65 @@
+Q: White screen on imac 
+Possible Duplicate:
+Can't boot Mac, only shows a Folder with a Question Mark? 
+
+Can any one tell me what a white screen on an imac means? There is also a folder with a question mark flashing in the center of the screen. Does anyone know how to resolve this problem? Thanks!
+
+A: According to Apple you should try a few options:
+Check the mouse and keyboard
+
+*
+
+*This issue might occur if a mouse or trackpad button is pressed during startup. Make sure the button isn't pressed.
+
+
+*If the issue persists, shut down your Mac with its power button, disconnect any external mouse and keyboard, then turn on your Mac with its power button. If the flashing question mark issue persists, reconnect the keyboard and mouse.
+If your Mac still starts to a flashing question mark, follow the steps below. If any step resolves the issue, you don't need to continue to the next one.
+
+*
+
+*Select your Mac OS X startup disk with Startup Manager by restarting and holding the Option key. After your Mac starts up, restart again to verify that the flashing question mark does not appear.
+
+
+*If the issue persists, insert your Mac OS X installation disc. Be sure to either use the disc that came with your Mac, or, if you installed a later Mac OS X version from disc, use the newer disc.
+
+
+*MacBook Air note: On a MacBook Air, there are two options for starting up from Mac OS X media: Either connect a MacBook Air SuperDrive to the MacBook Air via the USB port and restart the computer, holding down the C key during startup, or use Remote Install Mac OS X to startup from a system software DVD that's located on a partner computer. Once started up from Mac OS X media, skip to step 3.
+
+
+*Restart the computer, then hold the C key during startup.
+
+
+*From the Utilities menu, choose Disk Utility. Don't click Continue.
+
+
+*Select your Mac OS X disk (named "Macintosh HD" by default) in the left side of the Disk Utility window.
+
+
+*Click the First Aid tab.
+
+
+*Click Repair Disk to verify and repair any issues with your Mac OS X startup disk.
+
+
+*After repairing the disk, try to start up normally.
+Important: If Disk Utility finds issues it cannot repair, you may need to back up as much of your data as possible (or use Time Machine to back up to a different disk), then erase the disk and reinstall Mac OS X.
+
+
+*If the issue persists, and Disk Utility didn't find any irreparable issues, quit Disk Utility, quit the Installer, select your disk when prompted, and restart.
+
+
+*If the issue continues, reset PRAM. Note: After resetting PRAM, if the computer starts up normally, reselect the startup disk in the Startup Disk preferences.
+
+
+*If none of these steps resolve the issue, start up from the Mac OS X Installation disc and reinstall Mac OS X.
+From:
+A flashing question mark appears when you start your Mac 
+http://support.apple.com/kb/ts1440
+
+A: It means the volume you're trying to boot from is not bootable - perhaps the /System directory has been deleted, or an OS hasn't been installed at all, or the disk could even be failing.
+
+A: It means that the computer can't find a usable disk with a usable operating system on it.
+Put in the Mac OS X Install DVD that came with your computer. Hold down the c key on the keyboard and keep holding it as you turn on the computer.
+Try to reinstall the operating system. If the installer can't find a disk to use it means that there is a problem with the hard drive.
+If you can successfully reinstall, that should fix the problem. There's no way to know for sure how much of your data will survive.
+Good luck!

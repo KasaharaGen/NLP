@@ -1,0 +1,25 @@
+Q: What tools are people using to check for Lion compatible software? I don't have a lot of extra software on my Mac, but wondered what tools people are finding useful for aggregating or checking that existing software is ready for Lion.
+I'm also wondering if I need to buy new versions of iLife - will iLife 08 work OK with Lion?
+I almost hesitate to ask, since the best solution is to dutifully check with each vendor - they are the best resource, but has anyone found a good resource that lists or aggregates software that is either known to have issues or is reported to be good to go Lion?
+
+A: I've used RoaringApps' Compatibility Table, which seems fairly comprehensive.
+However, their servers seem a bit bogged-down at the moment.
+(edit - as of July 26 - it's still very slow to use)
+
+A: lipo
+If you have lipo, probably installed with Xcode, a four-line command will list some files that are PowerPC-only: 
+sh
+2>/dev/null find ~/Applications /Applications -type f -perm +111 -exec lipo \
+-info '{}' ';' | grep -w Non-fat | grep -w ppc &&\
+exit
+
+I experimented with the script in an application,  http://www.wuala.com/grahamperrin/public/2011/07/12/ppc-lister/ for anyone who's interested. I stopped experimenting when I realised that lipo is probably not present on the average Mac. 
+Either way, what's above is a rough approach. Finding some thing PowerPC-only within an .app may not mean that the .app as a whole is incompatible with Lion. 
+System Information
+(Successor to System Profiler)
+The list of applications produced by System Information is better for identifying .app bundles that are PowerPC-only. 
+You can copy from the bottom half of the window, but there are sometimes ten or more lines per application. In System Information 10.7 (733) you can not copy simpler lines from the top half of the window. 
+
+A: While this is not directly germane to your question, I hope you will find it useful.
+I use CNET's TechTracker to scan my Applications folder each day and inform me if there are any newer versions or updates of any of the software programs I have installed on my system. I can then download all available updates directly from a single page on download.cnet.com in most cases. It's a useful service and the basic version is free. It is particularly helpful in times such as this when Apple has recently released a new operating system, because many software publishers are putting out new updates all the time.
+

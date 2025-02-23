@@ -1,0 +1,22 @@
+Q: Rollback Python2.7 Installation How do I reconfigure an installation of Python 2.7, on Snow Leopard, so that the OS uses the default 2.6 but leaves my 2.7 installation, and its installed modules, for use under virtualenv?  Basically trying to fix the mistake of getting at 2.7 directly rather than through virtualenv.
+Technicalia:
+
+
+*
+
+*OSX 10.6.8
+
+*2.7 installation was probably from source
+
+*2.7 residing in /Library/Frameworks/Python.framework/Versions/2.7/bin/python
+
+*python2.6 at /usr/bin/python2.6, a symlink to /System/Library/Versions...
+
+*there exists a file /usr/bin/python; << /usr/bin/python -V >> returns Python 2.6.1
+
+
+A: OS python scripts will use the default as the scripts look for /usr/bin/python not the one on the path.
+If you want python at the command prompt to use 2.6 I would remove /Library/Frameworks/Python.framework/Versions/2.7/bin/ from the path.
+To get the bare 2.7 python you will need to use the full path.
+If virtualenv is not installed for 2.7 you need easy_install - which should be in /Library/Frameworks/Python.framework/Versions/2.7/bin /Library/Frameworks/Python.framework/Versions/2.7/bin/easy_install virtualenv(if that is not there you should add distribute or setuptools.)
+To create a 2/7 vitualenv run /Library/Frameworks/Python.framework/Versions/2.7/bin/python virtualenv.py ENV then running ENV/bin/python gives you the 2.7 version - as would running the activate script to add the virtualenv python to the from of your path for the rest of the Terminal session.

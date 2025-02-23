@@ -1,0 +1,88 @@
+Q: On OS X, what files are excluded by rule from a Time Machine backup? In addition to whatever files I may choose to exclude, what files does the system exclude by rule or classification?
+
+It might make sense not to backup Trash or Caches, but I'm looking for a way to tell what files are skipped "behind the scenes." Knowing if the system maintains an exclusion list or exclusion pattern would be very helpful in managing larger groups of macs.
+
+A: You'll probably find this useful - http://hints.macworld.com/article.php?story=20080328025026826
+Specifically:
+sudo mdfind "com_apple_backup_excludeItem = 'com.apple.backupd'"
+
+Will return what is being ignored. Apps can tell TimeMachine to ignore certain files.
+
+A: The root folders of snapshots also have a property list with folders that were excluded from the snapshot.
+sudo defaults read /Volumes/Time\ Machine/Backups.backupdb/*/Latest/.exclusions.plist
+
+My latest snapshot included the folders in StdExclusions.plist and the folders excluded in Time Machine's preferences. It didn't include files or folders that just had the com.apple.metadata:com_apple_backup_excludeItem extended attribute.
+
+A: If you want to check for the presence of the extended attribute com.apple.metadata:com_apple_backup_excludeItem on a specific file/directory you can use the xattr command:
+xattr path_to_file_name
+
+Or the mdls command (which will also show you the metadata attributes):
+mdls path_to_file_name
+
+But the best way to check if a file/dir is excluded from backup is to use tmutil, as suggested above, since it also checks whether it is on any exclusion list:
+tmutil isexcluded path_to_file_name
+
+
+A: In earlier versions of macOS (pre-11.x) there was a built-in list of exclusions stored in /System/Library/CoreServices/backupd.bundle/Contents/Resources/StdExclusions.plist. It's a bit too long to paste here comfortably, so I've posted a copy StdExclusions.plist (10.7.1) on Pastebin. There also is StdExclusions.plist (10.6.8 Server) on Pastebin.
+Some of the more obvious user file exclusions are Trash, Document revisions and MobileBackups from the local Time Machine store are all excluded. The rest of the exclusions are for system things like caches and databases that exist to index other files where the system can regenerate these databases after a restore.
+
+In addition, apps can use a file's metadata to exclude a file from backups. You can view this list of files by running the command:
+sudo mdfind "com_apple_backup_excludeItem = 'com.apple.backupd'"
+
+On my system this outputs the following:
+/Users/brant/Library/Calendars/Calendar Cache
+/Users/brant/Music/iTunes/iTunes Music Library.xml
+/Users/brant/Library/iTunes/iPod Software Updates
+/Users/brant/Library/iTunes/iPad Software Updates
+/Users/brant/Library/iTunes/iPhone Software Updates
+/Users/brant/Pictures/iPod Photo Cache
+/Volumes/Archive/brant/Pictures/iPhoto Library/iPod Photo Cache
+/Volumes/Archive/brant/Pictures/iPhoto Library/AlbumData.xml
+/Users/brant/Library/Application Support/Google/Chrome/Safe Browsing Csd Whitelist
+/Users/brant/Library/Application Support/Google/Chrome/Safe Browsing Bloom
+/Users/brant/Library/Application Support/Google/Chrome/Safe Browsing Bloom Filter 2
+/Users/brant/Library/Application Support/Google/Chrome/Safe Browsing Download
+/Users/brant/Documents/Virtual Machines/Visual Studio.pvm/{ae6f7518-762e-4fcd-b166-c7a914fc237f}.mem
+/Users/brant/Music/iTunes/Album Artwork/Cache
+/Users/brant/Library/Saved Application State
+/Users/brant/Library/Application Support/Google/Chrome/Default/History-journal
+/Users/brant/Library/Application Support/Google/Chrome/Default/Favicons-journal
+/Users/brant/Library/Application Support/Google/Chrome/Default/Favicons
+/Users/brant/Library/Application Support/Google/Chrome/Default/History
+/Users/brant/Library/Icons/WebpageIcons.db
+/Users/brant/Library/Safari/WebpageIcons.db
+
+As you can see, there are a few files here which various apps have told Time Machine not to bother with. Internally, this works by changing the extended attribute com.apple.metadata:com_apple_backup_excludeItem.
+Furthermore, on Lion, the tmutil command allows you to query, set, and delete file exclusions from the command line:
+
+*
+
+*tmutil isexcluded _item_ will determine if the volume, directory or file is currently excluded.
+
+*tmutil addexclusion _item_ sets an exclusion rule so that the item (even if moved to a new location or renamed) will be excluded from future backups.
+
+*tmutil addexclusion -p _item_ sets an exclusion rule so that the item path is excluded. This remains unchanged so if the file moves it will be backed up if not at this exact path and also will prevent backing up a file if it comes back in the same location as the rule specifies.
+
+*tmutil removeexclusion _item_ removed either type of exclusion rule as appropriate.
+
+
+A: By default, Apple Time Machine does not back up:
+
+
+*
+
+*System log files
+
+*Spotlight indexes
+
+*Cache files of any type
+
+*Files in the Trash (or any other user's Trash)
+
+*Temporary files
+
+*Specific application data that an app may flag for Time Machine to not back up
+
+
+This applies to all versions of Mac OS X which have Time Machine.
+Source: Kevin M. White. Apple Training Series: Mac OS X Support Essentials v10.6. Peachpit Press.

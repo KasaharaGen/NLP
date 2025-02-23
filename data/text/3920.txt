@@ -1,0 +1,15 @@
+Q: Copying text from a file using Quick Look? Anyone know of a way to simply select and copy text from a file open in Quick Look? 
+Our project managers really enjoy sending out change requests as attached .doc files, and I'd really love to be able to hit spacebar, copy the text, and paste the text into my preferred editor without having to fire up Word (or Office alternative). 
+
+A: If you want it in your clipboard, how about:
+textutil -convert txt -stdout file.doc  | pbcopy
+If you want it in a TXT file, textutil can put it right there for you too.
+If you aren't on the command line, then you can make this an app via Automator and bind that to a keystroke other than QuickView Space
+
+A: If you really want to copy text from Quick Look you can try the default
+QLEnableTextSelection -bool TRUE
+
+Open Terminal.app and paste this on the command line
+defaults write com.apple.finder QLEnableTextSelection -bool TRUE
+
+press return and restart the Finder (or Logout and Login) and you can select and copy text direct in QL.

@@ -1,0 +1,16 @@
+Q: How do I suppress the address bar in mobile Safari? When I add the Nibbble web app to my iPhone home page, it not only installs an icon, but when run, also hides all of the mobile Safari chrome.
+How does it achieve this?
+
+A: You only need the first part of this code to do what you ask, but the rest may also be helpful.
+// hide the browser chrome
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+
+//set the phone status bar style; can be grey, black, or black translucent
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+// set the viewport for iOS
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+
+// set a custom icon for when a user bookmarks the app to the home screen
+<link rel="apple-touch-icon" href="/path/to/icon.png" />
+

@@ -1,0 +1,17 @@
+Q: sshdfilter and ipfw - why are my rules flushed so often? I have sshdfilter setup to maintain ipfw rules when someone is un invitedly trying to login my system. This has been working quite a while. Since a while - beginning to suspect the last lion upgrade (10.7.2) - I see sshdfilter adding rules and, when I check, I don't see the rules in ipfw using 'ipfw show'. When I add them manually, they show but again, after a while they are gone.
+What I found in /var/log/system.log are messages like:
+Nov  6 21:53:12 mac servermgrd[31448]: servermgr_ipfilter:ipfw config:Notice:Flushed IPv4 rules
+Nov  6 21:53:12 mac servermgrd[31448]: servermgr_ipfilter:ipfw config:Notice:Flushed IPv6 rules
+
+and I assume that after such a flush, my rules are in bit heaven.
+How can I prevent my blocks are flushed?
+My setup looks very familiar to sshdfilter improvements 
+edit: In the meantime I changed sshdfilterrc to add the rules to /etc/ipfilter/ipfw.conf. This file is imported when the flush is executed. Disadvantage is that this file has to be maintained....
+
+A: Change /etc/sshdfilterrc to add the rules to /etc/ipfilter/ipfw.conf. This file is imported when the flush is executed. Disadvantage is that this file has to be maintained....
+This prevents the blocks staying in bit heaven when the flush comes along because this file is read after the flush is executed.
+edit: on request added changes I made in /etc/sshdfilterrc
+firewalladd='/sbin/ipfw add $idx deny all from $ip to any in; echo add $idx deny all from $ip to any in >> /etc/ipfilter/ipfw.conf;echo +`date` $ip >>/etc/ipfilter/sshdfilter_block.log'
+firewalldel='/sbin/ipfw del $idx deny all from $ip to any in;grep -v " $ip ">/tmp/ipfw.conf;mv /tmp/ipfw.conf /etc/ipfilter/ipfw.conf;echo -`date` $ip >>/etc/ipfilter/sshdfilter_block.log'
+
+this takes care of the block and the block Cancel actions, including some block.log to see when and how long an ip has been blocked.

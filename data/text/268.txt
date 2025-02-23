@@ -1,0 +1,31 @@
+Q: Spotlight indexing appears stuck, what can I do? My Spotlight index got corrupted, preventing me from searching messages in Mail.app. I added my HD to Spotlight's privacy list to delete the index. I then removed it from the privacy list so Spotlight would reindex the drive from scratch.
+I have done this before with no real problem.
+However, this time Spotlight appears to be stuck. It's been "Estimating indexing time" for about 6 hours now.
+What can/should I do?
+
+A: You can try to temporarily disable Spotlight, removing its files and then reenabling it. 
+The process to do this involves executing Terminal commands, so please pay attention and triple check each step.
+Open a Terminal.app (/Applications/Utilities/Terminal.app) and type: 
+cd /Volumes
+ls -l
+
+Examine the output of that, one should be your “broken” Volume. Once you have it identified, proceed with these steps, all in the Terminal. The first time you execute a command, your password may be required, this is normal.
+The output may look like: 
+lrwxr-xr-x   1 root    admin     1 Sep  2 12:23 MacintoshHD -> /
+
+So the name you’re after is “MacintoshHD”.  
+Step Number One: Disable Spotlight for your Drive.
+sudo mdutil -i off "/Volumes/the_name_you_have_identified_before"
+
+Step Number Two: Remove the indexes from the Drive.
+sudo mdutil -E "/Volumes/the_name_you_have_identified_before"
+
+Step Number Three: Eliminate all Spotlight Files from the Drive. (two commands)
+cd "/Volumes/the_name_you_have_identified_before"
+sudo rm -fr .Spotlight-V100
+
+Be careful with the last command, make sure you type it exactly as it appears.
+Step Number Four: Re-enable spotlight in the Drive.
+sudo mdutil -i on "/Volumes/the_name_you_have_identified_before"
+
+Now this should trigger a Spotlight complete re-indexing. You have to be extremely patient with it. Spotlight sometimes appears to be frozen but it’s really indexing. It’s best to leave it overnight and be patient. 

@@ -1,0 +1,17 @@
+Q: Composing messages in Apple Mail: Displaying text on screen in larger size without changing font size When composing messages in Mail.app, as I now have an HD screen on my MBP, the default Helvetica 12pt appears quite small.  
+I would like to be able to enlarge the text size, but only locally, without changing the font in the message, as I don't want the recipients to have jumbo-size text on their screen.
+Is there a way to perform this kind of "zoom" without using the "Universal access" zoom features which are a little bit too much.
+
+A: You can go ahead and set it to what you want in Mail Preferences.  These settings have no effect on what is seen at the other end.  To do that you have to change the font for each outgoing individually in the New Message pane.
+
+A: I believe that this will allow you to increase font sizes in Mail.app for you but not for recipients of your messages:
+
+Quit Mail and run this in Terminal (adjust "16" to the desired font size in pts):
+defaults write com.apple.mail MinimumHTMLFontSize 16
+
+Source: http://protips.posthaven.com/making-mail-dot-app-fonts-bigger
+
+A: You can also use Command + to enlarge the message font size display, just like in a browser. (although oddly, you can't use Command 0 to revert to 100% zoom?)
+
+A: When going to "Mail > Preferences > Fonts & Colors > Message Font", it changes the font of the message to be sent, and not the font that one visualizes on screen.
+I cannot report the exact menu, as I am away from my Lion at the moment; it could be the menu it is not where I said it is.

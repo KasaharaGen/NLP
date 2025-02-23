@@ -1,0 +1,9 @@
+Q: GOM player not running video I am trying to run movie on GOM player for Mac, when I open the movie, GOM player name appears on top of menu bar, but no player appears. 
+The same .avi file opened well in VLC player. I found out that if there is any other file of same name as .avi but of different extension exist in the folder, GOM player won't run that .avi file. As I have XVZ.avi and XYZ.srt, player didn't opened the file, then I changed the file name to XYZ2.avi. It opened.
+What could be the issue?
+
+A: I'd say it's an issue with GOM Player subtitle renderer. 
+It's probably trying to open/read the subtitles but fails and this failure makes it impossible to play the video (it's probably a bug in GOM Player, since most player would just skip the subtitle and play the movie anyway). 
+I'd suggest you try another player, VLC is fine, Perian works great with QuickTime or MPlayerX which is free on the Mac App Store. And they all play subtitles, also.
+
+A: Just Change your GOM Player SKIN to "BASIC", if it is not.

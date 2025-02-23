@@ -1,0 +1,34 @@
+Q: How do I stop the "Are you sure you want to open it?" dialog box from displaying when I open an app? Every time I open the "Amazon MP3 Downloader" app (by downloading a new MP3 from Amazon.com in Safari) I get this dialog box:
+
+I'm used to seeing this the first time after I open a new app I've downloaded, but usually I don't see the dialog box after the first time I press the "Open" button.
+Is there a setting somewhere I can use to indicate that yes, I am sure I want to open "Amazon MP3 Downloader" without this dialog box?
+
+A: If you need to do this manually on a file (or files) you can run the following command to remove the Quarantine flag:
+xattr -d com.apple.quarantine /PATH/TO/FILE(S)
+
+So in your case since the quarantine flag is not being removed you will want to run the command with sudo as the primary cause for the flag not being removed after hitting "Open" is because you don't have permissions to do so.
+
+A: Create a file called com.apple.DownloadAssessment.plist under Library/Preferences with the following:
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>LSRiskCategoryNeutral</key>
+    <dict>
+      <key>LSRiskCategoryContentTypes</key>
+      <array>
+        <string>public.item</string>
+      </array>
+    </dict>
+  </dict>
+</plist>
+
+Then log out and then log back in.
+Instructions for Snow Leopard are a bit different.
+
+A: Deeper would be a good choice but I would suggest you to use OnyX
+OnyX provides a few more features than Deeper, allowing you to verify the Startup Disk and the structure of its System files and to delete caches.
+
+
+A: if you use Deeper you can mark it in General tab.
+

@@ -1,0 +1,11 @@
+Q: Last import in Address Book A little history: I had a old Nokia 5310. Lost it. I had the contacts backed up in a .vcf file. So imported them to a old Sony Ericsson W700i. Used the W700i for sometime, added some more contacts.
+Not got a new Nokia C5. Wanted to import all the contacts to the Nokia and at the same time add them to Address Book so that I can manage all contacts from Address Book and sync with the new Nokia. (Address Book has some old contacts, that are not required to be on the phone but nevertheless necessary, my wife's contacts imported sometime before etc). (Thanks for reading)
+I exported the contacts from the phone to a .vcf file and imported it in Address Book.
+Wanted to move only these contacts to the Nokia. So thought will open Last Import and sync all of them with the new phone.
+But looks like Last Import holds all of my imports, not just the most recent one.
+I tried to select a group and then import, but the import does not happen to the group. They are imported to the "All Contacts".
+Is there any way to get/select only the most recent imported contacts?
+
+A: Are you comfortable with AppleScript? If so, you could write a script to export the contacts created after a date of your choosing.
+
+A: A smart group with a rule of "card was updated after (date)" would get you close to the correct list.  Also, in Lion, Last Import resets the list correctly for each import performed.

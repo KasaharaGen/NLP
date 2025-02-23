@@ -1,0 +1,43 @@
+Q: Remove Specific Text from Multiple Descriptions I've recently upgraded to iPhoto '11 (couldn't resist the pricing on the new app store) and as I'm adding more meta-data to my library and generally organizing things (places, faces, etc... I hadn't upgraded since '08) I've noticed something odd in my photos.  Every photo in my library has a description (though many are short), but it would appear that somehow the description of one of the photos has been appended to many.
+I don't know if maybe I accidentally screwed up a batch change at some point in the past, or if the library upgrade somehow messed up, or what else may have happened.  But what I need to do is fix these somehow.
+Now, manually editing is something of a daunting task.  Within a library of 21,248 photos, 18,858 of them have this additional text.  The one thing I do have going for me is that it's a specific string.  If there's a way to "remove this string from everywhere in the library without removing the rest of any given description" then that would be perfect.
+Is there anything I can do like this?  Maybe even manually editing a library file in a text editor?  (Would that break anything else in iPhoto if its library was edited outside of the application, even while it's not running?)  Does anybody have any ideas?
+
+A: Consider using an AppleScript to perform this task. The following AppleScript will get you started:
+tell application "iPhoto"
+
+    repeat with i from 1 to number of items in photos
+
+        set myPhoto to item i of photos
+
+        set comment of myPhoto to replaceText("find this", "replace with this", comment of myPhoto)
+
+    end repeat
+
+end tell
+
+-- replaceText from Bruce Phillips (http://brucep.net/2007/replace-text/)
+on replaceText(find, replace, subject)
+    set prevTIDs to text item delimiters of AppleScript
+    set text item delimiters of AppleScript to find
+    set subject to text items of subject
+
+    set text item delimiters of AppleScript to replace
+    set subject to "" & subject
+    set text item delimiters of AppleScript to prevTIDs
+
+    return subject
+end replaceText
+
+To use this AppleScript, copy and paste it into a new AppleScript Editor document.
+In this situation, you want to find and remove a specific piece of text. Modify the above AppleScript as follows:
+
+
+*
+
+*Change the "find this" segment and enter the text to find.
+
+*Change the "replace with this" segment to be blank, "".
+
+
+With these changes in place, save the document, and click Run in the toolbar. Depending on the number of photos, this AppleScript will take a long time; potentially hours.

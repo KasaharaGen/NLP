@@ -1,0 +1,18 @@
+Q: What can change so the app store fails on a network where purchases used to work fine? Yesterday, I noticed that when I'm at my office on the wireless network, and I purchase or try to update an app, it doesn't work. Doesn't matter if it is on my iPad or iPhone.  I've never had this problem until this week.
+I'm not sure if it has anything to do with the 4.3 update, or something with my firewall ( I have complete access to my firewall btw ). I have never had this problem until the other day and the only things that have changed are:
+
+
+*
+
+*Cisco Tech support worked on my firewall. No major config changes though
+
+*Upgraded all my devices to 4.3
+
+
+When I'm at home or on 3G everything works as expected. What should I be looking for in my firewall and/or DNS servers to resolve this?
+EDIT: I just tried something and got some weird results:
+I just tried downloading the free app AppShopper and it worked on both iPad and iPhone. If I try to download the Free (but pay to upgrade) app Hunters: Episode One HD on my iPad it does not work
+
+A: You should be able to filter your firewall logs down to requests originating from your computer/your phone's local IP address, and look it it's outgoing requests.
+I'm pretty sure all that app download traffic takes place over bog standard HTTPS, 443/tcp. 
+Ensure all apps have stopped running, open App Store, move over to the Updates category, wait for all traffic (app image requests and the like) to die down, then tap update. The next series of requests should fail, and you should have the reason relevant to your own configuration.

@@ -1,0 +1,5 @@
+Q: How can I skip the Welcome screen after installing OS X? How can I skip the Welcome Video/Music that comes up after a fresh install of OS X? I believe you could skip this in Windows by hitting ESC, but I cannot find a key that has that same effect in OS X.
+
+A: Unfortunately you can not skip the opening movie - but you can skip the registration process which shows up later by pressing Command-Q. When the Setup process is complete the file .AppleSetupDone shows up in /var/db. (If this file exists it will skip the Setup process altogether)
+
+A: Try pressing cmd+q. It’s a Quicktime movie after all.

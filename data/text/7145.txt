@@ -1,0 +1,35 @@
+Q: Is it possible to disable MacBook trackpad under Windows 7? Is it possible to disable trackpad when running Windows 7 on Macbook Air/Pro? Anyone with this setup can confirm that it's possible?
+(I don't use this setup yet, I'm just thinking about it, and want to make sure it supports my needs).
+
+A: Well, good news. I figured out how to stop that annoying errant cursor from suddenly moving my typing to an unintended place.
+Ignore all you have read above.
+On the Start bar at the bottom on your screen, far right find the Boot Camp icon.
+Click it
+See "Boot Camp Control Panel..."
+Click it
+Click Yes to allowing to proceed
+See at the top tabs "Trackpad"
+Click it
+unclick Tap To Click
+click OK
+Voila!
+Now touching the track pad won't move the cursor...only pressing down to "click" it will.
+
+A: You can disable it in System -> Hardware as far as I remember.
+
+A: Go to Device Manager, expand Human Interface Devices, find the Apple Multi-touch device, right click it, choose disable.  Done!
+
+A: Start > Control Panel > Devices and Printers > Apple Keyboard/Trackpad > Right click, Properties > Hardware > HID- Compliant mouse, MICE and OT.. > Properties > Anable/Disable//
+You must disable the both Mice and ot.. becouse one is for the click's and one is for the mouse movement.
+Greetings,
+Georgi.
+
+
+
+
+A: Via Control Panel you can't. Although you can disable the "touch click", and that way the click is made by "clicking" the trackpad, thus reducing accidental clicking.
+There are 3rd-party tools for disabling it easily, or when a mouse is connected, but the few I tried (Trackpad++ and TrackpadMagic) didn't work for me (MBA Mid2011 + Win7)
+
+A: Disable the first option just like the example:
+
+A: You can disable it in bootcamp control panel.

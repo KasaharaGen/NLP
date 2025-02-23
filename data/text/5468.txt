@@ -1,0 +1,80 @@
+Q: Is there a similarly fast alternative to Crtl + Shift + Eject for new Macbook that lack eject keys? The new MacBook Air and Pro without optical drives lack an Eject key.
+I use Ctrl + Shift + Eject a lot to put my display to sleep at the simple press of three keys. Without the Eject key being there anymore I'm wondering if there's an alternative to those very handy shortcuts which required the Eject key.
+The alternatives I've found so far are not too good:
+
+
+*
+
+*in Alfred type "lock" - too many strokes for fast computer locking
+
+*a hot corner in the bottom left to put the display to sleep - ok, but I get there by error too often and lock the computer for serious productivity bummers
+
+*close the lid of the MacBook Air - puts the Mac to sleep completely and therefore not very useful, when it should keep doing what it's doing.
+Is there a similarly fast alternative to Crtl + Shift + Eject for new Macbook?
+
+A: If you just need to lock the screen, you can use 
+Control ⌃ + Command ⌘ + Q
+available since High Sierra.
+
+A: The easiest way to lock your computer is to set require password immediately and turn off the display with the following key combination:
+control + shift + power
+I find this super helpful and a great replacement for ctrl + shift + delete in Windows.
+
+A: There's a writeup here about using Automator to assign the keyboard shortcut of your choice to lock the screen.
+
+A: control ⌃+shift ⇧+eject ⏏ or control ⌃+shift ⇧+power ⌽ should instantly put your display to sleep. 
+I also recomend you to setup hot corner in System preferences -> Mission control -> Hot Corners.
+
+If you want to put machine to sleep use command ⌘+option ⌥+power ⌽
+
+A: I'm using a MacBook Air 2012 with Mountain Lion, and the new keyboard shortcut is:
+Control+Shift+Power
+
+A: Simple combination for Macs without eject button:
+Ctrl+Shift+FN+Power
+Don't forget the FN button (& power replaces earlier Eject)
+
+A: On my 2018 MacBook Pro with Touch Bar, none of the key combinations mentioned that use the power button (now the Touch ID button) worked.
+I couldn’t find an existing keyboard shortcut to put the screen to sleep, so I used the software BetterTouchTool (costs money) to create a custom Touch Bar button for it. See the button “Put Display to Sleep” in this screenshot:
+
+I can press that button whenever the BetterTouchTool Touch Bar is expanded. It behaves equivalently to the old Ctrl+Shift+Eject shortcut – it puts the display to sleep immediately, without locking the screen or putting the computer to sleep.
+When configuring the button, I gave the button the name “Put Display to Sleep” and set the icon to this blank screen icon from Icons8. The action I assigned was BetterTouchTool’s predefined action “Sleep Display”.
+
+
+(See also my newer answer about creating a custom keyboard shortcut to put the display to sleep. I have stopped using the above custom Touch Bar button because I found it cumbersome to expand the BetterTouchTool Touch Bar when I needed it—I now use only my custom keyboard shortcut.)
+
+A: I just found that I could lock my screen using the following shortcut:
+Control ⌃+Shift ⇧+Power ⌽
+Require password immediately after sleep or screen saver begins should be checked in the Security & Privacy in System Preferences panel if you want to ensure a slept screen is also securely locked.
+
+A: Another quick keyboard option is to use Alfred to perform basic system commands. However, I've chosen to customise my commands to put exclamation marks before shutdown, restart and logout to avoid the risk of accidentally activating them.
+
+
+A: My current solution is to use a third-party program to assign a custom keyboard shortcut to an action that puts the display to sleep. The program I use to define the global shortcut is Keyboard Maestro (costs money), but many other apps can do that, including the free program Quicksilver.
+
+The configuration of my “Put Display to Sleep” keyboard macro in Keyboard Maestro
+Configure your program to run the following shell script when the keyboard shortcut is pressed (source):
+pmset displaysleepnow
+
+Or, if your keyboard macro program has a built-in “Sleep Display” or “Sleep Screen” action, you can use that as the action instead, as I did in the above screenshot.
+The hot key to trigger that command can be whatever you want. I have configured my macro to accept any of these:
+
+
+*
+
+*Ctrl+Shift+S – the shortcut I recommend, because it only needs one hand
+
+*Ctrl+Shift+Delete – similar in shape to the old shortcut with Eject
+
+*fn+Ctrl+Shift+Delete
+I would have used the hotkey Ctrl+Shift+Touch ID / Power, but it seems like macOS doesn’t let programs listen to presses of the Touch ID / Power key.
+(If you would rather use a custom Touch Bar button, see my previous answer about BetterTouchTool. I gave up on that solution because I didn’t always have the BetterTouchTool Touch Bar open.)
+
+A: Are you just trying to put the display to sleep, or to lock it? If you're just putting the display to sleep, turning the brightness down all the way works as well. 
+BTW Control+Shift+Power does NOT work on my MacBook Pro 10,1 (Retina).
+
+A: On Mavericks (OS X 10.9) I can just use the Power button to put the display to sleep.
+I've tested this on a Mid 2011 Macbook Air and a late 2013 Macbook Pro.
+
+A: On Mavericks, simply press the power button to put the display to sleep or Ctrl-Shift-Power works as well.
+To put your machine to sleep, use Cmd-Option-Power.

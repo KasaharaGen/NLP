@@ -1,0 +1,77 @@
+Q: Possible to Hide Mac Partition When in Windows? I've found out that if I install Windows 7 and use the Snow Leopard Boot Camp drivers (Which I need for the graphics chipset drivers.), the Mac partition appears and is read-only. I'm quite concerned about this, because if my Windows partition is infected with malware, it could be a possibility that the hackers could take data from my Mac partition, even if it was read-only.
+Is there any way to turn off Mac partition support while booted in Windows?
+
+A: I'm not a windows guy, so the steps are probably different but this SuperUser question asks how to disable a partition under Windows XP. The steps may be similar under Windows 7:
+
+You could remove the drive letter
+  assignment for the specific
+  partition(s):
+  
+  
+*
+  
+*Go to Control Panel > Administrative Tools > Computer
+  Management
+  
+*Expand Computer Management (Local) > Storage > Disk Management
+  
+*Right click the specific partition you like to hide and select "Change
+  Drive Letter and Paths"
+  
+*Select the drive letter shown, click "Remove" and click "OK"
+  
+
+
+A: From a theoretical standpoint, even if you delete the Boot Camp drivers and/or remove the drive letter, a virus could still interface with the disk at very low level and read your data. From a practical standpoint, this is unlikely to happen as there is much more low-hanging fruit for hackers.
+Still, if you want to run Windows on your Mac without the possibility, even theoretical, of the compromised Windows system being able to access your Mac data, you have essentially two options:
+
+
+*
+
+*Run Windows in a VM and only allow it access to its virtual disk
+
+*Turn FileVault on for your user account
+
+
+For the latter option the theoretical virus could still access your applications and general system settings, but it would not be able to access any user data without the FileVault password.
+
+A: Remove the following keys from the Windows Registry (backup first) to disable the Apple HFS driver:
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AppleHFS]
+"Type"=dword:00000002
+"ErrorControl"=dword:00000001
+"Start"=dword:00000000
+"Group"="File System"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AppleMNT]
+"Type"=dword:00000002
+"ErrorControl"=dword:00000001
+"Start"=dword:00000000
+"Group"="File System"
+
+You can use the same registry fragment above to restore HFS functionality if you forgot to backup your registry before making any changes.
+
+A: I’m sure someone with more Windows experience will provide a better alternative here, because if that is possible, it’s only possible through a Windows setting/hack/etc. I’m sure you can find the HFS+ driver and uninstall it from windows… but I don’t use bootcamp. :(
+
+A: In Windows, you can go into Disk Management and choose "Change Drive Letter and Paths..." and then Remove the existing drive letter. Then it won't show up in My Computer etc.
+
+A: I hid my mac partition (macbppkpro) in windows this way:
+
+
+*
+
+*Boot in Mac
+
+*Open SystemPreferences(Apple Icon on Topleft Corner)
+
+*Go to "Security and Privacy"
+
+*Click on "FileVault" tab
+
+*Click on the Lock Icon - "Bottom left corner"
+
+*Supply your credentials
+
+*"Turn on FileVault" button enables - now click on it to encrypt your mac drive. this might take approximately two hours depending on the size of partition. Once the encryption in done restart and boot in windows. You will not see the Mac partition. its not detectable. Mac partition can only be seen when you boot in OS X
+

@@ -1,0 +1,14 @@
+Q: iTerm2.app stopped working Since a couple of hours, when I try to run iTerm2.app, it opens a window, says 
+## exec failed ##
+login No such file or directory
+
+and closes rather fast. Running Terminal.app works and if I run /Applications/iTerm2.app/Contents/MacOS/iTerm from it it works just fine. Any ideas what's going on or how to fix it?
+
+A: Sounds like your Default terminal has it's initial working directory set to some directory that no longer exists.
+Try trashing your iTerm2 settings and starting from scratch. To delete your bookmarks and all other settings move the file ~/Library/Preferences/com.googlecode.iterm2.plist to the Trash.
+
+A: The problem was .MacOSX/environment.plist. I didn't expected it to be the problem because I changed several days ago, but it seems it doesn't get re-loaded until you reboot.
+I'm not 100% sure, but I think the problem was that I was trying to use the PATH variable to define it, I had this:
+PATH => $PATH:/another/one
+
+I've replaced that with a complete path and no $PATH variable, rebooted and now it's working.

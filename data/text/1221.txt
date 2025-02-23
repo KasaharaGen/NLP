@@ -1,0 +1,38 @@
+Q: Can iOS 4 connect automatically to a closed network with a hidden SSID?  Problem: (stressing the "automatically" in the question title).
+I add the hidden network by selecting "other" and entering the SSID. There is no security right now in order to simplify troubleshooting. When the iPod 4 sleeps, goes out of range or the wifi radio is turned off and then on, the iPod will not re-connect to the hidden SSID once within range again. Strange, considering I reset the network configurations before setting up the 1 and only network the iPod 'knows' as well as having installed a configuration profile on the iPod with the wi-fi settings for this hidden SSID. Nothing i try seems to get the iPod to connect automatically. The hidden SSID does appear in the list of networks when I go into wireless settings, but thats not good enough - the iPod needs to connect to the hidden network without any user intervention.
+I should mention the router is a cisco aironet 1100 series AP. The AP has 2 SSIDs: the hidden network and a "Guest" network, and it is broadcasting the Guest network. The Subnets are different, in case anyone was wondering. Also, No, i cannot broadcast the hidden SSID; I'm not looking to change the network settings.
+The iPod is running iOS 4.1(8B117) and is a 4g model.
+Thanks,
+Austin
+
+A: *
+
+*Note -- I haven't tested this or worked with a similar configuration *
+
+
+It isn't clear from your description -- does the iPod auto connect to the "Guest" network?
+If it does, in the Wi-Fi settings I would (in the WiFi settings) turn "Ask to Join Networks" off then tell the machine to forget the "Guest" network, then connect to the hidden network again and then sleep the device and see if it reconnects to the hidden network.
+Or -- Go to Settings then General then Reset and then Reset Network Settings, then power off and power on the device, then reconnect to the hidden network.
+Or -- you could also try Apple's iPhone Configuration Utility, which allows you to set profiles for iOS devices. I haven't messed with this at all, but some folks have mentioned it as a fix.
+
+A: Okay, so this solved the issue for me. Could ber completely wrong because my fix isnt ipod/Iphone related, although the same proplems described above have happened to my ipod.
+*Please note: Precedure will vary for other routers. These instructions are specific to Netgear DGN2000 Wireless-N Router with Built-in DSL Modem.
+Step 1. Using your computer, log into your routers login/Manager page. my default login address is  * http://192.168.0.1 *
+Step 2. Under setup (on the left hand side) click Wireless Settings.
+Step 3. In the first section under "Wireless Network" there is a sub-heading "Mode".
+Select the desired wireless mode. The options are:
+* g & b   - Both 802.11g and 802.11b wireless stations can be used.
+* g only   - Only 802.11g wireless stations can be used.
+* b only   - All 802.11b wireless stations can be used. 802.11g wireless stations can still be used if they can operate in 802.11b mode.
+* Up to 130 Mbps   - Wireless stations that support up to 130 Mbps can be used, such as the WN511B. In this case, your router will transmit two streams with different data in the same channel at the same time.
+* Up to 270 Mbps   - Wireless stations that support up to 270 Mbps can be used, such as the WN511B. Your router will run in channel expansion mode to achieve 270Mbps. This mode will support 40MHz or 20MHz bandwidth. The router will transmit data with expansion or no expansion frame by frame to avoid interference from other APs/clients data transmission. 
+
+The default is "Up to 130 Mbps", which allows all 11b and 11g wireless stations. The NETGEAR WN511B runs at 126 Mbps or 270 Mbps when accessing this router. 
+Mine was set on "Up to 270 Mbps" mode. the iPod/iPhone's do not support this mode very well.
+THe best choice i found was the "Up to 130 Mbps" mode.
+My iPod connected straight away and has worked perfectly with my hidden network.
+Step 4. Be sure to save and apply your settings.
+If this helps anyone, please post a reply. Interested to know if this is "one" solution to what could be one of many problems on this topic, actually works for others.
+<3 Dallen :]
+
+A: Interesting scenario, I don’t believe there’s an existing easy solution to this problem. Part of the problem in solving this particular issue, is that the iPod (and its iOS) are fairly closed environments where you can hardly modify anything beyond what the UI offers. If the device is not reconnecting (despite having knowledge of the network), there’s no magic option to “flip” and expect it to work; especially considering that you’ve stated that nothing on the networking side should/must be changed. Even if changing certain network parameters in the router were allowed by you, I don’t recall anything that could help you there. You might want to try (for the sake of testing) disabling the “other” network, or little things like that. Not because you will necessarily reach a solution, but at least you might find the root of the problem or the cause and either find a workaround or… spiritually deal with it. ;)

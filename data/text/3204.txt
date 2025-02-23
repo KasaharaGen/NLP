@@ -1,0 +1,40 @@
+Q: Remove applications in virtual machine (via VMWare Fusion) from Open With options on Mac OS X I am running Windows 7 in a virtual machine. Now all of its applications are available via the Open With (or even as the default for some) on the Mac. I don't want them there. I've remapped the ones where it was the default, but it is still listed on the Open With menu. How can I remove all of them?
+I have shared folders turned off.
+I've seen this with Parallels too, and I thought I saw a option to turn it off, but I cannot find it. 
+
+A: VMWare 3.1.2
+
+
+*
+
+*Go to Virtual Machine > Settings > Applications > Default Applications
+
+*Uncheck the box: "Open your Mac files and web links using XX applications
+
+
+Parallels 6.0
+
+
+*
+
+*Go to Virtual Machine > Configure > Applications
+
+*Uncheck the box: "Share windows applications with Mac"
+
+
+A: To complete @nuc answer, you also need to 
+
+
+*
+
+*shutdown your virtual machine
+
+*navigate to it in the Finder
+
+*right-click Show Package Content
+
+*delete the Applications folder
+
+
+A: If you are using VMWare 3.x, you can try the Steps mentioned in this Article from the VMWare-Community.
+Additionally, you can trash the file "com.apple.LaunchServices.plist" found in ~/Library/Prefences. The List of Applications listed in the context-menu will be rebuild the next time you try to open a file via the context menu

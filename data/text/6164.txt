@@ -1,0 +1,23 @@
+Q: Is it possible to maximize a Finder window without third-party software? How can I maximize a window in Finder without using third-party software? I read this post but none of these tricks seemed to work. 
+
+A: Move the mouse to the corner of the window where it becomes a resizing arrow and option double-click to fill the screen.
+A double-click on any side or corner will move that side/corner to the edge of the screen. Adding option will affect the opposite side as well.
+
+A: I bought Moom by Many Tricks to solve the Finder's inconsistent zoom behavior. Get it from their website for a free trial and 60-day money-back guarantee. It's been a great solution for me, not just for the Finder problem, but for all my work on a 30-inch Cinema Display.
+
+A: *
+
+*Launch /Applications/Utilities/AppleScript Editor.app and turn on the preference: General » "Show Script menu in menu bar"
+
+*In Terminal, type or copy/paste
+mkdir -p ~/Library/Scripts/Finder
+cd ~/Library/Scripts/Finder
+curl --remote-name http://dl.dropbox.com/u/18414/ase/MaximizeWindow.scpt
+
+*Go to Finder, open a new (non maximized) window
+
+*In the menu bar, look for the the "Scripts" item, then look for Finder, and then MaximizeWindow
+
+Select that, and Voilà!
+p.s. - please note that I am not the original author of that AppleScript. I found it at http://olivierfabre.com/shortcut-to-maximize-the-finder-with-applescript and simply tested it and found it worked really well. It appears to be designed with hard-coded values for the screen-size, but if it can't make the window that big, it simply maximizes it.
+p.p.s. - the scripts menu isn't all that convenient, but there are ways to assign keyboard shortcuts to them, etc. If you were not averse to 3rd party solutions, I would immediately recommend FastScripts and mention that it is free for up to 10 scripts :-)

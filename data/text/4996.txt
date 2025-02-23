@@ -1,0 +1,6 @@
+Q: How to change the location of an updated or newly downloaded App in iTunes? Backstory: iTunes 10.3.1.55 had been installed on Windows Vista 32 bit. It's main purpose is to allow me to move files to my iPod Touch 3rd Generation. Whenever I download an app, it get downloaded to the location "C:\Users\Thomas\Music\iTunes\iTunes Media\Mobile Applications".
+Arc: Because my C: drive was getting full, I created two folders in my D: and moved all my apps from the one default folder in the C: drive to the two folders in the D:. Now, when an app gets updated by iTunes, the update still get saved to the default folder. I am left with both versions of the file; one in C: and the other in D:.
+Question: How do I get an updated or a newly downloaded app from iTunes to save to my respective folders in D:?
+
+A: On windows you can't redirect only these two folders (on OS X and Linux you can) - BUT you can move the whole "iTunes Media" folder to D: then all updates will go there.
+In iTunes "Edit > Preferences...->Advanced Section" you can change the location of the media folder - the new folder on D: doesn't need to have the name "iTunes Media", it just need to have the same structure as it had on C:. 

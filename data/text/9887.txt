@@ -1,0 +1,28 @@
+Q: Macbook Pro won't play any sound This was working earlier today, but suddenly didn't work when I tried to play music in iTunes.
+I open iTunes, select a track, click play, the track doesn't play. The play button toggles between pause and play, but there is no sound and the position status bar does not move.
+So I dropped a little lower level:
+$ afplay audio.mp3 
+2011-12-13 12:28:51.446 afplay[30725:903] AQMEIO_Base::DoStartIO: error -536870184
+2011-12-13 12:28:51.519 afplay[30725:903] AQMEDevice::StartIO: error -536870184
+Error: AudioQueueStart failed (0xe00002d8)
+[exited with 1]
+
+Tried restarting the coreaudio daemon.
+$ sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
+
+Still nothing.
+Failing applications:
+
+
+*
+
+*Quick Look in Finder
+
+*Quick Time
+
+*Youtube content in Google Chrome
+
+
+It would seem to be either some low-level issue, or hardware? Any way I can confirm?
+
+A: meh. A reboot fixed it. What is this, Windows? I would still like to know what caused the problem, what other avenues I should have explored and how to resolve it without rebooting.

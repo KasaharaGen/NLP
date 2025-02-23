@@ -1,0 +1,11 @@
+Q: Creating a new file blocks Textmate When I want to create a new file through the button (left-bottom one) in the project drawer or in the file menu it takes a long time and blocks TextMate and even blocks TextMate totally in some cases.
+I've installed the latest version of TextMate and installed all updates available for Mac OS X.
+Anyone any idea what the problem is?
+
+A: I just tested it with a couple of different massive projects on my MBP and it created a new file right away.
+First guess would be perhaps a bundle or other plugin you've added is interfering with the program operation somehow. You could also try trashing your Textmate preferences file and restart the program to see if that helps (~/Library/Preferences/com.macromates.textmate.plist).
+
+A: Do you have any external drives connected?  Certain external hard drives will go into some sort of dormant mode when they haven't been used in a while, and will block things until they spin back up.  This is triggered by anything requiring filesystem access, whether you're trying to access those drives or not.
+If this is your issue, it'll be very intermittent, and caused by other attempts to access the file system (Open File and Save File dialogs being common).  Furthermore, it won't be limited to just Textmate, but your usage patterns may mean it mostly shows up there.
+The solution, in this case, would be to unplug the external drives when not in use.
+Of course, this isn't to say this /is/ your issue, but it would more or less fix your symptoms.

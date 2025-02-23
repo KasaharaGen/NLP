@@ -1,0 +1,28 @@
+Q: How do I delete all Terminal mail? I set up a cronjob a long time ago that now doesn't exist. Whenever I open up Terminal, it now says "You have mail". I have something like 100 messages that all say the same thing. How do I mass delete all of the messages?
+
+A: I want to reinforce clearly one point how command [delete *],[q] really helped me out in this case. 
+I set a cron job to run like every day in 2018 (if I recall correctly) and forgot about it. 
+Now I realized to check and I discovered 3000 messages in my mailbox! Note to others that a quick edit can pile up reports rapidly.
+
+A: I know this post is old, but I want to contribute with an answer.
+to delete your mail messages do the following:
+sudo rm /var/mail/[user]
+
+And in order to the question, I suggest you do the following to each crontab you do not want to send an email notification (this way your mail will not have mails)
+* * * * * /path/to/script.sh > /dev/null 2>&1
+
+or
+* * * * * command > /dev/null 2>&1
+
+
+A: Launch the UNIX mail utility by running the following at the command prompt (in e.g. Terminal.app):
+$ mail
+
+You'll see a list of all your messages. From the mail prompt, do
+? delete *
+? q
+
+And that should be it. Make sure do to the q after the delete * command, that saves the changes to disk.
+
+A: You may also go the direct route and just run : > /var/mail/$USER to empty the mail file.
+PS: Deleting the mail file requires sudo, just setting it to empty is enough.

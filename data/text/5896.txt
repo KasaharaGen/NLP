@@ -1,0 +1,46 @@
+Q: Ping all IPs in LAN How would I find out all the devices on my LAN by pinging them all in terminal? What would the code be?
+
+A: Or ping the broadcast address  
+ping -c 3 192.168.1.255 | grep 'bytes from' | awk '{ print $4 }' | sort | uniq
+
+
+A: Probably the easiest way to do this is to use a command line utility called nmap. You can download the binaries from the main site. Alternatively, if you have Homebrew installed, you can use that to install nmap from a terminal by typing brew install nmap
+Once you have downloaded and installed nmap, you need one other piece of information about your LAN - what block of IP address are used for machines on it. The easiest way to find that out is to run ifconfig -a inet from a terminal. When you type that in, either your en0 or en1 network interface should have an inet entry (ignore the inet address for lo0). It's the IP address next to that you're interested in. Here is an  example output from my machine:
+$ ifconfig -a inet
+lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> mtu 16384
+    options=3<RXCSUM,TXCSUM>
+    inet 127.0.0.1 netmask 0xff000000
+gif0: flags=8010<POINTOPOINT,MULTICAST> mtu 1280
+stf0: flags=0<> mtu 1280
+en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+    options=27<RXCSUM,TXCSUM,VLAN_MTU,TSO4>
+en1: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+    inet 192.168.0.6 netmask 0xffffff00 broadcast 192.168.0.255
+p2p0: flags=8843<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST> mtu 2304
+fw0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 4078
+
+On my network, my machine has the address 192.168.0.6 on interface en1.
+NOTE: depending on how many machines you have on your network, pinging them all could take a very very long time. In the following examples, I'll assume you have less than 256 devices on your network and that they are all in the same subnet - likely to be the case if this is a home network.
+If your inet looks like 192.168.N.N (where each N is a number between 0-255) then the following command will try to ping addresses 192.168.N.0 to 192.168.N.255 on your network, and report any machines which respond (you need to use sudo so that nmap can use ICMP pings). Fill in the N sections with the matching number in your inet address:
+sudo nmap -sn -PE 192.168.N.0/24
+
+For example, if your inet address was reported as 192.168.1.100, you should type: sudo nmap -sn -PE 192.168.1.0/24
+If your inet address looks like 10.N.N.N, use this, again filling in the N sections with your own reported numbers:
+sudo nmap -sn -PE 10.N.N.0/24
+
+And finally, if it looks like 172.N.N.N, use this:
+sudo nmap -sn -PE 172.N.N.0/24
+
+Searching Larger Networks
+If you want to expand your search to include more machines, you have to adjust the number after the slash in the address section for the command. In the three commands above, I've specified /24. That means nmap will use the first 24 bits of the IP address you've specified and automatically generate the other numbers (in the first example nmap uses 192.168.N as the exact part, as each group is 8 bits). So to search more addresses decrease the number after the slash. /24 will search 256 address, /23 will search 512 address, /22 will search 1024.
+Every time you decrease the number by 1, twice as many addresses are searched - this is why decreasing it too much can make the search take a very very long time. For example, to search all 192.168.N.N addresses, you would specify 192.168.0.0/16 - but that will have to ping 65536 machines. Assuming 0.25 pings per second, that would take 4 hours to complete...
+I don't actually know how many pings per second nmap can send, but if you try a full scan, you may have to leave it overnight, or at least have a long coffee.
+Those nmap Options
+Just so you know, here's what the other nmap options I specified mean:
+-sn (No port scan)
+
+-PE (ICMP ping echo)
+
+As the "no port scan" option may hint at, you can do all sorts of very funky things with nmap, such as checking to see what ports are open on a machine (to tell what services they are probably running) and it can even guess which OS the target machine is running with a pretty decent degree of accuracy. If you need more advanced things like that, check the nmap docs. I'd link to them, but I'm not renowned enough to post more than 2 links yet.
+
+A: If everything is turned on, responsive and in one subnet then something like 'ping 192.168.1' for a few seconds followed by 'arp -a' should give you a list of all the devices with ip address and MAC address.

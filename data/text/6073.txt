@@ -1,0 +1,25 @@
+Q: How can I fix broken font-rendering in Safari? On some sites (especially this one) I cannot read certain parts, there are only A's displayed.
+
+How can I fix this?
+
+A: If the problem persists even after attempting my first solution, try using this command in terminal:
+mv ~/Library/Safari/Bookmarks.plist ~/Desktop;
+mv ~/Library/Safari/TopSites.plist ~/Desktop;
+rm ~/Library/Preferences/com.apple.Safari.plist;
+rm ~/Library/Preferences/com.apple.Safari.plist.lockfile;
+rm ~/Library/Preferences/com.apple.Safari.RSS.plist;
+rm ~/Library/Caches/com.apple.Safari;
+rm ~/Library/Caches/com.apple.safaridavclient;
+rm ~/Library/Safari;
+mv ~/Desktop ~/Library/Safari/Bookmarks.plist;
+mv ~/Desktop ~/Library/Safari/TopSites.plist;
+
+This will delete all of Safari's (possibly currupt/broken) caches and preferences. In a sense it's like reset Safari to a clean slate. This set of commands WILL backup your bookmarks and top sites, by moving them to your desktop temporarily, and then restore them after deleting the temporary files. YOU WILL LOSE ALL INFORMATION OTHER THAN TOPSITES AND BOOKMARKS.
+Just incase, try manually backing up the ~/Library/Safari/Bookmarks.plist ~/Library/Safari/TopSites.plist files.
+
+A: For future reference, please insert screenshots inline with the text using the built in photo uploader. And to answer your question, try restoring your font settings to these default settings:
+
+Especially pay attentions to the "Default encoding" option.
+
+A: You are probably using a third-party font management utility like Extensis Suitcase Fusion or Linotype FontExplorer. These have been widely reported to cause problems with Safari 5.1 in Snow Leopard and Lion.
+Disable your font management utility, then clean the font cache again. Contact the company that makes the font management utility and see if they have a new update to address the problems with Safari 5.1.

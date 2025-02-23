@@ -1,0 +1,19 @@
+Q: Where are Apple's default desktop images stored? When I go to System Preferences > Desktop & Screen Saver, I see many images in folders such as "Desktop Pictures", "Nature", "Plants", etc. Where are these images located?
+I want to use them in an application such as SpaceSuit to set them as background images for different spaces.
+
+A: As of macOS 12:
+
+*
+
+*Desktop JPEG wallpaper are located in /Library/Desktop Pictures
+
+*Pre-installed dynamic wallpapers (HEIF) are located in /System/Library/Desktop Pictures
+
+*Any dynamic wallpapers downloaded by the user (from the "Desktop & Screen Saver" preferences) are located in /Users/$USER/Library/Application Support/com.apple.mobileAssetDesktop
+
+A: As of macOS 10.15 (Catalina) the location is /System/Library/Desktop Pictures. I'm unsure what version the location switched.
+
+A: They're in /Library/Desktop Pictures/
+
+A: For future reference: up to macOS 12, you can get macOS to show you the folder by opening System Preferences > Desktop and screensaver then double clicking the folder name on the left where it says Apple > Wallpapers. It will open the folder on Finder (which is on /System/Library/Desktop Pictures).
+I couldn't find a way to get the folder from System Settings on macOS 13 Ventura.

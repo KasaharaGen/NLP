@@ -1,0 +1,23 @@
+Q: Can I detach the QuickLook window from the Finder? I use QuickLook a lot to quickly open PDF files. I like the speed and clutter-free presentation more than using Preview.
+But unfortunately, it is tied to the Finder and disappears when I change to another app, so that I cannot see it side-by-side with another application. Is there a way to detach the QuickLook window so that it can exist on its own?
+
+A: Yes Thilo, there is a way. It will require a bit of command line wizardry though. As long as you're not allergic you can do the following:
+
+
+*
+
+*Open Terminal.app 
+
+*Change directories to the location of the file you want to view using QuickLook.
+
+
+*
+
+*For example, if the file you want to view using QuickLook is on your desktop you would type: "cd ~/Desktop" (no quotes, caps matter, and ~ is a shortcut to your home directory).
+
+
+*Now type: "qlmanage -p filename.pdf" (replacing filename with the name of your file and pdf with the extension of your file).
+A new icon will appear in your Dock called "qlmanage". This is the helper application that is usually launched headlessly by the Finder. By launching it from the command line it becomes accessible via the Dock, Command-Tab etc.
+Just for the record (and the curios) this little application is stored deep in the OS where mortals are not meant to tread at this location:
+/System/Library/Frameworks/QuickLook.framework/Versions/A/Resources/quicklookd.app/Contents/MacOS
+

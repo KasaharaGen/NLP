@@ -1,0 +1,30 @@
+Q: Debugging Wifi issues on my iPhone Sometimes I try to connect to a Wifi network and the only things that connect are the IP Address and the Subnet Mask - the other fields (DNS, Router, Search Domains) are still blank. My iPhone shows it's connected to the wireless network (three blue bars in upper left corner) but I never get connection in this case.
+What is actually happening when I only get Subnet Mask and IP Address? What can I do to troubleshoot the issue? I feel like I have a really vague notion of how to troubleshoot any sort of Wifi issue besides "turn everything off and back on again."
+
+A: In a nutshell - you are seeing the difference between a local physical network and the IP infrastructure needed to route packets out of that local network.
+Probably the iPhone obtained the IP address and the network via BOOTP instead of DHCP.
+The best resource for troubleshooting is this article by Apple. Since it is more general than your question - I'll go on a bit in case to cover background and some concepts.
+The three bars means your hardware can talk to the base station hardware. It will pass packets and discover all devices connected to that network. Since some networks are not ever connected to the internet - you only need an address and a netmask but not the other information.
+Once the basic link is up, From a network perspective - the iPhone allows for three methods for configuring the IP4 WiFi network stack. Do note that IPv6 and other automatic route finding protocols like Bonjour may allow some things to work when DHCP fails - but you don't see them in the preferences and not everything will work in this case.
+
+
+*
+
+*DHCP 
+
+*BootP 
+
+*Static
+
+
+With Static - you are on your own and have to know and enter all the fields by hand. BootP is an older method for a device to ask for network information from a router and DHCP servers typically answer either flavor of request transparently. (i.e. most DHCP implementations react and supply information if asked via BootP protocol too - DHCP has more bells and whistles, so it's more common these days)
+It is a valid DHCP response from the server to send back any, all or none of the information so you really need to know how the router is set up to know if information is being lost or corrupted when it's sent or if the router simply isn't sending that information. In practice if the router is not received in the DHCP response the router sends in response to your phone's request for DHCP information, the iPhone sends all information out to the physical device that answered the DHCP request and hopes for the best.
+In practice - I almost always see the routers field (DHCP option 3) filled - so the most likely problem when this happens is a software malfunction in the router or simple bad networking due to range, interference, overload or incompatibility.
+Many DHCP servers have BOOTP disabled and don't answer BOOTP requests,
+as the client would end with insufficient information to connect and use the internet. 
+Some client may use BOOTP at first and if it doesn't work they will request the information with DHCP.
+With BOOTP only some predefined fields like IP address and network (subnet mask) can be sent to the client, but not a geatway needed to reach beyond the local network (Internet).
+DHCP has many options defined for the client, like routers (DHCP option 3) as default gateway to the Internet, domain-name-servers (DHCP Option 6) for DNS name resolution and many other.
+If you have access to the router or can experiment over time and with other WiFi clients (phones, laptops, pads) you might be able to tell if the router is overloaded/broken/interfered or if that's just how it is answering DHCP requests - just with the basic information. In all likelihood - if your phone works on other networks, you didn't somehow break it just for this one network and you can wait it out or try again (which helps if the root cause is temporary interference or overload), or stay off that WiFi until it's fixed by the owner.
+Apple devices seem to use the last method used to configure the interface (BOOTP or DHCP). Furthermore they seem to stick to that setting for a long time, not trying the other method after a few failures.
+The best order for client devices to use would be DHCP first and BOOTP as a last resort. BOOTP nowadays is only useful for devices which boot (the OS/installation) from the network and even here DHCP should be used to get the full configuration of the client.

@@ -1,0 +1,15 @@
+Q: How to change the order of my Favorites in the Special Characters palette? I've added special characters that I frequently use to my favorites, but I'd like to group them more logically than simply the order in which I "favorite" them.  Is this possible?
+
+
+A: Yes - they are drag and drop in the palette itself on Lion (so that's the easiest for me to get them in order).
+If that doesn't work for you, you can also edit the plist when the Special Characters picker isn't running.
+The favorites are (hopefully for your OS level) stored in ~/Library/Preferences/com.apple.CharacterPaletteIM.plist
+
+If your editor lets you drag "Item 2" up to "CVFavorites" it will be the new first item. You can open the triangles to see what the favorites are and reorder them fairly painlessly and then save your work.
+
+A: Snow Leopard
+For Snow Leopard, the only way (AFAIK) to re-order favorites characters is to make it in the plist file located in ~/Library/Preferences/com.apple.CharacterPaletteIM.plist
+As you can see on the screenshot below, there's an array called "CharPaletteFavorites" containing multiple dictionaries (one by character). Just re-order them when the character palette is closed, save and that's it !
+To open the plist, you can use Xcode or any text editor as it is basically XML.
+
+(It is the same solution as posted by bmike, but for Snow Leopard. The only difference is the name of the array containing special chars.)

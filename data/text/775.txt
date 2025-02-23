@@ -1,0 +1,109 @@
+Q: How do you maximize windows? Unlike Windows, you cannot maximize a window in Mac with a click of the button. The little green (+) button next to the red and yellow buttons at the left of the windows does some strange stuff sometimes when you click it and doesn't do the expected operations.
+How would you fully maximize a window on a Mac?
+
+A: BetterTouchTool, if you have a macbook pro which has a multitouch pad (I'm betting you do), it lets you assign thing like Windows style maximise to the very top middle of your touch pad. But you don't have to use it like that, as it has an AeroSnap type feature, where you can just drag a window to the top of the screen and it will truly maximise, also dragging it to the left/right will make the window take up the left/right side of the screen.
+I find the Mac version of maximise unsatisfactory for things like web page and xcode. And betterTouchTool has many good features.
+
+A: I use an inexpensive app, Cinch from Irradiated Software. Whenever I need to maximize a window, I just drag it from the titlebar to the top of the screen, and Cinch takes care of resizing it for me. If I need to unmaximize, I just move it a little out of its position and it is restored to its previous state. I wish there were some way to do it (automatically) without extra applications, provided with the default system, but I know not of it.
+
+A: Mac OS X does not have a button for maximizing windows, instead you should drag the bottom-right of the window to resize it to your prefered size.
+And meanwhile the green plus button at the top-left resizes the window so that it fits the content of that window. 
+
+A: I use Spectacle. It's free and open source. The default key shortcut for maximizing windows is ⌘+F.
+
+A: On Yosemite:
+
+
+*
+
+*Double click the window top bar (Like in MS Windows)
+
+
+or 
+
+
+*
+
+*Option-click the green dot in the top left.
+
+
+On older OS X versions: Shift-click the green (+)
+
+A: I use Moom for that purpose, also for rearranging and moving my windows between monitors. You basically get the same keyboard based window management that windows 7 users get, just a lot more configurable.
+I have it setup so that Ctrl+ CMD + Left puts the window to the left side of the current display, Ctrl+ CMD + right to the right side, + Ctrl + CMD + Down to the next of my current monitors and finally Ctrl + CMD + Up to maixmize the window. Makes for some pretty quick and sleek work combinations (Two windows next to each other for comparision? 1 second, there you go :))
+
+A: Download and use RightZoom. It overrides your green plus (zoom) button and works like Windows maximize. You can add it to your login items in your user account to run every time you start OS X.
+ 
+
+A: I move the window to the top-left edge of the screen, and drag the window-sizing handle on the bottom-right corner of the window to the bottom-right edge of the screen.
+I don’t have to do it very often, as windows seem to remember what size they were at.
+
+A: For many applications (Safari, Mail, Terminal, ...), simply command-clicking the + button will maximize the window.
+
+A: I've assigned this script to ⌥⌘M. It doesn't work with all windows or with multiple displays though.
+tell application "Finder" to set {0, 0, dtw, dth} to bounds of window of desktop
+try
+    tell application (path to frontmost application as text)
+        if name is in {"Terminal"} then
+            error
+        else
+            set bounds of window 1 to {0, 22, dtw, dth}
+        end if
+    end tell
+on error
+    tell application "System Events" to tell (process 1 where it is frontmost)
+        try
+            click (button 1 of window 1 where subrole is "AXZoomButton")
+        end try
+    end tell
+end try
+
+
+A: While pressing Alt, drag a corner of the window to that corresponding corner of your screen. It will expand the window in all directions, until the window takes up the full screen. 
+This is a simple way of doing it without having to download any additional programs, built right in to the OS, though it might be a bit more tedious. It works for all windows that can be resized, unlike some of the other solutions which work for specific apps.
+
+A: DoublePane - $4.99 does that by Ctrl+Option+Up. This is also can be done with Spectacle which is free on MAS
+
+A: If you are on macOS Sierra, you can do this: hold the Alt button and double click on the bottom left corner (or any other corner) of the screen to make the window take up the maximum amount of space with going into fullscreen mode.
+
+A: Move the mouse to the corner of the window where it becomes a resizing arrow and option double click to fill the screen, WITHOUT going into full screen mode.
+Double clicking on any side when the resize arrow is visible will move that side to the edge of the screen. Adding option affects the opposite side as well.
+Both of these controls may be obscure /  not in common use, but they are excellent.
+
+A: Using Alt-Click on the green (+) maximizes most windows. But if also that don't fit your wishes, you could use the plugin sizewell.
+
+A: For later versions of OS X (10.7+), hit the  full-screen icon at the top right corner of the app's window.
+
+A: By ignoring the meta keys, the green button's use is minimized.
+You can define a shortcut for the Zoom function to toggle between Maximize and Normalize.  
+
+
+*
+
+*System Preferences > Keyboard > Shortcuts > App Shortcuts
+
+*If you don't see a shortcut for Zoom, click the + button
+
+*Enter Zoom in the Menu Title field and a shortcut key combination (e.g. ⇧⌘M)
+
+*Click Add to save the shortcut.
+
+
+Now the ⇧⌘M combination should toggle the current window between Maximize and Normalize. 
+
+A: In previous version of OS X the Shift+Click option worked.
+Currently in Yosemite if you haven't changed the default behavior, the green button is set to fullscreen not maximize so now the shortcut is:
+Opt + Shift + Clicking the green plus (+)
+
+A: You could try using Magnet app. It's a small app that basically gives you the functionality of window snapping on Mac (the same as you have in Windows). You can see how it works here:
+Window snapping on Mac OS
+
+A: *
+
+*Move the mouse to a Safari window corner, you will see the resize arrow ⤢ ⤡.
+
+* Option (Alt) ⌥ + double click
+
+Window is maximised now :-)
+
+A: Recently: Option (alt) + Green circle

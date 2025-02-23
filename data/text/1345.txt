@@ -1,0 +1,61 @@
+Q: Why does my MacBook Pro die without warning? I have a MacBook Pro (about 18mts old) which has recently started to inexplicably die without warning. I'm running it on battery and, yes, it's getting close to the bottom end (between 10 and 25%). In the past I would get to about 10 minutes of life left and the "Reserve Battery" warning dialog would pop up and let me know that I'd better get on the adapter. 
+Not any more.
+Now it gets to about 25% and then plik! it's black screen and dead. Instantly. No warning, nothing. 
+Some details about the Mac
+
+
+*
+
+*Hardware: 2.5Ghz Intel Core 2 Duo 4Gb, 667Mhz DDR2 SDRAM
+
+*Software: 10.5.8
+
+*Model: 4.1
+
+*Boot ROM: MBP4.1.00C1.B03
+
+
+Following advice from @Alex, I've checked the system logs (Console) and disk verification tool (Disk Utility) but they both come up clean. Apart from the instant death at low battery, there are no other dubious intermittent faults.
+Edit to cover suggestions so far
+Many thanks to all who have taken the time to address this issue. I've summarised the answers so far:
+
+
+*
+
+*Look at the battery cycle count (About this Mac | More Info | Hardware - Power - Battery Information) - @glenstorey
+
+*Recalibrate the battery - @Lawrence Velázquez
+
+*Check hardware (RAM seating, hard disk etc) - @Alex
+
+
+Final result
+The whole thing about battery cycles being guaranteed by Apple appears to be a myth (at least the bods at my Apple Store were unaware of it). So I changed the battery and all was fixed. Back to normal.
+
+A: Check to see how many cycles your battery has done (System Profiler - Power - Cycle Count); from what I understand your battery will still be under warranty if it has less than 300 - more than 300 and it's on its way out. We have a whole bunch of MacBooks (Pros) here, and once in a while one of them does this exact thing when the battery gets old and tired, just like yours. 
+I've had batteries that have lasted 40 months, and some that have only lasted 18, the newer MacBooks with the non-removable batteries last a lot longer.
+
+A: In addition to what has already been said, it’s possible that your battery may be miscalibrated. If true, this would explain why your computer runs out of charge, even though it thinks otherwise.
+I would strongly suggest trying to recalibrate your battery before doing anything else. Instructions can be found in this Apple support article. In a nutshell:
+
+
+*
+
+*Plug the computer in until it thinks the battery is fully charged.
+
+*Let the battery rest in the fully-charged state for at least 2 hours.
+
+*Unplug and run the computer on battery until the battery is exhausted and the computer goes to sleep.
+
+*Let the computer sleep for at least 5 hours. I believe this is to drain the battery of its reserve charge.
+
+*Plug the computer in again until the battery is fully charged.
+
+
+You can use the computer during every step except #4.
+If this doesn’t produce results for you, then resort to other options.
+
+A: Is it under warranty with Apple Care? If so, have you tried getting your battery replaced to see if it's the battery? Personally, I wouldn't kill yourself troubleshooting this anymore until you have tested the battery and it's ability to hold a charge. Let me know!
+Other things you can try are opening your MacBook and making sure your RAM cards are securely in place by removing them and setting them back in.
+Also run a disk utility and make sure your drive is passing all tests.
+MacBooks (and Apple laptops in general) are notorious for logic board failures. Make sure you review your system logs in the Console and the status of the disk utility to make sure everything is running smoothly.

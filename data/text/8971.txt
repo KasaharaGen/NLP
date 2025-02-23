@@ -1,0 +1,110 @@
+Q: Are there any "App Store quality" apps for creating animated GIFs from a series of image files? I searched the App Store for "animated GIF" but the only returned app was one to convert a movie file into an animated GIF. I need to go the other way: I have a series of screenshots taken of an app that I'm a beta tester for. These are the standard PNG files created by OS X's ⌘+⇧+4 keyboard shortcut. They show the sequence of events I use to reproduce a display bug.
+When I say "App Store quality" I mean they are native Cocoa apps. These apps generally have attention paid to user interface and usability. You know, all the things that make good Mac apps good.
+
+A: I'd like to revive this question in the hopes of generating a more complete list of the available options which are either Mac apps or command-line tools (not websites).
+These are the ones I am aware of.
+
+
+*
+
+*GIFQuickMaker [App, no longer free, very simple, but works and creates small images]
+
+*Pixen [App, also no longer free]
+
+*Gifsicle: Command-Line Animated GIFs [Terminal based, available via brew]
+
+*ImageMagick: Convert, Edit, Or Compose Bitmap Images  [specifically the convert program. Terminal based, available via brew]
+(I've marked this answer as a community wiki in the hopes that others will add to it)
+
+A: You could try GraphicConverter  X
+I last used GraphicConverter to make animated GIF files probably 10 years ago. But it worked fine back then and had plenty of options.
+Here's some instructions, although these may be for an older version and may need to be adjusted slightly for the latest version:
+
+  
+*
+  
+*Draw your animation cells in a graphics program.
+  
+*Copy the first animation cell and start GraphicConverter.
+  
+*From the Edit menu do "new picture with clipboard". This will create a graphic the exact size as the cell in the paste buffer. This
+  will be your first frame.
+  
+*Copy another animation cell.
+  
+*From the Picture menu in GraphicConverter do "Show movie options". It will ask you if you want to convert your document to an animation
+  GIF, click "Convert"
+  
+*From your movie options window click "Insert Frame" button. It will insert the cell you have in your paste buffer into the frame.
+  Continue copying cells and inserting frames until your animation is
+  complete. If you want to make it an endless loop then you can click
+  that box in the movie options.
+  
+*Set the delay between frames in the top of the movie options box. Experiment with this, you can change this when ever you want. The
+  larger the number the longer each frame is displayed.
+  
+*Save your work.
+
+
+A: You could do far worse than to buy GifBrewery. 
+
+
+*
+
+*GIF Brewery - http://helloresolven.com/portfolio/gifbrewery/
+It's a finely crafted tool that really makes professional work of animating gifs. Think of it as iMovie for GIFs. Polished, reliable and full of tools to control the process as opposed to just stacking 8 images together in one animation (take it or leave it style).
+
+A: You might install ImageMagick with brew install imagemagick and then use something like this:
+convert -delay 4 *.png output.gif
+
+-delay 4 sets the delay between frames to 0.04 s.
+See http://www.imagemagick.org/Usage/anim_basics/ for more information.
+
+A: The app GIFQuickMaker ($1.99) describes itself as: 
+
+Description
+  GIF, TIFF, BMP, PNG, JPEG and GIF image transmission
+  combination and GIF animations can be created.
+
+
+A: As far as high-quality apps in the app store that can produce animated GIFs, there's always Photoshop Elements. It's not cheap, but it's the consumer version of the industry standard for photo manipulation.
+
+A: Don't know if you've heard about this one yet: Look for GIFfun.app 
+I do something similar to what you want -- grab several screen shots and drag-n-drop them onto GIFfun.app and it makes them into an animated GIF.  It works great.  If it weren't free I'd'a paid money for it.
+
+A: You can directly convert a video to an animated gif with gifify.  
+
+
+*
+
+*Install homebrew
+
+*Install node: brew install node
+
+*Install/re-install ffmpeg:
+
+brew uninstall --ignore-dependencies --force ffmpeg
+brew install ffmpeg --with-libass --with-fontconfig
+
+
+*Install/reinstall imagemagick:
+brew uninstall --ignore-dependencies imagemagick
+brew install imagemagick --with-fontconfig
+
+
+*Install gifify:
+npm install -g gifify
+
+Once all dependencies are installed the conversion can be done with:
+gifify clip.mp4 -o clip.gif
+
+You can also set a start and end position in the video and add a text caption:
+gifify clip.mp4 -o clip.gif --from 01:48:23.200 --to 01:48:25.300 --text 'nip!'
+
+❗️ It can take several minutes for the conversion to complete even with smaller videos.
+
+NOTE: Most likely previously installed versions of ffmpeg and imagemagick will need to be removed and reinstalled with the required extra libraries (i.e. libass and fontconfig).
+
+
+A: Gimp can do it very easily.  Here are clear instructions:
+http://www.techpraveen.com/2011/01/how-to-make-animated-gif-picture-in-gimp.html

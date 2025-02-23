@@ -1,0 +1,42 @@
+Q: How do I remove duplicate "Open With" context menu items in Finder.app? For whatever reason, the "Open With" context menu in Finder is always listing every app four times (exactly).
+
+I've also used Onyx.app to clear user and system caches, but I'm still left with four repetitions of each app under the "Open With" service. I have restarted the system a few times just to be sure it was not some temporary corruption of the list.
+I'm running OS X 10.6.6 on a 2011 17" MacBook Pro with a recent fresh install of OS X (i.e. I didn't use Migration Assistant.app or a Time Machine backup).
+
+*
+
+*no external or network drives mounted (including any time machine destinations)
+
+*Same list of duplicate apps if I create a new user account
+
+How can I fix this so one app shows?
+
+A: After running lsregister (as mentioned in https://apple.stackexchange.com/a/10615/24322), relaunch the finder. (To do this, do an Option + Right Mouse Click on the Finder icon in the dock, then  select "relaunch".)
+
+A: For a quicker and easy-to-remember way, you can alias the command shown in the top answer into lscleanup like so:
+# Clean up LaunchServices to remove duplicates in the “Open With” menu.
+alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"`
+
+Add that to your .aliases file (or any other file that runs when you open Terminal) and you won't have to remember that convoluted command ever again.
+
+A: You can’t always run this with sudo.
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
+That alone didn't fix things for me. It wasn't until I ran the above command plainly (using  my user account privileges and not root/sudo permissions) that the problem was solved on my Mac.
+
+A: This worked for me:
+/System/Library/Frameworks/CoreServices.framework/Frameworks/\
+LaunchServices.framework/Support/\
+lsregister -kill -r -domain local -domain system -domain user
+killall Finder
+
+This is the bare minimum -- no extra commands, mouse clicking, aliases, or third-party applications. I borrowed it from the other answers, but I made it readable in less than 80 columns!
+
+A: Since this problem happens at System Level, I'm not sure if these steps will do any difference.
+I assume that, like you've said, you've rebuilt your LaunchDatabase. Just in case: 
+
+You can try the Command Line version of the above (In a terminal):
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
+Additionally, Default Apps is a nice and free System Preference pane to control default apps (based upon extension, type, etc.) You can pretty much see and associate everything from there. It should at least give you a hint whether the problem is in the association or the finder is doing something funky. 
+When did this start happening? Did you install something? I see you have Xcode 4, did you get it from the App Store or you have a Developer Profile and got it via direct download? Was this happening before? Does this happen with every type of file or only some specific ones?

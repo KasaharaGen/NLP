@@ -1,0 +1,27 @@
+Q: How to keep a VPN connection alive on an iPhone? I connect to a bunch of WiFi hot spots with my iPhone, and love that I have a VPN option. 
+One thing I don't love is that it disconnects from the VPN if the screen ever goes blank. 
+How can I keep the VPN connected so I don't have random emails or other data in the open for man-in-the-middle attacks?
+
+A: According to this thread this is standard for most users. But there is Jailbreak solution with external app called Insomnia
+
+Insomnia is an iPhone native application that, when enabled, will prevent the iPhone from sleeping, thus overriding its default behavior. This allows background applications to continue to run and WiFi to work long after the screen has been switched off.
+(The iPhone's default behavior is to sleep 30 seconds after the screen has gone off, when not docked and charging that is).
+
+Downside of this is your cpu etc is still running so battery will go down quickly.
+There is also a tweak for Cisco VPN with SBSetting with Jailbreak that might work for non-Cisco software (as in the built-in VPN) but as I haven't tested it it's hard to say :-) It may be that the blog mentions the built-in VPN but I can't verify it myself. It's not clear whether it mentions Cisco app or the built-in VPN (and just names it Cisco VPN).
+
+A: "VPN-on-Demand" only works with one VPN protocol - IKEv2.
+"VPN-on-Demand" is the only option to keep VPN "always on" for iOS.
+Your VPN providers should offer IKEv2, and if they offer something else like OpenVPN - you won't get this "always on" option.
+Also, IKEv2 is the only protocol that seamlessly continues to work when you switch from cellular network to wi-fi. Other VPN protocols will drop the VPN connection or endlessly will try to reconnect to the old network leaving you without internet.
+
+A: One workaround: on a jailbroken device, use Activator to link "Lock Device" or "Unlock Device" to "Toggle VPN".  Everytime I unlock it, it reconnects to my VPN :) so now I am happy
+
+A: I have just signed up for VPN service this week and i have been having the same problem. I use it to go on Netflix and Pandora from out of the country. I have been playing around to see if i can get the VPN to stay connected. So far, I found a solution that has been working for about an hour or so now. 
+I have a jailbroken iPhone 4 and i have installed Backgrounder from the Cydia store, which keeps programs running even when closed or when the screen is off. 
+After installing this, I installed Pandora from the App Store and after launching it, I held down the Home button to background it.
+So far, it seems to be working because Pandora uses my connection and if i keep it in the background, it will prevent the VPN from disconnecting. 
+I have only been using it for a couple of hours, so I'm not sure how good of a permanent solution it will be.
+
+A: You need to use "supervised mode" on iphone to get permanent VPN.
+Very unpleasent as requires MAC to back up your iphone (setup will clear it completely). Look for "supervised mode" in Apple help pages. Basically it is like a corporate model where you control some settings from your computer.

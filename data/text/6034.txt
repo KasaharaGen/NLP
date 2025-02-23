@@ -1,0 +1,104 @@
+Q: Can you get SL "Today" folder behavior in Lion? Snow Leopard had a default smart folder called "Today". This folder was awesome! All "Open" dialog boxes could easily display all of the files you've worked on "Today" (which are probably the ones you want 'right now').
+I've been googling around and so far there's one result:
+http://forums.appleinsider.com/showthread.php?t=128907
+This doesn't get the same behavior though.
+When creating a new smart folder based around file timestamps you have three options:
+
+
+*
+
+*Date Created
+
+*Last Modified Date
+
+*Last Opened Date
+
+
+The smart folder system doesn't seem to have OR syntax; each filter you add creates a narrower intersection of files.
+Date Created, and Last Modified Date both produce a mountain of cruft. The stuff in your browser cache, email signature images...garbage.
+The Last Opened Date option is super close! Buuut, if you create a new file, save it, and close it, it doesn't count as Opened. You would have to open it again to be included.
+Hopefully the Last Opened Date behavior is just a bug. Otherwise, I'm not sure how to get this huge timesaver back.
+
+A: Phew! I decided to do more digging on my own.
+I took a look at a computer still using Snow Leopard and right-clicked on its "Today" folder to reveal its path:
+/System/Library/CoreServices/Finder.app/Contents/Resources/CannedSearches
+It turns out this directory still exists in Lion!
+So go to Finder, and use the Go To Folder command (cmd-shift-g), and enter that path above. The "canned searches" are all still there. Drag and drop them to your sidebar.
+Nirvana.
+
+A: *
+
+*Open Finder and clicked on your User directory, then enter a dummy search term, e.g. 'foo' to start the process.
+
+*Click the '+' button next to save. This will add a term to the search.
+
+
+*Hold down the alt/option key and the + button should become a .... Click the ... button twice to add two groups of parameters. 
+
+
+*Now that you have two parameter groups, make the first group None of the following are true and add the things you want to exclude, such as Kind is Folder. 
+Make the second group Any of the following are true and add your three date options:
+
+
+*
+
+*Last opened date is within last 1 days
+
+*Last modified date is within last 1 days
+
+*Created date is within last 1 days. 
+
+
+
+
+*Remove your dummy search term and the first search term in the list. 
+
+
+*Save the search and show it in your sidebar:
+
+Now you can access the Today saved search folder from your sidebar:
+
+Notes:
+
+
+*
+
+*I found that the "Today" Search in /System/Library/CoreServices/Finder.app/Contents/Resources/CannedSearches doesn't show files that were created today, but not subsequently opened, so it didn't meet my needs. 
+
+*@nathan's answer describes the process well (and was the basis for this answer), but I am adding this answer with screen-shots to help the more visually inclined.
+
+
+A: Yes, you can do this.
+
+
+*
+
+*Start a Spotlight search in the Finder with any query.
+
+*Next to "Search:" select This Mac. 
+
+*At the end of that toolbar, click the plus sign.
+
+*Be sure that Kind is Any, unless you wish otherwise (note: it is best to set this to "Kind is Document" because you do not want apps you've used to appear here).
+
+*Option-click on the plus sign next to the first search parameter.
+
+*Be sure the appearing statement says "Any of the following are true"
+
+*Set Last opened date to today, then press the plus sign next to the Last Opened Date Line.
+
+*Set this line to Last modified date is today, and press the plus sign at the end of that line.  
+
+*Finally, set this line to Created date is today. 
+
+*Now, be sure there is nothing left in the query field and press Save.
+
+*Name this search "Today.savedSearch" and be sure the "Add to Sidebar" box is checked.
+
+
+You now have a saved search/smart folder that shows Today's items.
+Thanks to the Ars Technica Leopard review for details on Boolean logic in Spotlight.
+
+A: Like others, the existing “Today” canned search doesn’t quite fit all my needs. So, I tried the answer first suggested by @nathan and illustrated by @adam-franco, but found that there was still a piece missing: items downloaded in the last day did not get included in the search results.
+The solution is simple. Just add “Date added” (under “Other…” in the search parameter dropdown) to the second parameter group, like so:
+

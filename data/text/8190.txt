@@ -1,0 +1,77 @@
+Q: Making fonts larger in apps under Lion While there is no system-wide way to make all fonts larger under Lion without leaving native resolution, many individual programs do have a way to make text and various elements larger on the screen. Unfortunately, this varies from one program to the next.
+If the goal is to make text appear larger in all programs, can we put together a guide to zooming in the various apps in Lion?
+
+A: Google Chrome
+Its own UI, not web pages
+The following settings in TinkerTool affect the following pieces of Chrome's own UI:
+
+
+*
+
+*Chrome address bar, i.e. URL:  System in TinkerTool (default font: Lucida Grande; largest size possible is 16 pt; larger sizes are truncated)
+
+*titles of tabs:  Help tags (default font: Lucida Grande; largest size possible is 13 pt; larger sizes are truncated. Bold is ignored, it's always Regular)
+
+*Chrome's ex-Wrench menu (top right corner): Messages (default font: Lucida Grande; upper limit is something like 24 pt, further increasing the number has no effect)
+
+
+Web page content
+
+
+*
+
+*Default zoom: Wrench > Settings (⌘ ,) > Show advanced settings > Web content > {Font size, Page zoom}. Both also affect how Settings page is zoomed. 
+
+*For a particular site: ⌘ + / ⌘ -
+
+A: Sublime Text 2
+Press ⌘ , to open user preferences file, then set font_size to the desired value:
+{
+    "font_size": 18
+}
+
+
+
+A: Safari
+For Single Page
+Press ⌘ + to increase text size on the page.
+Swipe in or double-tap with two fingers to zoom into a page (iOS-like).
+Note that text zooming and page zooming are not quite compatible and may cause odd effects when combined so you should stick with either.
+For All Pages
+To make Safari “remember” your text zoom setting, use a custom stylesheet:
+
+1) Create a file named defaultzoom.css (or any name you like, just make sure it has a css extension.)
+2) Copy and paste in the following:  
+    body {  
+      zoom: 130%;  
+    }
+
+change 130 to whatever number suits you. >100 means zoom in, <100 means zoom out. Don't forget the % percent sign!
+3) In safari, go to Preferences > Advanced. Under style sheet, select Other... and point to the file you created.
+4) You may need to restart safari for the change to take effect.
+
+For Certain Websites
+Personally, I prefer keeping text zoom level per site with ZoomBySite extension by Ceri Morgan.
+It overrides the keyboard shortcuts and remembers the last text zoom level for domain.
+
+A: Reeder
+Press ⌘ , to open the Preferences and tweak the Article Font from Reading tab:  
+
+
+A: Twitter
+Just open the preferences (⌘ ,) and change Font size.
+
+
+A: iTunes
+Open the preferences (⌘ ,).
+You can select larger or smaller font size for sources and track list.
+There is no way of selecting one for the browser columns though.
+
+
+A: iCal
+In the View menu, select Make Text Larger or press ⌘ +:
+
+
+A: Finder
+Open a Finder window. Press⌘J. Select a font size. Click on Use as Defaults
+

@@ -1,0 +1,24 @@
+Q: How do I set up an IRC server on OS X for my local network? Is there a nice way to set up an IRC server for my wireless home network, running on an old Mac Mini?
+On other forums people have recommended compiling IRCD-Hybrid for OS X. I have Homebrew installed and it contains a formula for ngIRCd; would that work?
+Or should I give up and just use the Bonjour functionality built into iChat?
+
+A: Since you have Homebrew installed, ngircd is very simple to install and configure.
+Install ngIRCd
+$ brew install ngircd
+
+Add /usr/local/sbin to your PATH
+$ vi ~/.bash_profile
+
+edit the config file (very easy to follow, even for a beginner, as the defaults are just fine for everything.) Note the path may be different for you to homebrew / ngircd version folders.
+$ cd /usr/local/mxcl-homebrew-697d2ae/Cellar/ngircd/17.1/etc/
+$ vi ngircd.conf
+
+Here's a sample config file, should you need it.
+Verify your config, if you like:
+$ ngircd --configtest
+
+Then simply start the server:
+$ ngircd
+
+
+A: There are a couple packages available via MacPorts. If you haven't used MacPorts it's just like yum or apt-get on Linux.

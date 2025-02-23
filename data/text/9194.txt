@@ -1,0 +1,14 @@
+Q: Mac kernel panic - memory problem I have a Early-2011 MacBook Pro base model. It has 4GB of RAM, and I use it for heavy development work. 
+It shows a pattern of continuously dumping into a black screen which asks me to restart (a kernel panic) almost once a week. It seems that I don't have enough RAM, as today I had Xcode, Eclipse and Firefox opened side by side (each of these apps are memory hogs), and when I opened iCal and Safari, I got a kernel panic.
+I tried a free memory application available in the App Store, and it said that before opening these two applications I had 22 MB free memory and 1.1 GB inactive memory out of 4 GB total memory. It looks like inactive memory is not getting freed (my understanding is that inactive memory is what the OS uses for fast app switching), and the OS simply crashes. Safari only had one tab open.
+Will additional RAM help or is there a different problem? I'm also using a Samsung 21.5" monitor through mini DisplayPort to VGA connector if it matters.
+Update: this problem started occuring again: the system becomes slow then I get a kernel panic. Would upgrading RAM help? I have nearly 1GB of inactive memory.
+
+A: Did you disable your swap file? As ghoppe, bmike, and I mention in the top answers to this question, this is a bad idea for exactly the problems you're having.
+The other option is that you have bad RAM. Run a memory checker (like Memtest86) to see it you have a bad stick or two and remove and replace the offending modules.
+
+A: The current memory in Lion is not suitable for developer-oriented task in my case, so I upgraded my RAM, seems like only thing that worked.
+
+A: I applied recent EFI firmware update v2.3 for early 2011 model and this problem seems to be rectified. And while the device becomes slower, it is not crashing. I opened multiple Android emulators (3), Eclipse, Xcode, everything on my doc and the system still seems to hold.
+So, all in all, the problem seems to be fixed in new OS X update and hence the question is not relevant anymore.
+EDIT: The asker edited the question to say that they're experiencing the problem again, so this answer seems to be wrong/irrelevant.

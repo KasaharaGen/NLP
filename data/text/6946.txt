@@ -1,0 +1,31 @@
+Q: Keychain won't remember my SSH password when connecting to server I routinely develop on two different servers.
+One server requires my private SSH key stored in ~/.ssh/id_rsa. This part of the story works fine.
+The other server should not require any SSH keys, yet OSX shows me this password prompt every time I connect:
+
+It doesn't matter whether I press OK or Cancel, because there's no public key on the server. And so obviously there's no password either.
+Why won't the password dialog remember my password in the keychain? I've checked, and an SSH item shows up in my Keychain Access app, yet the prompt still appears, every time I SFTP or SSH to the server.
+I'm guessing it might have to do with either a misconfigured server, or the fact that the username I connect with is the same for both servers. If you could confirm that the problem is either of these it would be helpful, thank you.
+
+A: There is a lot of conflicting information I've read whenever I look up information on using ssh-agent (passphrase saving/reusing process) under Mac OS X. Most resources seem to suggest that simply issuing ssh-add -K will let you store your passphrase, and will automatically configure OS X to launch ssh-agent automatically and load your stored passphrase.
+Note: Running ssh-add -K will only work if you have your private key file in one of the common locations, those locations being limited to: ~/.ssh/id_rsa, ~/.ssh/id_dsa, ~/.ssh/identity. If the file is located anywhere else you should specify that path after the -K in the command above.
+
+The reason you are getting the key file passphrase dialog when connecting to the second (key-less) server is likely because the default configuration of SSH servers is to use public key authentication first, and 'keyboard interactive' authentication second.
+Because you have a public key with a standard name/location (~/.ssh/id_rsa), your OpenSSH client helpfully submits the private key in order to allow the server to match it against an allowed authorized_keys file.
+There are a small handful of ways to prevent this, the easiest two being to pass a flag on the command line, or add it as a permanent configuration item in your ~/.ssh/config file.
+
+
+*
+
+*When connecting to the secondary/key-less server, you can add -o "PubkeyAuthentication=no" when connecting. Something like ssh -o "PubkeyAuthentication=no" me@devserver2.
+
+*Open up ~/.ssh/config in your favorite text editor, create it first if you must, and enter the following:
+Host devserver2  
+    User me  
+    PubkeyAuthentication no
+
+Now, if you simply type ssh devserver2 the username and pubkey configuration will be read in and used, and you should be prompted for your password and nothing else.
+(Note: Replace devserver2 with the actual hostname of the server. Alternatively, pick a nice hostname, such as devserver2, and add a property between User and PubkeyAuthentication called 'Hostname' and put the name or IP address of the server there. Afterwards, you actually can simply type 'ssh devserver2' and all the configuration properties will work their respective magic.)
+
+A: It seems your private key (~/.ssh/id_rsa on your local machine) is encrypted with a password, so when ssh attempts to use the key for authentication it asks you for this password.
+If you're connecting via terminal, try ssh -o "PubkeyAuthentication=no" your.server.com and see whether it still prompts you.
+That being said, Lion continues to ask me for the password to my private key all the time, and refuses to save it. I have not solved that issue yet.

@@ -1,0 +1,9 @@
+Q: I can't trash files anymore, but only delete them directly When I want to delete a file in Finder or in the Desktop a popup appears and it says it will be deleted immediately, and I need to confirm.
+The trash is always empty, and I can't use it anymore. 
+What's going on with Snow Leopard and not having a working trash can?
+
+A: Check the ownership and permissions on ~/.Trash.
+mress:10039 Z$ ls -ld ~/.Trash 
+drwx------  285 allbery  staff  9690 Jun 28 16:53 /Users/allbery/.Trash/
+
+My guess is it somehow ended up being owned by root, but there are other possibilities.  If it's the owner, the fix is sudo chown $USER ~/.Trash ~/.Trash/.DS_Store.

@@ -1,0 +1,10 @@
+Q: Where do I find the logs for OS X authentication attempts? I'm on a personal computer, with Lion running and only a single user account on the computer. Is there a log file for authentication attempts (both for login attempts and password protected screensaver aka sleep mode)?
+Mostly interested in the unsuccessful attempts. Is it possible to also see the passwords that were used to make those unsuccessful attempts?
+
+A: It's found in the secure.log (the path is /var/log/secure.log) and the entries would look something like this:
+authorizationhost[5917]: Failed to authenticate user <cksum> (error: 9).
+
+It does not log password attempts (the password they tried to use), just the actual unsuccessful (or successful) login attempt.
+Additionally, to focus your search exclusively for failed login attemps, open Terminal.app (found in Utilities folder) and run the following command: 
+sudo grep 'Failed to authenticate' /var/log/secure.log
+

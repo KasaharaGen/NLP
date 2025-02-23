@@ -1,0 +1,17 @@
+Q: Console + iMac 27" 2011 External Display Can i use the iMac 27" mid 2011 as an external display for, let's say, a Playstation 3?  
+Is this possible for the latest iMac?
+
+A: Three things need to align for a game console to send video out and have it be mirrored on an iMac.
+First, the iMac needs Target Display Mode.
+The 2011 iMac and later run thunderbolt - so you need a legitimate thunderbolt video connection for Target Display Mode to work.
+The older iMacs had Mini DisplayPort video out and video in, so you would simply need to get an inexpensive adapter to change HDMI to miniDP (note - most adapters go the other way - take a MiniDP signal and split out HDMI - this would need to function in the other direction.)
+I believe PS3 doesn't have native thunderbolt adapter or even a mini DP adapter, so you'd need additional hardware for Macs older than 2011 and I don't know of a box that takes HDMI and converts it into thunderbolt - so you might be out of luck on 2011 and newer iMacs.
+
+A: It is possible, but you'll need and adapter/converter to do it.
+You can find a HDMI to Mini DisplayPort adapter on some sites, like this one, although it is a little expensive.
+Other models/types can be found here, for other input types, or Kanex's one.
+Editing: right now I'm reading the new iMac tech specs and it is clearly that it does not support input: Mini DisplayPort output with support for DVI, VGA, and dual-link DVI (adapters sold separately). Some users on forums are tolding that thunderbolt adapters are not ready and no one even know if it will be possible.
+
+A: You could use the Intensity Shuttle from Blackmagic Design to capture HDMI video to Thunderbolt, then use a program running in full screen on the iMac to display the incoming video stream.
+
+A: Besides using target display mode you can use say a elgato game capture, this will mirror your ps3 onto the iMac.

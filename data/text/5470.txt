@@ -1,0 +1,13 @@
+Q: Why isn't my auto proxy setting working for Safari 5.1 in Lion? I have a SOCKS proxy listening on 7070 at localhost.
+Here is what my proxy.pac file looks like (to keep the test simple, I just return SOCKS proxy for all urls):
+function FindProxyForURL(url, host)
+{
+   return "SOCKS 127.0.0.1:7070";
+}
+
+This doesn't work in Safari or Chrome. However, for other native apps like Twitter for Mac and Dropbox, this works fine.
+I'm getting around it by using Firefox with the Autoproxy plugin, but I would like to use Safari. Why isn't it working?
+
+A: Enable web sharing and place the PAC file (e.g. proxy.pac) in the documents folder (/Library/WebServer/Documents). Then set the auto proxy setting to http://127.0.0.1/proxy.pac. If the changes don't take effect immediately or you change the contents of the PAC file at any point in time you need to restart Safari and clear its cache. If this doesn't help, reboot the system.
+
+A: Setting the file again under Automatic Proxy Configuration after entering any junk URL seems to re-read the file for me.

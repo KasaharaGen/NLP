@@ -1,0 +1,51 @@
+Q: How do I get Terminal to remember previous commands after closing window in SL 10.6.8? Any way to enable scrollbacks after you quit the window? Even if the app itself is still running, closing the window and opening a new one doesn't work.
+I am SURE it used to work on my old Mac, but I simply cannot find an option in preferences anywhere and Google is not my friend.
+
+A: I had the same issue on my new Mac, when I checked the history file ~/.bash_history I discovered that it was owned by root. I run sudo chown username .bash_history, now when I reopen terminal my history is preserved.
+
+A: Assuming you have not modified the default behaviour in any way, you should be able to scroll through a list of your previous commands simply by hitting the up cursor key.  There are so many alternatives depending on what shell you are using if you have changed the defaults etc, so that would be useful info.  Also, what OS are you on, from Lion onwards Terminal reloads the last 500 lines out output even from the last closed screen on restart.
+
+A: If your Terminal is losing the history (previously entered commands), try this:
+Check first, in your home directory, who owns the file .bash_history:
+ls -al .bash_history
+
+If for some reason the file is not owned by your username, will appear (for example) in the listing as:
+-rw-------    1 root      staff       32 Jul 11  2011 .bash_history
+
+Fix it with:
+sudo chown [username] .bash_history
+
+(source: http://www.paulmc.org/2009/01/enable-bash-history-in-terminal/ )
+Now close Terminal, open it again and you should be capable of seeing previously entered commands by pressing the up arrow (that is, if you're using bash as your Terminal shell - - the default).
+
+A: As far as I know, the scrollback history is discarded when a window is closed; there is no way to reopen a window that you closed to review its scrollback history. There is, however, a preference setting that lets you configure “one last chance” to review or save the scrollback history after you exit a window’s initial shell (I am not sure if this matches what you mean by “after you quit the window”).
+In 10.6, this preference setting is in Terminal’s preferences (the Terminal > Preferences… menu item, or its shortcut: ⌘,) under the Settings section in the Shell tab of your “settings set” (probably named Basic, look for the one with the word “Default” under its name). The preference is labeled “When the shell exits:”.
+
+The available options are
+
+
+*
+
+*Close the window
+The window will always disappear immediately after you exit the shell.  
+
+*Close if the shell exited cleanly
+The window will be closed immediately (as above) if the shell gives a exit code of zero (“exited cleanly”).
+The window will remain open (see below) if the shell gives a non-zero exit code.
+
+*Don’t close the window
+The window will always stay open when you exit the shell; the line [Process completed] will be appended to contents of the window.
+To close the window you must use
+
+
+*
+
+*the Shell > Close Window menu item (Shell > Close Tab for a tab), or
+
+*⌘W (the menu item’s shortcut), or
+
+*the red close button in the title bar (the x button in the tab for a tab).
+
+
+
+A: This is controlled globally by enabling System Preferences -> General -> Restore windows when quitting and re-opening apps.

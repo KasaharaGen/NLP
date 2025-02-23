@@ -1,0 +1,28 @@
+Q: All possible updates to Mac OS X? So I've discovered there are a number of things to be kept up to date in OS X:
+
+
+*
+
+*built-in Software Update, obviously
+
+*Individual programs, which typically check for updates automatically and the 'update' option can usually be found under the program's menu (to the right of the Apple menu in the menu bar).
+
+*Gem, which comes preinstalled in OS X (correct me if I'm wrong), should be periodically updated with sudo gem update --system and then the gems updated with sudo gem update - see Greg's answer for why you should not update Ruby.
+
+*MacPorts, if installed, should be periodically updated with sudo port selfupdate and then sudo port upgrade outdated
+Are there any other update processes I'm missing? I've only been using OS X for a few weeks so I want to make sure to keep everything up to date in my system and already I feel like most Mac users don't even know about all of the above (especially the Gem update command).
+Am I somehow wrong in thinking I need to do all of the above?
+
+A: It might be good to not upgrade the system Ruby installed by Apple. Apple installs /usr/lib/podcastproducer, which uses that Ruby, and changing the files could cause it to break if there are version sensitive gems being referenced. In addition, other developers can write code knowing the Ruby is there. 
+Use locate *.rb | grep ^/usr | xargs grep require for a file list and the requires.
+I prefer to install a new Ruby, either in /usr/local/bin, or by using RVM to install into a sandbox in ~/.rvm and leave my system version alone.
+Similarly, Apple's Python and Perl installations are also used by some apps. There's a reason the languages are on there and it's not entirely for our convenience.
+
+A: fink if you use that instead of macports.
+fink selfupdate && fink update-all
+
+
+A: Like I said in another answer, you can update all your applications at once using AppFresh. It can even check your updates from Appl for you.
+
+A: Wait until January 6th, the new Mac App Store that will be opened for Mac OS X will also support the same auto upgrade feature for all product installed like the App Store for iPhone and iPad, so everything will be updated at the same time.
+Meanwhile AppFresh works like a charm.

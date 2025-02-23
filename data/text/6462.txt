@@ -1,0 +1,9 @@
+Q: Lion changes the sleep behavior when closing the lid of a MacBook In Snow Leopard, whenever you close the lid of a MacBook, it puts it into sleep mode. Simple as that.
+In Lion, it only puts it into sleep mode if it's running on it's battery. If it's plugged in it stays awake.
+Does anybody know how I can get MacBook to start sleeping when I close the lid, regardless of charging state again?
+
+A: Ok guys, I figured it out.
+I don't really know what is going on underneath, but it has something to do with having "Internet Sharing" enabled. Just disable it when you're not using it and your MacBook should now go into sleep mode when the lid is closed, even when it's plugged in.
+
+A: When the lid is closed, the Mac would always begin to try to sleep, I should think. However, if there are external devices connected, these may wake/prevent the sleep; external display, USB devices, etc.
+To confirm this, open Console.app and see the logs around the time of the lid closing. If something is preventing the sleep, it will be reported.

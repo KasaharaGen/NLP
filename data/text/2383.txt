@@ -1,0 +1,26 @@
+Q: Can I repair my system disk (10.6) by booting off a 10.5 install CD? I'm running Snow Leopard (10.6) and OnyX told me I need to boot from my install CD and use Disk Utility to repair my drive. (It wasn't any more specific as to what the actual problem was.) I can't find my Snow Leopard disc anywhere, but I've got a 10.5.8 disc here. Will it work too?
+(Just to be clear, I'm talking about a filesystem repair, not a permission repair. Repairing permissions with a Disk Utility from an older version of the OS won't work.)
+
+A: Can you boot into Snow Leopard at all?  If you can, try this command from terminal: 
+sudo diskutil repairPermissions /
+Broken down this does the following:
+
+
+*
+
+*sudo - run this command as superuser/admin
+
+*diskutil - run the diskutil program
+
+*repairPermissions - obviously this means to repair the permissions
+
+*/ - act on the whole file system
+
+
+If you can't get into Snow Leopard, you might be able to get into single-user mode by holding ⌘+S on boot
+You can run Disk Utility from within Snow Leopard but whether it can repair it will depend on what's wrong.
+You can do a Repair Permissions on any disk, or a Repair Disk on any disk which is not your startup disk. If you need to do a Repair Disk, you will need to do that from your CD and I think the 10.5 disk would be OK to use for a Repair Disk when booted from, it may not do a Repair Permissions though.
+It's worth trying the Repair Permissions first from Snow Leopard. That solves a lot of issues
+
+A: Assuming you can boot from the Leopard disc, it should work.
+You can boot from the install disc by holding C during boot.

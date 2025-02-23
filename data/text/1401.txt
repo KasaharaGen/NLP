@@ -1,0 +1,78 @@
+Q: Do you have a better way to browse Windows 7 machines in Finder (SL 10.6.5)? Browsing the "network neighborhood" in OS X Finder does show XP machines, but not Windows 7 machines. (Vista machines have a similar problem). I can connect manually to Windows 7 machines ("connect to server" and then specifying "smb://ip_or_name"), but want to be able to browse Win 7 machines automatically.
+Browsing works if security is lowered on the Windows 7 machines, and the OS X machine is forced to be the master browser. Question: Who has a better solution? I would like to find another solution without having to change OS X and all Windows 7 machines. Maybe you know some extra OS X software that "makes samba just work right"?
+
+A: Windows 7 has extra network security options, and one of them sets its discoverability. By default in Windows 7, when you connect to a new network you are prompted for what type of network it should be: Public, Work, or Home. These profiles set up the firewall and security options when on that network; I can't off the top of my head list all the things they specifically set up, but when you select Public, sharing and discoverability are locked tight, whereas in Home they are more relaxed.
+It's very likely that you have set your network type to Public on your Windows 7 computer. If you open the Network and Sharing Center, under the name of your active network it should say either "Home network", "Work network" or "Public network". If it is indeed set to Public (or Work), click it and then click Home network. You shouldn't have any problems after that.
+Alternatively, you can open the start menu and type Network and hit enter. This opens the Network window, which lets you browse other computers on your network. As soon as the window opens, a yellow bar should appear at the top informing you that network discoverability is turned off; click the bar and then click one of the resolution options. This may fix the problem as well.
+I haven't had any problem in OS X connecting to my Windows 7 computers that are set to Home network, as they should be. But a Windows 7 computer set to Public network should be basically undetectable.
+
+A: The Non-Ideal Solution
+After reading a lot of hints, lowering the required client security on the Windows and making the OS X machine the master browser works reliably for me. However, this solution is less than ideal, as it requires reconfiguring the Mac and every Win 7 computer.
+Steps
+Changes to Windows 7:
+
+
+*
+
+*change the security policy. Using  secpol.msc, go to local security, security options and find "Network security: 
+Minimum session security for NTLM-SSP based..." both for client and server.
+(sorry, may be different, I have a German install).
+
+*
+
+*uncheck "NTLMv2 session security required"
+
+*leave "128 encryption required" checked.
+
+
+
+128 bit encryption works with Snow Leopard. Unchecking it is required for some older versions of OS X.
+Changes to OS X Snow Leopard:
+
+
+*
+
+*edit /private/etc/smb.conf
+
+*locate "os level = 2" and change to "os level = 99" which makes this samba always win
+
+*locate "domain master = no" on next line and change to "domain master = yes"
+
+
+Starting the new configuration:
+
+
+*
+
+*shut down your OS X and disconnect or shut down all your Windows clients.
+
+*restart OS X. This way, OS X will become the master browser for samba.
+
+*restart or reconnect your Windows clients.
+
+
+The Very Simple Solution
+By using OS X Server (properly configured), browsing will "just work", without the need to reconfigure anything else.
+
+
+*
+
+*Get OS X server.
+
+*Configure SMB as Standalone Server
+
+*
+
+*enable Workgroup Master Browser
+
+*enable Domain Master Browser
+
+*enable WINS server
+
+
+*under Access, allow NTLMv2 & Kerberos, NTLM, LAN Manager   (according to what your minimum security should be)
+
+
+This may be more than necessary, but it made the situation unambigous.
+The problem is circumvented. It is not a principal problem of OS X Server, which uses the same Samba build as OS X client. It works reliable with the server solution. Since there is rather little interest in this topic, I will not further investigate, sorry.
+About the server cost: It is quite pricey. If you happen to be registered as an Apple Developer, then you can run an evaluation copy of OS X server.

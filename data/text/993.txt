@@ -1,0 +1,13 @@
+Q: Monodevelop on OS X and Displaying UTF-8 Does using Copy or paste cause monodevelop to crash, or is it just me? If you have Monodevelop installed, please can you test this, I fount that both shortcuts and from the menus cause it to crash. I seem unable to find information about this on google, though would personally consider this quite a major bug.
+And how can UTF-8 characters be displayed in monodevelop and mono programs? Although they output fine in Terminal. It is similar to this post , but none of the solutions seem relevant as 2.4 has now been released.
+
+A: Since this is a duplicate, which still has not been closed, and the issues in question have been fixed, I will quote the accepted answer there:
+
+  
+*
+  
+*Several common Mac programs have clipboard manipulation features that seem to corrupt MD's memory. It's a known issue and is documented here.
+  
+*Unfortunately my answer remains that same as my answer in the thread you linked: the Mac version of the Pango library that MonoDevelop uses for font rendering does not support glyph fallbacks, but you may be able to work around this by using a font that contains all the glyphs you need. If you could be more specific about the charsets and where you are seeing issues, we may be able to provide more specific answers.
+[NOTE: both these issues have since been fixed]
+

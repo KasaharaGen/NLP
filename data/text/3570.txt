@@ -1,0 +1,70 @@
+Q: Split a single page PDF into multiple pages Is there an easy way (in Preview or whatever) to scale up and split a PDF file with a single page into multiple pages? What I would like is to split say an A3 paper document into two A4 pages, to print separately and then put together with tape.
+How can I do such a thing in OS X?
+
+A: After googling, I found that "Preview.app" and "Automator.app" can handle this job.
+
+
+*
+
+*Open the pdf file in Preview.app
+
+*Show Thumbnail
+
+*Select all pages
+
+*From Menu, choose "Tools" - "Select Tool"
+
+*Select right side of a page to crop
+
+*From Menu, choose "Tools" - "Show Inspector"
+7, On the "Inspector" window, choose "Crop and rotate inspector"
+
+*Push "Crop" button (in "Selected Pages" group)
+
+*From Menu, choose "File" - "Print", and choose "PDF" - "Save as PDF...", and save as "right.pdf"
+
+*Do same thing(4-7) for left side and save as "leftside.pdf" 
+
+*Start Automator.app and make workflow with following actions.
+a. "Get Specified Finder Items" (choose "leftside.pdf" and "rightside.pdf")
+b. "Combine PDF Pages"
+c. "Move Finder Items"
+
+*Run the Automator workflow.
+
+
+A: A small JAVA program called Briss will do exactly this job.
+http://sourceforge.net/projects/briss/?source=typ_redirect
+
+A: Preview cannot do this unfortunately, but an $5 application called Tiler does this with ease.
+http://www.mindcad.com/tiler.html
+Hope this helps.
+
+A: I've made an open source and cross platform command line tool called pdftilecut which does exactly what the OP wants. It works with multi-page document of various sizes.
+
+A: Adobe Reader can do this, too: It includes a Poster Print option in its custom print dialog. 
+It’s the first time I missed a feature from Preview (or the native OS X print dialog) that Adobe Reader has. 
+Adobe Reader is free (as in beer) software, it used to be called Acrobat Reader. (Do not confuse it with full-blown Acrobat or any other expensive Adobe product, which can probably do that, too.)
+
+A: If you in Preview select the half of the A3 (e.g. use the Inspector ⌘+I so you get the exact size) - then choose Copy ⌘+C, and paste it as a new file ⌘+N (my suggestion would be to save each new file as its page number). After that do the same with the other half of the A3.
+If you save every new file as its page number, then afterward you can select all the new files in Finder. Once they're all selected, right click and choose Quick Actions > Create PDF (available in macOS Mojave). You'll have a new PDF that is composed of every pdf you had selected.
+
+
+A: See pdfposter (you can install it with macports):
+http://kernel-panik.blogspot.fr/2011/09/printing-god-damin-a0-poster-as-set-of.html
+
+A: I have been searching for a free solution for this and I stumbled a java app called 'briss' which does what it promised perfectly. 
+http://briss.sourceforge.net
+
+A: If you have Illustrator you can simply create a document with several letter size artboards and place the PDF.
+
+A: Select option to print -> Poster 
+This will split your page into your default page size(for letter size 8 x 11)
+you can select tile scale to zoom within this split page. You can also select overlap. You can select labels so you know which page goes where.
+
+A: This is an online  tool I found that worked for splitting an A0 format to multiple A4. https://online2pdf.com/split-page-into-4-parts#
+
+A: You print to PDF with the following setting:
+- change page setup to A4 size (if the original document was in A3)
+- then print..
+for the other side of page, you need to rotate the original file and do the same as above..

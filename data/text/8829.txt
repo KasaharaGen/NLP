@@ -1,0 +1,19 @@
+Q: Getting 10.6.7 Build 10J869 installed on an 17" MacBook Pro 8,3 (Early 2011)  I have a MacBook Pro8,3 (Early 2011) with 10.6.7 build 10J4139 installed on it and I need to get Build 10J869 installed. 
+Now, I can obtain a combo or delta update for build 10J869 from https://developer.apple.com/downloads, but neither seem to want to install on top of build 10J4139.
+Any suggestions?
+
+A: Have you tried simply installing 10J869 to an external drive? Then you could migrate the data over and finally use disk utility or deploy studio to clone the external OS back over the internal drive. 
+In your case, the drivers needed to properly install (or at least pass the preinstall script checking for the correct hardware) were never included in a build earlier than 10.6.6 / 10J3210
+You can consult the list of builds that supported each Mac Model upon release at Mac OS X versions (builds) for computers.
+Since you are trying to get an older build running - do expect things like slow performance, odd fan behavior, graphics issues and perhaps worse if you manage to get the 10J869 build running.
+At this point, you have two less than optimal avenues for getting the build on the mac you intend:
+
+
+*
+
+*Run the install from a mac that will run 10J869 - you can install to the MacBook Pro in target mode or use a disk tool to transfer the data.
+
+*Modify Apple's install package to disable the check for this hardware ( or flip the comparison ) and hope the install goes well running from your mac.
+
+
+Sometimes running an older version of the OS is harmless, so depending on how urgently you need this, you might give it a go and report back how it works.

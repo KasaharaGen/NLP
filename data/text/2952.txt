@@ -1,0 +1,22 @@
+Q: I've managed to break my terminal, (iTerm2(b17), ZSH, OSX10.6.6) I'm migrating to a shiny new laptop (yay) unfortunately I've manually set up my iTerm to match the old machine, but something is not right (not yay).
+I'm experiencing
+
+
+*
+
+*using xterm-256color doesn't give the full colour set for say, vim.
+
+*applications like vim dont clear out of the scrollback when exited.
+
+*my ↖ home and ↘ end keys are completely broken and I can't seem to Google a solution
+
+*my ⌫ backspace key doesn't delete backwards, it adds a 'space' and prevents further input until ^C.
+
+
+Here is my .zshrc and my .profile. I dont have an .inputrc.
+Here are my keyboard settings for iTerm2:
+
+
+I'm fairly sure i've broken something between $TERM, iTerm2's keyboard settings and my .zshrc, but I'm simply not competent enough to debug it. As far as I can tell, my settings are identical to my old laptop, which works.
+
+A: It turns out that xterm-256color does not work correctly unless you have xcode installed.

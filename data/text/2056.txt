@@ -1,0 +1,15 @@
+Q: How can I view the items in the Spotlight cache? I'd like to view the data spotlight has imported.  Is this possible?  
+EDIT:  For example I can do this:
+mdutil -svvv /Volumes/h8rdrive
+
+and find out this volume was indexed.  
+I'd kind of like to find out what's not indexed though.
+
+A: mdfind is your friend here.
+If you simply wanted a list of every file in your spotlight index you could do:
+mdfind /
+
+You can also get it to provide a count of the files.
+mdfind -count /
+
+On my system this returns 224353 which is a good reason not to run the first command!

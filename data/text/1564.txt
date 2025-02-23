@@ -1,0 +1,28 @@
+Q: Not seeing help content of Windows apps in Parallels Configuration: OS X 10.6.x, Parallels-desktop 6, Windows 7
+When I press F1 or the help button in any windows app (f.e. MS Office 2010, Delphi 2007/2010), Microsoft Help Viewer or Microsoft Document Viewer try to download content. Accepting this, or canceling, will both result in empty documents, sometimes at least showing an outline of the help file, but no content at all.
+How can this be fixed?
+
+Show me offline help ... results in a file not found error message (German).
+
+Help in Notepad works as expected, it's only products installed after Windows that show this behavior. And I do have access to the web, I can call any website from within firefox and retrieve any document from the company network.
+
+A: Installation of version 6.0.11992, the newest release of parallels desktop, fixed the problem. Installing a new release also reinstalled the parallels desktop tool and relinked the shared folders.
+It took about 5 days for the release to be visible for the parallels updater after it was available. But once it was, all worked like a charm.
+My problem took place over Christmas, and I was helped wonderfully through these days. I want to thank the people of Parallels support team. (I have to blame myself for spending my time with this problem instead of taking time to worship the king.)
+What the problem was never really became clear. But thanks for your help.
+
+A: This sounds like a Windows Problem that is completely unrelated to Parallels or Mac.
+For reference try opening the Notepad and press F1. The Windows 7 Help should appear.
+Here’s mine: (in spanish)
+
+It’s running under Parallels 5, but it gives you an idea. 
+
+A: Is it possible that you have some firewall kinda apps that block internet connections? (eg.: LittleSnitch)
+Or is your parallels configured to connect to a non existent network that Windows thinks to be connected to the internet?
+Btw, a screenshot would be helpful
+Update:
+Ok, that screenshot explains:
+You have configured Parallels to use Firefox on the Mac as the "Default Browser" for the Windows VM also.
+When you click help, the help details should open in the "Help Center" window, but is opening in the FF on the Mac, because Parallels "thinks" that this is a request to IE and redirects to FF on the Mac. (the Help Center uses IE internally, or is built on an IE base, I think)
+Try to remove the setting in parallels configuration for this VM and give a try.
+(I don't have access to a Mac till evening, so unable to give the exact name of the setting. But it should not be difficult to find)

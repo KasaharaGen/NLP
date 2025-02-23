@@ -1,0 +1,20 @@
+Q: How can I read the log when I fail with VPN I have a Macbook Pro and I'm trying to get VPN from home to work. It refuse to work. I have turned on verbose logging, but how can I read the log ?
+
+A: Whether you choose L2TP over IPSec or PPTP for your settings, the log file is located at:
+
+/var/log/ppp.log
+
+If you want use terminal to view your log file you can do following:
+
+vim /var/log/ppp.log       
+tail -f /var/log/ppp.log       (if you
+  want see end of file)
+less /var/log/ppp.log  (if your log
+  file was huge and want to see page by
+  page)
+
+
+A: For completeness, I'll add a way to view the log in the GUI.
+Open the Console utility, select Show Log List from the toolbar (if it isn't already shown), then select FILES > /private/var/log > ppp.log from the sidebar.
+On macOS Catalina, the toolbar reads "Log Reports", then ppp.log
+

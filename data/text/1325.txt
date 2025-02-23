@@ -1,0 +1,42 @@
+Q: Is system maintenance software required? If so, what is the best? On Windows computers, people often use third party software like SystemCare in order to keep their system functioning at top performance.
+Are there Mac equivalents that monitor startup, configuration and the like?  How necessary are they?  What is the best general purpose package?
+
+A: 
+Are there Mac equivalents that monitor startup, configuration and the like?
+
+OnyX, Snow Leopard Cache Cleaner, iTweax are some options.
+
+How necessary are they?
+
+Not very. Any optimization that needs to be done is already built into the Mac OS X. 
+
+What is the best general purpose package?
+
+Can't help you there, I don't use such utilities.
+
+A: Let me correct your answer ;)
+
+Unless you leave your computer on 24
+  hours a day, and completely shut it
+  down and restart it once a week, some
+  things will grow and grow.
+
+Starting with Snow Leopard, OS X catches up on missed periodic routines (purging caches, updating indexes, other stuff that needs to be done periodically).
+If you are really in doubt, run the following in terminal:
+sudo periodic daily
+sudo periodic weekly
+sudo periodic monthly
+
+This will run all the routines OS X runs daily, weekly or monthly to keep the system fresh and fast.
+
+A: Let me extend ghoppe’s answer. 
+
+Not very. Any optimization that needs to be done is already built into the Mac OS X.
+
+That is true, but could be misleading. Unless you leave your computer on 24 hours a day, and completely shut it down and restart it once a week, some things will grow and grow.
+Despite the “customization” options that these tools provide (i.e. change the Dock’s minimize animation to name a trivial one), there’s a maintenance aspect in the tools, that can be handy.
+I personally have Cocktail (not free) because I got it with a bundle years ago. I’ve used OnyX too, it’s very similar. 
+They are not a must, but Cocktail checks the S.M.A.R.T. status of the drives, executes the maintenance tasks in case you missed them too much, etc. The UNIX under the hood requires Unix maintenance. It’s true, the tools are not required but I’d have one (even if OnyX). Sometimes when you have problems, running the tasks (clearing caches, font caches, etc.) helps.
+A plus is that Cocktail (and possibly others) also check for “existing” trojans (there are only a handful). It’s all about having a tool that you can easily use to keep things clean. 
+The rest of the options are merely a nice graphical user interface to existing OS X commands, plus the ability to search for corrupted preference files, remove locked files, etc. Most of these things you can do without any utility, but it’s way faster this way unless you know the commands.
+I’ve used Cocktail for a few years (runs every Friday) and I restart my computer once a month (or when there’s an update) and never associated a problem with this. 

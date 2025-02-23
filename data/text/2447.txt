@@ -1,0 +1,13 @@
+Q: How often does Google Notifier check for email? I just installed Google Notifier (Mac), and I noticed that it's a bit delayed in when it reports an email has arrived.
+It seems that it polls the server every X minutes instead of using push technology. How often does Google Notifier check for mail, and is there any way to modify it?
+
+A: I believe by default it checks every ten minutes.  To adjust the interval, click on the mail icon, then hold down the Command and Option keys and click on Preferences.
+A box will pop up asking for a key and value. Use AutocheckInterval as the key and type the number of minutes in the value box.  Then click Set and you're done.  You need to restart it for the change to take effect.
+NOTE: AutocheckInterval is case-sensitive
+You can also do the following in Terminal  
+defaults write com.google.GmailNotifier AutocheckInterval # 
+Replace the # above with a number to represent minutes between checks
+
+A: In addition to @Griffo's suggestion of using AutocheckInterval, you can also undo this change by typing the following in terminal:
+defaults delete com.google.GmailNotifier AutocheckInterval
+

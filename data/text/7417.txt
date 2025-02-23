@@ -1,0 +1,41 @@
+Q: What tool exists to identify the RGB value of a pixel? I need to get the RGB for a pixel that is in an image. Under Windows this is easy but is there a way to do this on Mac OS X?
+
+A: You can use macOS' built-in Digital Color Meter, however there is a very important caveat:
+If you simply use the default settings naively, the values it displays are probably not the values you are looking for. (This can be an issue for most color dropper tools).
+By default, the Digital Color Meter displays the "Native Values", which sounds like the original RGB values, but it's not. "Native Values" actually means the values after they've been converted to the Color Profile for the current display. (The Color Profile in use is displayed at the bottom of the Digital Color Meter window.) This is usually going to be a specific Color Profile for your display. For example, my Macbook Pro is set to the "Color LCD" profile.
+Solution
+To get the exact original RGB values before conversion, you need to temporarily change your System Preferences > Displays > Color > Display Profile to sRGB (which is the most common Color Space, so use sRGB unless you know otherwise). Then the Digital Color Meter's Native Values will give you the exact original RGB values that you are looking for.
+Another alternative method for web pages is to use the browser inspector and look for the css color value directly.
+
+Details
+You can easily test this for yourself. Go to a web page that lists CSS web colors and their RGB values. Open the Digital Color Meter and set it to Native Values. Scan down the list of colors and compare the Digital Color Meter values with the original values. Probably most of them will not match exactly. (If they all match perfectly, then you probably have set your display to use the sRGB profile).
+What's happening is that the dropper can only capture the value after it's been converted to the display's Color Profile.
+You can change Digital Color Meter to "Display in sRGB", but that will not always give you the exact original values. That is because it is double converting from original sRGB to display's Color Profile, then back to sRGB. Sometimes there will be rounding error and it will be off by a tiny bit.
+The only way to guarantee the exact original is to temporarily change your display to sRGB, because then there will be no conversion at all.
+For further reading, here is an excellent article.
+
+Example
+Here is an example using DCM on ForestGreen rgb(34, 139, 34). In the first DCM screenshot, you can see that the values are all off, because it is showing the "Native Values" for "Color LCD" profile. In the second DCM screenshot, I've changed it to "Display in sRGB", but one of the values is still off due to double conversion rounding error. In the third DCM screenshot, notice that I've changed my Display to use sRGB color space. Finally it gives the exact original values.
+The second row shows what happens if I naively took the wrong rgb(40, 138, 41) values and used them. Although you can't really see the difference through human eyes, it's off. And if you repeated the process, you would keep drifting further off.
+
+
+A: I usually use DigitalColor Meter (in Utilities). As long as it's open, it gives you the RGB values of the pixel below your mouse cursor.
+
+
+A: Use the built-in app /Applications/Utilities/DigitalColor Meter. Place your mouse pointer over the pixel you want the color of, and DigitalColor Meter will show the RGB values.
+
+A: I use SpotColor (recently renamed to Hues, more info here)
+
+
+and HexPicker (which currently has a slight issue with Lion still)
+
+
+A: ColorSnapper is the best. $4.99 on the Mac App Store.  
+Just take a look at the demo video and you'll see what I mean.
+
+A: I have started relying on the Digital Color Picker plug in to extend the Mac OS X color palette. It's made by Wade from Panic.
+
+A: If you need a lighter option to DigitalColor Meter you can check out Point&Paste. It's a free open-source tool that allows you to just place the cursor on the color you want and copy it to the clipboard with a key-binding of your choice.
+
+
+A: I use GraphicConverter.  It has an optional (turns on or off in settings) RGB readout in the window frame that follows the cursor.  It also has a tool represented by an eye-dropper that copies the color value into the foreground color setting.  The eye-dropper, however, averages the colors of the pixels around the point clicked.  But the radius can be adjusted from ten pixels to one (and one would mean just the pixel clicked on).

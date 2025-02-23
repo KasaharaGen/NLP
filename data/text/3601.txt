@@ -1,0 +1,33 @@
+Q: Reinstalled my MacBook Pro, resync with iPad issues I just wiped my MacBook Pro clean as part of my yearly reinstall habit. The problem is, now when I connect my iPad or iPhone, there is no really trivial way to sync my PDFs and ePubs back with the clean MBP. If I sync Books, it will overwrite my iPad and I'll be left without said PDFs/ebooks. I have all of them backed up, that's not the problem. I was just wondering if there's a way to do a two way sync, meaning take the pdfs/epubs I have on my ipad then sync them with the MBP. Or is this going to require me manually putting back all of my content sourcing from the MBP first? 
+
+A: I do this all the time - introduce an iOS device with content to a new library (whether it's on the same or a different computer).
+In your case, if you simply don't sync until you reintroduce the last good backup of iTunes then everything will be fine again. But let's assume you don't want to do that and continue with the question as asked.
+You can cancel the sync when the warning about erasing the content appears. At that point go and deselect the automatic sync option so you have time to transfer the documents.  
+Then you can use the File menu 
+Transfer purchases from "device" to get all the "apple iTunes store" content into the new library. This is a smart merge so you don't get any duplicates. Lastly, inspect the Apps tab to check for any third party data you might want to transfer. 
+I also use the iBooks email to get a few PDF off an iOS device but you may want to look into trying and later purchasing PhoneView which lets you move documents to/from your device to a mac with ease. It's very powerful and goes far beyond what iTunes allows.
+
+A: Whenever I've synced my iPhone after loading books onto it via the "Open With" emchanism on the phone - e.g. from Dropbox - it's always copied them down into iTunes for me.  It should do the same for you, although I'd definitely suggest making sure that iTunes backs up your phone first.
+Having said that, if you ARE going to reinstall your Macbook every year, you should absolutely be making sure that all of this stuff is backed up before doing so.
+
+A: What you really want to do is convince the reinstall of OS X (and so iTunes) that it already knows your iPad, rather than a sync resulting in everything being overwritten.
+How to do this? Well, the iTunes library has an ID that is linked to your iPad. Right now the iPad's ID has not changed, but your library's ID has changed. When you reinstalled OS X and iTunes, a new library was created with a randomly generated ID that is not the same as your iPad's ID.
+The general process to correct this if you wanted to go this route:
+
+
+*
+
+*Find out the ID of your iPad library (this would have been the iTunes library ID before you reinstalled).
+
+*Replace the ID of the reinstalled iTunes library with the iPad ID (rather than the ranomly generated one that was created on reinstall).
+
+
+While there is a great automated tool for this for Windows, there is not one that I know of for OS X. You most definitely want to backup your libary if you attempt this:
+
+
+*
+
+*This link has very clear and detailed instructions on first recovering your Library ID from your iPad (because you can backup without having to clear the phone)
+
+*Now you must update your iTunes library with this ID. Clear instruction on how to do this are on this link. This requires getting down and dirty with a hex editor, which if you are not comfortable with, you'll probably want to avoid. You'll notice those instructions are in reference to managing an iOS device on multiple iTunes installations, the process and results are the same, you can consider that your old OS X install would still have access to managing the iPad if the install existed.
+I've completed this process on a variety of OS X and Windows install when the machines have been reformatted. It works and allows me to transfer music and whatever else back onto the new iTunes install.

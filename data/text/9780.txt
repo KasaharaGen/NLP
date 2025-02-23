@@ -1,0 +1,15 @@
+Q: Why can't I acces my Mac's webserver from my iPhone using the Mac's ad-hoc WiFi? I want to do a demo of an iPhone optimised WebApp using my MacBook Air with a local server, so I don't have to depend on getting an internet connection or WiFi access from my client.
+The Air is running Lion 10.7.2 and the iPhone is on iOS 5.0.1.
+When I create a network on the Mac I can join from the iPhone, but when I open "http://my-macbook-air/" in Safari, it doesn't work.
+Strangely it doesn't seem to utilize the WiFi, as the indicator never appears (but shows connected in the Settings app).
+Possibly related:
+Why is my iPhone unable to connect to an ad hoc wifi network? (though my question is Apple <-> Apple, so I expected it to work).
+
+A: It is probably related to resolving the host name.
+Try using the IP address of the Mac instead of the name:
+
+
+A: I followed the steps here: http://egalo.com/2012/05/29/testing-mac-web-site-using-local-hostname-on-mobile-device/ 
+It took about 5 minutes to setup and works really well.
+
+A: Not sure if the firewall rules apply to an ad-hoc network, but I spent days with both the apache server and python's SimpleHTTPServer without being able to connect my iphone up, although i was able to connect the iPhone to a windows box running SimpleHTTPServer.  It ended up simply being the MAC OS firewall.  Turn it off in System Preference -> Security & Privacy -> Firewall.  It blocks incoming connections.

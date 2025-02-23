@@ -1,0 +1,30 @@
+Q: What are the main difficulties people face migrating from Linux to Mac OS? Coming from a Linux background what are the main difficulties I will face if I start to work on iMac? 
+I use to work on Linux with consoles and I know I have a huge apps repository (synaptics) for almost all I need. I'm programming Java and Ruby all day long, so what are the main differences?
+Differences like UI and passionate things I already know, so please tell me only useful things. (otherwise we'll keep this question for years)
+Have you faced this before? Is it a slightly migration?
+I'd be thankful. 
+
+A: I did a switch from Linux just a week ago. I am using Linux for 15+ years. Lately, my Desktop distro of choice was Ubuntu.
+Mac OS X is a BSD based system, so minor issues you will have to get used to is stuff like using ipfw instead of iptables.
+As you will pretty soon realise Ubuntu (and other distros) simply mimic lots of Mac solutions when it comes to usability. You will find yourself being very familiar with a lot of GUI elements. 
+There is virtually no difference from a developer point of view. You can just install rvm and develop your Ruby apps as you used too. Main difference is, that now you can use the famous TextEdit! :D
+As for the drawbacks:
+Mac has worse package management and you might miss some fancy features of apt-get / dpkg (or yum / rpm). It's not groundbreaking however, and Homebrew will be sufficient in the end anyway. 
+There are various minor things like key shortcuts, window management which takes couple of hours to get used to. I for one can't get what's the idea behind how the window maximization works.
+In the end, I must say that I don't miss a thing so far. I got everything I loved about Linux + beautiful system which can run StarCraft and Photoshop. :-) 
+
+A: Some minor differences I encountered when I was using both Mac and Linux systems:  The most common Mac OS X file system is case insensitive, whereas Linux filenames are case sensitive.  There is no default and enabled account named "root" on a Mac.
+
+A: I'm not a Linux switcher, but I know several now die-hard Mac users who came from Linux. The biggest issue for all of them seems to be the fact that OS X only has one "console" (screen), while Linux offers a lot more and can switch between text and graphic consoles easily. While several parallel desktops are supported by OS X via Spaces, something like the console switching (AFAIK) doesn't exist for OS X. This isn't an issue if you're not used to it, though - I for one never needed it. The file system is slightly different since parts of OS X are based on BSD - the differences are minor though and easy to learn.
+Since OS X (IMHO, but I'm not alone...) offers a superior user experience in comparison with any Linux desktop environment, you should quickly get used to any differences.
+
+A: You can install many useful open source tools such as wget on your iMac thanks to the open source community. There are couple of projects you may want to look at.
+
+
+*
+
+*Fink
+
+*MacPort
+
+*Homebrew

@@ -1,0 +1,12 @@
+Q: How do I access Windows PCs on the network? How can I access Windows PCs from my Mac, and vice-versa, on the same network. I need to transfer files back and forth, and I can't seem to figure out how to do it. I poked around the settings, added the MacBook to the workgroup and all, but the computers still can't see each other. Right now I'm using a USB HDD to shuffle files, but that is far from ideal...
+
+A: Sharing must be enabled.  To see the Mac from your PC's, enable File Sharing (System Preferences/Sharing/File Sharing).  You will need to take the additional step of enabling Samba sharing, since PC's don't use Apple's File sharing Protocol (AFP).  Do this by then clicking on options, and make sure "Share files and folders using SMB (Windows)" is checked.  Turn it on for whichever accounts you wish to authorize.
+In order to see PC shares from your Mac, the PC's must be on the same network, with sharing enabled.  Share a folder or something.  Is it XP, Vista, 7?  If it's XP, disable Simple File Sharing.  Do so by opening a folder, going to Tools->Options, and find it at the bottom of View.  Then right-click a folder, go to Sharing and Security, and enable sharing.
+If it still doesn't show up, you may have a network/firewall issue, and it warrants further help.. but try that to get you started.
+
+A: Harv's answer is spot on for getting Samba sharing enabled. I am contributing my personal experience with this particular issue.
+I am able to get sharing to work by setting the IP explicitly for the machine I wanted to connect to with Connect to Server via Finder. For instance, smb://192.168.0.100/Shared. This worked well enough for my needs.
+On the other hand, I was able to see the Mac in the Network view on the Windows machine and access its shares. Just for whatever reason the Mac can't see any other devices on the network via Network in Finder.
+
+A: If the files are < 2.25 GB, an alternative with almost zero setup effort would be to use DropBox. If you are feeling friendly and want 250 MB extra, you can use this link.
+When DropBox detects both computers are on the same local network, it will transfer directly between them, not requiring routing the files through their server (although the files will eventually end up there).

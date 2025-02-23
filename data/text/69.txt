@@ -1,0 +1,14 @@
+Q: Can I get the Canon EOS Utility to stop bugging me when I plug in my iPhone? I'm not sure if this belongs here or SuperUser, so I'll ask here and if the community decides to close it, I will re-ask there.
+Every time I plug my iPhone in to my MacBook, the Canon EOS Utility (installed with the software for my DSLR) pops up and decides to inform me that a camera was not connected. I, of course, know this, as I just connected my iPhone. This happened with my last iPhone (3G) and continues to happen with my current iPhone 4.
+Is there any way to get that software (provided by Canon) to stop bugging me (on my MacBook, OS X 10.6) when I plug in my iPhone?
+
+A: After plugging in your iPhone, open "Image Capture.app" in the Applications folder. In the bottom left of the window is an option to choose what to do when this "camera" is plugged in. Change this to Do Nothing or open iPhoto as you would prefer. 
+
+A: You can also try installing Cameras, which will let you select default actions depending on the camera you plug in.
+
+A: Open up the ImageCapture application. There will be an option to change what happens when you plug a camera / device in.
+
+A: One option would be to simply disable the Canon EOS Utility, which apparently has a 'helper' app/daemon running all the time, and manually launch it when you need it.
+There should be a setting in the Canon EOS Utility's preferences, but if there isn't, look in System Preferences » Accounts (I think that's what it is called in Snow Leopard) » Login Items.
+If there's nothing there, check "~/Library/LaunchAgents" (where ~ is your home directory) for something which (probably) lists Canon in the filename. Remove the file from that directory and restart your Mac.
+Bonus Tip: Assuming that your camera mounts in /Volumes/ when connected, you could use Hazel to automatically launch the utility when your camera is connected.

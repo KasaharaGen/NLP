@@ -1,0 +1,43 @@
+Q: How can I rip DVD subtitles to SRT format (or something else that iPads can understand)? Title says it all. I've used HandBrake, Subler, VideoMonkey, and RipIt. I'm familiar with mencoder. None of them seem to be able to rip the subtitles from a DVD and then get the soft subtitles to the iPad.
+
+A: Subler on Mac also can use OCR to convert bitmap subtitle tracks to SRT/closed-caption style softtracks.
+Make sure to rip the movie in Handbrake with whatever subtitles you like and do not BURN IN the subtitles.
+
+
+*
+
+*Create a new file in Subler and drag the movie containing the bitmap subtitles to it. When given the option, only import the bitmap subtitle tracks, not the whole movie.
+
+*Save the new file - Subler will convert the bitmap to a soft caption track. (This will be really slow if you added the whole movie, which is why I suggested just the subtitles in step 1).
+
+*Open your movie in Subler and drag the new file (containing the converted subtitles) into it. Import the track and it will appear as SRT/text subtitles. Set the language and save.
+I do like to burn in the Foreign Subtitles though, since those are often not included in the closed captions for the deaf/impaired but rather part of the bitmap subtitle tracks.
+
+A: Please, keep in mind that usually DVD subtitles are just bitmaps (pictures), so it won't be very straightforward.
+You basically have 2 options:
+
+
+*
+
+*Use something like SubRip to extract the subtitles and convert them to SRT. Here's a nice guide on the subject: https://web.archive.org/web/20120224190445/http://www.dvd-guides.com/content/view/231/59/
+Then import the SRT into handbrake.
+
+*Download an SRT with the subtitles you want from someplace like opensubtitles.org and import the SRT into handbrake.
+
+
+A: This is by no means a complete answer but if the DVD you are ripping contains Closed Captioning subtitles then HandBrake gets you this for free.
+Simply add the subtitles as a track. You'll be able to clearly see what must be burned in and what doesn't have to be by the options that have been greyed out.
+
+
+I actually really like this option and use it whenever I can because different software can display these subtitles in different formats and all of the Apple playback software that I've used does a really nice job of displaying it readably and beautifully. I should also note that unchecking the Burned In check box won't make any difference on an iPad.
+The problem is with bitmap subtitles. Essentially, I have found no software that can preserve alpha transparency when they rip bitmap subtitles and thus they require burn in to the resultant file if you want to use them directly in any Apple playback software. If you want to go this route, I have enough space to simply rip it twice, once with subtitles and once without.
+What you're left with is a variety of OCR techniques that are shoddy at best as far as what I've seen on the Mac. I have heard good things about SubRip if you have any access to Windows.
+Another option is to download an open SRT file and add it manually to the container. You could search for these via traditional means or give opensubtitles.org a try. YMMV. As long as the container format you're ripping to is mp4 (it should be if you're ripping for Apple devices), you can use Subler to add the external SRT track in post.
+
+A: D-subtitler will extract and recognize subtitles to create an SRT file. It will require some work from your part for ambiguities, since it is an OCR, but you will get a clean SRT file instead of an image track.
+However, you would probably be better off starting by checking OpenSubtitles first to see if your file is not already there. Subdownloader is supposed to give you an easier (automated) access to it, but I did never care enough to try it, so I cannot guarantee it is as useful as it pretends to be  ;)
+
+A: You can use MakeMKV. There is a version for Mac OS.
+
+A: I try to use the free DVD Ripper software Handbrake or Avidemux to extract SRT subtitles from DVD movies, but both of them only allows me to rip the DVD file with the subtitles encoded in the video. But what I really want to do is only ripping the subtitles and not the video. Then, I find a paid application called Pavtube ByteCopy, it is quite simple to use with a friendly GUI interface, I use the program to successfully to extract the SRT file not only from DVD movies but alsoBlu-ray movies.
+

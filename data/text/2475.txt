@@ -1,0 +1,17 @@
+Q: Mail.app and multiple copies of emails I start using Mail.app today. I have two Gmail accounts (one free hosted and one on Google Apps). In Mail.app I created two IMAP accounts according to the official Google manual.
+But when somebody send my a mail, I receive two copies of it: one copy in each inbox. Could somebody please explain me what's going on here?
+Thanks in advance for your help.
+Best, Andrej
+
+A: To flesh out an answer from your comment in case other people encounter this problem...
+You need to provide the full e-mail address as the username. If you have two accounts with different domains and the same local part and you only specify the local part as the username, it can cause problems. 
+
+
+*
+
+*First.Last@gmail.com
+
+*First.Last@company.com
+
+
+It may appear that both accounts are 'working' (as in no connection errors) but really it is just connected to the same account twice causing the double messages as you described.

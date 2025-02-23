@@ -1,0 +1,45 @@
+Q: Problem with Non English(Farsi, ...) subtitle When I want to see a movie or video in mac os x (with VLC, DivX Player, Quick Time) and want to load subtitles, these video player applications can't load my subtitle correctly show in strange text.
+My subtitle language is Farsi (RTL language). I must change some Unicode settings, but I don't know where anyone has any idea?
+
+
+A: According to Trezoid answer on superuser the solution is:  
+By default the language encoding on VLC (and possibly others) is set to "default" which is windows-1252 (possibly only if your language is set to english, but I'm not sure)
+This will not display other languages very well. To fix it, open up VLC preferences, click on the Subtitles and OSD tab, and change "default encoding" to UTF-8
+This will give the program a much wider choice of characters to display from allowing it to render the characters as they should be.
+
+A: I had the same problem and fixed it in this way:
+open VLC, preferences, subtitle/OSD, and change default coding to one of Arabic languages.
+
+A: It could be (and looks like) a possible issue regrading encoding. It's probably not UTF-8, and something different.
+That being said, if VLC can't play it nothing can. I suggest trying to find different subtitles.
+
+A: Try with MplayerX which features:
+
+  
+*
+  
+*Auto detect the encode method of subtitle file (with Universal Charset Detector)
+  
+*
+  
+*Now could support multiple sub files with different encode method
+  
+*Load subtitles while playing - just drag or double-click it
+  
+*Letterbox for the subtitles
+  
+  
+
+
+A: Try enca to guess and convert encoding of text files, e.g.
+enca -x utf8 -L mylanguage file.srt
+
+For list of supported languages, check man enca.
+Related:
+
+
+*
+
+*How to change encoding from Non-ISO extended-ASCII text?
+
+*iconv any encoding to UTF-8

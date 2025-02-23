@@ -1,0 +1,119 @@
+Q: What are pros and cons for MacPorts, Fink and Homebrew? I'm just migrating from Ubuntu Linux to Mac, and everything is new and I'm re-learning a lot of stuff.
+On Linux I had the excellent apt-get to manage software packages. I googled for an alternative on Mac and found about MacPorts, Fink and Homebrew.
+I will use this computer primarily to develop Ruby on Rails applications.
+So, what are the differences between them? Which are the upsides and downsides? Which one is best maintained and has more packages?
+
+A: MacPorts
+It is more independent of Mac OS X, this means MacPorts will just ignore many of the system libraries and software that's already available in Mac OS X and pull its own one instead, which could be slower when the utility you install requires some set of large libraries and software.
+But this kind of choice is safer because the packages you installed are less influenced by Apple's system update/upgrade procedure.
+
+Homebrew
+It is more dependent on existing Mac OS X installed packages, so this will speed up the installation of packages and minimize redundant libraries.
+But the risk is installed packages might be broken because of Apple's system update/upgrade.
+So, these are the two different kind of tradeoff.
+Also, Homebrew takes over /usr/local by default, which some folks don't like because it somehow conflicts with the Unix tradition and might cause problems if you’ve already installed anything there (MySQL, etc.)
+
+Apart from these differences, considering the packages these two can offer, you can check with these two commands if you already have MacPorts/Homebrew installed, which show you the packages they currently provided:
+port list | wc -l
+brew search | wc -l
+
+And you will find out that MacPorts has many more packages than Homebrew.
+(19399 v.s 3583  on May 13 2016)
+
+A: Just to add some of my own thoughts that seem true-ish circa late 2014 at least.
+Homebrew, as of a couple of years ago, definitely has the upper hand in terms of mindshare. You'll find a lot of blogs with people talking about how much happier they are with Homebrew - usually because of the whole "MacPorts pulls in the whole world" vs "Homebrew makes use of what you already have" thing.
+However, IMO, MacPorts is a different beast now than it was a couple of years ago. When I first switched to OS X & was using MacPorts the MP philosophy was indeed frustrating because almost everything was built from source. A new installation was particularly painful/slow. However over the past year or so, based purely on my own impressions, it seems like 90% of MP packages are binaries & so installation is actually really fast now. From what I gather Homebrew is also moving in this direction with "Bottles" but i get the impression that most things you install via HB at this point in time will be compiled from source.
+So, if only to offer a countervailing opinion, MacPorts seems to actually be the "faster " option these days. However most peoples opinions of MP seem to be based on experiences from circa 2011-12 or so & don't really take this into account. Take this with a grain of salt though as I'm not a regular HB user (and its rather painful to use both side by side).
+I do think HB has advantages that mean it will probably "win the war" in the long run though
+
+*
+
+*HB is all Ruby whereas MacPorts, and its package formulae, are written in TCL which is....not exactly a popular scripting language. That said its pretty damn simple to create your own portfile.
+
+*HB is based around GitHub & thus seems a lot more welcoming to new contributors whereas MacPorts hosts its own SVN repository somewhere I think - which basically reflects the different ages of both projects I suppose. 
+
+*HB and Macports now both use Github to manage their formulae, portfiles and source code to provide their functionality.
+
+*As mentioned the general consensus is that MacPorts has been superseded by HB &, rightly or wrongly, that draws more people towards it.
+
+Otherwise YaOZl & kLy covered the main difference in terms of sudo, dependencies etc pretty well. Personally I do find that MacPorts sometimes leads to some headaches in terms of other programs not expecting anything to be in /opt/local, things being installed with root permissions etc & there are some things that are generally best not installed with MacPorts (e.g. you can install Rails via MacPorts but you'd be crazy not to install it via Ruby's normal Gem management). Other than that though I'm a big fan of the MacPorts philosophy of building its own little world & not relying on some prepackaged OS X library - when it works, and it mostly does, everything is dead simple. Which is what you want of a Package Manager really. And as i mentioned, at this point in time its pretty damn quick to set most things up.
+Hope some of that was useful.
+
+A: I am in China and visiting github often fails, which makes installing brew quite a pain. I know some brew mirror in China, so I raised an issue against brew Provide an easy way to change homebrew's origins. They fixed it in 2.3. But even with that installing brew is still not smoothing, e.g. I hit several times that after installation, brew can't find any formula.
+qiulang@qiulangdeMacBook-Air redis % brew info wget
+Error: No available formula with the name "wget".
+==> Searching for a previously deleted formula (in the last month)...
+Error: No previously deleted formula found.
+qiulang@qiulangdeMacBook-Air redis % brew info redis
+Error: No available formula with the name "redis".
+==> Searching for a previously deleted formula (in the last month)...
+Error: No previously deleted formula found.
+
+Now I know I need to "re-tap" but during those times I just didn't know the exact reason except installing brew was not successful.
+Out of desperation I switched macports and it works quite smoothly so far.
+
+A: Something which other answers (so far) don't appear to have mentioned  is that MacPorts has excellent support for legacy versions of macOS. Homebrew only supports the OS's that are currently supported by Apple, which usually means the last three releases. For example, as of February 2022, only Monterrey, Big Sur, and Catalina are compatible with Homebrew.
+By contrast, MacPorts can be installed on Tiger (!), and the project maintains special patches to keep software working wherever possible. This includes a "Legacy Support" library which backports functions from newer versions of macOS to older ones; linking against this library while compiling can make a variety of new software suddenly work on older systems!
+So, if you're running an old version of macOS, or if you think you may need to stay on a current OS past Apple's expiration date, you should probably go with MacPorts.
+
+A: Brew was completely smooth for me to use, so I'm unable to tell about its cons. Some disadvantages of MacPorts:
+
+*
+
+*you have to install Xcode from the Apple Developer site, hence you must have an Apple developer account (which now requires credit card) or the Mac OS App Store (no developer account needed) and download XCode;
+
+*if port 873 (rsync) is blocked by your firewall, you'll have to manually configure the HTTPS protocol;
+
+*the HTTP(S) server from which packages are downloaded is (often) extremely slow (under 20 KiB/s yesterday; tested from a couple very reliable Gigabit connections in different countries) and may fail with error Operation too slow. Less than 1024 bytes/sec transferred the last 60 seconds, forcing you to redo everything from scratch.
+
+There are several very popular questions about the first two points.
+
+A: Definitely Homebrew. I started with Fink, then switched to MacPorts (happier), then Homebrew (much, much happier). These are my reasons for using each (a pro list if you will):
+Fink
+
+*
+
+*Apt-based - feel right at home if you come from a Debian-based environment.
+
+MacPorts
+
+*
+
+*Unlike homebrew do not depend on MacOS library that may change in the future.
+
+*Install everything in: /opt/local
+
+*Nice variants system that lets you customise the build.
+
+*Easy and intuitive port files, also allows you to add your own.
+
+*Supports many versions of macOS going back to Mac OS X Tiger including PowerPC versions see other answer.
+
+Homebrew
+
+*
+
+*Maximum leveraging of what comes with OS X. Unlike Fink or MacPorts, it does not require you to build/install ruby and libraries from scratch just to install some small Ruby-based tool.
+
+*Installs into /usr/local (Intel) or /opt/homebrew (Apple Silicon)
+
+*Install without root access.
+
+*Every installed package is cleanly sandboxed into its own cellar so you don't have stray files all over your system, just symlinks from bin, man, etc.
+
+*Has guides and automation to create your own formula files (ie. package descriptors).
+
+*Written in ruby and all formulas are concise ruby scripts.
+
+pkgin
+
+*
+
+*Everything installed in: /opt/pkg
+
+*Backed by pkgsrc community and Joyent
+
+*Known to work on NetBSD, DragonFly BSD, Solaris, Debian, macOS, Minix
+
+https://pkgsrc.joyent.com/install-on-osx/
+http://pkgin.net/

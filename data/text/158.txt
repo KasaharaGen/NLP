@@ -1,0 +1,35 @@
+Q: Why is my Macbook Pro getting so slow? On my MacBook Pro (Year 2009) it takes a long time until I'm logged in or until when a program is started. From day to dayit's getting slower. 
+Programs like Safari or Word or MonoDevelop take up to 2 min until it's started.
+Would it be Win95/98/XP, I would reformat and reinstall everything. 
+But what are the possibilites with a Mac and OS X? 
+Is there a performance monitor?
+Thanks for any hints.
+My Mac has:
+Intel Core 2 Duo 2.8GHz, 4GB RAM
+
+A: You want to look at /Application/Utilities/Activity Monitor.app.  This will tell you what processes are running and what's taking up the most ram/cpu.  It'll also show you how much ram you're using, how much of your cpu you're using, and how much network and harddrive i/o you're doing.  This is the starting point if you want to troubleshoot performance, since it'll show you where your bottlenecks are and what's slowing you down.
+
+A: First of all, I would start to check your login items.
+Open System Preferences, go to Accounts, on the left pane, select your account and go on the Login Items tab.
+There, will be listed all your programs that start up when you log in. Remove everything you don't need to run on your system startup.
+--
+Also, try to reindex your computer.
+To do so, either install Alfred (it's an app launcher, but I know it offers an option to reindex Spotlight in one click) or open Spotlight preferences in System Preferences go to the Privacy tab and drag the Volume under which is install Mac OS X, wait a few seconds and remove it. There's also a command line magic you'll probably find in the interwebs.
+Be aware that it might a long time to reindex, depending on the number of files you have. But it could really speed up your system.
+
+A: There could be several things here that are creating the lag time, but there is never a need to reinstall everything.
+Plan A: I actually do these things on the first Monday of every month
+Purge Caches: Macintosh HD/Library/Caches/ and Macintosh HD/Users/UserName/Library/Caches/. You lose some of your application preferences, but things are all but guarenteed to be snappy.
+Repair Permissions with the Disk Utility: You can either view permissions or fix permissions. Just go straight for fixing permissions and get a cup of tea and read a magazine while you wait.
+Reboot on a regular basis: I don't care what anybody says about uptime; the occasional reboot does wonders. My Macs are real workhorses, and I reboot Monday mornings when I get in. I rarely, if ever these days, have problems.
+Plan B: The Not So Obvious
+Let Spotlight index when it finds new stuff: Spotlight makes for good searches, but it's indexing processes are a real hassle. If things slow down, I first look for the little dot in the magnifying glass in the menu bar icon. If that's going, I go get a cup of coffee or find something else to do.
+Look for background services you may have forgotten: Also, look for any background processes that may be dragging things down. Look at your login items in the System Preferences, because maybe you have some kind of a server daemon that loads in the background you forgot about. Or maybe you have your iTunes library shared and enough people are on listening to content to slow things down (this was also a problem at my company).
+Check free hard drive space: I have also noticed in the past that things can slow down if I don't have enough hard drive space. Things really get wonky on my Macs when I have less than 10% free space, so I start cleaning things off when I am at the 20% free space threshold.
+Plan C: System Level
+Look for multiple, related processes: Check Activity Monitor for anything that might be hogging CPU time. Don't just look for a single process that has a high number, but also look multiple processes that might be related. I recently had a problem with McAfee AntiVirus (my company's IT department foisted it onto us) trying to almost continuously scan my iDisk. No process got above 2%, but there were over a half dozen of them. Once I disconnected my iDisk, McAfee was no longer a problem.
+Let overnight processes run: Most days I leave my Macs on all day and all night because there a number of system processes that run at around 2:00a, Sunday mornings being especially important (that's when the weekly and monthly processes run). Do a quick reboot and all should be well.
+Plan Z
+Apple Certified Technicians are your friends: Third-party system maintenance software is not. I've been working with Macs for years and the one immutable fact that I have learned is that applications designed to help maintain the system are more trouble than they are worth. When all else fails, take it in because there may be a hardware problem at this point.
+
+A: I had this problem with an old mac.  Make sure your hard drive is fully functional.  Mine had the exact same symptoms, and it turned out that the drive was b0rk3d, and that was why Spotlight took so long , startup took so long etc.  

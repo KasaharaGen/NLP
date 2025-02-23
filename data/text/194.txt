@@ -1,0 +1,113 @@
+Q: Do you know a simple sound booster app for Mac? Some videos on websites have the sound volume so low that even with all sound settings at maximum levels it's hard to listen.
+I'm looking for an app that would allow me to boost the Mac's volume. Something similar to VLC volume controls.
+I already looked at Audio Hijack, but it has way too much features for what I'm looking for.
+Anything free of charge would be a plus. :)
+
+A: The application you are looking for is called Hear.  It's pretty expensive though.  I've been looking for a program to do something similar for months, but on the opposite end of the spectrum (my volume to my USB audio adapter is way too high, even with the volume all the way down).  As far as I can tell, there isn't a free program out there that can do this.  You can also try messing around with the built-in Apple utility called "Audio MIDI Setup" (in Applications/Utilities) and creating an aggregate device, then messing with the preamp on this device, but so far I haven't had any success with this.
+
+A: Just discovered eqMac2, an open source equalizer program.
+It does not have the ability to go beyond 100% but you can get a reasonably similar effect by augmenting the volume of several bands.
+Very straightforward to use and install.
+
+
+A: If you like to use iTunes to listen / watch your media files... Some time ago I found new easy way to get the sound a bit louder. In iTunes Library select media with low volume and press cmd+i. Go to Options and make Volume Adjustments
+
+
+A: I just found the free app Bongiovi DPS. It is free and simple and has some great audio enhancements.
+http://bongiovidps.com/
+
+A: You can boost the volume of videos playing in Chrome using free extensions. I found the Ears chrome plugin works quite well. Steps:
+
+
+*
+
+*install the plugin
+
+*click the Ears extension icon in chrome
+
+*drag the baseline from 0 up to +5
+
+*click EQ this tab
+
+
+A: Boom
+It works pretty well. I had similar issues on my Mac, didn't like being glued with the headphones forever so I got this just yesterday. And I loved it. It's not free, but for $5 it works like a horse.
+
+
+A: You can go with custom equalizer and then amplify your sound out
+Instructions
+
+Requirements
+
+
+*
+
+*Soundflower – free download from Google Code (more recent version here)
+
+*AU Lab – free download from Apple Developers (requires free Apple Dev ID)
+
+*Download and install both Soundflower and AU Lab, you will then need to restart your Mac to have full access to the audio components. Once rebooted, follow along with the instructions below:
+Set Up a Universal Audio Equalizer for Mac OS X
+
+
+*
+
+*Set System Volume to the maximum level, do this either through the menu bar or by hitting the Volume Up key repeatedly
+
+*Open System Preferences from the  Apple menu and select the “Sound” panel, followed by the “Output” tab. Select “Soundflower (2ch) from the Output list
+
+*Now launch AU Lab, found in /Applications/Utilities/
+
+*From the “Audio Input Device” pulldown menu, select “Soundflower (2ch)”, and then from “Audio Output Device” menu select “Stereo In/Stereo Out”
+
+*Click the “Create Document” button at the bottom of the screen
+At the next screen, look for “Output 1” column and click the “Effects” dropdown, selecting “AUGraphicEQ”
+
+*This is your new system-wide equalizer, set it how you see fit. Changes here will impact all audio output on the Mac
+
+*When satisfied with the EQ settings, hit Command+S to save the EQ settings file and put it somewhere easy to find like the Documents folder
+Now open AU Lab preferences from the AU Lab menu, click on the “Document” tab and click the radiobox next to “Open a specific document”, selecting the .trak EQ file you saved in the previous step
+
+*Optional final step: If you want the EQ settings to load on every Mac OS X boot, right-click on the AU Lab icon, go to Options, and select “Open at Login”
+Note: It’s important to note that AU Lab must be running in order for the equalizer to have an effect, keeping it running will consume a small amount of CPU resources but it’s much less process hungry than some of the third party alternatives available on the market.
+Due Credit : http://osxdaily.com/2012/05/18/equalizer-for-all-audio-mac-os-x/
+Cheers
+
+
+A: Volume Booster
+That works like a charm for me on Chromium-based browsers (Chrome, Opera, etc).
+
+A: I use SpeakerAmp:
+Amplify, equalize and boost your audio with 3-D surround.
+Features:
+● Amplifier up to 999%
+● 10-channel equaliser with several built-in and up to 100 user profiles
+● 20-channel spectrum analyser
+● L-R VU power meters
+● Tunable limiter preventing signal distortion
+● 2 adjustable ranges of the amplifier
+● Mouse scroll control of volume
+● Adjustable colour schemes of the meters
+● Consumes 0% of CPU in idle state
+● Supports stereo/joint stereo/mono
+Free demo version: https://www.nimblesnail.com
+The app works in 2 modes:
+
+*
+
+*Local Audio player
+
+
+*System-Wide Processing
+In the player, you can play, amplify and equalise any of these audio formats: mp3, mp4, wav, m4a, ,aac, adts, ac3, aif, aifc, caf, snd or au.
+In the system-wide mode, the app can process audio coming from any app. Additional free audio driver is needed in that mode:
+https://www.nimblesnail.com/audioDriver.html
+Product documentation: https://www.nimblesnail.com/doc.html
+EULA: https://www.nimblesnail.com/eula.html
+
+A: Could you not simply download the movies and play them in VLC or something similar? I'm not aware of anything that'll boost system wide sound, but as you don't seem to have attracted any answers, I'm trying to think of alternatives.
+Quicktime can play FLV files, and if you use QT7 Pro, it allows you to boost the sound using the Track Properties pane. Would that be an option for FLV videos?
+
+A: Did someone try this? I used in the past and it should do the job http://jackaudio.org/
+
+A: Sound Booster Lite (FREE) is very good

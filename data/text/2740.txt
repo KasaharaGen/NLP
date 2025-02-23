@@ -1,0 +1,82 @@
+Q: How to make Chrome open a new window for external Links As some people might know, the default behavior for external links of Google Chrome is quite bad. I'm using Spaces, and opening a link in some application outside of Google Chrome while being on a different Space than the last used window of Chrome results in Chrome switching to the last focused window.
+This behavior is just bad.
+I want to change this behavior. On Windows, this is possible: How can you configure Chrome to open new browser instances in new windows rather than in a tab?
+Sadly, I don't think this is possible on OS X Snow Leopard.
+I'm already using a tool called RCDefaultApps. This is a system-control panel where I can specify default applications for different protocols. It just lacks the feature to specify additional command line arguments for the default application.
+Can anyone help me there? Every hacks (aside from creating a custom Chromium build) are acceptable.
+
+A: You can try using the AppleScript found on this page.
+I just tried it out and it perfectly works fine in Chrome 12.0.742.122.
+It's extremely easy to set up:
+
+
+*
+
+*download the Bundle archive
+
+*double click it to unpack it
+
+*double click on OpenUrlInNewChromeWindow
+
+*open Safari and set the new "Browser" as the default browser in the Preferences.
+
+
+
+
+A: Starting at Dave’s answer, I found that with Chrome 45, running osascript is no longer needed, and that with OS X 10.10, the Apple Script is not selectable in the system preferences. Here is how I solved it.
+Create an Apple Script using the Apple Script editor, and export it as an application.
+on open location theURL
+   do shell script "/usr/bin/open '/Applications/Google Chrome.app' --new --args --new-window " & theURL
+end open location
+
+Install RC default app.
+
+RCDefaultApp is a Mac OS X 10.2 or higher preference pane that allows a user to set the default application used for various URL schemes, file extensions, file types, MIME types, and Uniform Type Identifiers
+
+In the system preferences, open the new default-apps screen, go to the URL tab, and set the exported Apple script as handler for http and https.
+
+A: I've been unable to make it work too. 
+What I was trying to do was to use the following command:
+open Google\ Chrome.app/ --new --args new-window www.google.com
+
+But that opens a new Chrome that instantly closes (if Chrome is already open). I was planning on wrapping the above command within a bash script and then let it have arguments (for the URL). 
+But since the above command failed to work, I'm still thinking about this. So far I believe it's not "possible" without some modification to Chromium, but I might be overlooking something. It's early and I haven't had coffee yet. ;)
+
+A: This works on Mavericks:
+open /Applications/Google\ Chrome.app --new --args --new-window https\://www.google.ca
+
+followed by:
+osascript -e 'activate application "Google Chrome"'
+
+Tested in sh, bash and zsh.
+For some reason, if I try to put them on the same line like so:
+/usr/bin/open /Applications/Google\ Chrome.app --new --args --new-window www.google.ca; /usr/bin/osascript -e 'activate application "Google Chrome"'
+
+...the second part doesn't complete.  I assume that's because it's too close on the heels of the first command.  So try this:
+/usr/bin/open /Applications/Google\ Chrome.app --new --args --new-window www.google.ca; sleep 1; /usr/bin/osascript -e 'activate application "Google Chrome"'
+
+Note that you don't need to specify the http:// part of the url at the end for it to work, but if you do, you need to escape the colon (:).
+To make this script my default browser, I created an applescript and exported it as an application and then opened Safari Preferences and set the application as my default browser.   Here's the Applescript code:
+on open location theURL
+  do shell script "/Users/[myusername]/bin/openUrlInNewChromeWindow.sh " & theURL
+end open location
+
+Replace [myusername] with your actual username.
+
+A: Security addition to the other answers [1]
+One should quote the URL for security reasons and as it might contain special characters which need escaping when used as a string in bash (e.g. '&' and '$'). 
+Otherwise the opened URL might be wrong and a maliciously crafted URL could even run an arbitrary command on your machine. Tested on macOS Catalina (10.15) and lower.
+To put it all together, the updated script should look like this:
+on open location theURL
+    do shell script ("open -a 'Google Chrome' --new --args --new-window " & "'" & theURL & "'")
+end open location
+
+Or if you prefer your commands with full path (as in Michael's case):
+on open location theURL
+   do shell script "/usr/bin/open '/Applications/Google Chrome.app' --new --args --new-window " & "'" & theURL & "'"
+end open location
+
+The important part in both scripts are the quotes around the URL at end of the middle line.
+[1]: Would have commented on the others' answer but don't have the required reputation, so I made a new answer.
+
+A: The --new-window command option did it for me. ("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --new-window https://www.google.com)

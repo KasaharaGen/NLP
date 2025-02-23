@@ -1,0 +1,36 @@
+Q: Should I stick with programming on my Apple or switch to Linux? I was wondering whether or not the switch to Linux would be worth it.  I feel like programming on my MacBook Pro is fine and I was wondering what the advantages would be for staying or switching.
+What would you do and why?
+
+A: Considering OS X is a POSIX compliant unix system, you can do most of yout *nix programming on OS X anyway.
+I would stick with Apple, it is a growing market and has some very good tools to help you along the way.
+
+A: I program for both Mac OS X and Linux, and I agree with bromfiets - try both of them!
+As somebody else has suggested, put a VM on your Mac and load up Ubuntu and give it a whirl. I do some of my Linux work that way, using VMWare on a Mac Pro. (I also program on a MacBook with Snow Leopard, and a Sony laptop that runs Ubuntu.)
+User322 is quite wrong about how "effectively no difference between programming on a Mac or a Linux box". If you want to write GUI programs on a Mac, your best bet these days is to use Cocoa and Objective C, and on most Linux distros it's C with GTK+. (Most of the others others, you'd use C and KDE, and on a few, C++ and Qt.) The graphics and window management systems are radically different... I could go on and on.
+On Linux, if you don't like how some component operates, you can dig into the sources and fix them, which is usually not an option on the Mac. You learn a lot, and you can make pretty good money doing that! My day jobs during much of the last five years have involved mucking around with the internals of Linux components like the X server, GTK+, and Clutter, and I now turn down work doing that these days because there's so much demand and I'm overloaded.
+Apple really pushes the use of Xcode on the Mac for both editing and builds, and it's pretty good. On Linux, there's no real standard. For editing, you've got various GUI tools (kate, gedit) and terminal-based editors (vi/vim, emacs). For builds, you can do the command-line make thing, or use jam, or ant. Or you can go with an IDE like Eclipse, which is about as close as you'll find to Xcode, and in some ways is better. You get most of these tools for your Mac, but hardly anybody uses them there.
+Mac and Linux programming are really different worlds, and both of them are pretty cool.
+And while I like the Mac as a user... having attended WWDC off and on since the mid-80s, and also attended various Linux-oriented tech conferences like GUADEC and the Ottawa Linux Symposium... I'd attend the Linux ones over WWDC every time. They're just hackers' dreams, tons of fun, and they make the marketers stay away.
+
+A: That depends on what your problems are with your mac and whether Linux solves them.  Gotta give more detail than that, man.
+Personally, I love my mac for development for a few reasons:
+
+
+*
+
+*Window management is great.  At work I have two decent monitors, but when I'm coding on my little 15" MBP, having cmd-tab/cmd-` is great and Exposé is a godsend.
+
+*I have a real unix command prompt to use for dev tasks, but still a user friendly system for more normal activities.  I feel OS X has a good balance between the strengths of Linux and Windows without the need to switch between the two.
+
+*Apple is a well-supported system.  It's disadvantage is that at some levels, it can be difficult to customize it (in both hardware and software).  The upshot of that is that if something goes wrong, you have a huge community of developers and users using very similar setups, whereas with Linux has both a smaller and less homogeneous userbase.
+
+*The mainstream mac development apps (Textmate comes to mind) tend to be better designed and more usable than their Linux counterparts.  Some would argue that this comes at the cost of power and control- however, most popular Linux apps can be run on OS X one way or another.
+
+*Edit addition: Two-finger swipe scrolling.  Never realized how useful this was until I had to code for 6 months on a Thinkpad.
+
+
+Disclaimer: Though I interact with *nix systems all the time, I've never used Linux extensively on the desktop.
+
+A: I suggest to not switch, but use both OS X and Linux. You will get more experience and learn to program in more than one "environment". Similary, don't stick to one single programming language. Try another one (at least).
+
+A: Since OS X is unix-based, there's effectively no difference between programming on a Mac or a Linux box. It boils down simply to what programs and utilities (text editors, database frontends, etc) you prefer. But the Mac has infinitely better programs in this sense (at least in my humble opinion), and what utilities Linux does have are generally available on the Mac as well. Long and short, the only good reason to program on a Linux box when you have a Mac available is when you're developing an application for Linux. For everything else, just stick with your Mac.

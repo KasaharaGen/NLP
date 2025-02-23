@@ -1,0 +1,15 @@
+Q: iMovie video conversion I imported all of my videos from a Sony HDR-CX550V camcorder into iMovie '11.  I imported the video at the original resolution 1920x1080.  I was planning on converting the video into some other codec so I can view it on both a Mac and Windows machine.
+Unfortunately, I learned that this video is an ICOD (Apple Intermediate Codec) format wrapped in an MOV and I cannot use Handbrake to convert the video.
+So I created a project in iMovie, added one of the videos to it, and exported it to HD 1080p...and the quality was absolutely horrible!  For instance, the shadows in the converted video had a red tint!  It reminded me of a .GIF animation.
+Unfortunately, I no longer have the videos on the camcorder, so I'm stuck with these ICOD files...what are my options?  I want to convert them into something Handbrake can handle.
+Thanks!
+
+A: From iMovie, go to Share-> Export Using QuickTime. Set the Export: menu is set to Movie to MPEG-4. Click the Options... button next to that menu.
+Set the File Format to MP4
+Set the Video Format to H.264
+Set the Data Rate to something like 2048
+Set the Image Size to 1080
+Click OK
+Click Save
+That should give you a much better-quality video.
+Hope this helps!

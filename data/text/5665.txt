@@ -1,0 +1,64 @@
+Q: How do I change the default Space for an app in Mission Control? Under Snow Leopard and Spaces you could define which Space an app should automatically launch in, including the ability to indicate that it should be visible in every space.
+My apps are respecting the settings I applied before upgrading to Lion -- for example, iChat, QuickTime Player, and my Billings time tracker show up in all Spaces, Chrome always launches in space 2, etc. -- but there no longer seems to be any way to modify them or add these kinds of defaults for new apps.
+Is there any way to make these assignments with Mission Control?
+
+A: You can do this from the dock.
+Switch to the space you want to pin your app to, then access the options menu from its dock icon:
+
+
+A: Right-click (control+click) on the dock icon, Options > Assign To
+
+A: No longer possible with System Preferences
+It seems impossible to use Mission Control or any other Apple-provided preference pane to change application—space bindings, or present an overview of bindings. 
+Using Terminal to view or change bindings
+An overview of application—space bindings
+Command: 
+defaults read com.apple.spaces
+Where an application is listed without the UUID of a desktop space, this seems to mean desktop 1. 
+(I guess that the permanent desktop requires no UUID.)
+Example
+[macbookpro08-centrim:~] gjp22% defaults read com.apple.spaces
+{
+    "app-bindings" =     {
+        "com.apple.preview" = "7EA54FE0-EB71-444A-8075-C6A2D7000305";
+        "com.apple.safari" = AllSpaces;
+        "com.barebones.textwrangler" = "";
+    };
+    spaces =     (
+                {
+            type = 0;
+            uuid = "7EA54FE0-EB71-444A-8075-C6A2D7000305";
+        },
+                {
+            type = 0;
+            uuid = "CD0AFD50-7902-41EC-A4C4-C313B04CD2BB";
+        }
+    );
+}
+
+Considering the arrays in that example, I would not attempt to change or delete individual items within an array using Terminal alone. From the defaults(1) Mac OS X Manual Page:
+
+… Defaults can be structured in very complex ways, making it difficult for the user to enter them with this command. …
+
+A relatively fresh start
+To delete bindings without losing spaces:
+
+
+*
+
+*quit everything other than Finder and Terminal
+
+*in Terminal, command: 
+defaults delete com.apple.spaces app-bindings
+
+
+*make no attempt to use the Dock to set a binding
+
+*log out.
+Hint
+If you use Dock too soon to set a binding, you may find that everything you deleted from preferences for Spaces is automatically rewritten to that preference file. 
+Information may be cached somewhere. I don't know where. 
+Dock menus accessibility
+My experience of VoiceOver with Dock is that whilst Dock menus are accessible, the routine for changing a binding would be not particularly user-friendly. 
+Alternatives
+There's scope for a third party developer to write an application, maybe a preference pane, for easier overview/management of bindings. 

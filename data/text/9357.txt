@@ -1,0 +1,16 @@
+Q: Cannot connect to server "localhost"? I've been developing web apps for several months now on my mac using the built in apache server and everything has been fine. I restarted my mac this morning and now when I try to connect to anything on localhost I get the error: "Could not connect to localhost". Here are some things I have already checked:
+
+
+*
+
+*Apache is running. System Preferences->Sharing->Web Sharing is turned on.
+
+*I ran "apachectl configtest" and it returned "Syntax OK"
+
+
+Any help would be appreciated.
+
+A: From the terminal curl http://localhost || echo $? might be a good place to start to determine if this is a resource issue, routing issue or apache issue.
+You'll either get back a valid http response or an error that may lead the way to knowing why your other web clients are not connecting to localhost on port 80.
+
+A: I can recommend MAMP. It's everything you need in one software-package. Apache, MySQL and PHP. I use it for years and I never met a problem! 

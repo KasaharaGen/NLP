@@ -1,0 +1,26 @@
+Q: How do I jump to a topic in vim under Terminal for a French Keyboard I'm on a French keyboard and I'm unable to jump to a topic in vim: If I go ':help' the instructions say:
+
+Jump to a subject:  Position the cursor on a tag (e.g. |bars|) and hit
+  CTRL-].
+
+I've tried various combinations with no luck. For example ALT+SHIFT+) gives ']' but adding CTRL does not work.
+The only hack I found was to map CTRL-L to CTRL-] by add this to .vimrc:
+map <C-l> <C-]>
+
+Are there perhaps special mappings for French keyboards in Vim or Mac + French keyboards?
+
+A: If you don't want to waste your CTRL-L, you can make CTRL-"] key" work like this:
+:map CTRL-VCTRL-"] key" <C-]>
+
+
+A: Well on a Mac French keyboard, I just press CTRL+$ (the */$/€ key is the one located to the left of the return key)
+
+A: I Use CTRL+5 on my Spanish keyboard.
+
+A: Well, seems the answer is:
+
+The only hack I found was to map CTRL-L to CTRL-] by add this to
+  .vimrc:
+map <C-l> <C-]>
+
+

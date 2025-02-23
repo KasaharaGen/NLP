@@ -1,0 +1,17 @@
+Q: Strategy for storage on Mac Pro with SSD I've switched my 2008 MacBook Pro to SSD, and love the speed increase.
+I'm now keen to do the same on my 2007 Mac Pro desktop. I've currently got 1Tb + 2*500Gb disks installed.  My strategy is to go for a startup disk of about 128Gb, with the 'bare minimum' stored on it, then leave the rest of my data on the traditional hard disks.
+So, if I'm mostly doing Java (Eclipse) development, plus a couple of VMWare Fusion Windows installations (used for testing), what is it most worth putting on the SSD?  And what shall I just leave on the magnetic disks.
+My gut feeling is that it's worth putting my Java IDE plus sources on SSD, since in compilation there's lots of disk access.  The Fusion VMs can probably sit on Magnetic disks, I don't mind a penalty starting them up: it's just once per week or so.
+Sugestions welcome...
+
+A: I have been building out Mac Pros for a while with SSD for the boot, user accounts and all the apps that fit.
+Placing the large user data that doesn't fit as well as large Apps on the magnetic storage has worked well as the system and user caches stay on the SSD. You absolutely want your code and build scratch / temp files / object files on SSD for speed reasons.
+The simpler the better - I have been using software RAID to span the HDD so the users all see three volumes whether or not they have one drive partitioned, a mix of SSD/HDD or full SSD/HDD and external drives for data and/or TimeMachine.
+Macintosh HD - SSD unless lower performance is OK.
+Data - all the HDD striped (optional on non SSD macs)
+Time Machine - internal if possible - external
+On the fastest macs - we are thinking of striping 3 SSD as DATA - moving the Time Machine to external storage as buying large (teraByte) SSD is still a costly proposition.
+
+A: One recommendation is to actually monitor disk usage. Similar to the adage in software development that says instead of trying to guess how to improve performance, run a profiler that will tell you what parts of the software get used the most and could be improved.
+While you could use the Activity Monitor that has some per-process information, better information can be found via the command line with sudo fs_usage -f filesys.
+Since you are fairly sure the system will reside on the SSD, I wouldn't try to monitor the bootup phase. Start the above command as early as possible and then try to do a normal workflow. Output includes a path name for each file accessed. Analyze results to see what files are actually being accessed the most and go from there.

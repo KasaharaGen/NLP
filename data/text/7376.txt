@@ -1,0 +1,36 @@
+Q: How do I move Mac and Windows partitions to single Hard Drive? I have this scenario:
+
+
+*
+
+*600 GB Hard Drive, using Master Boot Record
+
+*
+
+*300 GB Windows 7 x64 Parition, NTFS
+
+*300 GB free Space
+
+
+*1 TB Hard Drive, Guid Parition Table
+
+*
+
+*730 GB Data Partition, exFat
+
+
+*Two More hard drives which are irrelevant but provide 2 TB of free space
+
+
+I want to have both the Mac and the Windows Partition on the 600 GB Hard Drive, because it's by far the fastest drive in the system. However, I do not want to reinstall Mac OS X. I may be able to reinstall Windows, but I'd like to avoid that as well.
+Does anyone have some hints how I should proceed? I'm also worried about stuff like the Boot Sectors.
+Could I just use something like dd on the paritions? I heard about Carbon Copy Cloner, but that seems to be a file copy rather than a partition copy?
+Since the 600 GB Drive uses MBR, I need to wipe all partitions anyway and repartition using GPT, correct?
+
+A: Before you start, make sure you have a verified working clone of both partitions/systems.
+You will ideally want to have software that can clone partitions, such as either the excellent CarbonCopyCloner, or the equally awesome SuperDuper, both of which will allow for your needs (complete clone) in their Shareware mode.
+I don't know what tools are suitable for PC, but find one that does the equivalent for Windows installations.
+Reboot from your cloned Mac OSX installation, and prepare to repartition your target Hard Drive. Disk Utility can sometimes repartition volumes non-destructively, but for this I would recommend quick erasing the drive and repartitioning to the desired sizes for each OS, with a caveat for the situation below.
+Repartition as desired (ensure GUID, journaled, case-insensitive for the Mac Volume), noting you may need to go through various procedures if you are using OSX 10.7 Lion and wish to retain the hidden recovery partition (ie: you may have to reinstall Lion and restore from your backup, then proceed with Bootcamp installation which will again walk you through creating a suitable PC formatted boot volume which you can later clone your Windows installation back to).
+Clone back the OSX Installation that you are booted from to the target Mac partition on the internal drive (if you haven't already restored from this in the previous step). Do the equivalent process in Windows for your Windows installation.
+Test each by booting into each and making sure everything works as expected.

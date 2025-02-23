@@ -1,0 +1,15 @@
+Q: How to get rid of different mouse tracking speeds on dual screen setups I am using a MacBook Air 11" 2011 Model with Mac OS X Lion hooked up with a Cinema Display 27" and I am getting two different mouse tracking speeds (I am using a Apple Magic Mouse) when I move between the two screens in a two screen setup.
+I have to move the mouse 20cm to move the cursor from one end of the 27" screen to the other.
+However, I have to move the mouse 40cm to move the cursor from one end of the 11" screen to the other!
+I can only adjust the mouse tracking speed in the system preferences, increasing it does make it faster on the 11" screen, but makes it too fast on the 27" screen...
+Anyway I can fix this? This issue did not occur when I was running a MacBook Pro 13" when Snow Leopard and the same 27" screen.
+
+A: I don't think you can. Read this article on TUAW:
+
+
+that's because the mouse speed option cannot be set on a per-monitor basis. Mouse tracking is controlled as part of system defaults, in the Universal Access preferences pane.
+The actual preference is called mouseDriverMaxSpeed and can range as an integer between 1 (lethargic) and 32 (zippy). Here's how you'd read the current setting from the command line:
+defaults read com.apple.universalaccess mouseDriverMaxSpeed
+Whatever number you set to feel right on one monitor will either feel draggy or hyper on the other.
+
+

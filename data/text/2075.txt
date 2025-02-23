@@ -1,0 +1,19 @@
+Q: Mac OS X Terminal [Use option as meta key] overrides backslash in spanish keyboard I already posted this question in stackoverflow:
+https://stackoverflow.com/questions/4811282/mac-os-x-terminal-use-option-as-meta-key-overrides-backslash-in-spanish-keyboar
+but I was informed there that this is the right place to ask it.
+I check "Use option as meta key" checkbox in Mac OS X Terminal, because I like to use emacs way of moving between words: M-f & M-b.
+But if I do that, I can't get the backslash (Option + º; i.e.: Option + key-at-the-left-of-1-in-spanish-keyboard). If I uncheck it, then I can input the backslash, but I don't have M-f & M-b.
+Is there a way to get both? This is driving me nuts!
+
+A: And, as I already answered you on stackoverflow, the solution is to put the following line into your ~/.bash_profile, which remaps the unicode character "∫" (Unicode: E288AB, which is what is sent to your terminal right now in your desired configuration when you press Option + °) to the backslash character:
+bind '"\033\xE2\x88\xAB"':'"\\"'
+
+
+A: I have built a solution myself and it doesn't require abandoning Terminal.app in favour of iTerm 2.
+It is a simple status bar app that runs in the background and rewrites all left Alt + $KEY key events to two key events in rapid succession, Esc, then $KEY; however, it only does this if Terminal.app is in focus.
+You can find the source for the app here. You'll need Xcode to build it.
+
+A: Asmus' answer does not seem enough because it fixes backslash on bash. But then there's zsh. And Emacs. And etc.
+But since there's no way to map non-function keys in Terminal.app, I'm afraid I can't see another solution: you'd have to go ahead and map all the keys you want in all the programs you need them, which is a drag and is not optimum, because you won't ever have ƒ and ^[f at once.
+Or try habibalamin's solution, it seems far simpler and it keeps distinct functionality for left alt and right alt. I will vote up after trying it.
+I can't comment with my rep on this stack site, sorry.

@@ -1,0 +1,146 @@
+Q: How to I go from .flac to .mp3 using LAME & FLAC using the Terminal alone? For a long time I've been using a relative clunky technique which involves Audacity with a LAME plugin. This is fine I guess, but the appeal of the Terminal approach is I can be a little finer grained with my [options] and perhaps use more up-to-date binaries.
+Furthermore, my MacBook is ageing a little now and if I can get rid of an unnecessary GUI, all the better.
+Thanks in advance.
+
+A: Converting a single file without preserving tags
+brew install lame
+flac --decode --stdout test.flac | lame --preset extreme - test.mp3
+
+
+
+*
+
+*--decode --stdout = -dc
+
+*lame - $outfile = input from STDIN
+
+*--preset extreme = ~245 kbit/s VBR
+
+A shell script that preserves some ID3 tags
+#!/bin/bash
+
+for f in "$@"; do
+    [[ "$f" != *.flac ]] && continue
+    album="$(metaflac --show-tag=album "$f" | sed 's/[^=]*=//')"
+    artist="$(metaflac --show-tag=artist "$f" | sed 's/[^=]*=//')"
+    date="$(metaflac --show-tag=date "$f" | sed 's/[^=]*=//')"
+    title="$(metaflac --show-tag=title "$f" | sed 's/[^=]*=//')"
+    year="$(metaflac --show-tag=date "$f" | sed 's/[^=]*=//')"
+    genre="$(metaflac --show-tag=genre "$f" | sed 's/[^=]*=//')"
+    tracknumber="$(metaflac --show-tag=tracknumber "$f" | sed 's/[^=]*=//')"
+
+    flac --decode --stdout "$f" | lame --preset extreme --add-id3v2 --tt "$title" --ta "$artist" --tl "$album" --ty "$year" --tn "$tracknumber" --tg "$genre" - "${f%.flac}.mp3"
+done
+
+To use the script, just save it somewhere like ~/bin/flac2mp3 and make it executable with chmod +x ~/bin/flac2mp3.
+This would convert all flac files in your Music folder:
+find ~/Music/ -name '*.flac' -exec ~/bin/flac2mp3 {} \;
+
+Or slightly faster, since it only calls flac2mp3 once:
+find ~/Music/ -name '*.flac' -print0 | xargs -0 ~/bin/flac2mp3
+
+
+A: i took what you guys had, but then made it run even faster by using xargs to parallelize the jobs.
+find <directory> -name '*.flac' -print0 | xargs -0 -P8 -n1  /usr/local/bin/flac2mp3
+
+Then this is the script from above
+    /usr/local/bin/flac2mp3                                                                                                                                        
+#!/usr/bin/env bash
+
+for f in "$@"; do
+  [[ "$f" != *.flac ]] && continue
+  album="$(metaflac --show-tag=album "$f" | sed 's/[^=]*=//')"
+  artist="$(metaflac --show-tag=artist "$f" | sed 's/[^=]*=//')"
+  date="$(metaflac --show-tag=date "$f" | sed 's/[^=]*=//')"
+  title="$(metaflac --show-tag=title "$f" | sed 's/[^=]*=//')"
+  year="$(metaflac --show-tag=date "$f" | sed 's/[^=]*=//')"
+  genre="$(metaflac --show-tag=genre "$f" | sed 's/[^=]*=//')"
+  tracknumber="$(metaflac --show-tag=tracknumber "$f" | sed 's/[^=]*=//')"
+
+  flac --decode --stdout "$f" \ 
+         | lame --preset extreme \
+                --add-id3v2 \
+                 --tt "$title" \
+                 --ta "$artist" \
+                 --tl "$album" \
+                 --ty "$year" \
+                 --tn "$tracknumber" \
+                 --tg "$genre" \
+                 - "${f%.flac}.mp3"
+done
+
+and heres some stats for the performance speedup using parallelism.
+find <dirOfFlac24s> -name '*.flac -print0 | xargs -0 -P8 -n1 /usr/local/bin/flac2mp320  
+
+0.00s user 0.00s system 60% cpu 0.002 total
+115.94s user 1.40s system 359% cpu 32.655 total
+
+time /usr/local/bin/flac2mp320 <dirOfFlac24s>/*.flac
+96.63s user 1.46s system 109% cpu 1:29.98 total
+
+you can see it also utilized my CPUs more effectively, i have an intel i7, so 8 is probably the right number of processes.
+
+A: Found this thread while trying to do direct encoding of MP3s from FLAC source files. Boehj’s answer provides a decent scripting option, but I personally prefer to use FFmpeg, so this is the Bash script I came up with to handle this task. Tested and works great in macOS Sierra (10.12.2).
+Perquisites: You should have ffmpeg and lame already installed on your Mac. The easiest way to do this is via Homebrew. First make sure you have Homebrew installed like this:
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+Then run this command to install ffmpeg and lame:
+brew install ffmpeg lame
+
+Once that is done you are ready to run this script. This script will look for FLAC files in the directory path/to/FLAC/files but that can be changed to simply be . if the FLAC files are in the same directory you are running this script in. When it runs it will create an mp3/ subdirectory where all of the MP3 files will be placed.
+find -E "path/to/FLAC/files" -type f -iregex ".*\.(FLAC)$" |\
+  while read full_audio_filepath
+  do
+
+    # Break up the full audio filepath stuff into different directory and filename components.
+    audio_dirname=$(dirname "${full_audio_filepath}");
+    audio_basename=$(basename "${full_audio_filepath}");
+    audio_filename="${audio_basename%.*}";
+    # audio_extension="${audio_basename##*.}";
+
+    # Set the MP3
+    mp3_dirpath="${audio_dirname}/mp3";
+    mp3_filepath="${mp3_dirpath}/${audio_filename}.mp3";
+
+    # Create the child MP3 directory.
+    mkdir -p "${mp3_dirpath}";
+
+    # Get the track metadata.
+    mp3_title=$(ffprobe 2> /dev/null -show_format "${full_audio_filepath}" | grep -i TAG:TITLE= | cut -d '=' -f 2- );
+    mp3_artist=$(ffprobe 2> /dev/null -show_format "${full_audio_filepath}" | grep -i TAG:ARTIST= | cut -d '=' -f 2- );
+    mp3_album=$(ffprobe 2> /dev/null -show_format "${full_audio_filepath}" | grep -i TAG:ALBUM= | cut -d '=' -f 2- );
+    mp3_year=$(ffprobe 2> /dev/null -show_format "${full_audio_filepath}" | grep -i TAG:YEAR= | cut -d '=' -f 2- );
+    mp3_track=$(ffprobe 2> /dev/null -show_format "${full_audio_filepath}" | grep -i TAG:TRACK= | cut -d '=' -f 2- | sed 's/^0*//' );
+    mp3_tracktotal=$(ffprobe 2> /dev/null -show_format "${full_audio_filepath}" | grep -i TAG:TRACKTOTAL= | cut -d '=' -f 2- | sed 's/^0*//' );
+    mp3_genre=$(ffprobe 2> /dev/null -show_format "${full_audio_filepath}" | grep -i TAG:GENRE= | cut -d '=' -f 2- );
+
+    # Where the magic happens.
+    ffmpeg -y -v quiet -nostdin -i "${full_audio_filepath}" -ar 44100 -sample_fmt s16 -ac 2 -f s16le -acodec pcm_s16le - | \
+      lame --quiet --add-id3v2 --pad-id3v2 --tt "${mp3_title}" --ta "${mp3_artist}" --tl "${mp3_album}" --tn "${mp3_track}"/"${mp3_tracktotal}" --tg "${mp3_genre}" -r -m s --lowpass 19.7 -V 3 --vbr-new -q 0 -b 96 --scale 0.99 --athaa-sensitivity 1 - "${mp3_filepath}";
+
+  done
+
+Some notes on things I learned “The Hard Way™” so others can gain from what I did differently in this script compared to others on the Internet.
+
+
+*
+
+*The grep commands for tag parsing (using FFprobe which is installed with FFmpeg) are case insensitive using the -i option to make it grep -i.
+
+*The following cut command is now limited to dividing the output only based on the first = in a tag name with the -f 2- option which makes the command cut -d '=' -f 2-. For example, Pavement has a song titled “5-4=Unity” and if only the second chunk were selected via cut that title would have been truncated to “5-4”.
+
+*For track—and total track—numbers I added an extra pipe to sed which gets rid of leading zeros: sed 's/^0*//'.
+
+*In similar scripts around the Internet, the FFmpeg output is something like -f wav and that would actually compress the FFmpeg output which makes no sense in a pipe setup where LAME is going to re-encode it. Instead the output here is set to -f s16le -acodec pcm_s16le which is basically RAW output; perfect for piping audio to another process like this.
+
+*To deal with RAW output on the LAME side of the pipe, I had to add the -r option.
+
+*Also note the --tt, --ta, --tl, --tn and --tg ID3v2 tag options for LAME. When audio is streamed/piped from one process into LAME the the metadata from the source file is lost. One suggested option is to get FFmpeg to save the metadata to a text file by setting the option with -f ffmetadata "[metadata filename here]" and then running FFmpeg again with the something like this: -i "[metadata filename here]" -map_metadata 1 -c:a copy [destination mp3 file] id3v2_version 3 -write_id3v1 1. That works, but note the requirement for a destination file. Seems like FFmpeg only imports metadata when it can copy the file which seems like a very wasteful process. Using FFprobe to get values and then setting them in LAME with --tt, --ta, --tl, --tn and --tg options works better; all the metadata is written in place so duplicate file needs to be generated.
+
+
+A: ffmpeg would preserve tags (but not cover art) by default.
+for f in *.flac; do ffmpeg -i "$f" -aq 1 "${f%flac}mp3"; done
+
+-aq 1 corresponds to -V 1 in lame. -acodec libfaac would convert the files to AAC:
+for f in *.flac; do ffmpeg -i "$f" -acodec libfaac -aq 200 "${f%flac}m4a"; done
+

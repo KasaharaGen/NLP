@@ -1,0 +1,37 @@
+Q: How can I "say" to another Mac? I have two Macs in our house (iMac and MacBook Pro).
+I would like to use the say command-line utility to type something on my MBP and have it speak on the iMac, rather like an intercom system.
+Plus, it could be hilarious to send messages to my wife while she is using the iMac.
+Can this be done?
+
+A: Since the two Mac are in the same house, I assume they're both on the same network.
+First of all, you need to activate Remote Login on the Mac where you want the sound out.
+Go to System Preferences > Sharing and check the Remote Login checkbox.
+Then, using your computer, open Terminal and type this
+ssh <user>@<computer name.local>
+
+Where <user> is your wife login and <computer name> is the name of the other computer.
+Now, it's as if you're having Terminal open on your wife's computer and you can say whatever you like.
+
+A: In addition to using ssh to run commands on the remote host, you can use Remote Apple Events, which also have a say command, as well as others that may be useful to you, like display alert.
+On the target machine, enable:
+
+System Preferences > Sharing > Remote Apple Events
+
+Then from your machine run the following script (in AppleScript Editor, or via osascript in Terminal):
+tell application "Finder" of machine "eppc://machine-name.local"
+    say "Hello"
+end tell
+
+It will ask you to authenticate when you compile or run this. If you do so in AppleScript Editor, it will remember the authentication as long as you leave AppleScript Editor open, so you won't have to authenticate each time you run this. (The authentication dialog also has an option to save your credentials on the Keychain to avoid being repeatedly pestered.)
+You can do this from the command-line in Terminal with:
+osascript -e 'tell application "Finder" of machine "eppc://machine-name.local" to say "Hello"'
+
+How to Display a Message on a Remote Machine
+You could also display a message by logging into the remote machine with ssh† and running this command in the remote shell (this doesn't make use of Remote Apple Events, just Remote Login for ssh):
+osascript -e 'say "Hello" without waiting until completion' -e 'tell application "System Events"' -e 'activate' -e 'display alert "Hello!"' -e 'end'
+
+The say command starts the speech asynchronously, then this brings System Events to the front to display the message while the speech is playing.
+† Commands that display UI, like display alert and display dialog, are not allowed via Remote Apple Events. To send them to a process on a remote machine, you must first go through ssh.
+
+A: Alternatively again, nothing stopping you from using Remote Desktop or Screen Sharing, which is built into OSX, and just logging in as a normal user, skipping the terminal.
+Then you can use say normally. Or there are plenty of apps that do text to speech.

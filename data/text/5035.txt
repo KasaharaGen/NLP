@@ -1,0 +1,91 @@
+Q: Monitoring network usage of individual applications? I want to monitor each application's network/internet usage on my Mac.
+Sort of like how Activity Indicator shows total upload/download usage -- but I also want to know particular application usages.
+Is this possible?
+
+A: The app Little Snitch can do this. Among many other things, it shows traffic by app.
+It costs $29, but there is a free trial available.
+
+A: Another app I've used is RubbertNet (site is down, linked via archive.org).  Also not free, but has a free trial available.
+
+A: A combination of
+HandsOff! and SurplusMeter
+is my current solution. HandsOff is an advanced firewall which similar to LittleSnitch. It's not free, but a trial version is available. Surplusmeter on the other hand is free and open source.
+Among the features which you need for monitoring network usage are:
+
+*
+
+*monitoring network activity of every process (HandsOff!)
+
+*get the network usage of individual processes (HandsOff!)
+
+*log total network usage (SurplusMeter)
+
+HandOff does only display the network usage since boot. It does not log the data which is why I need SurplusMeter. However, SurplusMeter only logs the total network usage for all applications.
+ 
+
+A: Apple include a customised version of tcpdump as part of MacOS/OSX which allows for the display/filtering of packet capture metadata information - which contains a number of items (see man page excerpt below) and includes process information. e.g. so you could run it to capture traffic only from firefox (-Q proc=firefox) and print out all packet metadata information (-k):
+sudo tcpdump -Q proc=firefox -k
+
+Or you could run it with just the -k option(s) and extract and analyse data per process name/pid. For more details see man tcpdump - here's the relevant sections (though there's more in the man page about the PKTAP filters):
+  -k Control  the  display  of packet metadata via an optional metadata_arg argument.
+     This is useful when displaying packet saved in the pcap-ng file format  or  with
+     interfaces that support the PKTAP data link type.
+
+     By default, when the metadata_arg optional argument is not specified, any avail-
+     able packet metadata information is printed out.
+
+     The metadata_arg argument controls  the  display  of  specific  packet  metadata
+     information  using  a  flag  word, where each character corresponds to a type of
+     packet metadata as follows:
+
+                 I     interface name (or interface ID)
+                 N     process name
+                 P     process ID
+                 S     service class
+                 D     direction
+                 C     comment
+                 C     flags
+                 U     process UUID (not shown by default)
+                 A     display all types of metadata
+
+     This is an Apple modification.
+
+   -Q expression
+     To  specify a filter expression based on packet metadata information like inter-
+     face or process name.  Packet with matching packet metadata will be displayed or
+     saved  to  a  file.  See section PACKET METADATA FILTER for the syntax of packet
+     metadata filter expressions.  This is an Apple addition.
+
+
+A: You could look at WireShark.  It may have a daunting interface, but once you learn it, you can track traffic by port.
+You can also check out the built-in terminal utilities NetStat, TCPDump and PCap.
+Using netstat -t -u will display the send and receive queue by process name.
+
+A: If you are using iOS 5+ you can use the remote virtual interface 
+$ # First get the current list of interfaces.
+
+$ ifconfig -l
+
+lo0 gif0 stf0 en0 en1 p2p0 fw0 ppp0 utun0
+
+$ # Then run the tool with the UDID of the device.
+
+$ rvictl -s 74bd53c647548234ddcef0ee3abee616005051ed
+
+
+
+Starting device 74bd53c647548234ddcef0ee3abee616005051ed [SUCCEEDED]
+
+
+
+$ # Get the list of interfaces again, and you can see the new virtual
+
+$ # network interface, rvi0, added by the previous command.
+
+$ ifconfig -l
+
+lo0 gif0 stf0 en0 en1 p2p0 fw0 ppp0 utun0 rvi0
+
+You should be able to use wireshark or tcpdump, or ngrep on the problem, via the mac.
+EDIT: ipfw is deprecated, but you can just turn on logging and see which packets go where. I don't know how to do that with pf :(
+EDIT: I don't know why I thought this was for iOS. Apologies

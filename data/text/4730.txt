@@ -1,0 +1,295 @@
+Q: How to retrieve current wattage info on OS X? Is there a way to retrieve the current watt usage info on OS X Snow Leopard? I'm using mid-2010 iMac, so I'm not looking for just battery-related apps.
+Does OS X even monitor power usage? Do I need to use an external reader between the power cord and the outlet?
+I'm most interested in command-line/applescript based solutions for more convenient logging & stats, but I'm open for alternatives.
+
+Both (@bmike's & @michaelmichael's) answers are undoubtedly correct. The meta–question in here was that is there any sensors/readers already on the PSU, that would work kind of like the way "kill-a-watt" works. I sense the answer for that is "no".
+I know, it probably is just a wet dream, but a watt meter on board would be ideal for the computer to shout: "Look how eco-friendly I am; using just these watts!"
+
+Ah!
+@Kerri Shotts' suggested iStat Menus 3 do get the wattage readings from some sensor, along with volt and amp stats. So the meters are there, but how I could access them programmatically?
+
+Bounty! Will be given for solid command-line sensor reading solution or for recommending exceptionally good 3rd party software (like one with statistical and historical data tools at minimum).
+Just to inform: the aforementioned iStat Menus 3 lists the following power related sensors:
+
+*
+
+*Voltage Sensors (Volts)
+
+*
+
+*AC/DC
+
+*AC/DC
+
+*AC/DC Shunt
+
+*CPU
+
+*CPU 1.8V S0
+
+*CPU CTT
+
+*Graphics Module
+
+*Memory
+
+
+
+*Current Sensors (Amps)
+
+*
+
+*AC/DC
+
+*CPU
+
+*CPU VTT
+
+*Graphics Module
+
+
+
+*Power Sensors (Watts)
+
+*
+
+*AC/DC
+
+*CPU
+
+*Graphics Module
+
+
+
+It does state "sensors", but they might be calculated as @msanford commented. How can I get my hands on that data programmatically?
+
+A: All of the data in iStat is just from keys in the ioregistry. You can pull a dump of it from the command line using ioreg:
+ioreg -w 0 -l
+
+That is going to be a lot of data to look through, you can carve it up in various ways. I do not believe the actual data you want is provided on iMac, the system monitors temperature in a number of places, but since it does not run on a battery it is less important to know the instantaneous current being pulled by the system, and thus probably not worth the cost of a sensor.
+
+A: There is a paid application called Hardware Monitor that provides access to pretty much every sensor available on a mac including voltage, current and wattage which I believe you are looking for. It does include a command line utility to read this information. 
+I used this to track down a faulty logicboard in an iMac last year and found it worth the €7. It includes the ability to output the sensor values to a CSV which can be helpful for logging and visual display of the data. I'm not sure if it does PSU readings (as I don't have the app on the machine I'm on atm) but it hits pci, slots, cpu and lots of other. 
+You can find the software here : http://www.bresink.com/osx/HardwareMonitor.html 
+I'm not associated with this company at all, just found the tool to be very useful in my diagnostics arsenal. 
+
+A: IANAEE (I am not an Electrical Engineer), but as I understand it's not possible to accurately measure a computer's power consumption via software. The best solution is to connect your Mac to a device like a Kill-a-Watt
+If you're looking for a scriptable solution - and an interesting project - here are instructions on creating a wireless wattage monitoring system, or a "Tweet-a-Watt".
+
+A: I've made a little script based on system_profiler output. It calculates the wattage using the given voltage and amperes.
+powerstat() {
+    b=$(system_profiler SPPowerDataType)
+    amp=$(echo "$b" | grep 'Amperage (mA):' | cut -d ':' -f 2 | xargs)
+    volt=$(echo "$b" | grep 'Voltage (mV):' | cut -d ':' -f 2 | xargs)
+    power=$(($amp * $volt / 1000))
+    echo "$b" | grep --color=never -A 1 'Battery Information:'
+    echo "$b" | grep --color=never -A 1 'Amperage (mA)'
+    echo "      Total Power (mW): $power"
+    echo ""
+    echo "$b" | grep --color=never -A 99 'AC Charger Information:'
+}
+
+Outputs something like:
+$ powerstat
+    Battery Information:
+
+      Amperage (mA): -552
+      Voltage (mV): 12794
+      Total Power (mW): -7062
+
+    AC Charger Information:
+
+      Connected: No
+      Charging: No
+
+When charging:
+$ powerstat
+    Battery Information:
+
+      Amperage (mA): 1545
+      Voltage (mV): 12850
+      Total Power (mW): 19853
+
+    AC Charger Information:
+
+      Connected: Yes
+      Wattage (W): 60
+      Charging: No
+
+
+A: No metered sensors are present in the power supply. 
+The logic board measures temperature in several places to control the blowers and the CPU monitors temp to reduce clock rate when it becomes warmer than the blowers can cool it.
+I suppose some PHD thesis might be done on integrating the fan speed and various temperature sensors to calculate an expected power consumption. It's possible to get a calculation and with some calibration, it might even be pretty accurate. 
+In reality since that data isn't exposed or recorded, you might have to measure externally. Decent home energy counters are between $150 and $300 w
+You could rent or buy a unit that measures the power through the outlet and then run some test to see how much power the mac takes over an hour in certain conditions.
+
+
+*
+
+*Off
+
+*Sleep
+
+*Idle
+
+*Various CPU loads
+
+*Maximum CPU, everything going
+
+
+Then you could correlate these with CPU usage monitoring that is trivial over time using top and be able to add things up.
+It all depends on what you really want to do with the data other than learn how the hardware works and have some cool graphs.
+
+A: system_profiler SPPowerDataType seems to provide the most relevant information. On laptops it reports voltage and amperage which can give you the power consumption (mVolts × mAmperes × 10^-6 = Watts). It also reports Wattage, but that's actually a piece of metadata reported by Apple's power adapter, third-party power adapters can show blanks here. Since desktops do not have rechargeable batteries, there's no way to calculate power consumption by measuring charging and discharging of battery.
+But wait, there's still hope! Apple publishes a lot of source code, and googling for Wattage or Power+mV hints that certain kernel extensions can be queried about power consumption. Unfortunately, I cannot come up with a working script right now, but it seems possible.
+
+A: system_profiler SPPowerDataType | grep Wattage
+
+Does the trick for me on MacBook Pro (15-inch, 2016)!
+
+A: // Build with: gcc psudata.cc -o psudata -framework IOKit
+#include <stdio.h>
+#include <string.h>
+#include <IOKit/IOKitLib.h>
+
+typedef struct {
+  uint32_t key;
+  char ignored[24];
+  uint32_t size;
+  char ignored2[10];
+  char cmd;
+  char ignored3[5];
+  float val;
+  char ignored4[28];
+} smc_t;
+
+int main(void) {
+  mach_port_t mp;
+  CFMutableDictionaryRef d;
+  io_iterator_t it;
+  io_object_t svc;
+  io_connect_t ioc;
+  smc_t req, resp;
+  size_t sz = sizeof(resp);
+  uint32_t vk  = ('V' << 24) + ('D' << 16) + ('0' << 8) + 'R';
+  uint32_t ik  = ('I' << 24) + ('D' << 16) + ('0' << 8) + 'R';
+  float v, i;
+
+  IOMasterPort(MACH_PORT_NULL, &mp);
+  d = IOServiceMatching("AppleSMC");
+  IOServiceGetMatchingServices(mp, d, &it);
+  svc = IOIteratorNext(it);
+  IOObjectRelease(it);
+  IOServiceOpen(svc, mach_task_self(), 0, &ioc);
+  IOObjectRelease(svc);
+  memset(&req, 0, sizeof(smc_t));
+  memset(&resp, 0, sizeof(smc_t));
+  req.cmd = 5;
+  req.size = 4;
+  req.key = vk;
+  IOConnectCallStructMethod(ioc, 2, &req, sizeof(req), &resp, &sz);
+  v = resp.val;
+  req.key = ik;
+  IOConnectCallStructMethod(ioc, 2, &req, sizeof(req), &resp, &sz);
+  i = resp.val;
+  IOServiceClose(ioc);
+
+  printf("%fV %fA %fW\n", v, i, v*i);
+  return 0;
+}
+
+
+A: This doesn't satisfy the command-line requirements, but give a try to iStat Menus 3. It gives you readings on just about every sensor in your machine (which for me includes AC/DC Watts, CPU Watts, and GPU Watts). I'm sure it isn't 100% accurate, but it was more than accurate enough in tuning my machine to work within the limited constraints of my APC battery.
+All that said, my machine is a 2010 iMac, so depending on your machine, it may or may not work. In addition, I don't see power readings specifically for the HDD (which should be minimal), or anything specific to the display (that said, reducing LCD brightness reduces the wattage quite a bit, so it is counted in total).
+Worth a try at least. IIRC there is a free version, but it was so worth it that I went ahead and paid for it. I'm a bit of a control freak, so I have memory, temperature, disk activity, network activity, etc., in my menubar and love it. :-)
+
+A: Here's an ioreg command that prints most of the power information without 'grep'. It returns much faster than system_profiler on my machine, so probably more suitable for being scripted or run in the background.
+ioreg -w 0 -f -r -c AppleSmartBattery
+
+
+A: According to marchdown's answer,
+I add an alias in ~/.zshrc as
+alias wat="system_profiler SPPowerDataType | grep 'Wattage'"
+
+so when I type "wat" it outputs
+Wattage (W): 18
+
+Hope this helps you
+
+A: I think that for 10.7 this should work from the terminal:
+ioreg -l | grep LegacyBatteryInfo | cut -d '{' -f 2 | tr -d \} | tr ',' '=' | awk -F'=' '{print ($2*$10/10^22)}'
+
+A: I am on a MacBook 10.6.8 and ioreg -l | grep LegacyBatteryInfo worked for me.
+I previously tried
+ioreg -l | grep LegacyBatteryInfo | \
+    cut -d '{' -f 2 | tr -d \} | tr ',' '=' | \
+    awk -F'=' '{print ($2*$10/10^22)}' 
+
+and it returned 0. 
+Is there a solution from Apple's Dev library?
+Why not look outside on the power meter? Record your readings and then correlate  to a constant and common %CPU usage.  Then you can get a approximation.  
+
+A: Based on @Luyer's amazing answer (reading charger voltage and current from SMC) and a list of SMC keys from here: we can read many other values, like the requested "current wattage" a.k.a. total system power draw, just by replacing the queried key.
+// Build with: gcc psudata.cc -o psudata -framework IOKit
+
+// original code from https://apple.stackexchange.com/a/283403 by Luyer, modified by M-1
+
+#include <stdio.h>
+#include <string.h>
+#include <IOKit/IOKitLib.h>
+
+typedef struct {
+  uint32_t key;
+  char ignored[24];
+  uint32_t size;
+  char ignored2[10];
+  char cmd;
+  char ignored3[5];
+  float val;
+  char ignored4[28];
+} smc_t;
+
+float get_value(io_connect_t * ioc, uint32_t key) {
+  smc_t req, resp;
+  size_t sz = sizeof(resp);
+
+  memset(&req, 0, sizeof(smc_t));
+  memset(&resp, 0, sizeof(smc_t));
+  req.cmd = 5;
+  req.size = 4;
+  req.key = key;
+  IOConnectCallStructMethod(*ioc, 2, &req, sizeof(req), &resp, &sz);
+  return resp.val;
+}
+
+int main(void) {
+  mach_port_t mp;
+  CFMutableDictionaryRef d;
+  io_iterator_t it;
+  io_object_t svc;
+  io_connect_t ioc;
+  float v, i, system_total;
+
+  IOMasterPort(MACH_PORT_NULL, &mp);
+  d = IOServiceMatching("AppleSMC");
+  IOServiceGetMatchingServices(mp, d, &it);
+  svc = IOIteratorNext(it);
+  IOObjectRelease(it);
+  IOServiceOpen(svc, mach_task_self(), 0, &ioc);
+  IOObjectRelease(svc);
+
+  // SMC keys/"codes" can be found at https://logi.wiki/index.php/SMC_Sensor_Codes
+  v = get_value(&ioc, ('V' << 24) + ('D' << 16) + ('0' << 8) + 'R');
+  i = get_value(&ioc, ('I' << 24) + ('D' << 16) + ('0' << 8) + 'R');
+  system_total = get_value(&ioc, ('P' << 24) + ('S' << 16) + ('T' << 8) + 'R');
+
+  IOServiceClose(ioc);
+
+  printf("DC In: %fV %fA %fW\n", v, i, v*i);
+  printf("System Total: %fW\n", system_total);
+  return 0;
+}
+
+This example code and a pre-built binary showing the current total power draw are on GitHub; additional things like adding more keys to read from SMC (or better parsing them from process arguments), repeating the reading at an interval or better-machine-readable output formatting are left as an exercise to the reader.
+(Adding this to the existing answer would be better, if I had enough reputation to post comments.)
+Edit: I just discovered istats which might be easier to use (istats scan).

@@ -1,0 +1,34 @@
+Q: Mystery Box in Expose (or what I think is expose) For some reason I have a mystery box when I go to expose (or w/e f3 is).  It'll show my other open apps, but once space will be transparent until I mouseover it.
+It isn't horrible, but annoying so any help would be great.
+Thanks
+
+A: If it's not the web browser, and you're sure you've quitted it (I'm sure you know on a Mac closing the window doesn't usually quit the application), then try this when you see another floating window:
+
+
+*
+
+*Search Spotlight for Activity Monitor
+
+*Change the drop down menu to Active Processes or if not available choose My Processes
+
+*Sort by Real Memory Usage
+
+*File>Print the list and post it somewhere where we can see it
+
+
+That will tell you every application and active daemon that is running actively so that we can check if anything is out of the ordinary. 
+
+A: I think I had that problem and I believe Firefox was the culprit.
+
+
+*
+
+*Try to reproduce this bug with only Firefox open.
+
+*Try to temporarily switch to Safari or Chrome and see if it still happens. And while you're there, never switch back to Firefox since those two are so much better ;) 
+
+
+Can you list your open apps next time it happens? And the times after too. You can also list the menubar app.
+
+A: Some websites create a temporary invisible window using Javascript that they can use as a timer or something else that can be referenced globally from any page on their site. It's an old technique and usually, because the "window" has no profile, it cannot be detected (no taskbar item on Windows) except by exposé which shows all windows. 
+There really isn't a way to stop it except restart your browser and not navigate to that site again.

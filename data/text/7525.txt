@@ -1,0 +1,17 @@
+Q: Files created by Windows on Lion SMB shares have 600 permissions I have File Sharing enabled in OS X Lion, and I'm accessing the shares using Win XP and Win 7 boxes. I can read and write fine, by when I create a new file, the permissions for that file defaults to 600, and is accessible only by the account authenticated with SMB. If I edit files, permissions are not changed. It is only new files that have this problem. This means other accounts on OS X cannot access the files, and neither can the apache server, which runs as _www I think.
+Is there a way to make Lion SMB mark new files as 644 instead?
+
+A: I think this could be a bug. I'm seeing the same behaviour in Mountain Lion too.
+I've ensured that the file sharing settings are correct. Go to the folder in Finder and verify that the user has correct permissions, including creating files locally, which result in the correct (644) permissions. Go to System Preferences -> Sharing and select the share, and verify the user is in the list with read&write permissions.
+Using the command line tool:
+$ dscl localhost -list /Local/Default/SharePoints
+
+to list shares, and:
+$ dscl localhost -read /Local/Default/SharePoints/<sharename>
+
+I can see:
+dsAttrTypeNative:smb_createmask: 644
+dsAttrTypeNative:smb_directorymask: 755
+
+Yet files created by windows users end up with 600 permissions and are not readable by others.
+While not an answer, hopefully it will give someone a step closer to finding it.

@@ -1,0 +1,24 @@
+Q: How can I extract an .xz archive graphically on Mac OS X 10.4? Recent versions of StuffIt will extract .xz archives, but they will not run on Mac OS X 10.4 Tiger. And using something like Fink, it should be possible to install xz-utils on 10.4, so that .xz archives can be extracted from the Terminal.
+But is there any graphical application that will run on Mac OS X 10.4 Tiger, and which will extract .xz files?
+It's OK if this application supports extracting .tar.xz archives in a single step, but not necessary, because if it extracts the .tar.xz file to a .tar file, even an older version of StuffIt can extract that.
+
+A: Not graphically, but this showed up in searches so for those of us who want to do it from the command line using Homebrew: 
+$ brew install xz
+$ xz -d to-extract.xz
+
+
+A: The tar -xzf command didn't work for me, but I installed XZ utils http://macpkg.sourceforge.net/ and then unxz filename.tar.xz.  Then you can just use the command tar xf filename.tar to open the tarball.  I have OSX Mountain Lion (version 10.8.5).
+
+A: On a mac, you can open up the terminal and use the command tar -xzf filename.xz if you're not looking to download a new App just for .xz archives
+
+A: I've used the following native command on mac:
+gunzip filename.xz 
+
+This won't work on OS X Tiger (which was first released in 2005), but it works fine on more recent versions of macOS.
+
+A: MacOS 10.9 and later natively support xz (but the Finder works only on tar.xz files) according to a comment in reply to the similar excellent question at Can MacOSX 10.7 open tar.lzma files
+My tests show the MacOS 10.11 Finder fails to graphically decompress plain xz files unless they contain tar format.  MacOS 10.10 suffers the same bug according to the article at https://www.ctrl.blog/entry/archive-utility-xz
+however the command line programs gunzip, gzcat and zcat automagically hack all xz files.
+
+A: I'd give The Unarchiver a try. It's free, graphical, supports 10.4 and can extract .xz archives. There is also a CLI version.
+Another option is Keka it's free (as in beer, newer releases are not open source) and older versions support older releases of macOS. For those that prefer that, it's also available in the Mac App Store.

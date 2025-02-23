@@ -1,0 +1,17 @@
+Q: How to fix OS X Lion being unresponsive? After having upgraded to OS X Lion seamlessly, the whole system became unresponsive. Sometimes, I have to wait seconds for keypresses or clicks to have effect, even sound playback or the Dock animation stutters, while strangely the CPU usage remains low. Repairing my disk and its permissions didn't help, upgrading to 10.7.1 neither. Can somebody help?
+FYI: I have a 2.3 GHz 13'' MBP with 4 GB RAM.
+
+A: This kind of thing is a RAM problem 9 times out of 10. Your RAM is constantly being paged in and out to your (relatively slow) hard drive, causing you to wait. THe best solution is to upgrade your RAM or if it's already maxed, consider getting an SSD.
+
+A: I have a 2.16 GHz Core 2 Duo iMac that recently had this problem (I suspect it was caused by too many windows open under Safari) and I had searched on this site for a possible fix.  Nothing I tried worked, so I unplugged the iMac and planned on taking it in for a repair.  I got to thinking about the possibility that the mac's internal battery may be preserving the condition, preventing me from recovering from the freeze.  After having the Mac off the mains for 24 hours, I re-plugged it and fired it up and the freeze was gone.  I don't know if this was just dumb luck, but I don't have the freeze anymore.
+
+A: The thing is moving from Snow Leopard to Lion should not have caused a slow-down.  Period.  If it was running fine on SL, it should run fine on Lion.  The only reason Lion would be slow in this case is if something else/new was added and is in use with Lion, or if your hard drive is now short on space.
+If nothing else changed other than installing Lion, then that is where you want to spend your efforts to fix.
+I would first try Repair Permissions with Disk Utility.  I always do that with a new Os that was installed on top of an old one.  Usually I get a one-time repair of a bunch of items.
+Test to see if the problem went away.
+Next I would try a Safe Boot, and then just restart normally instead of logging in.
+Test to see if the problem went away.
+Please report back here with whatever you did, and post the results.
+Hope this helps.
+
+A: You can try reseting the System Management Controller (SMC) - as described in this Apple Support article.  

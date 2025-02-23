@@ -1,0 +1,7 @@
+Q: Running VI on Lion Lion came with a sad surprise to me. Now, every time I want to run VI on terminal, I get VIM. I hate VIM. How do I get my old and bad VI back to the system? thanks.
+
+A: Vi has actually been VIM on most Linux distributions that I have used over the years. In general if you have a ~/.vimrc file that is how you tell vim to act like vim and not vi. Otherwise it should look and act just like vi, this article from 2000 has more details (yup - its been that way for a long, long time).
+What specifically are you not liking about Lion's vim behavior? Running vim with the -C flag should force it into full vi compatibility mode even if a .vimrc is present.
+
+A: Am i the only one that is using MacVim?
+http://code.google.com/p/macvim/

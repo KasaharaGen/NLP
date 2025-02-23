@@ -1,0 +1,7 @@
+Q: Date of Download When I download an item, I would like the modified date to be the date the item was downloaded. Is this possible somehow?
+
+A: It is possible.
+You can change the modified date of a file using this command
+touch -mt YYYYMMDDhhmm
+
+where YYYYMMDDhhmm is the date/time you'd like to set it for.  Combined with the Add Folder Actions (where you can assign an Applescript that runs when a file is added to a folder), you should be able to create an Applescript to do this (using the touch command above).

@@ -1,0 +1,8 @@
+Q: Why does sshd only accept connections from within LAN? (Snow Leopard) The "server" ("mini", running OSX 10.6) has SysPrefs>Sharing>RemoteLogin enabled.  I can log in from another machine on the LAN with ssh me@mini.local just fine.  To enable access from WAN, I assigned a static IP address to mini (192.168.1.102) and added a portmapping entry in my TimeCapsule, mapping port 10221 to 192.168.1.102:21.  I have a DynDNS hostname, so I should be able to log in via ssh -p 10221 me@my.homeip.net but it just hangs and eventually times out.
+I verified that DNS is mapping my.homeip.net to my correct public IP address.
+Is there another setting on 'mini' that I've overlooked, that allows local connections but disregards non-local ones?
+
+A: You are forwarding to port 21 on your mac mini. SSH uses port 22.
+You are also not forced to use a different port on the router: you could map port 22 to 192.168.1.102:22 
+
+A: Port 21 is reserved for FTP. Why not set the public and private port to 22? Try "the usual way" first to see if it works, then try wacky port numbers if you're truly keen on securing-by-obscuring.

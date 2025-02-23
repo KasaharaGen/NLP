@@ -1,0 +1,176 @@
+Q: Password dialog appears when SSH private key permissions are set to 0600 I installed my SSH private key in ~/.ssh/id_rsa and set its permissions to 0600.  When I connect to an SSH server which uses my private key in Terminal.app via ssh, a dialog pops up and asks me to enter my password to access the id_rsa file:
+
+I see the same dialog when I connect to an FTP server with the Interarchy GUI client.
+Update: I see this dialog every time I connect regardless of whether I check "Remember password in my keychain".  It appears two more times if the OK button is clicked regardless of what is entered in the password field.
+When I relax these permissions to, say, 0640, I no longer see a dialog asking me for my password but ssh aborts with the following error:
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0640 for '/Users/myusername/.ssh/id_rsa' are too open.
+It is recommended that your private key files are NOT accessible by others.
+This private key will be ignored.
+bad permissions: ignore key: /Users/myusername/.ssh/id_rsa
+I find the password dialog extremely annoying and I am sure there must be some way to avoid having to dismiss this dialog SSH needs to access the id_rsa file.
+Note: I am running Mac OS X 10.6.8.
+
+A: First, run ssh-add -K and check whether this fixes your problem.
+If not:
+
+
+*
+
+*Removed the rsa_id.pub file and regenerated a new one (must be in ~/.ssh/):
+ssh-keygen -y -f id_rsa > id_rsa.pub
+
+
+*Ensured permissions were set to 600 for both id_rsa and id_rsa.pub (must be in ~/.ssh/):
+chmod 600 id_rsa*
+
+
+*Ran the following command:
+ssh-add -K
+
+After doing this, I was no longer prompted to give my private key password. This appears to actually put the private key password in the correct keychain location for OS X to use.
+
+A: When you relax the permissions, the key is ignored. You won't gain anything by doing this.
+If you want to use a key without having to enter a password every time, you have two options.
+If you check the “Remember password in my keychain”, you won't have to type the password every time: it'll be stored in the keychain with all your other passwords. This is the recommended option.
+You can create a private key file without a password. You can change your existing private key file so that it isn't password-protected (changing the password only affects the key file, not the key itself). From the command line, run ssh -p, enter the existing passphrase, and then leave the new passphrase blank. There is a security risk in having an empty passphrase: anyone who can access your private key file (for example by accessing your backups) can use it instantly.
+
+A: Make sure you have a corresponding id_rsa.pub or id_dsa.pub in your ~/.ssh directory.
+When I had an id_rsa but not a corresponding id_rsa.pub, Mac OS X kept popping up the dialog and remember passowrd in my keychain did nothing.
+cd ~/.ssh
+ssh-keygen -y -f id_rsa > id_rsa.pub
+
+generated the appropriate public key file for me.
+If you already had your public file there (rename it to another name) and generate the public key again using the above command, you'll notice that the generated and the old one are not equal. Somehow the older versions of Mac OS X generated a public key that Lion does not like anymore, generating it again fixes that.    
+For the curious, the key is exactly the same, the part that changes is that there is no "comments" section after the key on the file any longer.
+
+A: if you have added your private key to the source ~/.ssh directory, and you have entered ssh-add -K to add it to the keychain, and you have your public key contents copied to the .ssh/authorized_keys (for the correct account) file on the target server the dialog box goes away.
+it's a tricky combination of files, permissions, locations, and commands so it can take time.  i would not rush to a conclusion about bugs.
+
+A: I have exactly the same problem on Lion (Mac OS X 10.7). I think is a bug...
+If the ssh authentication is password the client goes through public key first which is normal. However, even though you choose to save the passphrase on keychain (which is not required for the password authentication) next time when a new ssh connection is established you are asked again for the passphrase...
+
+A: There should be no need to regenerate your public keys. You can simply do these two commands:
+chmod 0600 ~/.ssh/id_rsa.pub
+ssh-add ~/.ssh/id_rsa
+
+Basically, you need to tighten the permissions on the public key file, and you need to add your key to OSX authentication agent.
+
+A: In the latest version of macOS (10.12.2 - Sierra) this is an easy fix. Just edit your ~/.ssh/config and enable the UseKeychain option:
+Host *
+UseKeychain yes
+
+Save and solved.
+
+A: In my case ssh-add -K didn't do the trick, I had to specify the key:
+ssh-add ~/.ssh/id_rsa
+
+
+A: *
+
+*Be sure that ~/.ssh/ is chmod 700.
+
+*Be sure ~/.ssh/id* files are both chmod 600.
+
+*Run /Applications/Utilities/Keychain Access.app and repair keychain.
+
+*Logout. (Rebooting wouldn't be a terrible idea)
+
+*Login
+
+*If the problem persists, move your existing ~/.ssh/id* files to your Desktop and try generating new keys using ssh-keygen -t dsa -f ~/.ssh/id_dsa -C you@youremail.tld and see if the new keys work better.
+I'm on Lion, but IIRC Snow Leopard worked the same way.
+ps - anyone who suggests using a blank ssh passphrase should be forced to wear a sign so  other people know not to take advice from them.
+
+A: This problem occurred on my OS X 10.7.4 system when ssh-agent died.  A reboot fixed the problem.  (You could try restarting ssh-agent, but I don't know if the Keychain is clever enough to pick up the new ssh-agent socket.)
+
+A: For macOS 10.12 Sierra ssh-add -K needs to be run after every reboot. To avoid this create ~/.ssh/config with this content.
+Host *
+   AddKeysToAgent yes
+   UseKeychain yes
+   IdentityFile ~/.ssh/id_rsa
+
+Apple has added Technote 2449 which explains what happened.
+
+Prior to macOS Sierra, ssh would present a dialog asking for your passphrase and would offer the option to store it into the keychain. This UI was deprecated some time ago and has been removed.
+
+Edit: Apparently specifying a host and key isn't necessary. Just adding this is enough.
+AddKeysToAgent yes
+UseKeychain yes
+
+
+A: You have to enter the passphrase for the private key somewhere, and OS X uses ssh-agent by default.
+If you want to use ssh-agent but want to avoid the gui dialog box, you can use ssh-add to add the passphrase to the agent and then ssh as usual.
+If do not want to use ssh-agent and instead have ssh prompt for the passphrase, then unset the SSH_AUTH_SOCK environment variable.
+
+A: Regenerating the public key does not seem to work for me (10.8), nor does generating a new SSH key.  If I, for instance, run git pull after locking the login keychain a dialog box pops up to demand the password to the key instead of first attempting to retrieve the password from the login keychain.
+However, if I kill ssh-agent first, I'm prompted for the login keychain password which then retrieves the SSH key password.
+
+A: Another interesting finding is if you copy & paste the content of the PEM file, you might have the ending missing the dash.  So just remember to add the final line as,
+-----END RSA PRIVATE KEY-----
+
+
+A: I had to do the following steps in order to make it work.
+# Change working directory
+cd ~/.ssh
+# Remove the old public key
+rm id_rsa.pub
+# Create a new public key
+ssh-keygen -y -f id_rsa > id_rsa.pub
+# Change permission
+chmod 600 id_rsa*
+# Add the key to ssh
+ssh-add id_rsa
+# Then finally test it (I used github)
+ssh -i id_rsa.pub git@github.com
+
+The final command should then output something like:
+Hi <user>! You've successfully authenticated, but GitHub does not provide shell access.
+
+A: I had the same problem.  I seem to have fixed it by doing this.
+1) Backed up by renaming to old the id_dsa and id_dsa.pub files.
+2) Ran a new keygen with a blank passphrase.
+Works with the launchctl period job monitoring a remote server as well as logging in from ssh in a terminal.
+I have a quick function authme function in my terminal since I have the following in my .bash_profile
+#~/.bash_profile    
+function authme {
+ssh $1 'cat >>.ssh/authorized_keys' <~/.ssh/id_dsa.pub
+}
+
+So a quick authme remoteserver.com will copy the new remote key over.
+I think the bug is something to do with the passphrase not being converted over (my old Snow Leopard didn't have one at all).
+Try that and see if it helps.
+It didn't take more than 10 mins to do.  I spent googling forever to see if there were any other mentions of this.  This site was the only one!
+Owain.
+
+A: I had a similiar problem. It turned out that the private key I was using was in a wrong format. I used PuTTY Key Generator on my Win machine and ssh on OS X expects a different format - Open SSH format.
+It turned out that the tool I used to generate this key (PuTTY Key Generator) had an option to convert my priv key to the format required by Open SSH.
+Simple as:
+
+
+*
+
+*Open PuTTY Key Gen
+
+*Load your private key
+
+*Select Convertsions > Export OpenSSH key.
+
+
+The file you will save contains your original private key in proper (OpenSSH) format.
+
+A: Please make sure that:
+
+
+*
+
+*You are using pem format for your private key. This is because Mac uses openssh client which works with pem. ppk is putty's proprietary format and is not compatible with openssh. You can easily convert ppk to pem using putty keygen, in case you have only ppk.  
+
+*The permissions on your pem file is 600. Private keys are only meant to be accessible only by their owner. So, if the permissions give read access to any one else, it will be deemed a security threat.
+
+
+This should hopefully resolve the issue.
+
+A: Use the .pem key rather than the .ppk key.

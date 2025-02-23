@@ -1,0 +1,69 @@
+Q: How can I free up some disk space? I'm about to run out of disk space, and I know I have a lot of junk on my macbook but I don't know how to find it to figure out how to delete it.
+Is there an easy command line way through terminal to list my biggest files on my drive?  Or is there a GUI program that could help me find all the offending huge files that I'm not using?
+
+A: Start with Monolingual: http://monolingual.sourceforge.net/ it removes extra languages and locales from your computer. Saves quite a bit of space without any real loss of usability (unless you speak several languages and want to use them...)
+
+A: If you're looking for specific things to tear out, look at all the Garageband samples and support files. They take up a LOT of space, and if you're not going to be making music you won't miss 'em.
+
+A: You can try :
+
+
+*
+
+*Disk Inventory X (free one)
+
+
+*DaisyDisk (paid one)
+
+
+A: I really like What Size - it's also on the Mac App store, but has many features that won't be allowed on the store (like checking sizes as the administrator, and actually deleting / thinning files to remove code that can't possibly be run like PPC code on an intel mac).
+
+It is paid software - but well worth the expense for me. I have used it over slow network connections, many external drives and my boot volume to see quickly where all the space is so I can know what is possible to clean up and when it's just not possible due to there being no huge folders or files that I can afford to remove.
+
+The find duplicates function is great and there are many other views, but it's geared to giving you the biggest space users on top no matter what view you choose.
+
+A: Omni Disk Sweeper by Omni Group is good at helping find the mountains of stuff.
+I find that apps and the system folders generally don't take up that much space (everything being relative), that the real hogs are in the Documents, Music, and Movies folders of my user folder.
+
+A: Two things...
+
+
+*
+
+*If you are starting to run out of disk space deleting files isn't going to help much unless you have massive amounts of waste, eg Old systems from doing an archive and install OS update.Start thinking about getting a bigger hard drive or some extra drives.
+
+*In terminal type...
+du -hs *
+This will list each directory with it's size. It will look smething like this...
+3.6G    Desktop
+3.9G    Development
+ 42G    Documents
+1.6G    Downloads
+4.5M    Dropbox
+
+If anything looks unexpectedly large cd into the directory and run the command again. Rinse and repeat until you find what you are looking for.
+
+A: I highly recommend GrandPerspective(Free).  Just finding the largest files isn't always that useful: 20 gbs of 3mb music files wouldn't show up, for example.  GrandPerspective gives you a great visual breakdown of your harddrive contents regardless of whether your wasted files are in one big .dmg or a few hundred small files or whatever.  Further, if you know most waste is in, for example, your home folder, you can specify which directory to show.
+
+
+A: You can also set Finder to the horizontal list view (not sure what that view is called), enable the Size column (see View Options, CMD J), and select "Calculate All Sizes" again in the View Options window.
+Now sort by size. Start off in your Home folder. See what sub-folders are biggest. Drill down and explore.
+
+A: While I agree with all suggestions above regarding apps that help you to visualize what is taking space on your HDD, you may find yourself in situation where you actually can't delete those files and have to keep it on your hard drive.
+In this case, you can use this utility - Squeeze to transparently compress your files in the background. It helped me to find couple of gigabytes of space without deleting stuff and I was able to use it on pretty old Macbook without any performance penalties.
+
+A: The command line way of doing it would be
+du -ksx /* | sort -n
+
+this should be run as root (either in a root shell or with sudo) and gives you the sizes of the top-level directories sorted by size (and maybe some error messages about /dev/something).
+Then you can refine with
+du -ksx /Users/* | sort -n
+
+and so on.
+(using du -k instead of -h as proposed by Henry makes it possible to sort by size)
+
+A: I owe a few of the free and paid apps mentioned here, and I find it odd that nobody mentioned Whatsize. I think it’s the one that displays the space in the best possible way. It’s not too “graphical” but then again, it shows you the numbers which are the important thing. 
+It’s not free, but I have used it extensively and it never disappoints me. 
+
+A: On Snow Lion or better, you can use afsctool (available through homebrew) to compress large files from the terminal.
+It essentially does what ClustersApp(the aforementioned 'Squeeze') does, but free and without a pretty interface, unless you have a lovely Terminal.app theme.

@@ -1,0 +1,108 @@
+Q: Disable mouse acceleration Is there any way to disable mouse acceleration on a mac?
+Mouse acceleration is what causes the mouse to move slowly when moving it a tiny bit, and a farther distance when moved fast. In other words, I want the mouse to always move the same distance no matter the speed I use.
+I'm using a trackpad, by the way.
+To understand what I mean by mouse acceleration, try this: 
+
+
+*
+
+*Place your finger on the left most side of the trackpad.
+
+*Very slowly, move your finger all the way to the right of the trackpad, and observe that the cursor doesn't move very much on the screen.
+
+*Now try the same thing, but this time move your finger really fast from one side of the trackpad to the other. You should see that the cursor has moved a significant amount of distance more than it did previously, even though your finger traveled the same distance.
+
+
+A: As far as I know, there is no way to do this without external tools.
+Usb Overdrive lets you do this http://www.usboverdrive.com/ and is what I use.
+Steer mouse also has this setting. http://plentycom.jp/en/steermouse/ 
+Mouse Curves http://triq.net/articles/mouse-acceleration-preference-pane-mac-os-x  Has the advantage of being free, but Apple removing the acceleration API in 10.6 may have ramifications on its utility. 
+
+A: Go into System Preferences for Trackpad and turn the tracking speed all the way down to slow. What you can't do, I'm afraid, is have the mouse be unaccelerated and also reasonably fast.
+
+A: i like use Acc ExactMouse Pro For Mac 
+http://www.zarell.com/product/acc_exactmouse_pro/
+it also can disable mouse acceleration with assign application
+Edit: it's available for free at the bottom of this page.
+
+A: I'm currently using SmoothMouse.
+
+According to this forum post it should also reduce lag for pointer movement.
+
+Fact: the on-screen pointer lags behind the mouse (or trackpad) in OS X more than in other operating systems, such as Windows or Ubuntu Linux.
+To sum up:
+
+*
+
+*The problem has been confirmed by an Apple engineer (thanks to him for that) in an email correspondence with me. He has also mentioned that they were working on a solution.
+
+*The problem has existed at least since OS X 10.4 "Tiger". The current version of OS X (10.8 "Mountain Lion") still exhibits the problem.
+
+*Many people confuse lag with acceleration, this is what my blog post was about.
+
+Solutions:
+
+*
+
+*SmoothMouse.
+
+*Running Mac as a Synergy client with a mouse connected to another computer running Synergy server.
+
+*Using Wacom tablet instead of a mouse.
+
+
+
+A: I would like to complement this good topic, with a related mouse setting: 
+MacOS also has Mouse Scroll Acceleration/Inertia. 
+And it can be disabled: 
+
+
+*
+
+*Open System Preferences -> Accessibility
+
+*Scroll down to Pointer Control
+
+*Click Mouse Options
+
+*Disable Inertia
+Picture below:
+
+
+A: You might also look into a third party tool named MagicPrefs to twiddle with the tracking settings on Mac OS X.
+They have a nice tips section documenting the ability to set a heavy handed "speed" (which they call TrackingMouse and represent as an integer) and a more fine tuned "speed" (which they call TrackingMouse and represent as a floating value between 0 and 1). It's not clear if they truly disable the "acceleration" that kicks in as you move faster. Since that is so built into the "apple experience" it may not be easily changed or overridden.
+
+A: Having faced the similar annoyance with my new Magic Mouse, I've come up with a script that doesn't require any third party solution. You can read about it in my blog post. I have this run as a handy menu option on Keyboard Maestro and keep it in Dropbox, but it's essentially just a shell script. So if you're interested here's the script:
+#!/bin/sh
+# Kill Mouse Acceleration and set Mouse sensitivity
+# Author: [Kaushik Gopal](http://journal.kaush.co/475/run-kill-mouse-acceleration-on-login-with-keyboard-maestro) 
+# ----------------------------------------
+# Check if the killmouseaccel script is installed in the Dropbox folder
+if ! [ -f ~/Dropbox/"Utility Belt"/killmouseaccel ]
+  then
+    echo "You don't have the kill script installed. Will try to connect to the net and install it now"; 
+    curl -O http://ktwit.net/code/killmouseaccel
+    chmod +x killmouseaccel
+    mv killmouseaccel ~/Dropbox/"Utility Belt"/
+fi 
+
+# No run the script
+if [ -f ~/Dropbox/"Utility Belt"/killmouseaccel ]
+  then
+    # first set mouse sensitivity to sane levels
+    defaults write -g com.apple.mouse.scaling 1.8
+    # defaults read -g com.apple.mouse.scaling
+
+    # run the kill mouse script 
+    ~/Dropbox/"Utility Belt"/killmouseaccel mouse
+
+    echo "\nMouse Acceleration: Killed \nMouse:Sensitivity : 1.8\n";
+
+  else
+    echo "\nCouldn't install the kill Mouse Acceleration script. Sorry nothing done.\n"; 
+fi 
+
+I've set my Mouse sensitivity to around 1.8 which works for me. Increase/Decrease to a value you like.
+Props to the gent/lady at ktwit.net who actually came up with the mouse acceleration kill script.
+
+A: After trying several methods I ended up using the Smooth Cursor. It costs three bucks but it works and it enables you to control the mouse and trackpad acceleration separately.

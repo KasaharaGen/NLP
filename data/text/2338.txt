@@ -1,0 +1,13 @@
+Q: OS X Automator “Take Screenshot” Issue I need to automate a screenshot task, so I thought why not use automator?
+I found the "Take Screenshot" Action and started to play with it. The problem is is that is sets the file name and when the workflow is ran again it overwrites the prior screenshot. I tried selecting this and renaming it but it won't work.
+Essentially what I want is the normal function of Command + Shift + 3 where it will date-stamp it or something, anything but overwrite!! Any ideas? 
+I've been trying to set "Save To" as a variable. But I can't set the path as well as the file name var like current time.
+
+A: Try it like this:
+
+This one has a loop built into it, make sure you set 'Timed' to 1 second and the 'Format' of the 'Add Date or Time' step to Hour Minute Second
+
+A: I tried like this and it worked fine
+
+
+A: Try to make another workflow of the rename action and then run that workflow in the first workflow which makes the screenshots.

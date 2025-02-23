@@ -1,0 +1,6 @@
+Q: How can I kill or refresh Desktop Wallpaper with a Terminal command? Is there a command for refreshing the Display Settings? Or, in specific, refreshing the Desktop Wallpaper?
+
+A: You could try restarting dock which, amongst many things, draws the wallpaper on the desktop. But be careful; as dock also controls a lot of window management apps may 'un-minimise' or un-hide and windows. As dock also controls Mission Control, you won't be able to change spaces or go into Mission Control until dock restarts again (which is mostly instantly).
+From terminal, try:
+killall Dock
+

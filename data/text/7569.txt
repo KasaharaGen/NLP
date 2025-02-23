@@ -1,0 +1,148 @@
+Q: Move 'Pictures', 'Documents', 'Movies' etc folders I would like to move folders like 'Pictures', 'Documents', 'Movies' to a different from the default under the root of user's home location, preferably into a sub-folder under the same user's home folder. For example, user/Music would go to user/stuff/Music.
+I'd rather not create symbolic links to moved folders, but change system's behaviour altogether, so it knows where to find those folders.
+Please bear in mind that I do not want to move user's home folder, but just those ones, for example, move them to /Users/[user name]/stuff/ since I don't like them polluting the home folder there.
+
+A: I personally use symlinks to move all of those directories under my User account. I logged in as root and symlinked all of my directories "Documents' Downloads " Movies", etc and moved them to an external drive. 
+Mac OS sees the changes just fine and points to those directories (on the external drive) automatically and I have had no issues doing it this way.
+There is a System Service called SymbolicLinker that will add an option to your context menu that will create a symbolic link for you.
+
+How to enable the root user
+OS X Lion
+
+
+*
+
+*From the Apple menu choose System Preferences.... 
+
+*From the View menu choose Users & Groups. 
+
+*Click the lock and authenticate as an administrator account. 
+
+*Click Login Options.... 
+
+*Click the "Edit..." or    "Join..." button at the bottom right. 
+
+*Click the "Open Directory    Utility..." button. 
+
+*Click the lock in the Directory Utility window.    
+
+*Enter an administrator account name and password, then click OK.    
+
+*Choose Enable Root User from the Edit menu. 
+
+*Enter the root password you wish to use in both the Password and Verify fields, then click OK.
+
+
+Mac OS X v10.6.x
+
+
+*
+
+*From the Apple menu choose System Preferences....
+
+*From the View menu choose Accounts.
+
+*Click on the lock and authenticate with an administrator account.
+
+*Click Login Options....
+
+*Click the "Edit..." or "Join..." button at the bottom right.
+
+*Click the "Open Directory Utility..." button.
+
+*Click the lock in the Directory Utility window.
+
+*Enter an administrator account name and password, then click OK.
+
+*Choose Enable Root User from the Edit menu.
+
+*Enter the root password you wish to use in both the Password and Verify fields, then click OK.
+
+
+A: You can move your entire user account (home) folder using the following steps:
+
+
+*
+
+*Click on Users & Groups in System Preferences.
+
+*Unlock the pane (lock icon).
+
+*Right click on your selected user and choose the "advanced" option from the list.
+
+*You will be greeted by the following screen:
+
+
+
+From there, simply select the "home directory" to which you wish to relocate the profile to, then reboot.
+Note: This will move all the contents found under /Users/{your user}/ (Downloads, Documents, Music, etc.)
+
+A: Well, the short answer is: Don't, because too many things depend on it. This is also the reason why Apple choose to make it difficult to rename these folders. 
+If you want to take the risk anyway, this answer to a somewhat related question should give you some ideas.
+
+A: Interpretation of OP's question
+My guess is that OP doesn't want to see all of OSX's folders in the $HOME directory when they're in the terminal (like ~/Pictures, ~/Documents, etc.). Those folders are friendly for GUI users but they get in the way for CLI users.
+I don't recommend moving any folders that GUI apps create from the Mac Home directory. This would probably break some things. Pogue's answer is very interesting, but it will probably hide those folders in Finder.
+Solution: Just using a different folder as your CLI workspace
+I offer a simple BASH command to make using the CLI friendlier on OSX.
+Solution: Examples of usage
+
+*
+
+*Type w and hit <Enter> from your Terminal to instantly cd ~/workspace and ls ~/workspace.
+
+*(Whenever you open a shell) You'll automatically navigate to ~/workspace and list the contents.
+
+Why this solution?
+As a CLI user, I'm constantly typing cd to return to $HOME, and then doing ls to find the folder I'm looking for. This does both of those things with 4 fewer keystrokes, while being simple and benign.
+Full details: Installing the script and explaining what it does.
+If you want to have these helper commands be available every time you open a terminal, you can paste this code into the ~/.bashrc file for BASH or ~/.zshrc file for ZSH.
+                                                                                                                               
+# Configure this however you want.                                                                                                   
+export WORKSPACE=${HOME}/workspace                                                                                                   
+mkdir -p ${WORKSPACE}                                                                                                                
+                                                                                                                                     
+#   This is a BASH function. It works in a similar way to                                                                            
+# executing a program that is in your $PATH (for example, `ls`)                                                                      
+#   If the BASH function was loaded into your shell then it will                                                                     
+# be available to run as a command.                                                                                                  
+w() {                                                                                                                                
+  cd ${WORKSPACE}                                                                                                                    
+  ls ${WORKSPACE}                                                                                                                    
+}                                                                                                                                    
+                                                                                                                                     
+# Run the command every time a shell is opened.                                                                                      
+w                                                                                                                                    
+
+Regarding my previous script
+The old script was complicated and involved creating a temporary directory whenever you run ls from $HOME, symlinking all files in $HOME to inside of that directory, and then running ls there. Goal was to make ls pretend that those folders weren't there but also keep CLI colors in the output. Kind of a mouthful but if you're curious, you can see it in the edits of this answer.
+
+A: Art,
+Do you have this working successfully?
+Have you tried hiding the folders using something like:
+chflags hidden ~/Documents 
+
+Then creating a link to it such as (in Terminal):
+cd ~
+mkdir stuff
+cd stuff
+ln -s ~/Documents
+
+I believe that this will hide the ~/Documents folder from the Finder but it will still be there so anything writing to it will work OK.  In addition you will see the link in ~/stuff...
+
+A: Just move them wherever you like. The only important one is Library and for the rest you can normally choose where apps place stuff.
+There's only a few crappy apps that won't allow you to change where they write stuff, Microsoft and Adobe apps come to mind. They will put files in ~/Documents. All the rest will work with your files no matter where you put them. 
+
+A: I would not suggest you to move your entire home folder, instead it is better to make symbolic links of your folders to external drive. After that you will get:
+
+
+*
+
+*Flexibility - if something happens with your external HD (remember that your hidden Library folder is on main drive if HDD is down you will need to do something because it will be down too), you will be able to start repairing it right in that moment without turning it off.
+
+*In case if your main drive is SSD - when your home folder is on your main drive it loads up faster, when it would be on external.
+
+*If you have Mac Pro - you can set for movies folder one HD, for music folder another HD...
+
+
+A: I added a Transcend 256G drive in the expansion slot and tried this process but it did NOT move the data.  It DID create a new profile with all the folders relocated to the expansion drive BUT I had to manually move all data from the internal SSD to the new location.  I eventually got what I wanted but I had to recreate the entire profile (Outlook email account, preferences etc).

@@ -1,0 +1,35 @@
+Q: How can I add a private key to my keychain? I am trying to add myRepositoryKey to my Mac keychain utility so . I exported this item in OpenRSA format from Putty. When I try to use Import Items, the file is unselectable. What do I need to do to import into my keychain? Does the file need a specific extension?
+
+A: I've tried to import a .p12 using Keychain's GUI just to be silently ignored under Lion. So just for completeness, I'd like to this post in Stephan's Blog
+http://www.arlt.eu/blog/2009/12/01/importing-iphone-keys-p12-and-pem-into-snow-leopards-keychain/
+In short, this should do the trick every time:
+security import priv_key.p12 -k ~/Library/Keychains/login.keychain
+security import pub_key.pem -k ~/Library/Keychains/login.keychain
+
+
+A: You have to create a .p12 file. In order to do that you need your private key and a certificate for that key. Then run the following on your console:
+openssl pkcs12 -export -clcerts -inkey private.key -in certificate.crt -out MyPKCS12.p12 -name "Your Name"
+
+where private.key is your existing private RSA key, certificate.crt is your existing certificate and MyPKCS12.p12 is the name of the file to create. This file can then be imported into your keychain.
+If you need your key for SSH access (SFTP, SCP or similar), it doesn't have to be in your keychain. Simply copy your private key to ~/.ssh/ and edit/create the ~/.ssh/config file. There you would put something along these lines:
+# replace the host, location of the private key and the remoteUserName
+# with valid values.
+Host remote.domain.com
+    IdentityFile ~/.ssh/private.key
+    User remoteUserName
+
+
+A: Well I don't get that "need a certificate for the key" either...
+I just do ssh-add -K /path/to/private/key.
+However, make sure you're using Mac's built-in ssh-add and not Macports' one (if you ever needed to upgrade OpenSSH).
+So, just do /usr/bin/ssh-add -K /path/to/private/key.
+Hope that helps.
+
+A: Considering all in PEM format, private key file is server-key.key and certificate file is server-cert.pem. 
+# create .p12 formatted file with key and certificate using openssl. 
+openssl pkcs12 -export -in server-cert.pem -inkey server-key.key -passout pass:password -out certificate.p12 -name "SCProxy"
+
+# should use -T appPath. -A means this key is accessible for all apps. 
+sudo security import certificate.p12 -A -P password -k "/Library/Keychains/System.keychain"
+sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" server-cert.pem
+

@@ -1,0 +1,23 @@
+Q: What are my options for full system (or at least home directory) encryption? I own a MacBook Pro, which is obviously a Laptop, so I want to protect myself in case it ever gets stolen.
+On Windows I can use TrueCrypt to do a full system encryption, but would that also be a choice on Mac OS X?
+I think that OS X contains a built-in encryption, but when it was released (10.2? 10.3?) I heard it had some really bad flaws that made it unusable.
+Is that still the case? What are my options to encrypt either the full drive or at least my home directory?
+
+A: Mac OS X comes with FileVault for encrypting your home directory. There isn't a whole lot of customization for it, but it does its job. There are a few downsides, though:
+
+
+*
+
+*FileVault does not play well with Time Machine backups. Time Machine can only back up the FileVault encrypted disk image when the user is logged out.
+
+*As FileVault runs it tends to slowly consume disk space. This space is reclaimed at logout, but it can cause problems if your drive is nearly full.
+These downsides are the result of FileVault being implemented as an encrypted disk image that is then mounted at login. However, as long as you make sure you regularly log out of your machine they shouldn't present that much of an issue.
+It does appear that TrueCrypt is available for Mac OS X, but I've never used it and don't know how well it works.
+
+A: PGP whole-disk encryption supports OS X (10.5 and 10.6, Intel CPUs only), including the boot disk.  
+
+A: The new Mac OS Lion supports whole disk encryption with the new Filevault2.
+
+A: According to http://www.truecrypt.org/docs/sys-encryption-supported-os you can't use TrueCrypt to encrypt the OS partition on macs. No idea whether it can encrypt the user directory.
+
+A: truecrypt 7.0a works like a champ on os x 10.6.6.  It even works with etoken pro 64k!  You can encrypt any container (basically like a disk image).  However, I don't see any way to get it to encrypt the user directory.

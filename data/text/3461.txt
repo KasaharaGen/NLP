@@ -1,0 +1,11 @@
+Q: Trouble with Snow leopard VPN. Doesn't start at machine startup I use VPN client that comes inbuilt with Snow Leopard OS to connect to VPN on the macbook. Mac OS uses “racoon” process internally to make any vpn connections work. This process starts when the machine boots up and runs in the background even if vpn is disconnected. Racoon won’t run in the background anymore when the vpn is disconnected.
+As a workaround, I have to start this manually each and every time and it works:
+cd /usr/sbin
+sudo ./racoon
+
+How can I make it just like it used to work before? FYI, I don't have Time Machine on...
+
+A: Try
+launchctl load -w /System/Library/LaunchDaemons/com.apple.racoon.plist
+
+This should start racoon and keep it running.

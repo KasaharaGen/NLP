@@ -1,0 +1,38 @@
+Q: How to ensure that all traffic goes through VPN connection once it has been started? I connect to the internet through a VPN provider along with other precautions in order to ensure privacy (against traffic analysis by agencies of a repressive government). I currently use Tunnelblick to configure and establish the VPN connection. Tunnelblick does not allow automatically connecting to the provider at or before login so I need to connect manually each time, and sometimes the connection is lost.
+I need any and all traffic to go through the VPN connection at all times; whenever the VPN isn't connectable for whatever reason, I want the fallback to be no connection. I need to ensure
+
+
+*
+
+*that OS X does not connect to the internet on my regular internet connection, or at all, during boot (until the login screen, for time synchronization and other possible "call home" stuff etc.). What services, if any, try to do this, and how can I practically analyze and change what's going on with networking during boot? Is there a way to connect to VPN earlier than right after login?
+
+*that if my VPN connection is temporarily lost, applications do not continue to communicate over my regular unencrypted connection. 
+I basically want the system to act as if the network connection is lost altogether if the VPN connection fails, but currently they just continue to work as if nothing happened. What can I do to my system so that once a VPN is established, all traffic can only flow through that connection and no traffic can flow if the connection drops?
+
+A: You need a firewall between you and the Internet that will block all traffic except traffic to the IP address of your VPN host
+Your router will more than likely have this functionality built in
+
+A: Mac OS X includes the command line based ipfw command which allows you to set advanced local firewall rules.
+ipfw works with rules which are written and checked in order. Therefore the low number rules are first checked towards the end of the list. There are two approaches when configuring firewalls:
+
+
+*
+
+*Closing the network + Allow traffic
+
+*Opening the network + Denying traffic
+
+
+In your case you need to close off all traffic, and then only allow traffic to your VPN's IP address, using only the ports that your VPN uses.  This will prevent any stray packets from being able to get out so long as your rules are tight.
+There are many great guides and tutorials on the net for ipfw which is widely used in many Unix and Linux operating systems, here are some:
+
+
+*
+
+*http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/firewalls-ipfw.html
+
+*http://www.ibiblio.org/macsupport/ipfw/
+
+*http://freebsd.rogness.net/redirect.cgi?basic/firewall.html
+I suggest you investigate them and see if you are able to understand the command sufficiently to give it a go.  At a bare minimum I would recommend ensuring you know how to disable the firewall and clear the rules just in case you tie your machine in knots through misconfiguration!
+Good luck :)

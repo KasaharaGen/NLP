@@ -1,0 +1,24 @@
+Q: ASP & PHP Web Server on OS X On Windows, I ran Xampp on port 80 for PHP/MySQL and IIS on port 8080 for ASP.
+For OS X, what's the best route to take...
+
+
+*
+
+*Should I just run Xampp for Mac for PHP/mySQL, or is there a better option since this is Unix?
+
+*What's the best (free) way to run ASP off a mac?
+
+
+A: I've never used it any of them, but there is a port of Mono for Mac that allows you to run ASP.NET on the Mac, and as other users answered there is XAMPP for Mac also.
+http://www.mono-project.com/Mono:OSX
+
+A: Mono works relatively well, but some sites built using ASP require Windows-only components (like Windows Forms) that it can't support. I was able to build it but it took some time and hand editing of various dependencies and make files.
+As for PHP/MySQL, you do have them already in Mac OS X. You may need to do a bit of leg work to get them working together as you'd like. MAMP and EMAMP are ok, but I almost always run into gotchas when I use them. They're no replacement for a good, stock Apache build with some mods backed up to a text file on Dropbox...
+
+A: good news: Abyss will run asp, asp.net, php, and even ruby. 
+bad news: it's not designed for professionals; only for nooooobs.
+
+A: i can answer part of this question - MAMP is made for mac. it stands for Mac, Apache, MySQL, PHP and is free. mamp.info for details. asp... no idea
+
+A: For the first part of your question you can use XAMPP on mac OS X too.
+

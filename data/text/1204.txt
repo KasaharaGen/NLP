@@ -1,0 +1,64 @@
+Q: Simple way to see a list of installed iOS apps with their storage space size? The storage on my iPhone is nearly full. Most of the space is used by apps. I'd like to see which apps consume the most space on my device.
+Is there a way to get a list of the apps with their corresponding used space? By "used space I mean the installation size (bonus for added user data).
+
+A: iTunes will give you the list of apps you have including size (and can order these by size to make the space hogs apparent). Unfortunately it will not show you the user data size, nor will it just show you the installed apps
+
+A: You can get both the app size as well as that of the data it stores without jailbreaking by using the free application iPhone Explorer (Mac and PC). For data you'll want to open the app folder and then look in its Documents and Library folders (primarily... there may be some data stored in tmp as well, but it never gets backed up and the device will empty it automatically when it needs space).  
+
+
+A: iOS 5 has now introduced a new feature under Settings > General > Usage that perfectly displays the amount of data taken up by every app on the device, sorted by top offenders.
+
+A: You can also see it in itunes when your iPhone or Ipad is connected on the apps tab
+There you can sort on size.
+This is easier as you can see if the app is installed on the device or only available in itunes.
+You can also remove the installed check box, so at the end of the list Sync and its all sorted
+
+A: I managed to get a in-depth view of what is using storage space, but it's really non-trivial to do.
+Basically:
+
+
+*
+
+*Jailbreak Device
+
+
+Then:
+either:  
+
+
+*
+
+*Install iOS SMB server (You have to add an additional Repo to Cydia - It's Here)
+
+*Mount iOS device on desktop over SMB  
+
+
+or: 
+
+
+*
+
+*Purchase iFile, which has a WebDAV server built into it.
+
+*Run WebDAV server on iDevice
+
+*Mount WebDAV server on desktop. I did it on windows using NetDrive. I'm not sure what to use on OS X
+
+
+Finally:  
+
+
+*
+
+*Run a disk space visualization tool on the mounted filesystem. I use Disk Inventory X on OS X and WinDirStat on Windows.
+
+
+Unfortunately, for some bizarre reason, all applications are in folders named using GUIDs, rather than the software name, so you have to actually explore large folders to figure out what app the folder contains. Fortunately, it's generally pretty obvious what the app is, since come of the subfolders seem to have to be the app name.
+Alternatively, iFile automatically cross-references the app name with the folder name for you, so you can determine what each folder is using ifile as well.
+
+On the whole, if all you need to do is see what apps are taking up what, it's probably not worth the effort. On the other hand, if you have already jailbroken (Which you should do anyways - it gives access to many great utilities), it's fairly simple to do.
+Also, iFile is probably one of the most useful apps for an iOS device. I highly recommend it.
+
+A: FYI, using iTunes as described above doesn't work if you don't keep your apps in iTunes! I stopped doing that long ago, after I realized how much space they were taking up on my Mac.
+Since you can always download an app later, I didn't see any reason to take up all that space on my Mac.
+I hope this info helps anyone like me who doesn't actually have all their apps on their computer.

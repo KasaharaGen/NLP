@@ -1,0 +1,27 @@
+Q: Are there keyboard shortcuts for Home, End, PageDown, and PageUp in OS X? How do I set keyboard shortcuts for Home, End, PageDown, and PageUp on a 13" MacBook Pro? Are there default keyboard shortcuts? Or can I do it with Automator (and if so, how)?
+I want them to work the same way that Home and End do on all Windows apps. 
+
+I also want general solution I get that Kyle Cronin♦ was do the same in some apps, but what about others? is there any tricky solution?
+
+A: You can do page up/down and home/end on a Macbook keyboard by using the fn and the arrow keys:
+fn+↑ is PageUp
+fn+↓ is PageDown
+fn+← is Home
+fn+→ is End
+
+A: I found another solution for you while I was playing around with KeyRemap4MacBook.  Check out the settings pictured below.  See anything you like? :)
+
+
+A: On my MBP it's:
+CMD + FN + <- for HOME
+and
+CMD + FN + -> for END
+
+A: ⌘+→ works like a PC's End (moves the cursor to the end of the line). ⌘+← works like a PC's Home (moves to the beginning of the line). ctrl+A and ctrl+E (Emacs-style keybindings) work in most OS X applications as well.
+
+A: For Eclipse it appears that these keys aren't even set to anything by default, at least in my installation.  You probably need to set them in the preferences:
+
+I don't know exactly where the end and home Windows-like functions are in this screen, I couldn't find anything yet that sounds like what they do.  Something like "move cursor to end\beginning of line" was what I was looking for.
+If you're talking about Safari's address bar, try ⌘+→ and ⌘+← for end and home.  Those work in lots of other apps as well.
+
+A: In Terminal, you can use ⌥ Opt+← for home and ⌥ Opt+→ for end. Although this is on a Swedish keyboard.

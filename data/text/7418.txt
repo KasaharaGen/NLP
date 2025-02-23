@@ -1,0 +1,37 @@
+Q: Lion hangs on boot with empty progress bar and then switches off Today as I was working on my MacBook Pro, it became incredibly slow and almost impossible to work with. I spent five minutes trying to restart it from the system menu, and eventually I did.
+It took it another ten minutes to switch off, and then I got the booting gray screen with the wheel indicator. I expected it to boot after a while, but apparently 20 minutes weren't enough.
+I had to switch it off while booting and try again. During subsequent boot attempts, I would get a gray screen with a wheel and an empty progressbar that never moves (tested—I left it for three hours).
+I inserted the Snow Leopard DVD so I could launch Disk Utility (as advised on the Internet) but it gave no effect. I still see the empty scrollbar, and worse, the MacBook turns off after a while (about 5 minutes after the start).
+What are my next steps?
+To recap my observations:
+
+
+*
+
+*The first time I restarted the system via menu so apparently it saved the state
+
+*Second time I restarted it while booting
+
+*I do hear the chime
+
+*Then I see the spinning wheel, Apple logo and an ever empty progress bar
+
+*Now it turns off on its own after a while
+
+
+Later Update
+I tried holding D to launch diagnostics as described here. I heard the DVD slot make a sound about ten times, and then it spat out the Install DVD. I saw no diagnostics, and then it turned off again.
+Holding C with the DVD inside gives me ten minutes of the optical drive sounds as if it were stuck (to clarify, I never had problems with it before). Then it rebooted and got stuck again.
+
+A: One more thing to try:  Boot in Safe mode holding the Shift key at the startup sound.  If the internal drive is bad (failed drive or borked OS), this won't work.
+If you have an external drive as a full bootable backup (and I hope you do), connect it a power it up. Then try booting the Mac holding the Option key, and select the external drive.
+If you have another Mac, connect the sick Mac to it and boot the sick Mac in Target mode (hold the "t" at startup sound).
+If either works, copy all critical data to the drive you are booted in.
+I agree that there is at least one hardware failure involved.
+
+A: I took it to an Apple Store and they were going to replace the hard drive but were going to do nothing about my data.  I took it to an Apple Repair Shop and they replaced the hard drive and recovered my data at no charge.  It's as if nothing ever happened.  Not sure why someone mentioned not to take it to an Apple Repair shop but I'm happy with the results.
+
+A: What I would do is make a Bootable disk drive, Just google "How to make a mac 10.9(Or lower) disk drive and plug it in. While booting, hold the option key. the file should come up. then install the OS onto the HDD or SSD.
+
+A: I'm having the same problem with my MacBook Pro (early 2011). At one time I was able to run TechTool and attempt to repair the hard drive. This worked for a short time, but after a restart for another reason, I get the same problem.
+I'm not sure if this has anything to do with FileVault 2 as well, but I did notice that my drive (for whatever reason) was not formatted with 'Journaling' enabled. You could try checking that and also run TechTool to see if it helps.

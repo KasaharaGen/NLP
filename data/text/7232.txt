@@ -1,0 +1,5 @@
+Q: Lion Server wireless filesharing for iPad, what are the file type limitations? I've been searching for information about wireless file sharing for iPad through webdav, which is new in Lion Server. However, I can find nothing more than the few lines Apple has to say, which has been re-blogged around the place.
+To keep to Q&A, can anyone provide instructions for setting this up, and what types of files can I share? Am I limited to certain file types and why? Is there a way around any file type limitations?
+
+A: There doesn't appear to be any file-type limitation. WebDAV file sharing is enabled in the new Server.app under the File Sharing Service. Click the share you want, and then check "Share with iOS Devices (WebDAV)." 
+There isn't anything specific about file types, and Server.app seems to treat WebDAV as just another file-sharing protocol.

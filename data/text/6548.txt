@@ -1,0 +1,35 @@
+Q: Are there any specific configurations for SSD's on mac? A couple of months ago, I bought an SSD for my MBP. At that time, I remember to have stumbled upon a blog/article suggesting a few options to activate/deactivate. 
+I cannot find that page again. What are the things to activate/deactivate? 
+PS : for example, I remember desactivating something about spotlight indexation. 
+Thanks, 
+EDIT : (Irrevelant to the question)
+A little feedback about the SSD experience. Well I bought my MBP about a year ago. I work in IT sector and create a quite a lot websites. I had the "classic" hdd before it (250go). After a few months, the disk started to make noise. Clicking and ticking. My Mac being absolutely critical, (without it I can't work) I decided to take no risk and to buy an SSD for two reasons : 
+
+
+*
+
+*First of all, it's shock resistance. I have to move around a lot and my MBP follows me everywhere. And thus is shaken from time to time. 
+
+*Secondly beacause of the performance gain. 
+
+
+There are a few other reasons but they were not really decisive in my case. 
+
+
+*
+
+*Such as noise reduction. Working mostly with a headset noise or not, I won't hear it. 
+
+*Battery is supposed to last longer since SSD are less power consuming. In my case, I haven't seen any changes about it. It is not lasting longer or running out of power earlier than before. No changes about that. 
+
+
+Let's say, SSD is a total change. You can buy a new processor three fo four times faster than the one, you had before, double your ram, chagne your motherboard, do whatever yo want. Nothing is going to provide the same performance boost as an SSD. 
+Even now, nearly 8 months later, performance is still present and not impacted by usage. 
+
+A: It sounds like you found this blog post. Looks like he changes hibernate to mode 0 (so it doesn't create a sleep image file), mounts the drive in noatime mode. 
+A note on TRIM, if you have a sandforce controller in your SSD, like the OWC drives and many (most) of the OCZ drive, it's not recommended to enable TRIM. It can cause instability and these newer controllers are supposed to do  much better cleanup. Intel drives are supposed to benefit quite a bit from TRIM though.
+
+A: The only thing you may want to activate manually is TRIM support. By default, Lion only enables this for the drive models Apple ships themselves. Instructions on how to enable it for any SSD (as long as it does support TRIM) can be found here:
+http://www.hardmac.com/news/2011/03/27/the-universal-solution-to-activate-trim
+There's no reason to disable Spotlight indexation unless you really don't want to use Spotlight at all, in which case you'll gain a tiny bit of disk space and performance. That's not SSD specific though.
+Update: Enabling TRIM manually may be counterproductive if your SSD does not correctly implement the command. Check other users experience for your specific SSD model first.

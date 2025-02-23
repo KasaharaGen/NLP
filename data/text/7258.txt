@@ -1,0 +1,4 @@
+Q: Is it possible to install Chrome OS on a PowerBook without VM? I'm interested in throwing Chrome OS on an old Powerbook just for the hell-of-it.
+Does anyone know if it's possible to install it as the only OS? I'd rather not have to run a VM for this.
+
+A: Based on reading this page, it appears to be technically possible to build Chrome OS for PowerPC. (They do mention that V8 won't work, but that implies that most everything else does.) Getting it to be the primary OS and boot, however, is the tricky part. I suggest partitioning the hard drive to dual-boot between OS X and Chrome OS (at least initially) so you have a known-good system. You may also have trouble with the drivers.

@@ -1,0 +1,30 @@
+Q: AppleScript app started prompting to run or quit. How can I disable this? I'm not entirely sure why this has started happening since this is completely new behaviour and I haven't done any system updates but I have a nice little toolbar app for my Snow Leopard Finder.app that opens the existing folder/or files in TextMate.
+It used to simply bring up TextMate with the chosen content but since today it instead gives me a prompt asking me to run or quit the script.
+Here is what the popup looks like:
+
+Now… this app/script isn't new, I trust the script and I don't want this popup everytime I use it.
+So 2 questions:
+
+
+*
+
+*How do I disable this annoying prompt?
+
+*Why am I all of a sudden getting it when yesterday everything was working fine?
+
+
+Any insight would be much appreciated.
+For reference the script in question is this one: OpenInTextMate
+However the MateDot.app script I was using also is doing the same thing.
+Thanks for reading.
+Jannis
+
+A: When you create a script in AppleScript Editor and then save it as an Application, there is an option to show a Startup Screen, as shown in the image below:
+
+When that option is enabled, when you launch the script in the Finder, it will first show that initial dialog before continuing.
+As long as the AppleScript script-application in question wasn't saved with the Run Only option (see the image above), you should be able to open the script in AppleScript Editor by dragging the script-application's icon onto AppleScript Editor's icon. (When a script is saved as Run Only, AppleScript Editor won't allow you to open it to see the source code). So, if you are able to open it OK, then you could Save a copy of it and make sure the Startup Screen option is disabled.
+As for why this suddenly started happening when yesterday it didn't, I'm not sure. What version of OS X are you using?
+
+A: I know this is old - but it happened to me today on macOS Sierra 10.12.4.
+Based on this page I solved it be running chmod +rw applet.rsrc in the /Contents/Resources folder under the applet.
+Strangely enough, ls -l looks identical before and after chmod +rw applet.rsrc, but the prompt has stopped appearing.

@@ -1,0 +1,118 @@
+Q: How can I move virtual memory swap files to a different drive or partition? note: This is a question that I asked on SuperUser a while ago. I'm re-posting it here because I think it belongs here.
+By default, Mac OS X stores its swap files in /private/var/vm/. I would like to place the swap files in a different location. How can it be done?
+
+A: I have been unable to establish a permanent system boot solution, since 10.10 no longer uses /etc/.rc at boot, and the com.apple.dynamic_pager.plist method has failed.... however...
+sudo mkdir /Volumes/Swap/s
+sudo chmod 755 /Volumes/Swap/s
+sudo sysctl vm.swapfileprefix=/Volumes/Swap/s
+
+does change the stored prefix as reported by 
+sysctl vm
+
+for the duration of the session, and it survives reboot. 
+this could be wrapped as a unix command into a text file:
+$/bin/sh
+sysctl vm.swapfileprefix=/Volumes/Swap/s
+
+and run at login.
+
+A: note: copied from SuperUser:
+For older versions of OSX, see this thread on forums.macosxhints.com.
+Credit goes to dblu for explaining the use of plutil, ZILjr for introducing the wait4path command, and ekl for simplifying the whole thing by eliminating the need for an intermediate shell script.
+Complete solution:
+1.  Open Terminal and make a backup copy of Apple's default dynamic_pager.plist:
+$ cd /System/Library/LaunchDaemons
+$ sudo cp com.apple.dynamic_pager.plist{,_bak}
+
+2.  Convert the plist from binary to plain XML:
+$ sudo plutil -convert xml1 com.apple.dynamic_pager.plist
+
+3.  Open the converted plist with your text editor of choice. (I use pico, see dblu's answer for an example using vim):
+$ sudo pico -w com.apple.dynamic_pager.plist
+
+It should look as follows:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs$
+<plist version="1.0">
+<dict>
+    <key>EnableTransactions</key>
+    <true/>
+    <key>HopefullyExitsLast</key>
+    <true/>
+    <key>Label</key>
+    <string>com.apple.dynamic_pager</string>
+    <key>OnDemand</key>
+    <false/>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/sbin/dynamic_pager</string>
+        <string>-F</string>
+        <string>/private/var/vm/swapfile</string>
+    </array>
+</dict>
+</plist>
+
+4.  Modify the ProgramArguments array (lines 13 through 18) to use the wait4path shell command prior to launching dynamic_pager. See note #1 for details on why this is necessary. In the following example, my partition is called Swap, and I chose to put the swapfiles in a hidden directory on that partition, called .vm be sure that the directory you specify actually exists. The XML should look as follows:
+<key>ProgramArguments</key>
+<array>
+    <string>/bin/bash</string>
+    <string>-c</string>
+    <string>/bin/wait4path /Volumes/Swap/ &amp;&amp;
+/sbin/dynamic_pager -F /Volumes/Swap/.vm/swapfile</string>
+</array>
+
+5.  Save the plist, and return to the terminal prompt. Using pico, the commands would be:
+<ctrl+o> to save the file
+<enter>  to accept the same filename (com.apple.dynamic_pager.plist)
+<ctrl+x> to exit
+
+6.  Convert the modified plist back to binary:
+$ sudo plutil -convert binary1 com.apple.dynamic_pager.plist
+
+7. Restart your Mac. If you run into trouble, switch to verbose startup mode by holding down Command-v immediately after the startup chime. This will let you see all of the startup messages that appear during startup. If you run into even worse trouble (i.e. you never see the login screen), hold down Command-s instead. This will boot the computer in single-user mode (no graphical UI, just a command prompt) and allow you to restore the backup copy of com.apple.dynamic_pager.plist that you made in step 1.
+8. Once the computer boots, fire up Terminal and verify that the swap files have actually been moved:
+$ cd /Volumes/Swap/.vm
+$ ls -l
+
+You should see something like this:
+-rw-------  1 someUser  staff  67108864 18 Sep 12:02 swapfile0
+
+9. Delete the old swapfiles:
+$ cd /private/var/vm
+$ sudo rm swapfile*
+
+10. Profit!
+Note 1
+Modifying the arguments to dynamic_pager in the plist without using wait4path does not always work, and when it fails, it does so in a spectacularly silent way. The problem stems from the fact that dynamic_pager is launched very early in the startup process. If your swap partition has not yet been mounted when dynamic_pager is first loaded (in my experience, this happens 99% of the time), then the system will fake its way through. It will create a symbolic link in your /Volumes directory which has the same name as your swap partition, but points back to the default swapfile location (/private/var/vm). Then, when your actual swap partition mounts, it will be given the name Swap 1 (or YourDriveName 1). You can see the problem by opening up Terminal and listing the contents of your /Volumes directory:
+$ cd /Volumes
+$ ls -l
+
+You will see something like this:
+drwxrwxrwx  11 yourUser  staff   442 16 Sep 12:13 Swap -> private/var/vm
+drwxrwxrwx  14 yourUser  staff     5 16 Sep 12:13 Swap 1 
+lrwxr-xr-x   1 root      admin     1 17 Sep 12:01 System -> /
+
+Note that this failure can be very hard to spot. If you were to check for the swapfiles as I show in step 12, you would still see them! The symbolic link would make it seem as though your swapfiles had been moved, even though they were actually being stored in the default location.
+Note 2
+I was originally unable to get this to work in Snow Leopard because com.apple.dynamic_pager.plist was stored in binary format. I made a copy of the original file and opened it with Apple's Property List Editor (available with Xcode) in order to make changes, but this process added some extended attributes to the plist file which caused the system to ignore it and just use the defaults. As dblu pointed out, using plutil to convert the file to plain XML works like a charm.
+Note 3
+You can check the Console application to see any messages that dynamic_pager_init echos to the screen. If you see the following lines repeated over and over again, there is a problem with the setup. I ran into these messages because I forgot to create the '.vm' directory that I specified in dynamic_pager_init.
+com.apple.launchd[1]  (com.apple.dynamic_pager[176]) Exited with exit code: 1
+com.apple.launchd[1]  (com.apple.dynamic_pager) Throttling respawn: Will start in 10 seconds
+
+When everything is working properly, you may see the above message a couple of times only, and then no more of the "Throttling respawn" messages. This means that the system did have to wait for the partition to load, but in the end it was successful.
+Exclude the path from Time Machine
+In OS X 10.7 and later you can do this with tmutil. Example:
+sudo tmutil addexclusion -p /Volumes/Swap/.vm
+For that example, to review the result:
+tmutil isexcluded /Volumes/Swap && tmutil isexcluded /Volumes/Swap/.vm
+If the volume used for swap need not be indexed
+Use mdutil. Example, to switch off then erase the store:
+sudo mdutil -i off /Volumes/Swap && sudo mdutil -E /Volumes/Swap
+
+
+A: Simple solution:
+http://www.macupdate.com/app/mac/10771/swap-relocator
+SwapRelocator 1.1.2 works great on Maverick!
+Use (for example) Tinker Tool System to let volumes mount before log-in, that solves the only problem I encountered.
+(Thanks Filippo, I can finally move the swap from the mirrored boot volume to a striped cache volume (all SSD))

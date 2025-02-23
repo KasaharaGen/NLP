@@ -1,0 +1,35 @@
+Q: Change the default action to open executable files in the editor instead of Terminal When double clicking an executable file (without a file extension) in Finder, it opens in Terminal by default. I can change that to any other application for this single file, but I cannot change the default for all files.
+Is there any way to do that?
+I never want to open executable files in Terminal, and I'm missing that functionality since NeXTStep, which had a hidden default for that.
+
+A: Run plutil -convert xml1 ~/Library/Preferences/com.apple.launchservices.plist and add an entry like this under LSHandlers:
+<dict>
+    <key>LSHandlerContentType</key>
+    <string>public.unix-executable</string>
+    <key>LSHandlerRoleAll</key>
+    <string>com.macromates.textmate</string>
+</dict>
+
+You can also change the default application for normal files with no extension:
+<dict>
+    <key>LSHandlerContentType</key>
+    <string>public.plain-text</string>
+    <key>LSHandlerRoleAll</key>
+    <string>com.macromates.textmate</string>
+</dict>
+
+You can apply the changes by restarting. Just logging out and back in doesn't seem to work. You could also rebuild the Launch Services database, but it has the side-effect that the warnings about opening applications for the first time are shown again.
+Another option is to add something like this to a duti configuration file:
+com.macromates.textmate public.unix-executable all
+com.macromates.textmate public.plain-text all
+
+To make this question more searchable, here is the error message Finder shows when you try to change the default application for executable scripts:
+
+The operation can’t be completed.
+An unexpected error occurred (error code -50).
+
+
+A: What you'd need to do, is go to the file, control click, and select "Get info". In the info window, there is a section called Open With, you will find a drop-down box and a button that says Change All. That button should change all documents' default app to whatever you choose.
+
+If you don't have the permissions to modify the file, OSX will automatically prompt you to change it on all files of the same kind. Im in Snow Leopard 10.6.8, and it works: tried it with bash, shell, and sh files.
+Hope it helps!

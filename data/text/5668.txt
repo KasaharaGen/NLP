@@ -1,0 +1,18 @@
+Q: Was Apple menu 'sticking' for certain dual monitor setups removed in Lion? This use case is a bit niche, so I'm not sure if this is something on my end, or an undocumented change. I'm throwing this out there to see if anybody else can help test and report back.
+I have a dual monitor setup. Both monitors are set to the same resolution, 1920 × 1200 I have them arranged so that my primary display is on the right, and the desktop extends to the left, like this:
+
+In previous versions of OS X (at least Snow Leopard, possibly earlier), moving the cursor to the Apple menu with enough force would 'stick' it in that corner for a brief moment instead of immediately moving to the next display over. This was done, I believe, to preserve the ability to throw the cursor in the corner without needing to aim to hit a specific target. If you slowed down, you could easily move back and forth without hitting this little snag, and the cursor would keep moving if you kept moving the mouse, so it was an extra little exception case that had to be programmed in.
+After upgrading to Lion, this no longer seems to work. I've not changed any settings, and disabled any third party tweaks that might interfere. Still, it seems weird that such a strange edge case would be specifically removed, so I'm wondering if anybody else can confirm/reproduce this behavior? If you've got dual displays and wouldn't mind testing it out real quick and reporting back whether it works or not and what OS you're on, that will help narrow down what's going on.
+As a side note, I know that I can rearrange the displays in the Arrangement tab to have the left one 'sit' a bit lower, which will give me a corner to aim for, but this is non-ideal since then windows will look pretty funky when they span it, as I don't want to have to physically re-arrange the screens.
+In addition to testing this out, if anybody has a link/source that documents this behavior for either OS, I'd appreciate it.
+
+A: Here's another bit of wonky screen edge behavior in Lion.
+When you activate Mission Control, your screen edges are suddenly no longer "hard" edges. Hit an edge with enough cursor velocity, and your cursor will pop through the previously cursor-bounding edge and end up on your other monitor.
+This occurs on a shared screen edge between multiple monitors. My main screen (on the left) is approximately 100 pixels taller than my laptop screen (on the right). However, when I activate Misson Control and then ram my cursor exactly into the main screen's top-right corner, it then pops out into my laptop display 100 pixels below. Very annoying.
+If anyone has any docs or blog posts that explain this change, please post!
+I noticed this Lion behavior when developing EdgeCase.
+EdgeCase might actually solve your problem. It creates hard edges that your mouse cannot cross on all shared screen edges. 
+This will allow you to throw your mouse up towards the menu bar and never miss. See screenshot.
+
+
+A: I just tested this on my new model Macbook Air with Lion. I see the same as you report: there is no "stickiness", the mouse cursor slides right past the Apple menu to the second screen. 

@@ -1,0 +1,19 @@
+Q: How do I make symbolic links invisible in the Finder? I use SetFile via the terminal to render files and folders invisible inside Finder windows. This does not appear to work on symbolic links: the symlink destination is made invisible, rather than the symlink itself.
+I see a number of symlinks in / which are invisible in the Finder (e.g. /etc -> private/etc), so it seems to be possible. Can I duplicate this behavior?
+
+A: Reading fail.
+-P                                # perform action on symlink instead of following it
+
+This flag has strange indenting in SetFile -h, and I must have just ignored it assuming it was related to the -m date flag.
+So,
+SetFile -P -a V my_symlink
+
+
+A: To hide:
+chflags -h hidden <symlink>
+
+To show again:
+chflags -h nohidden <symlink>
+
+
+A: If you use ln -s source_file target_file from a terminal you'll get e.g. /etc -> private/etc shown in the ls -la - but only shown the target_file in the folder.

@@ -1,0 +1,18 @@
+Q: How do I sync up my iPhone with my Google Calendar? 
+Possible Duplicate:
+How do I sync my Google calendar with my iPhone? 
+
+So I want to be able to add appointments/events/tasks on either and have those changes reflected on both.
+
+A: You should really use Google Sync for iPhone to have all the benefits of Calendars (and even Mail if you need it).
+
+A: In iCal, add a new CalDAV account.
+Description: Google:you@gmail.com
+Username: you@gmail.com
+Password: yourpass
+SERVER SETTINGS
+Server Address: www.google.com
+Server Path: /calendar/dav/you@gmail.com/user/
+Port: Auto
+Use SSL: CHecked
+Make sure you have sync enabled in iTunes.

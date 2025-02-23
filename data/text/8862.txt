@@ -1,0 +1,19 @@
+Q: Is there a way to change the icon color in the Finder navigation bar? I've been a happy mac user for a couple of years, because I'm visually impaired, and very glad that Apple built in very good accessibility tools into all their operating systems.
+But after installing lion, I noticed that the icons in the navigation bar at the left of the Finder, lost their color, they're just grey. I'm still able to see them, but my eye is less drawn to them, I can't see as quickly where I should click. I can't find a secret in the secrets app to change this.
+Is there a way to revert this change? 
+
+A: This MacOSXHints article may help. To summarize
+
+
+*
+
+*Install SIMBL (version 0.9.9)
+
+*Download ColorfulSidebar
+
+*Copy ColorfulSidebar.bundle from the Disk Image to /Library/Application Support/SIMBL/Plugins (or ~/Library/Application Support/SIMBL/Plugins
+
+*Restart Finder
+
+
+It also seems that the change may get wiped out after a reboot, there's an example for a LaunchAgent script to prevent this on the MacOSXHints site.

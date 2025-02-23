@@ -1,0 +1,10 @@
+Q: Which iSCSI initiator should I use on Lion? I am setting up a video editing / encoding workstation based on a mac mini and a freenas box for mass storage. We plan to use iSCSI to share the disk with the mac and had planned on using GlobalSAN's iSCSI initiator as it had worked in testing and was free. Unfortunately, version 5 isn't free so we are back to the drawing board. Or at least now that we have to pay we'd like to make sure we buy the right one.
+Anyhow, we've identified a two options:
+a) GlobalSAN v5.0
+b) Xtend SAN iSCSI Initiator  
+In addition, I wonder of some open source iSCSI initiators might work since it is BSD under the hood. But I couldn't find a clear answer.
+So, for what is essentially a single-user SAN, what iSCSI initiator would use on OSX 10.7?
+
+A: Sorry but "global san Initiator" is both buggy and a slow.
+The read/write figures are low, not to mention when you try to combine multiple LAN links together it is highly unreliable.
+The ATTO version is far better, but I just wish Apple would provide a version in the kernel.

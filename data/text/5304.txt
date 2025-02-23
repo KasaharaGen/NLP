@@ -1,0 +1,5 @@
+Q: Does Apple Remote Desktop send framebuffer data or rendering commands? Does Apple Remote Desktop send the framebuffer (VNC like) when using remote viewing/control capabilities or does it send rendering commands (RDP like).
+Does this differ based on what client is connected (VNC vs. the ARD client)?
+
+A: VNC like. It has several compression schemes, but things like the startfield animation drive it to high bandwidth and very low quality.
+This is one area where Windows just kills Mac. I couldn't believe how much more responsive rendering commands were when using RDP. Even windows XP is so much faster for remote access. I can work all day remotely with decent fast ethernet and a fast TS server. Not so on Remote Desktop unless all the stars are "aligned" and off screen so to speak.

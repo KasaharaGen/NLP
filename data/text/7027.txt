@@ -1,0 +1,123 @@
+Q: Is there any free/paid Windows emulator for Mac OS X? I am new to Mac and I am looking for a Windows emulator for Mac OS X. I want to use an application which is not available for Mac.
+Please recommend the strengths and weaknesses (including cost) of the various options available.
+
+A: Wine
+You could try Wine and use the  Winebottler frontend for installing common Windows software.
+With Wine isn't 100% compatible with all windows programs, so consider yourself lucky if all your applications work.
+Virtualbox
+Virtualbox is a PC virtualization software. You'll need to install Windows as a "Guest operating system", which requires a Windows license.
+Virtualbox is compatible with all Windows software, but has limited support for hardware 3D acceleration.
+Boot Camp
+For 3D games you'll need to use Boot Camp.
+
+A: When using the term "emulator", it is important to distinguish between something that acts like Windows to applications (like Wine/Crossover) and something that acts like a PC to Windows (most of the other solutions) so that Windows can be installed.
+Wine (Free)
+I highly recommend Wine, which allows for running Windows applications without actually emulating the whole Windows OS. I don't know how well it works with 3D stuff. I would also not recommend compiling it yourself. You do need to install the Developer Tools, included on your computer's install disc. I would recommend Winebottler, a free binary installer that also allows you to turn a Windows executable into a simple application that launches in X11.
+Wine (and Crossover) do not require an actual copy of Windows installed on your machine.
+Crossover ($39.95)
+Professionally supported enhancement of Wine
+Q (Free)
+Q is a great lightweight CPU emulator for OS X. Oddly enough, it runs on PPC Macs, in addition to Intel Macs. It supports emulating x86, x86-64bit, PPC PowerMac, PPC PREP, SPARC32, MIPS, and ARM processors.
+Virtualbox (Free)
+Virtualbox is not quite as lightweight as Q. It supports x86 and AMD processors. It allows multiple operating systems to run on your computer.
+Boot Camp (Free) - Comes with all Intel Macs
+I would recommend Boot Camp for 3D stuff. I haven't actually installed it on a Mac, I've used a friend's computer, so I can't help you with installation. As with anything Apple-related, it should be pretty straightforward. It also runs really well.
+QEMU (Free)
+Another lightweight emulator. This one is somewhat confusing to download; I think you have to compile the emulator by hand.
+VMware Fusion ($80) by VMware
+I don't use VMware (I like the free stuff), but I've heard good things about it.
+Parallels Desktop ($80)
+I haven't used Parallels, but it used to come for free with a new Mac. It still may, but I'm not sure.
+
+A: CrossOver ($40)
+(was not mentioned by the other two answers).
+
+A: Two possible solutions to the problem you seem to be trying to solve (as opposed to the question you asked):
+
+
+*
+
+*Dialectic, a shareware, script-able dialer.
+
+*Jon's Phone Tool, an earlier, discontinued, version from the same
+author. Free(?).
+
+
+Both claim to be able to dial a modem.
+
+A: CoolROM has a list of Macintosh / Mac OS X Emulators:
+
+
+*
+
+*MacMAME - Arcade
+
+*Stella - Atari 2600
+
+*Jum52 - Atari 5200
+
+*Atari800MacX - Atari 5200
+
+*SDLMESS - Atari 7800
+
+*Virtual Jaguar - Atari Jaguar
+
+*Handy - Atari Lynx
+
+*Frodo - Commodore 64
+
+*Boycott Advance - Gameboy Advance
+
+*Visual Boy Advance - Gameboy Advance / Color
+
+*KiGB - Gameboy Advance / Color
+
+*OpenEmu - Multiple Systems
+
+*NeoRaine - Neo Geo CD
+
+*Neopocott - Neo Geo Pocket
+
+*RockNES - Nintendo
+
+*Nestopia - Nintendo
+
+*sixtyforce - Nintendo 64
+
+*Mupen64 - Nintendo 64
+
+*DeSmuME - Nintendo DS
+
+*Dolphin - Nintendo Gamecube
+
+*Fusion - Sega CD / Master System / More
+
+*lxdream - Sega Dreamcast
+
+*Generator - Sega Genesis
+
+*Genesis Plus - Sega Genesis
+
+*SMS Plus - Sega Master System / Game Gear
+
+*Yabause - Sega Saturn
+
+*PCSX-Reloaded - Sony Playstation
+
+*PCSX2 - Sony Playstation 2
+
+*JPCSP - Sony Playstation Portable
+
+*Fuzzbug - Spectrum ZX
+
+*BSNES - Super Nintendo
+
+*Snes9x - Super Nintendo
+
+*ViBE - Virtual Boy
+
+*Oswan - Wonderswan
+
+
+A: What about Parallels? Here's the trial link. 
+This is what my Intuit and MacBook help desk representative recommended. 

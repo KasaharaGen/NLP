@@ -1,0 +1,1404 @@
+Q: Got any tips or tricks for Terminal in Mac OS X? One tip or trick per answer.
+My favorite is 
+open .
+
+Opens the folder you're currently browsing in Finder. You can also pass URLs, images, documents or else to open.
+If you specify a program name with -a you can pass the URL, image, document or folder to that program instead, e.g. open -a Preview image.png, overriding the default program set for the filetype.
+Please don't post duplicates. Search in the question like this: inquestion:this ls -l
+Mac OS X specific answers only.
+
+A: Stop using the arrow keys and navigate the command line more quickly with 
+ctrl+A: moves to the start of the line
+ctrl+E: moves to the end of the line
+ctrl+B: move back one character
+ctrl+F: move forward one character
+esc+B:  move back one word
+esc+F: move forward one word
+ctrl+U: delete from the cursor to the beginning of the line
+ctrl+K: delete from the cursor to the end of the line
+ctrl+W: delete from the cursor to the beginning of the current word
+
+A: mdfind to use spotlight from the command line - really really really handy! Finds things in every directory as well, so it's more useful when looking for files that are part of the system.
+mdfind -live updates in real time, which again is incredibly handy.
+
+A: cd -
+
+Will restore the previous directory you were in. Very handy if you accidentally type cd alone without any arguments and end up in your home directory.
+
+A: Open a man page in Preview:
+pman () {
+    man -t "${1}" | open -f -a /Applications/Preview.app
+}
+
+Open a man page in TextMate:
+tman () {
+  MANWIDTH=160 MANPAGER='col -bx' man $@ | mate
+}
+
+Open a man page in SublimeText:
+sman() {
+    man "${1}" | col -b | open -f -a /Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2
+}
+
+Quit an app cleanly from the command line
+# Quit an OS X application from the command line
+quit () {
+    for app in $*; do
+        osascript -e 'quit app "'$app'"'
+    done
+}
+
+Relaunch an app from the command line:
+relaunch () {
+    for app in $*; do
+        osascript -e 'quit app "'$app'"';
+        sleep 2;
+        open -a $app
+    done
+}
+
+Uninstall an app with AppZapper from the command line:
+zap () {
+    open -a AppZapper /Applications/"${1}".app
+}
+
+
+A: Here's a shell function to get the path of the front Finder window. Can be handy. (I started doing this instead of dragging a folder into the Terminal window.)
+function fp { osascript -e 'tell application "Finder"'\
+ -e "if (${1-1} <= (count Finder windows)) then"\
+ -e "get POSIX path of (target of window ${1-1} as alias)"\
+ -e 'else' -e 'get POSIX path of (desktop as alias)'\
+ -e 'end if' -e 'end tell'; };\
+
+## alias to copy it to the clipboard
+alias cfp='fp | pbcopy'
+
+(This has been in my zshrc a while, but I don't know where I got it / parts of it, otherwise I'd cite credit.)
+
+A: Easily burn an ISO from commmand line (with verify burn at the end):
+hdiutil burn /path/to/iso
+
+Without verifying the burn:
+hdiutil burn -noverifyburn /path/to/iso
+
+
+A: the most interesting pschotherapist you will ever talk to:
+
+
+*
+
+*Run emacs
+
+*Press ⇧+esc+X
+
+*type doctor and press enter
+
+*have fun :D
+
+
+A: Get a list of airport SSID 
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s
+
+the airport utility has a lot more options to manage the airport configuration. Run without the -s to get a list.
+
+A: You can drag a folder from the finder to the terminal and it will paste the full path to that file.
+cd <drag folder to terminal> 
+
+This is basically the opposite of open in the terminal
+
+A: alias to open preview from command line
+alias preview='groff -Tps > /tmp/tmp.ps && open -a Preview /tmp/tmp.ps'
+
+So you can do :
+echo "toto" | preview
+cat /tmp/test.log | preview
+cheat git | preview
+
+
+A: Putting a couple of these together, we can get manual pages in a browser with proper markup:
+bman () {
+    gunzip < `man -w $@` | groff -Thtml -man | bcat
+}
+
+
+A: None of these are exactly OSX specific, but here's some stuff from my .bash_profile that I find useful:
+Colored Prompt:
+PS1="\[\e[0;31m\][\[\e[1;31m\]\u\[\e[0;34m\]@\h \[\e[32m\]\w\[\e[0;31m]\]\$\[\e[0m\] ";
+
+example http://grab.by/grabs/c2c7cdff8e49dd764d326620df762665.png
+SSH tab completion of hosts that exist in ~/.ssh/config:  (found on MacOSXHints)
+complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config)" scp sftp ssh
+
+Highlighted grep:
+alias grep="grep --color=auto"
+
+highlighted grep http://grab.by/grabs/dd26dd993c74f8dd076e2f911a8e4ec6.png
+Automagically dump your public ssh key to a host for future passwordless auth: (can probably easily tweaked to add said host to ~/.ssh/config)
+ssh-setup() { cat ~/.ssh/id_rsa.pub | ssh $1 'cat - >> ~/.ssh/authorized_keys'; }
+
+
+More OSX specific stuff that I've setup forces the machine to take a picture with the built-in iSight every time the machine's lid is open and dumps that image in a directory.
+Requirements:
+
+
+*
+
+*SleepWatcher
+
+*iSightCapture
+Create a directory somewhere to hold all your images.
+Dump this into ~/.wakeup:
+date=$(date +%y%m%d_%H_%M_%S).jpg;
+/PATH/TO/isightcapture -w 640 -h 480 -n 3 -d -t jpg /PATH/TO/PICTURE/DUMP/$date > /dev/null
+unset date
+
+I've been capping a frame every time my MacBook wakes up for the past 3 1/2 years now, it's interesting to see everything compiled into a long video at a high framerate.
+
+A: Not installed by default, but MacPorts is great for adding more command line programs.  After downloading and installing you can use the port command to find and install more programs, plus much more.
+port search convert video
+port install ffmpeg
+
+
+A: My favorite alias:
+alias redo='sudo \!-1'
+
+When you forget to use 'sudo', just do 'redo' to rerun the last command using sudo.
+
+A: Use !$ to repeat the last parameter in the last command you entered, for example:
+~$ mkdir test-dir
+~$ cd !$
+cd test-dir
+test-dir$  
+
+!$ is actually short for !!$ which means "from the most recent command, pull the last parameter"
+See the "HISTORY EXPANSION" section of the bash man page for more.
+
+A: afplay ~/path/to/file.mp3
+
+Let's you play songs from the commandline. You can also append [space]& and let it run in the background. :)
+
+A: Here's something nice and pointless:
+/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background &
+Runs your screensaver as your desktop wallpaper. Useless but cool.
+This does not affect normal operation of the screensaver, but will end after normal screensaver has been activated, either by timeout or by moving the mouse to a predefined hot corner.
+Alternatively, you can use:
+killall ScreenSaverEngine
+
+
+A: xattr -h
+
+allows you to view file attributes.  The most handy use for this command is to remove the internet download warning from the finder:
+cd /the/directory/where/you/downloaded/all/your/files
+
+xattr -rd com.apple.quarantine .
+
+
+A: The OSX installer app has a command line interface too.
+sudo installer -pkg /Volumes/Growl-1.2.1/Growl.pkg -target LocalSystem
+
+Is a one line install command for Growl, GrowlNotify is an extra on the same install disk image.
+You can find the domains supported by a package file via 
+installer -pkg  /Volumes/Growl-1.2.1/Growl.pkg -dominfo
+
+
+A: Create a new directory and enter it:
+md() { mkdir -p "$@" && cd "$@"; }
+
+For more, see my dotfiles repository on GitHub, and/or view my .osx file for OS X-specific preferences and settings.
+
+A: Not a huge feature, but I noticed it wasn't here.
+⌥ + mouse drag on Terminal text let's you make a rectangular selection.
+
+A: history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -r
+
+Gives you a list of some of your most recent commands, numbered by how often you use them.
+
+A: Repeat the previous command with a substring replacement:
+Syntax:
+^before^after^
+
+Example:
+You entered:
+git clonr https://unbelievablylongurl.org/projectdirectory/evenmoreprojects/project.git
+
+Use this:
+^clonr^clone^
+
+And your command will be re-run with the replaced substring:
+git clone http://unbelievablylongurl.org/projectdirectory/evenmoreprojects/project.git
+
+
+A: ctrl+A and ctrl+E: Go to the beginning of the line and to the end of the line.
+This also works in every Cocoa text input!
+
+A: (Assuming we're looking for Mac OS X specific tricks.)
+I've got an alias to launch quicklook on a file from the command line:
+$ type -a ql
+ql is aliased to `qlmanage -p 2>/dev/null'
+$ ql photo.jpg
+Testing Quick Look preview with files:
+    photo.jpg
+
+ctrl+C: Kill it and return to the prompt.
+
+A: net rpc shutdown --server=<servername> --username=<username>
+
+This will shut down windows boxes.
+
+A: You can transfer a working directory from one Terminal window to another with these two commands added to your .bash_profile file:
+alias cwd='pwd | pbcopy'
+alias gowd='cd "`pbpaste`"'
+
+cwd copies your working directory from one window, and gowd opens that directory in another window.
+
+A: In my bash profile I have these aliases:
+# Alias for "." shows current directory
+alias -- .='pwd'
+
+# Alias for ".." goes to parent directory
+alias -- ..="cd .."
+alias -- ...="cd .. ; cd .."
+alias -- ....="cd .. ; cd .. ; cd .." 
+
+
+A: Use Apple’s ASCIIMoviePlayer to play QuickTime movies in the Terminal:
+(There are also two great adaptations out there that allow using ANSI colour output).
+On a more serious note: CoreImageTool (3rd party; just google for it) is a great way of using CoreImage filters from the command line.
+
+A: sips -i *
+
+This automagically creates icon previews for all images.
+This is better than using the Finder’s “Show icon preview” if you have large files particularly over a server.
+
+A: drutil does lots of stuff
+drutil cdtext
+
+shows you the cdtext info (if any) on the CD currently in the drive
+drutil info
+
+shows you the capability of your optical drive(s)
+drutil eject
+
+guess what that does
+Plus lots more. 'man drutil' to see everything
+
+A: I have the following aliases and functions in ~/.bash_profile:
+alias ..="cd .."
+alias ...="cd .. ; cd .."
+alias ls="ls -G" # list
+alias la="ls -Ga" # list all, includes dot files
+alias ll="ls -Gl" # long list, excludes dot files
+alias lla="ls -Gla" # long list all, includes dot files
+alias stfu="osascript -e 'set volume output muted true'"
+alias pumpitup="sudo osascript -e 'set volume 10'"
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias flush="dscacheutil -flushcache"
+alias gzip="gzip -9n"
+alias ping="ping -c 5"
+alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook
+
+# Create a new directory and enter it
+md() { mkdir -p "$@" && cd "$@"; }
+
+# Define a term using Google
+define() { local y="$@"; curl -sA "Opera" "http://www.google.com/search?q=define:${y// /+}" | grep -Po '(?<=<li>)[^<]+'|nl|perl -MHTML::Entities -pe 'decode_entities($_)' 2>/dev/null; }
+
+# gzip a file with strongest compression settings
+ubergzip() { gzip -9n < "$@" > "$@".gz; }
+
+# Open a man page in Preview.app
+pman() { man -t "${1}" | open -f -a /Applications/Preview.app; }
+
+# Open a man page in TextMate.app
+tman() { MANWIDTH=160 MANPAGER='col -bx' man $@ | mate; }
+
+# Quit an app cleanly
+quit() {
+    for app in $*; do
+        osascript -e 'quit app "'$app'"'
+    done
+}
+
+# Relaunch an app
+relaunch() {
+    for app in $*; do
+        osascript -e 'quit app "'$app'"';
+        sleep 2;
+        open -a $app
+    done
+}
+
+# Uninstall an app with AppZapper
+zap() { open -a AppZapper /Applications/"${1}".app; }
+
+For more, see my dotfiles repository on GitHub, and/or view my .osx file for OS X-specific preferences and settings.
+
+A: I often use ⌘+K to have my Terminal screen cleared instead of UNIX Command clear. 
+The difference is clear hides the previous commands from our sight, but we can still scroll back meanwhile ⌘+K clears it completely—we can't scroll back.
+I like using it because I can always press ctrl+R or type:
+history | grep command-that-I-want-to-do-again
+
+if I want to re-type a command without a need to look at "messy character crowded" Terminal.
+
+A: In Terminal's Help menu, you can search for man pages. (The first time you do this, it can take a few seconds to index the man page files, so wait a bit for results to appear, but subsequent searches are fast.) It will show man page results in the Help menu search results. Selecting one opens a window displaying the formatted page.
+As of Mac OS X Lion 10.7, there are a number of enhancements to man page support:
+
+
+*
+
+*Man page searching lets you supply section numbers/names in various formats: "2 open", "open 2", "open(2)". It also supports asterisk "*" for wildcard searches.
+
+*It now searches all the files in MANPATH (prior to Lion it only searched a fixed set of directories, so, for example, it didn't find any X11 man pages). It doesn't run in a shell, however, so if you want to customize MANPATH you may need to customize man.conf (x-man-page://1/man), or set it in your global environment.
+
+*There are commands in the Help menu for opening man pages (Open man Page for Selection) and performing an apropos search (Search in man Pages for Selection). There are corresponding commands in the contextual menu, and there are Services you can enable to perform these lookups from other applications (System Preferences > Keyboard > Keyboard Shortcuts > Services > Open man Page in Terminal / Search man Pages in Terminal).
+
+*If there is no selected text, Open man Page for Selection will automatically look at the text to the left of the cursor. This means you can enter a command name, then use this command to open the man page before entering command arguments. It'll skip over whitespace. It also understands man page references "open(2)" and URLs "x-man-page://2/open". (If you explicitly select text, it also understands "2 open" and "open 2".)
+
+*Man page windows use the "Man Page" settings profile. You can customize this to alter the appearance of man pages displayed using these commands. It also remembers the position of man page windows separately from other windows, so you can have man pages appear in the same place on screen each time, independent of where you place other terminal windows.
+
+*⌘+ double-click will open man page references "open(2)", enabling you to navigate references from one man page to another. (⌘+ double-click will also open any recognized URL, or even some patterns like email addresses—creates a new mail message—and domain names—opens in Safari.)
+
+*When viewing a man page window (or any terminal whose commands have all completed/exited), Terminal supports some "less"-compatible pager commands: space = Page Down, ⇧+space = Page Up, F = Page Down ("forward"), B = Page Up ("back"), ⌫ = Scroll down one line, ↑/↓ = Scroll up/down one line.
+
+
+A: $ emacs -batch -l dunnet
+
+Dead end
+You are at a dead end of a dirt road.  The road goes to the east.
+In the distance you can see that it will eventually fork off.  The
+trees here are very tall royal palms, and they are spaced equidistant
+from each other.
+There is a shovel here.
+>
+
+
+A: afconvert allows you to convert from and to all audio formats internally known to Core Audio.
+e.g., converting an aiff file to 160kbps AAC:
+afconvert track.aiff -o track.m4a -q 127 -b 160000 -f 'm4af' -d 'aac '
+
+
+A: Quickly check what is eating all your memory:
+top -o vsize
+
+And for your CPU
+top -o cpu
+
+Q to quit
+
+A: To make ctrl+← and ctrl+→ useful again, that is going a word forward or backward like they usually do on Linux, you must make Terminal.app send the right string to the shell. In the preferences, go to the Settings tab and select your default profile. Go to Keyboard and set control cursor left and control cursor right to send string \033b and \033f respectively.
+While your're at it, you can also fix Home (\033[H), End (\033[F), Page Up (\033[5~) and Page Down (\033[6~) so that they send those keys to the shell instead of scrolling the buffer.
+
+A: Resample image so height and width aren't greater than specified size, e.g. 100x100:
+sips -Z 100x100 image.jpg
+
+sips supports other operations such as: flip, rotate, crop, image properties query, colour profile query and modification. Check man sips for usage.
+
+A: Command line shortcuts to toggle visibility of hidden files in finder:
+alias show_hidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
+alias hide_hidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
+
+
+A: This is more a Terminal meta-hint - you can use 
+Cmd-Shift-{Left arrow, Right Arrow} 
+
+(Command Shift combined with left or right arrow) to quickly cycle between open Terminal.app windows.
+
+A: Here is a script that gets the path(s) to the current selection(s) in Finder: 
+#!/bin/sh
+
+osascript` << EOT
+
+tell application "Finder"       
+        set theFiles to selection
+        set theList to ""
+        repeat with aFile in theFiles
+                set theList to theList & POSIX path of (aFile as alias) & " "
+        end repeat
+        theList
+end tell
+
+EOT
+
+How I use it:
+$ cat `selected`
+
+
+A: If you need to open a Finder window as the root user, you can execute the following from the terminal:
+In 10.5 and below:
+sudo /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
+
+In 10.6:
+sudo /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
+
+Then, open a new finder window.
+You'll see that the new finder window opens with root permissions.
+
+A: Flush the DNS cache if you are editing /etc/hosts a lot to test staging servers as looking like production.
+dscacheutil -flushcache
+
+
+A: Ok, definitely not mac specific, but TAB completion in zsh  is so good I  think it deserves a specific mention.
+You get completion of options, e.g. 
+find . -d[TAB]
+
+will give you -daystart -delete -depth as possible completions.
+Also path completion is improved over Bash completion, for example, I have a Volume called Wubly, and inside that video/tv/comedy, so typing:
+cd /v/w/v/t/co[TAB] 
+
+will expand to.
+cd /Volumes/Wubly/Video/TV/Comedy
+
+(note that it's also case insensitive.)
+If there are multiple paths that match this pattern, they will be shown.
+Completion is also interactive, so you can move around the available choices with the cursor controls.
+
+A: As of Mac OS X Lion 10.7, Terminal will open a new window if you drag a folder (or a text pathname) onto the application icon. If you drag to the tab bar of an existing window, it will create a new tab in that window.
+You can also do this from the command line or a shell script:
+open -a Terminal /some/path/
+
+This is the command-line equivalent of dragging a folder onto the Terminal application icon and will open a new terminal window at "/some/path".
+Terminal also now supports Services for opening a terminal at a selected folder (e.g., in Finder) or a text pathname using the contextual menu. You can enable them in
+
+System Preferences > Keyboard > Keyboard Shortcuts > Services
+
+Look for New Terminal at Folder and New Terminal Tab at Folder. You can even assign command keys to them if you like.
+Finally, if you drag a folder or pathname onto an existing tab (i.e., the tab in the tab bar) and the foreground process is the shell, it will execute a "cd" command in one step. As in previous versions, dragging a folder onto the terminal display will insert the pathname to the folder.
+
+A: If you’re like me, you have multiple Terminal.app tabs open at the same time.
+Now, if you open three tabs at the same point in time, then enter some commands in each of them, then close them all, the Bash shell that Terminal.app uses only remembers the command history for the last tab that you close. So, the command history from the other two tabs gets lost.
+If you don’t want to lose your command history in any tab, add this to your ~/.bash_profile (or any other file that gets sourced when a new Terminal tab is opened):
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+
+A: When cding, one of the most useful features is tab completion.
+For example, instead of entering cd FooBarBazBax, you can enter cd FooB followed by Tab. Tab completion will work as long as the part of the path or filename you entered isn’t ambiguous.
+However, if you were to type cd foob followed by Tab, the completion wouldn’t work, as the folder name starts with an uppercase F. Luckily, you can make tab completion even more useful by making it ignore the filename case.
+Add this to your ~/.inputrc file (create the file if you don’t have it already):
+# Make Tab autocomplete regardless of filename case
+set completion-ignore-case on
+
+This way, cd foob followed by Tab would complete it into cd FooBarBazBax, provided there’s a folder with that name in the current working directory.
+
+A: Just type 
+purge
+
+and it will make inactive memory as free again. Mac OS X keeps apps in memory for a while after you close them, so they will open fast if you open them again. Purge will remove them from memory and give your free memory back.
+
+A: http://github.com/joelthelion/autojump - "cd" that learns.
+
+A: With hdiutil you can easilly mount a disk image:
+hdiutil mount ~/Desktop/lastest_webkit.dmg
+
+Dismounting (hacker way):
+hdiutil detach `df | grep WebKit | perl -pe 's@^/dev/([a-zA-Z0-9]+).*@$1@'`
+
+Dismounting (easy way):
+hdiutil detach /Volumes/<mountpoint>
+
+or take the easier approach (that churnd suggested below):
+hdiutil detach /Volumes/latest_webkit
+
+
+A: Some useful aliases:
+alias ..="cd .."
+alias ...="cd .. ; cd .."
+
+alias ls="ls -G" # list
+alias la="ls -Ga" # list all, includes dot files
+alias ll="ls -Gl" # long list, excludes dot files
+alias lla="ls -Gla" # long list all, includes dot files
+
+alias stfu="osascript -e 'set volume output muted true'"
+alias pumpitup="sudo osascript -e 'set volume 10'"
+
+# Get readable list of network IPs
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias flush="dscacheutil -flushcache" # Flush DNS cache
+
+alias gzip="gzip -9n" # set strongest compression level as ‘default’ for gzip
+alias ping="ping -c 5" # ping 5 times ‘by default’
+alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook
+
+# Upload image to Imgur and return its URL. Get API key at http://imgur.com/register/api_anon
+imgur() { curl -F "image=@$1" -F "key=ANONYMOUS_IMGUR_API_KEY" https://api.imgur.com/2/upload | egrep -o "<original>.+?</original>" | egrep -o "http://imgur\.com/[^<]+" | sed "s/imgur.com/i.imgur.com/" | tee >(pbcopy); }
+
+All of these are in my ~/.bash_profile so I can use them in every Terminal window.
+P.S.
+alias chpwn="chown"
+
+For more, see my dotfiles repository on GitHub, and/or view my .osx file for OS X-specific preferences and settings.
+
+A: textutil is a very handy tool that can cross convert text between HTML, RTF(D), Word (including XML), OpenOffice.org Writer, and the webarchive format.
+I use it, notably, in a service that converts the selected text to HTML, uploads it to a server then imports it into Instapaper.
+
+A: Make files invisible:
+SetFile file -a V
+SetFile can change a lot of other file attributes and metadata, as well.
+SetFile is not a OS X native command it comes bundled with DevTools/Xcode.
+If you don't have Xcode and don't want to download about 6 GB, you can use
+sudo chflags hidden|nohidden <file/folder>
+
+chflags is a BSD command and it also has a Man Page just enter this in Terminal
+man chflags
+
+for those who don't like to enter commands self and just would like to know what there stands in the man. Here you have:
+CHFLAGS(1)        BSD General Commands Manual           CHFLAGS(1)
+
+NAME
+     chflags -- change file flags
+
+SYNOPSIS
+     chflags [-fhv] [-R [-H | -L | -P]] flags file ...
+
+DESCRIPTION
+     The chflags utility modifies the file flags of the listed files as speci-
+     fied by the flags operand.
+
+     The options are as follows:
+
+     -f      Do not display a diagnostic message if chflags could not modify
+         the flags for file, nor modify the exit status to reflect such
+         failures.
+
+     -H      If the -R option is specified, symbolic links on the command line
+         are followed.  (Symbolic links encountered in the tree traversal
+         are not followed.)
+
+     -h      If the file is a symbolic link, change the file flags of the link
+         itself rather than the file to which it points.
+
+     -L      If the -R option is specified, all symbolic links are followed.
+
+     -P      If the -R option is specified, no symbolic links are followed.
+         This is the default.
+
+     -R      Change the file flags for the file hierarchies rooted in the
+         files instead of just the files themselves.
+
+     -v      Cause chflags to be verbose, showing filenames as the flags are
+         modified.  If the -v option is specified more than once, the old
+         and new flags of the file will also be printed, in octal nota-
+         tion.
+
+     The flags are specified as an octal number or a comma separated list of
+     keywords.  The following keywords are currently defined:
+
+       arch, archived
+           set the archived flag (super-user only)
+
+       opaque  set the opaque flag (owner or super-user only).  [Directory
+           is opaque when viewed through a union mount]
+
+       nodump  set the nodump flag (owner or super-user only)
+
+       sappnd, sappend
+           set the system append-only flag (super-user only)
+
+       schg, schange, simmutable
+           set the system immutable flag (super-user only)
+
+       uappnd, uappend
+           set the user append-only flag (owner or super-user only)
+
+       uchg, uchange, uimmutable
+           set the user immutable flag (owner or super-user only)
+
+       hidden  set the hidden flag [Hide item from GUI]
+
+     As discussed in chflags(2), the sappnd and schg flags may only be unset
+     when the system is in single-user mode.
+
+     Putting the letters ``no'' before or removing the letters ``no'' from a
+     keyword causes the flag to be cleared.  For example:
+
+       nouchg  clear the user immutable flag (owner or super-user only)
+       dump    clear the nodump flag (owner or super-user only)
+
+     Unless the -H or -L options are given, chflags on a symbolic link always
+     succeeds and has no effect.  The -H, -L and -P options are ignored unless
+     the -R option is specified.  In addition, these options override each
+     other and the command's actions are determined by the last one specified.
+
+     You can use "ls -lO" to see the flags of existing files.
+
+EXIT STATUS
+     The chflags utility exits 0 on success, and >0 if an error occurs.
+
+SEE ALSO
+     ls(1), chflags(2), stat(2), fts(3), symlink(7)
+
+HISTORY
+     The chflags command first appeared in 4.4BSD.
+
+BUGS
+     Only a limited number of utilities are chflags aware.  Some of these
+     tools include ls(1), cp(1), find(1), install(1), dump(8), and restore(8).
+     In particular a tool which is not currently chflags aware is the pax(1)
+     utility.
+
+BSD              March 3, 2006                 BSD
+
+
+A: You can set the system volume automatically too, and kill the screen process afterwards:
+screen
+(hit enter)
+sleep 300; osascript -e "set Volume 10"; say "I am feeling fabulous"; open "http://www.youtube.com/watch?v=dQw4w9WgXcQ"; killall SCREEN
+Ctrl-a-d
+(detaches)
+
+
+A: Simulate to type Command-F, to fullscreen a video from command line. Useful when launching a movie in mPlayer from ssh.
+osascript <<END
+tell application "System Events" to keystroke "f" using {command down}
+END
+
+Of course you can also use this trick to simulate any other "typing".
+
+A: what about 
+cat somefile.txt | say
+
+say the contents of a text file...
+or...
+cat someFile.txt | say -o someAudioFile
+
+take your text file, convert it to .aiff
+
+A: Text file to an Audio file
+say -o “audiofile.aiff” -f “textfile.rtf”
+
+more syntax here
+
+A: Change directory to the directory shown in the top-most Finder window:
+cdf () {
+   currFolderPath=$( /usr/bin/osascript <<-EOT
+       tell application "Finder"
+           try
+               set currFolder to (folder of the front window as alias)
+           on error
+               set currFolder to (path to desktop folder as alias)
+           end try
+           POSIX path of currFolder
+       end tell
+       EOT
+   )
+   echo "cd to \"$currFolderPath\""
+   cd "$currFolderPath"
+}
+
+
+Another version:
+f() {
+    cd "$(osascript -e 'try
+tell app "Finder" to (target of Finder window 1) as text
+POSIX path of result
+on error
+    (system attribute "HOME") & "/Desktop"
+end')"
+}
+
+
+A: Define a term using Google:
+define() { local y="$@"; curl -sA "Opera" "http://www.google.com/search?q=define:${y// /+}" | grep -Po '(?<=<li>)[^<]+'|nl|perl -MHTML::Entities -pe 'decode_entities($_)' 2>/dev/null; }
+
+For more, see my dotfiles repository on GitHub, and/or view my .osx file for OS X-specific preferences and settings.
+
+A: gzip a file with strongest compression settings:
+ubergzip() { gzip -9n < "$@" > "$@".gz; }
+
+For more, see my dotfiles repository on GitHub, and/or view my .osx file for OS X-specific preferences and settings.
+
+A: I include all my favorites here:
+http://rustyisageek.blogspot.com
+Example: 
+Set Volume to 10 and Say something
+sudo osascript -e "set Volume 10" | say "hello World"
+
+Wait for network to be ready in a script
+/usr/sbin/networksetup -detectnewhardware
+
+
+A: This is not OSX specific (man says it's from 4.0BSD), but I love it anyways:
+sudo shutdown -h +45
+
+In the above example, shutdown shuts down your computer in 45 minutes from now (as one might suspect).
+It's great for when you want to spend "just a little bit of time" on your computer before going to bed / doing the dishes / going jogging / whatever. But when you also know deep down that it's not going to be "just a little bit of time"...
+Cheers!
+
+A: If you use subversion, opens FileMerge for local checked out files that have been changed.
+Requires installation of fmscripts: 
+cd ~/Downloads && svn co http://soft.vub.ac.be/svn-gen/bdefrain/fmscripts && cd fmscripts
+sudo make
+
+alias sfmdiff='svn diff --diff-cmd fmdiff'
+
+Then in a checked out directory: 
+sfmdiff . 
+
+(or any specific dir or file)
+
+A: ctrl-R will allow you to perform a reverse search within your bash shell.  It's like an interactive form of history.
+
+A: A relevant command for Terminal.app on Mac OS X is to launch Software Update from the CLI:
+sudo softwareupdate -i -a
+
+The bonus is you do not get any nagging from having to click on windows. I run this as part of a update script that is run every week approximately (so that I do not miss the feedback as it may happen when doing this automatically).
+
+A: Quick Look is one of OS X's best features. You just have to press Spacebar in a selected file, and you'll see a preview of that file without having to open up an app. It's great, but you can't select any text when you're in the preview. You can add that feature with a Terminal command:
+defaults write com.apple.finder QLEnableTextSelection -bool true 
+killall Finder
+
+Use the feature of Quick Look, select the text you want, and now you could copy it.
+
+A:  dot_clean .
+
+This one isn't an every day usage - but it was a big time saver once - 
+I had a SMB fileserver (Avid Unity) that was displaying lots of .filename files for mac users as well as PC users.
+This cleaning command totally fixed the problem (after running twice)
+
+A: You can hold option and click a position in the current line to move your cursor to that position.
+
+A: pbcopy and pbpaste:
+# Copy output of command to clipboard
+grep 'search term' largeFile.txt | pbcopy
+
+# Abuse clipboard contents
+pbpaste | sed 's/ /%20/g'
+
+#  get rid of the text attributes when you copy formatted text
+pbpaste|pbcopy
+
+
+A: opensnoop is my new favorite utility.  It uses DTrace to show you all of the files that are being accessed on your system, you need to execute it with superuser privileges 
+sudo opensnoop
+
+You can also watch what a particular process opens by passing in the PID:
+sudo opensnoop -p PID 
+
+Or watch a particular file to see who's opening it:
+sudo opensnoop -f /etc/passwd
+
+
+A: history shows a list of the recent commands you've run — something like 500 or 600 commands.  I frequently use history | grep something to find a command i've used recently.
+
+A: Although I can get around in vi, I use TextMate as my command line editor. You can also pipe things to it. For example ls|mate opens up TextMate with the current directly listing open in a text window.
+
+A: mdls will show you all metadata of the file that Spotlight knows about. You can use the resulting attributes in "mdfind" as well.
+mdutil allows you to switch indexing on or off on certain volumes, and allows you to reset the index etc.
+systemsetup is BSD specific (not Mac only), but cool indeed, check its manpage.
+GetFileInfo (I believe you have to get the developer tools in order to have this) allows you to see all associated times (modification, creation, last accessed) and all attributes of a file. 
+automator allows you to run automator workflows from the command line, while
+osascript lets you run Apple script code.
+
+A: It's not built in but this is the most effective way to get my wife to stop using my laptop to read celebrity news for hours after 4–5 requests to get my Macbook back:
+echo 'The system is overheating and needs to go to sleep now.' | \
+growlnotify -a 'Activity Monitor' 'OVERHEATED'; \
+sleep 1; \
+say 'Overheated system.'
+
+Since it's almost always around 70c it's believable.
+
+A: Hit and hold esc a few seconds to get a list of every possible terminal command on your system, including built-ins, programs on your path, and aliases.
+Or, as Martijn pointed out:
+Just use ⇥ instead, you don't need to hold it for a few seconds even. ⇥ will also complete partially typed commands for you, as well as filenames and command-specific arguments.
+A prompt asking if you really want to display all command possibilities will appear. Just answer y to get the command list.
+
+A: bcat is a convenient pipe between my always-open terminal (xterm under XQuartz) and my always-open browser.
+it sets up a streaming HTTP server for just one process so things like
+tar czvf - . | tee bcat
+
+will just stream until the command exits. Man pages need a bit of cleanup:
+man bash | col -b | bcat
+
+or just
+export MANPAGER='col -b | bcat'
+man bash
+
+
+A: Start a quick webserver from any directory:
+python -m SimpleHTTPServer 8000
+
+
+A: Auto-complete a command as an argument.
+for example start to type:
+
+which pyt
+  (now press ⌥+⇧+1)
+
+it will complete to
+
+which python
+
+⌥+⇧+1 works like tab completion except that it auto-completes using command names instead of file names.
+
+A: When you're editing a particularly long and gnarly command line:  ctrl+X, ctrl+E will pop you into your editor and let you work on it there.
+
+A: The more I use it the more addicted to it I am.
+screen
+
+Along with 
+screen -ls
+screen -r [session]
+
+Very useful for having several screens open on an SSH connection. It saves tons of time especially when you don't have to restart your tail everytime you want to check another log file.
+
+A: This is my absolute favorite. Sharing screen captures via the internet is a hassle. I wrote this to make sharing screenshots across chat a one step process using DropBox. (I have subsequently come across apps and utilities that do this, but I think this is perfect, at least for me.)
+It starts the interactive screenshot utility (same as ⌘+⇧+4), saves it your Dropbox's public folder, copies the URL to your clipboard and opens it in your browser.
+I run it via LaunchBar, but you could run it from the shell or bind it to a keyboard shortcut to make it as easy as ⌘+⇧+5.
+You could add something random to the filename if you are worried about privacy.
+I used to have it scp the screenshot file to my webserver before I switched to Dropbox. You could send the file wherever it would be useful to you. You could even put it in your ~/Sites directory to use it on your local network.
+If you want sign up for dropbox, you can use my referral link which will give us both bonus storage. =)
+#!/bin/sh
+
+# Integrates Mac OS X's screenshot utility with DropBox for easy sharing.
+
+# - Starts the interactive take-screenshot function, saves it to your public
+# Dropbox (if you didn't cancel it) where it will be uploaded automatically.
+# Copies the public URL to your clipboard and opens your browser to it.
+
+## Config
+dropbox_id="112358132134"  ## this is fibonacci's dropbox id
+dropbox_public_folder="$HOME/dropbox/Public/screenshots"
+upload_delay_in_second=1.5
+
+## Derivative Variables
+filename=$(date '+%F__%H-%M-%S.png')
+save_to="$dropbox_public_folder/$filename"
+url="http://dl.dropbox.com/u/$dropbox_id/screenshots/$filename"
+
+## start interactive screen capture
+screencapture -i "$save_to"
+
+## if the screenshot actually saved to a file (user didn't cancel by pressing escape)
+if [[ -e "$save_to" ]]; then
+    ## echo some output in case you run this in a shell
+    echo "Saved screenshot to:" "$save_to"
+
+    ## copy url to the clipboard
+    echo "$url" | pbcopy
+
+    ## wait for Dropbox to upload your screenshot, then open in your browser
+    sleep $upload_delay_in_second
+    ## The `-g` flag means it won't bring your browser to the foreground, which 
+    ## feels less like getting interrupted.
+    open -g "$url"
+fi
+
+
+A: Use ctrl+R to active reverse history search. Then start typing a command you've already typed and all matching commands will start presenting to you.
+To navigate in the reverse history search simply:
+
+
+*
+
+*continue typing to narrow down search
+
+*ctrl+R: move to the next result
+
+*⌫: go back to the previous result
+
+*ctrl+C: cancel your search
+
+
+eg.
+apouche:bin>  echo 'type CTRL+R to start reverse search'
+(reverse-i-search)`fin': find . -exec grep "MainMenu.nib" {} \;
+
+
+See also the accepted answer to "How can I search the bash history and rerun a command?" on Super User.
+
+A: diskutil is a very powerful command-line tool for working with disks and disk images. It's gotten me out of some binds. It's not too hard to use.
+
+A: I’m not sure; this might work in any decent terminal application, not only in OS X’s. However: 
+Using Terminal.app it is possible to put status information to the actual title bar and not just to the prompt.
+In order to do that, you need to change the PS1 variable in bash to the following model:
+PS1='\[\033]0;TITLE\007\]PROMPT'
+
+Where TITLE and PROMPT must be substituted to the actual commands which provide the status information. For example, \w lists the current full path; \W the directory name. You can even execute a command by putting it in backticks. (So you could even put the output of arbitrary commands to the title – or to the prompt.)
+Git users (with git’s bash completion installed) might find the following useful. Add this to your .bashrc
+export GIT_PS1_SHOWDIRTYSTATE=1
+PS1='\[\033]0;`__git_ps1` \w\007\]\h:\W \u\$ '
+
+and the title bar of Terminal.app will show the current git branch (and whether it’s clean or not) followed by the current full path. This gives useful information about where you are only when you need it and does not make the actual prompt overly long.
+In case you don’t use git very much and only care about the path in the title bar:
+PS1='\[\033]0;\w\007\]\h:\W \u\$ '
+
+
+A: The say command invokes the system text-to-speech capabilities.
+say "Hello there."
+
+
+A: !!
+
+Runs the last command again. Great for tracking changes.
+
+A: Print almost any document as a PDF, as long as it has a correctly defined MIME type in OS/X
+ cupsfilter $filename > output
+
+
+A: I'm going to have to say watching Star Wars from the command line is the best:
+telnet towel.blinkenlights.nl
+
+If you say that isn't a command, which it isn't really, just a trick, then I like this: 
+defaults write com.apple.dashboard devmode YES
+
+A: Mount iDisk from command line:
+osascript <<END
+tell application "Finder"
+mount volume "http://idisk.mac.com/john.doe/" as user name "john.doe" with password "StR0NGP455"
+end tell
+END
+
+
+A: Function to make a directory and cd into with a single command:
+function take {
+    mkdir $1
+    cd $1
+}
+
+
+A: You can browse and search the history by using the cursor keys after adding
+bind '"\e[A": history-search-backward'
+
+bind '"\e[B": history-search-forward'
+
+to your .profile.
+
+A: open all results of find in a single textmate window:
+find . -name "pattern"|xargs mate
+
+also works with mdfind (spotlight):
+mdfind -name models.py |xargs mate
+
+
+A: Download a URL to the current dir with curl.
+curl -O http://growl.cachefly.net/Growl-1.2.1.dmg
+
+Especially good for downloading source tarballs that Safari wants to decompress for you.
+
+A: In your ~/.bash_profile
+export PS1="\[\e]2;\h - \w\a\e[32;1m\]%\[\e[0m\] "
+
+This puts your machine name and current directory in the terminal title bar, so you can keep track of where you are.  This also shows the data in the Window directory.
+
+A: Get terminal to open in the last visisted folder:
+I have longed to get terminal to open in the last visited folder, and ended up making a small bash command that accomplishes that. It furthermore allows one to "cd" to a file, which is very helpful when you want to change your directory to that of a given finder file. Simply write cd, and drag the file to the terminal and your are there.
+Add the following to your .bashrc or .alias file
+alias cd=mycd
+
+mycd(){ 
+  if [ -f "$*" ]
+  then
+   \cd  "`dirname $*`"
+  else 
+    \cd "$*";
+  fi
+
+  echo "\cd \""`pwd`\""" > ~/.todir  ; 
+  PS1='\[\033]0;`pwd | xargs basename`\007\]\e[31m\w:\e[0m
+'
+}
+
+Finally, you need to change your terminal settings: 
+In terminal:settings:shell - make the shell complete the following command:
+source ~/.todir; clear
+
+Next time you start your terminal - you will automatically be redirected to your last opened directory - the terminal title will change title when you use the cd alias, and your prompt will show the full directory path.
+
+A: As of Mac OS X Lion 10.7, Terminal supports a few "less"-compatible pager commands when there are no processes running in a terminal. This is useful for paging through and reading text after commands have completed/exited. Supported keys are:
+space:  Page Down
+⇧+Space: Page Up
+⏎: Scroll down one line
+↑/↓: Scroll up/down one line
+F: Page down ("forward")
+B: Page up ("back")
+<: Home (scroll to top)
+>: End (scroll to end)
+Terminal has commands that will lookup and display man pages, which these keys are indispensable for viewing. See the Help menu and contextual menus. It also supports Services for opening man pages from other applications (enable them in System Preferences > Keyboard > Keyboard Shortcuts > Services).
+
+A: LAME encode .wav to .mp3
+This is the original one-liner I used to eventually craft this handy command.
+find ./ -name "*.wav" -execdir lame -V 3 -q 0 {} \;
+
+
+
+*
+
+*Converts 20Mb .wav (at the highest quality settings) to .mp3 in 3
+seconds!
+
+*Simply install the LAME binary and you're golden.
+
+
+A: Easy handling of bzip/tar to compress entire directories:
+# lsZ -- list contents of compressed tar archive
+function lsZ() {
+    tar tvzf "$1"
+}
+
+# deZ -- silently extract contents of compressed tar archive
+function deZ() {
+    # extract bzip2 compressed tars as well
+    if [[ $(file "$1") == *bzip2* ]]; then
+        bunzip2 -c "$1" | tar xf -
+    else
+        tar xzf "$1"
+    fi
+}
+
+# enZ -- build compressed tar archive
+function enZ() {
+    tar cZf "${2:-$1.tar.Z}" "$1"
+}
+
+# enG -- build compressed tar archive (with gzip)
+function enG() {
+    tar czf "${2:-$1.tar.gz}" "$1"
+}
+
+# enB -- build compressed tar archive (with bzip2)
+function enB() {
+    tar cf - "$1" | bzip2 > "${2:-$1.tar.bz2}"
+}
+
+# lsB -- list contents of bzip2 compressed tar archive
+function lsB() {
+    bunzip2 -c "$1" | tar tvf -
+}
+
+# deB -- silently extract contents of bzip2 compressed tar archive
+function deB() {
+    bunzip2 -c "$1" | tar xf -
+}
+
+
+A: Silence Idiom - Silence a shell command
+You can eliminate the standard output from a verbose command with this shell idiom.
+The idiom is:
+>&-
+
+and you use it like this:
+noisycmd >&-
+
+The command runs but nothing is printed to the standard output stream.
+
+A: Send Audio to a Apple Tv/Airplay device via the  /usr/bin/say command
+/usr/bin/say -r160 -a "AirPlay" "hello world"
+
+-r160 is  Speech rate to be used, in words per minute
+-a  followed by device name or number.
+Then your text.
+To list your available audio device
+/usr/bin/say -a?
+   39 AirPlay
+   47 Built-in Output
+  209 Soundflower (2ch)
+   74 Soundflower (64ch)
+
+Using the numbers will work just as well in place of the device name.
+/usr/bin/say -r160 -a 39 "Hover over a Method";say -r160 -a "Built-in Output" "I am back"
+
+You can also use the -f option to use a text file as your speech text.
+ /usr/bin/say -f ~/Music/foo.txt -r160 -a 39 
+
+As you will notice say can expand tilde file paths
+
+With say you can do a lot more like save speech text directly to audio file.
+ /usr/bin/say  -o ~/Music/hi.aac Hello, World.
+
+-o oupt file path.  i.e  ~/Music/hi 
+.aac  file format
+This saves a .acc file named hi.aac to the Music Directory.
+Directory paths MUST exist before the command is run. The file does not need to exist first in the directory and if it does it will most likely be overwritten.
+There are other formats you can use.
+The man page say will show you the full list of the options.
+
+A: I wanted the reverse of the "open ." command, where I could cd to the front Finder window, so I cobbled this together for my .bash_profile:
+alias fw='cd "$(osascript -e "tell application \"Finder\" to POSIX path of (folder of window 1 as string)")"'
+Now the "fw" command sets my current directory to the Front Window (for the fw name).
+Note that you can type "cd " and then drag the front window to the Terminal to get its path pasted in, then switch to Terminal and hit return.  I think this is easier.  ;)
+
+A: Make All Links In Safari Open As New Tabs
+New windows, baaad. New tabs, gooood.
+In general, Safari’s tab controls are wonderful, but one failing drives us crazy: Certain links are allowed to override your preference for opening new webpages in tabs, essentially forcing the application to open a new window. To prevent this in the future, execute this command: defaults write com.apple.Safari TargetedClicksCreateTabs -bool TRUE.
+
+Show Hidden Files in The Finder
+The names of hidden files always begin with a period--keep that in mind before you delete or edit a file that doesn’t look familiar.
+Believe it or not, the files you see listed on your Desktop in the Finder do not represent all of the files contained in your Desktop folder. In almost every folder, the OS hides system files that Apple considers too important for the likes of us to mess with (or too mundane for us to be bothered with). Now and again, though, it’s useful to view these files. To see the full contents of all folders in the Finder, execute :  defaults write com.apple.finder AppleShowAllFiles TRUE.
+
+Disable the Dashboard
+When the Dashboard appears on our Desktop, it’s usually because we missed the delete key and hit F12 instead.
+We’ve always liked the Dashboard in theory--on occasion, we’ve even downloaded widgets for it. Unfortunately, we never get around to using them, and our aging Mac laptop could use the extra RAM to run real apps. If you’re in the same boat, free up some system memory by terminating the Dashboard with two quick Terminal commands. First, set its default to Off by executing : defaults write com.apple.dashboard mcx-disabled -boolean YES. Second, kill and restart the Dashboard and Dock with this command: killall Dock.
+
+A lot more on this website : Click HERE
+
+A: pg with no arguments ping the IP 8.8.8.8 (usefull for basic internet connection test), otherwise ping the given IP. If the IP is incomplete, it is concat with the default prefix 192.168.1 allowing easy local ping (eg ping 3.12 => 192.168.3.12)
+function pg() {
+    ip4regex='^[0-9]+[.][0-9]+[.][0-9]+[.][0-9]+$'
+    ip3regex='^[0-9]+[.][0-9]+[.][0-9]+$'
+    ip2regex='^[0-9]+[.][0-9]+$'
+    ip1regex='^[0-9]+$'
+    host=$@
+    if [[ $# == 0 ]]; then
+        host="8.8.8.8"
+    elif [[ $@ =~ $ip4regex ]]; then
+        host="$@"
+    elif [[ $@ =~ $ip3regex ]]; then
+        host="192.$@"
+    elif [[ $@ =~ $ip2regex ]]; then
+        host="192.168.$@"
+    elif [[ $@ =~ $ip1regex ]]; then
+        host="192.168.1.$@"
+    fi
+    ping $host
+}
+
+
+A: Add a file named "-i" to your home directory. Now if you accidentally type:
+rm -rf *
+
+it will expand to:
+rm -rf -i your other files
+
+and you will be prompt to confirm or deny the removal of the entire dir. It's pretty hacky, but it's saved my butt before.
+
+A: I find it useful to copy text to the clipboard from Terminal.app without using the mouse to make a selection.
+This seems to only works with the older Terminal.app from Tiger.  I just renamed it to Tiger Terminal.app, and it still runs fine on Leopard.  Haven't tried it on Snow Leopard.
+So, with Tiger Terminal, you can do mouse-free copy by typing ⌘+⌥+⌫, then using the arrow keys to move to the start of the area you want to copy.  Next, type ⌘+⌥+⌫ again to anchor the selection point.  Use the arrow keys (some emacs-like commands also work for navigation like ctrl+E) to move to the end of the region you want to copy.  Finally, type ⌘+⌥+⌫ again to copy selection to the clipboard.
+
+A: BBEdit version for viewing man pages:
+bbman () {
+  MANWIDTH=160 MANPAGER='col -bx' man $@ | bbedit --clean
+}
+
+
+A: List all directories alone in a directory - er - folders in a folder.
+ls -la | grep '^d'
+
+Find sizes of given directory - again - er - folder.
+du -s dirname
+
+
+A: user42053 mentions adding a file -i to every folder. Gets a bit hairy seeing -i in every folder everywhere else. Easier method would be 
+alias rm="rm -i"
+
+
+A: Drag the proxy icon of a Finder window to get an escaped path; especially useful after typing cd
+
+A: I made an alias called dirstat, named for a similar utility.  It helps determine where all the hard drive space is being used.  Add it to your /etc/bashrc or as a bash script.
+du -s ./* | sort -n| cut -f 2-|xargs -i du -sh {}
+
+
+A: Automatically update the Terminal.app window title to display your username, host and current directory. 
+If I do the following:
+cd ~/Developer
+
+I want the Terminal window title to be updated to:
+jason@rocksteady:~/Developer
+
+To achieve this, make sure that the PROMPT_COMMAND variable is set in your ~/.bash_profile:
+PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}"; echo -ne "\007"'
+
+Of course, you can substitute whatever suits your fancy.
+
+A: I've added the lines below to my ~/.bash_profile file.
+With the ⇥ you will see the effect by starting a command/path and hitting ⇥ a few times.
+Change function of ⇥ to scroll through autocomplete options:
+bind '"\t":menu-complete'
+
+SSH as root to...:
+alias shroot="ssh -l root"
+
+Force eject volumes:
+alias forceeject="hdiutil detach -force"
+
+Force quit an application:
+alias forcequit="killall -HUP"
+
+Open man pages as PDFs:
+pdfman() { man $1 -t | open -f -a Preview; };
+
+Alias pingburst:
+alias ping2="ping -c2"
+
+
+A: Set bash to exit a script immediately on any error. 
+set -o errexit
+
+Always a good idea when developing bash scripts, especially destructive ones. 
+
+A: An easier way to open and close DMGs is:
+open <My disk image>.dmg
+
+Then to close it:
+umount /Volumes/<My disk image>
+
+
+A: To connect to a network volume, you could use mkdir;mount and umount;rmdir etc, etc... however that's long-winded and there's a better Mac specific alternative method...
+You can open a share:
+open afp://user:pass@server/sharepointname
+
+and eject it with:
+diskutil eject /Volumes/sharepointname
+
+By the way, you can also open a dialog to select from a list of all the sharepoints on a server by doing..
+open afp://user:pass@server/
+
+Omit the user/password to prompt for credentials in the GUI.
+
+A: drutil eject
+drutil tray eject # analagous to above
+
+Opens the CD tray or ejects a CD (for a laptop)
+drutil tray close
+
+Closes the CD tray
+These are very useful when you are SSHing into another computer.
+
+A: You can use esc key as replacement for alt. >ou have to tap it first and then enter the other instead of holding it. It's a standard feature, but more important as the ⌥ key on macs works different as on "windows/Linux" keyboards. 
+You can set the behavior of alt key in preferences to behave like on "windows" keyboards. Though you then will be unable to type important characters as @, \, {, ... 
+Very important if you use emacs in terminal. But suppose there are many commands that require it - eg you can also copy-paste in bash with emacs bindings. 
+
+A: One I actually use quite a lot is uptime. Simple but nice :) Currently mine returns up 32 days, 14:30.
+
+A: Strictly from one Terminal window to itself or another Terminal window:
+Select text in the normal way, then paste it by moving the mouse to the window you want to paste into, and clicking the middle mouse button.
+Note that if you have made multiple selections with Command-Option drags, pasting will paste in a newline, which will invoke the current line. This is probably not something you want.
+
+A: Local Web Server with Ruby
+Here is the Ruby alternative to the Python one-liner for a local HTTP server (that is also posted in this thread):
+ruby -run -e httpd . -p 8000
+
+This will open a server in the working directory with a port number of 8000 so that you can access it in the browser at http://localhost:8000.
+Change the 8000 to any port number that you would like to use.
+
+A: Many answers have been given about how you can drag files and folders into the terminal window but Ciarán Walsh has made a utility called drag that allows you to drag files OUT of the terminal window. It’s even better with my patch that allows multiple files per drag operation.
+
+A: I could not believe that the following is missing here. The best improvement of a OS X terminal is to make it feel UNIX/Linux like. My first intention was to show you a proper bash-completion completing several things like ssh or git correctly. I'm talking of standard behaviour I was used to from Linux.
+But much more important is the missing package manger homebrew. With this you will get plenty of standard unix commands/apps/libraries.
+First install homebrew via
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+
+and then get the sophisticated bash-completion via
+brew install bash-completion
+
+Dont ignore the message. You will have to edit .bash_profile. But its worth it. bash-completion completes brew too.
+
+A: Ctrl+D is a shortcut for exit. Useful if you often work in nested ssh sessions.
+
+A: It's been mentioned already that dragging a folder into a terminal app will get the path typed directly in it. You can additionally drop a folder onto the terminal app icon and a new terminal will be opened in that path directly
+
+A: While a top already mentions option (alt)-click to move to a position in the line, in reality this works anywhere in the terminal. I use it most prominently in text editors.
+Anywhere you can get by arrow-ing alt-click will get the cursor there as well.
+This is the main reason I stopped using tabs in code in the early 90s, NCSA Telnet included this functionality back then for mac's System 7 and if tried to arrow its way through tabs, so it ended up going all over the place and beeping like crazy.
+
+A: I use a lot this command
+echo | pwd | pbcopy
+
+It's simply copy current path to clipboard. I've also binded it with path alias 
+alias path='echo | pwd | pbcopy'
+
+
+A: Add aliases for phrases that you commonly mistype
+alias sdou='sudo'
+alias suod='sudo'
+alias sodu='sudo'
+alias gerp='grep' 
+
+
+A: alias alias_open="mate ~/.oh-my-zsh/lib/aliases.zsh"
+alias alias_reload="source ~/.oh-my-zsh/lib/aliases.zsh"
+alias lsa='ls -lahG'
+alias l='ls -la'
+alias ll='ls -l'
+alias sl=ls # often screw this up
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+#######
+# GIT #
+#######
+alias gd="git diff"
+alias gl="git log"
+alias gu="git up"
+alias gs="git status"
+alias gf="git fetch"
+alias gr="git remote -v"
+alias gp="git push"
+alias gph="git push heroku master"
+alias gps="git push staging staging:master"
+alias gpg="git push github master"
+alias gpo="git push origin master"
+alias gplh="git pull heroku master"
+alias gpls="git pull staging staging:master"
+alias gplg="git pull github master"
+alias gplo="git pull origin master"
+alias gpl="git pull"
+alias gc="git commit -am"
+alias gco="git checkout"
+alias ga="git add ."
+
+##########
+# SYSTEM #
+##########
+alias cwd='pwd | pbcopy' #copy the working directory into the clipboard
+alias grep="grep --color=auto"
+
+####################################################
+# Create box of '#' characters around given string #
+####################################################
+
+function box() { t="$1xxxx";c=${2:-#}; echo ${t//?/$c}; echo "$c $1 $c";echo ${t//?/$c}; }
+
+########################
+# Rip audio from video #
+########################
+
+# ("$1" for output file & "$2" for input file)
+function audioextract()
+{
+mplayer -ao pcm -vo null -vc dummy -dumpaudio -dumpfile "$1" "$2"
+}
+# extract audio from DVD VOB files
+# USAGE:  audioextractdvd input_file.vob output_file.ac3
+function audioextract_dvd()
+{
+mplayer "$1" -aid 128 -dumpaudio -dumpfile "$2"
+}
+
+#######################
+# Backup .bash* files #
+#######################
+
+function backup_bashfiles()
+{
+  ARCHIVE="$HOME/bash_dotfiles_$(date +%Y%m%d_%H%M%S).tar.gz";
+  cd ~
+  tar -czvf $ARCHIVE .bash_profile .bashrc .bash_functions .bash_aliases .bash_prompt
+  echo "All backed up in $ARCHIVE";
+}
+
+
+A: Useless, but fun. Go and download the ASCII players from Google Docs. Install them in /usr/bin. Now you can have a movie player in Terminal. There is ASCIIbw and ASCIIcolor. I don't think I need to explain that one is color and one is black and white. To open a movie file type: ASCIIbw ~/Desktop/Test.mov
+
+A: alias ka="killall"
+
+Probably one of my most used commands. I put this in my .bash_profile for easy access.
+
+A: When I'm in terminal I expect every action to be given in written form, because there is no GUI. 
+Many of the terminal based apps have some kind of quit command to bring you back to shell. This is what I'm used to when in terminal.
+To leave a terminal window or tab I aliased following command:
+alias q="osascript -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"w\" using command down'"
+
+EDIT:
+better even is to do as Jason commented:
+configure Terminal.app to close the window if the shell exited cleanly
+alias q="logout"
+
+
+A: If you have XCode installed, running the command purge at the terminal is really helpful.  It frees up all of your active and inactive RAM.  It's useful for people like me who do a lot of audio production (or any kind of media editing for that matter) when you only have 4 GB RAM.  You would be surprised how fast 4 GB gets used up.

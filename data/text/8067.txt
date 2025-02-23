@@ -1,0 +1,16 @@
+Q: Can I make the Launchpad key (F4) on my new Macbook Pro toggle Mission Control instead? I will never use Launchpad, however I really like Mission Control. I'd love to disable the Launchpad feature and make my F4 key toggle Mission Control instead. F3 does that already, however I'd like to have both keys assigned to that feature.
+
+A: What you want is FunctionFlip:
+
+You can individually choose which keys you want as standard f-keys and which you want as the Mac-specific functions. In your case, "flip" the F4/Launchpad key, then assign F4 to launch Mission Control.
+The only caveat is you cannot use both FunctionFlip and BetterTouchTool, as the developer of BTT points out.
+
+A: Simple answer: Not really.
+You can, however, enable the "Use all F1, F2, etc. keys as standard function keys" option in the Keyboard preference pane:
+
+... and then use BetterTouchTool to map F4 to Expose.
+
+By doing this, all functions of your current function keys won't work and you'll have to remap all of them using BTT as you like.
+
+A: A tool very similar to FunctionFlip is Karabiner (formerly KeyRemap4MacBook). You can use it together with BetterTouchTool. Here’s how to remap F4 to Dashboard (which I still use and find useful) instead of the useless Launchpad:
+

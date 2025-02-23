@@ -1,0 +1,17 @@
+Q: iPhone sending a lot of packets addressed to weird destinations, draining battery quickly I have a jailbroken iPhone. Recently, I have realized that its battery usage is abysmal. Suspecting that it has something to do with the radio, I downloaded Data Counter from Cydia to check real-time data usage and found that even with push notifications off and exchange set to manual, there is a persistent 0.06kb/s of data transfer. So I hooked the iPhone to a WiFi network and captured packets originating from its IP address using Wireshark under promiscuous mode.
+I get A LOT of these:
+No.: 1907  
+Time: 252.345269  
+Source: 192.168.2.3  
+Destination: 10.236.199.xx  
+Protocol: TCP  
+Info: 49833 > ssh [SYN] Seq=0 Win=65535 Len=0 MSS=1460 WS=2 TSV=994197017 TSER=0 SACK_PERM=1
+
+Where 10.236.199.xx is the destination IP and xx goes from 0 to 249, then goes back to 0.
+If it helps, my cellular data IP address is 10.236.199.213 and my cellular provider is SingTel (Singapore).
+I believe when I am on 3G, these packets are keeping the radio transmitter from powering down and thus draining the battery severely.
+Which app is causing all these packets and how can I stop it from going on?
+
+A: You jailbroke (is that a word? jailbreaked?) it, thereby opening the door to any application doing anything with your hardware. And now it appears that some application is doing something with your hardware. Your phone is compromised and is now trying to compromise other devices on its netblock. You're carrying a virus infection vector in your pocket. 
+I recommend a full restore absolutely ASAP, and I recommend really thinking about whether jailbreaking is for you.
+I'm not anti-jailbreak. I just think people aren't aware of the full repercussions when they do it. Apple's not just being arbitrary in only allowing vetted software onto the devices. It's not JUST a business move on their part. It also protects users from exactly what has happened to you.

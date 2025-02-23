@@ -1,0 +1,31 @@
+Q: What are the control keys available when working in a text field? I know that ctrl-e will move to me to the end of a line, and ctrl-a to the start.
+I also know that ctrl-n will move down a line.
+What other ctrl-key combinations are there?
+Is it possible to move up a line?
+How about, most desirable for me, is there something to move back and forth a word at a time?
+I realize that I can do these things in emacs, or with an alternate set of keys in vi, but that's not what I am interested in.
+If I am writing a question on one of the stackexchange sites or on a wiki, vi and emacs are not in play.
+
+A: The default key bindings are stored in /System/Library/Frameworks/AppKit.framework/Resources/StandardKeyBinding.dict. You can use plutil to convert the file to an XML format, like so:
+plutil -convert xml1 -o StandardKeyBinding.xml  /System/Library/Frameworks/AppKit.framework/Resources/StandardKeyBinding.dict
+
+Or, if you have Xcode or Property List Editor, you can open it there.
+In addition, you can add your own bindings system-wide to /Library/KeyBindings/DefaultKeyBinding.dict, or per-user to ~/Library/KeyBindings/DefaultKeyBinding.dict.
+This page has a nice overview of bindings. I've grown particularly fond of Transpose (⌃-T), which swaps the two letters to the left and right of your cursor, fixing my most common kind of typo quickly.
+In addition, there are various additional tricks using the ⌥ and ⌘ keys:
+
+
+*
+
+*⌘-← and → move to the beginning or end of the line. Add ⇧ to select everything in between.
+
+*⌘-↑ and ↓ move to the beginning or end of the document. Add ⇧ to select everything in between.
+
+*⌥-← and → move to the beginning or end of the word, or between multiple words. Add ⇧ to select everything in between.
+
+*⌥-↑ and ↓ move to the beginning or end of the paragraph. Add ⇧ to select everything in between.
+
+
+A: You can use alt/option and the cursor ← / → keys to move back and forth whole words at a time, taking you to either the beginning or end of the word depending on the direction you choose.
+Using shift also allows you to highlight text as you pass over it.
+Using the same combinations with ↑ / ↓ does the same within paragraphs.

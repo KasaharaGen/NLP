@@ -1,0 +1,14 @@
+Q: Is it possible to be always connected to a VPN without prompting for credentials? Is it possible to install a configuration profile on an iOS Device that will always have the user connected to VPN without prompting for username/password each time trying to connect?
+In other words, our current setup has users connecting to a VPN via the "Settings" App on the iPad (using IPSec).  With this setup, our users are prompted for their password each time they try to connect to the VPN.
+We are trying to avoid prompting for credentials and having our users go to the Settings app in the first place, so is there any way to force a VPN connection, and therefore always stay connected via the iPhone Configuration Utility?
+
+A: You can configure the VPN setting on your ipad, iphone or ipod touch to save the User Name and Password for VPN. I don't know of a way to have it constantly connect the VPN whenever the is a connection. Given the time it takes to establish a VPN handshake, it would be kind of frustrating to wake the device then not be able to connect to any internet/network related Apps for 15+ seconds while it connects to the VPN. 
+Choose Settings > General > Network > VPN > then choose the VPN Configuration. Fill in in the username a password section and then you can just turn the VPN on when you need it and not have to fill out the User Name and Password.
+more info:
+http://support.apple.com/kb/ht1424
+Alternative you could look at something like Apple's Mobile Access server, to give you that secured VPN like connection all the time without the hassle of starting a VPN connection:
+http://www.apple.com/server/macosx/features/mobile-access.html
+
+A: If you’re using the IPSec VPN client in iOS, and connecting to a Cisco ASA for VPN, it’s a configuration option on the ASA whether to allow the password to be saved in the iOS VPN client.  By default, it does NOT allow password storage on the remote iOS client, so you need to enter the password each time.  I am an admin on my own personal ASA so I can set that option, even for specific users or groups.  But if you don’t administer the ASA, or if corporate policy does not allow password storage, then you’ll need to enter it manually each time you connect the VPN.
+
+A: You can configure your server to only accept a certificate which you add to your iPad(s). That way, the user won't have to to anything special, he/she just attempts to make the connection (let's say check their email) and the connection will be made over SSL, using the certificate present on the ipad.

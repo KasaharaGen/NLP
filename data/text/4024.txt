@@ -1,0 +1,133 @@
+Q: How to update App Store application from command line? I would like to force an update of App Store applications from the command line. 
+How can I do this? 
+
+A: Apple doesn't supply a command line helper or any scriptable cocoa classes you can latch on to for automation. Unlike the overall software update, which allows updates and installs out of the box, you can script the process of clicking buttons with a mouse using Automator.
+However, the app store has been reverse engineered and released open source as well as a binary form:
+
+
+*
+
+*https://github.com/argon/mas
+The install is quick and it appears to be quite reliable on the current version of OS X 10.11:
+brew install argon/mas/mas 
+
+With the source released, I would expect some other implementations of this tool to pop up, perhaps even one scripted with python.
+If someone is logged into the mac (windowmanager is running), you can use Automator and the "watch me do" function to automate updates and storing your store password in the script fairly insecurely.
+Here are two tutorials to get you started if this meets your needs.
+http://www.tuaw.com/2009/01/19/mac-automation-creating-watch-me-do-workflows/
+http://automator.us/leopard/features/virtual-user.html
+Once you have a working script, you can use the command line open command to kick it off. 
+If the App Store app ever exposes that function to scripting you will have more options from the command line. It would be easy to use sdef, sdp and gen_bridge_metadata to dump the entire scriptable dictionary and script things using ruby from the command line, but at present the best option would be to use the mas command line tool.
+
+A: The App Store is simply not suitable for administration. Barely a quasi-package manager, it is not nearly as useful or reliable as real package managers like pkgsrc, FreeBSD ports, aptitude, RPM, macports or even softwareupdate. In my experience, it is unpredictable and a beard for commercial developers to hock their wares. So there is really only one rational and responsible way, as a competent administrator, to work with App Store:
+ sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.store_helper.plist
+
+ sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.storeagent.plist
+
+ sudo mkdir /System/Library/LaunchAgents\ \(disabled\)/
+
+ sudo mv /System/Library/LaunchAgents/com.apple.store* /System/Library/LaunchAgents\ \(disabled\)/
+
+And just put it out of your mind, it won't trouble you any longer. ;-)
+
+Use ARD instead, though not a package manager, it manages packages, installations, updates, and upgrades, it will do what you want, save you time, and will not let you down:
+For Apple Remote Desktop 3, for 10.9:
+Check out the admin guide first to convince yourself that this is the way to go:
+curl -Ok http://images.apple.com/ca/fr/remotedesktop/pdf/ARD3_AdminGuide.pdf
+
+    open ARD3_AdminGuide.pdf
+
+Then install:
+curl -Ok http://supportdownload.apple.com/download.info.apple.com/Apple_Support_Area/Apple_Software_Updates/Mac_OS_X/downloads/031-2845.20140313.rerft/RemoteDesktopAdmin372.dmg
+
+hdiutil attach -quiet -noverify -nobrowse -noautoopen RemoteDesktopAdmin372.dmg
+
+sudo installer -pkg /Volumes/Apple\ Remote\ Desktop\ 3.7.2\ Admin\ Update/RemoteDesktopAdmin372.pkg -target /
+
+but that might throw a funny error if not running 10.9, or if no previous version of ARD is installed, and if it does, try:
+pkgutil --expand /Volumes/Apple\ Remote\ Desktop\ 3.7.2\ Admin\ Update/RemoteDesktopAdmin372.pkg ARDexpanded/
+
+or to equal effect (either/or here, don't need to use both pkgutil and xar... I'm just being thorough): 
+mkdir ARDexpanded
+
+cd ARDexpanded
+
+xar -xf /Volumes/Apple\ Remote\ Desktop\ 3.7.2\ Admin\ Update/RemoteDesktopAdmin372.pkg
+
+And we no longer need the disk image attached, so eject it:
+hdiutil detach -quiet /Volumes/Apple\ Remote\ Desktop\ 3.7.2\ Admin\ Update/
+
+And now what you'll see if you
+cd ARDexpanded/RemoteDesktopAdmin372.pkg/
+
+ls
+
+is  
+    Bom         PackageInfo Payload     Scripts
+
+What's in the Payload file, which is a cpio archive compressed with gzip, is what you're after. So with a few piped commands we can get to the app bundle:
+cat Payload | gzip -d - | cpio -id
+
+ls
+
+returns:
+    Applications Bom          Library      PackageInfo  Payload      Scripts
+
+And you're nearly done.
+cp -R Applications/Remote\ Desktop.app /Applications/
+
+Now you have installed Apple Remote Desktop Admin 3.7.2
+So all that's left to do is purchase your license:
+open http://store.apple.com/us_smb_78313/product/D6020Z/A/apple-remote-desktop-3-volume-licenses-20-seats-price-is-per-seat
+
+Launch /Applications/Remote\ Desktop.app and serialize. And get some work done.
+
+For 10.6 Snow Leopard, you'll need a slightly earlier version of ARD:
+curl -Ok http://images.apple.com/ca/fr/remotedesktop/pdf/ARD3_AdminGuide.pdf
+
+curl -Ok http://supportdownload.apple.com/download.info.apple.com/Apple_Support_Area/Apple_Software_Updates/Mac_OS_X/downloads/041-6789.20120917.xD6TR/RemoteDesktopAdmin353.dmg
+
+hdiutil attach -quiet -noverify -nobrowse -noautoopen RemoteDesktopAdmin353.dmg
+
+sudo installer -pkg /Volumes/Apple\ Remote\ Desktop\ 3.5.3\ Admin\ Update/RemoteDesktopAdmin353.pkg -target /
+
+and if it throws back at you this:
+    installer: Cannot install on volume / because it is disabled.
+    installer: This update could not find Remote Desktop on this volume.
+
+then try:
+pkgutil --expand /Volumes/Apple\ Remote\ Desktop\ 3.5.3\ Admin\ Update/RemoteDesktopAdmin353.pkg ARD353
+
+hdiutil detach -quiet /Volumes/Apple\ Remote\ Desktop\ 3.5.3\ Admin\ Update
+
+drill down to the Payload:
+    cd ARD353/RemoteDesktopAdmin353.pkg/
+
+    ls
+
+returns: 
+    Bom         PackageInfo Payload     Scripts
+
+So run:
+cat Payload | gzip -d - | cpio -id
+
+ls
+
+returns: 
+Applications Bom          Library      PackageInfo  Payload      Scripts
+
+And you're nearly done:
+cp -R Applications/Remote\ Desktop.app /Applications/
+
+purchase your license:
+open http://store.apple.com/us_smb_78313/product/D6020Z/A/apple-remote-desktop-3-volume-licenses-20-seats-price-is-per-seat
+
+Launch /Applications/Remote\ Desktop.app and serialize. And get something done.
+
+A: You can use the softwareupdate tool.
+sudo softwareupdate -l
+
+Lists all available updates.
+sudo softwareupdate -ia
+
+Installs all available updates.

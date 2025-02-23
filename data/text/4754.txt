@@ -1,0 +1,11 @@
+Q: How can I upgrade PHP on a jailbroken iPhone? I have an iPod touch running iOS 4.0 and an iPad running iOS 4.3.1, both jailbroken. They have lighttpd and PHP installed, however PHP seems to be an old version that I need to upgrade to use a WebSocket script.
+How would I go about updating it? According to a phpinfo() call, it has been configured with parameters to do with iOS, would this matter?
+Update 20/7/11 You can find my phpinfo at this tinypaste.
+Thanks in advance for all of your help. Ad@m
+
+A: If you build the iPhone toolchain in you local environment, you can compile PHP locally and then move it to iOS.
+https://stackoverflow.com/questions/4001510/compile-php-with-gd-for-iphone-os-4-1
+http://george.insideiphone.com/index.php/iphone-toolchain/
+http://code.google.com/p/iphone-dev/
+http://www.sj99.com/toolchain.html
+I've not done this, but I'm curious, and will make an attempt myself over the next few days, and update this answer as I go along.

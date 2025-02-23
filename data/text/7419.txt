@@ -1,0 +1,73 @@
+Q: Configuring SSL with Apache under Lion Following on from my previous question (which I answered myself),
+Configuring OS X 10.7 Lion Server to serve Rails Apps via Apache
+...I'm now looking to set up SSL.
+Again, I have the config working fine under Snow Leopard, but I want to set this up on a new i7 Mac Mini, so running Snow Leopard isn't an option.
+I'm using the named virtual host kludge described in the link answer above, but I've been unable to get SSL working.
+The Snow Leopard config I'm basing my Lion config is included below.
+Tips on configuring the equivalent under Lion would be very much appreciated. Thanks.
+<VirtualHost 10.0.1.1:80>
+  ServerName bonk.example.com
+
+  Redirect / https://bonk.example.com/
+
+</VirtualHost>
+
+<VirtualHost 10.0.1.1:443>
+    ServerName bonk.example.com
+    DocumentRoot "/Rails/deployed/bonk/current/public"
+    RackEnv example_production
+    RailsEnv example_production
+    <Directory "/Rails/deployed/bonk/current/public">
+      Order allow,deny
+      Allow from all
+      Options FollowSymLinks
+    </Directory>
+
+  SSLEngine on
+  SSLCipherSuite ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP:+eNULL
+  SSLOptions +FakeBasicAuth +ExportCertData +StdEnvVars +StrictRequire
+  SSLCertificateFile /private/etc/apache2/server.crt
+  SSLCertificateKeyFile /private/etc/apache2/server.key
+  SSLCertificateChainFile /private/etc/apache2/ca.crt
+  SetEnvIf User-Agent &quot;.*MSIE.*&quot; nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
+
+  RequestHeader set X-Forwarded-Proto "https"
+
+</VirtualHost>
+
+
+A: Generate a host key
+First, make a home for the new SSL files. I use /etc/apache2/ssl.  Open up a terminal window, cd to the new directory and issue the following command to create a host key file.
+sudo ssh-keygen -f host.key
+
+Generate a certificate request file
+This command create a certificate request file. A certificate request file contains information about your organization that will be used in the SSL certificate.
+sudo openssl req -new -key host.key -out request.csr
+
+Create the SSL certificate
+Create a self signed SSL certificate using the request file.
+sudo openssl x509 -req -days 365 -in request.csr -signkey host.key -out server.crt
+
+Configure Apache
+Create a backup of /etc/apache2/httpd.conf. 
+Append the contents of /etc/apache2/extra/httpd-ssl.conf to /etc/apache2/httpd.conf.
+In /etc/apache2/httpd.conf, make sure the loading of SSL is enabled (remove the #)
+LoadModule ssl_module libexec/apache2/mod_ssl.so
+
+Also, edit SSL section to use the new certificate.
+SSLEngine on
+SSLCertificateFile /etc/apache2/ssl/server.crt
+SSLCertificateKeyFile /etc/apache2/ssl/host.key
+
+Check the config and restart Apache to try the new certificate.
+sudo apachectl configtest
+sudo apachectl restart
+
+Thanks to the House of Ding and Matt Langtree for providing much of this solution.
+
+A: The problem with above is that a password or pass phrase is required from apache which it cannot get. Therefore apache will not run or startup! 
+What's needed is to create a "no password" host key with this command:
+openssl rsa -in host.key -out host.nopass.key
+
+...and direct apache's ssl key to the host.nopass.key that it generates.
+When I did this, my Lion Apache runs successfully.

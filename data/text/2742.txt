@@ -1,0 +1,40 @@
+Q: Applescript to retrieve account and password using keychain scripting How can I use keychain scripting to write a script in Applescript that retrieves the login  and password of a website from the login keychain, given the website's URL? 
+
+A: If you know the exact name of the keychain item, you could use the following:
+tell application "Keychain Scripting" to tell keychain "login.keychain" to get {account, password} of (first Internet key whose name is "www.google.com")
+
+Thing is, Keychain Scripting is slow and quite buggy. For example, searching for a specific keychain item in the example above using name contains instead of name is does not work. You would have to use a repeat statement similar to what @Philip posted:
+tell application "Keychain Scripting" to tell keychain "login.keychain"
+
+    repeat with x from 1 to (count every Internet key)
+        if name of Internet key x contains "Google" then
+            return {account, password} of Internet key x
+        end if
+
+    end repeat
+end tell
+
+If you´re okay to use the command line and just want to look up stuff, I´d rather use:
+security find-internet-password -g -s www.google.com and then grep what you want.
+
+A: Keychain scripting is pretty well broken in Lion, so the security command-line tool is your best bet. Alternately, use Red Sweater's scripting addition, which is faster and easier to script for than the old Keychain Access scripts.
+Red Sweater Blog: Usable Keychain Scripting for Lion
+
+A: Keychain is exposed to Applescript via the Keychain Scripting application. There are numerous examples on the web, this being the most basic usage:
+set theShortUserName to do shell script "/usr/bin/whoami" --get the short
+userid. This is how your default keychain is labled.
+
+tell application "Keychain Scripting"
+    set myKeyChain to keychain theShortUserName
+    set theKeyList to every Internet key of myKeyChain --email keys are
+normally Internet Keys
+    repeat with x from 1 to (length of theKeyList)
+        set theKey to item x of theKeyList
+        if the name of theKey is "name of key here" then
+            set thePassword to password of theKey --grab the password
+            set theUserID to the account of theKey  --grab the userid
+        end if
+    end repeat
+end tell
+
+From MacScripter

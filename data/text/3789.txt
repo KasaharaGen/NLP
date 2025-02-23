@@ -1,0 +1,122 @@
+Q: Why doesn't .bashrc run automatically? I put some alias commands in my .bashrc file, so that they might be loaded everytime I open a new Terminal window. Yet this doesn't happen.
+I have to select run script: in the Terminal>Preferences>"MyDefaultTheme">Shell prefpane and add:
+source .bashrc && clear for it to work...
+This seems odd since many tutorials only say you just have to add to the .bashrc file and all is good.
+Note that I don't run in bash when using the terminal, I like the other (default) one (don't know what it is) better, because it show me where I am all the time eg:
+>>d54c6b47b:~ romeo$
+
+in stead of:
+>>bash$
+
+In bash all is loaded as should be.
+So my question is, why didn't my .bashrc file load automatically and did I have to add the option to call it everytime?
+Also some tutorial told me to do something like:
+$alias la=’ls -la’ >> ~/.bashrc
+
+which should write the alias to my .bashrc, this doesn't work either...
+Note that I'm a UNIX novice, so be gentle.
+
+A: I found that after installing rvm (auto-installer, no manual edits) it had created a ~/.bash_login file for itself, where I previously never had one.
+However, this mean that my ~/.profile setups and aliases no longer got loaded! Lots of shortcuts disappeared. I thought they ran sequentially, not exclusively :-/
+I added 
+. ~/.profile 
+
+to ~/.bash_login to chain things as I expected.
+
+A: I put everything into ~/.bashrc and just source ~/.bashrc in .profile.
+This allows screen and xterm (and i guess tmux) sessions to inherit my environment as non-login sessions only run .bashrc, whereas login sessions (eg terminal or iTerm) only run .profile.
+
+A: Putting...
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+...in ~/.bashrc, and then source ~/.bashrc into my ~/.bash_profile  didn't work for the Terminal program that comes installed.
+But then I went to the menu drop-down Edit > Profile Preferences, Title and Command tab, and selected Run command as a login shell from the command section of that page.
+After doing so, starting a new terminal shows the desired result when I type 
+ type rvm|head -1
+
+i.e. "rvm is a function". It did not do that until I made this change, and it's the only change I made after the .bash_profile and .bashrc changes described in other answers here.
+
+A: Been there, done that. What I came aware of, OS X doesn't read .bashrc file on bash start. Instead, it reads the following files (in the following order):
+
+
+*
+
+*/etc/profile
+
+*~/.bash_profile
+
+*~/.bash_login   
+
+*~/.profile
+See also Chris Johnsen's informative and useful comment:
+
+By default, Terminal starts the shell via /usr/bin/login, which makes the shell a login shell. On every platform (not just Mac OS X) bash does not use .bashrc for login shells (only /etc/profile and the first of .bash_profile, .bash_login, .profile that exists and is readable). This is why "put source ~/.bashrc in your .bash_profile" is standard advice
+
+I usually just put the things that I'd normally put in ~/.bashrc to ~/.profile — has worked so far like a charm.
+
+A: There are two scenarios:
+
+*
+
+*You are using Linux
+
+*You are using Mac Os X
+
+For both you want to source ~/.bashrc in your profile that gets loaded, or sourced, when your shell for your terminal starts.
+
+LINUX
+In Linux, ~/.profile is automatically source in your shell when it starts. So, if you go to your terminal and type cd ~; ls -A, you will see all of your files and directories in your home directory (/home/usrname/). You should see a file called .profile. This is the file that is automatically "sourced" when you start the terminal.
+If you want to add aliases and functions to ~/.bashrc (which is what I do), then you should (inside of ~/.profile add an if statement that checks if ~/.bashrc is a non-empty file and then source it.
+To check if your ~/.profile already does this enter nano ~/.profile. This will open it up in a text editor (you can use gedit if you know you have it or even vim if you know how to use it). You may get an empty text file (you shouldn't), but if you do simply proceed. If you do not see a line anywhere that says source ~/.bashrc, then enter the following lines somewhere (put it in a reasonable place like at the end or beginning and not in the middle of an if statement):
+if [ -s ~/.bashrc ]; then
+    source ~/.bashrc;
+fi
+
+This checks if ~/.bashrc is a non-empty file (with if [ -s ~/.bashrc ]), and if it is such, it sources it. Pretty simple. Now, you can add any valid alias, function, variable, etc to ~/.bashrc.
+
+MAC OS X
+By default (prior to 2019 Catalina), Mac OS X sources ~/.bash_profile. To be able to add things to ~/.bashrc (which is, again, what I do in OS X, as well), then you follow the same procedure as linux. In the terminal enter cd ~; nano .bash_profile. Check for a line that says source ~/.bashrc and if it's not there add the if statement above (if [ -s ~/.bashrc ]; then source ~/.bashrc; fi).
+
+NOTES
+When writing an if statement, be sure to leave spaces between basically everything (for example if [ -s ~/.bashrc]; then echo "found"; fi does not work because there is no space beween ~/.bashrc and ] - the interpreter will think this is one word).
+If you want to figure out how to check for stuff in an if statement better, go to terminal and enter man \[; this essentially gives you the run-down of an if statement. For example, if [ -f /path/to/file ]; then echo "it's a file"; else echo "not a file"; fi checks if /path/to/file is a file and if it is prints to stdout accordingly. I always reference this as well for easier-on-the-eyes and quick reference: 7.2. File test operators.
+I hope this helps. I remember how confused I was when I started all of this stuff (which wasn't too long ago); so, good luck with your future UNIX endeavours!
+
+A: First of all let me tell you that ~/.bashrc is the file which is executed every time a second shell is called up (when running a shell script, for instance), and ~/.profile is called on every login.
+So I recommend you to write . ~/.bashrc command in your ~/.profile file, and this command will execute the bashrc file every time you login.
+
+A: By the way, if you have activated ZSH, it replaces bash!
+So all those ~/.bashrc files don't get loaded.
+You have to set your aliases in ~/.zshrc instead.
+
+A: Just put that in your .profile file from your home dir and it should work the next time you start a new shell or after you run source ~/.profile
+This link clearly states the order in which the startup files are read and loaded by the shell:
+http://hayne.net/MacDev/Notes/unixFAQ.html#shellStartup
+
+A: Sourcing .profile in .bash_profile did it for me
+echo 'source ~/.profile' >> ~/.bash_profile
+
+
+A: I ran into the same issue after installing rbenv on my remote server (Digital Ocean) Ubuntu 16.04.
+It somehow created ~/.bash_profile. It's the same ~/.bashrc on an OS X system.
+And Ubuntu started to read only ~/.bash_profile, but not ~/.bashrc as it should.
+So I just backed up my data in ~/.bash_profile with this:
+mv ~/.bash_profile ~/.bash_profile.bak
+
+And renamed the old ~/.bashrc to ~/.bash_profile
+mv ~/.bashrc ~/.bash_profile
+
+It worked for me. After my ssh login I have everything loaded in ~/.bashrc.
+
+A: In case this might help anyone else...
+Make sure you're editing the right .bashrc file for the right user. I had a similar issue using Vagrant. After running vagrant ssh my .bashrc file was not being run. The solution was simple in that I thought vagrant was logging in with the user named vagrant, and I was actually logging in as another user. So I was editing the wrong .bashrc file. After editing the correct .bashrc file my aliases were recognized.
+
+A: To keep with the OSX style login .profile and support the normal bash behavior .bashrc you can use a .bashrc file if you switch between regular nix and OSX by providing a symbolic link to your .bashrc file called .bash_profile. Just make sure this file doesn't exist already before trying this, but this is how I do it. 
+ln -s .bashrc .bash_profile
+
+
+A: /etc/bashrc is for global profiles on mac systems.
+You can add: alias ls="ls -G" to the top of this file
+and your good, everyone will have colorized files and folders
+on the system so you will not have to set anything extra for each individual user. You will also notice along with "sudo su -" to root from yourself you will still have colorized files and folders with no extra headaches. 
+Another fun tip: When using mac's Iterm2, importing color profiles will render the coloring of the files and folders immediately according to your color scheme after having this "/etc/bashrc" option set.

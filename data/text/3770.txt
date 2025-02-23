@@ -1,0 +1,20 @@
+Q: FTP sites open in Finder instead of in Safari I cannot log into FTP sites on my iMac (Intel Core i5, 2.8GHz, running OS X 10.6.7).
+I probably created the problem when I installed Firefox and it took over as the default browser. I changed the default back to Safari, but then every time I try to log into the FTP at school (ftp://sws.pcc.edu), Firefox launched instead. I found a utility that said it would allow me to control internet protocol associations, which it kinda did. I tried to set Safari back to FTP but now FTP's open in Finder.
+How do get things back to allowing me to login to FTP sites in Safari?
+
+A: Safari does not support browsing FTP sites (displaying directory listings). Given a ftp: URL for a specific file, it will display or download it, but URLs for directories will be passed to the Finder instead.
+
+A: Try this freeware app called MisFox.  It will allow you to change the protocol helper for FTP.
+
+A: Navigate to ~/Library/Preferences/com.apple.LaunchServices.plist.
+Open the file up in a text editor (any will do) - if you have Property List Editor installed, I'd still recommend a text editor, as it makes the next step easier.
+Do a quick find in the document for "ftp" - once you've got the entry, it should look something like this:
+
+<dict>
+<key>LSHandlerRoleAll </key>
+<string>com.panic.transmit </string>
+<key>LSHandlerURLScheme </key>
+<string>ftp </string>
+</dict>
+
+For me, Transmit is set to handle FTP. Change that line to com.apple.safari, save the file, and give it a shot. Make a backup first. Hope this helps.

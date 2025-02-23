@@ -1,0 +1,21 @@
+Q: How can I use my existing Time Machine drive on the network? I have an external HD that I've been using as a time machine for my MBP.  Here's what I want to do:
+
+*
+
+*attach the drive to my desktop machine
+
+*configure time machine on my MBP to use the drive as a time machine through the network
+
+*retain my existing backups...
+So I want time machine to continue using the same backups it always did when the drive was connected locally.  I do not want to start from scratch.
+I know how to set time machine to use a network drive rather than a locally attached drive, but it doesn't recognize the existing backups (it wants to start over).  I'm not afraid of the terminal... how can I get this working?
+on edit:
+I got a large drive to use during the conversion, but the link below didn't help because there was no hex id to be found on my machine in the second step  :/
+
+A: You'll need to convert your current local-style Time Machine into a sparsebundle before it will be usable in TM over the network. You'll need some temporary storage somewhere to create your converted backup into during this conversion.
+I don't know the exact conversion procedure but here are some Google'd links:
+http://www.tidbits.com/Talk/1960
+http://jason-townsend.blogspot.com/2008/08/how-to-transfer-local-time-machine.html
+Something along the lines of hdiutil convert -format UDSB
+
+A: If you have Mountain Lion, you can create a sparse bundle disk image, enable owners on that image, and copy over the "Backups.backupdb" folder from your Time Machine drive into the sparsebundle image using Finder

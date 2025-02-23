@@ -1,0 +1,14 @@
+Q: Why does battery die during sleep mode? I'm running MacOSX 10.5.8 on a MacBook Pro.
+I was working on my computer last night. I finished work, closed the lid and expected the computer to go to sleep. I assume this is the Apple Safe Sleep mode. My battery was about 70% charged.
+Tonight, I open up my laptop and discover that the computer refuses to start and battery has been completely discharged. When I plug the computer in again, all information from my previous session was lost. It's as if the computer shut down completely.
+What's happening here? Shouldn't the computer go to sleep and save all information to disk? When I wake the computer up from sleep mode, shouldn't it restore all information from my previous session?
+This only happens about 5% of the time that I close the lid. Usually, this works as I expected.
+Update to answer @zneak's question:
+This is the hardware model, according to About this Mac: More Info...: Hardware.
+Model Name:       MacBook Pro
+Model Identifier:   MacBookPro3,1
+
+
+A: What happened could’ve been because of different reasons. Certain old Macbook Pros had troubles with sleeping (hence why zneak wants to know about the model).
+However I believe that your computer woke up (wake on lan? hung process?) during the night and it burned through your battery. What are your Energy Settings?
+Also, get some sort of CPU meter like MenuMeters or iStats Menu (€) and make sure your CPU/Cores are not 100%, that indicates a process that’s using all your CPU power (and a lot of energy!)

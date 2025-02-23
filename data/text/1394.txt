@@ -1,0 +1,19 @@
+Q: Where on my Mac are my iPod Touch photos stored? I took some photos on my iPod Touch, and I want to use them on my Mac.  I've synced the devices, but I don't know where the photos are.
+
+
+*
+
+*I looked in iTunes (since it seems to want to manage everything about my iPod, even the things which aren't "tunes"), but I don't see a photo section there.
+
+*I looked in ~/Pictures/ but they're obviously not there.
+
+*I looked in ~/Music/iTunes/ (since my mobile apps are stored their, strangely), but no luck.
+Where are they hiding?
+
+A: The photos aren't automatically transferred when you sync in iTunes - you have to use iPhoto or Image Capture to get the photos on your computer.
+
+A: You should be using iPhoto (or other digital camera software) to copy these photos onto your Mac, but just for sake of completeness, they are included in the backups that iTunes makes.
+Those backups can be found in ~/Library/Application Support/Mobile Sync/Backup, but you need a special program (iPhone Backup Extractor) to be able to read them (and that only works if they are unencrypted).
+You can find your camera roll after extracting the area called "iOS Files" in /Media/DCIM.
+
+A: Normally iPhoto handles them. iPhoto stores images within the package ~/Pictures/iPhoto Library, but it's easiest to browse with iPhoto.

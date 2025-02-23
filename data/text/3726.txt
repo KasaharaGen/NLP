@@ -1,0 +1,30 @@
+Q: OS X Server FTP server I'm running an OS X Server with the following services turned on: Web, MySQL, DNS, AFP, Firewall. I'd like to also start FTP, and I did this, but I can't seem to make it work properly. I'm sure there is a way, but I can't find a way to make it work for me.
+What I've done so far: - activated the FTP service - opened port 20-21 in the Firewall - forwarded ports 20-21 from the router to the Server
+I use Coda to connect to my FTPs (as I do a lot of web development). When I type in this server's address + credentials it tries to connect for about 2-3 minutes before actually succeeding, and when it does it lists the following directories: "Public" (with a shortcut icon), "Users" (with a shortcut icon) and a file named "???" which it tries to open right away. Doing [cmd + k] in Finder also results in a 2-3 minutes waiting.
+Also, I have no idea where to create new users for the FTP (just for the FTP) and how to give them permissions to specific directories (without useless ones like "Users" or "Public").
+I've come to the conclusion that the built-in FTP server might not be the best option for me, but I have no idea what I should try. Using a separate app is not the ideal scenario for me as I'm trying to avoid keeping extra apps open on my server.
+
+A: I suggest you use what comes with OSX, namely sftp/scp, included with every OSX since the age of dawn. 
+Enable SSH in the sharing (Remote Login), configure what users have access and then try to use sftp from the Terminal (if you are familiar with it). Try 
+man sftp
+
+to see the help. 
+
+DESCRIPTION
+       sftp is an interactive file transfer program, similar to ftp(1), which
+       performs all operations over an encrypted ssh(1) transport. 
+
+You have the benefits of "ftp-like" plus everything is encrypted. 
+If you still want to go ahead and use ftp, I suggest you take a look at ftpd conf file, located in /etc/ftpd.conf and /etc/ftpusers 
+In any case, take a look at the man page for ftpd.conf and ftpusers:
+man ftpd.conf
+man ftpusers
+
+…to see other options you can add there (because the default one will be most likely empty or with little things in it).
+There's no pretty program to configure FTP on OSX (there is on the Server version as far as I can remember).
+Please note that FTP is not a very secure protocol by default and hence it should be running inside a chroot. (hint: man ftpchroot).
+
+A: I would go with vsftpd. Some time ago I wrote about setting up vsftpd on Mac OS X.
+
+A: Give Rumpus a try. Much easier FTP server solution with a very easy to use GUI, but its still got tonnes of options. We use it at work to deliver content to clients and also to receive content from providers. Extremely easy to use, but is also very configurable. 
+(my second post in a row about rumpus... dont worry, they dont pay me, just a very happy customer!)

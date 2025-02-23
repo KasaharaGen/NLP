@@ -1,0 +1,22 @@
+Q: How do I prevent document preview over slow connections? Once in a while I have to work over a 3G network, which is reasonable, until I mount a file system on the other side of the world.
+When that happens OSX tries to show me "previews" of every single document in the finder, an operation which takes forever because it usually tries to download the entire document in order to generate the preview. After spending hours downloading a 5 MB file, it often decides, "oh gosh, I don't know how to show thumbnails of Word files. I'll just show you a Word icon." In the meantime Finder is in bouncing-ball-hell for hours.
+Is there a way to prevent this specifically for network shares when I'm connected over a slow connection? Or, failing that, just prevent document preview for all network documents?
+
+A: The nuclear option: quit the Finder (use Activity Monitor, save an AppleScript containing the code tell application "Finder" to quit, or kill it from a shell prompt) and then use Terminal to do your file manipulation.  (Type open myfile.txt to open a file in the default app, like the Finder would if you double-clicked it.)
+
+A: Unless someone can find a hidden setting, you may want to look into PathFinder which has a preference to disable previews on network volumes. Also, for slow shares that can be accessed through ssh/sftp Transmit by Panic is more responsive than Finder.
+I use Transmit more often than PathFinder, but find having responsive network performance when on dial up or slow 3G more than worth the cognitive load of a slightly different interface.
++1 to Siracusa for killall Finder and terminal workarounds.
+
+A: Actually, killing the finder is not enough in really slow networks or when folders contain thousands upon thousands of files (something common in work networks with a "public" folder).
+In those cases killing the finder will result in the finder closing but never reopening properly. It's as if a background process that tries to parse it all gets disconnected but doesn't disappear, preventing the Finder from moving further.
+In that sense it's similar to this:
+Finder becomes unresponsive when viewing network folders with large amounts of files (OSX 10.6.8)
+
+A: You can disable Icon preview in the view settings.
+For example: right click the desktop and select "Show view option" and then uncheck the last box.
+
+
+A: As a follow-up to John Siracusa's answer, the shell equivalent to the AppleScript would be osascript -e 'tell application "Finder" to quit'.
+
+A: I haven't seen a way to disable icon preview just for network connections, but you can disable it for specific folders or for all of Finder.  http://www.bombippy.com/archives/2008/02/how_to_disable.php

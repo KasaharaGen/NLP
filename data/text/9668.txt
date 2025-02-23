@@ -1,0 +1,16 @@
+Q: How do Apple engineers reset EFI password on new MacBooks? Apple state:
+
+Only Apple retail stores or Apple Authorized Service Providers can unlock these computers protected by a firmware password.
+If you cannot remember the firmware password for your MacBook Air, schedule a service appointment with either an Apple Retail Store or an Apple Authorized Service Provider.  If you plan to visit an Apple Retail store please make a reservation at the Genius Bar using http://www.apple.com/retail/geniusbar/ (available in some countries only).
+
+What do such engineers do to recover or reset the firmware password?  I long ago forgot my MacBook Air's firmware password, but haven't needed it until now.  I'm quite comfortable opening up my laptop, even if it voids my warranty, but cannot find any information on how the reset is performed.
+With older models, one needed only to change the hardware configuration (e.g. amount of installed RAM) and then reset PRAM three times to force a reset of the firmware password.  I presume this is not possible because the MacBook Air has no user-removable parts (since RAM is soldered to the motherboard, for example) but it is not clear what alternatives exist.
+Apple probably require all those in the know to keep it to themselves, but no doubt some hacker has figured it out. I'd be grateful if they would share!
+
+A: It's not the sort of thing a hacker can easily "figure out" -- as I understand it, the procedure involves calling Apple's Service Provider Support, proving you're an authorized service provider, reading them a code from the computer and typing in the countercode they give you...
+Mind you, that doesn't mean you're out of luck.  If you have admin access, and a 10.6.x install DVD or USB key for your Mac, this MacEnterprise posting has instructions to use setregproptool to enable/disable the firmware password.  If you have Lion, it's probably on the recovery partition somewhere, but I haven't investigated.
+
+A: An AASP does by no means 'bypass' the Firmware Password, it is simply removed with a tool specific for that exact machine.
+A specific Key combination is used on the Firmware Password screen on the Mac that needs it removed, this presents a unique Hash code on the screen of the Mac.
+Generally this Hash code needs to be sent to Apple Technical Service Provider Support, they will send the AASP the unique 'file' that is used to remove the password from that specific machine.
+There is no 'Home' solution yet for the removal of these kind of passwords on updated models, an AASP or a Apple Store can do it for you.

@@ -1,0 +1,41 @@
+Q: Editing iPhoto-specific metadata 
+Perpetua:2011-01-16 ashley$ mdls IMAG0107.jpg
+
+...
+
+kMDItemComment                 = "Cat with is tongue out."
+
+So, here's my question.  xattr can be used to modify some attributes.  For example:
+
+Perpetua:2011-01-16 ashley$ xattr -l IMAG0107.jpg 
+com.apple.metadata:kMDItemFinderComment:
+00000000  62 70 6C 69 73 74 30 30 50 08 00 00 00 00 00 00  |bplist00P.......|
+00000010  01 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00  |................|
+00000020  00 00 00 00 00 00 00 00 00 09                    |..........|
+0000002a
+Perpetua:2011-01-16 ashley$ 
+
+
+But this isn't the attribute I want to edit.  I imagine this is because kMDItemComment is an iPhoto-specific piece of metadata.  My question would be, how do I go about editing it?
+
+A: com.apple.metadata:kMDItemFinderComment is in binary property list format. Using xattr -p -l -x | tail +2 gives you just the hex dump of the attribute. You can then pipe that into xxd -r to turn that back into a binary file.
+From there you can open that file in Apple's Property List Editor, assuming you have the Developer Tools installed. You can then edit the property visually.
+You should then be able to reapply the edited value to the file using xxd -p -x and xattr -w -x.
+This is all much more messy than one really wants for a single property that's just a string.
+
+A: One can do this in the "Mac" way (by AppleScript), using the following script setFinderComment.scpt
+#!/usr/bin/osascript
+on run argv
+    set filePath to POSIX file (item 1 of argv)
+    set fileComment to item 2 of argv
+    set theFile to filePath as alias
+    tell application "Finder" to set comment of theFile to fileComment
+end run
+
+Then you make it executable chmod a+x setFinderComment.scpt and use as
+setFinderComment.scpt filename comment
+
+
+A: The OpenMeta project is using the extended attributes to store their tags. The source code is available at https://code.google.com/p/openmeta/. Part of that project are open meta command line tools. 
+This command line tool does operate on pre-defined set of attributes used by OpenMeta, but as it is open source, it can be easily adapted to allow additional command line setting for setting/reading other extended attribute.
+Not direct solution, but a path to a solution ?

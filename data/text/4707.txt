@@ -1,0 +1,29 @@
+Q: How can I setup my printer to print in black and white as default? Is it possible to set up a printer, so it will always print in black and white?
+
+A: @ughoavgfhw's answer is incomplete. Some applications (like Google Chrome) will not use the last used preset, but will use the default preset. In order to have such applications adhere to your default settings, you have to interact with the underlying printing system CUPS. These steps will get you there:
+
+
+*
+
+*Run cupsctl WebInterface=yes using the Terminal application (only required once).
+
+*Browse to http://localhost:631/
+
+*Go to Printers
+
+*Select printer to modify
+
+*Choose Set Default Options from the second drop-down
+
+*Under Basic set Output color to Black (this step might be different for your printer)
+
+*Hit Set Default Options and presto!
+
+
+
+
+
+A: You can define a preset from the print dialog. First change the settings for what you want, and then choose the Presets > Save As… menu.
+
+If you leave your preset selected, it will be selected the next time also, so you will never have to change it.
+

@@ -1,0 +1,48 @@
+Q: How do I download photos from my iPhone? I find it very complicated to move photos taken with my iPhone into my pc's photo library. 
+I used to take photos with a compact camera, and pc applications could very easily import the photos because the compact camera shows up as a USB disk -- this way, importing photos was almost a one-click process!
+But the iPhone doesn't show up as a disk, and that makes it very messy. I've tried to sync using iTunes, but syncing is not what I want to achieve. I want to move the pics away from the iPhone! I've tried moving them using iFunBox, and while that works, it creates the problem that all photos to get a new timestamp which ruins my photo library.
+Question:
+How can I easily move photos and videos from iPhone to PC without using iTunes syncing, and keeping the files' original timestamps? 
+Clarifications:
+I'm using Windows 7, and the phone is already jailbroken. I'm looking for a solution that will allow Windows to see the phone's native file system as a normal USB drive from which I can import the pics&vids using a Windows program -- or any other solution that comes as close as possible to this.
+Update:
+Based on the solutions so far it is clear that extra pc applications won't help. What I need instead is some way of getting the damn phone to present itself to Windows using a drive letter, just like any other disk resource or compact camera does. 
+This is a good example where I think Apple is being too restrictive with their products; if people want access, then let them have it. If they break it, it's their problem. That's what backups are for. "It just works" only works if you stick by Apple's intended use, and that doesn't include Windows drive letters.
+
+A: When I connect my iPhone to a Windows machine, it does appear as a digital camera and allows me to copy files from the DCIM folder or to use the "Import Pictures" option from Windows.
+I just tried this in a Windows 7 VM and was able to view all the pictures in my Camera Roll.
+From there, I could drag and drop pictures to my desktop.
+I don't have iTunes installed in the Windows 7 VM.
+It works the same way in my Windows XP machine, at work. There it is a physical machine and I have iTunes installed, but I can copy the pictures from the iPhone without syncing, anyway.
+
+A: What about this solution?
+
+With the plug-in you can manage music, videos, podcasts and photos for your iPod. You can >add all those files to your iPod, delete and organize them into playlists as well as smart >playlists. 
+Install WinAmp + mliPod on your computer
+To manage your iPod you need two
+  files, WinAmp itself and the above
+  mentioned plug-in mliPod.
+Download
+  directly from WinAmp
+Download mliPod
+
+
+A: Creation and modification dates in the Finder or in Windows are never completely reliable as they can be changed by almost anything (as you have noticed). The photos have the real time stamps held internally in the files themselves and any image management software should be going by those, not by what you see in the OS' file system,
+Applications like iFunBox on Windows and Image Capture on the Mac to manage file downloads from devices are really the only alternatives to iTunes or iLife.
+UPDATE: Do not jailbreak your iPhone. It's usually unnecessary and it voids your warranty. One viable option is to look at PhoneView which offers a disk mode. You don't say what platform you're on, but I've used that in the past on my Mac before I purchased iLife.
+I think no matter what, the creation and modification dates in the OS are going to be problematic for you because the files will be new to the OS.
+
+A: Have you seen the free app, WiFi Photo Transfer? 
+Not sure about timestamps on video, but it's great for quickly grabbing photos and video off your iOS device.  Especially since it will zip up photos.
+
+A: I think you can do this by using Diskaid - http://www.digidna.net/products/diskaid 
+It works for Win7 and for both jailbroken and non-j... phones.
+You could also give Sharepod at getsharepod.com a try.
+
+A: Here's how I fixed it in Windows 7:
+* Press the Windows Start Button
+* Select Devices and Printers
+* Find the Apple iPhone icon (for me it was under Unspecified)
+* Right-click
+* Select Troubleshoot  
+That fixed it and then I was able to browse the phone like a regular drive

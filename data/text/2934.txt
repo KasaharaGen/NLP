@@ -1,0 +1,8 @@
+Q: What are those ._ files? I downloaded a Java library and noticed, that for every file and directory there is a binary file of the form ._<name>. It contains something like:
+
+"Mac OS X ... com.apple.quarantine ... com.google.Chrome"
+
+Have those files been added by an Mac OS X IDE (I'm an Ubuntu user planning to use the library with Eclipse)? Can I safely remove those files?
+TIA for your help!
+
+A: Those are extended attribute files, which OSX uses when the filesystem doesn't support resource forks or extended attributes.  You don't care about them.  (The entry you quoted is a message to the Finder to display a "This file was downloaded at (date).  Downloaded programs may be unsafe.  Do you want to open it?" dialog along with a button which will open Chrome and take you to the page the file was downloaded from.)

@@ -1,0 +1,31 @@
+Q: Clean Install of Lion OS X / Optimizing My Machine I downloaded Lion OS X (an upgrade on top of Snow Leopard) but my MacBook pro is becoming quite slow now. I'd like to install a fresh new copy of Lion OS X. I know how to do that, I can just re-download Lion from the App Store and there are a ton of tutorials online on who to do a fresh install.
+My question is, how would I back up my documents? Logically, I would like to keep almost all my files and apps. I do have Time Machine. Can someone suggest to me how I should back up and then restore my apps and files and all that? That also includes apps I purchased not through the App Store, like Office and Mailplane. I'd like to continue to use those..
+If someone knows of a way to optimize my machine without going through all this, could you please suggest to me what to do? It's becoming really slow and I hate it.
+Thank you!
+
+A: The best way to back up your documents is to back up your entire hard drive (aka "clone").
+I use SuperDuper for this (you can use it for free, although the SmartUpdate feature is worth paying for, IMO. CarbonCopyCloner is another program which many people like).
+Once you have a bootable backup of your hard drive (verify this by actually booting from it!) you can make a clean installation of your computer. From there you should be able to use "Migration Assistant" (/Applications/Utilities) to copy files and applications from either Time Machine or your clone.
+Ok, now, having answered the question that you asked, two comments:
+
+
+*
+
+*10gb free isn't a whole lot of space, especially if you are on a non-SSD drive.
+
+*If you are having problems with your current installation, I would highly recommend that you do not use Migration Assistant or any other method to automatically copy files from your current setup to your new one.
+Instead, I would recommend that you keep the clone handy, and if/when you need files from it, then copy them. If you need an app, go make sure that you are downloading the latest version from the website, and install that version.
+Most applications will run from the backup drive (some which use installers might not) so if you need quick access to some program, you can probably just run it from there in an emergency.
+You can get a 500GB bus-powered USB drive for about $50 from Amazon [note: I just picked that one at random, it's not a specific recommendation] which will fit easily into your laptop bag.
+
+A: The only way to do this if you really want to have a "clean state" is by manually copying your documents, music, photos, etc to an external hard drive
+Personally I wouldn't do this. If you're a programmer you know that you're going to lose a lot of stuff. What I'd suggest you instead is just to try to find the cause of the slowness.
+Check this:
+
+
+*
+
+*If you can upgrade your RAM
+
+*If you have enough hard drive space available (you should leave about 5-10% hard drive sspace empty for swap)
+

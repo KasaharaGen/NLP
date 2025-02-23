@@ -1,0 +1,81 @@
+Q: how to quickly reboot from OSX to Windows and back From Windows back to OSX is fairly easy.  What I would like is a few less steps to get from OSX to Windows.  Currently I launch system preferences -> startup disk - then select the bootcamp partition and press restart.
+Being completely new to OSX it seems to me that a one-click action on the dock should be possible with some sort of automation scripting.  Howerver I know nothing about OSX (yet) and how that works. First, is such a thing possible, and second please provide some tutoral links for such automation system.
+
+A: Here is an Automator workflow I wrote to accomplish rebooting to Bootcamp automatically:
+https://github.com/ryanmcginnis/Restart-to-Bootcamp
+As of El Capitan, it is no longer possible to programmatically set the startup disk, even with SIP disabled.
+
+A: 
+Note: This does not work on systems with System Integrity Protection enabled
+
+Write a shell script that does this 
+#!/bin/sh
+# tell OSX to change the boot disk 
+# nextonly just for the next time - without the default would be Windows
+/usr/sbin/bless -mount /Volumes/BOOTCAMP --setBoot  --nextonly  
+# reboot
+/sbin/shutdown -r now
+
+This can be called from a terminal window 
+sudo bootcamp
+
+The use Automator to call this via an apple script and save as an application
+on run {input, parameters}
+
+    do shell script "/Users/mark/bin/bootcamp" with administrator privileges
+
+    return input
+end run
+
+
+A: I'm really fond of rEFIt.
+
+rEFIt is a boot menu and maintenance toolkit for EFI-based machines like the Intel Macs. You can use it to boot multiple operating systems easily, including triple-boot setups with Boot Camp. It also provides an easy way to enter and explore the EFI pre-boot environment. 
+
+The OP seems to be interested about an OSX-to-Windows only command, so I guess this is not exactly what he wants. Still, I find rEFIt much easier to work with: if I want to go from one OS to another, I just need to reboot and then choose the OS I want.
+And if you ever need to work with 3 (or more) OS'es, you will see rEFIT is a much better option...
+It also allows you to boot up from an external hard drive or a pen drive, which is a very nice bonus.
+Edit From the rEFIt page:
+
+2013-03-29: As you may have noticed, rEFIt is no longer actively maintained. Please check out rEFInd, a fork that is maintaned and under active development. 
+
+
+A: It seems this script from SuperUser handles the closing of open windows (and stopping the scheduled restart if user presses 'cancel'):
+do shell script "hdiutil unmount /Volumes/<Windows_Partition> -quiet"
+do shell script "bless -device /dev/disk0s3 -legacy -setBoot -nextonly" with administrator privileges
+tell application "Finder" to restart
+
+
+A: Quick boot does it nicely. It's in the menu bar.
+http://www.macupdate.com/app/mac/25414/quickboot
+
+A: What you can do is creating a shortcut to System Preferences / Startup Disk on your dock in which you can quickly change the startup disk to boot into Windows, directly.
+For this, drag the StartupDisk.prefPane from /System/Library/PreferencePanes/ into the right side of your dock:
+
+Now, you can click it, unlock it, select BOOTCAMP and hit restart. This works especially well on newer MacBooks, because you can use Touch ID to unlock.
+
+
+A: Another way to get from OS X to Windows quickly is to use Bootchamp, which adds a menu bar item like this:
+
+For my Windows-booting needs Bootchamp has worked well. 
+(I learned about it from a similar question on Super User I once asked.)
+
+A: Hold ⌥ while booting, you'll get a prompt to choose which OS / drive you want to boot from!
+
+A: I wanted to use AppleScript instead of BootChamp since I had a problems with an always-running webapp when it resumed state when returning to OS X instead of launching regularly. Trying to bless the volume from an AppleScript did not work on my iMac with a 3TB fusion drive so rebooting after the bless would lead to an error screen "NO BOOTABLE DEVICE - INSERT BOOT DISC AND PRESS ANY KEY".
+What I had to do was bless the HDD's EFI disk id with the -device switch, mount the BootCamp volume with the -mount switch and skip the -legacy switch. For me the HDD's EFI partition disk id was disk1s1 but you can verify yours by running diskutil list in terminal and look for the EFI device from the HDD (not the SSD).
+I also wanted to do a "clean" restart so my applications would not resume when returning to OS X so I created an AppleScript that quits specific apps before continuing to the bless and reboot:
+try
+    set apps to {"Safari", "Google Chrome", "Mail", "Twitter"}
+    repeat with thisApp in apps
+        tell application thisApp to quit
+    end repeat
+end try
+
+delay 2
+
+do shell script "bless -device /dev/disk1s1 -mount /Volumes/BOOTCAMP -setBoot -nextonly" password "YourPassWordHere" with administrator privileges
+tell application "Finder" to restart
+
+You could skip the part about the password if you don't want to store your admin password in the script in plaintext.
+If you put the script or an alias of it to ~/Library/Scripts and enable the Script Menu from Script Editor's preference you get an easy way to run it like with BootChamp.

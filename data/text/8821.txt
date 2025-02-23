@@ -1,0 +1,24 @@
+Q: How to shrink a Windows XP VMWare Fusion virtual machine? Is it possible to shrink a VM Ware Fusion Virtual Machine, and if so how? Specifically a Windows XP guest/client?
+I've found old references to procedures purported to make this possible, but they reference a VM Ware DiskTool that appears to no longer be available.
+
+A: In VMWare Fusion 3. There are 2 parts
+Prerequisites are the VM cannot have any snapshots and the virtual disk does not have a preallocated size. Making virtual disk sparse
+Clean up Windows
+I would then in Windows run the MS Disk Cleanup tool to remove files and then Disk Defragmentor to put all the space in one place.
+VMWare tools includes a shrink disk command
+Then power off the VM
+Clean up the virtual disk
+Search for Clean Up a Hard Disk in Fusion's help
+
+1
+  From the VMware Fusion menu bar, select Window > Virtual Machine Library.
+  2
+  Click the thumbnail of the virtual machine and click Settings at the bottom of the library window.
+  3
+  Under Removable Devices in the Settings window, select Hard Disks.
+  4
+   In the Hard Disks panel, select the hard disk in the source list.
+  5  Click Clean Up Disk in the Disk Cleanup section.  
+VMware Fusion displays a progress dialog as it cleans up the virtual
+  disk.
+

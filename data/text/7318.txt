@@ -1,0 +1,9 @@
+Q: Leopard won't remember default programs Everytime I restart/boot my mac and open up a mail application (thunderbird) or a web browser (firefox or chrome) I am always asked if I want to make it the default. This happens even if I click yes.
+So, for some reason osx isn't remembering what I set as the default mail or web browser. I have already repaired disk permissions which didn't fix the problem.
+Any ideas?
+
+A: The problem was I was using the root user. Creating a new user sorted everything out!
+
+A: Tyr setting it within the Safari or Mail preferences as described here: http://support.apple.com/kb/ht1637 
+
+A: Try to set default apps with RCDefaultApp

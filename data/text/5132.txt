@@ -1,0 +1,143 @@
+Q: What are the best practices for battery longevity? How do you maximize the cycle count of your battery?
+There seems to be a debate between:
+
+
+*
+
+*Leave plugged in 24/7 but do a full cycle once a month
+
+*Charge to ~100%, drain to ~10%, repeat.
+
+
+NOTE: Taking your battery out is bad
+Which method is better and why? How much of a difference does it really make?
+Here are some of the better sources I've found about battery behavior so far. Even still I feel they don't conclusively answer the question above. See my elaborations below:
+
+
+*
+
+*http://www.apple.com/batteries/
+
+*http://www.apple.com/batteries/notebooks.html
+
+*http://en.wikipedia.org/wiki/Lithium_polymer_battery
+
+*https://discussions.apple.com/thread/1119715?start=0&tstart=0
+
+*http://support.apple.com/kb/HT1519
+
+*http://batteryuniversity.com/learn/article/charging_lithium_ion_batteries
+Elaborating on Option 1
+Now IF Apple engineers were smart and optimized for AC draw when plugged in to not use up your charge cycles, then it seem logical to assume that you are using effectively none of your 1000 charge cycles while plugged in. If that's the case, it would seem that the LiPo drop from holding at 100% would be vastly outweighed by the fact you're not using any charge cycles.
+However, this is a purely speculative assumption and I could find no evidence to either confirm or deny.
+If this is NOT true, and the AC adapter only goes to charging the battery, then there would be no difference. Your battery would drain to 99%, then back up to 100%, then back down to 99%, etc. Those micro-charge cycles would add up at the same rate as 100% -> 0% -> 100%, and you would get no gain. In this case the negative effect of holding LiPo batteries at 100% would outweigh everything else.
+Elaborating on Option 2
+There are lots of good reasons why Option 2 is the way it is:
+
+
+*
+
+*Because of known LiPo chemistry issues, holding a 100% charge for a long time causes the battery to degrade
+
+*Apple specifically recommends not to leave it plugged in all the time on their website
+
+*Draining a battery all the way to zero all the time is bad for the cell (Which is why ~10% is used)
+
+*Heat is a killer, and when plugged in AND charging, you get extra heat that causes damage.
+
+
+There are a couple reasons why I'm challenging Option 2:
+
+
+*
+
+*It seems silly that the most intuitive use case for thousands of people that use their macs as primary computers is wrong.
+
+*If the hypothesis in option 1 is true, you're just burning unnecessarily
+through your finite charge cycles.
+
+*It's a pain to have to remember to keep plugging in and plugging out and be worried about whether or not your device is plugged in.
+
+
+A: Final Conclusion
+Given the sources and explanations below. I am officially going to do the following to optimize my battery life:
+
+
+*
+
+*Keep my battery as cool as possible.
+
+*Don't worry about whether it's plugged in or not. When it doubt, keep it plugged in so it uses AC power instead of battery, unless getting hot.
+
+
+It turns out that the two methods I originally posited are largely moot. The only thing that really matters is temperature.
+
+"Temperature was the most significant factor contributing to the cell degradation, with state-of-charge (SOC) and discharge pulse length of  secondary importance." (Liaw et al.2)
+
+Furthermore, it turns out that the decay can be accurately mathematically modeled:
+ (See Ramadass et al.1 for explanation of terms)
+However, the dominant model is that of the Arrhenius formula, which generically predicts time-to-failure as a function of temperature.
+The figure below shows the capacity at various cycle counts. Just look at the capacity on the x-axis. The top graph is at 25ºC, the bottom at 50ºC.
+After 600 cycles, the cooler battery had ~2x the capacity
+
+While I could still find no evidence on the behavior of Mac power circuitry, there was helpful information on the official Dell website. Two items specifically stood out.
+
+Q. When docked or AC adapter is plugged into a wall outlet, am I using my battery charge?
+A. No.
+http://www.dell.com/content/topics/global.aspx/batteries_sitelet/en/batteries_faq?c=us&l=en&cs=19#faq9
+Q. Should I totally discharge, then recharge my Dell laptop battery occasionally to make it last longer?
+A. No, discharging and charging does not increase the life of a Lithium Ion technology battery.
+http://www.dell.com/content/topics/global.aspx/batteries_sitelet/en/batteries_faq?c=us&l=en&cs=19#faq27
+
+However It is important to note that Apple and Dell charging circuits may be different. Although, given that Dell does this, I assume apple does as well. On this assumption, unless someone can provide sources to claim otherwise, I will assume that the Apple charging circuitry is smart enough to know this.
+I encourage anyone to continue exploring this question and challenge my assumptions. Please see the sources below if you're curious for a more detailed explanation.
+Sources
+1 Ramadass, P., Bala Haran, Ralph White, and Branko Popov. "Mathematical Modeling of the Capacity Fade of Li-ion Cells." Journal of Power Sources 123.2 (2003): 230-40. Web. http://www.che.sc.edu/faculty/popov/drbnp/WebSite/Publications_PDFs/Web33.pdf.
+2 Liaw, B., R. Jungst, G. Nagasubramanian, H. Case, and D. Doughty. "Modeling Capacity Fade in Lithium-ion Cells." Journal of Power Sources 140.1 (2005): 157-61. Web. http://electrochem.org/dl/ma/204/pdfs/0253.PDF.
+[3] Ning, G. "Capacity Fade Study of Lithium-ion Batteries Cycled at High Discharge Rates." Journal of Power Sources 117.1-2 (2003): 160-69. Web. http://www.che.sc.edu/faculty/popov/drbnp/website/Publications_PDFs/Web38.pdf.
+[4] Ramadass, P., Bala Haran, Parthasarathy M. Gomadam, Ralph White, and Branko N. Popov. "Development of First Principles Capacity Fade Model for Li-Ion Cells." Journal of The Electrochemical Society 151.2 (2004): A196. Web. http://www.che.sc.edu/faculty/popov/Publications/Premanand1.pdf
+[5] Zhang, D., B. S. Haran, A. Durairajan, R. W. White, Y. Podrazhansky, and B. N. Popov. "Studies on Capacity Fade of Lithium-ion Batteries." Journal of Power Sources 91 (2000): 122-29. Web. http://www.che.sc.edu/faculty/white/2000studiesoncapcaityfadeofzhangharandurairajanwhitepodrazhanshkypopov.pdf.
+
+A: It is clear the longevity is best if you store it at 50% charge and do a full charge/discharge once a month. Temperatures between 40 and 60 degrees f is best.
+Anything else is a tradeoff - more cycles, keeping it charged to a higher level, so you have to balance utility with eventual depletion. Tires are meant for driving, batteris for being consumed. Draining it once a month and using less cycles and keeping it cool are practical steps that don't do great harm to most batteris.
+Your option 2 seems to be based on a faulty presumption. The menu bar doesn't show true 0% - if you read the calibration article, you will see that there are two margins of safety built in to prevent deep discharge.  The second is the end of sleep shutoff low voltage where current to maintain RAM during sleep gets pulled and the mac is totally shut off. The first protection is the normal start to sleep low voltage limit. 
+Regularly getting to the sleep shutoff voltage in one continuous discharge from a full charge gives the menu bar and the system more accurate calibration data to manage the cells in your specific battery as it ages.
+I would say to run it empty as long as you don't leave it in sleep for a month to avoid actual deep discharge. Other than that - calibrate it every 6-12 months, and keep it cool for the majority of the time are the things you can control to maximize your useful battery life.
+
+A: In this article Apple has this to say about L-I battery maintenance for notebooks:
+
+
+*
+
+*For proper maintenance of a lithium-based battery, it’s important to keep the electrons in it moving occasionally. Apple does not recommend leaving your portable plugged in all the time. An ideal use would be a commuter who uses her notebook on the train, then plugs it in at the office to charge. This keeps the battery juices flowing. If on the other hand, you use a desktop computer at work, and save a notebook for infrequent travel, Apple recommends charging and discharging its battery at least once per month.
+
+
+There are some more useful recommendations for L-I batteries in general in this one as well, especially regarding charging them, and optimum ambient temperatures - 50F to 95F.
+
+A: Another data point...
+I leave mine plugged in almost always and it gets drained very infrequently:
+
+There may be an optimal pattern, but it seems it doesn't really make much difference.
+
+A: As a comparison to Harv's answer, I frequently drain my battery. As you can see from the screenshots, we have the same model computer of about the same age, but I have more than 3x the cycles. I leave my laptop plugged in at night, but it is unplugged most of the day while I use it. I get the battery below 20% almost every day, and occasionally multiple times in one day. Even with the extreme differences in usage, our batteries have nearly identical capacities. Mine holds slightly more, but it is possible that he got his computer before I did and has been using it longer. Through a comparison of the two data points, it seems that options 1 and 2 are both valid.
+
+Note: Harv is closer to 10 cycles per month than the 1 specified by option 1. I assumed that the significant usage difference is enough to prove the concept. It would be better if we could get a data point with closer to 20 cycles.
+
+A: I keep it plugged in as close to 100% of the time as I can.  See a screenshot of my battery status, and note that it's a year old now.
+App used: https://www.coconut-flavour.com/coconutbattery/
+
+
+A: Best practices to maintain battery life:
+Use your laptop unplugged at least once a day, Discharges to 50% are better for your battery's long-term life than small discharges to 90% or large discharges to 0%
+Lithium-ion batteries prefer not to be charged all the way to 100%. 40%-80% is a good guideline. Keep it in that range to prolong its life as long as you can. And, if you do charge it to 100%, don't leave it plugged in.
+Fully discharge it once a month. While lithium-ion batteries shouldn't be discharged regularly, most modern batteries are "smart batteries", which means that they can tell you how long you have until your battery dies. This feature can get miscalibrated after a lot of shallow discharges. So, manufacturers recommend fully discharging your battery once a month to make sure this stays accurate.
+
+A:  
+I think Apple would tell best how to Maximize Battery Life and Lifespan:
+https://www.apple.com/batteries/maximizing-performance/
+
+A: According to me, Apple would tell best that how can we extend laptop's battery life : http://support.apple.com/kb/HT1519 
+
+A: Just saying: You don’t want to maximise the cycle count but the lifetime in years. 
+If you do a complete charge cycle every day then in 3 years your battery has done 1100 cycles and is shot. If you use your Macbook mostly plugged in and do a complete charge cycle once a week, thats 50 a year and your battery might last only 300 cycles but six years. That’s clearly better even when it’s not even a third of the charge cycles. 
+Use the MacBook on charger when you can, with maybe one discharge a month. 

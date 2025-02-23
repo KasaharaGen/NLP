@@ -1,0 +1,18 @@
+Q: Do the 2011 MacBook Pros support a user-installed SSD in place of the HD On the iMac there is some thermal sensor that connects to the hard drive and makes this a bit tricky since non-Apple SSDs don't have that feature.  Is this true for the 2011 MacBook Pros?
+
+A: I replaced the stock 500GB 5400rpm hard drive in my Early 2011 Mac Book Pro (MacBook Pro 8,2) with a 120GB OWC Mercury Electra 6G SSD a few weeks ago. There was no thermal sensor attached to the stock drive. So far the replacement has worked fine, no issues at all. 
+Hardware Monitor application reports the temperature of the SSD, so the computer must be properly polling the internal temp sensor in the drive (over the SATA interface,) and/or there may be a permanent sensor attached near the drive on the inside of the MacBook Pro's case. (But not actually attached to the drive.)
+Screen capture of output from Hardware Monitor:
+
+There was no difference in the software install process (vs. a regular hard drive.) In fact, I used 2 external cases (and a 3rd, separate, bootable drive) to do a block copy from the original 500GB to the new 120GB SSD. No issues.
+About TRIM support:
+The drive itself is capable of it (See "TRIM Support" at the bottom of the specs page for this drive.), however, Mac OS X 10.8.2 does not support TRIM for this drive, at this time.  The drive vendor OWC says you don't need TRIM anyway because SandForce's firmware makes it unnecessary or even counterproductive. I agree with their explanation.
+Screen cap from my System Profiler:
+
+As another data point on SSDs -- I had a 60GB OWC Mercury 3G SSD in a 2009 Mac Mini for about 3 years, never had any problems with it whatsoever.
+2013-04-30 UPDATE -- I had some firmware problems with the new 120 GB OWC Mercury 6G drive. The drive would not be recognized at system startup time without doing multiple (10 or more) PRAM & SMC resets. Finally it would "catch on" & then start up and run fine for weeks. Eventually it stopped responding altogether.  (OWC had suggested that I apply a firmware update, but I wasn't able to do this because I don't have a working DVD reader / writer.)
+I am returning the drive to OWC for a warranty replacement. It always pays to BACK UP YOUR DATA every single day, or even several times a day.
+
+A: As long as you have the correct screwdriver(s) for internal access you can replace the HDD with an SSD.
+I apologize for not catching the full question.
+Folks at iFixit did a teardown of the 15" and there is no thermal sensor attached the HDD.

@@ -1,0 +1,8 @@
+Q: Is password to make purchase from App store on iPad and iPhone encrypted? Is it safe to purchase apps when connected to an unsecured Wifi network (like Starbucks)? Can your password be seen?
+
+A: According to Apple, "The iTunes Store and Mac App Store uses Secure Sockets Layer (SSL) encryption on all functions that require personal information."
+So passwords are sent encrypted, not in cleartext. If the NSA is packet sniffing at your local Starbucks, chances are they know how to get your password (but if they're looking for your App store password, you've got bigger problems), but it should be reasonably safe.
+
+A: Yes, the App Store's use SSL, there is no way they'd be allowed to take credit cards without using SSL.
+
+A: You should probably be more concerned about the risks from "shoulder surfers" and/or a weak guessable iTunes password, than packet sniffing of SSL traffic.

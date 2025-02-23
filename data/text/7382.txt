@@ -1,0 +1,29 @@
+Q: Installing Python on Mac 10.5.8 64-bit I'm working on getting Python installed on my Mac 10.5.8 and I have been having a heck of a lot of trouble.
+The standard downloads at Python.org do not show a compatible version.
+
+
+*
+
+*They have 10.3 - 10.6 for 32 bit
+
+*They have 10.6 - 10.7 for 64 bit
+
+
+I tried downloading and installing the 32 bit version for 10.5, yet when launching the IDLE, it "Unexpectedly" quits.
+I've been told that Python comes pre-installed on Mac OSX computers, but when running "python" in the terminal I receive this error:
+william-johnsons-macbook:~ Will$ python
+dyld: unknown required load command 0x80000022
+Trace/BPT trap
+william-johnsons-macbook:~ Will$ 
+
+If anyone has any advice or other references not on the python.org site, I would really appreciate it.
+
+A: It's been a long time since I had to do this for 10.5.8, but I followed these instructions:
+http://web.archive.org/web/20090508090926/http://blog.captnswing.net/2009/04/19/python-mod_wsgi-64bit-mac-os-x-105/
+(note that the original website is gone, hence the WayBack link)
+Here's a post I made on the topic back when I was trying:
+http://buffalothedestroyer.blogspot.com/2009/04/python-64-bit.html
+But, do you need 64 bit python on 10.5.8?  Frankly, I don't think it's worth the pain - I'd pay a few bucks and upgrade to 10.6 or 10.7.
+If it's just a problem with 32-bit python, which python are you using? (i.e., what does which python return?)
+
+A: What's about python from MacPorts? it is the same as from Python.org, but for your architecture and you can manage libs more easily.

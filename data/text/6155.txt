@@ -1,0 +1,186 @@
+Q: How do I write to NTFS drives in OS X? What is the best, easiest, preferably cheapest way to make OS X write to NTFS-formatted drives in Mac OS X?
+
+A: The simplest solution would be to use MacFUSE and NTFS-3G for MacFUSE, though as of this post only Tuxera NTFS (
+~$35 USD) and PARAGON Software NTFS for OS X  v.9.0 ($19.95 USD) support 10.7. You can grab the source for free from Tuxera for free, however.
+As of OS X 10.6 you can natively enable NTFS support, though your mileage may vary. Follow this writeup by Mac OS X Hints if you're interested but I'd use the MacFUSE method over this one. Keep in mind that neither of these methods are fully supported.
+
+A: Here's how to do a one-time mount using ntfs-3g (coeur's answer but for one time use).  This way doesn't require you to boot into safe mode or use csrutil at all.
+NB: using ntfs-3g this way is rumored to be "safer" for write access than the built-in ntfs rw,auto,nobrowse mount option:
+Install latest osxfuse (3.x.x) from https://github.com/osxfuse/osxfuse/releases. Or install it from Homebrew with:
+brew cask install osxfuse
+
+Install latest NTFS-3GNTFS-3G from Homebrew (https://brew.sh/Homebrew), as follow:
+brew install ntfs-3g
+
+One time mount (replace disk1s1 with your values, discoverable by running a mount command after inserting the disk, you'll see a line like
+/dev/disk1s1 on /Volumes/SomeNtfsDrive (ntfs, local, nodev, nosuid, read-only, noowners) grab the disk1s1:
+ diskutil unmount /dev/disk1s1
+ sudo mkdir /Volumes/my_writable_ntfs
+ sudo /usr/local/bin/ntfs-3g /dev/disk1s1 /Volumes/my_writable_ntfs -olocal -oallow_other
+
+You'll get a popup "system extension blocked" click "Open Security Preferences" and click "Allow" next to the developer name (Benjamin Fleischer). If you can't click the allow button, see here.
+Run the command again after clicking allow.  It'll be good until you reboot.  or manually dismount it.
+For more details and instructions on making it permanent, see https://github.com/osxfuse/osxfuse/wiki/NTFS-3G
+
+A: Can't say that using MacFUSE and NTFS-3G for MacFUSE is the easiest way, but they are free and that's great!:) I've used them for about a year until bought 500GB external Seagate HDD and got Paragon NTFS for Mac driver for free from Seagate site: http://www.seagate.com/support/downloads/item/ntfs-driver-for-mac-os-master-dl/. Works stable for a month, no problems happened yet. Anybody knows, will users of Seagate HDDs get free NTFS driver upgrade for new OS X when Apple will release it?
+
+A: Before we start. Make sure your external name label is ONE word.
+That means there is no space in between.
+my disk = WRONG
+my_disk or my-disk or mydisk = CORRECT
+Now
+
+
+*
+
+*Open Terminal [Command+Space+"terminal"]
+
+*Type: sudo nano /etc/fstab
+
+*In nano, type: LABEL=my_disk none ntfs rw,auto,nobrowse Note: my_disk is your disk name
+
+*To save and exit Control+X and Enter and Enter
+
+*[optional] For ease of access, we create a sym-link to desktop: In terminal -> sudo ln -s /Volumes ~/Desktop/Volumes
+Later
+When you don't need it anymore. It is as simple as:
+In terminal sudo rm /etc/fstab
+
+A: Updated at May 2015, with current solutions.
+Free solutions
+FUSE for OS X - Successor to MacFUSE
+NTFS-3G
+Requires a build from source for anything newer than 2010. Last "pre built" version linked from http://macntfs-3g.blogspot.co.uk/2010/10/ntfs-3g-for-mac-os-x-2010102.html You can build it from source using homebrew in the other answers.
+Paid solutions
+Paragon NTFS
+Tuxera NTFS
+
+MacFuse is abandonware, and hasn't been updated since 2009. 
+
+A: This answer is for latest compatibility for OS X 10.11 El Capitan, macOS 10.12 Sierra, macOS 10.13 High Sierra, macOS 10.14 Mojave.
+It needs an update for Apple Silicon and Monterey and Big Sur and Catalina so proceed with caution
+
+*
+
+*Install latest osxfuse (3.x.x) from GitHub. Or install it with Homebrew as follow:
+brew cask install osxfuse
+
+
+
+*Install latest NTFS-3G with Homebrew as follow:
+brew install ntfs-3g
+
+
+
+*Auto-mount NTFS volumes in read-write mode:
+Link NTFS-3G to boot after temporary disabling System Integrity Protection, as follow:
+* [reboot by holding <kbd>CMD</kbd>+<kbd>R</kbd> to get in recovery mode]
+
+        csrutil disable
+
+* [reboot normally]
+
+        sudo mount -uw /
+        sudo mv /sbin/mount_ntfs /sbin/mount_ntfs.original
+        sudo ln -s /usr/local/sbin/mount_ntfs /sbin/mount_ntfs
+
+* [reboot by holding <kbd>CMD</kbd>+<kbd>R</kbd> to get in recovery mode]
+
+        csrutil enable
+
+* [reboot normally]
+
+You will need to re-link manually (step 3) each year when you upgrade macOS (10.11 → 10.12 → 10.13 → 10.14 → ...)
+Additional steps if solution does not work:
+
+*
+
+*try to install ntfs-3g again
+ brew install ntfs-3g
+
+
+
+*it warns that it installed but not linked, try to link again:
+ brew link ntfs-3g
+
+
+
+*it fails and prints dry-run command which will show files to remove:
+ brew link --overwrite --dry-run ntfs-3g
+
+
+
+*remove these files with sudo ('Would remove:' is for English console)
+ brew link --overwrite --dry-run ntfs-3g | grep -vF 'Would remove:' | awk '{print $1}' | xargs sudo rm
+
+
+
+*try to link again and get permission error on creation /usr/local/share/doc/ntfs-3g. brew prevents running with sudo so prepare directory for README:
+ sudo mkdir /usr/local/share/doc/ntfs-3g
+ sudo chmod a+w /usr/local/share/doc/ntfs-3g
+
+
+
+*run brew link again... success.
+
+
+*reboot your Mac and allow system extension to load in System Preferences as error box suggests.
+
+See also the following wiki page: https://github.com/osxfuse/osxfuse/wiki/NTFS-3G
+
+A: I tested this on Mountain lion and it is free and you don't need to reboot. It uses OS X's native NTFS drivers.
+
+
+*
+
+*Plug-in your device
+
+*Write in Terminal diskutil list and look for IDENTIFIER where TYPE is Windows_NTFS.
+
+In this case it is disk1s1
+
+*Then run the following:
+diskutil unmount /dev/disk1s1
+cd /Volumes
+mkdir Elements
+sudo mount -w -t ntfs -o rw,nobrowse /dev/disk1s1 /Volumes/Elements
+open /Volumes/Elements
+
+
+A: This answer is for macOS BigSur:
+The big difference with previous answer by Cœur:
+we need to turn off cryptographic verification (See Big Sur’s Signed System Volume: added security protection) with csrutil authenticated-root disable in step 3.2 and bless to create a snapshot in step 4.
+
+*
+
+*Install macFUSE from macFUSE or brew --cask install osxfuse
+
+
+*Install ntfs-3g with brew install gromgit/fuse/ntfs-3g-mac or try other options to install ntfs-3g
+
+
+*Disable SIP(System Integrity Protection)
+3.1 Reboot Mac into Recovery Mode by rebooting and holding down Command+R
+3.2 Utilities > Terminal:
+csrutil disable(enable it after the whole process)
+csrutil authenticated-root disable (It cannot be enabled after updating /sbin/mount_ntfs)
+3.3 Reboot in normal mode
+
+
+*Update /sbin/mount_ntfs
+4.1 Get the root disk by mount, if /dev/disk1s5s1 on /  is returned, your root disk is /dev/disk1s5
+4.2 update and create snapshot
+DISK_PATH=/dev/disk1s5
+MOUNT_PATH=~/mount
+mkdir $MOUNT_PATH
+sudo mount -o nobrowse -t apfs $DISK_PATH $MOUNT_PATH
+sudo mv $MOUNT_PATH/sbin/mount_ntfs        $MOUNT_PATH/sbin/mount_ntfs.original
+sudo ln -s /usr/local/sbin/mount_ntfs $MOUNT_PATH/sbin/mount_ntfs
+
+sudo bless --folder $MOUNT_PATH/System/Library/CoreServices --bootefi --create-snapshot
+
+
+
+*Reboot and enable SIP with command: csrutil enable
+Reference:
+NTFS write in macOS BigSur using osxfuse and ntfs-3g

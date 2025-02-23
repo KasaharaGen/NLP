@@ -1,0 +1,102 @@
+Q: Safari Extension for right click menu: Open in Google Chrome? Is it possible for an extension to add items to the right click menu in Safari?  If you enable developer mode, there is a menu item called "Open Page With..." and Google Chrome is a choice if it's installed.  Can the Open Page With... menu get added to the right click menu, so I can use one less step when viewing a page in Chrome?  Right now I'm required to load the page in safari, then choose the Chrome option, whereas I'd rather just right click on links and send them to Chrome quickly.
+I would make it myself if I knew how!
+
+A: RobMathers answer works well for me.  You can add a bit to it so you don't have to select the URL.
+In Automator, revise his step 3 to "Change the "Service receives selected" drop-down to "no input" "
+Then, before adding the "Run AppleScript" with his code, drag "Get Current Webpage from Safari" over from the Internet category in the Automator library.  It will pass the URL to the AppleScript code.  And then you can assign a keyboard shortcut too
+Here is the screenshot:
+
+
+A: Open in Chrome Service
+You can make a Service in 10.6 or 10.7 using Automator that will open a selected URL in Chrome.
+Here's how:
+
+
+*
+
+*Open Automator 
+
+*When Automator asks you to Choose a type for your document window, select Service 
+
+*Change the "Service receives selected" drop-down to "URLs" 
+
+*Add a Run AppleScript action (found under the Automator Library, or just search) by dragging from the left pane to the right
+
+*Copy the code below to the text field (replacing all the existing text)
+
+*Save and give the service a name (it will be added automatically to the services menu)
+
+
+Code:
+on run {input}
+    set theURL to input
+    tell application "Google Chrome"
+        if not (exists first window) then
+            make new window
+            set URL of last tab of first window to theURL
+        else
+            tell first window
+                set newTab to make new tab with properties {URL:theURL}
+            end tell
+        end if
+        activate
+    end tell
+end run
+
+This will open any selected URL in Safari or other application in Chrome, either in a new tab in the most recent window, or a new window if there is no open Chrome window. To access it, right-click and under the Services item at the bottom of the menu, you should see an item with the name you assigned.
+One important caveat: OS X seems to be a bit picky/buggy about passing link to this sort of service. It works fine if you have text selected as a URL, but it only seems to work on some links. If I discover a better method, I'll update this post with it.
+You may also need to restart Safari for the service to appear. 
+
+A: Sorry to bump this old item, but I was looking for a solution and came up with this one that is working great for me.
+Want to open the active webpage in a browser other than Safari on your Mac? 
+It's simple if you have the developer mode enabled. 
+
+
+*
+
+*Go to Settings - Keyboard - Keyboard Shortcuts tab
+
+*Click the + to add a shortcut. 
+
+*Select Safari on the Application drop-down
+
+*Copy the Menu Title letter for letter from Safari's Develop -> Open Page With menu. 
+"
+Examples: on my machine, Chrome = Google Chrome (22.0.1215.0) — /Applications", Firefox = "Firefox (13.0.1)" 
+
+
+Note: you will have to update this when updating any of the browsers. The developer menu ties the menu options to the version number reported by the Finder. 
+
+
+*
+
+*Select your own keyboard shortcut for the alternate browser. I use control+option+command+browser first letter, so Google Chrome = G. I used F for Firefox and O for Opera. control+option+command is not the default for any Safari features as far as I know (for any letter)... 
+
+*From any Safari page, simply push the keyboard shortcut and the page will open in the desired browser. 
+Enjoy!
+E
+
+A: You can open the current tab in Google Chrome with a Keyboard shortcut.
+This uses macOS keyboard settings to add a shortcut to the Develop - Open Page With - ... setting, but there are caveats: you may need to update this occasionally when Chrome versions change.
+
+*
+
+*In Safari Preferences – Advanced, enable Show Develop menu in menu bar
+
+*Now, try the menu and note down (or take screenshot) of the Google Chrome text in Develop – Open Page With - Google Chrome (version number)
+
+*In System Preferences – Keyboard – Shortcuts, add a shortcut for this option as follows:
+
+*
+
+*Select App Shortcuts on left and Click +
+
+*Select Application – Safari. For Menu Title, put in the above Google Chrome text exactly as noted, such as Google Chrome.app (version)
+
+*Add your Keyboard Shortcut and click Add
+
+
+
+*It should work immediately. Check the menu in Safari to see if the shortcut appears there. Make sure the text is copied exactly
+
+Tested on macOS Big Sur 11.6. Did not work in macOS Monterey 12.1 (even if shortcut appeared in menu).

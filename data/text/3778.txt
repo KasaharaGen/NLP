@@ -1,0 +1,115 @@
+Q: Off-site backup of “login.keychain” I’m using the Keychain.app to manage all my (website) passwords, and I am also using the “Password assistant” to generate secure random passwords.
+But obviously I’m paranoid that my laptop is lost or damaged and that I’m using all my passwords so I’m searching for a secure, comfortable backup option.
+In particular, the backup has to be immediate (as soo as I’m adding a new key or editing an existing one). This can be done by registering a launch agent.
+Furthermore, the storage should be off-site. Ideally, this would mean Dropbox. But I’m paranoid: their storage may be encrypted but they theoretically still have access to my data.
+Now, the keychain is encrypted anyway. But is this encryption secure? Can I just rely on this and upload the backup to an essentially public storage?
+
+A: 1Password is a product that may interest you.  Seems to tick all the boxes in terms of speed, off-site and secure storage.  Plus it allows you to use it on all your devices too (iPhone, iPad etc).
+
+A: Dropbox doesn't currently support "Watch Any Folder" so you'll have to assemble a second script or use a tool like DropLink (@dr0plink on twitter) to copy the files to the one folder it watches. That's more complicated and more prone to failure. 
+CrashPlan is a much better solution as it will let you watch specific folders (or the whole drive). This is less likely to break and will let keychain store the file where it prefers.
+You can rent space with them or set up your own off-site storage and use the software for free. There are many other products similar to CrashPlan but it's the one I use and chose due to features, price and support.
+Don't forget MobileMe will allow you to sync those keychain items to the cloud. You can evaluate that for free for some time before you have to pay a yearly fee.
+You will want to do some research - it's fairly involved to do encryption correctly. PGP has some good primers on the basics, but you want someone that takes the time to explain their experience and not over promise. Also - if you can do the encryption yourself, your keys are in your control so others can't feel inclined to release them. This is where relying only on Dropbox's encryption has disappointed some people that didn't first encrypt their data before sending it to their Dropbox folder.
+Nothing is totally secure. I try to mitigate that by using tools from someone that patches holes promptly and lets me know if I need to upgrade things once a weakness is patched. I also try to know enough about what's going on under the hood so I don't make silly mistakes like trusting the wrong key signing authority.
+The nice thing is all of these products have free trials so you can see what works best before spending money.
+
+A: I did end up using an encrypted volume and Dropbox. The following is a step-by-step guide (this assumes that Dropbox is already installed):
+
+
+*
+
+*Create an encrypted volumne in Disk Utility.app, and save the image file in your Dropbox folder.
+
+
+*
+
+*Open the “Disk Utility” application.
+
+*Add a new disk image:
+
+
+*Save the file as “Keychain” (extension will be added automatically) in your Dropbox folder and enter the following information:
+
+
+*After pressing “Create”, you will be asked to provide a password:
+
+
+
+*Add the volumne file to your login items so that the image is automatically mounted on login.
+
+
+*
+
+*Open your System Preferences, go to Account preferences.
+
+*Go to the “Login Items” tab.
+
+*Drag and drop your Keychain.sparseimage file from the Dropbox folder into the Login Items list:
+
+
+
+*Create a launch agent which watches for changes in the keychain and copies it into the encrypted volume.
+
+
+*
+
+*Open a terminal (e.g. Terminal.app).
+
+*Change into the launch agents path: cd ~/Library/LaunchAgents/
+
+*Create a text file in that folder (e.g. using vim), name the file net.madrat.utils.keychain-sync.plist and paste the following content into the text file:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>net.madrat.utils.keychain-sync</string>
+    <key>OnDemand</key>
+    <true/>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/cp</string>
+        <string>/Users/USERNAME/Library/Keychains/login.keychain</string>
+        <string>/Volumes/Keychain/</string>
+    </array>
+    <key>RunAtLoad</key>
+    <false/>
+    <key>StartInterval</key>
+    <integer>1800</integer>
+    <key>UserName</key>
+    <string>USERNAME</string>
+    <key>WatchPaths</key>
+    <array>
+        <string>/Users/USERNAME/Library/Keychains/login.keychain</string>
+    </array>
+</dict>
+</plist>
+
+(Replace all occurrences of USERNAME by your login user name.)
+Important: The file name of this file must correspond to the Label string, plus the .plist extension. If you change either you must also change the other.
+
+
+*Activate and test the launch agent.
+
+
+*
+
+*In the terminal, execute launchctl load net.madrat.utils.keychain-sync.plist. The launch agent is now active.
+
+*Test the agent by adding a new key to your keychain, and observe that Dropbox updates the Keychain.sparseimage file.
+
+A: Suggestion
+I myself actually dun care that much about preventing people to get in. I just do as many backups as I can, as that's the only thing I consider data security. Including everything online and offline. But that's not to say I don't try quite hard to prevent issues with anyone getting in anywhere.
+If I were as paranoid as you I wouldn't trust encryption, I would do my own nutzy way to store it in a HTML or even TEXT, and then replicate it along with many other stuff. The idea is hiding the password in plain sight, but only you know what to look for. Grab a digital book or something, make a simple rule only you know, and use it as your password. For instance:
+
+The quick brown fox jumped over the lazy dog... and DIED!
+
+The password here could be: Tbjtd.D!2011 - There, I even added the year. Eventually I get used to typing it and I don't even need to look at the reference anymore.
+As we were discussing, yes this is security through obscurity, but this is only for an individual. If you get such a random selection of characters in your mind only, and never write it down nor pass it along to anyone, there's conceptually not a safer password because it is unpredictable by definition (randomness). It only needs to be big enough to prevent computational power to brute force it. It's that simple.
+So if you write it down in an unpredictable fashion and add a honeypot with all encryption and stuff you've talked about but don't add your main password in there, you just added yourself many layers of the topmost security while making a perfect and impossible to follow path that makes sense only to you. The point on writing it down in my suggestion is simply as a mnemonic device so you can remember your password may you ever forget it.
+Keep in mind this is a very specific use case not meant to generate security measures for data nor encryption, but a password.
+Direct Answer
+But if you want to rely on some encryption and don't know if you can trust Keychain.app (I know I can't), try the open sourced KeePassX, which is the only way to trust encryption, as I see it. You can combine it with Dropbox and try to ease up your mind by trusting your key will never leak.
+I'm glad to see you actually found a "better" (at least if you only use macs) replacement for KeePassX (the DMG) and were even able to add an automated way to updating it through LaunchAgents. The rest is basically what I said above.
+No encryption or security measure can be 100% trustable almost per definition but it's still useful as an extra layer if you don't care for calling attention to your relevant data and concentrating it into a big safe saying "here, try here and if you succeed opening this, you got it all" considering it is indeed very hard to break it.

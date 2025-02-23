@@ -1,0 +1,16 @@
+Q: DNS: Search Domains not working correctly? I am running OSX Lion.
+I've looked all over the web for solutions to the issue I'm having and can't find a fix.  I've found several entries where uses are trying to resolve custom_hostname.dev (etc, etc), but I'm actually trying to use the search domains for FQDN.  I do not have access to the DNS systems, so my system is assigned some DNS server IPs, but I  have to manually set all the search domains for some of the hosts.  For example:
+search loc1.sitea.example.net, loc2.sitea.example.net, loc1siteb.example.net
+
+Let's say  host mytesthost is in loc2.sitea.example.net.  I would have expected that when I type in mytesthost, that it would search the search domains and resolve an IP, however, in order for this to work, I actually have to type in mytesthost.loc2.sitea.example.net.
+The "error" I get is "unknown host", which tells me that it is not resolving the hostname.
+Any thoughts?
+
+A: The domains in the search directive should be separated by whitespace only, not commas.  So replace
+search loc1.sitea.example.net, loc2.sitea.example.net, loc1siteb.example.net
+
+with
+search loc1.sitea.example.net loc2.sitea.example.net loc1siteb.example.net
+
+and try it again.  Note that in general it is better supported if you set these things up via System Preferences and then you don't get syntax problems like this.
+System Preferences -> Network -> [Select the interface from the list on the left] -> Advanced... -> DNS -> Search Domains:

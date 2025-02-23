@@ -1,0 +1,35 @@
+Q: How to check what causes iPhone battery to drain out? Last night before I went to sleep my iphone battery was at 30% and the active usage was about 6 hours ( since last full charge). However this morning when I woke up I found that my battery went flat. Upon some checking I discovered that it was on active usage for 12 hours. Which means that when I was sleeping either
+
+
+*
+
+*Someone played with my iphone for 6 hours, or
+
+*Some rogue apps that ran in the background were silently draining my battery even though they shouldn't
+
+
+Possibility 1 is very remote. So I would like to investigate on possibility 2. How to know what causes the iphone battery to drain out even when it is not in use?
+Edit: I switched 3G and WIFI off when I was sleeping.
+
+A: There is a general tips page on maintaining great battery life, as well as general terms about battery replacement.
+Personally: This sounds like a bad battery. It sounds like it just plainly is not holding a charge after a certain discharge point. Remember that iOS multitasking is not true multitasking. Barring streaming audio (actually persistent audio in general), there is (almost) NOTHING that your phone can constantly do for more than 20 minutes at a time.
+I've streamed audio for hours (hours being... maybe 5?) during the day at ~40% and it did get under 20% by the time I was done, this was both on an iPad, and roughly equivalent on an iPhone 4. Connected WiFi, 3G (on the iPhone) enabled but not being the active radio in use, of course.
+I don't know that you're able to see what's draining the battery, Apple forbids "task management apps". A possible workaround to see if it is app involved or a bad battery, is to drain your phone to a similar level, open the fast app switcher bar (double tap the home button), tap-hold on any application in the task bar until they begin to "jiggle", then press the white minus inside the red circle on EVERYTHING. This will kill any and all tasks that aren't first-party. (For example, it will not stop the occasional housekeeping/tasks that Mail, Phone, Safari, or other built-in apps are allowed to do.)
+Having said that, to properly test, ensure that mail's auto-fetch is off (or in push only mode at best), make sure that you have no tabs in Safari with "live" or automatically refreshing content. Safari IS ALLOWED TO BACKGROUND, and has always been able to, to the best of my knowledge. At least since iOS 2.something (where I started with an iPhone 3G).
+
+A: A note to those who find this QA: a link here from Apple can be helpful.
+This morning when my battery was draining out, I tried the above tips ( reproduced below), and it worked. 
+
+If you have an Exchange email account
+  you probably have some stale sync
+  threads. Try this:
+Go to Settings/Mail,contacts,calendar.
+  Tap the name of the account. Turn off
+  the 3 switches. Back out to the main
+  settings page. Now launch mail, then
+  contacts, then calendar to kill the
+  pending connections. Reboot the phone,
+  go back to Settings, and turn the 3
+  switches back on. This will probably
+  fix it.
+

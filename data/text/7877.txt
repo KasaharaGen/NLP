@@ -1,0 +1,48 @@
+Q: Inserting shell script into .app bundle I'm trying to shoe-horn a shell script into an application bundle so that the shell script will be run when I open the bundle, as opposed to the executable put in there.
+Specifically, I'm trying to do some environment setup before running the binary, e.g. setting environment variables (I already tried just putting the environment variables into the Info.plist, which didn't work, presumably because MATLAB is stupid), and when I cd into the bundle and manually execute my script, (./StartMATLAB) it works; The program launches, and the environment variables are recognized.
+When I double-click on the .app in Finder, or call open MATLAB_R2011b.app however, it fails.  When calling open from the commandline, I get:
+LSOpenURLsWithRole() failed with error -10810 for the file /Applications/MATLAB_R2011b.app
+
+I've tried playing around with the Info.plist to no avail, but I'm not too familiar with how they are put together.  Does anyone know why I cannot open this bundle?
+Thanks!
+EDIT:
+The Info.plist for the program I'm trying to edit seems to have a lot of java-related stuff.  I've tried to remove it, but no luck so far.  I'm thinking the problem may be with the .plist file, as it is expecting a java-based program as opposed to any other executable
+
+A: This won't work for a signed app, but here's how I was able to get this to work:
+
+
+*
+
+*Create a copy of the app you're trying to modify in case something goes wrong. (⌘D in Finder) For my example here, I modified the non-app store version of  VectorDesigner
+
+*In Terminal, cd /Applications/VectorDesigner.app/Contents/MacOS
+
+*mv VectorDesigner VectorDesigner\ copy (substitute the name of your app here
+
+*pico VectorDesigner (or your editor of choice) and add the contents of your script.
+I used this script
+ #!/bin/sh
+ osascript -e "tell Application \"Finder\" to display alert \"Hello World\""
+ /Applications/VectorDesigner.app/Contents/MacOS/VectorDesigner\ copy
+
+The important thing is for the last line to call the renamed executable.
+
+*chmod a+x VectorDesigner
+Now, when I double-click the VectorDesigner icon, I get the "Hello World" window, then it launches the original program.
+
+A: You probably need to change the file permissions, that seems to be the problem.
+Open Terminal:
+chmod +x /Applications/MATLAB_R2011b.app/Contents/MacOS/MATLAB_R2011b
+
+
+A: Instead of "shoe-horning" the script into the App bundle, what about doing it the other way around?
+
+
+*
+
+*Create a shell script that sets the environment as you want, and then launches the original App (with open for example). You said this works already.
+
+*Embed the shell script in a new App bundle using Platypus.
+
+*(optional) Embed the original App inside your new App bundle, and have your script launch it form there.
+

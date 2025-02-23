@@ -1,0 +1,37 @@
+Q: Why can't I use .app bundles symlinked into /Applications as default in the 'open with' dialog? I have installed emacs with homebrew, with the --cocoa flag, which makes homebrew create an .app bundle in /usr/local/Cellar/emacs/<version>/Emacs.app. I have symlinked the .app bundle into /Applications/, to make it easy to open. The problem is that when I try setting file associations for files, I can't set Emacs.app as the default (the Add button is greyed out):
+
+Now I could just copy or move the .app bundle into /Applications/, but that would require me to copy it over again every time emacs is updated via homebrew. Is there some other way to solve this?
+
+A: I don't know why, but I have figured it out that if I make the symlink to the Contents directory, then associations work fine.
+That is I do the following in a terminal window, using my personal Applications folder as an example:
+% mkdir ~/Applications/Emacs.app
+% ln -s /usr/local/Cellar/emacs/23.2/Emacs.app/Contents ~/Applications/Emacs.app
+
+Something about putting the symlink inside the Emacs.app gets the bundle recognized.
+
+A: Weird. I just installed emacs through brew and it automatically updated the "open with" dialog to include Emacs.app ;
+But you should be able to do the following: Directly after opening the "choose an application" dialog, press "/" to get a "go to folder" window. Enter the following path:
+/usr/local/Cellar/emacs/
+
+and from there navigate to the Emacs.app (at the current version this should be /usr/local/Cellar/emacs/23.2/Emacs.app) and select it as default application.
+========
+Could you please run the following command to see whether Emacs is registered in your LaunchServices DB?
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep Emacs
+
+A: If it's not something you do often, you can navigate to the place where Emacs.app is really and assign it from there.
+Did you try to change the "Enable: Recommended Applications" dropdown? I believe there's a "All applications" option. Maybe this one will let you select your alias.
+You said you symlinked the .app. Did you use ln -s? If so, did you try using an alias instead?
+--
+I don't know homebrew very well, but it look like you can extend homebrew with external commands.
+Try to look if you can get the updated .app file and cp to /Applications.
+
+A: My solution is to create a symlink of /usr/local/Cellar in /Applications.  Then, you can find the emacs.app you need to use with the "Open with" dialog (in /Applications/Cellar).
+Alternatively, you may use RCDefault (a freeware app) to config the file extension association.
+
+A: The exact paths to your applications shouldn't matter. Once you open the application and close it once, it should add it to your LaunchServices database.
+Try rebuilding your LaunchServices database by entering the following terminal command:
+/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/\
+LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain\
+local -domain system -domain user
+
+After doing this, open MacVim. It should then populate the Open With... options. Note that MacVim does not automatically associate itself with many file types (unlike, say, BBEdit, which shows up as a default option for almost any file type), only text, code, and html-type files tend to

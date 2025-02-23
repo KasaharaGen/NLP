@@ -1,0 +1,14 @@
+Q: Is X11 installed by default on Mac OS X? I'm asking this because I'm considering distributing a commercial Windows application to mac users. The application would run in WINE, but WINE depends on X11.
+I've read that X11 is installed by default on OS X 10.5 and later, and available as an optional install on the installation dvd for OS X 10.4
+Can I reasonably expect X11 to be available on most of the users' computers? If not, how difficult it would be to install for the user? Can I just provide them a link to download and install it from apple's website?
+
+A: The previous answer seems to be referring to Xcode, rather than X11. While Xcode is now downloadable from the App store, X11 is installed automatically when you install Lion.
+If any of your users have problems, or find it not installed on their system, they can download the installer here:
+http://xquartz.macosforge.org/trac/wiki/X112.6.3
+
+A: YES it's installed by default. It's in the installation options where users can tick or untick to install X11. But by default it's ticked in 10.5, 10.6 and 10.7
+
+A: As from OS X 10.8 X11 is not installed by default.
+However there is an easier way to install. Use Wineskin to wrap your app. Then you will get an OS X app that includes X11 and your app
+
+A: No, it is not installed.  Apple support now directs users to download the .dmg from XQuartz.org

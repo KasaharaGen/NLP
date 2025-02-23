@@ -1,0 +1,16 @@
+Q: Print PDF with crop marks I have an A4 PDF document that has content all the way to the border and I want to print it out.
+Hence I print out on A3 sized paper (i.e. I print on paper twice the size) and then cut it to the actual size.
+Is there an easy way to add crop marks to the document when printing it?
+
+A: If it’s a simple PDF document, you could possibly open it with Inkscape and then add crop marks with Extensions > Render > Printing Marks…. Or maybe Scribus, with Print… > Marks. 
+Very hacky but might help somebody in a tight corner.
+
+A: If you have Adobe Acrobat Pro, this is easily done: File > Print > Advanced > Marks and Bleeds > Trim Marks
+This may also be possible under Acrobat Reader, if someone would care to test it.
+
+A: I have not found any way to do it on the free version. I was hoping there was, so that Sales would not have to come back to Prepress all the time to have us print out a proof with marks, but I'm not finding any way for them to do it in the free version (i.e. Acrobat Reader).
+
+A: Realistically, printed matter that extends to the paper's edge needs to go further than that! This is what is known as 'bleed'.
+The page is normally printed on a larger sheet, with crop marks, and the colour objects extend over the cropped area, so that the trim line is within the inked area.
+If the edge of an inked area is on the trim line, this invariably leaves a little white line where the blade and the ink don't quite meet. Cutting through the inked area guarantees no white lines.
+To create a page with crop marks and bleed, of course, you need to go back to the original artwork in a competent application.

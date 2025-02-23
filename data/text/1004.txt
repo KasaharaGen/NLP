@@ -1,0 +1,4 @@
+Q: Trigger an Automator action with a sound Is there any way to trigger an Automator action with a sound? I'd like to be able to record a sound and trigger an action every time my computer's microphone receives the sound.
+
+A: Mac OS X comes with speech recognition (check System Preferences > Speech panel) but it can't easily recognize a generic sound, only built-in commands.
+Now, it is possible to make an automator action or script that is triggered by an arbitrary phrase. However, if by "sound" you mean a beep, blip, crash or other sound that can't be  recognized as a string of phonemes (ie. speech in english or possibly another language) then we're into serious Objective C programming territory here.

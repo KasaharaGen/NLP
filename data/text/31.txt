@@ -1,0 +1,63 @@
+Q: Dot-files and other meta data on non-Mac network shares Is there a way to tell Finder to not use (or worry about) the ._* files and other meta-data files it normally tries to use when it's on a network share?
+Currently when I'm in Finder and I try to copy a file to a network share it results in an error:
+
+The Finder can’t complete the
+  operation because some data in “file_name” can’t be read or written.
+  (Error code -36)
+
+But I can copy the file from the terminal command line to the network share and use it from Finder afterward just fine.  It seems that the meta-data isn't really needed on the network share.  Is there a way to tell Finder this?
+For reference, I'm using Snow Leopard and the share is a Samba share on a Linux server.
+
+A: defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+Will get rid of the DS files. Anything else you might have to do by hand.
+
+A: Adapted from https://apple.stackexchange.com/a/57832/8546
+
+Finder
+Finder does much to ensure integrity of data, and to make its results compatible with a broad range of Apple operating systems. For some types of copy/move routines, ._ (dot underscore) files are required. 
+File system
+If creation of ._ files is prevented at the file system level, then that file system is partially incompatible with at least: 
+
+
+*
+
+*Apple Finder
+
+*Microsoft Office Excel, PowerPoint and Word 2011.
+
+
+(For any use case that involves Office 2011 saving to a file system, you must allow ._ on that file system … and so on.)
+Error code -36
+-36 (ioErr) (I/O error) is a file system error, it indicates that data cannot be sent or received by the operating system. Historically, errors of this type were bummers. 
+Without knowing the detail of your Samba configuration: 
+
+
+*
+
+*I guess that in your case, error -36 is the result of a file system restriction. 
+
+
+
+For more detail please see my answer to an older question, Why are dot underscore ._ files created, and how can I avoid them?: 
+
+
+*
+
+*Purposes of .DS_Store and ._ files
+
+A: Is the file you're trying to copy using a resource fork?
+If you're dealing with .DS_Store file issues run the following command in Terminal:
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+If you're having issues with resource forks on Snow Leopard you may need to change your settings for the streams setting in smb.conf on the Linux machine or nsmb.conf on your local Mac. (._FILENAME files are the resource forks of the file). Check out Super User for more details on this.
+
+A: This is not working for me anymore.
+So i have added ._* to the veto files
+I think it's works but i don't know if it has other complications?
+vi /etc/samba/smb.conf
+[global]
+veto files = /._*/.AppleDB/.AppleDouble/.AppleDesktop/:2eDS_Store/Network Trash Folder/Temporary Items/TheVolumeSettingsFolder/.@_thumb/.@_desc/:2e*/
+(esc-shift-ZZ)
+service smb restart
+service nmb restart

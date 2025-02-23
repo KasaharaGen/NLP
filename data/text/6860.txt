@@ -1,0 +1,29 @@
+Q: Is there an app that can set time limits for Internet access? Is there an app that I can run on my iMac that will regulate Internet usage?
+Specifically, I want to only allow internet to work between 6-8pm.
+
+A: Don't overlook "the parent app".
+It turns on the logging of safari using parental controls. Sets the normal time limits when the mac can be on and off.
+Then it communicates to the children "the rules" and what happens when the parent determines that they have been broken. Why spend money or time on a more controlling solution if you can ensure they don't cover their tracks and will be caught if they stray.
+
+Technically, managing this on the router is easier than on the Mac using the default Apple tools. 
+Apple has implemented timed access across the airport line, so fire up Airport Utility and set the times when you want access to the Internet. 
+You can set up default timed rules as well as specific policies for specific devices. 
+If you really want things to be controlled locally on the OS, turn on time limits under Parental Control under system preferences for each user account:
+
+And then prevent apps that you don't explicitly want them to use.
+
+I believe Firefox (if installed) defaults to on - so do review each and every app in the list. Your children can come to you as the administrator and you can over-rule these restrictions with your password - so this is the unattended default situation and you can grant them extra leeway with your password when needed.
+
+A: A simple lamp timer on your modem, router or access point device would be a low tech solution for a given fixed location.  No scripting expertise required.  Put tamper-proof tape on the jacks and plugs if you want to check for cheating.  If you only want to affect one iMac, put a separate router on its ethernet cable and/or use a separate dedicated WiFi access point, and plug that into the lamp timer.
+
+A: If the goal is to block time-wasting "junk food for the mind" websites, I can recommend the WasteNoTime plugin for Safari or Chrome.
+Other than that, even the cheapest Linksys router will support Access Restrictions whereby you can set up a schedule that would allow internet only between 6 and 8pm.
+WasteNoTime will optionally let you specify a number of minutes per domain that you're willing to budget. So, if you don't want to spend more than 30 minutes per day at TVTropes.com for example, WasteNoTime will block that domain after the 30th minute. I've used it to block a couple of sites, and my productivity is improving!
+
+A: If you own an AirPort Extreme, you can control access to the Internet via AirPort Utility.
+Note that this only applies to wireless connections. Anything plugged directly into the AirPort Express will not be limited by this restriction.
+
+A: The Parental controls panel in System Preferences will allow you to limit access to the Internet.
+
+A: SonicWall
+If you want to control and restrict access for your entire company or LAN, the SonicWall line of firewall stand-alone hardware products provides a tremendous amount of granular control of everything having to do with Internet access, based on time of day, destinations, protocols, you name it. They have a full range of products from small-business to enterprise-level.

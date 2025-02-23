@@ -1,0 +1,133 @@
+Q: What is the difference between iTerm2 and Terminal? I keep hearing that iTerm2 is much better than Terminal. However, when I downloaded iTerm2, I didn't see what made it preferable over Terminal. What are the differences between these two apps?
+
+A: There are several features listed on their features page.
+Some of the features I like are:
+
+
+*
+
+*Split pane view
+
+*Hotkey window for instant terminal anywhere
+
+*Search will highlight all found words (like in Chrome and Safari)
+
+*Mouseless copy
+
+*Instant replay (can "rewind" your session in case you forgot to note/copy something)
+
+*Paste history
+
+*Growl support for notification when a process completes
+
+
+A: The feature I chose iTerm for is being able to cut or copy by just selecting text and paste by just using the middle button
+
+A: @joel's answer is good, but Terminal.app gained some exclusive features in Lion:
+
+
+*
+
+*support for Lion's restore feature
+
+*support for system services - this means I have a system shortcut for “new terminal in this folder” without strange hacks.
+
+*support for system services means great automator integration
+
+*document proxy in the window and generally better D&D support
+
+*right click on a string to search in man pages or open its man page in a cool floating window. Really handy!
+
+
+See:
+http://www.macosxautomation.com/lion/terminal.html
+
+A: iTerm supports opening windows in full screen by default, and there is an option to use custom full screen windows that don't have the animations for changing spaces and don't disable ⌘H.
+It also has an incremental search banner instead of a find dialog. And you can select text by searching for the start and pressing tab to extend the selection by single words.
+
+A: I use iTerm2 for my work in bioinformatics and have, for example, set it up in such a way, that it automatically opens a Genome Browser website in a specific chromosome position, when I cmd-click on the chromosome position.
+Also, I tinkered with smart selection to allow me the selection of only DNA sequences, etc.
+Also I set it to play a sound, if an Error message occurs in a terminal.
+That's of course very specific use cases, but shows how capable iTerm2 is, compared to the simple Terminal client.
+
+A: If you're a keen user of VIM then mouse mode in iTerm2 works properly - you can position the cursor and select text using the mouse (it kind of works in Terminal but it's buggy). Plus when you're running VIM (or other console based apps that use the 'alternate' screen (t_ti, t_te)) then the scrolling works properly too.
+Also there's a very useful search facility which can be used to search the contents of all open iTerm2 tabs which can be reached by going to Window->Exposé all Tabs(⌥⌘E).
+I also like the inline image display functionality which is possible using the iTerm2 tools tools which use some custom escape codes
+
+A: I just love iTerm because it does have the auto-complete for commands.thats just awesome.
+From the feature list for iTerm2's on its website:
+
+Just type the start of any word that has ever appeared in your window
+  and then Cmd-; will pop open a window with suggestions. The word
+  you're looking for is usually on top of the list!
+
+
+
+A: Besides the features already listed, iTerm2 is constantly improving, while Terminal receives minor updates every few years. Feature requests have a much better chance of being honored in iTerm2. There are some cool things coming in the next release that are not yet documented, but have a look through the recent release notes to see them.
+Also, I'd note that there's some confusion about split panes in a comment in the OP. Terminal's split panes give you two views of the same window, while iTerm2's give you unlimited independent terminals in one tab.
+
+A: From the iTerm2 web site:
+
+iTerm2 has a lot of features. Every conceivable desire a terminal user might have has been foreseen and solved. And these are just the main attractions!
+
+iTerm2's feature page highlights the following:
+
+
+*
+
+*Split Panes
+
+*Hotkey Window
+
+*Search Highlighted
+
+*Autocomplete
+
+*Mouseless Copy
+
+*Paste History
+
+*Instant Replay
+
+*Configurability
+
+*Unixyness
+
+*256 Colors (or more!)
+
+*Readability
+
+*Mouse Reporting
+
+*Growl Support
+
+*Exposé Tab
+
+*Tagged Profiles
+
+*Multi-Lingual
+
+*Triggers
+
+*Smart Selection
+
+*Shell Integration
+
+*Automatic Profile Switching
+
+*Inline Images
+
+*Timestamps
+
+*Password Manager
+
+*Advanced Paste
+
+*Annotations
+
+*Badges
+
+*Captured Output
+
+
+A: I use iTerm2 since I can't configure my Mac Terminal have different colors background when I open different Terminals.

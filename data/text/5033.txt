@@ -1,0 +1,22 @@
+Q: Cookie for domain can't be saved I'm having an issue with a website. On one machine (10.6.8) it is not possible anymore to save the login cookie of a particular website. The site does not work with any user account on that Mac anymore. 
+This issue occurs in all browsers on that machine. On other machines or for other domains on the same machine the logins are working fine. The user's password is definitely correct as it works on other machines. The problem is that the cookie of that particular web page cannot be saved. 
+I tried without success:
+
+
+*
+
+*Check Setting (Cookies are allowed)
+
+*Reset browsing data of all browsers
+
+*Delete ~/Library/Cookies/
+
+*Repair permissions
+
+*Reboot and reset PRAM.
+
+
+Does anyone has ideas on this? Thanks.
+
+A: The problem  with the date on the computer is related to the cookie's expiration. The website is reporting that the cookie is valid from 1 week (or whatever) when it is created and given to the computer, but when the browser compares the cookie's expiration period to the current system time, it is either a TRUE or FALSE value. Because the date is so far off, it's always a FALSE (it only needs to be 1 second outside the valid period to get a FALSE value).
+This is true for Windows too. Most people have this same problem with Windows 8.

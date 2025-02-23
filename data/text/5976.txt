@@ -1,0 +1,59 @@
+Q: Can Finder and the "open" command treat files with .sh or other typical extensions just like .command files? I am looking for a way to inject some more extensions into the OS X launch services database systematically so that when clicked, they execute in the terminal app just like .command files do by default.
+Things like .ksh, .sh, and .csh would be nice to start, but I assume once I figure out how to add one, it's easy to do the rest.
+An answer specific to Lion or Snow Leopard is fine, so a general-case answer for all OS versions is not necessary. It would be great if this were scriptable and wrote directly to the Launch Services database so I could automate this rather than going to finder on each mac and doing a lot of clicking.
+
+A: If a file is opened with Terminal, and has the execute bit set, then Terminal will execute it.
+Get Info on a .sh file and set it to be opened with Terminal, and click the Change All button.
+
+A: To prefer Terminal to open .sh files — using the defaults command, without using Finder
+In most cases, all that's required should be possible from the command line …
+Preparation
+Two commands: 
+defaults read com.apple.LaunchServices | grep -B 1 -A 3 public.shell-script
+defaults read com.apple.LaunchServices | grep -B 1 -A 4 "LSHandlerContentTag = sh;"
+If either command reveals an existing preference
+Use Xcode or any other suitable property list editor to remove the relevant dictionary from the LSHandlers key within the following file: 
+~/Library/Preferences/com.apple.LaunchServices.plist
+Hints: 
+
+
+*
+
+*defaults, with which I'm more familiar, seems unsuitable for removal of a single dictionary from an array
+
+*removal should be necessary only if (say) the user has previously used Finder to associate .sh files with an application other than the system default
+
+*a Super User answer under How to change default app for all files of particular file type through terminal in OS X? is recently edited to include a script that uses PlistBuddy — credit to Daniel Beck.
+
+
+
+Adding to LaunchServices preferences, for Terminal to view and edit .sh files
+Two one-line commands. 
+Depending on your requirements, the first command alone may suffice: 
+defaults write com.apple.LaunchServices LSHandlers -array-add '{ LSHandlerContentType = "public.shell-script"; LSHandlerRoleViewer = "com.apple.Terminal"; LSHandlerRoleEditor = "com.apple.Terminal"; }'
+defaults write com.apple.LaunchServices LSHandlers -array-add '{ LSHandlerContentTag = "sh"; LSHandlerContentTagClass = "public.filename-extension"; LSHandlerRoleViewer = "com.apple.Terminal"; LSHandlerRoleEditor = "com.apple.Terminal"; }'
+For the new preferences to be respected
+Modifications to the user domain persistence layer of Launch Services must be acknowledged. For this, least disruptive to the end user will be: 
+
+
+*
+
+*a restart of the operating system. 
+
+
+From the command line, if immediate restart is acceptable:
+sudo shutdown -r now
+
+Background
+Understanding Terminal.app support for .sh (public.shell-script)
+Consider the result of the following command: 
+defaults read /Applications/Utilities/Terminal.app/Contents/Info
+
+
+*
+
+*under CFBundleDocumentTypes (an array of dictionaries describing the document types supported by the bundle) we see that Terminal is designed to support com.apple.terminal.shell-script 
+
+*public.shell-script (the system-declared UTI associated with .sh) is not supported at that level, it appears elsewhere in the property list — under UTExportedTypeDeclarations
+Terminal aside for a moment: it's sometimes inappropriate (or simply worthless) to force opening of a document type, by an app that is designed without support for that type. 
+For Terminal, I imagine no harm in handling the public.shell-script type. 

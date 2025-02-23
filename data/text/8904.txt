@@ -1,0 +1,7 @@
+Q: mds error "No store registered for scope" for nonexistent volume My system log is flooded with error messages like the following:
+mds: (Error) Server: No store registered for scope "/Volumes/Storage"
+
+The volume in the error was in use on a previous machine before I migrated to my current machine. Several have suggested adding and removing that volume in the Spotlight Privacy settings, but that volume no longer exists. Is there an mds configuration file somewhere that I can edit so that mds no longer looks for that volume?
+
+A: I use Alfred, a utility similar to Quicksilver. I had previously configured it to search /Volumes/Storage for apps, but never told it to stop trying to index that volume once I migrated to the new machine.
+I removed the /Volumes/Storage entry from Alfred's list of directories to index, and now the console messages have stopped.

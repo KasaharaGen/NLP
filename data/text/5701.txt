@@ -1,0 +1,29 @@
+Q: Will Terminal show a progress bar when I copy with "cp"? Is is possible to display a progress bar when copying files in Terminal using cp?
+
+A: You can use rsync instead.
+rsync --progress /copy/from /copy/to
+
+
+A: During cp, CtrlT displays the current percentage (on macOS at least)
+
+A: If you are copying large files or directories using cp, you can open up 'Activity Monitor', go to the 'Disk' tab and look for the process 'cp'. Here you can keep track of how many bytes have been written since the last boot, giving you a rough idea of the progress. (OS X 10.10).
+Hope that helps!
+
+A: #!/bin/sh
+   strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
+      | awk '{
+        count += $NF
+            if (count % 10 == 0) {
+               percent = count / total_size * 100
+               printf "%3d%% [", percent
+               for (i=0;i<=percent;i++)
+                  printf "="
+               printf ">"
+               for (i=percent;i<100;i++)
+                  printf " "
+               printf "]\r"
+            }
+         }
+         END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
+
+It's not perfect, but it works... drop that in a directory path and name it something similar.. 

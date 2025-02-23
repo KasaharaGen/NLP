@@ -1,0 +1,17 @@
+Q: How can I get the load average (and only the load average) on Mac OS X? On all linux boxes /proc/loadavg contains the raw load for 1, 5, and 15 minutes. Nothing extra. On OS X machines this file does not exist.
+Is there a file or a terminal command which will give me the 1, 5 and 15 minute load averages under OS X, similar to /proc/loadavg on Linux? I know top and w display the load averages but they have a lot more information too. I want just the load averages.
+
+A: You can also use this sysctl:
+sysctl -n vm.loadavg
+
+
+A: Take the commands you know (top, uptime, w, etc.) and use other tools to reduce to just the data you want. 
+An example for w:
+w | head -n1 | cut -d":" -f4
+
+An example for uptime:
+uptime | cut -d":" -f4- | sed s/,//g
+
+An example of loads.d:
+sudo loads.d | awk '/./ { printf "%.2f %.2f %.2f\n", $7, $8, $9 }'
+

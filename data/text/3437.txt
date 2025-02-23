@@ -1,0 +1,11 @@
+Q: Most programs don't use proxy To get internet in my school I have to use the schools http proxy server. So I configured my network preferences to use the proxy. But nearly no program seems to accept that configuration and use the proxy. In Firefox I can help myself with setting FF itself to a proxy connection. But what do I do with all my other programs? Why don't they use the proxy I already set up?
+I set the following proxy configuration:
+FTP, Web, Secure Web, Streaming, SOCKS, Gopher are all set to proxy.domain.td with port 8080 and Automatic is not set. The proxy doesn't need a user or password and I didn't set one.
+What did I forget to set up?
+
+A: Answer is right here:
+
+To get internet in my school I have to use the schools http proxy server
+
+If the proxy supports only HTTP, it does only support HTTP.
+I don't think you forgot anything. Contact your school's IT if they have different addresses/logins for other protocols. If they don't — file a feature request.

@@ -1,0 +1,88 @@
+Q: Switching between applications in OS X It is very easy to switch applications in OS X using ⌘-tab. But what if an application is hidden?
+Let me describe some problems I am facing and what I want to accomplish.
+
+
+*
+
+*⌘-tab switches between all opened applications
+What about minimized applications or applications with no windows?
+(Xcode, for example, after I've closed all its open windows)
+
+*When I press F9, I can see all windows
+This includes minimized windows at the bottom, but not hidden windows
+
+*Hidden versus minimized windows and application creates confusion
+
+*If someone wants to switch, they can:
+
+
+*
+
+*F11 to view the desktop
+
+*F9 to view all opened windows (except for hidden windows)
+
+*F8 to switch Spaces (if multiple Spaces are active)
+
+*⌘-tab for all applications
+
+*⌘-H to hide an application
+
+*⌘-M to minimize a window
+
+*⌘-` to switch between multiple windows of one application
+
+
+
+I face a lot of confusion while switching. I have to keep many things in mind, such as whether it is a window or an application.
+In short: What do you do when you want to switch? And what's the simplest way to get familiar with how OS X handles opened windows and applications?
+
+A: Let’s reply in parts (as Jack The Ripper may say).
+
+
+*
+
+*⌘ cmd + Tab is effectively for switching between applications but not windows of an application.
+
+*⌘ cmd + ` does the window part. 
+
+
+So far, so good. 
+Why do we have Minimize and Hide?
+At first they tend to be very confusing, especially because the hide part is rather new to people coming from other Operating Systems. Windows only has minimize. 
+It is confusing but the reason for both becomes apparent when you analyze the limitations of each. Independently of the particular implementation that OS X does for handling with this situations, there’s a reason for each. 
+Hide
+⌘ cmd + H will effectively hide most of the applications (and I say most because there are some notable exceptions out there). You will want to hide an application when you want to get it out of the way, completely, in all its forms, windows, and palettes. There will be two traces of the application after it has been hidden. It will be on the Dock with a dot (where you can click to perform the usual dock’s magic) and it will be once in ⌘ cmd + Tab regardless of the number of windows/palettes/etc.
+So in conclusion, hide is an all-or-nothing mode. If you have a multi-document application (e.g.: Pages) with a few documents open (each in its own window), and you want to not see all of them at the same time, Hide is the way to go. It disappears. Until you bring it back, again, all of it. It also doesn’t show in Exposé, so you can’t find it there. You’ve hidden it. 
+Minimize
+⌘ cmd + M will perform an old trick and will send the current window to the dock. In older OS X versions, there was a dedicated space (next to the trashcan) for these minimized windows. Snow Leopard changed (for better in my opinion) the way this works, and now you can see them in Exposé or when clicking (and holding) on the application icon in the Dock. This subtle distinction is the first important difference, as hidden apps are invisible to Exposé (except when you click on the Dock’s Icon, exposé will show all the windows, separating the minimized ones in the lower portion, but you can still see the ones that were open before you hide the whole application).
+You want to use Minimize when —following the above example with Pages— you have this Application with three windows (Pages Docs) and you want to hide one of the documents, but not all of them. Minimize it, and it will go to the Dock, but you can still work on the other documents you have open. 
+But what about Applications with one Window?
+Well, here’s where things get “gray”. Technically, unless you really like Minimize (or have any other reason), hide should be the way to get rid of that Application. Minimize is more clumsy and harder to bring back without the mouse, but hidden windows do not show up in Exposé, so you really have to decide.
+Ok, I know I minimized something, how do I bring it back without the mouse?
+That’s a tricky one since the age of Panther (OS X 10.3). Perform this simple test. 
+
+
+*
+
+*Open TextEdit and create 3 new documents (windows). You have now 3 editor screens right in front of you. 
+
+*⌘ cmd + M one of them, and watch it go to the Dock. 
+
+*Now use ⌘ cmd + ` and see you can only switch between the two windows.
+
+*⌘ cmd + H in either Window, hides all the TextEdit windows. It no longer shows in Exposé… wait… the Minimized windows do show! 
+
+
+Let’s get real… really, how do I bring it back?!
+Technique Number One:
+Use Exposé. You can type the name of the window while expose is activated (or use the arrow keys) to select a window, including the minimized ones.
+Technique Number Two: (this one is trickier)
+⌘ cmd + Tab until you have TextEdit selected but don’t release ⌘ cmd, instead press ⌥ alt (both at the same time now) and release them together. It’s hard. 
+Now this doesn’t always work (especially if the Application has multiple windows open and you have switched a few times away), so the best way to bring minimized apps back is Expose.
+Enough trickery, how do we deal with this?
+This is subjective and a matter of personal preference, and I didn’t even include Spaces in the mix, that would have make it more interesting… all these window handling mechanisms are confusing and have gotten more confusing with the newest additions to OS X. But it’s usable and you get used to it kind of fast. 
+What I do is usually hide an application I don’t use. I don’t really use Spaces, I hide. If I happen to have a lot of windows of an application open, I start to minimize the ones that I really wish I could hide but I can’t because then I’ll lose the others (are you following me here?). So the key for me is Hide as much as possible. Only minimize when more than one Window within the same application and I want to keep at least one visible. 
+I have recently started using HyperDock (still Beta and Free) and I like the Window 7 approach to the Dock (and the fact that It can show all safari tabs as “windows”). So I’ll be likely getting that. I don’t use the Mouse that much, but that’s a nice addition for when I do. 
+In Mac, users tend to hide rather than Minimize, at least that’s my experience after spending years with other Mac users (mostly programmers and graphic designers). 
+As they say in Internet, ymmv. :)

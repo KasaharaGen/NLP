@@ -1,0 +1,35 @@
+Q: Does the MacBook Air have a Fast User Switching (Login Window) shortcut key? I have recently purchased a new MacBook Air, with my optical drive equipped MacBooks, there is a Shift+Control+Eject key combination that allows you to lock your system by showing the Login Window for Fast User Switching.
+With the new MacBook Air, the Eject key has been replaced with a Power key, so the Shift+Control+Eject combination is no longer possible.
+Is there a new key combination available?
+
+A: There isn't one that I'm aware of, but one could use this workaround:
+
+
+*
+
+*Open Automator, create a new Service.
+
+*Set the dropdowns at the top to "Service receives 'no input' in 'any application'"
+
+*Add the action "Run Shell Script"
+
+*Paste this command (all one line) into the action: /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+
+*Save the service. You can call it whatever you like.
+
+*You can confirm that it's there by going to any application menu, going to services, and verifying that it shows up.
+
+*Head over to System Preferences, and into the Keyboard pane.
+
+*In the "Keyboard Shortcuts" tabs, select "Application Shortcuts" from the list on the left.
+
+*A list of shortcuts should load on the right, with "All Applications" at the top. Highlight this, and click the plus (+) under the list.
+
+*In the window that appears, make sure that "All Applications" is selected in the top dropdown.
+
+*For "Menu Title", enter the name of the service you created exactly as it appears - including any punctuation, capitalization, etc.
+
+*Assign any shortcut you like, then click "Add".
+
+
+This will work even if the Fast User Switching menu extra isn't enabled.

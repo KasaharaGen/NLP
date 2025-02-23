@@ -1,0 +1,11 @@
+Q: Is there a way to see connected static leases in Lion Server? In Lion Server Admin, under DHCP settings, it is possible to see a list of "Clients", but for me this list is nearly always empty, except in the rare occasions when I allow a machine on my network that is not statically mapped. Is it in fact the case that statically mapped IP addresses are not listed under "Clients" by default? Is there a way to see currently connected, statically mapped IP addresses?
+
+A: You can look at "dynamically" attributed leases with:
+more /var/db/dhcpd_leases
+
+You can look at "statically" and "dynamically" attributed leases with:
+grep '\[en.\]' /var/log/system.log | more
+
+
+A: Don't think so, no.  There is a need to know which DHCP addresses are currently in use so that stale addresses can be re-issued to new clients, etc.  You're looking for statically-connected users under DHCP, which is by definition not static.  They will not show there.  
+One way to check though might be to ping the broadcast address and hope the static clients are configured to respond to pings.  (IE.  192.168.1.255 on a 192.168.1.0/24 subnet).

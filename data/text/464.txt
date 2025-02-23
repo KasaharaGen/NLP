@@ -1,0 +1,10 @@
+Q: Speed up iPhone SMS app I found that after some weeks of usage, my SMS app on a iPhone 3G (iOS 3.0.1, JB) seems to take a few more seconds to start than usual.
+On all other cellphones I had, you had to delete old messages because of memory constrains and to make the app work better. Does this apply to the iPhone as well?
+If so, how can I delete all messages of all contacts that are more than 1 month old, or something?
+As the SMS database is SQLite based, I could script it. I even found this link regarding this but has been hesitating to use it.
+How do you do it?
+
+A: Not for the faint of heart, but I've done some research into iPhone daemons, and deleting/ disabling certain ones can have an impact on speed. Here's a lesson from BigBoss about the subject. Here's a list of daemons and what they do (I found this really helpful).
+Hope this helps!
+
+A: I cannot remember where I read this, but turning off Spotlight search indexing for messages should speed it up. Go into Settings: General: Spotlight Search, and uncheck Messages.

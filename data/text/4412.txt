@@ -1,0 +1,27 @@
+Q: Print HTML to PDF while retaining hyperlinks I'm trying to create a PDF document from an HTML document.
+Of course it's easy to do this using the built-in PDF Printer, however, this does not retain hyperlinks.
+I've tried wkhtmltopdf which looked very promising, but it crashes on every attempt.
+Is anyone aware of any other options for generating a PDF document from an HTML document while retaining URL links?
+
+A: The built-in Safari browser seems to do this when you do File -> Print -> PDF -> Save as PDF, it works for me as of Version 6 of Mac Safari.
+
+A: Found an answer over on SuperUser.com: wkpdf
+Free, works perfectly. All hyperlinks retained.
+
+A: You can do this using Adobe Acrobat.
+In Acrobat, go to File-> Create PDF-> From File. Select your HTML doc, let it do a bit of work, and then use File-> Save As to save it.
+All hyperlinks will be intact.
+
+A: Old question, but just found out if you open the .html in Microsoft Word and then save as pdf for online distribution, then the link works.
+
+A: I have tried dompdf in the past and has worked very well for me. dompdf PHP
+
+A: Check out the "Save as PDF" browser plugins:
+Chrome plugin:
+https://chrome.google.com/extensions/detail/kpdjmbiefanbdgnkcikhllpmjnnllbbc
+Firefox plugin:
+https://addons.mozilla.org/en-US/firefox/addon/save-as-pdf/
+Both are free, but developed by a commercial company http://pdfcrowd.com.
+I tried the FF plugin, and except for some minor layout overlapping in the converted PDF document, all hyperlinks were clickable and working.
+
+A: http://pdfcrowd.com only works, if the link is public - so no printing of pages, where you are logged in.

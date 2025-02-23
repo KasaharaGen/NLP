@@ -1,0 +1,20 @@
+Q: How can I release and renew my DHCP lease from Terminal? From the Terminal, how can I release and renew my DHCP lease?
+Currently, I'm doing the following for the wireless interface, but I'm wondering if there's a better way:
+sudo ifconfig en1 down
+sudo ifconfig en1 up
+
+For the wired interface, replace en1 with en0.
+
+A: This can also be achieved with the following two commands :
+sudo ipconfig set en0 BOOTP
+sudo ipconfig set en0 DHCP
+
+You can alias the two together in your bash profile:
+alias renew="sudo ipconfig set en0 BOOTP && sudo ipconfig set en0 DHCP"
+
+So then you just have one command called renew that will release and renew your DHCP.
+
+A: The way the renew button works in System Preferences is to create a key in the system configuration. One can create the key via:
+echo "add State:/Network/Interface/en0/RefreshConfiguration temporary" | sudo scutil
+
+Swapping en0 for the desired interface.

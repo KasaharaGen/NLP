@@ -1,0 +1,9 @@
+Q: Can't copy folder with files from external hard drive because of permissions? I can't copy a folder (with files) from an external hard drive because of permissions problems. (You do not have permissions to the files in this folder.)
+However, those files were created by me (on Snow Leopard - I'm on Lion right now). Is there any want to force or gain admin permissions on those files?
+
+A: If you are familiar with terminal you can use the following command;
+sudo chown -R username directory
+
+username: your username
+directory: the folder in which the files you want to copy are located
+PS Requires an administrator's password

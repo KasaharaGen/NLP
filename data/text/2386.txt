@@ -1,0 +1,12 @@
+Q: can't get HTML to display in Apple Mail signature I'm stumped.  I cannot get the HTML I wrote to display!  I followed all the steps properly with creating a webarchive file, renaming so that it shows up in Apple Mail. But then when I go back in and see the signature, it's there but it doesn't display the HTML ... it just displays the code!
+I've tested the HTML code on a webpage, and it works just fine.  I have my message format as Rich Text.
+The code is:
+<a href="http://www.tweetbars.com" ><img src="http://bar.tweetbars.com/azdesertfather.gif" /></a></center>
+
+
+A: You don't specify the steps you used so in case you missed something, take a look at this page describing how to set up HTML mail signatures.
+
+A: OK, I figured out the problem, thanks to someone on the Apple forum!
+When I was typing out the file in TextEdit, I needed to use the setting Format > Make Plain Text (or use a pure text editor like Text Wrangler).  That was messing up the whole process.  Now it's working!
+Here's that thread:
+http://discussions.apple.com/thread.jspa?messageID=13095810#13095810

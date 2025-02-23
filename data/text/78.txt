@@ -1,0 +1,72 @@
+Q: How can you get Finder to sort by name, but also sort folders before files? When I want sort my files and folder in Finder (specially sort by name) they sort all item by name mixing folders and files together. I want a way that sorts (like Windows) first all folders by name then all other items by name. How can I do this?
+
+A: There's no built in feature in the Finder to achieve that, but with the "plugin" TotalFinder you can get that. It's located under the "Tweaks" tab in the TotalFinder settings.
+Edit: There was a screenshot here, but it was out of date. Look at Robsofts answer instead for an up-to-date screenshot!
+
+A: XtraFinder is free plugin for Finder that allows you to sort folders before files, by selecting "Arrange folders on top" in the Preferences.
+After installing and running it, you can tune folder sorting and many other aspects of Finder behavior.
+
+A: Here is a method that involves a plist setting, and no plugin, or third party app.
+To summarize:
+
+Show Package Contents of Finder.app (located in System/Library/CoreServices
+Drill down to Contents > Resources > English.lproj. > InfoPlist.strings
+Locate the string “Folder” = “Folder”;
+Add a leading space before the second Folder as follows: “Folder” = “ Folder”;
+Save InfoPlist.strings to the same location (backup elsewhere if desired)
+Relaunch Finder (Ctrl+Option+Click)
+Open new Finder window and sort files by Kind
+
+
+A: Related to the Total Finder answer above (so please don't vote for this answer), here's a picture of the current TF tweaks page (you get to it from the Finder's Preferences screen). With these options I definitely get the folders at the top of the list.
+You can also control this from the VIEW menu in Finder, once TF is installed.
+
+
+A: There is a Finder replacement called Path Finder that will do what you want. It's a bit more expensive but it does do a lot more than just a regular finder window.
+
+A: As of OS X Yosemite (≥ 10.10), you can sort folders above files without any third-party apps.
+Finder > Preferences -> Advanced tab -> Check "Keep folders on top: in windows when sorting by name" option.
+
+A: This is possible by having icons displayed as list (Cmd + 2) in Finder window. First click on the [Name] column header (this will sort all files by name), then click on [Kind] column header (this will sort items by kind, but keep the name sorting in groups).
+
+A: Since I have found myself doing the Folder trick over and over again I ended up creating a bash script to automate renaming of the string in /System/Library/CoreServices/Finder.app/Contents/Resources/English.lproj/InfoPlist.strings.
+
+
+*
+
+*Save it as e.g. finder-folders-first.sh
+
+*Make it executable: chmod +x finder-folders-first.sh
+
+*Run with root permissions: sudo finder-folders-first.sh
+#!/bin/bash
+# Make folders sortable first in Finder
+
+if [[ $EUID -ne 0 ]]; then
+   echo "Script must be run as root! Aborting."
+   exit 1
+fi
+
+cd /System/Library/CoreServices/Finder.app/Contents/Resources/English.lproj/
+
+cp -i InfoPlist.strings InfoPlist_ORIGINAL-`date +%b-%d-%Y_%H_%M_%S`.strings
+plutil -convert xml1 InfoPlist.strings
+sed 's|<string>Folder</string>|<string> Folder</string>|' InfoPlist.strings > InfoPlist_PATCHED.strings
+
+diff InfoPlist.strings InfoPlist_PATCHED.strings
+
+if [ $? -eq 0 ]; then
+    echo File already patched! Exiting.
+    exit -1
+else
+    echo Patching original file...
+    plutil -convert binary1 InfoPlist_PATCHED.strings -o InfoPlist.strings
+
+fi
+echo Restarting Finder...
+killall Finder
+echo Done!
+
+The last line restarts Finder. To do the same thing from the GUI press Alt+rightclick the Finder icon in the Dock and select Relaunch.
+Now, in Finder click the Kind column once/twice to have the folders listed as first/last.
+This works in Mavericks and Yosemite, but might not work in later versions.

@@ -1,0 +1,29 @@
+Q: How to make iPhoto library back into bundle I recently recovered from a disk failure and while most of my files are ok, I'm having trouble with my iPhoto library.
+While it appears that the data fro the iPhoto library is intact in the recovered files, the library now appears as a folder rather than a bundle.  As a result, iPhoto will not recognize or open the library.
+Is there any way to make it back into a bundle either from the GUI or via the Terminal?
+
+A: EDIT: Changed my answer.  :-)
+I copied my iPhoto Library, and removed the extended attributes (a piece of metadata called com.apple.finderInfo). It then showed up as a folder rather than a proper iPhoto Library. I then fired up iPhoto holding option, and selected this folder as my iPhoto Library. It accepted it and changed the type, putting the metadata back, and all was well. I suspect this is what needs to happen in your case as well, it looks like as long as the files are there, iPhoto will do the work for you. 
+Old answer: I think you can rename it to 'iPhoto Library.bundle'.  It will then take the form of a bundle.  You can then remove the '.bundle' from the file name and it should (still) act bundle-like.
+Not really sure though.
+EDIT: or .app
+
+A: You could do the following:
+
+
+*
+
+*Move or rename your existing folder that is not behaving correctly.
+
+*Launch iPhoto with the Opt key and select a new library. 
+
+*Select the default location: /Users/*yourname*/Pictures/iPhoto Library
+
+*Quit iPhoto
+
+*Select the new library in Finder and then select "Show Package Contents"
+
+*Drag everything from your old mis-behaving folder into the new folder
+
+*Launch iPhoto (without Opt)
+

@@ -1,0 +1,7 @@
+Q: Is there a way to reopen last windows when you launch TextMate in Lion? I know TextMate isn't Lion optimised, but is there any way to do this?
+
+A: As mentioned in the troubleshooting section you can achieve this by entering the following into your Terminal.app:
+defaults write com.macromates.textmate NSQuitAlwaysKeepsWindows -bool NO
+
+
+A: The latest build of TextMate 2 does this!

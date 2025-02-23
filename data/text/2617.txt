@@ -1,0 +1,87 @@
+Q: What are the differences between minimizing and hiding an application? Coming from a Windows background, I'm confused about the concepts of minimizing windows and hiding applications. What are the differences between the two, and when would you want to use one method over the other?
+
+A: Each has it's own benefits and weaknesses... these are the technical differences between the two.
+Each attribute will be marked with an "M" for Minimizing or "H" for Hiding. While it's very subjective, I'll put the one that I think is better on top
+Hiding windows:
+
+
+*
+
+*M: Individual windows can be minimized.
+
+*H: All windows must be hidden.
+
+
+Accessing windows via Expose:
+
+
+*
+
+*M: Windows can be accessed via Expose on the bottom row.
+
+*H: There's no way to access the app's windows via Expose.
+
+
+Accessing windows via Application Switcher:
+
+
+*
+
+*H: Windows are restored exactly as they were when using the Application Switcher.
+
+*M: Windows cannot be restored via the Application Switcher.
+
+
+Accessing windows via Dock:
+
+
+*
+
+*H: Clicking the dock icon (or any window in the icon's menu) restores all of the app's windows, except those that were minimized.
+
+*M: Clicking the app's icon in the dock only opens up the last window minimized, and only if there aren't any visible windows.
+
+
+Application Switcher icon location:
+
+
+*
+
+*H: The app's icon moves to the right-hand side in the Application Switcher, moving it out of the way.
+
+*M: The app's icon stays in the same place, even if all windows are minimized.
+
+
+Indication of hidden windows:
+
+
+*
+
+*M: Minimized windows are displayed in the dock, and diamonds are displayed next to each window's title. (There's a setting is System Preferences to hide the windows from appearing in the dock.)
+
+*H: No indication that the app/windows are hidden whatsoever, not even diamonds appear next to the window's titles. (This can be changed by running the following in Terminal: defaults write com.apple.Dock showhidden -bool YES; killall Dock. You can undo this by typing: defaults delete com.apple.Dock showhidden; killall Dock.)
+
+
+Switching focus to a new application:
+
+
+*
+
+*H: After hiding an app, the focus is sent to another app.
+
+*M: Even if you minimize an app's last window, it will still remain focused.
+
+
+Other Differences:
+
+
+*
+
+*H: You cannot hide all open applications. At least one has to remain visible.
+
+*H: As @Ian pointed out, some apps will use up less resources when they are hidden.
+
+
+A: One more thing to consider: when hidden, apps can be brought back with CMD-TAB combination. But when you do it, you will bring up all open windows of that application.
+When minimized, this is not possible. In a clean OS X there is no way to do it without using the mouse, at least in my knowledge. Using a mouse is considered a slow-down by a number of users.
+In general, OS X is application-centric (and windows are of second importance), as opposed to Windows, which is window-centered. I prefer window-centered approach (since I need a window to interact with the machine, therefore windows are what I care about), but this requires 3rd party tools, such as Witch.

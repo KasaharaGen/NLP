@@ -1,0 +1,95 @@
+Q: What are some great OS X Dropbox uses? There are a number of ways I use my Dropbox with OS X apps, or iOS devices.
+Some of them include:
+
+
+*
+
+*Recipe tracking: I keep a 'recipes' folder inside Together's dropbox-synced-library, so from my Mac I can drag recipe web pages to the folder keeping them as PDF's, and view them on my iPad while I cook. It also works with text-recipes I've created inside Together.
+
+*iCal sync: I have The Hit List synced with iCal and keep its library to Dropbox, so iCal's library is being synced to all computers, along with all other apps relying on it (Alarms app)
+
+*PDF to iBooks: The easiest way to send a PDF to your iBooks..
+
+
+I can't wait to read about yours clever/unique/nifty ways you're using Dropbox on your Mac / iOS devices.
+Rules
+
+
+*
+
+*One answer per post
+
+*Please search before answering. Duplicate answers will be deleted.
+
+*Please keep the answers relative to OSX/iOS. No general Dropbox uses!
+
+*It would be nice if you provide a bold title to your answer. That way it would be easier to parse/search them.
+
+
+A: Fast way to copy a photo taken on my iPhone to my MacBook Pro.
+Sometimes I need to move a photo I have just taken with the phone to my laptop, and using Dropbox I can just upload it to a folder in my account, without the need to connect the phone to iTunes and import the image with iPhoto.
+
+A: Setting up new environment
+I keep copies of my dotfiles and scripts in there, so I can easily customise my command line environment on a new Mac. Very handy for freelancers who have to work in-office from time-to-time.
+
+A: Simple file transfer from my MBP to Windows computer
+Or if I know one of my family members need something that I got, I simply put it there, and open Dropbox on their computer to grab the file. Much better than mailing to yourself.
+[from Matias answer]
+
+A: Dropbox saves me from having to use Windows for Web development.
+For me, Dropbox makes it possible to do Web development on my Mac.
+I use it to sync my work with a PC so that I can test on Internet Explorer. That way, I can switch to the PC, give Dropbox a sec to sync my work, and then open my files. That saves me having to FTP everything all the time.
+
+A: I was sent this link recently on how to host your Git repository in Dropbox. Most people here likely have shell accounts and/or VPNs, but the author describes this as a way to get at your repo while behind a corporate firewall.
+
+A: iTunes Watched Folders
+Similarly, iTunes can automatically add content from a watched folder, which is useful for people with an Apple TV and media server that aren't near each other.
+
+A: Folder Actions
+You could attach a folder action to a dropbox folder to run an Applescript on whatever you put in there. I'm contemplating setting one up to run ImgOptim on any images I add, then moving them to a destination folder. Other examples could be running a shell script to convert markdown to html for quick-and-dirty site updates.
+
+A: Synchronization
+I used to use it as a poor man's synchronization tool for Safari, symlinking the ~/Library/Safari/Bookmarks.plist to a Dropbox folder.  It basically works but it's not failsafe --you should run Safari on one computer only when you're confident that Safari is not running on the other.
+This can be applied to almost any application... just use it with care.
+
+A: Syncing of vim settings and plugins
+I use it for my vim runtime folders, including my vimrc, so that all my machines have the same vim implementation. When I make vimrc changes, or add plugins, etc., they're automatically available on other machines. This is quite useful because I use a Windows PC at work, and a MacBook Air at home, and they automatically stay in sync.
+
+A: Calibre Library Sync
+I use it to store my Calibre Library.  That way I can add books from my laptop or my desktop and share those books if I want to. 
+
+A: For me, the biggest downside of the 50/100GB accounts on Dropbox has been the requirement to have the content stored locally instead of remote-only (see MobileMe iDisk, etc.). So when DropDAV came about, it was huge. Basically, it allows Dropbox to be accessed via the WebDAV protocol. That allows me to do anything from accessing all the content via a FTP client like Transmit without having to download 50GB+ first, to saving content directly to Dropbox from my iPhone/iPad in apps that don't support the API (ie. Apple iWork suite).
+
+A: 1Password sync
+Syncing 1Password's stored keychain across my Macs. I use 1Password for managing passwords and, more importantly, auto-generating random passwords so that I never use the same password twice. Dropbox makes this much easier. 
+1Password's secure keychain file lives on my Dropbox, and each time a password is added or updated it's automatically sync'd across all my computers.
+
+A: Manage Torrent Downloads
+I have my BitTorrent client (Transmission) set up to watch a shared Dropbox directory for incoming .torrent files, so I can start a new torrent download from anywhere I happen to be. (GoodReader for iOS has some great file management capabilities, including uploading to Dropbox.)
+
+A: Syncing of .profile, .bash_aliases, .fonts and such like
+I use a Mac at home and Linux at work, and quite often i am working from home.
+I have a ~/login_config/ folder with a couple of files that I either softlink or source during .profile or .bashrc.
+My Mac .profile contains source ~/Dropbox/login_config/bash_aliases,
+my Linux box has a softlink ~/.bash_aliases -> ~/Dropbox/login_config/bash_aliases
+(and .bashrc on Ubuntu usually sources .bash_aliases automatically)
+I use a lot of aliases for ssh destinations for the machines I administer in the cloud and I can switch between work and home with all the same shortcuts, and never have them go out of sync.
+This approach can be extended to other shared resources, for example fonts and as a previous poster said, vim is another good one.
+
+A: Collaborative Text Editing
+When helping my girlfriend and/or a trusted friend, I simply give them my Dropbox detail, and we can edit the same document and save it, back and forth - Much like screen sharing, just with documents.
+
+A: For me, DropBox has let me use my iPad (along with iWork for the iPad) as a laptop replacement. With the addition of DropDav, Dropbox is essentially a grafted on file structure the user can interact with.
+DropDav lets you use your DropBox via WebDav, which means documents I create on the iPad, which I've found to be particularly good at periods of intense, focused writing, can be saved directly there and are waiting for me when I get home.
+Considering I work on a laptop, a desktop, and my iPad, I find this to be a massively preferable solution to most other things I've tried.
+
+A: I created a service using Automator that executes a shell script to compress my current XCode project folder. Each time it executes the compressed file gets written over and then accessing dropbox online, I can use the versions feature create a timeline of saved changes.
+This has advantages for my workflow - Instead of restoring individual files one at a time. I will just take my project back to a point in time when I knew everything was working properly. Dropbox will save every version for 30 days and gives me more granular control above time machine.
+
+A: Tunebox Organizes and Streams Your Dropbox Music Files to iOS:
+Tunebox is an App that makes your Dropbox a viable place for cloud music storage. It's a simple music player, where you can search through your artists, albums, and songs, then play albums. You can also download and save MP3s for offline play. 
+You don't get a ton of options like you would with most alternative music players, but it does the job for simple music playback well, even when you're on 3G/4G.
+Please note however it is however a paid-for application ($4.99 US iTunes Store).
+
+A: Sound Effects Library
+I use part of my Dropbox space for my (not very big) SFX library. It's great because I can send someone a link with a sound effect and they can access it on Dropbox.

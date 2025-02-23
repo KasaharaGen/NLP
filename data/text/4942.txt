@@ -1,0 +1,22 @@
+Q: Firefox doesn't respond to a shortcut for window zooming, because it has another "zoom" menu item, how can I avoid this? Firefox has a problem by which you can't assign it a shortcut to zoom the window.
+As it has another menu item named "Zoom" which actually has subitems for zoom in, etc. you can't map the shortcut by menu item name, because that item takes the stroke instead of the window zoom.
+I tried to edit Firefox's resources, to see if there was a .nib where I could rename the menu item to another thing so the shortcut would find the correct "zoom" item, but failed.
+Does someone have a solution for this?  
+edit: I'm talking about MacOS's Zoom Window action equivalent to Windows' Maximize, and not about zooming the contents in or out.  
+
+A: Firefox uses XUL files to define its user interface on all platforms. I just did a little poking in my Firefox.app 4.0.1 bundle:
+
+
+*
+
+*The XUL files are stored in Firefox.app/Contents/MacOS/omni.jar. (jar files can be unpacked with any Zip  archive tool, or the jar command-line tool which takes options like tar.)
+
+*The relevant XUL file may be chrome/browser/content/browser/baseMenuOverlay.xul. See also the referenced DTD files for the definitions of the entities like &zoomWindow.label;.
+
+
+Since you're editing the files anyway, you might as well add a shortcut there rather than changing the name to use the system shortcut customizer.
+
+A: Go to System Preferences > Keyboard > Keyboard Shortcuts > Application Shortcuts and add one for Firefox. Get the name of the menu item for, say, Zoom In and assign it a shortcut, then repeat for Zoom Out.
+It sounds like you're saying there is some reason you can't do this, but if you tell it "Zoom In" (or whatever it's called; I haven't installed Firefox on this computer yet) rather than "Zoom" I don't see why it wouldn't work.
+
+A: Apple - Shift - F will do the trick, I believe. 

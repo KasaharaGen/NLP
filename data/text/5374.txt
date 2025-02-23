@@ -1,0 +1,126 @@
+Q: Can I assign a keyboard shortcut to bring up the Mac OS X Login Window? I’d like to assign an “Every Application” keyboard shortcut to bring up the login window, for when I step away from my computer. Is there a way to do this? (Lion-only methods are fine.)
+
+A: If you want to assign alt ⌥+cmd ⌘+L to lock screen without installing any programs, in 5 minutes, I suggest you doing these three steps:
+
+
+*
+
+*Create a Service in Automator and set "Service receives selected" to "no input" instead of "text".
+
+*(Still in Automator) add 'Run AppleScript' (search on the left "apple" then double-click).
+In the script in place of  (* Your script goes here *) you copy-paste:
+do shell script "'/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession' -suspend"
+Save and exit. (You can name your service "Lock Screen".)
+
+*Open System Preferences, Keyboard then in Keyboard Shortcuts tab and under Services you will find your service "Lock Screen" towards the bottom of the list.
+Now, click on "none" next to "Lock Screen" to assign ⌥⌘ L to
+your service. Actually I suggest rather ⌃⌥⌘ L because ⌥⌘ L is assigned in Finder.
+Done. 
+(For step 2 cudos goes to Lauri Ranta!)
+
+A: Press Shift-Cmd+Q. Make sure that "Reopen windows when logging back in" is checked. Press enter. 
+Thanks to Lion, when you log back in, everything will look the same.
+
+A: I realise that this thread is probably quite old by now, but for all the options that has been given here, the simplest way has not been discussed.
+Apple allows you to lock your screen with a keyboard shortcut. You don't have to create one, there is one built right in to OSX — via the “Require password after sleep or screensaver” feature.
+Here is how to use it:
+
+
+*
+
+*Make sure that you have “Require password after sleep or screensaver
+begins” set to “immediately”.
+
+
+To do this, follow these steps:
+
+
+*
+
+*Open System Preferences 
+
+*Click on Security (on Lion, “Security & Privacy”)
+
+*Go to the General tab
+
+*If you don't already have one, put a tick in the box next to
+"Require password after sleep or screen saver begins"
+
+*Set the time interval to “immediately”
+
+*Exit System Preferences
+
+
+When now when you want to lock your Mac, simply use the keyboard shortcut 
+Ctrl ⌃ + Shift ⇧  + Eject ⏏  or
+Ctrl ⌃ + Shift ⇧  + Power 
+
+A: Another way to log out to the fast user switching screen is to assign a shortcut to this shell command:
+/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+If you have the Alfred Powerpack, you can assign a shortcut to the lock action, but just typing "lock" doesn't take that much longer.
+
+
+A: You can use Better Touch Tool (link) to create a multi-touch gesture or a shortcut to get to the login screen:
+Multi-touch gesture
+
+Keyboard Shortcut
+
+
+A: You could also set an Applescript to click the "Login Window" menu item after a certain amount of time:
+
+If you want to navigate the menubar, the script goes something like this:
+on run {input, parameters}
+
+    (* Login menu has to be the last! *)
+
+  tell application "System Events"
+    tell process "SystemUIServer"
+      set n to number of menu bar items of menu bar 1
+      tell menu bar item n of menu bar 1
+        click
+        repeat with i from 1 to 10
+          try
+            if name of menu item i of front menu contains "Login Window" then
+              click menu item i of front menu
+              exit repeat
+            end if
+          end try
+        end repeat
+      end tell
+    end tell
+  end tell
+
+  return input
+end run
+
+
+A: This may not answer your question entirely, but at least it is a step in the right direction.
+
+
+*
+
+*Open Keychain Access located in the Utilities Folder inside the Applications Folder.
+
+*Open Keychain Access preferences and check the box "Show keychain status in the menu bar."
+
+
+*From the Lock icon in the menu bar, choose "Lock Screen."
+
+
+
+
+A: Wow this has been going on a while… But after trying all these different suggestions I found the easiest way for me that I don't see mentioned here and elsewhere but is sorta common sense to me now that I think of it…
+
+
+*
+
+*Set the require password after sleep or screensaver to "immediately"
+
+*Enable "hot corners" and select a corner to either "start screen saver" or "put display to sleep".
+
+
+Then all you have to do is simply slide your cursor all the way into said corner and your screen saver will start of the display goes to sleep and then when you move the mouse again you will be at the login screen!  
+No scripts, no menu bar short cuts, no key sequences, just a simple swipe of the trackpad!   This works wether you have the corner set to screen saver, sleep display, or close the lid.
+
+A: There's only one way to do this, if you want to invoke the Login screen from a keyboard hotkey shortcut. It requires using the built-in Automator application in Mac OS. Here's the article on how to do it:
+http://www.macyourself.com/2013/01/27/how-to-lock-your-mac-screen-with-a-keyboard-shortcut/comment-page-2/#comment-6991

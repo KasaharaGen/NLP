@@ -1,0 +1,25 @@
+Q: Best, or best supported, USB-Serial adaptor for OSX I have various devices to connect to my iMac using good-old RS-232.
+Of course, I only have USB connectors on my machine.
+I have a couple of Prolific PL2303-based cables, and they seem to work OK, but the kext provided seems a little flaky and I'm not sure about long-term support.
+What is the most-stable, best-supported USB-Serial chip-set or cable?
+
+A: I have two Prolific USB-to-serial adapters but they are made by different Vendors (one is Prolific, the other ATEN).
+I've used their supplied drivers just fine. Note that there are open source drivers for these devices too available here: https://github.com/failberg/osx-pl2303 FYI my use case is actually patching them through to a VirtualBox Windows VM and using them in Windows, so I have two layers of drivers and have not had any problems yet.
+However, I think the best supported USB-to-serial devices are those made by Belkin. This is subjective, but I've used them for years without problem, and they are a large company with a reputation. They will likely be around in the future.
+
+A: Just to be clear, I have not used this device myself.
+Stewart Cheshire, creator of ZeroConf (the basis of Bonjour), gave a Google Tech Talk on the subject of ZeroConf, and presented a couple of embedded devices (Cameras, and an RS-232 unit).
+I've always wanted to try this out, but have never had a good enough use to cough up the money to do so.
+Stewart presented an RS-232 over Ethernet module from SitePlayer. They have a built in web interface used to set up the ethernet and serial parameters, and if I understand correctly, you simply telnet to the device's IP address in order to be presented with the serial interface. (See their pdf on the subject.)
+
+A: I'm professionaly using a
+Roline USB to Serial 0.3 m long adapter.
+I'm using the PL2303 OSX driver.
+When I plug my cable, this driver dynamically create /dev/tty.PL2303-0000nnnn. I use it from a Terminal or xterm window with:
+screen /dev/tty.PL2303-0000nnnn.
+0 problem with hundreds of connections on network equipments and servers (Brocade, Cisco, Extreme, Oracle (ex. Sun)…).
+
+A: Both Prolific PL2303 and FTDI devices work fine.
+I'm using a TrendNET TU-S9 v2 currently (PL-2303). Other than the vendor provided driver or driver from Prolific's Taiwan website, options include https://www.mac-usb-serial.com (fairly inexpensive driver), and the nice Mac app https://www.decisivetactics.com/products/serial/ (not free but works well) which has built-in drivers and doesn't require a separate driver installation.
+I have also seen claims that FTDI drivers are built into MacOS now but haven't personally tested since I don't have a FTDI device.
+One thing to be aware of - to connect to PC's and certain PC-like devices with serial ports (some routers/firewalls etc) you need a null modem adaptor or null modem cable between your USB-serial device and the PC/device you're connecting to, usually with female-female connectors.

@@ -1,0 +1,19 @@
+Q: keyboard preferences ignores modifier key settings I'm using a Windows-type Logitech keyboard with my OS X 10.6.8 iMac. I've always just used the "Modifier Keys" setting in the Keyboard pane of System Preferences to reverse the Option and Command keys in order to get the usual Mac key behavior. Recently, however, it seems that these preferences are being ignored. I created a second account for my wife, and even though I swapped the modifier keys in the prefs dialog, the setting is ignored and Windows-style behavior continues. The same setting worked on my account but were ignored on hers (though they stayed as set, as if they were being honored).
+More mysteriously, I undid those settings on my account while mucking around with a different peripheral, and now when I try to go back to swapped command and option keys, the setting is ignored on my account too! It seems that "inherited" pre-10.6.8 settings are honored, but that one can't swap those keys using 10.6.8 and have the system pay any attention.
+Is there some duplicate preference file somewhere I should trash? Any other thoughts?
+
+A: Okay I fixed it. New keyboard (still Windows-style, needing modifier key remapping), uninstalled USB overdrive, moved keyboard from external self-powered USB hub to port in back of second monitor, then back to hub. Modifier key remapping started being obeyed once I'd switched the keyboard to the monitor's USB port, and kept working when I switched back. Go figure!
+
+A: Most likely cause is a mouse driver running in the background that's preventing the settings from saving.  Do you or did you previously have a Logitech or Microsoft mouse?  Try this:
+
+
+*
+
+*Shutdown your computer and unplug your mouse.
+
+*Start your computer, with only the keyboard plugged in.
+
+*After the startup process is finished, plug in the mouse and make the changes to the modifier key system preferences.
+
+
+That should fix it.

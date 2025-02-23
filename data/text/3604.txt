@@ -1,0 +1,34 @@
+Q: Are any of the USB ports on a Macbook Pro "always on" Always on USB ports will provide power to a device even when the laptop is shut down. Obviously this can be problematic for battery issues, but sometimes a user wants this capability all things considered.
+Do the Macbook Pro offer this on any of the USB ports and if not is there any chance its wired and just has to be enabled?
+
+A: my macbook pro 2014 has a always on usb on the right side. the left one will lose power when the screen shuts off. 
+
+A: Apple has a support document on this topic.
+http://support.apple.com/kb/HT4049
+
+To meet requests for additional power from these Apple peripherals and devices, some Apple computers and displays can provide up to 1100 mA at 5 V through the port to which the Apple peripheral or device is connected. This power is available under certain conditions:
+
+*
+
+*An Apple peripheral device must be plugged directly into an Apple computer or display. Apple peripheral devices connected to hubs will not have access to extra power above the standard USB specification of 500 mA.
+
+*Your Apple computer or display must be powered on and must be awake. If your Apple computer or display is asleep, all ports will provide a maximum of 500 mA at 5 V. If your Apple computer or display is powered off, no power will be provided.
+
+*The port providing extra power is determined by the first Apple peripheral or device to connect to the Apple computer or display that requires power beyond 500 mA at 5 V. The remaining ports will continue to offer 500 mA at 5 V. Some Apple computer and displays may offer the ability to operate more than one USB port at 1100 mA at 5 V. On those computers, the second or third port is enabled when an appropriate device is connected.
+
+*An Apple computer started up to Windows via BootCamp will not provide extra power.
+
+
+
+A: Results on my experiment:
+None of the 3 USB ports on my MacBook Pro 17 inch early 2011 will charge when the computer is off. All of the USB ports will charge A NON APPLE PHONE (HTC One V, the only device I tested) when the computer is asleep. 
+This is true both when the charger is connected and when the charger is not connected. Be aware that when the charger is not connected the charging power is coming from the laptop battery, depleting it.
+See the comments to the answer by donlaur, below  for information on charging Apple phones, which work differently.
+
+A: The USB ports on any relatively recent MacBook will provide power while the computer is asleep, but I doubt they would while it is shut down.
+
+A: My Macbook Air does this, I assume that the Macbook pro is the same.  Have the lid already closed and plug it in.
+Some PC's do this, but for laptops, it would be a good way to drain a battery.  It depends on the power this thing drains if you need a low or high powered USB.  
+
+A: Empirical evidence from my experiment:
+None of the 3 USB ports on my MacBook Pro 17 inch early 2011 will charge when the computer is off.  All of the USB ports will charge A NON APPLE PHONE (HTC One V) when the computer is asleep. I read that for Apple phones the Apple Company has set them to require that the computer be turned all the way on, not sleeping. Could someone who has an Apple phone please test this?

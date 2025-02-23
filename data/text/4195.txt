@@ -1,0 +1,23 @@
+Q: How to disable WebGL in the Chrome browser on Mac OS X How does one disable Google Chrome from using WebGL on a Mac (Mac OS X 10.6)?
+(There currently appears to be some sort of security advisory regarding this component.)
+
+A: Chrome lets you disable WebGL using the about:flags page.
+Type about:flags into the URL bar and press return.
+Find the Disable WebGL flag and enable it. Restart Chrome for changes to appear.
+
+
+A: Well, seems that in the latest versions of Chrome this flag cannot be disabled from about:flags. In order to disable it:
+
+
+*
+
+*Close chrome (if running)
+
+*Open the terminal.
+
+*Type: open -a "Google Chrome" --args  -disable-webgl
+
+*Profit!
+
+
+A: Not sure how to do this in OS X, but you may be able to do so by running chrome from terminal with the "-disable-webgl" flag.

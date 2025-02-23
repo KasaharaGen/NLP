@@ -1,0 +1,135 @@
+Q: How can I crop a video? How does one remove a black border around a video. The input video has the size 720x576 and has the output video should be 720x480. I need to crop away 96 pixels from top and bottom.
+I have gazed through this list of video tools for Mac, but I'm unsure which tools can do this. I have tried MPEG Streamclip and avidemux2, but they doesn't seem capable of it.
+Preferable a free tool.
+
+A: If you are using MacBook or iMac the best app is iMovie.
+
+
+*
+
+*Create new project in iMovie
+
+*Import video to iMovie and then drag and drop it in your new project
+
+*Select you video in project and use crop button in preview window
+
+*Export your new video and use it
+
+
+If it is a large file that you need a small part of then first trim the video by pressing command+t when the file is opened in quicktime. Import time to iMovie will decrease by a lot
+
+A: You can do this on the command line using ffmpeg and the crop filter.  Handbrake is a great tool, however it uses the same ffmpeg libraries that you can use directly from the command line.
+The basic command is as follows:
+% ffmpeg -i input_filename -filter:v "crop=w:h:x:y" output_filename
+
+
+*
+
+*w = width of the output video
+
+*h = height of the output video
+
+*x:y = coordinate of the top left corner of the crop box (0,0 is top left)
+
+Your specific example, since you want to remove just the top and bottom, you will crop using the center point and just specify the size of the crop box:
+% ffmpeg -i input_filename -filter:v "crop=720:480" output_filename
+
+Using some examples from the ffmpeg page
+Crop area 100x100px starting at coordinate (12,34)
+% ffmpeg -i input_filename -filter:v "crop=100:100:12:34" output_filename
+
+Same as above, but using the named options
+% ffmpeg -i input_filename -filter:v "crop=w=100:h=100:x=12:y=34" output_filename
+
+Crop an area 100x100px from the center point
+% ffmpeg -i input_filename -filter:v "crop=100:100" output_filename
+
+
+A: It's kind of hacky, and probably not the best answer but works if you don't want to download any other tools and just use quicktime, and since I love hacks...
+
+
+*
+
+*Open video in Quicktime.
+
+*Select new screen recording from file menu.
+
+*Setup audio source to be built in input from the arrow next to the record button.
+
+*After pressing the record button, Select the area you want to record (instead of doing full screen) in the original video.
+
+*Start the recording.
+
+*Start the original movie playback.
+
+*When original movie finishes stop the recording by clicking the Stop button in the menu bar.
+
+
+A: Handbrake is the way to go here, as mentioned by roguesys and  canary_in_the_data_mine in the accepted answer. 
+I am using Catalina. MPEG Streamclip does not support this version of OSX, and iMovie's cropping tool is married to the 16:9 aspect ratio. 
+As soon as you open your clip, if it has black bars (which was my case), handbrake will crop them automatically and it will show you in its summary how the converted video will look like. 
+You can tweak out things in the other tabs (dimensions where you can do a fine tune of the cropping, video for the compression codec and other things, filters, audio, etc). 
+Once you're satisfied with the settings in the summary, go to the bottom of the App window, choose the folder where you will save the video, and press the green Start button at the top. 
+
+A: I've used all built-in video editors on mac. I found that
+
+*
+
+*Quicktime cannot crop videos unless you upgrade it to Quicktime Pro. But it needs the assistance of a Photoshop mask. Moreover, Apple stopped selling Quicktime Pro since 2017.
+
+
+*iMovie can crop videos but at a fixed aspect ratio of 16:9.
+
+
+*The Photos app on Mac, which used to be ignored, now is upgraded to a decent video editor. It is able to crop the video at a free form. But note that, it is only available on Big Sur.
+
+A: In my Macbook Pro (High Sierra), I did:
+
+*
+
+*Open "iMovie" application
+
+*Click on "Create New"
+
+*Choose "Movie"
+
+*Click on "Import Media"
+
+*Choose my video and click on "Import selected"
+
+*Right click on video preview, click "Select entire clip"
+
+*On the right, where the tool menu is shown, click the third icon
+(looks like a rectangle, with two diagonal 'Y's on its upper left
+and bottom right corners: 
+
+*Click on "Crop" A dashed rectangle appears, resize it select the
+area you are interested in.
+
+*When you are done, click on the checkmark above the upper right
+corner of the cropped video.
+
+*On the upper left corner of the iMovie application, click the "<
+Projects" button.
+
+*A pop up will ask you for the name of the new video.
+
+*Type the name and click OK.
+
+*Now you'll be redirected to the Projects page.
+
+*There you can see your cropped video, and when you hover your mouse cursor, the three-dotted circled icon will appear next to its name - click that icon.
+
+*Click on "Share Project" -> "File".
+
+*Click "Next..."
+
+*You will be prompted to select a name for the cropped video and a
+location to save (e.g. Desktop).
+
+*Click "Save".
+
+*Ready, the video is now located where you chose (e.g. Desktop).
+
+
+PS: If you want to trim the video, use QuickTime Player application.

@@ -1,0 +1,67 @@
+Q: iPhone 2G has "NO SERVICE" after restore from possibly corrupt backup I'm having a hell of an issue with my iPhone 2G.
+A couple of days ago, I noticed my phone was behaving strangely and appeared to be 'half-synched'. I tried restarting it then did a restore to my last backup using iTunes. To my dismay, I stopped getting any cell service after this; just no bars or "NO CARRIER" instead of data or voice service (everything else worked fine).  I called AT&T to report the issue and they were essentially no help and determined it to be a hardware failure. I tried resetting the network data, resetting to factory settings, doing a restore to a different backup but to no avail. The only thing that worked was when I switched the sim card to another spare iPhone I had. 
+OK, so now I had my old iPhone working with the sim card so I assumed it was a crazy hardware failure. I tried to restore to the more recent backup (the same one that 'broke' the first phone) and alas, my spare phone also has this problem now! I have tried restoring from an older backup but I still can't get any service; the damage appears to be permanent!
+By the way, all my bills are paid, I am in an area with good cell reception, etc. 
+It sounds like this post covers the same or a similar issue.
+Has anyone had a similar problem? Is there some way I can do an even lower-level reset than the iTunes restore? Any help would be greatly appreciated! I'm hoping to document the problem well here so that anyone else with a similar problem can hopefully find a solution.
+
+
+*
+
+*iPhone OS 3.1.3 - no jailbreaks or any other hacks 
+
+*Mac OSX 10.6.6 
+
+*iTunes 10.1.1
+
+*Firmware 04.05.04_G
+
+
+A: Given that you have already tried to set the phone in Recovery Mode and DFU to no avail, there isn't much else you can do on a device with only two buttons and a USB port :)
+As already suggested, your best bet is to take it to an Apple Store for inspection. Your phone is not Jailbroken or hacked in any way, so AT&T should either replace it or have it fixed. 
+My best bet is that during the restore, the baseband got corrupted and now the phone cannot be properly recognized by iTunes. 
+The Before Disclaimer: I'm sure that since you're a loyal AT&T customer you may want to have them fix your phone, but that'd be in a perfect world. 
+Disclaimer #1: The following procedure may be "illegal" or "not approved" in certain areas, countries, etc. and it may be against your Terms of Services, morale, etc.
+Disclaimer #2: Although I recently did these exact steps in my old iPhone 2G, I live in Europe and you know how we Europeans like to drink tea and laugh at certain things of the American culture and behavior, therefore I do not suggest you do this if you are unsure. 
+Disclaimer #3: I've seen phones get bricked (A.k.a rendered useless) after using these steps. I can confirm that I did this myself two weeks ago, downloading the exact same files that I've liked here and it worked like a "charm", but "your mileage may vary". 
+As with any other "gray" procedure, use at your own Risk.
+Enough chit-chat…
+If -after contacting Apple- you find yourself in a "you don't have warranty we're sorry, you need to pay for a new phone" situation, then you can try to save the phone by using a Jailbreak method. 
+My old iPhone 2G crashed two weeks ago and I had to do exactly this. These are the steps I performed: 
+For an iPhone 2G, your "best" and only option is to use the old pwnagetool 3.1.5 (latest for that model), which you can download from the "official" Website (Torrent file). It's an app called Pwnagetool. Do not download from other sources, you never know.
+You will also need an old baseband, more specifically 3.9, which you can download from here. It's a file called bl39.bin. Do not unzip the .BIN, just leave it like that. 
+Save all that in a Folder somewhere. 
+You will also need the official latest iOS for your 2G phone. Which is -as you already know- iOS 3.1.3
+You already have that file in your drive if you have been using it before. It should be located in: 
+~/Library/iTunes/iPhone Software Updates/
+
+The file name should be something like: 
+iPhone1,1_3.1.3_7E18_Restore.ipsw
+
+Copy that file to the folder where you downloaded the above files.
+Now that you have all in place, you're ready to destroy your iPhone forever… so go ahead and launch the Pwnagetool.
+Ignore the "you don't have iTunes 8.0" error (because you probably have the super latest 10.x iTunes):
+
+It works nevertheless, so click ok. 
+At this point, if you have LittleSnitch it will warn you that the App is trying to connect to a place. It's the autoupdater (which doesn't update anyway), you can go ahead and Deny connections, no harm done.
+And now you're ready to start. Disconnect you phone, you don't need it yet.
+The application provides two methods, as you can see in the toolbar: Simple mode, and Expert mode. 
+I suggest you try Simple first and then, if it works, you can redo the whole thing with expert and tweak it.
+Please note that if it works, by default, the Simple mode (and you have to use Expert to change it) will replace the "Apple" logo by a PineApple, like the one seen in this screenshot:
+
+I won't go into the full detail of the process because it's rather simple, but I will tell you what this tool does and what it doesn't.
+Pwnagetool will take the official "ipsw" and modify it to "jailbreak" it. This also allows you to perform a carrier unlock (which -in turn- may fix your carrier problem, which is the idea of all this). It will basically take the official file, modify it, and create a new one with a similar name and the suffix: CustomRestore:
+iPhone1,1_3.1.3_7E18_Custom_Restore.ipsw
+
+After you have this, then you have to proceed to "restore your iPhone" the "normal way". The app explains what to do, but the important step is that when you go to iTunes to click the "restore", you press the  ⌥ opt  and then click the button. This allows you to browse for the ipsw file, instead of iTunes picking the default one. 
+As you have correctly guessed, you have to find the one named Custom_Restore, which will proceed to jailbreak/unlock your phone, maybe fixing it. 
+It will take a while, the phone will restart, the phone will restart and the phone will restart. Kinda like that. At some point an app (BootNeuter) will appear and will ask you a few questions. Then it will restart again and I think again. 
+At some point (if you're patient) iTunes should recognize your phone and ask you if you want to "restore" a backup. 
+That's your decision at this point, because you mentioned that the backup is what caused the trouble. I'd try a fresh restore and then proceed to manually re-sync. 
+If, after all this, you phone works, congratulations. If you want to try the expert mode, go ahead, you can always save the ipsw you used in the first place and re-use it to restore the phone at any time. Go ahead, try expert and see the different options (like not replacing the pineapple and restore images, not installing Cydia, etc.).
+In any case, you can -after all this- try to restore your phone using the original ipsw from Apple (which you used as a base anyway). That should be AT&T happy. 
+Sorry for the long post and I wish you good luck with it. I have an iPhone 3GS and a 2G and I love the 2G form factor way way more than any other iPhone.
+FINAL COMMENT
+As I've repeatedly said in the post, this procedure can permanently damage your phone. I don't know how, because I did it in a dozen of iPhones 2G here when the iPhone was originally launched and no phone ever failed on me, but if you google around, there are stories. 
+The only reason why I posted all this method is because your phone is old and if AT&T or Apple refuses to fix it, you can (and should) try to save it. My iPhone 2G has better battery life than my 3GS (albeit at a speed cost) and works fantastically. It was a gift from a friend who lives in the USA that came to Europe two months after the iPhone 2G launch and brought it in the original box for me.
+

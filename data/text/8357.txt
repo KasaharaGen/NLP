@@ -1,0 +1,17 @@
+Q: Removing the 'Computers' menu item from the ATV 2 menu How can you remove the 'Computers' menu item from the Apple TV menu? I do not plan to use Home Sharing, and would like to remove this menu item altogether from the main screen. ATV can be jailbroken or not.
+What steps can be taken to achieve this?
+
+A: You must be jailbroken to do this.  SSH into the ATV2 and then:
+
+
+*
+
+*cd /Applications/AppleTV.app/
+
+*mkdir Appliances_Disabled
+
+*mv Appliances/Computers.frappliance Appliances_Disabled
+
+
+Reboot.
+You can move the Computers.frappliance directory back into /Applications/AppleTV.app/Appliances if you ever want to see it again.

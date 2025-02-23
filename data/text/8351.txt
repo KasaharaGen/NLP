@@ -1,0 +1,17 @@
+Q: iOS Wi-Fi sync won't work in VirtualBox I am trying to set up Wi-Fi sync of my iPod Touch (iOS 5) with iTunes 10.5.0.142 running on Windows XP.
+They sync fine over the USB cable. I've enabled Wi-Fi sync both on the iPod and in iTunes. The Wi-Fi is functioning and I can ping the Windows XP machine from the iPod. However, the Wi-Fi sync won't work (the sync app on the iPod doesn't see the computer).
+How do I go about troubleshooting this?
+Notes:
+
+
+*
+
+*Windows XP is running inside VirtualBox on Ubuntu.
+
+*I've checked out other similar questions, and none of them are relevant here.
+
+
+A: I seem to have been able to figure this one out. In VirtualBox, select Devices/Network Adapters, and change Attached to from NAT to Bridged Adapter:
+
+Click OK. Finally, reboot Windows and cold-restart the iPod.
+This has fixed it for me.

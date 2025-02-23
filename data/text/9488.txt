@@ -1,0 +1,43 @@
+Q: Install MAMP (not PRO) For PHP And Mail Sending I first tried searching here at apple.stack but couldn't find a solution that seemed to work for me, so I'm trying my hand at posting a question. I already spent a few good hours trying to make it work, since I overall would like to keep using MAMP (again, not MAMP PRO) instead of switching to another package that might give me more road blocks..
+History:
+
+
+*
+
+*I'm a total newbie to Apple's OS.
+
+*I have recently moved to using a macbook pro with Lion OS installed for my PHP development.
+
+*I had come to a point in my development where I now have to send mail. 
+
+*I created a gmail account since the project I am working on hasn't got a name yet so no domains have been purchased (meaning no other smtp server to use)
+
+*I installed MAMP (not PRO) and have been programming on the macbook pro up to this point
+
+*I have installed pear using: http://blog.stealth35.com/2011/07/27/install-pear-on-osx-lion.html
+
+*Then after following the advice: You may want to add: /usr/lib/php/pear to your php.ini include_path I have modified:
+include_path = ".:/Applications/MAMP/bin/php/php5.3.6/lib/php"
+to
+include_path = ".:/Applications/MAMP/bin/php/php5.3.6/lib/php:/usr/lib/php/pear"
+in this file: /Applications/MAMP/bin/php/php5.3.6/conf/php.ini
+
+*I restarted the MAMP server and performed the test:
+<?php
+require_once 'System.php';
+var_dump(class_exists('System', false));
+?>
+And got a bool(true) response.
+
+*When trying out the example here: http://www.php.net/manual/en/function.mail.php code at post: roberto dot silva at mexicoshipping dot net 24-Jan-2004 12:16
+
+*And still.. nothing.. roberto's post ended up giving me the following:
+Warning: include(Mail.php) [function.include]: failed to open stream: No such file or directory in /Applications/MAMP/htdocs/signupemailtest.php on line 24
+Warning: include() [function.include]: Failed opening 'Mail.php' for inclusion (include_path='/usr/lib/php/pear') in /Applications/MAMP/htdocs/signupemailtest.php on line 24
+Line 24: include("Mail.php");
+Which makes sense, because I can't seem to find the file Mail.php anywhere.
+Has anyone experienced this and found a solution for it? I'm moving towards testing confirmation emails and signups, and this has killed my streak.. If I'm missing any other info please let me know. I haven't provided other code since I'm already stumped at the inclusion of Mail.php and so far, I have been able to follow: http://mail.google.com/support/bin/answer.py?answer=78799 properly.. but so that it doesn't go off-topic, I'd just posting info about getting the mail extension/pear mail set up. Thank you for any help.
+
+A: Not sure if you solved this, but you need to make sure the PEAR Mail extension is installed. Open your Terminal and enter: pear install Mail
+
+A: I don't know if this will help,  but I was looking at the example code and noted that you have an uppercase "M" in Mail.app. Should it be lower case?

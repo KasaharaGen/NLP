@@ -1,0 +1,11 @@
+Q: How can I effectively analyse my macbook's performance issues? In recent months my macbook has been steadily running slower.
+It's about 2 years old and gets heavy use so my initial suspicions are that maybe the hard drive is starting to get old. I used the disk utility and it said the disk was fine though. 
+I dont have an especially large amount of applications running at a time, about 4-6 (plus whatever background stuff is going on). 
+As you can see I am more or less speculating, is there a tried and tested way of diagnosing this stuff before I put in an SSD (can the Apple retail stores do this for me?).
+Cheers
+
+A: In my experience Apple stores won't really do that kind of work, you may be better off taking it to an authorised service centre for that kind of thing.
+You can use Activity Monitor (found in Utilities folder) to monitor disk activity. This will give you an idea of how quickly the drive is shifting data to and from its platters. You'd then need to research to see if the throughput you're getting is below par or normal. 
+Another thing to check would be CPU and RAM usage, checking these when the system is performing badly can give you an idea of what's slowing you down (assuming that it's software hogging your CPU/RAM).
+It may also be worth checking the Console (also found in Utils folder) to see if any applications or services are spamming any (error) messages, these apps/services may be causing slowdowns by hogging system resources.
+Another (far less innocuous) troubleshooting step could be to do an archive and install of your system (which basically keeps all your files and settings but installs a fresh copy of the system) and see if performance improves.

@@ -1,0 +1,68 @@
+Q: How can I disable media playback in Finder document icons? I'm on Lion now, and hoped that Apple would have added the option to disable the quick preview buttons on the icons some way. Here's the problem I have:
+
+When I click on a video in Finder just to select it, I often hit the tiny triangle (see screenshot above), making the video play inside the icon. This is very irritating, since I have to click the teeny tiny triangle again to stop that.
+Finder has a "Show Icon Previews" setting in the view options, but that does not do what I want, as it disables the whole thumbnail preview all together, like so:
+
+This clearly not very helpful. I'm looking for a way to keep the previews, but disable the controls on the icons, so that whatever I do, the icon looks like this:
+
+I'd like to do this for all file types with these silly tiny controls on a 32x32 icon.
+
+A: The Feature is controlled by QuickLook and therefore you need to either disable the corresponing movie-generator or replace it with a better one.
+
+
+*
+
+*On 10.11 and higher: Disable System Integrity Protection (SIP)
+
+*Go To /System/Library/QuickLook
+
+*Compress Movie.qlgenerator  
+
+
+*
+
+*Move the created zip from your desktop to the folder
+
+*Confirm with password
+
+*Delete the Movie.qlgenerator
+
+*Confirm with password
+
+
+*Download qlMoviePreview
+(Here is a Download Link for the Lazy)
+
+*Extract and Copy the qlMoviePreview.qlgenerator to /System/Library/QuickLook
+
+
+*
+
+*Confirm with password
+
+
+*Open Terminal and type qlmanage -r; qlmanage -r cache
+
+*Maybe a reboot helps for Quicklook to change completely
+
+
+Now the Finder Movie Thumbnails show an image but have no longer a playback button in it.
+
+A: Use Terminal.app to set the hidden preference QLInlinePreviewMinimumSupportedSize to a larger icon size:
+defaults write com.apple.finder QLInlinePreviewMinimumSupportedSize -int 514 
+
+
+A: Are you really seeing this on a 32x32 icon? This discussion suggests you won't see these controls for icons that are smaller than 64x64, which seems accurate (I just tried it).
+However, my guess is that it will be impossible to disable this without disabling icon previews. Icon previews seem synonymous with Quick Look, so you either get Quick Look previews or you don't — and Quick Look icon previews come with those buttons.
+
+A: A workaround would be to develop the habit of selecting icons by dragging a selection rectangle.
+
+A: A workaround that can work in some cases is to Command-click or Shift-click the icon, which will not trigger the icon's play button. This works well if you have no other icons selected already, but if you have other icons selected, this will add to that selection instead of making a new selection like a normal, unmodified click would.
+
+A: Another idea could to be to change your Finder window view to List mode and increase the Icon size to maximum. 
+
+
+It’s not perfect, though. It will keep the preview and you won’t be able to play the video. 
+
+A: I think best solution is here: https://discussions.apple.com/thread/8107966
+This is working in Big Sur.

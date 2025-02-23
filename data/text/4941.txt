@@ -1,0 +1,12 @@
+Q: Adding Mac-specific directory to PATH when home is shared My /home/myusername/ directory is provided through a network, and looks exactly the same on my Linux machine and my Mac Mini.   I'd like to add to PATH a directory of Mac-specific software in my home, e.g. /home/myusername/SW/bin_mac/ and have this happen only when I'm doing command line stuff on the Mac, and not have PATH contain this when on Linux.  If I edit .bashrc (or tcsh's equivalent) it'll affect PATH in both cases.  What are some tricks to do this?
+
+A: Test the output of uname; it will be Darwin on OS X and Linux on Linux.
+if [[ $(uname) == Darwin ]]; then
+    export PATH="$HOME/SW/bin_mac:$PATH"
+fi
+
+Alternately, you could just add an appropriate directory on each machine, which will be useful if you find yourself needing a separate Linux bin directory as well in the future.
+export PATH="$HOME/SW/bin_$(uname):..."
+
+and either mv or ln -s your bin_mac to bin_Darwin; then you can create a bin_Linux directory in the future if you need it, and it'll just work.
+(You could also test $HOSTTYPE, which is set by bash, but it contains more information than you're likely to need.)

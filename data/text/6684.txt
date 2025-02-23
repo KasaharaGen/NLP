@@ -1,0 +1,7 @@
+Q: Playing the same music on multiple computers I have multiple Macs in my house. I'm looking for a way to play the same music simultaneously from both Macs. Each is connected to a speaker set, so I don't need bluetooth audio or anything fancy.
+
+A: There are certainly multiple ways to accomplish this, but what I figured out is the simplest free approach I know of: use SoundFlower (a free download from Cycling 74) to pipe your system audio to iChat, and use iChat to send the audio to another computer.
+In your System Preferences go to Sound and set SoundFlower as both Input and Output. Note that this will make your system sound not go through your speakers, so to turn that back on also run SoundFlowerbed (the front end that comes with SoundFlower) and set SoundFlower's output to the speakers.
+Now launch iChat and go to Preferences. In the Video/Audio preferences you can set what input to use; it'll probably be defaulting to your microphone but you can set that to SoundFlower. Now when you do a voice chat with someone else they will hear your computer's audio.
+
+A: Airfoil does exactly what you ask.  The author charges $25 for more than 10 minutes of music (I know you said free would be good). A   list of alternatives to Airfoil exists, but i cant vouch for any other software. 

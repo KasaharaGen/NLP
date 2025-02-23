@@ -1,0 +1,19 @@
+Q: extracting multiple zips/rar into same folder maybe I am stupid, but I just cant figure out how to extract multiple zips into the same folder easy.
+I always end up with folders of the zip name that then has the content in it... this is really annoying.
+Is there a app that does this automatically? 
+thx
+
+A: One real easy way is to use unzip on the command line. 
+1) If the ZIP file doesn't contain any folder hierarchy, simply files at the "root" level of the compressed file, do this:
+
+
+*
+
+*open Terminal and cd to the folder with the ZIP file
+
+*unzip zipfile.zip
+-> The files are extracted directly into that folder. 
+2) If the ZIP file does contain a folder hierarchy, but you still want to extract everything in the same folder (usually not a good idea, as the hierarchy is there probably for a reason), do the same thing as above, but with -j modifier for unzip, which means "junk paths (do not make directories)":
+unzip -j zipfile.zip
+
+Edit: the same approach works for RAR files, except you'd need to install the command-line unrar tool yourself (unlike with unzip), and I'm not sure what the equivalent for unzip's -j modifier is.

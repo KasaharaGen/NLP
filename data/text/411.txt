@@ -1,0 +1,43 @@
+Q: Custom iPad theme not showing up correctly I created a theme for iPad and am having a couple problems with it. In my theme are two custom icons, a wallpaper, and two png files for dock (one for landscape and one for portrait). The file structure for the theme is as follows:
+
+CustomTheme.theme 
+
+
+*
+
+*Bundles 
+
+*
+
+*com.apple.springboard
+
+*
+
+*SBDockBGT-Landscape.png
+
+*SBDockBGT-Portrait.png
+
+
+
+*Icons 
+
+*
+
+*Coverflow.png
+
+*MediaVideo.png
+
+
+*Info.plist
+
+*Wallpaper.png
+
+
+
+1.) The two icons were created as the same size in Photoshop, but when I SSH the theme to the iPad, one is displayed bigger than the other.
+2.) The other problem is my theme wallpaper is zoomed incorrectly and does not change orientation. It displays correctly when I use the Set As Wallpaper option from iOS though. I just want to know how do do it in a theme...
+Any suggestions?
+Thanks!
+Thomas
+
+A: Switching off SummerBoard Mode fixed the icon issue. 

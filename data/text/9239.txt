@@ -1,0 +1,48 @@
+Q: Change title given to Reading List article I often use Safari's Reading List functionality to save links to pdf documents from the arXiv.  The URL for the particular paper -- and hence the title given in the Reading List -- is not very informative:
+
+Is there a way to change the title of the item in the Reading List?  Perhaps there is some file that stores metadata for this item?  
+
+A: As far as I know, there’s no way to do it directly through the GUI, but there is a file you can edit quite easily. The file ~/Library/Safari/Bookmarks.plist contains all of the Safari bookmarks, including those saved to the Reading List. (For whatever reason, this file gets borked in TextMate, among others, but TextWrangler seems to cope just fine).
+Anything beginning <key>ReadingList</key> is an item saved to the Reading List. There are two entries that control the title and the description. The first will be of the form:
+<key>PreviewText</key>
+<string>No preview available</key>
+
+This occurs about six or seven lines in. Change this, and the description changes. The second entry is of the form:
+<key>title</key>
+<string>http://arxiv.org/pdf/1111.1763/arxiv.org</string>
+
+and you can imagine what that does.
+This procedure worked for me in Safari 5.1.1 in 10.7.2; I presume it should similarly work for you.
+Two caveats: I have no idea what this might do to an iCloud-synced reading list. If the edit doesn’t get marked with the appropriate edit date, there could be some weird sync conflict brouhaha and Safari might explode. Also, I quit Safari while I messed around in Bookmarks.plist. No idea what might happen if you leave it open; probably nothing. But y’know. You can’t be too careful.
+
+This is an example full entry for a Reading List item in Bookmarks.plist.
+<dict>
+    <key>ReadingList</key>
+    <dict>
+        <key>DateAdded</key>
+        <date>2012-11-29T23:30:55Z</date>
+        <key>DateLastFetched</key>
+        <date>2012-11-29T23:30:55Z</date>
+        <key>PreviewText</key>
+        <string> **This is the short description** </string>
+    </dict>
+    <key>Sync</key>
+    <dict>
+        <key>Key</key>
+        <string>”C=1234567890"</string>
+        <key>ServerID</key>
+        <string>https://example@example.com+ABCDEFG12345</string>
+    </dict>
+    <key>URIDictionary</key>
+    <dict>
+        <key>title</key>
+        <string> **A web page that I’ve saved** </string>
+    </dict>
+    <key>URLString</key>
+    <string>http://www.example.com/readinglist</string>
+    <key>WebBookmarkType</key>
+    <string>WebBookmarkTypeLeaf</string>
+    <key>WebBookmarkUUID</key>
+    <string> 1234567890 </string>
+</dict>
+

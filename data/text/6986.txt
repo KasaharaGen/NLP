@@ -1,0 +1,19 @@
+Q: Disk utility in command line I'm looking for the CLI equivalent of "Check disk" and "repair disk" in Disk Utility. I think fsck is involved but I don't know with which options, and if it's the only program run.
+
+A: In fact, Disk Utility does use fsck to check the disk in question.
+"Verify Disk" uses
+ /sbin/fsck_hfs -fn -x /dev/diskX
+
+while "Repair Disk" runs
+/sbin/fsck_hfs -fy -x /dev/diskX
+
+These are the options used:
+-f: 'f'orces a check, even if the disk seems to be clean
+-n: 'n'ever attempts to repair any found issues
+-y: says 'y'es to any question whether an issues should be repaired (as you might have guessed, -n and -y are exact opposites)
+-x: generates output in XML format, which is parsed by Disk Utility
+/sbin/fsck (as opposed to /sbin/fsck_hfs) is a wrapper that calls /sbin/fsck_XXX for the type of file system in question.
+You'll get more information in the man pages for fsck and fsck_hfs, from which I've borrowed a lot of information for my reply.
+
+A: /usr/sbin/diskutil is what you are looking for.
+Checkout man diskutil and look at the repairVolume command.

@@ -1,0 +1,18 @@
+Q: Is there an xkeymacs equivalent in Mac? In PC, the utility of xkeymacs.exe enables one to use emacs key in every case. Does Mac have the similar utility? For example, is there a utility that I can use key 'C-x C-s' to send the key 'Command-S'?
+
+A: You could configure some of them in ~/Library/Keybindings/DefaultKeyBinding.dict. See hcs.harvard.edu/~jrus/Site/cocoa-text.html and this sample file: Emacs Opt Bindings.dict.
+Another option would be to use KeyRemap4MacBook. It supports over 1000 preconfigured keybindings, including an "Emacs Mode" section.
+
+A: Edit: It looks like there is a solution described here.
+
+I don't know of a solution, but I'd bet if anything could do this, it would be Ukelele.
+
+Ukelele can assign multiple-character
+  strings and can create "dead keys",
+  where a keystroke sets a new state
+  that modifies the output of the
+  following keystroke.
+
+Possibly combined with an Automator app. The initial keystroke C-x initiates the app, it captures the secondary keystroke (C-s), uses a lookup table to convert C-s to CMD+s, and then passes that to the foreground app.
+
+A: I don't know xkeymap, but it sounds like you want to do keyboard mapping. Mac OS is built on BSD, hence xmodmap should work...

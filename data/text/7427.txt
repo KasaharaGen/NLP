@@ -1,0 +1,10 @@
+Q: MacBook won't shut down What could be the reasons for my MacBook (early 2009) not shutting down. When issued the shutdown command it won't go pass the hiding of the icons on the desktop. It doesn't freeze (as I can still press the power button to invoke the shutdown dialog and press the button again). It just won't do anything at all. Fixing permissions didn't help as well as resetting system management controller.
+
+A: I can't guess what is hanging up, but I can show you how to determine where the shutdown process is hanging.
+You will need to boot your mac verbosely by holding Command-V when you hear the post chime. Then open a terminal and type this command to force a shutdown.
+
+
+*
+
+*sudo shutdown -h now
+This will let you see step by step how the operating system is closing things off. Once the loginwindow closes and your normal mac graphics window disappears, you will see the verbose commands and can tell us exactly where this is hanging so it's not a guess what step is failing.

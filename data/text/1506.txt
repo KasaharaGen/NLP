@@ -1,0 +1,56 @@
+Q: Command-line voice recognition with Mac OS X How can I do voice recognition on Mac OS X from the command line? Details: 
+% When I look in ~/Library/Speech/Speakable Items, I see many files, 
+ like "Tell me a joke", whose contents are: 
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd"> 
+<plist version="0.9"> 
+<dict> 
+        <key>BuiltInCommandID</key> 
+        <integer>105</integer> 
+        <key>semanticCategory</key> 
+        <string>globalTellMeAJoke</string> 
+        <key>alternativeSpokenFeedback</key> 
+        <string></string> 
+        <key>suppressSpokenConfirmation</key> 
+        <string>yes</string> 
+        <key>alternativeFeedback</key> 
+        <string></string> 
+        <key>DefaultCommandName</key> 
+        <string>Tell me a joke</string> 
+</dict> 
+</plist> 
+
+% How does OS X know when to invoke this file? When I say something, 
+ does it look for a matching filename? 
+% How does OS X know what command to run? I see nothing in that file 
+ that says what command to run ("Tell me a joke" is not a command-line 
+ command). 
+% I know there's some osacompile magic going on, but can't figure out 
+ what it is. 
+% How can I get OS X to listen for the string "s" and run the program 
+ "cmd" in response? I'd prefer to do this purely from the 
+ command-line, but if I have to open up a graphical program, I will. 
+
+A: You might be interested in reading Apple's documentation on Speakable Items, but the relevant part to your question, "How can I get OS X to listen for the string "s" and run the program "cmd" in response?" is:
+
+You can add an item to the Speakable
+  Items folder to make it speakable.    
+To open something using a spoken
+  command, just add it to the Speakable
+  Items folder. You can use a command to
+  open anything you can open by
+  double-clicking, including
+  applications, files, and Web sites.
+  You can also write scripts and add
+  them to the folder.
+
+In regards to "How does OS X know what command to run? I see nothing in that file that says what command to run?", the relevant portion of the file you posted is:
+    <key>BuiltInCommandID</key> 
+    <integer>105</integer> 
+    <key>DefaultCommandName</key> 
+    <string>Tell me a joke</string> 
+
+This is saying, when the spoken command "Tell me a joke" is received, run the internal command ID#105, which is the "Tell me a joke" command.
+In this case you're looking at an internal command to the speech system. But you can add AppleScripts or shell commands to the speakable items folder as well.
+This article on Mac OS X Hints may be helpful as well.
+EDIT: After some research I am not sure if you can run shell scripts directly from there, but a little AppleScript wrapper would be easy enough to write, and you could even write it so it can be duplicated and renamed, and it would just run the corresponding shell script from /scripts or something.

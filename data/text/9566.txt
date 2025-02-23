@@ -1,0 +1,28 @@
+Q: Forbidden error setting up a PHP app on Mac OS X 10.6 I have enabled Web Sharing in OS X 10.6 and now I can access http://localhost/~myuser from the browser.
+Now I have copied this PHP app to my ~/Sites/the_app folder, but when I want to access it in the browser I get a Forbidden error message:
+
+You don't have permission to access /~myuser/the_app on this server.
+
+Any ideas how can I fix this?
+
+A: Try to chmod 755 the folder and all of its parent folders.
+
+A: I know this KB document refers to 10.5, but it is possible that it might help you troubleshoot.  I had this same problem when I upgraded.
+http://support.apple.com/kb/TA25038?viewlocale=en_US
+To summarize, basically, you need a file named myuser.conf in the /etc/apache2/users/ directory.
+The contents of myuser.conf should contain the following:
+<Directory "/Users/myuser/Sites/">
+    Options Indexes MultiViews
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+</Directory>
+
+After that, set the permissions from the Terminal:
+sudo chown root:wheel /etc/apache2/users/myuser.conf
+
+Then restart Apache. (Uncheck/Recheck the Web Sharing box in System Preferences.)
+And remember to change all instances of myuser to your exact username.
+
+A: By default, client versions of OS X have PHP disabled in the apache server. Because of this, the server will not load an index.php file unless you explicitly list it, and even then it will not run it.
+To enable PHP, open the /etc/apache2/httpd.conf file and find the area where it lists the modules (near the top). At the bottom of both lists, there will be load commands for the PHP module which are commented out. Remove the # from those lines, save the file, and restart web sharing. Now, the server will automatically recognize and run your index.php file.

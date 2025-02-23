@@ -1,0 +1,31 @@
+Q: Unable to revert changes to hosts file in OS X Lion I edited the hosts file and added:
+10.0.0.1  devsys.crossreader.net
+Later I commented out the entry:
+#10.0.0.1  devsys.crossreader.net
+When I ping or browse to devsys.crossreader.net the returning IP is still 10.0.0.1. I tried to flush the dnscache, and even rebooted but that didn't work. Why does this happens?
+
+here is the entire hosts file 
+###############
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+fe80::1%lo0     localhost
+#10.0.0.1 devsys.crossreader.net
+
+
+A: Since your /etc/hosts is not the problem, the logical conclusion is that your DNS server is responding with that IP address, or you aren't using the DNS server you expect. To verify this, paste this into Terminal.app:
+host -a devsys.crossreader.net
+
+
+
+A: The hosts file deals with each entry as it comes. For example:
+127.0.0.1 www.apple.com
+#127.0.0.1 www.apple.com
+
+Will point your computer to 127.0.0.1 when you connect to apple.com.
+You will need to comment out the one single line to stop the redirect. For example:
+#127.0.0.1 www.apple.com
+
+Will point your computer to Apple's servers. After making the changes, you can run the following to clear out your DNS cache:
+dscacheutil -flushcache
+

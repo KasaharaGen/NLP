@@ -1,0 +1,11 @@
+Q: Time Capsule partly stops working after some hours I have a new TimeCapsule 2TB and use it as a wireless AP, router, and backup device. The TimeCapsule is directly connected to the DSL modem. 
+When I turn on the TimeCapsule, everything works fine. But after some hours (maybe 2-4), my MacBook Air no longer finds the TimeCapsule, so backups via TimeMachine fail.  Also, AirPort utility no longer finds the TimeCapsule. The strange thing is: the wireless internet connection on my MacBook Air is still perfectly working and I'm also able to mount the TimeCapsule's disk from a Linux machine via Samba. After switching the TimeCapsule off and on again, the AirPort utility finds the TimeCapsule without problems.
+Any ideas how to solve or debug this problem? I'm using Mac OS Lion, AirPort utility 5.5.3 and firmware version 7.5.2 of the TimeCapsule. 
+
+A: Try restoring to default settings. This won't erase any data stored on the Time Capsule, it will reset the network configuration.
+Open AirPort Utility (Applications > Utilities > AirPort Utility) and right click on your time capsule. Select Restore Default Settings...
+
+Then wait for it to restart, and follow the setup instructions.
+
+A: I am having the same problem, the temporary fix seems to be to turn wireless off and on again on your Mac.
+I'm still searching for a more permanent fix.

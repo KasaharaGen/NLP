@@ -1,0 +1,18 @@
+Q: Stop iTunes from creating a local library on start up I'd like to store my iTunes Music Library on a USB drive connected to my time capsule to use it with my Macbook Air. The problem is, when the network drive with the library is not mounted or unreachable by the computer then iTunes creates a new local Library on start up. 
+Can I stop iTunes from doing that or even better notify me if the drive is not mounted? I really would like to avoid creating a local Library. Otherwise files end up on multiple location and it seems hard to consolidate this.
+
+A: I've had this happen as well. 
+The best solution is not to let iTunes open unless the drive is connected, but I see how that isn't always possible when on the road. 
+I found that (in OS 10.6 and iTunes 9, at least), if you make the MUSIC Folder in your home directory (~/Music/) read-only, it will not be able to automatically create an iTunes directory in the default location, and thereby it will prompt you to find the iTunes library. 
+As an alternative, you can hold down the Command key when opening iTunes, which will prompt you to connect to a Library. 
+Alternative 2: If you make a Symbolic link to the iTunes Library in your music folder, it will attempt to mount the drive in order to find it. 
+
+A: What do you mean files will end up in multiple locations? Are you syncing a device or adding files?
+I do something similar with a work computer. I have two iTunes libraries. One is on an external disk and has all my songs files etc. The local library is there when I do not have my external drive or is otherwise unmounted. I keep it to listen to the radio only, so that I have something while I don't have access to te external. 
+To change from local to remote, you launch iTunes by holding alt. You are then prompted to define which library to connect to. I havent found a way to launch iTunes from Quicksilver and be prompted. I am not adding things to my library, however. 
+
+A: I don't think (by default) the iTunes library is automatically created because I also keep my library on a AFP network mount. If it is not mounted, iTunes displays an message box prompting to quit, create a new library or locate the library.
+My suspicion is that you already have a library created on your local machine, try removing this (assuming it is empty) completely  first. Then hold ⌥ when launching iTunes with your network share mounted. Then choose your network library from the folder dialog box
+
+A: Your library is always local but the media may be distributed anywhere on your network. Except you connect to a remote shared library, but then its not yours/local but remote. You cant use iTunes without an locally accesible library - the local library is part of itunes and will be recreated when missing everytime!
+Leave the library local and use the media from your network, thats what i do and it works with both options "automatic management/add media to local library" turned off.

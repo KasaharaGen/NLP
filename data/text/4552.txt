@@ -1,0 +1,15 @@
+Q: Restore Trash (~/.Trash/)? I accidently deleted the ~/.Trash/ folder. How I fix this?
+I do not want to:
+
+
+*
+
+*Restore files currently in the Trash can
+
+*Restore files emptied with the Trash can
+
+
+A: Open Terminal.app and type
+mkdir ~/.Trash
+
+It will create a new empty folder that Mac OS X can use to store trashed files; this won't save any old deleted files from the original .Trash folder you deleted.

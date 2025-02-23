@@ -1,0 +1,16 @@
+Q: Apply display settings for a folder recursively Question
+When I change the display settings in Finder, it is only applied for the current folder that I'm in.
+I want to apply a display settings for all (sub-)folders in ~/Pictures. 
+Since it's only for ~/Pictures, using the option 'Use as Defaults' will not help me. How can I do this?
+
+Solution (thanks to @hobs)
+The following tutorial uses an automator workflow. The workflow has to be run again when you add a new subdirectory to ~/Pictures.
+
+
+
+
+A: I think your question fits with this thread and my answer to it:
+System-wide finder view preferences
+Short answer, it isnt that easy, but if you are willing do to some work you can make it happen.
+
+A: Laborious but should do what you want: open each subfolder, set the display settings you want to use, then check “Always open in * view” at the top of the display settings inspector panel. This will save all the defaults.

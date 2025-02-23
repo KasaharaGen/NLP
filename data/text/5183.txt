@@ -1,0 +1,21 @@
+Q: Macbook Pro unable to use the internet while connected to IPSec VPN Short Question
+Is there something I am missing when setting up a Cisco IPSec VPN connection that redirects all traffic over the VPN?  
+Background
+When I am connected to the VPN, I can browse our company's intranet with no problems, but when I try to go out to say www.google.com it times out.  Another co-worker is having the same problem on his MBP as well.  The VPN client we use for our Windows machines is Shrew Soft talking to a pfSense router, which works like a champ.  
+System Information
+Network
+VPNing into a Pfsense based router
+Hardware
+MBP early 2008
+4GB Ram
+500GB 7200RPM HDD  
+Software
+OS X 10.6.8
+Bootcamp and Parallels 6: Windows 7 Pro  
+
+A: IPSec connections to Cisco routers are only allowed split routing based on the configuration of the router.  I don't know what kind of router you are connecting to,b ut an example is shown here.  Basically whomever is running the router would need to configure it to allow this behavior.
+
+A: I'm running an ipsec endpoint with pfsense 2.0-rc2. Using the native vpn client with Mac OS 10.6 and now 10.7, internet and local lan access works fine. However all traffic travels over the tunnel so I had to add an any-any rule for ipsec traffic in the pfsense firewall settings. Hope that helps.
+
+A: We were able to resolve this issue by running Shrewsoft's 2.2 Beta release that supports Mac OS X.  The install directions are here.  So far this seems to be working like a champ.  It also allows a single configuration for both Windows and Mac users regarding the VPN configuration.
+Thanks for all of the great trouble shooting tips!

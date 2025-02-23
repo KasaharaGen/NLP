@@ -1,0 +1,75 @@
+Q: Where did these missing OS X application icons go? On my Mac mini, app icons have gone missing for some apps (Terminal, Chrome, Spotify, Skype) from the Dock and elsewhere. 
+See a screenshot of the Dock. When I hover over the empty spots, I can see the names of the apps and launch them normally. 
+And here's one of the app switcher (it was kind of challenging to take this with cmd-shift-3, btw):
+
+I don't remember doing anything special to make OS X lose the icons.
+At first I thought it was some temporary glitch, but logging out & back in didn't help, and neither did rebooting the machine. 
+Upgrade from 10.6.4 to 10.6.5 didn't improve the situation either. Anyone have ideas how I could fix this?
+
+A: If restarting and all that doesn't help, here's how i fixed mine.
+
+
+*
+
+*Open finder.
+
+*Go to /Applications.
+
+*Drag the offending application to the desktop to create a shortcut.
+
+*Shortcut should have the proper icon.
+
+*Right click shortcut and click on Get info.
+
+*Click on the icon on the top left of the info view. Example:
+
+
+*When icon is selected (blue highlight), hit Cmd+C to copy it. Example:
+
+
+*Delete shortcut (not necessary).
+
+*Go back to /Applications in finder.
+
+*Right click on the offending application.
+
+*Click Get info.
+
+*Notice the place where the icon should be Top left.
+
+*Click on that location to highlight it.
+
+*Press Cmd+V
+
+
+You should now see your icon again.
+Tip: This method can also be used to change any icon to something else and customise your Mac !
+
+A: For me, the problem was with Terminal.app. It was an app I had set to "Keep in dock".  What happened was the icon for Terminal.app started displaying on the dock and in the Cmd-Tab panel as the default icon:
+
+What I had to do to get the original icon back was, while the app was opened, right click on the dock icon and select "Options -> Keep in Dock" and remove the checkmark, then I followed the same procedure selecting "Keep in Dock" again to get the checkmark back.
+
+After that, I got the familiar Terminal icon back.
+
+A: Strange. I've had this problem for a while, but now immediately after I asked about it publicly, it seems to fix itself. Re-launching the apps brought the icons back. 
+Well, I guess this is because I hadn't logged out or rebooted before this for a long time. Logout and/or reboot + relauching each app (once or twice?) was most likely what fixed this.
+Thanks and sorry.
+Edit: Maybe I was too hasty. One of the icons, that of Spotify, is still missing, no matter how many times I try to relaunch the app. 
+Edit 2: I got Spotify icon back too, by removing the app from Dock and then adding it back. Now everything on the Dock looks okay again.
+
+A: You have self answered your question real fast, however, for the record, these are the steps you need to perform in case it reappears:
+
+
+*
+
+*Logoff/Logon. Reboot if necessary. If it doesn’t fix it, continue.
+
+*Make a backup, trash the Dock DB and Preferences (*)
+
+*Kill the Dock (open Terminal: /Applications/Utilities/Terminal.app) and execute: killall Dock
+
+
+The above statement (killall Dock) is case sensitive so make sure you put Dock with the ‘D’ in uppercase. 
+warning: Thrashing the above files, will reset your dock and you will likely lose the icons you have (which you will have to happily re-drag and re-arrange), so take a screenshot before all that ;)
+As a final solution, try an utility like Cocktail (not free) or any of the free alternatives like Onyx and clear your caches, rebuild your locate dbs, etc. It’s not bad to do that from time to time, especially if you don’t leave your computer on everynight where it can perform all the maintenance. 
+(*) Located in ~/Library/Preferences/com.apple.dock.plist and com.apple.dock.db

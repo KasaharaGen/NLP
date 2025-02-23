@@ -1,0 +1,19 @@
+Q: Is it possible to add alternate SCM options in Xcode 3? Is it possible to add additional SCM options in Xcode, specifically Mercurial?  I know it is possible outside with Murky and others but I was hoping for a "inside Xcode" integration.
+If this is too SOish say so.
+
+A: In the latest beta of XCode 4, there's a built-in support for Git, so it's possible to add other SCM.
+Maybe Apple will also incorporate Mercurial support as well.
+They are several requests - XCode should support Mercurial as well as Git., Xcode 4 should support Mercurial - to put Mercurial support into XCode.
+So if you can't find a solution now, I'd suggest you to wait until XCode 4 goes out officially.
+
+By the way, if you need or want a nice Mac OS X client for Mercurial, you should try MacHg.
+
+A: The lack of XCode plugins is due to the fact that apple doesn't document XCode's plugin interface in public. That makes writing XCode plugins very hard. To increase the chance for a future  Mercurial plugin you could file a dupe of Documentation and opening of the Xcode plug-in API (.xcplugin and family) which is dupe of rdar://3037631.
+
+A: As far as I know, it’s not possible to add support for mercurial using Xcode alone. 
+You have to use an external tool (Like Murky). Xcode’s SVN support is primitive to say something nice about it. It works, but it’s far from being like “Versions”. ;)
+
+A: One may want to evaluate github for mac as an alternative.
+
+A: You're not going to find an built in extension for adding other SCM's. Best bet is to either use another tool (Murky mentioned) or the CLI.
+The third option would be to build a set of Xcode macros that performed common SCM tasks, such as commit and pull.

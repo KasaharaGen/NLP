@@ -1,0 +1,30 @@
+Q: Dual-Monitor Output from a new Macbook Pro I need to output to two screens from a Macbook Pro 17" I'm looking at buying. My current laptop has a VGA port and an HDMI port, and so it's pretty easy to run a dual-display setup with it. How would I connect my displays to my Macbook? 
+Both displays are 1080p HDMI computer monitors. 
+If I have to use Thunderbolt, will it work with Linux? I'm planning on dual-booting. 
+
+A: You've pretty much got two options for two external monitors on a MacBook Pro:
+A) Two Apple Thunderbolt Displays
+This is the least flexible, but highest performing solution. Obvious drawbacks are the cost, and not being able to use your existing displays. This only works on Thunderbolt equipped Macs with a discrete graphics card (i.e. not the 13" MacBook Pro or any MacBook Air, nor the base Mini).
+B) DisplayLink adapter
+You can use one display directly connected to the Thunderbolt/Mini Displayport with an mDP-HDMI adapter, and run the second one with a DisplayLink adapter. DisplayLink is essentially basic graphics card connected to your computer via USB. Because of the limitations of USB, it's not a high performance solution - don't expect to do any gaming on it. This does allow you to use your existing monitors, and at relatively modest expense. You may also want to check the current status of Lion support, as I remember seeing some posts about bugs relating to DisplayLink adapters - they may have been fixed by now however.
+
+A: Two important things will dictate if an arbitrary MacBook Pro will support two monitors:
+
+
+*
+
+*Does your MBP have Intel integrated graphics or one of the nicer discrete graphics chips?
+
+*Does it have one or two Thunderbolt ports?
+
+
+If you have Intel's graphics only (the Intel HD Graphics), as found in the 13" MacBook Pro (and the MacBook Air and some Mac minis), you can attach one monitor to the Thunderbolt/mini DisplayPort port.
+If you have discrete graphics in addition to the Intel integrated graphics (as found on the 15" and 17" MacBook Pro models), you can attach multiple monitors even if you have only one Thunderbolt port. Remember, though, that all items on the Thunderbolt chain must be Thunderbolt devices until you get to the last item, which can be mini DisplayPort (this is because TB devices have a daisy-chain port; DisplayPort devices are not required to). All adapters for other display plugs that are currently (August 2011) sold are mini DisplayPort, not Thunderbolt, so they'll end the chain. Ergo, the only way to do multiple displays is to have Apple's Thunderbolt display (which has the TB daisy-chain port) and then have an adapter (or just another display) on that. When manufacturers start to make Thunderbolt display adapters, then you can get two of them and hook up whatever displays you want. 
+Additionally, two Thunderbolt ports allows you to use two Thunderbolt to DVI/DP/whatever adapters rather than buying a true Thunderbolt display that will allow a second non-Thunderbolt graphics adapter to be connected down the chain.
+@EmmEff's answer is correct insofar as USB to DVI adapters and their performance issues and the Dual-Link DVI stuff.
+
+A: I personally do not believe a USB to DVI adapter is acceptable if you're looking for any video performance on the second display.  If you absolutely insist on having two external displays, this might be an option.
+The Mini DisplayPort to Dual-Link DVI Adapter is for displays requiring a Dual-Link DVI input.  AFAIK, it cannot be used for connecting multiple displays.
+According to this article, it is possible to connect only one Thunderbolt display to the MacBook Pro, so daisy-chaining is out.
+
+A: This Anandtech article features a dongle that will convert a DisplayPort signal to two HDMI signals. The resolution is limited, but may be sufficient for what you want to do.

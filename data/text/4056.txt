@@ -1,0 +1,8 @@
+Q: What does the lock icon on the 'Get Info' screen do? In OS X there is a lock icon in the lower right of the Get Info screen.  What is this icon called?  What does clicking this icon do?  
+
+I am running on an account with administrator access. I have the ability to change permissions of some folders (one on my desktop) but not others (one in the Applications folder).  The "lock" is locked in both cases.  When I tried to Terminal → su → chmod the folder in Applications I still had no luck, until I pressed the 'lock' button.
+
+A: Clicking the lock icon will prompt you for an admin password.  After you provide it, the system will allow you to change the permissions for that file or folder in that "Sharing & Permissions" pane you see at the bottom of the Get Info window.  This is a feature of the underlying Unix operating system that allows different privileges for a user, group, and others.
+Note that you are always allowed to change permissions (whether the icon is locked or unlocked) when you (your user) is the owner of the file -- e.g. most of the files in your own user folder such as your Desktop and Documents folders.  But when you are not the owner, you'll have to unlock this option to change the permissions.
+There's a reason this feature is "locked" against casual access.  It's not really something you want to touch if you're not very sure what you're doing.  Messing with permissions can cause access problems, security problems, or both.
+For more details, check out this Wikipedia article: http://en.wikipedia.org/wiki/Filesystem_permissions#Traditional_Unix_permissions

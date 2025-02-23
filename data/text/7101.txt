@@ -1,0 +1,25 @@
+Q: What's the canonical name for the "sunburst" waiting animation? Is there an accepted name for the spinning animation that's displayed when one needs to wait for an indefinite amount of time?  It looks like this:
+
+
+A: The technical term for it is a Throbber.
+
+A: The canonical name is the "asynchronous progress indicator" but in most user documentation it is described as "a progress indicator (that looks like a spinning gear)". The Apple Publications Style Guide (non-Apple source!) is a nice reference for learning what Apple considers the correct terms for writing about these details correctly.
+The four specific types of generic progress indicators that Apple provides to developers are:
+
+
+*
+
+*asynchronous progress indicator (spinning gear)
+
+*determinate progress bar (moving bar)
+
+*indeterminate progress bar (spinning striped cylinder)
+
+*spinning wait cursor (colored pinwheel)
+
+
+
+I'm writing a short postscript since many confuse the spinning gear with the colored pinwheel:
+The colored pinwheel is colloquially known as the spinning pizza of death or SPOD cursor due to user frustration when it appears to signal a hung process. It is the worst indicator for the user to see since it means the programmer either didn't or couldn't keep the main program responsive. We as users have no clue what part of the program is waiting for something to progress, only that it's stuck. 
+
+A: It is called the "Asynchronous Progress Indicator". You can read more about it, and other elements of Mac OS X, in their OS X HIG Guidelines.

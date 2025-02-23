@@ -1,0 +1,17 @@
+Q: Is there an OS X equivalent to iOS's Remote App? Is there some equivalent to Apple's (iOS) Remote App for the desktop (running OS X)? I.e. some – preferably small – application to control an iTunes instance which is running on another Mac? Maybe some menu extra?
+I know there are several "iTunes controllers" (like Coversutra). But does any of them support a remotely running iTunes?
+(N.B.: I'm aware of e.g. Home Sharing, but I want the remote Mac to keep running and output the music, not the controlling one. I'm also aware of Screen Sharing, but I'm looking for a quicker/easier solution.)
+
+A: iTunes Remote Control is probably the easiest, but is no longer updated, and I've heard reports of some issues with it under Snow Leopard. YMMV.
+Edit: One other major option would be to control iTunes from your browser. A variety of commercial and free solutions exist to do this. This is one of the more popular DIY guides on the subject. Playerpal and PatioTunes are two examples of commercial variants on the idea. N.B., I've used neither, and can't speak to the quality of either app. Feel free to google around for more options on this front.
+
+A: You could SSH to your desktop running iTunes and control it using this iTunes control script.
+http://hints.macworld.com/article.php?story=20011108211802830
+Alternatively you could connect using any VNC client to have total control of your desktop.
+
+A: Play can control iTunes (and do a bit more) from a variety of clients.
+
+A: TuneConnect might be another option, it's no longer actively maintained though (so compatibility with newer versions of OS X/iTunes might be an issue):
+
+The TuneConnect Project is pleased to announce the immediate availability of TuneConnect 2.0, the latest reinvention of our revolutionary iTunes remote control software for Mac OS X. Featuring speed-of-light music browsing and full-featured controls, TuneConnect 2 is a complete rewrite of the old TuneConnect. Control your music simply, quickly, and easily, from anywhere on your network: welcome to life with TuneConnect.
+

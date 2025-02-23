@@ -1,0 +1,100 @@
+Q: Can I make my Mac OS X Terminal color items according to syntax, like the Ubuntu terminal? I want it to have all the colors for syntax folders, etc... How can I do that?
+
+A: My terminal colors
+
+how to do it
+download theme
+from here: http://media.tannern.com/tanner.terminal
+import into Terminal
+After installing SIMBL and the correct terminalcolors you can import my terminal theme from the Terminal Preferences window.
+
+other tweaks
+Adding this to the file ~/.profile will make ls color it's output by default.
+# Make ls use colors
+export CLICOLOR=1
+alias ls='ls -Fa'
+
+Adding this will define colors as variables to make a prompt easier to edit.
+# define colors
+C_DEFAULT="\[\033[m\]"
+C_WHITE="\[\033[1m\]"
+C_BLACK="\[\033[30m\]"
+C_RED="\[\033[31m\]"
+C_GREEN="\[\033[32m\]"
+C_YELLOW="\[\033[33m\]"
+C_BLUE="\[\033[34m\]"
+C_PURPLE="\[\033[35m\]"
+C_CYAN="\[\033[36m\]"
+C_LIGHTGRAY="\[\033[37m\]"
+C_DARKGRAY="\[\033[1;30m\]"
+C_LIGHTRED="\[\033[1;31m\]"
+C_LIGHTGREEN="\[\033[1;32m\]"
+C_LIGHTYELLOW="\[\033[1;33m\]"
+C_LIGHTBLUE="\[\033[1;34m\]"
+C_LIGHTPURPLE="\[\033[1;35m\]"
+C_LIGHTCYAN="\[\033[1;36m\]"
+C_BG_BLACK="\[\033[40m\]"
+C_BG_RED="\[\033[41m\]"
+C_BG_GREEN="\[\033[42m\]"
+C_BG_YELLOW="\[\033[43m\]"
+C_BG_BLUE="\[\033[44m\]"
+C_BG_PURPLE="\[\033[45m\]"
+C_BG_CYAN="\[\033[46m\]"
+C_BG_LIGHTGRAY="\[\033[47m\]"
+
+Adding this will give you a multi-line colored prompt.
+# set your prompt
+export PS1="\n$C_LIGHTGREEN\u$C_DARKGRAY@$C_BLUE\h $C_DARKGRAY: $C_LIGHTYELLOW\w\n$C_DARKGRAY\$$C_DEFAULT "
+
+For a list of escape sequences to use in prompts check this article
+
+A: geekology.co.za has an informative blog post on how to do this, "Enabling Terminals directory and file color highlighting in Mac OS X". In case it gets moved or deleted, the basics are:
+Add to your .bashrc or .profile:
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+Save the file. Open a new terminal and use
+ls
+ls -l
+ls -la
+ls -lah
+
+The rest of the article has info on what the colors do and how to change them (the letters you assign to LSCOLORS is what controls what colors you see).
+
+A: As of Mac OS X Lion 10.7, Terminal allows you to customize the sixteen ANSI colors and also supports the 256-color palette.
+So, installing SIMBL or other extensions to get more colors is no longer necessary.
+
+A: People may want to check out zsh + prezto. There's a nice guide here. zsh is already installed in OSX. Prezto just adds stuff to your shell. Activate the syntax-highlighting module, and go to town :)
+
+A: Here is what I use in 2023 to get Ubuntu colors for ls (which was my biggest pain when switching to Mac terminal). Looks like the Ubuntu color scheme has changed since the post by @sorens above, as what that post suggests doesn't match what I have on Ubuntu at all.
+Add this to your .bashrc or .bash_profile:
+# Use default ls output on Ubuntu
+alias ls='ls -Fa'
+
+# Use Ubuntu coloring scheme (as close as it gets)
+export CLICOLOR=1
+export LSCOLORS=ExGxFxbaCxbabahbaDacec
+
+I believe it's as close as it gets to Ubuntu. I compiled this manually, based on the original dircolors -b output from my Ubuntu (dircolors is the util used to generate coloring of various file/dir types there).
+I tested it for a while, but if you happen see any mismatches, please write a comment.
+A couple of mismatches that I believe cannot be fixed on Mac:
+
+*
+
+*A couple of colors are not an exact match (orange background -> yellow as Mac's ls doesn't have orange, orange foreground -> red) but it looks almost the same on my computer.
+
+*Unfortunately Mac's ls doesn't allow coloring of file types, so images, video, audio files and archives aren't colored as in Ubuntu. I see no way to distinguish those files in Mac ls. Which is a huge miss indeed.
+
+References
+This may be useful if you want to tweak the colors.
+
+*
+
+*My original dircolors -b output (I trimmed the big part with file extension coloring, as I don't believe it can be used on Mac). So that you can compare the differences if necessary and start from there. Not everything below has its match in LSCOLORS variable used on Mac, the latter is much simpler.
+LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
+
+
+*Explanation of dircolors syntax: https://linuxhint.com/ls_colors_bash/
+
+
+*A more detailed one: http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors

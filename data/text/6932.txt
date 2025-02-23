@@ -1,0 +1,15 @@
+Q: Why does it take so long to sync photos for my iPod touch  in iTunes? When I sync my iPod touch with iTunes, it stays on
+ Syncing Photos to "My iPod touch" (Step 4 of 4)
+ Importing Photos . . . .
+
+for about 10 minutes each time (even if I have synced it an hour ago and have no new photos to actually sync)
+It then goes to
+ Syncing Photos to "My iPod touch" (Step 4 of 4)
+ Optimizing 3 of 193 . . . 
+
+Again, even if I have no new photos since last sync.
+Would any know why this takes so long and it there a way to make it faster?
+
+A: Find the "iPod Photo Cache" (for iPhoto, it should be listed in iPhoto Library, just right click and select the "Show package contents") and delete it (don't worry, the contents will be recreated the next time you sync). 
+Sometimes the data in that directory can get corrupted, causing undesirable effects to happen. Hopefully this will help alleviate your problems.
+The directory stores every picture that has been synced with your devices. You can read more about the directory here and ways of deleting it: http://support.apple.com/kb/ts1314

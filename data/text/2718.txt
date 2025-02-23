@@ -1,0 +1,42 @@
+Q: How to force a diff format for TextMate? I have this alias:
+alias hgd='hg diff|mate'
+
+The problem is that for some reason the temporary file thus created will be a .txt, while I'd need it to have the diff syntax highlight.
+If I manually change the highlight to diff, then every .txt I'll open in future will use the diff highlight too.
+What can I do to fix that?
+
+A: TextMate can use either the file extension or the first line of a file to divine what filetype it is.
+For my diff bundle (I think it's the original), this is:
+firstLineMatch = '(?x)^
+        (===\ modified\ file
+        |==== \s* // .+ \s - \s .+ \s+ ====
+        |Index:\ 
+        |---\ [^%]
+        |\*\*\*.*\d{4}\s*$
+        |\d+(,\d+)* (a|d|c) \d+(,\d+)* $
+        |diff\ --git\ 
+        )
+    ';
+
+I don't have mercurial, but it appears as though its diff's first line may look something like diff -r 2278160e78d4 hello.c.  As such, you can add another line to that big OR switch:
+        ...
+        |diff\ --git\ 
+        |diff\ -r\ 
+        )
+    ';
+
+Note that the final character in the line is a space.
+As another alternative, it appears as though you may be able to define your alias as alias hgd='hg diff --git|mate' to use the same format as git, which is already recognized by TextMate.
+
+A: I don´t have any mercurial project myself, but if you do this in svn (eg. with svn diff -r 100:099) it generates a .txt too, but it uses the diff highlighting - maybe there is an update to the diff bundle available in your installation? 
+If not, you can still re-write your alias to something like hg diff > /tmp/hg.diff && mate /tmp/hg.diff
+
+A: Doing this with an alias won't work, but you can write a bash function that will handle this. Something like:
+function hgd {
+    T=`mktemp /tmp/hgdiff.XXXXXX.diff`
+    hg diff > $T
+    mate -w $T
+    rm $T
+}
+
+in your .bash_profile will work. This acts closer to what you're trying to accomplish in that it leaves no trace of the temporary file on disk when you're done looking at it with TextMate.

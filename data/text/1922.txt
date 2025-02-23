@@ -1,0 +1,19 @@
+Q: Windows 7 reports mDNSResponse.exe caused a problem with Bonjour Windows 7 Action Ceenter reports: 
+
+Address a problem with Bonjour
+Bonjour has stopped working properly.
+The name of the file that caused this
+  problem is mDNSResponse.exe. 
+For information about possible
+  solutions to this problem, go online
+  to the following Knowledge Base (KB)
+  article:
+Click to go online to the Apple Inc. website for the KB article
+
+When clicked, the browser opens to the Bonjour Print Services for Windows download page. 
+One could infer this means "Download and reinstall Bonjour Print Services for Windows."  Is that what we are supposed to do?
+All messages in the Event Viewer where the source is Bonjour Service are of severity Informational.  They alternate between Service Started and Service Stopped(0).  My guess is the (0) is the return value.
+I am asking here rather than some other stack because the malfunctioning software is a Windows executable authored and controlled by Apple.  When an application experiences a problem, it is the application which has the first responsibility for diagnosing and reporting the problem.  The operating system is responsible for faithfully executing the services the application requests, but it is unreasonable to expect the operating system to explain to a user why exactly an application ended abnormally.  Thus, this is an Apple issue, not a Windows issue.
+After reinstallation of Bonjour, the problem was no longer reported.  However, that does not mean the reinstallation was fix; it could be that the problem is transient.  
+
+A: I cleared the problem on my system by reinstalling Bonjour.  

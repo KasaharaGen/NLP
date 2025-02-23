@@ -1,0 +1,18 @@
+Q: Terminal Encoding Not Working For Certain Characters EDIT
+This problem was solved in my case by changing terminal emulation from VT100 to xterm.  Apparently the two programs I was trying don't behave properly when it comes to VT100 terminal line drawing.  geekosaur's answer was accepted since it lead me to change what terminal emulation I was using.
+
+Original Question
+I noticed in certain terminal applications, specifically bpython and weechat, that certain characters are not being rendered properly in the terminal are not being rendered.  I only just started using these terminal apps again recently after about 1.5 years or so ago back when I was on OSX 10.5 and I don't recall having this problem.  
+Here are some screenshot examples.
+My weechat; notice the ? marks by the nicklist: 
+What weechat is supposed to look like - a nice thin line separates the nicklist  :  
+
+My bpython - the border characters are replaced with q's and ?'s:  
+What bpython is meant to look like:  
+
+I've tried messing around with the encoding settings and various fonts, but nothing yet has solved this problem.  I'd like to know what the cause of this problem is and how I might go about fixing it.
+
+A: Huh.  Sure enough, it's not setting up VT100 line drawing by default, and apparently programs don't bother with little things like how you're supposed to send enacs before using smacs any more (no doubt because some Linux terminal emulator doesn't require it, therefore "nobody does").
+Anyway, quick fix (here, at least) is to add to your ~/.bashrc
+test -t && tput enacs
+

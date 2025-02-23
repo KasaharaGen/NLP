@@ -1,0 +1,23 @@
+Q: Mac/OS X AppStore 'buttons' inactive, not showing screenshots I've been putting off from using the App Store, and now it seems I'm kind of obliged to keep doing that. Screen shots are not being loaded, and when I click the button to download an app, nothing happens. I did get the update for an app I installed a while back, I can log in normally, search, check my account, etc.
+Has anyone ever seen something similar?
+Update: just noticed slews of this log entry. That might at least explain why I'm not seeing any screenshots!
+20110802 22:56:17   [0x0-0x165165].com.apple.appstore[14137]    Tue Aug  2 22:56:17 XXX.local App Store[14137] : CGBitmapContextGetBitsPerComponent: invalid context 0x1012658d0
+20110802 22:56:17   [0x0-0x165165].com.apple.appstore[14137]    This isn't a bitmap context. Forcing destination format to ARGB_8 for CGContext.
+
+A: Unless you want to try turning on the store debug menu to muck about, Here are some general tips that might help narrow down the causes.
+The Mac App Store app loads in two phases.
+The first just brings up whatever cached data was saved the last time the app quit.
+
+The second actually paints in the artwork and may refresh the app with current data, updates, whatever else it cares to do in response to the servers on the internet.
+This second part is taking between 10 and 20 seconds for me lately.
+The store isn't known (of late) for being particularly speedy when launching. You can fire up iTunes - that online store should paint in about the same time as the Mac App store if your app and account are working correctly. It's more like a thin version of safari that knows how to spend your money with a secure wallet. Any network filtering, proxy, date errors, or slow servers will cause your app to poke along.
+
+
+*
+
+*You could try signing out of your account to see if that is delaying the response. 
+
+*You could also try disabling OCSP/CRL in the Keychain Access preferences. That helped in some 10.6 slowdowns, but it's not making as much of a difference in Lion as far as I can tell.
+
+
+

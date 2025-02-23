@@ -1,0 +1,26 @@
+Q: How to show hidden files and folders in Finder? I have a folder that starts with a dot . but am unable to display it in Finder.
+How can I say that for folder x, Finder should also display hidden files/folders?
+
+A: I don't think you can set this for individual folders. To set it globally, so that Finder always shows hidden files, run Terminal and enter the following two commands:
+defaults write com.apple.finder AppleShowAllFiles true
+killall Finder
+
+To switch back, do the same but substitute false for true.
+This works all the way through macOS Catalina (and betas for Big Sur).
+
+A: In the Finder, press CommandShift. to show hidden files & folders.
+
+A: You can customize Finder through Terminal commands such that it defaults to show/hide hidden files. 
+To show hidden files and restart Finder:
+defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app
+
+To hide hidden files and restart Finder:
+defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app
+
+s
+
+A: I myself use hiddenfiles widget. it's so easy to use.
+
+Beside that you can use free 3rd-party software like Deeper or TinkerTool.
+
+

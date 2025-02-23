@@ -1,0 +1,12 @@
+Q: App Keys (.plist keys) Isn't there some wiki or apple documentation which shows which app keys can be used for apple software?
+NOTE: I searched the whole net and didn't find any databases on this topic, so if there isn't really such a database maybe we should create one where we can share these keys. Is it possible to create a wikipage in this manner on stackexchange? 
+
+A: Well-built applications (hopefully including most of Apple's own apps) should be self-documenting -- Apple recommends that developers include a preference manifest inside each application that describes the preference keys they use (including their names, data types, descriptions, reasonable default values, etc).
+To view an app's manifest, right-click (or control-click) on the app, and select Show Package Contents; then open Contents/Resources, and look for a file or folder named after the app's bundle id with a ".manifest" suffix (e.g. Safari's is in a sub-bundle, so it's actually in Safari.app/Contents/Resources/com.apple.safari.manifest/Contents/Resources/com.apple.safari.manifest).
+The manifest file is itself in .plist format, and may be a little hard to ready by hand, but if you look for the name values listed under <key>pfm_name</key>, you should find what you're looking for.
+
+A: As far as I know the answer to your question is "no".
+For any given software you can use defaults read to get whatever options are set, but if there are default options that are not set, you won't see them.
+Blacktree Secrets is building a DB of defaults commands (which modify app plists). 
+
+A: Manifest Destiny is a site used to track Manifest (option) files for apps.

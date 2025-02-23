@@ -1,0 +1,66 @@
+Q: Extract a sound from a Classic application for Mac OS X? How can I extract a single 'snd' resource from a classic application into a form that Mac OS X can play?
+I can use derez to get the snd resource out, but from there I'm not sure how to assemble it into a form Mac OS X can read.
+This is on Lion; I have no access to earlier Macs.
+Derezed,it starts like this:
+data 'snd ' (3004, "metal stamp", purgeable) {
+    $"0002 0000 0001 8050 0000 0000 000E 0000"            /* ......ÄP........ */
+    $"0000 0000 159E 2B77 45D1 0000 159C 0000"            /* .....û+wE—...ú.. */
+    $"159D 003C 787D 807E 7D7D 8087 8376 6E72"            /* .ù.<x}Ä~}}ÄáÉvnr */
+    $"7C87 8782 8789 857F 7169 5F74 9891 7068"            /* |ááÇáâÖ.qi_tòëph */
+
+
+A: I had some System 7 Sound files, too. I just tried DaveM's answer, and it worked, except I had to set the frequency to 11025 (not 8192).
+My steps:
+
+
+*
+
+*Used Rezilla to copy the raw hex from the resource fork.
+
+*Used Hex Fiend to paste it as a regular file (added .au extension, but that doesn't really do much since it's still not directly playable)
+
+*Audacity > File > Import > Raw Data, select .au file
+
+*Change Sample Rate to 11025 Hz
+
+*Export as wav!
+
+
+A: Peter Hosey is correct, snd files are Sun|SGI au files. snd is the original au format: u-law, no header, 8192Hz. 
+I was able to convert CW metal stamp snd rsrc to an mp3 with very little work.
+Requirements: resource editor, hex editor, Audacity.
+First, convert the snd rsrc to an au file.
+   Copy the hex data from snd resource and paste onto a hex editor. Save with an au extension.
+Second, import the au file into Audacity.
+   Open Audacity. Select File->Import-Raw Data. Select the au file.
+      Encoding: Unsigned 8 bit PCM
+      Byte Order: No endianness
+      Channels: Mono
+      Start offset: 0
+      Amount to import: 100%
+      Sample Rate: 8192 Hz
+Third, Save the file
+   File->Export...
+HTH
+
+A: File Juicer can extract 'snd ' resources as QuickTime movies.
+
+A: According to Apple doc http://support.apple.com/kb/HT3775, QuickTime Player supports snd (though you'd probably need to right-click on the snd resource and specify "Open with..." QuickTime Player for it to play).
+snd, that's a blast from the past.
+
+A: Try playing the sound in its original application in Sheepshaver. Sheepshaver is a emulation system for Classic Mac OS running on OSX.
+Then use a program such as Audio Hijack Pro or Piezo to record the sound as it plays, by hijacking Sheepshaver.
+You'll get a good digital copy of the original sound in an AIFF format if you use Audio Hijack Pro, and in a lesser format with Piezo.
+
+A: I used SoundExtractor to extract "platinum sound" single file from Mac OS classic (I found it in /Applications/System Folder/Apparency/Sound Effects as I activated classical support, I didn't know where but it can run classical apps this way).
+Then the 68 files can't be read. No extension at the end of these files! So I used Amadeus II to turn them in aiff format.
+I made all that with my Tiger eMac and "classic", made by Apple for Mac OS X in order to use classic applications.
+So you can now put them in the sounds folder (or create it) in your library (~/Library/Sounds/).
+You can even turn aiff sounds into AAC (m4a) format using iTunes and even more, change the .m4a extension to .m4r to make then as a ringtone for iOS devices!
+But when I want to put all those 68 .m4r sounds into iTunes, it refuses them like if they were from an incompatible format. Perhaps it needs to delete all the .m4a files? I'll try that tomorrow!
+Please note that I use a French version of Mac so I translated the paths as I think it must be in English.
+
+A: What turned out easiest for me was:
+First I had to set the file type (it was lost somewhere along the way)
+SetFile -type 'sfil' AudioFileToConvert.au
+Then I used the converter tool from SystemSound Converter, which turned it into an AIFF file with no hassle.

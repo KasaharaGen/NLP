@@ -1,0 +1,14 @@
+Q: My desktop background won't change automatically. OS X 10.6.7 In the Desktop & Screen Saver panel of System Preferences, I check the "Change Picture" box and set it to "Every 30 minutes".
+The desktop background doesn't change. 
+I tried deleting com.apple.desktop.plist to no avail.
+Any ideas?
+Thanks for your help,
+Damian
+
+A: You might need to select a new folder of pictures and then back to the pictures you prefer. Deleting one of the plist files not all of them can sometimes leave the preference pane in a state of confusion.
+Step one is to get some change, then re-enable the automated change part.
+
+A: I discovered that the PathFinder application is the cause. Under its application menu there's a Show/Hide PathFinder Desktop item. I hid the PathFinder desktop and problem solved. It seems that the PathFinder desktop doesn't properly reflect the System Preferences. While it shows the first picture in the selected folder so it looks like your changes have taken effect, it seems to ignore the "Change Picture" checkbox.
+I think this must have broken in a recent update as it used to work, which is why I didn't flag the presence of PathFinder above. I guess I should have anyway. Apologies for that.
+Thanks for all help and suggestions.
+Damian

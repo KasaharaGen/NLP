@@ -1,0 +1,12 @@
+Q: Can I make an iTunes playlist comprised solely of songs that lack iTunes genius information? I'm looking to make some lemonade with the "lemon songs" that iTunes genius doesn't know how to catalog. One such example currently is an obscure song called "Polythene Pam" by some beatles boy band with bad haircuts walking on abbey road.
+I'm aware that for some people, this song has enough matches for genius to make a playlist - I want to exploit my specific library to make a list of all the songs that currently won't make a playlist. Basically is there a way to get at genius results and create a playlist based on that status in a systematic way.
+I'd love to make a smart playlist to exploit this and collect tracks for listening based on the idea that "if genius can't match this song to others in my library, it's worth a listen". This song is either too new (or obscure) and genius won't match it on anyone's library no matter how complete, or that song is so different than the others in my library that it stands out as a singleton.
+Basically I'm asking if the Smart Playlist criteria are extensible as I want a Has Genius flag similar to the Has Artwork flag to make a playlist where this is false.
+
+I'd also consider a script or third party software that could periodically make a traditional playlist if I can't automate it with a smart playlist. I am not looking for alternatives to iTunes or genius. Thanks for any ideas you might have!
+
+A: I'll answer that it's not currently possible in hopes that someone can answer this and prove I'm wrong on this.
+
+A: With respect to songs that Genius doesn't understand, I have an overwhelming reliance on beaTunes to create playlists. You can run an analysis to inspect and determine a song's BPM, harmonic key, and color, all of which go into making a more accurate playlist that you define.
+
+A: I'm not sure this is possible because the genius information isn't stored in the iTunes tag system that you can see. Genius actually has its own library that lives right next to your iTunes library. I assume that when you click on the genius button, iTunes checks to see if there is any information in the separate Genius library file and then reports back to you. If you could write a script to read that file then you might be able to do it, but I'm not sure that you can add the flag. Your best bet might be to add a comment when you do see that dialog pop up. Not automatic like you want, but as good as it gets I suppose.

@@ -1,0 +1,23 @@
+Q: How can I get ALT+C to work via SSH on a remote UNIX machine? I've installed Snow Leopard 10.6 a while a go and I'm pretty new to MacOS. 
+I was working on Windows, then started using Slackware and I'm used to working with those OS. 
+So now after I migrated to MacOS I have a few issues:
+
+
+*
+
+*I'm usually administrating a lot of unix servers. My problem is I can't get some of the key features like Alt+C shortcut key to work in mc. What are the alternative keys or workarounds ?
+
+*When I'm in mc or in the terminal, if I press Page up/Page down the terminal scrolls up/down. In normal unix terminals this would actually go to the first command of your command history list. And the page down will go to the last command.
+
+*Globally in Mac you have to use MacKey + Left/Right to go to the beginning of the line or the end of the line. In Windows/Unix OS that's done when you hit Home/End keys. How could that be done in MacOS ? 
+
+
+I'm kind of new to MacOS so please be more specific so I could at least google it properly :)
+
+A: When running the Terminal app, choose Terminal > Preferences... 
+This will bring up an options menu. Under Settings there's a tab for the keyboard.
+The checkbox "Use option as a meta key" makes the Alt/Option key work like you expected (I tried it in Emacs and it worked).
+For Page Up and Page Down, hold down shift to send Page Up and Page Down instead of scrolling. You can also adjust this in the keyboard preferences if you prefer.
+I'm not sure about Home and End, but I'm in the habit of using Ctrl+A for home and Ctrl+E for end.
+
+A: I would recommend iTerm2 - It's a great terminal app and has this option to bind Left/Right option to meta (or esc+ sequence). Home and End work also as expected.

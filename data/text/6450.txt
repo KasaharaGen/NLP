@@ -1,0 +1,75 @@
+Q: Unable to increase Macintosh HD partition size with data in a subsequent partition 
+I can't make my main Macintosh HD partition bigger. It's limited by the FAT partition in the middle, which seems to be frozen, I can't move it down to make space for my main partition.
+To get some background, I originally had those 2 partitions sharing the space in peace. Then, I created a 3rd partition to experiment with another OS. Once done I deleted that new partition, and boom. It became a no-man's land that neither partition can claim.
+I just want to have things back the way there were :(
+
+A: It appears you have space to image the entire DISK0S4 partition to a compressed img file that would be stored on Macintosh HD. 
+From there you will be free to delete the partition, upsize Macintosh HD on the fly, and then make a new DISK0S4 FAT.
+To start, just select the DISK0S4 and then go to the menu:
+
+
+*
+
+*New ▶ Disk Image from "DISK0S4"...
+
+
+You'll want to mount and verify the image well before erasing anything. Also consider it will be at least twice as slow to move data from one part of the drive to another if you have a HDD with physical heads that have to move. Dumping that partition to an external drive is far faster - you can still use Disk Utility to compress the image to save space and time since the CPU can usually out compress any external disk at less that 25% usage - the bottleneck is the write speed of the drive.
+
+A: You have to actually delete the FAT partition at the bottom, you can't just drag it into oblivion. The instructions to do this are actually in the image that you uploaded.
+
+Edit:
+After reading your comment, it appears that I misunderstood the intent of your question. Disk Utility can't dynamically resize/move FAT partitions. You're going to have to back up that data, delete the partition, create the layout that you want, and then restore the data.
+
+A: When you deleted the 3rd part ion you didn't actually delete it, you merely removed the filesystem that was in it.  You need to change the partition mapping scheme to be a 2 partition layout, which should then allow you to increase the size of partition 2 so it can use it.  Then you have 2 partitions, and you can increase they size of the first, and decrease the size of the second at the same time, as it will now have enough space to "move" as it were.  This will take ages.
+Edit: Sorry, just realised that as above because it is FAT you cannot resize, it's a backup/remove/recreate/restore job for the bootcamp partition, sorry about that.
+
+A: I had accidentally removed my Windows 7 Bootcamp partition from Disk Utility (should have done so thru Bootcamp). It deleted the partition of ~80GB and made that "Free Space". I was restricted to change the size of my Macintosh HD to retake the ~80GB of free space and I searched all over the internet for a fix. There was nothing that helped my recover the "Free Space" partition.
+However, I found this solution myself which worked instantly:
+
+
+*
+
+*Go to System Preferences 
+
+*Click on Security & Privacy
+
+*Choose FileVault
+
+*Decrypt your hard drive (this may take 1-4 hours, be patient)
+
+*Restart your computer
+
+*Go to Disk Utility and verify your both Macintosh HD and the partitions
+
+*Assuming they are in good condition, click on "partition" and you should be able to resize and recoup the free space.
+
+
+This worked for me.
+
+A: Not sure this is applicable to your situation, but I somehow got mine resolved.
+Story: 
+I tried to manually install Windows 8.1 with bootcamp and it failed to auto install, so I manually partitioned some free space with disk utility. After I tried to install windows again the setup created this evil "disk0s4" partition that is protected with no user privilege to modify or remove.
+Fix:
+I attempted many resolutions suggested on the web but none of them worked, then I thought to myself, if this partition was created by the MS windows installation boot disk would that be the place to remove it? So I ran the Windows setup procedures again (inserting the disk/bootable usb, and hold option when boot, then select "windows" or "windows setup" or however you name your installation source). When I reached the part where I can select which partition to install, I then delete the "disk0s4" partition from there. Restart your mac, launch disk utility again and its gone! 
+Steps:
+
+
+*
+
+*Insert OS installation disk/USB (Windows 8.1 for me)
+
+*Boot holding option and select the source (Windows on a USB for me)
+
+*Proceed with installation till you hit the part with several
+partitions
+
+*Select and delete the "disk0s4"
+
+*Remove the installation medium and reboot
+
+*Launch disk utility again and it should be gone!
+
+
+Hopefully this helps!
+
+A: Well what worked for me was to partition a third partition smaller than the original container disk 1 and then shorten the container disk 1 into oblivion and then Macintosh HD will fill up the space and much as possible wait for the process to increase and done!

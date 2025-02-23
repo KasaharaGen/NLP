@@ -1,0 +1,159 @@
+Q: Is there an OS X terminal program that can access serial ports? What programs can act as a terminal and access serial ports?
+This is not for terminal access on an IP connection, this is so I can access a hardware device plugged into a USB/serial converter running at 9600/8/N/1.
+
+A: There's a new Mac app called Serial, available in the app store. Full disclosure- I wrote it. The main advantage over other apps is it can work with most USB to serial devices without having to install any drivers, as it has its own drivers built-in. It also does full terminal emulation so you can use it to work with Linux or other devices that require it. You can try it for free, too.
+Also, Apple began including their own driver for FTDI-based devices in Mavericks (10.9). So, if you're on 10.9 or later and your device has an FTDI chip inside, you can use the built-in screen command in the terminal to access your device without worrying about drivers.
+
+A: And then there still is the old ZTerm which is just as old as it's looks suggest yet it gets the job done just fine and it is available for free. Works fine with Prolific (PL 2303) and FTDI based USB serial adapters.
+
+A: My preference is cu. I use it for Arduino or Bus Pirate related fun. It's installed by default and supports parity settings among other options (type man cu for more info).
+sudo cu -s 115200 -l /dev/tty.usbserial-A6005kdh
+
+To bail out when you're done, type ~. as you would with SSH
+
+A: After trying other approaches (incl. screen) unsuccessfully, I started using goSerial from this list of serial port apps for mac. Seems to be working fine. It's a free (donation based) program.
+
+A: +1 for minicom:
+brew install minicom
+
+get address of your USB to Serial adapter:
+ls /dev/tty.*
+/dev/tty.Bluetooth-Incoming-Port    /dev/tty.usbserial-1440
+
+and set it up:
+minicom -s
+        +-----[configuration]------+
+        | Filenames and paths      |
+        | File transfer protocols  |
+        | Serial port setup        |
+        | Modem and dialing        |
+        | Screen and keyboard      |
+        | Save setup as dfl        |
+        | Save setup as..          |
+        | Exit                     |
+        | Exit from Minicom        |
+        +--------------------------+
+
+Choose Serial port setup
+Press A to setup you USB to Serial device
+Press F to disable Hardware flow control
+So it would look like this:
++-----------------------------------------------------------------------+
+| A -    Serial Device      : /dev/tty.usbserial-1440                   |
+| B - Lockfile Location     : /usr/local/Cellar/minicom/2.7.1/var       |
+| C -   Callin Program      :                                           |
+| D -  Callout Program      :                                           |
+| E -    Bps/Par/Bits       : 115200 8N1                                |
+| F - Hardware Flow Control : No                                        |
+| G - Software Flow Control : No                                        |
+|                                                                       |
+|    Change which setting?                                              |
++-----------------------------------------------------------------------+
+
+Hardware flow control must be disabled for you to be able to send inputs to terminal in typical PL2303 USB to Serial cables.
+Esc key is the Meta key for this program. Esc and arrow down to exit menu.
+Do not forget to save default!
+    | Save setup as dfl        |
+
+and Exit from Minicom
+Next time you start it, it expects defaults you just configured and in my case ready to go from second 1.
+
+A: The best program I know of for this is minicom, available from Homebrew, fink, and macports.
+
+Minicom is a serial communication program. It is a Unix clone of the well-known MS-DOS Telix program. It has ANSI color, a dialing directory, dial-a-list, and a scripting language.
+
+Homebrew installation:
+brew install minicom
+
+
+A: I have had success with cutecom on Ubuntu 16.04
+Supported on OSX: http://cutecom.sourceforge.net/ 
+
+A: Another serial terminal for Mac OS X is Cornflake!
+It features Device Selection with a Refresh Button, Baud Rate & Packet Type & Flow Control Selection, Port Control and a View Filter to view incoming data as ASCII, ASCII+, Integer or HEX.
+
+A: If you prefer not to work in Terminal, you might mant to try CoolTerm (free). Scroll down a bit for description and download. Don’t let the fact it‘s written in RealBasic turn you away... I have used it to connect to plotters, Arduino boards and receipt printers via a Keyspan USB<->Serial Adaptor.
+
+A:  SerialTools on App Store (free). Good for me
+
+A: I use screen to connect to my router's serial port on my Mac.
+After installing it- using either macports or homebrew depending on your preference- use the following syntax:
+sudo screen /dev/(serialDevice) (baudRate) (TransmissionRate) (flowControl)
+
+To connect to my MikroTik RB4011 router my screen command is:
+sudo screen /dev/ttyUSB0 115200 cs8 ixoff
+
+"cs8" being the bit rate of router and "ixoff" specifying "No Flow Control". "115200" is the baud rate of router.  Alternate settings would be "cs7" for 7 instead of 8 bit and "ixon" if flow control supported by your serial device.  man screen
+All the "HowTo's" for using screen to make a serial connection on the 'net I've found Googling omit these required parameters, so that's why you'll find screen has not worked if you've tried it just passing only the baud rate.
+BTW, minicom -s (which would also need to be installed via macports or homebrew) also works great, but I prefer screen as I don't have to go through setup menus- I can just pass the serial connection parameters directly to the screen command.
+
+A: You should have a look at ZOC, what I think to be the best terminal emulation program available for the Mac.  I use it everyday for my job.  It has the ability to do direct communication with a serial port.  Of course it does way more than just serial communication.
+
+ZOC is a professional SSH/telnet client and terminal emulator. With its impressive list of emulations it lets you easily connect to hosts and mainframes, using communication methods like secure shell, telnet, serial cable or modem/isdn.
+Its sleek user interface has many ways of making your life easier. In its own way, this is the swiss army knife of thin clients: versatile, robust, proven.
+Key features:
+  - Tabbed sessions with thumbnails
+  - Customizable to meet your preferences and needs
+  - Scripting and automation features
+  - Compatible with Windows 7 and OS X Lion
+  - Administrator friendly (deployment, configuration)
+  - Now $79.99 with attractive bulk discounts
+
+
+A: You can use the terminal command screen to do this!!!
+As seen on ServerFault:
+
+I love using [screen] for connecting to serial consoles, i.e.
+screen /dev/ttyS0 19200
+
+
+Or, if you prefer Mac OS X hints...
+
+I often have to do router configuration via a console port, so I use a
+  Keyspan Serial Adapter to get access. Two problems then present
+  themselves: ZTerm is a horrible Mac OS X app. It hasn't been updated
+  in five years or so, and isn't a Universal Binary. The developer
+  doesn't seem in any hurry to rectify the situation. It is not worth
+  the shareware fee in its current form. Minicom requires installation
+  of Fink or MacPorts and is overly complex. Solution: Use screen,
+  Terminal, and a little AppleScripting.
+First, launch Script Editor and type/paste in the following code:
+tell application "Terminal"
+  do script with command "screen /dev/tty.KeySerial1"
+  set number of rows of window 1 to 100
+  set number of columns of window 1 to 80
+  set background color of window 1 to "black"
+  set normal text color of window 1 to "green"
+  set custom title of window 1 to "SerialOut"
+end tell
+
+Compile and save as an app from within Script Editor, and you have a
+  double-clickable application to launch a serial Terminal session. You
+  may want to customize this slightly -- you can change the screen
+  colors or number of columns or rows. You may also need to customize
+  the screen command with a different device name if you are using
+  something other than the Keyspan Serial Adapter (do an ls tty* of the
+  /dev/ directory to get the right name). 
+screen uses Control-A to take commands directed to it. So type
+  Control-A followed by Control-\ to exit your screen session. If you
+  fail to do this and exit a Terminal session, you'll leave the screen
+  session alive and the serial resource unavailable until you kill the
+  screen session manually. man screen will show you further commands to
+  send to a screen session. 
+If anyone can reply with a link to a tutorial on how to wrap an
+  interactive Unix App in Cocoa, that would be the next step -- it would
+  be nice to do this without involving Terminal. If you prefer to use
+  Minicom, you could still use the AppleScript to wrap it into a nice
+  launchable app -- use this older hint to find the right command line
+  commands.
+
+Many USB-Serial adapters use the chip from FTDI. Install the "Virtual COM Port" driver and look for the proper TTY name in /dev. For example, on a PowerBook G4 it came up as /dev/tty.usbserial-FTALKY8I.
+
+A: C-Kermit is alive and well in Brew, and can be installed with:
+brew install c-kermit
+
+Naturally you would require Brew to be installed first. You can find information on how to do this here: http://brew.sh
+Alternatively use Macports
+sudo port install kermit
+
+This would too require you to have Macports installed

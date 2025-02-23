@@ -1,0 +1,6 @@
+Q: Symlinked services in ~/Library/Services not working in Lion Does anyone know how to make symlinked services work in Lion? I used to keep all my services under version control in SL and symlinked into ~/Library/Services and this stopped working when I installed Lion. Once I 'installed' the services they work but even after they installed replacing them with the symlink doesn't work.
+Anyone have any ideas to get this working? Or know why it no longer works?
+I am using soft links if that makes a difference.
+
+A: I would hard link a file to make sure it's disabled by design.
+You could then decide to go that path or come up with automation to deploy changes to production - something simple like make or rsync or complicated like Puppet.

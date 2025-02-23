@@ -1,0 +1,60 @@
+Q: On the iPad, how do I tell what version of Mobile Safari I have? I'd like to know what precise version of Mobile Safari the iPad I'm using has. Is there any way to find out (preferably from the device itself)? There doesn't seem to be any menu in Safari Mobile, and thus none to choose "About" from. If you go to Settings | Safari, you see various useful things, but no "About" or "Version" or similar, which surprised me.
+
+A: You can get the userAgent string without visiting an external website, by typing the following in the Safari address bar (where you would normally type a URL):
+javascript:alert(navigator.userAgent)
+You must type it exactly as it appears here, matching case and punctuation.
+An alert popup will appear with the full useragent string, which contains the version number of Safari and iOS.
+
+A: None of the javascript answers worked for me. I found an easier way!
+There are several "what's my IP address?" pages out there, such as this one. These pages tell you your IP address and, in some cases, what your browser is, what your operating system is, and if your browser is up to date.
+
+A: 2022 update: The easiest way these days it to look at what iOS version you're using (Settings > General > Software Update), because it appears that the iOS Safari version is now synced to iOS version (iOS version 15.4's Safari reports it's Version 15.4, 15.5's Safari reports it's Version 15.5, etc.). (Can't find a citation for that, though, sadly.)
+
+The only way I've found Ross McNab's way was much better but sadly no longer works (thanks, Apple); Billy Moon's way works but is a bit awkward for one-off checks.
+Another way to do this is to use an external website (there are plenty to choose from, just search on "what's my browser"), which will report my user-agent string back to me.
+So for instance, these sites will report back to me that my user-agent string is:
+Mozilla/5.0 (iPad; U; CPU OS 4_3_5 like Mac OS X; en-gb) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8L1 Safari/6533.18.5
+...the Version/5.0.2 part tells me I'm using Mobile Safari 5.0.2.
+Note: See Jim Grisham's answer — while this will tell you Safari version, the WebKit version it shows you is apparently no longer accurate.
+
+A: 2022 update:
+For privacy reasons, Mobile Safari on any devices with iOS / iPadOS 11.4.1 or later will only report a maximum WebKit version of 605.1.15 in the User-Agent string (I imagine something similar is true for anything accessible via JavaScript).
+
+If you know the iOS version of the device, the ‘Safari version history’ chart at Wikipedia is probably the easiest place to look. (That page contains references for the underlying data sources.)
+Example:
+
+iOS 12.5.5: Safari 12.1.2 / WebKit 607.1.40
+iOS 13.7: Safari 13.1 / WebKit 609.1.20
+iOS 14.7: Safari 14.1.2 / WebKit 611.1.21
+iOS 15.4: Safari 15.4 / WebKit 613.1.17
+
+
+A: Since Ross McNab's answer appears to no longer work...
+Bookmark this (or any) page - then edit the bookmark - call it what you like, but change the url to...
+
+javascript:alert(navigator.userAgent)
+
+Now you can check your user agent any time you feel like conveniently from your bookmarks. For iOS 15 you might get a result like this:
+
+Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Mobile/15E148 Safari/604.1
+
+Or if it's just a quick one-off check you want and you're connected to the 'net, do what T.J. originally posted.
+
+A: You can visit http://spiderip.com to check the user agent and version of safari 
+
+A: Handy alternative if you want to copy paste this info / you're already there: plug your iPad into your mac (assuming platform!) and in OSX Safari, remote debug the device, and copy the User Agent from the Resource Panel under Request Headers.
+Enable remote debugging:
+
+
+*
+
+*In OSX Safari’s Preferences pane under Advanced, check the Show Develop menu in the menu bar checkbox.
+
+*On iDevice: Settings > Safari > Advanced
+
+
+http://moduscreate.com/enable-remote-web-inspector-in-ios-6/
+
+A: For some reason javascript:alert(navigator.userAgent) did not work. I tried it but got an error from Safari saying it was not allowed (tested on iOS 12). 
+I happened to be on jsfiddle.net, typing it in there did work :)
+jsfiddle.net is an online website where you can type in JavaScript. And since the JavaScript is coming from the page and not directly from the browser, it is allowed to display.

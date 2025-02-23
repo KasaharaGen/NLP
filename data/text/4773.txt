@@ -1,0 +1,43 @@
+Q: Delete calendar event from iPhone I received an e-mail with an .ics attachment and I opened it on my iPhone. I opened the attachment and added it to my calendar. Now I want to delete the event. How do I do that?
+More Details:
+When I open most entries in the Calendar app, they have an "Edit" button in the upper-right, and then a "Delete Event" button on the Edit screen. But not this Calendar entry.
+I'm guessing that I can sync to my Mac and delete it from there, but that's not a good option since
+
+
+*
+
+*I'm at work
+
+*I don't use my Mac very often
+
+*Deleting an entry from the calendar shouldn't require a 5 minute process
+
+
+Update: Not only am I unable to edit anything about the event, but I can't even change the Alert time. There must be some way to edit events received via .ics.
+
+A: Was it added to a calendar? Or as a calendar?
+Go into the Settings under Mail, Contacts, Calendars and see if it was added as a full calendar.
+
+A: I just solved it by connecting to iTunes, choosing my iPhone, then Info, checking it to sync calendar to the Mac not only iCloud. DISAPPEARED! You can uncheck not to sync to the Mac after that again!
+
+A: The only way that I can see is if you had your calendar set up as an exchange calendar. If you're using google calendar you can do it in the web view, but as far as a standard calendar goes, there's no way to remove the event because it's not yours. You can talk to the person that sent you the email and see if he/she can remove you from the attendees list in their calendar, but I can't think of a way for you to do this yourself. It's possible that this functionality will be added in iOS 5 but I can't find a mention of it.
+
+A: Thank you for describing the problem so well.  I believe this is a bug or at least a major annoyance.  I have the exact same issue.  When receiving an .ics file via email and clicking on it on iphone, the event is added to my calendar, but cannot be edited in any way.  I cannot add or change an alert, cannot change the time, cannot delete future events (for a recurring meeting).  Completely read-only.  At a local level (on my phone), it should be possible to make changes to the event, and that is why I consider this to be a bug.
+
+A: I had the same problem, and think I finally figured out how to fix it, as long as you're automatically syncing your calendar with iCloud:
+
+
+*
+
+*Log into icloud.com on a web browser, with your iTunes account
+
+*Enter the Calendar app in icloud.com
+
+*Double click the calendar entry you want to delete
+
+*There should be a "delete" button by the bottom left corner of the window that pops up
+
+*Click the delete button (it will say that all attendees will be notified that the event has been canceled, but this shouldn't actually happen if you're not the event owner)
+
+*Any devices synced to that iCloud account should automatically remove that calendar entry
+This worked for me, to remove an .ics entry imported from Facebook to my iPhone/iCloud calendar via email. (Deleting it from your calendar on Outlook or a Mac and then syncing would likely work as well.)

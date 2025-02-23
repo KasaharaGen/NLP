@@ -1,0 +1,29 @@
+Q: Monitoring and limiting internet usage I am currently having to access the internet through a wireless dongle which is giving me a 2gb per month download allowance. I need to be really cautious about my internet usage.
+Just this afternoon I ran out due to some process downloading 600mb of something. I have no idea what it was (although I suspect iTunes) or why it would need to download so much.
+Is there anyway I can monitor which processes are using the network, or failing that set up a firewall that only allows the apps I choose to have access?
+
+A: If you install Little Snitch you can monitor which application using internet. Every time any application wants to use internet you must accept or deny it, but it doesn't have an ability to measure bandwidth usage of each application.
+You can see its demo here.
+
+A: 600 MB doesn't sound like iTunes, unless you told it to do it. 
+I'd look into "Software Update...", which, in its case, can have its automated run turned off so you can run it manually.
+
+A: HandsOff! (trial available)
+is a very feature rich firewall for MacOSX. The features included which you need are:
+
+*
+
+*prompts you when a process/applications tries to connect to the internet
+
+*monitoring network connections
+
+*settings rules for application's network connections
+
+The total bandwith you see in the monitor is only since last boot.
+
+
+A: I found SurplusMeter to be very effective while using my 3G USB Stick.
+
+Here's also a tutorial.
+
+A: You might try NetUse, $8 at the App Store.

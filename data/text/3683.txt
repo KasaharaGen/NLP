@@ -1,0 +1,74 @@
+Q: How do I get "wget" for Snow Leopard? There's no wget command. How do I get it?
+
+A: You will need to install Xcode with Unix Dev Support, then you can download and compile the source, or try macports, or homebrew.
+$ brew install wget
+$ sudo port install wget
+Or you could try a graphical form which includes wget, like http://www.macupdate.com/app/mac/24787/cocoawget
+
+A: To expand on Michael Granger's answer: curl (included on all Snow Leopard installs) is really quite powerful, and can do a lot of what wget does (and a number of things it doesn't).
+But, as noted on the curl FAQ:
+
+1.3 What is curl not?
+Curl is not a wget clone. That is a
+  common misconception. Never, during
+  curl's development, have we intended
+  curl to replace wget or compete on its
+  market. Curl is targeted at
+  single-shot file transfers. 
+Curl is not a web site mirroring
+  program. If you want to use curl to
+  mirror something: fine, go ahead and
+  write a script that wraps around curl
+  to make it reality (like curlmirror.pl
+  does).
+...
+
+(For reference, here's that curlmirror.pl script)
+
+A: If you don't want to use either homebrew or macports there is a great set of instructions here, reproduced below (using a slightly more up-to-date version of wget).
+These instructions require both Xcode and the command line tools to be installed.
+First, use curl to download the latest wget source :
+curl -O http://ftp.gnu.org/gnu/wget/wget-1.14.tar.gz
+
+Next we use tar to uncompress the files you just downloaded:
+tar -xzf wget-1.14.tar.gz
+
+Use cd to change to the directory:
+cd wget-1.14
+
+Configure with the appropriate –with-ssl flag to prevent a “GNUTLS not available” error:
+./configure --with-ssl=openssl
+
+Build the source:
+make
+
+Install wget, it ends up in /usr/local/bin/:
+sudo make install
+
+Confirm everything worked by running wget:
+wget --help
+
+Clean up by removing wget source files when finished:
+cd .. && rm -rf wget*
+
+
+A: Probably the easiest and painless way to get wget is to install Homebrew. In fact, the very home page says:
+
+Homebrew is the easiest and most flexible way to install the UNIX tools Apple didn't include with OS X.
+
+and their example is:
+$ brew install wget
+
+;)
+
+A: Alternatively, if you don't need wget specifically, Snow Leopard does come with curl which does many of the same things. 
+E.g., fetching your flair via wget:
+wget http://apple.stackexchange.com/users/flair/2726.png
+
+vs. fetching it with curl:
+curl -O http://apple.stackexchange.com/users/flair/2726.png
+
+Notably lacking from curl is wget's --mirror option, but it does have nifty fetching with patterns, which handles many of the same problems:
+# Fetch flair images for users 2726 through 2730
+curl -O http://apple.stackexchange.com/users/flair/[2726-2730].png
+

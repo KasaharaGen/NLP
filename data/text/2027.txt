@@ -1,0 +1,36 @@
+Q: How to perform cleanup duties on OS X? For all my Windows PCs I use CCleaner to perform cleanup duties. Is there a similar tool that I can use for OS X to clean up any accumulated crap?
+
+A: There was a not immediately relevant question posted a while ago that actually has answers I think you would be interested in. I answered with my regular maintenance routine (Why is my Macbook Pro getting so slow?). The relevant portion of my answer:
+
+Apple Certified Technicians are your
+  friends: Third-party system
+  maintenance software is not. I've been
+  working with Macs for years and the
+  one immutable fact that I have learned
+  is that applications designed to help
+  maintain the system are more trouble
+  than they are worth. When all else
+  fails, take it in because there may be
+  a hardware problem at this point.
+
+I put my Macs through the wringer every day and I very rarely have problems since I implemented my maintenance routine. Third-party software is not necessary, if not a waste of money.
+
+A: Every once in a while (every 6 - 12 months, or if things start acting weird), check your disk with /Applications/Utilities/DiskUtility.app
+Select your hard disk in the left sidebar, then the "Verify Disk" button at the bottom right. If everything is OK, good. If not:
+
+
+*
+
+*Reboot
+
+*Hold CMD+S at the Chime to boot into Single User Mode
+
+*Run /sbin/fsck -fy # this should fix everything
+
+*Type "reboot".
+
+
+A: Alex.. please be careful.  OS X generally doesn't need maintenance like most Windows installations do.  If you just leave it, it will be fine.  The only thing I sometimes tell clients who I'm tutoring, is that the maintenance scripts run themselves by default at 3AM.  They're not doing anything too serious, log rotations and the like.  So if they don't run, I don't think it's the end of the world.  But once in a while you may want to leave the computer on all night so they get done.
+
+A: Also, OnyX seems to be the popular choice for those looking for a Mac equivalent to CCleaner.
+http://www.macupdate.com/app/mac/11582/onyx

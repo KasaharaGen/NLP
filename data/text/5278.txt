@@ -1,0 +1,22 @@
+Q: Where did the ~/Library folder go in Lion? I just installed Lion, and I can't find the Library folder in my user folder.
+Does the folder no longer exist? If it doesn't, where are my preferences? If it does, how do I get to it?
+
+A: The ~/Library folder still exists, but it is hidden. You can easily unhide it by running the following command in Terminal (/Applicatiions/Utilities):
+chflags nohidden ~/Library
+
+Note that you'll have to do this again after each 10.7.X update (credit to Vincent).
+If you want to reveal it on a per-use basis, you can get in by holding down option and clicking on the Finder's Go menu.
+Or, you can use Go-> Go to Folder and type in the path.
+Or, you can open Terminal and type open ~/Library
+The app Lion Tweaks gives you an easy GUI way to change this setting, as well as other hidden Lion preferences.
+
+A: Simpler way.
+Set the Finder view to Columns (just for this exercise.  You can change it afterwards).
+Close Finder windows.
+Hold Option key while going to Go in menu bar and selecting Library.  This opens a Finder window with the word "Library" in the title/name location at top center of window.  Release option key.
+Click and hold the folder next to "Library" and drag it into your sidebar where you want it.  Release.  
+Done
+It will stay there until you Command-Drag it out, no matter how many SU for the 10.7.x OS you get.
+
+A: The ~/Library folder is still present but is "hidden" in OS X 10.7 by default, however there are a variety of ways to access ~/Library, depending on how frequently you need to access and on whether you want it to remain hidden.
+The best summary of these methods is found at 18 ways to view the ~/Library folder in Lion. 

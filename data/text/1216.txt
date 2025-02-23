@@ -1,0 +1,24 @@
+Q: Why does the Finder run at such a low process priority? I'm at a bit of a loss about this.
+I'm running a big import in aperture, and it's causing my system to slow down to a complete crawl, basically rendering it unusable for anything, even browsing the web. Since this seems a bit unnatural, I spent a little time looking around.
+Running ps -Al shows that, apparently by default, the Dock, Finder, and SystemUIServer all seem to run at a priority far lower then userland applications. While user applications typically have a priority of 33, the Dock, Finder, etc have a priority of 53.
+The end result, is ANY processor intensive task completely clobbers the UI, and renders the system unusable until it finishes.
+Anyways, using renice -20 -p <prid> bumps them up to the same priority as the rest of the userland UI, and results in not having to wait 1-3 seconds (!) for the UI to respond to something as simple as a mouse click.
+Thad said, I have two questions:
+Is there any reason I shouldn't be altering the thread priority of the finder like this?
+Is there any way to make the priority change persistent, e.g. so it stays that way after reboot.
+
+A: I'm not sure anyone short of Apple's own developers would be able to answer this question, Finder's inner secrets are their domain. If you do think there are some noticeable lag problems with the UI you might want to submit a bug report to Apple about it.
+Judging from the sound of things (processes intentionally taking up all resources) this is a bit of an edge case for memory management. I've yet to see a system perform at their best without somewhere around 10-20% resources free, as a buffering aid.
+Just curious, what are these processes you're running?
+
+A: "I'm running a big import in aperture, and it's causing my system to slow down to a complete crawl"
+Then Aperture is (probably) the program you want to renice, not the others. The processes you mentioned are tuned relative to average user applications, so that user applications get higher priority and remain responsive, since they are what users use most of the time.
+Your case is the less-common one, where an application is performing a long-term, intensive task and the user wants to do something else at the same time. By default, it's the user's applications that get priority so that these intensive tasks get more resources and complete sooner.
+For every user that complains that other applications aren't being responsive enough, there is another user complaining that the active application isn't running fast enough.
+If you are running a long, resource intensive task and you know you want it to have lower priority so you can use other processes while the task completes—and you don't mind if the intensive task takes longer—you should lower the priority of the process running the intensive task.
+As for your second question, there are several possible solutions for making the renice more automatic. For example, you could create a script applet that runs Aperture at a lower priority and use that to start Aperture. Or you could start Aperture via a shell script stored in a *.command file (however, that will open Terminal and run the command in a terminal window, which may not be what you want). Each of these is a little involved. If you would like examples, I can see about providing them later.
+
+A: I posed a similar question - long ago, on ServerFault - though not as specifically focused on the Finder (although I DO find the Finder to be intolerably slow, as well).  How to permanently “renice” a process on Mac OS X (or iOS, etc)?  Not much info was gleaned there - as to a good way to do this… or as to why it is such..
+I still think about this often, and there are actually a few ways to muss with the "basics" if you so dare.  As previously mentioned, you can do various shell chicanery.. but a good place for such misdeeds are the various /etc/rc* boot routines.. which are already up in there.. setting all sorts of arbitrary (apple-defined) system parameters for you.  either edit those, or lookup how to add your own routines to the boot process.
+also, if you really want to make your head explode..
+sudo sysctl list and it's key to pandora's box, aka /etc/sysctl.conf

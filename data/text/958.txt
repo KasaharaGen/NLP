@@ -1,0 +1,17 @@
+Q: Spotlight: Don't Index a Volume Is it possible to ask Spotlight to not index a volume ?
+
+A: Yes, open the Spotlight prefpane and under the Confidentiality tab (not sure, but on my  French system it is called "Confidentialité"), you can add folders and volumes not to be indexed.
+
+A: There are a variety of options to do this:
+
+
+*
+
+*Add the drive to the "Privacy" tab in the Spotlight Preference Pane
+
+*Turn off Spotlight indexing for the site from the command line: sudo mdutil -i off /Volumes/NAME_OF_DRIVE
+
+*touch /Volumes/NAME_OF_DRIVE/.metadata_never_index on an external drive.
+
+
+A: If it's a removable volume, create a file in its root directory called .metadata_never_index, as in this hint.

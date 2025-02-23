@@ -1,0 +1,6 @@
+Q: Cannot use VPN after install Charles web proxy I installed the Charles web proxy, now if I start VPN and without starting Charles, I cannot browse the web. The web browser says proxy error. But i unchecked all the proxy in web connections.
+I wonder what Charles has done to my computer. Right now, I have to run Charles simultaneously with VPN, which is annoying. Anyway to solve it? Thanks.
+
+A: Fixed.
+Charles use itself as a web proxy to sniff on every request passing through the network interface. Besides turn off Charles in its proxy settings, you still need to check if the web proxy is turned off in your mac's network settings.
+As every VPN has its own proxy settings, don't forget to turn off web proxy in VPN.

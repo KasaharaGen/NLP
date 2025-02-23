@@ -1,0 +1,21 @@
+Q: Preview.app does not update a pdf when it changes In all pre Lion versions of Mac OS X Preview.app could show an updated PDF when the PDF it was showing changed.
+Example: I'm writing a latex document and recompile it. Without closing Preview it just reloaded the PDF.
+In Lion it does not show this behaviour any more. It just seems to get stuck when the open PDF changes.
+Do you know how to get the pre Lion behaviour? Or am I just missing something here? Is there a PDF viewer which can update the PDF when it changes?
+
+The Problem actually was the way I build the PDF file. I have a Makefile to build my latex files which looks like this:
+pdflatex -output-directory out main.tex
+mv out/main.pdf .
+
+So the file does not get updated. It get's replaced. On pre Lion Osx this worked fine. In Lion it does not. Now I just open out/main.pdf and update it with pdflatex and it works.
+It also works with Preview.app
+
+A: Try Skim.  It has a preference option to check for file changes.
+
+A: The issue occurs when you have an error in your latex file.  At that point pdflatex will delete the pdf, and preview will stop following it.  After you correct the error, pdflatex will create a new file, but this will not be tracked by preview, which is still looking at the now non-existant file.  This is why skim will work for a while as well.  I understand why preview tries to follow the file, sort of, but I think this behavior is very annoying.
+
+A: The Skim app does not seem to automatically refresh the rendered PDF when I replace the PDF file with a new version, even with the "Check for file changes" preference option checked.
+What does work with Skim is to select File -> Revert, then confirm the selection by clicking on "Revert" in the dialog box that pops up. This is way too manual for my taste.
+Incidentally, the "Revert" menu option is grayed out when the PDF file has not been updated, but as soon as I update/replace the PDF file with a new version, the "Revert" menu option becomes available to be selected. So this indicates that Skim notices that the PDF file on disk is different than the version that was rendered, but it doesn't automatically refresh the display.
+
+A: You could also open the PDF with Safari and refresh the page manually to view the new version. markdown2pdf replaces the PDF instead of updating it, so Lion's Preview won't work for me.

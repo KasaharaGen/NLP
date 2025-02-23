@@ -1,0 +1,17 @@
+Q: Mail.app on Lion with Exchange doesn't get updates I've noticed since upgrading to Lion that Mail.app doesn't seem to update the mailbox and synchronize properly with Exchange.
+Before on SL, or using Outlook now, they always maintained correct state, matching with my iPhone, or webmail. Now, it seems that Lion gets lost. I have to force a sync, open and shut it, or change folders to get it to resync that folder contents.
+Is this just me, or is this a known issue?
+Is there a work around?
+Thanks.
+
+A: Try the rebuild utility through the app, I had a very similar problem and this resolved it for me. Best of luck.
+
+A: 1) Run the following in Terminal.app:
+sqlite3 ~/Library/Mail/V2/MailData/Envelope\ Index vacuum
+2) And then select your Inbox, and select Mailbox->rebuild.
+Worked for me :)
+
+A: There is a partial work around for this:
+Delete (or copy to somewhere else) this file:  ~/Library/Preferences/com.apple.mail.plist
+That stores your preferences for Mail.app, after deleting it you will loose your preferences with the exception of your mail accounts.
+This worked for me but a couple of months later the bug came back and I had to delete the file again.

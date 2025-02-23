@@ -1,0 +1,12 @@
+Q: Decrypt Keychain with Password outside of Keychain-App so here is my problem:
+we all know that the osx keychain is located in ~/Library/Keychains/something.keychain
+now i've got this file and i know the master password for this keychain. is there a way to browse the keys in there using a external software or something? I don't want to import this keychain into my current one (if its possible).
+Any ideas?
+
+A: I use the following script to extract a password from the Keyring:
+
+$ cat get_password_from_keyring 
+#!/bin/bash
+security find-generic-password -a $1 -g 2>&1 | grep password | cut -d \" -f 2
+
+

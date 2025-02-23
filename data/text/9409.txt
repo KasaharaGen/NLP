@@ -1,0 +1,22 @@
+Q: What kind of partition should I use for a shared network drive used mostly un Mac? I have a 2TB external USB drive that I'm using to share things in my home network.
+Now the drive is connected to my Mac Mini, that is supposed to act like a file server.
+Currently the drive is partitioned using NTFS (via Tuxera  NTFS) because I wanted to be able to bring it with me when I visit some friends with PCs using Windows ;)
+The biggest problem is that I discovered that Lion is no longer able to share NTFS, FAT or exFAT drives because Apple replaced samba with their own implementation.
+In the future I plan to buy a new router that will be able to share the drive.
+Now, what partition type and setup should I use in order to minimise portability issues between OS X, Windows and Linux(Ubuntu)?
+
+
+*
+
+*NTFS - so far not able to share it from Lion but I can r/w on all platforms if I connect it directly
+
+*HFS+
+
+*ext3
+
+*ext4
+
+*exFAT
+
+*FAT32 is not an option, I want to be able to deal with big files 4GB+
+(Optional) It would also be great if you could tell me which inexpensive router can be used to share a  big drive like that without having performance issues.

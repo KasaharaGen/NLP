@@ -1,0 +1,12 @@
+Q: Where will the incident with the sudo command be reported to? If a non-admin types a sudo command in Terminal, this will appear after they enter their password:
+User is not in the sudoers file. This incident will be reported.
+Where is this reported to?
+
+A: 
+In older versions of OS X (through 10.6 or maybe 10.7), the disallowed sudo attempt would be logged in /var/log/secure.log; in more recent versions it's recorded in the ASL (Apple System Log) database, in /var/log/asl/*. You can read this with the Console.app utility (select ALL MESSAGES in the sidebar, then if you can't find them use the search field in the upper right to search for sudo). You can also use the command-line syslog command to query the database (syslog -k Facility authpriv -k Sender sudo should do it). Note that with either Console.app or syslog, the entries will only be visible if you are running as an admin or root.
+
+Source
+
+A: The event will be logged in /var/log/secure.log and a mail will be sent to root (which by default goes to /dev/null which is Unix speak for it is discarded).
+
+A: it will be emailed to their apple id, i have found

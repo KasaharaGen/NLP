@@ -1,0 +1,10 @@
+Q: Setting Preview Default to Single Page So I'm not at all impressed with the "Continuous" view in Preview, that seems to be the default way PDFs are opened. Is there a way to change the Preview.app preferences in such a way as to set "Single Page" as the default?
+
+A: In Mountain Lion, at least, there's a Opening for the first time entry in the PDF pane in Preferences, where you can select Single Page. This sets the default view mode for all PDF files.
+If you for some reason can't get it to work, you could try this Terminal command (don't know if it will work in Lion) and restart Preview:
+defaults write -app preview kPVPDFDefaultPageViewModeOption -int 1
+(in ML, the value of kPVPDFDefaultPageViewModeOption changes to 1 in Preview's plist, when selecting Single Page)
+
+A: This terminal command should solve it 
+defaults write com.apple.Preview PVPDFDisplayMode 1
+PS. This won't work in ML only in Lion. And you may have to restart before it will become functional.

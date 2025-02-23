@@ -1,0 +1,91 @@
+Q: Why is the coreaudiod daemon using 5% or more CPU? Every time I listen to music on iTunes or VLC, I notice that the process coreaudiod causes an unusually high CPU usage (5% or more).
+Are you having the same issue? What's the reason for such a high CPU usage?
+
+*
+
+*Recent OS X updates have not changed this observation. Restarting (or killing the process so it respawns) doesn't fix the problem. After a couple of seconds, CPU usage of coreaudiod goes above 5% again.
+
+
+*It's important to note that using line out makes the problem go away and coreaudiod's CPU usage goes down to 1%-2%.
+
+
+A: A tab in google chrome running WhatsApp keeps the system awake; in particular, coreaudiod is running.
+See https://webdiary.com/tag/coreaudiod/
+
+A: The high CPU usage of coreaudiod is due to the ambient noise reduction software working (surprisingly, even when the built-in microphone is not in use).
+Go to System Preferences > Sound > Input and uncheck the Use ambient noise reduction box.
+Then, either reboot or run this one-liner to reload coreaudiod, and you should see coreaudiod CPU usage drop to 1% or less.
+
+A: This appears to be a know issue, and hopefully will be fixed in an update in the future.
+For now though, there are one or two things you could try (it goes without saying that make sure all software is updated to its highest stable version)
+
+
+*
+
+*First of all, restart your computer. 
+
+*Second of all, install Onyx. Install and open, and click on the 'Cleaning' tab. Under that, make sure, on the 'System' section, that the 'Audio Components' option is checked. Click execute, and let it do it's thing. 
+
+*Then open Disk Utility, select your startup volume, and repair all disk permissions. Let it run, then close all apps and restart again. 
+
+
+I hope this helps relieve the problem in some way, but I cannot guarantee it, having not been afflicted with it myself, however this is the course of action I take whenever my CPU usage is higher than I would expect it to be due to a process.
+
+A: This is indeed due to Google Chrome browser continuously using the microphone to listen for the hotword 'OK Google'. While unchecking noise reduction in the system audio preferences will decrease CPU usage (in my case from 12% to 8% coreaudiod) this does not fix the underlying issue.
+To completely resolve the issue open Google Chrome -> Settings -> Search -> and disable 'Enable "OK Google" to start a voice search'.
+My coreaudiod CPU usage went from 12% to zero.
+
+A: Seems like creating the folder Library/Preferences/Audio worked for at least some people. Have you tried it?
+
+A: Certain applications appear to be triggering this problem when interacting with the microphone.  The problem goes away a minute or two after the problem applications are closed.
+Problem applications
+These applications need to be restarted in order to restore normal CPU usage.  They do not release their hold on the microphone properly.
+
+
+*
+
+*HipChat after first time camera/mic are used, such as when opening preferences (see HipChat forums)
+
+*Boom by Global Delight Technologies (reference)--as far as I can tell, this shouldn't be using the microphone
+
+
+Background applications
+These applications could be running in the background while using your microphone.
+
+
+*
+
+*Any VoIP application such as Skype or FaceTime
+
+*Adobe Flash in a web browser
+
+*Virtualization software such as VMware, VirtualBox, or Parallels.  These will likely "listen" to your microphone whenever you have a virtual machine running, even if that virtual machine doesn't seem to be using the microphone at the moment.  Most virtualization software allows you to disable audio hardware virtualization, which should solve this, although some may not be granular enough to disable the microphone without also disabling the speakers.
+
+*Specialized audio software such as that developed by Akai Pro (example report for EIE Pro with Logic X)
+
+*Voice search/recognition software, including Google Chrome's "Ok Google" voice search capability (reported as partially fixed by Chrome developers: Chrome will stop listening when switching users)
+
+
+A: This could be audio plugins that run under core audio.
+
+A: I just had the same issue on 10.8.4.
+Quitting Boom.app seems to have resolved it for me.
+I think Boom uses similar technology as AirFoil, so it might be worth quitting or uninstalling anything that somehow captures and modifies or redirects the audio-stream.
+Perhaps the app afflicting you saves state per output device, and it's state for your built-in speakers is borked somehow.
+
+A: Disabling "Google Voice Search Hotword (Beta)" extension in Google Chrome helped... OS X 10.9.1 Mavericks
+
+A: Here in 2020, I had a couple of clones of iOS Simulator running an (otherwise idle) app. coreaudio was taking about 18% CPU, and quitting the Simulator dropped it to zero.
+
+A: I found that killing Flash fixed the problem for me.  
+I rebooted yesterday to see if that would fix the problem, but by this afternoon, coreaudiod had accumulated 6 hours of CPU time. I have not used any audio apps (VLC, iTunes, etc.).
+I turned off "ambient noise reduction" and there was no impact - still at 8-10% CPU. I noticed Flash running with a much lower CPU (~1%), but I did not realize that I was visiting any Flash-based websites. I killed Flash, and coreaudiod disappeared from Activity Monitor. When I re-enabled "ambient noise reduction" there was no impact - coreaudiod still gone. (This all on OS X 10.9.)
+
+A: Some people claim this helps:
+$ sudo launchctl unload /system/library/launchdaemons/com.apple.audio.coreaudiod.plist
+$ sudo rm -r /Library/Preferences/Audio/
+$ sudo mkdir /Library/Preferences/Audio
+$ sudo chown -R _coreaudiod:admin /Library/Preferences/Audio
+$ sudo launchctl load /system/library/launchdaemons/com.apple.audio.coreaudiod.plist
+
+For me it turned out the cause was this HipChat issue.

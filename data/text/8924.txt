@@ -1,0 +1,16 @@
+Q: Connecting using WiFi Protected Setup in OS X I have a MacBook Pro, and in OS X (running Lion), I can't figure out how to connect using the WiFi Protected Setup  feature of my router.
+When I boot into Windows (Windows 7), using Boot Camp, I have to simply press the WPS button on the router while connecting.
+Does OS X even support WPS?
+
+A: No it isn't supported (Note: Printers are via airport, further information below about why it isn't supported for other devices.).
+Please don't use WPS though, it's not secure. More Information
+@irrantion John, you can't have a long "random password" and expect it to be easy to enter whilst keeping it secure. 
+You could just copy and paste from a document (via usb) or printed document.
+Maybe try something 20 characters long, or just accept its going to take forever to enter the password in. Remember keychain can sync your passwords for you.
+Sure you can enable WPS on your router but then why have a complex password at all. A 64 character password becomes a 7 (4+3) character (ONLY 11,000 POSSIBILITIES!!) password.
+
+A: OS X doesn't support WPS. You'll have to manually enter the key. To do this, select your wifi network from the drop-down in the menu bar:
+
+Then when prompted type in the wifi password:
+
+If you don't know your password, you typically get it from your router's web interface (either via another computer, or connect your MacBook Pro via ethernet). To get there, enter http://192.168.0.1 or http://192.168.1.1 in your browser.

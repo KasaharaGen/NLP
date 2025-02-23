@@ -1,0 +1,42 @@
+Q: How do I stop iTunes from automatically backing up the iPad? I'm trying to move some pictures from my laptop to my iPad, but every time the first thing iTunes starts doing is making a backup of the iPad.
+But since I already keep a backup at my desktop, I want iTunes to back off and just let me move the pictures!
+So how can I prevent iTunes from making automatic backups?
+I'm using Windows 7. But feel free to leave OS X solutions as well.
+
+A: Mac Answer:
+You can disable device backups with this terminal command:
+
+defaults write com.apple.iTunes DeviceBackupsDisabled -bool true
+
+More info here.
+
+A: Go to iTunes and open its Preferences window (Command ⌘+,). Select Devices from the toolbar and check the "Prevent iPads, iPods from syncing automatically" option.
+
+A: This worked for me on Windows 7.
+First make sure iTunes is closed, then follow these steps:
+
+
+*
+
+*Open the command window (Start > Run > Cmd)
+
+*Go to the iTunes folder using either cd C:\Program Files\iTunes or cd C:\Program Files(x86)\iTunes depending on where iTunes is installed on your PC
+
+*Type this command: iTunes /setPrefInt AutomaticDeviceBackupsDisabled 1
+Voila!  Your iLife just got better.
+
+A: PC Answer:
+You can edit the iTunesPrefs.xml file to disable backups on Windows.This article has directions.
+
+A: With iOS 5, it is possible to back up to iCloud. You can use this to your advantage in this situation if you tell your iPad to back up to iCloud. It will then no longer back up to your computer.
+This can be done either from iTunes or on your iPad itself Here's a screenshot in the General tab, visible when a device is selected.
+
+
+A: There is a curved arrow with a dot near to it in the middle of top bar. Click on it once to stop the back up. Then only the sync will continue.
+
+A: When I change the setting "Prevent iPods, iPhones, and iPads from syncing automatically" in the interface the setting that gets updated in the defaults is dontAutomaticallySyncIPods.
+
+Use the following commands to read/write this setting in the terminal:
+defaults read com.apple.iTunes dontAutomaticallySyncIPods
+defaults write com.apple.iTunes dontAutomaticallySyncIPods -bool true
+The weird thing is when I open iTunes it changes this setting back to false unless I set it through the interface.

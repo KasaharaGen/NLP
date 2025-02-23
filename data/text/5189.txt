@@ -1,0 +1,8 @@
+Q: Backup and restore application preferences I already have a backup of my system on Time Machine, but will it restore my application preferences too when I migrate to a new system? Even if it is Lion? (I come from Snow Leopard) 
+And what about those apps that have their data in Library>Application Support?
+Do I have to manually copy and restore .plist files or is there a Backup app smart enough to copy them together with the .app file?
+
+A: Your preferences will be copied if you allow Migration Assistant to copy your data from a Time Machine backup (one of the options at the beginning of the installation).
+Time Machine backs up just about everything except Mac OS X and other system resource files. So, your preferences will be saved.
+I've tested this migrating from 10.6 to 10.6, and I've migrated from another Mac directly from 10.6 to 10.7. That process is, in practice, the same.
+So, your preferences will be copied from your Time Machine backup to your new system.

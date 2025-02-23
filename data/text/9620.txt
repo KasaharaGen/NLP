@@ -1,0 +1,14 @@
+Q: How do I hide 'Hidden' files? I set hidden files to be shown with the following commands:  
+defaults write com.apple.finder showHiddenFiles TRUE
+killall Finder 
+This worked as expected.  Then I tried to hide them again with the following commands:
+defaults write com.apple.finder showHiddenFiles FALSE
+killall Finder 
+This has worked in the past, but it doesn't seem to be working for me today.  All hidden files are still visible in Finder windows.  I tried a reboot and a disk permissions repair to no avail.  I'm not sure what else to try.  Anyone got any bright ideas?
+
+A: Try:
+defaults write com.apple.Finder AppleShowAllFiles false
+
+or with a lowercase f in finder, depending on the version of Mac OS X. And then:
+killall Finder
+

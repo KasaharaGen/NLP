@@ -1,0 +1,30 @@
+Q: Hide specific calendars from Notification Center I currently have five Calendar events displaying in Notification Center at a time. However, I have one specific calendar that I'd like to hide from it, as it has too many events for the Calendar-in-Notification-Center setup to be useful. As far as I've been able to surmise from my tinkering in settings, there's no way to do this. Has anyone else been able to find one?
+
+A: You could use a 3rd party calendar app just for their notification functions as a bodgy workaround.
+I recommend Calvetiva, Agenda, or Tempus.
+The workflow would go something like this:
+
+
+*
+
+*Choose a secondary calendar app.
+
+*Configure you secondary calendar app to only use the calendars you want alerts for (steps vary on choice of app). Some (like Calvetica) are clever, and extend the alerts function by allowing a snooze option etc.
+
+*Configure secondary calendar alerts and notifications via the normal settings> notifications app to show as you want them.  They will only trigger for the active calendars in the app.
+
+*Configure your normal calendar alerts to be off.  Remove from Notification Centre, set alert style to none, and also go onto Sounds > alerts and set the calendar alert to none.
+
+
+Now your existing calendar app will still have access to all calendars but won't alert, the secondary app will do alerting only for the active ones.
+Downsides:  You will need to periodically open and then shut the secondary calendar every so often in order for it to read the current alerts from the calendar data store and create it's own local notifications from them.  
+I hoped you could get round this by following the above steps but using the built in calendar as your selective alerting calendar (as it is always running and won't need to be opened to update), and using a replacement calendar app with all calendars shown but no alerts - sadly the normal Calendar app includes all calendars regardless of if you have turned a calendar off or not.
+
+A: On my jailbroken iPhone, I make use of LockInfo.
+With LockInfo, you not only get notification center on the lock screen, you have more control over what notification center does.
+And relating directly to your question, with this plugin, you can navigate to:
+System Settings -> LockInfo -> Notifications and Widgets -> Calendar -> Calendars; and select which appear. 
+
+A: This app can do exactly what is needed here : you can choose which calendars to display on its Notification Center widget !
+Agenda+ | Calendar & Reminder Widget
+It also displays all day events.

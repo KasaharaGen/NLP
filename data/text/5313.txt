@@ -1,0 +1,81 @@
+Q: Which text editors take advantage of Lion's Versions feature? I've been a fervent user of Textmate for many a year, and I hope to continue to be one. However, the versions feature of OSX seems like a great and easy to use idea.
+I'm mostly doing HTML, CSS and PHP, and I am a solo developer. Admittedly, I probably haven't spent enough time trying to work it in, but I've never managed to fit SVN or git into my workflow. However, I recognise their potential usefulness.
+So, are there any lightweight text editors suitable for web designers/developers that work with Versions?
+Useful features would include:
+
+
+*
+
+*Syntax highlighting
+
+*A project view/sidebar
+
+*Auto-indent
+
+
+A: TexShop, the Latex editor, now supports Lion versions. It is not a general Text Editor but can be used as such and supports many of the features you requested.
+http://pages.uoregon.edu/koch/texshop/lion.html
+
+A: Aptana is geared towards web development (html, javascript, css, php, ...) . It's based on Eclipse, which has build-in automatic version history, so I guess Aptana has it too. 
+Using the version feature (to either replace or compare the current version) is as easy as right-clicking a file (see image)
+
+Pros:
+
+
+*
+
+*It's free
+
+*has syntax highlighting, sidebar, auto-indent and many more.
+
+*cross-platform (should you ever switch)
+
+
+Possible cons:
+
+
+*
+
+*Probably not using Lion's versioning
+
+*Not exactly lightweight
+
+*Really targeted for  web development, so less of a general text editor.
+
+
+A: Chocolat
+Really promising upcoming editor with super slick look, impressive features and a TextMate-like bundle system.
+Lion features (enabled in preferences):
+
+
+*
+
+*Full screen
+
+*Versions
+
+*Autosave
+
+
+Currently in public alpha.
+
+A: TextEdit comes with Lion so it should incorporate Versions, if you use TextEdit make sure you save with the correct file format (Especially if you want to open the files on windows)
+
+A: The only one I'm aware of right now is Smultron on the Mac App Store. Here's the developers page about the app http://www.peterborgapps.com/smultron/
+
+A: NeoOffice
+
+NeoOffice 3.2.1 Beta adds Apple's new Versions, Full-Screen mode, and Resume features for Mac OS X 10.7 Lion users
+
+Whilst text editing is within the feature set of NeoOffice, I don't know whether it's ideal for web development. 
+I do regularly use NeoOffice for editing HTML, but do not imagine that it's compliant with any particular set of standards relating to HTML or HTML5.
+
+A: Taco HTML Edit is designed to simplify the process of creating attractive web sites that render correctly in various browsers. 
+Taco HTML Edit includes tag wizards, which generate HTML markup for you. 
+Taco HTML Edit also helps find errors in your HTML markup, and it can even check spelling in your documents. 
+For those people who use PHP scripts in their development, Taco HTML Edit includes tools for PHP management.
+OS X Lion Features
+For OS X Lion users, Taco HTML Edit has support for Autosave, Resume, Versions, and Full Screen.
+
+A: I strongly recommend avoiding opening any kind of markup in TextEdit (programming languages might be okay, though it's still a lousy tool for the job). It tries to display .html files as rich text, which implicitly turns the document into an RTF (silent conversion). If you then try to convert it to plain text, hoping it'll let you see the markup, you'll be disappointed to discover it just converts the RTF into plain text. At that point, if you decide to 'undo' that, the .rtf file will now silently replace your original .html file, which is now permanently destroyed. Hope you have a backup in Time Machine or elsewhere, because you're not getting it back through the built-in versioning system. (At least, this is how it works in Mountain Lion (10.8.1). I'm decribing the exact scenario I just went through when trying to use TextEdit to see older versions of a document, since BBEdit doesn't support Lion / Mountain Lion's versioning system.)
+There is actually a setting that makes TextEdit usable for viewing HTML documents. In the preferences, under "Open and Save", make sure "Display HTML files as HTML code instead of formatted text" is checked. Once you've done that, the issue I just described won't occur. The problem is that it's off by default, which is why I feel it's safer to just avoid TextEdit altogether.

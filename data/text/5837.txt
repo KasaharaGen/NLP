@@ -1,0 +1,26 @@
+Q: Can I cause auto-correct in Lion to beep and to get a summary of the changes? Auto-correct in Lion is great, but I need to know when it has made a substitution so I can check it. 
+Is there a way to set an audio alert so that OS X makes a sound to alert me everytime it autocorrects?
+Is there another way to see a quick summary of the auto-correct changes which have occurred in a document?
+
+A: As a Mac developer I've been working on a solution to this problem, so far I've been able to detect autocorrect in a NSTextView within the app itself and play a sound to alert the user. 
+At the moment I am working on making it able to detect autocorrect in any NSTextView in any app but that's a bit harder and may take longer so I thought I would just brief you on what I've done so far.
+I'll edit this answer with the final app when it can detect autocorrection in any app.
+Here's what I've got done so far: [Most up to date download link further down]
+
+I'm currently in the process of testing a version of the app which is generalised and works on every single text view no matter which app is active. It uses a slightly different method to how I did it when it was just a NSTextView within the app itself as when you deal with these things with other apps (via the Accesability API) you don't have direct access to the objects themselves.
+Anyway enough with the 'jibber-jabber', here are some screen shots of the preferences:
+
+General - At the moment it just lets you choose the sound to play when autocomplete is detected.
+
+Blacklist - Allows you to blacklist certain apps so that autocorrect detection is turned off and no sound is played.
+The reason I am testing it is because the method I use is not completely sound, it simply detects any change in text before the cursor. This means it will detect autocomplete but in general will detect any change in text that is NOT directly done by the user (e.g a button which clears all text) other than this it works pretty well. 
+I'll update this answer with a download link once I've finished testing.
+
+
+I've finished testing, so… here's the download link: http://cl.ly/9CIZ
+It runs in the background, so has no dock icon. To access the preferences double click on the app in Finder.
+Again, this doesn't work perfectly and has a couple of bugs but it should work 99% of the time!
+
+A: I can't seem to find any such feature.
+Best I can think of is to either write the hack yourself, or to look into a third-party solution.
+As for third-party apps, I think TextExpander allows for audio alerts. I'm sure there are other apps though.

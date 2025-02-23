@@ -1,0 +1,20 @@
+Q: How do I stop .dmgs from automatically mounting? I'm trying to find the best means of stopping dmg files mounting in OS X 10.6.  I was shown a system where 'no mountable filesystem,' would pop up whenever a user tried to mount a dmg but I can't recall how it was achieved.  I'm currently using parental controls but it keeps getting circumvented.  Any help appreciated.
+
+A: As Administrator user, remove read access from /System/Library/CoreServices/DiskImageMounter.app (and /Applications/Utilities/Disk Utility.app to be on the safe side) for "Everyone" (in the Get Info dialog in the Finder). 
+
+A: 1) Rather than remove read access Disk Utility.app, use Parental Controls to prevent it from being accessed. (however it does not seem possible to restrict DiskImageMounter using Parental Controls).
+2) You should to block access to:
+
+
+*
+
+*/usr/sbin/diskutil
+
+*/usr/bin/hdid
+
+*/usr/bin/hdiutil
+
+*/usr/sbin/hdik
+
+*/sbin/mount
+

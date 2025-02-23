@@ -1,0 +1,23 @@
+Q: (Lion installed) Can I use Boot Camp to install Snow Leopard? Is it legal? I have suddenly come into a dire need to run PowerPC apps.
+My understand is that Lion will never support 32-but PPC code. It seems like the only solution, therefore, is to install Snow Leopard.
+My MacBook Pro was the last to come bundled with the Snow Leopard DVDs. Is it possible to use those to install it on a new partition? And if so, can I use Boot Camp?
+I know that Boot Camp supports Windows, and I have Windows 7 installed. But I don't know if it supports Snow Leopard. Also, it would be great to know if my Snow Leopard license covers this kind of usage.
+
+A: Is this on your MacBook Pro? If so, the disks should work both legally and pragmatically. You wouldn't need to use bootcamp though, since bootcamp is designed just for Windows. Nevertheless, it's pretty easy. Here are the basic steps I would follow:
+
+
+*
+
+*Insert your install DVD. Shutdown your computer.
+
+*Start your computer pressing the C key to boot from the DVD. 
+
+*Once in the installation assistant, go to Disk Utility under Utilities > Disk Utility. 
+
+*Select your disk. Select the Partition tab and click on the "+" to add a new one. Call it whatever you please, add at least 10GB of disk space (enough to install Snow Leopard), and make sure it's in Mac OS Extended (Journaled).
+
+*Apply the settings. Go through the installer like you normally would, though when it asks you where to install it, tell it you want the Snow Leopard to be on your new partition.
+
+
+This should let you boot on Snow Leopard by pressing the opt/alt key, just like when you boot Windows. 
+Hope it helps! Any other thing you need fear not comment. 

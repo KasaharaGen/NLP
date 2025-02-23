@@ -1,0 +1,11 @@
+Q: Xcode not letting me open a specific project When i try to open a specific project in xcode (i can open my other projects just not the most important one) i get this error 
+
+I have gone in "Get Info" and made sure my account had complete access, but i still get this stupid error and i have no idea why. I am also the administrator for my computer and logged into my only account for this computer (i have not made multiple accounts) Can someone please help. 
+- Thanks
+
+A: Open terminal and type
+sudo chmod -R 777 /path/to/project_folder
+
+NOTE: the capital R in the command above. Obviously change the path to your project folder to what it actually is.
+If that command works without error,  but you still cannot open the project, then it isn't in fact a permissions problem but another bug in XCode.
+You're not the first person to report this error however. Hopefully the above sorts it out for you.  Let me know.

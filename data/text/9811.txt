@@ -1,0 +1,30 @@
+Q: How do I use ipfw to allow LAN access but deny Internet access? How can I use ipfw (or another tool, if one is available) to allow unlimited access between computers on my LAN, but not allow access to the Internet?
+(The IPs on my local LAN are 192.168.0.xxx)
+
+A: Has been a while since I've used ipfw but running the following commands on all relevant computers should do the trick:
+ sudo ipfw -f flush
+ sudo ipfw add allow tcp from me to 192.168.0.0/24
+ sudo ipfw add allow ip from me to 192.168.0.0/24
+ sudo ipfw add deny tcp from me to any
+ sudo ipfw add deny ip from me to any
+
+To disable just run sudo ipfw flush again
+
+A: The crudest way I can think of to do this, assuming your network is based on static IPs, is to just not populate the "Default Gateway" IP in the network configuration.
+If you are on a DHCP network, you could change the DHCP server configuration, but that would break the internet access of all computers on the LAN, not just some of them.
+
+A: As I was looking for an answer to this, I found another way to do it which does not use ipfw. I'll mention it here in case anyone else is looking for a similar answer later.
+The other way to do this is to set the DNS servers to 0.0.0.0.
+This can accomplished on the command line using networksetup like this:
+networksetup -setdnsservers Wi-Fi 0.0.0.0
+If you have an Ethernet connection, you will want to use 
+networksetup -setdnsservers Ethernet 0.0.0.0
+To revert this change, I was able to use 'empty' instead of '0.0.0.0'
+networksetup -setdnsservers Ethernet empty
+but, depending on your network setup, you may need to specify the actual IP address of your DNS servers instead of using empty.
+I still think ipfw is a better tool for the job, but I mention this just in case someone prefers it.
+The reason this works for allowing access to other computers on my LAN is that I can access them using hostname.local. instead. For example, the hostname for my MacBook Air is 'air' so I can use ssh air.local. to connect to it, even without DNS servers.
+
+A: you can use ipfw to block all traffic to port 80 which is http. You will need to check if you also need to block other ports e.g. 443, 110, 993 etc
+From the comment below, did you want to have http access between machines on your network?
+If so just do above and then add the exception to allow http to machines on your ip range. e.g. /24 if thats what your network is.

@@ -1,0 +1,30 @@
+Q: Is there a way to replace Finder altogether? It seems that a rather large group of Mac users considers Finder to be a product that contains a number of conceptual failures and oversimplifications.
+It is however not clear whether Finder can be completely replaced with other application.
+Is it possible to remove it from the OS, including thing like file open dialogs etc?
+
+A: There's an Apple-documented general overview of the technologies that specifically support kiosk on OS X — 
+Technical Note TN2062: Creating Kiosks
+— with a section Replacing the Finder. 
+
+… Is it possible to remove it from the OS, 
+
+I recommend not attempting to remove Finder. 
+
+including thing like file open dialogs etc? …
+
+Of possible interest, in Apple Support Communities: 
+
+
+*
+
+*preferring to not show the sidebar in expanded save dialogues
+
+A: It is quite easy to remove finder. Just disable the launchd job (making sure to start your replacement or know how to ssh into the mac to launch finder by hand / enable the launchd job)
+You will break your mac software if you don't know what you are doing.
+It's really as simple as throwing the following two lines inside the <dict>  </dict> part of  /System/Library/Launch\ Agents/com.apple.finder.plist
+<key>Disabled</key>
+<true/>
+
+The OS supplies many API - so the file open dialog really isn't finder but a lower level construct. Finder calls those API like any other program, it's just that Finder is expected by the designers to be running all the time.
+If you are looking to rip out all API that finder calls or that call finder, the job would be Herculean (Sisyphean if you fail to pull it off).
+Most people unhappy with finder run something like PathFinder.

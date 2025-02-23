@@ -1,0 +1,14 @@
+Q: How do I kill the Application Switcher? All of the sudden the Application Switcher's graphics breaks:
+
+Restart does help, but became a nuisance. How can I kill it? Restart it?
+UPDATE: Logging off fixed this.
+UPDATE 2: I came to a conclusion that this is a result of a conflict in the display cached data.
+
+A: It's provided by Dock.app. So you could try osascript -e 'quit app "Dock"' or killall "Dock".
+
+A: Did you try to kill UIServer?
+You can either try killall UIServer or find it on Activity Monitor and kill it from there.
+
+A: What helps for me is choosing a new color display profile in preferences. Now the graphic corruption is gone for the app switcher.
+
+A: You could reboot your machine, or log out of the user account and log back in. If the problem is not recurring, that might be your best bet. If this problem happens often, obviously that isn't a good long-term solution, but for a rare occurrence, that might work.

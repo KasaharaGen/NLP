@@ -1,0 +1,25 @@
+Q: Can I "Forget this Network" when the wifi network is not in range? I have an iPod Touch that I upgraded to iOS 4 (but this an issue that also existed in iOS 3.1). When I travel, and I join a WiFi networks (e.g. hotel, etc), I don't always remember to forget the network before I leave.
+iPod touch: Wi-Fi Information and Settings tells you to "Forget this Network" if you can choose it from the list of Wi-Fi Networks.  However, when the network is not in range, you cannot select it to forget it.
+Is there either a way I am not seeing in iOS to do this, or a third party application I can download?  Does the fact I have extra WiFi networks in the list affect the performance of my device when it is trying to join known networks?
+Update: I now have doubts a third party app exsits based on that Apple Drops Wi-Fi Sniffers from iPhone App Store reports "sniffers were dropped because they use a private framework, hooks in the operating system that are not documented nor allowed for third-party developers to use."
+
+A: As user83905 pointed out, syncing your iPod and Mac with iCloud Keychain will enable you to manage both devices' remembered networks from either one. This means you can simply delete it from your Mac and the change will sync to your iPod.
+If you do not have a Mac available to sync with, however, you can still forget unwanted networks by going to Settings > General > Reset and tapping Reset Network Settings. You'll need to add the networks you use again, but it will clear everything out so you can start fresh.
+
+A: IF you have a Mac:
+Sync your iOS device and Mac with the same iCloud Apple keychain. The wifi information will sync via iCloud to the Mac's keychain. You can then edit the keychain on the Mac, and delete the unwanted networks.
+
+A: You shouldn't worry too much as it only stores the settings (minimal storage impact), should you find a Wifi network with the same SSID, it may show up and ask you for the wap/wep passkey.
+
+A: Seems like no way to do this at the moment. Workaround:
+
+The only solution seems to be to rename a spare access point to the SSID of the network you want to forget, connect to it with the iPhone, and choose the option to forget the network. This kludge seems like a lot of work and something that an average user probably doesn’t know how or want to do
+
+via http://www.novainfosecportal.com/2010/07/08/forget-this-network-pretty-please/
+
+A: I have this problem when I'm on a tram. I once joined a network that was from a D-Link router, and the config hadn't been changed so that the network name was still the default - "D-LINK". Now,whenever I'm using my iPhone on public transport and we pass a similarly configured D-Link modem (there are several on my route) a pop up appears asking me for a password. It's actually kind of annoying - it interrupts me about twice per trip, every day. 
+I need to be faster getting into settings before we travel out of range of the networks. 
+
+A: You can reset your network settings and it will forget all networks
+
+A: You can now open Keychain access on the Mac, and search for the wifi by name. It will give 2 results: One on the iCloud, and one from the System keychain. The Mac side can delete the iCloud only key, which leaves the system key copy on the Mac. The deletion will propagate to the iPhone in 10 minutes.

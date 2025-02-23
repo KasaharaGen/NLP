@@ -1,0 +1,34 @@
+Q: iMac SDD+HDD - noise? If the new 2011 iMac is equiped with SSD and HDD at the same time, is HDD running (so fan on) even at times when HDD not used for a longer period?
+Context: I need the computer to be really silent (bedroom), and only when exceptionally accessing e.g. video files to use HDD. So if HDD would run all the time, I would rather go for an option of sole SSD in iMac and external HDD which can be unplugged. Otherwise I would go for both in iMac.
+
+A: Definitely make the SSD your boot/app disk and set your computer to put hard disks to sleep. But even then there are many factors that can cause the drive to spin up even. Sometimes just getting an open dial box will cause it to spin up. 
+I'd first make sure your HDD is not shown in the sidebar - if it is there it will definitely spin up every time you get a save or open dialog box or a finder window. 
+Even after doing that I still had it spinning up more than I wanted so I followed this blog post on Dae’s blog to make an apple script that will unmount or mount it so I can explicitly control when it sleeps or doesn't sleep. Incase the link dies, here is the script. It even does Growl notification:
+set myVolumeLabel to "Storage HD"
+
+tell application "GrowlHelperApp"
+    set the allNotificationsList to {"Disk mounted", "Disk unmounted"}
+
+    register as application "Disk Mounter" all notifications allNotificationsList default notifications allNotificationsList icon of application "Disk Utility.app"
+end tell
+
+tell application "Finder"
+    set diskDev to do shell script "diskutil list | grep \"" & myVolumeLabel & "\" | grep -o 'disk[0-9]*' "
+    if not (disk myVolumeLabel exists) then
+        do shell script "diskutil mountDisk " & diskDev
+        tell application "GrowlHelperApp" to notify with name "Disk mounted" title "Volume mounted" description "Disk “" & diskDev & "” with volume “" & myVolumeLabel & "” has been successfully mounted." application name "Disk Mounter" icon of application "Disk Utility.app"
+    else
+        do shell script "diskutil unmountDisk " & diskDev
+        tell application "GrowlHelperApp" to notify with name "Disk unmounted" title "Disk unmounted" description "Disk “" & diskDev & "” with volume “" & myVolumeLabel & "” has been successfully unmounted." application name "Disk Mounter" icon of application "Disk Utility.app"
+    end if
+end tell
+
+One thing to note - this unmounts ("ejects") an entire drive - not just a single partition. 
+
+A: Have you checked off the "put the hard disk(s) to sleep when possible" in the energy saver preference pane?
+
+
+A: Pavel, 
+That would depend on how you set up your machine.
+If you have you system installed on the SSD drive, and just use the HDD for additional storage then the HDD should only spin up when you access that information or if you have Time Machine backing up to it.
+Using the SSD as your main drive should keep the machine cooler to as there are no moving parts to get warm, so the fans should also be spinning much slower.

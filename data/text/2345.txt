@@ -1,0 +1,55 @@
+Q: How can I install boot camp off a Windows 7 USB flash drive? I'm trying to follow the directions on how to create a Windows 7 installation USB flash drive. I was able to create the drive and when I insert it into a Windows computer, it shows the installer correctly.
+The problem is that when I get to the "Start Windows Installation" step in boot camp, it asks to insert the Windows disk. I inserted the USB drive, and it appears on the desktop, however, when I click Start Installation, I get the following error message:
+
+The installer disc could not be found.
+  Insert your Windows installer disc and wait a few seconds for the disc to be recognized.
+
+
+A: long story short. To create a boot disk on USB do this:
+
+
+*
+
+*open bootcamp app contents (finder, right-click on bootcamp app at applications folder)
+
+*Copy info.plist file to another place (like desktop), rename the original to something like "OLDinfo.plist" to preserve a backup.
+
+*Right-click that copied file and open it with textedit
+
+*Search for a line containing the string(close to the bottom):
+ PreUSBBootSupportedModels
+
+*Remove the "Pre" string so the line look like:
+ USBBootSupportedModels
+
+*Save the file and copy it back to the bootcamp package contents.
+
+*Run the bootcamp and select the corresponding USB generating option that now shows up there at second screen.
+
+*Use the rEFIt thing as noted before.
+
+*Profit!
+
+
+A: I'm having the exact same problem. I tried holding the option key when rebooting to see if I could boot from the USB key but I could not find a way to do this, so I installed rEFIt (then rebooted twice!) and THEN plugged in the USB key and the next time I rebooted it did show up as an option to boot from the USB key. 
+I tried that and the windows installer loaded and it found the new bootcamp FAT32 partition. It said I couldn't install to the bootcamp partition because it requires NTFS.
+This SuperUser post suggests "simply format the partition using the Windows installer's built-in utility (in other words, as part of the installation process)" so I did that continued with the install and everything works fine!
+
+A: This is just a wild guess, but what about pressing and holding the alt key while booting and see if it will allow you to choose the USB drive the boot drive.
+I don't know if the mac will boot from USB at all.
+
+A: If you are using Lion, there is an easy way to use Bootcamp to install Windows. Bootcamp in itself has support to create Windows 7 install disk from iso file, but by default it is disabled for Macbook Pros. 
+Check out this link for how to do it.
+
+With Lion, Apple has added an option to BootCamp that will create a
+  bootable USB Windows 7 install disk. 
+  Unfortunately, Apple only allows this on computers that support
+  booting from a USB drive (a.k.a. they don't have optical drive) which
+  include the MacBook Air and 2011 Mac Mini. Their is a way around this,
+  and after searching and finding the solution, I decided to pass it one
+  to you.
+
+
+A: Use a trial verion of DAEMON Tools for mac, and mount the image file.
+
+A: What the guy above says about the DAEMON Tools works, though there are more steps needed. First you'll need an ISO file, which you can actually make out of the flash drive by simply creating a new image file in Disk Utility by clicking on the New Image icon on the Toolbar, though obviously first you need the flash drive selected in the left hand column, make the Image Format DVD/CD Master (I don't think its necessary to have a encryption), and save it where you find convenient (like the Desktop). Now you can rename it from .cdr to .iso (it needs to be an ISO I believe). Now download and open DAEMON Tools (just use the 20 day trial), and press the Quick Mount icon at the bottom and navigate and open your ISO file. Now Boot Camp Assistant should be able to see your ISO file/data from flash drive, and the rest should be handled without problem. You can also get the rEFIt boot manager if you want, be my guest. (Oh yeah, and this is using the latest software, Yosemite, though on a MacBook Pro 15 inch, Mid 2010) If the whole flash drive converting to ISO (I did here) doesn't work or isn't recognized, just get the Windows (whatever version) ISO file from the Microsoft website.

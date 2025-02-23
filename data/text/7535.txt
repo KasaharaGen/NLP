@@ -1,0 +1,22 @@
+Q: Mission Control has no spaces, background image doesn't change and Launchpad background is dark I just ran a system update on Lion and after the reboot I got issues with Mission Control.
+Namely,
+
+
+*
+
+*When I trigger Mission Control, it only shows windows on current space and doesn't provide a way to add or switch between spaces. The whole top bar is missing.
+
+*When I trigger Launchpad, it shows on a background that has nothing to do with the desktop background image, as if the underlying image was black.
+
+*Changing background image in Preferences doesn't take effect until a restart.
+
+
+This is very frustrating and seems like a bug. How do I fix this?
+
+A: Seems like I'm not the first one to hit into this issue, and it is related to Dock process working incorrectly. The easiest way to fix this is to type 
+killall Dock
+
+into the Terminal, which will effectively relaunch Dock process (and hopefully fix the problem).
+If this doesn't work, reportedly trashing Dock preferences and attempting several restarts may help.
+
+A: If literally just installed Lion in the past 30 minutes then you need to give the system time to "settle." I noticed a lot of the same issues immediately after upgrading from Snow Leopard and they all resolved themselves with a bit of time.

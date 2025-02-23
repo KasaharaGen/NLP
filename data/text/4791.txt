@@ -1,0 +1,6 @@
+Q: Create and distribute printers Is there a way to create a printer on a machine. Then bundle up the Printer bundle and create an installer out of it for multiple users at a location. To avoid having to explain to each user how to install a network printer?
+This is one of those enterprise issues.
+(10.6 specifically... at least for the next month)
+
+A: If your Macs are part of the OS X Server's OD, then you can use Workgroup Manager to assign printers to either Groups of users or Groups of Machines.
+If you want to manage the drivers and the detailed printer settings, this link might help.

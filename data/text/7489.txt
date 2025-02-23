@@ -1,0 +1,14 @@
+Q: where are python packages installed on Lion? I'm pretty sure before Lion, I was using /System/Library/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages
+Although this might have been from a manual install of 2.7 on 10.6 OS X.  
+Anyway, any idea where standard location is for python packages that are installed?
+
+A: /Library/Python/x.x/site-packages
+
+(x.x designates the version).
+
+A: Found it! Python packages are installed in /Library/Python/2.7/site-packages by default.
+
+A: Answers are correct for the default OSX install of Python.   If you have been mucking about trying different versions and changing paths you might be using a different one.   If you are struggling with not being able to import packages that you installed.   Try:
+from distutils.sysconfig import get_python_lib
+print(get_python_lib())
+

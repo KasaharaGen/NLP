@@ -1,0 +1,25 @@
+Q: How can I boot to Safari Only (Chromebook style) in Lion? How can I boot safari only in Mac OSX Lion Chrome OS style? I heard that there was a key that one had to hold at startup, which one is it?
+
+A: I finally found the answer to this. There are two types of Guest User mode in Lion:
+a) Safari-only mode: This is the default setting if no Guest account is enabled. Therefore to turn this on, go to System Preferences / Users and Groups / Guest User, then uncheck "Allow guests to log in to this account". 
+
+
+*
+
+*Note: Under "Login Options", "Display login window as:" must be set to "List of Users" or this will not work. 
+
+
+b) Snow Leopard-like Guest Account - a full guest account as in previous versions of OS X. This mode is enabled when "Allow guests to log in to this account" is checked.
+
+A: It appears the Safari-only mode was not included in the retail build of OS X Lion. 
+
+A: Command-R will boot into the recovery partition. Once booted you can launch Safari as described on the feature page.
+The Recovery HD includes the Safari web browser so you can check your email or 
+browse the Apple Support site.
+
+Source: http://www.apple.com/macosx/whats-new/features.html#lionrecovery
+
+A: Not yet. It is a part of Find My Mac, which is a part of iCloud. 
+Once Find My Mac is enabled & a user account is logged in, but at the login screen, you have the option to boot to Safari-Only mode. Once iCloud is released, it should be available (unless, of course, Apple decides to remove it), but not something you'd really want to do. 
+
+A: Noah has it right, it is currently part of iCloud, and unless you have downloaded and installed the iCloud beta software, and signed in with an iCloud ID, AND turned on back to my mac in the preferences area for iCloud, it will not appear as an option.

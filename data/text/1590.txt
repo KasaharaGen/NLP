@@ -1,0 +1,141 @@
+Q: How do I connect to a SOCKS Proxy from an iPhone/iPod Touch? I like to surf securely and privately via a SOCKS proxy which I created via SSH tunneling, on the Mac. I used the SSH client on my Mac to achieve this. Then I thought, since the iPhone OS is essentially Mac OS, the same trick might work also on the iPhone.
+I managed to create a SSh tunnel on my iPhone via the Terminal (iPhone's Terminal). (Yes, it's jail-broken)
+ssh -D [port] user@domain.com
+
+At this stage my iPhone is SOCKS proxy.
+However, there doesn't seem to be a way in the iPhone networking preference panel to specify a SOCKS proxy. Someone suggest creating a Proxy Auto-Contig (PAC) file to workaround this, but that sounds complicated.
+Any ideas how to make iPhone use it's own SOCKS proxy?
+
+A: Wow thanks for that last answer. 
+Together with this "SSH to get your iPhone online via USB cable" blog post, I came up with a pretty solid instant reverse SSH/SOCKS solution over USB tether given only an SSH server somewhere on your network. This allows all my tcp-based apps to use an SSH server's internet across USB despite my WiFi being defective and not having a strong phone data plan (T-Mobile Prepaid). 
+No proxy server configuration required.
+The gist of the blog post is that you CAN control the proxy from the command line. Use the file:
+/private/var/preferences/SystemConfiguration/preferences.plist
+Find the "ip1" section (if you want to replace GPRS/EDGE/3G interface) like:
+<dict>
+<key>Interface</key>
+<dict>
+<key>DeviceName</key>
+<string>ip1</string>
+<key>Hardware</key>
+<string>com.apple.CommCenter</string>
+<key>Type</key>
+<string>com.apple.CommCenter</string>
+</dict>
+
+Be careful that you got the ip1 section if you want to override EDGE/3G! Do not look for the other Proxies entries in the file.
+Then add the following section afterwards: 
+<key>Proxies</key>
+<dict>
+<key>ProxyAutoConfigEnable</key>
+<integer>1</integer>
+<key>ProxyAutoConfigURLString</key>
+<string>file:///private/var/preferences/proxy.pac</string>
+</dict>
+
+Then use your trick to specify an SOCKS proxy in the file we just specified:
+/private/var/preferences/proxy.pac
+Add:
+function FindProxyForURL(url, host)
+{ 
+     return "SOCKS 127.0.0.1:1080";
+}
+
+Change permissions on proxy.pac to 777 (all can read, write, execute).
+Reboot the iPhone.
+Download iTunnel for iTunes 9 (older versions are available too). (http://www.mediafire.com/?2q1fzowoy12)
+Create a new Putty Connection: in Connection>SSH>Tunnels section add new forwarded "remote" port, like port 202 on the iPhone to your internet-facing SSH server (say, 192.168.2.100:22).
+Source Port: 202
+Destination: 192.168.2.100:22
+
+In the SSH section of the same Putty Connection set your Remote Commmand to:
+ssh -D 1080 user@127.0.0.1 -p 202
+
+Save your Putty configuration to a new named session.
+Optionally generate keys & add the public keys to *~/.ssh/authorized_keys* to both ends so you don't need to type passwords. Use putty.exe -load "Profile Name" in a shortcut to speed it up even more.
+
+A: Well I guess, there's no better way to do it.  Darn you Apple, is it so hard to put a SOCKS Proxy setting in the iPhone OS network settings panel? 
+:-(
+Anyway, the best answer so far, and the only one I could find on the Net, is from a document from the SNIPPLR Code 2.0 website entitled How To Connect To A SOCKS Proxy From An Unjailbroken iPhone/iPod Touch. 
+Below is a cleaned up version of their solution:
+
+Let's say, perhaps, that you are already forwarding your web traffic through an SSH/SOCKS tunnel at work (for privacy reasons) and you would like to use that same tunnel on your iPhone/iPod Touch. This is actually pretty easy to accomplish.
+
+
+
+*
+
+*Make sure the SOCKS tunnel on your work computer allows LAN connections so your iPhone/iPod Touch can connect to it. 
+ssh -N -g -D 1080 user@domain.com
+
+
+*Create a text file and insert the following code:
+function FindProxyForURL(url, host)
+{ 
+     return "SOCKS 192.168.xx.xx:yyyy";
+}
+
+Replace the x's with your IP and the y's with the port you used after the -D in your SSH command
+
+*Save the text file as a Proxy Auto-Config (PAC) file to a web accessible place with a .pac extension. 
+If you're reading this chances are you know how to serve a file over HTTP on your work LAN, so I won't delve into that.
+
+*Finally, on your iPhone/iPod Touch, go to Settings → Wi-Fi and click the blue arrow to the right of your work network. Scroll to the bottom, click Auto and type in the address to your PAC file (e.g. http://192.168.xx.xx/mysupersecretproxy.pac).
+Now you can surf the web securely from your iPhone/iPod touch.
+
+A: This message seems to suggest that it's not possible to do this via the command line, if I'm interpreting it correctly. I think that means you really can't at all, since the Network preferences don't support SOCKS.
+
+A: iPhone + SSH Tunnel + Socks Proxy = SUCCESS Very Happy
+--> http://thireus.dareyourmind.net/index.php/thireus-home-news/8-general-announcement/109-iphone-ssh-tunnel-socks-proxy-success-d
+Thanks for the help :)
+I'm now able to use my local socks proxy via Wifi/3G/Edge :p and I also created a script that recreate the tunnel if the connexion has been lost ;)
+
+A: If you have access to the shell (jailbroken) and can place the proxy.pac file in the location mentioned above, you can also use the following link for the proxy.pac file in the Network preferences for the connection you are trying to tunnel:
+file://private/var/preferences/proxy.pac
+
+Together with an SSH tunnel to an SSH server in the US, I can listen to Pandora/Slacker etc. over  Wi-Fi outside of the allowed coverage area (i.e. while traveling outside of US).
+
+A: The answers above are not all right.
+
+
+*
+
+*The ssh -D is not a global proxy on iOS system (such as iPhone and iPad).
+
+*The HTTP proxy is also not a global proxy.
+They cannot both be used on most games and IM (instant message). It just for some web surfing (Safari is all right) but mostly only this.
+The best and most easy way on iPhone and iPad is using VPN. That's global agent, which can transfer all Internet data via remote VPN server. Another choice is OpenVPN, which gives a client on iOS. 
+There is no such a program for iPhone and iPad to run global socks proxy like that on Windows.
+
+A: I found a way to do this without jailbreaking, but you will need access to an ssh server, which you could host on your own home computer.
+You will need two iPhone applications; iSSH (ssh tunnel), and ProxyBrowse (socks5 browser).
+You will also need an SSH server.
+For this example we'll call our SSH server [host] and our user account for the ssh server [user].
+
+SSH Server
+Run the following command: 
+SSH -f -N -D 8080 [user]@[host]
+
+That's right, you're on [host] creating a dynamic port forward back to [host], you'll see why soon.
+
+iSSH
+"Add Configuration...", fill out the usual stuff for the server/username/etc. Near the bottom you can choose SSH > None, and you'll see an option for "Tunnel", select that. Choose the button to "Add Tunnel".
+Localport: 8080
+Dest Host: [host]
+Dest Port: 8080
+Save everything and open the connection.
+
+ProxyBrowse
+Server: localhost
+Port: 8080
+Don't fill in Username or Password, you won't need to, because iSSH already created the tunnel and iSSH continues to run in the background on your iPhone.
+That's it, now you can browse the web over an SSH tunnel.
+
+Want to go a step further? Install Tor on your server, have the iSSH tunnel connect to the Tor port, and then from your phone you can truly browse the web anonymously.
+For the technically inclined who want a little more detail on what just happened:
+[host] : ssh -f -N -D 8080 [host]
+[client_tunnel] : ssh -L 8080:localhost:8080 [host]
+[client_socks5] : localhost:8080
+
+The SOCKS proxy browser communicates over the local port forwarding tunnel to the dynamic port forwarding tunnel on the server.
+rst

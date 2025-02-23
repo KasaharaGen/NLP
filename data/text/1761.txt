@@ -1,0 +1,16 @@
+Q: Automatically launch a program or action when an external drive or disk is connected I have an external drive. Is it possible to launch a program or perform an action when I connect it or plug it in?
+
+A: Marco Polo can perform actions (you specify) based on attached USB devices.
+Edit: MarcoPolo isn't supported anymore, but there is a maintained fork of it: ControlPlane
+
+A: The likely most robust solution is to create a launchd job with the StartOnMount property set to -boolean YES:
+
+StartOnMount <boolean>
+  This optional key causes the job to be started every time a filesystem is mounted.
+
+This is how Time Machine does it (see /System/Library/LaunchDaemons/com.apple.backupd-attach.plist).
+You need to check if the desired /Volume/... is available, but in my experience, it's faster than using Folder Actions.
+
+A: A similar question has been posted in the MacRumors forum here:
+http://forums.macrumors.com/showthread.php?t=1029207
+The specific suggestion there is to use the application MarcoPolo.

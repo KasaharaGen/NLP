@@ -1,0 +1,32 @@
+Q: How can I create a Lion USB recovery stick without Mac OS? I have a serious problem that I need help with.
+Background
+When I installed Lion, the install of a recovery partition failed. This is not good, since the offical Lion recovery disk assistant (http://support.apple.com/kb/dl1433) is only able to create a recovery USB with an existing Recovery HD on the mac.
+My attempt to fix
+There are many (inofficial) workarounds: Since they are all the same, I'm sure that you're familiar with it:
+
+*
+
+*Open the package contents of the Lion installer from the Mac App store to get the InstallESD.dmg.
+
+
+*Restore the InstallESD.dmg onto the HFS+ formatted USB (GUID). I used a 8GB USB stick.
+Source: create Lion install USB
+This solution should be more convinient than the official soluion, since the Lion software would not have to be downloaded again.
+What happened
+The install USB booted fine. But the install failed. It could not even start. I got the message like: Install failed. Restart Installation.
+But I did not restart immediately, since I wanted to format my whole SSD with the Disk Utiliy (which went fine). I formatted the SSD using the same Lion install USB. Having restarted the installation, I keep getting the same message! I've tried different partition layouts (always HFS+ with GUID):
+
+*
+
+*only Macintosh HD partition
+
+*EFI and Macintosh HD partition
+
+*only Untiteled partition
+
+I'm not able to install Lion! I do not have any install DVD (for any Mac OS). I only have the Lion Installer from the Mac App store with the InstallESD.dmgon a backup. Is there any way I can create a Lion Recovery Stick (with or without the dmg) on Windows or Ubuntu?
+
+A: I've heard rumblings that the Lion Recovery Update will recreate the Recovery HD partition. Have not tested it myself: http://support.apple.com/kb/DL1464 (For future reference, does little to help you now).
+But to address your immediate problem, install Snow Leopard (using the discs that came with your Mac). Then once installed, log into the MAS and reinstall Lion.
+
+A: Actually, as it turns out my install USB was just fine. I just had to do a PRAM reset.

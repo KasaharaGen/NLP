@@ -1,0 +1,15 @@
+Q: How are network file system mount paths defined in Lion (apart from Directory Services)? Checking Directory Services for network file system mounts, i.e.
+sudo dscl . -list /Mounts
+
+and
+sudo dscl . -readall /Mounts
+
+returns nothing, yet the /etc/fstab file is deprecated in Lion. Why is dscl returning nothing and where are the mounts defined if they aren’t by Directory Services?
+
+A: OS X uses the Autofs stack to mount network file systems. Keith Winston has a good introduction to Autofs on OS X stating that:
+
+OS X uses an autofs code stack based on Sun's Solaris version of Unix. Many of the advanced features are not documented very well, and this can be an issue unless you are familiar with Solaris. I was not and had to do quite a bit of digging.
+Autofs is often used in enterprise environments to set up network-based home directories and other network mounts for users at login. It can also dynamically mount network shares on access.
+
+By default, Autofs mounts network files systems defined via Directory Services, those defined in /etc/fstab and NFS file systems, all accordingly to its master table, /etc/auto_master.
+Your call to dscl returns nothing because no mounts have been defined in Directory Services (no surprise there). If you want to define mount points not covered by Autofs default configuration without resorting to Directory Services or the deprecated /etc/fstab, you will have to add a mapping (via a auto_* file) to auto_master. For the technical background, refer to the post linked above; there is a good “how to” add auto mounts for SMB mounts in this Mac OS X Hints post.

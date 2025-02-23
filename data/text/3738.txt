@@ -1,0 +1,43 @@
+Q: Help: spotlight can't see Firefox in Applications folder? (FYI, I'm using Snow Leopard.)  I used to launch Firefox using spotlight by just typing "Firefox" to locate it.  Since I didn't launch Firefox often, I didn't want it in my dock, so I just got in that habit.
+For some reason, starting last week, spotlight can no longer find Firefox.  I type "firefox" and I get results (emails, jar files, and so on), but no Firefox.app.  It's still there, though, sitting my Applications folder and it launches fine when I click on it.
+Did I do something to break spotlight?  And how should I fix this?
+Thanks, Rob
+
+A: This has helped on a lot of macOS boxes I've worked on (10.14, 10.15 Catalina beta 1, beta 2, beta 3 and beta 4), perhaps for different reasons now in 2019 than when OP originally asked the question.
+
+
+*
+
+*Open Terminal/iTerm and run:
+
+*sudo xattr -r -d com.apple.quarantine /Applications/Firefox.app
+
+*Authenticate with your admin password.
+Your download was tagged by a macOS security mechanism as potentially dangerous, so the extended attribute com.apple.quarantine was set.  
+
+
+*
+
+*Since the OS didn't ask for user confirmation, the xattr was most probably already removed, but only from the top level package Firefox.app itself, but not its contents. 
+
+*This is at least one scenario where an App  
+
+
+*
+
+*can be launched without user confirmation, but 
+
+*Spotlight refuse to index. 
+
+
+
+See superuser.com/what-should-i-do-about-com-apple-quarantine for more.
+
+A: You can rebuild the total spotlight database by adding your entire drive to the privacy pane in system preferences. Although that might be needed, you could try just adding and then deleting the folder than contains Firefox to see if that helps. This avoids missing all spotlight results while the entire process completes. A rebuild could take anything from 3 to 12 hours, depending on several factors.
+Do be sure it's missing by showing all results - if it's not a top hit, rebuilding won't help. In that case try moving it into /Applications or perhaps looking into alternate app launchers (like LaunchBar) that allow you more control over where apps can be stores and more control over regenerating indexes. 
+
+A: Erasing free space on the HD loses the Spotlight database; there are probably other ways too.  The terminal command 
+
+sudo mdutil -i on "/Volumes/<disk-volume-name>"
+
+will rebuild it.

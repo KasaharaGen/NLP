@@ -1,0 +1,29 @@
+Q: What causes permissions to change? In Mac OS X, what causes the change in file permissions?
+For example, consider that the operating system was terminated abnormally. 
+On a subsequent boot, randomly (or possibly those files that were open at the instant of termination) files have their permissions changed. They differ.
+What is the cause?
+
+A: The answer above is wrong - if one bit on the disk changes, the ECC on the disk will correct it, or the e.g. a application image will become unusuable - cause a "segmentation violation". Change a bit in the node that refers to a file - and the file may be useless. 
+Do not muck around when you answer "bmick". You obviously do not know enough about hardware and operating systems. In better servers, even the RAM will use ECC to avoid single bit errors.
+I see this consistently in the Java VM framework. And the bug is probably what you describe: That a new version of Java VM has changed SUID, the Disk Utilty use a wrong repository for what file permission is supposed to be.
+Now Apple, the "Disk Utility" is GNU Open source. Update your repositories when new 3rd party OS components are installed. This makes the software run with apparent hang-ups. The modifications blocks access to files and makes the applications hang and even loose files and make databases corrupt.
+To help you, Thunderbird works fine on Linux/Ubuntu, and I can even access the MacOS files from the Ubuntu partition. On MacOS I loose files - and get "Permission Inconsistency". You can look at the Linux list of bugs with HFS+, where they describe this error - that file permission is changed, where this is blamed on the journal update of files that remain open when the system is taken down - "Synced()".
+Now, HFS+ on Linux will close the files, and flush the journal. MacOS' journal is not flushed on time, and updated later, and when a "Force Quit" is done you risk an error. Then you update with the wrong answer you introduce errors and for others to replicate these errors are very difficult, because they have exercised extensive effort to find out what they do wrong. 
+We will not use Ubuntu to correct MacOS, it is so much easier to use Ubuntu without the bugs.
+
+A: First of all - random errors creep into any system. Modern hard drives have billions of bits stored and when you ask for a file to be written as 0101011 sometimes the machine writes 0101001 and if it's writing the permissions bits, there's your answer. If you do the math, assuming 99.99% accuracy would mean more than one error is on everyone's hard drive most of the time.
+Things get cut off in the middle of finishing. Electrical noise crops up and messes up the signal, cosmic rays hit your memory chip and flip a bit, some program code isn't perfect so the math gets done wrong.
+Then you have all the times another program wants to change the permissions and there is disagreement. Permission errors are usually logged to the system log so when you have a problem, have a look, maybe run permission repair to fix up the programs installed by apple.
+When in doubt - go to the source:
+
+
+*
+
+*Troubleshooting permissions issues
+in Mac OS X
+
+*About Disk Utility's Repair Disk
+Permissions feature
+
+*and some warnings and errors should
+just be ignored

@@ -1,0 +1,19 @@
+Q: Using caps lock key instead of right click (contextual menu) I'd like to remap Caps Lock to right click - for the cases where I can focus on objects with cursor keys, or tab. 
+For instance after selecting files in Finder I'd like to hit Caps Lock and get the contextual menu you'd get on right click.
+
+A: The 3rd party tool http://pqrs.org/macosx/keyremap4macbook/ seems to be able to do what you need to remap your keys.
+One possibility is to remap Caps Lock to Control and thus pressing Caps Lock + left-click would open the context menu.
+Sure, this doesn't remove the need for a mouse click, so the right-click might be a better solution :)
+
+A: You can use BetterTouchTool for this. Just create a keyboard shortcut which is bound to right-click.
+There are to caveats, though:
+
+
+*
+
+*The right-click command will be sent to wherever the mouse is, not on whatever is focused via the keyboard.
+
+*To bind the CapsLock key, you may need to use a combination of KeyRemap4MacBook (to rebind CapsLock to some other key), as well as PCKeyboardHack (to improve CapsLock rebinding support).
+
+
+I'm not sure if there is any way to invoke the context menu on the focused element rather than wherever the mouse is. However, if you do find such a way to do this, you can use a combination of KeyRemap4MacBook and PCKeyboardHack to rebind it to CapsLock.

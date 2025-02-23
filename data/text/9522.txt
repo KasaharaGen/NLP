@@ -1,0 +1,20 @@
+Q: How do I browse /tmp in Finder? I can use the command line to :-
+cd /tmp
+ls -al
+
+What is the equivalent to do so in finder?
+I can't seems find a way to browse to that folder using finder,
+(my intention is to view images which I created in /tmp)
+Or is there any image browser tools can do the same?
+
+A: You can use the menu Go -> Go to folder and enter the path of the folder you wish to see in the resulting dialog. 
+You can also use the keyboard shortcut Shift + Cmd + G to summon the dialog.
+
+A: One possible way I just find out is to use browser (chrome, firefox),
+and in the URL bar :-
+file:///tmp/
+
+This work like apache index directory,
+is usable, but is far from ideal
+
+A: Writing open /tmp in Terminal will open the /tmp folder in Finder.

@@ -1,0 +1,16 @@
+Q: How to silently update OS X and reboot if necesary? I am looking for a silent (unattended) way of updating OS X that would not require use intervention.
+Is this possible, how?
+
+A: $ sudo softwareupdate --list
+$ softwareupdate -a -i -R
+
+This tool - even if updates come from the App Store app, does not update any purchased apps. You need the GUI to update those apps at present time since Apple did not include a tool to automate those updates.
+The first just scans for appropriate updates. The second installs all updates and only restarts if the updates call for a restart.
+Play around to see what works best for you. It's trivial to automate these using launchd if that suits your needs as well.
+I've had better luck rebooting the Macs before the update. If I'm going to cut users off with unsaved data, I'd rather do that first and let the update go cleanly. Updating a program that is currently running is something I like to avoid.
+Here is a nice article explaining the details from Apple. It works fine on non-server version of Mac OS X as noted at the end of the article.
+
+A: The softwareupdate command was updated with MacOS release 10.13.4 with a --restart option. Use
+sudo softwareupdate --install --all --restart
+
+And the computer will restart if needed

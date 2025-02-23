@@ -1,0 +1,35 @@
+Q: Why is my Mac constantly trying to connect to another server? After logging on, I see this dialog box pop up. Whenever I dismiss it, it reappears 30 seconds later. (Stealing focus at the same time! Grrrr!)
+
+"Slate" is my old iMac, which is sitting on the desk next to me, turned off. How can I stop my new Mac from constantly trying to connect to my old one? Both are running 10.7.1.
+
+A: I'm pretty sure this was happening because when I logged out, I was running an app which was located on the other computer.
+I logged off and unchecked the "Reopen windows when logging back in" box, which stopped Lion from trying to reopen the app the next time I logged in.
+
+
+A: This error typically comes up when OSX is trying to access a file or folder on a remote server, but it cannot connect to that server.
+I have two examples to give an idea of where this can come from:
+
+
+*
+
+*You are able to have OSX connect to a remote folder automatically at
+login. Typically these are shown in the "Login Items" tab of the
+"Users & Groups" pref pane
+
+
+*When an application attempts to open a file that's on a remote
+server, OSX automatically tries to connect to that server in order
+to access the file.
+For example: If the music in your iTunes library is on a mounted
+network drive, and you have not connected the drive yet, playing a
+track will delay while it connects the drive and then iTunes will
+play the track.
+In both cases, if the server where these files are located cannot be found, that error will come up.
+Full disclosure: this was originally my answer to Endlessly repeating "There was a problem connecting..." error. That question has been marked as a duplicate of this one.
+
+A: I suspect you are connecting to a legacy file server as described in the kbase article below. 
+http://support.apple.com/kb/HT4700
+We saw similar pop ups but clearing up our mounts addressed the issue. 
+
+A: Check System Preferences>Accounts>Login Items to see if there is a disk that is supposed to mount when you login. Make sure you check all of the user accounts.
+

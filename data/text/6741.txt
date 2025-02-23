@@ -1,0 +1,66 @@
+Q: make a bootable DVD from an ISO Is there an APP to make a bootable dvd i am using snow leopard but i do have access to a lion machine. I have an ISO from a legal copy of windows 7 it is a back up cd and yet i am having a hard time making it boot from the cd, the boot camp installer sees it but when I try and boot from it, it gives me a code 5 which is a non-bootable DVD
+the things i have tried
+
+
+*-burned to usb using dd
+
+
+*-burned to dvd
+
+
+*-restored using disk utils
+
+I just want an app that will make it easy and painless and hopefully free so i can just get my bootcamp working... thanks in advance
+
+A: I think what you're trying to do is simply burn the contents of the ISO to a DVD, but what you need is a program like Disk Utility to copy the ISO bit by bit to the DVD maintaining its bootability. Try this:
+
+*
+
+*Open up Disk Utility.app in your /Applications/Utilites folder.
+
+
+
+*Click "Burn" in the tool bar.
+
+
+*
+
+*Navigate to the ISO disk image you want to burn.
+
+
+
+*
+
+*Click burn to start the process or click the disclosure triangle to select further options for burning your disk. Faster write speeds are faster (d'uh) but make the operation more prone to failure due to vibration. I suggest you click the check box to verify the data of the disk once it's burned, then pick whether you want the disk to be ejected or mounted once the operation completed.
+
+
+
+A: *
+
+*Open Disk Utility
+
+*Drag & drop the .iso onto the left panel (under where you see your HD listed), or in some other manner get it into the left panel (may vary with the version of OSX you are using)
+
+*Highlight the .iso
+
+*Choose "Convert" at the top
+
+*IMPORTANT: Choose "DVD/CD master" for the image format
+
+*For encryption choose "none"
+
+*Click "Save", and make sure the file type is ".cdr" (you can keep the .iso if you want as well)
+
+*After some time, you will have another image; burn that image
+
+*Insert a writable CD or DVD, and choose the slowest possible burn time (for safety)
+
+*Choose to verify the disk you are burning as well, then click "Burn"
+
+*Depending on what OS built the .iso, the result may not be readable by your Mac, but  the PC or hypervisor where you will install it will be able to read and boot it.
+
+
+Source: https://discussions.apple.com/thread/5132196
+
+A: Install Burn app, then right click on the .iso file and select 'Burn Disk Image XXX to Disc...". This will run the app with appropriate settings. When ready, hit the Burn button.
+Should work in El Capitan and Sierra macOS as well.

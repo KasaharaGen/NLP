@@ -1,0 +1,46 @@
+Q: Why is it not possible to use the "cut" command to manipulate a file in the Finder? On OS X 10.6 (Snow Leopard), I don't seem to be able to us the "Cut" command on a file in the Finder, like you can do in Windows Explorer on Microsoft Windows. (In Windows, once you select a file and "cut" it, you can then move to a different directory and "paste" the file to that location.) 
+The only way I can move a file using keyboard or contextual menu commands is to copy the file to another drive or location and then delete the old version of the file. 
+In the Finder's 'Edit' menu, 'Cut' is in the list but if a file itself is selected, it is always greyed out. 'Copy' is not. Why is this?
+
+A: The cut function is implemented in Lion and later as a result of modifying the paste command. If you copy a file and hold down the ⌥ key in addition to the normal paste command.
+⌘+⌥+V = paste + cut in macOS
+This retroactively cuts the original file(s) and pastes them in the new folder.
+You can also use: right click + Copy then Option + right click + "Move Item Here"
+On Snow Leopard and earlier, the cut function is not part of Finder.
+
+The thing that seems to be different is that CUT on OS X means it's gone now. Whereas cut on Windows means text goes away and files get copied for cutting on paste. The implementations seem quite similar for filesystem cut/paste operations in practice.
+Assuming it's not a "patent thing", one could speculate that this is a "do no harm" design standpoint. Why cut something and then potentially lose or misplace it? Imagine the harm if you selected a few hundred files to copy them (or duplicate them) but inadvertently hit the X key. Instead of forcing you to realize a cat or toddler has cut a whole folder of files, the cut only happens when you paste with the option key held down to paste and then cut in one action.
+
+A: As others have mentioned, there is no cutting of files in Finder. However, if you think you're mind is able to handle such a notion, you can use TotalFinder, which I highly recommend. It also sports tabs, showing hidden files, split views and even has the option to add cut-copy-paste buttons in the context menu.
+
+
+A: There's a cool little plugin now for Finder that adds — among other missing features (enter to open file, folders before files, tabs, etc.) — cut'n'paste functionality like we're used to from any other OS.
+It's free, actually! I previously used PathFinder which is a paid app, but this time around I really didn't want to install it, as it doesn't integrate very well with OS X (Finder and PathFinder running simultaneously, gesture to reveal desktop giving an empty screen, ...). This one just adds stuff to Finder instead of installing an extra app. You do have to run XtraFinder to configure, though :)
+Check it out: http://www.trankynam.com/xtrafinder/
+
+A: If you like cut and paste more than drag and drop I'd recommend to install MoveAddict. It brings cut and paste to the Finder, even with toolbar support. I am using MoveAddict for some time now and I am quite happy with it.
+
+A: Keyboard method: Cmd-C then Opt-Cmd-V does the cut&paste for files on Mac. 
+Mouse method: Drag the file from one folder to the parent of the target folder (ie, if moving to Documents:Financial, drag to Documents). Hover on the parent folder for a few seconds, and it will spring open. Then you can continue dragging the file to the target folder. (note, the mouse method may result in very long hover times, if you're dragging a huge number of files, eg 1,000 files)
+Menu method: It's not part of the Apple menu system to 'cut' files.  The menu Cut option is grayed out, and becomes enabled when text is selected.  But not files. Here is an in-depth discussion on Apple's discussion forum.
+
+A: There is no native way to Cut in Finder.
+It has always been that way. Why? We don't know.
+I believe the Cut you're talking about is either standard on an Edit but it will most likely become available when you rename a file.
+Bottom line is, you can't cut & paste files natively in Mac OS X.
+
+A: Actually, in Lion, cut is now available as part of the Finder. Copy as usual with ⌘+C and (cut-)Paste with ⌘+⌥+V.
+
+A: The lack of a simple and basic function such as cut n paste of folders and files on the same level as Windows is a damning indictment of Apple and makes a mockery of their supposed "give the people what they want" culture. It cannot be about resources or expertise because clearly it is trivial to implement. We are left to speculate that this is a misguided and stubborn refusal to compromise or be seen as imitating Windows. It is just daft. There are many good things about Apple products but this approach prevents them from being as good as they could be and is just unnecessary. 
+
+A: I believe cut in Finder is for cutting text. I don't believe Apple intended it to be for cutting files in that sense - that is purely a Windows paradigm. If you select a file and press enter, and then select edit -> cut - it should now work and no longer be greyed out. So cut does work. But the connotation of moving files from the windows user experience has apparently caused some confusion. 
+
+A: Insofar as files are concerned, "cut and paste" is "move" by a different name. With Finder, as you have likely noticed, there is a rule behind its behavior during drag-and-drop operations on files:
+if you drag-and-drop to the same volume: move is default.
+if you drag-and-drop to a different volume: copy is default.
+This is the default behavior. If you want to change the default behavior, here's how to do that:
+holding the command key while dragging changes copy to move.
+holding the option key while dragging changes move to copy.
+I agree with this opinion that this is not intuitive - perhaps even convoluted. But it's been that way for a while now & unlikely to change. The good news is this: If you find it tedious to remember this, one option is to use mv or cp from the CLI.
+
+A: another way is to use XtraFinder, there are many nice features including "cut" 

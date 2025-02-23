@@ -1,0 +1,15 @@
+Q: Is there any way to schedule software update? I have software updates set to check weekly, but it seems to happen at random times during the day. I'd really like to have it run at a specific day and time - say 4:30 on Friday - so that I can just let it run on my way out the door, rather than having to let the computer restart in the middle of a workday. Is it possible to schedule the software update that granularly? Obviously it can't be done via system prefs, but maybe there's a hidden setting somewhere (or a utility I can download) that I'm not aware of as a Mac newb.
+
+A: If you goto the Software Update preferences, you can set it to daily, monthly or weekly. Obviously, this a very basic update scheduler. If you want to update weekly at this time just goto preferences and select weekly, now.
+You can also do it using an Apple script + softwareupdater as described here.
+
+A: Emmy - if you want to automate this without a user approving the changes, see this thread. How to silently update OS X and reboot if necesary?
+Otherwise just use iCal to schedule and set an alarm to open the file 
+/System/Library/Core Services/Software Update.app
+
+as shown below:
+
+There are tons of ways to script this, but iCal is really simple for this task.
+
+A: You can automate this by date and time using 'launchd'
+here's an article about it. Note: This will download the updates in the background automatically, you won't see the apple software update window. So you won't have to push any confirm to install buttons.

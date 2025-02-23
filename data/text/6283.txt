@@ -1,0 +1,24 @@
+Q: Getting Safari to forget Keywurl Having discovered the excellent SafariKeywordSearch thanks to an answer here, I'd now like to get rid of the warning which Safari pops up on launch about Keywurl not loading because it hasn't been tested with Safari 5.1.
+I thought I had circumvented this by deleting the Keywurl bundle from ~/Library/Application Support/SIMBL/Plugins (it had only been installed locally, not globally), but Safari still stubbornly pops up a warning. In actual fact, I was seeing two instances of the incompatibility popup before I performed this deletion, but that second one still persists. I've used Spotlight in an attempt to track down the phantom second instance, but without success.
+Has anyone any idea where it might be lurking?
+
+A: From Keywurl's ReadMe:
+
+Installation
+Copy Keywurl.bundle into Library/Application Support/SIMBL/Plugins
+under your home folder, or in /Library/Application
+Support/SIMBL/Plugins in the hard drive root if you want Keywurl to be
+enabled for all users on the computer.
+Uninstalling
+To uninstall, just delete the file you copied.
+
+You said you mentioned that it was only installed locally, not globally, but I've had issues with other SIMBL plugins where I thought they were installed locally only to find another copy lurking at the system level.
+So I'd check /Library/Application Support/SIMBL/Plugins as well, just to be sure. Note that this is a different hierarchy than the one mention in Gio's answer.
+Make sure that you quit/relaunch Safari after you do this. A logout/restart might also help.
+
+A: The folder to delete should be ~/Library/Application Support/Keywurl
+
+A: The keywurl plugin cannot launch without SIMBL being present. It must still be on your system.
+Open Activity Monitor and look for SIMBL Agent. If it running, then click the Sample Process icon. Look at the report produced - you will see the filename of the process - tho will give you a clue where the remnants of SIMBL are lurking on your system.
+Kill the SIMBL agent process - then open Safari - you should find that the message is no longer popping up. 
+Then you need to delete the remnants of SIMBL on your system. Probably the best way to do that is to reinstall it, and then deinstall using the official uninstaller. If that doesn't work, delete the file listed by Sample Process by hand.

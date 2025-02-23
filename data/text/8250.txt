@@ -1,0 +1,18 @@
+Q: How can I add an action to search for the selected Terminal text in Google? I want to be able to add an action to search Google with any selected text in Terminal. Any ideas?
+
+A: You could use the one that's built into iTerm2 … (which is a viable replacement for Terminal anyway, if you don't know it yet)
+
+
+A: You can enable the corresponding service in Preferences/Keyboard.
+Default key assignment is Shift-Command-L which I had to change because it was already used by something else.
+After enabling the service you can initiate a Google search in Terminal by selecting a text and
+
+
+*
+
+*press the shortcut key
+
+*select the service in the context menu (Services/Search with Google)
+
+
+Only drawback is that the search always opens Safari even if you have different default browser.

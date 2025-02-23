@@ -1,0 +1,54 @@
+Q: Diagnosing a broken PowerBook I have a 12" PowerBook with no hard drive and a dead screen. I'm trying to determine if the actual LCD is broken or if it is "just" the graphics card, without taking out the screen and transfering it to another computer (which I intend to do if the screen is working).
+I've tried connecting the computer to an external monitor, but, since there is no hard drive, nothing happens. The same nothing happens when I connect my working 12" PowerBook to the external monitor.
+Is there a secret keyboard combination that tells the PowerBook to throw some characters onto the screen (from BIOS or something), and to mirror or output to the external monitor?
+
+A: Given the two PowerBooks as described in the other questions, here's my 2¢:
+Definitions
+
+*
+
+*PB1: the PowerBook without the hard drive
+
+*PB2: the PowerBook without the SuperDrive
+
+Steps
+
+*
+
+*Connect the external display to PB1
+
+*Connect PB2 in Target Disk Mode to PB1
+
+*Boot PB1
+
+If everything works as it should, PB1 should boot and look just like PB2 (as it's booting with PB2's hard drive). At that point, you can run any necessary diagnostics.
+
+A: No. Just get a small, cheap HD (even just a 20 GB will do fine here), put it in, and boot from a system installation disk as if you were going to install the OS.
+
+A: You said you don’t have HD, but I assume you have the SuperDrive that used to come with those. Put the Jaguar/Panther/Tiger CD and boot from it, you should get output. 
+You might also want to try resetting the PMU of the powerbook. Google or Apple Instructions Here.
+EDIT: After reading some more about your problem in the comments, it’s clear now that you have 
+
+
+*
+
+*Powerbook #1: No HDD, Unknown Screen Status.  
+
+*Powerbook #2 (Pro): Superdrive not working.
+
+
+If the above is correct, your choices are:
+
+
+*
+
+*What Phillip said: get a cheap drive that boots any OS (Linux for PPC would do too) and see if your #1 boots with that USB drive and displays text. with this you cover your screen problem.
+
+*Transfer the #2 Hard Drive to the #1 Machine and see if it boots from there.
+
+*Try booting from #1 Machine that (if I am not mistaken, has a SuperDrive). 
+
+
+Am I missing something?
+And to clarify, there’s no Keyboard combination that will output text on a Macintosh PPC other than a verbose mode or similar, but that’s post initialization. There’s no BIOS or anything like that. (That I remember anyway). 
+Booting from an Install CD has the plus that you can run System Diagnostics if I am not mistaken.

@@ -1,0 +1,15 @@
+Q: CD doesn't eject I have a problem with ejecting a CD. It happened twice in the past few days, CD drive disappears from the list of devices in a Finder and I can't eject a CD that sits inside my laptop. I tried Disk Utility it sees the drive, but the eject option is grayed out. Typing "drutil tray eject" in Terminal also doesn't produce any effect.
+
+A: The first thing to try in these cases is to restart the computer and hold down your Eject key or Mouse/trackpad button while it's starting up.
+If that doesn't work, try Resetting the SMC on an Intel based mac, or a PMU reset on an older PowerPC machine, then try again.
+If that fails, you'll want to bring the machine into an  Authorized Service Center if it's under warranty, or look into less orthodox solutions if not.
+
+A: I had a similar solution to TrentEllingsen.  My CD drive would not relinquish this stuck CD.  Not with a terminal command or eject button or what have you.
+I eventually decided to go about it manually.  First I tried using a card to leverage the CD enough so that "drutil eject" would work but after several tries it was obvious it wouldn't.  So I rubbed on some elbow grease and grabbed another card.  I slid one under the CD and the other on top.  Then, like using a pair of card-nosed pliers, I pinched tight, pulled gently, and out came the CD... with protective slip attached!  That was the last time I let my girlfriend burn anything on my mac.
+
+A: I had a similar problem with a macbook that wasn't able to start up and I wanted to put in the reformatting disk in to try and fix it but had a stuck CD.
+I tried holding the eject, mouse button, holding multiple buttons at the same time, tilting it.. What actually worked was a suggestion I found that using step 3 from here
+I just stuck a borders gift card into the slot and then gently 
+pushed it down on the rotating CD (scary sound). 
+It stopped spinning and soon ejected!
+

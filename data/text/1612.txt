@@ -1,0 +1,79 @@
+Q: Can you install two versions of an app on the same iOS device? Is it possible to install two versions of an app on the same iPhone and, if so, how?
+The scenario would be that you have purchased an app, and a recent update has changed some of the features--not necessarily for the better or worse, but enough of a change that you'd like to still be able and use the older version at times. You could downgrade from a backup, but it'd be nice to have the new version at times as well. Is it possible to have two versions of an app be 'seen' as different apps so that they can both be transferred to the iPhone at the same time? 
+
+A: It's not so much the name -- at least not the visible one, as an upgrade can change the visible name -- but it's the bundle identifier inside the app that identifies it and allows the OS to know it's supposed to perform an upgrade. The developer has to keep the bundle identifier the same in order to actually provide an upgrade and not a new app, so no, you're out of luck.*
+*Note that there may well be some way to do such a thing if you jailbreak your device, but I have no firsthand knowledge of such.
+
+A: It is possible to install 2 versions of the same app on your device. However, you're the one who gotta edit the .ipa, and it will lose its online features, like syncing with Facebook or something else.
+Matthew Frederick said on his answer to your post:
+
+"but it's the bundle identifier inside the app that identifies it and allows the OS to know it's supposed to perform an upgrade. The developer has to keep the bundle identifier the same in order to actually provide an upgrade and not a new app"
+
+You can edit the bundle identifier, and here's a guide on how to do it:
+Let's suppose you have the version 2.0 of the app installed on your device, and you want the version 1.0 also.
+
+
+*
+
+*You'll need those following programs on your computer: "WinRAR", "plist Editor Pro" and "iFunbox" (the last one is to install the older version of the app on your device)
+
+*Download the version 1.0 of the app (.ipa file) from the internet.
+
+*Search for an app that you would NEVER want to download, it doesn't matter what it is, and download its .ipa .
+
+*Open this last .ipa with WinRAR.
+
+*There will be a folder called "Playload", open it.
+
+*There will be a folder with the name of the app, open it.
+
+*Double click (to open) the file "Info.plist".
+
+*Search for <key>CFBundleIdentifier</key>.
+
+*Under it, there will be the identifier, for example: <string>com.company.appname</string>.
+
+*Copy this "com.company.appname".
+
+*Close the file.
+
+*Now open your app's older version's .ipa with WinRAR.
+
+*There will be a folder called "Playload", open it.
+
+*There will be a folder with the name of the app, open it.
+
+*Double click (to open) the file "Info.plist".
+
+*Search for <key>CFBundleIdentifier</key>.
+
+*Under it, there will be the identifier, for example: <string>com.2company2.2appname2</string>.
+
+*Replace this "com.2company2.2appname2" with the one you've copied earlier.
+
+*That will make your device think it's another app, and not simply replace the one you had with the one you'll install.
+
+*Save and close the file.
+
+*If WinRAR asks if you want to make the modifications, press YES.
+
+*Now open iFunbox, and plug your device into the computer (close iTunes if it pops up).
+
+*On the top left hand corner, press "iFunbox Classic".
+
+*On the left, open "Connected Devices", then open your device's name (for example, "Johnny | New iPad on USB"), then open "User Applications".
+
+*On the top, click "Install App", and select the .ipa you've just modified.
+
+*Wait for it to install. Make sure the device has its lights off (locked).
+
+*Enjoy the 2 versions of the app on your device :)
+
+
+But again, don't forget this disables the online features of the app, because of the bundle identifier change. Also be careful not to install the app from Step 3 as this will cause an upgrade.
+That's the only way I could figure out to do this. There may be other ways.
+
+A: No, it’s not possible to install two versions of an app that has the same name. You’d have to ask the developer to rename it, which I doubt he’ll be willing to do. Although the iOS doesn’t really check “the name” (like a file manager would do), the develop would have to create another “build” if I am not mistaken.
+So you’re out of luck. Either embrace the new features or find an alternative. :)
+
+A: Mine just gave me to versions of the same app without jailbreaking or using the computer i just go iOS 7.1 and i git two copies :)

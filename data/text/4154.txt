@@ -1,0 +1,32 @@
+Q: Zip Utility with encryption option Is there any good zip application for Mac OS X similar to 7-Zip (Windows only) which is free, compatible with many formats, and offers encryption options?
+
+A: Check out Keka - the free Max OS X file archiver
+
+
+With 7z and Zip you will have the
+  opportunity to create password
+  encrypted files to better protect your
+  privacy. It's as easy as write your
+  password in the box, and drag and drop
+  files to Keka in the dock.
+
+
+Another way is to run the command in your Terminal.app:
+$ zip -e myzip.zip <files>
+
+After the command you will be prompted for a password. Instead of the single files you can specify a folder, too.
+
+I don't know of any more apps that allow you to create archives with many formats. For decrompression there are multiple great apps (The Unarchiver, Stuffit Expander).
+You can give 7zipX a try, too.
+Some paid alternatives:
+
+
+*
+
+*BetterZip
+
+*StuffIt
+
+*Archiver
+
+A: The unarchiver and simplyRAR in addition to keka.

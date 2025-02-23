@@ -1,0 +1,25 @@
+Q: awk/sed output from system_profiler on 10.6.8 If I have:
+foo
+bar
+..and I'd like to awk/sed this to:
+foo-bar
+..what's the syntax?
+I'm trying to use:
+system_profiler SPMemoryDataType | awk '/Type/ {print $2} /Speed/ {print $2}'|sed 's/\r$/a\"-"/'
+
+to output type-speed (ie DDR-1067).
+
+A: Use this sed instead:
+|sed '$!N;s/\n/ /' 
+
+system_profiler SPMemoryDataType | awk '/Type/ {print $2} /Speed/ {print $2}'|sed '$!N;s/\n/ /'
+output:
+DDR3 1066
+DDR3 1066
+DDR3 1066
+Empty Empty
+
+
+A: Awk can easily do this on it's own, like so:
+system_profiler SPMemoryDataType | awk '/Type:/ {type=$2} /Speed:/ {speed=$2; printf "%s-%s\n", type, speed}'
+

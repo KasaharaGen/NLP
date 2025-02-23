@@ -1,0 +1,35 @@
+Q: Is Automator suitable for complex folder based workflows? I have a rather puzzling scenario for you, one that I would like to solve with Automator:
+We're a startup that creates HD music video content that is streamed online; we've got a custom-programmed Linux/Unix backend that takes HD videos from a folder, processes them for streaming, and throws them up in a Web format so that they can be viewed/streamed/downloaded from our site. Let us call that folder Folder D for the sake of this problem.
+When a video editor has a completed project, he or she adds their project to Folder A, Folder B, or Folder C, each of which is a folder on a volume on our SAN. The SAN has 3 volumes, any of which can be mounted RW on one machine at a time, so at any time up to 3 people can be adding content to A, B or C.
+What I'd like to do in Automator, if possible:
+
+
+*
+
+*Watch folders A, B & C for new videos.
+
+*When a video is dropped into one of those folders, copy it to Folder D.
+
+*Our backend system works on D and then deletes the file from D.
+
+*The tricky part is making sure that once the file is deleted from D, it isn't re-added from A, B or C.
+
+*Because of the SAN's limited RW access, assume that A, B and C cannot be written to from the machine where Folder D is located.
+
+
+I am basically unsure of how to specify something like "once this video has shown up once in Folder D, ignore it if it ever shows up again" and don't know a way to do that without somehow accessing the originals on A, B & C and renaming them 
+
+A: There is a similar workflow kit at http://forums.macrumors.com/showthread.php?t=805573 that takes disc images (dvd, bluray, etc.) and converts them to various formats.  There are a number of actions you could copy for file movement, etc., and attach them as folder actions to A, B, and C.
+It should also be a simple matter to pick and choose which actions and workflows you would require for this.
+Even better, the underlying technology for these actions are just shell scripts.  If you can write a shell, ruby, python, etc. script, you can create your own Automator action.  You could easily store state regarding files in A, B, and C that have already been copied to D and only copy them again if certain criteria are met, such as a change in file size, modify date, or md5 hash.
+
+A: Try using the application Hazel it's $22 with a free 14 day trial. It can implement very powerful rules based workflows.
+
+Create rules to automatically keep your files organized Hazel watches
+  whatever folders you tell it to, automatically organizing your files
+  according to the rules you create. It features a rule interface
+  similar to that of Apple Mail so you should feel right at home. Have
+  Hazel move files around based on name, date, type, what site/email
+  address it came from (Safari and Mail only) and much more
+
+You may have to experiment to get exactly the behavior that you want.

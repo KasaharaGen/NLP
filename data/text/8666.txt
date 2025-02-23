@@ -1,0 +1,24 @@
+Q: How can I get Quicksilver to open bookmarked URLs in Chrome? I'd like to be able to trigger QS and then start typing "gmail" or "weather" or the name of whatever bookmark I'd like to open, and have the previously bookmarked site open in Chrome, my default browser. Is it possible to do this with Chrome? 
+(I was able to do this with Quicksilver on my old G5 Mac, although I used Firefox on that machine.)
+
+A: There is now a Google Chrome plugin for Quicksilver (with documentation). Version 1.0 was released on April 27, 2012.
+
+A: You can also do this with a custom trigger:
+
+
+*
+
+*Item: a bookmark from Safari or Firefox
+
+*Action: Open URL With...
+
+*Target: Chrome
+
+
+A: Currently there is no Chrome plugin for Quicksilver, so you can't access your Chrome bookmarks directly. But you can sync your Chrome bookmarks with Safari, using something like xMarks. 
+Then, once you installed the Safari Module, you can access those bookmarks with Quicksilver. 
+And when you use the "Open URL" action on those bookmarks, they will open in your default browser, which is Chrome.
+
+A: You could also drag the URLs from your browser (FF, Chrome, Safari all support this behavior, on 10.6.8 anyway) to create new .webloc files, add them to a specific folder named 'bookmarks' for example, then add that folder to Quicksilver's catalog from the 'File & Folder Scanner' and invoke opening them that way.
+
+A: There is a free Quicksilver-like extension for Chrome called Ferro that opens bookmarked URLs, history URLs, and currently open tabs. It also has many other commands besides open, including extension management, tab pinning, deleting bookmarks, etc. Also provides a keyboard interface to session management and tab extraction. getferro.com

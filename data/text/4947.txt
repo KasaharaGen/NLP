@@ -1,0 +1,27 @@
+Q: How to remove boot from MacMini? I have tried installing windows 7 on my MacMini. 
+I followed following steps.
+
+
+*
+
+*Setup went perfectly But while installing I thought of not installing it. 
+
+*So, I just restarted mac mini. 
+
+*Pressed Alt key while booting
+
+*Started OSX 
+
+*Launched Disk Utility
+
+*Removed windows partition.
+
+
+But after doing all these stuff, I am facing new problem. Each time when macMini starts, I always have to press ALT while booting, otherwise it goes in indeterminate state. 
+Please guide me.
+
+A: According to discussions.apple.com you could also have removed the Windows partition with Boot Camp Assistant (located in /Applications/Utilities).  It may be worth trying that just in case not everything was properly cleaned up during your attempts.
+After that you can use go to your System Preferences, and select your OS X volume as the startup disk.
+
+A: When in the boot manager (the one when you press ⌥ Option on startup), click on the arrow (for the Mac OS X partition). The boot priority should then default to the Mac OS X one.
+Otherwise, you can try going to the Startup Disk preference pane in System Preferences, and try setting it (by restarting).

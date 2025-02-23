@@ -1,0 +1,41 @@
+Q: os x terminal -remove files older than x days trying to create a scripts that deletes files older than X days. It seemed straight forward enough but all files seem to be getting removed?
+find /Volumes/Groups/Projects/530_BFAMI/test/ -ctime +30 -print -exec rm {} \;
+
+any ideas welcome!? 
+Also would be good to print file information for matches as maybe my dates are misleading in finder?
+
+A: To answer the question asked in your comment: You can join separate criteria just by listing them, one after the other. If you prefer, you can use -a or -and in between them, but these are redundant. You can also use -o or -or for the OR operator, and you can use parentheses – which must be quoted to protect them from the shell, as in \( and \) for grouping.
+For the full details, run: man find
+
+A: It is considered dangerous to use -exec rm without first ls. You should probably check that first. Reverse check is also a good hint to tell you if your timing is correct.
+find . -maxdepth 1 -type f -mtime -30d -exec ls -latr {} \;
+
+OR
+find . -maxdepth 1 -type f -atime -30d -exec ls -latr {} \;
+
+
+
+*
+
+*Constrain your find result. Make sure what you explicitly ask for.
+
+*Compare to see if the opposite result is what actually has been excluded from your original command.
+
+*Probably -mtime or -atime are more appropraite but again compare the result and see if they are actually what you need. 
+
+
+A: Never suggesting -exec rm ....
+rm is simply too dangerous command. Always dry-run first. IMHO it is better using this:
+find /Volumes/Groups/Projects/530_BFAMI/test/ -ctime +30 -print0 | xargs -0 -n1
+
+this will show the dry-run and only when you satisfied you can add the rm to the end
+find /Volumes/Groups/Projects/530_BFAMI/test/ -ctime +30 -print0 | xargs -0 rm
+
+If you start using this piped to xargs version, you can always add more filters, like:
+find /some/where -mtime +3d -print0 | grep -ziE '\.(jpg|png|gif)$' | xargs -0 rm
+
+and similar (more) powerful combinations.
+
+A: Try this: find . -ctime +30 | xargs rm -r 2> /dev/null
+For some reason, this runs rm twice. So I just redirect the errors to the black hole /dev/null
+Enjoy.

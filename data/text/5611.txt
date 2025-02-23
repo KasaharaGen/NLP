@@ -1,0 +1,8 @@
+Q: Lion: Switching an Application's launch preference off of Rosetta (PPC) I have a case where a machine was upgraded to Lion. Prior to Lion the user was running Photoshop CS4 (a Universal Binary) under Rosetta which required hitting a checkbox in the application's "Get Info" dialog. With the advent of Lion and the removal of Rosetta, the checkbox is gone but the OS still tries to run Photoshop as a PPC binary and fails.
+Is there a way I can reset the "Launch this UB as a PPC binary" flag?
+
+A: Application launch preferences are stored in ~/Library/Preferences/com.apple.LaunchServices.plist, including whether or not to open using Rosetta.
+Opening up this file (easier to parse if you have Property List Editor installed from the developer tools) will allow you to find the entry for the specific app that's set to open in Rosetta, and you can strip out the PPC-relevant bits. Make a back up first, just in case.
+More info is available here.
+
+A: Try downloading http://www.xslimmer.com/ and stripping out the PowerPC code from Photoshop.  It should then default to running as Intel.

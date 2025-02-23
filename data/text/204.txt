@@ -1,0 +1,70 @@
+Q: Can anyone recommend a good tutorial for writing (from scratch) a cron-style launchd job? I've got a fairly simple job that I'd like to run every hour. I could do it using cron, but I thought I'd use this to learn about launchd, since I hear good things about it. I've got the man launchd.plist page as a reference, but I'm looking for something based more around building an example job.
+
+A: I know it's not a good tutorial, but you could have a look at the Daemons and Services Programming Guide from Apple, which has a section on Scheduling Timed Jobs.
+I know it's not a full tutorial, but, with it, you can understand the basics of launchd.
+It also provides an example of a crond task :
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.
+com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>  
+    <key>Label</key>
+    <string>com.apple.periodic-daily</string>
+    <key>ProgramArguments</key>
+    <array> 
+        <string>/usr/sbin/periodic</string>
+        <string>daily</string>
+    </array>
+    <key>LowPriorityIO</key>
+    <true/>
+    <key>Nice</key>
+    <integer>1</integer>
+    <key>StartCalendarInterval</key>
+    <dict>  
+        <key>Hour</key>
+        <integer>3</integer>
+        <key>Minute</key>
+        <integer>15</integer>
+    </dict>
+</dict>
+</plist>
+
+
+A: This has helped me a lot: http://launchd.info
+It covers configuration, administration and troubleshooting using Terminal or the launchd GUI LaunchControl. Examples are provided as well.
+
+A: I know you were looking for a tutorial, but on the off-chance someone comes here as part of looking for a tool to help them make/edit launchd entries, I've used this before: Lingon (sourceforge) 
+It's no longer being actively developed but what's there does work (and obviously includes source etc). I've used it on Snow Leopard to schedule backups to the Amazon cloud, etc.
+
+A: launchd runs Daemons (/Library/LaunchDaemons or /System/Library/LaunchDaemons) as root, and will run them regardless of whether users are logged in or not. Launch Agents (/Library/LaunchAgents/ or ~/Library/LaunchAgents/) are run when a user is logged in as that user. You can not use setuid to change the user running the script on daemons. The /System directory is reserved for Mac OS X tasks so I recommend putting your launchd plists into either the /Library or the ~/Library folder as it makes sense.
+So the first step is determining if you're making an agent or a daemon.
+The second step is to make your .plist file. You can use GUI-based programs such as Lingon to help with this or just use your favourite text editor:
+A sample .plist for running a script every hour (StartInterval or StartIntervalCalendar are the keys we want - StartInterval for an item to happen every x seconds, StartIntervalCalendar for a specific time and/or date. See 126907 on SuperUser for an example I made with StartCalendarInterval):
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.IDENTIFIER_HERE.SOMETHING</string>
+    <key>OnDemand</key>
+    <true/>
+    <key>RunAtLoad</key>
+    <false/>
+    <key>UserName</key>
+    <string>USERNAME HERE</string>
+    <key>Program</key>
+    <string>/PATH/TO/SCRIPT</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>Argument_1</string>
+        <string>Argument_2</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>3600</integer>
+</dict>
+</plist>
+
+Modify the .plist as necessary to point to your script and any arguments as necessary (arguments are on separate lines) and save the file with the same name as the Label value but with .plist at the end. (for example, local.my-mac.flickrstats would be saved as local.my-mac.flickrstats.plist). If you haven't already, move that .plist file to /Library/LaunchDaemons when making a Daemon (runs all the time) or to ~/Library/LaunchAgents (only you're logged in) or /Library/LaunchAgents (any user is logged in).
+To start the job you want to run launchctl as necessary to load the file. For items in /Library, you should use sudo: for example, sudo launchctl load -w /PATH/TO/PLIST
+For reference also check out the following questions on Super User: Launchd command as root, Load a system wide daemon, and How can I get a script to run every day

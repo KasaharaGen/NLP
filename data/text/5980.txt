@@ -1,0 +1,31 @@
+Q: How can I trim the first 3 characters in file name with AppleScript? Is there a way to trim off the first 3 character of multiple file names? (or last 3 characters)
+
+A: Here's a shorter script:
+tell application "Finder"
+    repeat with f in (choose file with multiple selections allowed)
+        set name of f to text 4 thru -1 of (get name of f)
+    end repeat
+end tell
+
+Renaming files is often easier in the shell though:
+for f in *; do mv "$f" "${f:3}"; done
+
+Parameter expansion is documented in file:///usr/share/doc/bash/bashref.html#SEC30.
+
+A: This code will do it for you:
+set whichFile to choose file with multiple selections allowed
+repeat with aFile in whichFile
+    tell application "Finder"
+        set filename to name of aFile
+        set name of aFile to ((characters 4 thru -1 of filename) as string) --trim first 3
+        --set name of whichFile to ((characters 1 thru -4 of filename) as string) --trim last 3
+    end tell
+end repeat
+
+Note that stripping the last three will get rid of the extension. If that isn't what you want to happen, let me know in a comment.
+
+A: Here is an Automator Workflow as a Service that will do what you want it to do.
+All you have to do is load this workflow, and duplicate it to a Service and call the Service "Trim First 3" or something, then save it.
+Then select a folder and select this service and it will take all files in the folder and trim the first 3 characters of the file name. 
+Good luck.
+Trim First 3 Workflow (downloaded from my icloud account)

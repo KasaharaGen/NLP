@@ -1,0 +1,13 @@
+Q: Fully displaying volume size info on the desktop No matter which combination of icon size, spacing, font size I use for the desktop Finder view, the info for my drives on my Mac Mini hooked up to my TV (1080p) shows up as:
+999.85 GB, ...06 GB free
+instead of
+999.85 GB, 152.06 GB free
+I've even made a screenshot:
+
+Is there a fix/hack to display this fully all the time? Should I file a bug/request with Apple? Should I give up and use GeekTool or something else? This drives me nuts...
+Thanks in advance !
+
+A: For string to be as wide as possible change "Grid spacing" in Show View Options
+
+but in case when the whole info string become 25 characters or more it will just become truncated anyway. On the next screenshot I have 104.69 GB available.
+

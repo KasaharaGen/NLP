@@ -1,0 +1,32 @@
+Q: Building mPlayer from Source - Error Trying to build mplayer from source for applying patches. 
+./configure works fine, but it leads me to this error
+    Undefined symbols for architecture x86_64:
+  "_fribidi_reorder_line", referenced from:
+      _ass_shaper_reorder in ass_shaper.o
+  "_fribidi_get_bidi_types", referenced from:
+      _ass_shaper_shape in ass_shaper.o
+  "_fribidi_get_par_embedding_levels", referenced from:
+      _ass_shaper_shape in ass_shaper.o
+  "_fribidi_get_joining_types", referenced from:
+      _ass_shaper_shape in ass_shaper.o
+  "_fribidi_join_arabic", referenced from:
+      _ass_shaper_shape in ass_shaper.o
+  "_fribidi_shape", referenced from:
+      _ass_shaper_shape in ass_shaper.o
+ld: symbol(s) not found for architecture x86_64
+collect2: ld returned 1 exit status
+make: *** [mplayer] Error 1
+
+I can't figure out what to do now?
+I'm using OS X 10.7.
+
+A: What about using Homebrew?
+Once installed it should be as easy as writing in the terminal
+brew install mplayer
+
+
+A: Is it necessary for you to compile from source? If not, still to this day (e.g. under Lion) I've continued to have luck installing MPlayer OSX Extended, and mplayer's own binary codecs package.
+After installing MPlayer OSX Extended, I usually symlink mplayer into either ~/Applications on my own computer, or /usr/local/bin on one with multiple users, update my $PATH as necessary, and have the pleasure of having an easily invocable mplayer binary for use with anything.
+The raw mplayer binary is located at /Applications/MPlayer OSX Extended.app/Contents/Resources/Binaries/mpextended.mpBinaries/Contents/mpextended.mpBinaries/Contents/MacOS/mplayer
+I usually enter the Applications folder inside my home directory and then run ln -s /Applications/MPlayer\ OSX\ Extended.app/Contents/Resources/Binaries/mpextended.mpBinaries/Contents/mpextended.mpBinaries/Contents/MacOS/mplayer.
+All done!

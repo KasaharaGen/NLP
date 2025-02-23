@@ -1,0 +1,29 @@
+Q: How do I find out the hostname of my Mac OS X server? I'm trying to connect with mysql_connect using PHP.
+I was wondering how to find the hostname when I turn my MacBook into a server by turning on the personal webpage. 
+I have Apache, MySQL and PHP enabled. 
+Is the hostname what you ssh into? It says that my computer's name is spiderman and it could be accessed with spiderman.local, but it doesn't seem to work. I've also tried using my IP address.
+
+A: In general, you get the hostname by typing
+echo $HOSTNAME 
+
+in Terminal.
+But for your server setup, if no one has messed with configuration, localhost will be the hostname to use; in safe mode, localhost:3306 (that is port 3306) is the default. 
+(cf. http://php.net/manual/en/function.mysql-connect.php )
+BUT: You should make sure that you actually started the MySQL server. Starting command depends on your installation.
+
+A: In a terminal run the command:
+$ hostname
+
+The environment variable $HOSTNAME may not necessarily be set.
+
+A: If you want to connect to MySQL running locally, try 127.0.0.1 or localhost. 
+
+A: It depends if you are doing it from within a script program where the environment has been set up correctly, either the following may work or suit you:
+~$ uname -n
+roberts.e.co.za
+~$ echo $HOSTNAME
+roberts.e.co.za
+
+
+A: System Preferences.app > Sharing > Computer Name
+

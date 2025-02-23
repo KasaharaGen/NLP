@@ -1,0 +1,20 @@
+Q: How can I change the resolution of a PDF I have scanned a document into a PDF at 300dpi.  The document file is larger than I would like.  Is there a simple way to down-sample the document so that it has a lower resolution?  Or do I just need to re-scan the original document?
+
+A: You can use ImageMagick's scale or resize operators.
+
+ImageMagick® is a software suite to create, edit, compose, or convert
+  bitmap images. It can read and write images in a variety of formats
+  (over 100) including DPX, EXR, GIF, JPEG, JPEG-2000, PDF, PhotoCD,
+  PNG, Postscript, SVG, and TIFF.
+
+For example, from a terminal:
+convert input.pdf  -resize 50% output.pdf
+
+or
+convert input.pdf -scale 50% output.pdf
+
+
+A: Apple's Preview comes with a feature allowing you to save a file with a reduced file size.
+Open your file in Preview, and click File>Save As.
+Scroll down to the bottom where you will see a "Quartz Filter" drop-down menu and choose "Reduce File Size".
+If you want to retain a copy of your original but larger file size, rename this file and click save.  Otherwise you will overwrite the larger file when you click save.

@@ -1,0 +1,21 @@
+Q: Command Line method to backup using two Time Machine disks Does anyone know of a command line method to select the active Time Machine disk? I would like to alternate between two backup disks for redundancy. I would like this to be automated, presumably via cron, perhaps launchd.
+There is an AppleScript method to swap disks, but I am doing remote system administration and cannot rely on GUI scripting. I would presume there is sufficient control of Time Machine using the defaults command, but am not sure how to achieve this yet.
+
+A: Note: The restore component of backing up like this has not yet been tested.
+Get the ID of the attached drive
+defaults read /Library/Preferences/com.apple.TimeMachine BackupAlias                       
+
+Eject, plug in 2nd drive, make it the Time Machine drive with the GUI, repeat.
+Write (rather than read) the ID:
+defaults write /Library/Preferences/com.apple.TimeMachine BackupAlias '<00000000 014e0002 ....>'                                                   
+
+source & thanks to Christian Stocker. Key comments from that post:
+
+*
+
+*http://developer.apple.com/DOCUMENTATION/Darwin/Reference/ManPages/man1/defaults.1.html "WARNING: The defaults command will be changed in an upcoming major release to only operate on preferences domains. General plist manipulation utilities will be folded into a different command-line program."
+
+
+*Also the property DestinationVolumeUUID should be set.
+
+A: If your need is to have redundancy on Time Machine backups, an alternative is to maintain a clone of your Time Machine Volume. I use SuperDuper! for that purpose.

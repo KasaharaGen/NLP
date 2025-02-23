@@ -1,0 +1,6 @@
+Q: How can I bypass Textmate asking for my password every time I save a file? I'm using Lion and every time I edit a file, TextMate prompt me for my password.
+Is there a way to bypass that?
+
+A: Chances are you are trying to save your file somewhere other than under your home directory.  In my experience, Textmate Save dialogs often default to the system root directory.  If you try to save there, you will get an authentication request as you normally would not have write permission.  Expand the Save dialog box and choose somewhere in your home directory tree.
+
+A: Just chmod -R ug+w project-dir (starting from the root of the project)

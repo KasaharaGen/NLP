@@ -1,0 +1,10 @@
+Q: Why does my Spotlight index get corrupted? Recently I have been having an issue where at least once a month my Spotlight index gets corrupted, and I can no longer search the content of mail in Mail.app. I can fix the problem by taking my HD out of Spotlight, and then putting it back in, but it then takes about 4 hours to re-index the drive.
+Why is my Spotlight index getting munged? Do other applications besides Finder mess about with it?
+Is there a way to keep the index optimized or repair it, such as when I repair a MySQL table?
+
+A: Just for reference, Spotlight index shouldn’t get corrupted, but when that’s the case see this question. 
+You have to remember that spotlight is a database and as such is prone to corruption; compared to relational databases for example, spotlight can only be deleted and rebuilt when that happens. There’s no “spotlight -repair” command (one can only wish). 
+All in all, it’s rare to see Spotlight failing in OS X 10.6, it has been very stable compared to the first Tiger version. 
+External applications, on the other hand, can make use of the APIs to store information in the metadata, and here’s where we lose control of what goes in there. If one external application is storing bad data, it could cause the whole index to go nuts. 
+Since you have a healthy working index now, try it for a few weeks and pay attention to any application or utility that claims to support Spotlight. 
+Good Luck!

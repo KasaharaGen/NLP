@@ -1,0 +1,220 @@
+Q: What OS X tweaks, hacks, or modifications couldn't you live without? What OS X tweaks or customization applications do you find indispensable?
+Please search before posting in order to avoid duplicate entries. You can search within this question with inquestion:this <search phrase>.
+Rules
+
+
+*
+
+*Limit each answer to a single entry
+
+*Include a short description
+
+*Include a link to an application website if possible, formatted like ## [AppName](URL)
+
+A: Afloat
+Adds a lot of advanced window-management options, including changing window transparency, and forcing any window to be always on top.
+I use it for setting long running terminal tasks on top, in a corner of the monitor.
+
+It uses SIMBL, which probably should warrant it's own answer post.
+
+A: One word Quicksilver.
+
+Quicksilver is a light, fast and free Mac application that gives you the power to control your Mac with keystrokes alone.
+
+
+A: Witch
+Allows Cmd+Tab to operate between windows, rather then applications.
+
+
+A: Cinch
+Adds Win 7 "snap" feature to OS X. From their site:
+
+Cinch gives you simple, mouse-driven window management by defining the left, right, and top edges of your screen as 'hot zones'. Drag a window until the mouse cursor enters one of these zones then drop the window to have it cinch into place. Cinching to the left or right edges of the screen will resize the window to fill exactly half the screen, allowing you to easily compare two windows side-by-side (splitscreen). Cinching to the top edge of the screen will resize the window to fill the entire screen (fullscreen). Dragging a window away from its cinched position will restore the window to its original size. 
+
+Screencast
+
+
+A: MagicPrefs
+If you have an Apple Magic Mouse, then this app unlocks it's true potential. From their site:
+
+It features the ability to bind a variable number of finger clicks, taps, swipes, pinch and other gestures to functions like Middle Click, Hold Down Both Mouse Buttons, Spaces, Expose, Dashboard, Recent Applications, Tweet, Read Tweets, Google Reader etc
+
+
+
+A: NTFS for Mac® OS X 9.5
+This is especially mandatory for OS X Lion, for those of us who use portable USB HDDs to store their data, and need them to be accessible across all OSes (NTFS being the default choice, as its well supported by both Windows / Linux). Lion does not have native write support for NTFS volumes, making this the first app you'd want to install on it. From their site:
+
+When working with media files or documents in Mac, you need access to the high performance of your system regardless if the files are located on the Mac’s HFS+ formatted volume, or in Window’s NT File System. Paragon NTFS for Mac® OS X 9.5 is the only NTFS driver on the market that provides full read/write access to NTFS with the same high speed as native HFS+ files. NTFS for Mac® OS X 9.5 is the first NTFS driver to support the latest OS X Lion!
+
+Screenshots of Read / Write benchmarks are given, as there's little point in giving the screenshot of the control tray !
+
+
+
+A: HyperDock
+Adds a Windows-7 style window previews to the dock. Excellent if you have lots of windows from one app. You can also close individual windows from the preview.
+It also allows you catch and override clicks on the app icon. For instance, I have every click on the Terminal.app icon open a new terminal window, rather then just switch to the open terminal window.
+Lastly, it also includes Win-7 style window-snapping, where dragging a window to the top of the screen will maximize it, and grabbing and dragging the window away from the top of the screen will restore the size. 
+
+
+A: BlueHarvest
+A little .PrefPane that automatically deletes all the hidden .DS_Store,  ._ AppleDouble, and
+._[file name] files that OS X unfortunately spews all over any network or thumb drive you let it touch.
+Absolutely indispensable if you work in an mixed platform (OS X & Windows) environment where there are shared drives. 
+
+A: Hazel
+I use Hazel to organize the contents of my hard drive. Hazel is a folder monitoring tool. You can write rules to perform one or more actions on files in a folder that meet certain criteria. For example, you can:
+
+
+*
+
+*Delete duplicate or "old" files
+
+*Move files with certain patterns in their names into folders (I use prefixes)
+
+*Import music or movies into iTunes
+
+*Import pictures into iPhoto
+
+*Have Growl show a message
+
+
+I have a folder Hazel monitors called Incoming that implements most of these rules. I therefore just need to drag files into this folder and they "magically" get filed away. If only my paper inbox were this easy to manage....
+
+A: Divvy
+
+Similar to but better (in my opinion) than Moom. It's a window management tool that lets you draw the desired location of the window on a grid. I believe it was the first on the Mac to use that particular bit of UI genius. 
+It's more configurable, as well; you can control the number of rows and columns in the grid, and optionally include margins between them. You can configure shortcut keys for any possible size and position on any possible grid, not just the top/bottom/left/right halves.
+Divvy is also available for Windows; which means that if you are virtualizing Windows with e.g. VMware Fusion in Unity mode (like Coherence on Parallels) and the Mac-flavour Divvy can't control the layout of Windows' windows, you could trigger the Win-Divvy and adjust the layout.
+
+A: TinkerTool
+Allows you to change additional preference settings Apple has built into Mac OS X. This allows to activate hidden features in the operating system and in some of the applications delivered with the system. Another great feature is that you can revert the settings back to default. And, it's free!
+Application settings:
+
+Font settings:
+
+
+A: Remapping the Caps Lock key to Control. Really helps when doing stuff in the Terminal. I just always make the mistake of trying to use it like this on computers that aren't mine.
+
+A: Zooom2
+Allows you to move or resize a window under the pointer by holding modifier keys.
+
+
+
+*
+
+*Magnetics: windows get snapped to screen edges and other UI elements
+
+*Windows can be resized from the nearest corner
+
+*You can use fn as a modifier key
+
+
+A: BetterSnapTool
+I love this app for letting me quickly and easily organize windows on my screen.  Using hotkeys or dragging a window to certain areas of the screen will automatically resize the window and snap it to specific sizes/regions.
+A few examples: full screen, half screen (left/right or top/btm), quarter screen (quadrants), third screen (side-by-side-by-side).
+A bonus feature: quickly move and resize a window however you like w/o clicking anywhere on the window.  For example, by pressing Fn and moving my cursor I can move the window under it and pressing Shift-Fn instead resizes the window as I move my cursor.
+When people see me using the features, they think I'm a Jedi.  You, too, can be a Jedi for $1.99!
+
+A: MMFix
+↑ direct download. Related discussion in French.
+A patch for the media control daemon which frees media keys from iTunes, so one can use them with any supporting app without automatically launching iTunes.
+The app is a simple one-click installer. And, if some reason you would like to remove the patch, just run the one-click installer again and the original rcd daemon will be restored.
+Tested to work at least in Snow Leopard and Lion.
+Source: How can I stop iTunes 10 launching when pressing the Play/Pause buttons?
+
+A: defaults write -g ApplePressAndHoldEnabled -bool false
+Type the command to Terminal and restart the apps you would like to be affected (… or just restart the Mac altogether) to keep the characters repeating while holding its key. 
+Using this hack, you will also need to type the accented/alternative characters in the traditional way; which is to e.g. first press ´ then e to get é.
+To revert this hack, type defaults write -g ApplePressAndHoldEnabled -bool true and you can use the alternative character selector once again (e.g. to get é press and hold e until you see the selector and then choose é from the list).
+Source: In Lion, if I keep pressing a key, why doesn't it repeat?
+
+A: WinShortcutter
+I work in an office with a mixed environment, with a central server for storing documents. Windows users flick paths on the server to other users, either as UNC paths (such as \\FileServer01\topfolder\subfolder\shared.doc), or Windows mapped shortcuts (such as S:/topfolder/subfolder/shared.doc). This is a huge pain for Mac users, who have to mount, and then navigate the file system manually.
+We use WinShortcutter, which is freeware. The allows you to right-click on a UNC path (such as \\FileServer01\topfolder\subfolder\shared.doc) and Open as Windows Link:
+
+It's quite configurable as well, and allows drive mappings (so when you are sent a link that starts S:/folder, it will allow you to Open as Windows Link).
+
+This works quite reliably for us, and i can't imagine having a machine without it.
+
+A: DTerm
+Provides terminal access inside any applicaiton.
+
+A: ~/Library/KeyBindings/DefaultKeyBinding.dict
+A property list that enables you to bind keystrokes to sequences of Objective-C methods. It can be used to define text editing macros that work in most standard text views.
+{
+    // copy paragraph (option-c)
+    "~c" = (selectParagraph:, copy:);
+
+    // convert selection to lowercase (option-minus)
+    "~-" = (lowercaseWord:, moveForward:);
+
+    // insert line below (command-return)
+    "@\r" = (moveToEndOfParagraph:, insertNewline:,
+    deleteToBeginningOfParagraph:);
+
+    // insert an XML tag (option-shift-x)
+    "~X" = (moveWordBackwardAndModifySelection:, setMark:, deleteToMark:,
+    insertText:, "<></>", moveBackward:, yank:, moveWordBackward:,
+    moveBackward:, moveBackward:, moveBackward:, yank:, moveForward:);
+}
+
+To get started, make ~/Library/KeyBindings/ and save a property list like the one above as DefaultKeyBinding.dict.
+More information:
+
+
+*
+
+*Cocoa Text System
+
+*lri.me/keybindings
+
+*github.com/ttscoff/KeyBindings
+
+A: Growl
+This app needs no description, I suppose. Anyway Growl is a notification system that manages all the notifications send from every app that supports its framework. With version 1.3, it became even nicer, too bad some apps (like Skype) doesn't support the new version yet.
+
+
+A: "caps lock" remapped to do nothing:
+
+
+A: Better Touch Tool
+Adds immense configurability to the touchpad and the magic mouse (though the magic mouse touch resolution is kind of poor, IMHO).
+Also, you can have per-application trackpad shortcuts. I have all my tab-management mapped to various taps, so I can browse and change tabs without having to use the keyboard or move the mouse to the tab bar.
+
+A: Alfred
+An app that basically puts your spotlight in a hotkey activated bar, but with many more features, like browsing your file system straight from the bar. Supports theming and is very Apple-esque. It basically allowed me to ditch my dock and the need to use folders to organize specific files.
+
+A: Moom
+Adds a pop-up window size manager with shortcuts to various window layouts when you mouse over the green "Maximize" button in the window titlebar.
+It gives you shortcuts to various window sizes, and lets you drag a box over a grid, to resize the window.
+
+
+A: Secrets
+
+Secrets is two things: (1) A database of hidden command-line preferences for Mac OS X and many of its apps, and, more importantly, (2) a free Preference Pane that turns them all into checkboxes and automatically downloads updates from (1). If there's a defaults command that anyone anywhere finds useful, it'll be there.
+
+A: StartUp Sounds Pref Panel (free)
+A pref panel that allows you to set a sound level (or mute) the startup sound of your mac.
+
+Note: Intel users should download version 1.1.
+
+A: Hidden Settings
+
+Hidden Settings is a preference pane that installs into the System Preferences application in Mac OS X. The purpose of it is to provide users an easy way to access some hidden features in the operating system and some applications that ship with it.
+
+
+A: Pastebot & Pastebot Sync
+Pastebot is an iOS app that, as long as it remains running in the background, keeps a clipboard history. But better than that, it also has a free companion app for Mac that lets you copy and paste both ways between your iPhone and Mac, instantly, over Wi-Fi. It works with images as well as text.
+
+A: Jitouch
+
+A Mac application that expands the set of multi-touch gestures for the new MacBook, the Magic Mouse, and the Magic Trackpad. These thoughtfully designed gestures will enable you to perform frequent tasks more easily such as changing tabs in web browsers, closing windows, minimizing windows, changing spaces, and a lot more.
+
+Jitouch in action
+
+A: Moom is like "Fences" on windows but it is for mac
+Link: http://manytricks.com/moom/
+
+A: You can view hidden files on Finder by using the following keyboard shortcut:
+Cmd + Shift + . (period)
+It's great if you want to explore around the hard disk.

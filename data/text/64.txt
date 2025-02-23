@@ -1,0 +1,25 @@
+Q: Quick, automated way to verify the copy of a folder? I have a lot of files that I've been transferring around my network and to external hard drives.  For example, I just copied a folder with files representing an old laptop's disk image (created with clonezilla) from an external hard drive to my macbook pro.
+Is there an app or script I can use that would allow me to verify that all the files in the folder were copied correctly and without corruption?  I want to be able to run something on the source and target folders that will give me confidence that they are identical.  Ideally, the tool would be able to verify folders on a network drive as well.
+
+A: Two easy ways, one CLI and the other with a GUI :
+
+
+*
+
+*With Terminal :
+
+
+*
+
+*diff -rq folder1 folder2
+
+
+*Using FileMerge (which comes with the Developer Tools) :
+
+
+*
+
+*
+
+A: The easiest way to do that would be to run a md5 sum on all the files and match it with the local set. I can't script off the top of my head at the moment, but that's how you would do it.
+For future reference, don't copy folders. Tar / bzip them up and then move them. Your copy time will be significantly decreased and then it's easier to verify a successful copy.

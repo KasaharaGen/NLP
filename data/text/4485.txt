@@ -1,0 +1,51 @@
+Q: Using hosts file on Mac OS X Snow Leopard I have added two new host entries in 
+
+/pricate/etc/hosts
+
+ 127.0.0.1/wys/sub-folder local.wys
+ 127.0.0.1/les/sub-folder local.les
+
+I have flushed the DNS using
+
+dscacheutil -flushcache
+
+I now want to access local.wys and have content served from
+
+localhost/wys/sub-folder
+
+This doesn't work, I have tried 127.0.0.1 and localhost in the hosts file.
+Any ideas?
+Thanks,
+Jake
+
+A: A friend of mine provided the answer via email....
+Almost.
+The purpose of the hosts file is to serve as a local supplement to a dns lookup (on linux, you can actually specify whether it asks DNS or the file first).  As such, it is only used to return IP addresses.  You need to use this in combination with Apache VirtualHosts to make apache respond to a host using a specific directory.
+So... you hosts file should look like
+127.0.0.1 local.wys
+127.0.0.1 local.les
+
+Find your apache configuration directory.  Under XAMPP this is c:\xampp\apache\conf (yours might be ‘conf.d’)
+In conf you’ll have a folder called ‘extra’ and it that a file called ‘http-vhosts.conf’.  Open that file.
+Make sure that the following line is uncommented
+NameVirtualHost *:80
+
+You’ll need a default entry, and then any specific ones for each hostname you want to use.
+The default one...
+<VirtualHost *:80>
+    ServerAdmin technical@satellite   
+    DocumentRoot "c:/webroot"
+    ErrorLog "logs/localhost-error.log"
+    CustomLog "logs/localhost-access.log" combined
+</VirtualHost>
+
+The custom ones should look like this, replace ‘airbase.local’ with ‘local.wys’ and the value of document root to where you want it to start serving files from.
+<VirtualHost *:80>
+    ServerName airbase.local
+    ServerAdmin technical@satellite
+    DocumentRoot "D:/webroot/airbase/magento"
+    ErrorLog "logs/airbase-error.log"
+    CustomLog "logs/airbase-access.log" combined
+</VirtualHost>
+
+Restart apache and it should all be working nicely!

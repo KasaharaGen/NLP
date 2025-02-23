@@ -1,0 +1,11 @@
+Q: Can I test iPhone apps downloaded from iTunes in the iPhone Simulator? Is it possible to test iPhone applications which you downloaded from iTunes Store in the iOS Simulator?
+
+A: Afraid not. The simulator runs on x86 architecture and the iPhone apps are published to run on ARM.
+
+A: That is not the intended purpose of the iPhone Simulator. The purpose of the iPhone Simulator is to give developers a convenient testing platform for the application they are developing in those cases where a physical iPhone isn't readily available. It is currently not possible to install applications compiled by other developers within your own iPhone Simulator.
+As for testing apps, The App Store does not support demo versions of software or a way to "try before you buy" akin to shareware. The closest developers can get to that paradigm is by offering a "lite" version of their app for free and then a separate, full version for purchase.
+
+A: No.  
+iPhone apps meant for an iOS device or App store are compiled by Xcode completely differently from the apps meant for the iOS Simulator (from the same source code, so this Simulator is only good for testing the source, not the App store binary).  Completely different and incompatible instruction sets, so no simple hack is possible.
+Added:
+In addition, apps downloaded from the App store are partially encrypted, so that only an actual device can see the all executable code at all.

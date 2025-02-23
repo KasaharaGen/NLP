@@ -1,0 +1,11 @@
+Q: Correct syntax for bash grep function? I'm trying to set up a function to make certain grep command easier.
+gr() { grep -r --include=*.\{m,h,xib\} $1 \* ; }
+
+The end result should be a recursive grep of all *.m, *.h, and *.xib files, for whatever is specified by the command's argument:
+$ gr SearchText
+
+Can anyone demonstrate the correct syntax for this?
+
+A: Nevermind; thought I had tried everything I could imagine; turns out I was just over-zealous with escaping special characters from the shell. The syntax I was looking for is:
+gr() { grep -r --include=*.{m,h,xib} "$1" * ; }
+

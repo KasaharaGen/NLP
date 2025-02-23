@@ -1,0 +1,11 @@
+Q: Why is Windows 7 giving me a software counterfeiting error? I have a legitimate copy of Windows 7 Ultimate installed via Bootcamp on my Macbook Pro.  I also have Parallels 5 installed on my Mac OS X, which can boot up Bootcamp's partition of Windows 7.
+I'm getting an error when I run Windows 7 on Parallels:
+
+You may be a victim of software counterfeiting
+
+It wants me to go online and resolve it.  But I've already registered my copy of Windows 7 (I can't remember if I did it via Bootcamp or Parallels).
+My question is: Does my single copy of Windows 7 only allow me to have it installed via Bootcamp or Parallels?
+I only installed it once, and my copy of Parallels is booting my Bootcamp install.  It's the same machine!  I'm hoping I don't need to have 2 licenses of Windows 7 run it on my Macbook Pro!
+
+A: I was able to get my Macbook Pro to run the same licensed copy of Windows 7 Ultimate on both Bootcamp and Parallels 5 by activating it on both.  I was having trouble running and activating it on my Parallels VM which ran the Bootcamp install.  So what I did was change the MAC address of eth0 to match the one from Bootcamp.
+Once I changed that, I called Microsoft and activated via their automated system, which generated a set of numbers/code for me.

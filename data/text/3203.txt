@@ -1,0 +1,32 @@
+Q: MDS Error: /var/folders/lM I've been getting this error coming up in my system log.  Having looked around for an answer, two things came up commonly: a problem with the spotlight database(s), and permissions on those folders.
+Well, I played with permissions and even deleted some of the folders in question to see if they would be re-created properly.  I think that was a mistake, there were odd side effects, so I tried my best to restore the folders to the way they had been previously.
+Also, resetting MDS didn't help much.  Most recently the error comes up when Outlook refuses to get my mail properly.
+It's also always followed by Quicklook-related errors as well.
+
+
+A: From Apple Support Communities, with some correction:
+
+
+*
+
+*Command-S at startup for Single User Mode
+
+*Repair the files ystem as indicated on screen using fsck (took three runs)
+
+*Mount the file system as indicated on screen, /sbin/mount -uw /
+
+*Go to /Library/Caches and do rm -rf *
+
+*Go to my home folder /Users/.../Library/Caches and do rm -rf *
+
+*Remove a Spotlight folder, rm -rf /.Spotlight-V100
+
+*Go to /var/folders and do rm -rf *
+
+*Start normally using exit or reboot command as indicated on screen
+
+
+Be extremely careful with the rm -rf commands! To double-check that you're in the correct directory: 
+pwd
+
+I hope that helps!

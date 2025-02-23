@@ -1,0 +1,4 @@
+Q: My dashboard widgets are “inactive” since Lion upgrade Since my upgrade from Snow Leopard to Lion, my dashboard widgets are inactive. I can enter the dashboard, move widgets around, add and remove them, but their content is not updated and I cannot interact with them (they do not respond to mouse clicks in their normal fashion).
+I have looked through the Console, but there are no warnings there about the dashboard. How can I troubleshoot this?
+
+A: I ended up deleting all com.apple.*dashboard* files in $HOME/Library, and then rebooting. That did the trick.

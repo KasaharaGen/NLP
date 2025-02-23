@@ -1,0 +1,55 @@
+Q: Tips and tricks to use Google Apps on Mac OS X I'm trying to collect advice and utilities to make better use of the Google Apps on OS X, in particular Gmail, Google Calendar and Google Docs.
+
+Gmail
+I tried Mailplane but I find the ratio price/features a bit too high so I decided not to buy it.
+Now I use a Fluid's app for Gmail and I installed Google Notifier to have growl like notifications.
+
+Google Calendar
+Idem, Fluid app, and Google notifier.
+I'm syncing my google calendars with iCal but it is only one-way.
+Edit
+As @Rene Larsen said, it is possible to use CalDAV to sync with Google Calendar.
+I have my own calendar, I shared calendar that I created and I calendar that I  can only view. They appear like that:
+
+Is it normal that each calendar appear in its own list ?
+
+What do you use ? How is it possible to improve that ?
+
+A: This tip describes how to avoid delegates in iCal:
+
+STEP 1: disable your delegate calendars from iCal
+  
+  
+*
+  
+*Open iCal, then select ‘Preferences’ from the iCal dropdown menu
+  
+*Select your Google CalDAV account and open the ‘Delegation’ tab at the top of the window
+  
+*Uncheck each checkbox corresponding to each delegate calendar; they will disappear from the main calendar view where they were currently shown as delegates
+  
+  
+  STEP 2: create the necessary account(s) for each delegate calendar
+A typical Google Account URL has the following form: https://www.google.com/calendar/dav/USERNAME@gmail.com/user
+This should be already present on your existing CalDAV account (the one you expunged the delegates from). Replace ‘USERNAME’ with your Google Account username, then copy and paste the line above into a temporary text document for now.
+  
+  
+*
+  
+*Open your browser and log in into your Google Account, then follow the Calendar link
+  
+*Select ‘Settings’ on the ‘My calendars’ box on the left column of the page
+  
+*Select the delegate calendar you want to keep in sync from the main page’s frame
+  
+*At the bottom of the next page (the with the selected calendar’s details), copy the Calendar ID value (shown as clear text) which can be found in the ‘Calendar Address’ section; the Calendar ID has the following sample structure: qwertyuiopasdfghjkl1234567@group.calendar.google.com
+  
+*Go back to the previous temporary text document where you saved your Google Account URL, paste the Calendar ID value you copied in the previous step and replace the ‘USERNAME@gmail.com’ part as follows (replace the Calendar ID with your correct value):https://www.google.com/calendar/dav/qwertyuiopasdfghjkl1234567@group.calendar.google.com/user
+  
+*Then copy the whole resulting string
+  
+*Go to iCal, select Preferences once again and add a new CalDAV account: please make sure you expand the ‘Server Option’ dropdown and paste the aforementioned string into the ‘Account URL’ field.
+  
+  
+  You will need to create a brand new iCal account for each delegate you have set up on Google Calendar. When done, your iCal software will display each delegate(s) as separate calendars, and each one of them will be shown into iTunes and will be available for synchronization in the Device’s Info tab.
+

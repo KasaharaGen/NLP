@@ -1,0 +1,53 @@
+Q: Alternatives to command line unzip? I've found that the command line unzip tool doesn't gracefully handle some of the files I'm unzipping: it makes a bunch of junk directories, and creates files whose resource forks aren't found.  (Perhaps they were created strangely.)
+$ unzip -d NEW-DIRECTORY ZIP
+
+Anyways, using Archive Utility is a start, because I can run the following and it is close (and it doesn't mess up my files):
+$ open -a "Archive Utility" ZIP
+
+But this does not allow me to specify a new directory for the contents!!  It automatically puts them in the current directory. :P
+What are my alternatives?
+
+A: The Unarchiver has a beta version of their command line utility available on their downloads page.
+
+A: I saw this extremely helpful answer to a problem I was having unzipping applications on another board from user patashnik:
+unzip doesn't handle the embedded resourceforks in ZIP files created by the Finder. If you want to unarchive those files from the CLI, use ditto:
+ditto -V -x -k --sequesterRsrc --rsrc FILENAME.ZIP DESTINATIONDIRECTORY
+
+If you want to unpack the archive in the current directory, use . as DESTINATIONDIRECTORY
+
+A: "The Unarchiver" is a great tool, and I highly recommend it, both the GUI and the CLI tools.
+That said, my unzip command is
+ditto -xk foo.zip target_dir
+
+where 'target_dir' is the directory where I want the files to appear (and it can be '.' if you want them to unzip right there). 
+Note that 'target_dir' will be created if needed. 
+Also note that ditto does not mind overwriting files, so use with care.
+ditto on Mac OS X is designed to preserve resource forks, etc. so it is my preferred method of unzipping files, especially because it ships with OS X by default.
+
+A: 7z can handle some oddly zipped files
+
+brew install p7zip
+7z x weirdarchive.zip
+
+
+A: you can use also: 
+
+
+*
+
+*yemuzip
+and
+
+
+*
+
+*stuffit-expander (not free)
+
+
+A: Springy is a very versatile unarchiver.  Shareware - and worth it to me.
+
+A: brew install unar
+
+and then:
+unar foo.zip
+

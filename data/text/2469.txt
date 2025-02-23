@@ -1,0 +1,22 @@
+Q: Is there a way to reduce the swappiness of OS X 10.6 Snow Leopard? I have 6GB on my old Macbook, with an SSD.  I would like to avoid writing to the swap file as much as possible.  Ever since my upgrade, I have always had at least 1 to 1.5GB memory "free".  Yet, I have always had 2 to 25MB of used swap space.  (Out of 128MB total)  How do I get this to be 0MB swap used unless I run out of "free" memory?
+On Linux, there is now a "swappiness" parameter that controls the tendency to use swap.  I'd like to crank OS X's "swappiness" down very very low, but not deactivate swap entirely.  I'd like to know that my machine will just run slower if it ever runs out of memory instead of having a kernel panic.  I'm pretty close to where I want to be, but I'd like to get rid of these writes to a large file that (slightly) shorten the life of my SSD while doing me no benefit whatsoever.  
+
+A: I'm not sure that a swap file of 2MB to 25MB is really something to worry about. It might be more useful to look at the values for Page In and Page Out to determine how often data is being written to the swap. The number of page events can be found using the System Memory tab of the Activity Monitor application.
+There are a couple of other options that you could try but I think you're probably way out of warranty if you try:
+
+
+*
+
+*Disabling dynamic pager
+
+*Creating a new paging system
+I would just suggest putting up with the existing system since the wear on your SSD is probably minimal especially since SSD wear is a bit of a myth anyway or maybe it's not.
+
+A: For temporary solution, you can run sudo purge to force disk cache to be flushed and emptied which may reduce the swappiness a bit (if you had several large swap files in /private/var/vm, e.g. I've got 17G of them at the time of writing). If won't work, remove the files manually, they would be recreated.
+You can also disable dynamic pager (swap daemon), so run in Terminal (restart is required):
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+
+To re-enable:
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+
+Unfortunately in the latest OS X you've to also disable SIP (System Integrity Protection) which is actually not recommended. See: How do I disable System Integrity Protection (SIP) AKA "rootless" on OS X 10.11, El Capitan?

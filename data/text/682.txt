@@ -1,0 +1,11 @@
+Q: Decompressing .sit file I have recently downloaded a .sit archive file.
+Is there a way to decompress it at the command line?
+
+A: The Unarchiver
+Includes a commandline tool. Can unpack some SIT files. I think I have experienced problems with a few SIT files though.
+
+A: I’m sure that Stuffit Deluxe has two command line utilities called stuff and unstuff (they're in /usr/local/bin) as far as I can remember. But you need the Deluxe payware version. 
+If paying is not your idea, you could technically do the same using the free Stuffit Expander. You have to invoke it from the Terminal with something like:
+osascript -e 'tell application "StuffIt Expander" to expand posix file “/path/to/full/file/compressedfile.sit”’
+
+It might not be the best, but it should work.

@@ -1,0 +1,12 @@
+Q: google chrome get's a "Do you really want to start" prompt, but it's installed I have a mac pro with the latest mac os x, I have google chrome installed since 23 oct 2010 and still everyday when I open it mac os x ask me "Do you really want to open this software, it was downloaded from the internet 23 oct 2010" which is really annoying since it's my preferred browser.
+I'm sorry that the message is in swedish but it's my fathers computer.
+
+
+A: Try executing from the Terminal the following command:
+sudo xattr -d com.apple.quarantine /Applications/Google\ Chrome.app/
+
+(it might ask you for your password, that's ok)
+This basically clears the quarantine flag in the metadata for the file (this is not a flag in the file itself so it doesn't get carried away when you move or copy the file to another machine)
+
+A: Building up on Martin's questions and the comments.
+Try to log from your father's account and open Google Chrome from there. It should ask you one last time to confirm, then, because it's an administrator's account, it will successfully clear the quarantine flag and you won't see it again (on either account) for Google Chrome.

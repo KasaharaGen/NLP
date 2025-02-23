@@ -1,0 +1,16 @@
+Q: Why do I not have sufficient permissions to restore my Library folder? My machine with Lion installed failed to wake from sleep the other day, and all sorts of nastiness was in evidence after a power-button shutdown and restart.
+Not to worry, I thought, I'll use Time Machine (TM) to restore my Library folder to its pre-problem state and perhaps that will solve the problems. This seemed like a good idea, but TM refused to cooperate, informing me that the operation could not be completed because I did not have sufficient permissions to change my Library folder.
+How could this be, since I operate with an Administrator account?
+(As to restoring the machine to normality, it took two restarts into Safe mode to sort things out, at least to an acceptable extent — I've had to re-enter license details in several apps when they re-launched afterwards, and almost all my preferences had reverted to their default state.)
+
+A: Library like many of the folders that exist in the root of your home folder have special permissions. I have better luck selecting all inside the folder, trashing them, then restoring all in place. 
+Working inside the folder is less error prone than trying to change the folder itself. 
+
+A: I do not know a definitive answer but this is undoubtedly related to the fact that in Lion, the user Library folder is hidden.
+I have permanently un-hidden the User/Library folder by typing
+
+chflags nohidden ~/Library/
+
+in Terminal.
+But I don't know if that would help your permissions problem.
+At the very least, run Disk Utility and repair permissions on your drive, and then try to do the restore again.

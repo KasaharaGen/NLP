@@ -1,0 +1,24 @@
+Q: Where does OS X store your current desktop picture? Where does OS X store your current desktop picture? I read somewhere else that it was in /Library/Caches/com.apple.Desktop. But I don't have that directory.
+
+A: Starting in Lion, I don't think Lion caches desktop pictures anymore (possibly because you can have multiple at a time, for different desktops/spaces).
+In that case, use plutil -p to dump the binary plist file in text form using terminal:
+ plutil -p ~/Library/Preferences/com.apple.desktop.plist
+
+The Apple delivered desktop images are stored in /Library/Desktop Pictures , so you can eliminate those (or seek those if you used an Apple picture for one or more spaces). Before Lion, the preference file that controls desktop images is text format any to find out the current image, open ~/Library/Preferences/com.apple.desktop.plist in a text editor and find the first ImageFilePath property. That will tell you the path to the current desktop image.
+
+A: If you just go into system preference, then desktop. you can simple click and drag the little image you have onto your desktop. 
+
+A: As of Catalina (MacOS 10.15.5) and Big Sur (MacOS 11.2), I can verify that this is now the location of the desktop background images.
+System/Library/Desktop Pictures
+If you want to navigate to it, you can press command K and paste the text below in.
+file://System/Library/Desktop%20Pictures
+1.4 GB too. : [
+You'll need to turn off System Integrity if you wish to give write privs to that folder so that you can remove any of these images.
+
+A: In current versions of macOS (at least in Mojave, probably since Sierra, not sure about others) the location of the desktop pictures are stored in a SQLite database located at ~/Library/Application Support/Dock/desktoppicture.db.
+I did not dig into details of the database structure but you can get the file path with this command:
+sqlite3 -readonly ~/Library/Application\ Support/Dock/desktoppicture.db \
+    'SELECT * FROM data ORDER BY rowID DESC LIMIT 1;'
+
+
+A: It does allow you to retrieve the image if that is what you want. Also once you drag it to your desktop you'll know the filename and then you can use Spotlight to search for the original copy, thus finding the location that you stored it in.

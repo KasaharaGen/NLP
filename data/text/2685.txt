@@ -1,0 +1,33 @@
+Q: Does Mac have something similar to a Linux loop device (alternative to losetup)? I am trying to work with some CD and hard drive images that I will run inside of QEMU. On Linux, I mount the images using the losetup command, but I notice Mac does not have this.
+Is there something similar I could use instead?
+
+A: Mac OS X has the Disk Images Framework for live mounting disk images. Although it primarily works with its own native formats such as .dmg, I believe it can also work with .iso's and other formats. You can use Disk Utility or the hdiutil command to mount disk images. 
+
+A: You can use hdiutil for that. Basically, it does the same as losetup on Linux.
+If you are planning to work with images with non-standard layouts or filesystems (for example, live CDs), make sure to pass -nomount to hdiutil attach, as otherwise it will complain that it couldn’t mount it (it tries to mount everything by default).
+After the image is attached, it will appear in diskutil list as an ordinary disk. You can work with it just like with a physical disc.
+
+Here is an example of mounting a live CD:
+$ hdiutil attach -nomount path/to/file.iso
+/dev/disk2              FDisk_partition_scheme
+/dev/disk2s2            0xEF
+
+It prints the name of the new disk. Now we can see it:
+$ diskutil list
+
+<...>
+
+/dev/disk2 (disk image):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:     FDisk_partition_scheme                        +453.0 MB   disk2
+   1:                       0xEF                         12.6 MB    disk2s2
+
+This is a live CD, it uses ISO 9660 file system. You can’t mount it using diskutil, you have to use a special tool:
+$ mount_cd9660 /dev/disk2 ~/tmp/mnt
+
+When you are done, unmount and detach:
+$ umount /dev/disk2
+$ hdiutil detach disk2
+"disk2" unmounted.
+"disk2" ejected.
+

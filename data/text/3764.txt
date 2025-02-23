@@ -1,0 +1,30 @@
+Q: Migrating from one computer to another The screen on my daughter's iMac went partially bad and so I just bought her an interim Mac (basically the same model that she had before).  I'm in the process of trying to do the migration from the old one to the new one.  Her old computer was running 10.6.6 and the newer one is running Tiger.  I thought that it would be a good idea to update the new one to Snow Leopard before starting the migration.  When I set up the new computer I accidentally gave it a different short name than the old one has.  Will I be able to migrate the files if the short name is different?  If not, is there any easy way to change it one the new computer There is nothing else on there now.
+
+A: Run the Migration Assistant utility on the new computer, and it'll walk you through migrating the account to the new computer.  It's actually good that you used a different name on the new computer, since that means it can bring over the entire account (by its original name) and it won't conflict with the account you've already created on the new (/temporary) computer.
+
+A: If you are comfortable in terminal - you can quickly boot into single user mode to remove the offending user account and let migration assistant take another try at moving in without any name conflicts. This works for Snow Leopard as written with two caveats:
+
+
+*
+
+*rm is forever and if you type wrong there is no undo and no questions asking if you are sure
+
+*Substitute her short name for apple below - you can see all the user folders with the command ls /Users
+Once you mount the drive /sbin/mount -uw / these three commands will delete the user record for a short name apple.
+
+
+*
+
+*rm -rf /Users/apple
+
+*cd /private/var/db
+
+*rm .AppleSetupDone
+
+*cd dslocal/nodes/Default/users
+
+*rm apple.plist
+
+*halt
+Then when you boot the machine, it will start the setup assistant so you can choose to migrate to a clean mac.
+Step 1 deletes the old home folder - everything from that user will be gone forever. Step 3 tells the setup assistant to run. Step 5 removes the record from the local user database to clean up the record of the user and all user settings. Technically a few other places have a record of the user ID and what groups the user belonged to, but for 99% of the macs, this will let you start over again. This is much cleaner than mucking with changing short names if you are going to move everything over again and much quicker than reinstalling from scratch.

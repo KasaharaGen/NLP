@@ -1,0 +1,15 @@
+Q: Fake rectangle/window visible under some windows tricky question here.
+I don't know how long this has been going on, but I noticed it only recently. My semi-transparent windows have a “fake” square/window beneath them, which is visible (it also project a shadow, but only when the window is in foreground.  
+Screenshot:
+ (the textedit window serves just as a white backdrop).
+Video showing behaviour:
+http://cl.ly/132M2T0p3j0E210d0S2K
+I initially thought this was just TextMate, but I noticed this on terminal.app too (semi-transparent too).
+I am running 10.6.6, have no “strange” hacks or input managers installed AFAIR.
+I understand that this is probably a very exotic bug, so tools that can help me track down the cause are welcome, and I'll gladly accept such an answer.
+Thanks in advance,
+A.
+
+A: I've seen a similar effect before, awhile ago. It's probably a program running in the background that has a transparent window on the desktop. Do you have anything running in the background that uses transparent windows or window overlays? I seem to remember an old version on Norton AV doing strange things like this many years ago. 
+
+A: How fascinating! Personally I would dump your Textmate .plist(s) found in ~/Library/Preferences, and see if the window management preferences are garbled just for that app. Worst case scenario, the rest of the Internet is right and there's simply no fix at present. As always, keep them on the desktop until you're certain you can delete them without having worsened the issue.

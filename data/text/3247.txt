@@ -1,0 +1,14 @@
+Q: Adding gedit to my PATH I finally made the jump and got a MacBook, and I'm trying to move in. I have the OSX port of gedit installed, but I'm having trouble adding it to my PATH. My current PATH looks like this:
+export PATH=/opt/local/bin:/Applications/gedit.app/Contents/MacOS/gedit:/opt/local/sbin:$PATH
+
+as per a comment here.
+
+A: Note: On OS X, you don't need /Application apps to be in the PATH to launch them.
+open -a gedit
+
+Check man open
+
+A: You only need to add the path to the folder containing the gedit binary, not the path to the binary.
+Try this
+export PATH=/opt/local/bin:/Applications/gedit.app/Contents/MacOS:/opt/local/sbin:$PATH
+

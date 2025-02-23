@@ -1,0 +1,82 @@
+Q: iPhone Apps in Waiting mode for the last 4 days I tried to download the "Dictionary Free" app from the App Store four days ago, but it's been stuck in "Waiting" ever since. I've tried everything: rebooting the phone, restoring from an iTunes backup, side-loading the app from iTunes, but nothing has worked.
+When I turn Airplane Mode on and then off again, I get an alert popup that says "Unable to download application. It will be available for download when you log in to the iTunes Store on your computer".
+I've tried what it recommends, but nothing seems to work.
+
+A: The springboard has several mechanisms to prevent this from being a permanent situation, but sometimes it falls down. Normally you can cancel a download cleanly. I generally follow this advice to "help" the springboard finish or abort the download transaction:
+
+
+*
+
+*(just use the X to cancel the download) - How can I cancel an app installation on the iPhone?
+
+*(reboot the phone) - Why are my updating iPhone apps "waiting..." forever?
+
+*(reboot with airplane mode and sync) - How to fix apps "waiting.." forever after sync?
+However, you could have your springboard stuck and a restore is needed. This is discussed here:
+
+
+*
+
+*(last ditch efforts and restore as new) - How can I remove this half-downloaded app from my iPhone?
+With the information you provided, it's difficult to tell which of the two causes is happening on your phone.
+
+A: After a week with Apple Customer Support, we resolved the issue by reinstalling iOS with a factory restore, setting up as a new device, then restoring the phone from a backup. 
+To clarify, a factory restore is not the same as erasing all content and settings. A factory restore can only be done by connecting to iTunes.
+
+Restore your iPhone, iPad, or iPod to factory settings
+A factory restore erases the information and settings on your iPhone,
+  iPad, or iPod and installs the latest version of iOS or iPod software.
+Get your device ready
+  
+  
+*
+  
+*Check that you have the latest version of iTunes on your Mac or PC.
+  
+*If you want to save the information on your iPhone, iPad, or iPod, make a backup.
+  
+*Go to Settings > [your name] > iCloud, then turn off Find My iPhone. For an unresponsive device or one that won't turn on, learn
+  what to do. If you forgot your passcode, get help.
+
+Restore your device to factory settings
+  
+  
+*
+  
+*Open iTunes on your Mac or PC.
+  
+*Connect your iPhone, iPad, or iPod to your computer with the cable that came with your device.
+  
+*If a message asks for your device passcode or to Trust This Computer, follow the onscreen steps. If you forgot your passcode, get help. 
+  
+*Select your iPhone, iPad, or iPod when it appears in iTunes. For an unresponsive device or one that won't turn on, learn what to do. Or
+  get help if your device doesn't appear in iTunes.
+
+  
+*In the Summary panel, click Restore [device].
+
+  
+*Click Restore again to confirm. Then iTunes erases your device and installs the latest iOS or iPod software.
+
+  
+*After your device restores to factory settings, it restarts. Now you can set it up as new.
+
+Extra notes:
+
+
+*
+
+*If you want to preserve Health and Activity data when making an iTunes backup, you will need to encrypt your backup.
+
+*During the new device setup, make sure to select Set Up Manually when prompted for Quick Start. You should not restore from another iOS 11 device.
+
+*After setting your phone up as a new device, you may want to make sure you can download apps on your fresh device before restoring from your backup.
+
+
+A: I've been fighting with this for several days now, and I think I finally cracked it. Check your iTunes Downloads (iTunes->More->Downloads) in iOS for stuck downloads. I had a music video that appears to have been gumming up the works.
+Prior to pausing that download I had tried rebooting, logging out of iTunes and all the other suggestions on lots of other blogs/sites/forums.
+(Sorry, I have this answer in a few place, the question has a few duplicates)
+
+A: Looks like your problem issue was solved by itself but next time here's one thing you can try: jailbreaking.
+At very least you'd be able to ssh into the system and try to see what's wrong and perform a high number of tests if you're willing to go deep enough into the rabbit's hole.
+For the record, I've had similar issues while installing apps, except they never lasted for even 1 day.

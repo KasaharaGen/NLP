@@ -1,0 +1,11 @@
+Q: Why does the OS X Software Update check take so long? Why does it take so long for Software Update in OS X to tell me that I'm up to date? I'm currently running 10.7.2, but this has been the case for all versions of OS X I've run. I just performed a check, and it took three minutes to return.
+I can't think of any reason why it should take so long. Isn't it a fairly quick lookup of applications and versions?
+By contrast, the same function in the iOS/iTunes Store and Mac App Store takes almost no time.
+
+A: Mac OS X keeps a list of all installed packages in /var/log/receipts.
+When software update is run it checks for updates for every (or perhaps only Apple) package individually by sending a HTTP request with a signature of the package to Apple's servers and waiting for a reply. This is necessary because of the wide variety of configurations possible for any system.
+On my Snow Leopard system running software update sent ~322 HTTP requests to Apple's servers.
+So basically it is just looking up if there are any updates, but because of the sheer number of separate and sometimes optional (Java, X11, printer drivers, etc.) packages, combined with the fact that it's sending each request separately, it can take awhile.
+
+A: I have never experienced this issue, because I never manually do a "Software Update". Lion tells me, with a pop-up of "Software Update", whenever an update is ready for me. And then check after the update takes just about one minute.
+This is a huge improvement from their side.

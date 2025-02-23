@@ -1,0 +1,31 @@
+Q: Can I remap UP and DOWN arrow keys in Aperture? I want to remap the up and down arrow keys, from Move Selection Up and Move Selection Down to Increase Rating and Decrease Rating.
+That way, it would be really instant to move between photos with the left/right arrows, and adjust the rating with the up/down arrows.
+Unfortunately, the Commands window does not let you edit these specific actions.
+Does anyone knows if there is any workaround on this?
+
+A: So, using a little plist trickery, I've managed to re-assign those keys.
+The steps I took are the following:
+
+
+*
+
+*Aperture > Commands.. > Customize
+
+*Duplicate current command set and name it "MySet"
+
+*Export & delete the current set
+
+*Open it with Property List Editor
+
+*Find and Delete: MoveSelectionUp and MoveSelectionDown entries
+
+*Save and exit
+
+*Import it via Aperture > Commands.. > Import
+
+*Select it via Aperture > Commands.. > Custom commands set
+
+
+So now the UP & DOWN arrow keys are free to assign whatever you like (in my case Increase & Decrease rating feels like the way to go!)
+
+A: Did you try to assign them via the System Preferences? Go to the Keyboard Shortcuts tab in the Keyboard panel, and select Application Shortcuts. You can then add your own shortcuts. You can add any Menu text and assign it a shortcut. Beware to spell out the menu text exactly as it appears in the actual menu.

@@ -1,0 +1,100 @@
+Q: How to customize "Kind"s in the Finder Is there a way to customize the Kinds in the Finder in any way? I'd like to set up my own custom kinds to make it easier to sort files in Finder views.
+I know that I can use the Get Info palette to customize which application opens a file but that's not exactly what I'm talking about.
+Really, the problem is I work with a lot of source files in plain/text format and as a result they all end up being displayed as TextWrangler Text File.
+Thing is, I do prefer having TextWrangler be their default application, I just want them to have a more descriptive Kind is all.
+Clarification Kinds basically describe the nature of the file, distinct from the extension. In the old days of System 7, they were stored as special metadata attached to the file. Not sure what the mechanism is in OS X. But basically, you can add the "Kind" column to your list view and it will basically describe what that file is. I'd like to be able to create or set up custom Kinds, to make it easier to sort by that column.
+More details
+The main place I'd be using this is not the Finder but Cyberduck, which appears to use the Kind column and only the Kind column for sorting by file type. So obviously if I could customize the Kinds available that'd make it easier to sort within CyberDuck. So I suppose if someone knows a hack to make CyberDuck sort files by extension, that'd work too.
+
+A: You could make new CFBundleDocumentTypes entries in  /Applications/TextWrangler.app/Contents/Info.plist. Many extensions are currently defined under a single entry with the CFBundleTypeName TextWrangler text document:
+<key>CFBundleDocumentTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeExtensions</key>
+        <array>
+            <string>a</string>
+            <string>as</string>
+            <string>asm</string>
+            <string>asp</string>
+            <string>bashrc</string>
+            <string>c</string>
+            <string>c++</string>
+            <string>cc</string>
+            <string>cfm</string>
+            <string>conf</string>
+            <string>cp</string>
+            <string>cpp</string>
+            <string>cshrc</string>
+            <string>css</string>
+            <string>cxx</string>
+            <string>equ</string>
+            <string>erb</string>
+            <string>f</string>
+            <string>f77</string>
+            <string>for</string>
+            <string>ftn</string>
+            <string>h</string>
+            <string>h++</string>
+            <string>hpp</string>
+            <string>htm</string>
+            <string>html</string>
+            <string>inc</string>
+            <string>j</string>
+            <string>java</string>
+            <string>js</string>
+            <string>json</string>
+            <string>jsp</string>
+            <string>log</string>
+            <string>m</string>
+            <string>mm</string>
+            <string>p</string>
+            <string>pas</string>
+            <string>pch</string>
+            <string>pch++</string>
+            <string>php</string>
+            <string>php3</string>
+            <string>pl</string>
+            <string>plist</string>
+            <string>plx</string>
+            <string>pm</string>
+            <string>ppu</string>
+            <string>profile</string>
+            <string>r</string>
+            <string>rb</string>
+            <string>rez</string>
+            <string>rhtml</string>
+            <string>rss</string>
+            <string>s</string>
+            <string>sql</string>
+            <string>shtm</string>
+            <string>shtml</string>
+            <string>tcl</string>
+            <string>tcshrc</string>
+            <string>text</string>
+            <string>txt</string>
+            <string>wml</string>
+            <string>xhtml</string>
+            <string>xml</string>
+            <string>xsl</string>
+            <string>xslt</string>
+            <string>yaml</string>
+        </array>
+        <key>CFBundleTypeIconFile</key>
+        <string>TextWranglerTextDoc.icns</string>
+        <key>CFBundleTypeName</key>
+        <string>TextWrangler text document</string>
+        <key>CFBundleTypeOSTypes</key>
+        <array>
+            <string>TEXT</string>
+        </array>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+    </dict>
+
+As usual, making changes inside the bundle invalidates the code signature. A new certificate can be assigned with codesign -f -s - /Applications/TextWrangler.app.
+
+A: This question is answered on SuperUser.
+The "kind" of a file is determined by the the Launch Services Database. In OS X Lion, it is found at
+/private/var/folders/**/**/-Caches-/com.apple.LaunchServices-034501.csstore.
+This database is updated when new applications are installed, and the only supported way for an end user to change the kind of a file is by changing the "Open with:" application in get info windows, as you mention.
+If you simply need to create another tier of organization for sorting files in finder windows, that's what the "Label" and "Comments" fields are for. You can turn them on by clicking the checkboxes after selecting Show View Options in the View menu. Labels can be customized in Finder preferences.

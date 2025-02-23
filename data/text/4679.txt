@@ -1,0 +1,19 @@
+Q: Natively written packet sniffer / inspector for OS X I am looking for a packet sniffer / inspector which runs natively on OS X (Cocoa) and not with some sort of compatibility layer like X.
+Ideally I am looking for an application with the following qualities:
+
+
+*
+
+*native (Cocoa) interface
+
+*ability to inspect packet data
+
+*inspect packet data as XML, or RAW formats
+
+*free
+
+
+A: Packet Peeper is a free, native OS X application for packet sniffing. Not quite as robust as Wireshark (but what is really).
+There's also Cocoa Packet Analyzer, which appears to have a nifty plugin framework for extending its capabilities, but I've never used it. It's donation-ware.
+KisMAC may also be of interest. Not so much a sniffer as a wireless stumbling tool. I've used it successfully to tune my wireless network in a congested neighbourhood.
+Edit: based on your updated desired features I'd say try Packet Peeper. It fulfills both your requirements.

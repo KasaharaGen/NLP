@@ -1,0 +1,25 @@
+Q: Restart OS X GUI I need to restart the WindowServer (OS X's GUI);
+I know this can be achieved using the command sudo killall -HUP WindowServer 
+but this closes all your open applications. Is there a way to restart the WindowsServer without it quitting all your open applications?
+
+A: The WindowServer is responsible for drawing all Windows and Windows Content for all Programs (incl. Finder), so it would not be possible to kill the Process without killing all Applications.
+You can read about the Window Server in the Apple Technical Note TN2083 for OSX 10.5.
+Even though it is announced in that Document that Apple plans to change the Behaviour in future Systemversions, it's in your list of required OS's.
+
+A: There is no way to restart window server without closing all apps; logging out & then back in is the best option
+
+A: You can also try:
+killall -KILL Dock
+
+
+A: killall Finder         # what should work
+killall SystemUIServer # what to run in addition if it does not
+
+If any of the two do not restart (finder sometimes does not automatically reboot in my experience), then run these commands after the initial set:
+open -a Finder
+open -a SystemUIServer
+
+This set of commands (specifically killall Finder) is almost exactly like taskkill /IM explorer.exe within the MS-DOS command line.
+
+A: If this is to restart the GUI  without quitting all applications (to solve UI jitter, a duplicate mouse cursor, etc...) I found turning off the display works as well.
+This earlier question has some information on how to do this.

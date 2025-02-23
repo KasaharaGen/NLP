@@ -1,0 +1,13 @@
+Q: Reset license key for MS Mac Office 2011 I need to enter a new MS Office for Mac license key.
+How can I reset my old one?
+
+A: From this forum post:
+
+Ditch /Library/Preferences/com.microsoft.office.licensing.plist. Start any Office application. Reregister/reactivate.
+
+Hope it helps.
+
+A: To add to this, once you delete /Library/Preferences/com.microsoft.office.licensing.plist you then need to reboot.  The activate office screen will then come up when you open any Office app.
+
+A: This does not work if you switch computers, Office will complain that product has been used the maximum number of times.
+One has to call them to reset activations.

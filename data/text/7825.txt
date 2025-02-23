@@ -1,0 +1,29 @@
+Q: What is the "+" mark at the end of file description? When I execute 'ls -al~', I see + marks, and it prevents me from moving/deleting files.
+drwxr-xr-x+   5 prosseek  admin     170 Oct  5 03:43 Desktop
+drwxr-xr-x+  17 prosseek  admin     578 Sep 25 22:20 Documents
+
+What is this, and how do I get this mark on every file and directory in my home directory? 
+How can I remove this? Is there any easy way to remove this on every file in my home directory?
+
+A: The + indicates the file has an Access Control List (ACL) with additional permissions. Each rule in an ACL is called an Access Control Entry (ACE).
+The command ls -ale will show the ACEs for each file/folder that has an ACL
+The default folders OS X creates when it makes a new home folder — Desktop, Documents, Downloads, Library, Movies, Music, Pictures, and Public — will have the ACE 
+0: group:everyone deny delete
+
+which means no users are allowed to delete the folder, not even the owner of the folder. This prevents people from accidentally deleting these folders, which OS X expects to exist.
+To remove all the ACLs from the default home folders, without affecting ACLs of their contents, use
+chmod -N ~/*
+
+To remove an ACL from a folder and everything inside of it, use
+chmod -R -N /path/to/folder
+
+Once the ACL has been removed, you can now delete those folder as expected, However, it's generally advisable to not remove the default folders that OS X  creates in a user's home folder. The OS and many apps expect those folders to be there. In fact, OS X may simply recreate some of them the next time you log in.
+An alternative is to hide them from the Finder with
+chflags hidden /path/to/folder
+
+To unhide, change hidden to nohidden. Hidden folders will still show up in Terminal, though.
+
+A: The plus means that there are extra permissions set on the file (using ACLs) that are more nuanced than can be expressed in the usual Unix rwxrwxrwx format.
+These permissions can be edited in the Finder's Get Info window for the file.
+
+A: A + at the end means the folder has extended security information (such as an access control list). Try restoring permissions.
